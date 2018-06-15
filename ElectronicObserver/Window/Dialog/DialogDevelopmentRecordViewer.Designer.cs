@@ -247,7 +247,8 @@
 			this.RecordView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.ToolTipInfo.SetToolTip(this.RecordView, resources.GetString("RecordView.ToolTip"));
 			this.RecordView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.RecordView_CellFormatting);
-			this.RecordView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.RecordView_SortCompare);
+            this.RecordView.SelectionChanged += new System.EventHandler(this.RecordView_SelectionChanged);
+            this.RecordView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.RecordView_SortCompare);
 			this.RecordView.Sorted += new System.EventHandler(this.RecordView_Sorted);
 			// 
 			// RecordView_Header
@@ -300,29 +301,32 @@
 			this.ToolTipInfo.InitialDelay = 500;
 			this.ToolTipInfo.ReshowDelay = 100;
 			this.ToolTipInfo.ShowAlways = true;
-			// 
-			// statusStrip1
-			// 
-			resources.ApplyResources(this.statusStrip1, "statusStrip1");
-			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusInfo});
-			this.statusStrip1.Name = "statusStrip1";
-			this.ToolTipInfo.SetToolTip(this.statusStrip1, resources.GetString("statusStrip1.ToolTip"));
-			// 
-			// StatusInfo
-			// 
-			resources.ApplyResources(this.StatusInfo, "StatusInfo");
-			this.StatusInfo.Name = "StatusInfo";
-			// 
-			// Searcher
-			// 
-			this.Searcher.WorkerSupportsCancellation = true;
-			this.Searcher.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Searcher_DoWork);
-			this.Searcher.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Searcher_RunWorkerCompleted);
-			// 
-			// DialogDevelopmentRecordViewer
-			// 
-			resources.ApplyResources(this, "$this");
+            this.statusStrip1.Location = new System.Drawing.Point(0, 419);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(624, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusInfo
+            // 
+            this.StatusInfo.Name = "StatusInfo";
+            this.StatusInfo.Size = new System.Drawing.Size(12, 17);
+            this.StatusInfo.Text = "-";
+            // 
+            // Searcher
+            // 
+            this.Searcher.WorkerSupportsCancellation = true;
+            this.Searcher.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Searcher_DoWork);
+            this.Searcher.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Searcher_RunWorkerCompleted);
+            // 
+            // DialogDevelopmentRecordViewer
+            // 
+            resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.statusStrip1);

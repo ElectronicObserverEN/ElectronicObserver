@@ -31,7 +31,7 @@ None of these functions interfere with KanColle normal, legal operation.
 
 ## Downloads
 
-The latest version of Electronic Observer is available at the [**Releases**](https://github.com/silfumus/ElectronicObserver/releases/latest) page.
+The latest version of Electronic Observer is available at the [**Releases**](https://github.com/myangelkamikaze/ElectronicObserver/releases) page.
 
 ## Documentations
 

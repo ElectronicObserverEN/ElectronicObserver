@@ -285,6 +285,7 @@
     <Compile Include="Observer\kcsapi\api_req_kaisou\slot_exchange_index.cs" />
     <Compile Include="Observer\kcsapi\api_req_kousyou\remodel_slotlist.cs" />
     <Compile Include="Observer\kcsapi\api_req_map\select_eventmap_rank.cs" />
+	<Compile Include="Observer\kcsapi\api_req_member\itemuse.cs" />
     <Compile Include="Observer\kcsapi\api_req_member\updatecomment.cs" />
     <Compile Include="Observer\kcsapi\api_req_mission\result.cs" />
     <Compile Include="Observer\kcsapi\api_req_quest\stop.cs" />
@@ -489,6 +490,12 @@
     </Compile>
     <Compile Include="Window\Dialog\DialogEquipmentList.Designer.cs">
       <DependentUpon>DialogEquipmentList.cs</DependentUpon>
+    </Compile>
+	<Compile Include="Window\Dialog\DialogExpChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogExpChecker.Designer.cs">
+      <DependentUpon>DialogExpChecker.cs</DependentUpon>
     </Compile>
     <Compile Include="Window\Dialog\DialogFleetImageGenerator.cs">
       <SubType>Form</SubType>
@@ -846,6 +853,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogEquipmentList.resx">
       <DependentUpon>DialogEquipmentList.cs</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Window\Dialog\DialogExpChecker.resx">
+      <DependentUpon>DialogExpChecker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogFleetImageGenerator.resx">
       <DependentUpon>DialogFleetImageGenerator.cs</DependentUpon>

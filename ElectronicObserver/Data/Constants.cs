@@ -344,7 +344,7 @@ namespace ElectronicObserver.Data
 				case 54: return "秋月型";
 				case 55: return "Admiral Hipper級";
 				case 56: return "香取型";
-				case 57: return "UボートIXC型/呂号潜水艦";
+				case 57: return "UボートIXC型";
 				case 58: return "V.Veneto級";
 				case 59: return "秋津洲型";
 				case 60: return "改風早型";
@@ -368,7 +368,14 @@ namespace ElectronicObserver.Data
 				case 78: return "Ark Royal級";
 				case 79: return "Richelieu級";
 				case 80: return "Guglielmo Marconi級";
-				default: return "不明";
+                case 81: return "Ташкент級";
+                case 82: return "J級";
+                case 83: return "Casablanca級";
+                case 84: return "Essex級";
+                case 85: return "日振型";
+                case 86: return "呂号潜水艦";
+                case 87: return "John C.Butler級";
+                default: return "不明";
 			}
 		}
 

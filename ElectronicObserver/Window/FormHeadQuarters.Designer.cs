@@ -94,10 +94,11 @@
 			this.AdmiralName.TabIndex = 0;
 			this.AdmiralName.Text = "(提督名)";
 			this.AdmiralName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// AdmiralComment
-			// 
-			this.AdmiralComment.AutoSize = true;
+            this.AdmiralName.UseMnemonic = false;
+            // 
+            // AdmiralComment
+            // 
+            this.AdmiralComment.AutoSize = true;
 			this.AdmiralComment.Location = new System.Drawing.Point(62, 0);
 			this.AdmiralComment.Name = "AdmiralComment";
 			this.AdmiralComment.Padding = new System.Windows.Forms.Padding(0, 3, 0, 2);
@@ -105,10 +106,11 @@
 			this.AdmiralComment.TabIndex = 1;
 			this.AdmiralComment.Text = "(提督コメント)";
 			this.AdmiralComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// HQLevel
-			// 
-			this.HQLevel.AutoSize = true;
+            this.AdmiralComment.UseMnemonic = false;
+            // 
+            // HQLevel
+            // 
+            this.HQLevel.AutoSize = true;
 			this.HQLevel.Location = new System.Drawing.Point(142, 0);
 			this.HQLevel.MainFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.HQLevel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);

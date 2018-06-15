@@ -570,27 +570,34 @@ namespace ElectronicObserver.Window
 		private void UpdateDisplayUseItem()
 		{
 			var db = KCDatabase.Instance;
-			var item = db.UseItems[Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID];
-			var itemMaster = db.MasterUseItems[Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID];
-			string tail = "\r\n(can be changed in settings)";
+            var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
+            var item = db.UseItems[itemID];
+            var itemMaster = db.MasterUseItems[itemID];
+            string tail = "\r\n(can be changed in settings)";
 
-			if (item != null)
-			{
-				DisplayUseItem.Text = item.Count.ToString();
-				ToolTipInfo.SetToolTip(DisplayUseItem, itemMaster.Name + tail);
+            switch (itemMaster?.Name)
+            {
+                case null:
+                    DisplayUseItem.Text = "???";
+                    ToolTipInfo.SetToolTip(DisplayUseItem, "不明なアイテム (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail);
+                    break;
 
-			}
-			else if (itemMaster != null)
-			{
-				DisplayUseItem.Text = "0";
-				ToolTipInfo.SetToolTip(DisplayUseItem, itemMaster.Name + tail);
+                // '18 spring event special mode
+                case "お米":
+                case "梅干":
+                case "海苔":
+                case "お茶":
+                    DisplayUseItem.Text = (item?.Count ?? 0).ToString();
+                    ToolTipInfo.SetToolTip(DisplayUseItem,
+                            $"お米: {db.UseItems[85]?.Count ?? 0}\r\n梅干: {db.UseItems[86]?.Count ?? 0}\r\n海苔: {db.UseItems[87]?.Count ?? 0}\r\nお茶: {db.UseItems[88]?.Count ?? 0}\r\n{tail}");
+                    break;
 
-			}
-			else
-			{
-				DisplayUseItem.Text = "???";
-				ToolTipInfo.SetToolTip( DisplayUseItem, "Unknown Item (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail );
-			}
+                default:
+                        DisplayUseItem.Text = (item?.Count ?? 0).ToString();
+                        ToolTipInfo.SetToolTip(DisplayUseItem,
+                                itemMaster.Name + tail);
+                        break;
+            }
 		}
 
 		private int RealShipCount
