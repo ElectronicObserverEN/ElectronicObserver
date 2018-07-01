@@ -1557,11 +1557,61 @@ namespace ElectronicObserver.Utility.Data
 
 
 
-
-		/// <summary>
-		/// 対空カットイン固定ボーナス
+        /// <summary>
+		/// Rocket k2 activation rate
 		/// </summary>
-		public static readonly ReadOnlyDictionary<int, int> AACutinFixedBonus = new ReadOnlyDictionary<int, int>(new Dictionary<int, int>() {
+		public static double GetRocketk2Rate(ShipData ship)
+        {
+            double adjustedAA = GetAdjustedAAValue(ship);
+
+            int rocketCount = 0;
+            foreach (var eq in ship.AllSlotInstance)
+            {
+                if (eq == null)
+                    continue;
+
+                var eqmaster = eq.MasterEquipment;
+
+                if (eqmaster.ID == 274) // 12cm30連装噴進砲
+                    rocketCount++;
+            }
+
+            if (rocketCount == 0)
+                return 0;
+
+            int stype = (int)ship.MasterShip.ShipType;
+            // 航空巡洋艦, 軽空母, 航空戦艦, 正規空母, 水上機母艦, 装甲空母
+            if (stype != 6 && stype != 7 && stype != 10 && stype != 11 && stype != 16 && stype != 18)
+                return 0;
+
+            int IseMod = 0;
+
+            switch(ship.ShipID)
+            {
+                case 77: // 伊勢
+                case 82: // 伊勢改
+                case 553: // 伊勢改二
+                case 87: // 日向
+                case 88: // 日向改
+                    IseMod = 1;
+                    break;
+
+                default:
+                    break;
+            }
+
+            double rocketk2 = ((adjustedAA + ship.LuckTotal) / 282) + (0.15 * rocketCount) + (0.25 * IseMod);
+
+            return rocketk2;
+        }
+
+
+
+
+        /// <summary>
+        /// 対空カットイン固定ボーナス
+        /// </summary>
+        public static readonly ReadOnlyDictionary<int, int> AACutinFixedBonus = new ReadOnlyDictionary<int, int>(new Dictionary<int, int>() {
 			{  1, 7 },
 			{  2, 6 },
 			{  3, 4 },

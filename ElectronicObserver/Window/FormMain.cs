@@ -1320,7 +1320,7 @@ namespace ElectronicObserver.Window
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 
-				System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/wiki");
+				System.Diagnostics.Process.Start("https://github.com/myangelkamikaze/ElectronicObserver/wiki");
 			}
 
 		}
@@ -1333,7 +1333,7 @@ namespace ElectronicObserver.Window
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 
-				System.Diagnostics.Process.Start("https://gitreports.com/issue/silfumus/ElectronicObserver");
+				System.Diagnostics.Process.Start("https://gitreports.com/issue/myangelkamikaze/ElectronicObserver");
 			}
 
 		}

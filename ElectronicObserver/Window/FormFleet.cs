@@ -508,7 +508,7 @@ namespace ElectronicObserver.Window
 
 						}
 
-                        tip.AppendLine("(右クリックで必要Exp計算)");
+                        tip.AppendLine("(Right click to open the exp calculator.)");
 
                         ToolTipInfo.SetToolTip(Level, tip.ToString());
 					}
@@ -600,7 +600,7 @@ namespace ElectronicObserver.Window
 
             void Name_MouseDown(object sender, MouseEventArgs e)
             {
-                if (Level.Tag is int id && id != -1)
+                if (Name.Tag is int id && id != -1)
                 {
                     if ((e.Button & MouseButtons.Right) != 0)
                     {
@@ -699,7 +699,12 @@ namespace ElectronicObserver.Window
 						Calculator.GetProportionalAirDefense(adjustedaa)
 						);
 
-				}
+                    double rocketk2Rate = Calculator.GetRocketk2Rate(ship);
+                    if(rocketk2Rate != 0)
+                        sb.AppendFormat("AARB Rate: {0:P2}" + "\r\n",
+                            rocketk2Rate
+                            );
+                }
 
 				{
 					int airsup_min;

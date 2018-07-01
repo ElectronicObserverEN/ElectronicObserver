@@ -122,7 +122,8 @@
 			this.Status_ShipCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.Status_LevelTotal = new System.Windows.Forms.ToolStripStatusLabel();
 			this.Status_LevelAverage = new System.Windows.Forms.ToolStripStatusLabel();
-			((System.ComponentModel.ISupportInitialize)(this.ShipView)).BeginInit();
+            this.Status_ExpTotal = new System.Windows.Forms.ToolStripStatusLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.ShipView)).BeginInit();
 			this.MenuMember.SuspendLayout();
 			this.MenuGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -841,7 +842,8 @@
 			this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.Status_ShipCount,
 			this.Status_LevelTotal,
-			this.Status_LevelAverage});
+			this.Status_LevelAverage,
+            this.Status_ExpTotal});
 			this.StatusBar.Location = new System.Drawing.Point(0, 134);
 			this.StatusBar.Name = "StatusBar";
 			this.StatusBar.Size = new System.Drawing.Size(300, 22);
@@ -863,10 +865,15 @@
 			//
 			this.Status_LevelAverage.Name = "Status_LevelAverage";
 			this.Status_LevelAverage.Size = new System.Drawing.Size(0, 17);
-			//
-			// FormShipGroup
-			//
-			this.AutoHidePortion = 150D;
+            //
+            // Status_ExpTotal
+            //
+            this.Status_ExpTotal.Name = "Status_ExpTotal";
+            this.Status_ExpTotal.Size = new System.Drawing.Size(0, 17);
+            //
+            // FormShipGroup
+            //
+            this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(300, 200);
 			this.Controls.Add(this.splitContainer1);
@@ -911,7 +918,8 @@
 		private System.Windows.Forms.ToolStripStatusLabel Status_ShipCount;
 		private System.Windows.Forms.ToolStripStatusLabel Status_LevelTotal;
 		private System.Windows.Forms.ToolStripStatusLabel Status_LevelAverage;
-		private System.Windows.Forms.ToolStripMenuItem MenuGroup_ShowStatusBar;
+        private System.Windows.Forms.ToolStripStatusLabel Status_ExpTotal;
+        private System.Windows.Forms.ToolStripMenuItem MenuGroup_ShowStatusBar;
 		private System.Windows.Forms.ToolStripMenuItem MenuMember_Filter;
 		private System.Windows.Forms.ToolStripMenuItem MenuMember_SortOrder;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ID;

@@ -561,7 +561,8 @@ namespace ElectronicObserver.Window
 				Status_ShipCount.Text = string.Format("Assigned: {0} ships", group.Members.Count);
 				Status_LevelTotal.Text = string.Format("Total Lv: {0}", group.MembersInstance.Where(s => s != null).Sum(s => s.Level));
 				Status_LevelAverage.Text = string.Format("Avg Lv: {0:F2}", group.Members.Count > 0 ? group.MembersInstance.Where(s => s != null).Average(s => s.Level) : 0);
-			}
+                Status_ExpTotal.Text = string.Format("Total Exp: {0}", group.MembersInstance.Where(s => s != null).Sum(s => s.ExpTotal));
+            }
 		}
 
 
@@ -687,18 +688,21 @@ namespace ElectronicObserver.Window
 				if (ShipView.Rows.GetRowCount(DataGridViewElementStates.Selected) >= 2)
 				{
 					var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Level.Index].Value);
-					Status_ShipCount.Text = string.Format("Selected: {0} / {1} ships", ShipView.Rows.GetRowCount(DataGridViewElementStates.Selected), group.Members.Count);
+                    var exp = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Exp.Index].Value);
+                    Status_ShipCount.Text = string.Format("Selected: {0} / {1} ships", ShipView.Rows.GetRowCount(DataGridViewElementStates.Selected), group.Members.Count);
 					Status_LevelTotal.Text = string.Format("Total Lv: {0}", levels.Sum());
 					Status_LevelAverage.Text = string.Format("Avg Lv: {0:F2}", levels.Average());
+                    Status_ExpTotal.Text = string.Format("Total Exp: {0}", exp.Sum());
 
 
-				}
+                }
 				else
 				{
 					Status_ShipCount.Text = string.Format("Assigned: {0} ships", group.Members.Count);
 					Status_LevelTotal.Text = string.Format("Total Lv: {0}", group.MembersInstance.Where(s => s != null).Sum(s => s.Level));
 					Status_LevelAverage.Text = string.Format("Avg Lv: {0:F2}", group.Members.Count > 0 ? group.MembersInstance.Where(s => s != null).Average(s => s.Level) : 0);
-				}
+                    Status_ExpTotal.Text = string.Format("Total Exp: {0}", group.MembersInstance.Where(s => s != null).Sum(s => s.ExpTotal));
+                }
 
 			}
 			else

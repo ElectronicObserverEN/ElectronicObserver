@@ -86,7 +86,7 @@
 			this.TextInformation.Size = new System.Drawing.Size(235, 15);
 			this.TextInformation.TabIndex = 5;
 			this.TextInformation.TabStop = true;
-			this.TextInformation.Text = "https://github.com/silfumus/ElectronicObserver";
+			this.TextInformation.Text = "https://github.com/myangelkamikaze/ElectronicObserver";
 			this.TextInformation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TextInformation_LinkClicked);
 			//
 			// label2

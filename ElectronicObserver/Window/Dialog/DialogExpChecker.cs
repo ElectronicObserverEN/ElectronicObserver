@@ -15,7 +15,7 @@ namespace ElectronicObserver.Window.Dialog
 {
 	public partial class DialogExpChecker : Form
 	{
-		private static readonly string DefaultTitle = "必要経験値計算";
+		private static readonly string DefaultTitle = "Exp calculator";
 		private DataGridViewCellStyle CellStyleModernized;
 
 
@@ -73,7 +73,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (!ships.Any())
 			{
-				MessageBox.Show("艦船が存在しません。\r\n母港まで移動してください。", "対象艦船なし", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("There is no ship data.\r\nPlease move to the main menu.", "Selected ship does not exist.", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 				return;
 			}
@@ -175,7 +175,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
-				if (selectedShip.SlotSize >= 4)
+                /*if (selectedShip.SlotSize >= 4)
 				{
 					ASWEquipmentPairs.Add(openingASWborder - 51, "[四式水中聴音機x3, 試製15cm9連装対潜噴進砲]");
 					ASWEquipmentPairs.Add(openingASWborder - 48, "[四式水中聴音機x4]");
@@ -198,8 +198,33 @@ namespace ElectronicObserver.Window.Dialog
 					ASWEquipmentPairs.Add(openingASWborder - 20, "[四式水中聴音機, 三式爆雷投射機]");
 					ASWEquipmentPairs.Add(openingASWborder - 18, "[三式水中探信儀, 三式爆雷投射機]");
 				}
-				ASWEquipmentPairs.Add(openingASWborder - 12, "[四式水中聴音機]");
-			}
+				ASWEquipmentPairs.Add(openingASWborder - 12, "[四式水中聴音機]");*/
+
+                if (selectedShip.SlotSize >= 4)
+                {
+                    ASWEquipmentPairs.Add(openingASWborder - 51, "[T4 Sonarx3, ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 48, "[T4 Sonarx4]");
+                    ASWEquipmentPairs.Add(openingASWborder - 44, "[T4 Sonarx3, T3 DCP]");
+                }
+                if (selectedShip.SlotSize >= 3)
+                {
+                    ASWEquipmentPairs.Add(openingASWborder - 39, "[T4 Sonarx2, ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 36, "[T4 Sonarx3]");
+                    ASWEquipmentPairs.Add(openingASWborder - 32, "[T4 Sonarx2, T3 DCP]");
+                    ASWEquipmentPairs.Add(openingASWborder - 28, "[T3 Sonarx2, T3 DCP]");
+                    ASWEquipmentPairs.Add(openingASWborder - 27, "[T4 Sonar, T3 DCP, T2 DC]");
+                }
+                if (selectedShip.SlotSize >= 2)
+                {
+                    if (ASWEquipmentPairs.ContainsKey(openingASWborder - 27))
+                        ASWEquipmentPairs[openingASWborder - 27] += ", [T4 Sonar, ASW Rocket Launcher]";
+                    else
+                        ASWEquipmentPairs.Add(openingASWborder - 27, "[T4 Sonar, ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 20, "[T4 Sonar, T3 DCP]");
+                    ASWEquipmentPairs.Add(openingASWborder - 18, "[T3 Sonar, T3 DCP]");
+                }
+                ASWEquipmentPairs.Add(openingASWborder - 12, "[T4 Sonar]");
+            }
 
 
 
@@ -245,7 +270,7 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			Text = DefaultTitle + " - " + selectedShip.NameWithLevel;
-			GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, 対潜 {selectedShip.ASWBase} (現在改修+{selectedShip.ASWModernized})";
+			GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, ASW {selectedShip.ASWBase} (ASW mod+{selectedShip.ASWModernized})";
 		}
 
 

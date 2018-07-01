@@ -1,4 +1,4 @@
-# Electronic Observer (七四式電子観測儀)
+﻿# Electronic Observer (七四式電子観測儀)
 
 Electronic Observer is a browser to help admirals manage their fleets. It is packed with features to provide additional informations for admirals to plan and play KanColle better.
 
@@ -53,8 +53,10 @@ This project is licensed under the MIT License, for more information, see LICENS
 
 ## Contacts
 
-Please open a new [**issue**](https://github.com/silfumus/ElectronicObserver/issues) at Github if you have any problem, question, or suggestion.
+Please open a new [**issue**](https://github.com/myangelkamikaze/ElectronicObserver/issues) at Github, or ask on [Discord](https://discord.gg/jSTnJxn) if you have any problem, question, or suggestion.
 Thank you for using Electronic Observer.
+
+* Maintainer: [myangelkamikaze](https://github.com/myangelkamikaze)
 * Translator: [silfumus](https://github.com/silfumus)
 * Japanese Distribution Website: [ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/)
 * Developer: [Andante](https://twitter.com/andanteyk)
