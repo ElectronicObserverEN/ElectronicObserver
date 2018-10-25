@@ -229,7 +229,9 @@ namespace ElectronicObserver.Window
 			AnchorageRepairingTimer.Font = Font;
 			AnchorageRepairingTimer.Visible = Utility.Configuration.Config.FormFleet.ShowAnchorageRepairingTimer;
 
-			ControlHelper.SetTableRowStyles(TableFleet, ControlHelper.GetDefaultRowStyle());
+            LayoutSubInformation();
+
+            ControlHelper.SetTableRowStyles(TableFleet, ControlHelper.GetDefaultRowStyle());
 
 			TableFleet.ResumeLayout();
 		}
@@ -289,7 +291,9 @@ namespace ElectronicObserver.Window
 				ToolTipInfo.SetToolTip( AnchorageRepairingTimer, "Anchorage Repair Timer\r\nStart: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) + "\r\nRecovery: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes( 20 ) ) );
 			}
 
-			TableFleet.ResumeLayout();
+            LayoutSubInformation();
+
+            TableFleet.ResumeLayout();
 		}
 
 
@@ -305,9 +309,34 @@ namespace ElectronicObserver.Window
 				AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString((DateTime)AnchorageRepairingTimer.Tag);
 		}
 
+        // 空欄があれば詰める
+        void LayoutSubInformation()
+        {
+            if (CombinedTag.Visible && !AnchorageRepairingTimer.Visible)
+            {
+                if (TableFleet.GetPositionFromControl(AnchorageRepairingTimer).Row != 5)
+                {
+                    TableFleet.Controls.Remove(CombinedTag);
+                    TableFleet.Controls.Remove(AnchorageRepairingTimer);
+                    TableFleet.Controls.Add(CombinedTag, 1, 4);
+                    TableFleet.Controls.Add(AnchorageRepairingTimer, 1, 5);
+                }
+            }
+            else
+            {
+                if (TableFleet.GetPositionFromControl(AnchorageRepairingTimer).Row != 4)
+                {
+                    TableFleet.Controls.Remove(CombinedTag);
+                    TableFleet.Controls.Remove(AnchorageRepairingTimer);
+                    TableFleet.Controls.Add(AnchorageRepairingTimer, 1, 4);
+                    TableFleet.Controls.Add(CombinedTag, 1, 5);
+                }
+            }
+        }
 
 
-		private void TableFleet_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+
+        private void TableFleet_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
 		{
 			e.Graphics.DrawLine(Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 

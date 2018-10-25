@@ -132,14 +132,14 @@
   <data name="Alignment_Top" xml:space="preserve">
     <value>上(&amp;T)</value>
   </data>
-  <data name="ClearComplete" xml:space="preserve">
-    <value>削除完了</value>
+  <data name="RefreshIgnoreCache" xml:space="preserve">
+    <value>キャッシュを無視して更新(&amp;C)</value>
   </data>
-  <data name="ClearCompleteDialog" xml:space="preserve">
-    <value>キャッシュの削除が完了しました。</value>
+  <data name="NavigateToLogInPage" xml:space="preserve">
+    <value>Go to Login Page</value>
   </data>
-  <data name="CurrentZoom" xml:space="preserve">
-    <value>現在: </value>
+  <data name="Other_Zoom_Current" xml:space="preserve">
+    <value>現在:</value>
   </data>
   <data name="FailedToApplyStylesheet" xml:space="preserve">
     <value>スタイルシートの適用に失敗しました。</value>
@@ -152,7 +152,7 @@ if (node) document.getElementsByTagName('head')[0].removeChild(node);
 node = document.createElement('div');
 node.innerHTML = 'F&lt;style id=\'{0}\'&gt;body {{ visibility: hidden; }} \
 #flashWrap {{ position: fixed; left: 0; top: 0; width: 100% !important; height: 100% !important; }} \
-#externalswf {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
+#htmlWrap {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
 document.getElementsByTagName('head')[0].appendChild(node.lastChild);
 }}
 catch(e) {{
@@ -166,11 +166,8 @@ catch(e) {{
   <data name="Other" xml:space="preserve">
     <value>その他</value>
   </data>
-  <data name="Other_Zoom_Current" xml:space="preserve">
-    <value>現在% </value>
-  </data>
-  <data name="Other_Zoom_Fit" xml:space="preserve">
-    <value>ぴったり</value>
+  <data name="Other_Zoom_Current_Fit" xml:space="preserve">
+    <value>現在: ぴったり</value>
   </data>
   <data name="PageScript" xml:space="preserve">
     <value>
@@ -195,10 +192,10 @@ catch(e) {{
 よろしいですか？</value>
   </data>
   <data name="ScreenshotError" xml:space="preserve">
-    <value>スクリーンショットの保存時にエラーが発生しました。</value>
+    <value>スクリーンショットの撮影に失敗しました。</value>
   </data>
-  <data name="ShowToolMenu" xml:space="preserve">
-    <value>ツールメニューを表示</value>
+  <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
+    <value>クリップボードにコピー(&amp;C)</value>
   </data>
   <data name="Strip_Mute" xml:space="preserve">
     <value>ミュート</value>
@@ -223,5 +220,34 @@ try {
 catch(e) {
 	alert("DMMによるページ更新ダイアログの非表示に失敗しました: "+e);
 }</value>
+  </data>
+  <data name="RestoreScript" xml:space="preserve">
+    <value>var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
+  </data>
+  <data name="RegionCookie" xml:space="preserve">
+    <value>document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=osapi.dmm.com;path=/'; document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=203.104.209.7;path=/'; document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=www.dmm.com;path=/netgame/'; document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=log-netgame.dmm.com;path=/';</value>
+  </data>
+  <data name="RemoveWelcomePopup" xml:space="preserve">
+    <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
+  </data>
+  <data name="RemoveServicePopup" xml:space="preserve">
+    <value>var element = document.getElementById('page-popup'); element.parentNode.removeChild(element);</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="ReloadHardDialog" xml:space="preserve">
+    <value>キャッシュを無視して再読み込みします。
+よろしいですか？</value>
+  </data>
+  <data name="ShowToolMenu" xml:space="preserve">
+    <value>ツールメニューを表示</value>
+  </data>
+  <data name="OpenDevTool" xml:space="preserve">
+    <value>開発者ツールを開く</value>
+  </data>
+  <data name="Zoom_to_Fit" xml:space="preserve">
+    <value>現在: ぴったり</value>
   </data>
 </root>

@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Net;
-using System.Reflection;
 using System.Security.Cryptography;
-using System.Windows.Forms;
 using System.Xml.Linq;
 using Codeplex.Data;
 using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
 {
-	internal class SoftwareUpdater
+    internal class SoftwareUpdater
 	{
 		public static bool UpdateRestart = false;
 		
 		internal static readonly string AppDataFolder =
 			Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
 		internal static readonly string TranslationFolder = AppDataFolder + "\\Translations";
-		private static readonly string UpdateFile = AppDataFolder + @"\\latest.zip";
 		private static readonly Uri UpdateUrl =
-			new Uri("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
+			new Uri("https://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
 
 		internal static string EqVer { get; set; } = "0.0.0";
 		internal static string EqTypeVer { get; set; } = "0.0.0";
@@ -44,46 +40,56 @@ namespace ElectronicObserver.Utility
 				Directory.CreateDirectory(AppDataFolder);
 
 			CheckVersion();
-			
-			var downloadUrl = new Uri(ZipUrl);
+			DownloadUpdater();
 
-			if (!File.Exists(UpdateFile))
-				DownloadUpdate(downloadUrl);
-			else if (GetFileHash(UpdateFile) != DownloadHash)
+			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
+			if (!File.Exists(updaterFile))
 			{
-				File.Delete(UpdateFile);
-				DownloadUpdate(downloadUrl);
+				Logger.Add(2, "Updater started. Close EO after it has finished downloading the update.");
 			}
-			else
-			{
-				Logger.Add(2, "Close Electronic Observer to complete the update.");
-			}
-
-			var destPath =
-				Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-			UpdateUpdater(UpdateFile, destPath);
-
 			var updater = new Process
 			{
 				StartInfo =
 				{
-					FileName = Application.StartupPath + @"\EOUpdater.exe",
+					FileName = updaterFile,
 					UseShellExecute = false,
-					CreateNoWindow = true
-				}
+					CreateNoWindow = false
+		}
 			};
 			if (!UpdateRestart)
 				updater.StartInfo.Arguments = "--restart";
 
 			updater.Start();
+			Logger.Add(2, "Updater started. Close EO after it has finished downloading the update.");
+		}
+
+		private static void DownloadUpdater()
+		{
+			try
+			{
+				using (var client = new WebClient())
+				{
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					var url = @"https://github.com/silfumus/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
+					var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
+
+					client.DownloadFile(url, updaterFile);
+					Logger.Add(1, "Updater download finished.");
+				}
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, "Failed to download updater. " + e);
+			}
 		}
 
 		internal static void CheckVersion()
 		{
-			if (_isChecked) return;
+		    if (_isChecked) return;
 			try
 			{
-				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
+			    int nodeVer;
+			    using (var client = WebRequest.Create(UpdateUrl).GetResponse())
 				{
 					var updateData = client.GetResponseStream();
 					var json = DynamicJson.Parse(updateData);
@@ -100,8 +106,11 @@ namespace ElectronicObserver.Utility
 					QuestVer = json.tl_ver.quest;
 					ShipVer = json.tl_ver.ship;
 					ShipTypeVer = json.tl_ver.ship_type;
-
+				    nodeVer = (int)json.tl_ver.nodes;
 				}
+
+			    if (nodeVer != CheckDataVersion("nodes.json"))
+			        DownloadData("nodes.json");
 			}
 			catch (Exception e)
 			{
@@ -109,9 +118,45 @@ namespace ElectronicObserver.Utility
 			}
 
 			_isChecked = true;
-		}
+	    }
 
-		private static string GetFileHash(string filename)
+	    public static int CheckDataVersion(string filename)
+	    {
+	        var source = TranslationFolder + $"\\{filename}";
+	        if (!File.Exists(source))
+	            DownloadData(filename);
+	        try
+	        {
+	            using (var sr = new StreamReader(source))
+	            {
+	                var json = DynamicJson.Parse(sr.ReadToEnd());
+	                return (int)json.Revision;
+	            }
+	        }
+	        catch (Exception)
+	        {
+	            return 0;
+	        }
+        }
+
+	    public static string CheckDataVersion(TranslationFile filename)
+	    {
+	        var source = TranslationFolder + $"\\{filename}.xml";
+            if (!File.Exists(source))
+	            DownloadData(filename);
+            Console.WriteLine(source);
+	        try
+	        {
+	            var xml = XDocument.Load(source);
+	            return xml.Root.Attribute("Version").Value;
+	        }
+	        catch (Exception)
+	        {
+	            return "0.0.0";
+	        }
+        }
+
+        private static string GetHash(string filename)
 		{
 			using (var sha256 = SHA256.Create())
 			{
@@ -123,64 +168,40 @@ namespace ElectronicObserver.Utility
 			}
 		}
 
-		private static void DownloadUpdate(Uri url)
+		internal static void DownloadData(TranslationFile filename)
 		{
-			try
-			{
-				using (var client = new WebClient())
-				{
-					Logger.Add(2, "Downloading new version of Electronic Observer...");
-					client.DownloadFileCompleted += DownloadComplete;
-					client.DownloadFileAsync(url, UpdateFile);
-				}
-			}
-			catch (Exception e)
-			{
-				Logger.Add(3, "Failed to download update file." + e);
-			}
+		    var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US/" + $"{filename}.xml";
+		    var dest = TranslationFolder + $"\\{filename}.xml";
+		    try
+		    {
+		        using (var client = new WebClient())
+		        {
+		            client.DownloadFile(new Uri(url), dest);
+		            Logger.Add(2, $"File {filename} updated.");
+                }
+		    }
+		    catch (Exception e)
+		    {
+		        Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
+		    }
+        }
 
-		}
-
-		internal static void DownloadTranslation(TranslationFile filename, string latestVersion)
-		{
-			var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US";
-			try
-			{
-				var r2 = WebRequest.Create(url + $"/{filename}.xml");
-				using (var resp = r2.GetResponse())
-				{
-					var doc = XDocument.Load(resp.GetResponseStream());
-					doc.Save(TranslationFolder + $"\\{filename}.xml");
-				}
-				Logger.Add(2, $"Updated {filename} translations to v{latestVersion}.");
-			}
-			catch (Exception e)
-			{
-				Logger.Add(3, $"Failed to download {filename}.xml. " + e.Message);
-			}
-
-		}
-
-		private static void UpdateUpdater(string zipPath, string extractPath)
-		{
-			var localPath = new Uri(extractPath).LocalPath;
-			using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Read))
-			{
-				foreach (var file in archive.Entries)
-				{
-					var fullname = file.FullName.Replace(@"ElectronicObserver/", "");
-					var completeFileName = Path.Combine(localPath, fullname);
-
-					if (file.Name != "EOUpdater.exe") continue;
-
-					file.ExtractToFile(completeFileName, true);
-				}
-			}
-		}
-
-		private static void DownloadComplete(object sender, EventArgs e)
-		{
-			Logger.Add(2, "Download complete. Close Electronic Observer to complete the update.");
-		}
-	}
+	    internal static void DownloadData(string filename)
+	    {
+	        var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US/" + $"{filename}";
+	        var dest = TranslationFolder + $"\\{filename}";
+            try
+	        {
+	            using (var client = new WebClient())
+	            {
+	                client.DownloadFile(new Uri(url), dest);
+	                Logger.Add(2, $"File {filename} updated.");
+	            }
+            }
+	        catch (Exception e)
+	        {
+	            Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
+	        }
+	    }
+    }
 }

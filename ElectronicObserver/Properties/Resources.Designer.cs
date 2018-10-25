@@ -365,15 +365,6 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 既に起動しています。\r\n多重起動はできません。.
-        /// </summary>
-        internal static string NoMultipleStart {
-            get {
-                return ResourceManager.GetString("NoMultipleStart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 艦船データが読み込まれていません。.
         /// </summary>
         internal static string NoShipData {

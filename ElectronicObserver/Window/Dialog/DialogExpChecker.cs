@@ -1,4 +1,4 @@
-using ElectronicObserver.Data;
+Ôªøusing ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using System;
@@ -15,7 +15,7 @@ namespace ElectronicObserver.Window.Dialog
 {
 	public partial class DialogExpChecker : Form
 	{
-		private static readonly string DefaultTitle = "Exp calculator";
+		private static readonly string DefaultTitle = "Exp Calculator";
 		private DataGridViewCellStyle CellStyleModernized;
 
 
@@ -73,7 +73,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (!ships.Any())
 			{
-				MessageBox.Show("There is no ship data.\r\nPlease move to the main menu.", "Selected ship does not exist.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("No ships available.\r\nPlease return to the home port page.", "Ships Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 				return;
 			}
@@ -112,7 +112,7 @@ namespace ElectronicObserver.Window.Dialog
 			LevelView.Rows.Clear();
 
 
-			// ãÛïÍånÇÕñ ì|Ç»ÇÃÇ≈è»ó™
+			// Á©∫ÊØçÁ≥ª„ÅØÈù¢ÂÄí„Å™„ÅÆ„ÅßÁúÅÁï•
 			int openingASWborder = selectedShip.MasterShip.ShipType == ShipTypes.Escort ? 60 : 100;
 
 			var ASWEquipmentPairs = new Dictionary<int, string>();
@@ -166,7 +166,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				foreach (var x in pair)
 				{
-					// óvÇ∑ÇÈÇ…â∫ÇÃÇÊÇ§Ç»ÉtÉHÅ[É}ÉbÉgÇ…Ç∑ÇÈ
+					// Ë¶Å„Åô„Çã„Å´‰∏ã„ÅÆ„Çà„ÅÜ„Å™„Éï„Ç©„Éº„Éû„ÉÉ„Éà„Å´„Åô„Çã
 					ASWEquipmentPairs.Add(openingASWborder - x.Key,
 						string.Join(", ",
 							x.Value.OrderBy(a => a.Count(b => b.ID > 0))
@@ -175,56 +175,31 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
-                /*if (selectedShip.SlotSize >= 4)
+				if (selectedShip.SlotSize >= 4)
 				{
-					ASWEquipmentPairs.Add(openingASWborder - 51, "[éléÆêÖíÜíÆâπã@x3, ééêª15cm9òAëïëŒêˆï¨êiñC]");
-					ASWEquipmentPairs.Add(openingASWborder - 48, "[éléÆêÖíÜíÆâπã@x4]");
-					ASWEquipmentPairs.Add(openingASWborder - 44, "[éléÆêÖíÜíÆâπã@x3, éOéÆîöóãìäéÀã@]");
+					ASWEquipmentPairs.Add(openingASWborder - 51, "[Type 4 SONARx3, 15cm ASW Rocket Launcher]");
+					ASWEquipmentPairs.Add(openingASWborder - 48, "[Type 4 SONARx4]");
+					ASWEquipmentPairs.Add(openingASWborder - 44, "[Type 4 SONARx3, Type 3 DC]");
 				}
 				if (selectedShip.SlotSize >= 3)
 				{
-					ASWEquipmentPairs.Add(openingASWborder - 39, "[éléÆêÖíÜíÆâπã@x2, ééêª15cm9òAëïëŒêˆï¨êiñC]");
-					ASWEquipmentPairs.Add(openingASWborder - 36, "[éléÆêÖíÜíÆâπã@x3]");
-					ASWEquipmentPairs.Add(openingASWborder - 32, "[éléÆêÖíÜíÆâπã@x2, éOéÆîöóãìäéÀã@]");
-					ASWEquipmentPairs.Add(openingASWborder - 28, "[éOéÆêÖíÜíTêMãVx2, éOéÆîöóãìäéÀã@]");
-					ASWEquipmentPairs.Add(openingASWborder - 27, "[éléÆêÖíÜíÆâπã@, éOéÆîöóãìäéÀã@, ìÒéÆîöóã]");
+					ASWEquipmentPairs.Add(openingASWborder - 39, "[Type 4 SONARx2, 15cm ASW Rocket Launcher]");
+					ASWEquipmentPairs.Add(openingASWborder - 36, "[Type 4 SONARx3]");
+					ASWEquipmentPairs.Add(openingASWborder - 32, "[Type 4 SONARx2, Type 3 DC]");
+					ASWEquipmentPairs.Add(openingASWborder - 28, "[Type 3 SONARx2, Type 3 DC]");
+					ASWEquipmentPairs.Add(openingASWborder - 27, "[Type 4 SONAR, Type 3 DC, Type 2 DC]");
 				}
 				if (selectedShip.SlotSize >= 2)
 				{
 					if (ASWEquipmentPairs.ContainsKey(openingASWborder - 27))
-						ASWEquipmentPairs[openingASWborder - 27] += ", [éléÆêÖíÜíÆâπã@, ééêª15cm9òAëïëŒêˆï¨êiñC]";
+						ASWEquipmentPairs[openingASWborder - 27] += ", [Type 4 SONAR, 15cm ASW Rocket Launcher]";
 					else
-						ASWEquipmentPairs.Add(openingASWborder - 27, "[éléÆêÖíÜíÆâπã@, ééêª15cm9òAëïëŒêˆï¨êiñC]");
-					ASWEquipmentPairs.Add(openingASWborder - 20, "[éléÆêÖíÜíÆâπã@, éOéÆîöóãìäéÀã@]");
-					ASWEquipmentPairs.Add(openingASWborder - 18, "[éOéÆêÖíÜíTêMãV, éOéÆîöóãìäéÀã@]");
+						ASWEquipmentPairs.Add(openingASWborder - 27, "[Type 4 SONAR, 15cm ASW Rocket Launcher]");
+					ASWEquipmentPairs.Add(openingASWborder - 20, "[Type 4 SONAR, Type 3 DC]");
+					ASWEquipmentPairs.Add(openingASWborder - 18, "[Type 3 SONAR, Type 3 DC]");
 				}
-				ASWEquipmentPairs.Add(openingASWborder - 12, "[éléÆêÖíÜíÆâπã@]");*/
-
-                if (selectedShip.SlotSize >= 4)
-                {
-                    ASWEquipmentPairs.Add(openingASWborder - 51, "[T4 Sonarx3, ASW Rocket Launcher]");
-                    ASWEquipmentPairs.Add(openingASWborder - 48, "[T4 Sonarx4]");
-                    ASWEquipmentPairs.Add(openingASWborder - 44, "[T4 Sonarx3, T3 DCP]");
-                }
-                if (selectedShip.SlotSize >= 3)
-                {
-                    ASWEquipmentPairs.Add(openingASWborder - 39, "[T4 Sonarx2, ASW Rocket Launcher]");
-                    ASWEquipmentPairs.Add(openingASWborder - 36, "[T4 Sonarx3]");
-                    ASWEquipmentPairs.Add(openingASWborder - 32, "[T4 Sonarx2, T3 DCP]");
-                    ASWEquipmentPairs.Add(openingASWborder - 28, "[T3 Sonarx2, T3 DCP]");
-                    ASWEquipmentPairs.Add(openingASWborder - 27, "[T4 Sonar, T3 DCP, T2 DC]");
-                }
-                if (selectedShip.SlotSize >= 2)
-                {
-                    if (ASWEquipmentPairs.ContainsKey(openingASWborder - 27))
-                        ASWEquipmentPairs[openingASWborder - 27] += ", [T4 Sonar, ASW Rocket Launcher]";
-                    else
-                        ASWEquipmentPairs.Add(openingASWborder - 27, "[T4 Sonar, ASW Rocket Launcher]");
-                    ASWEquipmentPairs.Add(openingASWborder - 20, "[T4 Sonar, T3 DCP]");
-                    ASWEquipmentPairs.Add(openingASWborder - 18, "[T3 Sonar, T3 DCP]");
-                }
-                ASWEquipmentPairs.Add(openingASWborder - 12, "[T4 Sonar]");
-            }
+				ASWEquipmentPairs.Add(openingASWborder - 12, "[Type 4 SONAR]");
+			}
 
 
 
@@ -270,7 +245,7 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			Text = DefaultTitle + " - " + selectedShip.NameWithLevel;
-			GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, ASW {selectedShip.ASWBase} (ASW mod+{selectedShip.ASWModernized})";
+			GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, ASW {selectedShip.ASWBase} (Modernization+{selectedShip.ASWModernized})";
 		}
 
 

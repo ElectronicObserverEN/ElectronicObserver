@@ -20,7 +20,7 @@ namespace ElectronicObserver.Window.Dialog
 
 		private ConstructionRecord _record;
 
-		private string NameAny = EncycloRes.Any;
+		private string NameAny = "All";
 
 
 		private class SearchArgument
@@ -305,8 +305,8 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Header.Width = 50;
 				RecordView_Header.HeaderText = "";
 				RecordView_Name.DisplayIndex = 1;
-				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Name.HeaderText = EncycloRes.ShipName;
+			    RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+				RecordView_Name.HeaderText = "Ship";
 				RecordView_Name.Visible = true;
 				RecordView_Date.DisplayIndex = 2;
 				RecordView_Date.Width = 140;
@@ -314,11 +314,11 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Date.Visible = true;
 				RecordView_Recipe.DisplayIndex = 3;
 				RecordView_Recipe.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-				RecordView_Recipe.Width = 200;
+				RecordView_Recipe.Width = 100;
 				RecordView_Recipe.HeaderText = EncycloRes.Recipe;
 				RecordView_Recipe.Visible = true;
 				RecordView_SecretaryShip.DisplayIndex = 4;
-				RecordView_SecretaryShip.Width = 60;
+			    RecordView_SecretaryShip.Width = 110;
 				RecordView_SecretaryShip.HeaderText = EncycloRes.Flagship;
 				RecordView_SecretaryShip.Visible = true;
 				RecordView_Material100.Visible = false;
@@ -346,17 +346,17 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				RecordView_Header.DisplayIndex = 1;
 				RecordView_Header.Width = 120;
-				RecordView_Header.HeaderText = EncycloRes.Times;
+				RecordView_Header.HeaderText = "Tries";
 				RecordView_Material100.DisplayIndex = 2;
 				RecordView_Material100.Width = 120;
-				RecordView_Material100.HeaderText = GeneralRes.DevMat + "x100";
+				RecordView_Material100.HeaderText = "DevMat×100";
 				RecordView_Material20.DisplayIndex = 3;
 				RecordView_Material20.Width = 120;
-				RecordView_Material20.HeaderText = GeneralRes.DevMat + "x20";
-				RecordView_Material1.DisplayIndex = 4;
+				RecordView_Material20.HeaderText = "DevMat×20";
+                RecordView_Material1.DisplayIndex = 4;
 				RecordView_Material1.Width = 120;
-				RecordView_Material1.HeaderText = GeneralRes.DevMat + "x1";
-				if ( args.IsLargeConstruction == CheckState.Unchecked ||
+				RecordView_Material1.HeaderText = "DevMat×1";
+                if ( args.IsLargeConstruction == CheckState.Unchecked ||
 					( args.Recipe != NameAny && args.Recipe.IndexOf( "/" ) < 4 ) ||
 					args.DevelopmentMaterial != -1 ) {
 					RecordView_Material100.Visible = false;
@@ -779,7 +779,8 @@ namespace ElectronicObserver.Window.Dialog
 
 		}
 
-        private void RecordView_SelectionChanged(object sender, EventArgs e)
+
+		private void RecordView_SelectionChanged(object sender, EventArgs e)
 		{
 			var args = RecordView.Tag as SearchArgument;
 			if (args == null)
@@ -795,15 +796,15 @@ namespace ElectronicObserver.Window.Dialog
 				int count = RecordView.SelectedRows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 				int allcount = RecordView.Rows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 
-				StatusInfo.Text = string.Format("選択項目の合計: {0} / {1} ({2:p1})",
-					count, allcount, (double) count / allcount);
+				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+					count, allcount, (double)count / allcount);
 			}
 			else
 			{
 				int allcount = RecordView.RowCount;
-				StatusInfo.Text = string.Format("選択項目の合計: {0} / {1} ({2:p1})",
-					selectedCount, allcount, (double) selectedCount / allcount);
+				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+					selectedCount, allcount, (double)selectedCount / allcount);
 			}
 		}
-    }
+	}
 }

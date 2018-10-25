@@ -7,7 +7,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
-using SwfExtractor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,8 +49,8 @@ namespace ElectronicObserver.Window
 					Text = "[" + parent.FleetID.ToString() + "]",
 					Anchor = AnchorStyles.Left,
 					ForeColor = parent.MainFontColor,
-                    UseMnemonic = false,
-                    Padding = new Padding(0, 1, 0, 1),
+					UseMnemonic = false,
+					Padding = new Padding(0, 1, 0, 1),
 					Margin = new Padding(2, 0, 2, 0),
 					AutoSize = true,
 					//Name.Visible = false;
@@ -169,21 +168,21 @@ namespace ElectronicObserver.Window
 
 					int speed = members.Select(s => s.Speed).DefaultIfEmpty(20).Min();
 
-                    string supporttype;
-                    switch (fleet.SupportType)
-                    {
-                        case 0:
-                        default:
-                                supporttype = "発動不能"; break;
-                        case 1:
-                                supporttype = "航空支援"; break;
-                        case 2:
-                                supporttype = "支援射撃"; break;
-                        case 3:
-                                supporttype = "支援長距離雷撃"; break;
-                    }
+					string supporttype;
+					switch (fleet.SupportType)
+					{
+						case 0:
+						default:
+							supporttype = "n/a"; break;
+						case 1:
+							supporttype = "Aerial Support";break;
+						case 2:
+							supporttype = "Support Shelling"; break;
+						case 3:
+							supporttype = "Long-range Torpedo Attack"; break;
+					}
 
-                    double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
+					double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 					int tp = Calculator.GetTPDamage(fleet);
 
 					// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
@@ -194,18 +193,18 @@ namespace ElectronicObserver.Window
 					ToolTipInfo.SetToolTip(Name, string.Format(
 						"Lv sum: {0} / avg: {1:0.00}\r\n" +
 						"{2} fleet\r\n" +
-                        "Support type: {3}\r\n" +
-                        "Total AA: {4} / ASW: {5} / LOS: {6}\r\n" +
-                        "Drum: {7} ({8} ships)\r\n" +
-                        "Daihatsu: {9} ({10} ships, +{11:p1})\r\n" +
-                        "TP: {12} TP @ S-rank ({13} TP @ A-rank)\r\n" +
-                        "Consumption: {14} fuel / {15} ammo\r\n" +
-                        "({16} fuel / {17} ammo per battle)",
-                        levelSum,
+						"Support Expedition: {3}\r\n" +
+						"Total AA: {4} / ASW: {5} / LOS: {6}\r\n" +
+						"Drum: {7} ({8} ships)\r\n" +
+						"Daihatsu: {9} ({10} ships, +{11:p1})\r\n" +
+						"TP: {13} TP @ A-rank ({12} TP @ S-rank)\r\n" +
+						"Consumption: {14} fuel / {15} ammo\r\n" +
+						"({16} fuel / {17} ammo per battle)",
+						levelSum,
 						(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 						Constants.GetSpeed(speed),
-                        supporttype,
-                        members.Sum(s => s.AATotal),
+						supporttype,
+						members.Sum(s => s.AATotal),
 						members.Sum(s => s.ASWTotal),
 						members.Sum(s => s.LOSTotal),
 						transport.Sum(),
@@ -361,9 +360,9 @@ namespace ElectronicObserver.Window
 				Level.Margin = new Padding(2, 0, 2, 1);
 				Level.AutoSize = true;
 				Level.Visible = false;
-                Level.Cursor = Cursors.Help;
-                Level.MouseDown += Level_MouseDown;
-                Level.ResumeLayout();
+				Level.Cursor = Cursors.Help;
+				Level.MouseDown += Level_MouseDown;
+				Level.ResumeLayout();
 
 				HP = new ShipStatusHP();
 				HP.SuspendUpdate();
@@ -429,7 +428,6 @@ namespace ElectronicObserver.Window
 
 			}
 
-
 			public TableMemberControl(FormFleet parent, TableLayoutPanel table, int row)
 				: this(parent)
 			{
@@ -471,7 +469,7 @@ namespace ElectronicObserver.Window
 					Name.Tag = ship.ShipID;
 					ToolTipInfo.SetToolTip(Name,
 						string.Format(
-							GeneralRes.ShipTooltip,
+                            "{0} {1}\r\nFP: {2}/{3}\r\nTorp: {4}/{5}\r\nAA: {6}/{7}\r\nArmor: {8}/{9}\r\nASW: {10}/{11}\r\nEvasion: {12}/{13}\r\nLOS: {14}/{15}\r\nLuck: {16}\r\nRange: {17} / Speed: {18}\r\n(right click to open encyclopedia)\n",
 							ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 							ship.FirepowerBase, ship.FirepowerTotal,
 							ship.TorpedoBase, ship.TorpedoTotal,
@@ -488,29 +486,31 @@ namespace ElectronicObserver.Window
 
 					Level.Value = ship.Level;
 					Level.ValueNext = ship.ExpNext;
-                    Level.Tag = ship.MasterID;
+					Level.Tag = ship.MasterID;
 
-                    {
+					{
 						StringBuilder tip = new StringBuilder();
 						tip.AppendFormat("Total: {0} exp.\r\n", ship.ExpTotal);
 
 						if ( !Utility.Configuration.Config.FormFleet.ShowNextExp )
 							tip.AppendFormat( GeneralRes.ToNextLevel + " exp.\r\n", ship.ExpNext );
 
-						if ( ship.MasterShip.RemodelAfterShipID != 0 && ship.Level < ship.MasterShip.RemodelAfterLevel ) {
-							tip.AppendFormat( GeneralRes.ToRemodel + "\r\n", ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel );
-
-						} else if ( ship.Level <= 99 ) {
-							tip.AppendFormat( GeneralRes.To99 + " exp.\r\n", Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
-
-						} else {
-							tip.AppendFormat( GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
-
+						if (ship.MasterShip.RemodelAfterShipID != 0 && ship.Level < ship.MasterShip.RemodelAfterLevel)
+						{
+							tip.AppendFormat(GeneralRes.ToRemodel + "\r\n", ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel);
+						}
+						else if (ship.Level <= 99)
+						{
+							tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, 99), 0));
+						}
+						else
+						{
+							tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, ExpTable.ShipMaximumLevel), 0));
 						}
 
-                        tip.AppendLine("(Right click to open the exp calculator.)");
+						tip.AppendLine("(right click to calculate exp)");
 
-                        ToolTipInfo.SetToolTip(Level, tip.ToString());
+						ToolTipInfo.SetToolTip(Level, tip.ToString());
 					}
 
 
@@ -598,30 +598,30 @@ namespace ElectronicObserver.Window
 
 			}
 
-            void Name_MouseDown(object sender, MouseEventArgs e)
-            {
-                if (Name.Tag is int id && id != -1)
-                {
-                    if ((e.Button & MouseButtons.Right) != 0)
-                    {
-                        new DialogAlbumMasterShip(id).Show(Parent);
-                    }
-                }
-            }
+			void Name_MouseDown(object sender, MouseEventArgs e)
+			{
+				if (Name.Tag is int id && id != -1)
+				{
+					if ((e.Button & MouseButtons.Right) != 0)
+					{
+						new DialogAlbumMasterShip(id).Show(Parent);
+					}
+				}
+			}
 
-            private void Level_MouseDown(object sender, MouseEventArgs e)
-            {
-                if (Name.Tag is int id && id != -1)
-                {
-                    if ((e.Button & MouseButtons.Right) != 0)
-                    {
-                        new DialogExpChecker(id).Show(Parent);
-                    }
-                }
-            }
+			private void Level_MouseDown(object sender, MouseEventArgs e)
+			{
+				if (Level.Tag is int id && id != -1)
+				{
+					if ((e.Button & MouseButtons.Right) != 0)
+					{
+						new DialogExpChecker(id).Show(Parent);
+					}
+				}
+			}
 
 
-            private string GetEquipmentString(ShipData ship)
+			private string GetEquipmentString(ShipData ship)
 			{
 				StringBuilder sb = new StringBuilder();
 
@@ -699,12 +699,7 @@ namespace ElectronicObserver.Window
 						Calculator.GetProportionalAirDefense(adjustedaa)
 						);
 
-                    double rocketk2Rate = Calculator.GetRocketk2Rate(ship);
-                    if(rocketk2Rate != 0)
-                        sb.AppendFormat("AARB Rate: {0:P2}" + "\r\n",
-                            rocketk2Rate
-                            );
-                }
+				}
 
 				{
 					int airsup_min;
@@ -1073,11 +1068,11 @@ namespace ElectronicObserver.Window
 
 						if (count == 1)
 						{
-							sb.AppendFormat("{0}{1}", j == 0 ? "" : ",", eq[j].NameWithLevel);
+							sb.AppendFormat("{0}{1}", j == 0 ? "" : ", ", eq[j].NameWithLevel);
 						}
 						else
 						{
-							sb.AppendFormat("{0}{1}x{2}", j == 0 ? "" : ",", eq[j].NameWithLevel, count);
+							sb.AppendFormat("{0}{1}x{2}", j == 0 ? "" : ", ", eq[j].NameWithLevel, count);
 						}
 
 						j += count - 1;

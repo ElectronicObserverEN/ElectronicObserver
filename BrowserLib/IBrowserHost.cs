@@ -76,7 +76,7 @@ namespace BrowserLib
 		/// ブラウザの拡大率 10-1000(%)
 		/// </summary>
 		[DataMember]
-		public int ZoomRate { get; set; }
+		public double ZoomRate { get; set; }
 
 		/// <summary>
 		/// ブラウザをウィンドウサイズに合わせる
@@ -162,7 +162,7 @@ namespace BrowserLib
 		/// </summary>
 		[DataMember]
 		public bool ConfirmAtRefresh { get; set; }
-        
+
 		/// <summary>
 		/// 現在の音量
 		/// </summary>
@@ -177,5 +177,24 @@ namespace BrowserLib
 
 		[DataMember]
 		public int BackColor { get; set; }
+
+		/// <summary>
+		/// ハードウェアアクセラレーションを有効にするか
+		/// </summary>
+		[DataMember]
+		public bool HardwareAccelerationEnabled { get; set; }
+
+		/// <summary>
+		/// 描画バッファを保持するか
+		/// </summary>
+		[DataMember]
+		public bool PreserveDrawingBuffer { get; set; }
+
+		/// <summary>
+		/// カラープロファイルを sRGB 固定にするか
+		/// </summary>
+		[DataMember]
+		public bool ForceColorProfile { get; set; }
+
 	}
 }

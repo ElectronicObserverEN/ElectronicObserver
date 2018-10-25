@@ -184,7 +184,7 @@ namespace ElectronicObserver.Data
 
 						if (FleetID == fleetID)
 						{
-							if (index == -1)
+							if (shipID == -2)
 							{
 								//旗艦以外全解除
 								for (int i = 1; i < _members.Length; i++)
@@ -230,7 +230,7 @@ namespace ElectronicObserver.Data
 							}
 
 
-							if (index != -1 && IsFlagshipRepairShip)        //随伴艦一括解除を除く
+							if (shipID != -2 && IsFlagshipRepairShip)        //随伴艦一括解除を除く
 								KCDatabase.Instance.Fleet.StartAnchorageRepairingTimer();
 
 						}
@@ -411,9 +411,10 @@ namespace ElectronicObserver.Data
 		public Dictionary<int, double> GetContactSelectionProbability()
 		{
 			return Calculator.GetContactSelectionProbability(this);
-        }
+		}
 
-        /// <summary>
+
+		/// <summary>
 		/// 支援艦隊種別
 		/// 0=不発, 1=空撃, 2=砲撃, 3=雷撃
 		/// </summary>
@@ -432,7 +433,7 @@ namespace ElectronicObserver.Data
 
 				foreach (var s in MembersInstance.Where(ss => ss != null))
 				{
-    				switch (s.MasterShip.ShipType)
+					switch (s.MasterShip.ShipType)
 					{
 						case ShipTypes.Destroyer:
 							destroyerCount++;
@@ -441,7 +442,7 @@ namespace ElectronicObserver.Data
 						case ShipTypes.AircraftCarrier:
 						case ShipTypes.LightAircraftCarrier:
 						case ShipTypes.ArmoredAircraftCarrier:
-						    aircraftCarrierCount++;
+							aircraftCarrierCount++;
 							break;
 
 						case ShipTypes.SeaplaneTender:
@@ -482,7 +483,7 @@ namespace ElectronicObserver.Data
 				}
 
 
-				if (destroyerCount< 2)
+				if (destroyerCount < 2)
 					return 0;       // 発生しない
 
 				if (shellingCount == 0)
@@ -506,8 +507,6 @@ namespace ElectronicObserver.Data
 				return 3;           // 雷撃
 			}
 		}
-
-
 
 
 		/// <summary>

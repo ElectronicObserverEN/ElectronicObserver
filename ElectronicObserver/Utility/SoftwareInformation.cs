@@ -31,20 +31,20 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(日本語, ソフトウェア名を含みます)
 		/// </summary>
-		public static string VersionJapanese => SoftwareNameJapanese + "三一型改二";
+		public static string VersionJapanese => SoftwareNameJapanese + "四〇型改二";
 
 
 		/// <summary>
 		/// バージョン(英語)
 		/// </summary>
-		public static string VersionEnglish => "3.1.2";
+		public static string VersionEnglish => "4.0.2";
 
 
 
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2018/05/19 20:00:00");
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2018/09/17 10:00:00");
 
 
 
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Utility
 					if (result == System.Windows.Forms.DialogResult.Yes)
 					{
 
-						System.Diagnostics.Process.Start("https://github.com/myangelkamikaze/ElectronicObserver/releases/latest");
+						System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases/latest");
 
 					}
 					else if (result == System.Windows.Forms.DialogResult.Cancel)

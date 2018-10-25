@@ -262,7 +262,4 @@
   <data name="NewGroupFormatTitle" xml:space="preserve">
     <value>バージョンアップに伴う確認(～1.5.0)</value>
   </data>
-  <data name="NoMultipleStart" xml:space="preserve">
-    <value>既に起動しています。\r\n多重起動はできません。</value>
-  </data>
 </root>

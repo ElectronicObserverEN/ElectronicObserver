@@ -29,7 +29,7 @@ namespace ElectronicObserver.Data
 		public int MapInfoID => (int)RawData.api_no;
 
 		public string MapInfoID2 {
-			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapID, MapAreaID, MapInfoID, Utility.TranslationType.OperationMapNodes); }
+			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapID, MapAreaID, MapInfoID); }
 		}
 
 		/// <summary>
@@ -125,7 +125,7 @@ namespace ElectronicObserver.Data
 
 			switch (apiname)
 			{
-				case "api_start2":
+				case "api_start2/getData":
 					base.LoadFromResponse(apiname, (object)data);
 					break;
 

@@ -297,4 +297,7 @@
   <data name="ImprovedSuccess" xml:space="preserve">
     <value> has been successfully improved. (</value>
   </data>
+  <data name="FailedToCopy" xml:space="preserve">
+    <value>Failed to copy {0}. {1}</value>
+  </data>
 </root>

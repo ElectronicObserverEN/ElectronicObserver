@@ -173,9 +173,9 @@ namespace ElectronicObserver.Window
 			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
 			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
 			StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
-            StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
+			StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
 
-            StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
+			StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
 			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
 			#endregion
 
@@ -862,6 +862,8 @@ namespace ElectronicObserver.Window
 				ofd.Title = "Load API List";
 				ofd.Filter = "API List|*.txt|File|*";
 				ofd.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
+				if (!string.IsNullOrWhiteSpace(Utility.Configuration.Config.Debug.APIListPath))
+					ofd.FileName = Utility.Configuration.Config.Debug.APIListPath;
 
 				if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
@@ -1320,7 +1322,7 @@ namespace ElectronicObserver.Window
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 
-				System.Diagnostics.Process.Start("https://github.com/myangelkamikaze/ElectronicObserver/wiki");
+				System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/wiki");
 			}
 
 		}
@@ -1333,7 +1335,7 @@ namespace ElectronicObserver.Window
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 
-				System.Diagnostics.Process.Start("https://gitreports.com/issue/myangelkamikaze/ElectronicObserver");
+				System.Diagnostics.Process.Start("https://gitreports.com/issue/silfumus/ElectronicObserver");
 			}
 
 		}
@@ -1524,14 +1526,14 @@ namespace ElectronicObserver.Window
 				n.IsSilenced = isSilenced;
 		}
 
-
-        private void StripMenu_Tool_ExpChecker_Click(object sender, EventArgs e)
+		private void StripMenu_Tool_ExpChecker_Click(object sender, EventArgs e)
 		{
 			new Dialog.DialogExpChecker().Show(this);
 		}
 
 
-    private void CallPumpkinHead(string apiname, dynamic data)
+
+		private void CallPumpkinHead(string apiname, dynamic data)
 		{
 			new DialogHalloween().Show(this);
 			APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;
@@ -1677,6 +1679,7 @@ namespace ElectronicObserver.Window
 		{
 			ShowForm(fJson);
 		}
+
 
 
 

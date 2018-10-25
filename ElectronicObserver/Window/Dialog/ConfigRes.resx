@@ -159,12 +159,6 @@
   <data name="Behavior" xml:space="preserve">
     <value>動作</value>
   </data>
-  <data name="Browser" xml:space="preserve">
-    <value>ブラウザ</value>
-  </data>
-  <data name="Browser2" xml:space="preserve">
-    <value>ブラウザ2</value>
-  </data>
   <data name="BrowserVersion" xml:space="preserve">
     <value>ブラウザバージョン：</value>
   </data>
@@ -471,12 +465,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="LoggingInterval" xml:space="preserve">
     <value>レコードの自動保存：</value>
-  </data>
-  <data name="ShowAnchorageRepairingTimer" xml:space="preserve">
-    <value>泊地修理タイマを表示する</value>
-  </data>
-  <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
-    <value>艦隊一覧の泊地修理タイマを表示するかを指定します。</value>
   </data>
   <data name="Formula33" xml:space="preserve">
     <value>判定式(33)</value>

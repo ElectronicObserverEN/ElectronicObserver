@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ElectronicObserver</RootNamespace>
     <AssemblyName>ElectronicObserver</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -26,6 +26,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,21 +37,41 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>74eo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamicJson">
@@ -199,6 +220,7 @@
     <Compile Include="Data\RelocationData.cs" />
     <Compile Include="Data\ResponseWrapper.cs" />
     <Compile Include="Data\CompassData.cs" />
+    <Compile Include="Data\ShipGraphicData.cs" />
     <Compile Include="Data\ShipGroupData.cs" />
     <Compile Include="Data\ShipGroupManager.cs" />
     <Compile Include="Data\ShipGroup\ExpressionData.cs" />
@@ -285,7 +307,7 @@
     <Compile Include="Observer\kcsapi\api_req_kaisou\slot_exchange_index.cs" />
     <Compile Include="Observer\kcsapi\api_req_kousyou\remodel_slotlist.cs" />
     <Compile Include="Observer\kcsapi\api_req_map\select_eventmap_rank.cs" />
-	<Compile Include="Observer\kcsapi\api_req_member\itemuse.cs" />
+    <Compile Include="Observer\kcsapi\api_req_member\itemuse.cs" />
     <Compile Include="Observer\kcsapi\api_req_member\updatecomment.cs" />
     <Compile Include="Observer\kcsapi\api_req_mission\result.cs" />
     <Compile Include="Observer\kcsapi\api_req_quest\stop.cs" />
@@ -294,8 +316,9 @@
     <Compile Include="Observer\kcsapi\api_req_sortie\goback_port.cs" />
     <Compile Include="Observer\kcsapi\api_req_sortie\ld_airbattle.cs" />
     <Compile Include="Observer\kcsapi\api_req_sortie\night_to_day.cs" />
+    <Compile Include="Observer\kcsapi\api_start2\getData.cs" />
+    <Compile Include="Resource\KCResourceHelper.cs" />
     <Compile Include="Resource\Record\ResourceRecord.cs" />
-    <Compile Include="Resource\SwfHelper.cs" />
     <Compile Include="Utility\Data\RecordHash.cs" />
     <Compile Include="Utility\FleetImageGenerator.cs" />
     <Compile Include="Utility\SyncBGMPlayer.cs" />
@@ -491,7 +514,7 @@
     <Compile Include="Window\Dialog\DialogEquipmentList.Designer.cs">
       <DependentUpon>DialogEquipmentList.cs</DependentUpon>
     </Compile>
-	<Compile Include="Window\Dialog\DialogExpChecker.cs">
+    <Compile Include="Window\Dialog\DialogExpChecker.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Window\Dialog\DialogExpChecker.Designer.cs">
@@ -516,7 +539,6 @@
       <DependentUpon>DialogLocalAPILoader.cs</DependentUpon>
     </Compile>
     <Compile Include="Observer\APIObserver.cs" />
-    <Compile Include="Observer\kcsapi\api_start2.cs" />
     <Compile Include="Data\ShipData.cs" />
     <Compile Include="Data\ShipDataMaster.cs" />
     <Compile Include="Data\ShipType.cs" />
@@ -752,12 +774,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogConstructionRecordViewer.en.resx">
-      <DependentUpon>DialogConstructionRecordViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogDevelopmentRecordViewer.en.resx">
-      <DependentUpon>DialogDevelopmentRecordViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogDropRecordViewer.en.resx">
       <DependentUpon>DialogDropRecordViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -854,7 +870,7 @@
     <EmbeddedResource Include="Window\Dialog\DialogEquipmentList.resx">
       <DependentUpon>DialogEquipmentList.cs</DependentUpon>
     </EmbeddedResource>
-	<EmbeddedResource Include="Window\Dialog\DialogExpChecker.resx">
+    <EmbeddedResource Include="Window\Dialog\DialogExpChecker.resx">
       <DependentUpon>DialogExpChecker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogFleetImageGenerator.resx">
@@ -1030,10 +1046,6 @@
     <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj">
       <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>
       <Name>WinFormsUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SwfExtractor\SwfExtractor\SwfExtractor.csproj">
-      <Project>{44244148-d3fe-4d71-aa8f-cacb54ac53c1}</Project>
-      <Name>SwfExtractor</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

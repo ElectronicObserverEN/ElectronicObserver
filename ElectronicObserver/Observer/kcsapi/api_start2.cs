@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ElectronicObserver.Observer.kcsapi
 {
-
-	public class api_start2 : APIBase
+	[Obsolete]
+	public class api_start2_old : APIBase
 	{
 
 

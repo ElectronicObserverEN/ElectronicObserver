@@ -151,7 +151,7 @@
     <value>Notification system: failed to play back sound file.</value>
   </data>
   <data name="FailedToLoadImage" xml:space="preserve">
-    <value>Notification system: failed to load image file {1}.</value>
+    <value>Notification system: failed to load image file {0}.</value>
   </data>
   <data name="FailedToLoadSound" xml:space="preserve">
     <value>Notification system: failed to load sound file {0}.</value>

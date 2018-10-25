@@ -87,21 +87,21 @@
 			//
 			this.ContextMenuFleet_CopyFleet.Name = "ContextMenuFleet_CopyFleet";
 			this.ContextMenuFleet_CopyFleet.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_CopyFleet.Text = "&Copy fleet";
+			this.ContextMenuFleet_CopyFleet.Text = "&Copy";
 			this.ContextMenuFleet_CopyFleet.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleet_Click);
 			//
 			// ContextMenuFleet_CopyFleetDeckBuilder
 			//
 			this.ContextMenuFleet_CopyFleetDeckBuilder.Name = "ContextMenuFleet_CopyFleetDeckBuilder";
 			this.ContextMenuFleet_CopyFleetDeckBuilder.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_CopyFleetDeckBuilder.Text = "Copy fleet (&deck-builder)";
+			this.ContextMenuFleet_CopyFleetDeckBuilder.Text = "Copy (&deck-builder)";
 			this.ContextMenuFleet_CopyFleetDeckBuilder.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetDeckBuilder_Click);
 			//
 			// ContextMenuFleet_CopyKanmusuList
 			//
 			this.ContextMenuFleet_CopyKanmusuList.Name = "ContextMenuFleet_CopyKanmusuList";
 			this.ContextMenuFleet_CopyKanmusuList.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_CopyKanmusuList.Text = "Copy ship &list (kancolle-calc)";
+			this.ContextMenuFleet_CopyKanmusuList.Text = "Copy Ship &List (kancolle-calc)";
 			this.ContextMenuFleet_CopyKanmusuList.Click += new System.EventHandler(this.ContextMenuFleet_CopyKanmusuList_Click);
 			//
 			// toolStripSeparator1
@@ -113,21 +113,21 @@
 			//
 			this.ContextMenuFleet_AntiAirDetails.Name = "ContextMenuFleet_AntiAirDetails";
 			this.ContextMenuFleet_AntiAirDetails.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_AntiAirDetails.Text = "Show &AA defense";
+			this.ContextMenuFleet_AntiAirDetails.Text = "&AA Defense";
 			this.ContextMenuFleet_AntiAirDetails.Click += new System.EventHandler(this.ContextMenuFleet_AntiAirDetails_Click);
 			//
 			// ContextMenuFleet_Capture
 			//
 			this.ContextMenuFleet_Capture.Name = "ContextMenuFleet_Capture";
 			this.ContextMenuFleet_Capture.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_Capture.Text = "&Screenshot panel content to clipboard";
+			this.ContextMenuFleet_Capture.Text = "Copy as &Image";
 			this.ContextMenuFleet_Capture.Click += new System.EventHandler(this.ContextMenuFleet_Capture_Click);
 			//
 			// ContextMenuFleet_OutputFleetImage
 			//
 			this.ContextMenuFleet_OutputFleetImage.Name = "ContextMenuFleet_OutputFleetImage";
 			this.ContextMenuFleet_OutputFleetImage.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_OutputFleetImage.Text = "Export fleet as &image...";
+			this.ContextMenuFleet_OutputFleetImage.Text = "Save as &Image...";
 			this.ContextMenuFleet_OutputFleetImage.Click += new System.EventHandler(this.ContextMenuFleet_OutputFleetImage_Click);
 			//
 			// ToolTipInfo

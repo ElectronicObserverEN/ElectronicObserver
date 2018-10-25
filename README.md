@@ -1,11 +1,11 @@
-﻿# Electronic Observer (七四式電子観測儀)
+# Electronic Observer (七四式電子観測儀)
+[![Build status](https://ci.appveyor.com/api/projects/status/kdefw1fa6i0hvbvt?svg=true)](https://ci.appveyor.com/project/silfumus/electronicobserver)
+
+![screenshot](https://cloud.githubusercontent.com/assets/6127734/21392624/18089a70-c7d4-11e6-8f85-55b877aef5b3.jpg)
 
 Electronic Observer is a browser to help admirals manage their fleets. It is packed with features to provide additional informations for admirals to plan and play KanColle better.
 
 ## Main Features
-
-![screenshot](https://cloud.githubusercontent.com/assets/6127734/21392624/18089a70-c7d4-11e6-8f85-55b877aef5b3.jpg)
-
 Each function is located in separate windows, and can be freely docked, moved, and arranged by the user.  
 Below is a brief explanation. **For more details, please see the [Wiki.](https://github.com/RyuuKitsune/ElectronicObserver/wiki)**  
 
@@ -31,7 +31,7 @@ None of these functions interfere with KanColle normal, legal operation.
 
 ## Downloads
 
-The latest version of Electronic Observer is available at the [**Releases**](https://github.com/myangelkamikaze/ElectronicObserver/releases) page.
+The latest version of Electronic Observer is available at the [**Releases**](https://github.com/silfumus/ElectronicObserver/releases/latest) page.
 
 ## Documentations
 
@@ -45,18 +45,14 @@ The Kancolle API is documented (in Japanese only) at the original project's [Oth
 * [Nekoxy](https://github.com/veigr/Nekoxy) (Network capture) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Nekoxy.txt)
     * [TrotiNet](http://trotinet.sourceforge.net/) - [GNU Lesser General Public License v3.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/LGPL.txt)
         * [log4net](https://logging.apache.org/log4net/) - [Apache License version 2.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Apache.txt)
-* [SwfExtractor](https://github.com/andanteyk/SwfExtractor) (swf からファイル抽出) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/SwfExtractor.txt)
-	* [LZMA SDK (Software Development Kit)](http://www.7-zip.org/sdk.html) - Public Domain
 
 ## License
 This project is licensed under the MIT License, for more information, see LICENSE.
 
 ## Contacts
 
-Please open a new [**issue**](https://github.com/myangelkamikaze/ElectronicObserver/issues) at Github, or ask on [Discord](https://discord.gg/jSTnJxn) if you have any problem, question, or suggestion.
+Please open a new [**issue**](https://github.com/silfumus/ElectronicObserver/issues) at Github if you have any problem, question, or suggestion.
 Thank you for using Electronic Observer.
-
-* Maintainer: [myangelkamikaze](https://github.com/myangelkamikaze)
 * Translator: [silfumus](https://github.com/silfumus)
 * Japanese Distribution Website: [ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/)
 * Developer: [Andante](https://twitter.com/andanteyk)

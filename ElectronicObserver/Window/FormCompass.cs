@@ -931,7 +931,7 @@ namespace ElectronicObserver.Window
 								for (int i = 0; i < compass.RouteChoices.Count; i++)
 								{
 									nodechoices[i] = FormMain.Instance.Translator.GetMapNodes(compass.MapAreaID, compass.MapInfoID,
-										compass.RouteChoices[i], Utility.TranslationType.OperationMapNodes);
+										compass.RouteChoices[i]);
 								}
 								TextEventDetail.Text = string.Join(" or ", nodechoices);
 							}

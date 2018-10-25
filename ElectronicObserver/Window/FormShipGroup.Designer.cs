@@ -842,9 +842,9 @@
 			this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.Status_ShipCount,
 			this.Status_LevelTotal,
-			this.Status_LevelAverage,
+            this.Status_LevelAverage,
             this.Status_ExpTotal});
-			this.StatusBar.Location = new System.Drawing.Point(0, 134);
+            this.StatusBar.Location = new System.Drawing.Point(0, 134);
 			this.StatusBar.Name = "StatusBar";
 			this.StatusBar.Size = new System.Drawing.Size(300, 22);
 			this.StatusBar.SizingGrip = false;

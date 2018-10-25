@@ -159,12 +159,6 @@ Depending on environment, this may cause problems, in this case please disable.<
   <data name="Behavior" xml:space="preserve">
     <value>Behavior</value>
   </data>
-  <data name="Browser" xml:space="preserve">
-    <value>IE</value>
-  </data>
-  <data name="Browser2" xml:space="preserve">
-    <value>IE (2)</value>
-  </data>
   <data name="BrowserVersion" xml:space="preserve">
     <value>Browser version:</value>
   </data>
@@ -473,12 +467,6 @@ More details, as well as an access key, can be found on the site below. (opens y
   </data>
   <data name="LoggingInterval" xml:space="preserve">
     <value>Logging Interval:</value>
-  </data>
-  <data name="ShowAnchorageRepairingTimer" xml:space="preserve">
-    <value>Show repair timer</value>
-  </data>
-  <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
-    <value>Show repair timer in the fleet list window.</value>
   </data>
   <data name="Formula33" xml:space="preserve">
     <value>Formula 33</value>

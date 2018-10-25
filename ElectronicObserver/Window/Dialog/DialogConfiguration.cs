@@ -19,13 +19,6 @@ namespace ElectronicObserver.Window.Dialog
 	public partial class DialogConfiguration : Form
 	{
 
-		public const string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
-		public const string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
-		public const string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
-
-		public const int DefaultBrowserVersion = 11001;
-		public const bool DefaultGPURendering = false;
-
 		/// <summary> 司令部「任意アイテム表示」から除外するアイテムのIDリスト </summary>
 		private readonly HashSet<int> IgnoredItems = new HashSet<int>() { 1, 2, 3, 4, 50, 51, 66, 67, 69 };
 
@@ -333,7 +326,6 @@ namespace ElectronicObserver.Window.Dialog
 			Connection_SaveDataPath.Text = config.Connection.SaveDataPath;
 			Connection_SaveRequest.Checked = config.Connection.SaveRequest;
 			Connection_SaveResponse.Checked = config.Connection.SaveResponse;
-			Connection_SaveSWF.Checked = config.Connection.SaveSWF;
 			Connection_SaveOtherFile.Checked = config.Connection.SaveOtherFile;
 			Connection_ApplyVersion.Checked = config.Connection.ApplyVersion;
 			Connection_RegisterAsSystemProxy.Checked = config.Connection.RegisterAsSystemProxy;
@@ -469,7 +461,7 @@ namespace ElectronicObserver.Window.Dialog
 			FormBattle_Display7thAsSingleLine.Checked = config.FormBattle.Display7thAsSingleLine;
 
 			FormBrowser_IsEnabled.Checked = config.FormBrowser.IsEnabled;
-			FormBrowser_ZoomRate.Value = config.FormBrowser.ZoomRate;
+			FormBrowser_ZoomRate.Value = (decimal)Math.Min(Math.Max(config.FormBrowser.ZoomRate * 100, 10), 1000);
 			FormBrowser_ZoomFit.Checked = config.FormBrowser.ZoomFit;
 			FormBrowser_LogInPageURL.Text = config.FormBrowser.LogInPageURL;
 			FormBrowser_ScreenShotFormat_JPEG.Checked = config.FormBrowser.ScreenShotFormat == 1;
@@ -480,36 +472,10 @@ namespace ElectronicObserver.Window.Dialog
 			FormBrowser_IsDMMreloadDialogDestroyable.Checked = config.FormBrowser.IsDMMreloadDialogDestroyable;
 			FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Checked = config.FormBrowser.AvoidTwitterDeterioration;
 			FormBrowser_ScreenShotSaveMode.SelectedIndex = config.FormBrowser.ScreenShotSaveMode - 1;
+			FormBrowser_HardwareAccelerationEnabled.Checked = config.FormBrowser.HardwareAccelerationEnabled;
+			FormBrowser_PreserveDrawingBuffer.Checked = config.FormBrowser.PreserveDrawingBuffer;
+			FormBrowser_ForceColorProfile.Checked = config.FormBrowser.ForceColorProfile;
 
-			try
-			{
-				using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathBrowserVersion))
-				{
-					FormBrowser_BrowserVersion.Text = (reg?.GetValue(FormBrowserHost.BrowserExeName) ?? DefaultBrowserVersion).ToString();
-				}
-			}
-			catch (Exception ex)
-			{
-				FormBrowser_BrowserVersion.Text = DefaultBrowserVersion.ToString();
-				Utility.Logger.Add(3, "Configuration: failed to read from registry: Browser Version, " + ex.Message);
-			}
-
-			try
-			{
-				using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathGPURendering))
-				{
-					var gpu = reg?.GetValue(FormBrowserHost.BrowserExeName) as int?;
-					FormBrowser_GPURendering.Checked = gpu != null ? gpu != 0 : DefaultGPURendering;
-				}
-			}
-			catch (Exception ex)
-			{
-				FormBrowser_GPURendering.Checked = DefaultGPURendering;
-				Utility.Logger.Add(3, "Configuration: failed to read from registry: GPU Rendering, " + ex.Message);
-			}
-
-			FormBrowser_FlashQuality.Text = config.FormBrowser.FlashQuality;
-			FormBrowser_FlashWMode.Text = config.FormBrowser.FlashWMode;
 			if (!config.FormBrowser.IsToolMenuVisible)
 				FormBrowser_ToolMenuDockStyle.SelectedIndex = 4;
 			else
@@ -562,7 +528,6 @@ namespace ElectronicObserver.Window.Dialog
 				config.Connection.SaveDataPath = Connection_SaveDataPath.Text.Trim(@"\ """.ToCharArray());
 				config.Connection.SaveRequest = Connection_SaveRequest.Checked;
 				config.Connection.SaveResponse = Connection_SaveResponse.Checked;
-				config.Connection.SaveSWF = Connection_SaveSWF.Checked;
 				config.Connection.SaveOtherFile = Connection_SaveOtherFile.Checked;
 				config.Connection.ApplyVersion = Connection_ApplyVersion.Checked;
 
@@ -720,7 +685,7 @@ namespace ElectronicObserver.Window.Dialog
 			config.FormBattle.Display7thAsSingleLine = FormBattle_Display7thAsSingleLine.Checked;
 
 			config.FormBrowser.IsEnabled = FormBrowser_IsEnabled.Checked;
-			config.FormBrowser.ZoomRate = (int)FormBrowser_ZoomRate.Value;
+			config.FormBrowser.ZoomRate = (double)FormBrowser_ZoomRate.Value / 100;
 			config.FormBrowser.ZoomFit = FormBrowser_ZoomFit.Checked;
 			config.FormBrowser.LogInPageURL = FormBrowser_LogInPageURL.Text;
 			if (FormBrowser_ScreenShotFormat_JPEG.Checked)
@@ -732,8 +697,9 @@ namespace ElectronicObserver.Window.Dialog
 			config.FormBrowser.AppliesStyleSheet = FormBrowser_AppliesStyleSheet.Checked;
 			config.FormBrowser.IsDMMreloadDialogDestroyable = FormBrowser_IsDMMreloadDialogDestroyable.Checked;
 			config.FormBrowser.AvoidTwitterDeterioration = FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Checked;
-			config.FormBrowser.FlashQuality = FormBrowser_FlashQuality.Text;
-			config.FormBrowser.FlashWMode = FormBrowser_FlashWMode.Text;
+			config.FormBrowser.HardwareAccelerationEnabled = FormBrowser_HardwareAccelerationEnabled.Checked;
+			config.FormBrowser.PreserveDrawingBuffer = FormBrowser_PreserveDrawingBuffer.Checked;
+			config.FormBrowser.ForceColorProfile = FormBrowser_ForceColorProfile.Checked;
 			if (FormBrowser_ToolMenuDockStyle.SelectedIndex == 4)
 			{
 				config.FormBrowser.IsToolMenuVisible = false;
@@ -791,66 +757,6 @@ namespace ElectronicObserver.Window.Dialog
 
 			BGMPlayer_VolumeAll.Value = (int)BGMHandles.Values.Average(h => h.Volume);
 		}
-
-
-		private void FormBrowser_ApplyRegistry_Click(object sender, EventArgs e)
-		{
-
-			if (MessageBox.Show("Apply settings to the Registry?\r\n＊Restart is required for the changes to take effect.", "Confirmation",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-				== System.Windows.Forms.DialogResult.Yes)
-			{
-				try
-				{
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(RegistryPathMaster + RegistryPathBrowserVersion))
-						reg.SetValue(FormBrowserHost.BrowserExeName, int.Parse(FormBrowser_BrowserVersion.Text), Microsoft.Win32.RegistryValueKind.DWord);
-
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(RegistryPathMaster + RegistryPathGPURendering))
-						reg.SetValue(FormBrowserHost.BrowserExeName, FormBrowser_GPURendering.Checked ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord);
-
-				}
-				catch (Exception ex)
-				{
-					Utility.ErrorReporter.SendErrorReport(ex, "Settings: failed to write to registry.");
-					MessageBox.Show("Failed to write to registry.\r\n" + ex.Message, "Error",
-						MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-				}
-			}
-
-		}
-
-		private void FormBrowser_DeleteRegistry_Click(object sender, EventArgs e)
-		{
-
-			if (MessageBox.Show("This will delete the applied registry setting.\r\nAre you sure?\r\n* Restart is required for the setting to take effect.", "Confirmation",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-				== System.Windows.Forms.DialogResult.Yes)
-			{
-				try
-				{
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathBrowserVersion, true))
-						reg.DeleteValue(FormBrowserHost.BrowserExeName);
-
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathGPURendering, true))
-						reg.DeleteValue(FormBrowserHost.BrowserExeName);
-
-				}
-				catch (Exception ex)
-				{
-					Utility.ErrorReporter.SendErrorReport(ex, "Configuration: Failed to delete registry setting.");
-					MessageBox.Show("Failed to delete registry setting.\r\n" + ex.Message, "Error",
-						MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
-		}
-
-
-		private void Database_LinkKCDB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			System.Diagnostics.Process.Start("http://kancolle-db.net/");
-		}
-
 
 
 		// BGMPlayer

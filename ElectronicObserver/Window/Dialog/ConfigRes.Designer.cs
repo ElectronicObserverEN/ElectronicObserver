@@ -316,24 +316,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ブラウザ.
-        /// </summary>
-        internal static string Browser {
-            get {
-                return ResourceManager.GetString("Browser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ブラウザ2.
-        /// </summary>
-        internal static string Browser2 {
-            get {
-                return ResourceManager.GetString("Browser2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ブラウザバージョン：.
         /// </summary>
         internal static string BrowserVersion {
@@ -1344,24 +1326,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ShortenHPHint {
             get {
                 return ResourceManager.GetString("ShortenHPHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 泊地修理タイマを表示する.
-        /// </summary>
-        internal static string ShowAnchorageRepairingTimer {
-            get {
-                return ResourceManager.GetString("ShowAnchorageRepairingTimer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 艦隊一覧の泊地修理タイマを表示するかを指定します。.
-        /// </summary>
-        internal static string ShowAnchorageRepairingTimer_Tooltip {
-            get {
-                return ResourceManager.GetString("ShowAnchorageRepairingTimer_Tooltip", resourceCulture);
             }
         }
         

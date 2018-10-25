@@ -106,29 +106,11 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 削除完了.
+        ///   Looks up a localized string similar to 確認.
         /// </summary>
-        internal static string ClearComplete {
+        internal static string Confirmation {
             get {
-                return ResourceManager.GetString("ClearComplete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to キャッシュの削除が完了しました。.
-        /// </summary>
-        internal static string ClearCompleteDialog {
-            get {
-                return ResourceManager.GetString("ClearCompleteDialog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 現在: .
-        /// </summary>
-        internal static string CurrentZoom {
-            get {
-                return ResourceManager.GetString("CurrentZoom", resourceCulture);
+                return ResourceManager.GetString("Confirmation", resourceCulture);
             }
         }
         
@@ -164,13 +146,23 @@ namespace Browser.Properties {
         ///node = document.createElement(&apos;div&apos;);
         ///node.innerHTML = &apos;F&lt;style id=\&apos;{0}\&apos;&gt;body {{ visibility: hidden; }} \
         ///#flashWrap {{ position: fixed; left: 0; top: 0; width: 100% !important; height: 100% !important; }} \
-        ///#externalswf {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;&apos;;
+        ///#htmlWrap {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;&apos;;
         ///document.getElementsByTagName(&apos;head&apos;)[0].appendChild(node.lastChild);
-        ///}}        /// [rest of string was truncated]&quot;;.
+        ///}}
+        ///ca [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FrameScript {
             get {
                 return ResourceManager.GetString("FrameScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to クリップボードにコピー(&amp;C).
+        /// </summary>
+        internal static string LastScreenShot_CopyToClipboard {
+            get {
+                return ResourceManager.GetString("LastScreenShot_CopyToClipboard", resourceCulture);
             }
         }
         
@@ -185,6 +177,24 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to Login Page.
+        /// </summary>
+        internal static string NavigateToLogInPage {
+            get {
+                return ResourceManager.GetString("NavigateToLogInPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開発者ツールを開く.
+        /// </summary>
+        internal static string OpenDevTool {
+            get {
+                return ResourceManager.GetString("OpenDevTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to その他.
         /// </summary>
         internal static string Other {
@@ -194,7 +204,7 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在% .
+        ///   Looks up a localized string similar to 現在:.
         /// </summary>
         internal static string Other_Zoom_Current {
             get {
@@ -203,11 +213,11 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ぴったり.
+        ///   Looks up a localized string similar to 現在: ぴったり.
         /// </summary>
-        internal static string Other_Zoom_Fit {
+        internal static string Other_Zoom_Current_Fit {
             get {
-                return ResourceManager.GetString("Other_Zoom_Fit", resourceCulture);
+                return ResourceManager.GetString("Other_Zoom_Current_Fit", resourceCulture);
             }
         }
         
@@ -229,6 +239,24 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャッシュを無視して更新(&amp;C).
+        /// </summary>
+        internal static string RefreshIgnoreCache {
+            get {
+                return ResourceManager.GetString("RefreshIgnoreCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=osapi.dmm.com;path=/&apos;; document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=203.104.209.7;path=/&apos;; document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=www.dmm.com;path=/netgame/&apos;; document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=log-netgame.dmm.com;path=/&apos;;.
+        /// </summary>
+        internal static string RegionCookie {
+            get {
+                return ResourceManager.GetString("RegionCookie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 再読み込みします。
         ///よろしいですか？.
         /// </summary>
@@ -239,7 +267,45 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to スクリーンショットの保存時にエラーが発生しました。.
+        ///   Looks up a localized string similar to キャッシュを無視して再読み込みします。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string ReloadHardDialog {
+            get {
+                return ResourceManager.GetString("ReloadHardDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to var element = document.getElementById(&apos;page-popup&apos;); element.parentNode.removeChild(element);.
+        /// </summary>
+        internal static string RemoveServicePopup {
+            get {
+                return ResourceManager.GetString("RemoveServicePopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to var element = document.getElementById(&apos;welcome&apos;); element.parentNode.removeChild(element);.
+        /// </summary>
+        internal static string RemoveWelcomePopup {
+            get {
+                return ResourceManager.GetString("RemoveWelcomePopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to var node = document.getElementById(&apos;{0}&apos;);
+        ///if (node) document.getElementsByTagName(&apos;head&apos;)[0].removeChild(node);.
+        /// </summary>
+        internal static string RestoreScript {
+            get {
+                return ResourceManager.GetString("RestoreScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットの撮影に失敗しました。.
         /// </summary>
         internal static string ScreenshotError {
             get {
@@ -298,6 +364,15 @@ namespace Browser.Properties {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在: ぴったり.
+        /// </summary>
+        internal static string Zoom_to_Fit {
+            get {
+                return ResourceManager.GetString("Zoom_to_Fit", resourceCulture);
             }
         }
     }

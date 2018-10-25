@@ -286,7 +286,7 @@
     <value>ホロ</value>
   </data>
   <data name="Hourly" xml:space="preserve">
-    <value></value>
+    <value>時報</value>
   </data>
   <data name="Idle" xml:space="preserve">
     <value>放置</value>

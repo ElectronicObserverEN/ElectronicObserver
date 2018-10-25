@@ -43,10 +43,10 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public ShipTypes ShipType => (ShipTypes)(int)RawData.api_stype;
 
-        /// <summary>
-        /// 艦型
-        /// </summary>
-        public int ShipClass => (int)RawData.api_ctype;
+		/// <summary>
+		/// 艦型
+		/// </summary>
+		public int ShipClass => (int)RawData.api_ctype;
 
 
 		/// <summary>
@@ -98,10 +98,10 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int NeedCatapult { get; internal set; }
 
-        /// <summary>
-        /// 改装に戦闘詳報が必要かどうか
-        /// </summary>
-        public int NeedActionReport { get; internal set; }
+		/// <summary>
+		/// 改装に戦闘詳報が必要かどうか
+		/// </summary>
+		public int NeedActionReport { get; internal set; }
 
 
 		#region Parameters
@@ -414,6 +414,27 @@ namespace ElectronicObserver.Data
 		}
 
 
+		internal int[] specialEquippableCategory = null;
+		/// <summary>
+		/// 特殊装備カテゴリ　指定がない場合は null
+		/// </summary>
+		public IEnumerable<int> SpecialEquippableCategories => specialEquippableCategory;
+
+		/// <summary>
+		/// 装備可能なカテゴリ
+		/// </summary>
+		public IEnumerable<int> EquippableCategories
+		{
+			get
+			{
+				if (specialEquippableCategory != null)
+					return SpecialEquippableCategories;
+				else
+					return KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories;
+			}
+		}
+
+
 		/// <summary>
 		/// 建造時間(分)
 		/// </summary>
@@ -464,25 +485,31 @@ namespace ElectronicObserver.Data
 
 
 		/// <summary>
+		/// グラフィック設定データへの参照
+		/// </summary>
+		public ShipGraphicData GraphicData => KCDatabase.Instance.ShipGraphics[ShipID];
+
+		/// <summary>
 		/// リソースのファイル/フォルダ名
 		/// </summary>
-		public string ResourceName => GetParameterElement()?.ResourceName ?? "";
-
+		public string ResourceName => GraphicData?.ResourceName ?? "";
 
 		/// <summary>
 		/// 画像リソースのバージョン
 		/// </summary>
-		public string ResourceGraphicVersion => GetParameterElement()?.ResourceGraphicVersion ?? "";
+		public string ResourceGraphicVersion => GraphicData?.GraphicVersion ?? "";
 
 		/// <summary>
 		/// ボイスリソースのバージョン
 		/// </summary>
-		public string ResourceVoiceVersion => GetParameterElement()?.ResourceVoiceVersion ?? "";
+		public string ResourceVoiceVersion => GraphicData?.VoiceVersion ?? "";
 
 		/// <summary>
 		/// 母港ボイスリソースのバージョン
 		/// </summary>
-		public string ResourcePortVoiceVersion => GetParameterElement()?.ResourcePortVoiceVersion ?? "";
+		public string ResourcePortVoiceVersion => GraphicData?.PortVoiceVersion ?? "";
+
+		
 
 		/// <summary>
 		/// 衣替え艦：ベースとなる艦船ID
@@ -565,17 +592,22 @@ namespace ElectronicObserver.Data
 			}
 		}
 
-		/// <summary>
-		/// 陸上基地かどうか
+        /// <summary>
+		/// 艦種インスタンス
 		/// </summary>
-		public bool IsLandBase => Speed == 0;
+		public ShipType ShipTypeInstance => KCDatabase.Instance.ShipTypes[(int)ShipType];
+
+        /// <summary>
+        /// 陸上基地かどうか
+        /// </summary>
+        public bool IsLandBase => Speed == 0;
 
 
 
 		/// <summary>
 		/// 図鑑に載っているか
 		/// </summary>
-		public bool IsListedInAlbum => 0 < AlbumNo && AlbumNo <= 350;
+		public bool IsListedInAlbum => 0 < AlbumNo && AlbumNo <= 420;
 
 
 		/// <summary>
@@ -647,11 +679,11 @@ namespace ElectronicObserver.Data
 
 			bool isLateModel = Name.Contains( "Late Type" ) || Name.Contains( "後期型" );
 			bool isRemodeled = Name.Contains( "Kai" ) || Name.Contains( "改" );
-			bool isDestroyed = Name.Contains( "Damaged" ) || Name.EndsWith( "-壊" );
-			bool isDemon = Name.Contains( "Demon" ) || Name.EndsWith( "鬼" );
-			bool isPrincess = Name.Contains( "Princess" ) || Name.EndsWith( "姫" );
-			bool isWaterDemon = Name.Contains( "Water Demon" ) || Name.EndsWith( "水鬼" );
-			bool isWaterPrincess = Name.Contains( "Water Princess" ) || Name.EndsWith( "水姫" );
+			bool isDestroyed = Name.Contains( "Damaged" ) || Name.Contains( "-壊" );
+			bool isDemon = Name.Contains( "Demon" ) || Name.Contains( "鬼" );
+			bool isPrincess = Name.Contains( "Princess" ) || Name.Contains( "姫" );
+			bool isWaterDemon = Name.Contains( "Water Demon" ) || Name.Contains( "水鬼" );
+			bool isWaterPrincess = Name.Contains( "Water Princess" ) || Name.Contains( "水姫" );
 			bool isElite = NameReading == "elite";
 			bool isFlagship = NameReading == "flagship";
 

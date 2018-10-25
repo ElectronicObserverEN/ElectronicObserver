@@ -373,7 +373,7 @@ namespace ElectronicObserver.Window.Control
 							iconIndex,
 							colorInPort);
 
-						tooltip.SetToolTip( state.Label, string.Format( "Recovery time: {0}\r\n(予測誤差: {1})",
+						tooltip.SetToolTip( state.Label, string.Format( "Recovery time: {0}\r\n(prediction error: {1})",
 							DateTimeHelper.TimeToCSVString( state.Timer ), DateTimeHelper.ToTimeRemainString( TimeSpan.FromSeconds( db.Fleet.ConditionBorderAccuracy ) ) ) );
 
 						index++;

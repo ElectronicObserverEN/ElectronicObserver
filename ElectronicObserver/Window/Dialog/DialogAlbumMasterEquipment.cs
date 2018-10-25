@@ -238,15 +238,8 @@ namespace ElectronicObserver.Window.Dialog
 					eqicon = (int)ResourceManager.EquipmentContent.Unknown;
 				EquipmentType.ImageIndex = eqicon;
 
-				StringBuilder sb = new StringBuilder();
-				sb.AppendLine(EncycloRes.EquippableShips);
-				foreach (var stype in KCDatabase.Instance.ShipTypes.Values)
-				{
-					if (stype.EquipmentType.Contains((int)eq.CategoryType))
-						sb.AppendLine(FormMain.Instance.Translator.GetTranslation(stype.Name, Utility.TranslationType.ShipTypes));
-				}
-				ToolTipInfo.SetToolTip(EquipmentType, sb.ToString());
-			}
+                ToolTipInfo.SetToolTip(EquipmentType, GetEquippableShips(equipmentID));
+            }
 			EquipmentName.Text = eq.Name;
 			ToolTipInfo.SetToolTip( EquipmentName, "Right click to copy." );
 
@@ -337,26 +330,18 @@ namespace ElectronicObserver.Window.Dialog
 
 			//装備画像を読み込んでみる
 			{
-				string path = string.Format(@"{0}\\resources\\image\\slotitem\\card\\{1:D3}.png", Utility.Configuration.Config.Connection.SaveDataPath, equipmentID);
-				if (File.Exists(path))
+				var img =
+					KCResourceHelper.LoadEquipmentImage(equipmentID, KCResourceHelper.ResourceTypeEquipmentCard) ??
+					KCResourceHelper.LoadEquipmentImage(equipmentID, KCResourceHelper.ResourceTypeEquipmentCardSmall);
+
+				if (img != null)
 				{
-					try
-					{
-
-						EquipmentImage.Image = new Bitmap(path);
-
-					}
-					catch (Exception)
-					{
-						if (EquipmentImage.Image != null)
-							EquipmentImage.Image.Dispose();
-						EquipmentImage.Image = null;
-					}
+					EquipmentImage.Image?.Dispose();
+					EquipmentImage.Image = img;
 				}
 				else
 				{
-					if (EquipmentImage.Image != null)
-						EquipmentImage.Image.Dispose();
+					EquipmentImage.Image?.Dispose();
 					EquipmentImage.Image = null;
 				}
 			}
@@ -392,8 +377,54 @@ namespace ElectronicObserver.Window.Dialog
 
 		}
 
+        private string GetEquippableShips(int equipmentID)
+        {
+            var db = KCDatabase.Instance;
+            var sb = new StringBuilder();
+            sb.AppendLine("装備可能:");
+            var eq = db.MasterEquipments[equipmentID];
+            if (eq == null)
+                return sb.ToString();
+            int eqCategory = (int)eq.CategoryType;
+            var specialShips = new Dictionary<ShipTypes, List<string>>();
+            foreach (var ship in db.MasterShips.Values.Where(s => s.SpecialEquippableCategories != null))
+            {
+                bool usual = ship.ShipTypeInstance.EquippableCategories.Contains(eqCategory);
+                bool special = ship.SpecialEquippableCategories.Contains(eqCategory);
+                if (usual != special)
+                {
+                    if (specialShips.ContainsKey(ship.ShipType))
+                        specialShips[ship.ShipType].Add(ship.NameWithClass);
+                    else
+                        specialShips.Add(ship.ShipType, new List<string>(new[] { ship.NameWithClass }));
+                }
+            }
+            foreach (var shiptype in db.ShipTypes.Values)
+            {
+                if (shiptype.EquippableCategories.Contains(eqCategory))
+                {
+                    sb.Append(shiptype.Name);
+                    if (specialShips.ContainsKey(shiptype.Type))
+                    {
+                        sb.Append(" (").Append(string.Join(", ", specialShips[shiptype.Type])).Append("を除く)");
+                    }
+                    sb.AppendLine();
+                }
+                else
+                {
+                    if (specialShips.ContainsKey(shiptype.Type))
+                    {
+                        sb.Append("○ ").AppendLine(string.Join(", ", specialShips[shiptype.Type]));
+                    }
+                }
+            }
+            if (eq.EquippableShipsAtExpansion.Any())
+                sb.Append("[拡張スロット] ").AppendLine(string.Join(", ", eq.EquippableShipsAtExpansion.Select(id => db.MasterShips[id].NameWithClass)));
+            return sb.ToString();
+        }
 
-		private void DefaultSlots_MouseDown(object sender, MouseEventArgs e)
+
+        private void DefaultSlots_MouseDown(object sender, MouseEventArgs e)
 		{
 
 			if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -573,25 +604,26 @@ namespace ElectronicObserver.Window.Dialog
 			if (string.IsNullOrWhiteSpace(TextSearch.Text))
 				return;
 
-            bool Search(string searchWord)
-            {
-                var target =
-                        EquipmentView.Rows.OfType<DataGridViewRow>()
-                        .Select(r => KCDatabase.Instance.MasterEquipments[(int)r.Cells[EquipmentView_ID.Index].Value])
-                        .FirstOrDefault(
-                                eq => Calculator.ToHiragana(eq.Name.ToLower()).Contains(searchWord));
 
-                if (target != null)
-                {
-                    EquipmentView.FirstDisplayedScrollingRowIndex = EquipmentView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[EquipmentView_ID.Index].Value == target.EquipmentID).Index;
-                    return true;
-                }
-                return false;
-            }
+			bool Search(string searchWord)
+			{
+				var target =
+					EquipmentView.Rows.OfType<DataGridViewRow>()
+					.Select(r => KCDatabase.Instance.MasterEquipments[(int)r.Cells[EquipmentView_ID.Index].Value])
+					.FirstOrDefault(
+						eq => Calculator.ToHiragana(eq.Name.ToLower()).Contains(searchWord));
 
-            if (!Search(Calculator.ToHiragana(TextSearch.Text.ToLower())))
-                Search(Calculator.RomaToHira(TextSearch.Text));
-        }
+				if (target != null)
+				{
+					EquipmentView.FirstDisplayedScrollingRowIndex = EquipmentView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[EquipmentView_ID.Index].Value == target.EquipmentID).Index;
+					return true;
+				}
+				return false;
+			}
+
+			if (!Search(Calculator.ToHiragana(TextSearch.Text.ToLower())))
+				Search(Calculator.RomaToHira(TextSearch.Text));
+		}
 
 		private void TextSearch_KeyDown(object sender, KeyEventArgs e)
 		{

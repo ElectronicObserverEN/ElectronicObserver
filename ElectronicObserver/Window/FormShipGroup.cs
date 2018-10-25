@@ -694,7 +694,6 @@ namespace ElectronicObserver.Window
 					Status_LevelAverage.Text = string.Format("Avg Lv: {0:F2}", levels.Average());
                     Status_ExpTotal.Text = string.Format("Total Exp: {0}", exp.Sum());
 
-
                 }
 				else
 				{

@@ -29,7 +29,7 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int Destination => (int)RawData.api_no;
 
-		public string DestinationID => Window.FormMain.Instance.Translator.GetMapNodes(MapAreaID, MapInfoID, Destination, Utility.TranslationType.OperationMapNodes);
+		public string DestinationID => Window.FormMain.Instance.Translator.GetMapNodes(MapAreaID, MapInfoID, Destination);
 
 		/// <summary>
 		/// 次のセルのグラフィック

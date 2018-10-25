@@ -43,9 +43,9 @@
 			this.StripMenu_File_Layout_LockLayout = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_File_Layout_TopMost = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_File_Notification = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_File_Notification_MuteAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+			this.StripMenu_File_Notification = new System.Windows.Forms.ToolStripMenuItem();
+			this.StripMenu_File_Notification_MuteAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_File_Configuration = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_File_Close = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,8 +109,9 @@
 			this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
 			this.UIUpdateTimer = new System.Windows.Forms.Timer(this.components);
 			this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.StripMenu_Tool_ExpChecker = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Help_Update = new System.Windows.Forms.ToolStripMenuItem();
+
+			this.StripMenu_Help_Update = new System.Windows.Forms.ToolStripMenuItem();
+			this.StripMenu_Tool_ExpChecker = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu.SuspendLayout();
 			this.StripStatus.SuspendLayout();
 			this.SuspendLayout();
@@ -149,21 +150,21 @@
             this.StripMenu_File_Record_Save,
             this.StripMenu_File_Record_Load});
 			this.StripMenu_File_Record.Name = "StripMenu_File_Record";
-            this.StripMenu_File_Record.Size = new System.Drawing.Size(135, 22);
-            this.StripMenu_File_Record.Text = "&Record";
+			this.StripMenu_File_Record.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Record.Text = "&Record";
 			//
 			// StripMenu_File_Record_Save
 			//
 			this.StripMenu_File_Record_Save.Name = "StripMenu_File_Record_Save";
-            this.StripMenu_File_Record_Save.Size = new System.Drawing.Size(121, 22);
-            this.StripMenu_File_Record_Save.Text = "&Save";
+			this.StripMenu_File_Record_Save.Size = new System.Drawing.Size(121, 22);
+			this.StripMenu_File_Record_Save.Text = "&Save";
 			this.StripMenu_File_Record_Save.Click += new System.EventHandler(this.StripMenu_File_SaveData_Save_Click);
 			//
 			// StripMenu_File_Record_Load
 			//
 			this.StripMenu_File_Record_Load.Name = "StripMenu_File_Record_Load";
-            this.StripMenu_File_Record_Load.Size = new System.Drawing.Size(121, 22);
-            this.StripMenu_File_Record_Load.Text = "&Load";
+			this.StripMenu_File_Record_Load.Size = new System.Drawing.Size(121, 22);
+			this.StripMenu_File_Record_Load.Text = "&Load";
 			this.StripMenu_File_Record_Load.Click += new System.EventHandler(this.StripMenu_File_SaveData_Load_Click);
 			//
 			// StripMenu_File_Layout
@@ -178,8 +179,8 @@
             this.toolStripSeparator10,
             this.StripMenu_File_Layout_TopMost});
 			this.StripMenu_File_Layout.Name = "StripMenu_File_Layout";
-            this.StripMenu_File_Layout.Size = new System.Drawing.Size(135, 22);
-            this.StripMenu_File_Layout.Text = "&Layout";
+			this.StripMenu_File_Layout.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Layout.Text = "&Layout";
 			//
 			// StripMenu_File_Layout_Load
 			//
@@ -206,7 +207,7 @@
 			//
 			this.StripMenu_File_Layout_Change.Name = "StripMenu_File_Layout_Change";
 			this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_Change.Text = "Save &as...";
+			this.StripMenu_File_Layout_Change.Text = "Save &As...";
 			this.StripMenu_File_Layout_Change.Click += new System.EventHandler(this.StripMenu_File_Layout_Change_Click);
 			//
 			// toolStripSeparator9
@@ -219,7 +220,7 @@
 			this.StripMenu_File_Layout_LockLayout.CheckOnClick = true;
 			this.StripMenu_File_Layout_LockLayout.Name = "StripMenu_File_Layout_LockLayout";
 			this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_LockLayout.Text = "Lock layou&t";
+			this.StripMenu_File_Layout_LockLayout.Text = "Lock Layou&t";
 			this.StripMenu_File_Layout_LockLayout.Click += new System.EventHandler(this.StripMenu_File_Layout_LockLayout_Click);
 			//
 			// toolStripSeparator10
@@ -232,48 +233,47 @@
 			this.StripMenu_File_Layout_TopMost.CheckOnClick = true;
 			this.StripMenu_File_Layout_TopMost.Name = "StripMenu_File_Layout_TopMost";
 			this.StripMenu_File_Layout_TopMost.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_TopMost.Text = "&Always on top";
+			this.StripMenu_File_Layout_TopMost.Text = "&Always on Top";
 			this.StripMenu_File_Layout_TopMost.Click += new System.EventHandler(this.StripMenu_File_Layout_TopMost_Click);
-            //
-            // StripMenu_File_Notification
-            // 
-            this.StripMenu_File_Notification.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			//
+			// StripMenu_File_Notification
+			//
+			this.StripMenu_File_Notification.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_Notification_MuteAll});
-            this.StripMenu_File_Notification.Name = "StripMenu_File_Notification";
-            this.StripMenu_File_Notification.Size = new System.Drawing.Size(135, 22);
-            this.StripMenu_File_Notification.Text = "Notification(&N)";
-            // 
-            // StripMenu_File_Notification_MuteAll
-            // 
-            this.StripMenu_File_Notification_MuteAll.CheckOnClick = true;
-            this.StripMenu_File_Notification_MuteAll.Name = "StripMenu_File_Notification_MuteAll";
-            this.StripMenu_File_Notification_MuteAll.Size = new System.Drawing.Size(199, 22);
-            this.StripMenu_File_Notification_MuteAll.Text = "Mute all notifications(&M)";
-            this.StripMenu_File_Notification_MuteAll.Click += new System.EventHandler(this.StripMenu_File_Notification_MuteAll_Click);
-            // 
-            // toolStripSeparator6
-            //
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(132, 6);
-            //
-            // StripMenu_File_Configuration
-            //
-            this.StripMenu_File_Configuration.Name = "StripMenu_File_Configuration";
-            this.StripMenu_File_Configuration.Size = new System.Drawing.Size(135, 22);
-            this.StripMenu_File_Configuration.Text = "&Settings...";
+			this.StripMenu_File_Notification.Name = "StripMenu_File_Notification";
+			this.StripMenu_File_Notification.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Notification.Text = "&Notification";
+			//
+			// StripMenu_File_Notification_MuteAll
+			//
+			this.StripMenu_File_Notification_MuteAll.CheckOnClick = true;
+			this.StripMenu_File_Notification_MuteAll.Name = "StripMenu_File_Notification_MuteAll";
+			this.StripMenu_File_Notification_MuteAll.Size = new System.Drawing.Size(199, 22);
+			this.StripMenu_File_Notification_MuteAll.Text = "&Disable";
+			this.StripMenu_File_Notification_MuteAll.Click += new System.EventHandler(this.StripMenu_File_Notification_MuteAll_Click);
+			//
+			// toolStripSeparator6
+			//
+			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			this.toolStripSeparator6.Size = new System.Drawing.Size(132, 6);
+			//
+			// StripMenu_File_Configuration
+			//
+			this.StripMenu_File_Configuration.Name = "StripMenu_File_Configuration";
+			this.StripMenu_File_Configuration.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Configuration.Text = "&Settings...";
 			this.StripMenu_File_Configuration.Click += new System.EventHandler(this.StripMenu_File_Configuration_Click);
 			//
 			// toolStripSeparator5
 			//
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
-            //
-            // StripMenu_File_Close
-            //
-            this.StripMenu_File_Close.Name = "StripMenu_File_Close";
-            this.StripMenu_File_Close.Size = new System.Drawing.Size(135, 22);
-            this.StripMenu_File_Close.Text = "E&xit";
-			this.StripMenu_File_Close.ShortcutKeyDisplayString = "Alt+F4";
+			this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
+			//
+			// StripMenu_File_Close
+			//
+			this.StripMenu_File_Close.Name = "StripMenu_File_Close";
+			this.StripMenu_File_Close.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Close.Text = "E&xit";
 			this.StripMenu_File_Close.Click += new System.EventHandler(this.StripMenu_File_Close_Click);
 			//
 			// StripMenu_View
@@ -346,21 +346,21 @@
 			//
 			this.StripMenu_View_FleetOverview.Name = "StripMenu_View_FleetOverview";
 			this.StripMenu_View_FleetOverview.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_FleetOverview.Text = "Fleet &list";
+			this.StripMenu_View_FleetOverview.Text = "Fleet &List";
 			this.StripMenu_View_FleetOverview.Click += new System.EventHandler(this.StripMenu_View_FleetOverview_Click);
 			//
 			// StripMenu_View_ShipGroup
 			//
 			this.StripMenu_View_ShipGroup.Name = "StripMenu_View_ShipGroup";
 			this.StripMenu_View_ShipGroup.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_ShipGroup.Text = "Ship &group";
+			this.StripMenu_View_ShipGroup.Text = "Ship &Group";
 			this.StripMenu_View_ShipGroup.Click += new System.EventHandler(this.StripMenu_View_ShipGroup_Click);
 			//
 			// StripMenu_View_XPCalculator
 			//
 			this.StripMenu_View_XPCalculator.Name = "StripMenu_View_XPCalculator";
 			this.StripMenu_View_XPCalculator.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_XPCalculator.Text = "&Exp calculator";
+			this.StripMenu_View_XPCalculator.Text = "&Exp Calculator";
 			this.StripMenu_View_XPCalculator.Click += new System.EventHandler(this.StripMenu_View_XPCalculator_Click);
 			//
 			// toolStripSeparator1
@@ -516,7 +516,7 @@
 			//
 			this.StripMenu_Tool_EquipmentList.Name = "StripMenu_Tool_EquipmentList";
 			this.StripMenu_Tool_EquipmentList.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_EquipmentList.Text = "E&quipment list";
+			this.StripMenu_Tool_EquipmentList.Text = "E&quipment List";
 			this.StripMenu_Tool_EquipmentList.Click += new System.EventHandler(this.StripMenu_Tool_EquipmentList_Click);
 			//
 			// toolStripSeparator7
@@ -528,28 +528,28 @@
 			//
 			this.StripMenu_Tool_DropRecord.Name = "StripMenu_Tool_DropRecord";
 			this.StripMenu_Tool_DropRecord.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_DropRecord.Text = "&Drop record";
+			this.StripMenu_Tool_DropRecord.Text = "&Drop Record";
 			this.StripMenu_Tool_DropRecord.Click += new System.EventHandler(this.StripMenu_Tool_DropRecord_Click);
 			//
 			// StripMenu_Tool_DevelopmentRecord
 			//
 			this.StripMenu_Tool_DevelopmentRecord.Name = "StripMenu_Tool_DevelopmentRecord";
 			this.StripMenu_Tool_DevelopmentRecord.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_DevelopmentRecord.Text = "De&velopment record";
+			this.StripMenu_Tool_DevelopmentRecord.Text = "De&velopment Record";
 			this.StripMenu_Tool_DevelopmentRecord.Click += new System.EventHandler(this.StripMenu_Tool_DevelopmentRecord_Click);
 			//
 			// StripMenu_Tool_ConstructionRecord
 			//
 			this.StripMenu_Tool_ConstructionRecord.Name = "StripMenu_Tool_ConstructionRecord";
 			this.StripMenu_Tool_ConstructionRecord.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_ConstructionRecord.Text = "Construction &record";
+			this.StripMenu_Tool_ConstructionRecord.Text = "Construction &Record";
 			this.StripMenu_Tool_ConstructionRecord.Click += new System.EventHandler(this.StripMenu_Tool_ConstructionRecord_Click);
 			//
 			// StripMenu_Tool_ResourceChart
 			//
 			this.StripMenu_Tool_ResourceChart.Name = "StripMenu_Tool_ResourceChart";
 			this.StripMenu_Tool_ResourceChart.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_ResourceChart.Text = "&Resource chart";
+			this.StripMenu_Tool_ResourceChart.Text = "&Resource Chart";
 			this.StripMenu_Tool_ResourceChart.Click += new System.EventHandler(this.StripMenu_Tool_ResourceChart_Click);
 			//
 			// toolStripSeparator15
@@ -561,14 +561,14 @@
 			//
 			this.StripMenu_Tool_AlbumMasterShip.Name = "StripMenu_Tool_AlbumMasterShip";
 			this.StripMenu_Tool_AlbumMasterShip.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_AlbumMasterShip.Text = "&Ship encylopedia";
+			this.StripMenu_Tool_AlbumMasterShip.Text = "&Ship Encylopedia";
 			this.StripMenu_Tool_AlbumMasterShip.Click += new System.EventHandler(this.StripMenu_Tool_AlbumMasterShip_Click);
 			//
 			// StripMenu_Tool_AlbumMasterEquipment
 			//
 			this.StripMenu_Tool_AlbumMasterEquipment.Name = "StripMenu_Tool_AlbumMasterEquipment";
 			this.StripMenu_Tool_AlbumMasterEquipment.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_AlbumMasterEquipment.Text = "&Equipment encyclopedia";
+			this.StripMenu_Tool_AlbumMasterEquipment.Text = "&Equipment Encyclopedia";
 			this.StripMenu_Tool_AlbumMasterEquipment.Click += new System.EventHandler(this.StripMenu_Tool_AlbumMasterEquipment_Click);
 			//
 			// toolStripSeparator11
@@ -580,21 +580,21 @@
 			//
 			this.StripMenu_Tool_AntiAirDefense.Name = "StripMenu_Tool_AntiAirDefense";
 			this.StripMenu_Tool_AntiAirDefense.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_AntiAirDefense.Text = "&AA defense";
+			this.StripMenu_Tool_AntiAirDefense.Text = "&AA Defense";
 			this.StripMenu_Tool_AntiAirDefense.Click += new System.EventHandler(this.StripMenu_Tool_AntiAirDefense_Click);
 			//
 			// StripMenu_Tool_FleetImageGenerator
 			//
 			this.StripMenu_Tool_FleetImageGenerator.Name = "StripMenu_Tool_FleetImageGenerator";
 			this.StripMenu_Tool_FleetImageGenerator.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_FleetImageGenerator.Text = "Export &fleet image...";
+			this.StripMenu_Tool_FleetImageGenerator.Text = "Export &Fleet Image...";
 			this.StripMenu_Tool_FleetImageGenerator.Click += new System.EventHandler(this.StripMenu_Tool_FleetImageGenerator_Click);
 			//
 			// StripMenu_Tool_BaseAirCorpsSimulation
 			//
 			this.StripMenu_Tool_BaseAirCorpsSimulation.Name = "StripMenu_Tool_BaseAirCorpsSimulation";
 			this.StripMenu_Tool_BaseAirCorpsSimulation.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_BaseAirCorpsSimulation.Text = "L&BAS simulator";
+			this.StripMenu_Tool_BaseAirCorpsSimulation.Text = "L&BAS Simulator";
 			this.StripMenu_Tool_BaseAirCorpsSimulation.Click += new System.EventHandler(this.StripMenu_Tool_BaseAirCorpsSimulation_Click);
 			//
 			// StripMenu_Debug
@@ -615,14 +615,14 @@
 			//
 			this.StripMenu_Debug_LoadAPIFromFile.Name = "StripMenu_Debug_LoadAPIFromFile";
 			this.StripMenu_Debug_LoadAPIFromFile.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadAPIFromFile.Text = "&Load API data from file...";
+			this.StripMenu_Debug_LoadAPIFromFile.Text = "&Load API Data from File...";
 			this.StripMenu_Debug_LoadAPIFromFile.Click += new System.EventHandler(this.StripMenu_Debug_LoadAPIFromFile_Click);
 			//
 			// StripMenu_Debug_LoadInitialAPI
 			//
 			this.StripMenu_Debug_LoadInitialAPI.Name = "StripMenu_Debug_LoadInitialAPI";
 			this.StripMenu_Debug_LoadInitialAPI.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadInitialAPI.Text = "Load &API list...";
+			this.StripMenu_Debug_LoadInitialAPI.Text = "Load &API List...";
 			this.StripMenu_Debug_LoadInitialAPI.Click += new System.EventHandler(this.StripMenu_Debug_LoadInitialAPI_Click);
 			//
 			// toolStripSeparator8
@@ -634,28 +634,28 @@
 			//
 			this.StripMenu_Debug_LoadRecordFromOld.Name = "StripMenu_Debug_LoadRecordFromOld";
 			this.StripMenu_Debug_LoadRecordFromOld.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadRecordFromOld.Text = "Load from &old api_start2...";
+			this.StripMenu_Debug_LoadRecordFromOld.Text = "Load from &Old api_start2...";
 			this.StripMenu_Debug_LoadRecordFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadRecordFromOld_Click);
 			//
 			// StripMenu_Debug_DeleteOldAPI
 			//
 			this.StripMenu_Debug_DeleteOldAPI.Name = "StripMenu_Debug_DeleteOldAPI";
 			this.StripMenu_Debug_DeleteOldAPI.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_DeleteOldAPI.Text = "&Delete old API data";
+			this.StripMenu_Debug_DeleteOldAPI.Text = "&Delete Old API Data";
 			this.StripMenu_Debug_DeleteOldAPI.Click += new System.EventHandler(this.StripMenu_Debug_DeleteOldAPI_Click);
 			//
 			// StripMenu_Debug_RenameShipResource
 			//
 			this.StripMenu_Debug_RenameShipResource.Name = "StripMenu_Debug_RenameShipResource";
 			this.StripMenu_Debug_RenameShipResource.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_RenameShipResource.Text = "&Rename ship resource...";
+			this.StripMenu_Debug_RenameShipResource.Text = "&Rename Ship Resource...";
 			this.StripMenu_Debug_RenameShipResource.Click += new System.EventHandler(this.StripMenu_Debug_RenameShipResource_Click);
 			//
 			// StripMenu_Debug_LoadDataFromOld
 			//
 			this.StripMenu_Debug_LoadDataFromOld.Name = "StripMenu_Debug_LoadDataFromOld";
 			this.StripMenu_Debug_LoadDataFromOld.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadDataFromOld.Text = "Re&store abyssal data from old api_start2...";
+			this.StripMenu_Debug_LoadDataFromOld.Text = "Re&store Abyssal Data from Old api_start2...";
 			this.StripMenu_Debug_LoadDataFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadDataFromOld_Click);
 			//
 			// StripMenu_Help
@@ -674,14 +674,14 @@
 			//
 			this.StripMenu_Help_Help.Name = "StripMenu_Help_Help";
 			this.StripMenu_Help_Help.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Help.Text = "View &help";
+			this.StripMenu_Help_Help.Text = "View &Help";
 			this.StripMenu_Help_Help.Click += new System.EventHandler(this.StripMenu_Help_Help_Click);
 			//
 			// StripMenu_Help_Issue
 			//
 			this.StripMenu_Help_Issue.Name = "StripMenu_Help_Issue";
 			this.StripMenu_Help_Issue.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Issue.Text = "&Report a problem...";
+			this.StripMenu_Help_Issue.Text = "&Report a Problem...";
 			this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
 			//
 			// SeparatorWhitecap
@@ -744,17 +744,24 @@
 			this.MainDockPanel.Size = new System.Drawing.Size(640, 434);
 			this.MainDockPanel.Styles = null;
 			this.MainDockPanel.TabIndex = 0;
-            // 
-            // StripMenu_Tool_ExpChecker
-            // 
-            this.StripMenu_Tool_ExpChecker.Name = "StripMenu_Tool_ExpChecker";
-            this.StripMenu_Tool_ExpChecker.Size = new System.Drawing.Size(180, 22);
-            this.StripMenu_Tool_ExpChecker.Text = "Exp calculator(&X)";
-            this.StripMenu_Tool_ExpChecker.Click += new System.EventHandler(this.StripMenu_Tool_ExpChecker_Click);
-            // 
-            // FormMain
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			//
+			// StripMenu_Help_Update
+			//
+			this.StripMenu_Help_Update.Name = "StripMenu_Help_Update";
+			this.StripMenu_Help_Update.Size = new System.Drawing.Size(180, 22);
+			this.StripMenu_Help_Update.Text = "Check for &Update";
+			this.StripMenu_Help_Update.Click += new System.EventHandler(this.StripMenu_Help_Update_Click);
+			//
+			// StripMenu_Tool_ExpChecker
+			//
+			this.StripMenu_Tool_ExpChecker.Name = "StripMenu_Tool_ExpChecker";
+			this.StripMenu_Tool_ExpChecker.Size = new System.Drawing.Size(180, 22);
+			this.StripMenu_Tool_ExpChecker.Text = "E&xp Calculator";
+			this.StripMenu_Tool_ExpChecker.Click += new System.EventHandler(this.StripMenu_Tool_ExpChecker_Click);
+			//
+			// FormMain
+			//
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(640, 480);
 			this.Controls.Add(this.MainDockPanel);
 			this.Controls.Add(this.StripStatus);
@@ -860,6 +867,6 @@
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_BaseAirCorpsSimulation;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Notification;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Notification_MuteAll;
-        private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpChecker;
-    }
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpChecker;
+	}
 }

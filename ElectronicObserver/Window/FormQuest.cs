@@ -351,7 +351,7 @@ namespace ElectronicObserver.Window
 			{
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
-				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format("(Other quest x {0})", (KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count));
+				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format("(other quest x {0})", (KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count));
 			}
 
 			if (KCDatabase.Instance.Quest.Quests.Count == 0)
@@ -544,7 +544,7 @@ namespace ElectronicObserver.Window
 			{
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells(QuestView);
-				row.SetValues(null, null, null, "(Uninitialized)", null);
+				row.SetValues(null, null, null, "(unknown)", null);
 				QuestView.Rows.Add(row);
 			}
 
@@ -615,7 +615,7 @@ namespace ElectronicObserver.Window
 				}
 				catch (Exception)
 				{
-					Utility.Logger.Add(3, string.Format("任務『{0}』の進捗を変更することはできません。", quest.Name));
+					Utility.Logger.Add(3, string.Format("Failed to change progress of quest『{0}』.", quest.Name));
 					System.Media.SystemSounds.Hand.Play();
 				}
 			}
@@ -639,7 +639,7 @@ namespace ElectronicObserver.Window
 				}
 				catch (Exception)
 				{
-					Utility.Logger.Add(3, string.Format("任務『{0}』の進捗を変更することはできません。", quest.Name));
+					Utility.Logger.Add(3, string.Format("Failed to change progress of quest『{0}』.", quest.Name));
 					System.Media.SystemSounds.Hand.Play();
 				}
 			}
@@ -656,7 +656,7 @@ namespace ElectronicObserver.Window
 			if (id != -1 && (quest != null || progress != null))
 			{
 
-				if (MessageBox.Show("任務" + (quest != null ? ("『" + quest.Name + "』") : ("ID: " + id.ToString() + " ")) + "を一覧から削除し、進捗をリセットします。\r\nよろしいですか？\r\n(艦これ本体の任務画面を開くと正しく更新されます。)", "任務削除の確認",
+				if (MessageBox.Show("Quest " + (quest != null ? ("『" + quest.Name + "』") : ("ID: " + id.ToString() + " ")) + " will be deleted from the list and have its progress reset.\r\nAre you sure?", "Confirm Quest Reset",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
 				{
 
@@ -714,7 +714,7 @@ namespace ElectronicObserver.Window
 			if (quest != null)
 			{
 				MenuMain_GoogleQuest.Enabled = true;
-				MenuMain_GoogleQuest.Text = string.Format("Search on &Google: {0}", quest.Name);
+				MenuMain_GoogleQuest.Text = string.Format("Search &Google for \"{0}\"", quest.Name);
 			}
 			else
 			{

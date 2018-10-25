@@ -38,7 +38,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void TextInformation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 
-			System.Diagnostics.Process.Start("https://github.com/myangelkamikaze/ElectronicObserver");
+			System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver");
 
 		}
 

@@ -58,6 +58,10 @@ namespace ElectronicObserver.Resource.Record
 			/// </summary>
 			public bool IsAvailable => !IsMinimumDefault && !IsMaximumDefault;
 
+			/// <summary>
+			/// 値が特定されているか
+			/// </summary>
+			public bool IsDetermined => IsAvailable && MinimumEstMin == MinimumEstMax;
 
 			/// <summary>
 			/// 最小値の初期値
@@ -349,7 +353,7 @@ namespace ElectronicObserver.Resource.Record
 			public override void LoadLine(string line)
 			{
 				string[] elem = line.Split(",".ToCharArray());
-				if (elem.Length < 36) throw new ArgumentException("要素数が少なすぎます。");
+				if (elem.Length < 36) throw new ArgumentException("The number of elements is too small.");
 
 				ShipID = int.Parse(elem[0]);
 
@@ -507,8 +511,8 @@ namespace ElectronicObserver.Resource.Record
 		public Dictionary<int, ShipParameterElement> Record { get; private set; }
 		private int newShipIDBorder;
 		private int remodelingShipID;
-        private int questRewardShipID;
-        private bool changed;
+		private int questRewardShipID;
+		private bool changed;
 		public bool ParameterLoadFlag { get; set; }
 
 
@@ -519,8 +523,8 @@ namespace ElectronicObserver.Resource.Record
 			Record = new Dictionary<int, ShipParameterElement>();
 			newShipIDBorder = -1;
 			remodelingShipID = -1;
-            questRewardShipID = -1;
-            changed = false;
+			questRewardShipID = -1;
+			changed = false;
 			ParameterLoadFlag = true;
 
 		}
@@ -529,7 +533,7 @@ namespace ElectronicObserver.Resource.Record
 		{
 			APIObserver ao = APIObserver.Instance;
 
-			ao["api_start2"].ResponseReceived += GameStart;
+			ao["api_start2/getData"].ResponseReceived += GameStart;
 
 			ao["api_port/port"].ResponseReceived += ParameterLoaded;
 
@@ -559,9 +563,9 @@ namespace ElectronicObserver.Resource.Record
 			ao["api_req_kaisou/remodeling"].RequestReceived += RemodelingStart;
 			ao["api_get_member/slot_item"].ResponseReceived += RemodelingEnd;
 
-            ao["api_req_quest/clearitemget"].ResponseReceived += QuestRewardReceived;
-            ao["api_get_member/ship2"].ResponseReceived += QuestRewardReceivedEnd;
-        }
+			ao["api_req_quest/clearitemget"].ResponseReceived += QuestRewardReceived;
+			ao["api_get_member/ship2"].ResponseReceived += QuestRewardReceivedEnd;
+		}
 
 
 		public ShipParameterElement this[int i]
@@ -621,15 +625,15 @@ namespace ElectronicObserver.Resource.Record
 
 
 			if (e.ASW.SetEstParameter(level, aswMin, aswMax))
-				Utility.Logger.Add(1, string.Format("ShipParameter: {0} の対潜値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+				Utility.Logger.Add(1, string.Format("ShipParameter: ASW value of {0} is out of the predicted range( [{1} ~ {2}] ~ {3} ).",
 					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.ASW.MinimumEstMin, e.ASW.MinimumEstMax, e.ASW.Maximum));
 
 			if (e.Evasion.SetEstParameter(level, evasionMin, evasionMax))
-				Utility.Logger.Add(1, string.Format("ShipParameter: {0} の回避値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+				Utility.Logger.Add(1, string.Format("ShipParameter: Evasion value of {0} is out of the predicted range( [{1} ~ {2}] ~ {3} ).",
 					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.Evasion.MinimumEstMin, e.Evasion.MinimumEstMax, e.Evasion.Maximum));
 
 			if (e.LOS.SetEstParameter(level, losMin, losMax))
-				Utility.Logger.Add(1, string.Format("ShipParameter: {0} の索敵値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+				Utility.Logger.Add(1, string.Format("ShipParameter: LOS value of {0} is out of the predicted range( [{1} ~ {2}] ~ {3} ).",
 					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.LOS.MinimumEstMin, e.LOS.MinimumEstMax, e.LOS.Maximum));
 
 
@@ -643,7 +647,6 @@ namespace ElectronicObserver.Resource.Record
 		/// <param name="ship">対象の艦船。入手直後・改装直後のものに限ります。</param>
 		public void UpdateDefaultSlot(ShipData ship)
 		{
-
 			UpdateDefaultSlot(ship.ShipID, ship.SlotMaster.ToArray());
 		}
 
@@ -654,13 +657,15 @@ namespace ElectronicObserver.Resource.Record
 		/// <param name="slot">装備スロット配列。</param>
 		public void UpdateDefaultSlot(int shipID, int[] slot)
 		{
-
 			ShipParameterElement e = this[shipID];
 			if ( e == null ) {
 				e = new ShipParameterElement();
 				e.ShipID = shipID;
 				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.InitialEquipRegistered );
 			}
+
+			if (e.DefaultSlot == null || !e.DefaultSlot.SequenceEqual(slot))
+				Utility.Logger.Add(2, "Stock equipment of " + KCDatabase.Instance.MasterShips[shipID].NameWithClass + " has been updated.");
 
 			e.DefaultSlot = slot;
 
@@ -801,18 +806,19 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		void ParameterLoaded(string apiname, dynamic data)
 		{
-
-			if (!ParameterLoadFlag) return;
+			// note: 暫定的に毎回ロードしてみる
+			//if (!ParameterLoadFlag) return;
 
 
 			foreach (ShipData ship in KCDatabase.Instance.Ships.Values)
 			{
-
-				UpdateParameter(ship);
-
+				// note: 昨今特殊シナジーが多くなっていて、かつすべてに対応しきれいていないため、完全非武装な艦のみステータスを記録する
+				// 暫定対応なので要再検討
+				if (ship.AllSlot.All(id => id <= 0))
+					UpdateParameter(ship);
 			}
 
-			ParameterLoadFlag = false;      //一回限り(基本的に起動直後の1回)
+			//ParameterLoadFlag = false;      //一回限り(基本的に起動直後の1回)
 
 		}
 
@@ -982,8 +988,8 @@ namespace ElectronicObserver.Resource.Record
 
 			foreach (ShipData s in KCDatabase.Instance.Ships.Values.Where(s => s.MasterID > newShipIDBorder))
 			{
-
-				UpdateParameter(s);
+				// note: 初期装備がシナジー装備であることがあるので、記録しない　要再確認
+				//UpdateParameter(s);
 				UpdateDefaultSlot(s);
 
 			}
@@ -1003,7 +1009,8 @@ namespace ElectronicObserver.Resource.Record
 
 			if (ship != null)
 			{
-				UpdateParameter(ship);
+				// note: 初期装備がシナジー装備であることがあるので、記録しない　要再確認
+				//UpdateParameter(ship);
 				UpdateDefaultSlot(ship);
 			}
 
@@ -1027,20 +1034,23 @@ namespace ElectronicObserver.Resource.Record
 		{
 
 			if (remodelingShipID == -1)
-                return;
+				return;
 
 			ShipData ship = KCDatabase.Instance.Ships[remodelingShipID];
 
 			if (ship != null)
 			{
-				UpdateParameter(ship);
+				// note: 初期装備がシナジー装備であることがあるので、記録しない　要再確認
+				//UpdateParameter(ship);
 				UpdateDefaultSlot(ship);
 			}
 
 			remodelingShipID = -1;
 		}
 
-        void QuestRewardReceived(string apiname, dynamic data)
+
+
+		void QuestRewardReceived(string apiname, dynamic data)
 		{
 			questRewardShipID = -1;
 
@@ -1048,16 +1058,16 @@ namespace ElectronicObserver.Resource.Record
 			{
 				foreach (var b in data.api_bounus)
 				{
-					if ((int) b.api_type == 11 && b.api_item() && b.api_item != null)
+					if ((int)b.api_type == 11 && b.api_item() && b.api_item != null)
 					{
 						if (b.api_item.api_ship_id())
 						{
-							questRewardShipID = (int) b.api_item.api_ship_id;
+							questRewardShipID = (int)b.api_item.api_ship_id;
 
 						}
 					}
 				}
-		}
+			}
 		}
 
 		void QuestRewardReceivedEnd(string apiname, dynamic data)
@@ -1067,12 +1077,13 @@ namespace ElectronicObserver.Resource.Record
 
 			var ship = KCDatabase.Instance.Ships.OrderBy(p => p.Key).Last().Value;
 
-			if(ship.ShipID == questRewardShipID)
+			if (ship.ShipID == questRewardShipID)
 			{
 				// 装備データがまだ送られてきていないので、remodeling と同様 slot_item が来た時点で処理する
 				remodelingShipID = ship.MasterID;
 			}
 		}
+
 
 		#endregion
 

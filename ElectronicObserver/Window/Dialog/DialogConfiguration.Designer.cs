@@ -29,10 +29,11 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			ElectronicObserver.Window.Control.StatusBarModule statusBarModule2 = new ElectronicObserver.Window.Control.StatusBarModule();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.label19 = new System.Windows.Forms.Label();
 			this.Connection_UpstreamProxyAddress = new System.Windows.Forms.TextBox();
 			this.Connection_DownstreamProxyLabel = new System.Windows.Forms.Label();
 			this.Connection_DownstreamProxy = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@
 			this.Connection_PanelSaveData = new System.Windows.Forms.Panel();
 			this.Connection_ApplyVersion = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveOtherFile = new System.Windows.Forms.CheckBox();
-			this.Connection_SaveSWF = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveResponse = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveRequest = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveDataPathSearch = new System.Windows.Forms.Button();
@@ -183,6 +183,10 @@
 			this.FormBattle_HideDuringBattle = new System.Windows.Forms.CheckBox();
 			this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
 			this.tabPage12 = new System.Windows.Forms.TabPage();
+			this.FormBrowser_ForceColorProfile = new System.Windows.Forms.CheckBox();
+			this.FormBrowser_PreserveDrawingBuffer = new System.Windows.Forms.CheckBox();
+			this.label20 = new System.Windows.Forms.Label();
+			this.FormBrowser_HardwareAccelerationEnabled = new System.Windows.Forms.CheckBox();
 			this.FormBrowser_IsDMMreloadDialogDestroyable = new System.Windows.Forms.CheckBox();
 			this.FormBrowser_ToolMenuDockStyle = new System.Windows.Forms.ComboBox();
 			this.label30 = new System.Windows.Forms.Label();
@@ -204,18 +208,6 @@
 			this.FormBrowser_LogInPageURL = new System.Windows.Forms.TextBox();
 			this.FormBrowser_ZoomRate = new System.Windows.Forms.NumericUpDown();
 			this.label15 = new System.Windows.Forms.Label();
-			this.tabPage14 = new System.Windows.Forms.TabPage();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.label21 = new System.Windows.Forms.Label();
-			this.FormBrowser_FlashWMode = new System.Windows.Forms.ComboBox();
-			this.label20 = new System.Windows.Forms.Label();
-			this.FormBrowser_FlashQuality = new System.Windows.Forms.ComboBox();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.FormBrowser_BrowserVersion = new System.Windows.Forms.ComboBox();
-			this.FormBrowser_DeleteRegistry = new System.Windows.Forms.Button();
-			this.FormBrowser_GPURendering = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_ApplyRegistry = new System.Windows.Forms.Button();
-			this.label19 = new System.Windows.Forms.Label();
 			this.tabPage21 = new System.Windows.Forms.TabPage();
 			this.FormBaseAirCorps_ShowEventMapOnly = new System.Windows.Forms.CheckBox();
 			this.SubWindow_Json = new System.Windows.Forms.TabPage();
@@ -289,9 +281,6 @@
 			this.tabPage12.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.FormBrowser_ZoomRate)).BeginInit();
-			this.tabPage14.SuspendLayout();
-			this.groupBox4.SuspendLayout();
-			this.groupBox3.SuspendLayout();
 			this.tabPage21.SuspendLayout();
 			this.SubWindow_Json.SuspendLayout();
 			this.SubWindow_Json_SealingPanel.SuspendLayout();
@@ -324,6 +313,7 @@
 			//
 			// tabPage1
 			//
+			this.tabPage1.Controls.Add(this.label19);
 			this.tabPage1.Controls.Add(this.Connection_UpstreamProxyAddress);
 			this.tabPage1.Controls.Add(this.Connection_DownstreamProxyLabel);
 			this.tabPage1.Controls.Add(this.Connection_DownstreamProxy);
@@ -344,6 +334,16 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Communication;
 			this.tabPage1.UseVisualStyleBackColor = true;
+			//
+			// label19
+			//
+			this.label19.AutoSize = true;
+			this.label19.ForeColor = System.Drawing.Color.Red;
+			this.label19.Location = new System.Drawing.Point(32, 278);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(285, 15);
+			this.label19.TabIndex = 13;
+			this.label19.Text = "* Network settings will take effect after restart";
 			//
 			// Connection_UpstreamProxyAddress
 			//
@@ -382,7 +382,7 @@
 			this.Connection_UseSystemProxy.Name = "Connection_UseSystemProxy";
 			this.Connection_UseSystemProxy.Size = new System.Drawing.Size(135, 19);
 			this.Connection_UseSystemProxy.TabIndex = 9;
-			this.Connection_UseSystemProxy.Text = "Use system proxy settings";
+			this.Connection_UseSystemProxy.Text = "Use system proxy";
 			this.ToolTipInfo.SetToolTip(this.Connection_UseSystemProxy, global::ElectronicObserver.Window.Dialog.ConfigRes.UseSystemProxyTooltip);
 			this.Connection_UseSystemProxy.UseVisualStyleBackColor = true;
 			//
@@ -449,7 +449,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_ApplyVersion);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveOtherFile);
-			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveSWF);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveResponse);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveRequest);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveDataPathSearch);
@@ -463,7 +462,7 @@
 			// Connection_ApplyVersion
 			//
 			this.Connection_ApplyVersion.AutoSize = true;
-			this.Connection_ApplyVersion.Location = new System.Drawing.Point(296, 32);
+			this.Connection_ApplyVersion.Location = new System.Drawing.Point(237, 32);
 			this.Connection_ApplyVersion.Name = "Connection_ApplyVersion";
 			this.Connection_ApplyVersion.Size = new System.Drawing.Size(68, 19);
 			this.Connection_ApplyVersion.TabIndex = 9;
@@ -474,24 +473,13 @@
 			// Connection_SaveOtherFile
 			//
 			this.Connection_SaveOtherFile.AutoSize = true;
-			this.Connection_SaveOtherFile.Location = new System.Drawing.Point(231, 32);
+			this.Connection_SaveOtherFile.Location = new System.Drawing.Point(172, 32);
 			this.Connection_SaveOtherFile.Name = "Connection_SaveOtherFile";
 			this.Connection_SaveOtherFile.Size = new System.Drawing.Size(59, 19);
 			this.Connection_SaveOtherFile.TabIndex = 8;
 			this.Connection_SaveOtherFile.Text = "Other";
 			this.ToolTipInfo.SetToolTip(this.Connection_SaveOtherFile, global::ElectronicObserver.Window.Dialog.ConfigRes.SaveAllConnectionFiles);
 			this.Connection_SaveOtherFile.UseVisualStyleBackColor = true;
-			//
-			// Connection_SaveSWF
-			//
-			this.Connection_SaveSWF.AutoSize = true;
-			this.Connection_SaveSWF.Location = new System.Drawing.Point(172, 32);
-			this.Connection_SaveSWF.Name = "Connection_SaveSWF";
-			this.Connection_SaveSWF.Size = new System.Drawing.Size(53, 19);
-			this.Connection_SaveSWF.TabIndex = 7;
-			this.Connection_SaveSWF.Text = "SWF";
-			this.ToolTipInfo.SetToolTip(this.Connection_SaveSWF, global::ElectronicObserver.Window.Dialog.ConfigRes.SaveSWF);
-			this.Connection_SaveSWF.UseVisualStyleBackColor = true;
 			//
 			// Connection_SaveResponse
 			//
@@ -611,7 +599,7 @@
 			this.UI_JapaneseEquipmentTypes.Name = "UI_JapaneseEquipmentTypes";
 			this.UI_JapaneseEquipmentTypes.Size = new System.Drawing.Size( 207, 19 );
 			this.UI_JapaneseEquipmentTypes.TabIndex = 15;
-			this.UI_JapaneseEquipmentTypes.Text = "Use Japanese equipment types";
+			this.UI_JapaneseEquipmentTypes.Text = "Use JP equipment types";
 			this.UI_JapaneseEquipmentTypes.UseVisualStyleBackColor = true;
 			//
 			// UI_JapaneseEquipmentNames
@@ -621,7 +609,7 @@
 			this.UI_JapaneseEquipmentNames.Name = "UI_JapaneseEquipmentNames";
 			this.UI_JapaneseEquipmentNames.Size = new System.Drawing.Size( 214, 19 );
 			this.UI_JapaneseEquipmentNames.TabIndex = 14;
-			this.UI_JapaneseEquipmentNames.Text = "Use Japanese equipment names";
+			this.UI_JapaneseEquipmentNames.Text = "Use JP equipment names";
 			this.UI_JapaneseEquipmentNames.UseVisualStyleBackColor = true;
 			//
 			// UI_JapaneseShipTypes
@@ -631,7 +619,7 @@
 			this.UI_JapaneseShipTypes.Name = "UI_JapaneseShipTypes";
 			this.UI_JapaneseShipTypes.Size = new System.Drawing.Size( 168, 19 );
 			this.UI_JapaneseShipTypes.TabIndex = 13;
-			this.UI_JapaneseShipTypes.Text = "Use Japanese ship types";
+			this.UI_JapaneseShipTypes.Text = "Use JP ship types";
 			this.UI_JapaneseShipTypes.UseVisualStyleBackColor = true;
 			//
 			// UI_JapaneseShipNames
@@ -641,7 +629,7 @@
 			this.UI_JapaneseShipNames.Name = "UI_JapaneseShipNames";
 			this.UI_JapaneseShipNames.Size = new System.Drawing.Size( 175, 19 );
 			this.UI_JapaneseShipNames.TabIndex = 12;
-			this.UI_JapaneseShipNames.Text = "Use Japanese ship names";
+			this.UI_JapaneseShipNames.Text = "Use JP ship names";
 			this.UI_JapaneseShipNames.UseVisualStyleBackColor = true;
 			//
 			// tableLayoutPanel1
@@ -678,12 +666,12 @@
 			//
 			this.UI_RenderingTest.AutoSize = true;
 			this.UI_RenderingTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			statusBarModule1.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			statusBarModule1.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			statusBarModule1.MaximumValue = 500;
-			statusBarModule1.PrevValue = 401;
-			statusBarModule1.Value = 401;
-			this.UI_RenderingTest.HPBar = statusBarModule1;
+			statusBarModule2.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			statusBarModule2.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			statusBarModule2.MaximumValue = 500;
+			statusBarModule2.PrevValue = 401;
+			statusBarModule2.Value = 401;
+			this.UI_RenderingTest.HPBar = statusBarModule2;
 			this.UI_RenderingTest.Location = new System.Drawing.Point(16, 3);
 			this.UI_RenderingTest.MainFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.UI_RenderingTest.Margin = new System.Windows.Forms.Padding(16, 3, 16, 3);
@@ -1059,7 +1047,7 @@
 			this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPathSearch);
 			this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 56);
 			this.Debug_SealingPanel.Name = "Debug_SealingPanel";
-			this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 273);
+			this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 257);
 			this.Debug_SealingPanel.TabIndex = 1;
 			//
 			// Debug_APIListPath
@@ -1168,7 +1156,7 @@
             "Quest reset"});
 			this.Life_ClockFormat.Location = new System.Drawing.Point(101, 135);
 			this.Life_ClockFormat.Name = "Life_ClockFormat";
-			this.Life_ClockFormat.Size = new System.Drawing.Size(90, 23);
+			this.Life_ClockFormat.Size = new System.Drawing.Size(100, 23);
 			this.Life_ClockFormat.TabIndex = 7;
 			//
 			// Life_ShowStatusBar
@@ -1262,7 +1250,6 @@
 			this.tabControl2.Controls.Add(this.tabPage13);
 			this.tabControl2.Controls.Add(this.tabPage20);
 			this.tabControl2.Controls.Add(this.tabPage12);
-			this.tabControl2.Controls.Add(this.tabPage14);
 			this.tabControl2.Controls.Add(this.tabPage21);
 			this.tabControl2.Controls.Add(this.SubWindow_Json);
 			this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1335,7 +1322,7 @@
 			this.FormFleet_EmphasizesSubFleetInPort.Name = "FormFleet_EmphasizesSubFleetInPort";
 			this.FormFleet_EmphasizesSubFleetInPort.Size = new System.Drawing.Size(179, 19);
 			this.FormFleet_EmphasizesSubFleetInPort.TabIndex = 20;
-			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle exped fleet";
+			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle fleet";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_EmphasizesSubFleetInPort, "Highlight expedition fleet idling on homeport." );
 			this.FormFleet_EmphasizesSubFleetInPort.UseVisualStyleBackColor = true;
 			//
@@ -1357,7 +1344,7 @@
 			this.FormFleet_ReflectAnchorageRepairHealing.Name = "FormFleet_ReflectAnchorageRepairHealing";
 			this.FormFleet_ReflectAnchorageRepairHealing.Size = new System.Drawing.Size(193, 19);
 			this.FormFleet_ReflectAnchorageRepairHealing.TabIndex = 16;
-			this.FormFleet_ReflectAnchorageRepairHealing.Text = "Show HP recovery";
+			this.FormFleet_ReflectAnchorageRepairHealing.Text = "HP recovery";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ReflectAnchorageRepairHealing, "Show recovered HP in the HP bar from anchorage repair.");
 			this.FormFleet_ReflectAnchorageRepairHealing.UseVisualStyleBackColor = true;
 			//
@@ -1379,7 +1366,7 @@
 			this.FormFleet_ShowAircraftLevelByNumber.Name = "FormFleet_ShowAircraftLevelByNumber";
 			this.FormFleet_ShowAircraftLevelByNumber.Size = new System.Drawing.Size(184, 19);
 			this.FormFleet_ShowAircraftLevelByNumber.TabIndex = 18;
-			this.FormFleet_ShowAircraftLevelByNumber.Text = "Proficiency level in numeric";
+			this.FormFleet_ShowAircraftLevelByNumber.Text = "Numeric proficiency level";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAircraftLevelByNumber, "Show plane proficiency level in digits (1,2,3) instead of symbols (|,||,>>).");
 			this.FormFleet_ShowAircraftLevelByNumber.UseVisualStyleBackColor = true;
 			//
@@ -1423,7 +1410,7 @@
 			this.FormFleet_ShowConditionIcon.Name = "FormFleet_ShowConditionIcon";
 			this.FormFleet_ShowConditionIcon.Size = new System.Drawing.Size(139, 19);
 			this.FormFleet_ShowConditionIcon.TabIndex = 13;
-			this.FormFleet_ShowConditionIcon.Text = "Show fatigue icon";
+			this.FormFleet_ShowConditionIcon.Text = "Fatigue Icon";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "Show fatigue level icon in the fleet window.\r\nIf disabled, ship fatigue level is denoted by background color.");
 			this.FormFleet_ShowConditionIcon.UseVisualStyleBackColor = true;
 			//
@@ -1471,8 +1458,8 @@
 			this.FormFleet_ShowAnchorageRepairingTimer.Name = "FormFleet_ShowAnchorageRepairingTimer";
 			this.FormFleet_ShowAnchorageRepairingTimer.Size = new System.Drawing.Size(152, 19);
 			this.FormFleet_ShowAnchorageRepairingTimer.TabIndex = 15;
-			this.FormFleet_ShowAnchorageRepairingTimer.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.ShowAnchorageRepairingTimer;
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, global::ElectronicObserver.Window.Dialog.ConfigRes.ShowAnchorageRepairingTimer_Tooltip);
+			this.FormFleet_ShowAnchorageRepairingTimer.Text = "Repair timer";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, "Show repair timer in the fleet list window.");
 			this.FormFleet_ShowAnchorageRepairingTimer.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_AirSuperiorityMethod
@@ -2137,6 +2124,10 @@
 			//
 			// tabPage12
 			//
+			this.tabPage12.Controls.Add(this.FormBrowser_ForceColorProfile);
+			this.tabPage12.Controls.Add(this.FormBrowser_PreserveDrawingBuffer);
+			this.tabPage12.Controls.Add(this.label20);
+			this.tabPage12.Controls.Add(this.FormBrowser_HardwareAccelerationEnabled);
 			this.tabPage12.Controls.Add(this.FormBrowser_IsDMMreloadDialogDestroyable);
 			this.tabPage12.Controls.Add(this.FormBrowser_ToolMenuDockStyle);
 			this.tabPage12.Controls.Add(this.label30);
@@ -2155,8 +2146,55 @@
 			this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage12.Size = new System.Drawing.Size(682, 340);
 			this.tabPage12.TabIndex = 3;
-			this.tabPage12.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Browser;
+			this.tabPage12.Text = "Browser";
 			this.tabPage12.UseVisualStyleBackColor = true;
+			//
+			// FormBrowser_ForceColorProfile
+			//
+			this.FormBrowser_ForceColorProfile.AutoSize = true;
+			this.FormBrowser_ForceColorProfile.Location = new System.Drawing.Point(6, 249);
+			this.FormBrowser_ForceColorProfile.Name = "FormBrowser_ForceColorProfile";
+			this.FormBrowser_ForceColorProfile.Size = new System.Drawing.Size(216, 19);
+			this.FormBrowser_ForceColorProfile.TabIndex = 16;
+			this.FormBrowser_ForceColorProfile.Text = "Force sRGB color profile*";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_ForceColorProfile, "Enable this setting if the browser displays wrong color.\r\n* Changes will take effect after application restart.");
+			this.FormBrowser_ForceColorProfile.UseVisualStyleBackColor = true;
+			//
+			// FormBrowser_PreserveDrawingBuffer
+			//
+			this.FormBrowser_PreserveDrawingBuffer.AutoSize = true;
+			this.FormBrowser_PreserveDrawingBuffer.Location = new System.Drawing.Point(6, 224);
+			this.FormBrowser_PreserveDrawingBuffer.Name = "FormBrowser_PreserveDrawingBuffer";
+			this.FormBrowser_PreserveDrawingBuffer.Size = new System.Drawing.Size(145, 19);
+			this.FormBrowser_PreserveDrawingBuffer.TabIndex = 15;
+			this.FormBrowser_PreserveDrawingBuffer.Text = "Preserve drawing buffer *";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_PreserveDrawingBuffer,
+				"Disabling the setting may improve performance.\r\nNote: if preserve drawing buffer is not enabled, screenshot \r\n" +
+				"size may be limited to browser window size.\r\n* Changes will take effect after application restart.\r\n");
+			this.FormBrowser_PreserveDrawingBuffer.UseVisualStyleBackColor = true;
+			//
+			// label20
+			//
+			this.label20.AutoSize = true;
+			this.label20.ForeColor = System.Drawing.Color.Red;
+			this.label20.Location = new System.Drawing.Point(12, 295);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(241, 15);
+			this.label20.TabIndex = 14;
+			this.label20.Text = "* Some settings will take effect after restart";
+			//
+			// FormBrowser_HardwareAccelerationEnabled
+			//
+			this.FormBrowser_HardwareAccelerationEnabled.AutoSize = true;
+			this.FormBrowser_HardwareAccelerationEnabled.Location = new System.Drawing.Point(6, 199);
+			this.FormBrowser_HardwareAccelerationEnabled.Name = "FormBrowser_HardwareAccelerationEnabled";
+			this.FormBrowser_HardwareAccelerationEnabled.Size = new System.Drawing.Size(230, 19);
+			this.FormBrowser_HardwareAccelerationEnabled.TabIndex = 13;
+			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW acceleration *";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled,
+				"Use hardware acceleration when available.\r\nNote: Disable this setting if you need to use window capture \r\n" +
+				"for recording/streaming.\r\n* Changes will take effect after application restart.\r\n");
+			this.FormBrowser_HardwareAccelerationEnabled.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_IsDMMreloadDialogDestroyable
 			//
@@ -2165,7 +2203,7 @@
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Name = "FormBrowser_IsDMMreloadDialogDestroyable";
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Size = new System.Drawing.Size(254, 19);
 			this.FormBrowser_IsDMMreloadDialogDestroyable.TabIndex = 12;
-			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "Hide DMM page reload dialog";
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "Hide page reload popup";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "Hide DMM page reload pop-up dialog from appearing in browser window." );
 			this.FormBrowser_IsDMMreloadDialogDestroyable.UseVisualStyleBackColor = true;
 			//
@@ -2222,7 +2260,7 @@
 			this.FormBrowser_ConfirmAtRefresh.Name = "FormBrowser_ConfirmAtRefresh";
 			this.FormBrowser_ConfirmAtRefresh.Size = new System.Drawing.Size(148, 19);
 			this.FormBrowser_ConfirmAtRefresh.TabIndex = 6;
-			this.FormBrowser_ConfirmAtRefresh.Text = "Confirm before refreshing the page";
+			this.FormBrowser_ConfirmAtRefresh.Text = "Refresh confirmation";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_ConfirmAtRefresh, "Displays a confirmation dialog before refreshing the page." );
 			this.FormBrowser_ConfirmAtRefresh.UseVisualStyleBackColor = true;
 			//
@@ -2399,157 +2437,7 @@
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(66, 15);
 			this.label15.TabIndex = 1;
-			this.label15.Text = ConfigRes.ZoomRate + ":";
-			//
-			// tabPage14
-			//
-			this.tabPage14.Controls.Add(this.groupBox4);
-			this.tabPage14.Controls.Add(this.groupBox3);
-			this.tabPage14.Location = new System.Drawing.Point(4, 22);
-			this.tabPage14.Name = "tabPage14";
-			this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage14.Size = new System.Drawing.Size(682, 340);
-			this.tabPage14.TabIndex = 5;
-			this.tabPage14.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Browser2;
-			this.tabPage14.UseVisualStyleBackColor = true;
-			//
-			// groupBox4
-			//
-			this.groupBox4.Controls.Add(this.label21);
-			this.groupBox4.Controls.Add(this.FormBrowser_FlashWMode);
-			this.groupBox4.Controls.Add(this.label20);
-			this.groupBox4.Controls.Add(this.FormBrowser_FlashQuality);
-			this.groupBox4.Location = new System.Drawing.Point(6, 58);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(200, 80);
-			this.groupBox4.TabIndex = 1;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Flash quality settings";
-			this.groupBox4.Visible = false;
-			//
-			// label21
-			//
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(6, 54);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(39, 15);
-			this.label21.TabIndex = 2;
-			this.label21.Text = ConfigRes.Mode + ":";
-			//
-			// FormBrowser_FlashWMode
-			//
-			this.FormBrowser_FlashWMode.FormattingEnabled = true;
-			this.FormBrowser_FlashWMode.Items.AddRange(new object[] {
-            "direct",
-            "opaque"});
-			this.FormBrowser_FlashWMode.Location = new System.Drawing.Point(73, 51);
-			this.FormBrowser_FlashWMode.Name = "FormBrowser_FlashWMode";
-			this.FormBrowser_FlashWMode.Size = new System.Drawing.Size(121, 23);
-			this.FormBrowser_FlashWMode.TabIndex = 3;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_FlashWMode, global::ElectronicObserver.Window.Dialog.ConfigRes.FlashModeHint);
-			//
-			// label20
-			//
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(6, 25);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(36, 15);
-			this.label20.TabIndex = 0;
-			this.label20.Text = ConfigRes.QualitySelect + ":";
-			//
-			// FormBrowser_FlashQuality
-			//
-			this.FormBrowser_FlashQuality.FormattingEnabled = true;
-			this.FormBrowser_FlashQuality.Items.AddRange(new object[] {
-            "Low",
-            "Medium",
-            "High",
-            "Best"});
-			this.FormBrowser_FlashQuality.Location = new System.Drawing.Point(73, 22);
-			this.FormBrowser_FlashQuality.Name = "FormBrowser_FlashQuality";
-			this.FormBrowser_FlashQuality.Size = new System.Drawing.Size(121, 23);
-			this.FormBrowser_FlashQuality.TabIndex = 1;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_FlashQuality, global::ElectronicObserver.Window.Dialog.ConfigRes.QualitySelect);
-			//
-			// groupBox3
-			//
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox3.Controls.Add(this.FormBrowser_BrowserVersion);
-			this.groupBox3.Controls.Add(this.FormBrowser_DeleteRegistry);
-			this.groupBox3.Controls.Add(this.FormBrowser_GPURendering);
-			this.groupBox3.Controls.Add(this.FormBrowser_ApplyRegistry);
-			this.groupBox3.Controls.Add(this.label19);
-			this.groupBox3.Location = new System.Drawing.Point(6, 6);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(670, 46);
-			this.groupBox3.TabIndex = 0;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = ConfigRes.Registry;
-			//
-			// FormBrowser_BrowserVersion
-			//
-			this.FormBrowser_BrowserVersion.FormattingEnabled = true;
-			this.FormBrowser_BrowserVersion.Items.AddRange(new object[] {
-            "7000",
-            "8000",
-            "8888",
-            "9000",
-            "9999",
-            "10000",
-            "10001",
-            "11000",
-            "11001"});
-			this.FormBrowser_BrowserVersion.Location = new System.Drawing.Point(112, 16);
-			this.FormBrowser_BrowserVersion.Name = "FormBrowser_BrowserVersion";
-			this.FormBrowser_BrowserVersion.Size = new System.Drawing.Size(60, 23);
-			this.FormBrowser_BrowserVersion.TabIndex = 1;
-			this.FormBrowser_BrowserVersion.Text = "7000";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_BrowserVersion, "Specify version of the embedded browser. 7000 for IE7, 8000 for IE8, 11000 for IE11.\r\nDepending on the version, it may change the DMM page behavior.");
-			//
-			// FormBrowser_DeleteRegistry
-			//
-			this.FormBrowser_DeleteRegistry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.FormBrowser_DeleteRegistry.Location = new System.Drawing.Point(614, 15);
-			this.FormBrowser_DeleteRegistry.Name = "FormBrowser_DeleteRegistry";
-			this.FormBrowser_DeleteRegistry.Size = new System.Drawing.Size(50, 23);
-			this.FormBrowser_DeleteRegistry.TabIndex = 4;
-			this.FormBrowser_DeleteRegistry.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.DeleteRegistry;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_DeleteRegistry, "Delete the associated registry entry.");
-			this.FormBrowser_DeleteRegistry.UseVisualStyleBackColor = true;
-			this.FormBrowser_DeleteRegistry.Click += new System.EventHandler(this.FormBrowser_DeleteRegistry_Click);
-			//
-			// FormBrowser_GPURendering
-			//
-			this.FormBrowser_GPURendering.AutoSize = true;
-			this.FormBrowser_GPURendering.Location = new System.Drawing.Point(180, 18);
-			this.FormBrowser_GPURendering.Name = "FormBrowser_GPURendering";
-			this.FormBrowser_GPURendering.Size = new System.Drawing.Size(103, 19);
-			this.FormBrowser_GPURendering.TabIndex = 2;
-			this.FormBrowser_GPURendering.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.GPURendering;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_GPURendering, global::ElectronicObserver.Window.Dialog.ConfigRes.GPURenderingHint);
-			this.FormBrowser_GPURendering.UseVisualStyleBackColor = true;
-			//
-			// FormBrowser_ApplyRegistry
-			//
-			this.FormBrowser_ApplyRegistry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.FormBrowser_ApplyRegistry.Location = new System.Drawing.Point(558, 15);
-			this.FormBrowser_ApplyRegistry.Name = "FormBrowser_ApplyRegistry";
-			this.FormBrowser_ApplyRegistry.Size = new System.Drawing.Size(50, 23);
-			this.FormBrowser_ApplyRegistry.TabIndex = 3;
-			this.FormBrowser_ApplyRegistry.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.ApplyRegistry;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_ApplyRegistry, "Apply settings to registry.");
-			this.FormBrowser_ApplyRegistry.UseVisualStyleBackColor = true;
-			this.FormBrowser_ApplyRegistry.Click += new System.EventHandler(this.FormBrowser_ApplyRegistry_Click);
-			//
-			// label19
-			//
-			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(6, 19);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(100, 15);
-			this.label19.TabIndex = 0;
-			this.label19.Text = ConfigRes.BrowserVersion;
+			this.label15.Text = "Zoom: ";
 			//
 			// tabPage21
 			//
@@ -2716,7 +2604,7 @@
 			//
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(3, 344);
+			this.label10.Location = new System.Drawing.Point(3, 328);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(238, 15);
 			this.label10.TabIndex = 5;
@@ -2847,21 +2735,21 @@
             this.BGMPlayer_ColumnContent,
             this.BGMPlayer_ColumnPath,
             this.BGMPlayer_ColumnSetting});
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle2;
 			this.BGMPlayer_ControlGrid.Location = new System.Drawing.Point(6, 35);
 			this.BGMPlayer_ControlGrid.MultiSelect = false;
 			this.BGMPlayer_ControlGrid.Name = "BGMPlayer_ControlGrid";
 			this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
 			this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
 			this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 293);
+			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 277);
 			this.BGMPlayer_ControlGrid.TabIndex = 0;
 			this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
 			this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
@@ -3033,11 +2921,6 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.FormBrowser_ZoomRate)).EndInit();
-			this.tabPage14.ResumeLayout(false);
-			this.groupBox4.ResumeLayout(false);
-			this.groupBox4.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			this.tabPage21.ResumeLayout(false);
 			this.tabPage21.PerformLayout();
 			this.SubWindow_Json.ResumeLayout(false);
@@ -3097,7 +2980,6 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.CheckBox Connection_SaveOtherFile;
-		private System.Windows.Forms.CheckBox Connection_SaveSWF;
 		private System.Windows.Forms.CheckBox Connection_SaveResponse;
 		private System.Windows.Forms.CheckBox Connection_SaveRequest;
 		private System.Windows.Forms.TextBox Connection_SaveDataPath;
@@ -3159,20 +3041,8 @@
 		private System.Windows.Forms.CheckBox FormFleet_ShowNextExp;
 		private System.Windows.Forms.CheckBox FormFleet_ShortenHPBar;
 		private System.Windows.Forms.CheckBox Log_ShowSpoiler;
-		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.ComboBox FormBrowser_BrowserVersion;
-		private System.Windows.Forms.Button FormBrowser_DeleteRegistry;
-		private System.Windows.Forms.CheckBox FormBrowser_GPURendering;
-		private System.Windows.Forms.Button FormBrowser_ApplyRegistry;
-		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.CheckBox Life_ShowStatusBar;
 		private System.Windows.Forms.CheckBox FormBrowser_ZoomFit;
-		private System.Windows.Forms.TabPage tabPage14;
-		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.Label label21;
-		private System.Windows.Forms.ComboBox FormBrowser_FlashWMode;
-		private System.Windows.Forms.Label label20;
-		private System.Windows.Forms.ComboBox FormBrowser_FlashQuality;
 		private System.Windows.Forms.TabPage tabPage16;
 		private System.Windows.Forms.CheckBox FormHeadquarters_BlinkAtMaximum;
 		private System.Windows.Forms.ComboBox FormFleet_AirSuperiorityMethod;
@@ -3280,5 +3150,10 @@
 		private System.Windows.Forms.TabPage tabPage21;
 		private System.Windows.Forms.CheckBox FormBaseAirCorps_ShowEventMapOnly;
 		private System.Windows.Forms.CheckBox FormBattle_Display7thAsSingleLine;
+		private System.Windows.Forms.CheckBox FormBrowser_HardwareAccelerationEnabled;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.CheckBox FormBrowser_PreserveDrawingBuffer;
+		private System.Windows.Forms.CheckBox FormBrowser_ForceColorProfile;
 	}
 }

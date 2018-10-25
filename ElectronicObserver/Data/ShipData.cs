@@ -349,20 +349,26 @@ namespace ElectronicObserver.Data
 			{
 				int param = EvasionTotal;
 				bool hasNaganamiGun = false;
-                bool hasIseGun = false;
+				bool hasIseGun = false;
+				bool hasDazzleGunKai = false;
+				bool hasAirRadar = false;
+				bool hasSurfaceRadar = false;
 
-                var eqs = AllSlotInstance.Where(eq => eq != null);
+				var eqs = AllSlotInstance.Where(eq => eq != null);
 				foreach (var eq in eqs)
 				{
 					param -= eq.MasterEquipment.Evasion;
 
-                    if (eq.EquipmentID == 104)      // 35.6cm連装砲(ダズル迷彩)
-                    {
-                        if (ShipID == 151)  // 榛名改二
-                            param -= 2;
-                    }
 
-                    if (eq.EquipmentID == 267)        // 12.7cm連装砲D型改二
+					// 以下、重複ありの補正について
+
+					if (eq.EquipmentID == 104)      // 35.6cm連装砲(ダズル迷彩)
+					{
+						if (ShipID == 151)  // 榛名改二
+							param -= 2;
+					}
+
+					if (eq.EquipmentID == 267)        // 12.7cm連装砲D型改二
 					{
 						hasNaganamiGun = true;
 
@@ -375,24 +381,54 @@ namespace ElectronicObserver.Data
 						}
 					}
 
-                    if (eq.EquipmentID == 289)       // 35.6cm三連装砲改(ダズル迷彩仕様)
-                    {
-                        if (ShipID == 151)  // 榛名改二
-                            param -= 2;
-                        }
+					if (eq.EquipmentID == 289)       // 35.6cm三連装砲改(ダズル迷彩仕様)
+					{
+						hasDazzleGunKai = true;
 
-                    if (eq.EquipmentID == 290)       // 41cm三連装砲改二
-                    {
-                        hasIseGun = true;
+						if (ShipID == 151)  // 榛名改二
+							param -= 2;
+					}
 
-                        if (MasterShip.ShipClass == 2 && MasterShip.RemodelTier >= 1)
-                        {       // 伊勢型改
-                            param -= 1;
-                        }
-                    }
-                }
+					if (eq.EquipmentID == 290)       // 41cm三連装砲改二
+					{
+						hasIseGun = true;
 
-				// 北方迷彩(+北方装備)　による特殊補正（重複しない）
+						if (MasterShip.ShipClass == 2 && MasterShip.RemodelTier >= 1)
+						{       // 伊勢型改
+							param -= 1;
+						}
+					}
+
+					if(eq.EquipmentID == 237)       // 瑞雲(六三四空/熟練)
+					{
+						if(MasterShip.ShipClass == 2)		// 伊勢型
+						{
+							// 改は +1, 改二は +2
+							param -= MasterShip.RemodelTier;
+						}
+					}
+
+					if(eq.EquipmentID == 291)       // 彗星二二型(六三四空)
+					{
+						if (MasterShip.ShipClass == 2 && MasterShip.RemodelTier == 2)		// 伊勢型改二
+							param -= 1;
+					}
+
+					if (eq.EquipmentID == 292)       // 彗星二二型(六三四空/熟練)
+					{
+						if (MasterShip.ShipClass == 2 && MasterShip.RemodelTier == 2)       // 伊勢型改二
+							param -= 2;
+					}
+
+
+					hasAirRadar |= eq.MasterEquipment.IsAirRadar;
+					hasSurfaceRadar |= eq.MasterEquipment.IsSurfaceRadar;
+				}
+
+
+				// 以下、重複なしの補正について
+
+				// 北方迷彩(+北方装備)　による特殊補正
 				if (eqs.Any(eq => eq.EquipmentID == 268))
 				{
 					switch (ShipID)
@@ -409,50 +445,77 @@ namespace ElectronicObserver.Data
 				// 12.7cm連装砲D型改二 + 水上電探 による特殊補正
 				if (hasNaganamiGun &&
 					(ShipID == 229 || ShipID == 543) &&     // 島風改, 長波改二
-					eqs.Any(eq => eq.MasterEquipment.IsSurfaceRadar))
+					hasSurfaceRadar)
 				{
 					param -= 2;
 				}
 
-                // 61cm三連装(酸素)魚雷後期型 による特殊補正
-                if (eqs.Any(eq => eq.EquipmentID == 285))
-                {
-                    switch (MasterShip.ShipClass)
-                    {
-                        case 1:     // 綾波型
-                        case 5:     // 暁型
-                        case 10:    // 初春型
-                        case 12:    // 吹雪型
-                        if (Name.Contains("改二"))        // Tier >= 2 だと "乙改" が引っかかるので
-                                param -= 1;
-                        break;
-                    }
-                }
+				// 61cm三連装(酸素)魚雷後期型 による特殊補正
+				if (eqs.Any(eq => eq.EquipmentID == 285))
+				{
+					switch (MasterShip.ShipClass)
+					{
+						case 1:     // 綾波型
+						case 5:     // 暁型
+						case 10:    // 初春型
+						case 12:    // 吹雪型
+							if (Name.Contains("改二"))        // Tier >= 2 だと "乙改" が引っかかるので
+								param -= 1;
+							break;
+					}
+				}
 
-                // 61cm四連装(酸素)魚雷後期型 による特殊補正
-               if (eqs.Any(eq => eq.EquipmentID == 286))
-               {
-                    switch (MasterShip.ShipClass)
-                    {
-                        case 23:    // 白露型
-                        case 18:    // 朝潮型
-                        case 30:    // 陽炎型
-                        case 38:    // 夕雲型
-                        if (Name.Contains("改二"))
-                            param -= 1;
-                        break;
-                    }
-               }
+				// 61cm四連装(酸素)魚雷後期型 による特殊補正
+				if (eqs.Any(eq => eq.EquipmentID == 286))
+				{
+					switch (MasterShip.ShipClass)
+					{
+						case 23:    // 白露型
+						case 18:    // 朝潮型
+						case 30:    // 陽炎型
+						case 38:    // 夕雲型
+							if (Name.Contains("改二"))
+								param -= 1;
+							break;
+					}
+				}
 
-                // 41cm三連装砲改二 + 対空電探による特殊補正
-                if (hasIseGun &&
-                MasterShip.ShipClass == 2 && MasterShip.RemodelTier >= 1 &&     // 伊勢型改
-                eqs.Any(eq => eq.MasterEquipment.IsAirRadar))
-                {
-                    param -= 3;
-                }
+				// 41cm三連装砲改二 + 対空電探による特殊補正
+				if (hasIseGun &&
+					MasterShip.ShipClass == 2 && MasterShip.RemodelTier >= 1 &&     // 伊勢型改
+					hasAirRadar)
+				{
+					param -= 3;
+				}
 
-                return param;
+				// 35.6cm三連装砲改(ダズル迷彩仕様) + 水上電探 による特殊補正
+				if(hasDazzleGunKai && hasSurfaceRadar)
+				{
+					if (ShipID == 149 || ShipID == 151)     // 金剛改二 or 榛名改二
+						param -= 2;
+				}
+
+				// 伊勢改二の艦載機補正
+				if (ShipID == 553)
+				{
+					if (eqs.Any(eq => eq.EquipmentID == 61))        // 二式艦上偵察機
+						param -= 2;
+				}
+
+				// 12.7cm単装高角砲(後期型)+10 + 水上電探による特殊補正
+				if (eqs.Any(eq => eq.EquipmentID == 229 && eq.Level == 10) && hasSurfaceRadar)
+				{
+					if (MasterShip.ShipClass == 28 || MasterShip.ShipClass == 66)   // 睦月型 or 神風型
+						param -= 3;
+
+					else if (MasterShip.ShipType == ShipTypes.Escort)
+						param -= 4;
+
+					else if (ShipID == 488)     // 由良改二
+						param -= 2;
+				}
+
+				return param;
 			}
 		}
 
@@ -736,53 +799,60 @@ namespace ElectronicObserver.Data
 
 				switch (slot.MasterEquipment.CategoryType)
 				{
+					case EquipmentTypes.MainGunSmall:
+					case EquipmentTypes.MainGunMedium:
+					case EquipmentTypes.APShell:
+					case EquipmentTypes.AADirector:
+					case EquipmentTypes.Searchlight:
+					case EquipmentTypes.SearchlightLarge:
+					case EquipmentTypes.AAGun:
+					case EquipmentTypes.LandingCraft:
+					case EquipmentTypes.SpecialAmphibiousTank:
+						basepower += Math.Sqrt(slot.Level);
+						break;
+
 					case EquipmentTypes.MainGunLarge:
 					case EquipmentTypes.MainGunLarge2:
 						basepower += Math.Sqrt(slot.Level) * 1.5;
 						break;
 
+					case EquipmentTypes.SecondaryGun:
+						switch (slot.EquipmentID)
+						{
+							case 10:        // 12.7cm連装高角砲
+							case 66:        // 8cm高角砲
+							case 220:       // 8cm高角砲改+増設機銃
+							case 275:       // 10cm連装高角砲改+増設機銃
+								basepower += 0.2 * slot.Level;
+								break;
+
+							case 12:        // 15.5cm三連装副砲
+							case 234:       // 15.5cm三連装副砲改
+								basepower += 0.3 * slot.Level;
+								break;
+
+							default:
+								basepower += Math.Sqrt(slot.Level);
+								break;
+						}
+						break;
+
 					case EquipmentTypes.Sonar:
-					case EquipmentTypes.DepthCharge:
+					case EquipmentTypes.SonarLarge:
 						basepower += Math.Sqrt(slot.Level) * 0.75;
 						break;
 
-					case EquipmentTypes.Torpedo:
-					case EquipmentTypes.SeaplaneRecon:
-					case EquipmentTypes.RadarSmall:
-					case EquipmentTypes.RadarLarge:
-					case EquipmentTypes.SubmarineTorpedo:
-						break;  //  → 無視
-
-					default:
-						basepower += Math.Sqrt(slot.Level);
+					case EquipmentTypes.DepthCharge:
+						if (slot.MasterEquipment.IsDepthChargeProjector)
+							basepower += Math.Sqrt(slot.Level) * 0.75;
 						break;
+
 				}
 			}
 			return basepower;
 		}
 
-		/// <summary>
-		/// 装備改修補正(空撃)
-		/// </summary>
-		/// <returns></returns>
-		private double GetAircraftEquipmentLevelBonus()
-		{
 
-			double basepower = 0;
-			foreach (var slot in AllSlotInstance)
-			{
-				if (slot == null)
-					continue;
-
-				switch (slot.MasterEquipment.CategoryType)
-				{
-					case EquipmentTypes.SecondaryGun:
-						basepower += Math.Sqrt(slot.Level);
-						break;
-				}
-			}
-			return basepower;
-		}
 
 		/// <summary>
 		/// 装備改修補正(雷撃戦)
@@ -822,7 +892,7 @@ namespace ElectronicObserver.Data
 				{
 					case EquipmentTypes.DepthCharge:
 					case EquipmentTypes.Sonar:
-						basepower += Math.Sqrt(slot.Level) * 1.2;
+						basepower += Math.Sqrt(slot.Level);
 						break;
 				}
 			}
@@ -845,7 +915,6 @@ namespace ElectronicObserver.Data
 					case EquipmentTypes.MainGunSmall:
 					case EquipmentTypes.MainGunMedium:
 					case EquipmentTypes.MainGunLarge:
-					case EquipmentTypes.SecondaryGun:
 					case EquipmentTypes.Torpedo:
 					case EquipmentTypes.APShell:
 					case EquipmentTypes.LandingCraft:
@@ -856,6 +925,27 @@ namespace ElectronicObserver.Data
 					case EquipmentTypes.SearchlightLarge:
 					case EquipmentTypes.SpecialAmphibiousTank:
 						basepower += Math.Sqrt(slot.Level);
+						break;
+
+					case EquipmentTypes.SecondaryGun:
+						switch (slot.EquipmentID)
+						{
+							case 10:        // 12.7cm連装高角砲
+							case 66:        // 8cm高角砲
+							case 220:       // 8cm高角砲改+増設機銃
+							case 275:       // 10cm連装高角砲改+増設機銃
+								basepower += 0.2 * slot.Level;
+								break;
+
+							case 12:        // 15.5cm三連装副砲
+							case 234:       // 15.5cm三連装副砲改
+								basepower += 0.3 * slot.Level;
+								break;
+
+							default:
+								basepower += Math.Sqrt(slot.Level);
+								break;
+						}
 						break;
 				}
 			}
@@ -1119,7 +1209,7 @@ namespace ElectronicObserver.Data
 				return 0;
 
 
-			double basepower = Math.Floor((FirepowerTotal + TorpedoTotal + Math.Floor(BomberTotal * 1.3) + GetAircraftEquipmentLevelBonus() + GetCombinedFleetShellingDamageBonus()) * 1.5) + 55;
+			double basepower = Math.Floor((FirepowerTotal + TorpedoTotal + Math.Floor(BomberTotal * 1.3) + GetDayBattleEquipmentLevelBonus() + GetCombinedFleetShellingDamageBonus()) * 1.5) + 55;
 
 			basepower *= GetHPDamageBonus() * GetEngagementFormDamageRate(engagementForm);
 
@@ -1283,6 +1373,10 @@ namespace ElectronicObserver.Data
 			{       // Ark Royal (改)
 				basepower = FirepowerBase + SlotInstanceMaster.Where(eq => eq?.IsSwordfish ?? false).Sum(eq => eq.Firepower + eq.Torpedo);
 			}
+			else if (ShipID == 353 || ShipID == 432 || ShipID == 433)
+			{       // Graf Zeppelin(改), Saratoga
+				basepower = FirepowerBase + SlotInstanceMaster.Where(eq => eq?.IsSwordfish ?? false).Sum(eq => eq.Firepower + eq.Torpedo);
+			}
 			else
 			{
 				basepower = FirepowerTotal + TorpedoTotal + GetNightBattleEquipmentLevelBonus();
@@ -1424,32 +1518,32 @@ namespace ElectronicObserver.Data
 				if (!CanAttackSubmarine)
 					return false;
 
-                if (ShipID == 141 || ShipID == 394 || ShipID == 478 || ShipID == 681)  // 五十鈴改二, Jervis改, 龍田改二, Samuel B.Roberts改
-                    return true;
+				if (ShipID == 141 || ShipID == 394 || ShipID == 478 || ShipID == 681)  // 五十鈴改二, Jervis改, 龍田改二, Samuel B.Roberts改
+					return true;
 
 				var eqs = AllSlotInstance.Where(eq => eq != null);
 
 				if (ShipID == 380 || ShipID == 529)  // 大鷹改(二)
 				{
-					if (ASWTotal >= 65)    // 注: Lv. 1時点で対潜が 65 以上であるため、現時点では無条件に達成可能
+					// 本当は 対潜 > 0 の艦攻 or オートジャイロ or 対潜哨戒機 が必要らしいが、おそらくそれは CanAttackSubmarine で判定済みなので
+					return true;
+				}
+
+				if (MasterShip.ShipType == ShipTypes.LightAircraftCarrier && ASWBase > 0)      // 護衛空母
+				{
+					bool hasASWAircraft = eqs.Any(eq =>
+						(eq.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo && eq.MasterEquipment.ASW >= 7) ||
+						eq.MasterEquipment.CategoryType == EquipmentTypes.ASPatrol ||
+						eq.MasterEquipment.CategoryType == EquipmentTypes.Autogyro);
+
+					if (hasASWAircraft && ASWTotal >= 65)
+						return true;
+
+					if (hasASWAircraft && ASWTotal >= 50 && eqs.Any(eq => eq.MasterEquipment.CategoryType == EquipmentTypes.SonarLarge))
 						return true;
 				}
 
-                if (MasterShip.ShipType == ShipTypes.LightAircraftCarrier && ASWBase > 0)      // 護衛空母
-                {
-                    bool hasASWAircraft = eqs.Any(eq =>
-                        (eq.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo && eq.MasterEquipment.ASW >= 7) ||
-                        eq.MasterEquipment.CategoryType == EquipmentTypes.ASPatrol ||
-                        eq.MasterEquipment.CategoryType == EquipmentTypes.Autogyro);
-                    
-                    if (hasASWAircraft && ASWTotal >= 65)
-                        return true;
-                    
-                    if (hasASWAircraft && ASWTotal >= 50 && eqs.Any(eq => eq.MasterEquipment.CategoryType == EquipmentTypes.SonarLarge))
-                        return true;
-                }
-
-                bool hasSonar = eqs.Any(eq => eq.MasterEquipment.IsSonar);
+				bool hasSonar = eqs.Any(eq => eq.MasterEquipment.IsSonar);
 				bool needSonar = !(
 					MasterShip.ShipType == ShipTypes.Escort &&
 					ASWTotal >= 75 &&

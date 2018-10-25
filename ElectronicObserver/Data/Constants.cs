@@ -368,14 +368,14 @@ namespace ElectronicObserver.Data
 				case 78: return "Ark Royal級";
 				case 79: return "Richelieu級";
 				case 80: return "Guglielmo Marconi級";
-                case 81: return "Ташкент級";
-                case 82: return "J級";
-                case 83: return "Casablanca級";
-                case 84: return "Essex級";
-                case 85: return "日振型";
-                case 86: return "呂号潜水艦";
-                case 87: return "John C.Butler級";
-                default: return "不明";
+				case 81: return "Ташкент級";
+				case 82: return "J級";
+				case 83: return "Casablanca級";
+				case 84: return "Essex級";
+				case 85: return "日振型";
+				case 86: return "呂号潜水艦";
+				case 87: return "John C.Butler級";
+				default: return "不明";
 			}
 		}
 
@@ -789,7 +789,9 @@ namespace ElectronicObserver.Data
 					return "CI (MG+MG)";
 				case DayAttackKind.CutinAirAttack:
 					return "CI (Carrier)";
-				case DayAttackKind.Shelling:
+                case DayAttackKind.SpecialNelson:
+                    return "Nelson Touch";
+                case DayAttackKind.Shelling:
 					return "Shelling";
 				case DayAttackKind.AirAttack:
 					return "Air Attack";
@@ -927,6 +929,8 @@ namespace ElectronicObserver.Data
 					return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + " (Musashi)";
 				case 28:
 					return "Rocket Launcher Kai Ni/" + ConstantsRes.Radar + " (Ise)";
+				case 29:
+					return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Hamakaze)";
 				default:
 					return ConstantsRes.Unknown;
 			}

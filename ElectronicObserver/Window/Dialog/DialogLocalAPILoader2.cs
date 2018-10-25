@@ -327,7 +327,7 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			for (int i = APIView.Rows.Count - 1; i >= 0; i--)
 			{
-				if (APIView[APIView_FileName.Index, i].Value.ToString().ToLower().Contains("s@api_start2."))
+				if (APIView[APIView_FileName.Index, i].Value.ToString().ToLower().Contains("s@api_start2@getData."))
 				{
 					APIView.ClearSelection();
 					APIView.Rows[i].Selected = true;

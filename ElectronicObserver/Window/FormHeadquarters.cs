@@ -224,21 +224,21 @@ namespace ElectronicObserver.Window
 				StringBuilder tooltip = new StringBuilder();
 
 				var sortieCount = db.Admiral.SortieWin + db.Admiral.SortieLose;
-				tooltip.AppendFormat("出撃回数: {0} / 出撃勝利: {1} ({2:p2}) / 出撃敗北: {3}\r\n",
+				tooltip.AppendFormat("Sorties: {0} / Win: {1} ({2:p2}) / Lose: {3}\r\n",
 					sortieCount, db.Admiral.SortieWin, db.Admiral.SortieWin / Math.Max(sortieCount, 1.0), db.Admiral.SortieLose);
 
-				tooltip.AppendFormat("出撃あたりの平均獲得Exp: {0:n2} / 勝利時 {1:n2}\r\n",
+				tooltip.AppendFormat("Avg exp per sortie: {0:n2} / per victory: {1:n2}\r\n",
 					 db.Admiral.Exp / Math.Max(sortieCount, 1.0),
 					 db.Admiral.Exp / Math.Max(db.Admiral.SortieWin, 1.0));
 
-				tooltip.AppendFormat("遠征回数: {0} / 遠征成功: {1} ({2:p2}) / 遠征失敗: {3}\r\n",
+				tooltip.AppendFormat("Expeditions: {0} / Success: {1} ({2:p2}) / Failed: {3}\r\n",
 					db.Admiral.MissionCount, db.Admiral.MissionSuccess, db.Admiral.MissionSuccess / Math.Max(db.Admiral.MissionCount, 1.0), db.Admiral.MissionCount - db.Admiral.MissionSuccess);
 
 				var practiceCount = db.Admiral.PracticeWin + db.Admiral.PracticeLose;
-				tooltip.AppendFormat("演習回数: {0} / 演習勝利: {1} ({2:p2}) / 演習敗北: {3}\r\n",
+				tooltip.AppendFormat("Naval Exercises: {0} / Win: {1} ({2:p2}) / Lose: {3}\r\n",
 					practiceCount, db.Admiral.PracticeWin, db.Admiral.PracticeWin / Math.Max(practiceCount, 1.0), db.Admiral.PracticeLose);
 
-				tooltip.AppendFormat("甲種勲章保有数: {0}\r\n", db.Admiral.Medals);
+				tooltip.AppendFormat("Memedals: {0}\r\n", db.Admiral.Medals);
 
 				ToolTipInfo.SetToolTip(AdmiralName, tooltip.ToString());
 			}
@@ -557,11 +557,11 @@ namespace ElectronicObserver.Window
 				try
 				{
 					var mat = KCDatabase.Instance.Material;
-					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/修復{mat.InstantRepair}/開発{mat.DevelopmentMaterial}/建造{mat.InstantConstruction}/改修{mat.ModdingMaterial}");
+					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/{mat.InstantRepair} buckets/{mat.DevelopmentMaterial} devmats/{mat.InstantConstruction} torches/{mat.ModdingMaterial} screws");
 				}
 				catch (Exception ex)
 				{
-					Utility.Logger.Add(3, "資源のクリップボードへのコピーに失敗しました。" + ex.Message);
+					Utility.Logger.Add(3, "Failed to copy resources to clipboard." + ex.Message);
 				}
 			}
 		}
@@ -570,34 +570,37 @@ namespace ElectronicObserver.Window
 		private void UpdateDisplayUseItem()
 		{
 			var db = KCDatabase.Instance;
-            var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
-            var item = db.UseItems[itemID];
-            var itemMaster = db.MasterUseItems[itemID];
-            string tail = "\r\n(can be changed in settings)";
+			var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
+			var item = db.UseItems[itemID];
+			var itemMaster = db.MasterUseItems[itemID];
+			string tail = "\r\n(can be changed in settings)";
 
-            switch (itemMaster?.Name)
-            {
-                case null:
-                    DisplayUseItem.Text = "???";
-                    ToolTipInfo.SetToolTip(DisplayUseItem, "不明なアイテム (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail);
-                    break;
 
-                // '18 spring event special mode
-                case "お米":
-                case "梅干":
-                case "海苔":
-                case "お茶":
-                    DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-                    ToolTipInfo.SetToolTip(DisplayUseItem,
-                            $"お米: {db.UseItems[85]?.Count ?? 0}\r\n梅干: {db.UseItems[86]?.Count ?? 0}\r\n海苔: {db.UseItems[87]?.Count ?? 0}\r\nお茶: {db.UseItems[88]?.Count ?? 0}\r\n{tail}");
-                    break;
 
-                default:
-                        DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-                        ToolTipInfo.SetToolTip(DisplayUseItem,
-                                itemMaster.Name + tail);
-                        break;
-            }
+			switch (itemMaster?.Name)
+			{
+				case null:
+					DisplayUseItem.Text = "???";
+					ToolTipInfo.SetToolTip(DisplayUseItem, "Unknown Item (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail);
+					break;
+
+				// '18 spring event special mode
+				case "お米":
+				case "梅干":
+				case "海苔":
+				case "お茶":
+					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
+					ToolTipInfo.SetToolTip(DisplayUseItem,
+						$"Rice: {db.UseItems[85]?.Count ?? 0}\r\nUmeboshi: {db.UseItems[86]?.Count ?? 0}\r\nNori: {db.UseItems[87]?.Count ?? 0}\r\nTea: {db.UseItems[88]?.Count ?? 0}\r\n{tail}");
+					break;
+
+				default:
+					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
+					ToolTipInfo.SetToolTip(DisplayUseItem,
+						itemMaster.Name + tail);
+					break;
+			}
+
 		}
 
 		private int RealShipCount

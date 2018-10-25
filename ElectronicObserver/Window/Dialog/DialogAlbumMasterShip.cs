@@ -148,7 +148,7 @@ namespace ElectronicObserver.Window.Dialog
 				row.CreateCells(ShipView);
 				row.SetValues(ship.ShipID, ship.ShipTypeName, ship.NameWithClass);
 				row.Cells[ShipView_ShipType.Index].Tag = ship.ShipType;
-				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.NameReading;
+				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.Name;
 				rows.Add(row);
 
 			}
@@ -295,14 +295,24 @@ namespace ElectronicObserver.Window.Dialog
 			ToolTipInfo.SetToolTip(ResourceName, string.Format("Resource name: {0}\r\nGraphic ver. {1}\r\nVoice ver. {2}\r\nPort voice ver. {3}\r\n({4})",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion, Constants.GetVoiceFlag(ship.VoiceFlag)));
 
+
 			ShipType.Text = ship.IsLandBase ? "Land Base" : ship.ShipTypeName;
-            if (ship.IsAbyssalShip)
-                ToolTipInfo.SetToolTip(ShipType, $"艦型ID: {ship.ShipClass}");
-            else if (Constants.GetShipClass(ship.ShipClass) == "不明")
-                ToolTipInfo.SetToolTip(ShipType, $"艦型不明: {ship.ShipClass}");
-            else
-                ToolTipInfo.SetToolTip(ShipType, $"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
-            ShipName.Text = ship.NameWithClass;
+			{
+				var tip = new StringBuilder();
+				if (ship.IsAbyssalShip)
+					tip.AppendLine($"Ship Class ID: {ship.ShipClass}");
+				else if (Constants.GetShipClass(ship.ShipClass) == "不明" || Constants.GetShipClass(ship.ShipClass) == "Unknown")
+					tip.AppendLine($"Ship Class Unknown: {ship.ShipClass}");
+				else
+					tip.AppendLine($"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
+
+				tip.AppendLine();
+				tip.AppendLine("Equippable:");
+				tip.AppendLine(GetEquippableString(shipID));
+
+				ToolTipInfo.SetToolTip(ShipType, tip.ToString());
+			}
+			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
 			if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
 			{
@@ -652,7 +662,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (!ImageLoader.IsBusy)
 			{
 				loadingResourceShipID = ship.ShipID;
-				ImageLoader.RunWorkerAsync(ship.ResourceName);
+				ImageLoader.RunWorkerAsync(ship.ShipID);
 			}
 
 
@@ -736,6 +746,17 @@ namespace ElectronicObserver.Window.Dialog
 			else
 				return param.Maximum.ToString();
 
+		}
+
+		private string GetEquippableString(int shipID)
+		{
+			var db = KCDatabase.Instance;
+			var ship = db.MasterShips[shipID];
+			if (ship == null)
+				return "";
+
+			return string.Join("\r\n", ship.EquippableCategories.Select(id => db.EquipmentTypes[id].Name)
+				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.Name + " (Reinforcement Slot)")));
 		}
 
 
@@ -1167,25 +1188,11 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void ImageLoader_DoWork(object sender, DoWorkEventArgs e)
 		{
-
-			string resourceName = e.Argument as string;
-
 			//System.Threading.Thread.Sleep( 2000 );		// for test
 
 			try
 			{
-
-				var img = SwfHelper.GetShipSwfImage(resourceName, SwfHelper.ShipResourceCharacterID.BannerNormal);
-
-				if (img.Size == SwfHelper.ShipBannerSize)
-				{
-					e.Result = img;
-				}
-				else
-				{
-					img.Dispose();
-					e.Result = null;
-				}
+				e.Result = KCResourceHelper.LoadShipImage(e.Argument as int? ?? 0, false, KCResourceHelper.ResourceTypeShipBanner);
 			}
 			catch (Exception)
 			{
@@ -1214,7 +1221,7 @@ namespace ElectronicObserver.Window.Dialog
 					loadingResourceShipID = _shipID;
 					var ship = KCDatabase.Instance.MasterShips[_shipID];
 					if (ship != null)
-						ImageLoader.RunWorkerAsync(ship.ResourceName);
+						ImageLoader.RunWorkerAsync(_shipID);
 				}
 
 				return;
@@ -1236,27 +1243,30 @@ namespace ElectronicObserver.Window.Dialog
 			if (string.IsNullOrWhiteSpace(TextSearch.Text))
 				return;
 
-            bool Search(string searchWord)
-            {
-                var target =
-                        ShipView.Rows.OfType<DataGridViewRow>()
-                        .Select(r => KCDatabase.Instance.MasterShips[(int)r.Cells[ShipView_ShipID.Index].Value])
-                        .FirstOrDefault(
-                        ship =>
-                                Calculator.ToHiragana(ship.NameWithClass.ToLower()).StartsWith(searchWord) ||
-                                Calculator.ToHiragana(ship.NameReading.ToLower()).StartsWith(searchWord));
 
-                if (target != null)
-                {
-                    ShipView.FirstDisplayedScrollingRowIndex = ShipView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[ShipView_ShipID.Index].Value == target.ShipID).Index;
-                    return true;
-                }
-                return false;
-            }
+			bool Search(string searchWord)
+			{
+				var target =
+					ShipView.Rows.OfType<DataGridViewRow>()
+					.Select(r => KCDatabase.Instance.MasterShips[(int)r.Cells[ShipView_ShipID.Index].Value])
+					.FirstOrDefault(
+					ship =>
+						Calculator.ToHiragana(ship.NameWithClass.ToLower()).StartsWith(searchWord) ||
+						Calculator.ToHiragana(ship.NameReading.ToLower()).StartsWith(searchWord));
 
-            if (!Search(Calculator.ToHiragana(TextSearch.Text.ToLower())))
-                Search(Calculator.RomaToHira(TextSearch.Text));
-        }
+				if (target != null)
+				{
+					ShipView.FirstDisplayedScrollingRowIndex = ShipView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[ShipView_ShipID.Index].Value == target.ShipID).Index;
+					return true;
+				}
+				return false;
+			}
+
+			if (!Search(Calculator.ToHiragana(TextSearch.Text.ToLower())))
+				Search(Calculator.RomaToHira(TextSearch.Text));
+
+		}
+
 
 		private void TextSearch_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -1549,26 +1559,7 @@ namespace ElectronicObserver.Window.Dialog
 			var ship = KCDatabase.Instance.MasterShips[_shipID];
 			if (ship != null)
 			{
-
-				var pathlist = new LinkedList<string>();
-				pathlist.AddLast(SwfHelper.GetShipResourcePath(ship.ResourceName));
-
-				foreach (var rec in RecordManager.Instance.ShipParameter.Record.Values.Where(r => r.OriginalCostumeShipID == _shipID))
-				{
-					string path = SwfHelper.GetShipResourcePath(rec.ResourceName);
-					if (path != null)
-						pathlist.AddLast(path);
-				}
-
-				var arg = pathlist.Where(p => p != null).ToArray();
-				if (arg.Length > 0)
-				{
-					new DialogShipGraphicViewer(arg).Show(Owner);
-				}
-				else
-				{
-					MessageBox.Show("Failed to find the image resource. Please do the following:\r\n1. Settings→Network→Save received data and enable SWF option.\r\n2. Clear cache and reload the game.\r\n3. View the ship within the game (organize menu, encyclopedia, etc)", "Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
+				new DialogShipGraphicViewer(ship.ShipID).Show(Owner);
 			}
 			else
 			{
