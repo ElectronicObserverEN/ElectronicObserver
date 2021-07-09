@@ -783,4 +783,169 @@
   <data name="SpecialKongou" xml:space="preserve">
     <value>Kongou Touch</value>
   </data>
+  <data name="FastPlus" xml:space="preserve">
+    <value>Fast+</value>
+  </data>
+  <data name="Fastest" xml:space="preserve">
+    <value>Fastest</value>
+  </data>
+  <data name="SSPlusPlus" xml:space="preserve">
+    <value>SS++</value>
+  </data>
+  <data name="NoEvent" xml:space="preserve">
+    <value>No Event</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="Battle" xml:space="preserve">
+    <value>Battle</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value>Boss</value>
+  </data>
+  <data name="Anchorage" xml:space="preserve">
+    <value>Anchorage</value>
+  </data>
+  <data name="RadarAmbush" xml:space="preserve">
+    <value>Radar Ambush</value>
+  </data>
+  <data name="CasualDifficulty" xml:space="preserve">
+    <value>Casual</value>
+  </data>
+  <data name="ABResourcesDamaged" xml:space="preserve">
+    <value>Resources Damaged</value>
+  </data>
+  <data name="ABResources_AndPlanesDamaged" xml:space="preserve">
+    <value>Resources and Air Squadron Damaged</value>
+  </data>
+  <data name="ABPlanesDamaged" xml:space="preserve">
+    <value>Air Squadron Damaged</value>
+  </data>
+  <data name="ABNoDamage" xml:space="preserve">
+    <value>No Damage</value>
+  </data>
+  <data name="ABNoAirRaid" xml:space="preserve">
+    <value>No Air Raid</value>
+  </data>
+  <data name="ABShortResources" xml:space="preserve">
+    <value>Resources Damaged</value>
+  </data>
+  <data name="ABShortResourcesPlanes" xml:space="preserve">
+    <value>Base and Resources</value>
+  </data>
+  <data name="ABShortPlanes" xml:space="preserve">
+    <value>Base Damaged</value>
+  </data>
+  <data name="Vanguard" xml:space="preserve">
+    <value>Vanguard</value>
+  </data>
+  <data name="LineAheadShort" xml:space="preserve">
+    <value>LA</value>
+  </data>
+  <data name="DoubleLineShort" xml:space="preserve">
+    <value>DL</value>
+  </data>
+  <data name="DiamondShort" xml:space="preserve">
+    <value>Rin</value>
+  </data>
+  <data name="EchelonShort" xml:space="preserve">
+    <value>Ech</value>
+  </data>
+  <data name="LineAbreastShort" xml:space="preserve">
+    <value>LAb</value>
+  </data>
+  <data name="VanguardShort" xml:space="preserve">
+    <value>Van</value>
+  </data>
+  <data name="FirstPatrolFormationShort" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="SecondPatrolFormationShort" xml:space="preserve">
+    <value>For</value>
+  </data>
+  <data name="ThirdPatrolFormationShort" xml:space="preserve">
+    <value>Rin</value>
+  </data>
+  <data name="FourthPatrolFormationShort" xml:space="preserve">
+    <value>Btl</value>
+  </data>
+  <data name="GreenT" xml:space="preserve">
+    <value>Green T</value>
+  </data>
+  <data name="RedT" xml:space="preserve">
+    <value>Red T</value>
+  </data>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>Normal Attack</value>
+  </data>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>Laser Attack</value>
+  </data>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>DA</value>
+  </data>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>CI (MG+SG)</value>
+  </data>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>CI (MG+Radar)</value>
+  </data>
+  <data name="CutinMainAP" xml:space="preserve">
+    <value>CI (MG+AP)</value>
+  </data>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>CI (MG+MG)</value>
+  </data>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>CI (Carrier)</value>
+  </data>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>Nelson Touch</value>
+  </data>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>Nagato Touch</value>
+  </data>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>Colorado Touch</value>
+  </data>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>CI (Suisei)</value>
+  </data>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>Amphibious Attack (Daihatsu)</value>
+  </data>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>Amphibious Attack (Toku Daihatsu)</value>
+  </data>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>Amphibious Attack (Daihatsu+Tank)</value>
+  </data>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>Amphibious Attack (Toku Daihatsu+Tank)</value>
+  </data>
+  <data name="ABShortNoDamage" xml:space="preserve">
+    <value>No Damage</value>
+  </data>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>CI (MG+Torp)</value>
+  </data>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>CI (Torpx2)</value>
+  </data>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>CI (MGx2+SG)</value>
+  </data>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>CI (MGx3)</value>
+  </data>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>DD CI (MG+Torp+Radar)</value>
+  </data>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>DD CI (Torp+Lookout+Radar)</value>
+  </data>
 </root>

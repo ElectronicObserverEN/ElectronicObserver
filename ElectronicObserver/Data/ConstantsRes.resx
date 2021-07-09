@@ -783,4 +783,169 @@
   <data name="SpecialKongou" xml:space="preserve">
     <value>僚艦夜戦突撃</value>
   </data>
+  <data name="FastPlus" xml:space="preserve">
+    <value>高速+</value>
+  </data>
+  <data name="Fastest" xml:space="preserve">
+    <value>最速</value>
+  </data>
+  <data name="SSPlusPlus" xml:space="preserve">
+    <value>SS++</value>
+  </data>
+  <data name="NoEvent" xml:space="preserve">
+    <value>イベントなし</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>資源</value>
+  </data>
+  <data name="Battle" xml:space="preserve">
+    <value>通常戦闘</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value>ボス戦闘</value>
+  </data>
+  <data name="Anchorage" xml:space="preserve">
+    <value>泊地</value>
+  </data>
+  <data name="RadarAmbush" xml:space="preserve">
+    <value>レーダー</value>
+  </data>
+  <data name="CasualDifficulty" xml:space="preserve">
+    <value>丁</value>
+  </data>
+  <data name="ABResourcesDamaged" xml:space="preserve">
+    <value>資源に損害</value>
+  </data>
+  <data name="ABResources_AndPlanesDamaged" xml:space="preserve">
+    <value>資源・航空隊に損害</value>
+  </data>
+  <data name="ABPlanesDamaged" xml:space="preserve">
+    <value>航空隊に損害</value>
+  </data>
+  <data name="ABNoDamage" xml:space="preserve">
+    <value>損害なし</value>
+  </data>
+  <data name="ABNoAirRaid" xml:space="preserve">
+    <value>発生せず</value>
+  </data>
+  <data name="ABShortResources" xml:space="preserve">
+    <value>資源損害</value>
+  </data>
+  <data name="ABShortResourcesPlanes" xml:space="preserve">
+    <value>資源・航空</value>
+  </data>
+  <data name="ABShortPlanes" xml:space="preserve">
+    <value>航空隊損害</value>
+  </data>
+  <data name="ABShortNoDamage" xml:space="preserve">
+    <value>損害なし</value>
+  </data>
+  <data name="Vanguard" xml:space="preserve">
+    <value>警戒陣</value>
+  </data>
+  <data name="LineAheadShort" xml:space="preserve">
+    <value>単縦陣</value>
+  </data>
+  <data name="DoubleLineShort" xml:space="preserve">
+    <value>複縦陣</value>
+  </data>
+  <data name="DiamondShort" xml:space="preserve">
+    <value>輪形陣</value>
+  </data>
+  <data name="EchelonShort" xml:space="preserve">
+    <value>梯形陣</value>
+  </data>
+  <data name="LineAbreastShort" xml:space="preserve">
+    <value>単横陣</value>
+  </data>
+  <data name="VanguardShort" xml:space="preserve">
+    <value>警戒陣</value>
+  </data>
+  <data name="FirstPatrolFormationShort" xml:space="preserve">
+    <value>第一警戒</value>
+  </data>
+  <data name="SecondPatrolFormationShort" xml:space="preserve">
+    <value>第二警戒</value>
+  </data>
+  <data name="ThirdPatrolFormationShort" xml:space="preserve">
+    <value>第三警戒</value>
+  </data>
+  <data name="FourthPatrolFormationShort" xml:space="preserve">
+    <value>第四警戒</value>
+  </data>
+  <data name="GreenT" xml:space="preserve">
+    <value>T字有利</value>
+  </data>
+  <data name="RedT" xml:space="preserve">
+    <value>T字不利</value>
+  </data>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>通常攻撃</value>
+  </data>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>レーザー攻撃</value>
+  </data>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>連続射撃</value>
+  </data>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>カットイン(主砲/副砲)</value>
+  </data>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>カットイン(主砲/電探)</value>
+  </data>
+  <data name="CutinMainAP" xml:space="preserve">
+    <value>カットイン(主砲/徹甲)</value>
+  </data>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>カットイン(主砲/主砲)</value>
+  </data>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>空母カットイン</value>
+  </data>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>Nelson Touch</value>
+  </data>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>一斉射かッ…胸が熱いな！</value>
+  </data>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>Colorado Touch</value>
+  </data>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>瑞雲立体攻撃</value>
+  </data>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>海空立体攻撃</value>
+  </data>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>揚陸攻撃(大発動艇)</value>
+  </data>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>揚陸攻撃(特大発動艇)</value>
+  </data>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>揚陸攻撃(大発戦車)</value>
+  </data>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>揚陸攻撃(特大発戦車)</value>
+  </data>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>カットイン(主砲/魚雷)</value>
+  </data>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>カットイン(魚雷x2)</value>
+  </data>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>カットイン(主砲x2/副砲)</value>
+  </data>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>カットイン(主砲x3)</value>
+  </data>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>駆逐カットイン(主砲/魚雷/電探)</value>
+  </data>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>駆逐カットイン(魚雷/見張員/電探)</value>
+  </data>
 </root>

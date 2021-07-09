@@ -79,6 +79,87 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 発生せず.
+        /// </summary>
+        public static string ABNoAirRaid {
+            get {
+                return ResourceManager.GetString("ABNoAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 損害なし.
+        /// </summary>
+        public static string ABNoDamage {
+            get {
+                return ResourceManager.GetString("ABNoDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 航空隊に損害.
+        /// </summary>
+        public static string ABPlanesDamaged {
+            get {
+                return ResourceManager.GetString("ABPlanesDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 資源・航空隊に損害.
+        /// </summary>
+        public static string ABResources_AndPlanesDamaged {
+            get {
+                return ResourceManager.GetString("ABResources_AndPlanesDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 資源に損害.
+        /// </summary>
+        public static string ABResourcesDamaged {
+            get {
+                return ResourceManager.GetString("ABResourcesDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 損害なし.
+        /// </summary>
+        public static string ABShortNoDamage {
+            get {
+                return ResourceManager.GetString("ABShortNoDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 航空隊損害.
+        /// </summary>
+        public static string ABShortPlanes {
+            get {
+                return ResourceManager.GetString("ABShortPlanes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 資源損害.
+        /// </summary>
+        public static string ABShortResources {
+            get {
+                return ResourceManager.GetString("ABShortResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 資源・航空.
+        /// </summary>
+        public static string ABShortResourcesPlanes {
+            get {
+                return ResourceManager.GetString("ABShortResourcesPlanes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 提督.
         /// </summary>
         public static string Admiral {
@@ -178,6 +259,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 泊地.
+        /// </summary>
+        public static string Anchorage {
+            get {
+                return ResourceManager.GetString("Anchorage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 水.
         /// </summary>
         public static string Aqua {
@@ -192,6 +282,15 @@ namespace ElectronicObserver.Data {
         public static string ASWFormation {
             get {
                 return ResourceManager.GetString("ASWFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常戦闘.
+        /// </summary>
+        public static string Battle {
+            get {
+                return ResourceManager.GetString("Battle", resourceCulture);
             }
         }
         
@@ -628,6 +727,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ボス戦闘.
+        /// </summary>
+        public static string Boss {
+            get {
+                return ResourceManager.GetString("Boss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 高速修復材.
         /// </summary>
         public static string Bucket {
@@ -642,6 +750,15 @@ namespace ElectronicObserver.Data {
         public static string Captain {
             get {
                 return ResourceManager.GetString("Captain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 丁.
+        /// </summary>
+        public static string CasualDifficulty {
+            get {
+                return ResourceManager.GetString("CasualDifficulty", resourceCulture);
             }
         }
         
@@ -691,6 +808,78 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 空母カットイン.
+        /// </summary>
+        public static string CutinAirAttack {
+            get {
+                return ResourceManager.GetString("CutinAirAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲/徹甲).
+        /// </summary>
+        public static string CutinMainAP {
+            get {
+                return ResourceManager.GetString("CutinMainAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲/主砲).
+        /// </summary>
+        public static string CutinMainMain {
+            get {
+                return ResourceManager.GetString("CutinMainMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲/電探).
+        /// </summary>
+        public static string CutinMainRadar {
+            get {
+                return ResourceManager.GetString("CutinMainRadar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲/副砲).
+        /// </summary>
+        public static string CutinMainSub {
+            get {
+                return ResourceManager.GetString("CutinMainSub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲/魚雷).
+        /// </summary>
+        public static string CutinMainTorpedo {
+            get {
+                return ResourceManager.GetString("CutinMainTorpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲x3).
+        /// </summary>
+        public static string CutinNightMainMain {
+            get {
+                return ResourceManager.GetString("CutinNightMainMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(主砲x2/副砲).
+        /// </summary>
+        public static string CutinNightMainSub {
+            get {
+                return ResourceManager.GetString("CutinNightMainSub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 駆逐カットイン(魚雷/魚雷/水雷見張員).
         /// </summary>
         public static string CutinTorpedoDestroyerPicket {
@@ -705,6 +894,33 @@ namespace ElectronicObserver.Data {
         public static string CutinTorpedoDrum {
             get {
                 return ResourceManager.GetString("CutinTorpedoDrum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 駆逐カットイン(魚雷/見張員/電探).
+        /// </summary>
+        public static string CutinTorpedoPicket {
+            get {
+                return ResourceManager.GetString("CutinTorpedoPicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 駆逐カットイン(主砲/魚雷/電探).
+        /// </summary>
+        public static string CutinTorpedoRadar {
+            get {
+                return ResourceManager.GetString("CutinTorpedoRadar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to カットイン(魚雷x2).
+        /// </summary>
+        public static string CutinTorpedoTorpedo {
+            get {
+                return ResourceManager.GetString("CutinTorpedoTorpedo", resourceCulture);
             }
         }
         
@@ -781,6 +997,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 輪形陣.
+        /// </summary>
+        public static string DiamondShort {
+            get {
+                return ResourceManager.GetString("DiamondShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 混乱.
         /// </summary>
         public static string Disorder {
@@ -808,6 +1033,24 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 複縦陣.
+        /// </summary>
+        public static string DoubleLineShort {
+            get {
+                return ResourceManager.GetString("DoubleLineShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連続射撃.
+        /// </summary>
+        public static string DoubleShelling {
+            get {
+                return ResourceManager.GetString("DoubleShelling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 丙.
         /// </summary>
         public static string EasyDifficulty {
@@ -822,6 +1065,15 @@ namespace ElectronicObserver.Data {
         public static string Echelon {
             get {
                 return ResourceManager.GetString("Echelon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 梯形陣.
+        /// </summary>
+        public static string EchelonShort {
+            get {
+                return ResourceManager.GetString("EchelonShort", resourceCulture);
             }
         }
         
@@ -889,11 +1141,38 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 最速.
+        /// </summary>
+        public static string Fastest {
+            get {
+                return ResourceManager.GetString("Fastest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 高速+.
+        /// </summary>
+        public static string FastPlus {
+            get {
+                return ResourceManager.GetString("FastPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 第一警戒航行序列.
         /// </summary>
         public static string FirstPatrolFormation {
             get {
                 return ResourceManager.GetString("FirstPatrolFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第一警戒.
+        /// </summary>
+        public static string FirstPatrolFormationShort {
+            get {
+                return ResourceManager.GetString("FirstPatrolFormationShort", resourceCulture);
             }
         }
         
@@ -952,6 +1231,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 第四警戒.
+        /// </summary>
+        public static string FourthPatrolFormationShort {
+            get {
+                return ResourceManager.GetString("FourthPatrolFormationShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 燃料.
         /// </summary>
         public static string Fuel {
@@ -984,6 +1272,15 @@ namespace ElectronicObserver.Data {
         public static string GreatSuccess {
             get {
                 return ResourceManager.GetString("GreatSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T字有利.
+        /// </summary>
+        public static string GreenT {
+            get {
+                return ResourceManager.GetString("GreenT", resourceCulture);
             }
         }
         
@@ -1123,6 +1420,42 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 揚陸攻撃(大発動艇).
+        /// </summary>
+        public static string LandingDaihatsu {
+            get {
+                return ResourceManager.GetString("LandingDaihatsu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 揚陸攻撃(大発戦車).
+        /// </summary>
+        public static string LandingDaihatsuTank {
+            get {
+                return ResourceManager.GetString("LandingDaihatsuTank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 揚陸攻撃(特大発動艇).
+        /// </summary>
+        public static string LandingTokuDaihatsu {
+            get {
+                return ResourceManager.GetString("LandingTokuDaihatsu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 揚陸攻撃(特大発戦車).
+        /// </summary>
+        public static string LandingTokuDaihatsuTank {
+            get {
+                return ResourceManager.GetString("LandingTokuDaihatsuTank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 揚陸地点.
         /// </summary>
         public static string LandNode {
@@ -1150,6 +1483,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to レーザー攻撃.
+        /// </summary>
+        public static string LaserAttack {
+            get {
+                return ResourceManager.GetString("LaserAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 小破.
         /// </summary>
         public static string LightDamage {
@@ -1168,11 +1510,29 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 単横陣.
+        /// </summary>
+        public static string LineAbreastShort {
+            get {
+                return ResourceManager.GetString("LineAbreastShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 単縦陣.
         /// </summary>
         public static string LineAhead {
             get {
                 return ResourceManager.GetString("LineAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 単縦陣.
+        /// </summary>
+        public static string LineAheadShort {
+            get {
+                return ResourceManager.GetString("LineAheadShort", resourceCulture);
             }
         }
         
@@ -1357,6 +1717,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to イベントなし.
+        /// </summary>
+        public static string NoEvent {
+            get {
+                return ResourceManager.GetString("NoEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 無.
         /// </summary>
         public static string None {
@@ -1389,6 +1758,15 @@ namespace ElectronicObserver.Data {
         public static string NoReturn {
             get {
                 return ResourceManager.GetString("NoReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常攻撃.
+        /// </summary>
+        public static string NormalAttack {
+            get {
+                return ResourceManager.GetString("NormalAttack", resourceCulture);
             }
         }
         
@@ -1474,6 +1852,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to レーダー.
+        /// </summary>
+        public static string RadarAmbush {
+            get {
+                return ResourceManager.GetString("RadarAmbush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 虹.
         /// </summary>
         public static string Rainbow {
@@ -1506,6 +1893,24 @@ namespace ElectronicObserver.Data {
         public static string Red {
             get {
                 return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T字不利.
+        /// </summary>
+        public static string RedT {
+            get {
+                return ResourceManager.GetString("RedT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 資源.
+        /// </summary>
+        public static string Resources {
+            get {
+                return ResourceManager.GetString("Resources", resourceCulture);
             }
         }
         
@@ -1555,11 +1960,29 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 海空立体攻撃.
+        /// </summary>
+        public static string SeaAirMultiAngle {
+            get {
+                return ResourceManager.GetString("SeaAirMultiAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 第二警戒航行序列.
         /// </summary>
         public static string SecondPatrolFormation {
             get {
                 return ResourceManager.GetString("SecondPatrolFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第二警戒.
+        /// </summary>
+        public static string SecondPatrolFormationShort {
+            get {
+                return ResourceManager.GetString("SecondPatrolFormationShort", resourceCulture);
             }
         }
         
@@ -1627,6 +2050,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colorado Touch.
+        /// </summary>
+        public static string SpecialColorado {
+            get {
+                return ResourceManager.GetString("SpecialColorado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 特殊放置.
         /// </summary>
         public static string SpecialIdle {
@@ -1654,6 +2086,24 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 一斉射かッ…胸が熱いな！.
+        /// </summary>
+        public static string SpecialNagato {
+            get {
+                return ResourceManager.GetString("SpecialNagato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nelson Touch.
+        /// </summary>
+        public static string SpecialNelson {
+            get {
+                return ResourceManager.GetString("SpecialNelson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輝虹.
         /// </summary>
         public static string SRainbow {
@@ -1677,6 +2127,15 @@ namespace ElectronicObserver.Data {
         public static string SSHoloPlus {
             get {
                 return ResourceManager.GetString("SSHoloPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SS++.
+        /// </summary>
+        public static string SSPlusPlus {
+            get {
+                return ResourceManager.GetString("SSPlusPlus", resourceCulture);
             }
         }
         
@@ -1794,6 +2253,15 @@ namespace ElectronicObserver.Data {
         public static string ThirdPatrolFormation {
             get {
                 return ResourceManager.GetString("ThirdPatrolFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第三警戒.
+        /// </summary>
+        public static string ThirdPatrolFormationShort {
+            get {
+                return ResourceManager.GetString("ThirdPatrolFormationShort", resourceCulture);
             }
         }
         
@@ -2014,6 +2482,24 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 警戒陣.
+        /// </summary>
+        public static string Vanguard {
+            get {
+                return ResourceManager.GetString("Vanguard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 警戒陣.
+        /// </summary>
+        public static string VanguardShort {
+            get {
+                return ResourceManager.GetString("VanguardShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 超長.
         /// </summary>
         public static string VeryLong {
@@ -2055,6 +2541,15 @@ namespace ElectronicObserver.Data {
         public static string Withdrawn {
             get {
                 return ResourceManager.GetString("Withdrawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 瑞雲立体攻撃.
+        /// </summary>
+        public static string ZuiunMultiAngle {
+            get {
+                return ResourceManager.GetString("ZuiunMultiAngle", resourceCulture);
             }
         }
     }
