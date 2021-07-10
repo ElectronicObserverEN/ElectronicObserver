@@ -948,4 +948,118 @@
   <data name="CutinTorpedoPicket" xml:space="preserve">
     <value>駆逐カットイン(魚雷/見張員/電探)</value>
   </data>
+  <data name="Akizuki" xml:space="preserve">
+    <value>&lt;秋月&gt;</value>
+  </data>
+  <data name="Maya" xml:space="preserve">
+    <value>&lt;摩耶&gt;</value>
+  </data>
+  <data name="Isuzu" xml:space="preserve">
+    <value>&lt;五十鈴&gt;</value>
+  </data>
+  <data name="Kasumi" xml:space="preserve">
+    <value>&lt;霞&gt;</value>
+  </data>
+  <data name="Satsuki" xml:space="preserve">
+    <value>&lt;皐月&gt;</value>
+  </data>
+  <data name="NonPiercing" xml:space="preserve">
+    <value>(非高射装置)</value>
+  </data>
+  <data name="Kinu" xml:space="preserve">
+    <value>&lt;鬼怒&gt;</value>
+  </data>
+  <data name="Yura" xml:space="preserve">
+    <value>&lt;由良&gt;</value>
+  </data>
+  <data name="Fumizuki" xml:space="preserve">
+    <value>&lt;文月&gt;</value>
+  </data>
+  <data name="Unconcentrated" xml:space="preserve">
+    <value> (非集中) </value>
+  </data>
+  <data name="UIT25" xml:space="preserve">
+    <value>&lt;UIT-25&gt;</value>
+  </data>
+  <data name="Tatsuta" xml:space="preserve">
+    <value>&lt;龍田&gt;</value>
+  </data>
+  <data name="RosaK2" xml:space="preserve">
+    <value>噴進砲改二</value>
+  </data>
+  <data name="Ise" xml:space="preserve">
+    <value>&lt;伊勢&gt;</value>
+  </data>
+  <data name="Musashi" xml:space="preserve">
+    <value>&lt;武蔵&gt;</value>
+  </data>
+  <data name="Hamakaze" xml:space="preserve">
+    <value>&lt;浜風&gt;</value>
+  </data>
+  <data name="Tenryuu" xml:space="preserve">
+    <value>&lt;天龍&gt;</value>
+  </data>
+  <data name="BriishAACI" xml:space="preserve">
+    <value>ロケランx2 or FCR/ポンポン砲 or ロケラン/ポンポン砲&lt;英国&gt;</value>
+  </data>
+  <data name="FletcherGun" xml:space="preserve">
+    <value>Fletcher砲改</value>
+  </data>
+  <data name="AtlantaGun" xml:space="preserve">
+    <value>Atlanta砲</value>
+  </data>
+  <data name="QuestOneTime" xml:space="preserve">
+    <value>単</value>
+  </data>
+  <data name="QuestYearly" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value> 一月 </value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value> 二月 </value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value> 三月 </value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value> 四月 </value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value> 五月 </value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value> 六月 </value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value> 七月 </value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value> 八月 </value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value> 九月 </value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value> 十月 </value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value> 十一月 </value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value> 十二月 </value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="NormalFleet" xml:space="preserve">
+    <value>通常艦隊</value>
+  </data>
+  <data name="CarrierTF" xml:space="preserve">
+    <value>機動部隊</value>
+  </data>
+  <data name="SurfaceTF" xml:space="preserve">
+    <value>水上部隊</value>
+  </data>
 </root>

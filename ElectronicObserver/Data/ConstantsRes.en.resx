@@ -948,4 +948,118 @@
   <data name="CutinTorpedoPicket" xml:space="preserve">
     <value>DD CI (Torp+Lookout+Radar)</value>
   </data>
+  <data name="Akizuki" xml:space="preserve">
+    <value>&lt;Akizuki&gt;</value>
+  </data>
+  <data name="Maya" xml:space="preserve">
+    <value>&lt;Maya&gt;</value>
+  </data>
+  <data name="Isuzu" xml:space="preserve">
+    <value>&lt;Isuzu&gt;</value>
+  </data>
+  <data name="Kasumi" xml:space="preserve">
+    <value>&lt;Kasumi&gt;</value>
+  </data>
+  <data name="Satsuki" xml:space="preserve">
+    <value>&lt;Satsuki&gt;</value>
+  </data>
+  <data name="NonPiercing" xml:space="preserve">
+    <value> (Non-piercing)</value>
+  </data>
+  <data name="Kinu" xml:space="preserve">
+    <value>&lt;Kinu&gt;</value>
+  </data>
+  <data name="Yura" xml:space="preserve">
+    <value>&lt;Yura&gt;</value>
+  </data>
+  <data name="Fumizuki" xml:space="preserve">
+    <value>Fumizuki</value>
+  </data>
+  <data name="Unconcentrated" xml:space="preserve">
+    <value> (Unconcentrated) </value>
+  </data>
+  <data name="UIT25" xml:space="preserve">
+    <value>&lt;UIT-25&gt;</value>
+  </data>
+  <data name="Tatsuta" xml:space="preserve">
+    <value>&lt;Tatsuta&gt;</value>
+  </data>
+  <data name="RosaK2" xml:space="preserve">
+    <value>Rocket Launcher Kai Ni</value>
+  </data>
+  <data name="Ise" xml:space="preserve">
+    <value>&lt;Ise&gt;</value>
+  </data>
+  <data name="Musashi" xml:space="preserve">
+    <value>&lt;Musashi&gt;</value>
+  </data>
+  <data name="Hamakaze" xml:space="preserve">
+    <value>&lt;Hamakaze&gt;</value>
+  </data>
+  <data name="Tenryuu" xml:space="preserve">
+    <value>&lt;Tenryuu&gt;</value>
+  </data>
+  <data name="BriishAACI" xml:space="preserve">
+    <value>Rocket Launcher x2 or FCR/Pom-pom Gun or Rocket Launcher/Pom-pom Gun (UK)</value>
+  </data>
+  <data name="FletcherGun" xml:space="preserve">
+    <value>5inch Single Gun Mk.30 Kai</value>
+  </data>
+  <data name="AtlantaGun" xml:space="preserve">
+    <value>Atlanta Gun</value>
+  </data>
+  <data name="QuestOneTime" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="QuestYearly" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value> January </value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value> February </value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value> 三月 </value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value> April </value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value> May </value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value> June </value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value> July </value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value> August </value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value> September </value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value> October </value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value> November </value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value> December </value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="NormalFleet" xml:space="preserve">
+    <value>Normal Fleet</value>
+  </data>
+  <data name="CarrierTF" xml:space="preserve">
+    <value>Carrier TF</value>
+  </data>
+  <data name="SurfaceTF" xml:space="preserve">
+    <value>Surface TF</value>
+  </data>
 </root>

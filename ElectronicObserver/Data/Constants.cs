@@ -937,11 +937,11 @@ namespace ElectronicObserver.Data
                 case 0:
                     return ConstantsRes.NoNode;
                 case 1:
-                    return ConstantsRes.HA2 + "/" + ConstantsRes.Radar + " (Akizuki)";
+                    return ConstantsRes.HA2 + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki;
                 case 2:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Akizuki)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki;
                 case 3:
-                    return ConstantsRes.HA2 + " (Akizuki)";
+                    return ConstantsRes.HA2 + ConstantsRes.Akizuki;
                 case 4:
                     return ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar;
                 case 5:
@@ -955,63 +955,63 @@ namespace ElectronicObserver.Data
                 case 9:
                     return ConstantsRes.HAGun + "/" + ConstantsRes.AADirector;
                 case 10:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Maya)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Maya;
                 case 11:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Maya)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Maya;
                 case 12:
                     return ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar;
                 case 14:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Isuzu)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Isuzu;
                 case 15:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Isuzu)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Isuzu;
                 case 16:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Kasumi)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Kasumi;
                 case 17:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Kasumi)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Kasumi;
                 case 18:
-                    return ConstantsRes.AAGun + " (Satsuki)";
+                    return ConstantsRes.AAGun + ConstantsRes.Satsuki;
                 case 19:
-                    return ConstantsRes.HAGun + " (Non-piercing)/" + ConstantsRes.AAGun + " (Kinu)";
+                    return ConstantsRes.HAGun + ConstantsRes.NonPiercing + ConstantsRes.AAGun + ConstantsRes.Kinu;
                 case 20:
-                    return ConstantsRes.AAGun + " (Kinu)";
+                    return ConstantsRes.AAGun + ConstantsRes.Kinu;
                 case 21:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Yura)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Yura;
                 case 22:
-                    return ConstantsRes.AAGun + " (Fumizuki)";
+                    return ConstantsRes.AAGun + ConstantsRes.Fumizuki;
                 case 23:
-                    return ConstantsRes.AAGun + " (Unconcentrated) (UIT-25)";
+                    return ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.UIT25;
                 case 24:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Unconcentrated) (Tatsuta)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.Tatsuta;
                 case 25:
-                    return "Rocket Launcher Kai Ni/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + " (Ise)";
+                    return ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + ConstantsRes.Ise;
                 case 26:
-                    return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + " (Musashi)";
+                    return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + ConstantsRes.Musashi;
                 case 28:
-                    return "Rocket Launcher Kai Ni/" + ConstantsRes.Radar + " (Ise)";
+                    return ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + ConstantsRes.Ise;
                 case 29:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Hamakaze)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Hamakaze;
                 case 30:
-                    return ConstantsRes.HAGun + " x3 (Tenryuu)";
+                    return ConstantsRes.HAGun + " x3" + ConstantsRes.Tenryuu;
                 case 31:
-                    return ConstantsRes.HAGun + " x2 (Tenryuu)";
+                    return ConstantsRes.HAGun + " x2" + ConstantsRes.Tenryuu;
                 case 32:
-                    return "Rocket Launcher x2 or FCR/Pom-pom Gun or Rocket Launcher/Pom-pom Gun (UK)";
+                    return ConstantsRes.BriishAACI;
                 case 33:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Unconcentrated) (Gotland)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated +"<Gotland>";
                 case 34:
-                    return "5inch Single Gun Mk.30 Kai + GFCS x2 (Johnston)";
+                    return ConstantsRes.FletcherGun + "+GFCS x2<Johnston>";
                 case 35:
-                    return "5inch Single Gun Mk.30 Kai x2 or + GFCS (Johnston)";
+                    return ConstantsRes.FletcherGun + "+GFCS/" + ConstantsRes.FletcherGun + "<Johnston>";
                 case 36:
-                    return "5inch Single Gun Mk.30 Kai x2/GFCS (Johnston)";
+                    return ConstantsRes.FletcherGun + "/GFCS<Johnston>";
                 case 37:
-                    return "5inch Single Gun Mk.30 Kai x2 (Johnston)";
+                    return ConstantsRes.FletcherGun + "<Johnston>";
                 case 39:
-                    return "Atlanta Gun + GFCS/Atlanta Gun<Atlanta>";
+                    return ConstantsRes.AtlantaGun + "+GFCS/" + ConstantsRes.AtlantaGun + "<Atlanta>";
                 case 40:
-                    return "Atlanta Gun x2/GFCS<Atlanta>";
+                    return ConstantsRes.AtlantaGun + "x2/GFCS<Atlanta>";
                 case 41:
-                    return "Atlanta Gun x2<Atlanta>";
+                    return ConstantsRes.AtlantaGun + "x2<Atlanta>";
                 default:
                     return $"{ConstantsRes.Unknown}({(int)id})";
             }
@@ -1147,22 +1147,22 @@ namespace ElectronicObserver.Data
 	        1 => ConstantsRes.Daily, //デイリー
 	        2 => ConstantsRes.Weekly, //ウィークリー
 	        3 => ConstantsRes.Monthly, //マンスリー
-	        4 => "1", //単発
+	        4 => ConstantsRes.QuestOneTime, //単発
 	        5 => ConstantsRes.QuestOther, //その他(輸送5/空母3)
 
 	        // 以下、厳密には LabelType だが面倒なので
-	        101 => "Y1",
-	        102 => "Y2",
-	        103 => "Y3",
-	        104 => "Y4",
-	        105 => "Y5",
-	        106 => "Y6",
-	        107 => "Y7",
-	        108 => "Y8",
-	        109 => "Y9",
-	        110 => "Y10",
-	        111 => "Y11",
-	        112 => "Y12",
+	        101 => ConstantsRes.QuestYearly + "1",
+	        102 => ConstantsRes.QuestYearly + "2",
+	        103 => ConstantsRes.QuestYearly + "3",
+	        104 => ConstantsRes.QuestYearly + "4",
+	        105 => ConstantsRes.QuestYearly + "5",
+	        106 => ConstantsRes.QuestYearly + "6",
+	        107 => ConstantsRes.QuestYearly + "7",
+	        108 => ConstantsRes.QuestYearly + "8",
+	        109 => ConstantsRes.QuestYearly + "9",
+	        110 => ConstantsRes.QuestYearly + "10",
+	        111 => ConstantsRes.QuestYearly + "11",
+	        112 => ConstantsRes.QuestYearly + "12",
 
 	        _ => ConstantsRes.Question
         };
@@ -1172,39 +1172,39 @@ namespace ElectronicObserver.Data
 			switch (id)
 			{
 				case 1:
-					return "Once";
+					return ConstantsRes.QuestOneTime;
 				case 2: 
-					return "Daily";
+					return ConstantsRes.Daily;
 				case 3: 
-					return "Weekly";
+					return ConstantsRes.Weekly;
 				case 6:
-					return "Monthly";
+					return ConstantsRes.Monthly;
 				case 7:
-					return "Others";
+					return ConstantsRes.QuestOther;
 				case 101:
-					return "Yearly (January Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.January + ConstantsRes.Reset;
 				case 102:
-					return "Yearly (February Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.February + ConstantsRes.Reset;
 				case 103:
-					return "Yearly (March Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.March + ConstantsRes.Reset;
 				case 104:
-					return "Yearly (April Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.April + ConstantsRes.Reset;
 				case 105:
-					return "Yearly (May Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.May + ConstantsRes.Reset;
 				case 106:
-					return "Yearly (June Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.June + ConstantsRes.Reset;
 				case 107:
-					return "Yearly (July Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.July + ConstantsRes.Reset;
 				case 108:
-					return "Yearly (August Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.August + ConstantsRes.Reset;
 				case 109:
-					return "Yearly (September Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.September + ConstantsRes.Reset;
 				case 110:
-					return "Yearly (October Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.October + ConstantsRes.Reset;
 				case 111:
-					return "Yearly (November Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.November + ConstantsRes.Reset;
 				case 112:
-					return "Yearly (December Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.December + ConstantsRes.Reset;
 
 				default:
 					return id.ToString();
@@ -1271,15 +1271,15 @@ namespace ElectronicObserver.Data
             switch (value)
             {
                 case 0:
-                    return "Normal Fleet";
+                    return ConstantsRes.NormalFleet;
                 case 1:
-                    return "Carrier TF";
+                    return ConstantsRes.CarrierTF;
                 case 2:
-                    return "Surface TF";
+                    return ConstantsRes.SurfaceTF;
                 case 3:
-                    return "Transport Fleet";
+                    return ConstantsRes.TransportFleet;
                 default:
-                    return "Unknown";
+                    return ConstantsRes.Unknown;
             }
         }
 
