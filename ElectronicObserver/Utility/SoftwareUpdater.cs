@@ -141,7 +141,7 @@ internal class SoftwareUpdater
 			}
 			if (CurrentVersion.GimmickQuests < LatestVersion.GimmickQuests)
 			{
-				downloadList.Add("GimmickQuests.json");
+				downloadList.Add(Path.Combine("Data", "GimmickQuests.json"));
 			}
 
 			needReload = downloadList.Any();
@@ -278,7 +278,7 @@ internal class SoftwareUpdater
 				_ => 0
 			};
 
-			int gimmickQuestsVersion = json.QuestTrackers() switch
+			int gimmickQuestsVersion = dataJson.QuestTrackers() switch
 			{
 				true => (int)dataJson.GimmickQuests,
 				_ => 0

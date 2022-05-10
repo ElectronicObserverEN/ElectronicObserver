@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
 namespace ElectronicObserver.Data;
 
@@ -116,7 +119,7 @@ public class QuestManager : APIWrapper
 		}
 
 		// Init custom quests (TODO : setting)
-		await LoadGimmickQuestsAsync();
+		SystemGimmickQuestManager.Load();
 
 
 		IsLoaded = true;
@@ -154,16 +157,6 @@ public class QuestManager : APIWrapper
 	{
 		Quests.Clear();
 		IsLoaded = false;
-	}
-
-	public async Task LoadGimmickQuestsAsync()
-	{
-		await Task.Run(() => LoadGimmickQuests());
-	}
-
-	public void LoadGimmickQuests()
-	{
-
 	}
 
 	// QuestProgressManager から呼ばれます
