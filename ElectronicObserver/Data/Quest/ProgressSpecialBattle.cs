@@ -19,11 +19,11 @@ public class ProgressSpecialBattle : ProgressBattle
 	[DataMember]
 	private int GaugeIndex = -1;
 
-	public ProgressSpecialBattle(QuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly) : base(quest, maxCount, lowestRank, targetArea, isBossOnly)
+	public ProgressSpecialBattle(IQuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly) : base(quest, maxCount, lowestRank, targetArea, isBossOnly)
 	{
 	}
 
-	public ProgressSpecialBattle(QuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly, int gaugeIndex) : base(quest, maxCount, lowestRank, targetArea, isBossOnly)
+	public ProgressSpecialBattle(IQuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly, int gaugeIndex) : base(quest, maxCount, lowestRank, targetArea, isBossOnly)
 	{
 		GaugeIndex = gaugeIndex;
 	}

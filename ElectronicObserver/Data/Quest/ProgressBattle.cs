@@ -33,7 +33,7 @@ public class ProgressBattle : ProgressData
 	private bool IsBossOnly { get; set; }
 
 
-	public ProgressBattle(QuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly)
+	public ProgressBattle(IQuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly)
 		: base(quest, maxCount)
 	{
 

@@ -73,7 +73,7 @@ public abstract class ProgressData : IIdentifiable
 	public bool IsCleared => ProgressPercentage >= 1.0;
 
 
-	public ProgressData(QuestData quest, int maxCount)
+	public ProgressData(IQuestData quest, int maxCount)
 	{
 		QuestID = quest.QuestID;
 		ProgressMax = maxCount;
@@ -136,7 +136,7 @@ public abstract class ProgressData : IIdentifiable
 	/// 実際の進捗データから、進捗度を補正します。
 	/// </summary>
 	/// <param name="q">任務データ。</param>
-	public virtual void CheckProgress(QuestData q)
+	public virtual void CheckProgress(IQuestData q)
 	{
 		ApplyTemporaryProgress(q);
 
@@ -180,7 +180,7 @@ public abstract class ProgressData : IIdentifiable
 
 	}
 
-	public virtual void ApplyTemporaryProgress(QuestData q)
+	public virtual void ApplyTemporaryProgress(IQuestData q)
 	{
 		if (TemporaryProgress > 0)
 		{

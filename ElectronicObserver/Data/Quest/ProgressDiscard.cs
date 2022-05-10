@@ -37,10 +37,10 @@ public class ProgressDiscard : ProgressData
 	protected int CategoryIndex { get; set; }
 
 
-	public ProgressDiscard(QuestData quest, int maxCount, bool countsAmount, int[] categories)
+	public ProgressDiscard(IQuestData quest, int maxCount, bool countsAmount, int[] categories)
 		: this(quest, maxCount, countsAmount, categories, 2) { }
 
-	public ProgressDiscard(QuestData quest, int maxCount, bool countsAmount, int[] categories, int categoryIndex)
+	public ProgressDiscard(IQuestData quest, int maxCount, bool countsAmount, int[] categories, int categoryIndex)
 		: base(quest, maxCount)
 	{
 		CountsAmount = countsAmount;

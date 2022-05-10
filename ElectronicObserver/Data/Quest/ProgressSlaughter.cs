@@ -22,7 +22,7 @@ public class ProgressSlaughter : ProgressData
 	[DataMember]
 	private HashSet<int> TargetShipType { get; set; }
 
-	public ProgressSlaughter(QuestData quest, int maxCount, int[] targetShipType)
+	public ProgressSlaughter(IQuestData quest, int maxCount, int[] targetShipType)
 		: base(quest, maxCount)
 	{
 

@@ -56,7 +56,7 @@ public record QuestModel([property: Key(0)] int Id)
 
 	[IgnoreMember] public string Display => $"{Code}: {Name} (ID: {Id})";
 
-	private QuestData? TryGetQuest()
+	private IIQuestData? TryGetQuest()
 	{
 		if (!KCDatabase.Instance.Quest.Quests.ContainsKey(Id)) return null;
 

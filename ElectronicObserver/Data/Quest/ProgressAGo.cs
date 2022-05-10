@@ -127,7 +127,7 @@ public class ProgressAGo : ProgressData
 	#endregion
 
 
-	public ProgressAGo(QuestData quest)
+	public ProgressAGo(IQuestData quest)
 		: base(quest, 0)
 	{
 	}
@@ -159,7 +159,7 @@ public class ProgressAGo : ProgressData
 	}
 
 
-	public override void CheckProgress(QuestData q)
+	public override void CheckProgress(IQuestData q)
 	{
 
 		if (TemporaryProgress != 0)

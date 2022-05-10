@@ -13,7 +13,7 @@ public class ProgressMultiExpedition : ProgressData
 	[DataMember]
 	private ProgressExpedition[] ProgressList;
 
-	public ProgressMultiExpedition(QuestData quest, IEnumerable<ProgressExpedition> progressList)
+	public ProgressMultiExpedition(IQuestData quest, IEnumerable<ProgressExpedition> progressList)
 		: base(quest, 1)
 	{
 		ProgressList = progressList.ToArray();
@@ -42,7 +42,7 @@ public class ProgressMultiExpedition : ProgressData
 		throw new NotSupportedException();
 	}
 
-	public override void CheckProgress(QuestData q)
+	public override void CheckProgress(IQuestData q)
 	{
 		foreach (var p in ProgressList)
 			p.ApplyTemporaryProgress(q);
