@@ -10,7 +10,7 @@ namespace ElectronicObserver.Data.Translation;
 
 public class QuestTranslationData : TranslationBase
 {
-	private string DefaultFilePath = TranslationManager.WorkingFolder + @"\quest.json";
+	private string DefaultFilePath = DataAndTranslationManager.TranslationFolder + @"\quest.json";
 
 	private Dictionary<int, Quests> QuestList { get; set; }
 

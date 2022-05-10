@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using BrowserLibCore;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
 namespace Browser.ExtraBrowser;
@@ -15,7 +16,7 @@ public partial class ExtraBrowserWindow : Window
 	private string StyleClassID { get; } = Guid.NewGuid().ToString().Substring(0, 8);
 	public ExtraBrowserWindow()
 	{
-		FormBrowser = App.Current.Services.GetService<FormBrowserTranslationViewModel>()!;
+		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
 		InitializeComponent();
 		InitializeAsync();
 	}

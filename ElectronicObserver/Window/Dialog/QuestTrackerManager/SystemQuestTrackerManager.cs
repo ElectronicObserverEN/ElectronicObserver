@@ -70,7 +70,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		LoadProgress();
 	}
 
-	private string CustomTrackerPath => Path.Join(TranslationManager.WorkingFolder, "QuestTrackers.json");
+	private string CustomTrackerPath => Path.Join(DataAndTranslationManager.DataFolder, "QuestTrackers.json");
 	private string ProgressPath => Path.Combine("Record", "SystemQuestProgress.json");
 
 	private void LoadExistingTrackers()

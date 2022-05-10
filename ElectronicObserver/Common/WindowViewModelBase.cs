@@ -25,4 +25,14 @@ public abstract class WindowViewModelBase : ObservableObject
 		FontSize = config.UI.MainFont.FontData.ToSize();
 		FontBrush = config.UI.ForeColor.ToBrush();
 	}
+
+	public virtual void Loaded()
+	{
+
+	}
+
+	public virtual void Closed()
+	{
+
+	}
 }

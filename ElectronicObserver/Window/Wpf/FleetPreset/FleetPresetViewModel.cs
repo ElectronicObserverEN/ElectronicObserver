@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
@@ -31,7 +32,7 @@ public class FleetPresetItemViewModel : ObservableObject
 
 	public FleetPresetItemViewModel()
 	{
-		FormFleetPreset = App.Current.Services.GetService<FormFleetPresetTranslationViewModel>()!;
+		FormFleetPreset = Ioc.Default.GetService<FormFleetPresetTranslationViewModel>()!;
 
 		FleetPresetItemControlViewModel CreateDefaultLabel()
 		{
@@ -153,7 +154,7 @@ public class FleetPresetViewModel : AnchorableViewModel
 	public FleetPresetViewModel() : base("Presets", "FleetPreset",
 		ImageSourceIcons.GetIcon(IconContent.FormFleetPreset))
 	{
-		FormFleetPreset = App.Current.Services.GetService<FormFleetPresetTranslationViewModel>()!;
+		FormFleetPreset = Ioc.Default.GetService<FormFleetPresetTranslationViewModel>()!;
 
 		Title = FormFleetPreset.Title;
 		FormFleetPreset.PropertyChanged += (_, _) => Title = FormFleetPreset.Title;

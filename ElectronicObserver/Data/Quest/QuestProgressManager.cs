@@ -96,7 +96,7 @@ public sealed class QuestProgressManager : DataStorage
 		ao.ApiReqMap_Next.ResponseReceived += NextSortie;
 
 		ao.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
-		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived += BattleFinished;
+		ao.ApiReqCombinedBattle_BattleResult.ResponseReceived += BattleFinished;
 
 		ao.ApiReqPractice_BattleResult.ResponseReceived += PracticeFinished;
 
@@ -110,13 +110,13 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqKousyou_CreateShip.RequestReceived += ShipConstructed;
 
-		ao.ApiReqKousyou_Destroyship.RequestReceived += ShipDestructed;
+		ao.ApiReqKousyou_DestroyShip.RequestReceived += ShipDestructed;
 
 		// 装備廃棄はイベント前に装備データが削除されてしまうので destroyitem2 から直接呼ばれる
 
 		ao.ApiReqKousyou_RemodelSlot.ResponseReceived += EquipmentRemodeled;
 
-		ao.ApiReqKaisou_Powerup.ResponseReceived += Modernized;
+		ao.ApiReqKaisou_PowerUp.ResponseReceived += Modernized;
 
 		ao.ApiPort_Port.ResponseReceived += TimerSave;
 
@@ -136,7 +136,7 @@ public sealed class QuestProgressManager : DataStorage
 		ao.ApiReqMap_Next.ResponseReceived -= NextSortie;
 
 		ao.ApiReqSortie_BattleResult.ResponseReceived -= BattleFinished;
-		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived -= BattleFinished;
+		ao.ApiReqCombinedBattle_BattleResult.ResponseReceived -= BattleFinished;
 
 		ao.ApiReqPractice_BattleResult.ResponseReceived -= PracticeFinished;
 
@@ -150,13 +150,13 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqKousyou_CreateShip.RequestReceived -= ShipConstructed;
 
-		ao.ApiReqKousyou_Destroyship.ResponseReceived -= ShipDestructed;
+		ao.ApiReqKousyou_DestroyShip.ResponseReceived -= ShipDestructed;
 
 		// 装備廃棄は(ry
 
 		ao.ApiReqKousyou_RemodelSlot.ResponseReceived -= EquipmentRemodeled;
 
-		ao.ApiReqKaisou_Powerup.ResponseReceived -= Modernized;
+		ao.ApiReqKaisou_PowerUp.ResponseReceived -= Modernized;
 
 		ao.ApiPort_Port.ResponseReceived -= TimerSave;
 

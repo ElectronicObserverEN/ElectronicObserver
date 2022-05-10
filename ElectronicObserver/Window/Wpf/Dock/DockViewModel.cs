@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -135,7 +136,7 @@ public class DockViewModel : AnchorableViewModel
 	public DockViewModel() : base("Dock", "Dock",
 		ImageSourceIcons.GetIcon(IconContent.FormDock))
 	{
-		FormDock = App.Current.Services.GetService<FormDockTranslationViewModel>()!;
+		FormDock = Ioc.Default.GetService<FormDockTranslationViewModel>()!;
 
 		Title = FormDock.Title;
 		FormDock.PropertyChanged += (_, _) => Title = FormDock.Title;
@@ -151,10 +152,10 @@ public class DockViewModel : AnchorableViewModel
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
-		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
+		o.ApiReqNyukyo_SpeedChange.RequestReceived += Updated;
 
 		o.ApiPort_Port.ResponseReceived += Updated;
-		o.ApiGetMember_Ndock.ResponseReceived += Updated;
+		o.ApiGetMember_NDock.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;

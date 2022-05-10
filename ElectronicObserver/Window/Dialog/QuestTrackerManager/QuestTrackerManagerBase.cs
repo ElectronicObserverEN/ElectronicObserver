@@ -41,13 +41,13 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		ao.ApiReqMap_Next.ResponseReceived += NextSortie;
 
 		ao.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
-		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived += BattleFinished;
+		ao.ApiReqCombinedBattle_BattleResult.ResponseReceived += BattleFinished;
 
 		ao.ApiReqSortie_BattleResult.ResponseReceived += BossBattleFinished;
-		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived += BossBattleFinished;
+		ao.ApiReqCombinedBattle_BattleResult.ResponseReceived += BossBattleFinished;
 
 		ao.ApiReqSortie_BattleResult.ResponseReceived += MapClearedFirstTime;
-		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived += MapClearedFirstTime;
+		ao.ApiReqCombinedBattle_BattleResult.ResponseReceived += MapClearedFirstTime;
 
 		ao.ApiReqPractice_BattleResult.ResponseReceived += PracticeFinished;
 

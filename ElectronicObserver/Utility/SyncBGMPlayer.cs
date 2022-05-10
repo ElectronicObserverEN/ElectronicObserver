@@ -138,9 +138,9 @@ public sealed class SyncBGMPlayer
 		o.ApiReqSortie_Battle.ResponseReceived += PlayBattleDay;
 		o.ApiReqCombinedBattle_Battle.ResponseReceived += PlayBattleDay;
 		o.ApiReqCombinedBattle_BattleWater.ResponseReceived += PlayBattleDay;
-		o["api_req_combined_battle/ec_battle"].ResponseReceived += PlayBattleDay;
-		o["api_req_combined_battle/each_battle"].ResponseReceived += PlayBattleDay;
-		o["api_req_combined_battle/each_battle_water"].ResponseReceived += PlayBattleDay;
+		o.ApiReqCombinedBattle_EcBattle.ResponseReceived += PlayBattleDay;
+		o.ApiReqCombinedBattle_EachBattle.ResponseReceived += PlayBattleDay;
+		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += PlayBattleDay;
 
 		o.ApiReqBattleMidnight_Battle.ResponseReceived += PlayBattleNight;
 		o.ApiReqBattleMidnight_SpMidnight.ResponseReceived += PlayBattleNight;
@@ -148,32 +148,32 @@ public sealed class SyncBGMPlayer
 		o.ApiReqSortie_LdShooting.ResponseReceived += PlayBattleNight;
 		o.ApiReqCombinedBattle_MidnightBattle.ResponseReceived += PlayBattleNight;
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += PlayBattleNight;
-		o["api_req_combined_battle/ec_midnight_battle"].ResponseReceived += PlayBattleNight;
-		o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += PlayBattleNight;
-		o["api_req_combined_battle/ld_shooting"].ResponseReceived += PlayBattleNight;
+		o.ApiReqCombinedBattle_EcMidnightBattle.ResponseReceived += PlayBattleNight;
+		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += PlayBattleNight;
+		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += PlayBattleNight;
 
 		o.ApiReqSortie_AirBattle.ResponseReceived += PlayBattleAir;
 		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += PlayBattleAir;
 		o.ApiReqSortie_LdAirBattle.ResponseReceived += PlayBattleAir;
-		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += PlayBattleAir;
+		o.ApiReqCombinedBattle_LdAirBattle.ResponseReceived += PlayBattleAir;
 
-		o["api_req_practice/battle"].ResponseReceived += PlayPracticeDay;
+		o.ApiReqPractice_Battle.ResponseReceived += PlayPracticeDay;
 
-		o["api_req_practice/midnight_battle"].ResponseReceived += PlayPracticeNight;
+		o.ApiReqPractice_MidnightBattle.ResponseReceived += PlayPracticeNight;
 
 		o.ApiReqSortie_BattleResult.ResponseReceived += PlayBattleResult;
-		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += PlayBattleResult;
+		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += PlayBattleResult;
 		o.ApiReqPractice_BattleResult.ResponseReceived += PlayBattleResult;
 
-		o["api_get_member/record"].ResponseReceived += PlayRecord;
+		o.ApiGetMember_Record.ResponseReceived += PlayRecord;
 
-		o["api_get_member/payitem"].ResponseReceived += PlayItem;
+		o.ApiGetMember_PayItem.ResponseReceived += PlayItem;
 
 		o.ApiGetMember_QuestList.ResponseReceived += PlayQuest;
 
-		o["api_get_member/picture_book"].ResponseReceived += PlayAlbum;
+		o.ApiGetMember_PictureBook.ResponseReceived += PlayAlbum;
 
-		o["api_req_kousyou/remodel_slotlist"].ResponseReceived += PlayImprovementArsenal;
+		o.ApiReqKousyou_RemodelSlotList.ResponseReceived += PlayImprovementArsenal;
 
 		#endregion
 

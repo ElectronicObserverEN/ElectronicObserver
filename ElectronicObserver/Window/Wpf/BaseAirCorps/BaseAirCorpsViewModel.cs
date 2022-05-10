@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
@@ -141,7 +142,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 
 	public BaseAirCorpsItemViewModel(ICommand copyOrganizationCommand, ICommand displayRelocatedEquipmentsCommand)
 	{
-		FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
+		FormBaseAirCorps = Ioc.Default.GetService<FormBaseAirCorpsTranslationViewModel>()!;
 
 		CopyOrganizationCommand = copyOrganizationCommand;
 		DisplayRelocatedEquipmentsCommand = displayRelocatedEquipmentsCommand;
@@ -433,7 +434,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 	public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps",
 		ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
 	{
-		FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
+		FormBaseAirCorps = Ioc.Default.GetService<FormBaseAirCorpsTranslationViewModel>()!;
 
 		Title = FormBaseAirCorps.Title;
 		FormBaseAirCorps.PropertyChanged += (_, _) => Title = FormBaseAirCorps.Title;
@@ -450,13 +451,13 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 
 		api.ApiPort_Port.ResponseReceived += Updated;
 		api.ApiGetMember_MapInfo.ResponseReceived += Updated;
-		api["api_get_member/base_air_corps"].ResponseReceived += Updated;
-		api["api_req_air_corps/change_deployment_base"].ResponseReceived += Updated;
-		api["api_req_air_corps/change_name"].ResponseReceived += Updated;
-		api["api_req_air_corps/set_action"].ResponseReceived += Updated;
+		api.ApiGetMember_BaseAirCorps.ResponseReceived += Updated;
+		api.ApiReqAirCorps_ChangeDeploymentBase.ResponseReceived += Updated;
+		api.ApiReqAirCorps_ChangeName.ResponseReceived += Updated;
+		api.ApiReqAirCorps_SetAction.ResponseReceived += Updated;
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;
-		api["api_req_air_corps/expand_base"].ResponseReceived += Updated;
+		api.ApiReqAirCorps_ExpandBase.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 

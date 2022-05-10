@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
@@ -21,7 +22,7 @@ public class FleetStateViewModel : ObservableObject
 
 	public FleetStateViewModel()
 	{
-		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		StateLabels = new();
 	}

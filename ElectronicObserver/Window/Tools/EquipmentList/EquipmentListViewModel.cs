@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -40,7 +41,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 
 	public EquipmentListViewModel()
 	{
-		DialogEquipmentList = App.Current.Services.GetService<DialogEquipmentListTranslationViewModel>()!;
+		DialogEquipmentList = Ioc.Default.GetService<DialogEquipmentListTranslationViewModel>()!;
 
 		PropertyChanged += (sender, args) =>
 		{

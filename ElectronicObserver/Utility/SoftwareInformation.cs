@@ -48,7 +48,7 @@ public static class SoftwareInformation
 
 	private static Uri Uri { get; } =
 		new Uri(
-			"http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
+			"https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/update.json");
 
 	public static void CheckUpdate()
 	{

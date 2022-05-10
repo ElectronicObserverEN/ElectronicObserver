@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -59,7 +60,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	public DevelopmentRecordViewerViewModel()
 	{
 		Record = RecordManager.Instance.Development;
-		DialogDevelopmentRecordViewer = App.Current.Services.GetService<DialogDevelopmentRecordViewerTranslationViewModel>()!;
+		DialogDevelopmentRecordViewer = Ioc.Default.GetService<DialogDevelopmentRecordViewerTranslationViewModel>()!;
 
 		Searcher.WorkerSupportsCancellation = true;
 		Searcher.DoWork += Searcher_DoWork;

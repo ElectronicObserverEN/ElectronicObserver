@@ -267,4 +267,7 @@
   <data name="ListOfOwnedItems" xml:space="preserve">
     <value>保有アイテム一覧</value>
   </data>
+  <data name="WrappingOffset" xml:space="preserve">
+    <value>折り返しオフセット</value>
+  </data>
 </root>

@@ -40,8 +40,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 	private string ConditionDisplay(IConditionViewModel? condition) => condition switch
 	{
 		null => Properties.Window.Dialog.QuestTrackerManager.UnknownCondition,
-		_ when GroupOperator is Operator.Or => condition.Display,
-		GroupConditionViewModel { GroupOperator: Operator.Or } => $"({condition.Display})",
+		GroupConditionViewModel => $"({condition.Display})",
 		_ => condition.Display
 	};
 

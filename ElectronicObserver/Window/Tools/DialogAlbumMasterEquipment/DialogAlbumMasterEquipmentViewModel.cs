@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -61,7 +62,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		Equipment = AllEquipment.ToList();
 
 		DialogAlbumMasterEquipment =
-			App.Current.Services.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
+			Ioc.Default.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
 
 		PropertyChanged += (sender, args) =>
 		{

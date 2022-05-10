@@ -641,6 +641,10 @@ public partial class DialogShipGroupFilter : Form
 					RightOperand_NumericUpDown.Minimum = 0;
 					RightOperand_NumericUpDown.Maximum = 5;
 					break;
+				case ".MasterShip.SortID":
+					RightOperand_NumericUpDown.Minimum = 0;
+					RightOperand_NumericUpDown.Maximum = 99999;
+					break;
 				default:
 					RightOperand_NumericUpDown.Minimum = 0;
 					RightOperand_NumericUpDown.Maximum = 9999;

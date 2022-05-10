@@ -8,7 +8,7 @@ namespace ElectronicObserver.Data.Translation;
 
 public class EquipmentTranslationData : TranslationBase
 {
-	private string DefaultFilePath = TranslationManager.WorkingFolder + @"\equipment.json";
+	private string DefaultFilePath = DataAndTranslationManager.TranslationFolder + @"\equipment.json";
 
 	private Dictionary<string, string> EquipmentList { get; set; } = new();
 	private Dictionary<string, string> TypeList { get; set; } = new();

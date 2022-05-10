@@ -148,6 +148,7 @@ public class ExpressionData : ICloneable
 		{ ".MasterShip.RemodelAfterShipID", ExpressionDataRes.RemodelAfterShipID },
 		//マスターのパラメータ系もおそらく意味がないので省略		
 		{ ".MasterShip.EquippableCategories", ExpressionDataRes.EquippableCategories },
+		{ ".MasterShip.SortID", Properties.Window.FormShipGroup.SortId },
 	};
 
 	private static Dictionary<string, Type> ExpressionTypeTable = new Dictionary<string, Type>();

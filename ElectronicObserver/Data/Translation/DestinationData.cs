@@ -10,7 +10,7 @@ namespace ElectronicObserver.Data.Translation;
 
 public class DestinationData : TranslationBase
 {
-	private string DefaultFilePath = TranslationManager.WorkingFolder + @"\destination.json";
+	private string DefaultFilePath = DataAndTranslationManager.DataFolder + @"\destination.json";
 
 	private IDDictionary<Destinations> DestinationList;
 

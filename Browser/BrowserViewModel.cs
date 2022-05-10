@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using Browser.ExtraBrowser;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using Grpc.Core;
 using MagicOnion.Client;
@@ -127,7 +128,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	{
 		// System.Diagnostics.Debugger.Launch();
 
-		FormBrowser = App.Current.Services.GetService<FormBrowserTranslationViewModel>()!;
+		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
 
 		Host = host;
 		Port = port;

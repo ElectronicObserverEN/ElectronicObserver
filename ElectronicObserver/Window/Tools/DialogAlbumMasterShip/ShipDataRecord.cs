@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
@@ -508,7 +509,7 @@ public partial class ShipDataRecord : ObservableObject
 	public ShipDataRecord(IShipDataMaster ship)
 	{
 		Ship = ship;
-		DialogAlbumMasterShip = App.Current.Services.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
+		DialogAlbumMasterShip = Ioc.Default.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
 
 		DisplayedMessage = Ship.MessageAlbum switch
 		{

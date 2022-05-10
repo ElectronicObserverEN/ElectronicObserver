@@ -183,7 +183,7 @@ public class ConstructionRecord : RecordBase
 		APIObserver ao = APIObserver.Instance;
 
 		ao.ApiReqKousyou_CreateShip.RequestReceived += ConstructionStart;
-		ao["api_get_member/kdock"].ResponseReceived += ConstructionEnd;
+		ao.ApiGetMember_KDock.ResponseReceived += ConstructionEnd;
 	}
 
 

@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Resource;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,7 @@ public class FormQuestViewModel : WinformsHostViewModel
 	public FormQuestViewModel() : base("Quests", "Quest",
 		ImageSourceIcons.GetIcon(IconContent.FormQuest))
 	{
-		FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
+		FormQuest = Ioc.Default.GetService<FormQuestTranslationViewModel>()!;
 
 		Title = FormQuest.Title;
 		FormQuest.PropertyChanged += (_, _) => Title = FormQuest.Title;

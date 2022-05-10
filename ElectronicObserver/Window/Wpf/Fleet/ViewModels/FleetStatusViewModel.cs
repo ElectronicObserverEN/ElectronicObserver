@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
@@ -28,7 +29,7 @@ public partial class FleetStatusViewModel : ObservableObject
 
 	public FleetStatusViewModel(int fleetId)
 	{
-		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		FleetId = fleetId;
 

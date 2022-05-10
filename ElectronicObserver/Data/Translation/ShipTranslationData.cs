@@ -9,7 +9,7 @@ namespace ElectronicObserver.Data.Translation;
 
 public class ShipTranslationData : TranslationBase
 {
-	private string FilePath = TranslationManager.WorkingFolder + @"\ship.json";
+	private string FilePath = DataAndTranslationManager.TranslationFolder + @"\ship.json";
 
 	private Dictionary<string, string> ShipList;
 	private Dictionary<string, string> TypeList;

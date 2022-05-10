@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
@@ -137,7 +138,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	public BattleViewModel() : base("Battle", "Battle",
 		ImageSourceIcons.GetIcon(IconContent.FormBattle))
 	{
-		FormBattle = App.Current.Services.GetService<FormBattleTranslationViewModel>()!;
+		FormBattle = Ioc.Default.GetService<FormBattleTranslationViewModel>()!;
 
 		Title = FormBattle.Title;
 		FormBattle.PropertyChanged += (_, _) => Title = FormBattle.Title;
@@ -199,16 +200,16 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += Updated;
 		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += Updated;
 		o.ApiReqCombinedBattle_BattleWater.ResponseReceived += Updated;
-		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += Updated;
-		o["api_req_combined_battle/ec_battle"].ResponseReceived += Updated;
-		o["api_req_combined_battle/ec_midnight_battle"].ResponseReceived += Updated;
-		o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += Updated;
-		o["api_req_combined_battle/each_battle"].ResponseReceived += Updated;
-		o["api_req_combined_battle/each_battle_water"].ResponseReceived += Updated;
-		o["api_req_combined_battle/ld_shooting"].ResponseReceived += Updated;
-		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += Updated;
-		o["api_req_practice/battle"].ResponseReceived += Updated;
-		o["api_req_practice/midnight_battle"].ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_LdAirBattle.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_EcBattle.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_EcMidnightBattle.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_EachBattle.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += Updated;
+		o.ApiReqPractice_Battle.ResponseReceived += Updated;
+		o.ApiReqPractice_MidnightBattle.ResponseReceived += Updated;
 		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;

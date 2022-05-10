@@ -52,19 +52,19 @@ public partial class FormInformation : DockContent
 
 		o.ApiPort_Port.ResponseReceived += Updated;
 		o.ApiReqMember_GetPracticeEnemyInfo.ResponseReceived += Updated;
-		o["api_get_member/picture_book"].ResponseReceived += Updated;
+		o.ApiGetMember_PictureBook.ResponseReceived += Updated;
 		o.ApiGetMember_MapInfo.ResponseReceived += Updated;
-		o["api_get_member/mission"].ResponseReceived += Updated;
+		o.ApiGetMember_Mission.ResponseReceived += Updated;
 		o.ApiReqMission_Result.ResponseReceived += Updated;
 		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
 		o.ApiReqSortie_BattleResult.ResponseReceived += Updated;
-		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += Updated;
+		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += Updated;
 		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o.ApiReqMap_Next.ResponseReceived += Updated;
-		o["api_req_practice/battle"].ResponseReceived += Updated;
+		o.ApiReqPractice_Battle.ResponseReceived += Updated;
 		o.ApiGetMember_SortieConditions.ResponseReceived += Updated;
-		o["api_req_mission/start"].RequestReceived += Updated;
+		o.ApiReqMission_Start.RequestReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
@@ -554,8 +554,9 @@ public partial class FormInformation : DockContent
 
 	private void CheckSallyArea()
 	{
-		if (KCDatabase.Instance.Ships.Values.First().SallyArea == -1)   // そもそも札情報がなければやる必要はない
-			return;
+		// only check if there's any event maps
+		// this function shouldn't get called outside of events so the check should be pointless
+		// if (KCDatabase.Instance.MapArea.Values.Any(m => m.ID > 20)) return;
 
 		IEnumerable<IEnumerable<IShipData>> group;
 

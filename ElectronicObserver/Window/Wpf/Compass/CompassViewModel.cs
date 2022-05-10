@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
@@ -64,7 +65,7 @@ public class CompassViewModel : AnchorableViewModel
 		ImageSourceIcons.GetIcon(IconContent.FormCompass))
 	{
 		Db = KCDatabase.Instance;
-		FormCompass = App.Current.Services.GetService<FormCompassTranslationViewModel>()!;
+		FormCompass = Ioc.Default.GetService<FormCompassTranslationViewModel>()!;
 
 		Title = FormCompass.Title;
 		FormCompass.PropertyChanged += (_, _) => Title = FormCompass.Title;
@@ -87,13 +88,13 @@ public class CompassViewModel : AnchorableViewModel
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_BattleWater.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
-		o["api_req_practice/battle"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdAirBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EachBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += BattleStarted;
+		o.ApiReqPractice_Battle.ResponseReceived += BattleStarted;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
@@ -575,15 +576,13 @@ public class CompassViewModel : AnchorableViewModel
 			strs.AddLast(itemName + " x " + item.Amount);
 		}
 
-		if (!strs.Any())
-		{
-			return FormCompass.None;
+		if (!strs.Any()) return FormCompass.None;
 
-		}
-		else
-		{
-			return string.Join(", ", strs);
-		}
+		string materialInfo = string.Join(", ", strs);
+
+		Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.DestinationID} {materialInfo}");
+
+		return materialInfo;
 	}
 
 	private void BattleStarted(string apiname, dynamic data)

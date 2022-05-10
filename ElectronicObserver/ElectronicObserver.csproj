@@ -38,9 +38,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.1.4.0</AssemblyVersion>
-		<FileVersion>5.1.4.0</FileVersion>
-		<Version>5.1.4.0</Version>
+		<AssemblyVersion>5.1.4.2</AssemblyVersion>
+		<FileVersion>5.1.4.2</FileVersion>
+		<Version>5.1.4.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -361,6 +361,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Menus.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EventLockPlanner.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Wpf\ShipGroupWinforms\FormShipGroup.cs" />
 		<None Include=".editorconfig" />
 		<None Update="Assets.zip">
@@ -411,24 +416,14 @@
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\ThemeVS2012.csproj" />
 		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
-		<ProjectReference
-			Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj"
-			OutputItemType="Analyzer"
-			ReferenceOutputAssembly="false"
-			/>
+		<ProjectReference Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
-	</ItemGroup>
-	<!--
-	dotnet 6.0.2 sdk bug workaround
-	https://github.com/dotnet/core/issues/7176
-	-->
-	<ItemGroup>
-		<FrameworkReference Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms" TargetingPackVersion="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
+		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
 		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.2.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -436,6 +431,12 @@
 		<PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
 		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.4" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
@@ -734,6 +735,10 @@
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>Menus.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
 		<Page Update="ViewModels\Translations\ImageTextControl.xaml">
@@ -753,5 +758,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Common\" />
+		<Folder Include="Database\" />
 	</ItemGroup>
 </Project>

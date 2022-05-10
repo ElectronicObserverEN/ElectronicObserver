@@ -619,6 +619,11 @@
 						<Image Source="{Binding QuestImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem
 				Height="Auto"

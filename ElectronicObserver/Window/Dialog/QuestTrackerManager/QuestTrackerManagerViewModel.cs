@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels.Translations;
@@ -24,7 +25,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 
 	public QuestTrackerManagerViewModel()
 	{
-		Translation = App.Current.Services.GetService<QuestTrackerManagerTranslationViewModel>()!;
+		Translation = Ioc.Default.GetService<QuestTrackerManagerTranslationViewModel>()!;
 
 		Quests = KCDatabase.Instance.Quest.Quests.Values
 			.Select(q => new QuestModel(q.ID));

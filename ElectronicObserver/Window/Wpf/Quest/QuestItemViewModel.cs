@@ -15,6 +15,12 @@ public class QuestItemViewModel
 	public string QuestDescription => Quest.Description;
 
 	public bool? QuestView_State { get; set; }
+	public int StateSort => QuestView_State switch
+	{
+		null => 3,
+		true => 2,
+		false => 1,
+	};
 	public string QuestView_StateToolTip { get; set; } = "";
 
 	public int QuestView_Type { get; set; }

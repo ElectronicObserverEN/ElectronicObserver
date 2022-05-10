@@ -213,10 +213,10 @@ public partial class FormDock : DockContent
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
-		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
+		o.ApiReqNyukyo_SpeedChange.RequestReceived += Updated;
 
 		o.ApiPort_Port.ResponseReceived += Updated;
-		o.ApiGetMember_Ndock.ResponseReceived += Updated;
+		o.ApiGetMember_NDock.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}

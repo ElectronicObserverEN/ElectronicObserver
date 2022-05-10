@@ -8,7 +8,7 @@ namespace ElectronicObserver.Data.Translation;
 
 public class OperationData : TranslationBase
 {
-	public string DefaultFilePath = TranslationManager.WorkingFolder + @"\operation.json";
+	public string DefaultFilePath = DataAndTranslationManager.TranslationFolder + @"\operation.json";
 
 	private Dictionary<string, string> MapList;
 	private Dictionary<string, string> FleetList;

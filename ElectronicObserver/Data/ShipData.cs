@@ -438,8 +438,9 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 	/// <summary>
 	/// 出撃海域
+	/// 0 - no lock, > 0 - lock ID
 	/// </summary>
-	public int SallyArea => RawData.api_sally_area() ? (int)RawData.api_sally_area : -1;
+	public int SallyArea => RawData.api_sally_area() ? (int)RawData.api_sally_area : 0;
 
 
 

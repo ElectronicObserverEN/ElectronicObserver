@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.ViewModels.Translations;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +15,7 @@ public class ShipResourceViewModel : ObservableObject
 
 	public ShipResourceViewModel()
 	{
-		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		BarFuel.PropertyChanged += Bar_PropertyChanged;
 		BarAmmo.PropertyChanged += Bar_PropertyChanged;

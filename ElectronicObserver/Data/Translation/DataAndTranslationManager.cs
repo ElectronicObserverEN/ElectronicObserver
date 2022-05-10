@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.IO;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Data.Translation;
 
-public class TranslationManager
+public class DataAndTranslationManager
 {
-	public static string WorkingFolder = SoftwareUpdater.AppDataFolder + "\\Translations";
+	public static string WorkingFolder => Path.Combine(SoftwareUpdater.AppDataFolder, "DataAndTranslations");
+
+	public static string DataFolder => Path.Combine(WorkingFolder, "Data");
+	public static string TranslationFolder => Path.Combine(WorkingFolder, "Translations", CurrentTranslationLanguage);
+
+	public static string CurrentTranslationLanguage => "en-US";
+
 	public DestinationData Destination { get; private set; }
 	public QuestTranslationData Quest { get; private set; }
 	public EquipmentTranslationData Equipment { get; private set; }
@@ -16,7 +19,7 @@ public class TranslationManager
 	public ShipTranslationData Ship { get; private set; }
 	public OperationData Operation { get; private set; }
 
-	public TranslationManager()
+	public DataAndTranslationManager()
 	{
 		Initialize();
 	}

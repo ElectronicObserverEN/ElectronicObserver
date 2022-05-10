@@ -50,15 +50,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 	</ItemGroup>
-	<!--
-	dotnet 6.0.2 sdk bug workaround
-	https://github.com/dotnet/core/issues/7176
-	-->
-	<ItemGroup>
-		<FrameworkReference
-			Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms"
-			TargetingPackVersion="6.0.0" />
-	</ItemGroup>
 	<ItemGroup>
 		<BootstrapperPackage Include=".NETFramework,Version=v4.5">
 			<Visible>False</Visible>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -145,7 +146,7 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 	{
 		Db = KCDatabase.Instance;
 
-		FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
+		FormShipGroup = Ioc.Default.GetService<FormShipGroupTranslationViewModel>()!;
 
 		APIObserver o = APIObserver.Instance;
 
