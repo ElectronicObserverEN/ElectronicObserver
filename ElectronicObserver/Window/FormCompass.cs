@@ -653,13 +653,13 @@ public partial class FormCompass : DockContent
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_BattleWater.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
-		o["api_req_practice/battle"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdAirBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EachBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += BattleStarted;
+		o.ApiReqPractice_Battle.ResponseReceived += BattleStarted;
 
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;

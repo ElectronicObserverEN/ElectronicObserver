@@ -236,4 +236,7 @@ Monthly: {2:+##;-##;±0}</value>
   <data name="ListOfOwnedItems" xml:space="preserve">
     <value>List of owned items</value>
   </data>
+  <data name="WrappingOffset" xml:space="preserve">
+    <value>Wrapping offset</value>
+  </data>
 </root>

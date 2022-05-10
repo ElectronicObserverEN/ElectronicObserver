@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
 using ElectronicObserver.Data;
@@ -83,7 +84,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	public QuestViewModel() : base("Quest", "Quest", ImageSourceIcons.GetIcon(IconContent.FormQuest))
 	{
-		FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
+		FormQuest = Ioc.Default.GetService<FormQuestTranslationViewModel>()!;
 		View = CollectionViewSource.GetDefaultView(Quests);
 
 		Title = FormQuest.Title;
@@ -391,12 +392,12 @@ public partial class QuestViewModel : AnchorableViewModel
 					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID);
 					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
 
-					if (tracker is not null)
+					if (tracker is { Tasks.Count: > 0 })
 					{
 						value = tracker.ProgressDisplay;
 						tag = tracker.Progress;
 					}
-					else if (systemTracker is not null)
+					else if (systemTracker is { Tasks.Count: > 0 })
 					{
 						value = systemTracker.ProgressDisplay;
 						tag = systemTracker.Progress;

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,11 +21,19 @@ namespace ElectronicObserver.Utility;
 internal class SoftwareUpdater
 {
 	internal static string AppDataFolder =>
-		Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
+		Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ElectronicObserver");
 
 	private static bool WaitForRestart { get; set; }
 	public static UpdateData CurrentVersion { get; set; } = new UpdateData();
 	public static UpdateData LatestVersion { get; set; } = new UpdateData();
+
+	private static Uri DataUpdateURL => new($"{Configuration.Config.Control.UpdateRepoURL}/update.json");
+
+	private static Uri TranslationUpdateURL => new($"{Configuration.Config.Control.UpdateRepoURL}/Translations/{DataAndTranslationManager.CurrentTranslationLanguage}/update.json");
+
+	private static string DataUpdateFile => Path.Combine(DataAndTranslationManager.WorkingFolder, "update.json");
+
+	private static string TranslationUpdateFile => Path.Combine(DataAndTranslationManager.TranslationFolder, "update.json");
 
 	/// <summary>
 	/// Perform software update in background 
@@ -91,33 +101,12 @@ internal class SoftwareUpdater
 	/// </summary>
 	public static async Task CheckUpdateAsync()
 	{
-		Directory.CreateDirectory(TranslationManager.WorkingFolder);
-
-		var updateFile = TranslationManager.WorkingFolder + $"\\update.json";
+		Directory.CreateDirectory(Path.GetDirectoryName(TranslationUpdateFile)!);
+		Directory.CreateDirectory(Path.Combine(Path.GetDirectoryName(DataUpdateFile)!, "Data"));
 
 		try
 		{
-			Uri UpdateUrl = new Uri(string.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
-
-			using var client = WebRequest.Create(UpdateUrl).GetResponse();
-			var updateData = client.GetResponseStream();
-			if (updateData != null)
-			{
-				var json = JsonObject.Parse(updateData);
-				LatestVersion = ParseUpdate(json);
-			}
-
-			if (File.Exists(updateFile) == false && updateData != null)
-			{
-				using var file = File.Create(updateFile);
-				updateData.CopyTo(file);
-				CurrentVersion = new UpdateData();
-			}
-			else
-			{
-				var fileContent = File.ReadAllText(updateFile);
-				CurrentVersion = ParseUpdate(JsonObject.Parse(fileContent));
-			}
+			await ReadRemoteAndLocalUpdateData();
 
 			/*if (Configuration.Config.Life.CheckUpdateInformation == true && SoftwareInformation.UpdateTime < LatestVersion.BuildDate)
 			{
@@ -129,25 +118,31 @@ internal class SoftwareUpdater
 			var needReload = false;
 
 			if (CurrentVersion.Equipment != LatestVersion.Equipment)
-				downloadList.Add("equipment.json");
+				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "equipment.json"));
+
 			if (CurrentVersion.Expedition != LatestVersion.Expedition)
-				downloadList.Add("expedition.json");
+				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "expedition.json"));
+
 			if (CurrentVersion.Destination != LatestVersion.Destination)
-				downloadList.Add("destination.json");
+				downloadList.Add(Path.Combine("Data", "destination.json"));
+
 			if (CurrentVersion.Operation != LatestVersion.Operation)
-				downloadList.Add("operation.json");
+				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "operation.json"));
+
 			if (CurrentVersion.Quest != LatestVersion.Quest)
-				downloadList.Add("quest.json");
+				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "quest.json"));
+
 			if (CurrentVersion.Ship != LatestVersion.Ship)
-				downloadList.Add("ship.json");
+				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "ship.json"));
+
 			if (CurrentVersion.QuestTrackers < LatestVersion.QuestTrackers)
 			{
-				downloadList.Add("QuestTrackers.json");
+				downloadList.Add(Path.Combine("Data", "QuestTrackers.json"));
 			}
 
-			if (downloadList.Count > 0)
-				needReload = true;
+			needReload = downloadList.Any();
 			downloadList.Add("update.json");
+			downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "update.json"));
 
 			var taskList = new List<Task>();
 			var filenames = downloadList.ToArray();
@@ -170,12 +165,53 @@ internal class SoftwareUpdater
 		{
 			// file exist but isn't valid json
 			// file gets corrupted somehow?
-			File.Delete(updateFile);
-			CheckUpdateAsync();
+			File.Delete(TranslationUpdateFile);
+			File.Delete(DataUpdateFile);
+			await CheckUpdateAsync();
 		}
 		catch (Exception e)
 		{
 			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData + e);
+		}
+	}
+
+	/// <summary>
+	/// Read remote (EO repository) and local update data to compare them later and download the required updates
+	/// </summary>
+	/// <returns></returns>
+	private static async Task ReadRemoteAndLocalUpdateData()
+	{
+		using HttpClient client = new HttpClient();
+		using HttpResponseMessage dataUpdateResponse = await client.GetAsync(DataUpdateURL);
+		using HttpResponseMessage translationUpdateResponse = await client.GetAsync(TranslationUpdateURL);
+
+		string dataUpdateData = await dataUpdateResponse.Content.ReadAsStringAsync();
+		string translationUpdateData = await translationUpdateResponse.Content.ReadAsStringAsync();
+
+		bool updateDataReceived = !string.IsNullOrEmpty(dataUpdateData) && !string.IsNullOrEmpty(translationUpdateData);
+
+		if (updateDataReceived)
+		{
+			var jsonData = JsonObject.Parse(dataUpdateData);
+			var jsonTranslations = JsonObject.Parse(translationUpdateData);
+
+			LatestVersion = ParseUpdate(jsonData, jsonTranslations);
+		}
+
+		bool filesDoesntExist = !File.Exists(DataUpdateFile) || !File.Exists(TranslationUpdateFile);
+
+		if (filesDoesntExist && updateDataReceived)
+		{
+			await File.WriteAllTextAsync(DataUpdateFile, dataUpdateData);
+			await File.WriteAllTextAsync(TranslationUpdateFile, translationUpdateData);
+
+			CurrentVersion = new UpdateData();
+		}
+		else
+		{
+			string dataFileContent = File.ReadAllText(DataUpdateFile);
+			string translationFileContent = File.ReadAllText(TranslationUpdateFile);
+			CurrentVersion = ParseUpdate(JsonObject.Parse(dataFileContent), JsonObject.Parse(translationFileContent));
 		}
 	}
 
@@ -185,7 +221,7 @@ internal class SoftwareUpdater
 		{
 			using var client = new WebClient();
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-			var url = @"https://github.com/gre4bee/ryuukitsune.github.io/raw/master/Translations/en-US/EOUpdater.exe";
+			var url = @"https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/Data/EOUpdater.exe";
 			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
 			client.DownloadFile(url, updaterFile);
@@ -215,31 +251,31 @@ internal class SoftwareUpdater
 		}
 	}
 
-	internal static UpdateData ParseUpdate(dynamic json)
+	internal static UpdateData ParseUpdate(dynamic dataJson, dynamic translationJson)
 	{
 		var data = new UpdateData();
 		try
 		{
-			DateTime buildDate = DateTimeHelper.CSVStringToTime(json.bld_date);
-			var appVersion = (string)json.ver;
-			var note = (string)json.note;
-			var downloadUrl = (string)json.url;
+			DateTime buildDate = DateTimeHelper.CSVStringToTime(dataJson.bld_date);
+			var appVersion = (string)dataJson.ver;
+			var note = (string)dataJson.note;
+			var downloadUrl = (string)dataJson.url;
 
-			var eqVersion = (string)json.tl_ver.equipment;
-			var expedVersion = (string)json.tl_ver.expedition;
-			string destVersion = json.tl_ver.nodes.ToString();
-			var opVersion = (string)json.tl_ver.operation;
-			var questVersion = (string)json.tl_ver.quest;
-			var shipVersion = (string)json.tl_ver.ship;
+			var eqVersion = (string)translationJson.equipment;
+			var expedVersion = (string)translationJson.expedition;
+			string destVersion = dataJson.nodes.ToString();
+			var opVersion = (string)translationJson.operation;
+			var questVersion = (string)translationJson.quest;
+			var shipVersion = (string)translationJson.ship;
 
-			int questTrackersVersion = json.QuestTrackers() switch
+			int questTrackersVersion = dataJson.QuestTrackers() switch
 			{
-				true => (int)json.QuestTrackers,
+				true => (int)dataJson.QuestTrackers,
 				_ => 0
 			};
 
-			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
-			var eventState = (MaintenanceState)(int)json.event_state;
+			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
+			var eventState = (MaintenanceState)(int)dataJson.event_state;
 
 			data = new UpdateData
 			{
@@ -267,12 +303,16 @@ internal class SoftwareUpdater
 
 	internal static async Task DownloadData(string filename)
 	{
-		var path = TranslationManager.WorkingFolder + $"\\{filename}";
-		var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}";
+		string path = Path.Combine(DataAndTranslationManager.WorkingFolder, filename);
+		string  url = Path.Combine(Configuration.Config.Control.UpdateRepoURL.AbsoluteUri, filename);
 		try
 		{
-			using var client = new WebClient();
-			await client.DownloadFileTaskAsync(new Uri(url), path);
+			using var client = new HttpClient();
+			using HttpResponseMessage response = await client.GetAsync(url);
+
+			using FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+			await response.Content.CopyToAsync(fs);
+
 			if (filename.Contains("update.json") == false)
 				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.FileUpdated, filename));
 		}

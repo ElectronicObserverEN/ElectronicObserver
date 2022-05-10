@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Resource;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,7 @@ public class FormInformationViewModel : WinformsHostViewModel
 	public FormInformationViewModel() : base("Info", "Information",
 		ImageSourceIcons.GetIcon(IconContent.FormInformation))
 	{
-		FormInformation = App.Current.Services.GetService<FormInformationTranslationViewModel>()!;
+		FormInformation = Ioc.Default.GetService<FormInformationTranslationViewModel>()!;
 
 		Title = FormInformation.Title;
 		FormInformation.PropertyChanged += (_, _) => Title = FormInformation.Title;

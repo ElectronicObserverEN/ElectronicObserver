@@ -22,5 +22,8 @@ public class WindowBase<TViewModel> : System.Windows.Window where TViewModel : W
 		SetBinding(FontSizeProperty, nameof(WindowViewModelBase.FontSize));
 		SetBinding(FontFamilyProperty, nameof(WindowViewModelBase.Font));
 		SetBinding(ForegroundProperty, nameof(WindowViewModelBase.FontBrush));
+
+		Loaded += (_, _) => ViewModel.Loaded();
+		Closed += (_, _) => ViewModel.Closed();
 	}
 }

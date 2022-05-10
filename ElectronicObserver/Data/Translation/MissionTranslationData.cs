@@ -7,7 +7,7 @@ namespace ElectronicObserver.Data.Translation;
 
 public class MissionTranslationData : TranslationBase
 {
-	private string DefaultFilePath = TranslationManager.WorkingFolder + @"\expedition.json";
+	private string DefaultFilePath = DataAndTranslationManager.TranslationFolder + @"\expedition.json";
 
 	private Dictionary<string, string> NameDictionary;
 	private bool isLoaded => Configuration.Config.UI.DisableOtherTranslations == false && NameDictionary != null;

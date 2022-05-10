@@ -94,7 +94,7 @@ public class NotifierDamage : NotifierBase
 		o.ApiGetMember_MapInfo.ResponseReceived += BeforeSortie;
 
 		o.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
-		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += BattleFinished;
+		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += BattleFinished;
 
 		o.ApiReqSortie_Battle.ResponseReceived += BattleStarted;
 		o.ApiReqBattleMidnight_Battle.ResponseReceived += BattleStarted;
@@ -108,13 +108,13 @@ public class NotifierDamage : NotifierBase
 		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_MidnightBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_midnight_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdAirBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcMidnightBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EachBattle.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += BattleStarted;
 	}
 
 	void CloseAll(string apiname, dynamic data)

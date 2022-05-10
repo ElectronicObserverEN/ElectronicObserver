@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -57,7 +58,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 
 	public ConstructionRecordViewerViewModel()
 	{
-		DialogConstructionRecordViewer = App.Current.Services.GetService<DialogConstructionRecordViewerTranslationViewModel>()!;
+		DialogConstructionRecordViewer = Ioc.Default.GetService<DialogConstructionRecordViewerTranslationViewModel>()!;
 		Record = RecordManager.Instance.Construction;
 
 		Searcher.WorkerSupportsCancellation = true;

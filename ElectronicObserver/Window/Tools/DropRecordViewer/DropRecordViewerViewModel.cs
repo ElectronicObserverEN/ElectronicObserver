@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -84,8 +85,8 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		ShipIcon = ImageSourceIcons.GetIcon(IconContent.FormFleet);
 		ItemIcon = ImageSourceIcons.GetIcon(IconContent.ItemPresentBox);
 
-		ShipPickerViewModel = App.Current.Services.GetService<ShipPickerViewModel>()!;
-		DialogDropRecordViewer = App.Current.Services.GetService<DialogDropRecordViewerTranslationViewModel>()!;
+		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
+		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
 
 		Searcher.WorkerSupportsCancellation = true;
 		Searcher.DoWork += Searcher_DoWork;

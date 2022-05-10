@@ -164,7 +164,7 @@ public partial class FormQuest : DockContent
 
 		APIReceivedEventHandler rec = ( string apiname, dynamic data ) => Invoke( new APIReceivedEventHandler( APIUpdated ), apiname, data );
 
-		o.APIList["api_req_quest/clearitemget"].RequestReceived += rec;
+		o.ApiReqQuest_ClearItemGet.RequestReceived += rec;
 
 		o.ApiGetMember_QuestList.ResponseReceived += rec;
 		//*/

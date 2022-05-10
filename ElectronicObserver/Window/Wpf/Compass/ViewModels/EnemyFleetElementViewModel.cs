@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
@@ -37,7 +38,7 @@ public class EnemyFleetElementViewModel : ObservableObject
 	public EnemyFleetElementViewModel()
 	{
 		Db = KCDatabase.Instance;
-		FormCompass = App.Current.Services.GetService<FormCompassTranslationViewModel>()!;
+		FormCompass = Ioc.Default.GetService<FormCompassTranslationViewModel>()!;
 	}
 
 	private string? GetAirSuperiorityString(int air)

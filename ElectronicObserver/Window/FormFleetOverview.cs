@@ -191,22 +191,22 @@ public partial class FormFleetOverview : DockContent
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
-		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
+		o.ApiReqNyukyo_SpeedChange.RequestReceived += Updated;
 		o.ApiReqHensei_Change.RequestReceived += Updated;
-		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
-		o.ApiReqMember_Updatedeckname.RequestReceived += Updated;
+		o.ApiReqKousyou_DestroyShip.RequestReceived += Updated;
+		o.ApiReqMember_UpdateDeckName.RequestReceived += Updated;
 		o.ApiReqMap_Start.RequestReceived += Updated;
 		o.ApiReqHensei_Combined.RequestReceived += Updated;
-		o.ApiReqKaisou_OpenExslot.RequestReceived += Updated;
+		o.ApiReqKaisou_OpenExSlot.RequestReceived += Updated;
 
 		o.ApiPort_Port.ResponseReceived += Updated;
 		o.ApiGetMember_Ship2.ResponseReceived += Updated;
-		o.ApiGetMember_Ndock.ResponseReceived += Updated;
-		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
+		o.ApiGetMember_NDock.ResponseReceived += Updated;
+		o.ApiReqKousyou_GetShip.ResponseReceived += Updated;
 		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
-		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
+		o.ApiReqKousyou_DestroyShip.ResponseReceived += Updated;
 		o.ApiGetMember_Ship3.ResponseReceived += Updated;
-		o.ApiReqKaisou_Powerup.ResponseReceived += Updated;        //requestのほうは面倒なのでこちらでまとめてやる
+		o.ApiReqKaisou_PowerUp.ResponseReceived += Updated;        //requestのほうは面倒なのでこちらでまとめてやる
 		o.ApiGetMember_Deck.ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o.ApiReqMap_Next.ResponseReceived += Updated;

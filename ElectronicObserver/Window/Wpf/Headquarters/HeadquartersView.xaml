@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Window.Wpf.Headquarters.HeadquartersView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -13,7 +14,33 @@
 	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 	mc:Ignorable="d"
 	>
-	<WrapPanel DataContext="{Binding ViewModel, ElementName=HeadquartersControl}" Visibility="{Binding Visible}">
+	<UserControl.Resources>
+		<ContextMenu x:Key="OffsetWorkaroundContextMenu" d:DataContext="{Binding ViewModel, ElementName=HeadquartersControl}">
+			<MenuItem Header="{Binding FormHeadquarters.WrappingOffset}">
+				<StackPanel Orientation="Horizontal">
+					<controls:NumberBox
+						Maximum="100"
+						Minimum="0"
+						Value="{Binding WorkaroundOffsetBottom}"
+						/>
+
+					<Slider
+						Width="150"
+						Margin="4 0"
+						Maximum="100"
+						Minimum="0"
+						Value="{Binding WorkaroundOffsetBottom}"
+						/>
+				</StackPanel>
+			</MenuItem>
+		</ContextMenu>
+	</UserControl.Resources>
+
+	<WrapPanel
+		Background="Transparent"
+		DataContext="{Binding ViewModel, ElementName=HeadquartersControl}"
+		Visibility="{Binding Visible}"
+		>
 		<WrapPanel.Resources>
 			<Style TargetType="Border">
 				<Setter Property="Padding" Value="2" />
@@ -23,7 +50,8 @@
 				<Setter Property="Height" Value="16" />
 			</Style>
 		</WrapPanel.Resources>
-		<WrapPanel>
+
+		<WrapPanel ContextMenu="{StaticResource OffsetWorkaroundContextMenu}">
 			<Border
 				Background="{Binding AdmiralName.Background}"
 				ToolTip="{Binding AdmiralName.ToolTip}"
@@ -86,7 +114,7 @@
 				</StackPanel>
 			</Border>
 		</WrapPanel>
-		<WrapPanel>
+		<WrapPanel ContextMenu="{StaticResource OffsetWorkaroundContextMenu}">
 			<Border Background="{Binding ShipCount.Background}" ToolTip="{Binding ShipCount.ToolTip}">
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding ShipCount.Icon}" />
@@ -112,7 +140,7 @@
 				</StackPanel>
 			</Border>
 		</WrapPanel>
-		<WrapPanel>
+		<WrapPanel ContextMenu="{StaticResource OffsetWorkaroundContextMenu}">
 			<Border
 				Background="{Binding InstantRepair.Background}"
 				ToolTip="{Binding InstantRepair.ToolTip}"
@@ -225,6 +253,7 @@
 					</Border>
 
 					<Border
+						Margin="{Binding WorkaroundOffset}"
 						Background="{Binding Ammo.Background}"
 						ToolTip="{Binding Ammo.ToolTip}"
 						Visibility="{Binding Ammo.Visible}"
@@ -257,6 +286,7 @@
 					</Border>
 
 					<Border
+						Margin="{Binding WorkaroundOffset}"
 						Background="{Binding Bauxite.Background}"
 						ToolTip="{Binding Bauxite.ToolTip}"
 						Visibility="{Binding Bauxite.Visible}"

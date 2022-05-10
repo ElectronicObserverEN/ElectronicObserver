@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -117,7 +118,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 		PopulateCache();
 
-		DialogAlbumMasterShip = App.Current.Services.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
+		DialogAlbumMasterShip = Ioc.Default.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
 
 		PropertyChanged += (sender, args) =>
 		{

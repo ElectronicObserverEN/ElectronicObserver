@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
@@ -57,7 +58,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	public ShipGroupWinformsViewModel() : base("Group", "ShipGroup",
 		ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
 	{
-		FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
+		FormShipGroup = Ioc.Default.GetService<FormShipGroupTranslationViewModel>()!;
 
 		Title = FormShipGroup.Title;
 		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;

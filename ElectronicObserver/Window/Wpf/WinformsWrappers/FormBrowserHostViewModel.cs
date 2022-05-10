@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Resource;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ public class FormBrowserHostViewModel : WinformsHostViewModel
 	public FormBrowserHostViewModel() : base("Browser", "Browser",
 		ImageSourceIcons.GetIcon(IconContent.FormBrowser))
 	{
-		FormBrowserHost = App.Current.Services.GetService<FormBrowserHostTranslationViewModel>()!;
+		FormBrowserHost = Ioc.Default.GetService<FormBrowserHostTranslationViewModel>()!;
 
 		Title = FormBrowserHost.Title;
 		FormBrowserHost.PropertyChanged += (_, _) => Title = FormBrowserHost.Title;

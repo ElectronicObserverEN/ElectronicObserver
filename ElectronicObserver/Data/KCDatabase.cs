@@ -158,7 +158,7 @@ public sealed class KCDatabase
 	public ReplayManager Replays { get; private set; }
 
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
-	public TranslationManager Translation { get; private set; }
+	public DataAndTranslationManager Translation { get; private set; }
 
 	/// <summary>
 	/// Current server
@@ -207,7 +207,7 @@ public sealed class KCDatabase
 		Replays = new ReplayManager();
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
-		Translation = new TranslationManager();
+		Translation = new DataAndTranslationManager();
 	}
 
 

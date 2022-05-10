@@ -81,27 +81,33 @@
 					<ItemsControl.ItemTemplate>
 						<DataTemplate DataType="shipGroupWinforms:ShipGroupItem">
 							<DataTemplate.Resources>
-								<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+								<Style TargetType="Border">
+									<Setter Property="Background" Value="Transparent" />
+									<Setter Property="BorderBrush" Value="#888888" />
 									<Style.Triggers>
 										<DataTrigger Binding="{Binding IsSelected}" Value="True">
-											<Setter Property="Background" Value="{DynamicResource ButtonBackgroundPressed}" />
-											<Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushPressed}" />
-											<Setter Property="TextElement.Foreground" Value="{DynamicResource ButtonForegroundPressed}" />
+											<Setter Property="Background" Value="{DynamicResource AccentButtonBackground}" />
+											<Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushPointerOver}" />
+											<Setter Property="TextElement.Foreground" Value="{DynamicResource AccentButtonForegroundPointerOver}" />
 										</DataTrigger>
+										<Trigger Property="IsMouseOver" Value="True">
+											<Setter Property="Background" Value="{DynamicResource AccentButtonBackground}" />
+											<Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushPointerOver}" />
+											<Setter Property="TextElement.Foreground" Value="{DynamicResource AccentButtonForegroundPointerOver}" />
+										</Trigger>
 									</Style.Triggers>
 								</Style>
 							</DataTemplate.Resources>
-							<Button
-								Margin="1"
-								Padding="3"
-								Command="{Binding ViewModel.SelectGroupCommand, ElementName=ShipGroupWinformsControl}"
-								CommandParameter="{Binding}"
-								Content="{Binding Name}"
-								FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
-								FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
-								Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
-								>
-								<Button.ContextMenu>
+							<Border Padding="3" BorderThickness="1">
+								<Border.InputBindings>
+									<MouseBinding
+										Command="{Binding ViewModel.SelectGroupCommand, ElementName=ShipGroupWinformsControl}"
+										CommandParameter="{Binding}"
+										MouseAction="LeftClick"
+										/>
+								</Border.InputBindings>
+
+								<Border.ContextMenu>
 									<ContextMenu>
 										<MenuItem Command="{Binding ViewModel.AddGroupCommand, Source={StaticResource Proxy}}" Header="{Binding ViewModel.FormShipGroup.MenuGroup_Add, Source={StaticResource Proxy}}" />
 										<MenuItem
@@ -131,8 +137,9 @@
 											IsChecked="{Binding ViewModel.ShowStatusBar, Source={StaticResource Proxy}}"
 											/>
 									</ContextMenu>
-								</Button.ContextMenu>
-							</Button>
+								</Border.ContextMenu>
+								<TextBlock MinWidth="16" Text="{Binding Name}" />
+							</Border>
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>

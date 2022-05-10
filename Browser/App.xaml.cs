@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -17,7 +18,6 @@ namespace Browser;
 public partial class App : Application
 {
 	public new static App Current => (App)Application.Current;
-	public IServiceProvider Services { get; set; } = default!;
 
 	public App()
 	{
@@ -66,11 +66,11 @@ public partial class App : Application
 			}
 		};
 
-		ServiceCollection services = new();
+		ServiceProvider services = new ServiceCollection()
+			.AddSingleton<FormBrowserTranslationViewModel>()
+			.BuildServiceProvider();
 
-		services.AddSingleton<FormBrowserTranslationViewModel>();
-
-		Services = services.BuildServiceProvider();
+		Ioc.Default.ConfigureServices(services);
 
 		// System.Windows.Forms.Application.Run(new FormBrowser(e.Args[0], port, culture));
 

@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Resource;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,7 @@ public class FormShipGroupViewModel : WinformsHostViewModel
 	public FormShipGroupViewModel() : base("Group", "ShipGroup",
 		ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
 	{
-		FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
+		FormShipGroup = Ioc.Default.GetService<FormShipGroupTranslationViewModel>()!;
 
 		Title = FormShipGroup.Title;
 		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;

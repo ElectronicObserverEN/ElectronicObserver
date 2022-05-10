@@ -66,7 +66,7 @@ public static class AswAttackPower
 		_ => 0
 	};
 
-	private static double AswMod(this IShipData ship)
+	public static double AswMod(this IShipData ship)
 	{
 		// https://twitter.com/KennethWWKK/status/1454281174877028359?s=20
 

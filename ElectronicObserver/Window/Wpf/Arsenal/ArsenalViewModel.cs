@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -165,7 +166,7 @@ public class ArsenalViewModel : AnchorableViewModel
 	public ArsenalViewModel() : base("Arsenal", "Arsenal",
 		ImageSourceIcons.GetIcon(IconContent.FormArsenal))
 	{
-		FormArsenal = App.Current.Services.GetService<FormArsenalTranslationViewModel>()!;
+		FormArsenal = Ioc.Default.GetService<FormArsenalTranslationViewModel>()!;
 
 		Title = FormArsenal.Title;
 		FormArsenal.PropertyChanged += (_, _) => Title = FormArsenal.Title;
@@ -183,8 +184,8 @@ public class ArsenalViewModel : AnchorableViewModel
 		o.ApiReqKousyou_CreateShip.RequestReceived += Updated;
 		o.ApiReqKousyou_CreateShipSpeedChange.RequestReceived += Updated;
 
-		o["api_get_member/kdock"].ResponseReceived += Updated;
-		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
+		o.ApiGetMember_KDock.ResponseReceived += Updated;
+		o.ApiReqKousyou_GetShip.ResponseReceived += Updated;
 		o.ApiGetMember_RequireInfo.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;

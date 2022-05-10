@@ -155,4 +155,10 @@ public class ShipDataMock : IShipData
 	{
 		throw new System.NotImplementedException();
 	}
+
+	public ShipDataMock Clone() => new(MasterShip)
+	{
+		// todo: copy all values
+		ID = ID,
+	};
 }

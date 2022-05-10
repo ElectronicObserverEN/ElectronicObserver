@@ -9,13 +9,6 @@ using System.Web;
 using System.Windows.Forms;
 using DynaJson;
 using ElectronicObserver.Data;
-using ElectronicObserver.Observer.kcsapi;
-using ElectronicObserver.Observer.kcsapi.api_get_member;
-using ElectronicObserver.Observer.kcsapi.api_req_air_corps;
-using ElectronicObserver.Observer.kcsapi.api_req_battle_midnight;
-using ElectronicObserver.Observer.kcsapi.api_req_map;
-using ElectronicObserver.Observer.kcsapi.api_req_member;
-using ElectronicObserver.Observer.kcsapi.api_req_sortie;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
@@ -23,7 +16,6 @@ using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Http;
 using Titanium.Web.Proxy.Models;
 using static ElectronicObserver.Data.Constants;
-using battle = ElectronicObserver.Observer.kcsapi.api_req_sortie.battle;
 
 namespace ElectronicObserver.Observer;
 
@@ -49,103 +41,103 @@ public sealed class APIObserver
 	/// Send ship to dock <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L838" />
 	/// </summary>
-	public APIBase ApiReqNyukyo_Start => this["api_req_nyukyo/start"];
+	public kcsapi.api_req_nyukyo.start ApiReqNyukyo_Start { get; } = new();
 
 	/// <summary>
 	/// Use bucket on docked ship (this doesn't happen if you use a bucket while docking) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L846" />
 	/// </summary>
-	public APIBase ApiReqNyukyo_Speedchange => this["api_req_nyukyo/speedchange"];
+	public kcsapi.api_req_nyukyo.speedchange ApiReqNyukyo_SpeedChange { get; } = new();
 
 	/// <summary>
 	/// Fleet reorganization <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1198" />
 	/// </summary>
-	public APIBase ApiReqHensei_Change => this["api_req_hensei/change"];
+	public kcsapi.api_req_hensei.change ApiReqHensei_Change { get; } = new();
 
 	/// <summary>
 	/// Ship scrap <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L767" />
 	/// </summary>
-	public APIBase ApiReqKousyou_Destroyship => this["api_req_kousyou/destroyship"];
+	public kcsapi.api_req_kousyou.destroyship ApiReqKousyou_DestroyShip { get; } = new();
 
 	/// <summary>
 	/// Change fleet name <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1239" />
 	/// </summary>
-	public APIBase ApiReqMember_Updatedeckname => this["api_req_member/updatedeckname"];
+	public kcsapi.api_req_member.updatedeckname ApiReqMember_UpdateDeckName { get; } = new();
 
 	/// <summary>
 	/// Ship remodel <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1499" />
 	/// </summary>
-	public APIBase ApiReqKaisou_Remodeling => this["api_req_kaisou/remodeling"];
+	public kcsapi.api_req_kaisou.remodeling ApiReqKaisou_Remodeling { get; } = new();
 
 	/// <summary>
 	/// Sortie start <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1579" />
 	/// </summary>
-	public APIBase ApiReqMap_Start => this["api_req_map/start"];
+	public kcsapi.api_req_map.start ApiReqMap_Start { get; } = new();
 
 	/// <summary>
 	/// Make a combined fleet <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3375" />
 	/// </summary>
-	public APIBase ApiReqHensei_Combined => this["api_req_hensei/combined"];
+	public kcsapi.api_req_hensei.combined ApiReqHensei_Combined { get; } = new();
 
 	/// <summary>
 	/// Ship hole-punch <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1460" />
 	/// </summary>
-	public APIBase ApiReqKaisou_OpenExslot => this["api_req_kaisou/open_exslot"];
+	public kcsapi.api_req_kaisou.open_exslot ApiReqKaisou_OpenExSlot { get; } = new();
 
 	/// <summary>
 	/// Get to main screen (home port) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L603" />
 	/// </summary>
-	public APIBase ApiPort_Port => this["api_port/port"];
+	public kcsapi.api_port.port ApiPort_Port { get; } = new();
 
 	/// <summary>
 	/// 艦船情報 (?) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2382" />
 	/// </summary>
-	public APIBase ApiGetMember_Ship2 => this["api_get_member/ship2"];
+	public kcsapi.api_get_member.ship2 ApiGetMember_Ship2 { get; } = new();
 
 	/// <summary>
 	/// Go to dock screen (also happens after docking a ship, doesn't happen after bucketing a ship that's already in docks) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L826" />
 	/// </summary>
-	public APIBase ApiGetMember_Ndock => this["api_get_member/ndock"];
+	public kcsapi.api_get_member.ndock ApiGetMember_NDock { get; } = new();
 
 	/// <summary>
 	/// Get ship from construction <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L740" />
 	/// </summary>
-	public APIBase ApiReqKousyou_Getship => this["api_req_kousyou/getship"];
+	public kcsapi.api_req_kousyou.getship ApiReqKousyou_GetShip { get; } = new();
 
 	/// <summary>
 	/// Resupply <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1163" />
 	/// </summary>
-	public APIBase ApiReqHokyu_Charge => this["api_req_hokyu/charge"];
+	public kcsapi.api_req_hokyu.charge ApiReqHokyu_Charge { get; } = new();
 
 	/// <summary>
 	/// Happens when adding or removing equipment on a ship (doesn't happen when switching equipment between slots) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1505" />
 	/// </summary>
-	public APIBase ApiGetMember_Ship3 => this["api_get_member/ship3"];
+	public kcsapi.api_get_member.ship3 ApiGetMember_Ship3 { get; } = new();
 
 	/// <summary>
 	/// Ship modernization <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1125" />
 	/// </summary>
-	public APIBase ApiReqKaisou_Powerup => this["api_req_kaisou/powerup"];
+	public kcsapi.api_req_kaisou.powerup ApiReqKaisou_PowerUp { get; } = new();
 
 	/// <summary>
 	/// After sending out an expedition <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1188" />
 	/// </summary>
-	public APIBase ApiGetMember_Deck => this["api_get_member/deck"];
+	public kcsapi.api_get_member.deck ApiGetMember_Deck { get; } = new();
 
 	/// <summary>
 	/// After finishing a sortie <br />
@@ -153,142 +145,133 @@ public sealed class APIObserver
 	/// After remodeling a ship <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L685" />
 	/// </summary>
-	public APIBase ApiGetMember_SlotItem => this["api_get_member/slot_item"];
+	public kcsapi.api_get_member.slot_item ApiGetMember_SlotItem { get; } = new();
 
 	/// <summary>
 	/// Sortie advance <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1627" />
 	/// </summary>
-	public APIBase ApiReqMap_Next => this["api_req_map/next"];
+	public kcsapi.api_req_map.next ApiReqMap_Next { get; } = new();
 
 	/// <summary>
 	/// Sortie advance (right before api_req_map/next) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2392" />
 	/// </summary>
-	public APIBase ApiGetMember_ShipDeck => this["api_get_member/ship_deck"];
+	public kcsapi.api_get_member.ship_deck ApiGetMember_ShipDeck { get; } = new();
 
 	/// <summary>
 	/// Load fleet preset <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1225" />
 	/// </summary>
-	public APIBase ApiReqHensei_PresetSelect => this["api_req_hensei/preset_select"];
+	public kcsapi.api_req_hensei.preset_select ApiReqHensei_PresetSelect { get; } = new();
 
 	/// <summary>
 	/// Drag and drop equipment between slots <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1473" />
 	/// </summary>
-	public APIBase ApiReqKaisou_SlotExchangeIndex => this["api_req_kaisou/slot_exchange_index"];
+	public kcsapi.api_req_kaisou.slot_exchange_index ApiReqKaisou_SlotExchangeIndex { get; } = new();
 
 	/// <summary>
 	/// Login <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L553" />
 	/// </summary>
-	public APIBase ApiGetMember_RequireInfo => this["api_get_member/require_info"];
+	public kcsapi.api_get_member.require_info ApiGetMember_RequireInfo { get; } = new();
 
 	/// <summary>
 	/// Equipment transfer between ships <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1482" />
 	/// </summary>
-	public APIBase ApiReqKaisou_SlotDeprive => this["api_req_kaisou/slot_deprive"];
+	public kcsapi.api_req_kaisou.slot_deprive ApiReqKaisou_SlotDeprive { get; } = new();
 
 	/// <summary>
 	/// Marriage <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3390" />
 	/// </summary>
-	public APIBase ApiReqKaisou_Marriage => this["api_req_kaisou/marriage"];
+	public kcsapi.api_req_kaisou.marriage ApiReqKaisou_Marriage { get; } = new();
 
 	/// <summary>
 	/// Anchorage repair <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3520" />
 	/// </summary>
-	public APIBase ApiReqMap_AnchorageRepair => this["api_req_map/anchorage_repair"];
+	public kcsapi.api_req_map.anchorage_repair ApiReqMap_AnchorageRepair { get; } = new();
 
 	/// <summary>
 	/// Go to quest screen <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L892" />
 	/// </summary>
-	public questlist ApiGetMember_QuestList => (questlist)this["api_get_member/questlist"];
+	public kcsapi.api_get_member.questlist ApiGetMember_QuestList { get; } = new();
 
 	/// <summary>
 	/// Normal fleet battle finish <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2326" />
 	/// </summary>
-	public battleresult ApiReqSortie_BattleResult => (battleresult)this["api_req_sortie/battleresult"];
+	public kcsapi.api_req_sortie.battleresult ApiReqSortie_BattleResult { get; } = new();
 
 	/// <summary>
 	/// Combined fleet battle finish <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3324" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.battleresult ApiReqCombinedFleet_BattleResult =>
-		(kcsapi.api_req_combined_battle.battleresult)this["api_req_combined_battle/battleresult"];
+	public kcsapi.api_req_combined_battle.battleresult ApiReqCombinedBattle_BattleResult { get; } = new();
 
 	/// <summary>
 	/// Practice battle finish <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1427" />
 	/// </summary>
-	public kcsapi.api_req_practice.battle_result ApiReqPractice_BattleResult =>
-		(kcsapi.api_req_practice.battle_result)this["api_req_practice/battle_result"];
+	public kcsapi.api_req_practice.battle_result ApiReqPractice_BattleResult { get; } = new();
 
 	/// <summary>
 	/// Expedition finish <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1138" />
 	/// </summary>
-	public kcsapi.api_req_mission.result ApiReqMission_Result =>
-		(kcsapi.api_req_mission.result)this["api_req_mission/result"];
+	public kcsapi.api_req_mission.result ApiReqMission_Result { get; } = new();
 
 	/// <summary>
 	/// Equipment development <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L749" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.createitem ApiReqKousyou_CreateItem =>
-		(kcsapi.api_req_kousyou.createitem)this["api_req_kousyou/createitem"];
+	public kcsapi.api_req_kousyou.createitem ApiReqKousyou_CreateItem { get; } = new();
 
 	/// <summary>
 	/// Ship construction <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L720" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.createship ApiReqKousyou_CreateShip =>
-		(kcsapi.api_req_kousyou.createship)this["api_req_kousyou/createship"];
+	public kcsapi.api_req_kousyou.createship ApiReqKousyou_CreateShip { get; } = new();
 
 	/// <summary>
 	/// Equipment upgrade <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L811" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.remodel_slot ApiReqKousyou_RemodelSlot =>
-		(kcsapi.api_req_kousyou.remodel_slot)this["api_req_kousyou/remodel_slot"];
+	public kcsapi.api_req_kousyou.remodel_slot ApiReqKousyou_RemodelSlot { get; } = new();
 
 	/// <summary>
 	/// Login <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L9" />
 	/// </summary>
-	public kcsapi.api_start2.getData ApiStart2_GetData => (kcsapi.api_start2.getData)this["api_start2/getData"];
+	public kcsapi.api_start2.getData ApiStart2_GetData { get; } = new();
 
 	/// <summary>
 	/// Use torch on a ship that's in construction <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L733" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.createship_speedchange ApiReqKousyou_CreateShipSpeedChange =>
-		(kcsapi.api_req_kousyou.createship_speedchange)this["api_req_kousyou/createship_speedchange"];
+	public kcsapi.api_req_kousyou.createship_speedchange ApiReqKousyou_CreateShipSpeedChange { get; } = new();
 
 	/// <summary>
 	/// Equipment scrap <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L775" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.destroyitem2 ApiReqKousyou_DestroyItem2 =>
-		(kcsapi.api_req_kousyou.destroyitem2)this["api_req_kousyou/destroyitem2"];
+	public kcsapi.api_req_kousyou.destroyitem2 ApiReqKousyou_DestroyItem2 { get; } = new();
 
 	/// <summary>
 	/// Change admiral comment <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1245" />
 	/// </summary>
-	public kcsapi.api_req_member.updatecomment ApiReqMember_UpdateComment =>
-		(kcsapi.api_req_member.updatecomment)this["api_req_member/updatecomment"];
+	public kcsapi.api_req_member.updatecomment ApiReqMember_UpdateComment { get; } = new();
 
 	/// <summary>
 	/// 艦隊司令部情報 (?) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L568" />
 	/// </summary>
-	public basic ApiGetMember_Basic => (basic)this["api_get_member/basic"];
+	public kcsapi.api_get_member.basic ApiGetMember_Basic { get; } = new();
 
 	/// <summary>
 	/// After remodeling <br />
@@ -296,19 +279,19 @@ public sealed class APIObserver
 	/// After finishing a quest that rewards resources (fuel, ammo, steel, bauxite, bucket, torch, nail, screw) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L703" />
 	/// </summary>
-	public material ApiGetMember_Material => (material)this["api_get_member/material"];
+	public kcsapi.api_get_member.material ApiGetMember_Material { get; } = new();
 
 	/// <summary>
 	/// Add plane to AB <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2448" />
 	/// </summary>
-	public set_plane ApiReqAirCorps_SetPlane => (set_plane)this["api_req_air_corps/set_plane"];
+	public kcsapi.api_req_air_corps.set_plane ApiReqAirCorps_SetPlane { get; } = new();
 
 	/// <summary>
 	/// AB resupply <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2486" />
 	/// </summary>
-	public supply ApiReqAirCorps_Supply => (supply)this["api_req_air_corps/supply"];
+	public kcsapi.api_req_air_corps.supply ApiReqAirCorps_Supply { get; } = new();
 
 	/// <summary>
 	/// List of items <br />
@@ -319,112 +302,297 @@ public sealed class APIObserver
 	/// After using Mamiya/Irako <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L698" />
 	/// </summary>
-	public useitem ApiGetMember_UseItem => (useitem)this["api_get_member/useitem"];
+	public kcsapi.api_get_member.useitem ApiGetMember_UseItem { get; } = new();
 
 	/// <summary>
 	/// Sortie screen
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2399" />
 	/// </summary>
-	public mapinfo ApiGetMember_MapInfo => (mapinfo)this["api_get_member/mapinfo"];
+	public kcsapi.api_get_member.mapinfo ApiGetMember_MapInfo { get; } = new();
 
 	/// <summary>
 	/// Event sortie condition (sortie win rate needs to be above 75%) <br />
 	/// Happens right before the sortie <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2426" />
 	/// </summary>
-	public sortie_conditions ApiGetMember_SortieConditions => (sortie_conditions)this["api_get_member/sortie_conditions"];
+	public kcsapi.api_get_member.sortie_conditions ApiGetMember_SortieConditions { get; } = new();
 
 	/// <summary>
 	/// Player details when clicking an opponent in practice <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1296" />
 	/// </summary>
-	public get_practice_enemyinfo ApiReqMember_GetPracticeEnemyInfo =>
-		(get_practice_enemyinfo)this["api_req_member/get_practice_enemyinfo"];
+	public kcsapi.api_req_member.get_practice_enemyinfo ApiReqMember_GetPracticeEnemyInfo { get; } = new();
 
 	/// <summary>
 	/// Heavy air raid <br />
 	/// todo: documentation
 	/// </summary>
-	public air_raid ApiReqMap_AirRaid => (air_raid)this["api_req_map/air_raid"];
+	public kcsapi.api_req_map.air_raid ApiReqMap_AirRaid { get; } = new();
 
 	/// <summary>
 	/// Normal fleet day battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1752" />
 	/// </summary>
-	public battle ApiReqSortie_Battle => (battle)this["api_req_sortie/battle"];
+	public kcsapi.api_req_sortie.battle ApiReqSortie_Battle { get; } = new();
 
 	/// <summary>
 	/// Normal fleet night battle after day battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1967" />
 	/// </summary>
-	public kcsapi.api_req_battle_midnight.battle ApiReqBattleMidnight_Battle =>
-		(kcsapi.api_req_battle_midnight.battle)this["api_req_battle_midnight/battle"];
+	public kcsapi.api_req_battle_midnight.battle ApiReqBattleMidnight_Battle { get; } = new();
 
 	/// <summary>
 	/// Normal fleet night battle only <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2007" />
 	/// </summary>
-	public sp_midnight ApiReqBattleMidnight_SpMidnight =>
-		(sp_midnight)this["api_req_battle_midnight/sp_midnight"];
+	public kcsapi.api_req_battle_midnight.sp_midnight ApiReqBattleMidnight_SpMidnight { get; } = new();
 
 	/// <summary>
 	/// Normal fleet air battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2033" />
 	/// </summary>
-	public airbattle ApiReqSortie_AirBattle => (airbattle)this["api_req_sortie/airbattle"];
+	public kcsapi.api_req_sortie.airbattle ApiReqSortie_AirBattle { get; } = new();
 
 	/// <summary>
 	/// Normal fleet long distance air battle (like the one in 1-6?) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2055" />
 	/// </summary>
-	public ld_airbattle ApiReqSortie_LdAirBattle => (ld_airbattle)this["api_req_sortie/ld_airbattle"];
+	public kcsapi.api_req_sortie.ld_airbattle ApiReqSortie_LdAirBattle { get; } = new();
 
 	/// <summary>
 	/// Normal fleet (?) night to day <br />
 	/// todo: documentation
 	/// </summary>
-	public night_to_day ApiReqSortie_NightToDay => (night_to_day)this["api_req_sortie/night_to_day"];
+	public kcsapi.api_req_sortie.night_to_day ApiReqSortie_NightToDay { get; } = new();
 
 	/// <summary>
 	/// Normal fleet radar ambush <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2075" />
 	/// </summary>
-	public ld_shooting ApiReqSortie_LdShooting => (ld_shooting)this["api_req_sortie/ld_shooting"];
+	public kcsapi.api_req_sortie.ld_shooting ApiReqSortie_LdShooting { get; } = new();
 
 	/// <summary>
 	/// Combined fleet (carrier or transport) day battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2557" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.battle ApiReqCombinedBattle_Battle =>
-		(kcsapi.api_req_combined_battle.battle)this["api_req_combined_battle/battle"];
+	public kcsapi.api_req_combined_battle.battle ApiReqCombinedBattle_Battle { get; } = new();
 
 	/// <summary>
 	/// Combined fleet vs normal fleet day to night battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2658" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.midnight_battle ApiReqCombinedBattle_MidnightBattle =>
-		(kcsapi.api_req_combined_battle.midnight_battle)this["api_req_combined_battle/midnight_battle"];
+	public kcsapi.api_req_combined_battle.midnight_battle ApiReqCombinedBattle_MidnightBattle { get; } = new();
 
 	/// <summary>
 	/// Combined fleet night battle only <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2689" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.sp_midnight ApiReqCombinedBattle_SpMidnight =>
-		(kcsapi.api_req_combined_battle.sp_midnight)this["api_req_combined_battle/sp_midnight"];
+	public kcsapi.api_req_combined_battle.sp_midnight ApiReqCombinedBattle_SpMidnight { get; } = new();
 
 	/// <summary>
 	/// Combined fleet air battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2501" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.airbattle ApiReqCombinedBattle_AirBattle =>
-		(kcsapi.api_req_combined_battle.airbattle)this["api_req_combined_battle/airbattle"];
+	public kcsapi.api_req_combined_battle.airbattle ApiReqCombinedBattle_AirBattle { get; } = new();
 
 	/// <summary>
 	/// Combined fleet (surface) day battle <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2694" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.battle_water ApiReqCombinedBattle_BattleWater =>
-		(kcsapi.api_req_combined_battle.battle_water)this["api_req_combined_battle/battle_water"];
+	public kcsapi.api_req_combined_battle.battle_water ApiReqCombinedBattle_BattleWater { get; } = new();
+
+	/// <summary>
+	/// Combined fleet long distance air battle (the ones from Midway event?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2802" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ld_airbattle ApiReqCombinedBattle_LdAirBattle { get; } = new();
+
+	/// <summary>
+	/// Normal fleet vs enemy combined fleet day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2143" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ec_battle ApiReqCombinedBattle_EcBattle { get; } = new();
+
+	/// <summary>
+	/// Normal/combined fleet vs enemy combined fleet day to night battle (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2268" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ec_midnight_battle ApiReqCombinedBattle_EcMidnightBattle { get; } = new();
+
+	/// <summary>
+	/// Enemy combined fleet night to day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3105" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ec_night_to_day ApiReqCombinedBattle_EcNightToDay { get; } = new();
+
+	/// <summary>
+	/// Combined fleet (carrier) vs enemy combined fleet day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2859" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.each_battle ApiReqCombinedBattle_EachBattle { get; } = new();
+
+	/// <summary>
+	/// Combined fleet (surface) vs enemy combined fleet day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2964" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.each_battle_water ApiReqCombinedBattle_EachBattleWater { get; } = new();
+
+	/// <summary>
+	/// Combined fleet radar ambush <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3296" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ld_shooting ApiReqCombinedBattle_LdShooting { get; } = new();
+
+	/// <summary>
+	/// Practice day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1326" />
+	/// </summary>
+	public kcsapi.api_req_practice.battle ApiReqPractice_Battle { get; } = new();
+
+	/// <summary>
+	/// Practice night battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1402" />
+	/// </summary>
+	public kcsapi.api_req_practice.midnight_battle ApiReqPractice_MidnightBattle { get; } = new();
+
+	/// <summary>
+	/// Go to album <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L963" />
+	/// </summary>
+	public kcsapi.api_get_member.picture_book ApiGetMember_PictureBook { get; } = new();
+
+	/// <summary>
+	/// Go to expedition screen <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L853" />
+	/// </summary>
+	public kcsapi.api_get_member.mission ApiGetMember_Mission { get; } = new();
+
+	/// <summary>
+	/// Send out expedition <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1178" />
+	/// </summary>
+	public kcsapi.api_req_mission.start ApiReqMission_Start { get; } = new();
+
+	/// <summary>
+	/// Switching AB planes (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2433" />
+	/// </summary>
+	public kcsapi.api_get_member.base_air_corps ApiGetMember_BaseAirCorps { get; } = new();
+
+	/// <summary>
+	/// Move AB planes between different bases <br />
+	/// todo: documentation
+	/// </summary>
+	public kcsapi.api_req_air_corps.change_deployment_base ApiReqAirCorps_ChangeDeploymentBase { get; } = new();
+
+	/// <summary>
+	/// Change AB name <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2461" />
+	/// </summary>
+	public kcsapi.api_req_air_corps.change_name ApiReqAirCorps_ChangeName { get; } = new();
+
+	/// <summary>
+	/// Change AB action (sortie, air def, rest etc) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2469" />
+	/// </summary>
+	public kcsapi.api_req_air_corps.set_action ApiReqAirCorps_SetAction { get; } = new();
+
+	/// <summary>
+	/// Open new AB <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2496" />
+	/// </summary>
+	public kcsapi.api_req_air_corps.expand_base ApiReqAirCorps_ExpandBase { get; } = new();
+
+	/// <summary>
+	/// Ship construction <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L708" />
+	/// </summary>
+	public kcsapi.api_get_member.kdock ApiGetMember_KDock { get; } = new();
+
+	/// <summary>
+	/// Quest clear <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L934" />
+	/// </summary>
+	public kcsapi.api_req_quest.clearitemget ApiReqQuest_ClearItemGet { get; } = new();
+
+	/// <summary>
+	/// Admiral profile <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L859" />
+	/// </summary>
+	public kcsapi.api_get_member.record ApiGetMember_Record { get; } = new();
+
+	/// <summary>
+	/// Item page <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3397" />
+	/// </summary>
+	public kcsapi.api_get_member.payitem ApiGetMember_PayItem { get; } = new();
+
+	/// <summary>
+	/// Akashi arsenal page <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L782" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.remodel_slotlist ApiReqKousyou_RemodelSlotList { get; } = new();
+
+	/// <summary>
+	/// FCF <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3368" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.goback_port ApiReqCombinedBattle_GoBackPort { get; } = new();
+
+	/// <summary>
+	/// Ranking list before 2016/08/01 (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1252" />
+	/// </summary>
+	[Obsolete]
+	public kcsapi.api_req_ranking.getlist ApiReqRanking_GetList { get; } = new();
+
+	/// <summary>
+	/// FCF single fleet <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2378" />
+	/// </summary>
+	public kcsapi.api_req_sortie.goback_port ApiReqSortie_GoBackPort { get; } = new();
+
+	/// <summary>
+	/// Item exchange (?) (eg. medals -> blueprint) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3414" />
+	/// </summary>
+	public kcsapi.api_req_member.itemuse ApiReqMember_ItemUse { get; } = new();
+
+	/// <summary>
+	/// Send AB to a node on map <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2478" />
+	/// </summary>
+	public kcsapi.api_req_map.start_air_base ApiReqMap_StartAirBase { get; } = new();
+
+	/// <summary>
+	/// Preset data - open fleet organization screen <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1207" />
+	/// </summary>
+	public kcsapi.api_get_member.preset_deck ApiGetMember_PresetDeck { get; } = new();
+
+	/// <summary>
+	/// Select event difficulty <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3457" />
+	/// </summary>
+	public kcsapi.api_req_map.select_eventmap_rank ApiReqMap_SelectEventMapRank { get; } = new();
+
+	/// <summary>
+	/// Deactivate quest <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L927" />
+	/// </summary>
+	public kcsapi.api_req_quest.stop ApiReqQuest_Stop { get; } = new();
+
+	/// <summary>
+	/// Save fleet preset <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1217" />
+	/// </summary>
+	public kcsapi.api_req_hensei.preset_register ApiReqHensei_PresetRegister { get; } = new();
+
+	/// <summary>
+	/// Delete fleet preset <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1232" />
+	/// </summary>
+	public kcsapi.api_req_hensei.preset_delete ApiReqHensei_PresetDelete { get; } = new();
 
 	#endregion
 
@@ -448,98 +616,98 @@ public sealed class APIObserver
 
 		APIList = new APIDictionary
 		{
-			new kcsapi.api_start2.getData(),
-			new kcsapi.api_get_member.basic(),
-			new kcsapi.api_get_member.slot_item(),
-			new kcsapi.api_get_member.useitem(),
-			new kcsapi.api_get_member.kdock(),
-			new kcsapi.api_port.port(),
-			new kcsapi.api_get_member.ship2(),
-			new kcsapi.api_get_member.questlist(),
-			new kcsapi.api_get_member.ndock(),
-			new kcsapi.api_req_kousyou.getship(),
-			new kcsapi.api_req_hokyu.charge(),
-			new kcsapi.api_req_kousyou.destroyship(),
-			new kcsapi.api_req_kousyou.destroyitem2(),
-			new kcsapi.api_req_member.get_practice_enemyinfo(),
-			new kcsapi.api_get_member.picture_book(),
-			new kcsapi.api_req_mission.start(),
-			new kcsapi.api_get_member.ship3(),
-			new kcsapi.api_req_kaisou.powerup(),
-			new kcsapi.api_req_map.start(),
-			new kcsapi.api_req_map.next(),
-			new kcsapi.api_req_map.air_raid(),
-			new kcsapi.api_req_kousyou.createitem(),
-			new kcsapi.api_req_sortie.battle(),
-			new kcsapi.api_req_sortie.battleresult(),
-			new kcsapi.api_req_battle_midnight.battle(),
-			new kcsapi.api_req_battle_midnight.sp_midnight(),
-			new kcsapi.api_req_combined_battle.battle(),
-			new kcsapi.api_req_combined_battle.midnight_battle(),
-			new kcsapi.api_req_combined_battle.sp_midnight(),
-			new kcsapi.api_req_combined_battle.airbattle(),
-			new kcsapi.api_req_combined_battle.battleresult(),
-			new kcsapi.api_req_practice.battle(),
-			new kcsapi.api_req_practice.midnight_battle(),
-			new kcsapi.api_req_practice.battle_result(),
-			new kcsapi.api_get_member.deck(),
-			new kcsapi.api_get_member.mapinfo(),
-			new kcsapi.api_get_member.mission(),
-			new kcsapi.api_req_combined_battle.battle_water(),
-			new kcsapi.api_req_combined_battle.goback_port(),
-			new kcsapi.api_req_kousyou.remodel_slot(),
-			new kcsapi.api_get_member.material(),
-			new kcsapi.api_req_mission.result(),
-			new kcsapi.api_req_ranking.getlist(),
-			new kcsapi.api_req_sortie.airbattle(),
-			new kcsapi.api_get_member.ship_deck(),
-			new kcsapi.api_req_kaisou.marriage(),
-			new kcsapi.api_req_hensei.preset_select(),
-			new kcsapi.api_req_kaisou.slot_exchange_index(),
-			new kcsapi.api_get_member.record(),
-			new kcsapi.api_get_member.payitem(),
-			new kcsapi.api_req_kousyou.remodel_slotlist(),
-			new kcsapi.api_req_sortie.ld_airbattle(),
-			new kcsapi.api_req_combined_battle.ld_airbattle(),
-			new kcsapi.api_get_member.require_info(),
-			new kcsapi.api_get_member.base_air_corps(),
-			new kcsapi.api_req_air_corps.change_deployment_base(),
-			new kcsapi.api_req_air_corps.set_plane(),
-			new kcsapi.api_req_air_corps.set_action(),
-			new kcsapi.api_req_air_corps.supply(),
-			new kcsapi.api_req_kaisou.slot_deprive(),
-			new kcsapi.api_req_air_corps.expand_base(),
-			new kcsapi.api_req_combined_battle.ec_battle(),
-			new kcsapi.api_req_combined_battle.ec_midnight_battle(),
-			new kcsapi.api_req_combined_battle.each_battle(),
-			new kcsapi.api_req_combined_battle.each_battle_water(),
-			new kcsapi.api_get_member.sortie_conditions(),
-			new kcsapi.api_req_sortie.night_to_day(),
-			new kcsapi.api_req_combined_battle.ec_night_to_day(),
-			new kcsapi.api_req_sortie.goback_port(),
-			new kcsapi.api_req_member.itemuse(),
-			new kcsapi.api_req_sortie.ld_shooting(),
-			new kcsapi.api_req_combined_battle.ld_shooting(),
-			new kcsapi.api_req_map.anchorage_repair(),
-			new kcsapi.api_req_map.start_air_base(),
-			new kcsapi.api_get_member.preset_deck(),
+			ApiStart2_GetData,
+			ApiGetMember_Basic,
+			ApiGetMember_SlotItem,
+			ApiGetMember_UseItem,
+			ApiGetMember_KDock,
+			ApiPort_Port,
+			ApiGetMember_Ship2,
+			ApiGetMember_QuestList,
+			ApiGetMember_NDock,
+			ApiReqKousyou_GetShip,
+			ApiReqHokyu_Charge,
+			ApiReqKousyou_DestroyShip,
+			ApiReqKousyou_DestroyItem2,
+			ApiReqMember_GetPracticeEnemyInfo,
+			ApiGetMember_PictureBook,
+			ApiReqMission_Start,
+			ApiGetMember_Ship3,
+			ApiReqKaisou_PowerUp,
+			ApiReqMap_Start,
+			ApiReqMap_Next,
+			ApiReqMap_AirRaid,
+			ApiReqKousyou_CreateItem,
+			ApiReqSortie_Battle,
+			ApiReqSortie_BattleResult,
+			ApiReqBattleMidnight_Battle,
+			ApiReqBattleMidnight_SpMidnight,
+			ApiReqCombinedBattle_Battle,
+			ApiReqCombinedBattle_MidnightBattle,
+			ApiReqCombinedBattle_SpMidnight,
+			ApiReqCombinedBattle_AirBattle,
+			ApiReqCombinedBattle_BattleResult,
+			ApiReqPractice_Battle,
+			ApiReqPractice_MidnightBattle,
+			ApiReqPractice_BattleResult,
+			ApiGetMember_Deck,
+			ApiGetMember_MapInfo,
+			ApiGetMember_Mission,
+			ApiReqCombinedBattle_BattleWater,
+			ApiReqCombinedBattle_GoBackPort,
+			ApiReqKousyou_RemodelSlot,
+			ApiGetMember_Material,
+			ApiReqMission_Result,
+			ApiReqRanking_GetList,
+			ApiReqSortie_AirBattle,
+			ApiGetMember_ShipDeck,
+			ApiReqKaisou_Marriage,
+			ApiReqHensei_PresetSelect,
+			ApiReqKaisou_SlotExchangeIndex,
+			ApiGetMember_Record,
+			ApiGetMember_PayItem,
+			ApiReqKousyou_RemodelSlotList,
+			ApiReqSortie_LdAirBattle,
+			ApiReqCombinedBattle_LdAirBattle,
+			ApiGetMember_RequireInfo,
+			ApiGetMember_BaseAirCorps,
+			ApiReqAirCorps_ChangeDeploymentBase,
+			ApiReqAirCorps_SetPlane,
+			ApiReqAirCorps_SetAction,
+			ApiReqAirCorps_Supply,
+			ApiReqKaisou_SlotDeprive,
+			ApiReqAirCorps_ExpandBase,
+			ApiReqCombinedBattle_EcBattle,
+			ApiReqCombinedBattle_EcMidnightBattle,
+			ApiReqCombinedBattle_EachBattle,
+			ApiReqCombinedBattle_EachBattleWater,
+			ApiGetMember_SortieConditions,
+			ApiReqSortie_NightToDay,
+			ApiReqCombinedBattle_EcNightToDay,
+			ApiReqSortie_GoBackPort,
+			ApiReqMember_ItemUse,
+			ApiReqSortie_LdShooting,
+			ApiReqCombinedBattle_LdShooting,
+			ApiReqMap_AnchorageRepair,
+			ApiReqMap_StartAirBase,
+			ApiGetMember_PresetDeck,
 
-			new kcsapi.api_req_quest.clearitemget(),
-			new kcsapi.api_req_nyukyo.start(),
-			new kcsapi.api_req_nyukyo.speedchange(),
-			new kcsapi.api_req_kousyou.createship(),
-			new kcsapi.api_req_kousyou.createship_speedchange(),
-			new kcsapi.api_req_hensei.change(),
-			new kcsapi.api_req_member.updatedeckname(),
-			new kcsapi.api_req_kaisou.remodeling(),
-			new kcsapi.api_req_kaisou.open_exslot(),
-			new kcsapi.api_req_map.select_eventmap_rank(),
-			new kcsapi.api_req_hensei.combined(),
-			new kcsapi.api_req_member.updatecomment(),
-			new kcsapi.api_req_air_corps.change_name(),
-			new kcsapi.api_req_quest.stop(),
-			new kcsapi.api_req_hensei.preset_register(),
-			new kcsapi.api_req_hensei.preset_delete(),
+			ApiReqQuest_ClearItemGet,
+			ApiReqNyukyo_Start,
+			ApiReqNyukyo_SpeedChange,
+			ApiReqKousyou_CreateShip,
+			ApiReqKousyou_CreateShipSpeedChange,
+			ApiReqHensei_Change,
+			ApiReqMember_UpdateDeckName,
+			ApiReqKaisou_Remodeling,
+			ApiReqKaisou_OpenExSlot,
+			ApiReqMap_SelectEventMapRank,
+			ApiReqHensei_Combined,
+			ApiReqMember_UpdateComment,
+			ApiReqAirCorps_ChangeName,
+			ApiReqQuest_Stop,
+			ApiReqHensei_PresetRegister,
+			ApiReqHensei_PresetDelete,
 		};
 
 		Proxy = new ProxyServer
@@ -615,15 +783,6 @@ public sealed class APIObserver
 		Proxy.Stop();
 
 		Utility.Logger.Add(1, LoggerRes.APIObserverStopped);
-	}
-
-	public APIBase this[string key]
-	{
-		get
-		{
-			if (APIList.ContainsKey(key)) return APIList[key];
-			else return null;
-		}
 	}
 
 	private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)

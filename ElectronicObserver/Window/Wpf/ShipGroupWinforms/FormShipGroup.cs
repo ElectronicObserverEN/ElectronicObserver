@@ -285,6 +285,9 @@ public partial class FormShipGroup : DockContent
 		o.ApiGetMember_Ship2.ResponseReceived += APIUpdated;
 		o.ApiGetMember_ShipDeck.ResponseReceived += APIUpdated;
 
+		// added later - might affect performance
+		o.ApiGetMember_NDock.ResponseReceived += APIUpdated;
+		o.ApiReqHensei_PresetSelect.ResponseReceived += APIUpdated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 

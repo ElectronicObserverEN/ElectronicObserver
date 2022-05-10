@@ -386,13 +386,13 @@ public partial class FormBaseAirCorps : DockContent
 
 		api.ApiPort_Port.ResponseReceived += Updated;
 		api.ApiGetMember_MapInfo.ResponseReceived += Updated;
-		api["api_get_member/base_air_corps"].ResponseReceived += Updated;
-		api["api_req_air_corps/change_deployment_base"].ResponseReceived += Updated;
-		api["api_req_air_corps/change_name"].ResponseReceived += Updated;
-		api["api_req_air_corps/set_action"].ResponseReceived += Updated;
+		api.ApiGetMember_BaseAirCorps.ResponseReceived += Updated;
+		api.ApiReqAirCorps_ChangeDeploymentBase.ResponseReceived += Updated;
+		api.ApiReqAirCorps_ChangeName.ResponseReceived += Updated;
+		api.ApiReqAirCorps_SetAction.ResponseReceived += Updated;
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;
-		api["api_req_air_corps/expand_base"].ResponseReceived += Updated;
+		api.ApiReqAirCorps_ExpandBase.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 

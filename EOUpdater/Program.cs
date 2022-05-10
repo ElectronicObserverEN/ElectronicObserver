@@ -22,7 +22,7 @@ namespace EOUpdater
 	internal class Program
 	{
 		private static readonly string AppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver");
-		private const string UpdateUrl = @"https://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json";
+		private const string UpdateUrl = @"https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/update.json";
 
 		private static Language Language { get; set; }
 
@@ -285,32 +285,9 @@ namespace EOUpdater
 			[DataMember]
 			public string hash { get; set; }
 			[DataMember]
-			public Tl_Ver tl_ver { get; set; }
-			[DataMember]
 			public string kancolle_mt { get; set; }
 			[DataMember]
 			public int event_state { get; set; }
-		}
-
-		[DataContract]
-		public class Tl_Ver
-		{
-			[DataMember]
-			public string equipment { get; set; }
-			[DataMember]
-			public string equipment_type { get; set; }
-			[DataMember]
-			public string expedition { get; set; }
-			[DataMember]
-			public int nodes { get; set; }
-			[DataMember]
-			public string operation { get; set; }
-			[DataMember]
-			public string quest { get; set; }
-			[DataMember]
-			public string ship { get; set; }
-			[DataMember]
-			public string ship_type { get; set; }
 		}
 	}
 }

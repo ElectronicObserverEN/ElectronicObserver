@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
@@ -53,7 +54,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 
 	public ShipConditionViewModel(ShipConditionModel model)
 	{
-		ShipPickerViewModel = App.Current.Services.GetService<ShipPickerViewModel>()!;
+		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 
 		RemodelComparisonTypes = Enum.GetValues(typeof(RemodelComparisonType))
 			.Cast<RemodelComparisonType>();

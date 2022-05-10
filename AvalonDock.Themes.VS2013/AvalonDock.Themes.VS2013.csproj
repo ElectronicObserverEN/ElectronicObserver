@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>AvalonDock.Themes</RootNamespace>
-    <TargetFrameworks>net6.0-windows10.0.18362.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
     <Version>4.50.2</Version>
@@ -23,16 +23,6 @@
   <ItemGroup>
     <Resource Include="**\*.png" />
   </ItemGroup>
-
-	<!--
-	dotnet 6.0.2 sdk bug workaround
-	https://github.com/dotnet/core/issues/7176
-	-->
-	<ItemGroup>
-		<FrameworkReference
-			Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms"
-			TargetingPackVersion="6.0.0" />
-	</ItemGroup>
 
   <!-- NuGet Packaging -->
   <ItemGroup>

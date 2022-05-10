@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Resource;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
@@ -13,7 +14,7 @@ public class FormWindowCaptureViewModel : WinformsHostViewModel
 	public FormWindowCaptureViewModel(FormMainViewModel parent) : base("Window Capture", "WindowCapture",
 		ImageSourceIcons.GetIcon(IconContent.FormJson))
 	{
-		FormWindowCapture = App.Current.Services.GetService<FormWindowCaptureTranslationViewModel>()!;
+		FormWindowCapture = Ioc.Default.GetService<FormWindowCaptureTranslationViewModel>()!;
 
 		Title = FormWindowCapture.Title;
 		FormWindowCapture.PropertyChanged += (_, _) => Title = FormWindowCapture.Title;

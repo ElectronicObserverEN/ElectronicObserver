@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
@@ -34,7 +35,7 @@ public class FleetItemViewModel : ObservableObject
 
 	public FleetItemViewModel(FleetViewModel parent)
 	{
-		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		Parent = parent;
 
@@ -450,6 +451,8 @@ public class FleetItemViewModel : ObservableObject
 					sb.AppendLine();
 
 				sb.AppendFormat($"{FormFleet.Asw}: {FormFleet.Power}: {asw2}");
+
+				sb.Append($" (x{ship.AswMod():0.##})");
 
 				if (ship.CanOpeningASW)
 					sb.Append(FormFleet.OpeningAsw);

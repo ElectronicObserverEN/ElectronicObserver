@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserver.Window.Tools.EventLockPlanner;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -74,6 +75,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_KancolleProgress => Properties.Window.FormMain.Tool_KancolleProgress.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ExtraBrowser => Properties.Window.FormMain.Tool_ExtraBrowser.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_QuestTrackerManager => QuestTrackerManager.Title;
+	public string EventLockPlannerTitle => EventLockPlanner.Title;
 
 	public string StripMenu_Debug => Properties.Window.FormMain.Debug.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadAPIFromFile => Properties.Window.FormMain.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");

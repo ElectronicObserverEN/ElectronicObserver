@@ -688,7 +688,7 @@ public sealed class Configuration
 			/// <summary>
 			/// Repository to use for updates
 			/// </summary>
-			public Uri UpdateURL { get; set; }
+			public Uri UpdateRepoURL { get; set; }
 
 			/// <summary>
 			/// Should RPC use the icon of your flagship or not
@@ -712,7 +712,7 @@ public sealed class Configuration
 				DiscordRPCMessage = "Headpatting {{secretary}}";
 				DiscordRPCShowFCM = true;
 				DiscordRPCApplicationId = "";
-				UpdateURL = new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/");
+				UpdateRepoURL = new Uri("https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/");
 				UseFlagshipIconForRPC = false;
 				SubmitDataToTsunDb = null;
 			}
@@ -905,6 +905,11 @@ public sealed class Configuration
 			/// 任意アイテム表示のアイテムID
 			/// </summary>
 			public int DisplayUseItemID { get; set; }
+
+			/// <summary>
+			/// Workaround for WPF not properly calculating content size in WrapPanel
+			/// </summary>
+			public int WrappingOffset { get; set; }
 
 			public ConfigFormHeadquarters()
 			{

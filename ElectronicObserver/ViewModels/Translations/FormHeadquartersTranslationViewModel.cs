@@ -49,4 +49,6 @@ public class FormHeadquartersTranslationViewModel : TranslationBaseViewModel
 
 	public string Sanma => Properties.Window.FormHeadQuarters.Sanma;
 	public string Iwashi => Properties.Window.FormHeadQuarters.Iwashi;
+
+	public string WrappingOffset => Properties.Window.FormHeadQuarters.WrappingOffset;
 }

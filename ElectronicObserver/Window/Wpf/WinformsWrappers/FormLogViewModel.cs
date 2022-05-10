@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Resource;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,7 @@ public class FormLogViewModel : WinformsHostViewModel
 	public FormLogViewModel() : base("Log", "Log",
 		ImageSourceIcons.GetIcon(IconContent.FormLog))
 	{
-		FormLog = App.Current.Services.GetService<FormLogTranslationViewModel>()!;
+		FormLog = Ioc.Default.GetService<FormLogTranslationViewModel>()!;
 
 		Title = FormLog.Title;
 		FormLog.PropertyChanged += (_, _) => Title = FormLog.Title;
