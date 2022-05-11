@@ -16,7 +16,7 @@ public class ProgressMultiBattle : ProgressData
 	[DataMember]
 	private ProgressBattle[] ProgressList;
 
-	public ProgressMultiBattle(QuestData quest, IEnumerable<ProgressBattle> progressList)
+	public ProgressMultiBattle(IQuestData quest, IEnumerable<ProgressBattle> progressList)
 		: base(quest, 1)
 	{
 		ProgressList = progressList.ToArray();
@@ -45,7 +45,7 @@ public class ProgressMultiBattle : ProgressData
 		throw new NotSupportedException();
 	}
 
-	public override void CheckProgress(QuestData q)
+	public override void CheckProgress(IQuestData q)
 	{
 		foreach (var p in ProgressList)
 			p.ApplyTemporaryProgress(q);

@@ -21,7 +21,7 @@ public class ProgressExpedition : ProgressData
 	private HashSet<int> TargetArea { get; set; }
 
 
-	public ProgressExpedition(QuestData quest, int maxCount, int[] targetArea)
+	public ProgressExpedition(IQuestData quest, int maxCount, int[] targetArea)
 		: base(quest, maxCount)
 	{
 

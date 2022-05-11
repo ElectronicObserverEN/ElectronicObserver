@@ -27,14 +27,14 @@ public class ProgressPractice : ProgressData
 	[DataMember]
 	private int LowestRank { get; set; }
 
-	public ProgressPractice(QuestData quest, int maxCount, bool winOnly)
+	public ProgressPractice(IQuestData quest, int maxCount, bool winOnly)
 		: base(quest, maxCount)
 	{
 		LowestRank = winOnly ? Constants.GetWinRank("B") : Constants.GetWinRank("");
 		WinOnly = winOnly;
 	}
 
-	public ProgressPractice(QuestData quest, int maxCount, string lowestRank)
+	public ProgressPractice(IQuestData quest, int maxCount, string lowestRank)
 		: base(quest, maxCount)
 	{
 		LowestRank = Constants.GetWinRank(lowestRank);

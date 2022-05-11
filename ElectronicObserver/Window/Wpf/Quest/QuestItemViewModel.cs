@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Wpf.Quest;
 
 public class QuestItemViewModel
 {
-	private QuestData Quest { get; }
+	private IQuestData Quest { get; }
 	private int QuestIndex { get; }
 
 	public int QuestId => Quest.QuestID;
@@ -83,7 +83,7 @@ public class QuestItemViewModel
 
 	}
 
-	public QuestItemViewModel(QuestData quest, int questIndex)
+	public QuestItemViewModel(IQuestData quest, int questIndex)
 	{
 		Quest = quest;
 		QuestIndex = questIndex;

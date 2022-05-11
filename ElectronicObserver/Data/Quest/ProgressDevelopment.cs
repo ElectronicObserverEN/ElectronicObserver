@@ -14,7 +14,7 @@ namespace ElectronicObserver.Data.Quest;
 public class ProgressDevelopment : ProgressData
 {
 
-	public ProgressDevelopment(QuestData quest, int maxCount)
+	public ProgressDevelopment(IQuestData quest, int maxCount)
 		: base(quest, maxCount)
 	{
 	}

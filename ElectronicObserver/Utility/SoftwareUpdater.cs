@@ -139,6 +139,10 @@ internal class SoftwareUpdater
 			{
 				downloadList.Add(Path.Combine("Data", "QuestTrackers.json"));
 			}
+			if (CurrentVersion.GimmickQuests < LatestVersion.GimmickQuests)
+			{
+				downloadList.Add(Path.Combine("Data", "GimmickQuests.json"));
+			}
 
 			needReload = downloadList.Any();
 			downloadList.Add("update.json");
@@ -274,6 +278,12 @@ internal class SoftwareUpdater
 				_ => 0
 			};
 
+			int gimmickQuestsVersion = dataJson.QuestTrackers() switch
+			{
+				true => (int)dataJson.GimmickQuests,
+				_ => 0
+			};
+
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
 			var eventState = (MaintenanceState)(int)dataJson.event_state;
 
@@ -290,6 +300,7 @@ internal class SoftwareUpdater
 				Quest = questVersion,
 				Ship = shipVersion,
 				QuestTrackers = questTrackersVersion,
+				GimmickQuests = gimmickQuestsVersion,
 				MaintenanceDate = maintenanceDate,
 				EventState = eventState
 			};
@@ -336,6 +347,7 @@ public class UpdateData
 	public string Quest { get; set; } = "";
 	public string Ship { get; set; } = "";
 	public int QuestTrackers { get; set; }
+	public int GimmickQuests { get; set; }
 	public DateTime MaintenanceDate { get; set; }
 
 	/// <summary>

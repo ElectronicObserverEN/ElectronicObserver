@@ -279,7 +279,7 @@ public partial class QuestViewModel : AnchorableViewModel
 			.OrderBy(q => q.ID)
 			.Select((q, i) => (q, i));
 
-		foreach ((QuestData q, int questIndex) in indexedQuests)
+		foreach ((IQuestData q, int questIndex) in indexedQuests)
 		{
 
 			if (MenuMain_ShowRunningOnly && !(q.State is 2 or 3))
@@ -562,7 +562,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	{
 		bool needTranslation = false;
 		dynamic json = new JsonObject();
-		foreach (QuestData quest in KCDatabase.Instance.Quest.Quests.Values)
+		foreach (IQuestData quest in KCDatabase.Instance.Quest.Quests.Values)
 		{
 			if (quest.Translated) continue;
 
@@ -723,7 +723,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		int id = SelectedQuest.QuestId;
 
-		QuestData? quest = KCDatabase.Instance.Quest[id];
+		IQuestData? quest = KCDatabase.Instance.Quest[id];
 		ProgressData? progress = KCDatabase.Instance.QuestProgress[id];
 
 		if (id == -1 || (quest == null && progress == null)) return;

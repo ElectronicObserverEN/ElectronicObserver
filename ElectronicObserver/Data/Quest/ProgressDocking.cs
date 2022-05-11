@@ -14,7 +14,7 @@ namespace ElectronicObserver.Data.Quest;
 public class ProgressDocking : ProgressData
 {
 
-	public ProgressDocking(QuestData quest, int maxCount)
+	public ProgressDocking(IQuestData quest, int maxCount)
 		: base(quest, maxCount)
 	{
 	}

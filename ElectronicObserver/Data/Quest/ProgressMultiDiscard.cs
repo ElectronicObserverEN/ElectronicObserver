@@ -14,7 +14,7 @@ public class ProgressMultiDiscard : ProgressData
 	[DataMember]
 	private ProgressDiscard[] ProgressList;
 
-	public ProgressMultiDiscard(QuestData quest, IEnumerable<ProgressDiscard> progressList)
+	public ProgressMultiDiscard(IQuestData quest, IEnumerable<ProgressDiscard> progressList)
 		: base(quest, 1)
 	{
 		ProgressList = progressList.ToArray();
@@ -45,7 +45,7 @@ public class ProgressMultiDiscard : ProgressData
 	}
 
 
-	public override void CheckProgress(QuestData q)
+	public override void CheckProgress(IQuestData q)
 	{
 		foreach (var p in ProgressList)
 			p.ApplyTemporaryProgress(q);

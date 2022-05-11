@@ -290,7 +290,7 @@ public partial class FormQuest : DockContent
 			.OrderBy(q => q.ID)
 			.Select((q, i) => (q, i));
 
-		foreach ((QuestData q, int questIndex) in indexedQuests)
+		foreach ((IQuestData q, int questIndex) in indexedQuests)
 		{
 
 			if (MenuMain_ShowRunningOnly.Checked && !(q.State == 2 || q.State == 3))
@@ -911,7 +911,7 @@ public partial class FormQuest : DockContent
 	{
 		bool needTranslation = false;
 		dynamic json = new JsonObject();
-		foreach (QuestData quest in KCDatabase.Instance.Quest.Quests.Values)
+		foreach (IQuestData quest in KCDatabase.Instance.Quest.Quests.Values)
 		{
 			if (quest.Translated) continue;
 

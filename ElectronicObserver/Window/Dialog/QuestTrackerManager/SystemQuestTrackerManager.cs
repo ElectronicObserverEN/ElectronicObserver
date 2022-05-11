@@ -22,7 +22,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		IsInitialized = true;
 	}
 
-	private void MergeTrackers(List<TrackerModel> trackers)
+	public void MergeTrackers(List<TrackerModel> trackers)
 	{
 		IEnumerable<int> existingQuestIds = Trackers.Select(t => t.QuestId);
 		List<TrackerModel> clashingTrackers = trackers.Where(t => existingQuestIds.Contains(t.Quest.Id)).ToList();

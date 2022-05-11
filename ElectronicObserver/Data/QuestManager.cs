@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
 namespace ElectronicObserver.Data;
 
@@ -16,7 +19,7 @@ public class QuestManager : APIWrapper
 	/// <summary>
 	/// 任務リスト
 	/// </summary>
-	public IDDictionary<QuestData> Quests { get; private set; }
+	public IDDictionary<IQuestData> Quests { get; private set; }
 
 	/// <summary>
 	/// 任務数(未ロード含む)
@@ -41,15 +44,15 @@ public class QuestManager : APIWrapper
 
 	public QuestManager()
 	{
-		Quests = new IDDictionary<QuestData>();
+		Quests = new IDDictionary<IQuestData>();
 		IsLoaded = false;
 	}
 
 
-	public QuestData this[int key] => Quests[key];
+	public IQuestData this[int key] => Quests[key];
 
 
-	public override void LoadFromResponse(string apiname, dynamic data)
+	public async override void LoadFromResponse(string apiname, dynamic data)
 	{
 		base.LoadFromResponse(apiname, (object)data);
 
@@ -107,13 +110,16 @@ public class QuestManager : APIWrapper
 					}
 					else
 					{
-						Quests[id].LoadFromResponse(apiname, elem);
+						(Quests[id] as QuestData)?.LoadFromResponse(apiname, elem);
 					}
 
 				}
 			}
 
 		}
+
+		// Init custom quests (TODO : setting)
+		SystemGimmickQuestManager.Load();
 
 
 		IsLoaded = true;
@@ -152,7 +158,6 @@ public class QuestManager : APIWrapper
 		Quests.Clear();
 		IsLoaded = false;
 	}
-
 
 	// QuestProgressManager から呼ばれます
 	internal void OnQuestUpdated()
