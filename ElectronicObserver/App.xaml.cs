@@ -13,6 +13,7 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
+using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Jot;
 using Jot.Storage;
@@ -176,8 +177,10 @@ public partial class App : Application
 			.AddSingleton<EventLockPlannerTranslationViewModel>()
 			.AddSingleton<ShipFilterTranslationViewModel>()
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
+			.AddSingleton<AutoRefreshTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
+			.AddSingleton<AutoRefreshViewModel>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()

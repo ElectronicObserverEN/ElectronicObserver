@@ -2,6 +2,7 @@
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20220605113426_AddAutoRefresh")]
+    partial class AddAutoRefresh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");

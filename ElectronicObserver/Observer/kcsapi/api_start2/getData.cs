@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
+using ElectronicObserver.Database.MapData;
 
 namespace ElectronicObserver.Observer.kcsapi.api_start2;
 
@@ -11,6 +13,7 @@ public class getData : APIBase
 	{
 
 		KCDatabase db = KCDatabase.Instance;
+		using ElectronicObserverContext context = new();
 
 
 		//特別置換処理
@@ -130,6 +133,20 @@ public class getData : APIBase
 			{
 				db.MapArea[id].LoadFromResponse(APIName, elem);
 			}
+			
+			WorldModel? world = context.Worlds.Find(id);
+
+			if (world is null)
+			{
+				context.Worlds.Add(new()
+				{
+					Id = id,
+				});
+			}
+			else
+			{
+				// update any world related data if we ever add any
+			}
 		}
 
 		//api_mst_mapinfo
@@ -146,6 +163,22 @@ public class getData : APIBase
 			else
 			{
 				db.MapInfo[id].LoadFromResponse(APIName, elem);
+			}
+
+			MapModel? map = context.Maps.Find(id);
+
+			if (map is null)
+			{
+				context.Maps.Add(new()
+				{
+					Id = id,
+					WorldId = (int)elem.api_maparea_id,
+					MapId = (int)elem.api_no,
+				});
+			}
+			else
+			{
+				// update any map related data if we ever add any
 			}
 		}
 
@@ -234,7 +267,7 @@ public class getData : APIBase
 			}
 		}
 
-
+		context.SaveChanges();
 
 		Utility.Logger.Add(2, LoggerRes.GameStart);
 

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
+using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Notifier;
+using ElectronicObserverTypes;
 using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map;
@@ -23,6 +26,34 @@ public class start : APIBase
 		}
 
 		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
+
+		int world = (int)data.api_maparea_id;
+		int map = (int)data.api_mapinfo_no;
+		object[] cells = (object[])data.api_cell_data;
+
+		using ElectronicObserverContext context = new();
+
+		foreach (dynamic cell in cells)
+		{
+			CellModel? node = context.Cells.Find((int)cell.api_id);
+
+			if (node is not null)
+			{
+				// update any other values if we decide to add them
+				continue;
+			}
+
+			context.Cells.Add(new()
+			{
+				Id = (int)cell.api_id,
+				WorldId = world,
+				MapId = map,
+				CellId = (int)cell.api_no,
+				CellType = (CellType)cell.api_color_no,
+			});
+		}
+
+		context.SaveChanges();
 
 		base.OnResponseReceived((object)data);
 

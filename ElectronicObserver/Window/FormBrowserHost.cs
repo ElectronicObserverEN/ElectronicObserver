@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrowserHost;
 using BrowserLibCore;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.Window.Tools.AutoRefresh;
 using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -100,11 +103,58 @@ public partial class FormBrowserHost : Form
 		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBrowser]);
 
 		Translate();
+		SubscribeToApis();
 	}
 
 	public void Translate()
 	{
 		Text = Translation.Title;
+	}
+
+	public void SubscribeToApis()
+	{
+		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += RefreshIfAdvanceIsNotAllowed;
+		APIObserver.Instance.ApiReqMap_Next.ResponseReceived += RefreshIfAdvanceIsNotAllowed;
+	}
+
+	private void RefreshIfAdvanceIsNotAllowed(string apiname, object data)
+	{
+		AutoRefreshViewModel autoRefresh = Ioc.Default.GetRequiredService<AutoRefreshViewModel>();
+		CompassData compass = KCDatabase.Instance.Battle.Compass;
+
+		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.Destination, autoRefresh))
+		{
+			Browser.ForceRefresh();
+		}
+	}
+
+	public static bool ShouldRefresh(int mapAreaId, int mapInfoId, int destination, AutoRefreshViewModel autoRefresh)
+	{
+		bool IsAllowed(AutoRefreshRuleViewModel rule, bool isSingleMap)
+		{
+			if (isSingleMap) return
+				mapAreaId == rule.Map.AreaId &&
+				mapInfoId == rule.Map.InfoId &&
+				rule.AllowedCells.Select(c => c.Id).Contains(destination);
+
+			if (mapAreaId != rule.Map.AreaId) return true;
+			if (mapInfoId != rule.Map.InfoId) return true;
+
+			return rule.AllowedCells.Select(c => c.Id).Contains(destination);
+		}
+
+		List<AutoRefreshRuleViewModel> enabledRules = autoRefresh.Rules
+			.Where(r => r.IsEnabled)
+			.ToList();
+
+		if (enabledRules.Count is 0) return false;
+
+		if (autoRefresh.IsSingleMapMode && !IsAllowed(enabledRules.First(), autoRefresh.IsSingleMapMode))
+		{
+			return true;
+		}
+
+		return !enabledRules.All(r => IsAllowed(r, autoRefresh.IsSingleMapMode));
 	}
 
 	public void InitializeApiCompleted()

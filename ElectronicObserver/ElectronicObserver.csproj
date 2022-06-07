@@ -24,9 +24,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.1.7.0</AssemblyVersion>
-		<FileVersion>5.1.7.0</FileVersion>
-		<Version>5.1.7.0</Version>
+		<AssemblyVersion>5.1.7.1</AssemblyVersion>
+		<FileVersion>5.1.7.1</FileVersion>
+		<Version>5.1.7.1</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -343,6 +343,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>AirControlSimulator.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Tools\AutoRefresh\AutoRefresh.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AutoRefresh.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -665,6 +670,10 @@
 		<EmbeddedResource Update="Window\Tools\AirControlSimulator\AirControlSimulator.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\AutoRefresh\AutoRefresh.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>AutoRefresh.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 			<Generator>ResXFileCodeGenerator</Generator>

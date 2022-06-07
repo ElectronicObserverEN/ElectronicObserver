@@ -2,6 +2,7 @@
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,14 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20220605065920_AddMapData")]
+    partial class AddMapData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
-            modelBuilder.Entity("ElectronicObserver.Database.MapData.CellModel", b =>
+            modelBuilder.Entity("ElectronicObserver.Database.Maps.CellModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +41,7 @@ namespace ElectronicObserver.Database.Migrations
                     b.ToTable("Cells");
                 });
 
-            modelBuilder.Entity("ElectronicObserver.Database.MapData.MapModel", b =>
+            modelBuilder.Entity("ElectronicObserver.Database.Maps.MapModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +58,7 @@ namespace ElectronicObserver.Database.Migrations
                     b.ToTable("Maps");
                 });
 
-            modelBuilder.Entity("ElectronicObserver.Database.MapData.WorldModel", b =>
+            modelBuilder.Entity("ElectronicObserver.Database.Maps.WorldModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,24 +67,6 @@ namespace ElectronicObserver.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Worlds");
-                });
-
-            modelBuilder.Entity("ElectronicObserver.Window.Tools.AutoRefresh.AutoRefreshModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsSingleMapMode")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Rules")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AutoRefresh");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Window.Tools.EventLockPlanner.EventLockPlannerModel", b =>

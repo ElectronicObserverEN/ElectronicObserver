@@ -1124,6 +1124,11 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}.Show();
 	}
 
+	public void ForceRefresh()
+	{
+		RefreshBrowser();
+	}
+
 	/*
 	protected override void WndProc(ref Message m)
 	{
