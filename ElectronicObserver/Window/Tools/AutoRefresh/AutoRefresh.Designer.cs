@@ -79,6 +79,15 @@ namespace ElectronicObserver.Window.Tools.AutoRefresh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ご注意 自動再読み込みは、ゲームを再読み込みできるようにダイアログを開くだけです。つまり、羅針盤やマス・陣形の選択などの画面操作が必要な戦闘突入を除いて、ダイアログを放置していると次の戦闘に突入してしまいます。.
+        /// </summary>
+        public static string NoInteractionWarning {
+            get {
+                return ResourceManager.GetString("NoInteractionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to セル削除.
         /// </summary>
         public static string RemoveCell {

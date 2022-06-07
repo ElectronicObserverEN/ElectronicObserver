@@ -123,6 +123,14 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
+		<TextBlock
+			Grid.Row="0"
+			Margin="4"
+			Foreground="Red"
+			Text="{Binding AutoRefresh.NoInteractionWarning}"
+			TextWrapping="Wrap"
+			/>
+
 		<StackPanel Grid.Row="1" Orientation="Horizontal">
 			<Button Command="{Binding AddRuleCommand}" Content="＋" />
 

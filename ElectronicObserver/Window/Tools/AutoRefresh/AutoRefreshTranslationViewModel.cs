@@ -6,6 +6,8 @@ public class AutoRefreshTranslationViewModel : TranslationBaseViewModel
 {
 	public string Title => AutoRefresh.Title;
 
+	public string NoInteractionWarning => AutoRefresh.NoInteractionWarning;
+
 	public string SingleMapMode => AutoRefresh.SingleMapMode;
 	public string SingleMapModeToolTip => AutoRefresh.SingleMapModeToolTip;
 	public string SingleMapModeIsEnabled => AutoRefresh.SingleMapModeIsEnabled;

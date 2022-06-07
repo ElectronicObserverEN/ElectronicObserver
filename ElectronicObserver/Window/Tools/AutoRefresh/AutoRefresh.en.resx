@@ -141,4 +141,7 @@
   <data name="Enabled" xml:space="preserve">
     <value>Enabled</value>
   </data>
+  <data name="NoInteractionWarning" xml:space="preserve">
+    <value>Warning: Auto reload will only open a dialog so that you can reload the game. This means that if you don't confirm the reload fast enough, you will enter the next battle, unless it requires interaction such as compass or node/formation selection.</value>
+  </data>
 </root>

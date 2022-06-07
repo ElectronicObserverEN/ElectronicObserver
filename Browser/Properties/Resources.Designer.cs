@@ -115,6 +115,16 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 進撃を断る設定のセルに進もうとしています。
+        ///再読み込みしますか？.
+        /// </summary>
+        public static string AutoRefreshNotification {
+            get {
+                return ResourceManager.GetString("AutoRefreshNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to バック.
         /// </summary>
         public static string Back {

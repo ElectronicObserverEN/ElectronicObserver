@@ -379,4 +379,8 @@ Microsoft Visual C++ 2019 Redistributableが必要です。
   <data name="CacheCleared" xml:space="preserve">
     <value>キャッシュの削除処理が終了しました。</value>
   </data>
+  <data name="AutoRefreshNotification" xml:space="preserve">
+    <value>進撃を断る設定のセルに進もうとしています。
+再読み込みしますか？</value>
+  </data>
 </root>

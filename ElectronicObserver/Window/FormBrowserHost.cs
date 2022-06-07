@@ -33,6 +33,8 @@ public partial class FormBrowserHost : Form
 	private static FormBrowserHost _instance;
 	public static FormBrowserHost Instance => _instance;
 
+	private AutoRefreshViewModel AutoRefresh { get; }
+
 	public static string BrowserExeName => "EOBrowser.exe";
 
 	private string Host { get; }
@@ -93,6 +95,9 @@ public partial class FormBrowserHost : Form
 
 	public FormBrowserHost(object parent)
 	{
+		AutoRefresh = Ioc.Default.GetRequiredService<AutoRefreshViewModel>();
+		AutoRefresh.Loaded();
+
 		InitializeComponent();
 
 		_instance = this;
@@ -119,12 +124,11 @@ public partial class FormBrowserHost : Form
 
 	private void RefreshIfAdvanceIsNotAllowed(string apiname, object data)
 	{
-		AutoRefreshViewModel autoRefresh = Ioc.Default.GetRequiredService<AutoRefreshViewModel>();
 		CompassData compass = KCDatabase.Instance.Battle.Compass;
 
-		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.Destination, autoRefresh))
+		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.Destination, AutoRefresh))
 		{
-			Browser.ForceRefresh();
+			Browser.RequestAutoRefresh();
 		}
 	}
 

@@ -121,4 +121,7 @@
   <data name="Enabled" xml:space="preserve">
     <value>有効</value>
   </data>
+  <data name="NoInteractionWarning" xml:space="preserve">
+    <value>ご注意 自動再読み込みは、ゲームを再読み込みできるようにダイアログを開くだけです。つまり、羅針盤やマス・陣形の選択などの画面操作が必要な戦闘突入を除いて、ダイアログを放置していると次の戦闘に突入してしまいます。</value>
+  </data>
 </root>
