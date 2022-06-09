@@ -1083,4 +1083,10 @@
   <data name="TorpedoSupport" xml:space="preserve">
     <value>Torpedo Support</value>
   </data>
+  <data name="SpecialYamato123" xml:space="preserve">
+    <value>Yamato touch (1, 2, 3)</value>
+  </data>
+  <data name="SpecialYamato12" xml:space="preserve">
+    <value>Yamato touch (1, 2)</value>
+  </data>
 </root>

@@ -179,7 +179,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 記録する特殊攻撃
 	/// </summary>
-	private readonly int[] TracedSpecialAttack = new int[] { 100, 101, 102, 103, 104 };
+	private int[] TracedSpecialAttack { get; } = { 100, 101, 102, 103, 104, 300, 301, 302, 400, 401 };
 
 
 

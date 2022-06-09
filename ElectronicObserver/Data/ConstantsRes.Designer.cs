@@ -2446,6 +2446,24 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 大和、突撃します！二番艦も続いてください！.
+        /// </summary>
+        public static string SpecialYamato12 {
+            get {
+                return ResourceManager.GetString("SpecialYamato12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第一戦隊、突撃！主砲、全力斉射ッ！.
+        /// </summary>
+        public static string SpecialYamato123 {
+            get {
+                return ResourceManager.GetString("SpecialYamato123", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輝虹.
         /// </summary>
         public static string SRainbow {

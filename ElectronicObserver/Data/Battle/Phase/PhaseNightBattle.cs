@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data.Battle.Detail;
+using ElectronicObserver.Utility.Data;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -82,10 +83,9 @@ public class PhaseNightBattle : PhaseBase
 
 		foreach (var atk in Attacks)
 		{
-			switch (atk.AttackType)
+			switch ((NightAttackKind)atk.AttackType)
 			{
-				case 100:
-					// nelson touch
+				case NightAttackKind.SpecialNelson:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
 						var comboatk = new BattleIndex(atk.Attacker.Side, i * 2);       // #1, #3, #5
@@ -95,9 +95,9 @@ public class PhaseNightBattle : PhaseBase
 					}
 					break;
 
-				case 101:
-				case 102:
-					// nagato/mutsu touch
+				case NightAttackKind.SpecialNagato:
+				case NightAttackKind.SpecialMutsu:
+				case NightAttackKind.SpecialYamato2Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
 						var comboatk = new BattleIndex(atk.Attacker.Side, i / 2);       // #1, #1, #2
@@ -107,9 +107,9 @@ public class PhaseNightBattle : PhaseBase
 					}
 					break;
 
-				case 103:
-				case 104:
-					// colorado touch / kongo-class night attack
+				case NightAttackKind.SpecialColorado:
+				case NightAttackKind.SpecialKongo:
+				case NightAttackKind.SpecialYamato3Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
 						var comboatk = new BattleIndex(atk.Attacker.Side, i);       // #1, #2 (, #3)

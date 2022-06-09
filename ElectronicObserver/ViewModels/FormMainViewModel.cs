@@ -28,7 +28,6 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
-using ElectronicObserver.TestData.Models;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
@@ -1566,8 +1565,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		await db.SaveChangesAsync();
 
-		List<ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
-		List<EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
+		var masterShips = db.MasterShips.ToList();
+		var masterEquipment = db.MasterEquipment.ToList();
 
 		JsonSerializerOptions options = new()
 		{

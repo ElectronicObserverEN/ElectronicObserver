@@ -803,145 +803,84 @@ public static class Constants
 	/// <summary>
 	/// 昼戦攻撃種別を表す文字列を取得します。
 	/// </summary>
-	public static string GetDayAttackKind(DayAttackKind id)
+	public static string GetDayAttackKind(DayAttackKind id) => id switch
 	{
-		switch (id)
-		{
-			case DayAttackKind.NormalAttack:
-				return ConstantsRes.NormalAttack;
-			case DayAttackKind.Laser:
-				return ConstantsRes.LaserAttack;
-			case DayAttackKind.DoubleShelling:
-				return ConstantsRes.DoubleAttack;
-			case DayAttackKind.CutinMainSub:
-				return ConstantsRes.CutinMainSub;
-			case DayAttackKind.CutinMainRadar:
-				return ConstantsRes.CutinMainRadar;
-			case DayAttackKind.CutinMainAP:
-				return ConstantsRes.CutinMainAP;
-			case DayAttackKind.CutinMainMain:
-				return ConstantsRes.CutinMainMain;
-			case DayAttackKind.CutinAirAttack:
-				return ConstantsRes.CutinAirAttack;
-			case DayAttackKind.SpecialNelson:
-				return ConstantsRes.SpecialNelson;
-			case DayAttackKind.SpecialNagato:
-				return ConstantsRes.SpecialNagato;
-			case DayAttackKind.SpecialMutsu:
-				return ConstantsRes.SpecialMutsu;
-			case DayAttackKind.SpecialColorado:
-				return ConstantsRes.SpecialColorado;
-			case DayAttackKind.SpecialKongo:
-				return ConstantsRes.SpecialKongou;
-			case DayAttackKind.ZuiunMultiAngle:
-				return ConstantsRes.ZuiunMultiAngle;
-			case DayAttackKind.SeaAirMultiAngle:
-				return ConstantsRes.SeaAirMultiAngle;
-			case DayAttackKind.SpecialSubmarineTender23:
-				return ConstantsRes.SpecialSubmarineTender23;
-			case DayAttackKind.SpecialSubmarineTender34:
-				return ConstantsRes.SpecialSubmarineTender34;
-			case DayAttackKind.SpecialSubmarineTender24:
-				return ConstantsRes.SpecialSubmarineTender24;
-			case DayAttackKind.Shelling:
-				return ConstantsRes.Shelling;
-			case DayAttackKind.AirAttack:
-				return ConstantsRes.AirAttack;
-			case DayAttackKind.DepthCharge:
-				return ConstantsRes.DepthChargeAttack;
-			case DayAttackKind.Torpedo:
-				return ConstantsRes.TorpedoAttack;
-			case DayAttackKind.Rocket:
-				return ConstantsRes.RocketAttack;
-			case DayAttackKind.LandingDaihatsu:
-				return ConstantsRes.LandingDaihatsu;
-			case DayAttackKind.LandingTokuDaihatsu:
-				return ConstantsRes.LandingTokuDaihatsu;
-			case DayAttackKind.LandingDaihatsuTank:
-				return ConstantsRes.LandingDaihatsuTank;
-			case DayAttackKind.LandingAmphibious:
-				return ConstantsRes.TankAttack;
-			case DayAttackKind.LandingTokuDaihatsuTank:
-				return ConstantsRes.LandingTokuDaihatsuTank;
-			default:
-				return $"{ConstantsRes.Unknown}({(int)id})";
-		}
-	}
+		DayAttackKind.NormalAttack => ConstantsRes.NormalAttack,
+		DayAttackKind.Laser => ConstantsRes.LaserAttack,
+		DayAttackKind.DoubleShelling => ConstantsRes.DoubleAttack,
+		DayAttackKind.CutinMainSub => ConstantsRes.CutinMainSub,
+		DayAttackKind.CutinMainRadar => ConstantsRes.CutinMainRadar,
+		DayAttackKind.CutinMainAP => ConstantsRes.CutinMainAP,
+		DayAttackKind.CutinMainMain => ConstantsRes.CutinMainMain,
+		DayAttackKind.CutinAirAttack => ConstantsRes.CutinAirAttack,
+		DayAttackKind.SpecialNelson => ConstantsRes.SpecialNelson,
+		DayAttackKind.SpecialNagato => ConstantsRes.SpecialNagato,
+		DayAttackKind.SpecialMutsu => ConstantsRes.SpecialMutsu,
+		DayAttackKind.SpecialColorado => ConstantsRes.SpecialColorado,
+		DayAttackKind.SpecialKongo => ConstantsRes.SpecialKongou,
+		DayAttackKind.ZuiunMultiAngle => ConstantsRes.ZuiunMultiAngle,
+		DayAttackKind.SeaAirMultiAngle => ConstantsRes.SeaAirMultiAngle,
+		DayAttackKind.SpecialSubmarineTender23 => ConstantsRes.SpecialSubmarineTender23,
+		DayAttackKind.SpecialSubmarineTender34 => ConstantsRes.SpecialSubmarineTender34,
+		DayAttackKind.SpecialSubmarineTender24 => ConstantsRes.SpecialSubmarineTender24,
+		DayAttackKind.SpecialYamato3Ships => ConstantsRes.SpecialYamato123,
+		DayAttackKind.SpecialYamato2Ships => ConstantsRes.SpecialYamato12,
+		DayAttackKind.Shelling => ConstantsRes.Shelling,
+		DayAttackKind.AirAttack => ConstantsRes.AirAttack,
+		DayAttackKind.DepthCharge => ConstantsRes.DepthChargeAttack,
+		DayAttackKind.Torpedo => ConstantsRes.TorpedoAttack,
+		DayAttackKind.Rocket => ConstantsRes.RocketAttack,
+		DayAttackKind.LandingDaihatsu => ConstantsRes.LandingDaihatsu,
+		DayAttackKind.LandingTokuDaihatsu => ConstantsRes.LandingTokuDaihatsu,
+		DayAttackKind.LandingDaihatsuTank => ConstantsRes.LandingDaihatsuTank,
+		DayAttackKind.LandingAmphibious => ConstantsRes.TankAttack,
+		DayAttackKind.LandingTokuDaihatsuTank => ConstantsRes.LandingTokuDaihatsuTank,
+		_ => $"{ConstantsRes.Unknown}({(int)id})"
+	};
 
 
 	/// <summary>
 	/// 夜戦攻撃種別を表す文字列を取得します。
 	/// </summary>
-	public static string GetNightAttackKind(NightAttackKind id)
+	public static string GetNightAttackKind(NightAttackKind id) => id switch
 	{
-		switch (id)
-		{
-			case NightAttackKind.NormalAttack:
-				return ConstantsRes.NormalAttack;
-			case NightAttackKind.DoubleShelling:
-				return ConstantsRes.DoubleShelling;
-			case NightAttackKind.CutinMainTorpedo:
-				return ConstantsRes.CutinMainTorpedo;
-			case NightAttackKind.CutinTorpedoTorpedo:
-				return ConstantsRes.CutinTorpedoTorpedo;
-			case NightAttackKind.CutinMainSub:
-				return ConstantsRes.CutinNightMainSub;
-			case NightAttackKind.CutinMainMain:
-				return ConstantsRes.CutinNightMainMain;
-			case NightAttackKind.CutinAirAttack:
-				return ConstantsRes.CutinAirAttack;
-			case NightAttackKind.CutinTorpedoRadar:
-			case NightAttackKind.CutinTorpedoRadar2:
-				return ConstantsRes.CutinTorpedoRadar;
-			case NightAttackKind.CutinTorpedoPicket:
-			case NightAttackKind.CutinTorpedoPicket2:
-				return ConstantsRes.CutinTorpedoPicket;
-			case NightAttackKind.CutinTorpedoDestroyerPicket:
-			case NightAttackKind.CutinTorpedoDestroyerPicket2:
-				return ConstantsRes.CutinTorpedoDestroyerPicket;
-			case NightAttackKind.CutinTorpedoDrum:
-			case NightAttackKind.CutinTorpedoDrum2:
-				return ConstantsRes.CutinTorpedoDrum;
-			case NightAttackKind.SpecialNelson:
-				return ConstantsRes.SpecialNelson;
-			case NightAttackKind.SpecialNagato:
-				return ConstantsRes.SpecialNagato;
-			case NightAttackKind.SpecialMutsu:
-				return ConstantsRes.SpecialMutsu;
-			case NightAttackKind.SpecialColorado:
-				return ConstantsRes.SpecialColorado;
-			case NightAttackKind.SpecialKongo:
-				return ConstantsRes.SpecialKongou;
-			case NightAttackKind.SpecialSubmarineTender23:
-				return ConstantsRes.SpecialSubmarineTender23;
-			case NightAttackKind.SpecialSubmarineTender34:
-				return ConstantsRes.SpecialSubmarineTender34;
-			case NightAttackKind.SpecialSubmarineTender24:
-				return ConstantsRes.SpecialSubmarineTender24;
-			case NightAttackKind.Shelling:
-				return ConstantsRes.Shelling;
-			case NightAttackKind.AirAttack:
-				return ConstantsRes.AirAttack;
-			case NightAttackKind.DepthCharge:
-				return ConstantsRes.DepthChargeAttack;
-			case NightAttackKind.Torpedo:
-				return ConstantsRes.TorpedoAttack;
-			case NightAttackKind.Rocket:
-				return ConstantsRes.RocketAttack;
-			case NightAttackKind.LandingDaihatsu:
-				return ConstantsRes.DaihatsuAttack;
-			case NightAttackKind.LandingTokuDaihatsu:
-				return ConstantsRes.LandingTokuDaihatsu;
-			case NightAttackKind.LandingDaihatsuTank:
-				return ConstantsRes.LandingDaihatsuTank;
-			case NightAttackKind.LandingAmphibious:
-				return ConstantsRes.TankAttack;
-			case NightAttackKind.LandingTokuDaihatsuTank:
-				return ConstantsRes.LandingTokuDaihatsuTank;
-			default:
-				return $"{ConstantsRes.Unknown}({(int)id})";
-		}
-	}
+		NightAttackKind.NormalAttack => ConstantsRes.NormalAttack,
+		NightAttackKind.DoubleShelling => ConstantsRes.DoubleShelling,
+		NightAttackKind.CutinMainTorpedo => ConstantsRes.CutinMainTorpedo,
+		NightAttackKind.CutinTorpedoTorpedo => ConstantsRes.CutinTorpedoTorpedo,
+		NightAttackKind.CutinMainSub => ConstantsRes.CutinNightMainSub,
+		NightAttackKind.CutinMainMain => ConstantsRes.CutinNightMainMain,
+		NightAttackKind.CutinAirAttack => ConstantsRes.CutinAirAttack,
+		NightAttackKind.CutinTorpedoRadar => ConstantsRes.CutinTorpedoRadar,
+		NightAttackKind.CutinTorpedoRadar2 => ConstantsRes.CutinTorpedoRadar,
+		NightAttackKind.CutinTorpedoPicket => ConstantsRes.CutinTorpedoPicket,
+		NightAttackKind.CutinTorpedoPicket2 => ConstantsRes.CutinTorpedoPicket,
+		NightAttackKind.CutinTorpedoDestroyerPicket => ConstantsRes.CutinTorpedoDestroyerPicket,
+		NightAttackKind.CutinTorpedoDestroyerPicket2 => ConstantsRes.CutinTorpedoDestroyerPicket,
+		NightAttackKind.CutinTorpedoDrum => ConstantsRes.CutinTorpedoDrum,
+		NightAttackKind.CutinTorpedoDrum2 => ConstantsRes.CutinTorpedoDrum,
+		NightAttackKind.SpecialNelson => ConstantsRes.SpecialNelson,
+		NightAttackKind.SpecialNagato => ConstantsRes.SpecialNagato,
+		NightAttackKind.SpecialMutsu => ConstantsRes.SpecialMutsu,
+		NightAttackKind.SpecialColorado => ConstantsRes.SpecialColorado,
+		NightAttackKind.SpecialKongo => ConstantsRes.SpecialKongou,
+		NightAttackKind.SpecialSubmarineTender23 => ConstantsRes.SpecialSubmarineTender23,
+		NightAttackKind.SpecialSubmarineTender34 => ConstantsRes.SpecialSubmarineTender34,
+		NightAttackKind.SpecialSubmarineTender24 => ConstantsRes.SpecialSubmarineTender24,
+		NightAttackKind.SpecialYamato3Ships => ConstantsRes.SpecialYamato123,
+		NightAttackKind.SpecialYamato2Ships => ConstantsRes.SpecialYamato12,
+		NightAttackKind.Shelling => ConstantsRes.Shelling,
+		NightAttackKind.AirAttack => ConstantsRes.AirAttack,
+		NightAttackKind.DepthCharge => ConstantsRes.DepthChargeAttack,
+		NightAttackKind.Torpedo => ConstantsRes.TorpedoAttack,
+		NightAttackKind.Rocket => ConstantsRes.RocketAttack,
+		NightAttackKind.LandingDaihatsu => ConstantsRes.DaihatsuAttack,
+		NightAttackKind.LandingTokuDaihatsu => ConstantsRes.LandingTokuDaihatsu,
+		NightAttackKind.LandingDaihatsuTank => ConstantsRes.LandingDaihatsuTank,
+		NightAttackKind.LandingAmphibious => ConstantsRes.TankAttack,
+		NightAttackKind.LandingTokuDaihatsuTank => ConstantsRes.LandingTokuDaihatsuTank,
+		_ => $"{ConstantsRes.Unknown}({(int)id})"
+	};
 
 
 	/// <summary>

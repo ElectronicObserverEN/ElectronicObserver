@@ -2471,6 +2471,13 @@ public enum DayAttackKind
 	SpecialSubmarineTender24 = 302,
 
 
+	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
+	SpecialYamato3Ships = 400,
+
+	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
+	SpecialYamato2Ships = 401,
+
+
 	/// <summary> 砲撃 </summary>
 	Shelling = 1000,
 
@@ -2584,6 +2591,13 @@ public enum NightAttackKind
 
 	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・4) </summary>
 	SpecialSubmarineTender24 = 302,
+
+
+	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
+	SpecialYamato3Ships = 400,
+
+	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
+	SpecialYamato2Ships = 401,
 
 
 	/// <summary> 砲撃 </summary>
