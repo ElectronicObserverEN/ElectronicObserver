@@ -134,17 +134,10 @@ public partial class FormBrowserHost : Form
 
 	public static bool ShouldRefresh(int mapAreaId, int mapInfoId, int destination, AutoRefreshViewModel autoRefresh)
 	{
-		bool IsAllowed(AutoRefreshRuleViewModel rule, bool isSingleMap)
+		if (autoRefresh.IsSingleMapMode && autoRefresh.SelectedSingleMapModeMap is not null)
 		{
-			if (isSingleMap) return
-				mapAreaId == rule.Map.AreaId &&
-				mapInfoId == rule.Map.InfoId &&
-				rule.AllowedCells.Select(c => c.Id).Contains(destination);
-
-			if (mapAreaId != rule.Map.AreaId) return true;
-			if (mapInfoId != rule.Map.InfoId) return true;
-
-			return rule.AllowedCells.Select(c => c.Id).Contains(destination);
+			if (mapAreaId != autoRefresh.SelectedSingleMapModeMap.AreaId) return true;
+			if (mapInfoId != autoRefresh.SelectedSingleMapModeMap.InfoId) return true;
 		}
 
 		List<AutoRefreshRuleViewModel> enabledRules = autoRefresh.Rules
@@ -153,12 +146,15 @@ public partial class FormBrowserHost : Form
 
 		if (enabledRules.Count is 0) return false;
 
-		if (autoRefresh.IsSingleMapMode && !IsAllowed(enabledRules.First(), autoRefresh.IsSingleMapMode))
-		{
-			return true;
-		}
+		return !enabledRules.All(IsAllowed);
 
-		return !enabledRules.All(r => IsAllowed(r, autoRefresh.IsSingleMapMode));
+		bool IsAllowed(AutoRefreshRuleViewModel rule)
+		{
+			if (mapAreaId != rule.Map.AreaId) return true;
+			if (mapInfoId != rule.Map.InfoId) return true;
+
+			return rule.AllowedCells.Select(c => c.Id).Contains(destination);
+		}
 	}
 
 	public void InitializeApiCompleted()

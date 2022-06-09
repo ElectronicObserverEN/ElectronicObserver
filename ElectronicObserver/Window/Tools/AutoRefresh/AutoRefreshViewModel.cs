@@ -28,14 +28,8 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 		.ToList();
 
 	public bool IsSingleMapMode { get; set; }
-	public string? SingleMapModeRuleDisplay => EnabledRules switch
-	{
-		{ Count: > 0 } => RuleDisplay(EnabledRules[0]),
-		_ => null
-	};
-
-	private static string RuleDisplay(AutoRefreshRuleViewModel rule) =>
-		$"{rule.Map.Display} ({string.Join(", ", rule.AllowedCells.Select(c => c.Id))})";
+	public MapInfoModel? SelectedSingleMapModeMap { get; set; }
+	public string? SingleMapModeRuleDisplay => SelectedSingleMapModeMap?.Display;
 
 	public AutoRefreshViewModel()
 	{
@@ -87,6 +81,12 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 
 		model.IsSingleMapMode = IsSingleMapMode;
 
+		model.SingleMapModeMap = new()
+		{
+			WorldId = SelectedSingleMapModeMap?.AreaId ?? 0,
+			MapId = SelectedSingleMapModeMap?.InfoId ?? 0,
+		};
+
 		model.Rules = Rules.Select(r => new AutoRefreshRuleModel
 		(
 			r.IsEnabled,
@@ -116,6 +116,12 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 		Rules.Clear();
 
 		IsSingleMapMode = model.IsSingleMapMode;
+
+		SelectedSingleMapModeMap = Maps.FirstOrDefault
+		(m =>
+			m.AreaId == model.SingleMapModeMap.WorldId &&
+			m.InfoId == model.SingleMapModeMap.MapId
+		);
 
 		foreach (AutoRefreshRuleModel rule in model.Rules)
 		{

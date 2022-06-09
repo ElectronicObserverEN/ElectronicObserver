@@ -6,12 +6,11 @@ namespace ElectronicObserverCoreTests;
 
 public class AutoRefreshTests
 {
-	[Fact(DisplayName = "SingleMap = false, Single rule, Rules contain current map")]
+	[Fact(DisplayName = "Single rule, Rules contain current map")]
 	public void AutoRefreshTest1()
 	{
 		AutoRefreshViewModel autoRefresh = new()
 		{
-			IsSingleMapMode = false,
 			Rules =
 			{
 				new(new(1, 1))
@@ -30,12 +29,11 @@ public class AutoRefreshTests
 		Assert.True(FormBrowserHost.ShouldRefresh(1, 1, 3, autoRefresh));
 	}
 
-	[Fact(DisplayName = "SingleMap = false, Single rule, Rules don't contain current map")]
+	[Fact(DisplayName = "Single rule, Rules don't contain current map")]
 	public void AutoRefreshTest2()
 	{
 		AutoRefreshViewModel autoRefresh = new()
 		{
-			IsSingleMapMode = false,
 			Rules =
 			{
 				new(new(1, 1))
@@ -54,37 +52,26 @@ public class AutoRefreshTests
 		Assert.False(FormBrowserHost.ShouldRefresh(1, 2, 3, autoRefresh));
 	}
 
-	[Fact(DisplayName = "SingleMap = true, Single rule")]
+	[Fact(DisplayName = "SingleMap = true")]
 	public void AutoRefreshTest3()
 	{
 		AutoRefreshViewModel autoRefresh = new()
 		{
 			IsSingleMapMode = true,
-			Rules =
-			{
-				new(new(1, 1))
-				{
-					IsEnabled = true,
-					AllowedCells =
-					{
-						new(1),
-					}
-				}
-			}
+			SelectedSingleMapModeMap = new(1, 1),
 		};
 
 		Assert.False(FormBrowserHost.ShouldRefresh(1, 1, 1, autoRefresh));
-		Assert.True(FormBrowserHost.ShouldRefresh(1, 1, 2, autoRefresh));
-		Assert.True(FormBrowserHost.ShouldRefresh(1, 1, 3, autoRefresh));
+		Assert.False(FormBrowserHost.ShouldRefresh(1, 1, 2, autoRefresh));
+		Assert.False(FormBrowserHost.ShouldRefresh(1, 1, 3, autoRefresh));
 		Assert.True(FormBrowserHost.ShouldRefresh(1, 2, 1, autoRefresh));
 	}
 
-	[Fact(DisplayName = "SingleMap = false, Multiple rules")]
+	[Fact(DisplayName = "Multiple rules")]
 	public void AutoRefreshTest4()
 	{
 		AutoRefreshViewModel autoRefresh = new()
 		{
-			IsSingleMapMode = false,
 			Rules =
 			{
 				new(new(1, 1))
@@ -114,12 +101,13 @@ public class AutoRefreshTests
 		Assert.True(FormBrowserHost.ShouldRefresh(1, 2, 3, autoRefresh));
 	}
 
-	[Fact(DisplayName = "SingleMap = true, Multiple rules (one enabled)")]
+	[Fact(DisplayName = "SingleMap = true, Multiple rules")]
 	public void AutoRefreshTest5()
 	{
 		AutoRefreshViewModel autoRefresh = new()
 		{
 			IsSingleMapMode = true,
+			SelectedSingleMapModeMap = new(1, 2),
 			Rules =
 			{
 				new(new(1, 1))

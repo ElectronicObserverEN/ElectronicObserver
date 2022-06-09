@@ -10,6 +10,7 @@ using CellModel = ElectronicObserver.Database.MapData.CellModel;
 
 namespace ElectronicObserver.Database;
 
+// Add-Migration <name> -Context ElectronicObserverContext -OutputDir Database/Migrations
 public class ElectronicObserverContext : DbContext
 {
 	public DbSet<EventLockPlannerModel> EventLockPlans { get; set; } = null!;
@@ -56,6 +57,10 @@ public class ElectronicObserverContext : DbContext
 
 		builder.Entity<AutoRefreshModel>()
 			.HasKey(a => a.Id);
+
+		builder.Entity<AutoRefreshModel>()
+			.Property(a => a.SingleMapModeMap)
+			.HasConversion(JsonConverter<MapModel>());
 
 		builder.Entity<AutoRefreshModel>()
 			.Property(a => a.Rules)

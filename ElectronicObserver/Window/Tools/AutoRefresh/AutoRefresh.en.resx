@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Title" xml:space="preserve">
-    <value>Auto refresh</value>
+    <value>Auto reload</value>
   </data>
   <data name="SingleMapMode" xml:space="preserve">
     <value>Single map mode</value>
   </data>
   <data name="SingleMapModeToolTip" xml:space="preserve">
-    <value>When enabled, you can only sortie to maps that match the first enabled rule. All maps and cells that don't match the first enabled rule will cause a refresh. When disabled, rules only apply to maps that they are made for.</value>
+    <value>When enabled, you can only sortie to the selected map.</value>
   </data>
   <data name="SingleMapModeIsEnabled" xml:space="preserve">
-    <value>Single map mode is enabled. You can only sortie to the map set in the first enabled rule: </value>
+    <value>Single map mode is enabled. You can only sortie to the selected map:</value>
   </data>
   <data name="RemoveRule" xml:space="preserve">
     <value>Remove rule</value>

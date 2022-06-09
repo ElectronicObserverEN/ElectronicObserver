@@ -1,4 +1,5 @@
-﻿using ElectronicObserverTypes;
+﻿using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.TestData.Models;
@@ -63,15 +64,15 @@ public class ShipDataMasterRecord
 	public int Fuel { get; set; }
 	public int Ammo { get; set; }
 	public int VoiceFlag { get; set; }
-	public string ResourceName { get; set; }
-	public string? ResourceGraphicVersion { get; set; }
-	public string? ResourceVoiceVersion { get; set; }
-	public string? ResourcePortVoiceVersion { get; set; }
+	[JsonIgnore] public string ResourceName { get; set; }
+	[JsonIgnore] public string? ResourceGraphicVersion { get; set; }
+	[JsonIgnore] public string? ResourceVoiceVersion { get; set; }
+	[JsonIgnore] public string? ResourcePortVoiceVersion { get; set; }
 	public int OriginalCostumeShipID { get; set; }
 
 	public ShipDataMasterRecord()
 	{
-		
+
 	}
 
 	public ShipDataMasterRecord(IShipDataMaster ship)

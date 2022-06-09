@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Tools.AutoRefresh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to シングルマップモードが有効です。最初に有効化されたルールに設定されたマップにしか出撃できない： .
+        ///   Looks up a localized string similar to シングルマップモードが有効です。選択したマップにしか出撃できません：.
         /// </summary>
         public static string SingleMapModeIsEnabled {
             get {
@@ -124,7 +124,7 @@ namespace ElectronicObserver.Window.Tools.AutoRefresh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 有効にすると、最初に有効化されたルールに一致するマップにのみ出撃することができます。最初に有効化されたルールに一致しないすべてのマップとセルは、リフレッシュを引き起こします。無効の場合、ルールはそのルールが作られたマップにのみ適用されます。.
+        ///   Looks up a localized string similar to 有効にすると、選択したマップにのみ出撃できるようになります。.
         /// </summary>
         public static string SingleMapModeToolTip {
             get {
@@ -133,7 +133,7 @@ namespace ElectronicObserver.Window.Tools.AutoRefresh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 自動リフレッシュ.
+        ///   Looks up a localized string similar to 自動再読み込み.
         /// </summary>
         public static string Title {
             get {

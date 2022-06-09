@@ -119,8 +119,9 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<TextBlock
@@ -141,22 +142,9 @@
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
-
-			<CheckBox
-				Content="{Binding AutoRefresh.SingleMapMode}"
-				IsChecked="{Binding IsSingleMapMode}"
-				ToolTip="{Binding AutoRefresh.SingleMapModeToolTip}"
-				/>
 		</StackPanel>
 
-		<Border Grid.Row="2" Visibility="{Binding IsSingleMapMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-			<TextBlock TextWrapping="Wrap">
-				<Run Text="{Binding AutoRefresh.SingleMapModeIsEnabled, Mode=OneWay}" />
-				<Run Text="{Binding SingleMapModeRuleDisplay, Mode=OneWay}" />
-			</TextBlock>
-		</Border>
-
-		<ScrollViewer Grid.Row="3">
+		<ScrollViewer Grid.Row="2">
 			<ItemsControl
 				dd:DragDrop.IsDragSource="True"
 				dd:DragDrop.IsDropTarget="True"
@@ -165,5 +153,28 @@
 				ItemsSource="{Binding Rules}"
 				/>
 		</ScrollViewer>
+
+		<StackPanel Grid.Row="3" Orientation="Horizontal">
+			<ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding SelectedSingleMapModeMap}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Display}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<CheckBox
+				Content="{Binding AutoRefresh.SingleMapMode}"
+				IsChecked="{Binding IsSingleMapMode}"
+				ToolTip="{Binding AutoRefresh.SingleMapModeToolTip}"
+				/>
+		</StackPanel>
+
+		<Border Grid.Row="4" Visibility="{Binding IsSingleMapMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+			<TextBlock TextWrapping="Wrap">
+				<Run Text="{Binding AutoRefresh.SingleMapModeIsEnabled, Mode=OneWay}" />
+				<Run Text="{Binding SingleMapModeRuleDisplay, Mode=OneWay}" />
+			</TextBlock>
+		</Border>
 	</Grid>
 </common:WindowBase>
