@@ -2446,7 +2446,7 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 大和、突撃します！二番艦も続いてください！.
+        ///   Looks up a localized string similar to 第一戦隊、突撃！主砲、全力斉射ッ！.
         /// </summary>
         public static string SpecialYamato12 {
             get {
@@ -2455,7 +2455,7 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 第一戦隊、突撃！主砲、全力斉射ッ！.
+        ///   Looks up a localized string similar to 大和、突撃します！二番艦も続いてください！.
         /// </summary>
         public static string SpecialYamato123 {
             get {
