@@ -13,6 +13,7 @@ public class ShipDataMasterMock : IShipDataMaster
 	public string Name { get; set; }
 	public string NameEN { get; set; }
 	public string NameReading { get; set; }
+	public string NameReadingEN { get; set; }
 	public ShipTypes ShipType { get; set; }
 	public int ShipClass { get; set; }
 	public int RemodelAfterLevel { get; set; }

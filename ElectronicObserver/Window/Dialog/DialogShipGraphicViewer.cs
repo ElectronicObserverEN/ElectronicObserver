@@ -625,7 +625,7 @@ public partial class DialogShipGraphicViewer : Form
 
 
 
-	private ShipDataMaster GetShipFromPath(string path)
+	private IShipDataMaster GetShipFromPath(string path)
 	{
 		path = Path.GetFileNameWithoutExtension(path);
 

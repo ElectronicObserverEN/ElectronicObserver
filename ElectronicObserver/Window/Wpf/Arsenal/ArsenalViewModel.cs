@@ -10,6 +10,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Arsenal;
 
@@ -208,7 +209,7 @@ public class ArsenalViewModel : AnchorableViewModel
 		{
 
 			ArsenalData arsenal = KCDatabase.Instance.Arsenals[_buildingID];
-			ShipDataMaster ship = KCDatabase.Instance.MasterShips[arsenal.ShipID];
+			IShipDataMaster ship = KCDatabase.Instance.MasterShips[arsenal.ShipID];
 			string name;
 
 			if (Utility.Configuration.Config.Log.ShowSpoiler && Utility.Configuration.Config.FormArsenal.ShowShipName)

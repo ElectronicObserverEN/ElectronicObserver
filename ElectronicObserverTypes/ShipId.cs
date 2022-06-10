@@ -701,5 +701,7 @@ public enum ShipId
 	YamashioMaru = 900,
 	AmagiriKaiNi = 903,
 	AmagiriKaiNiD = 908,
-	ColoradoKai = 1496
+	YamatoKaiNi = 911,
+	YamatoKaiNiJuu = 916,
+	ColoradoKai = 1496,
 }

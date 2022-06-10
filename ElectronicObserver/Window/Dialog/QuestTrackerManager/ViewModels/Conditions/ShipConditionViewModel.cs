@@ -4,18 +4,20 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
 public partial class ShipConditionViewModel : ObservableObject, IConditionViewModel
 {
+	private IKCDatabase Db { get; }
+
 	private ShipPickerViewModel ShipPickerViewModel { get; }
 
 	private IShipDataMaster? _ship;
@@ -28,7 +30,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 		set => SetProperty(ref _ship, value);
 	}
 
-	public IEnumerable<IShipDataMaster> Ships => KCDatabase.Instance.MasterShips.Values
+	public IEnumerable<IShipDataMaster> Ships => Db.MasterShips.Values
 		.Where(s => !s.IsAbyssalShip)
 		.OrderBy(s => s.SortID);
 
@@ -53,6 +55,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 
 	public ShipConditionViewModel(ShipConditionModel model)
 	{
+		Db = Ioc.Default.GetService<IKCDatabase>()!;
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 
 		RemodelComparisonTypes = Enum.GetValues(typeof(RemodelComparisonType))
@@ -116,7 +119,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 
 	private bool AnyRemodelCheck(IShipData ship)
 	{
-		IShipDataMaster conditionShip = KCDatabase.Instance.MasterShips.Values
+		IShipDataMaster conditionShip = Db.MasterShips.Values
 			.First(s => s.ShipId == Model.Id);
 
 		return ship.MasterShip.BaseShip().ShipId == conditionShip.BaseShip().ShipId;
@@ -124,7 +127,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 
 	private bool HigherRemodelCheck(IShipData ship)
 	{
-		IShipDataMaster? conditionShip = KCDatabase.Instance.MasterShips.Values
+		IShipDataMaster? conditionShip = Db.MasterShips.Values
 			.First(s => s.ShipId == Model.Id);
 
 		IShipDataMaster? masterShip = ship.MasterShip;

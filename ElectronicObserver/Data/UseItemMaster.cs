@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Data;
+﻿using ElectronicObserverTypes.Data;
+
+namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 消費アイテムのマスターデータを保持します。

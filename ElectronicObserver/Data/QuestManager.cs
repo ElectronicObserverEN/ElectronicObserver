@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

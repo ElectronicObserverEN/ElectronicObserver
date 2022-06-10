@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Utility;
 

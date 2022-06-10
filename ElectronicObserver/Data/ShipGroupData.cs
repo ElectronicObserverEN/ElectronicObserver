@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Windows.Forms;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

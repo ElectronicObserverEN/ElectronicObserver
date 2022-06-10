@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Data;
+﻿using ElectronicObserverTypes.Data;
+
+namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 任務のデータを保持します。

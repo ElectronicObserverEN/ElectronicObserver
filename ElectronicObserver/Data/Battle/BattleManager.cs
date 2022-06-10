@@ -507,7 +507,7 @@ public class BattleManager : APIWrapper
 			if (shipID != -1)
 			{
 
-				ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
+				IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 				DroppedShipCount++;
 
 				IEnumerable<EquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch

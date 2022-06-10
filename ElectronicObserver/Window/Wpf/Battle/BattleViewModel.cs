@@ -1115,7 +1115,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			if (initial.EnemyInitialHPs[i] != -1)
 			{
 				EnableHPBar(refindex, initial.EnemyInitialHPs[i], resultHPs[refindex], initial.EnemyMaxHPs[i]);
-				ShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
+				IShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
 
 				var bar = HPBars[refindex];
 				bar.Text = Constants.GetShipClassClassification(ship.ShipType);
@@ -1212,7 +1212,7 @@ public partial class BattleViewModel : AnchorableViewModel
 				{
 					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort[i]);
 
-					ShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
+					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
 
 					var bar = HPBars[refindex];
 					bar.Text = Constants.GetShipClassClassification(ship.ShipType);

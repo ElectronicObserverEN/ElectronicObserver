@@ -35,7 +35,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ
 	/// </summary>
-	public ShipDataMaster[] EnemyMembersInstance { get; private set; }
+	public IShipDataMaster[] EnemyMembersInstance { get; private set; }
 
 
 	/// <summary>
@@ -46,7 +46,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
 	/// </summary>
-	public ShipDataMaster[] EnemyMembersEscortInstance { get; private set; }
+	public IShipDataMaster[] EnemyMembersEscortInstance { get; private set; }
 
 
 	/// <summary>

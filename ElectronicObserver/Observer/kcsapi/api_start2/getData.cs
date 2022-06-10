@@ -240,7 +240,7 @@ public class getData : APIBase
 		foreach (var elem in data.api_mst_equip_ship)
 		{
 			int id = (int)elem.api_ship_id;
-			db.MasterShips[id].specialEquippableCategory = (int[])elem.api_equip_type;
+			db.MasterShips[id].SpecialEquippableCategories = (int[])elem.api_equip_type;
 		}
 
 		foreach (var elem in data.api_mst_equip_exslot_ship)

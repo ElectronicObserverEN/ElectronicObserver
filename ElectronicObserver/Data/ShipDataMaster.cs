@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 
@@ -81,7 +82,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 改装前の艦船ID
 	/// 0=なし
 	/// </summary>
-	public int RemodelBeforeShipID { get; internal set; }
+	public int RemodelBeforeShipID { get; set; }
 
 	/// <summary>
 	/// 改装前の艦船
@@ -102,27 +103,27 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 改装に必要な 改装設計図 の枚数
 	/// </summary>
-	public int NeedBlueprint { get; internal set; }
+	public int NeedBlueprint { get; set; }
 
 	/// <summary>
 	/// 改装に必要な 試製甲板カタパルト の個数
 	/// </summary>
-	public int NeedCatapult { get; internal set; }
+	public int NeedCatapult { get; set; }
 
 	/// <summary>
 	/// 改装に必要な 戦闘詳報 の枚数
 	/// </summary>
-	public int NeedActionReport { get; internal set; }
+	public int NeedActionReport { get; set; }
 
 	/// <summary>
 	/// 改装に必要な 新型航空兵装資材 の個数
 	/// </summary>
-	public int NeedAviationMaterial { get; internal set; }
+	public int NeedAviationMaterial { get; set; }
 
 	/// <summary>
 	/// 改装に必要な 新型兵装資材 の個数
 	/// </summary>
-	public int NeedArmamentMaterial { get; internal set; }
+	public int NeedArmamentMaterial { get; set; }
 
 
 
@@ -436,11 +437,10 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	}
 
 
-	internal int[]? specialEquippableCategory = null;
 	/// <summary>
 	/// 特殊装備カテゴリ　指定がない場合は null
 	/// </summary>
-	public IEnumerable<int> SpecialEquippableCategories => specialEquippableCategory;
+	public IEnumerable<int>? SpecialEquippableCategories { get; set; }
 
 	/// <summary>
 	/// 装備可能なカテゴリ
@@ -449,7 +449,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	{
 		get
 		{
-			if (specialEquippableCategory != null)
+			if (SpecialEquippableCategories != null)
 				return SpecialEquippableCategories;
 			else
 				return KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories;

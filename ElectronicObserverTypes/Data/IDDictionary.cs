@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserverTypes.Data;
 
 /// <summary>
 /// IDを持つデータのリストを保持します。
@@ -24,22 +24,22 @@ public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData :
 	}
 
 
-	internal void Add(TData data)
+	public void Add(TData data)
 	{
 		dict.Add(data.ID, data);
 	}
 
-	internal void Remove(TData data)
+	public void Remove(TData data)
 	{
 		dict.Remove(data.ID);
 	}
 
-	internal void Remove(int id)
+	public void Remove(int id)
 	{
 		dict.Remove(id);
 	}
 
-	internal int RemoveAll(Predicate<TData> predicate)
+	public int RemoveAll(Predicate<TData> predicate)
 	{
 		var removekeys = dict.Values.Where(elem => predicate(elem)).Select(elem => elem.ID).ToArray();
 
@@ -51,7 +51,7 @@ public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData :
 		return removekeys.Count();
 	}
 
-	internal void Clear()
+	public void Clear()
 	{
 		dict.Clear();
 	}

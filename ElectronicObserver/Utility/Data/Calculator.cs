@@ -158,7 +158,7 @@ public static class Calculator
 
 		for (int i = 0; i < length; i++)
 		{
-			ShipDataMaster ship = KCDatabase.Instance.MasterShips[fleet[i]];
+			IShipDataMaster? ship = KCDatabase.Instance.MasterShips[fleet[i]];
 			if (ship == null) continue;
 
 			air += GetAirSuperiority(slot[i], ship.Aircraft.ToArray());
@@ -717,8 +717,8 @@ public static class Calculator
 			}
 		}
 
-		ShipDataMaster attacker = KCDatabase.Instance.MasterShips[attackerShipID];
-		ShipDataMaster defender = KCDatabase.Instance.MasterShips[defenderShipID];
+		IShipDataMaster attacker = KCDatabase.Instance.MasterShips[attackerShipID];
+		IShipDataMaster defender = KCDatabase.Instance.MasterShips[defenderShipID];
 
 		if (includeSpecialAttack)
 		{
@@ -889,8 +889,8 @@ public static class Calculator
 			return NightAttackKind.Unknown;
 
 
-		ShipDataMaster attacker = KCDatabase.Instance.MasterShips[attackerShipID];
-		ShipDataMaster defender = KCDatabase.Instance.MasterShips[defenderShipID];
+		IShipDataMaster attacker = KCDatabase.Instance.MasterShips[attackerShipID];
+		IShipDataMaster defender = KCDatabase.Instance.MasterShips[defenderShipID];
 
 
 		var slotmaster = slot.Select(id => KCDatabase.Instance.MasterEquipments[id]).Where(eq => eq != null).ToArray();
@@ -1133,7 +1133,7 @@ public static class Calculator
 	/// <param name="slot">攻撃艦のスロット(マスターID)。</param>
 	/// <param name="attackerShipID">攻撃艦の艦船ID。</param>
 	/// <param name="defenerShipID">防御艦の艦船ID。</param>
-	public static int GetLandingAttackKind(IEnumerable<int> slot, ShipDataMaster attacker, ShipDataMaster defender)
+	public static int GetLandingAttackKind(IEnumerable<int> slot, IShipDataMaster attacker, IShipDataMaster defender)
 	{
 
 		if (defender == null)

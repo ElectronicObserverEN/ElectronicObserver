@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -72,7 +73,7 @@ public class PhaseFriendlySupportInfo : PhaseBase
 	/// <summary>
 	/// 友軍艦隊
 	/// </summary>
-	public ShipDataMaster[] FriendlyMembersInstance { get; private set; }
+	public IShipDataMaster[] FriendlyMembersInstance { get; private set; }
 
 
 	/// <summary>

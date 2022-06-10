@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Data;
+﻿using ElectronicObserverTypes.Data;
+
+namespace ElectronicObserver.Data;
 
 public class MapAreaData : APIWrapper, IIdentifiable
 {

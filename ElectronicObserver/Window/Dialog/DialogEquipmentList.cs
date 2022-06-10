@@ -13,6 +13,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 using DialogAlbumMasterShipTranslation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterShip;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogEquipmentList;
 

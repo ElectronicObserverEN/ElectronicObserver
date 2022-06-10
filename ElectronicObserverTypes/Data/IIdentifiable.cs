@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Data;
+﻿namespace ElectronicObserverTypes.Data;
 
 /// <summary>
 /// 固有のIDを取得できることを示します。

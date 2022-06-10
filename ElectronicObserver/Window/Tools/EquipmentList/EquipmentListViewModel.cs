@@ -14,6 +14,7 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.EquipmentList;
 

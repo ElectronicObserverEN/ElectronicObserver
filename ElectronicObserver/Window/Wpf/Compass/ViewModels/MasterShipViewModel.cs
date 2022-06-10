@@ -84,7 +84,7 @@ public partial class MasterShipViewModel : ObservableObject
 	private static string? GetShipString(int shipID, int[] slot, int level)
 	{
 
-		ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
+		IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 		if (ship == null) return null;
 
 		return GetShipString(shipID, slot, level, ship.HPMin, ship.FirepowerMax, ship.TorpedoMax, ship.AAMax, ship.ArmorMax,
@@ -96,7 +96,7 @@ public partial class MasterShipViewModel : ObservableObject
 
 	private static string? GetShipString(int shipID, int[]? slot, int level, int hp, int firepower, int torpedo, int aa, int armor)
 	{
-		ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
+		IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 		if (ship == null) return null;
 
 		return GetShipString(shipID, slot, level, hp, firepower, torpedo, aa, armor,
@@ -109,7 +109,7 @@ public partial class MasterShipViewModel : ObservableObject
 	private static string? GetShipString(int shipID, int[]? slot, int level, int hp, int firepower, int torpedo, int aa, int armor, int asw, int evasion, int los, int luck)
 	{
 
-		ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
+		IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 		if (ship == null) return null;
 
 		int firepower_c = firepower;
@@ -213,7 +213,7 @@ public partial class MasterShipViewModel : ObservableObject
 	private static string? GetEquipmentString(int shipID, int[]? slot)
 	{
 		StringBuilder sb = new();
-		ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
+		IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 
 		if (ship == null || slot == null) return null;
 

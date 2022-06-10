@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data.Quest;
 

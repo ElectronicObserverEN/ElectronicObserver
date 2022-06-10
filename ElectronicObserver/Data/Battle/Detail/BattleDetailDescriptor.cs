@@ -6,6 +6,7 @@ using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Detail;
 
@@ -635,7 +636,7 @@ public static class BattleDetailDescriptor
 		}
 	}
 
-	private static void OutputEnemyData(StringBuilder sb, ShipDataMaster[] members, int[] levels, int[] initialHPs, int[] maxHPs, EquipmentDataMaster[][] slots, int[][] parameters)
+	private static void OutputEnemyData(StringBuilder sb, IShipDataMaster[] members, int[] levels, int[] initialHPs, int[] maxHPs, EquipmentDataMaster[][] slots, int[][] parameters)
 	{
 
 		for (int i = 0; i < members.Length; i++)

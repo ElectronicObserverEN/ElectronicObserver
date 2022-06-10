@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserverTypes;
 
-public interface IShipDataMaster
+public interface IShipDataMaster : IIdentifiable
 {
 	/// <summary>
 	/// 艦船ID
@@ -40,6 +41,8 @@ public interface IShipDataMaster
 	/// </summary>
 	string NameReading { get; }
 
+	public string NameReadingEN { get; }
+
 	/// <summary>
 	/// 艦種
 	/// </summary>
@@ -70,7 +73,7 @@ public interface IShipDataMaster
 	/// 改装前の艦船ID
 	/// 0=なし
 	/// </summary>
-	int RemodelBeforeShipID { get; }
+	int RemodelBeforeShipID { get; set; }
 
 	/// <summary>
 	/// 改装前の艦船
@@ -90,27 +93,27 @@ public interface IShipDataMaster
 	/// <summary>
 	/// 改装に改装設計図が必要かどうか
 	/// </summary>
-	int NeedBlueprint { get; }
+	int NeedBlueprint { get; set; }
 
 	/// <summary>
 	/// 改装に試製甲板カタパルトが必要かどうか
 	/// </summary>
-	int NeedCatapult { get; }
+	int NeedCatapult { get; set; }
 
 	/// <summary>
 	/// 改装に戦闘詳報が必要かどうか
 	/// </summary>
-	int NeedActionReport { get; }
+	int NeedActionReport { get; set; }
 
 	/// <summary>
 	/// 改装に必要な 新型航空兵装資材 の個数
 	/// </summary>
-	public int NeedAviationMaterial { get; }
+	public int NeedAviationMaterial { get; set; }
 
 	/// <summary>
 	/// 改装に必要な 新型兵装資材 の個数
 	/// </summary>
-	public int NeedArmamentMaterial { get; }
+	public int NeedArmamentMaterial { get; set; }
 
 	/// <summary>
 	/// 耐久初期値
@@ -221,7 +224,7 @@ public interface IShipDataMaster
 	/// <summary>
 	/// 特殊装備カテゴリ　指定がない場合は null
 	/// </summary>
-	IEnumerable<int> SpecialEquippableCategories { get; }
+	IEnumerable<int> SpecialEquippableCategories { get; set; }
 
 	/// <summary>
 	/// 装備可能なカテゴリ

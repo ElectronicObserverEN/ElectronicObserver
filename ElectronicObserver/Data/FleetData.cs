@@ -5,6 +5,7 @@ using System.Linq;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

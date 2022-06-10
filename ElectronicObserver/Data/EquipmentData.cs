@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using DynaJson;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

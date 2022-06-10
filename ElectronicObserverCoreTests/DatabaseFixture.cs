@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.TestData;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
@@ -30,6 +31,19 @@ public class DatabaseFixture : IDisposable
 		MasterShips = db.MasterShips
 			.Select(s => s.ToMasterShip())
 			.ToDictionary(s => (ShipId)s.ShipID);
+
+		foreach (ShipDataMasterMock ship in MasterShips.Values.Cast<ShipDataMasterMock>())
+		{
+			if (ship.RemodelBeforeShipID > 0)
+			{
+				ship.RemodelBeforeShip = MasterShips[(ShipId)ship.RemodelBeforeShipID];
+			}
+
+			if (ship.RemodelAfterShipID > 0)
+			{
+				ship.RemodelAfterShip = MasterShips[(ShipId)ship.RemodelAfterShipID];
+			}
+		}
 
 		MasterEquipment = db.MasterEquipment
 			.Select(e => e.ToMasterEquipment())

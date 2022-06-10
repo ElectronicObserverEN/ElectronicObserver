@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

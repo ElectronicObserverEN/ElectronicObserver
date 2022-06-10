@@ -118,7 +118,7 @@ public class PhaseFriendlyShelling : PhaseBase
 	/// <summary>
 	/// 自軍照明弾投射艦
 	/// </summary>
-	public ShipDataMaster FlareFriendInstance
+	public IShipDataMaster FlareFriendInstance
 	{
 		get
 		{
@@ -132,7 +132,7 @@ public class PhaseFriendlyShelling : PhaseBase
 	/// <summary>
 	/// 敵軍照明弾投射艦
 	/// </summary>
-	public ShipDataMaster FlareEnemyInstance
+	public IShipDataMaster FlareEnemyInstance
 	{
 		get
 		{
@@ -183,7 +183,7 @@ public class PhaseFriendlyShelling : PhaseBase
 	/// <summary>
 	/// 自軍探照灯照射艦
 	/// </summary>
-	public ShipDataMaster SearchlightFriendInstance
+	public IShipDataMaster SearchlightFriendInstance
 	{
 		get
 		{
@@ -197,7 +197,7 @@ public class PhaseFriendlyShelling : PhaseBase
 	/// <summary>
 	/// 敵軍探照灯投射艦
 	/// </summary>
-	public ShipDataMaster SearchlightEnemyInstance
+	public IShipDataMaster SearchlightEnemyInstance
 	{
 		get
 		{

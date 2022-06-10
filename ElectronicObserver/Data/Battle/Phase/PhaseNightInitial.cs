@@ -70,7 +70,7 @@ public class PhaseNightInitial : PhaseBase
 	/// <summary>
 	/// 敵軍艦隊
 	/// </summary>
-	public ShipDataMaster[] EnemyMembersInstance => !IsEnemyEscort ? Battle.Initial.EnemyMembersInstance : Battle.Initial.EnemyMembersEscortInstance;
+	public IShipDataMaster[] EnemyMembersInstance => !IsEnemyEscort ? Battle.Initial.EnemyMembersInstance : Battle.Initial.EnemyMembersEscortInstance;
 
 	/// <summary>
 	/// 敵軍が随伴艦隊かどうか
@@ -124,7 +124,7 @@ public class PhaseNightInitial : PhaseBase
 	/// <summary>
 	/// 敵軍照明弾投射艦
 	/// </summary>
-	public ShipDataMaster FlareEnemyInstance
+	public IShipDataMaster FlareEnemyInstance
 	{
 		get
 		{
@@ -201,7 +201,7 @@ public class PhaseNightInitial : PhaseBase
 	/// <summary>
 	/// 敵軍探照灯照射艦
 	/// </summary>
-	public ShipDataMaster SearchlightEnemyInstance
+	public IShipDataMaster SearchlightEnemyInstance
 	{
 		get
 		{

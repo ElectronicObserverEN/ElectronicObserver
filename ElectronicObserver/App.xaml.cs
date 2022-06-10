@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
@@ -15,6 +16,7 @@ using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
 using Microsoft.AppCenter;
@@ -146,6 +148,7 @@ public partial class App : Application
 	private void ConfigureServices()
 	{
 		ServiceProvider services = new ServiceCollection()
+			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

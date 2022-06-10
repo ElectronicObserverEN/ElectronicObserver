@@ -1,7 +1,10 @@
-﻿using ElectronicObserver.Data.Battle;
+﻿using System.Collections.Generic;
+using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
+using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;
@@ -9,7 +12,7 @@ namespace ElectronicObserver.Data;
 /// <summary>
 /// 艦これのデータを扱う中核です。
 /// </summary>
-public sealed class KCDatabase
+public sealed class KCDatabase : IKCDatabase
 {
 
 
@@ -21,12 +24,10 @@ public sealed class KCDatabase
 
 	#endregion
 
-
-
 	/// <summary>
 	/// 艦船のマスターデータ
 	/// </summary>
-	public IDDictionary<ShipDataMaster> MasterShips { get; private set; }
+	public IDDictionary<IShipDataMaster> MasterShips { get; private set; }
 
 	/// <summary>
 	/// 艦種データ
@@ -180,7 +181,7 @@ public sealed class KCDatabase
 	private KCDatabase()
 	{
 
-		MasterShips = new IDDictionary<ShipDataMaster>();
+		MasterShips = new IDDictionary<IShipDataMaster>();
 		ShipTypes = new IDDictionary<ShipType>();
 		ShipGraphics = new IDDictionary<ShipGraphicData>();
 		MasterEquipments = new IDDictionary<EquipmentDataMaster>();

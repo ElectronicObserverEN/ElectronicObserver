@@ -111,7 +111,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		var includedSecretaryNames = Record.Record
 			.Select(r => r.FlagshipName).Distinct();
 
-		IEnumerable<ShipDataMaster> includedSecretaryObjects = includedSecretaryNames
+		IEnumerable<IShipDataMaster> includedSecretaryObjects = includedSecretaryNames
 			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => ship.NameWithClass == name))
 			.Where(s => s != null)!;
 

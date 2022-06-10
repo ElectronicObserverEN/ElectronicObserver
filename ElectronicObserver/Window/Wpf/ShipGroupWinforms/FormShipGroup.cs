@@ -15,7 +15,7 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
-
+using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.FormShipGroup;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
@@ -840,7 +840,7 @@ public partial class FormShipGroup: Form
 		if (e.Column.Index == ShipView_Name.Index)
 		{
 
-			ShipDataMaster ship1 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex1].Cells[e.Column.Index].Tag],
+			IShipDataMaster ship1 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex1].Cells[e.Column.Index].Tag],
 				ship2 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex2].Cells[e.Column.Index].Tag];
 
 			switch (_shipNameSortMethod)

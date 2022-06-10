@@ -292,7 +292,7 @@ public class InformationViewModel : AnchorableViewModel
 				{
 					if (!flags[i])
 					{
-						ShipDataMaster ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
+						IShipDataMaster? ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
 						if (ship != null)
 						{
 							sb.AppendLine(ship.NameEN);

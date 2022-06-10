@@ -26,7 +26,7 @@ public class NotifierRemodelLevel : NotifierBase
 
 		db.Battle.ShipLevelUp += (ship, nextLevel) =>
 		{
-			ShipDataMaster? nextRemodelShip = db.MasterShips.Values
+			IShipDataMaster? nextRemodelShip = db.MasterShips.Values
 				.Where(s => s.BaseShip() == ship.MasterShip.BaseShip())
 				.Where(s => s.RemodelBeforeShip != null)
 				.FirstOrDefault(s => s.RemodelBeforeShip!.RemodelAfterLevel > ship.Level &&

@@ -44,7 +44,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	public ImageSource? ShipIcon { get; }
 	public ImageSource? ItemIcon { get; }
 
-	// DropRecordOption or ShipDataMaster
+	// DropRecordOption or IShipDataMaster
 	public object ShipSearchOption { get; set; } = DropRecordOption.All;
 	// DropRecordOption or UseItemMaster
 	public object ItemSearchOption { get; set; } = DropRecordOption.All;
@@ -253,7 +253,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private string GetContentStringForSorting(ShipDropRecord.ShipDropElement elem, bool ignoreShip = false, bool ignoreItem = false, bool ignoreEquipment = false)
 	{
-		ShipDataMaster? ship = KCDatabase.Instance.MasterShips[elem.ShipID];
+		IShipDataMaster? ship = KCDatabase.Instance.MasterShips[elem.ShipID];
 		UseItemMaster? item = KCDatabase.Instance.MasterUseItems[elem.ItemID];
 		EquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
