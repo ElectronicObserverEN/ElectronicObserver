@@ -425,17 +425,6 @@
 						Content="{Binding ShipFilter.Expansion}"
 						IsChecked="{Binding HasExpansionSlot}"
 						/>
-					<TextBox
-						Width="Auto"
-						Margin="2 0"
-						VerticalAlignment="Center"
-						Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
-						/>
-					<Label
-						Margin="2 0"
-						VerticalAlignment="Center"
-						Content="{Binding ShipFilter.NameFilter}"
-						/>
 				</WrapPanel>
 			</Grid>
 
