@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
@@ -12,6 +13,7 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 public class ShipFilterViewModel : ObservableObject
 {
 	public ShipFilterTranslationViewModel ShipFilter { get; }
+	public TransliterationService TransliterationService { get; }
 
 	public List<Filter> TypeFilters { get; }
 
@@ -28,10 +30,11 @@ public class ShipFilterViewModel : ObservableObject
 	public bool CanEquipTank { get; set; }
 	public bool HasExpansionSlot { get; set; }
 	public string? NameFilter { get; set; } = "";
-	private static Dictionary<ShipId, string> RomajiCache { get; } = new();
+
 	public ShipFilterViewModel()
 	{
 		ShipFilter = Ioc.Default.GetService<ShipFilterTranslationViewModel>()!;
+		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
 
 		TypeFilters = Enum.GetValues<ShipTypeGroup>()
 			.Select(t => new Filter(t)
@@ -63,52 +66,9 @@ public class ShipFilterViewModel : ObservableObject
 		if (CanEquipDaihatsu && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)) return false;
 		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
 		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
-		NameFilter ??= "";
-		if (!Matches(ship.MasterShip, NameFilter.ToLower(),WanaKana.ToRomaji(NameFilter)) && NameFilter != string.Empty) return false;
+		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
 		// other filters
 
 		return true;
-	}
-	private static string GetRomajiName(IShipDataMaster ship)
-	{
-		if (!RomajiCache.ContainsKey(ship.ShipId))
-		{
-			string name = ship.IsAbyssalShip switch
-			{
-				true => ship.NameWithClass.ToLower(),
-				_ => ship.NameReading,
-			};
-
-			RomajiCache.Add(ship.ShipId, WanaKana.ToRomaji(name));
-		}
-
-		return RomajiCache[ship.ShipId];
-	}
-	private static bool Matches(IShipDataMaster ship, string filter, string romajiFilter)
-	{
-		bool literalSearch = ship.NameWithClass.ToLower().Contains(filter.ToLower());
-		if (!ship.IsAbyssalShip)
-		{
-			literalSearch |= ship.NameReading.Contains(filter.ToLower());
-		}
-
-		if (literalSearch)
-		{
-			return true;
-		}
-
-		// when using kanji to filter, only do a literal search
-		// 神 matches 北上 if you use romaji compare
-		if (filter.ToCharArray().Any(WanaKana.IsKanji)) return false;
-		// abyssals should get matched with literal search only
-		if (ship.IsAbyssalShip) return false;
-		// when using English ship names, do literal searches only
-		if (!Utility.Configuration.Config.UI.JapaneseShipName) return false;
-
-		string romajiName = GetRomajiName(ship);
-
-		bool result = romajiName.Contains(romajiFilter.ToLower());
-
-		return result;
 	}
 }

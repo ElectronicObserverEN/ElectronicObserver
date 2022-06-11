@@ -187,6 +187,7 @@ public partial class App : Application
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
+			.AddSingleton<TransliterationService>()
 			// external
 			.AddSingleton(JotTracker())
 

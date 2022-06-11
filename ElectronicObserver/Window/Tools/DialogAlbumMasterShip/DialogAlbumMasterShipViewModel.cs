@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
@@ -27,6 +28,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 {
 	private IEnumerable<ShipDataRecord> AllShips { get; }
 	public DialogAlbumMasterShipTranslationViewModel DialogAlbumMasterShip { get; }
+	private TransliterationService TransliterationService { get; }
 
 	public string? SearchFilter { get; set; } = "";
 	public string? RomajiSearchFilter { get; set; } = "";
@@ -53,52 +55,6 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	// probably due to multiple enumeration
 	public List<ShipDataRecord> Ships { get; set; }
 
-	private static Dictionary<ShipId, string> RomajiCache { get; } = new();
-
-	private static string GetRomajiName(IShipDataMaster ship)
-	{
-		if (!RomajiCache.ContainsKey(ship.ShipId))
-		{
-			string name = ship.IsAbyssalShip switch
-			{
-				true => ship.NameWithClass.ToLower(),
-				_ => ship.NameReading,
-			};
-
-			RomajiCache.Add(ship.ShipId, WanaKana.ToRomaji(name));
-		}
-
-		return RomajiCache[ship.ShipId];
-	}
-
-	private static bool Matches(IShipDataMaster ship, string filter, string romajiFilter)
-	{
-		bool literalSearch = ship.NameWithClass.ToLower().Contains(filter.ToLower());
-		if (!ship.IsAbyssalShip)
-		{
-			literalSearch |= ship.NameReading.Contains(filter.ToLower());
-		}
-
-		if (literalSearch)
-		{
-			return true;
-		}
-
-		// when using kanji to filter, only do a literal search
-		// 神 matches 北上 if you use romaji compare
-		if (filter.ToCharArray().Any(WanaKana.IsKanji)) return false;
-		// abyssals should get matched with literal search only
-		if (ship.IsAbyssalShip) return false;
-		// when using English ship names, do literal searches only
-		if (!Utility.Configuration.Config.UI.JapaneseShipName) return false;
-
-		string romajiName = GetRomajiName(ship);
-
-		bool result = romajiName.Contains(romajiFilter.ToLower());
-
-		return result;
-	}
-
 	public int Level { get; set; } = 175;
 	public ShipDataRecord? SelectedShip { get; set; }
 
@@ -112,12 +68,13 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 	public DialogAlbumMasterShipViewModel()
 	{
+		DialogAlbumMasterShip = Ioc.Default.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
+		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
+
 		AllShips = KCDatabase.Instance.MasterShips.Values.Select(s => new ShipDataRecord(s));
 		Ships = AllShips.ToList();
 
 		PopulateCache();
-
-		DialogAlbumMasterShip = Ioc.Default.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -149,7 +106,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 			Ships = AllShips.Where(s => RomajiSearchFilter switch
 			{
 				null or "" => true,
-				string f => Matches(s.Ship, SearchFilter, f),
+				string f => TransliterationService.Matches(s.Ship, SearchFilter ?? "", f),
 			}).ToList();
 		};
 	}
@@ -158,7 +115,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	{
 		foreach (ShipDataRecord ship in Ships)
 		{
-			GetRomajiName(ship.Ship);
+			TransliterationService.GetRomajiName(ship.Ship);
 		}
 	}
 
