@@ -381,6 +381,18 @@
 				</ItemsControl>
 
 				<WrapPanel Grid.Row="1" Orientation="Horizontal">
+					<TextBlock
+						Margin="2 0"
+						VerticalAlignment="Center"
+						Text="{Binding ShipFilter.NameFilter}"
+						/>
+					<TextBox
+						Width="Auto"
+						Margin="2 0"
+						VerticalAlignment="Center"
+						Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
+						/>
+
 					<local:NumberRange
 						Maximum="{Binding AswMax}"
 						Minimum="{Binding AswMin}"
