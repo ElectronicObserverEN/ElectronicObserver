@@ -362,23 +362,27 @@
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
-				<ItemsControl Grid.Row="0" ItemsSource="{Binding TypeFilters}">
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<WrapPanel Orientation="Horizontal" />
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<CheckBox
-								MinWidth="0"
-								Margin="2 0"
-								Content="{Binding Display}"
-								IsChecked="{Binding IsChecked}"
-								/>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
+				<WrapPanel Grid.Row="0">
+					<ItemsControl ItemsSource="{Binding TypeFilters}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<CheckBox
+									MinWidth="0"
+									Margin="2 0"
+									Content="{Binding Display}"
+									IsChecked="{Binding IsChecked}"
+									/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+
+					<Button Command="{Binding ToggleShipTypesCommand}" Content="{Binding DataContext.EventLockPlanner.ShipTypeToggle, Source={StaticResource Proxy}}" />
+				</WrapPanel>
 
 				<WrapPanel Grid.Row="1" Orientation="Horizontal">
 					<TextBlock

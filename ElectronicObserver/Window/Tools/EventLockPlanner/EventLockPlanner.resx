@@ -155,4 +155,7 @@
   <data name="IsFinished" xml:space="preserve">
     <value>終了しました</value>
   </data>
+  <data name="ShipTypeToggle" xml:space="preserve">
+    <value>艦種トグル</value>
+  </data>
 </root>

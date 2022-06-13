@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
@@ -10,7 +11,7 @@ using ElectronicObserverTypes.Extensions;
 using WanaKanaNet;
 namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
-public class ShipFilterViewModel : ObservableObject
+public partial class ShipFilterViewModel : ObservableObject
 {
 	public ShipFilterTranslationViewModel ShipFilter { get; }
 	public TransliterationService TransliterationService { get; }
@@ -70,5 +71,24 @@ public class ShipFilterViewModel : ObservableObject
 		// other filters
 
 		return true;
+	}
+
+	[ICommand]
+	private void ToggleShipTypes()
+	{
+		if (TypeFilters.All(f => f.IsChecked))
+		{
+			foreach (Filter typeFilter in TypeFilters)
+			{
+				typeFilter.IsChecked = false;
+			}
+		}
+		else
+		{
+			foreach (Filter typeFilter in TypeFilters)
+			{
+				typeFilter.IsChecked = true;
+			}
+		}
 	}
 }

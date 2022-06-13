@@ -28,6 +28,8 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 
 	public string Remove => EventLockPlanner.Remove;
 
+	public string ShipTypeToggle => EventLockPlanner.ShipTypeToggle;
+
 	public string ShipType => Properties.Window.FormShipGroup.ShipView_ShipType;
 	public string Name => Properties.Window.FormShipGroup.ShipView_Name;
 	public string Firepower => GeneralRes.Firepower;

@@ -188,6 +188,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦種トグル.
+        /// </summary>
+        internal static string ShipTypeToggle {
+            get {
+                return ResourceManager.GetString("ShipTypeToggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 終了したフェーズを表示する(_S).
         /// </summary>
         internal static string ShowFinishedPhases {

@@ -175,4 +175,7 @@ Are you sure you want to continue?</value>
   <data name="IsFinished" xml:space="preserve">
     <value>Is finished</value>
   </data>
+  <data name="ShipTypeToggle" xml:space="preserve">
+    <value>Toggle types</value>
+  </data>
 </root>
