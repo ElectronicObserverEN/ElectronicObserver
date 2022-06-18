@@ -40,6 +40,7 @@
 		Background="Transparent"
 		DataContext="{Binding ViewModel, ElementName=HeadquartersControl}"
 		Visibility="{Binding Visible}"
+		Orientation="Vertical"
 		>
 		<WrapPanel.Resources>
 			<Style TargetType="Border">
