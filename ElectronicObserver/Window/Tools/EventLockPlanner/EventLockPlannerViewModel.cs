@@ -308,8 +308,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			.Prepend(NoLockGroup.Ships.ToList())
 			.ToList();
 
-		List<List<ShipLockViewModel>> eventPhases = EventPhases
-			.Select(p => p.Ships.ToList())
+		List<EventPhaseViewModel> eventPhases = EventPhases
 			.ToList();
 
 		NoLockGroup.Clear();
@@ -348,7 +347,6 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			EventPhaseViewModel eventPhase = new(LockGroups)
 			{
 				Name = phase.Name,
-
 			};
 
 			EventPhases.Add(eventPhase);
@@ -363,14 +361,16 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			}
 		}
 
-		foreach ((List<ShipLockViewModel> eventPhase, int id) in eventPhases.Select((p, id) => (p, id)))
+		foreach ((EventPhaseViewModel eventPhase, int id) in eventPhases.Select((p, id) => (p, id)))
 		{
 			if (id > EventPhases.Count) continue;
 
-			foreach (ShipLockViewModel shipLock in eventPhase)
+			foreach (ShipLockViewModel shipLock in eventPhase.Ships.ToList())
 			{
 				EventPhases[id].Add(shipLock);
 			}
+
+			EventPhases[id].IsFinished = eventPhase.IsFinished;
 		}
 	}
 }
