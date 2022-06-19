@@ -467,16 +467,16 @@ public class FleetItemViewModel : ObservableObject
 
 			if (ship.MasterShip.IsSubmarine)
 			{
-				sb.Append($"{GeneralRes.ASW}: {ship.AswEvasion()}");
+				sb.Append($"{GeneralRes.ASW}: {ship.AswEvasion():N0}");
 			}
 			else
 			{
 				sb.Append
 				(
-					$"{ConstantsRes.Shelling}: {ship.ShellingEvasion()} - " +
-					$"{ConstantsRes.TorpedoAttack}: {ship.TorpedoEvasion()} - " +
-					$"{ConstantsRes.AirBattle}: {ship.AirstrikeEvasion()} - " +
-					$"{ConstantsRes.NightBattle}: {ship.NightEvasion()}"
+					$"{ConstantsRes.Shelling}: {ship.ShellingEvasion():N0} - " +
+					$"{ConstantsRes.TorpedoAttack}: {ship.TorpedoEvasion():N0} - " +
+					$"{ConstantsRes.AirBattle}: {ship.AirstrikeEvasion():N0} - " +
+					$"{ConstantsRes.NightBattle}: {ship.NightEvasion():N0}"
 				);
 			}
 
