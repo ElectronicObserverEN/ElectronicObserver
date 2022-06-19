@@ -178,4 +178,7 @@ Are you sure you want to continue?</value>
   <data name="ShipTypeToggle" xml:space="preserve">
     <value>Toggle types</value>
   </data>
+  <data name="Fcf" xml:space="preserve">
+    <value>FCF</value>
+  </data>
 </root>

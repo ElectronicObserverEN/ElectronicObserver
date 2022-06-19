@@ -115,6 +115,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 司令部施設.
+        /// </summary>
+        internal static string Fcf {
+            get {
+                return ResourceManager.GetString("Fcf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ファイル(_F).
         /// </summary>
         internal static string File {

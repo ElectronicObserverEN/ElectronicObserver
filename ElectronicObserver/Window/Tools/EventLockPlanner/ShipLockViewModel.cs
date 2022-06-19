@@ -21,6 +21,7 @@ public class ShipLockViewModel : ObservableObject
 	public int NightPowerBase => Ship.FirepowerBase + Ship.TorpedoBase;
 	public bool CanUseDaihatsu => Ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft);
 	public bool CanUseTank => Ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank);
+	public bool CanUseFcf => Ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility);
 	public bool IsExpansionSlotAvailable => Ship.IsExpansionSlotAvailable;
 
 	public ShipLockViewModel(IShipData ship)
