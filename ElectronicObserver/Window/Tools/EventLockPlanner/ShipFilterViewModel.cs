@@ -29,6 +29,7 @@ public partial class ShipFilterViewModel : ObservableObject
 
 	public bool CanEquipDaihatsu { get; set; }
 	public bool CanEquipTank { get; set; }
+	public bool CanEquipFcf { get; set; }
 	public bool HasExpansionSlot { get; set; }
 	public string? NameFilter { get; set; } = "";
 
@@ -66,6 +67,7 @@ public partial class ShipFilterViewModel : ObservableObject
 		if (ship.LuckBase > LuckMax) return false;
 		if (CanEquipDaihatsu && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)) return false;
 		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
+		if (CanEquipFcf && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility)) return false;
 		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
 		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
 		// other filters

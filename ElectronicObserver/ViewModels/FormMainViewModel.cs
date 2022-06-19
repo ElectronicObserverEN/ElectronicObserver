@@ -930,6 +930,13 @@ public partial class FormMainViewModel : ObservableObject
 	[ICommand]
 	private void OpenEventLockPlanner()
 	{
+		if (KCDatabase.Instance.MasterShips.Count == 0)
+		{
+			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
+			return;
+		}
+
 		if (EventLockPlannerWindow is not null) return;
 
 		EventLockPlannerViewModel viewModel = new(KCDatabase.Instance.Ships.Values, KCDatabase.Instance.Translation.Lock);

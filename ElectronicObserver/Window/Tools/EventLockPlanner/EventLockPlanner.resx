@@ -158,4 +158,7 @@
   <data name="ShipTypeToggle" xml:space="preserve">
     <value>艦種トグル</value>
   </data>
+  <data name="Fcf" xml:space="preserve">
+    <value>司令部施設</value>
+  </data>
 </root>
