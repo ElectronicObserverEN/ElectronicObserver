@@ -16,6 +16,7 @@ public class ShipDataMasterMock : IShipDataMaster
 	public string NameReadingEN { get; set; }
 	public ShipTypes ShipType { get; set; }
 	public int ShipClass { get; set; }
+	public ShipClass ShipClassTyped => (ShipClass)ShipClass;
 	public int RemodelAfterLevel { get; set; }
 	public int RemodelAfterShipID { get; set; }
 	public IShipDataMaster? RemodelAfterShip { get; set; }
@@ -101,7 +102,5 @@ public class ShipDataMasterMock : IShipDataMaster
 		throw new System.NotImplementedException();
 	}
 
-	public IShipDataMaster BaseShip() => BaseShipProperty;
-	// set base ship here to avoid duplicating logic
-	public IShipDataMaster BaseShipProperty { get; set; }
+	public IShipDataMaster BaseShip() => ShipDataExtensions.BaseShip(this);
 }

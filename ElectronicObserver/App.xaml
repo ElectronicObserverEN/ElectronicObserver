@@ -31,6 +31,7 @@
 			<converters:EquipmentStatForegroundConverter x:Key="EquipmentStatForegroundConverter" />
 			<converters:EnumDisplayConverter x:Key="EnumDisplayConverter" />
 			<converters:AaciDisplayConverter x:Key="AaciDisplayConverter" />
+			<converters:AaciIdDisplayConverter x:Key="AaciIdDisplayConverter" />
 
 			<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml

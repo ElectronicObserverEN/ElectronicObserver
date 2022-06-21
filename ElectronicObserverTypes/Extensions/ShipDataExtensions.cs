@@ -6,6 +6,18 @@ namespace ElectronicObserverTypes.Extensions;
 
 public static class ShipDataExtensions
 {
+	public static IShipDataMaster BaseShip(this IShipDataMaster ship)
+	{
+		IShipDataMaster temp = ship;
+
+		while (temp.RemodelBeforeShip != null)
+		{
+			temp = temp.RemodelBeforeShip;
+		}
+
+		return temp;
+	}
+
 	/// <summary>
 	/// 深海棲艦かどうか
 	/// </summary>
@@ -34,6 +46,17 @@ public static class ShipDataExtensions
 
 	public static bool HasMainGun(this IShipData ship, int count = 1) => ship.MainGunCount() >= count;
 
+	public static bool HasMainGunLarge(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.CategoryType is
+			EquipmentTypes.MainGunLarge or
+			EquipmentTypes.MainGunLarge2)
+		 >= count;
+
+	public static bool HasMainGunLargeFcr(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunLarge_16inchMk_ITripleGunKai_FCRType284)
+		>= count;
+
 	public static int SecondaryGunCount(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SecondaryGun);
 
@@ -43,15 +66,26 @@ public static class ShipDataExtensions
 	public static bool HasApShell(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.APShell);
 
+	public static bool HasAaShell(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.CategoryType == EquipmentTypes.AAShell) >= count;
+
 	public static bool HasSeaplane(this IShipData ship) => ship.AllSlotInstance
 		.Zip(ship.Aircraft, (e, size) => (e, size))
 		.Any(s => s.size > 0 && s.e?.MasterEquipment.IsSeaplane() == true);
 
-	public static bool HasRadar(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.MasterEquipment.IsRadar == true);
+	public static bool HasRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsRadar is true) >= count;
 
 	public static bool HasSurfaceRadar(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsSurfaceRadar is true);
+
+	public static bool HasAirRadar(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsAirRadar is true) >= count;
+
+	public static bool HasRadarGfcs(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.RadarSmall_GFCSMk_37)
+		>= count;
 
 	public static bool HasSuisei634(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e.IsSuisei634()) >= count;
@@ -156,6 +190,98 @@ public static class ShipDataExtensions
 			EquipmentTypes.SearchlightLarge => true,
 			_ => false
 		});
+
+	public static int HighAngleGunCount(this IShipData ship) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsHighAngleGun is true);
+
+	public static bool HasHighAngleGun(this IShipData ship, int count = 1) =>
+		ship.HighAngleGunCount() >= count;
+
+	public static int HighAngleDirectorGunCount(this IShipData ship) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsHighAngleGunWithAADirector is true);
+
+	public static bool HasHighAngleDirectorGun(this IShipData ship, int count = 1) =>
+		ship.HighAngleDirectorGunCount() >= count;
+
+	public static int HighAngleDirectorWithoutGunCount(this IShipData ship) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsHighAngleGun is true &&
+			e.MasterEquipment.AA < 8);
+
+	public static bool HasHighAngleWithoutDirectorGun(this IShipData ship, int count = 1) =>
+		ship.HighAngleDirectorWithoutGunCount() >= count;
+
+	public static bool HasDirector(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.CategoryType is EquipmentTypes.AADirector) >= count;
+
+	/// <summary>
+	/// Both min and max are inclusive
+	/// </summary>
+	public static bool HasAaGun(this IShipData ship, int count = 1, int min = 0, int max = 9999) =>
+		ship.AllSlotInstance
+			.Count(e => e?.MasterEquipment.CategoryType is EquipmentTypes.AAGun &&
+				e.MasterEquipment.AA >= min &&
+				e.MasterEquipment.AA <= max)
+			>= count;
+
+	public static bool HasPompom(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.AAGun_QF2pounderOctuplePompomGun)
+		>= count;
+
+	public static bool HasAaRocketBritish(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.AAGun_20tube7inchUPRocketLaunchers)
+		>= count;
+
+	public static bool HasAaRocketMod(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.AAGun_12cm30tubeRocketLauncherKai2)
+		>= count;
+
+	public static bool HasHighAngleMusashi(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.SecondaryGun_10cmTwinHighangleGunKai_AdditionalMachineGuns)
+		>= count;
+
+	public static bool HasHighAngleAmerican(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunSmall_5inchSingleGunMk_30)
+		>= count;
+
+	public static bool HasHighAngleAmericanKai(this IShipData ship, int count = 1) => ship.AllSlotInstance
+			.Count(e => e?.MasterEquipment.EquipmentId is
+				EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai)
+		>= count;
+
+	public static bool HasHighAngleAmericanGfcs(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai_GFCSMk_37)
+		>= count;
+
+	public static int HighAngleAtlantaCount(this IShipData ship) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunMedium_5inchTwinDualpurposeGunMount_ConcentratedDeployment);
+
+	public static bool HasHighAngleAtlanta(this IShipData ship, int count = 1) =>
+		ship.HighAngleAtlantaCount() >= count;
+
+	public static int HighAngleAtlantaGfcsCount(this IShipData ship) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunMedium_GFCSMk_37_5inchTwinDualpurposeGunMount_ConcentratedDeployment);
+
+	public static bool HasHighAngleAtlantaGfcs(this IShipData ship, int count = 1) =>
+		ship.HighAngleAtlantaGfcsCount() >= count;
+
+	public static bool HasHighAngleConcentrated(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			(EquipmentId)464)
+		>= count;
+
+	public static bool HasYamatoRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2 or
+			(EquipmentId)460)
+		>= count;
 
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
 	{

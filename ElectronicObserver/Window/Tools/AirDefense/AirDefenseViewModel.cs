@@ -8,6 +8,7 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Window.Tools.AirDefense;
 
@@ -24,11 +25,11 @@ public class AirDefenseViewModel : WindowViewModelBase
 
 	public List<FleetId> Fleets { get; }
 	public List<FormationType> Formations { get; set; } = new();
-	public List<int> AaciApis { get; set; } = new();
+	public List<AntiAirCutIn> AntiAirCutIns { get; set; } = new();
 
 	public FleetId SelectedFleet { get; set; } = FleetId.FirstFleet;
 	public FormationType SelectedFormation { get; set; } = FormationType.LineAhead;
-	public int SelectedAACI { get; set; }
+	public AntiAirCutIn? SelectedAaci { get; set; }
 
 	public int EnemyAircraftCount { get; set; } = 36;
 
@@ -57,7 +58,7 @@ public class AirDefenseViewModel : WindowViewModelBase
 		Fleets = Enum.GetValues<FleetId>().ToList();
 
 		UpdateFormation();
-		UpdateAACutinKind(ShowAll);
+		UpdateAntiAirCutIns(ShowAll);
 		Updated();
 
 		PropertyChanged += (sender, args) =>
@@ -65,8 +66,21 @@ public class AirDefenseViewModel : WindowViewModelBase
 			if (args.PropertyName is not nameof(SelectedFleet)) return;
 
 			Updated();
-			UpdateAACutinKind(ShowAll);
+			UpdateAntiAirCutIns(ShowAll);
 			UpdateFormation();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(AntiAirCutIns)) return;
+			if (SelectedAaci is null)
+			{
+				SelectedAaci = AntiAirCutIn.AllCutIns.First(a => a.Id == 0);
+				return;
+			}
+			if (AntiAirCutIns.Contains(SelectedAaci)) return;
+
+			SelectedAaci = AntiAirCutIn.AllCutIns.First(a => a.Id == 0);
 		};
 
 		PropertyChanged += (sender, args) =>
@@ -78,7 +92,7 @@ public class AirDefenseViewModel : WindowViewModelBase
 
 		PropertyChanged += (sender, args) =>
 		{
-			if (args.PropertyName is not nameof(SelectedAACI)) return;
+			if (args.PropertyName is not nameof(SelectedAaci)) return;
 
 			Updated();
 		};
@@ -94,7 +108,7 @@ public class AirDefenseViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(ShowAll)) return;
 
-			UpdateAACutinKind(ShowAll);
+			UpdateAntiAirCutIns(ShowAll);
 		};
 	}
 
@@ -102,7 +116,7 @@ public class AirDefenseViewModel : WindowViewModelBase
 	{
 		IShipData?[] ships = GetShips().ToArray();
 		int formation = (int)SelectedFormation;
-		int aaCutinKind = SelectedAACI;
+		AntiAirCutIn aaCutinKind = SelectedAaci ??= AntiAirCutIn.AllCutIns.First(a => a.Id == 0);
 		int enemyAircraftCount = EnemyAircraftCount;
 
 
@@ -173,20 +187,13 @@ public class AirDefenseViewModel : WindowViewModelBase
 		_ => KCDatabase.Instance.Fleet[(int)SelectedFleet].MembersWithoutEscaped!
 	};
 
-	private void UpdateAACutinKind(bool showAll) => AaciApis = showAll switch
+	private void UpdateAntiAirCutIns(bool showAll) => AntiAirCutIns = showAll switch
 	{
-		true => Enumerable.Range(0, Calculator.AACutinFixedBonus.Keys.Max() + 1)
-			.Select(kind => kind)
+		true => AntiAirCutIn.AllCutIns
+			.OrderBy(a => a.Id)
 			.ToList(),
 
-		_ => GetShips()
-			.Where(s => s != null)
-			.Select(s => Calculator.GetAACutinKind(s.ShipID, s.AllSlotMaster.ToArray()))
-			.Concat(Enumerable.Repeat(0, 1))
-			.Distinct()
-			.OrderBy(i => i)
-			.Select(kind => kind)
-			.ToList()
+		_ => AntiAirCutIn.PossibleCutIns(GetShips())
 	};
 
 	private void UpdateFormation()

@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Linq;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Data;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data;
 
@@ -59,6 +61,11 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 艦型
 	/// </summary>
 	public int ShipClass => (int)RawData.api_ctype;
+
+	/// <summary>
+	/// 艦型
+	/// </summary>
+	public ShipClass ShipClassTyped => (ShipClass)ShipClass;
 
 
 	/// <summary>
@@ -761,17 +768,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 		RemodelBeforeShipID = 0;
 	}
 
-	public IShipDataMaster BaseShip()
-	{
-		IShipDataMaster ship = this;
-
-		while (ship.RemodelBeforeShip != null)
-		{
-			ship = ship.RemodelBeforeShip;
-		}
-
-		return ship;
-	}
+	public IShipDataMaster BaseShip() => ShipDataExtensions.BaseShip(this);
 
 	public int ID => ShipID;
 

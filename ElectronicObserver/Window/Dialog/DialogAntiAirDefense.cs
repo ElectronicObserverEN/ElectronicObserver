@@ -8,6 +8,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAntiAirDefense;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -172,6 +173,9 @@ public partial class DialogAntiAirDefense : Form
 		IShipData[] ships = GetShips().ToArray();
 		int formation = Formation.SelectedItem as FormationComboBoxData;
 		int aaCutinKind = AACutinKind.SelectedItem as AACutinComboBoxData;
+		AntiAirCutIn cutIn = AntiAirCutIn.AllCutIns
+			.FirstOrDefault(a => a.Id == aaCutinKind)
+			?? AntiAirCutIn.AllCutIns.First(a => a.Id == 0);
 		int enemyAircraftCount = enemySlotCountValue;
 
 
@@ -185,21 +189,21 @@ public partial class DialogAntiAirDefense : Form
 		double[] proportionalAAs = adjustedAAs.Select((val, i) => Calculator.GetProportionalAirDefense(val, IsCombined ? (i < 6 ? 1 : 2) : -1)).ToArray();
 
 		// 固定撃墜
-		int[] fixedAAs = adjustedAAs.Select((val, i) => Calculator.GetFixedAirDefense(val, adjustedFleetAA, aaCutinKind, IsCombined ? (i < 6 ? 1 : 2) : -1)).ToArray();
+		int[] fixedAAs = adjustedAAs.Select((val, i) => Calculator.GetFixedAirDefense(val, adjustedFleetAA, cutIn, IsCombined ? (i < 6 ? 1 : 2) : -1)).ToArray();
 
 
 
 		int[] shootDownBoth = adjustedAAs.Select((val, i) => ships[i] == null ? 0 :
-			Calculator.GetShootDownCount(enemyAircraftCount, proportionalAAs[i], fixedAAs[i], aaCutinKind)).ToArray();
+			Calculator.GetShootDownCount(enemyAircraftCount, proportionalAAs[i], fixedAAs[i], cutIn)).ToArray();
 
 		int[] shootDownProportional = adjustedAAs.Select((val, i) => ships[i] == null ? 0 :
-			Calculator.GetShootDownCount(enemyAircraftCount, proportionalAAs[i], 0, aaCutinKind)).ToArray();
+			Calculator.GetShootDownCount(enemyAircraftCount, proportionalAAs[i], 0, cutIn)).ToArray();
 
 		int[] shootDownFixed = adjustedAAs.Select((val, i) => ships[i] == null ? 0 :
-			Calculator.GetShootDownCount(enemyAircraftCount, 0, fixedAAs[i], aaCutinKind)).ToArray();
+			Calculator.GetShootDownCount(enemyAircraftCount, 0, fixedAAs[i], cutIn)).ToArray();
 
 		int[] shootDownFailed = adjustedAAs.Select((val, i) => ships[i] == null ? 0 :
-			Calculator.GetShootDownCount(enemyAircraftCount, 0, 0, aaCutinKind)).ToArray();
+			Calculator.GetShootDownCount(enemyAircraftCount, 0, 0, cutIn)).ToArray();
 
 		double[] aaRocketBarrageProbability = ships.Select(ship => Calculator.GetAARocketBarrageProbability(ship)).ToArray();
 
@@ -256,7 +260,7 @@ public partial class DialogAntiAirDefense : Form
 		if (showAll)
 		{
 
-			int max = Calculator.AACutinFixedBonus.Keys.Max();
+			int max = AntiAirCutIn.AllCutIns.Max(a => a.Id);
 			list = Enumerable.Range(0, max + 1).Select(kind => new AACutinComboBoxData(kind)).ToArray();
 
 		}

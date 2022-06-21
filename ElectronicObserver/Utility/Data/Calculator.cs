@@ -6,6 +6,7 @@ using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -1726,121 +1727,15 @@ public static class Calculator
 	/// </summary>
 	/// <param name="adjustedAAValue">加重対空値</param>
 	/// <param name="adjustedFleetAAValue">艦隊防空値</param>
-	/// <param name="cutinKind">対空カットイン種別</param>
+	/// <param name="cutIn">対空カットイン種別</param>
 	/// <param name="combinedFleetFlag">連合艦隊フラグ。 -1=連合艦隊でない, 1=連合艦隊主力艦隊, 2=連合艦隊随伴艦隊</param>
-	public static int GetFixedAirDefense(double adjustedAAValue, double adjustedFleetAAValue, int cutinKind, int combinedFleetFlag = -1)
+	public static int GetFixedAirDefense(double adjustedAAValue, double adjustedFleetAAValue, AntiAirCutIn cutIn, int combinedFleetFlag = -1)
 	{
-		double cutinBonus = Calculator.AACutinVariableBonus.ContainsKey(cutinKind) ? Calculator.AACutinVariableBonus[cutinKind] : 1.0;
+		double cutinBonus = cutIn.VariableBonus;
 
-		return (int)Math.Floor((adjustedAAValue + adjustedFleetAAValue) * GetAirDefenseCombinedFleetCoefficient(combinedFleetFlag) * cutinBonus / 10);
+		return (int)Math.Floor((adjustedAAValue + adjustedFleetAAValue) * 
+			GetAirDefenseCombinedFleetCoefficient(combinedFleetFlag) * cutinBonus / 10);
 	}
-
-
-
-
-	/// <summary>
-	/// 対空カットイン固定ボーナス
-	/// </summary>
-	public static ReadOnlyDictionary<int, int> AACutinFixedBonus { get; } = new(new Dictionary<int, int>
-	{
-		{  1, 7 },
-		{  2, 6 },
-		{  3, 4 },
-		{  4, 6 },
-		{  5, 4 },
-		{  6, 4 },
-		{  7, 3 },
-		{  8, 4 },
-		{  9, 2 },
-		{ 10, 8 },
-		{ 11, 6 },
-		{ 12, 3 },
-		{ 13, 4 },
-		{ 14, 4 },
-		{ 15, 3 },
-		{ 16, 4 },
-		{ 17, 2 },
-		{ 18, 2 },
-		{ 19, 5 },
-		{ 20, 3 },
-		{ 21, 5 },
-		{ 22, 2 },
-		{ 23, 1 },
-		{ 24, 3 },
-		{ 25, 7 },
-		{ 26, 6 },
-		{ 28, 4 },
-		{ 29, 5 },
-		{ 30, 3 },
-		{ 31, 2 },
-		{ 32, 3 },
-		{ 33, 3 },
-		{ 34, 7 },
-		{ 35, 6 },
-		{ 36, 6 },
-		{ 37, 4 },
-		{ 38, 10 },
-		{ 39, 10 },
-		{ 40, 10 },
-		{ 41, 9 },
-		{ 42, 10 },
-		{ 43, 8 },
-		{ 44, 6 },
-		{ 45, 5 },
-	});
-
-
-	/// <summary>
-	/// 対空カットイン変動ボーナス
-	/// </summary>
-	public static ReadOnlyDictionary<int, double> AACutinVariableBonus { get; } = new(new Dictionary<int, double>
-	{
-		{  1, 1.7 },
-		{  2, 1.7 },
-		{  3, 1.6 },
-		{  4, 1.5 },
-		{  5, 1.5 },
-		{  6, 1.45 },
-		{  7, 1.35 },
-		{  8, 1.4 },
-		{  9, 1.3 },
-		{ 10, 1.65 },
-		{ 11, 1.5 },
-		{ 12, 1.25 },
-		{ 13, 1.35 },
-		{ 14, 1.45 },
-		{ 15, 1.3 },
-		{ 16, 1.4 },
-		{ 17, 1.25 },
-		{ 18, 1.2 },
-		{ 19, 1.45 },
-		{ 20, 1.25 },
-		{ 21, 1.45 },
-		{ 22, 1.2 },
-		{ 23, 1.05 },
-		{ 24, 1.25 },
-		{ 25, 1.55 },
-		{ 26, 1.4 },
-		{ 28, 1.4 },
-		{ 29, 1.55 },
-		{ 30, 1.3 },
-		{ 31, 1.25 },
-		{ 32, 1.2 },
-		{ 33, 1.35 },
-		{ 34, 1.6 },
-		{ 35, 1.55 },
-		{ 36, 1.55 },
-		{ 37, 1.45 },
-		{ 38, 1.85 },
-		{ 39, 1.7 },
-		{ 40, 1.7 },
-		{ 41, 1.65 },
-		{ 42, 1.65 },
-		{ 43, 1.6 },
-		{ 44, 1.6 },
-		{ 45, 1.55 },
-	});
-
 
 	/// <summary>
 	/// 撃墜数の推定値を求めます。
@@ -1848,10 +1743,10 @@ public static class Calculator
 	/// <param name="enemyAircraftCount">敵航空中隊の機数</param>
 	/// <param name="proportionalAirDefense">割合撃墜の割合</param>
 	/// <param name="fixedAirDefense">固定撃墜</param>
-	/// <param name="aaCutinKind">発動した対空カットインの種類</param>
-	public static int GetShootDownCount(int enemyAircraftCount, double proportionalAirDefense, int fixedAirDefense, int aaCutinKind)
+	/// <param name="cutIn">発動した対空カットインの種類</param>
+	public static int GetShootDownCount(int enemyAircraftCount, double proportionalAirDefense, int fixedAirDefense, AntiAirCutIn cutIn)
 	{
-		return (int)Math.Floor(enemyAircraftCount * proportionalAirDefense) + fixedAirDefense + 1 + (AACutinFixedBonus.ContainsKey(aaCutinKind) ? AACutinFixedBonus[aaCutinKind] : 0);
+		return (int)Math.Floor(enemyAircraftCount * proportionalAirDefense) + fixedAirDefense + 1 + cutIn.FixedBonus;
 	}
 
 

@@ -53,6 +53,8 @@ public interface IShipDataMaster : IIdentifiable
 	/// </summary>
 	int ShipClass { get; }
 
+	ShipClass ShipClassTyped { get; }
+
 	/// <summary>
 	/// 改装Lv.
 	/// </summary>

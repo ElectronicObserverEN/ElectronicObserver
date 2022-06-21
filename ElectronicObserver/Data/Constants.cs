@@ -279,6 +279,10 @@ public static class Constants
 		}
 	}
 
+	/// <summary>
+	/// 艦型を表す文字列を取得します。
+	/// </summary>
+	public static string GetShipClass(ShipClass id) => GetShipClass((int)id);
 
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
@@ -886,94 +890,50 @@ public static class Constants
 	/// <summary>
 	/// 対空カットイン種別を表す文字列を取得します。
 	/// </summary>
-	public static string GetAACutinKind(int id)
+	public static string GetAACutinKind(int id) => id switch
 	{
-		switch (id)
-		{
-			case 0:
-				return ConstantsRes.NoNode;
-			case 1:
-				return ConstantsRes.HA2 + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki;
-			case 2:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki;
-			case 3:
-				return ConstantsRes.HA2 + ConstantsRes.Akizuki;
-			case 4:
-				return ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar;
-			case 5:
-				return ConstantsRes.HAAAD + " x2/" + ConstantsRes.Radar;
-			case 6:
-				return ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector;
-			case 7:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar;
-			case 8:
-				return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar;
-			case 9:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AADirector;
-			case 10:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Maya;
-			case 11:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Maya;
-			case 12:
-				return ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar;
-			case 14:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Isuzu;
-			case 15:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Isuzu;
-			case 16:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Kasumi;
-			case 17:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Kasumi;
-			case 18:
-				return ConstantsRes.AAGun + ConstantsRes.Satsuki;
-			case 19:
-				return ConstantsRes.HAGun + ConstantsRes.NonPiercing + ConstantsRes.AAGun + ConstantsRes.Kinu;
-			case 20:
-				return ConstantsRes.AAGun + ConstantsRes.Kinu;
-			case 21:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Yura;
-			case 22:
-				return ConstantsRes.AAGun + ConstantsRes.Fumizuki;
-			case 23:
-				return ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.UIT25;
-			case 24:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.Tatsuta;
-			case 25:
-				return ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + ConstantsRes.Ise;
-			case 26:
-				return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + ConstantsRes.Musashi;
-			case 28:
-				return ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + ConstantsRes.Ise;
-			case 29:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Hamakaze;
-			case 30:
-				return ConstantsRes.HAGun + " x3" + ConstantsRes.Tenryuu;
-			case 31:
-				return ConstantsRes.HAGun + " x2" + ConstantsRes.Tenryuu;
-			case 32:
-				return ConstantsRes.BriishAACI;
-			case 33:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + "<Gotland>";
-			case 34:
-				return ConstantsRes.FletcherGun + "+GFCS x2<Johnston>";
-			case 35:
-				return ConstantsRes.FletcherGun + "+GFCS/" + ConstantsRes.FletcherGun + "<Johnston>";
-			case 36:
-				return ConstantsRes.FletcherGun + "/GFCS<Johnston>";
-			case 37:
-				return ConstantsRes.FletcherGun + "<Johnston>";
-			case 38:
-				return ConstantsRes.AtlantaGun + "+GFCS x2<Atlanta>";
-			case 39:
-				return ConstantsRes.AtlantaGun + "+GFCS/" + ConstantsRes.AtlantaGun + "<Atlanta>";
-			case 40:
-				return ConstantsRes.AtlantaGun + "x2/GFCS<Atlanta>";
-			case 41:
-				return ConstantsRes.AtlantaGun + "x2<Atlanta>";
-			default:
-				return $"{ConstantsRes.Unknown}({(int)id})";
-		}
-	}
+		0 => ConstantsRes.NoNode,
+		1 => ConstantsRes.HA2 + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki,
+		2 => ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki,
+		3 => ConstantsRes.HA2 + ConstantsRes.Akizuki,
+		4 => ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar,
+		5 => ConstantsRes.HAAAD + " x2/" + ConstantsRes.Radar,
+		6 => ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector,
+		7 => ConstantsRes.HAGun + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar,
+		8 => ConstantsRes.HAAAD + "/" + ConstantsRes.Radar,
+		9 => ConstantsRes.HAGun + "/" + ConstantsRes.AADirector,
+		10 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Maya,
+		11 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Maya,
+		12 => ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar,
+		14 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Isuzu,
+		15 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Isuzu,
+		16 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Kasumi,
+		17 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Kasumi,
+		18 => ConstantsRes.AAGun + ConstantsRes.Satsuki,
+		19 => ConstantsRes.HAGun + ConstantsRes.NonPiercing + ConstantsRes.AAGun + ConstantsRes.Kinu,
+		20 => ConstantsRes.AAGun + ConstantsRes.Kinu,
+		21 => ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Yura,
+		22 => ConstantsRes.AAGun + ConstantsRes.Fumizuki,
+		23 => ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.UIT25,
+		24 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.Tatsuta,
+		25 => ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + ConstantsRes.Ise,
+		26 => ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + ConstantsRes.Musashi,
+		28 => ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + ConstantsRes.Ise,
+		29 => ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Hamakaze,
+		30 => ConstantsRes.HAGun + " x3" + ConstantsRes.Tenryuu,
+		31 => ConstantsRes.HAGun + " x2" + ConstantsRes.Tenryuu,
+		32 => ConstantsRes.BriishAACI,
+		33 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + "<Gotland>",
+		34 => ConstantsRes.FletcherGun + "+GFCS x2<Johnston>",
+		35 => ConstantsRes.FletcherGun + "+GFCS/" + ConstantsRes.FletcherGun + "<Johnston>",
+		36 => ConstantsRes.FletcherGun + "/GFCS<Johnston>",
+		37 => ConstantsRes.FletcherGun + "<Johnston>",
+		38 => ConstantsRes.AtlantaGun + "+GFCS x2<Atlanta>",
+		39 => ConstantsRes.AtlantaGun + "+GFCS/" + ConstantsRes.AtlantaGun + "<Atlanta>",
+		40 => ConstantsRes.AtlantaGun + "x2/GFCS<Atlanta>",
+		41 => ConstantsRes.AtlantaGun + "x2<Atlanta>",
+		_ => $"{ConstantsRes.Unknown}({(int)id})"
+	};
 
 
 	/// <summary>

@@ -73,6 +73,7 @@
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
 			<TextBlock
@@ -120,12 +121,15 @@
 				Grid.Row="0"
 				Grid.Column="3"
 				Grid.ColumnSpan="3"
-				ItemsSource="{Binding AaciApis}"
-				SelectedItem="{Binding SelectedAACI}"
+				ItemsSource="{Binding AntiAirCutIns}"
+				SelectedItem="{Binding SelectedAaci}"
 				>
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
-						<TextBlock Text="{Binding Converter={StaticResource AaciDisplayConverter}}" />
+						<TextBlock Background="Transparent" ToolTip="{Binding Converter={StaticResource AaciDisplayConverter}}">
+							<Run Text="{Binding Id, Mode=OneWay, Converter={StaticResource AaciIdDisplayConverter}}" />
+							<Run Text="{Binding ValueDisplay, Mode=OneWay}" />
+						</TextBlock>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
