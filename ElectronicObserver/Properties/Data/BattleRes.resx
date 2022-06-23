@@ -173,7 +173,7 @@
     <value>友軍艦隊</value>
   </data>
   <data name="AaciType" xml:space="preserve">
-    <value>対空カットイン( {0}, {1}({2}) )</value>
+    <value>対空カットイン {2}( {0}, {1} )</value>
   </data>
   <data name="Escaped" xml:space="preserve">
     <value>退避中</value>

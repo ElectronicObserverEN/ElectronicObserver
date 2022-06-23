@@ -133,7 +133,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 20連装7inch UP Rocket Launchers.
+        ///   Looks up a localized string similar to 英国ロケラン.
         /// </summary>
         public static string AaRocketBritish {
             get {
@@ -142,7 +142,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12cm30連装噴進砲改二.
+        ///   Looks up a localized string similar to 噴進砲改二.
         /// </summary>
         public static string AaRocketMod {
             get {
@@ -187,7 +187,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5inch単装砲 Mk.30.
+        ///   Looks up a localized string similar to Fletcher砲.
         /// </summary>
         public static string HighAngleAmerican {
             get {
@@ -196,7 +196,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5inch単装砲 Mk.30改＋GFCS Mk.37.
+        ///   Looks up a localized string similar to Fletcher砲GFCS.
         /// </summary>
         public static string HighAngleAmericanGfcs {
             get {
@@ -205,7 +205,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5inch単装砲 Mk.30 改.
+        ///   Looks up a localized string similar to Fletcher砲改.
         /// </summary>
         public static string HighAngleAmericanKai {
             get {
@@ -214,7 +214,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5inch連装両用砲(集中配備).
+        ///   Looks up a localized string similar to Atlanta砲.
         /// </summary>
         public static string HighAngleAtlanta {
             get {
@@ -223,7 +223,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GFCS Mk.37+5inch連装両用砲(集中配備).
+        ///   Looks up a localized string similar to Atlanta砲GFCS.
         /// </summary>
         public static string HighAngleAtlantaGfcs {
             get {
@@ -232,7 +232,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10cm連装高角砲群 集中配備.
+        ///   Looks up a localized string similar to 高角砲群 集中配備.
         /// </summary>
         public static string HighAngleConcentrated {
             get {
@@ -250,7 +250,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10cm連装高角砲改＋増設機銃.
+        ///   Looks up a localized string similar to 高角砲改+増設機銃.
         /// </summary>
         public static string HighAngleMusashi {
             get {
@@ -277,7 +277,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FCR.
+        ///   Looks up a localized string similar to Nelson砲FCR.
         /// </summary>
         public static string MainGunLargeFcr {
             get {
@@ -304,7 +304,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15m二重測距儀＋21号電探改二(＋熟練射撃指揮所).
+        ///   Looks up a localized string similar to 大和電探.
         /// </summary>
         public static string RadarYamato {
             get {

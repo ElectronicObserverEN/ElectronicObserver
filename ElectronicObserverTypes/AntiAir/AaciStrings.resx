@@ -119,7 +119,7 @@
     <value>大口径主砲</value>
   </data>
   <data name="MainGunLargeFcr" xml:space="preserve">
-    <value>FCR</value>
+    <value>Nelson砲FCR</value>
   </data>
   <data name="AaShell" xml:space="preserve">
     <value>三式弾</value>
@@ -140,40 +140,40 @@
     <value>ポンポン砲</value>
   </data>
   <data name="AaRocketBritish" xml:space="preserve">
-    <value>20連装7inch UP Rocket Launchers</value>
+    <value>英国ロケラン</value>
   </data>
   <data name="AaRocketMod" xml:space="preserve">
-    <value>12cm30連装噴進砲改二</value>
+    <value>噴進砲改二</value>
   </data>
   <data name="HighAngleMusashi" xml:space="preserve">
-    <value>10cm連装高角砲改＋増設機銃</value>
+    <value>高角砲改+増設機銃</value>
   </data>
   <data name="HighAngleAmerican" xml:space="preserve">
-    <value>5inch単装砲 Mk.30</value>
+    <value>Fletcher砲</value>
   </data>
   <data name="HighAngleAmericanGfcs" xml:space="preserve">
-    <value>5inch単装砲 Mk.30改＋GFCS Mk.37</value>
+    <value>Fletcher砲GFCS</value>
   </data>
   <data name="RadarGfcs" xml:space="preserve">
     <value>GFCS Mk.37</value>
   </data>
   <data name="HighAngleAtlanta" xml:space="preserve">
-    <value>5inch連装両用砲(集中配備)</value>
+    <value>Atlanta砲</value>
   </data>
   <data name="HighAngleAtlantaGfcs" xml:space="preserve">
-    <value>GFCS Mk.37+5inch連装両用砲(集中配備)</value>
+    <value>Atlanta砲GFCS</value>
   </data>
   <data name="HighAngleConcentrated" xml:space="preserve">
-    <value>10cm連装高角砲群 集中配備</value>
+    <value>高角砲群 集中配備</value>
   </data>
   <data name="RadarYamato" xml:space="preserve">
-    <value>15m二重測距儀＋21号電探改二(＋熟練射撃指揮所)</value>
+    <value>大和電探</value>
   </data>
   <data name="AaGun3To8Aa" xml:space="preserve">
     <value>対空機銃(素対空3～8)</value>
   </data>
   <data name="HighAngleAmericanKai" xml:space="preserve">
-    <value>5inch単装砲 Mk.30 改</value>
+    <value>Fletcher砲改</value>
   </data>
   <data name="AaGun4AaOrMore" xml:space="preserve">
     <value>対空機銃(対空4以上)</value>

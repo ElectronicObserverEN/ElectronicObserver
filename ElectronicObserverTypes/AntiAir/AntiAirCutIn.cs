@@ -17,6 +17,7 @@ public record AntiAirCutIn
 			FixedBonus = 0,
 			VariableBonus = 1,
 			Rate = 1,
+			Conditions = new(),
 		},
 		new()
 		{
@@ -1049,7 +1050,10 @@ public record AntiAirCutIn
 	public int FixedBonus { get; init; }
 	public double VariableBonus { get; init; }
 	private double Rate { get; init; }
-	public List<AntiAirCutInCondition> Conditions { get; init; } = new();
+	/// <summary>
+	/// Null when unknown
+	/// </summary>
+	public List<AntiAirCutInCondition>? Conditions { get; init; }
 
 	public string ValueDisplay => $"({Rate:P0} - {FixedBonus} - x{VariableBonus})";
 
@@ -1057,6 +1061,13 @@ public record AntiAirCutIn
 	{
 
 	}
+
+	public static AntiAirCutIn FromId(int id) => AllCutIns
+		.FirstOrDefault(a => a.Id == id)
+		?? new AntiAirCutIn
+		{
+			Id = id,
+		};
 
 	private bool CanBeActivatedBy(IShipData ship)
 	{
@@ -1105,6 +1116,7 @@ public record AntiAirCutIn
 	public static List<AntiAirCutIn> PossibleCutIns(IEnumerable<IShipData?> ships) => ships
 		.Where(s => s is not null)
 		.SelectMany(PossibleCutIns!)
+		.DistinctBy(a => a.Id)
 		.OrderBy(a => ApiPriority.IndexOf(a.Id))
 		.ToList();
 }

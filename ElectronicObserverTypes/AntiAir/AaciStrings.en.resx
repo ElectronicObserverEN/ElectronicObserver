@@ -139,7 +139,7 @@
     <value>Large Caliber Gun</value>
   </data>
   <data name="MainGunLargeFcr" xml:space="preserve">
-    <value>FCR</value>
+    <value>Nelson gun FCR</value>
   </data>
   <data name="AaShell" xml:space="preserve">
     <value>Type 3 Shell</value>
@@ -163,37 +163,37 @@
     <value>Pompom</value>
   </data>
   <data name="AaRocketBritish" xml:space="preserve">
-    <value>20-tube 7inch UP Rocket Launchers</value>
+    <value>British Rocket Launchers</value>
   </data>
   <data name="AaRocketMod" xml:space="preserve">
-    <value>12cm 30-tube Rocket Launcher Kai Ni12cm 30-tube Rocket Launcher Kai Ni</value>
+    <value>Rocket Launcher Kai Ni</value>
   </data>
   <data name="HighAngleMusashi" xml:space="preserve">
-    <value>10cm Twin HA Mount Kai10cm Twin High-angle Gun Mount Kai + Additional Machine Guns</value>
+    <value>HA Mount Kai</value>
   </data>
   <data name="RadarGfcs" xml:space="preserve">
     <value>GFCS Mk.37</value>
   </data>
   <data name="HighAngleAmerican" xml:space="preserve">
-    <value>5inch Single Gun Mount Mk.30</value>
+    <value>Fletcher gun</value>
   </data>
   <data name="HighAngleAmericanKai" xml:space="preserve">
-    <value>5inch Single Gun Mount Mk.30 Kai</value>
+    <value>Fletcher gun kai</value>
   </data>
   <data name="HighAngleAmericanGfcs" xml:space="preserve">
-    <value>5inch Single Gun Mount Mk.30 Kai + GFCS Mk.37</value>
+    <value>Fletcher gun GFCS</value>
   </data>
   <data name="HighAngleAtlanta" xml:space="preserve">
-    <value>5inch Twin Dual-purpose Gun Mount (Concentrated Deployment)</value>
+    <value>Atlanta gun</value>
   </data>
   <data name="HighAngleAtlantaGfcs" xml:space="preserve">
-    <value>GFCS Mk.37 + 5inch Twin Dual-purpose Gun Mount (Concentrated Deployment)</value>
+    <value>Atlanta gun GFCS</value>
   </data>
   <data name="HighAngleConcentrated" xml:space="preserve">
-    <value>10cm Twin High-angle Gun Mount Battery Concentrated Deployment</value>
+    <value>HA Mount Concentrated Deployment</value>
   </data>
   <data name="RadarYamato" xml:space="preserve">
-    <value>15m Duplex Rangefinder + Type 21 Radar Kai Ni (+ Skilled Fire Direction Center)</value>
+    <value>Yamato radar</value>
   </data>
   <data name="AaGun4AaOrMore" xml:space="preserve">
     <value>AA Gun (AA &gt;= 4)</value>

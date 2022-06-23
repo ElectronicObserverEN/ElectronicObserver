@@ -6,7 +6,9 @@ using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Data.Battle.Detail;
 
@@ -519,7 +521,10 @@ public static class BattleDetailDescriptor
 			sb.Append("Stage 2: ");
 			if (p.IsAACutinAvailable)
 			{
-				sb.AppendFormat(BattleRes.AaciType, p.AACutInShipName, Constants.GetAACutinKind(p.AACutInKind), p.AACutInKind);
+				sb.AppendFormat(BattleRes.AaciType,
+					p.AACutInShipName,
+					AntiAirCutIn.FromId(p.AACutInKind).EquipmentConditionsSingleLineDisplay(),
+					p.AACutInKind);
 			}
 			sb.AppendLine();
 			sb.AppendFormat($"　{BattleRes.Friendly}: -{{0}}/{{1}}\r\n　{BattleRes.Enemy}: -{{2}}/{{3}}\r\n",

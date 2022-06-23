@@ -13,6 +13,7 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
@@ -487,7 +488,7 @@ public class FleetItemViewModel : ObservableObject
 			int aacutin = Calculator.GetAACutinKind(ship.ShipID, slotmaster);
 			if (aacutin != 0)
 			{
-				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind(aacutin));
+				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", AntiAirCutIn.FromId(aacutin).EquipmentConditionsSingleLineDisplay());
 			}
 			double adjustedaa = Calculator.GetAdjustedAAValue(ship);
 			sb.AppendFormat(GeneralRes.ShipAADefense + "\r\n",

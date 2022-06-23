@@ -11,6 +11,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 
@@ -232,7 +233,7 @@ public partial class MasterShipViewModel : ObservableObject
 			int aacutin = Calculator.GetAACutinKind(shipID, slot);
 			if (aacutin != 0)
 			{
-				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind(aacutin));
+				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", AntiAirCutIn.FromId(aacutin).EquipmentConditionsSingleLineDisplay());
 			}
 		}
 		{

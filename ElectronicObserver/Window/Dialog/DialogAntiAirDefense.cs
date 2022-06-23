@@ -7,6 +7,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAntiAirDefense;
@@ -24,7 +25,7 @@ public partial class DialogAntiAirDefense : Form
 			Kind = kind;
 		}
 
-		public override string ToString() => $"{Kind}: {Constants.GetAACutinKind(Kind)}";
+		public override string ToString() => $"{Kind}: {AntiAirCutIn.FromId(Kind).EquipmentConditionsSingleLineDisplay()}";
 
 
 		public static implicit operator int(AACutinComboBoxData data)

@@ -17,6 +17,7 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.AntiAir;
 using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle;
@@ -938,9 +939,11 @@ public partial class BattleViewModel : AnchorableViewModel
 				// AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
 				AACutinIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.HighAngleGun);
 
+				string ConditionDisplay(int id) => AntiAirCutIn.FromId(id).EquipmentConditionsMultiLineDisplay();
+				
 				AACutinToolTip = FormBattle.AACI + "\r\n" + string.Join("\r\n", phases2
 					.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ?
-						$"{p.Air.AACutInShipName}\r\n{FormBattle.AACIType}{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})"
+						$"{p.Air.AACutInShipName}\r\n{FormBattle.AACIType}{p.Air.AACutInKind}\n{ConditionDisplay(p.Air.AACutInKind)}"
 						: FormBattle.DidNotActivate)));
 			}
 			else

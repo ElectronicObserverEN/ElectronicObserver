@@ -886,56 +886,6 @@ public static class Constants
 		_ => $"{ConstantsRes.Unknown}({(int)id})"
 	};
 
-
-	/// <summary>
-	/// 対空カットイン種別を表す文字列を取得します。
-	/// </summary>
-	public static string GetAACutinKind(int id) => id switch
-	{
-		0 => ConstantsRes.NoNode,
-		1 => ConstantsRes.HA2 + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki,
-		2 => ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki,
-		3 => ConstantsRes.HA2 + ConstantsRes.Akizuki,
-		4 => ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar,
-		5 => ConstantsRes.HAAAD + " x2/" + ConstantsRes.Radar,
-		6 => ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector,
-		7 => ConstantsRes.HAGun + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar,
-		8 => ConstantsRes.HAAAD + "/" + ConstantsRes.Radar,
-		9 => ConstantsRes.HAGun + "/" + ConstantsRes.AADirector,
-		10 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Maya,
-		11 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Maya,
-		12 => ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar,
-		14 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Isuzu,
-		15 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Isuzu,
-		16 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Kasumi,
-		17 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Kasumi,
-		18 => ConstantsRes.AAGun + ConstantsRes.Satsuki,
-		19 => ConstantsRes.HAGun + ConstantsRes.NonPiercing + ConstantsRes.AAGun + ConstantsRes.Kinu,
-		20 => ConstantsRes.AAGun + ConstantsRes.Kinu,
-		21 => ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Yura,
-		22 => ConstantsRes.AAGun + ConstantsRes.Fumizuki,
-		23 => ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.UIT25,
-		24 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.Tatsuta,
-		25 => ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + ConstantsRes.Ise,
-		26 => ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + ConstantsRes.Musashi,
-		28 => ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + ConstantsRes.Ise,
-		29 => ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Hamakaze,
-		30 => ConstantsRes.HAGun + " x3" + ConstantsRes.Tenryuu,
-		31 => ConstantsRes.HAGun + " x2" + ConstantsRes.Tenryuu,
-		32 => ConstantsRes.BriishAACI,
-		33 => ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + "<Gotland>",
-		34 => ConstantsRes.FletcherGun + "+GFCS x2<Johnston>",
-		35 => ConstantsRes.FletcherGun + "+GFCS/" + ConstantsRes.FletcherGun + "<Johnston>",
-		36 => ConstantsRes.FletcherGun + "/GFCS<Johnston>",
-		37 => ConstantsRes.FletcherGun + "<Johnston>",
-		38 => ConstantsRes.AtlantaGun + "+GFCS x2<Atlanta>",
-		39 => ConstantsRes.AtlantaGun + "+GFCS/" + ConstantsRes.AtlantaGun + "<Atlanta>",
-		40 => ConstantsRes.AtlantaGun + "x2/GFCS<Atlanta>",
-		41 => ConstantsRes.AtlantaGun + "x2<Atlanta>",
-		_ => $"{ConstantsRes.Unknown}({(int)id})"
-	};
-
-
 	/// <summary>
 	/// 勝利ランクを表すIDを取得します。
 	/// </summary>

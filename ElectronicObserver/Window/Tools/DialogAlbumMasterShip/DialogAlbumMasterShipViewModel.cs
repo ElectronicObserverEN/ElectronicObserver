@@ -129,7 +129,8 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	{
 		if (ship is null) return;
 
-		SelectedShip = Ships.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID);
+		SelectedShip = Ships.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID)
+			?? AllShips.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID);
 	}
 
 	[ICommand]
