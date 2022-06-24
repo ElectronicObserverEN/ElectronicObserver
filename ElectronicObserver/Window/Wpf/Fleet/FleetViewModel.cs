@@ -271,6 +271,9 @@ public partial class FleetViewModel : AnchorableViewModel
 	private void UpdateShipTagColorList()
 	{
 		ShipTagColors = GetShipTagColorList();
+
+		// --- Call configuration changed to refresh the ship view 
+		ConfigurationChanged();
 	}
 
 	/// <summary>
