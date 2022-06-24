@@ -33,6 +33,9 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 	public bool ShowFinishedPhases { get; set; } = true;
 
+	public delegate void TagChangedEventHandler();
+	public static event TagChangedEventHandler TagChanged = delegate { };
+
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips, LockTranslationData lockTranslator)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
@@ -161,6 +164,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		}).ToList();
 
 		db.SaveChanges();
+		TagChanged();
 	}
 
 	private void Load()

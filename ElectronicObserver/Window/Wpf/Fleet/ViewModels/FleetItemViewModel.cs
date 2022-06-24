@@ -131,8 +131,8 @@ public class FleetItemViewModel : ObservableObject
 
 		// ToolTipInfo = parent.ToolTipInfo;
 		// Parent = parent;
-
 	}
+
 
 	public void ConfigurationChanged()
 	{
@@ -177,15 +177,13 @@ public class FleetItemViewModel : ObservableObject
 				Constants.GetSpeed(ship.Speed)
 			);
 			{
-				var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
-
 				if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-					(colorscheme?.Count ?? 0) > 0 &&
+					Parent.ShipTagColors.Count > 0 &&
 					ship.SallyArea > 0)
 				{
 					if (Utility.Configuration.Config.UI.ThemeMode != 0)
 						Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
-					Name.BackColor = colorscheme[Math.Min(ship.SallyArea, colorscheme.Count - 1)];
+					Name.BackColor = Parent.ShipTagColors[Math.Min(ship.SallyArea, Parent.ShipTagColors.Count - 1)];
 				}
 				else
 				{

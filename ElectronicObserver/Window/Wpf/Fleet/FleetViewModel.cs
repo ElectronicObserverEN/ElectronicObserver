@@ -17,6 +17,10 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
+using ElectronicObserver.Database;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Tools.EventLockPlanner;
+using System.Drawing;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 
@@ -30,6 +34,8 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	public int FleetId { get; }
 	public int AnchorageRepairBound { get; set; }
+
+	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
 
 	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
@@ -57,6 +63,9 @@ public partial class FleetViewModel : AnchorableViewModel
 		SubscribeToApis();
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+
+		// Update tag colours 
+		EventLockPlannerViewModel.TagChanged += UpdateShipTagColorList;
 	}
 
 	private void SubscribeToApis()
@@ -259,6 +268,54 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	}
 
+	private void UpdateShipTagColorList()
+	{
+		ShipTagColors = GetShipTagColorList();
+
+		// --- Call configuration changed to refresh the ship view 
+		ConfigurationChanged();
+	}
+
+	/// <summary>
+	/// Return Ship tag color list
+	/// </summary>
+	/// <returns></returns>
+	private static List<Color> GetShipTagColorList()
+	{
+		using ElectronicObserverContext db = new();
+		EventLockPlannerModel model = db.EventLockPlans.FirstOrDefault() ?? new();
+
+		List<Color> defaultColors = Configuration.Config.FormFleet.SallyAreaColorScheme.Select(color => color.ColorData).ToList();
+
+		if (model.ShipLocks.Any())
+		{
+
+			List<Color> colorsFromLockPlanner = model.Locks
+				.Select(eventLock => Color.FromArgb(eventLock.A, eventLock.R, eventLock.G, eventLock.B))
+				.ToList();
+
+			List<Color> allColors = new List<Color>();
+
+			// First color isn't used
+			if (defaultColors.Any())
+			{
+				allColors.Add(defaultColors[0]);
+				defaultColors.RemoveAt(0);
+			}
+			else
+			{
+				allColors.Add(Color.Transparent);
+			}
+
+			allColors.AddRange(colorsFromLockPlanner);
+			allColors.AddRange(defaultColors);
+
+			return allColors;
+		}
+
+		return defaultColors;
+
+	}
 
 	private string GetNameString(IFleetData? fleet)
 	{
