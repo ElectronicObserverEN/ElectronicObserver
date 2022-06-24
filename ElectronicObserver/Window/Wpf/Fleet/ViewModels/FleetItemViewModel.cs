@@ -483,10 +483,17 @@ public class FleetItemViewModel : ObservableObject
 		}
 
 		{
-			AntiAirCutIn cutIn = AntiAirCutIn.PossibleCutIns(ship).First();
-			if (cutIn.Id != 0)
+			List<AntiAirCutIn> cutIns = AntiAirCutIn.PossibleCutIns(ship)
+				.Where(a => a.Id is not 0)
+				.ToList();
+
+			if (cutIns.Any())
 			{
-				sb.AppendFormat(GeneralRes.AntiAir + ": {0} ({1})\r\n", cutIn.Id, cutIn.EquipmentConditionsSingleLineDisplay());
+				sb.AppendLine($"{GeneralRes.AACutIn}:");
+				foreach (AntiAirCutIn cutIn in cutIns)
+				{
+					sb.AppendFormat("・{0} {1}\r\n", cutIn.Id, cutIn.ValueDisplay);
+				}
 			}
 			double adjustedaa = Calculator.GetAdjustedAAValue(ship);
 			sb.AppendFormat(GeneralRes.ShipAADefense + "\r\n",
