@@ -61,7 +61,7 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 対空カットイン {2}( {0}, {1} ).
+        ///   Looks up a localized string similar to 対空カットイン {2} ( {0}, {1} ).
         /// </summary>
         public static string AaciType {
             get {

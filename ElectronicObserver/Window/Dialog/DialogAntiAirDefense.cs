@@ -270,7 +270,7 @@ public partial class DialogAntiAirDefense : Form
 
 			list = GetShips()
 				.Where(s => s != null)
-				.Select(s => Calculator.GetAACutinKind(s.ShipID, s.AllSlotMaster.ToArray()))
+				.Select(s => AntiAirCutIn.PossibleCutIns(s).First().Id)
 				.Concat(Enumerable.Repeat(0, 1))
 				.Distinct()
 				.OrderBy(i => i)

@@ -229,6 +229,9 @@ public partial class MasterShipViewModel : ObservableObject
 			Constants.GetDayAttackKind(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
 			Constants.GetNightAttackKind(Calculator.GetNightAttackKind(slot, ship.ShipID, -1)));
 
+		/*
+		 todo: I don't think this matters in compass
+		if it does, we either need an overload that can handle this or make a mock ShipData
 		{
 			int aacutin = Calculator.GetAACutinKind(shipID, slot);
 			if (aacutin != 0)
@@ -236,6 +239,7 @@ public partial class MasterShipViewModel : ObservableObject
 				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", AntiAirCutIn.FromId(aacutin).EquipmentConditionsSingleLineDisplay());
 			}
 		}
+		*/
 		{
 			int airsup = Calculator.GetAirSuperiority(slot, ship.Aircraft.ToArray());
 			if (airsup > 0)
