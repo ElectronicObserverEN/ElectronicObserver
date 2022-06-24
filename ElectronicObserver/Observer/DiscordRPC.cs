@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DiscordRPC;
+using System.Threading;
 
 namespace ElectronicObserver.Observer;
 
@@ -22,7 +23,7 @@ class DiscordRPC
 
 	private DiscordRpcClient currentClient;
 	private int currentClientIndex = -1;
-
+	private Thread DiscordThread;
 	public DiscordFormat data { get; set; }
 
 	private DiscordRPC()
@@ -76,19 +77,41 @@ class DiscordRPC
 			int clientId = Math.Abs((shipID - 1) / 150);
 			if (currentClientIndex == clientId)
 			{
-				DiscordRpcClient client = currentClient;
-
-				client.SetPresence(new RichPresence()
-				{
-					Details = data.top,
-					State = state,
-					Assets = new Assets()
+				if (currentClient.IsDisposed) {
+					DiscordRpcClient client = new DiscordRpcClient(clientIds[clientId]);
+					client.SetPresence(new RichPresence()
 					{
-						LargeImageKey = data.image,
-						LargeImageText = data.large,
-						SmallImageText = data.small,
-					}
-				});
+						Details = data.top,
+						State = state,
+						Assets = new Assets()
+						{
+							LargeImageKey = data.image,
+							LargeImageText = data.large,
+							SmallImageText = data.small,
+						}
+					});
+					client.SkipIdenticalPresence = false;
+					client.Initialize();
+				}
+				else
+				{
+					DiscordRpcClient client = new DiscordRpcClient(clientIds[clientId]);
+					client.SetPresence(new RichPresence()
+					{
+						Details = data.top,
+						State = state,
+						Assets = new Assets()
+						{
+							LargeImageKey = data.image,
+							LargeImageText = data.large,
+							SmallImageText = data.small,
+						}
+					});
+					if (currentClient != null) currentClient.Dispose();
+					currentClient = client;
+					currentClientIndex = clientId;
+					client.Initialize();
+				}
 			}
 			else
 			{
@@ -111,7 +134,7 @@ class DiscordRPC
 					currentClient = client;
 					currentClientIndex = clientId;
 				};
-
+				client.SkipIdenticalPresence = false;
 				client.Initialize();
 			}
 		}
@@ -144,17 +167,18 @@ class DiscordRPC
 		data.bot.Add(ObserverRes.RankDataNotLoaded);
 
 		SetActivity();
+		DiscordThread = new Thread(MainLoop);
+		DiscordThread.Start();
 
-		Task task = Task.Run(async () =>
-		{
-			for (; ; )
-			{
-				await Task.Delay(15000);
-				SetActivity();
-			}
-		});
 	}
-
+	private async void MainLoop()
+	{
+		for (; ; )
+		{
+			await Task.Delay(15000);
+			SetActivity();
+		}
+	}
 	public class DiscordFormat
 	{
 		public string top { get; set; }

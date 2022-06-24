@@ -409,7 +409,7 @@
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
 		<PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
 		<PackageReference Include="System.Management" Version="6.0.0" />
-		<PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+		<PackageReference Include="DiscordRichPresence" Version="1.0.209" />
 		<PackageReference Include="Grpc" Version="2.41.1" />
 		<PackageReference Include="Grpc.Core" Version="2.41.1" />
 		<PackageReference Include="Grpc.Core.Api" Version="2.41.1" />
