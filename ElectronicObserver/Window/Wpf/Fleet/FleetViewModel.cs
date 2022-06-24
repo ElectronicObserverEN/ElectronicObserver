@@ -63,6 +63,9 @@ public partial class FleetViewModel : AnchorableViewModel
 		SubscribeToApis();
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+
+		// Update tag colours 
+		EventLockPlannerViewModel.TagChanged += UpdateShipTagColorList;
 	}
 
 	private void SubscribeToApis()
@@ -80,8 +83,6 @@ public partial class FleetViewModel : AnchorableViewModel
 		o.ApiReqKaisou_OpenExSlot.RequestReceived += Updated;
 
 		o.ApiPort_Port.ResponseReceived += Updated;
-		// Update tag colours (on port load ? subscribe to db update ? don't think it's a thing (yet ?))
-		o.ApiPort_Port.RequestReceived += UpdateShipTagColorList;
 		o.ApiGetMember_Ship2.ResponseReceived += Updated;
 		o.ApiGetMember_NDock.ResponseReceived += Updated;
 		o.ApiReqKousyou_GetShip.ResponseReceived += Updated;
@@ -100,7 +101,6 @@ public partial class FleetViewModel : AnchorableViewModel
 		o.ApiReqKaisou_SlotDeprive.ResponseReceived += Updated;
 		o.ApiReqKaisou_Marriage.ResponseReceived += Updated;
 		o.ApiReqMap_AnchorageRepair.ResponseReceived += Updated;
-
 	}
 
 	private void Updated(string apiname, dynamic data)
@@ -268,7 +268,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	}
 
-	private void UpdateShipTagColorList(string apiname, dynamic data)
+	private void UpdateShipTagColorList()
 	{
 		ShipTagColors = GetShipTagColorList();
 	}

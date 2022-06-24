@@ -131,8 +131,8 @@ public class FleetItemViewModel : ObservableObject
 
 		// ToolTipInfo = parent.ToolTipInfo;
 		// Parent = parent;
-	}
 
+	}
 
 	public void ConfigurationChanged()
 	{
