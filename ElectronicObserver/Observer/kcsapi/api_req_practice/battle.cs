@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Data;
-using static ElectronicObserver.Observer.DiscordRPC;
+using ElectronicObserver.Data.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_practice;
 
@@ -25,7 +25,7 @@ public class battle : APIBase
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
-			DiscordFormat dataForWS = Instance.data;
+			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
 			dataForWS.top = ObserverRes.DoingExercises;
 		}
 

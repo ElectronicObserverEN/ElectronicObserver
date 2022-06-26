@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
-using static ElectronicObserver.Observer.DiscordRPC;
+using ElectronicObserver.Data.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port;
 
@@ -61,7 +61,7 @@ public class port : APIBase
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
-			DiscordFormat dataForWS = Instance.data;
+			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
 			dataForWS.top = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
 			if (db.Fleet[1].CanAnchorageRepair)
@@ -79,9 +79,9 @@ public class port : APIBase
 				dataForWS.bot.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.Server.Name));
 			}
 
-			if (!string.IsNullOrEmpty(Instance.MapInfo))
+			if (!string.IsNullOrEmpty(dataForWS.MapInfo))
 			{
-				dataForWS.bot.Add(Instance.MapInfo);
+				dataForWS.bot.Add(dataForWS.MapInfo);
 			}
 
 			if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
