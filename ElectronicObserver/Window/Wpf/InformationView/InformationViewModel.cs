@@ -5,13 +5,13 @@ using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
-using static ElectronicObserver.Observer.DiscordRPC;
 using Translation = ElectronicObserver.Properties.Window.FormInformation;
 
 namespace ElectronicObserver.Window.Wpf.InformationView;
@@ -407,7 +407,7 @@ public class InformationViewModel : AnchorableViewModel
 			}
 		}
 
-		Instance.MapInfo = rpcMapInfo;
+		DiscordRpcManager.Instance.CurrentClient.CurrentRpcData.MapInfo = rpcMapInfo;
 
 		return sb.ToString();
 	}

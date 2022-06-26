@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 
-using static ElectronicObserver.Observer.DiscordRPC;
 using Translation = ElectronicObserver.Properties.Window.FormInformation;
 
 namespace ElectronicObserver.Window;
@@ -429,7 +429,7 @@ public partial class FormInformation : Form
 			}
 		}
 
-		Instance.MapInfo = rpcMapInfo;
+		DiscordRpcManager.Instance.CurrentClient.CurrentRpcData.MapInfo = rpcMapInfo;
 
 		return sb.ToString();
 	}

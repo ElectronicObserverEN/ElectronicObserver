@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Notifier;
-using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map;
 
@@ -18,8 +18,8 @@ public class next : APIBase
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
-			DiscordFormat dataForWS = Instance.data;
-			dataForWS.top = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
+			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
+			dataForWS.TopDisplayText = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
 
 		}
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Notifier;
 using ElectronicObserverTypes;
-using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map;
 
@@ -21,8 +21,8 @@ public class start : APIBase
 		db.Replays.LoadFromResponse(APIName, data);
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
-			DiscordFormat dataForWS = Instance.data;
-			dataForWS.top = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
+			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
+			dataForWS.TopDisplayText = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
 		}
 
 		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
