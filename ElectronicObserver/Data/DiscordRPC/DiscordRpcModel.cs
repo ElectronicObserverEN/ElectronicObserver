@@ -1,15 +1,23 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data.DiscordRPC;
 
 public class DiscordRpcModel
 {
-	public string top { get; set; }
-	public List<string> bot { get; set; }
-	public string large { get; set; }
-	public string small { get; set; }
-	public string timestamp { get; set; }
-	public int shipId { get; set; }
-	public string image { get; set; }
+	public string TopDisplayText { get; set; } = "";
+
+	public List<string> BottomDisplayText { get; set; } = new List<string>();
+
+	public string LargeImageHoverText { get; set; } = "";
+
+	public string SmallIconHoverText { get; set; } = "";
+
+	public string TimeStamp { get; set; } = "";
+
+	public int CurrentShipId { get; set; }
+
+	public string ImageKey { get; set; } = "";
+
 	public string? MapInfo { get; internal set; }
 }

@@ -26,7 +26,7 @@ public class battle : APIBase
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
-			dataForWS.top = ObserverRes.DoingExercises;
+			dataForWS.TopDisplayText = ObserverRes.DoingExercises;
 		}
 
 

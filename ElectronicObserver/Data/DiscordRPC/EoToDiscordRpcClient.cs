@@ -33,13 +33,13 @@ public class EoToDiscordRpcClient
 		CurrentClientId = clientId;
 		CurrentRpcData =  new DiscordRpcModel()
 		{
-			bot = new List<string>(),
-			top = ObserverRes.LoadingIntegration,
-			large = ObserverRes.KantaiCollection,
-			small = ObserverRes.Idle
+			BottomDisplayText = new List<string>(),
+			TopDisplayText = ObserverRes.LoadingIntegration,
+			LargeImageHoverText = ObserverRes.KantaiCollection,
+			SmallIconHoverText = ObserverRes.Idle
 		};
 
-		CurrentRpcData.bot.Add(ObserverRes.RankDataNotLoaded);
+		CurrentRpcData.BottomDisplayText.Add(ObserverRes.RankDataNotLoaded);
 
 		Initialize();
 	}
@@ -73,20 +73,20 @@ public class EoToDiscordRpcClient
 
 		string state = "";
 
-		if (CurrentRpcData.bot != null && CurrentRpcData.bot.Any())
+		if (CurrentRpcData.BottomDisplayText != null && CurrentRpcData.BottomDisplayText.Any())
 		{
-			state = CurrentRpcData.bot[++Count % CurrentRpcData.bot.Count];
+			state = CurrentRpcData.BottomDisplayText[++Count % CurrentRpcData.BottomDisplayText.Count];
 		}
 
 		CurrentClient.SetPresence(new RichPresence()
 		{
-			Details = CurrentRpcData.top,
+			Details = CurrentRpcData.TopDisplayText,
 			State = state,
 			Assets = new Assets()
 			{
-				LargeImageKey = CurrentRpcData.image,
-				LargeImageText = CurrentRpcData.large,
-				SmallImageText = CurrentRpcData.small,
+				LargeImageKey = CurrentRpcData.ImageKey,
+				LargeImageText = CurrentRpcData.LargeImageHoverText,
+				SmallImageText = CurrentRpcData.SmallIconHoverText,
 			}
 		});
 	}

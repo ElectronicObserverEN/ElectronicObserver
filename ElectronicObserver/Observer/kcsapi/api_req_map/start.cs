@@ -22,7 +22,7 @@ public class start : APIBase
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
-			dataForWS.top = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
+			dataForWS.TopDisplayText = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
 		}
 
 		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);

@@ -61,7 +61,7 @@ public class DiscordRpcManager
 
 		if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
 		{
-			int shipID = CurrentClient.CurrentRpcData.shipId;
+			int shipID = CurrentClient.CurrentRpcData.CurrentShipId;
 			int clientId = Math.Abs((shipID - 1) / 150);
 			if (CurrentClientIndex == clientId)
 			{

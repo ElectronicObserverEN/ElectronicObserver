@@ -62,37 +62,37 @@ public class port : APIBase
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
-			dataForWS.top = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
+			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
-				dataForWS.top = string.Format(ObserverRes.RepairingShips, (db.Fleet[1].MembersInstance.Count(s => s != null) - 1).ToString());
+				dataForWS.TopDisplayText = string.Format(ObserverRes.RepairingShips, (db.Fleet[1].MembersInstance.Count(s => s != null) - 1).ToString());
 			}
 
-			dataForWS.bot = new List<string>();
+			dataForWS.BottomDisplayText = new List<string>();
 
-			dataForWS.image = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
-			dataForWS.shipId = db.Fleet[1].MembersInstance[0].ShipID;
+			dataForWS.ImageKey = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
+			dataForWS.CurrentShipId = db.Fleet[1].MembersInstance[0].ShipID;
 
 			if (db.Admiral.Senka != null && db.Server?.Name != null)
 			{
-				dataForWS.bot.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.Server.Name));
+				dataForWS.BottomDisplayText.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.Server.Name));
 			}
 
 			if (!string.IsNullOrEmpty(dataForWS.MapInfo))
 			{
-				dataForWS.bot.Add(dataForWS.MapInfo);
+				dataForWS.BottomDisplayText.Add(dataForWS.MapInfo);
 			}
 
 			if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
 			{
-				dataForWS.bot.Add(string.Format(ObserverRes.FirstClassMedals, db.Admiral.Medals));
+				dataForWS.BottomDisplayText.Add(string.Format(ObserverRes.FirstClassMedals, db.Admiral.Medals));
 			}
 
 
-			dataForWS.large = string.Format(ObserverRes.AdmiralNameLevel, db.Admiral.AdmiralName, db.Admiral.Level);
+			dataForWS.LargeImageHoverText = string.Format(ObserverRes.AdmiralNameLevel, db.Admiral.AdmiralName, db.Admiral.Level);
 
-			dataForWS.small = db.Admiral.RankString;
+			dataForWS.SmallIconHoverText = db.Admiral.RankString;
 		}
 
 
