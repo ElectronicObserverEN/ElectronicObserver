@@ -219,7 +219,9 @@ public record AntiAirCutIn
 				new()
 				{
 					AaGunConcentrated = 1,
-					AaGun3Aa = 1,
+					// the actual condition is 1 AA gun with at least 3 AA and 1 concentrated AA gun (at least 9 AA)
+					// the concentrated AA gun will obviously also satisfy the 3 AA gun condition
+					AaGun3Aa = 2,
 					AntiAirRadar = 1,
 				},
 			},
