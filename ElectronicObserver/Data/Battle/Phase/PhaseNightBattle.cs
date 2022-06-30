@@ -112,7 +112,14 @@ public class PhaseNightBattle : PhaseBase
 				case NightAttackKind.SpecialYamato3Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i);       // #1, #2 (, #3)
+						BattleIndex comboatk = hps.Length switch
+						{
+							// hack: Kongou night special attack index is messed up for combined fleet vs combined fleet
+							// todo: need to check what happens in case only 1 of the fleets is combined
+							24 when i < 6 => new(i + 6, true, true),
+							_ => new BattleIndex(atk.Attacker.Side, i)
+						};
+
 						BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
 						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 						damages[comboatk] += atk.Defenders[i].Damage;
