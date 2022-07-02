@@ -6,9 +6,6 @@ namespace ElectronicObserver.Utility.Data;
 
 public static class FleetDataExtensions
 {
-	public static bool HasNightRecon(this IFleetData fleet) => fleet.MembersWithoutEscaped
-		.Any(s => s?.HasNightRecon() ?? false);
-
 	public static bool HasStarShell(this IFleetData fleet) => fleet.MembersWithoutEscaped
 		.Any(s => s?.HasStarShell() ?? false);
 

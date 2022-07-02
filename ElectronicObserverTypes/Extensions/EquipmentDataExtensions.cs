@@ -186,6 +186,9 @@ public static class EquipmentDataExtensions
 		_ => false
 	};
 
+	public static bool IsNightSeaplane(this IEquipmentDataMaster equip) => 
+		equip.IconTypeTyped is EquipmentIconType.NightSeaplane;
+
 	public static bool IsSuisei634(this IEquipmentData? equip) => equip?.EquipmentId switch
 	{
 		EquipmentId.CarrierBasedBomber_SuiseiModel22_634AirGroup => true,

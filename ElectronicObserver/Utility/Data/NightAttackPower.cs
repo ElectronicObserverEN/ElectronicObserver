@@ -9,7 +9,7 @@ public static class NightAttackPower
 {
 	public static double GetNightAttackPower(this IShipData ship, Enum attack, IFleetData? fleet = null)
 	{
-		double basepower = ship.BaseNightAttackPower() + fleet.NightScoutBonus();
+		double basepower = ship.BaseNightAttackPower() + (fleet?.NightScoutBonus() ?? 0);
 
 		basepower *= ship.GetHPDamageBonus();
 		basepower *= NightAttackKindDamageMod(attack, ship);
@@ -21,11 +21,23 @@ public static class NightAttackPower
 		return basepower;
 	}
 
-	private static int NightScoutBonus(this IFleetData? fleet) => fleet switch
-	{
-		{ } when fleet.HasNightRecon() => 5,
-		_ => 0
-	};
+	/// <summary>
+	/// <see href="https://twitter.com/yukicacoon/status/1542443860109819904"/>
+	/// </summary>
+	private static int NightScoutBonus(this IFleetData fleet) => fleet.MembersWithoutEscaped!
+		.Where(s => s is not null)
+		.SelectMany(s => s!.AllSlotInstance)
+		.Where(e => e is not null)
+		.Where(e => e!.MasterEquipment.IsNightSeaplane())
+		.DefaultIfEmpty()
+		.MaxBy(e => e?.MasterEquipment.Accuracy)
+		?.MasterEquipment.Accuracy switch
+		{
+			null => 0,
+			< 2 => 5,
+			2 => 7,
+			> 2 => 9,
+		};
 
 	private static double BaseNightAttackPower(this IShipData ship) => ship switch
 	{

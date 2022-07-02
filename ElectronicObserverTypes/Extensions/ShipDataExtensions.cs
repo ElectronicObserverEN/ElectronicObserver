@@ -173,13 +173,6 @@ public static class ShipDataExtensions
 	public static bool HasSubmarineEquipment(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SubmarineEquipment);
 
-	public static bool HasNightRecon(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.EquipmentId switch
-		{
-			EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon => true,
-			_ => false
-		});
-
 	public static bool HasStarShell(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.StarShell);
 

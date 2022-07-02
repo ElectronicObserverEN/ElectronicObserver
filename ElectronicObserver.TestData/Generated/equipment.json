@@ -1731,7 +1731,7 @@
     "Luck": 0,
     "Range": 0,
     "CategoryType": 10,
-    "IconType": 10
+    "IconType": 50
   },
   {
     "EquipmentId": 103,
@@ -7852,6 +7852,40 @@
     "Range": 1,
     "CategoryType": 4,
     "IconType": 16
+  },
+  {
+    "EquipmentId": 468,
+    "Name": "38cm四連装砲改 deux",
+    "Armor": 1,
+    "Firepower": 24,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 5,
+    "Asw": 0,
+    "Accuracy": 4,
+    "Evasion": 0,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 2,
+    "CategoryType": 3,
+    "IconType": 3
+  },
+  {
+    "EquipmentId": 469,
+    "Name": "零式水上偵察機11型乙改(夜偵)",
+    "Armor": 0,
+    "Firepower": 1,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 1,
+    "Asw": 6,
+    "Accuracy": 2,
+    "Evasion": 0,
+    "LoS": 5,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 10,
+    "IconType": 50
   },
   {
     "EquipmentId": 501,

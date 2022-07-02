@@ -28,11 +28,23 @@ public static class NightAttackAccuracy
 
 	private static int BaseAccuracy(this IFleetData fleet) => 69;
 
-	private static double NightScoutMod(this IFleetData fleet) => fleet switch
-	{
-		{ } when fleet.HasNightRecon() => 1.1,
-		_ => 1
-	};
+	/// <summary>
+	/// <see href="https://twitter.com/yukicacoon/status/1542443860109819904"/>
+	/// </summary>
+	private static double NightScoutMod(this IFleetData fleet) => fleet.MembersWithoutEscaped!
+		.Where(s => s is not null)
+		.SelectMany(s => s!.AllSlotInstance)
+		.Where(e => e is not null)
+		.Where(e => e!.MasterEquipment.IsNightSeaplane())
+		.DefaultIfEmpty()
+		.MaxBy(e => e?.MasterEquipment.Accuracy)
+		?.MasterEquipment.Accuracy switch
+		{
+			null => 1,
+			< 2 => 1.1,
+			2 => 1.15,
+			> 2 => 1.2,
+		};
 
 	private static int StarShellBonus(this IFleetData fleet) => fleet switch
 	{
