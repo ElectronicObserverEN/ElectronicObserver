@@ -147,6 +147,10 @@ public enum EquipmentIconType
 
 	Reserved48,         // 艦これ本体側が未実装
 	HeavyBomber,
+
+	/// <summary>夜間水上機</summary>
+	NightSeaplane,
+
 	Locked,
 	Unknown,
 }

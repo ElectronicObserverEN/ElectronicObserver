@@ -90,6 +90,7 @@ public sealed class ResourceManager
 		LandASPatrol,
 		LandAssaulter,
 		HeavyBomber,
+		NightSeaplane,
 		Locked,
 		Unknown,
 	}
@@ -336,6 +337,7 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandASPatrol.png", "Equipment_LandASPatrol");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandAttacker.png", "Equipment_LandAssaulter"); // todo: using the land attacker icon temporarily till we have a land assaulter icon
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/HeavyBomber.png", "Equipment_HeavyBomber");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplane.png", "Equipment_NightSeaplane");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
 
