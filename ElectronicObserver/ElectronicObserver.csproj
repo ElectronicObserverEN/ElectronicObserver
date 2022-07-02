@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+		<TargetFramework>net6.0-windows7</TargetFramework>
+		<RuntimeFrameworkVersion>6.0.5</RuntimeFrameworkVersion>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -24,9 +25,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.1.9.0</AssemblyVersion>
-		<FileVersion>5.1.9.0</FileVersion>
-		<Version>5.1.9.0</Version>
+		<AssemblyVersion>5.1.8.4</AssemblyVersion>
+		<FileVersion>5.1.8.4</FileVersion>
+		<Version>5.1.8.4</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -345,9 +346,9 @@
 			<DependentUpon>AirControlSimulator.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\AutoRefresh\AutoRefresh.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>AutoRefresh.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>AutoRefresh.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -399,9 +400,8 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
-		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.1" />
-		<PackageReference Include="ModernWpfUI" Version="0.9.4" />
-		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.4" />
+		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
+		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="ScottPlot" Version="4.1.45" />
