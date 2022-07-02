@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
-
+using ElectronicObserver.Utility;
 namespace ElectronicObserver.Data;
 
 /// <summary>
@@ -199,6 +199,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 		// --- Points are sent as edges separated by a comma (,)
 		string rawPoints = data[key];
 		StrikePoints = rawPoints.Split(",").Select(pointAsString => int.Parse(pointAsString)).ToList();
+		Logger.Add(2, $"LBAS Strike Points: [{string.Join(",",StrikePoints)}]");
 	}
 
 	public override string ToString() => $"[{MapAreaID}:{AirCorpsID}] {Name}";
