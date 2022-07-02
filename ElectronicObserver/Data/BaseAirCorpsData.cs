@@ -4,6 +4,10 @@ using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 using ElectronicObserver.Utility;
+using static Org.BouncyCastle.Math.EC.ECCurve;
+using ScottPlot.MarkerShapes;
+using System.Text;
+
 namespace ElectronicObserver.Data;
 
 /// <summary>
@@ -187,6 +191,8 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 
 	private void SetStrikePoints(Dictionary<string, string> data)
 	{
+		var compass = KCDatabase.Instance.Battle.Compass;
+		var config = Configuration.Config;
 		// --- The request doesn't specify the map area ID, so we'll need to rely on the data from the start API
 		int currentArea = KCDatabase.Instance.Battle.Compass.MapAreaID;
 
@@ -199,7 +205,21 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 		// --- Points are sent as edges separated by a comma (,)
 		string rawPoints = data[key];
 		StrikePoints = rawPoints.Split(",").Select(pointAsString => int.Parse(pointAsString)).ToList();
-		Logger.Add(2, $"LBAS Strike Points: [{string.Join(",",StrikePoints)}]");
+
+		if (!config.UI.UseOriginalNodeId)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("LBAS Strike Points:[");
+			sb.Append(KCDatabase.Instance.Translation.Destination.DisplayID(compass.MapAreaID, compass.MapInfoID, StrikePoints[0]));
+			sb.Append(",");
+			sb.Append(KCDatabase.Instance.Translation.Destination.DisplayID(compass.MapAreaID, compass.MapInfoID, StrikePoints[1]));
+			sb.Append(']');
+			Logger.Add(2, sb.ToString());
+		}
+		else
+		{
+			Logger.Add(2, $"LBAS Strike Points: [{string.Join(",", StrikePoints)}]");
+		}
 	}
 
 	public override string ToString() => $"[{MapAreaID}:{AirCorpsID}] {Name}";
