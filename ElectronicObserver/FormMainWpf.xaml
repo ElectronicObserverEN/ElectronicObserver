@@ -25,6 +25,18 @@
 	Topmost="{Binding Topmost}"
 	mc:Ignorable="d"
 	>
+	<!--
+		copied from: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/Window.xaml#L27
+		removed GlassFrameThickness because it breaks winforms host content
+	-->
+	<WindowChrome.WindowChrome>
+		<WindowChrome
+			CaptionHeight="{DynamicResource {x:Static ui:TitleBar.HeightKey}}"
+			CornerRadius="0"
+			UseAeroCaptionButtons="False"
+			/>
+	</WindowChrome.WindowChrome>
+
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
