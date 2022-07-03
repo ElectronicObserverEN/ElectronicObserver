@@ -353,16 +353,20 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		var compass = KCDatabase.Instance.Battle.Compass;
 		var config = Utility.Configuration.Config;
 		StringBuilder sb = new StringBuilder();
+		int i = 1;
 		foreach (var strikepoint in corps.StrikePoints)
 		{
 			if (!config.UI.UseOriginalNodeId)
 			{
-				sb.AppendJoin(",", KCDatabase.Instance.Translation.Destination.DisplayID(compass.MapAreaID, compass.MapInfoID, strikepoint)).AppendLine();
+				sb.Append("Strike Point #" + i +" : ")
+					.AppendJoin(",", KCDatabase.Instance.Translation.Destination.DisplayID(compass.MapAreaID, compass.MapInfoID, strikepoint)).AppendLine();
 			}
 			else
 			{
-				sb.AppendLine(string.Join(",", strikepoint));
+				sb.Append("Strike Point #" + i + " : ")
+					.AppendLine(string.Join(",", strikepoint));
 			}
+			i++;
 		}
 		return sb.ToString();
 	}
