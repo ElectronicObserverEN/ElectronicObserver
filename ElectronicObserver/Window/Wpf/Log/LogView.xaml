@@ -16,6 +16,36 @@
 	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<Style x:Key="ItemsControlVirtualizedStyle" TargetType="ItemsControl">
+			<Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+			<Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+			<Setter Property="ItemsPanel">
+				<Setter.Value>
+					<ItemsPanelTemplate>
+						<VirtualizingStackPanel />
+					</ItemsPanelTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ItemsControl">
+						<Border
+							Padding="{TemplateBinding Control.Padding}"
+							Background="{TemplateBinding Panel.Background}"
+							BorderBrush="{TemplateBinding Border.BorderBrush}"
+							BorderThickness="{TemplateBinding Border.BorderThickness}"
+							SnapsToDevicePixels="True"
+							>
+							<ScrollViewer Padding="{TemplateBinding Control.Padding}" Focusable="False">
+								<ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+							</ScrollViewer>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
 	<UserControl.ContextMenu>
 		<ContextMenu>
 			<MenuItem Command="{Binding ContextMenuLog_Clear_ClickCommand}" Header="{Binding FormLog.Clear}" />
