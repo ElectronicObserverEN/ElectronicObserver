@@ -909,11 +909,6 @@ public sealed class APIObserver
 								Directory.CreateDirectory(Path.GetDirectoryName(tpath));
 
 								//System.Diagnostics.Debug.WriteLine( oSession.fullUrl + " => " + tpath );
-								/*using (var sw = new System.IO.BinaryWriter(System.IO.File.OpenWrite(tpath)))
-								{
-									sw.Write(responseCopy);
-								}*/
-
 								File.WriteAllBytesAsync(tpath, responseCopy);
 							}
 
