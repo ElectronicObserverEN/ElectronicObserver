@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace ElectronicObserver.Window.Wpf.Log;
 /// <summary>
@@ -22,12 +24,37 @@ public partial class LogView : UserControl
 		InitializeComponent();
 	}
 
-	private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	private void ListBox_OnLoaded(object sender, RoutedEventArgs e)
 	{
-		Selector selector = sender as Selector;
-		if (selector is ListBox)
+		var listBox = (ListBox)sender;
+
+		var scrollViewer = FindScrollViewer(listBox);
+
+		if (scrollViewer != null)
 		{
-			(selector as ListBox).ScrollIntoView(selector.SelectedItem);
+			scrollViewer.ScrollChanged += (o, args) =>
+			{
+				if (args.ExtentHeightChange > 0)
+					scrollViewer.ScrollToBottom();
+			};
 		}
+	}
+	// Search for ScrollViewer, breadth-first
+	private static ScrollViewer FindScrollViewer(DependencyObject root)
+	{
+		var queue = new Queue<DependencyObject>(new[] { root });
+
+		do
+		{
+			var item = queue.Dequeue();
+
+			if (item is ScrollViewer)
+				return (ScrollViewer)item;
+
+			for (var i = 0; i < VisualTreeHelper.GetChildrenCount(item); i++)
+				queue.Enqueue(VisualTreeHelper.GetChild(item, i));
+		} while (queue.Count > 0);
+
+		return null;
 	}
 }

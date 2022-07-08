@@ -30,7 +30,6 @@ public partial class LogViewViewModel : AnchorableViewModel
 				LogList.Add(log.ToString());
 			}
 		}
-		CollectionViewSource.GetDefaultView(LogList).MoveCurrentTo(LogList[LogList.Count - 1]);
 		Logger.Instance.LogAdded += data =>
 		{
 			if (App.Current is null) return;
@@ -52,7 +51,6 @@ public partial class LogViewViewModel : AnchorableViewModel
 	private void Logger_LogAdded(Logger.LogData data)
 	{
 		LogList.Add(data.ToString());
-		CollectionViewSource.GetDefaultView(LogList).MoveCurrentTo(data.ToString());
 	}
 	[ICommand]
 	private void ContextMenuLog_Clear_Click()
