@@ -112,9 +112,9 @@
 		Background="Transparent"
 		IsSynchronizedWithCurrentItem="True"
 		ItemsSource="{Binding LogList}"
+		Loaded="ListBox_OnLoaded"
 		ScrollViewer.HorizontalScrollBarVisibility="Auto"
 		ScrollViewer.VerticalScrollBarVisibility="Auto"
-		SelectionChanged="ListBox_SelectionChanged"
 		TextOptions.TextFormattingMode="Display"
 		/>
 </UserControl>
