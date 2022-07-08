@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace ElectronicObserver.Window.Wpf.Log;
 /// <summary>
@@ -21,11 +22,21 @@ public partial class LogView : UserControl
 		InitializeComponent();
 	}
 
-	private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+	private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (e.ExtentHeightChange != 0)
+		Selector selector = sender as Selector;
+		if (selector is ListBox)
 		{
-			ScrollViewer.ScrollToVerticalOffset(ScrollViewer.ExtentHeight);
+			(selector as ListBox).ScrollIntoView(selector.SelectedItem);
 		}
 	}
+
+
+	//	private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+	//	{
+	//		if (e.ExtentHeightChange != 0)
+	//		{
+	//			//ScrollViewer.ScrollToVerticalOffset(ScrollViewer.ExtentHeight);
+	//		}
+	//	}
 }

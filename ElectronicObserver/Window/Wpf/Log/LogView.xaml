@@ -16,19 +16,105 @@
 	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<Style x:Key="DefaultListBoxItemStyle" TargetType="ListBoxItem">
+			<Setter Property="OverridesDefaultStyle" Value="True" />
+			<Setter Property="SnapsToDevicePixels" Value="True" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+			<Setter Property="Padding" Value="0 0" />
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBoxItem">
+						<ContentPresenter
+							x:Name="ContentPresenter"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							TextElement.FontSize="{DynamicResource ControlContentThemeFontSize}"
+							TextElement.FontWeight="Normal"
+							/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultListBoxItemStyle}" TargetType="ListBoxItem" />
+
+		<Style x:Key="DefaultListBoxStyle" TargetType="ListBox">
+			<Setter Property="OverridesDefaultStyle" Value="True" />
+			<Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+			<Setter Property="Background" Value="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+			<Setter Property="BorderThickness" Value="{DynamicResource ListBoxBorderThemeThickness}" />
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+			<Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+			<Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+			<Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
+			<Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+			<Setter Property="IsTabStop" Value="False" />
+			<Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+			<Setter Property="FontFamily" Value="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}" />
+			<Setter Property="FontSize" Value="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}" />
+			<Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+			<Setter Property="ui:FocusVisualHelper.UseSystemFocusVisuals" Value="{DynamicResource UseSystemFocusVisuals}" />
+			<Setter Property="ui:ScrollViewerHelper.AutoHideScrollBars" Value="{DynamicResource AutoHideScrollBars}" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBox">
+						<Border
+							x:Name="LayoutRoot"
+							Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							SnapsToDevicePixels="true"
+							>
+							<ScrollViewer
+								x:Name="ScrollViewer"
+								Padding="{TemplateBinding Padding}"
+								ui:ScrollViewerHelper.AutoHideScrollBars="{TemplateBinding ui:ScrollViewerHelper.AutoHideScrollBars}"
+								Focusable="False"
+								HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+								VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+								>
+								<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+							</ScrollViewer>
+						</Border>
+						<ControlTemplate.Triggers>
+							<MultiTrigger>
+								<MultiTrigger.Conditions>
+									<Condition Property="IsGrouping" Value="true" />
+									<Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
+								</MultiTrigger.Conditions>
+								<Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+							</MultiTrigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultListBoxStyle}" TargetType="ListBox" />
+	</UserControl.Resources>
 	<UserControl.ContextMenu>
 		<ContextMenu>
 			<MenuItem Command="{Binding ContextMenuLog_Clear_ClickCommand}" Header="{Binding FormLog.Clear}" />
 		</ContextMenu>
 	</UserControl.ContextMenu>
-	<ScrollViewer
-		Name="ScrollViewer"
-		Padding="0 0 0 10"
-		CanContentScroll="True"
-		HorizontalScrollBarVisibility="Auto"
-		ScrollChanged="ScrollViewer_ScrollChanged"
-		VerticalScrollBarVisibility="Auto"
-		>
-		<ItemsControl HorizontalAlignment="Left" ItemsSource="{Binding LogList}" />
-	</ScrollViewer>
+	<ListBox
+		Name="ListBox"
+		Width="Auto"
+		Margin="0 0"
+		Padding="0 0"
+		Background="Transparent"
+		IsSynchronizedWithCurrentItem="True"
+		ItemsSource="{Binding LogList}"
+		ScrollViewer.HorizontalScrollBarVisibility="Auto"
+		ScrollViewer.VerticalScrollBarVisibility="Auto"
+		SelectionChanged="ListBox_SelectionChanged"
+		TextOptions.TextFormattingMode="Display"
+		/>
 </UserControl>

@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -13,6 +16,8 @@ public partial class LogViewViewModel : AnchorableViewModel
 {
 	public FormLogTranslationViewModel FormLog { get; set; }
 	public ObservableCollection<string> LogList { get; set; } = new();
+	public string SelectedItem { get; set; }
+	public int SelectedIndex { get; set; }
 	public LogViewViewModel() : base("Log", "Log",
 		ImageSourceIcons.GetIcon(IconContent.FormLog))
 	{
@@ -27,7 +32,11 @@ public partial class LogViewViewModel : AnchorableViewModel
 				LogList.Add(log.ToString());
 			}
 		}
-
+		for (int i = 0; i < 1000; i++)
+		{
+			LogList.Add(i.ToString());
+		}
+		CollectionViewSource.GetDefaultView(LogList).MoveCurrentTo(LogList[LogList.Count - 1]);
 		Logger.Instance.LogAdded += data =>
 		{
 			if (App.Current is null) return;
@@ -49,6 +58,7 @@ public partial class LogViewViewModel : AnchorableViewModel
 	private void Logger_LogAdded(Logger.LogData data)
 	{
 		LogList.Add(data.ToString());
+		CollectionViewSource.GetDefaultView(LogList).MoveCurrentTo(data.ToString());
 	}
 	[ICommand]
 	private void ContextMenuLog_Clear_Click()
