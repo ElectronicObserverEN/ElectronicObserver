@@ -112,11 +112,16 @@ public class PhaseNightBattle : PhaseBase
 				case NightAttackKind.SpecialYamato3Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
-						BattleIndex comboatk = hps.Length switch
+						List<FleetData> fleets = KCDatabase.Instance.Fleet.Fleets.Values
+							.Where(f => f.IsInSortie)
+							.ToList();
+
+						BattleIndex comboatk = fleets.Count switch
 						{
 							// hack: Kongou night special attack index is messed up for combined fleet vs combined fleet
 							// todo: need to check what happens in case only 1 of the fleets is combined
-							24 when i < 6 => new(i + 6, true, true),
+							// note: when testing via api replay you need a combined fleet in-game, else fleet data (count) won't be correct
+							2 when i < 6 => new(i + 6, true, true),
 							_ => new BattleIndex(atk.Attacker.Side, i)
 						};
 
