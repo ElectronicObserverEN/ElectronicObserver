@@ -30,13 +30,4 @@ public partial class LogView : UserControl
 			(selector as ListBox).ScrollIntoView(selector.SelectedItem);
 		}
 	}
-
-
-	//	private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
-	//	{
-	//		if (e.ExtentHeightChange != 0)
-	//		{
-	//			//ScrollViewer.ScrollToVerticalOffset(ScrollViewer.ExtentHeight);
-	//		}
-	//	}
 }

@@ -16,8 +16,6 @@ public partial class LogViewViewModel : AnchorableViewModel
 {
 	public FormLogTranslationViewModel FormLog { get; set; }
 	public ObservableCollection<string> LogList { get; set; } = new();
-	public string SelectedItem { get; set; }
-	public int SelectedIndex { get; set; }
 	public LogViewViewModel() : base("Log", "Log",
 		ImageSourceIcons.GetIcon(IconContent.FormLog))
 	{
