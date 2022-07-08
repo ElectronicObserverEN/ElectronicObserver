@@ -23,7 +23,7 @@
 			<Setter Property="ItemsPanel">
 				<Setter.Value>
 					<ItemsPanelTemplate>
-						<VirtualizingStackPanel />
+						<VirtualizingStackPanel VirtualizingPanel.VirtualizationMode="Recycling" />
 					</ItemsPanelTemplate>
 				</Setter.Value>
 			</Setter>
@@ -37,9 +37,7 @@
 							BorderThickness="{TemplateBinding Border.BorderThickness}"
 							SnapsToDevicePixels="True"
 							>
-							<ScrollViewer Padding="{TemplateBinding Control.Padding}" Focusable="False">
-								<ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-							</ScrollViewer>
+							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
 						</Border>
 					</ControlTemplate>
 				</Setter.Value>
@@ -59,6 +57,10 @@
 		ScrollChanged="ScrollViewer_ScrollChanged"
 		VerticalScrollBarVisibility="Auto"
 		>
-		<ItemsControl HorizontalAlignment="Left" ItemsSource="{Binding LogList}" />
+		<ItemsControl
+			HorizontalAlignment="Left"
+			ItemsSource="{Binding LogList}"
+			Style="{StaticResource ItemsControlVirtualizedStyle}"
+			/>
 	</ScrollViewer>
 </UserControl>
