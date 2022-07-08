@@ -30,10 +30,6 @@ public partial class LogViewViewModel : AnchorableViewModel
 				LogList.Add(log.ToString());
 			}
 		}
-		for (int i = 0; i < 1000; i++)
-		{
-			LogList.Add(i.ToString());
-		}
 		CollectionViewSource.GetDefaultView(LogList).MoveCurrentTo(LogList[LogList.Count - 1]);
 		Logger.Instance.LogAdded += data =>
 		{
