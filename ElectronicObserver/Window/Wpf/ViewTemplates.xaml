@@ -53,7 +53,7 @@
 	<DataTemplate x:Key="InformationTemplate" DataType="{x:Type information:InformationViewModel}">
 		<information:InformationView ViewModel="{Binding}" />
 	</DataTemplate>
-	<DataTemplate x:Key="LogTemplate" DataType="{x:Type log:LogViewViewModel}">
+	<DataTemplate x:Key="LogTemplate" DataType="{x:Type log:LogViewModel}">
 		<log:LogView ViewModel="{Binding}" />
 	</DataTemplate>
 	<DataTemplate x:Key="QuestTemplate" DataType="{x:Type quest:QuestViewModel}">

@@ -49,7 +49,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		ShipGroupViewModel => Group,
 		ShipGroupWinformsViewModel => GroupWinforms,
 		FleetPresetViewModel => FleetPreset,
-		LogViewViewModel => Log,
+		LogViewModel => Log,
 		DockViewModel => Dock,
 		ArsenalViewModel => Arsenal,
 		BaseAirCorpsViewModel => BaseAirCorps,

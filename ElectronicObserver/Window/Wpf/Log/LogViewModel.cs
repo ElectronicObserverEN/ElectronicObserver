@@ -1,22 +1,19 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Markup;
-using System.Windows.Threading;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+
 namespace ElectronicObserver.Window.Wpf.Log;
-public partial class LogViewViewModel : AnchorableViewModel
+
+public partial class LogViewModel : AnchorableViewModel
 {
 	public FormLogTranslationViewModel FormLog { get; set; }
 	public ObservableCollection<string> LogList { get; set; } = new();
-	public LogViewViewModel() : base("Log", "Log",
+
+	public LogViewModel() : base("Log", "Log",
 		ImageSourceIcons.GetIcon(IconContent.FormLog))
 	{
 		FormLog = Ioc.Default.GetService<FormLogTranslationViewModel>()!;
@@ -30,6 +27,7 @@ public partial class LogViewViewModel : AnchorableViewModel
 				LogList.Add(log.ToString());
 			}
 		}
+
 		Logger.Instance.LogAdded += data =>
 		{
 			if (App.Current is null) return;
@@ -52,13 +50,10 @@ public partial class LogViewViewModel : AnchorableViewModel
 	{
 		LogList.Add(data.ToString());
 	}
+
 	[ICommand]
 	private void ContextMenuLog_Clear_Click()
 	{
 		LogList.Clear();
-	}
-	protected string GetPersistString()
-	{
-		return "Log";
 	}
 }

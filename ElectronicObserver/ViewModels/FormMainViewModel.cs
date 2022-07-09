@@ -179,7 +179,7 @@ public partial class FormMainViewModel : ObservableObject
 	public BattleViewModel Battle { get; }
 
 	public FormBrowserHostViewModel FormBrowserHost { get; }
-	public LogViewViewModel FormLog { get; }
+	public LogViewModel FormLog { get; }
 	public FormJsonViewModel FormJson { get; }
 	public FormWindowCaptureViewModel WindowCapture { get; }
 
@@ -362,7 +362,7 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(Battle = new BattleViewModel());
 
 		Views.Add(FormBrowserHost = new FormBrowserHostViewModel() { Visibility = Visibility.Visible });
-		Views.Add(FormLog = new LogViewViewModel());
+		Views.Add(FormLog = new LogViewModel());
 		Views.Add(FormJson = new FormJsonViewModel());
 		Views.Add(WindowCapture = new FormWindowCaptureViewModel(this));
 

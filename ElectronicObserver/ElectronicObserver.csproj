@@ -356,6 +356,11 @@
 			<DependentUpon>EventLockPlanner.resx</DependentUpon>
 		</Compile>
 		<None Include=".editorconfig" />
+		<Page Include="Properties\DesignTimeResources.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+			<ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+		</Page>
 		<None Update="Assets.zip">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -436,6 +441,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="Splashscreen.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Remove="Properties\DesignTimeResources.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 		<COMReference Include="WMPLib.dll">
