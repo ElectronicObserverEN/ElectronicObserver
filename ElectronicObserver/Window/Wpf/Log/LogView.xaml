@@ -30,8 +30,9 @@
 							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 							VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-							TextElement.FontSize="{DynamicResource ControlContentThemeFontSize}"
-							TextElement.FontWeight="Normal"
+							TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+							TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+							TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 							/>
 					</ControlTemplate>
 				</Setter.Value>
