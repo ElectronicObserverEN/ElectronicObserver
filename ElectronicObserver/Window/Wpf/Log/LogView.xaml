@@ -25,15 +25,17 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="ListBoxItem">
-						<ContentPresenter
-							x:Name="ContentPresenter"
-							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-							VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-							TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
-							TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
-							TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
-							/>
+						<VirtualizingStackPanel>
+							<ContentPresenter
+								x:Name="ContentPresenter"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+								TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+								TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+								TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
+								/>
+						</VirtualizingStackPanel>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
@@ -99,5 +101,6 @@
 		ScrollViewer.ScrollChanged="ListBox_ScrollChanged"
 		ScrollViewer.VerticalScrollBarVisibility="Auto"
 		TextOptions.TextFormattingMode="Display"
+		VirtualizingStackPanel.VirtualizationMode="Recycling"
 		/>
 </UserControl>
