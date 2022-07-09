@@ -13,11 +13,11 @@ namespace ElectronicObserver.Window.Wpf.Log;
 public partial class LogView : UserControl
 {
 	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-"ViewModel", typeof(LogViewViewModel), typeof(LogView), new PropertyMetadata(default(LogViewViewModel)));
+"ViewModel", typeof(LogViewModel), typeof(LogView), new PropertyMetadata(default(LogViewModel)));
 
-	public LogViewViewModel ViewModel
+	public LogViewModel ViewModel
 	{
-		get => (LogViewViewModel)GetValue(ViewModelProperty);
+		get => (LogViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

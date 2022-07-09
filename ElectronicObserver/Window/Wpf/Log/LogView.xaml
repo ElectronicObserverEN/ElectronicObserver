@@ -8,7 +8,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:window="clr-namespace:ElectronicObserver.Window"
-	d:DataContext="{d:DesignInstance Type=local:LogViewViewModel}"
+	d:DataContext="{d:DesignInstance Type=local:LogViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -83,13 +83,14 @@
 
 		<Style BasedOn="{StaticResource DefaultListBoxStyleEO}" TargetType="ListBox" />
 	</UserControl.Resources>
+
 	<UserControl.ContextMenu>
 		<ContextMenu>
 			<MenuItem Command="{Binding ContextMenuLog_Clear_ClickCommand}" Header="{Binding FormLog.Clear}" />
 		</ContextMenu>
 	</UserControl.ContextMenu>
+
 	<ListBox
-		Name="ListBox"
 		Width="Auto"
 		Padding="0 0 0 10"
 		Background="Transparent"
