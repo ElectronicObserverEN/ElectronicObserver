@@ -101,6 +101,7 @@
 		ScrollViewer.ScrollChanged="ListBox_ScrollChanged"
 		ScrollViewer.VerticalScrollBarVisibility="Auto"
 		TextOptions.TextFormattingMode="Display"
+		VirtualizingStackPanel.IsVirtualizing="True"
 		VirtualizingStackPanel.VirtualizationMode="Recycling"
 		/>
 </UserControl>
