@@ -40,7 +40,7 @@ public class NotifierRemodelLevel : NotifierBase
 
 	private void Notify(IShipData ship, IShipDataMaster nextRemodelShip)
 	{
-		DialogData.Message = string.Format(NotifierRes.RemodelText, ship.Name, nextRemodelShip.Name);
+		DialogData.Message = string.Format(NotifierRes.RemodelText, ship.Name, nextRemodelShip.NameEN);
 
 		base.Notify();
 	}
