@@ -792,6 +792,14 @@ public sealed class APIObserver
 		{
 			e.Redirect("https://kcwiki.github.io/cache/html/maintenance.html");
 		}
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/ban.png"))
+		{
+			e.Redirect("https://kcwiki.github.io/cache/html/ban.png");
+		}
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/deny.png"))
+		{
+			e.Redirect("https://kcwiki.github.io/cache/html/deny.png");
+		}
 		await e.GetRequestBodyAsString();
 	}
 
