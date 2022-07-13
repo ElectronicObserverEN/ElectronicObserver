@@ -788,6 +788,10 @@ public sealed class APIObserver
 	{
 		e.HttpClient.Request.KeepBody = true;
 		// need to read the request body here so it's available in ProxyOnBeforeResponse
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/maintenance.html"))
+		{
+			e.Redirect("https://kcwiki.github.io/cache/html/maintenance.html");
+		}
 		await e.GetRequestBodyAsString();
 	}
 
