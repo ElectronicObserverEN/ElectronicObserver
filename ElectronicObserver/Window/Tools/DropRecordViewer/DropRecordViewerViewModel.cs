@@ -185,7 +185,8 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		IEnumerable<UseItemId> includedItemNames = Record.Record
 			.Where(record => record.ItemName != NameNotExist)
-			.Select(record => (UseItemId)record.ItemID);
+			.Select(record => (UseItemId)record.ItemID)
+			.Distinct();
 
 		IEnumerable<UseItemMaster> includedItemObjects = includedItemNames
 			.Select(id => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.ItemID == id))
