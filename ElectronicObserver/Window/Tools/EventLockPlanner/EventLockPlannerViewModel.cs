@@ -367,7 +367,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 		foreach ((EventPhaseViewModel eventPhase, int id) in eventPhases.Select((p, id) => (p, id)))
 		{
-			if (id > EventPhases.Count) continue;
+			if (id >= EventPhases.Count) continue;
 
 			foreach (ShipLockViewModel shipLock in eventPhase.Ships.ToList())
 			{
