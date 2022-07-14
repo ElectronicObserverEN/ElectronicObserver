@@ -189,7 +189,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			.Except(new[] { NameNotExist });
 
 		IEnumerable<UseItemMaster> includedItemObjects = includedItemNames
-			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.Name == name))
+			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.NameTranslated == name))
 			.Where(s => s != null)!;
 
 		Items = includedItemObjects
@@ -258,7 +258,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		EquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
 		if (ship != null && ship.NameEN != elem.ShipName) ship = null;
-		if (item != null && item.Name != elem.ItemName) item = null;
+		if (item != null && item.NameTranslated != elem.ItemName) item = null;
 		if (eq != null && eq.NameEN != elem.EquipmentName) eq = null;
 
 		StringBuilder sb = new StringBuilder();
@@ -484,7 +484,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 							continue;
 						break;
 					case UseItemMaster item:
-						if (item.ItemID != r.ItemID)
+						if (item.ID != r.ItemID)
 							continue;
 						break;
 				}

@@ -23,5 +23,5 @@ public class UseItem : ResponseWrapper, IIdentifiable
 
 
 	public int ID => ItemID;
-	public override string ToString() => $"[{ItemID}] {MasterUseItem.Name} x {Count}";
+	public override string ToString() => $"[{ItemID}] {MasterUseItem.NameTranslated} x {Count}";
 }

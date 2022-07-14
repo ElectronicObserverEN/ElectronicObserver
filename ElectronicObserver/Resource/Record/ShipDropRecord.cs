@@ -128,7 +128,7 @@ public class ShipDropRecord : RecordBase
 			{
 				var item = KCDatabase.Instance.MasterUseItems[itemID];
 				if (item != null)
-					ItemName = item.Name;
+					ItemName = item.NameTranslated;
 				else
 					ItemName = "???";
 			}

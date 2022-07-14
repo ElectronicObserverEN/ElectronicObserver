@@ -567,7 +567,7 @@ public class CompassViewModel : AnchorableViewModel
 			{
 				var itemMaster = KCDatabase.Instance.MasterUseItems[item.Metadata];
 				if (itemMaster != null)
-					itemName = itemMaster.Name;
+					itemName = itemMaster.NameTranslated;
 				else
 					itemName = FormCompass.UnknownItem;
 			}

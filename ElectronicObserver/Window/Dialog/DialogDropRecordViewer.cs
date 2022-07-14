@@ -149,10 +149,10 @@ public partial class DialogDropRecordViewer : Form
 			.Except(new[] { NameNotExist });
 
 		var includedItemObjects = includedItemNames
-			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.Name == name))
+			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.NameTranslated == name))
 			.Where(s => s != null);
 
-		var removedItemNames = includedItemNames.Except(includedItemObjects.Select(item => item.Name));
+		var removedItemNames = includedItemNames.Except(includedItemObjects.Select(item => item.NameTranslated));
 
 		var dtbase = new DataTable();
 		dtbase.Columns.AddRange(new DataColumn[] {
@@ -208,7 +208,7 @@ public partial class DialogDropRecordViewer : Form
 		ItemName.Items.Add(NameNotExist);
 		ItemName.Items.AddRange(includedItemObjects
 			.OrderBy(i => i.ItemID)
-			.Select(i => i.Name)
+			.Select(i => i.NameTranslated)
 			.Union(removedItemNames.OrderBy(i => i))
 			.ToArray()
 		);
@@ -348,7 +348,7 @@ public partial class DialogDropRecordViewer : Form
 		var eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
 		if (ship != null && ship.NameEN != elem.ShipName) ship = null;
-		if (item != null && item.Name != elem.ItemName) item = null;
+		if (item != null && item.NameTranslated != elem.ItemName) item = null;
 		if (eq != null && eq.NameEN != elem.EquipmentName) eq = null;
 
 		StringBuilder sb = new StringBuilder();

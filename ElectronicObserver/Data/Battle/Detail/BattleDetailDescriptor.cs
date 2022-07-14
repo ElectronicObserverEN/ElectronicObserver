@@ -733,7 +733,7 @@ public static class BattleDetailDescriptor
 			var item = KCDatabase.Instance.MasterUseItems[result.DroppedItemID];
 			if (item != null)
 			{
-				sb.Append("　").AppendLine(item.Name);
+				sb.Append("　").AppendLine(item.NameTranslated);
 			}
 
 			if (length == sb.Length)

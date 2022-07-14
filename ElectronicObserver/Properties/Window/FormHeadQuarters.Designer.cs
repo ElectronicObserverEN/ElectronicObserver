@@ -307,6 +307,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦闘詳報.
+        /// </summary>
+        public static string ItemNameActionReport {
+            get {
+                return ResourceManager.GetString("ItemNameActionReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 弾薬.
         /// </summary>
         public static string ItemNameAmmo {
@@ -325,11 +334,56 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 秋刀魚の缶詰.
+        /// </summary>
+        public static string ItemNameCannedSaury {
+            get {
+                return ResourceManager.GetString("ItemNameCannedSaury", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘糧食.
+        /// </summary>
+        public static string ItemNameCombatRation {
+            get {
+                return ResourceManager.GetString("ItemNameCombatRation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘糧食(特別なおにぎり).
+        /// </summary>
+        public static string ItemNameCombatRationSpecialOnigiri {
+            get {
+                return ResourceManager.GetString("ItemNameCombatRationSpecialOnigiri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 提督コメント.
         /// </summary>
         public static string ItemNameComment {
             get {
                 return ResourceManager.GetString("ItemNameComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 設営隊.
+        /// </summary>
+        public static string ItemNameConstructionBattalion {
+            get {
+                return ResourceManager.GetString("ItemNameConstructionBattalion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to お飾り材料.
+        /// </summary>
+        public static string ItemNameDecorationMaterial {
+            get {
+                return ResourceManager.GetString("ItemNameDecorationMaterial", resourceCulture);
             }
         }
         
@@ -343,11 +397,38 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ドック開放キー.
+        /// </summary>
+        public static string ItemNameDockKey {
+            get {
+                return ResourceManager.GetString("ItemNameDockKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 緊急修理資材.
+        /// </summary>
+        public static string ItemNameEmergencyRepairMaterial {
+            get {
+                return ResourceManager.GetString("ItemNameEmergencyRepairMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装備数.
         /// </summary>
         public static string ItemNameEquipmentSlots {
             get {
                 return ResourceManager.GetString("ItemNameEquipmentSlots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 甲種勲章.
+        /// </summary>
+        public static string ItemNameFirstClassMedal {
+            get {
+                return ResourceManager.GetString("ItemNameFirstClassMedal", resourceCulture);
             }
         }
         
@@ -361,11 +442,74 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 家具箱（大）.
+        /// </summary>
+        public static string ItemNameFurnitureBoxLarge {
+            get {
+                return ResourceManager.GetString("ItemNameFurnitureBoxLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 家具箱（中）.
+        /// </summary>
+        public static string ItemNameFurnitureBoxMedium {
+            get {
+                return ResourceManager.GetString("ItemNameFurnitureBoxMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 家具箱（小）.
+        /// </summary>
+        public static string ItemNameFurnitureBoxSmall {
+            get {
+                return ResourceManager.GetString("ItemNameFurnitureBoxSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 家具コイン.
         /// </summary>
         public static string ItemNameFurnitureCoin {
             get {
                 return ResourceManager.GetString("ItemNameFurnitureCoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 特注家具職人.
+        /// </summary>
+        public static string ItemNameFurnitureFairy {
+            get {
+                return ResourceManager.GetString("ItemNameFurnitureFairy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 司令部要員.
+        /// </summary>
+        public static string ItemNameHeadquartersPersonnel {
+            get {
+                return ResourceManager.GetString("ItemNameHeadquartersPersonnel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 菱餅.
+        /// </summary>
+        public static string ItemNameHishimochi {
+            get {
+                return ResourceManager.GetString("ItemNameHishimochi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 鳳翔さんの夕食券.
+        /// </summary>
+        public static string ItemNameHoushouDinnerTicket {
+            get {
+                return ResourceManager.GetString("ItemNameHoushouDinnerTicket", resourceCulture);
             }
         }
         
@@ -406,11 +550,101 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 書類一式＆指輪.
+        /// </summary>
+        public static string ItemNameMarriageRingAndPapers {
+            get {
+                return ResourceManager.GetString("ItemNameMarriageRingAndPapers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 勲章.
+        /// </summary>
+        public static string ItemNameMedals {
+            get {
+                return ResourceManager.GetString("ItemNameMedals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 給糧艦「伊良湖」.
+        /// </summary>
+        public static string ItemNameMoraleFoodIrako {
+            get {
+                return ResourceManager.GetString("ItemNameMoraleFoodIrako", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 給糧艦「間宮」.
+        /// </summary>
+        public static string ItemNameMoraleFoodMamiya {
+            get {
+                return ResourceManager.GetString("ItemNameMoraleFoodMamiya", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 提督名.
         /// </summary>
         public static string ItemNameName {
             get {
                 return ResourceManager.GetString("ItemNameName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ネ式エンジン.
+        /// </summary>
+        public static string ItemNameNeTypeEngine {
+            get {
+                return ResourceManager.GetString("ItemNameNeTypeEngine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新型航空機設計図.
+        /// </summary>
+        public static string ItemNameNewModelAircraftBlueprint {
+            get {
+                return ResourceManager.GetString("ItemNameNewModelAircraftBlueprint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新型兵装資材.
+        /// </summary>
+        public static string ItemNameNewModelArmamentMaterials {
+            get {
+                return ResourceManager.GetString("ItemNameNewModelArmamentMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新型砲熕兵装資材.
+        /// </summary>
+        public static string ItemNameNewModelArtilleryArmamentMaterials {
+            get {
+                return ResourceManager.GetString("ItemNameNewModelArtilleryArmamentMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新型航空兵装資材.
+        /// </summary>
+        public static string ItemNameNewModelAviationArmamentMaterials {
+            get {
+                return ResourceManager.GetString("ItemNameNewModelAviationArmamentMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新型噴進装備開発資材.
+        /// </summary>
+        public static string ItemNameNewModelRocketDevelopmentMaterials {
+            get {
+                return ResourceManager.GetString("ItemNameNewModelRocketDevelopmentMaterials", resourceCulture);
             }
         }
         
@@ -424,6 +658,96 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 母港拡張.
+        /// </summary>
+        public static string ItemNamePortExpensionSet {
+            get {
+                return ResourceManager.GetString("ItemNamePortExpensionSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to プレゼント箱.
+        /// </summary>
+        public static string ItemNamePresentBox {
+            get {
+                return ResourceManager.GetString("ItemNamePresentBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 試製甲板カタパルト.
+        /// </summary>
+        public static string ItemNamePrototypeFlightDeckCatapult {
+            get {
+                return ResourceManager.GetString("ItemNamePrototypeFlightDeckCatapult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 補強増設.
+        /// </summary>
+        public static string ItemNameReinforcementExpansion {
+            get {
+                return ResourceManager.GetString("ItemNameReinforcementExpansion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 改装設計図.
+        /// </summary>
+        public static string ItemNameRemodelBlueprints {
+            get {
+                return ResourceManager.GetString("ItemNameRemodelBlueprints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 応急修理女神.
+        /// </summary>
+        public static string ItemNameRepairGoddess {
+            get {
+                return ResourceManager.GetString("ItemNameRepairGoddess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 応急修理要員.
+        /// </summary>
+        public static string ItemNameRepairTeam {
+            get {
+                return ResourceManager.GetString("ItemNameRepairTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 鰯.
+        /// </summary>
+        public static string ItemNameSardine {
+            get {
+                return ResourceManager.GetString("ItemNameSardine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 秋刀魚.
+        /// </summary>
+        public static string ItemNameSaury {
+            get {
+                return ResourceManager.GetString("ItemNameSaury", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 節分の豆.
+        /// </summary>
+        public static string ItemNameSetsubunBeans {
+            get {
+                return ResourceManager.GetString("ItemNameSetsubunBeans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦船数.
         /// </summary>
         public static string ItemNameShipSlots {
@@ -433,11 +757,74 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 捷号章.
+        /// </summary>
+        public static string ItemNameShoGoMedal {
+            get {
+                return ResourceManager.GetString("ItemNameShoGoMedal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 熟練搭乗員.
+        /// </summary>
+        public static string ItemNameSkilledCrewMember {
+            get {
+                return ResourceManager.GetString("ItemNameSkilledCrewMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 鋼材.
         /// </summary>
         public static string ItemNameSteel {
             get {
                 return ResourceManager.GetString("ItemNameSteel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 海峡章.
+        /// </summary>
+        public static string ItemNameStraitMedal {
+            get {
+                return ResourceManager.GetString("ItemNameStraitMedal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 潜水艦補給物資.
+        /// </summary>
+        public static string ItemNameSubmarineSupplyMaterials {
+            get {
+                return ResourceManager.GetString("ItemNameSubmarineSupplyMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 洋上補給.
+        /// </summary>
+        public static string ItemNameUnderwayReplenishment {
+            get {
+                return ResourceManager.GetString("ItemNameUnderwayReplenishment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦娘からのチョコ.
+        /// </summary>
+        public static string ItemNameValentineChocolate {
+            get {
+                return ResourceManager.GetString("ItemNameValentineChocolate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xmas Select Gift Box.
+        /// </summary>
+        public static string ItemNameXmasSelectGiftBox {
+            get {
+                return ResourceManager.GetString("ItemNameXmasSelectGiftBox", resourceCulture);
             }
         }
         
