@@ -96,7 +96,7 @@
 		Width="Auto"
 		Padding="0 0 0 10"
 		Background="Transparent"
-		ItemsSource="{Binding LogList}"
+		ItemsSource="{Binding LogList, IsAsync=True}"
 		ScrollViewer.HorizontalScrollBarVisibility="Auto"
 		ScrollViewer.ScrollChanged="ListBox_ScrollChanged"
 		ScrollViewer.VerticalScrollBarVisibility="Auto"
