@@ -284,10 +284,16 @@ public static class Constants
 	/// </summary>
 	public static string GetShipClass(ShipClass id) => GetShipClass((int)id);
 
+
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
 	/// </summary>
-	public static string GetShipClass(int id, ShipId shipId = ShipId.Unknown)
+	public static string GetShipClass(int id, ShipId shipId = ShipId.Unknown) => KCDatabase.Instance.Translation.Ship.Class(GetShipClassUntranslated(id, shipId));
+
+	/// <summary>
+	/// 艦型を表す文字列を取得します。
+	/// </summary>
+	private static string GetShipClassUntranslated(int id, ShipId shipId = ShipId.Unknown)
 	{
 		switch (id)
 		{
