@@ -183,13 +183,12 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			.Prepend(MapAny)
 			.ToList();
 
-		var includedItemNames = Record.Record
-			.Select(r => r.ItemName)
-			.Distinct()
-			.Except(new[] { NameNotExist });
+		IEnumerable<UseItemId> includedItemNames = Record.Record
+			.Where(record => record.ItemName != NameNotExist)
+			.Select(record => (UseItemId)record.ItemID);
 
 		IEnumerable<UseItemMaster> includedItemObjects = includedItemNames
-			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.NameTranslated == name))
+			.Select(id => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.ItemID == id))
 			.Where(s => s != null)!;
 
 		Items = includedItemObjects
@@ -258,7 +257,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		EquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
 		if (ship != null && ship.NameEN != elem.ShipName) ship = null;
-		if (item != null && item.NameTranslated != elem.ItemName) item = null;
+		if (item != null && item.Name != elem.ItemName) item = null;
 		if (eq != null && eq.NameEN != elem.EquipmentName) eq = null;
 
 		StringBuilder sb = new StringBuilder();
