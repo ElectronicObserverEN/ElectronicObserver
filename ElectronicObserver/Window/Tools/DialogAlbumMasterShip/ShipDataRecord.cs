@@ -48,7 +48,7 @@ public partial class ShipDataRecord : ObservableObject
 
 	#region ShipType
 
-	public string ShipType => ShipTypePrefix + Ship.IsLandBase switch
+	public string ShipType => ShipTypePrefix + " " + Ship.IsLandBase switch
 	{
 		true => DialogAlbumMasterShip.Installation,
 		_ => Ship.ShipTypeName

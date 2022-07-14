@@ -14,9 +14,11 @@ public class ShipTranslationData : TranslationBase
 	private Dictionary<string, string> ShipList;
 	private Dictionary<string, string> TypeList;
 	private Dictionary<string, string> SuffixList;
+	private Dictionary<string, string> ClassList;
 
 	private bool isShipLoaded => Configuration.Config.UI.JapaneseShipName == false && ShipList != null && SuffixList != null;
 	private bool isTypeLoaded => Configuration.Config.UI.JapaneseShipType == false && TypeList != null;
+	private bool isClassLoaded => Configuration.Config.UI.JapaneseShipName == false && ClassList != null;
 
 	private Dictionary<ShipId, string> NameCache { get; } = new();
 
@@ -74,7 +76,15 @@ public class ShipTranslationData : TranslationBase
 		return name;
 	}
 
+	/// <summary>
+	/// Translation of the class of a ship
+	/// </summary>
+	/// <param name="rawData"></param>
+	/// <returns></returns>
+	public string Class(string rawData) => isClassLoaded && ClassList.ContainsKey(rawData) ? ClassList[rawData] : rawData;
+
 	public string TypeName(string rawData) => isTypeLoaded && TypeList.ContainsKey(rawData) ? TypeList[rawData] : rawData;
+
 	public ShipTranslationData()
 	{
 		Initialize();
@@ -85,6 +95,7 @@ public class ShipTranslationData : TranslationBase
 		ShipList = new Dictionary<string, string>();
 		TypeList = new Dictionary<string, string>();
 		SuffixList = new Dictionary<string, string>();
+		ClassList = new Dictionary<string, string>();
 		LoadDictionary(FilePath);
 	}
 
@@ -111,6 +122,10 @@ public class ShipTranslationData : TranslationBase
 				if (category.Key == "suffix")
 				{
 					SuffixList.Add(entry.Key, entries[entry.Key]);
+				}
+				if (category.Key == "class")
+				{
+					ClassList.Add(entry.Key, entries[entry.Key]);
 				}
 			}
 		}
