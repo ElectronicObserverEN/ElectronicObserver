@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
@@ -24,6 +26,9 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 {
 	private IEnumerable<EquipmentDataViewModel> AllEquipment { get; }
 	public DialogAlbumMasterEquipmentTranslationViewModel DialogAlbumMasterEquipment { get; }
+
+	public List<ColumnProperties> ColumnProperties { get; set; } = new();
+	public List<SortDescription> SortDescriptions { get; set; } = new();
 
 	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
 	// probably due to multiple enumeration

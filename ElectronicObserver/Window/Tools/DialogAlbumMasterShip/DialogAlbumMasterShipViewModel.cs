@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
@@ -29,6 +31,9 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	private IEnumerable<ShipDataRecord> AllShips { get; }
 	public DialogAlbumMasterShipTranslationViewModel DialogAlbumMasterShip { get; }
 	private TransliterationService TransliterationService { get; }
+
+	public List<ColumnProperties> ColumnProperties { get; set; } = new();
+	public List<SortDescription> SortDescriptions { get; set; } = new();
 
 	public string? SearchFilter { get; set; } = "";
 	public string? RomajiSearchFilter { get; set; } = "";

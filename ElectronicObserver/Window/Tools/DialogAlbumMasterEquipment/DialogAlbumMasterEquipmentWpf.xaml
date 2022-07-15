@@ -2,11 +2,13 @@
 	x:Class="ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.DialogAlbumMasterEquipmentWpf"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:common1="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="DialogAlbumMasterEquipmentView"
@@ -98,6 +100,10 @@
 					VirtualizingStackPanel.IsVirtualizing="True"
 					VirtualizingStackPanel.VirtualizationMode="Recycling"
 					>
+					<b:Interaction.Behaviors>
+						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+					</b:Interaction.Behaviors>
+
 					<DataGrid.ColumnHeaderStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
 							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
