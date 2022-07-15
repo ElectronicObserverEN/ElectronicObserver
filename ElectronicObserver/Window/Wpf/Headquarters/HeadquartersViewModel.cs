@@ -672,7 +672,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 
 
-		switch (itemMaster?.Name)
+		switch (itemMaster?.NameTranslated)
 		{
 			case null:
 				DisplayUseItem.Text = "???";
@@ -706,7 +706,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 			default:
 				DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-				DisplayUseItem.ToolTip = itemMaster.Name + tail;
+				DisplayUseItem.ToolTip = itemMaster.NameTranslated + tail;
 				break;
 		}
 	}
@@ -718,7 +718,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		var sb = new StringBuilder();
 		foreach (var item in db.UseItems.Values)
 		{
-			sb.Append(item.MasterUseItem.Name).Append(" x ").Append(item.Count).AppendLine();
+			sb.Append(item.MasterUseItem.NameTranslated).Append(" x ").Append(item.Count).AppendLine();
 		}
 
 		MessageBox.Show(sb.ToString(), FormHeadquarters.ListOfOwnedItems, MessageBoxButton.OK, MessageBoxImage.Information);

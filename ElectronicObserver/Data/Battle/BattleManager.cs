@@ -538,7 +538,7 @@ public class BattleManager : APIWrapper
 				{
 					var item = KCDatabase.Instance.UseItems[itemID];
 					var itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
-					Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemmaster?.Name ?? (BattleRes.UnknownItem + itemID), (item?.Count ?? 0) + DroppedItemCount[itemID]));
+					Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemmaster?.NameTranslated ?? (BattleRes.UnknownItem + itemID), (item?.Count ?? 0) + DroppedItemCount[itemID]));
 				}
 			}
 

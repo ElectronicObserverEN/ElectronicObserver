@@ -13,6 +13,7 @@ using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Headquarters;
+using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -21,7 +22,17 @@ public partial class DialogConfiguration : Form
 {
 
 	/// <summary> 司令部「任意アイテム表示」から除外するアイテムのIDリスト </summary>
-	private readonly HashSet<int> IgnoredItems = new HashSet<int>() { 1, 2, 3, 4, 50, 51, 66, 67, 69 };
+	private readonly HashSet<UseItemId> IgnoredItems = new HashSet<UseItemId>() {
+		UseItemId.InstantRepair,
+		UseItemId.InstantConstruction,
+		UseItemId.DevelopmentMaterial,
+		UseItemId.ImproveMaterial, 
+		UseItemId.RepairTeam, 
+		UseItemId.RepairGoddess, 
+		UseItemId.CombatRation,
+		UseItemId.UnderwayReplenishment,
+		UseItemId.CannedSaury
+	};
 
 	private System.Windows.Forms.Control _UIControl;
 
@@ -844,13 +855,13 @@ public partial class DialogConfiguration : Form
 		{
 			FormHeadquarters_DisplayUseItemID.Items.AddRange(
 				ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems.Values
-					.Where(i => i.Name.Length > 0 && i.Description.Length > 0 && !IgnoredItems.Contains(i.ItemID))
-					.Select(i => i.Name).ToArray());
+					.Where(i => i.NameTranslated.Length > 0 && i.Description.Length > 0 && !IgnoredItems.Contains(i.ItemID))
+					.Select(i => i.NameTranslated).ToArray());
 			var item = ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems[config.FormHeadquarters.DisplayUseItemID];
 
 			if (item != null)
 			{
-				FormHeadquarters_DisplayUseItemID.Text = item.Name;
+				FormHeadquarters_DisplayUseItemID.Text = item.NameTranslated;
 			}
 			else
 			{
@@ -1085,11 +1096,11 @@ public partial class DialogConfiguration : Form
 			}
 			else
 			{
-				var item = ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(p => p.Name == name);
+				var item = ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(p => p.NameTranslated == name);
 
 				if (item != null)
 				{
-					config.FormHeadquarters.DisplayUseItemID = item.ItemID;
+					config.FormHeadquarters.DisplayUseItemID = item.ID;
 
 				}
 				else

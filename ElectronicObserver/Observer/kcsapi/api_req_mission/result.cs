@@ -79,7 +79,7 @@ public class result : APIBase
 								sb.AddLast(ConstantsRes.DevMat + "+" + count);
 								break;
 							case 4:
-								sb.AddLast(KCDatabase.Instance.MasterUseItems[id].Name + "+" + count);
+								sb.AddLast(KCDatabase.Instance.MasterUseItems[id].NameTranslated + "+" + count);
 								break;
 							case 5:
 								sb.AddLast(ConstantsRes.FurnitureCoin + "+" + count);

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=6.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Title" xml:space="preserve">
     <value>HQ</value>
@@ -238,5 +238,134 @@ Monthly: {2:+##;-##;±0}</value>
   </data>
   <data name="WrappingOffset" xml:space="preserve">
     <value>Wrapping offset</value>
+  </data>
+  <data name="ItemNameActionReport" xml:space="preserve">
+    <value>Action Report</value>
+  </data>
+  <data name="ItemNameCannedSaury" xml:space="preserve">
+    <value>Canned Saury</value>
+  </data>
+  <data name="ItemNameCombatRation" xml:space="preserve">
+    <value>Combat Ration</value>
+  </data>
+  <data name="ItemNameCombatRationSpecialOnigiri" xml:space="preserve">
+    <value>Combat Ration (Special Onigiri)</value>
+  </data>
+  <data name="ItemNameConstructionBattalion" xml:space="preserve">
+    <value>Construction Battalion</value>
+  </data>
+  <data name="ItemNameDecorationMaterial" xml:space="preserve">
+    <value>Decoration Material</value>
+  </data>
+  <data name="ItemNameDockKey" xml:space="preserve">
+    <value>Dock Key</value>
+  </data>
+  <data name="ItemNameEmergencyRepairMaterial" xml:space="preserve">
+    <value>Emergency Repair Material</value>
+  </data>
+  <data name="ItemNameFirstClassMedal" xml:space="preserve">
+    <value>First Class Medal</value>
+  </data>
+  <data name="ItemNameFurnitureBoxLarge" xml:space="preserve">
+    <value>Furniture Box (Large)</value>
+  </data>
+  <data name="ItemNameFurnitureBoxMedium" xml:space="preserve">
+    <value>Furniture Box (Medium)</value>
+  </data>
+  <data name="ItemNameFurnitureBoxSmall" xml:space="preserve">
+    <value>Furniture Box (Small)</value>
+  </data>
+  <data name="ItemNameFurnitureFairy" xml:space="preserve">
+    <value>Furniture Fairy</value>
+  </data>
+  <data name="ItemNameHeadquartersPersonnel" xml:space="preserve">
+    <value>Headquarters Personnel</value>
+  </data>
+  <data name="ItemNameHishimochi" xml:space="preserve">
+    <value>Hishimochi</value>
+  </data>
+  <data name="ItemNameHoushouDinnerTicket" xml:space="preserve">
+    <value>Houshou's Dinner Ticket</value>
+  </data>
+  <data name="ItemNameMarriageRingAndPapers" xml:space="preserve">
+    <value>Marriage Ring and Papers</value>
+  </data>
+  <data name="ItemNameMedals" xml:space="preserve">
+    <value>Medals</value>
+  </data>
+  <data name="ItemNameMoraleFoodIrako" xml:space="preserve">
+    <value>Morale Food 'Irako'</value>
+  </data>
+  <data name="ItemNameMoraleFoodMamiya" xml:space="preserve">
+    <value>Morale Food 'Mamiya'</value>
+  </data>
+  <data name="ItemNameNeTypeEngine" xml:space="preserve">
+    <value>Ne-Type Engine</value>
+  </data>
+  <data name="ItemNameNewModelAircraftBlueprint" xml:space="preserve">
+    <value>New Model Aircraft Blueprint</value>
+  </data>
+  <data name="ItemNameNewModelArmamentMaterials" xml:space="preserve">
+    <value>New Model Armament Materials</value>
+  </data>
+  <data name="ItemNameNewModelArtilleryArmamentMaterials" xml:space="preserve">
+    <value>New Model Artillery Armament Materials</value>
+  </data>
+  <data name="ItemNameNewModelAviationArmamentMaterials" xml:space="preserve">
+    <value>New Model Aviation Armament Materials</value>
+  </data>
+  <data name="ItemNameNewModelRocketDevelopmentMaterials" xml:space="preserve">
+    <value>New Model Rocket Development Materials</value>
+  </data>
+  <data name="ItemNamePortExpensionSet" xml:space="preserve">
+    <value>Port expansion set</value>
+  </data>
+  <data name="ItemNamePresentBox" xml:space="preserve">
+    <value>Present Box</value>
+  </data>
+  <data name="ItemNamePrototypeFlightDeckCatapult" xml:space="preserve">
+    <value>Prototype Flight Deck Catapult</value>
+  </data>
+  <data name="ItemNameReinforcementExpansion" xml:space="preserve">
+    <value>Reinforcement Expansion</value>
+  </data>
+  <data name="ItemNameRemodelBlueprints" xml:space="preserve">
+    <value>Remodel Blueprints</value>
+  </data>
+  <data name="ItemNameRepairGoddess" xml:space="preserve">
+    <value>Repair Goddess</value>
+  </data>
+  <data name="ItemNameRepairTeam" xml:space="preserve">
+    <value>Repair Team</value>
+  </data>
+  <data name="ItemNameSardine" xml:space="preserve">
+    <value>Sardine</value>
+  </data>
+  <data name="ItemNameSaury" xml:space="preserve">
+    <value>Saury</value>
+  </data>
+  <data name="ItemNameSetsubunBeans" xml:space="preserve">
+    <value>Setsubun Beans</value>
+  </data>
+  <data name="ItemNameShoGoMedal" xml:space="preserve">
+    <value>Sho-go Medal</value>
+  </data>
+  <data name="ItemNameSkilledCrewMember" xml:space="preserve">
+    <value>Skilled Crew Member</value>
+  </data>
+  <data name="ItemNameStraitMedal" xml:space="preserve">
+    <value>Strait Medal</value>
+  </data>
+  <data name="ItemNameSubmarineSupplyMaterials" xml:space="preserve">
+    <value>Submarine Supply Materials</value>
+  </data>
+  <data name="ItemNameUnderwayReplenishment" xml:space="preserve">
+    <value>Underway Replenishment</value>
+  </data>
+  <data name="ItemNameValentineChocolate" xml:space="preserve">
+    <value>Valentine Chocolate</value>
+  </data>
+  <data name="ItemNameXmasSelectGiftBox" xml:space="preserve">
+    <value>Xmas Select Gift Box</value>
   </data>
 </root>

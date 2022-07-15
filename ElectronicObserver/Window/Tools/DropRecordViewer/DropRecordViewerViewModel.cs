@@ -183,13 +183,13 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			.Prepend(MapAny)
 			.ToList();
 
-		var includedItemNames = Record.Record
-			.Select(r => r.ItemName)
-			.Distinct()
-			.Except(new[] { NameNotExist });
+		IEnumerable<UseItemId> includedItemNames = Record.Record
+			.Where(record => record.ItemName != NameNotExist)
+			.Select(record => (UseItemId)record.ItemID)
+			.Distinct();
 
 		IEnumerable<UseItemMaster> includedItemObjects = includedItemNames
-			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.Name == name))
+			.Select(id => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.ItemID == id))
 			.Where(s => s != null)!;
 
 		Items = includedItemObjects
@@ -272,7 +272,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		if (elem.ItemID > 0 && !ignoreItem)
 		{
 			if (sb.Length > 0) sb.Append(",");
-			sb.AppendFormat("1{0:D4}{1}", item?.ItemID ?? 0, elem.ItemName);
+			sb.AppendFormat("1{0:D4}{1}", item?.ID ?? 0, elem.ItemName);
 		}
 
 		if (elem.EquipmentID > 0 && !ignoreEquipment)
@@ -484,7 +484,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 							continue;
 						break;
 					case UseItemMaster item:
-						if (item.ItemID != r.ItemID)
+						if (item.ID != r.ItemID)
 							continue;
 						break;
 				}
