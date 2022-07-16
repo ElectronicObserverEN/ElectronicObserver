@@ -47,6 +47,7 @@ public class EoToDiscordRpcClient
 	public void Initialize()
 	{
 		if (string.IsNullOrEmpty(CurrentClientId)) return;
+		if (!Utility.Configuration.Config.Control.EnableDiscordRPC) return;
 
 		CurrentClient = new DiscordRpcClient(CurrentClientId);
 		CurrentClient.Initialize();
@@ -91,6 +92,13 @@ public class EoToDiscordRpcClient
 		});
 	}
 
+	public void CloseRPC()
+	{
+		CurrentClient?.ClearPresence();
+		CurrentClient?.Dispose();
+		CurrentClient = null;
+	}
+
 	private void CurrentClient_OnReady(object sender, global::DiscordRPC.Message.ReadyMessage args)
 	{
 		UpdatePresence();
@@ -99,7 +107,6 @@ public class EoToDiscordRpcClient
 
 	private void CurrentClient_OnClose(object sender, global::DiscordRPC.Message.CloseMessage args)
 	{
-		CurrentClient?.Dispose();
-		CurrentClient = null;
+		CloseRPC();
 	}
 }

@@ -282,7 +282,8 @@ public static class Constants
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
 	/// </summary>
-	public static string GetShipClass(ShipClass id) => GetShipClass((int)id);
+	public static string GetShipClass(ShipClass id, ShipId shipId = ShipId.Souya645) 
+		=> GetShipClass((int)id, shipId);
 
 
 	/// <summary>

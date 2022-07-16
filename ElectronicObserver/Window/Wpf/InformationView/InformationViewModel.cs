@@ -407,7 +407,7 @@ public class InformationViewModel : AnchorableViewModel
 			}
 		}
 
-		DiscordRpcManager.Instance.CurrentClient.CurrentRpcData.MapInfo = rpcMapInfo;
+		DiscordRpcManager.Instance.GetRPCData().MapInfo = rpcMapInfo;
 
 		return sb.ToString();
 	}

@@ -82,15 +82,7 @@
 				Content="ｘ"
 				/>
 
-			<ComboBox ItemsSource="{Binding ShipClasses}" SelectedItem="{Binding ShipClass}">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding Converter={StaticResource ShipClassDisplayConverter}}" />
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
-
-			<Button Command="{Binding OpenShipPickerCommand}" Content="{Binding Ship.NameEN, FallbackValue=*}" />
+			<Button Command="{Binding OpenShipPickerCommand}" Content="{Binding Ship.NameEN}" />
 
 			<ComboBox
 				ItemTemplate="{StaticResource EnumDisplayerTemplate}"
@@ -379,6 +371,69 @@
 		</Border>
 	</DataTemplate>
 
+	<DataTemplate x:Key="ShipConditionTemplateV2" DataType="{x:Type conditions:ShipConditionViewModelV2}">
+		<DataTemplate.Resources>
+			<ResourceDictionary Source="Styles.xaml" />
+		</DataTemplate.Resources>
+		<StackPanel Orientation="Horizontal">
+			<Button
+				Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+				CommandParameter="{Binding Model}"
+				Content="ｘ"
+				/>
+
+			<ComboBox ItemsSource="{Binding ShipClasses}" SelectedItem="{Binding ShipClass}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource ShipClassDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<Button Command="{Binding OpenShipPickerCommand}" Content="{Binding Ship.NameEN, FallbackValue=*}" />
+
+			<ComboBox
+				ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+				ItemsSource="{Binding RemodelComparisonTypes}"
+				SelectedItem="{Binding RemodelComparisonType}"
+				/>
+
+			<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}" IsChecked="{Binding MustBeFlagship}" />
+
+			<TextBlock Text="{Binding Display}" />
+		</StackPanel>
+	</DataTemplate>
+
+	<DataTemplate x:Key="PartialShipConditionTemplateV2" DataType="{x:Type conditions:PartialShipConditionViewModelV2}">
+		<DataTemplate.Resources>
+			<ResourceDictionary Source="Styles.xaml" />
+		</DataTemplate.Resources>
+		<Border
+			BorderBrush="Gray"
+			BorderThickness="1"
+			Style="{StaticResource BorderSpacing}"
+			>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Button
+						Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+						CommandParameter="{Binding Model}"
+						Content="ｘ"
+						/>
+
+					<TextBlock Text="{Binding Display}" TextWrapping="Wrap" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<Button Command="{Binding AddConditionCommand}" Content="＋" />
+					<controls:NumberBox Minimum="0" Value="{Binding Model.Count}" />
+				</StackPanel>
+
+				<ItemsControl ItemTemplate="{StaticResource ShipConditionTemplateV2}" ItemsSource="{Binding Conditions}" />
+			</StackPanel>
+		</Border>
+	</DataTemplate>
+
 	<DataTemplate x:Key="UnknownConditionTemplate">
 		<TextBlock Padding="4" Text="{Binding ViewModel.Translation.UnknownCondition, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=questTrackerManager:QuestTrackerManagerWindow}}" />
 	</DataTemplate>
@@ -388,10 +443,12 @@
 		AllowedShipTypes="{StaticResource AllowedShipTypesConditionTemplate}"
 		Group="{StaticResource GroupConditionTemplate}"
 		PartialShip="{StaticResource PartialShipConditionTemplate}"
+		PartialShipV2="{StaticResource PartialShipConditionTemplateV2}"
 		Ship="{StaticResource ShipConditionTemplate}"
 		ShipNationality="{StaticResource ShipNationalityConditionTemplate}"
 		ShipPosition="{StaticResource ShipPositionConditionTemplate}"
 		ShipType="{StaticResource ShipTypeConditionTemplate}"
+		ShipV2="{StaticResource ShipConditionTemplateV2}"
 		Unknown="{StaticResource UnknownConditionTemplate}"
 		/>
 

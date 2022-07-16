@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.DiscordRPC;
 
@@ -28,7 +29,7 @@ public class DiscordRpcManager
 		"644074508306874389", // --- 1351 -> 1500
 	};
 
-	public EoToDiscordRpcClient CurrentClient { get; private set; }
+	private EoToDiscordRpcClient CurrentClient { get; set; }
 
 	/// <summary>
 	/// Used for secretary image
@@ -38,6 +39,7 @@ public class DiscordRpcManager
 
 	private DiscordRpcManager()
 	{
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 		if (!string.IsNullOrEmpty(Utility.Configuration.Config.Control.DiscordRPCApplicationId))
 		{
@@ -57,10 +59,36 @@ public class DiscordRpcManager
 		StartRPCUpdate();
 	}
 
+	private void ConfigurationChanged()
+	{
+		if (!Utility.Configuration.Config.Control.EnableDiscordRPC)
+		{
+			// --- Disable RPC
+			CurrentClient.CloseRPC();
+		}
+		else
+		{
+			if (!string.IsNullOrEmpty(Utility.Configuration.Config.Control.DiscordRPCApplicationId))
+			{
+				string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
+				CurrentClient.ChangeClientId(clientID);
+			}
+			else if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
+			{
+				// nothing, SetActivity should update the app id
+			}
+			else 
+			{
+				// default application
+				CurrentClient.ChangeClientId("391369077991538698");
+			}
+		}
+
+		SetActivity();
+	}
+
 	private void SetActivity()
 	{
-		if (!Utility.Configuration.Config.Control.EnableDiscordRPC) return;
-
 		if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
 		{
 			int shipID = CurrentClient.CurrentRpcData.CurrentShipId;
@@ -81,14 +109,16 @@ public class DiscordRpcManager
 		}
 	}
 
+	public DiscordRpcModel GetRPCData() => CurrentClient.CurrentRpcData;
+
 	private void StartRPCUpdate()
 	{
 		Task task = Task.Run(async () =>
 		{
 			for (; ; )
 			{
-				await Task.Delay(15000);
 				SetActivity();
+				await Task.Delay(15000);
 			}
 		});
 	}

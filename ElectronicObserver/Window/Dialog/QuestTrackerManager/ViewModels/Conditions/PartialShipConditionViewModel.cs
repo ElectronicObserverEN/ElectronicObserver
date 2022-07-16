@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
+[Obsolete("Use PartialShipConditionViewModelV2")]
 public partial class PartialShipConditionViewModel : ObservableObject, IConditionViewModel
 {
 	public PartialShipConditionModel Model { get; }
@@ -71,23 +71,6 @@ public partial class PartialShipConditionViewModel : ObservableObject, IConditio
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		IEnumerable<ShipConditionViewModel> classConditions = Conditions
-			.Where(c => c.ShipClass is not 0 && c.Ship is null);
-
-		int classMatchCount = fleet.MembersInstance
-			.Select(s => new FleetDataMock()
-			{
-				MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
-				{
-					s,
-				}),
-			})
-			.Sum(f => classConditions.Count(c => c.ConditionMet(f)));
-
-		int nonClassMatchCount = Conditions
-			.Except(classConditions)
-			.Count(c => c.ConditionMet(fleet));
-
-		return classMatchCount + nonClassMatchCount >= Model.Count;
+		return Conditions.Count(c => c.ConditionMet(fleet)) >= Model.Count;
 	}
 }

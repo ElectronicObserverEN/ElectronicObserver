@@ -47,7 +47,12 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 	public GroupConditionViewModel(GroupConditionModel model)
 	{
 		Operators = Enum.GetValues(typeof(Operator)).Cast<Operator>();
-		ConditionTypes = Enum.GetValues(typeof(ConditionType)).Cast<ConditionType>();
+
+#pragma warning disable CS0618 // Skip obsolete conditions
+		ConditionTypes = Enum.GetValues<ConditionType>()
+			.Where(c => c is not ConditionType.Ship)
+			.Where(c => c is not ConditionType.PartialShip);
+#pragma warning restore CS0618 // 
 
 		Model = model;
 
@@ -79,12 +84,18 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 		List<IConditionViewModel?> conditions = model.Conditions.Select(c => c switch
 		{
 			GroupConditionModel g => (IConditionViewModel)new GroupConditionViewModel(g),
+#pragma warning disable CS0618 // needed for backward compatibility
 			ShipConditionModel s => new ShipConditionViewModel(s),
+#pragma warning restore CS0618
 			ShipTypeConditionModel g => new ShipTypeConditionViewModel(g),
+#pragma warning disable CS0618 // needed for backward compatibility
 			PartialShipConditionModel p => new PartialShipConditionViewModel(p),
+#pragma warning restore CS0618
 			AllowedShipTypesConditionModel a => new AllowedShipTypesConditionViewModel(a),
 			ShipPositionConditionModel p => new ShipPositionConditionViewModel(p),
 			ShipNationalityConditionModel n => new ShipNationalityConditionViewModel(n),
+			ShipConditionModelV2 s => new ShipConditionViewModelV2(s),
+			PartialShipConditionModelV2 p => new PartialShipConditionViewModelV2(p),
 			_ => null
 		}).ToList();
 
@@ -109,12 +120,14 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 		Model.Conditions.Add(SelectedConditionType switch
 		{
 			ConditionType.Group => new GroupConditionModel(),
-			ConditionType.Ship => new ShipConditionModel(),
+			// ConditionType.Ship => new ShipConditionModel(),
 			ConditionType.ShipType => new ShipTypeConditionModel(),
-			ConditionType.PartialShip => new PartialShipConditionModel(),
+			// ConditionType.PartialShip => new PartialShipConditionModel(),
 			ConditionType.AllowedShipTypes => new AllowedShipTypesConditionModel(),
 			ConditionType.ShipPosition => new ShipPositionConditionModel(),
 			ConditionType.ShipNationality => new ShipNationalityConditionModel(),
+			ConditionType.ShipV2 => new ShipConditionModelV2(),
+			ConditionType.PartialShipV2 => new PartialShipConditionModelV2(),
 
 			_ => throw new NotImplementedException(),
 		});

@@ -11,9 +11,8 @@ public class ShipClassDisplayConverter : IValueConverter
 	public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		=> value switch
 		{
-			0 => "*",
-			111 => Constants.GetShipClass(111, ShipId.Souya645),
-			int id => Constants.GetShipClass(id),
+			ShipClass.Unknown => "*",
+			ShipClass id => Constants.GetShipClass(id),
 			_ => throw new ArgumentOutOfRangeException()
 		};
 
