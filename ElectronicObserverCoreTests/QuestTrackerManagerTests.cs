@@ -76,4 +76,43 @@ public class QuestTrackerManagerTests
 
 		Assert.True(group.ConditionMet(fleet));
 	}
+
+	[Fact]
+	public void ShipClassCondition()
+	{
+		PartialShipConditionModel partialShipCondition = new()
+		{
+			Count = 2,
+			Conditions = new(new()
+			{
+				new()
+				{
+					ShipClass = 66,
+				},
+			}),
+		};
+
+		GroupConditionViewModel group = new(new()
+		{
+			GroupOperator = Operator.And,
+			Conditions = new ObservableCollection<ICondition?>(new()
+			{
+				partialShipCondition,
+			}),
+		});
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.KamikazeKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.AsakazeKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.HarukazeKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.MatsukazeKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.HatakazeKai]),
+			})
+		};
+
+		Assert.True(group.ConditionMet(fleet));
+	}
 }

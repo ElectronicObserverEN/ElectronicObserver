@@ -32,6 +32,7 @@
 			<converters:EnumDisplayConverter x:Key="EnumDisplayConverter" />
 			<converters:AaciDisplayConverter x:Key="AaciDisplayConverter" />
 			<converters:AaciIdDisplayConverter x:Key="AaciIdDisplayConverter" />
+			<converters:ShipClassDisplayConverter x:Key="ShipClassDisplayConverter" />
 
 			<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml
