@@ -61,7 +61,7 @@ public class port : APIBase
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
-			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
+			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.GetRPCData();
 			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
 			if (db.Fleet[1].CanAnchorageRepair)

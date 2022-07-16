@@ -47,6 +47,7 @@ public class EoToDiscordRpcClient
 	public void Initialize()
 	{
 		if (string.IsNullOrEmpty(CurrentClientId)) return;
+		if (!Utility.Configuration.Config.Control.EnableDiscordRPC) return;
 
 		CurrentClient = new DiscordRpcClient(CurrentClientId);
 		CurrentClient.Initialize();

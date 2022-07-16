@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.DiscordRPC;
 
@@ -28,7 +29,7 @@ public class DiscordRpcManager
 		"644074508306874389", // --- 1351 -> 1500
 	};
 
-	public EoToDiscordRpcClient? CurrentClient { get; private set; }
+	private EoToDiscordRpcClient CurrentClient { get; set; }
 
 	/// <summary>
 	/// Used for secretary image
@@ -38,11 +39,8 @@ public class DiscordRpcManager
 
 	private DiscordRpcManager()
 	{
-		StartRPCUpdate();
-	}
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-	private void InitializeClient()
-	{
 		if (!string.IsNullOrEmpty(Utility.Configuration.Config.Control.DiscordRPCApplicationId))
 		{
 			string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
@@ -57,27 +55,40 @@ public class DiscordRpcManager
 			// default application
 			CurrentClient = new EoToDiscordRpcClient("391369077991538698");
 		}
+
+		StartRPCUpdate();
 	}
 
-	private void SetActivity()
+	private void ConfigurationChanged()
 	{
 		if (!Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
 			// --- Disable RPC
-			if (CurrentClient != null)
+			CurrentClient.CloseRPC();
+		}
+		else
+		{
+			if (!string.IsNullOrEmpty(Utility.Configuration.Config.Control.DiscordRPCApplicationId))
 			{
-				CurrentClient.CloseRPC();
-				CurrentClient = null;
+				string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
+				CurrentClient.ChangeClientId(clientID);
 			}
-
-			return;
+			else if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
+			{
+				// nothing, SetActivity should update the app id
+			}
+			else 
+			{
+				// default application
+				CurrentClient.ChangeClientId("391369077991538698");
+			}
 		}
 
-		if (CurrentClient is null) InitializeClient();
+		SetActivity();
+	}
 
-		// --- Client shouldn't be null after initialization
-		if (CurrentClient is null) return;
-
+	private void SetActivity()
+	{
 		if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
 		{
 			int shipID = CurrentClient.CurrentRpcData.CurrentShipId;
@@ -97,6 +108,8 @@ public class DiscordRpcManager
 			CurrentClient.UpdatePresence();
 		}
 	}
+
+	public DiscordRpcModel GetRPCData() => CurrentClient.CurrentRpcData;
 
 	private void StartRPCUpdate()
 	{
