@@ -115,4 +115,73 @@ public class QuestTrackerManagerTests
 
 		Assert.True(group.ConditionMet(fleet));
 	}
+
+	/// <summary>
+	/// Test for quest ID 981 (B185)
+	/// 2 of Fletcher-class + John C.Butler-class
+	/// </summary>
+	[Fact]
+	public void Quest981Conditions()
+	{
+		PartialShipConditionModel partialShipCondition = new()
+		{
+			Count = 2,
+			Conditions = new(new()
+			{
+				new()
+				{
+					ShipClass = (int)ShipClass.Fletcher
+				},
+				new()
+				{
+					ShipClass = (int)ShipClass.JohnCButler
+				},
+			}),
+		};
+
+		GroupConditionViewModel group = new(new()
+		{
+			GroupOperator = Operator.And,
+			Conditions = new ObservableCollection<ICondition?>(new()
+			{
+				partialShipCondition,
+			}),
+		});
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.ShimushuKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.FletcherKaiMod2]),
+				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
+			})
+		};
+
+		Assert.False(group.ConditionMet(fleet));
+
+		fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII]),
+				new ShipDataMock(Db.MasterShips[ShipId.SamuelBRobertsKai]),
+			})
+		};
+
+		Assert.True(group.ConditionMet(fleet));
+
+		fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII]),
+				new ShipDataMock(Db.MasterShips[ShipId.Johnston]),
+			})
+		};
+
+		Assert.True(group.ConditionMet(fleet));
+	}
 }
