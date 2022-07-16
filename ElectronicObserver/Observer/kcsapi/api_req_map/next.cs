@@ -13,21 +13,16 @@ public class next : APIBase
 		KCDatabase db = KCDatabase.Instance;
 		db.Replays.LoadFromResponse(APIName, data);
 
+		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
 
-
-
+		base.OnResponseReceived((object)data);
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.CurrentClient.CurrentRpcData;
 			dataForWS.TopDisplayText = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
 
 		}
-
-		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
-
-		base.OnResponseReceived((object)data);
-
 
 		// 表示順の関係上、UIの更新をしてからデータを更新する
 		if (KCDatabase.Instance.Battle.Compass.EventID == 3)
