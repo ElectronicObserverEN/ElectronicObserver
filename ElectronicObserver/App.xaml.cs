@@ -17,6 +17,7 @@ using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
+using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -227,6 +228,14 @@ public partial class App : Application
 			.Configure<DialogAlbumMasterEquipmentWpf>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<EquipmentListWindow>()
+			.Property(w => w.ViewModel.EquipmentGridColumnProperties)
+			.Property(w => w.ViewModel.EquipmentGridSortDescriptions)
+			.Property(w => w.ViewModel.EquipmentGridWidth)
+			.Property(w => w.ViewModel.DetailGridColumnProperties)
+			.Property(w => w.ViewModel.DetailGridSortDescriptions);
 
 		return tracker;
 	}

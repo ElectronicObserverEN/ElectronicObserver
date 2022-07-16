@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
@@ -25,6 +27,14 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	{
 		Filter = "CSV|*.csv|File|*",
 	};
+
+	public List<ColumnProperties> EquipmentGridColumnProperties { get; set; } = new();
+	public List<SortDescription> EquipmentGridSortDescriptions { get; set; } = new();
+	public GridLength EquipmentGridWidth { get; set; } = GridLength.Auto;
+
+	// todo: doesn't seem to work in the current implementation
+	public List<ColumnProperties> DetailGridColumnProperties { get; set; } = new();
+	public List<SortDescription> DetailGridSortDescriptions { get; set; } = new();
 
 	public List<EquipmentListRow> Rows { get; set; } = new();
 	public EquipmentListRow? SelectedRow { get; set; }
@@ -158,7 +168,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 
 	private void UpdateDetailView(int equipmentID)
 	{
-		DetailRows.Clear();
+		// DetailRows.Clear();
 
 		//装備数カウント
 		var eqs = KCDatabase.Instance.Equipments.Values
