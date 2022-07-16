@@ -28,7 +28,7 @@ public class DiscordRpcManager
 		"644074508306874389", // --- 1351 -> 1500
 	};
 
-	public EoToDiscordRpcClient CurrentClient { get; private set; }
+	public EoToDiscordRpcClient? CurrentClient { get; private set; }
 
 	/// <summary>
 	/// Used for secretary image
@@ -38,7 +38,11 @@ public class DiscordRpcManager
 
 	private DiscordRpcManager()
 	{
+		StartRPCUpdate();
+	}
 
+	private void InitializeClient()
+	{
 		if (!string.IsNullOrEmpty(Utility.Configuration.Config.Control.DiscordRPCApplicationId))
 		{
 			string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
@@ -53,13 +57,26 @@ public class DiscordRpcManager
 			// default application
 			CurrentClient = new EoToDiscordRpcClient("391369077991538698");
 		}
-
-		StartRPCUpdate();
 	}
 
 	private void SetActivity()
 	{
-		if (!Utility.Configuration.Config.Control.EnableDiscordRPC) return;
+		if (!Utility.Configuration.Config.Control.EnableDiscordRPC)
+		{
+			// --- Disable RPC
+			if (CurrentClient != null)
+			{
+				CurrentClient.CloseRPC();
+				CurrentClient = null;
+			}
+
+			return;
+		}
+
+		if (CurrentClient is null) InitializeClient();
+
+		// --- Client shouldn't be null after initialization
+		if (CurrentClient is null) return;
 
 		if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
 		{
@@ -87,8 +104,8 @@ public class DiscordRpcManager
 		{
 			for (; ; )
 			{
-				await Task.Delay(15000);
 				SetActivity();
+				await Task.Delay(15000);
 			}
 		});
 	}
