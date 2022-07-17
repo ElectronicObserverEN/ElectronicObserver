@@ -33,6 +33,9 @@ public class FormQuestTranslationViewModel : TranslationBaseViewModel
 	public string MenuMain_KcwikiQuest => Properties.Window.FormQuest.MenuMain_KcwikiQuest.Replace("_", "__").Replace("&", "_");
 	public string LookUpSpecificQuestOnWiki => Properties.Window.FormQuest.LookUpSpecificQuestOnWiki.Replace("_", "__").Replace("&", "_");
 	public string ShowQuestCode => Properties.Window.FormQuest.ShowQuestCode;
+	public string SizeAdjustment => Properties.Window.FormQuest.SizeAdjustment;
+	public string Header => Properties.Window.FormQuest.Header;
+	public string Row => Properties.Window.FormQuest.Row;
 	public string ManuMain_QuestTitle => Properties.Window.FormQuest.ManuMain_QuestTitle.Replace("_", "__").Replace("&", "_");
 	public string ManuMain_QuestDescription => Properties.Window.FormQuest.ManuMain_QuestDescription.Replace("_", "__").Replace("&", "_");
 	public string ManuMain_QuestTranslate => Properties.Window.FormQuest.ManuMain_QuestTranslate.Replace("_", "__").Replace("&", "_");

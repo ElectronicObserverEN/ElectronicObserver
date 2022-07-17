@@ -1141,6 +1141,10 @@ public sealed class Configuration
 
 			public bool ShowQuestCode { get; set; } = true;
 
+			public int HeaderMinSize { get; set; } = 32;
+
+			public int RowMinSize { get; set; } = 24;
+
 			public ConfigFormQuest()
 			{
 				ShowRunningOnly = false;

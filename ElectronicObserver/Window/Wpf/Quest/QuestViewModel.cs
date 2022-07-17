@@ -36,6 +36,9 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	public QuestItemViewModel? SelectedQuest { get; set; }
 
+	public int HeaderMinSize { get; set; }
+	public int RowMinSize { get; set; }
+
 	public bool WebSearchEnabled => SelectedQuest is not null;
 	public bool WikiSearchEnabled => SelectedQuest is not null;
 
@@ -142,6 +145,20 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			Updated();
 		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(HeaderMinSize)) return;
+
+			Configuration.Config.FormQuest.HeaderMinSize = HeaderMinSize;
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(RowMinSize)) return;
+
+			Configuration.Config.FormQuest.RowMinSize = RowMinSize;
+		};
 	}
 
 	private void ColumnWidthChanged(object? sender, PropertyChangedEventArgs e)
@@ -189,6 +206,9 @@ public partial class QuestViewModel : AnchorableViewModel
 		Font = new FontFamily(c.UI.MainFont.FontData.FontFamily.Name);
 		FontSize = c.UI.MainFont.FontData.ToSize();
 		FontBrush = c.UI.ForeColor.ToBrush();
+
+		HeaderMinSize = c.FormQuest.HeaderMinSize;
+		RowMinSize = c.FormQuest.RowMinSize;
 
 		MenuMain_ShowRunningOnly = c.FormQuest.ShowRunningOnly;
 		MenuMain_ShowOnce = c.FormQuest.ShowOnce;

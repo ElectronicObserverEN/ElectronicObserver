@@ -8,8 +8,28 @@ namespace ElectronicObserver.Window.Wpf.Quest;
 /// </summary>
 public partial class QuestView : UserControl
 {
-	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-		nameof(ViewModel), typeof(QuestViewModel), typeof(QuestView), new PropertyMetadata(default(QuestViewModel)));
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register
+	(
+		nameof(ViewModel),
+		typeof(QuestViewModel),
+		typeof(QuestView),
+		new PropertyMetadata(default(QuestViewModel), PropertyChangedCallback)
+	);
+
+	private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (d is not QuestView { ViewModel: { } viewModel } view) return;
+
+		// hack: this is ModernWPF specific
+		view.Resources["DataGridRowMinHeight"] = (double)viewModel.RowMinSize;
+
+		viewModel.PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(viewModel.RowMinSize)) return;
+
+			view.Resources["DataGridRowMinHeight"] = (double)viewModel.RowMinSize;
+		};
+	}
 
 	public QuestViewModel ViewModel
 	{
@@ -28,6 +48,4 @@ public partial class QuestView : UserControl
 			Dispatcher.BeginInvoke(() => ViewModel.SortDescriptions = DataGrid.Items.SortDescriptions.ToList());
 		};
 	}
-
-
 }

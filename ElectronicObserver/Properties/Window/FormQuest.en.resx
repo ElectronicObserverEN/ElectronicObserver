@@ -202,4 +202,13 @@ Are you sure?</value>
   <data name="ShowQuestCode" xml:space="preserve">
     <value>Show quest code</value>
   </data>
+  <data name="SizeAdjustment" xml:space="preserve">
+    <value>Size adjustment</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>Row</value>
+  </data>
 </root>

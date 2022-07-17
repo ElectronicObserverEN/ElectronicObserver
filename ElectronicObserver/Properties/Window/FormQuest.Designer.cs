@@ -115,6 +115,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ヘッダー.
+        /// </summary>
+        public static string Header {
+            get {
+                return ResourceManager.GetString("Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 情報.
         /// </summary>
         public static string Information {
@@ -270,6 +279,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 列.
+        /// </summary>
+        public static string Row {
+            get {
+                return ResourceManager.GetString("Row", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to +艦これ.
         /// </summary>
         public static string SearchEngineKancolleSpecifier {
@@ -302,6 +320,15 @@ namespace ElectronicObserver.Properties.Window {
         public static string ShowQuestCode {
             get {
                 return ResourceManager.GetString("ShowQuestCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to サイズ調整.
+        /// </summary>
+        public static string SizeAdjustment {
+            get {
+                return ResourceManager.GetString("SizeAdjustment", resourceCulture);
             }
         }
         

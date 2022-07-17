@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="QuestControl"
 	d:DataContext="{d:DesignInstance local:QuestViewModel}"
@@ -85,6 +86,38 @@
 				IsCheckable="True"
 				IsChecked="{Binding DataContext.ShowQuestCode}"
 				/>
+			<MenuItem Header="{Binding DataContext.FormQuest.SizeAdjustment}">
+				<MenuItem Header="{Binding DataContext.FormQuest.Header}">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock
+							Margin="4"
+							VerticalAlignment="Center"
+							Text="{Binding DataContext.HeaderMinSize}"
+							/>
+						<Slider
+							Width="200"
+							Maximum="48"
+							Minimum="10"
+							Value="{Binding DataContext.HeaderMinSize}"
+							/>
+					</StackPanel>
+				</MenuItem>
+				<MenuItem Header="{Binding DataContext.FormQuest.Row}">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock
+							Margin="4"
+							VerticalAlignment="Center"
+							Text="{Binding DataContext.RowMinSize}"
+							/>
+						<Slider
+							Width="200"
+							Maximum="32"
+							Minimum="10"
+							Value="{Binding DataContext.RowMinSize}"
+							/>
+					</StackPanel>
+				</MenuItem>
+			</MenuItem>
 			<Separator />
 			<MenuItem Command="{Binding DataContext.ManuMain_QuestTitle_ClickCommand}" Header="{Binding DataContext.FormQuest.ManuMain_QuestTitle}" />
 			<MenuItem Command="{Binding DataContext.ManuMain_QuestDescription_ClickCommand}" Header="{Binding DataContext.FormQuest.ManuMain_QuestDescription}" />
@@ -143,6 +176,7 @@
 					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 					<Setter Property="ContextMenu" Value="{StaticResource MainContextMenu}" />
 					<Setter Property="Padding" Value="5 0" />
+					<Setter Property="MinHeight" Value="{Binding DataContext.HeaderMinSize, Source={StaticResource Proxy}}" />
 					<Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}" />
 					<Style.Triggers>
 						<Trigger Property="SortDirection" Value="{x:Null}">
