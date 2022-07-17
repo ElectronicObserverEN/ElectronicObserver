@@ -297,6 +297,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 任務コードの表示.
+        /// </summary>
+        public static string ShowQuestCode {
+            get {
+                return ResourceManager.GetString("ShowQuestCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (未取得).
         /// </summary>
         public static string Unknown {

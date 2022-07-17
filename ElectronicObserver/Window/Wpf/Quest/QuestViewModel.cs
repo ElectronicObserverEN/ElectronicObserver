@@ -73,6 +73,8 @@ public partial class QuestViewModel : AnchorableViewModel
 	public bool MenuMain_ShowMonthly { get; set; }
 	public bool MenuMain_ShowOther { get; set; }
 
+	public bool ShowQuestCode { get; set; }
+
 	public ColumnViewModel StateColumn { get; } = new();
 	public ColumnViewModel TypeColumn { get; } = new();
 	public ColumnViewModel CategoryColumn { get; } = new();
@@ -131,6 +133,15 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 
 		PropertyChanged += VisibleQuestsChanged;
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(ShowQuestCode)) return;
+
+			Configuration.Config.FormQuest.ShowQuestCode = ShowQuestCode;
+
+			Updated();
+		};
 	}
 
 	private void ColumnWidthChanged(object? sender, PropertyChangedEventArgs e)
@@ -185,6 +196,8 @@ public partial class QuestViewModel : AnchorableViewModel
 		MenuMain_ShowWeekly = c.FormQuest.ShowWeekly;
 		MenuMain_ShowMonthly = c.FormQuest.ShowMonthly;
 		MenuMain_ShowOther = c.FormQuest.ShowOther;
+
+		ShowQuestCode = c.FormQuest.ShowQuestCode;
 
 		int columnCount = 5;
 
@@ -351,7 +364,11 @@ public partial class QuestViewModel : AnchorableViewModel
 			// row.Cells[QuestView_Name.Index].Style.BackColor = color;
 			// row.Cells[QuestView_Name.Index].Style.SelectionBackColor = color;
 
-			row.QuestView_Name = q.NameWithCode;
+			row.QuestView_Name = ShowQuestCode switch
+			{
+				true => q.NameWithCode,
+				_ => q.Name
+			};
 
 			/*
 			row.Cells[QuestView_Progress.Index].Style.BackColor = color;

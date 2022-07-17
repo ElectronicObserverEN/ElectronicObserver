@@ -199,4 +199,7 @@ Are you sure?</value>
   <data name="LookUpQuestOnStartpage" xml:space="preserve">
     <value>Search on _Startpage</value>
   </data>
+  <data name="ShowQuestCode" xml:space="preserve">
+    <value>Show quest code</value>
+  </data>
 </root>

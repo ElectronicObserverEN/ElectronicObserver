@@ -181,4 +181,7 @@
   <data name="LookUpQuestOnStartpage" xml:space="preserve">
     <value>任務名で_Startpage検索</value>
   </data>
+  <data name="ShowQuestCode" xml:space="preserve">
+    <value>任務コードの表示</value>
+  </data>
 </root>

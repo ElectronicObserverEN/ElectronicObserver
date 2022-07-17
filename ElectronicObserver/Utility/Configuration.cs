@@ -1139,6 +1139,8 @@ public sealed class Configuration
 
 			public bool AllowUserToSortRows { get; set; }
 
+			public bool ShowQuestCode { get; set; } = true;
+
 			public ConfigFormQuest()
 			{
 				ShowRunningOnly = false;

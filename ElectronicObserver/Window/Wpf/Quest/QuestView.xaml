@@ -80,6 +80,12 @@
 					/>
 			</MenuItem>
 			<Separator />
+			<MenuItem
+				Header="{Binding DataContext.FormQuest.ShowQuestCode}"
+				IsCheckable="True"
+				IsChecked="{Binding DataContext.ShowQuestCode}"
+				/>
+			<Separator />
 			<MenuItem Command="{Binding DataContext.ManuMain_QuestTitle_ClickCommand}" Header="{Binding DataContext.FormQuest.ManuMain_QuestTitle}" />
 			<MenuItem Command="{Binding DataContext.ManuMain_QuestDescription_ClickCommand}" Header="{Binding DataContext.FormQuest.ManuMain_QuestDescription}" />
 			<MenuItem Command="{Binding DataContext.ManuMain_QuestTranslate_ClickCommand}" Header="{Binding DataContext.FormQuest.ManuMain_QuestTranslate}" />
