@@ -4,6 +4,7 @@ using System.Linq;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data;
 
@@ -1460,131 +1461,14 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 対潜攻撃可能か
 	/// </summary>
-	public bool CanAttackSubmarine
-	{
-		get
-		{
-			switch (MasterShip.ShipType)
-			{
-				case ShipTypes.Escort:
-				case ShipTypes.Destroyer:
-				case ShipTypes.LightCruiser:
-				case ShipTypes.TorpedoCruiser:
-				case ShipTypes.TrainingCruiser:
-				case ShipTypes.FleetOiler:
-					return ASWBase > 0;
-
-				case ShipTypes.AviationCruiser:
-				case ShipTypes.LightAircraftCarrier:
-				case ShipTypes.AviationBattleship:
-				case ShipTypes.SeaplaneTender:
-				case ShipTypes.AmphibiousAssaultShip:
-					return AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
-
-				case ShipTypes.AircraftCarrier:
-					return ShipID == 646 &&         // 加賀改二護
-						   AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
-
-				default:
-					return false;
-			}
-		}
-	}
+	public bool CanAttackSubmarine => this.CanAttackSubmarine();
 
 	/// <summary>
 	/// 開幕対潜攻撃可能か
 	/// </summary>
-	public bool CanOpeningASW
-	{
-		get
-		{
-			if (!CanAttackSubmarine)
-				return false;
+	public bool CanOpeningASW => this.CanDoOpeningAsw();
 
-			switch (ShipID)
-			{
-				case 141:       // 五十鈴改二
-				case 394:       // Jervis改
-				case 478:       // 龍田改二
-				case 681:       // Samuel B.Roberts改
-				case 562:       // Johnston
-				case 689:       // Johnston改
-				case 596:       // Fletcher
-				case 692:       // Fletcher改
-				case 628:       // Fletcher改 Mod.2
-				case 629:       // Fletcher Mk.II
-				case 893:       // Janus改
-				case 624:       // 夕張改二丁
-					return true;
-			}
-
-			// same as the check above, that one is handled upstream, this one is specific for our version
-			if (CanNoSonarOpeningAsw) return true;
-
-			var eqs = AllSlotInstance.Where(eq => eq != null);
-
-			switch (ShipID)
-			{
-				case 380:   // 大鷹改
-				case 529:   // 大鷹改二
-				case 381:   // 神鷹改
-				case 536:   // 神鷹改二
-				case 646:   // 加賀改二護
-					return true;
-
-				case 554:   // 日向改二
-							// カ号観測機, オ号観測機改, オ号観測機改二
-					if (eqs.Count(eq => eq.EquipmentID == 69 || eq.EquipmentID == 324 || eq.EquipmentID == 325) >= 2)
-						return true;
-					// S-51J, S-51J改
-					if (eqs.Any(eq => eq.EquipmentID == 326 || eq.EquipmentID == 327))
-						return true;
-
-					return false;
-			}
-
-			if (MasterShip.ShipType == ShipTypes.LightAircraftCarrier && ASWBase > 0)      // 護衛空母
-			{
-				bool hasASWAircraft = eqs.Any(eq =>
-					(eq.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo && eq.MasterEquipment.ASW >= 7) ||
-					eq.MasterEquipment.CategoryType == EquipmentTypes.ASPatrol ||
-					eq.MasterEquipment.CategoryType == EquipmentTypes.Autogyro);
-
-				if (hasASWAircraft && ASWTotal >= 65)
-					return true;
-
-				if (hasASWAircraft && ASWTotal >= 50 && eqs.Any(eq => eq.MasterEquipment.CategoryType == EquipmentTypes.SonarLarge))
-					return true;
-			}
-
-			bool hasSonar = eqs.Any(eq => eq.MasterEquipment.IsSonar);
-			bool needSonar = !(
-				MasterShip.ShipType == ShipTypes.Escort &&
-				ASWTotal >= 75 &&
-				(ASWTotal - ASWBase) >= 4);
-
-			if (needSonar && !hasSonar)
-				return false;
-
-			if (MasterShip.ShipType == ShipTypes.Escort)
-				return ASWTotal >= 60;
-			else
-				return ASWTotal >= 100;
-		}
-	}
-
-	public bool CanNoSonarOpeningAsw => MasterShip switch
-	{
-		{ ShipId: ShipId.JervisKai } or
-		{ ShipId: ShipId.JanusKai } or
-		{ ShipId: ShipId.SamuelBRobertsKai } or
-		{ ShipId: ShipId.IsuzuKaiNi } or
-		{ ShipId: ShipId.TatsutaKaiNi } or
-		{ ShipId: ShipId.YuubariKaiNiD } or
-		{ ShipClass: 91 } => true, // Fletcher class
-
-		_ => false
-	};
+	public bool CanNoSonarOpeningAsw => this.CanNoSonarOpeningAsw();
 
 	/// <summary>
 	/// 夜戦攻撃可能か

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes.Evasion;
 
@@ -400,4 +401,105 @@ public static class ShipDataExtensions
 			_ => ShipNationality.Unknown
 		};
 	}
+
+	public static bool CanDoOpeningAsw(this IShipData ship)
+	{
+		IEnumerable<IEquipmentData?> eqs = ship.AllSlotInstance
+			.Where(eq => eq != null);
+
+		switch (ship.MasterShip.ShipId)
+		{
+			case ShipId.TaiyouKai
+			or ShipId.TaiyouKaiNi
+			or ShipId.ShinyouKai
+			or ShipId.ShinyouKaiNi
+			or ShipId.KagaKaiNiGo:
+				return true;
+
+			case ShipId.HyuugaKaiNi:
+				// カ号観測機, オ号観測機改, オ号観測機改二
+				if (eqs.Count(eq => eq!.EquipmentId is
+						EquipmentId.Autogyro_KaTypeObservationAutogyro or
+						EquipmentId.Autogyro_OTypeObservationAutogyroKai or
+						EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi)
+					>= 2)
+				{
+					return true;
+				}
+
+				// S-51J, S-51J改
+				if (eqs.Any(eq => eq!.EquipmentId is
+						EquipmentId.Autogyro_S51J or
+						EquipmentId.Autogyro_S51JKai))
+				{
+					return true;
+				}
+
+				return false;
+		}
+
+		if (ship.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && ship.ASWBase > 0)      // 護衛空母
+		{
+			bool hasASWAircraft = eqs.Any(eq =>
+				(eq.MasterEquipment.CategoryType is EquipmentTypes.CarrierBasedTorpedo && eq.MasterEquipment.ASW >= 7) ||
+				eq.MasterEquipment.CategoryType is EquipmentTypes.ASPatrol or EquipmentTypes.Autogyro);
+
+			if (hasASWAircraft && ship.ASWTotal >= 65)
+			{
+				return true;
+			}
+
+			if (hasASWAircraft && ship.ASWTotal >= 50 && eqs.Any(eq => eq.MasterEquipment.CategoryType == EquipmentTypes.SonarLarge))
+			{
+				return true;
+			}
+		}
+
+		bool hasSonar = eqs.Any(eq => eq.MasterEquipment.IsSonar);
+		bool needSonar = !(
+			ship.MasterShip.ShipType == ShipTypes.Escort &&
+			ship.ASWTotal >= 75 &&
+			(ship.ASWTotal - ship.ASWBase) >= 4);
+
+		if (needSonar && !hasSonar)
+			return false;
+
+		if (ship.MasterShip.ShipType == ShipTypes.Escort)
+			return ship.ASWTotal >= 60;
+
+		return ship.ASWTotal >= 100;
+	}
+
+	public static bool CanAttackSubmarine(this IShipData ship) => ship.MasterShip.ShipType switch
+	{
+		ShipTypes.Escort or
+		ShipTypes.Destroyer or
+		ShipTypes.LightCruiser or
+		ShipTypes.TorpedoCruiser or
+		ShipTypes.TrainingCruiser or
+		ShipTypes.FleetOiler
+			=> ship.ASWBase > 0,
+
+		ShipTypes.AviationCruiser or
+		ShipTypes.LightAircraftCarrier or
+		ShipTypes.AviationBattleship or
+		ShipTypes.SeaplaneTender or
+		ShipTypes.AmphibiousAssaultShip
+			=> ship.AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft),
+
+		ShipTypes.AircraftCarrier =>
+			ship.MasterShip.ShipId is ShipId.KagaKaiNiGo &&
+			ship.AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft),
+
+		_ => false
+	};
+
+	public static bool CanNoSonarOpeningAsw(this IShipData ship) => ship.MasterShip is
+	{ ShipId: ShipId.JervisKai } or
+	{ ShipId: ShipId.JanusKai } or
+	{ ShipId: ShipId.SamuelBRobertsKai } or
+	{ ShipId: ShipId.IsuzuKaiNi } or
+	{ ShipId: ShipId.TatsutaKaiNi } or
+	{ ShipId: ShipId.YuubariKaiNiD } or
+	{ ShipClassTyped: ShipClass.Fletcher };
 }
