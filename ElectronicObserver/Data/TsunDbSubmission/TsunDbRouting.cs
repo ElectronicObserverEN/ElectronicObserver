@@ -11,13 +11,6 @@ public class TsunDbRouting : TsunDbEntity
 {
 	protected override string Url => "routing";
 
-	/// <summary>
-	/// Is initialized ? 
-	/// Start call initialize this object
-	/// </summary>
-	[JsonIgnore]
-	public bool IsInitialized { get; set; } = false;
-
 	#region Json Properties
 	[JsonProperty("sortiedFleet")]
 	public int SortiedFleet { get; private set; }
@@ -95,6 +88,9 @@ public class TsunDbRouting : TsunDbEntity
 		Fleet2 = new List<TsunDbShipData>();
 		NodeInfo = new TsunDbNodeInfo(0);
 		Map = string.Empty;
+
+		// Need start call to initialize
+		IsInitialized = false;
 	}
 
 	#region public methods
