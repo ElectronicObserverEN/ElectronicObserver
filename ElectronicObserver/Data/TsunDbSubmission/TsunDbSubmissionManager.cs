@@ -15,6 +15,18 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	/// </summary>
 	public static int CurrentMapAmountOfNodes { get; private set; }
 
+	public TsunDbSubmissionManager()
+	{
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+	}
+
+	private void ConfigurationChanged()
+	{
+		// if tsundb disabled => disable initialization of RoutingSubmission 
+		// Cause if you reenable it it will send wrong start data
+		RoutingSubmission.IsInitialized = false;
+	}
+
 	/// <summary>
 	/// Response wrapper for getting API data
 	/// </summary>

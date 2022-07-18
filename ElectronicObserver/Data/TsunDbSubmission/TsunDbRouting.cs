@@ -11,6 +11,13 @@ public class TsunDbRouting : TsunDbEntity
 {
 	protected override string Url => "routing";
 
+	/// <summary>
+	/// Is initialized ? 
+	/// Start call initialize this object
+	/// </summary>
+	[JsonIgnore]
+	public bool IsInitialized { get; set; } = false;
+
 	#region Json Properties
 	[JsonProperty("sortiedFleet")]
 	public int SortiedFleet { get; private set; }
@@ -117,6 +124,8 @@ public class TsunDbRouting : TsunDbEntity
 		// LBAS THINGS
 		//this.processCellData(http); TODO
 
+		IsInitialized = true;
+
 		this.ProcessNext(api_data);
 	}
 
@@ -126,6 +135,10 @@ public class TsunDbRouting : TsunDbEntity
 	/// <param name="api_data"></param>
 	public void ProcessNext(dynamic api_data)
 	{
+		// Some data is initiaized by Start api
+		// In some case it's missing (Enabling tsundb midsortie)
+		if (!IsInitialized) return;
+
 		CleanOnNext();
 
 		KCDatabase db = KCDatabase.Instance;
