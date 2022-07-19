@@ -10,12 +10,20 @@ namespace ElectronicObserver.Data;
 
 public abstract class TsunDbEntity
 {
+	[JsonIgnore]
+	/// <summary>
+	/// Is initialized ? 
+	/// </summary>
+	public bool IsInitialized { get; set; } = true;
+
 	protected abstract string Url { get; }
 
 	protected virtual bool IsBetaAPI { get; } = false;
 
 	public void SendData()
 	{
+		if (!IsInitialized) return;
+
 		if (IsBetaAPI)
 		{
 			string jsonContent = MakeJson();

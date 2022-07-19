@@ -1,5 +1,4 @@
-﻿using DynaJson;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;
 
@@ -34,16 +33,19 @@ public class TsunDbEventRouting : TsunDbRouting
 	/// <param name="api_data"></param>
 	public void ProcessEvent(dynamic api_data)
 	{
+		// Some data is initiaized by Start api
+		// In some case it's missing (Enabling tsundb midsortie)
+		if (!IsInitialized) return;
+
 		KCDatabase db = KCDatabase.Instance;
-		JsonObject jData = (JsonObject)api_data;
 
-		this.CurrentMapHP = (int)api_data.api_eventmap.api_now_maphp;
-		this.MaxMapHP = (int)api_data.api_eventmap.api_max_maphp;
-		this.Difficulty = db.Battle.Compass.MapInfo.EventDifficulty;
-		this.GaugeNum = db.Battle.Compass.MapInfo.CurrentGaugeIndex;
-		this.GaugeType = db.Battle.Compass.MapInfo.GaugeType;
+		CurrentMapHP = (int)api_data.api_eventmap.api_now_maphp;
+		MaxMapHP = (int)api_data.api_eventmap.api_max_maphp;
+		Difficulty = db.Battle.Compass.MapInfo.EventDifficulty;
+		GaugeNum = db.Battle.Compass.MapInfo.CurrentGaugeIndex;
+		GaugeType = db.Battle.Compass.MapInfo.GaugeType;
 
-		this.DebuffSound = 0;
+		DebuffSound = 0;
 	}
 	#endregion
 }

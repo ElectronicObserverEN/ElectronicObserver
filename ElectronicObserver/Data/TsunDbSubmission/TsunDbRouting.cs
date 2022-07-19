@@ -88,6 +88,9 @@ public class TsunDbRouting : TsunDbEntity
 		Fleet2 = new List<TsunDbShipData>();
 		NodeInfo = new TsunDbNodeInfo(0);
 		Map = string.Empty;
+
+		// Need start call to initialize
+		IsInitialized = false;
 	}
 
 	#region public methods
@@ -117,6 +120,8 @@ public class TsunDbRouting : TsunDbEntity
 		// LBAS THINGS
 		//this.processCellData(http); TODO
 
+		IsInitialized = true;
+
 		this.ProcessNext(api_data);
 	}
 
@@ -126,6 +131,10 @@ public class TsunDbRouting : TsunDbEntity
 	/// <param name="api_data"></param>
 	public void ProcessNext(dynamic api_data)
 	{
+		// Some data is initiaized by Start api
+		// In some case it's missing (Enabling tsundb midsortie)
+		if (!IsInitialized) return;
+
 		CleanOnNext();
 
 		KCDatabase db = KCDatabase.Instance;
