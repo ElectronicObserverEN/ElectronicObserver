@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -109,7 +110,16 @@ public class VolumeManager
 	/// <returns>データ。取得に失敗した場合は null。</returns>
 	private static ISimpleAudioVolume? GetVolumeObject(string processName, out uint processID)
 	{
-		var processes = Process.GetProcessesByName(processName);
+		Process currentProcess = Process.GetCurrentProcess();
+		// https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/process-model?tabs=csharp#processes-in-the-webview2-runtime
+		// EOBrowser -> WebView2 process -> WebView2 utility process (sound)
+		// need to find the WebView2 processes whose grandparent is EOBrowser
+		List<Process> processes = Process.GetProcessesByName(processName)
+			.Select(p => (Process: p, Parent: GetParentProcess(p)))
+			.Where(t => t.Parent is not null && GetParentProcess(t.Parent)?.Id == currentProcess.Id)
+			.Select(t => t.Process)
+			.ToList();
+
 		uint succeededId = 0;
 		var volume = GetVolumeObject(pid =>
 		{
