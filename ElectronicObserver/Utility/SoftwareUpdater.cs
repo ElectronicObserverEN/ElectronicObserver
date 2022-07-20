@@ -147,6 +147,11 @@ internal class SoftwareUpdater
 				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "Locks.json"));
 			}
 
+			if (CurrentVersion.FitBonuses < LatestVersion.FitBonuses)
+			{
+				downloadList.Add(Path.Combine("Data", "FitBonuses.json"));
+			}
+
 			needReload = downloadList.Any();
 			downloadList.Add("update.json");
 			downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "update.json"));
@@ -276,6 +281,12 @@ internal class SoftwareUpdater
 			var shipVersion = (string)translationJson.ship;
 			int lockTranslationsVersion = (int)translationJson.Locks;
 
+			int fitBonusesVersion = dataJson.FitBonuses() switch
+			{
+				true => (int)dataJson.FitBonuses,
+				_ => 0
+			};
+
 			int questTrackersVersion = dataJson.QuestTrackers() switch
 			{
 				true => (int)dataJson.QuestTrackers,
@@ -302,7 +313,8 @@ internal class SoftwareUpdater
 				EventLocks = eventLocksVersion,
 				LockTranslations = lockTranslationsVersion,
 				MaintenanceDate = maintenanceDate,
-				EventState = eventState
+				EventState = eventState,
+				FitBonuses = fitBonusesVersion,
 			};
 		}
 		catch (Exception e)
@@ -348,6 +360,7 @@ public class UpdateData
 	public int QuestTrackers { get; set; }
 	public int EventLocks { get; set; }
 	public int LockTranslations { get; set; }
+	public int FitBonuses { get; set; }
 	public DateTime MaintenanceDate { get; set; }
 
 	/// <summary>
