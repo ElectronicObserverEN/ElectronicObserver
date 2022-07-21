@@ -12,6 +12,8 @@ public class FitBonusTest
 {
 	private DatabaseFixture Db { get; }
 
+	private static ElectronicObserver.Data.Translation.FitBonusData BonusData { get; } = new ();
+
 	public FitBonusTest(DatabaseFixture db)
 	{
 		Db = db;
@@ -34,63 +36,6 @@ public class FitBonusTest
 			}
 		};
 
-		List<FitBonusPerEquipment> bonuses = new List<FitBonusPerEquipment>()
-		{
-			new FitBonusPerEquipment()
-			{
-				EquipmentIds = new List<EquipmentId>()
-				{
-					EquipmentId.MainGunSmall_12cmSingleHighangleGunModelE
-				},
-				Bonuses = new List<FitBonusData>()
-				{
-					new FitBonusData()
-					{
-						ShipTypes = new List<ShipTypes>() { ShipTypes.Escort },
-						Bonuses = new FitBonusValue() { AntiAir = 2, ASW = 1, Evasion = 2 },
-						BonusesIfLOSRadar = new FitBonusValue() { Firepower = 2, Evasion = 3 },
-						BonusesIfAirRadar = new FitBonusValue() { AntiAir = 2, Evasion = 3 },
-					},
-
-					new FitBonusData()
-					{
-						ShipClasses = new List<ShipClass>() { (ShipClass)22, (ShipClass)66, (ShipClass)101 },
-						Bonuses = new FitBonusValue() { AntiAir = 2, Evasion = 1 },
-						BonusesIfLOSRadar = new FitBonusValue() { Firepower = 1, Evasion = 2 },
-						BonusesIfAirRadar = new FitBonusValue() { AntiAir = 2, Evasion = 2 },
-					},
-
-					new FitBonusData()
-					{
-						ShipIds = new List<ShipId>() { ShipId.Yura, ShipId.Naka, ShipId.Kinu },
-						Bonuses = new FitBonusValue() { AntiAir = 1 },
-					},
-
-					new FitBonusData()
-					{
-						ShipMasterIds = new List<ShipId>() { ShipId.YuraKai, ShipId.NakaKai, ShipId.KinuKai },
-						Bonuses = new FitBonusValue() { Evasion = 1 },
-					},
-
-					new FitBonusData()
-					{
-						ShipMasterIds = new List<ShipId>() { ShipId.YuraKaiNi, ShipId.NakaKaiNi, ShipId.KinuKaiNi },
-						Bonuses = new FitBonusValue() { Evasion = 1 },
-						BonusesIfLOSRadar = new FitBonusValue() { Firepower = 1, Evasion = 1 },
-						BonusesIfAirRadar = new FitBonusValue() { AntiAir = 2, Evasion = 2 },
-					},
-
-					new FitBonusData()
-					{
-						ShipMasterIds = new List<ShipId>() { ShipId.YukikazeKaiNi },
-						Bonuses = new FitBonusValue() { AntiAir = 3, Evasion = 2 },
-						BonusesIfLOSRadar = new FitBonusValue() { Firepower = 2, Evasion = 2 },
-						BonusesIfAirRadar = new FitBonusValue() { AntiAir = 3, Evasion = 2 },
-					},
-				}
-			}
-		};
-
 		FitBonusValue expectedBonus = new FitBonusValue()
 		{
 			Firepower = 2,
@@ -104,7 +49,7 @@ public class FitBonusTest
 			Torpedo = 0,
 		};
 
-		FitBonusValue finalBonus = hachijou.GetFitBonus(bonuses);
+		FitBonusValue finalBonus = hachijou.GetFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus.ASW, finalBonus.ASW);
 		Assert.Equal(expectedBonus.Accuracy, finalBonus.Accuracy);

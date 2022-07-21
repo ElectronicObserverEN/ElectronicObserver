@@ -7,7 +7,7 @@ public class FitBonusData : TranslationBase
 {
 	private string DefaultFilePath = DataAndTranslationManager.DataFolder + @"\FitBonuses.json";
 
-	private List<FitBonusPerEquipment> FitBonusList = new List<FitBonusPerEquipment>();
+	public List<FitBonusPerEquipment> FitBonusList = new List<FitBonusPerEquipment>();
 
 	public override void Initialize()
 	{
