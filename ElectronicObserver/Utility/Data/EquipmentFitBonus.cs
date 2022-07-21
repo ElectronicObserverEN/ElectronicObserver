@@ -17,12 +17,21 @@ public static class EquipmentFitBonus
 			bonus => bonus
 		);
 
+
 	/// <summary>
 	/// Keep in mind that accuracy bonus is included
 	/// </summary>
 	/// <param name="ship"></param>
 	/// <returns></returns>
-	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
+	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList) 
+		=> ship.GetFitBonusList(bonusList).Select(bonus => bonus.FinalBonus).ToList();
+
+	/// <summary>
+	/// Keep in mind that accuracy bonus is included
+	/// </summary>
+	/// <param name="ship"></param>
+	/// <returns></returns>
+	public static List<FitBonusResult> GetFitBonusList(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
 	{ 
 		IList<IEquipmentData> equipments = ship.AllSlotInstance.Where(eq => eq != null).ToList()!;
 
@@ -37,7 +46,7 @@ public static class EquipmentFitBonus
 			.ToList();
 
 		// Keep only the rules that can be applied depending on equip ids or type before cheking them one by one
-		List<FitBonusPerEquipment> bonusThatCanBeApplied = bonusList
+		List<FitBonusPerEquipment> fitBonusThatApplies = bonusList
 			.Where(fitCondition => 
 				distinctEquipments.Any(equipment => fitCondition.EquipmentIds?.Contains(equipment) == true)
 				||
@@ -45,26 +54,30 @@ public static class EquipmentFitBonus
 			)
 			.ToList();
 
-		List<FitBonusValue> finalBonusList = new List<FitBonusValue>();
+		List<FitBonusResult> finalBonuses = new List<FitBonusResult>();
 
-		foreach (FitBonusPerEquipment fitPerEquip in bonusThatCanBeApplied)
+		foreach (FitBonusPerEquipment fitPerEquip in fitBonusThatApplies)
 		{
-			if (fitPerEquip.Bonuses != null)
+			foreach (FitBonusData fitData in fitPerEquip.Bonuses)
 			{
-				foreach (FitBonusData fitData in fitPerEquip.Bonuses)
+				FitBonusResult result = new FitBonusResult();
+				if (fitPerEquip.EquipmentTypes != null) result.EquipmentTypes.AddRange(fitPerEquip.EquipmentTypes);
+				if (fitPerEquip.EquipmentIds != null) result.EquipmentIds.AddRange(fitPerEquip.EquipmentIds);
+
+				int bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
+				if (bonusMultiplier > 0)
 				{
-					int bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
-					if (bonusMultiplier > 0)
-					{
-						if (fitData.Bonuses != null) finalBonusList.Add(bonusMultiplier > 1 ? (fitData.Bonuses * bonusMultiplier) : fitData.Bonuses);
-						if (fitData.BonusesIfSurfaceRadar != null && ship.HasSurfaceRadar()) finalBonusList.Add(fitData.BonusesIfSurfaceRadar);
-						if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar(1)) finalBonusList.Add(fitData.BonusesIfAirRadar);
-					}
+					result.FitBonusData = fitData;
+					if (fitData.Bonuses != null) result.FitBonusValues.Add(bonusMultiplier > 1 ? (fitData.Bonuses * bonusMultiplier) : fitData.Bonuses);
+					if (fitData.BonusesIfSurfaceRadar != null && ship.HasSurfaceRadar()) result.FitBonusValues.Add(fitData.BonusesIfSurfaceRadar);
+					if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar(1)) result.FitBonusValues.Add(fitData.BonusesIfAirRadar);
+
+					finalBonuses.Add(result);
 				}
 			}
 		}
 
-		return finalBonusList;
+		return finalBonuses;
 	}
 
 	private static int NumberOfTimeBonusApplies(FitBonusPerEquipment fitPerEquip, FitBonusData fitBonusData, IShipDataMaster shipMaster, IList<IEquipmentData> equipments)
