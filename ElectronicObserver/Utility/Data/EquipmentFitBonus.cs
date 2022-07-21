@@ -21,13 +21,7 @@ public static class EquipmentFitBonus
 	/// </summary>
 	/// <param name="ship"></param>
 	/// <returns></returns>
-	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
-	{
-		IList<IEquipmentData> equipments = ship.AllSlotInstance.Where(equipment => equipment != null).ToList()!;
-		if (ship.ExpansionSlotInstance != null) equipments.Add(ship.ExpansionSlotInstance);
-
-		return GetFitBonuses(equipments, ship.MasterShip, bonusList);
-	}
+	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList) => GetFitBonuses(ship.AllSlotInstance.Where(eq => eq != null).ToList()!, ship.MasterShip, bonusList);
 
 	/// <summary>
 	/// Keep in mind that accuracy bonus is included

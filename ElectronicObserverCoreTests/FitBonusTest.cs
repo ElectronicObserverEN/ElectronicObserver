@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.FitBonus;
-using Moq;
 using Xunit;
-using FleetDataCustom = ElectronicObserver.Data.FleetDataCustom;
 
 namespace ElectronicObserverCoreTests;
 
@@ -94,7 +91,19 @@ public class FitBonusTest
 			}
 		};
 
-		FitBonusValue expectedBonus = new FitBonusValue() { Firepower = 2, Evasion = 3 } + new FitBonusValue() { AntiAir = 2, Evasion = 3 } + (new FitBonusValue() { AntiAir = 2, ASW = 1, Evasion = 2 } * 2);
+		FitBonusValue expectedBonus = new FitBonusValue()
+		{
+			Firepower = 2,
+			Evasion = 3 + 3 + (2 * 2),
+			AntiAir = 2 + (2 * 2),
+			ASW = 1 * 2,
+			Accuracy = 0,
+			Armor = 0,
+			LOS = 0,
+			Range = 0,
+			Torpedo = 0,
+		};
+
 		FitBonusValue finalBonus = hachijou.GetFitBonus(bonuses);
 
 		Assert.Equal(expectedBonus.ASW, finalBonus.ASW);
