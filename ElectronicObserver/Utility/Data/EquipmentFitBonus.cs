@@ -2,6 +2,7 @@
 using ElectronicObserverTypes;
 using System.Linq;
 using ElectronicObserverTypes.Serialization.FitBonus;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -21,22 +22,9 @@ public static class EquipmentFitBonus
 	/// </summary>
 	/// <param name="ship"></param>
 	/// <returns></returns>
-	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList) => GetFitBonuses(ship.AllSlotInstance.Where(eq => eq != null).ToList()!, ship.MasterShip, bonusList);
-
-	/// <summary>
-	/// Keep in mind that accuracy bonus is included
-	/// </summary>
-	/// <param name="equipments"></param>
-	/// <param name="shipMaster"></param>
-	/// <param name="bonusList"></param>
-	/// <returns></returns>
-	public static List<FitBonusValue> GetFitBonuses(IList<IEquipmentData> equipments, IShipDataMaster shipMaster, IList<FitBonusPerEquipment> bonusList)
-	{
-		bool hasSurfaceRadar = equipments
-			.Any(equipment => equipment.MasterEquipment.IsSurfaceRadar);
-
-		bool hasAirRadar = equipments
-			.Any(equipment => equipment.MasterEquipment.IsAirRadar);
+	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
+	{ 
+		IList<IEquipmentData> equipments = ship.AllSlotInstance.Where(eq => eq != null).ToList()!;
 
 		List<EquipmentId> distinctEquipments = equipments
 			.Select(equipment => equipment.MasterEquipment.EquipmentId)
@@ -65,12 +53,12 @@ public static class EquipmentFitBonus
 			{
 				foreach (FitBonusData fitData in fitPerEquip.Bonuses)
 				{
-					int bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, shipMaster, equipments);
+					int bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
 					if (bonusMultiplier > 0)
 					{
 						if (fitData.Bonuses != null) finalBonusList.Add(bonusMultiplier > 1 ? (fitData.Bonuses * bonusMultiplier) : fitData.Bonuses);
-						if (fitData.BonusesIfLOSRadar != null && hasSurfaceRadar) finalBonusList.Add(fitData.BonusesIfLOSRadar);
-						if (fitData.BonusesIfAirRadar != null && hasAirRadar) finalBonusList.Add(fitData.BonusesIfAirRadar);
+						if (fitData.BonusesIfLOSRadar != null && ship.HasSurfaceRadar()) finalBonusList.Add(fitData.BonusesIfLOSRadar);
+						if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar(1)) finalBonusList.Add(fitData.BonusesIfAirRadar);
 					}
 				}
 			}
