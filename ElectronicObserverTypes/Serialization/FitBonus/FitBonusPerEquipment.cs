@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace ElectronicObserverTypes.Serialization.FitBonus
+namespace ElectronicObserverTypes.Serialization.FitBonus;
+
+public class FitBonusPerEquipment
 {
-    public class FitBonusPerEquipment
-    {
-        [JsonPropertyName("types")] public List<EquipmentTypes>? EquipmentTypes { get; set; }
+	[JsonPropertyName("types")] public List<EquipmentTypes>? EquipmentTypes { get; set; }
 
-        [JsonPropertyName("ids")] public List<EquipmentId>? EquipmentIds { get; set; }
+	[JsonPropertyName("ids")] public List<EquipmentId>? EquipmentIds { get; set; }
 
-		[JsonPropertyName("bonuses")] public List<FitBonusData> Bonuses { get; set; } = new();
-    }
+	[JsonPropertyName("bonuses")] public List<FitBonusData> Bonuses { get; set; } = new();
 }
