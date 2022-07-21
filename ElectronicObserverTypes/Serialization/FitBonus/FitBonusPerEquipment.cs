@@ -9,6 +9,6 @@ namespace ElectronicObserverTypes.Serialization.FitBonus
 
         [JsonPropertyName("ids")] public List<EquipmentId>? EquipmentIds { get; set; }
 
-        [JsonPropertyName("bonuses")] public List<FitBonusData>? Bonuses { get; set; }
+		[JsonPropertyName("bonuses")] public List<FitBonusData> Bonuses { get; set; } = new();
     }
 }

@@ -49,7 +49,7 @@ namespace ElectronicObserverTypes.Serialization.FitBonus
         /// <summary>
         /// Bonuses to apply if ship had a radar with LOS >= 5
         /// </summary>
-        [JsonPropertyName("bonusSR")] public FitBonusValue? BonusesIfLOSRadar { get; set; }
+        [JsonPropertyName("bonusSR")] public FitBonusValue? BonusesIfSurfaceRadar { get; set; }
 
         /// <summary>
         /// Bonuses to apply if ship had a radar with AA >= 2

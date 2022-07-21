@@ -57,7 +57,7 @@ public static class EquipmentFitBonus
 					if (bonusMultiplier > 0)
 					{
 						if (fitData.Bonuses != null) finalBonusList.Add(bonusMultiplier > 1 ? (fitData.Bonuses * bonusMultiplier) : fitData.Bonuses);
-						if (fitData.BonusesIfLOSRadar != null && ship.HasSurfaceRadar()) finalBonusList.Add(fitData.BonusesIfLOSRadar);
+						if (fitData.BonusesIfSurfaceRadar != null && ship.HasSurfaceRadar()) finalBonusList.Add(fitData.BonusesIfSurfaceRadar);
 						if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar(1)) finalBonusList.Add(fitData.BonusesIfAirRadar);
 					}
 				}
