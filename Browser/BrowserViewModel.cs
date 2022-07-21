@@ -121,7 +121,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 	public BrowserViewModel(string host, int port, string culture)
 	{
-		System.Diagnostics.Debugger.Launch();
+		// System.Diagnostics.Debugger.Launch();
 
 		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
 
