@@ -109,11 +109,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	private VolumeManager? VolumeManager { get; set; }
 	public int RealVolume { get; set; }
 	public bool IsMuted { get; set; }
-	private float WorkaroundVolume => IsMuted switch
-	{
-		true => 0,
-		_ => RealVolume
-	};
 
 	public CoreWebView2Frame? gameframe { get; private set; }
 	public CoreWebView2Frame? kancolleframe { get; private set; }
@@ -126,7 +121,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 	public BrowserViewModel(string host, int port, string culture)
 	{
-		// System.Diagnostics.Debugger.Launch();
+		System.Diagnostics.Debugger.Launch();
 
 		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
 
@@ -383,12 +378,49 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		Browser.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarted;
 		Browser.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
 		Browser.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
+		Browser.CoreWebView2.IsMuted = Configuration.IsMute;
+		Browser.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		Browser.PreviewKeyDown += Browser_PreviewKeyDown;
 		SetCookie();
 		Browser.CoreWebView2.Navigate(KanColleUrl);
 	}
 
+	private void OnDocumentPlayingAudioChanged(object? sender, object o)
+	{
+		/*
 
+		This fires every time any audio starts playing in WebView2
+		It fires even if WebView2 is muted - the sound process won't exist in that case
+		VolumeProcessInitialized gets used to only run this logic the first time
+
+		SetVolumeState() - reads volume manager state and saves it
+		to BrowserViewModel and config
+		
+		Mute() - toggles volume manager mute and calls SetVolumeState()
+
+		ToolMenu_Other_Volume_ValueChanged() - adjusts volume, removes mute and saves
+		it to config
+
+		todo: describe how exactly the whole process flows
+
+		*/
+		if (VolumeProcessInitialized) return;
+
+		VolumeProcessInitialized = true;
+
+		TryGetVolumeManager();
+
+		// if the browser is muted, it shouldn't spawn a sound process
+		if (VolumeManager is null) return;
+
+		RealVolume = (int)(VolumeManager.Volume * 100);
+		// for some reason WebView2 doesn't remember the old mute state
+		// so we set the manager mute state based on the config
+		VolumeManager.IsMute = Configuration.IsMute;
+		Browser!.CoreWebView2.IsMuted = false;
+	}
+
+	private bool VolumeProcessInitialized { get; set; }
 
 	private void CoreWebView2_ContextMenuRequested(object? sender, CoreWebView2ContextMenuRequestedEventArgs e)
 	{
@@ -551,7 +583,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		});
 
 		IsMuted = Configuration.IsMute;
-		RealVolume = (int)Configuration.Volume;
 
 		// SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
@@ -842,6 +873,9 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 	private void SetVolumeState()
 	{
+		if (!VolumeProcessInitialized) return;
+		if (Browser is null) return;
+
 		try
 		{
 			if (VolumeManager is null)
@@ -851,16 +885,23 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 			if (VolumeManager is not null)
 			{
-				VolumeManager.Volume = WorkaroundVolume / 100;
+				IsMuted = VolumeManager.IsMute;
+				RealVolume = (int)(VolumeManager.Volume * 100);
+				Browser.CoreWebView2.IsMuted = VolumeManager.IsMute;
+			}
+			else
+			{
+				IsMuted = Browser.CoreWebView2.IsMuted;
 			}
 		}
 		catch (Exception)
 		{
 			// 音量データ取得不能時
 			VolumeManager = null;
+			IsMuted = false;
+			RealVolume = 100;
 		}
 
-		Configuration.Volume = RealVolume;
 		Configuration.IsMute = IsMuted;
 		ConfigurationUpdated();
 	}
@@ -922,6 +963,8 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	[ICommand]
 	private void Mute()
 	{
+		if (Browser is null) return;
+
 		if (VolumeManager == null)
 		{
 			TryGetVolumeManager();
@@ -931,20 +974,25 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		{
 			if (VolumeManager is null)
 			{
+				// VolumeManager being null can mean the browser is muted
+				// so the sound process doesn't get created
+				// make sure the browser isn't muted
+				if (Browser.CoreWebView2.IsMuted)
+				{
+					Browser.CoreWebView2.IsMuted = false;
+				}
+
 				System.Media.SystemSounds.Beep.Play();
 			}
 			else
 			{
-				// VolumeManager.ToggleMute();
+				VolumeManager.ToggleMute();
 
-				IsMuted = !IsMuted;
-
-				VolumeManager.Volume = (float)WorkaroundVolume / 100;
 			}
 		}
 		catch (Exception)
 		{
-
+			System.Media.SystemSounds.Beep.Play();
 		}
 
 		SetVolumeState();
@@ -952,6 +1000,8 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 	private void ToolMenu_Other_Volume_ValueChanged()
 	{
+		if (!VolumeProcessInitialized) return;
+
 		if (VolumeManager is null)
 		{
 			TryGetVolumeManager();
@@ -963,7 +1013,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			{
 				IsMuted = false;
 				VolumeManager.IsMute = false;
-				VolumeManager.Volume = WorkaroundVolume / 100;
+				VolumeManager.Volume = RealVolume / 100f;
 				// control.BackColor = System.Drawing.SystemColors.Window;
 			}
 			else
@@ -978,7 +1028,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}
 
 		Configuration.IsMute = IsMuted;
-		Configuration.Volume = RealVolume;
 		ConfigurationUpdated();
 	}
 
