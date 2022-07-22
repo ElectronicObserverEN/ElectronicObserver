@@ -2,7 +2,7 @@
 
 namespace ElectronicObserverTypes.Serialization.FitBonus;
 
-public class FitBonusValue
+public record FitBonusValue
 {
 
 	[JsonPropertyName("houg")] public int Firepower { get; set; }

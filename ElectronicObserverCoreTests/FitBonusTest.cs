@@ -22,6 +22,8 @@ public class FitBonusTest
 	[Fact]
 	public void FitBonusTest1()
 	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
 		IShipData hachijou = new ShipDataMock(Db.MasterShips[ShipId.HachijouKai])
 		{
 			Level = 175,
@@ -51,14 +53,6 @@ public class FitBonusTest
 
 		FitBonusValue finalBonus = hachijou.GetFitBonus(BonusData.FitBonusList);
 
-		Assert.Equal(expectedBonus.ASW, finalBonus.ASW);
-		Assert.Equal(expectedBonus.Accuracy, finalBonus.Accuracy);
-		Assert.Equal(expectedBonus.AntiAir, finalBonus.AntiAir);
-		Assert.Equal(expectedBonus.Armor, finalBonus.Armor);
-		Assert.Equal(expectedBonus.Evasion, finalBonus.Evasion);
-		Assert.Equal(expectedBonus.Firepower, finalBonus.Firepower);
-		Assert.Equal(expectedBonus.LOS, finalBonus.LOS);
-		Assert.Equal(expectedBonus.Range, finalBonus.Range);
-		Assert.Equal(expectedBonus.Torpedo, finalBonus.Torpedo);
+		Assert.Equal(expectedBonus, finalBonus);
 	}
 }
