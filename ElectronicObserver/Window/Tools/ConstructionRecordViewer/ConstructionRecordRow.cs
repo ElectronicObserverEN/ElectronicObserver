@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 public class ConstructionRecordRow
 {
 	public int Index { get; }
-	private int Count { get; }
+	public int Count { get; }
 	public string? CountDisplay => GetRankDisplay(Count, CellTag0);
 	public string? ShipName { get; }
 	private DateTime? Date { get; }
@@ -17,11 +17,11 @@ public class ConstructionRecordRow
 	};
 	public string? Recipe { get; }
 	public string? FlagshipName { get; }
-	private int? DevMats100Count { get; }
+	public int? DevMats100Count { get; }
 	public string? DevMats100CountDisplay => GetRankDisplay(DevMats100Count, CellTag5);
-	private int? DevMats20Count { get; }
+	public int? DevMats20Count { get; }
 	public string? DevMats20CountDisplay => GetRankDisplay(DevMats20Count, CellTag6);
-	private int? DevMats1Count { get; }
+	public int? DevMats1Count { get; }
 	public string? DevMats1CountDisplay => GetRankDisplay(DevMats1Count, CellTag7);
 	public string CellTag1 { get; set; }
 	public string CellTag3 { get; set; }

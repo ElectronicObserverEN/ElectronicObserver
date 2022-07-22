@@ -18,9 +18,10 @@ public class DropRecordRow
 	};
 	public string MapDescription { get; }
 	public BattleRank? Rank { get; }
-	private int? CountS { get; }
-	private int? CountA { get; }
-	private int? CountB { get; }
+	// these 3 need to be public for sorting to work
+	public int? CountS { get; }
+	public int? CountA { get; }
+	public int? CountB { get; }
 
 	public string? RankDisplayS => GetRankDisplay(CountS, RateOrMaxCountS);
 	public string? RankDisplayA => GetRankDisplay(CountA, RateOrMaxCountA);

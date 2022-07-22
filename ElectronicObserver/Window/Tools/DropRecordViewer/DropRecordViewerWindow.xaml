@@ -374,7 +374,7 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.Tries, Source={StaticResource Proxy}}"
-					SortMemberPath="MergedRate"
+					SortMemberPath="RateOrMaxCountTotal"
 					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
