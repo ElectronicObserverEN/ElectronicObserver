@@ -80,7 +80,7 @@ public static class ShipDataExtensions
 	public static bool HasSurfaceRadar(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsSurfaceRadar is true);
 
-	public static bool HasAirRadar(this IShipData ship, int count) => ship.AllSlotInstance
+	public static bool HasAirRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsAirRadar is true) >= count;
 
 	public static bool HasRadarGfcs(this IShipData ship, int count) => ship.AllSlotInstance
