@@ -378,11 +378,6 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				EquipmentCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
 			EquipmentCount.Tag = RealEquipmentCount >= db.Admiral.MaxEquipmentCount;
-			if (apiname == "api_port/port")
-			{
-				db.Battle.DroppedEquipmentCount = 0;
-			}
-
 		}
 		// FlowPanelFleet.ResumeLayout();
 

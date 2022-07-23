@@ -376,7 +376,7 @@ public class BattleManager : APIWrapper
 				BattleNight = null;
 				Result = null;
 				BattleMode = BattleModes.Undefined;
-				DroppedShipCount = 0;
+				DroppedShipCount = DroppedEquipmentCount = 0;
 				DroppedItemCount.Clear();
 				SpecialAttackCount.Clear();
 				break;
