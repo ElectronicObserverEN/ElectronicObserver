@@ -56,7 +56,6 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	public FontFamily SubFont { get; set; }
 	public float SubFontSize { get; set; }
 	public SolidColorBrush SubFontColor { get; set; }
-
 	public HeadquarterItemViewModel AdmiralName { get; } = new();
 	public HeadquarterItemViewModel AdmiralComment { get; } = new();
 	public HQLevelViewModel HQLevel { get; } = new();
@@ -379,6 +378,10 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				EquipmentCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
 			EquipmentCount.Tag = RealEquipmentCount >= db.Admiral.MaxEquipmentCount;
+			if (apiname == "api_port/port")
+			{
+				db.Battle.DroppedEquipmentCount = 0;
+			}
 
 		}
 		// FlowPanelFleet.ResumeLayout();
