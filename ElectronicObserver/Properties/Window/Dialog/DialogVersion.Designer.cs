@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogVersion {
@@ -79,7 +79,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gre4bee, MyAngelKamikaze.
+        ///   Looks up a localized string similar to gre4bee, MyAngelKamikaze, Jebzou.
         /// </summary>
         public static string Maintainers {
             get {
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://github.com/gre4bee/ElectronicObserver.
+        ///   Looks up a localized string similar to https://github.com/ElectronicObserverEN/ElectronicObserver.
         /// </summary>
         public static string TextInformation {
             get {

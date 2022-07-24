@@ -277,6 +277,17 @@ public static class ShipDataExtensions
 			(EquipmentId)460)
 		>= count;
 
+	public static bool HasSonar(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsSonar() is true) >= count;
+
+	public static bool HasAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsAntiSubmarineAircraft is true) >= count;
+
+	public static bool HasSpecialAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsAntiSubmarineAircraft is true &&
+			e.MasterEquipment.ASW >= 7)
+		>= count;
+
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
 		ShipId.IseKaiNi => true,
@@ -402,74 +413,6 @@ public static class ShipDataExtensions
 		};
 	}
 
-	public static bool CanDoOpeningAsw(this IShipData ship)
-	{
-		IEnumerable<IEquipmentData?> eqs = ship.AllSlotInstance
-			.Where(eq => eq != null);
-
-		switch (ship.MasterShip.ShipId)
-		{
-			case ShipId.TaiyouKai
-			or ShipId.TaiyouKaiNi
-			or ShipId.ShinyouKai
-			or ShipId.ShinyouKaiNi
-			or ShipId.KagaKaiNiGo:
-				return true;
-
-			case ShipId.HyuugaKaiNi:
-				// カ号観測機, オ号観測機改, オ号観測機改二
-				if (eqs.Count(eq => eq!.EquipmentId is
-						EquipmentId.Autogyro_KaTypeObservationAutogyro or
-						EquipmentId.Autogyro_OTypeObservationAutogyroKai or
-						EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi)
-					>= 2)
-				{
-					return true;
-				}
-
-				// S-51J, S-51J改
-				if (eqs.Any(eq => eq!.EquipmentId is
-						EquipmentId.Autogyro_S51J or
-						EquipmentId.Autogyro_S51JKai))
-				{
-					return true;
-				}
-
-				return false;
-		}
-
-		if (ship.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && ship.ASWBase > 0)      // 護衛空母
-		{
-			bool hasASWAircraft = eqs.Any(eq =>
-				(eq.MasterEquipment.CategoryType is EquipmentTypes.CarrierBasedTorpedo && eq.MasterEquipment.ASW >= 7) ||
-				eq.MasterEquipment.CategoryType is EquipmentTypes.ASPatrol or EquipmentTypes.Autogyro);
-
-			if (hasASWAircraft && ship.ASWTotal >= 65)
-			{
-				return true;
-			}
-
-			if (hasASWAircraft && ship.ASWTotal >= 50 && eqs.Any(eq => eq.MasterEquipment.CategoryType == EquipmentTypes.SonarLarge))
-			{
-				return true;
-			}
-		}
-
-		bool hasSonar = eqs.Any(eq => eq.MasterEquipment.IsSonar);
-		bool needSonar = !(
-			ship.MasterShip.ShipType == ShipTypes.Escort &&
-			ship.ASWTotal >= 75 &&
-			(ship.ASWTotal - ship.ASWBase) >= 4);
-
-		if (needSonar && !hasSonar)
-			return false;
-
-		if (ship.MasterShip.ShipType == ShipTypes.Escort)
-			return ship.ASWTotal >= 60;
-
-		return ship.ASWTotal >= 100;
-	}
-
 	public static bool CanAttackSubmarine(this IShipData ship) => ship.MasterShip.ShipType switch
 	{
 		ShipTypes.Escort or
@@ -485,11 +428,11 @@ public static class ShipDataExtensions
 		ShipTypes.AviationBattleship or
 		ShipTypes.SeaplaneTender or
 		ShipTypes.AmphibiousAssaultShip
-			=> ship.AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft),
+			=> ship.AllSlotInstance.Any(eq => eq is { MasterEquipment.IsAntiSubmarineAircraft: true }),
 
 		ShipTypes.AircraftCarrier =>
 			ship.MasterShip.ShipId is ShipId.KagaKaiNiGo &&
-			ship.AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft),
+			ship.AllSlotInstance.Any(eq => eq is { MasterEquipment.IsAntiSubmarineAircraft: true }),
 
 		_ => false
 	};
@@ -502,4 +445,74 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
 	{ ShipClassTyped: ShipClass.Fletcher };
+
+	public static bool CanDoOpeningAsw(this IShipData ship) => ship switch
+	{
+		_ when !ship.CanAttackSubmarine() => false,
+		_ when ship.CanNoSonarOpeningAsw() => true,
+
+		{ MasterShip.ShipId: ShipId.HyuugaKaiNi } => ship.HyuugaK2OpeningAswCondition(),
+
+		// if they can attack subs, they can do opening ASW
+		{ MasterShip.ShipId: ShipId.TaiyouKai } or
+		{ MasterShip.ShipId: ShipId.TaiyouKaiNi } or
+		{ MasterShip.ShipId: ShipId.ShinyouKai } or
+		{ MasterShip.ShipId: ShipId.ShinyouKaiNi } or
+		{ MasterShip.ShipId: ShipId.UnyouKai } or
+		{ MasterShip.ShipId: ShipId.UnyouKaiNi } or
+		{ MasterShip.ShipId: ShipId.KagaKaiNiGo }
+			=> true,
+
+		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
+		{
+			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft(),
+			>= 65 => ship.HasSpecialAntiSubmarineAircraft(),
+			>= 50 => ship.HasSonar() && ship.HasSpecialAntiSubmarineAircraft(),
+
+			_ => false,
+		},
+
+		{ MasterShip.ShipId: ShipId.ShinshuuMaruKai } or
+		{ MasterShip.ShipId: ShipId.FusouKaiNi } or
+		{ MasterShip.ShipId: ShipId.YamashiroKaiNi } or
+		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu }
+			=> ship.HasSonar() && ship.HasAntiSubmarineAircraft() && ship.ASWTotal >= 100,
+
+		{ MasterShip.ShipType: ShipTypes.Destroyer } or
+		{ MasterShip.ShipType: ShipTypes.LightCruiser } or
+		{ MasterShip.ShipType: ShipTypes.TrainingCruiser } or
+		{ MasterShip.ShipType: ShipTypes.TorpedoCruiser } or
+		{ MasterShip.ShipType: ShipTypes.Transport }
+			=> ship.HasSonar() && ship.ASWTotal >= 100,
+
+		{ MasterShip.ShipType: ShipTypes.Escort } => ship.ASWTotal switch
+		{
+			>= 75 => ship.AllSlotInstance.Sum(e => e?.MasterEquipment.ASW ?? 0) >= 4,
+			>= 60 => ship.HasSonar(),
+
+			_ => false,
+		},
+
+		_ => false,
+	};
+
+	private static bool HyuugaK2OpeningAswCondition(this IShipData ship)
+	{
+		List<IEquipmentData?> eqs = ship.AllSlotInstance
+			.Where(eq => eq is not null)
+			.ToList();
+
+		if (eqs.Count(eq => eq!.EquipmentId is
+				EquipmentId.Autogyro_KaTypeObservationAutogyro or
+				EquipmentId.Autogyro_OTypeObservationAutogyroKai or
+				EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi)
+			>= 2)
+		{
+			return true;
+		}
+
+		return eqs.Any(eq => eq!.EquipmentId is
+			EquipmentId.Autogyro_S51J or
+			EquipmentId.Autogyro_S51JKai);
+	}
 }

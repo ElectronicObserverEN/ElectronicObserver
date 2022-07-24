@@ -547,7 +547,7 @@ public partial class FormMainViewModel : ObservableObject
 			{
 				ProcessStartInfo psi = new()
 				{
-					FileName = @"https://github.com/gre4bee/ElectronicObserver/issues/71",
+					FileName = @"https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71",
 					UseShellExecute = true
 				};
 				Process.Start(psi);
@@ -1669,7 +1669,7 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			ProcessStartInfo psi = new()
 			{
-				FileName = "https://github.com/gre4bee/ElectronicObserver/issues",
+				FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/issues",
 				UseShellExecute = true
 			};
 			Process.Start(psi);

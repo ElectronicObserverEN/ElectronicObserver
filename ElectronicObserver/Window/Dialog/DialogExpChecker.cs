@@ -8,6 +8,8 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Mocks;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpChecker;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -41,6 +43,7 @@ public partial class DialogExpChecker : Form
 		public string Name;
 		public bool IsSonar;
 		public int Count;
+		public IEquipmentDataMaster? Equipment { get; set; }
 
 		public override string ToString() => Name;
 	}
@@ -348,7 +351,7 @@ public partial class DialogExpChecker : Form
 					_ => string.Join(", ", equipmentPairs)
 				}
 			);
-			
+
 			row.Cells[ColumnEquipment.Index].ToolTipText = equipmentPairs switch
 			{
 				null => "-",
@@ -372,7 +375,290 @@ public partial class DialogExpChecker : Form
 		GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, {Translation.ASW} {selectedShip.ASWBase} ({Translation.Modernization}+{selectedShip.ASWModernized})";
 	}
 
+	/*
+	https://github.com/ElectronicObserverEN/ElectronicObserver/issues/212
 
+	attempt to fix the opening ASW equipment requirements
+
+	because there are a lot of aircraft with ASW, and number of slots on CV(L)
+	the number of possible combinations becomes too large and causes terrible performance
+
+	attempts to fix performance are by limiting aircraft to the top 5 by ASW value
+	and limiting CV(L) slots to 3
+
+	performance for CV(L) is okayish with the limits, but will probably be bad on older CPUs
+
+	BBV performance is still not good
+	mostly because limiting the slots like with CV(L) isn't viable, because BBV need all slots
+	to reach opening ASW values on lower levels
+	*/
+	private void UpdateLevelViewNew()
+	{
+		static IEnumerable<string> GroupedDisplay(ASWEquipmentData[] equipment) => equipment
+			.Where(b => b.ID > 0)
+			.GroupBy(b => b.ID)
+			.Select(b => b.Count() switch
+			{
+				1 => b.First().Name,
+				_ => $"{b.First().Name}x{b.Count()}",
+			});
+
+		static IEnumerable<string> GetEquipmentDisplay(List<ASWEquipmentData[]> equipmentCombinations) =>
+			equipmentCombinations
+				.OrderBy(a => a.Count(b => b.ID > 0))
+				.Select(a => $"[{string.Join(", ", GroupedDisplay(a))}]");
+
+		ShipData? selectedShip = (TextShip.SelectedItem as ComboShipData)?.Ship;
+
+		if (selectedShip == null)
+		{
+			System.Media.SystemSounds.Asterisk.Play();
+			return;
+		}
+
+		ShipDataMock mockShip = new(selectedShip.MasterShip)
+		{
+			Level = 175,
+			ASWModernized = selectedShip.ASWModernized,
+		};
+
+		LevelView.SuspendLayout();
+
+		LevelView.Rows.Clear();
+
+		Dictionary<int, List<ASWEquipmentData[]>> allPossibleSetups = new();
+		if (ShowAllASWEquipments.Checked)
+		{
+			IEnumerable<IEquipmentData> Top5(IEnumerable<IEquipmentData> equipment)
+			{
+				List<EquipmentId> top5 = equipment
+					.DistinctBy(e => e.EquipmentId)
+					.OrderByDescending(e => e.MasterEquipment.ASW)
+					.Take(5)
+					.Select(e => e.EquipmentId)
+					.ToList();
+
+				return equipment.Where(e => top5.Contains(e.EquipmentId));
+			}
+
+			List<IEquipmentData> equipment = KCDatabase.Instance.Equipments.Values
+				.Where(eq => eq.MasterEquipment.CategoryType is
+					EquipmentTypes.Sonar or
+					EquipmentTypes.DepthCharge ||
+					eq.MasterEquipment.IsAntiSubmarineAircraft)
+				.Where(eq => selectedShip.MasterShip.EquippableCategoriesTyped
+					.Contains(eq.MasterEquipment.CategoryType))
+				.GroupBy(eq => eq.MasterEquipment.CategoryType)
+				.SelectMany(g => g.Key switch
+				{
+					EquipmentTypes.SeaplaneBomber or
+					EquipmentTypes.SeaplaneBomber or
+					EquipmentTypes.CarrierBasedTorpedo or
+					EquipmentTypes.CarrierBasedBomber
+						=> Top5(g),
+
+					_ => g,
+				})
+				.ToList();
+
+			Dictionary<EquipmentId, EquipmentDataMock> mocks = equipment
+				.Select(e => new EquipmentDataMock(e.MasterEquipment))
+				.DistinctBy(e => e.EquipmentId)
+				.ToDictionary(e => e.EquipmentId, e => e);
+
+			ASWEquipmentData[] had = equipment
+				.GroupBy(eq => eq.EquipmentID)
+				.Select(g => new ASWEquipmentData
+				{
+					ID = g.Key,
+					ASW = g.First().MasterEquipment.ASW,
+					Name = g.First().MasterEquipment.NameEN,
+					IsSonar = g.First().MasterEquipment.IsSonar,
+					Count = g.Count(),
+					Equipment = g.First().MasterEquipment,
+				})
+				.Concat(new[]
+				{
+					new ASWEquipmentData
+					{
+						ID = -1,
+						ASW = 0,
+						Name = "",
+						Count = 99,
+						IsSonar = false,
+					},
+				})
+				.OrderByDescending(a => a.ASW)
+				.ToArray();
+
+			int[] stack = Enumerable.Repeat(0, selectedShip.MasterShip.ShipType switch
+			{
+				ShipTypes.AircraftCarrier => Math.Min(3, selectedShip.SlotSize),
+				ShipTypes.LightAircraftCarrier => Math.Min(3, selectedShip.SlotSize),
+
+				_ => selectedShip.SlotSize,
+			}).ToArray();
+
+			if (had.Length > 0 && stack.Length > 0)
+			{
+
+				while (stack[0] != -1)
+				{
+					var convert = stack.Select(i => had[i]).ToArray();
+
+					mockShip.AllSlotInstance = convert
+						.Where(e => e.Equipment is not null)
+						.Select(e => mocks[e.Equipment!.EquipmentId])
+						.Cast<IEquipmentData>()
+						.ToList();
+
+					mockShip.AswFit = mockShip.GetFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList).ASW;
+
+					bool hasEquipment = stack
+						.GroupBy(s => s)
+						.All(s => had[s.Key].Count >= s.Count());
+
+					if (hasEquipment && mockShip.CanDoOpeningAsw())
+					{
+						int aswSum = mockShip.ASWTotal - mockShip.ASWBase;
+
+						if (allPossibleSetups.ContainsKey(aswSum))
+						{
+							int equipmentCount = convert.Count(e => e.ID is not -1);
+
+							// count how many entries for the current aswsum use the same number of equipment
+							int? entryCount = allPossibleSetups[aswSum]
+								.GroupBy(a => a.Count(e => e.ID is not -1))
+								.FirstOrDefault(g => g.Key == equipmentCount)
+								?.Count();
+
+							// don't display more than 6 different combinations for a given equipment count
+							if (entryCount is null or < 6)
+							{
+								allPossibleSetups[aswSum].Add(convert);
+							}
+						}
+						else
+						{
+							allPossibleSetups.Add(aswSum, new List<ASWEquipmentData[]>
+							{
+								convert,
+							});
+						}
+					}
+
+					for (int p = stack.Length - 1; p >= 0; p--)
+					{
+						stack[p]++;
+						if (stack[p] < had.Length)
+							break;
+						stack[p] = -1;
+					}
+					for (int p = 1; p < stack.Length; p++)
+					{
+						if (stack[p] == -1)
+							stack[p] = stack[p - 1];
+					}
+				}
+			}
+		}
+
+
+
+		var aswdata = selectedShip.MasterShip.ASW;
+		int aswmin = aswdata.Minimum;
+		int aswmax = aswdata.Maximum;
+		int aswmod = (int)ASWModernization.Value;
+		int currentlv = selectedShip.Level;
+		int minlv = ShowAllLevel.Checked ? 1 : (currentlv + 1);
+		int unitexp = Math.Max((int)ExpUnit.Value, 1);
+		var remodelLevelTable = GetRemodelLevelTable(selectedShip.MasterShip);
+
+
+		if (!aswdata.IsAvailable)
+			LabelAlert.Text = Translation.AswUnknown;
+		else if (!aswdata.IsDetermined)
+			LabelAlert.Text = Translation.AswApproximated;
+		else
+			LabelAlert.Text = "";
+
+
+		var rows = new DataGridViewRow[ExpTable.ShipMaximumLevel - (minlv - 1)];
+
+		for (int lv = minlv; lv <= ExpTable.ShipMaximumLevel; lv++)
+		{
+			int asw = aswmin + ((aswmax - aswmin) * lv / 99) + aswmod;
+
+			int needexp = ExpTable.ShipExp[lv].Total - selectedShip.ExpTotal;
+
+			mockShip.Level = lv;
+
+			List<ASWEquipmentData[]>? setups = null;
+
+			foreach ((_, List<ASWEquipmentData[]> value) in allPossibleSetups.OrderBy(k => k.Key))
+			{
+				List<ASWEquipmentData[]> current = value
+					.Where(k =>
+					{
+						mockShip.AllSlotInstance = k
+							.Where(e => e.Equipment is not null)
+							.Select(e => new EquipmentDataMock(e.Equipment!))
+							.Cast<IEquipmentData>()
+							.ToList();
+
+						return mockShip.CanDoOpeningAsw();
+					})
+					.ToList();
+
+				if (current.Any())
+				{
+					setups = current;
+					break;
+				}
+			}
+
+			IEnumerable<string>? equipmentPairs = setups switch
+			{
+				{ } => GetEquipmentDisplay(setups.ToList()),
+				_ => null,
+			};
+
+			var row = new DataGridViewRow();
+			row.CreateCells(LevelView);
+			row.SetValues(
+				lv,
+				Math.Max(needexp, 0),
+				Math.Max((int)Math.Ceiling((double)needexp / unitexp), 0),
+				!aswdata.IsAvailable ? -1 : asw,
+				!aswdata.IsAvailable ? "-" : equipmentPairs switch
+				{
+					null => "-",
+					_ => string.Join(", ", equipmentPairs)
+				}
+			);
+
+			row.Cells[ColumnEquipment.Index].ToolTipText = equipmentPairs switch
+			{
+				null => "-",
+				_ => string.Join("\n", equipmentPairs)
+			};
+
+			if (remodelLevelTable.Contains(lv))
+			{
+				row.Cells[ColumnLevel.Index].Style = CellStyleModernized;
+			}
+
+			rows[lv - minlv] = row;
+		}
+
+		LevelView.Rows.AddRange(rows);
+
+		LevelView.ResumeLayout();
+
+
+		Text = DefaultTitle + " - " + selectedShip.NameWithLevel;
+		GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, {Translation.ASW} {selectedShip.ASWBase} ({Translation.Modernization}+{selectedShip.ASWModernized})";
+	}
 
 	private void SearchInFleet_CheckedChanged(object sender, EventArgs e)
 	{

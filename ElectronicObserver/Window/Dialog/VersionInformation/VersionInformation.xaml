@@ -36,7 +36,7 @@
 
 			<TextBlock>
 				<Run x:Name="TextProjectSite" Text="Project Site (Bug Reports,Suggestions)" />
-				<Hyperlink NavigateUri="https://github.com/gre4bee/ElectronicObserver" RequestNavigate="OpenHyperlink">
+				<Hyperlink NavigateUri="https://github.com/ElectronicObserverEN/ElectronicObserver" RequestNavigate="OpenHyperlink">
 					github
 				</Hyperlink>
 				<Hyperlink NavigateUri="https://discord.gg/6ZvX8DG" RequestNavigate="OpenHyperlink">
@@ -49,7 +49,7 @@
 
 			<TextBlock>
 				<Run x:Name="TextModifiedBy" Text="Modified by:" />
-				<Run x:Name="TextMaintainers" Text="gre4bee, MyAngelKamikaze" />
+				<Run x:Name="TextMaintainers" Text="gre4bee, MyAngelKamikaze, Jebzou" />
 			</TextBlock>
 		</StackPanel>
 

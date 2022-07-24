@@ -102,7 +102,7 @@ public static class SoftwareInformation
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
 					{
-						FileName = "https://github.com/gre4bee/ElectronicObserver/releases/latest",
+						FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest",
 						UseShellExecute = true
 					};
 					Process.Start(psi);

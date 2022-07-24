@@ -459,7 +459,7 @@ namespace ElectronicObserver.Properties.Window {
         /// <summary>
         ///   Looks up a localized string similar to 有効なレイアウトファイルがあるかどうか確認してください。
         ///バージョン5.0.0ではレイアウトが壊れたため、それ以前に作成したレイアウトは動作しなくなりました。
-        ///詳細や既存のレイアウトの取得については、こちらのgithub issueをご覧ください： https://github.com/gre4bee/ElectronicObserver/issues/71
+        ///詳細や既存のレイアウトの取得については、こちらのgithub issueをご覧ください： https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71
         ///
         ///このgithub issueを開きますか？.
         /// </summary>

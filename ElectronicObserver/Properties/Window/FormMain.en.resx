@@ -410,7 +410,7 @@ Are you sure?</value>
   <data name="LayoutLoadFailed" xml:space="preserve">
     <value>Please check if you have a valid layout file.
 Version 5.0.0 has broken layouts, so layouts created before that will no longer work.
-For more information or to get an existing layout, please see this github issue: https://github.com/gre4bee/ElectronicObserver/issues/71
+For more information or to get an existing layout, please see this github issue: https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71
 
 Do you want to open this github issue?</value>
   </data>
