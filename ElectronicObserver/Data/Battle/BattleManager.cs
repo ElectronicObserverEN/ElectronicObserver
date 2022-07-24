@@ -512,7 +512,7 @@ public class BattleManager : APIWrapper
 
 				IEnumerable<EquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch
 				{
-					<= 1 => null,
+					< 1 => null,
 					_ => KCDatabase.Instance.MasterEquipments[i]
 				});
 
