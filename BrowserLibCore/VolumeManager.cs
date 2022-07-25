@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Runtime.InteropServices;
 
 namespace BrowserLibCore;
@@ -103,20 +104,58 @@ public class VolumeManager
 	private static ISimpleAudioVolume? GetVolumeObject(uint processID) => GetVolumeObject(pid => processID == pid);
 
 
+	private static Dictionary<uint, string> GetCommandLine(string processName)
+	{
+		string query =
+			"SELECT ProcessId, CommandLine " +
+			"FROM Win32_Process " +
+			$"WHERE Name = \"{processName}\"" +
+			"AND CommandLine LIKE \"%--utility-sub-type=audio.mojom.AudioService%\"";
+
+		using ManagementObjectSearcher searcher = new(query);
+		using ManagementObjectCollection objects = searcher.Get();
+
+		return objects.Cast<ManagementBaseObject>()
+			.Select(o => (Id: (uint)o["ProcessId"], Args: (string)o["CommandLine"]))
+			.ToDictionary(t => t.Id, t => t.Args);
+	}
+
 	/// <summary>
 	/// 音量操作のためのデータを取得します。
 	/// </summary>
 	/// <param name="processName">対象のプロセス名。</param>
 	/// <returns>データ。取得に失敗した場合は null。</returns>
-	private static ISimpleAudioVolume? GetVolumeObject(string processName, out uint processID)
+	private static ISimpleAudioVolume? GetVolumeObject(string processName, out uint processID, string proxySettings)
 	{
-		Process currentProcess = Process.GetCurrentProcess();
+		// Process currentProcess = Process.GetCurrentProcess();
 		// https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/process-model?tabs=csharp#processes-in-the-webview2-runtime
 		// EOBrowser -> WebView2 process -> WebView2 utility process (sound)
 		// need to find the WebView2 processes whose grandparent is EOBrowser
+
+		// it looks like the above assumption is wrong
+		// somehow explorer can be the parent of the WebView2 process
+
+		/*
 		List<Process> processes = Process.GetProcessesByName(processName)
 			.Select(p => (Process: p, Parent: GetParentProcess(p)))
 			.Where(t => t.Parent is not null && GetParentProcess(t.Parent)?.Id == currentProcess.Id)
+			.Select(t => t.Process)
+			.ToList();
+		*/
+
+		Dictionary<uint, string> webView2AudioProcessArgs = GetCommandLine($"{processName}.exe");
+
+		string? TryGetArgs(uint pid)
+		{
+			webView2AudioProcessArgs.TryGetValue(pid, out string? value);
+
+			return value;
+		}
+
+		List<Process> processes = Process.GetProcessesByName(processName)
+			.Select(p => (Process: p, Args: TryGetArgs((uint)p.Id)))
+			.Where(t => t.Args is not null)
+			.Where(t => t.Args!.Contains(proxySettings))
 			.Select(t => t.Process)
 			.ToList();
 
@@ -134,9 +173,9 @@ public class VolumeManager
 		return volume;
 	}
 
-	public static VolumeManager? CreateInstanceByProcessName(string processName)
+	public static VolumeManager? CreateInstanceByProcessName(string processName, string proxySettings)
 	{
-		var volume = GetVolumeObject(processName, out uint processID);
+		var volume = GetVolumeObject(processName, out uint processID, proxySettings);
 		if (volume != null)
 		{
 			Marshal.ReleaseComObject(volume);

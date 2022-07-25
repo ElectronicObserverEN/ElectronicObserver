@@ -868,7 +868,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 	private void TryGetVolumeManager()
 	{
-		VolumeManager = VolumeManager.CreateInstanceByProcessName("msedgewebview2");
+		VolumeManager = VolumeManager.CreateInstanceByProcessName("msedgewebview2", ProxySettings);
 	}
 
 	private void SetVolumeState()
