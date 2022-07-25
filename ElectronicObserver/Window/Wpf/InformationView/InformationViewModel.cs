@@ -488,7 +488,7 @@ public class InformationViewModel : AnchorableViewModel
 								sb.AppendLine(ConstantsRes.DevMat + "+" + count);
 								break;
 							case 4:
-								sb.AppendLine(KCDatabase.Instance.MasterUseItems[id].Name + "+" + count);
+								sb.AppendLine(KCDatabase.Instance.MasterUseItems[id].NameTranslated + "+" + count);
 								break;
 							case 5:
 								sb.AppendLine(ConstantsRes.FurnitureCoin + "+" + count);
