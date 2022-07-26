@@ -440,6 +440,7 @@
 		<Compile Remove="Observer\kcsapi\api_start2.cs" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Remove="Assets\**\*.png" />
 		<None Remove="Splashscreen.png" />
 	</ItemGroup>
 	<ItemGroup>
@@ -454,6 +455,9 @@
 			<WrapperTool>tlbimp</WrapperTool>
 			<Isolated>false</Isolated>
 		</COMReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Assets\**\*.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<SplashScreen Include="SplashScreen.png" />

@@ -267,4 +267,7 @@ Range: {20} / Speed: {21}
   <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
     <value>Copy All Equip (fleet analysis spreadsheet)</value>
   </data>
+  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
+    <value>(right click to open encyclopedia)</value>
+  </data>
 </root>

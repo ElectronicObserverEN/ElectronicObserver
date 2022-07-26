@@ -12,6 +12,7 @@
 				<ui:ThemeResources AccentColor="DodgerBlue" RequestedTheme="Dark" />
 				<ui:XamlControlsResources UseCompactResources="True" />
 				<ui:IntellisenseResources />
+				<ResourceDictionary Source="Icons.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<system:Boolean x:Key="AutoHideScrollBars">True</system:Boolean>

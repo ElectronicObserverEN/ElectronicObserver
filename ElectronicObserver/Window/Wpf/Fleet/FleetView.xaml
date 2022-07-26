@@ -210,19 +210,74 @@
 										<ColumnDefinition Width="Auto" SharedSizeGroup="ShipEquipment" />
 									</Grid.ColumnDefinitions>
 
-									<Border
-										Grid.Column="0"
-										DataContext="{Binding Name}"
-										ToolTip="{Binding ToolTip}"
-										>
+									<Border Grid.Column="0">
+										<Border.ToolTip>
+											<StackPanel>
+												<TextBlock Text="{Binding ShipName}" />
+
+												<views:ToolTipStat
+													Base="{Binding Ship.FirepowerBase}"
+													Icon="{StaticResource Firepower}"
+													Total="{Binding Ship.FirepowerTotal}"
+													/>
+
+												<views:ToolTipStat
+													Base="{Binding Ship.TorpedoBase}"
+													Icon="{StaticResource Torpedo}"
+													Total="{Binding Ship.TorpedoTotal}"
+													/>
+
+												<views:ToolTipStat
+													Base="{Binding Ship.AABase}"
+													Icon="{StaticResource AntiAir}"
+													Total="{Binding Ship.AATotal}"
+													/>
+
+												<views:ToolTipStat
+													Base="{Binding Ship.ArmorBase}"
+													Icon="{StaticResource Armor}"
+													Total="{Binding Ship.ArmorTotal}"
+													/>
+
+												<views:ToolTipStat
+													Base="{Binding Ship.ASWBase}"
+													Icon="{StaticResource AntiSubmarine}"
+													Total="{Binding Ship.ASWTotal}"
+													/>
+
+												<views:ToolTipStat
+													Base="{Binding Ship.EvasionBase}"
+													Icon="{StaticResource Evasion}"
+													Total="{Binding Ship.EvasionTotal}"
+													/>
+
+												<views:ToolTipStat
+													Base="{Binding Ship.LOSBase}"
+													Icon="{StaticResource Los}"
+													Total="{Binding Ship.LOSTotal}"
+													/>
+
+												<views:ToolTipStat Base="{Binding Ship.LuckTotal}" Icon="{StaticResource Luck}" />
+
+												<views:ToolTipStat Base="{Binding EquipmentAccuracy}" Icon="{StaticResource Accuracy}" />
+
+												<views:ToolTipStat Base="{Binding EquipmentBomber}" Icon="{StaticResource Bomber}" />
+
+												<views:ToolTipStat Base="{Binding Ship.Range, Converter={StaticResource RangeConverter}}" Icon="{StaticResource Range}" />
+
+												<views:ToolTipStat Base="{Binding Ship.Speed, Converter={StaticResource SpeedConverter}}" Icon="{StaticResource Speed}" />
+
+												<TextBlock Text="{Binding FormFleet.RightClickToOpenEncyclopedia}" />
+											</StackPanel>
+										</Border.ToolTip>
 										<Border.InputBindings>
-											<MouseBinding Command="{Binding OpenShipEncyclopediaCommand}" MouseAction="RightClick" />
+											<MouseBinding Command="{Binding Name.OpenShipEncyclopediaCommand}" MouseAction="RightClick" />
 										</Border.InputBindings>
-										<StackPanel Background="{Binding Background}">
+										<StackPanel Background="{Binding Name.Background}">
 											<TextBlock
 												Margin="2"
-												Foreground="{Binding Foreground}"
-												Text="{Binding Text}"
+												Foreground="{Binding Name.Foreground}"
+												Text="{Binding Name.Text}"
 												/>
 										</StackPanel>
 									</Border>

@@ -372,6 +372,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (右クリックで図鑑).
+        /// </summary>
+        public static string RightClickToOpenEncyclopedia {
+            get {
+                return ResourceManager.GetString("RightClickToOpenEncyclopedia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}{1} {2}
         ///火力: {3}/{4}
         ///雷装: {5}/{6}

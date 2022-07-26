@@ -247,4 +247,7 @@
   <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
     <value>艦隊分析スプレッドシート全装備コピー</value>
   </data>
+  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
+    <value>(右クリックで図鑑)</value>
+  </data>
 </root>

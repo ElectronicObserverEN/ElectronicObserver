@@ -54,12 +54,7 @@ public class FleetItemViewModel : ObservableObject
 		// Name.MouseDown += Name_MouseDown;
 		// Name.ResumeLayout();
 
-		Level = new()
-		{
-			Value = 0,
-			MaximumValue = ExpTable.ShipMaximumLevel,
-			ValueNext = 0
-		};
+		Level = new() { Value = 0, MaximumValue = ExpTable.ShipMaximumLevel, ValueNext = 0 };
 		// Level.SuspendLayout();
 		// Level.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
 		// Level.MainFontColor = parent.MainFontColor;
@@ -73,10 +68,7 @@ public class FleetItemViewModel : ObservableObject
 		// Level.MouseDown += Level_MouseDown;
 		// Level.ResumeLayout();
 
-		HP = new()
-		{
-			UsePrevValue = false,
-		};
+		HP = new() { UsePrevValue = false, };
 		// HP.SuspendUpdate();
 		// HP.Anchor = AnchorStyles.Left;
 		// HP.MaximumDigit = 999;
@@ -89,10 +81,7 @@ public class FleetItemViewModel : ObservableObject
 		// HP.Visible = false;
 		// HP.ResumeUpdate();
 
-		Condition = new()
-		{
-			Text = "*",
-		};
+		Condition = new() { Text = "*", };
 		// Condition.SuspendLayout();
 		// Condition.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 		// Condition.ForeColor = parent.MainFontColor;
@@ -146,44 +135,69 @@ public class FleetItemViewModel : ObservableObject
 		Equipments.Font = Configuration.Config.UI.SubFont;
 	}
 
+	public ShipData? Ship { get; set; }
+
+	public string? ShipName => Ship switch
+	{
+		{ } ship => Ship.SallyArea switch
+		{
+			> 0 => $"[{ship.SallyArea}] {ship.MasterShip.ShipTypeName} {Ship.NameWithLevel}",
+			_ => $"{ship.MasterShip.ShipTypeName} {Ship.NameWithLevel}",
+		},
+
+		null => null,
+	};
+
+	public string EquipmentAccuracy => Ship switch
+	{
+		null => "",
+		_ => Ship.AllSlotInstance.Sum(eq => eq?.MasterEquipment.Accuracy ?? 0).ToString("+#;-#;+0"),
+	};
+
+	public string EquipmentBomber => Ship switch
+	{
+		null => "",
+		_ => Ship.AllSlotInstance.Sum(eq => eq?.MasterEquipment.Bomber ?? 0).ToString("+#;-#;+0"),
+	};
+
 	public void Update(int shipMasterID)
 	{
 
 		KCDatabase db = KCDatabase.Instance;
-		ShipData ship = db.Ships[shipMasterID];
+		Ship = db.Ships[shipMasterID];
 
-		if (ship != null)
+		if (Ship != null)
 		{
 			bool isEscaped = KCDatabase.Instance.Fleet[Parent.FleetId].EscapedShipList.Contains(shipMasterID);
-			var equipments = ship.AllSlotInstance.Where(eq => eq != null);
+			var equipments = Ship.AllSlotInstance.Where(eq => eq != null);
 
-			Name.Text = ship.MasterShip.NameWithClass;
-			Name.Tag = ship.ShipID;
+			Name.Text = Ship.MasterShip.NameWithClass;
+			Name.Tag = Ship.ShipID;
 			Name.ToolTip = string.Format(
 				FormFleet.ShipNameToolTip,
-				ship.SallyArea > 0 ? $"[{ship.SallyArea}] " : "",
-				ship.MasterShip.ShipTypeName, ship.NameWithLevel,
-				ship.FirepowerBase, ship.FirepowerTotal,
-				ship.TorpedoBase, ship.TorpedoTotal,
-				ship.AABase, ship.AATotal,
-				ship.ArmorBase, ship.ArmorTotal,
-				ship.ASWBase, ship.ASWTotal,
-				ship.EvasionBase, ship.EvasionTotal,
-				ship.LOSBase, ship.LOSTotal,
-				ship.LuckTotal,
+				Ship.SallyArea > 0 ? $"[{Ship.SallyArea}] " : "",
+				Ship.MasterShip.ShipTypeName, Ship.NameWithLevel,
+				Ship.FirepowerBase, Ship.FirepowerTotal,
+				Ship.TorpedoBase, Ship.TorpedoTotal,
+				Ship.AABase, Ship.AATotal,
+				Ship.ArmorBase, Ship.ArmorTotal,
+				Ship.ASWBase, Ship.ASWTotal,
+				Ship.EvasionBase, Ship.EvasionTotal,
+				Ship.LOSBase, Ship.LOSTotal,
+				Ship.LuckTotal,
 				equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Accuracy) : 0,
 				equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Bomber) : 0,
-				Constants.GetRange(ship.Range),
-				Constants.GetSpeed(ship.Speed)
+				Constants.GetRange(Ship.Range),
+				Constants.GetSpeed(Ship.Speed)
 			);
 			{
 				if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
 					Parent.ShipTagColors.Count > 0 &&
-					ship.SallyArea > 0)
+					Ship.SallyArea > 0)
 				{
 					if (Utility.Configuration.Config.UI.ThemeMode != 0)
 						Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
-					Name.BackColor = Parent.ShipTagColors[Math.Min(ship.SallyArea, Parent.ShipTagColors.Count - 1)];
+					Name.BackColor = Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
 				}
 				else
 				{
@@ -193,39 +207,39 @@ public class FleetItemViewModel : ObservableObject
 			}
 
 
-			Level.Value = ship.Level;
-			Level.ValueNext = ship.ExpNext;
-			Level.Tag = ship.MasterID;
+			Level.Value = Ship.Level;
+			Level.ValueNext = Ship.ExpNext;
+			Level.Tag = Ship.MasterID;
 
 			{
 				StringBuilder tip = new StringBuilder();
-				tip.AppendFormat("Total: {0:N0} exp.\r\n", ship.ExpTotal);
+				tip.AppendFormat("Total: {0:N0} exp.\r\n", Ship.ExpTotal);
 
 				if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
-					tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", ship.ExpNext.ToString("N0"));
+					tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
 
 				var remodels = db.MasterShips.Values
-					.Where(s => s.BaseShip() == ship.MasterShip.BaseShip())
-					.Where(s => s.RemodelTier > ship.MasterShip.RemodelTier)
+					.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
+					.Where(s => s.RemodelTier > Ship.MasterShip.RemodelTier)
 					.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
 					.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0));
 
 				foreach ((var name, int remodelLevel) in remodels)
 				{
-					int neededExp = Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, remodelLevel), 0);
+					int neededExp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, remodelLevel), 0);
 					tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
 				}
 
-				if (ship.Level < 99)
+				if (Ship.Level < 99)
 				{
-					string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, 99), 0).ToString("N0");
+					string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
 					tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
 				}
 
-				if (ship.Level < ExpTable.ShipMaximumLevel)
+				if (Ship.Level < ExpTable.ShipMaximumLevel)
 				{
 					string lv175Exp = Math
-						.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
+						.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
 						.ToString("N0");
 					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
 				}
@@ -238,12 +252,12 @@ public class FleetItemViewModel : ObservableObject
 
 
 			// HP.SuspendUpdate();
-			HP.HPBar.Value = HP.PrevValue = ship.HPCurrent;
-			HP.HPBar.MaximumValue = ship.HPMax;
+			HP.HPBar.Value = HP.PrevValue = Ship.HPCurrent;
+			HP.HPBar.MaximumValue = Ship.HPMax;
 			HP.UsePrevValue = false;
 			HP.ShowDifference = false;
 			{
-				int dockID = ship.RepairingDockID;
+				int dockID = Ship.RepairingDockID;
 
 				if (dockID != -1)
 				{
@@ -255,7 +269,7 @@ public class FleetItemViewModel : ObservableObject
 					HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Invisible;
 				}
 			}
-			HP.Tag = (ship.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds : 0.0;
+			HP.Tag = (Ship.RepairingDockID == -1 && 0.5 < Ship.HPRate && Ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(Ship.RepairTime).TotalSeconds : 0.0;
 			HP.BackColor = isEscaped switch
 			{
 				true => Utility.Configuration.Config.UI.SubBackColor,
@@ -263,7 +277,7 @@ public class FleetItemViewModel : ObservableObject
 			};
 			{
 				StringBuilder sb = new StringBuilder();
-				double hprate = (double)ship.HPCurrent / ship.HPMax;
+				double hprate = (double)Ship.HPCurrent / Ship.HPMax;
 
 				sb.AppendFormat("HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState(hprate));
 				if (isEscaped)
@@ -272,23 +286,23 @@ public class FleetItemViewModel : ObservableObject
 				}
 				else if (hprate > 0.50)
 				{
-					sb.AppendFormat(GeneralRes.ToMidAndHeavy + "\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4);
+					sb.AppendFormat(GeneralRes.ToMidAndHeavy + "\n", Ship.HPCurrent - Ship.HPMax / 2, Ship.HPCurrent - Ship.HPMax / 4);
 				}
 				else if (hprate > 0.25)
 				{
-					sb.AppendFormat(GeneralRes.ToHeavy + "\n", ship.HPCurrent - ship.HPMax / 4);
+					sb.AppendFormat(GeneralRes.ToHeavy + "\n", Ship.HPCurrent - Ship.HPMax / 4);
 				}
 				else
 				{
 					sb.AppendLine(GeneralRes.IsTaiha);
 				}
 
-				if (ship.RepairTime > 0)
+				if (Ship.RepairTime > 0)
 				{
-					var span = DateTimeHelper.FromAPITimeSpan(ship.RepairTime);
+					var span = DateTimeHelper.FromAPITimeSpan(Ship.RepairTime);
 					sb.AppendFormat(GeneralRes.DockTime + ": {0} @ {1}",
 						DateTimeHelper.ToTimeRemainString(span),
-						DateTimeHelper.ToTimeRemainString(Calculator.CalculateDockingUnitTime(ship)));
+						DateTimeHelper.ToTimeRemainString(Calculator.CalculateDockingUnitTime(Ship)));
 				}
 
 				HP.ToolTip = sb.ToString();
@@ -296,25 +310,25 @@ public class FleetItemViewModel : ObservableObject
 			// HP.ResumeUpdate();
 
 
-			Condition.Text = ship.Condition.ToString();
-			Condition.Tag = ship.Condition;
-			Condition.SetDesign(ship.Condition);
+			Condition.Text = Ship.Condition.ToString();
+			Condition.Tag = Ship.Condition;
+			Condition.SetDesign(Ship.Condition);
 
-			if (ship.Condition < 49)
+			if (Ship.Condition < 49)
 			{
-				TimeSpan ts = new TimeSpan(0, (int)Math.Ceiling((49 - ship.Condition) / 3.0) * 3, 0);
+				TimeSpan ts = new TimeSpan(0, (int)Math.Ceiling((49 - Ship.Condition) / 3.0) * 3, 0);
 				Condition.ToolTip = string.Format(GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds);
 			}
 			else
 			{
-				Condition.ToolTip = string.Format(GeneralRes.RemainingExpeds, (int)Math.Ceiling((ship.Condition - 49) / 3.0));
+				Condition.ToolTip = string.Format(GeneralRes.RemainingExpeds, (int)Math.Ceiling((Ship.Condition - 49) / 3.0));
 			}
 
-			ShipResource.SetResources(ship.Fuel, ship.FuelMax, ship.Ammo, ship.AmmoMax);
+			ShipResource.SetResources(Ship.Fuel, Ship.FuelMax, Ship.Ammo, Ship.AmmoMax);
 
 
-			Equipments.SetSlotList(ship);
-			Equipments.ToolTip = GetEquipmentString(ship);
+			Equipments.SetSlotList(Ship);
+			Equipments.ToolTip = GetEquipmentString(Ship);
 
 		}
 		else

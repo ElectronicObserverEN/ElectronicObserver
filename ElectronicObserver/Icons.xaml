@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!--  ship/equipment stat icons  -->
+	<BitmapImage x:Key="Firepower" UriSource="pack://application:,,,/Assets/Parameter/Firepower.png" />
+	<BitmapImage x:Key="Torpedo" UriSource="pack://application:,,,/Assets/Parameter/Torpedo.png" />
+	<BitmapImage x:Key="AntiAir" UriSource="pack://application:,,,/Assets/Parameter/AA.png" />
+	<BitmapImage x:Key="Armor" UriSource="pack://application:,,,/Assets/Parameter/Armor.png" />
+	<BitmapImage x:Key="AntiSubmarine" UriSource="pack://application:,,,/Assets/Parameter/ASW.png" />
+	<BitmapImage x:Key="Evasion" UriSource="pack://application:,,,/Assets/Parameter/Evasion.png" />
+	<BitmapImage x:Key="Los" UriSource="pack://application:,,,/Assets/Parameter/LOS.png" />
+	<BitmapImage x:Key="Luck" UriSource="pack://application:,,,/Assets/Parameter/Luck.png" />
+	<BitmapImage x:Key="Accuracy" UriSource="pack://application:,,,/Assets/Parameter/Accuracy.png" />
+	<BitmapImage x:Key="Bomber" UriSource="pack://application:,,,/Assets/Parameter/Bomber.png" />
+	<BitmapImage x:Key="Range" UriSource="pack://application:,,,/Assets/Parameter/Range.png" />
+	<BitmapImage x:Key="Speed" UriSource="pack://application:,,,/Assets/Parameter/Speed.png" />
+
+</ResourceDictionary>

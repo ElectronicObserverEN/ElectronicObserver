@@ -362,7 +362,7 @@ public partial class DialogDropRecordViewer : Form
 		if (elem.ItemID > 0 && !ignoreItem)
 		{
 			if (sb.Length > 0) sb.Append(",");
-			sb.AppendFormat("1{0:D4}{1}", item?.ItemID ?? 0, elem.ItemName);
+			sb.AppendFormat("1{0:D4}{1}", item?.ID ?? 0, elem.ItemName);
 		}
 
 		if (elem.EquipmentID > 0 && !ignoreEquipment)

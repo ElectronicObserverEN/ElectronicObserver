@@ -6,6 +6,7 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 {
 	public string CopyFleetText => Properties.Window.FormFleet.CopyFleetText.Replace("_", "__").Replace("&", "_");
 	public string ShipNameToolTip => Properties.Window.FormFleet.ShipNameToolTip.Replace("_", "__").Replace("&", "_");
+	public string RightClickToOpenEncyclopedia => Properties.Window.FormFleet.RightClickToOpenEncyclopedia;
 	public string ExpCalcHint => Properties.Window.FormFleet.ExpCalcHint.Replace("_", "__").Replace("&", "_");
 
 	public string CvciFba => Properties.Window.FormFleet.CvciFba.Replace("_", "__").Replace("&", "_");
