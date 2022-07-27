@@ -1,0 +1,242 @@
+﻿using System.Collections.Generic;
+using ElectronicObserver.Data.Translation;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Mocks;
+using Xunit;
+
+namespace ElectronicObserverCoreTests;
+
+[Collection(DatabaseCollection.Name)]
+public class OpeningAswTests
+{
+	private DatabaseFixture Db { get; }
+
+	private static FitBonusData BonusData { get; } = new();
+
+	public OpeningAswTests(DatabaseFixture db)
+	{
+		Db = db;
+	}
+
+	[Fact(DisplayName = "Fit bonus counts for the opening ASW border")]
+	public void OpeningAswTest1()
+	{
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
+		{
+			Level = 123,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
+			},
+		};
+
+		Assert.False(kamikaze.CanDoOpeningAsw());
+
+		kamikaze.AswFit = kamikaze.GetFitBonus(BonusData.FitBonusList).ASW;
+
+		Assert.True(kamikaze.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "CVL 50 ASW condition")]
+	public void OpeningAswTest2()
+	{
+		ShipDataMock ryuujou = new(Db.MasterShips[ShipId.RyuujouKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+			},
+		};
+
+		Assert.False(ryuujou.CanDoOpeningAsw());
+
+		ryuujou = new(Db.MasterShips[ShipId.RyuujouKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+			},
+		};
+
+		Assert.True(ryuujou.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Suzuya and Kumano don't count for the CVL 50 ASW condition")]
+	public void OpeningAswTest3()
+	{
+		ShipDataMock kumano = new(Db.MasterShips[ShipId.KumanoCVLKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+			},
+		};
+
+		ShipDataMock suzuya = new(Db.MasterShips[ShipId.SuzuyaCVLKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+			},
+		};
+
+		Assert.False(kumano.CanDoOpeningAsw());
+		Assert.False(suzuya.CanDoOpeningAsw());
+
+		kumano = new(Db.MasterShips[ShipId.KumanoCVLKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+			},
+		};
+
+		suzuya = new(Db.MasterShips[ShipId.KumanoCVLKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+			},
+		};
+
+		Assert.False(kumano.CanDoOpeningAsw());
+		Assert.False(suzuya.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "CVL 65 ASW condition")]
+	public void OpeningAswTest4()
+	{
+		ShipDataMock zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12_TomonagaSquadron]),
+			},
+		};
+
+		Assert.False(zuihou.CanDoOpeningAsw());
+
+		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
+			},
+		};
+
+		Assert.True(zuihou.CanDoOpeningAsw());
+
+		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+			},
+		};
+
+		Assert.True(zuihou.CanDoOpeningAsw());
+
+		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW]),
+			},
+		};
+
+		Assert.True(zuihou.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "CVL 100 ASW condition")]
+	public void OpeningAswTest5()
+	{
+		ShipDataMock zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			ASWModernized = 9,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+			},
+		};
+
+		Assert.False(zuihou.CanDoOpeningAsw());
+
+		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			ASWModernized = 9,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_FM2Wildcat]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
+			},
+		};
+
+		Assert.True(zuihou.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Hyuuga condition")]
+	public void OpeningAswTest6()
+	{
+		ShipDataMock hyuuga = new(Db.MasterShips[ShipId.HyuugaKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi]),
+			},
+		};
+
+		Assert.False(hyuuga.CanDoOpeningAsw());
+
+		hyuuga = new(Db.MasterShips[ShipId.HyuugaKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi]),
+			},
+		};
+
+		Assert.True(hyuuga.CanDoOpeningAsw());
+
+		hyuuga = new(Db.MasterShips[ShipId.HyuugaKaiNi])
+		{
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51J]),
+			},
+		};
+
+		Assert.True(hyuuga.CanDoOpeningAsw());
+	}
+}

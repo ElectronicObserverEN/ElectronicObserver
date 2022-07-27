@@ -467,7 +467,12 @@ public static class ShipDataExtensions
 		{
 			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft(),
 			>= 65 => ship.HasSpecialAntiSubmarineAircraft(),
-			>= 50 => ship.HasSonar() && ship.HasSpecialAntiSubmarineAircraft(),
+			>= 50 => ship.MasterShip.ShipId switch
+			{
+				ShipId.SuzuyaCVLKaiNi or ShipId.KumanoCVLKaiNi => false,
+
+				_ => ship.HasSonar() && ship.HasSpecialAntiSubmarineAircraft(),
+			},
 
 			_ => false,
 		},
