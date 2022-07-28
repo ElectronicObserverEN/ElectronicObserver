@@ -90,12 +90,12 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 装備スロット(装備データ)
 	/// </summary>
-	public IList<IEquipmentData> SlotInstance => Array.AsReadOnly(Slot.Select(id => KCDatabase.Instance.Equipments[id]).Cast<IEquipmentData>().ToArray());
+	public IList<IEquipmentData?> SlotInstance => Array.AsReadOnly(Slot.Select(id => KCDatabase.Instance.Equipments[id]).Cast<IEquipmentData?>().ToArray());
 
 	/// <summary>
 	/// 装備スロット(装備マスターデータ)
 	/// </summary>
-	public IList<IEquipmentDataMaster> SlotInstanceMaster => Array.AsReadOnly(Slot.Select(id => KCDatabase.Instance.Equipments[id]?.MasterEquipment).ToArray());
+	public IList<IEquipmentDataMaster?> SlotInstanceMaster => Array.AsReadOnly(Slot.Select(id => KCDatabase.Instance.Equipments[id]?.MasterEquipment).ToArray());
 
 
 	/// <summary>
