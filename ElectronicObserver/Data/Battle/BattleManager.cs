@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Properties.Data;
@@ -596,7 +597,7 @@ public class BattleManager : APIWrapper
 
 
 
-		WriteBattleLog();
+		Task.Run(() => WriteBattleLog());
 
 
 
@@ -874,7 +875,7 @@ public class BattleManager : APIWrapper
 	}
 
 
-	private void WriteBattleLog()
+	private async Task WriteBattleLog()
 	{
 
 		if (!Utility.Configuration.Config.Log.SaveBattleLog)
@@ -897,7 +898,7 @@ public class BattleManager : APIWrapper
 
 			using (var sw = new StreamWriter(path, false, Utility.Configuration.Config.Log.FileEncoding))
 			{
-				sw.Write(BattleDetailDescriptor.GetBattleDetail(this));
+				await sw.WriteAsync(BattleDetailDescriptor.GetBattleDetail(this));
 			}
 
 		}
