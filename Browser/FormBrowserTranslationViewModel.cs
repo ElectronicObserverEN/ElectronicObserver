@@ -77,7 +77,7 @@ public class FormBrowserTranslationViewModel
 	public string Forward => Properties.Resources.Forward;
 	public string DmmPoints => Properties.Resources.DmmPoints;
 	public string AkashiList => Properties.Resources.AkashiList;
-
+	public string Noro => "Noro";
 	public string WebView2NotFound => Properties.Resources.WebView2NotFound;
 	public string WebView2DownloadComplete => Properties.Resources.WebView2DownloadComplete;
 	public string WebView2InstallationComplete => Properties.Resources.WebView2InstallationComplete;
