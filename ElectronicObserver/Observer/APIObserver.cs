@@ -829,7 +829,7 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					await control.Dispatcher.InvokeAsync(() => LoadRequest(url, body));
+					control.Dispatcher.Invoke(() => LoadRequest(url, body));
 					break;
 			}
 		}
@@ -958,7 +958,7 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					await control.Dispatcher.InvokeAsync(() => LoadResponse(url, body));
+					control.Dispatcher.Invoke(() => LoadResponse(url, body));
 					break;
 			}
 		}
@@ -969,7 +969,6 @@ public sealed class APIObserver
 			ServerAddress = e.HttpClient.Request.Host;
 		}
 	}
-
 	public void LoadRequest(string path, string data)
 	{
 
@@ -1080,7 +1079,6 @@ public sealed class APIObserver
 			SystemEvents.UpdateTimerEnabled = true;
 
 		}
-
 	}
 
 
