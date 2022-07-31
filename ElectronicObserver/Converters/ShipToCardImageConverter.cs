@@ -8,7 +8,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Converters;
 
-public class ShipToBannerImageConverter : IValueConverter
+public class ShipToCardImageConverter : IValueConverter
 {
 	public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
@@ -25,7 +25,7 @@ public class ShipToBannerImageConverter : IValueConverter
 		try
 		{
 			string? imageUri = KCResourceHelper
-				.GetShipImagePath(id, false, KCResourceHelper.ResourceTypeShipBanner);
+				.GetShipImagePath(id, false, KCResourceHelper.ResourceTypeShipCard);
 
 			return new BitmapImage(new Uri(imageUri, UriKind.RelativeOrAbsolute).ToAbsolute());
 		}

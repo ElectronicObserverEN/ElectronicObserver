@@ -167,7 +167,7 @@ public class FitBonusTest
 					Level = 4
 				},
 				// 15.5cm Triple Secondary Gun Mount Kai Ni
-				new EquipmentDataMock(Db.MasterEquipment[(EquipmentId)463])
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGunMountKaiNi])
 				{
 					Level = 8
 				},

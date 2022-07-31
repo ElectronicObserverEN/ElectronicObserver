@@ -4,6 +4,7 @@ namespace ElectronicObserverTypes;
 
 public enum EquipmentId
 {
+	Unknown = 0,
 	MainGunSmall_12cmSingleGun = 1,
 	MainGunSmall_12_7cmTwinGun = 2,
 	MainGunSmall_10cmTwinHighangleGun = 3,
@@ -267,6 +268,7 @@ public enum EquipmentId
 	Sonar_Type144147ASDIC = 261,
 	Sonar_HFDF_Type144147ASDIC = 262,
 	Interceptor_ShidenKai_343rdAirGroup301stFighterSquadron = 263,
+	Interceptor_ShidenKai_343rdAirGroup701stFighterSquadron = 264,
 	MainGunSmall_12_7cmTwinGunModelCKai2 = 266,
 	MainGunSmall_12_7cmTwinGunModelDKai2 = 267,
 	ExtraArmorMedium_ArcticCamouflage__ArcticEquipment = 268,
@@ -459,4 +461,15 @@ public enum EquipmentId
 	SubmarineTorpedo_LateModelBowTorpedoMount_4tubes = 457,
 	SubmarineEquipment_LateModelRadar_PassiveRadiolocator_SnorkelEquipment = 458,
 	LandBasedAttacker_B25 = 459,
+	RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC = 460,
+	SubmarineTorpedo_SkilledSonarPersonnel_LateModelBowTorpedoMount_4tubes = 461,
+	SecondaryGun_15_5cmTripleSecondaryGunMountKaiNi = 463,
+	SecondaryGun_10cmTwinHighangleGunMountBatteryConcentratedDeployment = 464,
+	MainGunLarge_Prototype51cmTripleGunMount = 465,
+	CarrierBasedTorpedo_RyuuseiKai_Skilled = 466,
+	SecondaryGun_5inchTwinGunMount_SecondaryArmamentConcentratedDeployment = 467,
+	MainGunLarge_38cmQuadrupleGunMountKaiDeux = 468,
+	SeaplaneRecon_Type0ReconnaissanceSeaplaneModel11BKai_NightRecon = 469,
+	MainGunSmall_12_7cmTwinGunModelCKai3 = 470,
+	SeaplaneRecon_Loire130M = 471,
 }

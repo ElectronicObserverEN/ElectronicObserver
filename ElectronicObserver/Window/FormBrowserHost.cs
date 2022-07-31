@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -103,12 +105,24 @@ public partial class FormBrowserHost : Form
 		_instance = this;
 
 		Host = "localhost";
-		Port = Process.GetCurrentProcess().Id;
+		Port = GetPort();
 
 		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBrowser]);
 
 		Translate();
 		SubscribeToApis();
+	}
+
+	private static int GetPort()
+	{
+		TcpListener server = new(IPAddress.Loopback, 0);
+		server.Start();
+		
+		int port = ((IPEndPoint)server.LocalEndpoint).Port;
+		
+		server.Stop();
+		
+		return port;
 	}
 
 	public void Translate()

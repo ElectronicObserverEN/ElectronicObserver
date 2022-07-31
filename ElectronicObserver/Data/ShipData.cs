@@ -112,12 +112,12 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 補強装備スロット(装備データ)
 	/// </summary>
-	public IEquipmentData ExpansionSlotInstance => KCDatabase.Instance.Equipments[ExpansionSlot];
+	public IEquipmentData? ExpansionSlotInstance => KCDatabase.Instance.Equipments[ExpansionSlot];
 
 	/// <summary>
 	/// 補強装備スロット(装備マスターデータ)
 	/// </summary>
-	public IEquipmentDataMaster ExpansionSlotInstanceMaster => KCDatabase.Instance.Equipments[ExpansionSlot]?.MasterEquipment;
+	public IEquipmentDataMaster? ExpansionSlotInstanceMaster => KCDatabase.Instance.Equipments[ExpansionSlot]?.MasterEquipment;
 
 
 	/// <summary>

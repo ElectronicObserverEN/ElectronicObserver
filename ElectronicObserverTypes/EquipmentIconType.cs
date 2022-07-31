@@ -145,7 +145,8 @@ public enum EquipmentIconType
 	/// <summary>陸上対潜哨戒機</summary>
 	LandBasedASPatrol = 47,
 
-	Reserved48,         // 艦これ本体側が未実装
+	LandAssaulter,
+
 	HeavyBomber,
 
 	/// <summary>夜間水上機</summary>

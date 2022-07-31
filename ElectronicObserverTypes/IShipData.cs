@@ -93,12 +93,12 @@ public interface IShipData
 	/// <summary>
 	/// 補強装備スロット(装備データ)
 	/// </summary>
-	IEquipmentData ExpansionSlotInstance { get; }
+	IEquipmentData? ExpansionSlotInstance { get; }
 
 	/// <summary>
 	/// 補強装備スロット(装備マスターデータ)
 	/// </summary>
-	IEquipmentDataMaster ExpansionSlotInstanceMaster { get; }
+	IEquipmentDataMaster? ExpansionSlotInstanceMaster { get; }
 
 	/// <summary>
 	/// 全てのスロット(ID)

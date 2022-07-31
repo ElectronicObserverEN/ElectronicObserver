@@ -700,8 +700,13 @@ public enum ShipId
 	Shounan = 895,
 	YamashioMaru = 900,
 	AmagiriKaiNi = 903,
+	Kurahashi = 905,
 	AmagiriKaiNiD = 908,
+	KurahashiKai = 910,
 	YamatoKaiNi = 911,
+	Maryland = 913,
+	HayashioKaiNi = 915,
 	YamatoKaiNiJuu = 916,
-	ColoradoKai = 1496,
+	MarylandKai = 918,
+	ColoradoKai = 1496
 }
