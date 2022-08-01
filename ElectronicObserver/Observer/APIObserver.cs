@@ -717,8 +717,8 @@ public sealed class APIObserver
 			},
 			TcpTimeWaitSeconds = 10,
 			ConnectionTimeOutSeconds = 15,
-			ReuseSocket = false,
-			EnableConnectionPool = false,
+			ReuseSocket = true,
+			EnableConnectionPool = true,
 			ForwardToUpstreamGateway = true
 		};
 		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
