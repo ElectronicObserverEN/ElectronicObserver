@@ -184,6 +184,7 @@ public partial class App : Application
 			.AddSingleton<ShipFilterTranslationViewModel>()
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
 			.AddSingleton<AutoRefreshTranslationViewModel>()
+			.AddSingleton<ExpeditionCheckTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
