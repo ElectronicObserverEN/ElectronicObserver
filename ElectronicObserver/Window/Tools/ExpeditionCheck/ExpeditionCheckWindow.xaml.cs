@@ -22,5 +22,12 @@ public partial class ExpeditionCheckWindow
 	public ExpeditionCheckWindow() 
 	{
 		InitializeComponent();
+
+		Closed += ExpeditionCheckWindow_Closed;
+	}
+
+	private void ExpeditionCheckWindow_Closed(object? sender, EventArgs e)
+	{
+		ExpeditionCheckView.Close();
 	}
 }

@@ -74,7 +74,6 @@
                     Header="{Binding DataContext.ExpeditionCheckTranslation.Name, Source={StaticResource Proxy}}"
                     />
                 <DataGridTextColumn
-                    Width="110"
                     Binding="{Binding Fleet1Text}"
                     FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
                     FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
@@ -91,7 +90,6 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
-                    Width="110"
                     Binding="{Binding Fleet2Text}"
                     FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
                     FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
@@ -108,7 +106,6 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
-                    Width="110"
                     Binding="{Binding Fleet3Text}"
                     FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
                     FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
@@ -125,7 +122,6 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
-                    Width="110"
                     Binding="{Binding Fleet4Text}"
                     FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
                     FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
@@ -142,7 +138,6 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
-                    Width="110"
                     Binding="{Binding ConditionText}"
                     FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
                     FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"

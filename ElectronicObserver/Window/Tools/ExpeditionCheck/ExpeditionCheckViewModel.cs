@@ -6,11 +6,12 @@ using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
 
-public class ExpeditionCheckViewModel : WindowViewModelBase
+public class ExpeditionCheckViewModel : AnchorableViewModel
 {
 	public ExpeditionCheckTranslationViewModel ExpeditionCheckTranslation { get; }
 
@@ -19,7 +20,7 @@ public class ExpeditionCheckViewModel : WindowViewModelBase
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
 
-	public ExpeditionCheckViewModel()
+	public ExpeditionCheckViewModel() : base(Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!.Title, "ExpeditionCheck")
 	{
 		ExpeditionCheckTranslation = Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!;
 

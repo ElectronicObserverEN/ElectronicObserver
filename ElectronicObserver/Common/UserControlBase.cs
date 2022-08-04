@@ -4,10 +4,12 @@ using Jot;
 
 namespace ElectronicObserver.Common;
 
-public class UserControlBase<TViewModel> : System.Windows.Controls.UserControl where TViewModel : WindowViewModelBase
+public partial class UserControlBase<TViewModel> : System.Windows.Controls.UserControl where TViewModel : UserControlViewModelBase
 {
 	private Tracker Tracker { get; }
 	public TViewModel ViewModel { get; }
+
+	public event EventHandler Closed = delegate { };
 
 	protected UserControlBase(TViewModel viewModel)
 	{
@@ -16,15 +18,27 @@ public class UserControlBase<TViewModel> : System.Windows.Controls.UserControl w
 		ViewModel = viewModel;
 		DataContext = ViewModel;
 
-		SetBinding(FontSizeProperty, nameof(WindowViewModelBase.FontSize));
-		SetBinding(FontFamilyProperty, nameof(WindowViewModelBase.Font));
-		SetBinding(ForegroundProperty, nameof(WindowViewModelBase.FontBrush));
+		SetBinding(FontSizeProperty, nameof(UserControlViewModelBase.FontSize));
+		SetBinding(FontFamilyProperty, nameof(UserControlViewModelBase.Font));
+		SetBinding(ForegroundProperty, nameof(UserControlViewModelBase.FontBrush));
 
 		Loaded += (_, _) =>
 		{
 			ViewModel.Loaded();
 			StartJotTracking();
 		};
+
+		Closed += (_, _) =>
+		{
+			Tracker.Persist(this);
+		};
+	}
+
+	public void Close()
+	{
+		Visibility = System.Windows.Visibility.Collapsed;
+		Closed?.Invoke(this, new());
+		ViewModel.Closed();
 	}
 
 	private void StartJotTracking()

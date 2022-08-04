@@ -15,6 +15,7 @@
     >
 
     <local:ExpeditionCheckView
+        x:Name="ExpeditionCheckView"
         Width="auto"
         Height="auto"
         Visibility="Visible"
