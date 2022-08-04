@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
@@ -7,7 +8,7 @@ namespace ElectronicObserver.Common;
 public partial class UserControlBase<TViewModel> : System.Windows.Controls.UserControl where TViewModel : UserControlViewModelBase
 {
 	private Tracker Tracker { get; }
-	public TViewModel ViewModel { get; }
+	public TViewModel ViewModel { get; set; }
 
 	public event EventHandler Closed = delegate { };
 
@@ -28,9 +29,12 @@ public partial class UserControlBase<TViewModel> : System.Windows.Controls.UserC
 			StartJotTracking();
 		};
 
-		Closed += (_, _) =>
+		IsVisibleChanged += (_, e) =>
 		{
-			Tracker.Persist(this);
+			if (e.NewValue is false)
+			{
+				Tracker.Persist(this);
+			}
 		};
 	}
 
