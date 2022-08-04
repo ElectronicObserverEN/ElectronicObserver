@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -57,6 +58,9 @@ public partial class App : Application
 			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
 			args.Handled = true;
 		};
+
+		ProfileOptimization.SetProfileRoot(Directory.GetCurrentDirectory());
+		ProfileOptimization.StartProfile("Startup.Profile");
 	}
 
 	protected override void OnStartup(StartupEventArgs e)
