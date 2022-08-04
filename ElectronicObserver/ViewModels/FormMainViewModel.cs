@@ -66,6 +66,7 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
+using ElectronicObserver.Window.Tools.ExpeditionCheck;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -897,9 +898,24 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenExpeditionCheck()
+	private void OpenExpeditionCheck(bool useNewVersion)
 	{
-		new DialogExpeditionCheck().Show(Window);
+
+		if (useNewVersion)
+		{
+			if (!KCDatabase.Instance.Mission.Any())
+			{
+				MessageBox.Show(DialogRes.ExpeditionNotLoadedMessage,
+					DialogRes.ExpeditionNotLoadedTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			new ExpeditionCheckView().Show(Window);
+		}
+		else
+		{
+			new DialogExpeditionCheck().Show(Window);
+		}
 	}
 
 	[ICommand]

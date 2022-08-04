@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
 
@@ -18,10 +16,41 @@ public class ExpeditionCheckViewModel : WindowViewModelBase
 
 	public List<ExpeditionCheckRow> Rows { get; set; } = new();
 
+	public List<ColumnProperties> ColumnProperties { get; set; } = new();
+	public List<SortDescription> SortDescriptions { get; set; } = new();
+
 	public ExpeditionCheckViewModel()
 	{
 		ExpeditionCheckTranslation = Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!;
 
+		LoadData();
+		SubscribeToApis();
+	}
+
+	private void SubscribeToApis()
+	{
+		Utility.Configuration.Instance.ConfigurationChanged += LoadData;
+
+		APIObserver o = APIObserver.Instance;
+
+		o.ApiReqHensei_Change.RequestReceived += Updated;
+		o.ApiReqKousyou_DestroyShip.RequestReceived += Updated;
+		o.ApiReqKaisou_Remodeling.RequestReceived += Updated;
+
+		o.ApiPort_Port.ResponseReceived += Updated;
+		o.ApiGetMember_Ship2.ResponseReceived += Updated;
+		o.ApiReqKousyou_DestroyShip.ResponseReceived += Updated;
+		o.ApiGetMember_Ship3.ResponseReceived += Updated;
+		o.ApiReqKaisou_PowerUp.ResponseReceived += Updated;
+		o.ApiGetMember_SlotItem.ResponseReceived += Updated;
+		o.ApiReqHensei_PresetSelect.ResponseReceived += Updated;
+		o.ApiReqKaisou_SlotExchangeIndex.ResponseReceived += Updated;
+		o.ApiReqKaisou_SlotDeprive.ResponseReceived += Updated;
+		o.ApiReqKaisou_Marriage.ResponseReceived += Updated;
+	}
+
+	private void Updated(string apiname, dynamic data)
+	{
 		LoadData();
 	}
 
@@ -43,95 +72,13 @@ public class ExpeditionCheckViewModel : WindowViewModelBase
 			Fleet3Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[3]),
 			Fleet4Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[4]),
 			Conditions = MissionClearCondition.Check(mission.MissionID, null),
-		}).ToList();
-
-		/*Rows = new List<ExpeditionCheckRow>()
-		{
-			new ExpeditionCheckRow()
-			{
-				AreaName = "Area name",
-
-				ExpeditionId = "01",
-				ExpeditionName = "the expedition name",
-				ExpeditionType = ExpeditionType.Normal,
-
-				Fleet1Result = new MissionClearCondition.MissionClearConditionResult(null),
-				Fleet2Result = new MissionClearCondition.MissionClearConditionResult(null),
-				Fleet3Result = new MissionClearCondition.MissionClearConditionResult(null),
-				Fleet4Result = new MissionClearCondition.MissionClearConditionResult(null),
-				Conditions = new MissionClearCondition.MissionClearConditionResult(null),
-			}
-		};*/
+		})
+			.ToList();
 	}
 }
 
 /*
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpeditionCheck;
-
-namespace ElectronicObserver.Window.Dialog;
-
-public partial class DialogExpeditionCheck : Form
-{
-	public DialogExpeditionCheck()
-	{
-		InitializeComponent();
-
-		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
-		ConfigurationChanged();
-
-		Translate();
-	}
-
-	private void ConfigurationChanged()
-	{
-		Configuration.ConfigurationData c = Configuration.Config;
-
-		Font = c.UI.MainFont.FontData;
-
-		if (c.UI.IsLayoutFixed)
-		{
-			CheckView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-			CheckView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-		}
-		else
-		{
-			CheckView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-			CheckView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-		}
-	}
-
-	public void Translate()
-	{
-		CheckView_Name.HeaderText = Translation.CheckView_Name;
-		CheckView_Fleet1.HeaderText = Translation.CheckView_Fleet1;
-		CheckView_Fleet2.HeaderText = Translation.CheckView_Fleet2;
-		CheckView_Fleet3.HeaderText = Translation.CheckView_Fleet3;
-		CheckView_Fleet4.HeaderText = Translation.CheckView_Fleet4;
-		CheckView_Condition.HeaderText = Translation.CheckView_Condition;
-
-		Text = Translation.Title;
-	}
-
-	private void DialogExpeditionCheck_Load(object sender, EventArgs e)
-	{
-		if (!KCDatabase.Instance.Mission.Any())
-		{
-			MessageBox.Show(DialogRes.ExpeditionNotLoadedMessage,
-				DialogRes.ExpeditionNotLoadedTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			Close();
-			return;
-		}
+ 
 
 
 		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormExpeditionCheck]);

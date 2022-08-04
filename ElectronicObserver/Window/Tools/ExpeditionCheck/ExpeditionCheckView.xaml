@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.ExpeditionCheck"
+    xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.ExpeditionCheck"	
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"	
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Width="600"
 	Height="470"
@@ -36,6 +38,11 @@
 			IsReadOnly="True"
 			ItemsSource="{Binding Rows}"
 			>
+			
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+			</b:Interaction.Behaviors>
+			
 			<DataGrid.ColumnHeaderStyle>
 				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
 					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
@@ -43,6 +50,12 @@
 					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
+			
+			<DataGrid.RowStyle>
+				<Style TargetType="DataGridRow">
+					<Setter Property="Background" Value="{Binding Background}" />
+				</Style>
+			</DataGrid.RowStyle>
 
 			<DataGrid.Columns>
 				<DataGridTextColumn

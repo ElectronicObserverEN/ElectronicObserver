@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ElectronicObserver.Data;
+﻿using System.Linq;
+using System.Windows.Media;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using System.Windows.Media;
 using static ElectronicObserver.Data.MissionClearCondition;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
@@ -86,22 +81,22 @@ public class ExpeditionCheckRow
 		_ => ""
 	};
 
-	private string GetResultTooltip(MissionClearConditionResult result) => result?.IsSuceeded switch
+	private string? GetResultTooltip(MissionClearConditionResult result) => result?.IsSuceeded switch
 	{
 		true => GetSuccessToolTip(result),
 		false => string.Join("\n", result.FailureReason),
-		_ => ""
+		_ => null
 	};
 
 
-	private string GetSuccessToolTip(MissionClearConditionResult result) => result?.FailureReason.Any() switch
+	private string? GetSuccessToolTip(MissionClearConditionResult result) => result?.FailureReason.Any() switch
 	{
 		true => string.Join(", ", result.FailureReason),
 		false => ExpeditionType switch
 		{
 			ExpeditionType.CombatTypeTwoExpedition or ExpeditionType.CombatTypeOneExpedition => string.Join("\n", result.SuccessPercent),
-			_ => ""
+			_ => null
 		},
-		_ => ""
+		_ => null
 	};
 }
