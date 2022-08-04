@@ -903,14 +903,16 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (useNewVersion)
 		{
-			if (!KCDatabase.Instance.Mission.Any())
+			/*
+			 * TODO : enable 
+			 * if (!KCDatabase.Instance.Mission.Any())
 			{
 				MessageBox.Show(DialogRes.ExpeditionNotLoadedMessage,
 					DialogRes.ExpeditionNotLoadedTitle, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
-			}
+			}*/
 
-			new ExpeditionCheckView().Show(Window);
+			new ExpeditionCheckWindow().Show(Window);
 		}
 		else
 		{
