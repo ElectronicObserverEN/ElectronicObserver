@@ -319,7 +319,7 @@ public class InformationViewModel : AnchorableViewModel
 				{
 					if (!flags[i])
 					{
-						EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
+						IEquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
 						if (eq != null)
 						{
 							sb.AppendLine(eq.NameEN);
@@ -343,7 +343,7 @@ public class InformationViewModel : AnchorableViewModel
 			sb.AppendLine(GeneralRes.DevelopmentFailed);
 			sb.AppendLine(data.api_fdata);
 
-			EquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse(((string)data.api_fdata).Split(",".ToCharArray())[1])];
+			IEquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse(((string)data.api_fdata).Split(",".ToCharArray())[1])];
 			if (eqm != null)
 				sb.AppendLine(eqm.NameEN);
 

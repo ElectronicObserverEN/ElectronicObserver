@@ -1152,7 +1152,7 @@ public class ShipParameterRecord : RecordBase
 				}
 
 
-				void estimate(int actualAircraftCount, Func<EquipmentDataMaster, bool> isAircraft)
+				void estimate(int actualAircraftCount, Func<IEquipmentDataMaster, bool> isAircraft)
 				{
 					if (unknownShipEquipment.Select(id => db.MasterEquipments[id]).Count(isAircraft) != 1)
 						return;

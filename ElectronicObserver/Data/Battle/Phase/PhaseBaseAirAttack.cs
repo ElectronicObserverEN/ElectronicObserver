@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Data.Battle.Detail;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -135,7 +136,7 @@ public class BattleBaseAirCorpsSquadron
 {
 	public int EquipmentID { get; private set; }
 	public int AircraftCount { get; private set; }
-	public EquipmentDataMaster EquipmentInstance => KCDatabase.Instance.MasterEquipments[EquipmentID];
+	public IEquipmentDataMaster EquipmentInstance => KCDatabase.Instance.MasterEquipments[EquipmentID];
 
 	public BattleBaseAirCorpsSquadron(dynamic data)
 	{

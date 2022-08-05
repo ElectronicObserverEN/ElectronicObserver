@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserverTypes;
 
-public interface IEquipmentDataMaster
+public interface IEquipmentDataMaster : IIdentifiable
 {
 	/// <summary>
 	/// 装備ID
@@ -149,7 +150,7 @@ public interface IEquipmentDataMaster
 	/// <summary>
 	/// 拡張スロットに装備可能な艦船IDのリスト
 	/// </summary>
-	IEnumerable<int> EquippableShipsAtExpansion { get; }
+	IEnumerable<int> EquippableShipsAtExpansion { get; set; }
 
 	/// <summary> 砲系かどうか </summary>
 	bool IsGun { get; }

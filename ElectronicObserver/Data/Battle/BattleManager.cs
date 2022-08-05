@@ -510,7 +510,7 @@ public class BattleManager : APIWrapper
 				IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 				DroppedShipCount++;
 
-				IEnumerable<EquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch
+				IEnumerable<IEquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch
 				{
 					< 1 => null,
 					_ => KCDatabase.Instance.MasterEquipments[i]
@@ -545,7 +545,7 @@ public class BattleManager : APIWrapper
 			if (eqID != -1)
 			{
 
-				EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
+				IEquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
 				if (eq.UsesSlotSpace())
 				{
 					DroppedEquipmentCount++;

@@ -42,7 +42,7 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// 装備のマスターデータ
 	/// </summary>
-	public IDDictionary<EquipmentDataMaster> MasterEquipments { get; private set; }
+	public IDDictionary<IEquipmentDataMaster> MasterEquipments { get; private set; }
 
 	/// <summary>
 	/// 装備種別
@@ -184,7 +184,7 @@ public sealed class KCDatabase : IKCDatabase
 		MasterShips = new IDDictionary<IShipDataMaster>();
 		ShipTypes = new IDDictionary<ShipType>();
 		ShipGraphics = new IDDictionary<ShipGraphicData>();
-		MasterEquipments = new IDDictionary<EquipmentDataMaster>();
+		MasterEquipments = new IDDictionary<IEquipmentDataMaster>();
 		EquipmentTypes = new IDDictionary<EquipmentType>();
 		Ships = new IDDictionary<ShipData>();
 		Equipments = new IDDictionary<EquipmentData>();

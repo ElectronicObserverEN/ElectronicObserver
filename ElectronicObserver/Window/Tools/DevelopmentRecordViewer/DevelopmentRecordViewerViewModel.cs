@@ -102,7 +102,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			.Distinct()
 			.Except(new[] { NameNotExist });
 
-		IEnumerable<EquipmentDataMaster> includedEquipmentObjects = includedEquipmentNames
+		IEnumerable<IEquipmentDataMaster> includedEquipmentObjects = includedEquipmentNames
 			.Select(name => KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(eq => eq.NameEN == name))
 			.Where(s => s != null)!;
 
