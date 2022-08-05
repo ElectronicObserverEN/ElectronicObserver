@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
+namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 /// <summary>
 /// Interaction logic for ExpeditionCheck.xaml
 /// </summary>

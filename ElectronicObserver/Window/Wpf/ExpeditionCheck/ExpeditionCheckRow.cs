@@ -5,7 +5,7 @@ using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using static ElectronicObserver.Data.MissionClearCondition;
 
-namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
+namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 
 public class ExpeditionCheckRow
 {

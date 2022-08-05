@@ -66,7 +66,7 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
-using ElectronicObserver.Window.Tools.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;

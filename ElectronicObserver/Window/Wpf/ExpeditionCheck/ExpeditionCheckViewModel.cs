@@ -10,7 +10,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf;
 
-namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
+namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 
 public class ExpeditionCheckViewModel : AnchorableViewModel
 {

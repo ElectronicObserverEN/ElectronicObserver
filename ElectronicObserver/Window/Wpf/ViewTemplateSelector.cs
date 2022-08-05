@@ -15,7 +15,7 @@ using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
-using ElectronicObserver.Window.Tools.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 
 namespace ElectronicObserver.Window.Wpf;
 

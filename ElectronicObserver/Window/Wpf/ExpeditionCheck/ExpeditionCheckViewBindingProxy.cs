@@ -1,6 +1,6 @@
 ﻿using ElectronicObserver.Utility;
 
-namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
+namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 
 public class ExpeditionCheckViewBindingProxy : BindingProxy<ExpeditionCheckViewModel>
 {
