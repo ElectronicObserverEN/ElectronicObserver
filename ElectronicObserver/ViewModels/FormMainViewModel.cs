@@ -900,27 +900,6 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenExpeditionCheck(bool useNewVersion)
-	{
-
-		if (useNewVersion)
-		{
-			if (!KCDatabase.Instance.Mission.Any())
-			{
-				MessageBox.Show(DialogRes.ExpeditionNotLoadedMessage,
-					DialogRes.ExpeditionNotLoadedTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-				return;
-			}
-
-			new ExpeditionCheckWindow().Show(Window);
-		}
-		else
-		{
-			new DialogExpeditionCheck().Show(Window);
-		}
-	}
-
-	[ICommand]
 	private void OpenKancolleProgress()
 	{
 		new DialogKancolleProgressWpf().Show(Window);

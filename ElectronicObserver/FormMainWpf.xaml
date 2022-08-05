@@ -627,22 +627,6 @@
 						<Image Source="{Binding ExpCheckerImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem d:Header="Expedition Check" Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}">
-					<MenuItem.Icon>
-						<Image Source="{Binding ExpeditionCheckImageSource}" />
-					</MenuItem.Icon>
-
-					<MenuItem Command="{Binding OpenExpeditionCheckCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenExpeditionCheckCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-				</MenuItem>
 				<MenuItem
 					d:Header="Ship Progression List"
 					Command="{Binding OpenKancolleProgressCommand}"

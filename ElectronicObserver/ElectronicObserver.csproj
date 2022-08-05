@@ -355,9 +355,6 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EventLockPlanner.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Window\Tools\ExpeditionCheck\ExpeditionCheckWindow.xaml.cs">
-		  <SubType>Code</SubType>
-		</Compile>
 		<None Include=".editorconfig" />
 		<Page Include="Properties\DesignTimeResources.xaml">
 			<SubType>Designer</SubType>
@@ -694,11 +691,5 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Window\Tools\ExpeditionCheck\ExpeditionCheckWindow.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	    <SubType>Designer</SubType>
-	  </Page>
 	</ItemGroup>
 </Project>
