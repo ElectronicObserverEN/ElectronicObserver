@@ -1,97 +1,97 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Wpf.Arsenal"
-    xmlns:baseAirCorps="clr-namespace:ElectronicObserver.Window.Wpf.BaseAirCorps"
-    xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
-    xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
-    xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
-    xmlns:expeditionCheck="clr-namespace:ElectronicObserver.Window.Tools.ExpeditionCheck"
-    xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
-    xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
-    xmlns:fleetPreset="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
-    xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
-    xmlns:information="clr-namespace:ElectronicObserver.Window.Wpf.InformationView"
-    xmlns:log="clr-namespace:ElectronicObserver.Window.Wpf.Log"
-    xmlns:quest="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
-    xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
-    xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
-    xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
-    xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
-    xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
-    xmlns:wpf="clr-namespace:ElectronicObserver.Window.Wpf"
-    >
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Wpf.Arsenal"
+	xmlns:baseAirCorps="clr-namespace:ElectronicObserver.Window.Wpf.BaseAirCorps"
+	xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
+	xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
+	xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
+	xmlns:expeditionCheck="clr-namespace:ElectronicObserver.Window.Tools.ExpeditionCheck"
+	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
+	xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
+	xmlns:fleetPreset="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
+	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
+	xmlns:information="clr-namespace:ElectronicObserver.Window.Wpf.InformationView"
+	xmlns:log="clr-namespace:ElectronicObserver.Window.Wpf.Log"
+	xmlns:quest="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
+	xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
+	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
+	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
+	xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
+	xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
+	xmlns:wpf="clr-namespace:ElectronicObserver.Window.Wpf"
+	>
 
-    <DataTemplate x:Key="FleetTemplate" DataType="{x:Type fleet:FleetViewModel}">
-        <fleet:FleetView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="FleetOverviewTemplate" DataType="{x:Type fleetOverview:FleetOverviewViewModel}">
-        <fleetOverview:FleetOverviewView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="ShipGroupTemplate" DataType="viewModels:ShipGroupViewModel">
-        <shipGroup:ShipGroupView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="ShipGroupWinformsTemplate" DataType="shipGroupWinforms:ShipGroupWinformsViewModel">
-        <shipGroupWinforms:ShipGroupWinformsView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="FleetPresetTemplate" DataType="{x:Type fleetPreset:FleetPresetViewModel}">
-        <fleetPreset:FleetPresetView ViewModel="{Binding}" />
-    </DataTemplate>
+	<DataTemplate x:Key="FleetTemplate" DataType="{x:Type fleet:FleetViewModel}">
+		<fleet:FleetView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="FleetOverviewTemplate" DataType="{x:Type fleetOverview:FleetOverviewViewModel}">
+		<fleetOverview:FleetOverviewView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="ShipGroupTemplate" DataType="viewModels:ShipGroupViewModel">
+		<shipGroup:ShipGroupView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="ShipGroupWinformsTemplate" DataType="shipGroupWinforms:ShipGroupWinformsViewModel">
+		<shipGroupWinforms:ShipGroupWinformsView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="FleetPresetTemplate" DataType="{x:Type fleetPreset:FleetPresetViewModel}">
+		<fleetPreset:FleetPresetView ViewModel="{Binding}" />
+	</DataTemplate>
 
-    <DataTemplate x:Key="DockTemplate" DataType="{x:Type dock:DockViewModel}">
-        <dock:DockView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="ArsenalTemplate" DataType="{x:Type arsenal:ArsenalViewModel}">
-        <arsenal:ArsenalView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="BaseAirCorpsTemplate" DataType="{x:Type baseAirCorps:BaseAirCorpsViewModel}">
-        <baseAirCorps:BaseAirCorpsView ViewModel="{Binding}" />
-    </DataTemplate>
+	<DataTemplate x:Key="DockTemplate" DataType="{x:Type dock:DockViewModel}">
+		<dock:DockView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="ArsenalTemplate" DataType="{x:Type arsenal:ArsenalViewModel}">
+		<arsenal:ArsenalView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="BaseAirCorpsTemplate" DataType="{x:Type baseAirCorps:BaseAirCorpsViewModel}">
+		<baseAirCorps:BaseAirCorpsView ViewModel="{Binding}" />
+	</DataTemplate>
 
-    <DataTemplate x:Key="HeadquartersTemplate" DataType="{x:Type headquarters:HeadquartersViewModel}">
-        <headquarters:HeadquartersView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="InformationTemplate" DataType="{x:Type information:InformationViewModel}">
-        <information:InformationView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="LogTemplate" DataType="{x:Type log:LogViewModel}">
-        <log:LogView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="QuestTemplate" DataType="{x:Type quest:QuestViewModel}">
-        <quest:QuestView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="ExpeditionCheckTemplate" DataType="{x:Type expeditionCheck:ExpeditionCheckViewModel}">
-        <expeditionCheck:ExpeditionCheckView />
-    </DataTemplate>
+	<DataTemplate x:Key="HeadquartersTemplate" DataType="{x:Type headquarters:HeadquartersViewModel}">
+		<headquarters:HeadquartersView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="InformationTemplate" DataType="{x:Type information:InformationViewModel}">
+		<information:InformationView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="LogTemplate" DataType="{x:Type log:LogViewModel}">
+		<log:LogView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="QuestTemplate" DataType="{x:Type quest:QuestViewModel}">
+		<quest:QuestView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="ExpeditionCheckTemplate" DataType="{x:Type expeditionCheck:ExpeditionCheckViewModel}">
+		<expeditionCheck:ExpeditionCheckView />
+	</DataTemplate>
 
-    <DataTemplate x:Key="CompassTemplate" DataType="{x:Type compass:CompassViewModel}">
-        <compass:CompassView ViewModel="{Binding}" />
-    </DataTemplate>
-    <DataTemplate x:Key="BattleTemplate" DataType="{x:Type battle:BattleViewModel}">
-        <battle:BattleView ViewModel="{Binding}" />
-    </DataTemplate>
+	<DataTemplate x:Key="CompassTemplate" DataType="{x:Type compass:CompassViewModel}">
+		<compass:CompassView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="BattleTemplate" DataType="{x:Type battle:BattleViewModel}">
+		<battle:BattleView ViewModel="{Binding}" />
+	</DataTemplate>
 
-    <DataTemplate x:Key="WinformsHostTemplate" DataType="{x:Type winformsWrappers:FormBrowserHostViewModel}">
-        <winformsHost:WinformsHostView ViewModel="{Binding}" />
-    </DataTemplate>
+	<DataTemplate x:Key="WinformsHostTemplate" DataType="{x:Type winformsWrappers:FormBrowserHostViewModel}">
+		<winformsHost:WinformsHostView ViewModel="{Binding}" />
+	</DataTemplate>
 
-    <wpf:ViewTemplateSelector
-        x:Key="ViewTemplateSelector"
-        Arsenal="{StaticResource ArsenalTemplate}"
-        BaseAirCorps="{StaticResource BaseAirCorpsTemplate}"
-        Battle="{StaticResource BattleTemplate}"
-        Compass="{StaticResource CompassTemplate}"
-        Dock="{StaticResource DockTemplate}"
-        ExpeditionCheck="{StaticResource ExpeditionCheckTemplate}"
-        Fleet="{StaticResource FleetTemplate}"
-        FleetOverview="{StaticResource FleetOverviewTemplate}"
-        FleetPreset="{StaticResource FleetPresetTemplate}"
-        Group="{StaticResource ShipGroupTemplate}"
-        GroupWinforms="{StaticResource ShipGroupWinformsTemplate}"
-        Headquarters="{StaticResource HeadquartersTemplate}"
-        Information="{StaticResource InformationTemplate}"
-        Log="{StaticResource LogTemplate}"
-        Quest="{StaticResource QuestTemplate}"
-        WinformsHost="{StaticResource WinformsHostTemplate}"
-        />
+	<wpf:ViewTemplateSelector
+		x:Key="ViewTemplateSelector"
+		Arsenal="{StaticResource ArsenalTemplate}"
+		BaseAirCorps="{StaticResource BaseAirCorpsTemplate}"
+		Battle="{StaticResource BattleTemplate}"
+		Compass="{StaticResource CompassTemplate}"
+		Dock="{StaticResource DockTemplate}"
+		ExpeditionCheck="{StaticResource ExpeditionCheckTemplate}"
+		Fleet="{StaticResource FleetTemplate}"
+		FleetOverview="{StaticResource FleetOverviewTemplate}"
+		FleetPreset="{StaticResource FleetPresetTemplate}"
+		Group="{StaticResource ShipGroupTemplate}"
+		GroupWinforms="{StaticResource ShipGroupWinformsTemplate}"
+		Headquarters="{StaticResource HeadquartersTemplate}"
+		Information="{StaticResource InformationTemplate}"
+		Log="{StaticResource LogTemplate}"
+		Quest="{StaticResource QuestTemplate}"
+		WinformsHost="{StaticResource WinformsHostTemplate}"
+		/>
 </ResourceDictionary>

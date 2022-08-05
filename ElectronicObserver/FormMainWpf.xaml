@@ -1,855 +1,855 @@
 ﻿<Window
-    x:Class="ElectronicObserver.FormMainWpf"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:avalonDockProperties="clr-namespace:AvalonDock.Properties;assembly=AvalonDock"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:ElectronicObserver"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-    xmlns:reskeys="clr-namespace:AvalonDock.Themes.VS2013.Themes;assembly=AvalonDock.Themes.VS2013"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
-    xmlns:ui="http://schemas.modernwpf.com/2019"
-    xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
-    x:Name="FormMainWpfControl"
-    Title="{Binding FormMain.Title}"
-    d:Height="450"
-    d:Title="Electronic Observer"
-    d:Width="800"
-    ui:WindowHelper.UseModernWindowStyle="True"
-    DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}"
-    TextElement.FontFamily="{Binding Font}"
-    TextElement.FontSize="{Binding FontSize}"
-    TextElement.Foreground="{Binding FontBrush}"
-    Topmost="{Binding Topmost}"
-    mc:Ignorable="d"
-    >
-    <!--
-        copied from: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/Window.xaml#L27
-        removed GlassFrameThickness because it breaks winforms host content
-    -->
-    <WindowChrome.WindowChrome>
-        <WindowChrome
-            CaptionHeight="{DynamicResource {x:Static ui:TitleBar.HeightKey}}"
-            CornerRadius="0"
-            UseAeroCaptionButtons="False"
-            />
-    </WindowChrome.WindowChrome>
+	x:Class="ElectronicObserver.FormMainWpf"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:avalonDockProperties="clr-namespace:AvalonDock.Properties;assembly=AvalonDock"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:ElectronicObserver"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+	xmlns:reskeys="clr-namespace:AvalonDock.Themes.VS2013.Themes;assembly=AvalonDock.Themes.VS2013"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
+	x:Name="FormMainWpfControl"
+	Title="{Binding FormMain.Title}"
+	d:Height="450"
+	d:Title="Electronic Observer"
+	d:Width="800"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}"
+	TextElement.FontFamily="{Binding Font}"
+	TextElement.FontSize="{Binding FontSize}"
+	TextElement.Foreground="{Binding FontBrush}"
+	Topmost="{Binding Topmost}"
+	mc:Ignorable="d"
+	>
+	<!--
+		copied from: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/Window.xaml#L27
+		removed GlassFrameThickness because it breaks winforms host content
+	-->
+	<WindowChrome.WindowChrome>
+		<WindowChrome
+			CaptionHeight="{DynamicResource {x:Static ui:TitleBar.HeightKey}}"
+			CornerRadius="0"
+			UseAeroCaptionButtons="False"
+			/>
+	</WindowChrome.WindowChrome>
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Window/Wpf/ViewTemplates.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Window/Wpf/ViewTemplates.xaml" />
+			</ResourceDictionary.MergedDictionaries>
 
-            <viewModels:MainWindowBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+			<viewModels:MainWindowBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
-            <Style x:Key="AvalonDockThemeVs2013ButtonStyle" TargetType="Button">
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                >
-                                <ContentPresenter />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+			<Style x:Key="AvalonDockThemeVs2013ButtonStyle" TargetType="Button">
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="BorderThickness" Value="1" />
+				<Setter Property="BorderBrush" Value="Transparent" />
+				<Setter Property="Padding" Value="0" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Button">
+							<Border
+								Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								>
+								<ContentPresenter />
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
 
-            <Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
-                <Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-                <Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-                <Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-            </Style>
-            <Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
-                <Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-                <Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-                <Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-                <!--
-                    copied from https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/MenuItem.xaml#L415
-                    change is the foreground on the last trigger
-                -->
-                <Style.Triggers>
-                    <Trigger Property="Role" Value="TopLevelHeader">
-                        <Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
-                        <Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
-                        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}}" />
-                        <Setter Property="IsTabStop" Value="True" />
-                        <Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
-                    </Trigger>
-                    <Trigger Property="Role" Value="TopLevelItem">
-                        <Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
-                        <Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
-                        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}}" />
-                        <Setter Property="IsTabStop" Value="True" />
-                        <Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
-                    </Trigger>
-                    <Trigger Property="Role" Value="SubmenuHeader">
-                        <Setter Property="Background" Value="{DynamicResource MenuFlyoutSubItemRevealBackground}" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutSubItemRevealBorderBrush}" />
-                        <Setter Property="BorderThickness" Value="{DynamicResource MenuFlyoutSubItemRevealBorderThickness}" />
-                        <Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-                        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuHeaderTemplateKey}}" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style BasedOn="{StaticResource DefaultStatusBarStyle}" TargetType="StatusBar">
-                <Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-                <Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-                <Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-            </Style>
+			<Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			</Style>
+			<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<!--
+					copied from https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/MenuItem.xaml#L415
+					change is the foreground on the last trigger
+				-->
+				<Style.Triggers>
+					<Trigger Property="Role" Value="TopLevelHeader">
+						<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}}" />
+						<Setter Property="IsTabStop" Value="True" />
+						<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+					</Trigger>
+					<Trigger Property="Role" Value="TopLevelItem">
+						<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}}" />
+						<Setter Property="IsTabStop" Value="True" />
+						<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+					</Trigger>
+					<Trigger Property="Role" Value="SubmenuHeader">
+						<Setter Property="Background" Value="{DynamicResource MenuFlyoutSubItemRevealBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutSubItemRevealBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuFlyoutSubItemRevealBorderThickness}" />
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuHeaderTemplateKey}}" />
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<Style BasedOn="{StaticResource DefaultStatusBarStyle}" TargetType="StatusBar">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			</Style>
 
-            <ControlTemplate x:Key="AutoHideButtonTemplate" d:DataContext="{d:DesignInstance LayoutAnchorable}">
-                <Button
-                    x:Name="PART_AutoHidePin"
-                    Margin="2 0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Command="{Binding DataContext.AutoHideCommand, ElementName=FormMainWpfControl}"
-                    CommandParameter="{Binding}"
-                    Focusable="False"
-                    Style="{StaticResource AvalonDockThemeVs2013ButtonStyle}"
-                    ToolTip="{x:Static avalonDockProperties:Resources.Anchorable_BtnAutoHide_Hint}"
-                    Visibility="{Binding DataContext.CanAutoHide, ElementName=FormMainWpfControl, Converter={BoolToVisibilityConverter}}"
-                    >
-                    <Path
-                        x:Name="PART_ImgAutoHidePin"
-                        Width="10"
-                        Height="13"
-                        Data="{DynamicResource PinAutoHide}"
-                        Fill="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonInactiveGlyph}}"
-                        Stretch="Uniform"
-                        />
-                </Button>
+			<ControlTemplate x:Key="AutoHideButtonTemplate" d:DataContext="{d:DesignInstance LayoutAnchorable}">
+				<Button
+					x:Name="PART_AutoHidePin"
+					Margin="2 0"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Command="{Binding DataContext.AutoHideCommand, ElementName=FormMainWpfControl}"
+					CommandParameter="{Binding}"
+					Focusable="False"
+					Style="{StaticResource AvalonDockThemeVs2013ButtonStyle}"
+					ToolTip="{x:Static avalonDockProperties:Resources.Anchorable_BtnAutoHide_Hint}"
+					Visibility="{Binding DataContext.CanAutoHide, ElementName=FormMainWpfControl, Converter={BoolToVisibilityConverter}}"
+					>
+					<Path
+						x:Name="PART_ImgAutoHidePin"
+						Width="10"
+						Height="13"
+						Data="{DynamicResource PinAutoHide}"
+						Fill="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonInactiveGlyph}}"
+						Stretch="Uniform"
+						/>
+				</Button>
 
-                <ControlTemplate.Triggers>
-                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=PART_AutoHidePin}" Value="True">
-                        <Setter TargetName="PART_AutoHidePin" Property="Background" Value="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonActiveHoveredBackground}}" />
-                        <Setter TargetName="PART_AutoHidePin" Property="BorderBrush" Value="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonActiveHoveredBorder}}" />
-                        <Setter TargetName="PART_ImgAutoHidePin" Property="Fill" Value="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonActiveHoveredGlyph}}" />
-                    </DataTrigger>
-                </ControlTemplate.Triggers>
-            </ControlTemplate>
-        </ResourceDictionary>
-    </Window.Resources>
+				<ControlTemplate.Triggers>
+					<DataTrigger Binding="{Binding IsMouseOver, ElementName=PART_AutoHidePin}" Value="True">
+						<Setter TargetName="PART_AutoHidePin" Property="Background" Value="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonActiveHoveredBackground}}" />
+						<Setter TargetName="PART_AutoHidePin" Property="BorderBrush" Value="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonActiveHoveredBorder}}" />
+						<Setter TargetName="PART_ImgAutoHidePin" Property="Fill" Value="{DynamicResource {x:Static reskeys:ResourceKeys.ToolWindowCaptionButtonActiveHoveredGlyph}}" />
+					</DataTrigger>
+				</ControlTemplate.Triggers>
+			</ControlTemplate>
+		</ResourceDictionary>
+	</Window.Resources>
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
-        </i:EventTrigger>
-        <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding ClosedCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Closing">
+			<i:InvokeCommandAction Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
+		</i:EventTrigger>
+		<i:EventTrigger EventName="Closed">
+			<i:InvokeCommandAction Command="{Binding ClosedCommand}" />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-        <Menu
-            Grid.Row="0"
-            Height="Auto"
-            Padding="2"
-            >
-            <MenuItem
-                Height="Auto"
-                d:Header="File"
-                Header="{Binding FormMain.StripMenu_File}"
-                >
-                <MenuItem d:Header="Record" Header="{Binding FormMain.StripMenu_File_Record}">
-                    <MenuItem
-                        d:Header="Save"
-                        Command="{Binding SaveDataCommand}"
-                        Header="{Binding FormMain.StripMenu_File_Record_Save}"
-                        />
-                    <MenuItem
-                        d:Header="Load"
-                        Command="{Binding LoadDataCommand}"
-                        Header="{Binding FormMain.StripMenu_File_Record_Load}"
-                        />
-                </MenuItem>
-                <MenuItem d:Header="Layout" Header="{Binding FormMain.StripMenu_File_Layout}">
-                    <MenuItem
-                        d:Header="Save"
-                        Command="{Binding SaveLayoutCommand}"
-                        CommandParameter="{Binding ElementName=FormMainWpfControl}"
-                        Header="{Binding FormMain.StripMenu_File_Layout_Save}"
-                        />
-                    <MenuItem
-                        d:Header="Load"
-                        Command="{Binding LoadLayoutCommand}"
-                        CommandParameter="{Binding ElementName=FormMainWpfControl}"
-                        Header="{Binding FormMain.StripMenu_File_Layout_Load}"
-                        />
-                    <MenuItem
-                        d:Header="Open"
-                        Command="{Binding OpenLayoutCommand}"
-                        Header="{Binding FormMain.StripMenu_File_Layout_Open}"
-                        />
-                    <MenuItem
-                        d:Header="Save as"
-                        Command="{Binding SaveLayoutAsCommand}"
-                        Header="{Binding FormMain.StripMenu_File_Layout_Change}"
-                        />
-                    <Separator />
-                    <MenuItem Header="{Binding FormMain.Adjustment}">
-                        <MenuItem
-                            Header="{Binding FormMain.StripMenu_File_Layout_LockLayout}"
-                            IsCheckable="True"
-                            IsChecked="{Binding LockLayout}"
-                            />
-                        <StackPanel>
-                            <TextBlock Margin="0 2" Text="{Binding FormMain.GridSplitterSize}" />
-                            <ComboBox IsEnabled="{Binding CanChangeGridSplitterSize}" SelectedValue="{Binding GridSplitterSize}">
-                                <system:Int32>0</system:Int32>
-                                <system:Int32>1</system:Int32>
-                                <system:Int32>2</system:Int32>
-                                <system:Int32>3</system:Int32>
-                                <system:Int32>4</system:Int32>
-                                <system:Int32>5</system:Int32>
-                                <system:Int32>6</system:Int32>
-                                <system:Int32>7</system:Int32>
-                                <system:Int32>8</system:Int32>
-                                <system:Int32>9</system:Int32>
-                            </ComboBox>
-                        </StackPanel>
-                    </MenuItem>
-                    <Separator />
-                    <MenuItem
-                        d:Header="Always On Top (M)"
-                        Header="{Binding FormMain.StripMenu_File_Layout_TopMost}"
-                        IsCheckable="True"
-                        IsChecked="{Binding Topmost}"
-                        />
-                </MenuItem>
-                <MenuItem d:Header="Notification" Header="{Binding FormMain.StripMenu_File_Notification}">
-                    <MenuItem
-                        d:Header="Disable"
-                        Command="{Binding SilenceNotificationsCommand}"
-                        Header="{Binding FormMain.StripMenu_File_Notification_MuteAll}"
-                        IsCheckable="True"
-                        IsChecked="{Binding NotificationsSilenced}"
-                        />
-                </MenuItem>
-                <Separator />
-                <MenuItem
-                    d:Header="Settings"
-                    Command="{Binding OpenConfigurationCommand}"
-                    Header="{Binding FormMain.StripMenu_File_Configuration}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ConfigurationImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem
-                Height="Auto"
-                d:Header="View"
-                Header="{Binding FormMain.StripMenu_View}"
-                >
-                <MenuItem d:Header="Fleet" Header="{Binding FormMain.StripMenu_View_Fleet}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding FleetsImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem
-                        d:Header="#1"
-                        Command="{Binding OpenViewCommand}"
-                        CommandParameter="{Binding Fleets[0]}"
-                        Header="{Binding FormMain.StripMenu_View_Fleet_1}"
-                        />
-                    <MenuItem
-                        d:Header="#2"
-                        Command="{Binding OpenViewCommand}"
-                        CommandParameter="{Binding Fleets[1]}"
-                        Header="{Binding FormMain.StripMenu_View_Fleet_2}"
-                        />
-                    <MenuItem
-                        d:Header="#3"
-                        Command="{Binding OpenViewCommand}"
-                        CommandParameter="{Binding Fleets[2]}"
-                        Header="{Binding FormMain.StripMenu_View_Fleet_3}"
-                        />
-                    <MenuItem
-                        d:Header="#4"
-                        Command="{Binding OpenViewCommand}"
-                        CommandParameter="{Binding Fleets[3]}"
-                        Header="{Binding FormMain.StripMenu_View_Fleet_4}"
-                        />
-                </MenuItem>
-                <MenuItem
-                    d:Header="Fleet List"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FleetOverview}"
-                    Header="{Binding FormMain.StripMenu_View_FleetOverview}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding FleetOverviewImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Ship Group"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FormShipGroup}"
-                    Header="{Binding FormMain.StripMenu_View_ShipGroup}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ShipGroupImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Ship Group"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding ShipGroup}"
-                    Header="{Binding FormMain.StripMenu_View_ShipGroup}"
-                    Visibility="Collapsed"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ShipGroupImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Presets"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FleetPreset}"
-                    Header="{Binding FormMain.StripMenu_View_FleetPreset}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding FleetPresetImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem
-                    d:Header="Dock"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding Dock}"
-                    Header="{Binding FormMain.StripMenu_View_Dock}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding DockImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Arsenal"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding Arsenal}"
-                    Header="{Binding FormMain.StripMenu_View_Arsenal}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ArsenalImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="AB"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding BaseAirCorps}"
-                    Header="{Binding FormMain.StripMenu_View_BaseAirCorps}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding BaseAirCorpsImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem
-                    d:Header="HQ"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding Headquarters}"
-                    Header="{Binding FormMain.StripMenu_View_Headquarters}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding HeadquartersImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Quest"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding Quest}"
-                    Header="{Binding FormMain.StripMenu_View_Quest}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding QuestImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Expedition Check"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding ExpeditionCheck}"
-                    Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ExpeditionCheckImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Information"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FormInformation}"
-                    Header="{Binding FormMain.StripMenu_View_Information}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding InformationImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem
-                    d:Header="Compass"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding Compass}"
-                    Header="{Binding FormMain.StripMenu_View_Compass}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding CompassImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Battle"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding Battle}"
-                    Header="{Binding FormMain.StripMenu_View_Battle}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding BattleImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem
-                    d:Header="Browser"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FormBrowserHost}"
-                    Header="{Binding FormMain.StripMenu_View_Browser}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding BrowserHostImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Log"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FormLog}"
-                    Header="{Binding FormMain.StripMenu_View_Log}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding LogImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="JSON"
-                    Command="{Binding OpenViewCommand}"
-                    CommandParameter="{Binding FormJson}"
-                    Header="{Binding FormMain.StripMenu_View_Json}"
-                    Visibility="{Binding DebugVisibility}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding JsonImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem d:Header="Window Capture" Header="{Binding FormMain.StripMenu_WindowCapture}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding WindowCaptureImageSource}" />
-                    </MenuItem.Icon>
+		<Menu
+			Grid.Row="0"
+			Height="Auto"
+			Padding="2"
+			>
+			<MenuItem
+				Height="Auto"
+				d:Header="File"
+				Header="{Binding FormMain.StripMenu_File}"
+				>
+				<MenuItem d:Header="Record" Header="{Binding FormMain.StripMenu_File_Record}">
+					<MenuItem
+						d:Header="Save"
+						Command="{Binding SaveDataCommand}"
+						Header="{Binding FormMain.StripMenu_File_Record_Save}"
+						/>
+					<MenuItem
+						d:Header="Load"
+						Command="{Binding LoadDataCommand}"
+						Header="{Binding FormMain.StripMenu_File_Record_Load}"
+						/>
+				</MenuItem>
+				<MenuItem d:Header="Layout" Header="{Binding FormMain.StripMenu_File_Layout}">
+					<MenuItem
+						d:Header="Save"
+						Command="{Binding SaveLayoutCommand}"
+						CommandParameter="{Binding ElementName=FormMainWpfControl}"
+						Header="{Binding FormMain.StripMenu_File_Layout_Save}"
+						/>
+					<MenuItem
+						d:Header="Load"
+						Command="{Binding LoadLayoutCommand}"
+						CommandParameter="{Binding ElementName=FormMainWpfControl}"
+						Header="{Binding FormMain.StripMenu_File_Layout_Load}"
+						/>
+					<MenuItem
+						d:Header="Open"
+						Command="{Binding OpenLayoutCommand}"
+						Header="{Binding FormMain.StripMenu_File_Layout_Open}"
+						/>
+					<MenuItem
+						d:Header="Save as"
+						Command="{Binding SaveLayoutAsCommand}"
+						Header="{Binding FormMain.StripMenu_File_Layout_Change}"
+						/>
+					<Separator />
+					<MenuItem Header="{Binding FormMain.Adjustment}">
+						<MenuItem
+							Header="{Binding FormMain.StripMenu_File_Layout_LockLayout}"
+							IsCheckable="True"
+							IsChecked="{Binding LockLayout}"
+							/>
+						<StackPanel>
+							<TextBlock Margin="0 2" Text="{Binding FormMain.GridSplitterSize}" />
+							<ComboBox IsEnabled="{Binding CanChangeGridSplitterSize}" SelectedValue="{Binding GridSplitterSize}">
+								<system:Int32>0</system:Int32>
+								<system:Int32>1</system:Int32>
+								<system:Int32>2</system:Int32>
+								<system:Int32>3</system:Int32>
+								<system:Int32>4</system:Int32>
+								<system:Int32>5</system:Int32>
+								<system:Int32>6</system:Int32>
+								<system:Int32>7</system:Int32>
+								<system:Int32>8</system:Int32>
+								<system:Int32>9</system:Int32>
+							</ComboBox>
+						</StackPanel>
+					</MenuItem>
+					<Separator />
+					<MenuItem
+						d:Header="Always On Top (M)"
+						Header="{Binding FormMain.StripMenu_File_Layout_TopMost}"
+						IsCheckable="True"
+						IsChecked="{Binding Topmost}"
+						/>
+				</MenuItem>
+				<MenuItem d:Header="Notification" Header="{Binding FormMain.StripMenu_File_Notification}">
+					<MenuItem
+						d:Header="Disable"
+						Command="{Binding SilenceNotificationsCommand}"
+						Header="{Binding FormMain.StripMenu_File_Notification_MuteAll}"
+						IsCheckable="True"
+						IsChecked="{Binding NotificationsSilenced}"
+						/>
+				</MenuItem>
+				<Separator />
+				<MenuItem
+					d:Header="Settings"
+					Command="{Binding OpenConfigurationCommand}"
+					Header="{Binding FormMain.StripMenu_File_Configuration}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ConfigurationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem
+				Height="Auto"
+				d:Header="View"
+				Header="{Binding FormMain.StripMenu_View}"
+				>
+				<MenuItem d:Header="Fleet" Header="{Binding FormMain.StripMenu_View_Fleet}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem
+						d:Header="#1"
+						Command="{Binding OpenViewCommand}"
+						CommandParameter="{Binding Fleets[0]}"
+						Header="{Binding FormMain.StripMenu_View_Fleet_1}"
+						/>
+					<MenuItem
+						d:Header="#2"
+						Command="{Binding OpenViewCommand}"
+						CommandParameter="{Binding Fleets[1]}"
+						Header="{Binding FormMain.StripMenu_View_Fleet_2}"
+						/>
+					<MenuItem
+						d:Header="#3"
+						Command="{Binding OpenViewCommand}"
+						CommandParameter="{Binding Fleets[2]}"
+						Header="{Binding FormMain.StripMenu_View_Fleet_3}"
+						/>
+					<MenuItem
+						d:Header="#4"
+						Command="{Binding OpenViewCommand}"
+						CommandParameter="{Binding Fleets[3]}"
+						Header="{Binding FormMain.StripMenu_View_Fleet_4}"
+						/>
+				</MenuItem>
+				<MenuItem
+					d:Header="Fleet List"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FleetOverview}"
+					Header="{Binding FormMain.StripMenu_View_FleetOverview}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetOverviewImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Ship Group"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FormShipGroup}"
+					Header="{Binding FormMain.StripMenu_View_ShipGroup}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Ship Group"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding ShipGroup}"
+					Header="{Binding FormMain.StripMenu_View_ShipGroup}"
+					Visibility="Collapsed"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Presets"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FleetPreset}"
+					Header="{Binding FormMain.StripMenu_View_FleetPreset}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetPresetImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem
+					d:Header="Dock"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding Dock}"
+					Header="{Binding FormMain.StripMenu_View_Dock}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Arsenal"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding Arsenal}"
+					Header="{Binding FormMain.StripMenu_View_Arsenal}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ArsenalImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="AB"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding BaseAirCorps}"
+					Header="{Binding FormMain.StripMenu_View_BaseAirCorps}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem
+					d:Header="HQ"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding Headquarters}"
+					Header="{Binding FormMain.StripMenu_View_Headquarters}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding HeadquartersImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Quest"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding Quest}"
+					Header="{Binding FormMain.StripMenu_View_Quest}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Expedition Check"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding ExpeditionCheck}"
+					Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpeditionCheckImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Information"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FormInformation}"
+					Header="{Binding FormMain.StripMenu_View_Information}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding InformationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem
+					d:Header="Compass"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding Compass}"
+					Header="{Binding FormMain.StripMenu_View_Compass}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding CompassImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Battle"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding Battle}"
+					Header="{Binding FormMain.StripMenu_View_Battle}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding BattleImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem
+					d:Header="Browser"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FormBrowserHost}"
+					Header="{Binding FormMain.StripMenu_View_Browser}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding BrowserHostImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Log"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FormLog}"
+					Header="{Binding FormMain.StripMenu_View_Log}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding LogImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="JSON"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding FormJson}"
+					Header="{Binding FormMain.StripMenu_View_Json}"
+					Visibility="{Binding DebugVisibility}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding JsonImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem d:Header="Window Capture" Header="{Binding FormMain.StripMenu_WindowCapture}">
+					<MenuItem.Icon>
+						<Image Source="{Binding WindowCaptureImageSource}" />
+					</MenuItem.Icon>
 
-                    <MenuItem
-                        d:Header="Sub Window (_C)"
-                        Command="{Binding OpenViewCommand}"
-                        CommandParameter="{Binding WindowCapture}"
-                        Header="{Binding FormMain.StripMenu_WindowCapture_SubWindow}"
-                        />
-                    <MenuItem
-                        d:Header="Attach All (_S)"
-                        Command="{Binding StripMenu_WindowCapture_AttachAll_ClickCommand}"
-                        Header="{Binding FormMain.StripMenu_WindowCapture_AttachAll}"
-                        />
-                    <MenuItem
-                        d:Header="Detach All (_R)"
-                        Command="{Binding StripMenu_WindowCapture_DetachAll_ClickCommand}"
-                        Header="{Binding FormMain.StripMenu_WindowCapture_DetachAll}"
-                        />
-                </MenuItem>
-            </MenuItem>
-            <MenuItem
-                Height="Auto"
-                d:Header="Tools"
-                Header="{Binding FormMain.StripMenu_Tool}"
-                >
-                <MenuItem d:Header="Equipment List" Header="{Binding FormMain.StripMenu_Tool_EquipmentList}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding EquipmentListImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <Separator />
-                <MenuItem d:Header="Drop Record" Header="{Binding FormMain.StripMenu_Tool_DropRecord}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding DropRecordImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem d:Header="Development Record" Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding DevelopmentRecordImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem d:Header="Construction Record" Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ConstructionRecordImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem d:Header="Resource Chart" Header="{Binding FormMain.StripMenu_Tool_ResourceChart}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ResourceChartImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenResourceChartCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenResourceChartCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <Separator />
-                <MenuItem
-                    d:Header="Ship Encyclopedia"
-                    Command="{Binding OpenAlbumMasterShipCommand}"
-                    Header="{Binding FormMain.StripMenu_Tool_AlbumMasterShip}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding AlbumMasterShipImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Equipment Encyclopedia"
-                    Command="{Binding OpenAlbumMasterEquipmentCommand}"
-                    Header="{Binding FormMain.StripMenu_Tool_AlbumMasterEquipment}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding AlbumMasterEquipmentImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem d:Header="AA Defense" Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding AntiAirDefenseImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Export Fleet Image"
-                    Command="{Binding OpenFleetImageGeneratorCommand}"
-                    Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding FleetImageGeneratorImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem d:Header="AB Simulator" Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
-                    </MenuItem.Icon>
-                    <MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Exp Calculator"
-                    Command="{Binding OpenExpCheckerCommand}"
-                    Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ExpCheckerImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem d:Header="Expedition Check" Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ExpeditionCheckImageSource}" />
-                    </MenuItem.Icon>
+					<MenuItem
+						d:Header="Sub Window (_C)"
+						Command="{Binding OpenViewCommand}"
+						CommandParameter="{Binding WindowCapture}"
+						Header="{Binding FormMain.StripMenu_WindowCapture_SubWindow}"
+						/>
+					<MenuItem
+						d:Header="Attach All (_S)"
+						Command="{Binding StripMenu_WindowCapture_AttachAll_ClickCommand}"
+						Header="{Binding FormMain.StripMenu_WindowCapture_AttachAll}"
+						/>
+					<MenuItem
+						d:Header="Detach All (_R)"
+						Command="{Binding StripMenu_WindowCapture_DetachAll_ClickCommand}"
+						Header="{Binding FormMain.StripMenu_WindowCapture_DetachAll}"
+						/>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem
+				Height="Auto"
+				d:Header="Tools"
+				Header="{Binding FormMain.StripMenu_Tool}"
+				>
+				<MenuItem d:Header="Equipment List" Header="{Binding FormMain.StripMenu_Tool_EquipmentList}">
+					<MenuItem.Icon>
+						<Image Source="{Binding EquipmentListImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<Separator />
+				<MenuItem d:Header="Drop Record" Header="{Binding FormMain.StripMenu_Tool_DropRecord}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DropRecordImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<MenuItem d:Header="Development Record" Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DevelopmentRecordImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<MenuItem d:Header="Construction Record" Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ConstructionRecordImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<MenuItem d:Header="Resource Chart" Header="{Binding FormMain.StripMenu_Tool_ResourceChart}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ResourceChartImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenResourceChartCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenResourceChartCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<Separator />
+				<MenuItem
+					d:Header="Ship Encyclopedia"
+					Command="{Binding OpenAlbumMasterShipCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_AlbumMasterShip}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding AlbumMasterShipImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Equipment Encyclopedia"
+					Command="{Binding OpenAlbumMasterEquipmentCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_AlbumMasterEquipment}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding AlbumMasterEquipmentImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem d:Header="AA Defense" Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AntiAirDefenseImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<MenuItem
+					d:Header="Export Fleet Image"
+					Command="{Binding OpenFleetImageGeneratorCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetImageGeneratorImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem d:Header="AB Simulator" Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<MenuItem
+					d:Header="Exp Calculator"
+					Command="{Binding OpenExpCheckerCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpCheckerImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem d:Header="Expedition Check" Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpeditionCheckImageSource}" />
+					</MenuItem.Icon>
 
-                    <MenuItem Command="{Binding OpenExpeditionCheckCommand}" Header="{Binding FormMain.Old}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>False</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                    <MenuItem Command="{Binding OpenExpeditionCheckCommand}" Header="{Binding FormMain.New}">
-                        <MenuItem.CommandParameter>
-                            <system:Boolean>True</system:Boolean>
-                        </MenuItem.CommandParameter>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Ship Progression List"
-                    Command="{Binding OpenKancolleProgressCommand}"
-                    Header="{Binding FormMain.StripMenu_Tool_KancolleProgress}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding KancolleProgressImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Extra Browser"
-                    Command="{Binding OpenExtraBrowserCommand}"
-                    Header="{Binding FormMain.StripMenu_Tool_ExtraBrowser}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ExtraBrowserImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Command="{Binding OpenQuestTrackerManagerCommand}" Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding QuestImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding QuestImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Command="{Binding OpenAutoRefreshCommand}" Header="{Binding FormMain.AutoRefreshTitle}">
-                    <MenuItem.Icon>
-                        <Image Source="{Binding AutoRefreshImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem
-                Height="Auto"
-                d:Header="Debug"
-                Header="{Binding FormMain.StripMenu_Debug}"
-                Visibility="{Binding DebugVisibility}"
-                >
-                <MenuItem
-                    d:Header="Load API From File..."
-                    Command="{Binding LoadAPIFromFileCommand}"
-                    Header="{Binding FormMain.StripMenu_Debug_LoadAPIFromFile}"
-                    />
-                <MenuItem
-                    d:Header="Load Initial API (_I)..."
-                    Command="{Binding LoadInitialAPICommand}"
-                    Header="{Binding FormMain.StripMenu_Debug_LoadInitialAPI}"
-                    />
-                <Separator />
-                <MenuItem
-                    d:Header="Load from _Old api__start2..."
-                    Command="{Binding LoadRecordFromOldCommand}"
-                    Header="{Binding FormMain.StripMenu_Debug_LoadRecordFromOld}"
-                    />
-                <MenuItem
-                    d:Header="_Delete Old API Data"
-                    Command="{Binding DeleteOldAPICommand}"
-                    Header="{Binding FormMain.StripMenu_Debug_DeleteOldAPI}"
-                    />
-                <MenuItem
-                    d:Header="_Rename Ship Resource..."
-                    Command="{Binding RenameShipResourceCommand}"
-                    Header="{Binding FormMain.StripMenu_Debug_RenameShipResource}"
-                    />
-                <MenuItem
-                    d:Header="Re_store Abyssal Data from Old api_start2..."
-                    Command="{Binding LoadDataFromOldCommand}"
-                    Header="{Binding FormMain.StripMenu_Debug_LoadDataFromOld}"
-                    />
-                <Separator Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}" />
-                <MenuItem Header="Data Generation" Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}">
-                    <MenuItem Command="{Binding GenerateMasterDataCommand}" Header="Generate Master Data" />
-                    <MenuItem Command="{Binding GenerateShipIdEnumCommand}" Header="Generate Ship ID Enum" />
-                    <MenuItem Command="{Binding GenerateEquipmentIdEnumCommand}" Header="Generate Equipment ID Enum" />
-                </MenuItem>
-            </MenuItem>
-            <MenuItem
-                Height="Auto"
-                d:Header="Help"
-                Header="{Binding FormMain.StripMenu_Help}"
-                >
-                <MenuItem
-                    d:Header="View Help"
-                    Command="{Binding ViewHelpCommand}"
-                    Header="{Binding FormMain.StripMenu_Help_Help}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ViewHelpImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem
-                    d:Header="Report a Problem"
-                    Command="{Binding ReportIssueCommand}"
-                    Header="{Binding FormMain.StripMenu_Help_Issue}"
-                    />
-                <MenuItem
-                    d:Header="Join us on Discord"
-                    Command="{Binding JoinDiscordCommand}"
-                    Header="{Binding FormMain.StripMenu_Help_Discord}"
-                    />
-                <Separator />
-                <MenuItem
-                    d:Header="Check for Update"
-                    Command="{Binding CheckForUpdateCommand}"
-                    Header="{Binding FormMain.StripMenu_Help_Update}"
-                    />
-                <MenuItem
-                    d:Header="About Electronic Observer"
-                    Command="{Binding ViewVersionCommand}"
-                    Header="{Binding FormMain.StripMenu_Help_Version}"
-                    >
-                    <MenuItem.Icon>
-                        <Image Source="{Binding ViewVersionImageSource}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-        </Menu>
+					<MenuItem Command="{Binding OpenExpeditionCheckCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenExpeditionCheckCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+				</MenuItem>
+				<MenuItem
+					d:Header="Ship Progression List"
+					Command="{Binding OpenKancolleProgressCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_KancolleProgress}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding KancolleProgressImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Extra Browser"
+					Command="{Binding OpenExtraBrowserCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_ExtraBrowser}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ExtraBrowserImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Command="{Binding OpenQuestTrackerManagerCommand}" Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Command="{Binding OpenAutoRefreshCommand}" Header="{Binding FormMain.AutoRefreshTitle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AutoRefreshImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem
+				Height="Auto"
+				d:Header="Debug"
+				Header="{Binding FormMain.StripMenu_Debug}"
+				Visibility="{Binding DebugVisibility}"
+				>
+				<MenuItem
+					d:Header="Load API From File..."
+					Command="{Binding LoadAPIFromFileCommand}"
+					Header="{Binding FormMain.StripMenu_Debug_LoadAPIFromFile}"
+					/>
+				<MenuItem
+					d:Header="Load Initial API (_I)..."
+					Command="{Binding LoadInitialAPICommand}"
+					Header="{Binding FormMain.StripMenu_Debug_LoadInitialAPI}"
+					/>
+				<Separator />
+				<MenuItem
+					d:Header="Load from _Old api__start2..."
+					Command="{Binding LoadRecordFromOldCommand}"
+					Header="{Binding FormMain.StripMenu_Debug_LoadRecordFromOld}"
+					/>
+				<MenuItem
+					d:Header="_Delete Old API Data"
+					Command="{Binding DeleteOldAPICommand}"
+					Header="{Binding FormMain.StripMenu_Debug_DeleteOldAPI}"
+					/>
+				<MenuItem
+					d:Header="_Rename Ship Resource..."
+					Command="{Binding RenameShipResourceCommand}"
+					Header="{Binding FormMain.StripMenu_Debug_RenameShipResource}"
+					/>
+				<MenuItem
+					d:Header="Re_store Abyssal Data from Old api_start2..."
+					Command="{Binding LoadDataFromOldCommand}"
+					Header="{Binding FormMain.StripMenu_Debug_LoadDataFromOld}"
+					/>
+				<Separator Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}" />
+				<MenuItem Header="Data Generation" Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}">
+					<MenuItem Command="{Binding GenerateMasterDataCommand}" Header="Generate Master Data" />
+					<MenuItem Command="{Binding GenerateShipIdEnumCommand}" Header="Generate Ship ID Enum" />
+					<MenuItem Command="{Binding GenerateEquipmentIdEnumCommand}" Header="Generate Equipment ID Enum" />
+				</MenuItem>
+			</MenuItem>
+			<MenuItem
+				Height="Auto"
+				d:Header="Help"
+				Header="{Binding FormMain.StripMenu_Help}"
+				>
+				<MenuItem
+					d:Header="View Help"
+					Command="{Binding ViewHelpCommand}"
+					Header="{Binding FormMain.StripMenu_Help_Help}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ViewHelpImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Report a Problem"
+					Command="{Binding ReportIssueCommand}"
+					Header="{Binding FormMain.StripMenu_Help_Issue}"
+					/>
+				<MenuItem
+					d:Header="Join us on Discord"
+					Command="{Binding JoinDiscordCommand}"
+					Header="{Binding FormMain.StripMenu_Help_Discord}"
+					/>
+				<Separator />
+				<MenuItem
+					d:Header="Check for Update"
+					Command="{Binding CheckForUpdateCommand}"
+					Header="{Binding FormMain.StripMenu_Help_Update}"
+					/>
+				<MenuItem
+					d:Header="About Electronic Observer"
+					Command="{Binding ViewVersionCommand}"
+					Header="{Binding FormMain.StripMenu_Help_Version}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ViewVersionImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+		</Menu>
 
-        <DockingManager
-            x:Name="DockingManager"
-            Grid.Row="1"
-            AllowMixedOrientation="True"
-            AnchorablesSource="{Binding Views}"
-            GridSplitterHeight="{Binding GridSplitterSize}"
-            GridSplitterWidth="{Binding GridSplitterSize}"
-            IsVirtualizingAnchorable="True"
-            IsVirtualizingDocument="True"
-            Language="ja-JP"
-            LayoutItemTemplateSelector="{StaticResource ViewTemplateSelector}"
-            Theme="{Binding CurrentTheme}"
-            >
-            <DockingManager.Resources>
-                <SolidColorBrush
-                    x:Key="{x:Static reskeys:ResourceKeys.TabBackground}"
-                    options:Freeze="true"
-                    Color="{Binding BackgroundColor}"
-                    />
-            </DockingManager.Resources>
+		<DockingManager
+			x:Name="DockingManager"
+			Grid.Row="1"
+			AllowMixedOrientation="True"
+			AnchorablesSource="{Binding Views}"
+			GridSplitterHeight="{Binding GridSplitterSize}"
+			GridSplitterWidth="{Binding GridSplitterSize}"
+			IsVirtualizingAnchorable="True"
+			IsVirtualizingDocument="True"
+			Language="ja-JP"
+			LayoutItemTemplateSelector="{StaticResource ViewTemplateSelector}"
+			Theme="{Binding CurrentTheme}"
+			>
+			<DockingManager.Resources>
+				<SolidColorBrush
+					x:Key="{x:Static reskeys:ResourceKeys.TabBackground}"
+					options:Freeze="true"
+					Color="{Binding BackgroundColor}"
+					/>
+			</DockingManager.Resources>
 
-            <DockingManager.GridSplitterVerticalStyle>
-                <Style TargetType="LayoutGridResizerControl">
-                    <Setter Property="Width" Value="{Binding GridSplitterSize}" />
-                </Style>
-            </DockingManager.GridSplitterVerticalStyle>
+			<DockingManager.GridSplitterVerticalStyle>
+				<Style TargetType="LayoutGridResizerControl">
+					<Setter Property="Width" Value="{Binding GridSplitterSize}" />
+				</Style>
+			</DockingManager.GridSplitterVerticalStyle>
 
-            <DockingManager.GridSplitterHorizontalStyle>
-                <Style TargetType="LayoutGridResizerControl">
-                    <Setter Property="Height" Value="{Binding GridSplitterSize}" />
-                </Style>
-            </DockingManager.GridSplitterHorizontalStyle>
+			<DockingManager.GridSplitterHorizontalStyle>
+				<Style TargetType="LayoutGridResizerControl">
+					<Setter Property="Height" Value="{Binding GridSplitterSize}" />
+				</Style>
+			</DockingManager.GridSplitterHorizontalStyle>
 
-            <DockingManager.DocumentHeaderTemplate>
-                <DataTemplate DataType="LayoutAnchorable">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Margin="0 0 4 0" Source="{Binding IconSource}" />
-                        <TextBlock Text="{Binding Title}" />
-                        <ContentControl Template="{StaticResource AutoHideButtonTemplate}" />
-                    </StackPanel>
-                </DataTemplate>
-            </DockingManager.DocumentHeaderTemplate>
+			<DockingManager.DocumentHeaderTemplate>
+				<DataTemplate DataType="LayoutAnchorable">
+					<StackPanel Orientation="Horizontal">
+						<Image Margin="0 0 4 0" Source="{Binding IconSource}" />
+						<TextBlock Text="{Binding Title}" />
+						<ContentControl Template="{StaticResource AutoHideButtonTemplate}" />
+					</StackPanel>
+				</DataTemplate>
+			</DockingManager.DocumentHeaderTemplate>
 
-            <DockingManager.LayoutItemContainerStyleSelector>
-                <local:ViewStyleSelector>
-                    <local:ViewStyleSelector.AnchorableStyle>
-                        <Style TargetType="LayoutAnchorableItem">
-                            <Setter Property="Title" Value="{Binding Model.Title}" />
-                            <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
-                            <Setter Property="IconSource" Value="{Binding Model.IconSource}" />
-                            <Setter Property="Visibility" Value="{Binding Model.Visibility, Mode=TwoWay}" />
-                            <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
-                            <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
-                            <Setter Property="CanFloat" Value="{Binding Model.CanFloat}" />
-                            <Setter Property="CanClose" Value="{Binding Model.CanClose, Mode=TwoWay}" />
-                            <Setter Property="CanHide" Value="False" />
-                            <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
-                        </Style>
-                    </local:ViewStyleSelector.AnchorableStyle>
-                </local:ViewStyleSelector>
-            </DockingManager.LayoutItemContainerStyleSelector>
+			<DockingManager.LayoutItemContainerStyleSelector>
+				<local:ViewStyleSelector>
+					<local:ViewStyleSelector.AnchorableStyle>
+						<Style TargetType="LayoutAnchorableItem">
+							<Setter Property="Title" Value="{Binding Model.Title}" />
+							<Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+							<Setter Property="IconSource" Value="{Binding Model.IconSource}" />
+							<Setter Property="Visibility" Value="{Binding Model.Visibility, Mode=TwoWay}" />
+							<Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
+							<Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
+							<Setter Property="CanFloat" Value="{Binding Model.CanFloat}" />
+							<Setter Property="CanClose" Value="{Binding Model.CanClose, Mode=TwoWay}" />
+							<Setter Property="CanHide" Value="False" />
+							<Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+						</Style>
+					</local:ViewStyleSelector.AnchorableStyle>
+				</local:ViewStyleSelector>
+			</DockingManager.LayoutItemContainerStyleSelector>
 
-            <LayoutRoot>
-                <LayoutPanel>
-                    <LayoutAnchorablePane AllowDuplicateContent="False" />
-                </LayoutPanel>
-            </LayoutRoot>
+			<LayoutRoot>
+				<LayoutPanel>
+					<LayoutAnchorablePane AllowDuplicateContent="False" />
+				</LayoutPanel>
+			</LayoutRoot>
 
-        </DockingManager>
+		</DockingManager>
 
-        <StatusBar
-            Grid.Row="2"
-            DataContext="{Binding StripStatus}"
-            Visibility="{Binding Visibility}"
-            >
-            <StatusBarItem>
-                <TextBlock d:Text="Hello world!" Text="{Binding Information}" />
-            </StatusBarItem>
+		<StatusBar
+			Grid.Row="2"
+			DataContext="{Binding StripStatus}"
+			Visibility="{Binding Visibility}"
+			>
+			<StatusBarItem>
+				<TextBlock d:Text="Hello world!" Text="{Binding Information}" />
+			</StatusBarItem>
 
-            <StatusBarItem HorizontalAlignment="Right">
-                <TextBlock
-                    d:Text="Clock"
-                    Background="Transparent"
-                    Text="{Binding Clock}"
-                    ToolTip="{Binding ClockToolTip}"
-                    />
-            </StatusBarItem>
-        </StatusBar>
-    </Grid>
+			<StatusBarItem HorizontalAlignment="Right">
+				<TextBlock
+					d:Text="Clock"
+					Background="Transparent"
+					Text="{Binding Clock}"
+					ToolTip="{Binding ClockToolTip}"
+					/>
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
 </Window>
