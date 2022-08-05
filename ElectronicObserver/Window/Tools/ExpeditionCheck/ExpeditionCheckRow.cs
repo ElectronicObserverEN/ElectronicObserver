@@ -9,10 +9,11 @@ namespace ElectronicObserver.Window.Tools.ExpeditionCheck;
 
 public class ExpeditionCheckRow
 {
+	public int AreaId { get; set; }
+	public int ExpeditionSortId { get; set; }
+
 	public string ExpeditionId { get; set; }
-
 	public string AreaName { get; set; }
-
 	public string ExpeditionName { get; set; }
 
 	public MissionClearConditionResult Fleet1Result { get; set; }
@@ -46,6 +47,7 @@ public class ExpeditionCheckRow
 	public string Fleet4Tooltip => GetResultTooltip(Fleet4Result);
 	public string ConditionTooltip => GetSuccessToolTip(Conditions);
 
+	public int SortId => AreaId * 1000 + ExpeditionSortId;
 
 	private System.Drawing.Color GetBackgroundColor(MissionClearConditionResult result) => result?.IsSuceeded switch
 	{

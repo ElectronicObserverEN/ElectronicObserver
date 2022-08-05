@@ -64,6 +64,7 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="ID"
+					SortMemberPath="SortId"
 					/>
 				<DataGridTextColumn
 					Width="Auto"

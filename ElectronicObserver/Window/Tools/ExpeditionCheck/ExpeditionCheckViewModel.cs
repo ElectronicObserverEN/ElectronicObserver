@@ -65,7 +65,9 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 		Rows = db.Mission.Values.Select(mission => new ExpeditionCheckRow()
 		{
 			AreaName = db.MapArea[mission.MapAreaID].NameEN,
+			AreaId = mission.MapAreaID,
 
+			ExpeditionSortId = mission.ID,
 			ExpeditionId = mission.DisplayID,
 			ExpeditionName = mission.NameEN,
 			ExpeditionType = mission.ExpeditionType,
