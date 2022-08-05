@@ -641,7 +641,7 @@ public static class BattleDetailDescriptor
 		}
 	}
 
-	private static void OutputEnemyData(StringBuilder sb, IShipDataMaster[] members, int[] levels, int[] initialHPs, int[] maxHPs, EquipmentDataMaster[][] slots, int[][] parameters)
+	private static void OutputEnemyData(StringBuilder sb, IShipDataMaster[] members, int[] levels, int[] initialHPs, int[] maxHPs, IEquipmentDataMaster[][] slots, int[][] parameters)
 	{
 
 		for (int i = 0; i < members.Length; i++)

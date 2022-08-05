@@ -222,7 +222,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 			Update();
 		}
 
-		private static string GetAircraftParameters(EquipmentDataMaster eq)
+		private static string GetAircraftParameters(IEquipmentDataMaster eq)
 		{
 
 			if (eq == null)
@@ -741,7 +741,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 		public readonly int EquipmentID;
 		public readonly int Level;
 		public readonly int AircraftLevel;
-		public readonly EquipmentDataMaster EquipmentInstance;
+		public readonly IEquipmentDataMaster EquipmentInstance;
 		public readonly int UniqueID;
 
 		public ComboBoxEquipment()

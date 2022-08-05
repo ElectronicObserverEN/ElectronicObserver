@@ -1,4 +1,6 @@
 {
 	"PutEndingBracketOnNewLine": true,
-	"ThicknessSeparator": 1
+	"ThicknessSeparator": 1,
+	"IndentSize": 4,
+	"IndentWithTabs": true
 }

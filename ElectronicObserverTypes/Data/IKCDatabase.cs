@@ -16,12 +16,12 @@ public interface IKCDatabase
 	/// 艦船グラフィックデータ
 	/// </summary>
 	IDDictionary<ShipGraphicData> ShipGraphics { get; }
-
+	*/
 	/// <summary>
 	/// 装備のマスターデータ
 	/// </summary>
-	IDDictionary<EquipmentDataMaster> MasterEquipments { get; }
-
+	IDDictionary<IEquipmentDataMaster> MasterEquipments { get; }
+	/*
 	/// <summary>
 	/// 装備種別
 	/// </summary>

@@ -255,7 +255,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	{
 		IShipDataMaster? ship = KCDatabase.Instance.MasterShips[elem.ShipID];
 		UseItemMaster? item = KCDatabase.Instance.MasterUseItems[elem.ItemID];
-		EquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
+		IEquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
 		if (ship != null && ship.NameEN != elem.ShipName) ship = null;
 		if (item != null && item.Name != elem.ItemName) item = null;

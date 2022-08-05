@@ -80,7 +80,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦のスロット
 	/// </summary>
-	public EquipmentDataMaster[][] EnemySlotsInstance { get; private set; }
+	public IEquipmentDataMaster[][] EnemySlotsInstance { get; private set; }
 
 
 	/// <summary>
@@ -91,7 +91,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦のスロット(随伴艦隊)
 	/// </summary>
-	public EquipmentDataMaster[][] EnemySlotsEscortInstance { get; private set; }
+	public IEquipmentDataMaster[][] EnemySlotsEscortInstance { get; private set; }
 
 
 	/// <summary>

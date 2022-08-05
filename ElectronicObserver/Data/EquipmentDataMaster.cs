@@ -166,11 +166,10 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	public EquipmentIconType IconTypeTyped => (EquipmentIconType)RawData.api_type[3];
 
 
-	internal int[] equippableShipsAtExpansion = new int[0];
 	/// <summary>
 	/// 拡張スロットに装備可能な艦船IDのリスト
 	/// </summary>
-	public IEnumerable<int> EquippableShipsAtExpansion => equippableShipsAtExpansion;
+	public IEnumerable<int> EquippableShipsAtExpansion { get; set; } = Array.Empty<int>();
 
 
 

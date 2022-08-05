@@ -132,7 +132,7 @@ public partial class MasterShipViewModel : ObservableObject
 			int count = slot.Length;
 			for (int i = 0; i < count; i++)
 			{
-				EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[slot[i]];
+				IEquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[slot[i]];
 				if (eq == null) continue;
 
 				firepower += eq.Firepower;

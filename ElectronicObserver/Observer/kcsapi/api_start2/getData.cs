@@ -246,7 +246,7 @@ public class getData : APIBase
 		foreach (var elem in data.api_mst_equip_exslot_ship)
 		{
 			int id = (int)elem.api_slotitem_id;
-			db.MasterEquipments[id].equippableShipsAtExpansion = (int[])elem.api_ship_ids;
+			db.MasterEquipments[id].EquippableShipsAtExpansion = (int[])elem.api_ship_ids;
 		}
 
 
