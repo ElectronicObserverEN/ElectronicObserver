@@ -35,7 +35,7 @@
 			ColumnWidth="90"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding Rows}"
+			ItemsSource="{Binding Rows, IsAsync=True}"
 			>
 
 			<b:Interaction.Behaviors>

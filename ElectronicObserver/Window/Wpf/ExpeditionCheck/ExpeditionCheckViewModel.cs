@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -8,7 +9,6 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Wpf;
 
 namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 
@@ -16,7 +16,7 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 {
 	public ExpeditionCheckTranslationViewModel ExpeditionCheckTranslation { get; }
 
-	public List<ExpeditionCheckRow> Rows { get; set; } = new();
+	public ObservableCollection<ExpeditionCheckRow> Rows { get; } = new();
 
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
@@ -62,7 +62,7 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 		var db = KCDatabase.Instance;
 		Rows.Clear();
 
-		Rows = db.Mission.Values.Select(mission => new ExpeditionCheckRow()
+		List<ExpeditionCheckRow> rows = db.Mission.Values.Select(mission => new ExpeditionCheckRow()
 		{
 			AreaName = db.MapArea[mission.MapAreaID].NameEN,
 			AreaId = mission.MapAreaID,
@@ -79,5 +79,10 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 			Conditions = MissionClearCondition.Check(mission.MissionID, null),
 		})
 			.ToList();
+
+		foreach (ExpeditionCheckRow row in rows)
+		{
+			Rows.Add(row);
+		}
 	}
 }
