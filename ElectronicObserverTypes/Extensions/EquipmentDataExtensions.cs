@@ -157,7 +157,8 @@ public static class EquipmentDataExtensions
 		EquipmentId.DepthCharge_Type3DepthChargeProjector or
 		EquipmentId.DepthCharge_Type3DepthChargeProjector_CD or
 		EquipmentId.DepthCharge_Prototype15cm9tubeASWRocketLauncher or
-		EquipmentId.DepthCharge_RUR4AWeaponAlphaKai;
+		EquipmentId.DepthCharge_RUR4AWeaponAlphaKai or
+		EquipmentId.DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower;
 
 	public static bool IsAswMortar(this IEquipmentDataMaster equip) => equip.EquipmentId is
 		EquipmentId.DepthCharge_Type212cmMortarKai or
@@ -185,7 +186,7 @@ public static class EquipmentDataExtensions
 		_ => false
 	};
 
-	public static bool IsNightSeaplane(this IEquipmentDataMaster equip) => 
+	public static bool IsNightSeaplane(this IEquipmentDataMaster equip) =>
 		equip.IconTypeTyped is EquipmentIconType.NightSeaplane;
 
 	public static bool IsSuisei634(this IEquipmentData? equip) => equip?.EquipmentId switch

@@ -472,4 +472,5 @@ public enum EquipmentId
 	SeaplaneRecon_Type0ReconnaissanceSeaplaneModel11BKai_NightRecon = 469,
 	MainGunSmall_12_7cmTwinGunModelCKai3 = 470,
 	SeaplaneRecon_Loire130M = 471,
+	DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower = 472,
 }

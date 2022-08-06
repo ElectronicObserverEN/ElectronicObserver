@@ -708,5 +708,6 @@ public enum ShipId
 	HayashioKaiNi = 915,
 	YamatoKaiNiJuu = 916,
 	MarylandKai = 918,
-	ColoradoKai = 1496
+	SamuelBRobertsMkII = 920,
+	ColoradoKai = 1496, 
 }
