@@ -506,10 +506,10 @@ public partial class DialogExpChecker : Form
 				{
 					var convert = stack.Select(i => had[i]).ToArray();
 
-					mockShip.AllSlotInstance = convert
+					mockShip.SlotInstance = convert
 						.Where(e => e.Equipment is not null)
 						.Select(e => mocks[e.Equipment!.EquipmentId])
-						.Cast<IEquipmentData>()
+						.Cast<IEquipmentData?>()
 						.ToList();
 
 					mockShip.AswFit = mockShip.GetFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList).ASW;
@@ -600,10 +600,10 @@ public partial class DialogExpChecker : Form
 				List<ASWEquipmentData[]> current = value
 					.Where(k =>
 					{
-						mockShip.AllSlotInstance = k
+						mockShip.SlotInstance = k
 							.Where(e => e.Equipment is not null)
 							.Select(e => new EquipmentDataMock(e.Equipment!))
-							.Cast<IEquipmentData>()
+							.Cast<IEquipmentData?>()
 							.ToList();
 
 						return mockShip.CanDoOpeningAsw();

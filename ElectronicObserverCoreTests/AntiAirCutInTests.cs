@@ -23,7 +23,7 @@ public class AntiAirCutInTests
 	{
 		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD]),
@@ -43,7 +43,7 @@ public class AntiAirCutInTests
 	{
 		ShipDataMock isokaze = new(Db.MasterShips[ShipId.IsokazeBKai])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD]),
@@ -64,7 +64,7 @@ public class AntiAirCutInTests
 	{
 		ShipDataMock atlanta = new(Db.MasterShips[ShipId.AtlantaKai])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_GFCSMk_37_5inchTwinDualpurposeGunMount_ConcentratedDeployment]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_GFCSMk_37_5inchTwinDualpurposeGunMount_ConcentratedDeployment]),

@@ -26,7 +26,7 @@ public class OpeningAswTests
 		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
 		{
 			Level = 123,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
 			},
@@ -44,7 +44,7 @@ public class OpeningAswTests
 	{
 		ShipDataMock ryuujou = new(Db.MasterShips[ShipId.RyuujouKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
@@ -57,7 +57,7 @@ public class OpeningAswTests
 
 		ryuujou = new(Db.MasterShips[ShipId.RyuujouKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
@@ -74,7 +74,7 @@ public class OpeningAswTests
 	{
 		ShipDataMock kumano = new(Db.MasterShips[ShipId.KumanoCVLKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
@@ -85,7 +85,7 @@ public class OpeningAswTests
 
 		ShipDataMock suzuya = new(Db.MasterShips[ShipId.SuzuyaCVLKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
@@ -99,7 +99,7 @@ public class OpeningAswTests
 
 		kumano = new(Db.MasterShips[ShipId.KumanoCVLKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
@@ -110,7 +110,7 @@ public class OpeningAswTests
 
 		suzuya = new(Db.MasterShips[ShipId.KumanoCVLKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
@@ -129,7 +129,7 @@ public class OpeningAswTests
 		ShipDataMock zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
 		{
 			Level = 175,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12_TomonagaSquadron]),
 			},
@@ -140,7 +140,7 @@ public class OpeningAswTests
 		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
 		{
 			Level = 175,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
 			},
@@ -151,7 +151,7 @@ public class OpeningAswTests
 		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
 		{
 			Level = 175,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 			},
@@ -162,7 +162,7 @@ public class OpeningAswTests
 		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
 		{
 			Level = 175,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW]),
 			},
@@ -178,7 +178,7 @@ public class OpeningAswTests
 		{
 			Level = 175,
 			ASWModernized = 9,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
@@ -193,7 +193,7 @@ public class OpeningAswTests
 		{
 			Level = 175,
 			ASWModernized = 9,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_FM2Wildcat]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SonarLarge_Type0PassiveSONAR]),
@@ -210,7 +210,7 @@ public class OpeningAswTests
 	{
 		ShipDataMock hyuuga = new(Db.MasterShips[ShipId.HyuugaKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi]),
 			},
@@ -220,7 +220,7 @@ public class OpeningAswTests
 
 		hyuuga = new(Db.MasterShips[ShipId.HyuugaKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi]),
@@ -231,7 +231,7 @@ public class OpeningAswTests
 
 		hyuuga = new(Db.MasterShips[ShipId.HyuugaKaiNi])
 		{
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51J]),
 			},

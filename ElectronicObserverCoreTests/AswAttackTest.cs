@@ -49,7 +49,7 @@ public class AswAttackTest
 		IShipData akebono = new ShipDataMock(Db.MasterShips[ShipId.AkebonoKai])
 		{
 			Level = 98,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_HFDF_Type144147ASDIC]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.DepthCharge_LightweightASWTorpedo_InitialTestModel]),
@@ -71,7 +71,7 @@ public class AswAttackTest
 			ASWModernized = 9,
 			LuckBase = 99,
 			AswFit = 3,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
 			},

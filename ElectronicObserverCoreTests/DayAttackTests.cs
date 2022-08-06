@@ -21,7 +21,7 @@ public class DayAttackTests
 		Level = 175,
 		Fleet = 1,
 		LuckBase = 84,
-		AllSlotInstance = new List<IEquipmentData>
+		SlotInstance = new List<IEquipmentData?>
 		{
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
 			{
@@ -46,7 +46,7 @@ public class DayAttackTests
 		Fleet = 1,
 		LuckBase = 46,
 		FirepowerFit = 3 + 3 + 5 + 3,
-		AllSlotInstance = new List<IEquipmentData>
+		SlotInstance = new List<IEquipmentData?>
 		{
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2])
 			{
@@ -77,7 +77,7 @@ public class DayAttackTests
 		Level = 149,
 		Fleet = 1,
 		LuckBase = 7,
-		AllSlotInstance = new List<IEquipmentData>
+		SlotInstance = new List<IEquipmentData?>
 		{
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_Type97TorpedoBomber_TomonagaSquadron]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type99DiveBomber_EgusaSquadron]),
@@ -528,7 +528,7 @@ public class DayAttackTests
 			Level = 72,
 			Fleet = 1,
 			LuckBase = 32,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGun])
 				{
@@ -616,8 +616,8 @@ public class DayAttackTests
 	{
 		ShipDataMock yamashioMaru = new(Db.MasterShips[ShipId.YamashioMaruKai])
 		{
-			Level = 99, 
-			AllSlotInstance = new List<IEquipmentData>
+			Level = 99,
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Suisei_EgusaSquadron]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun]),

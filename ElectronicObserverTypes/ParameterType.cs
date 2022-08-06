@@ -2,6 +2,7 @@
 
 public enum ParameterType
 {
+	None,
 	Hp,
 	Firepower,
 	Torpedo,

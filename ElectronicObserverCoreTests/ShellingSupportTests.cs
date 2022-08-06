@@ -26,14 +26,22 @@ public class ShellingSupportTests
 			Level = 99,
 			Condition = 85,
 			FirepowerFit = 6,
-			AllSlotInstance = new List<EquipmentDataMock>
+			SlotInstance = new List<IEquipmentData?>
 			{
-				new(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2]) { Level = 6 },
-				new(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2]) { Level = 6 },
-				new(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
-				new(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
-				new(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
-			}.Cast<IEquipmentData>().ToList(),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2])
+				{
+					Level = 6,
+
+				},
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2])
+				{
+					Level = 6,
+
+				},
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
+			},
 		};
 
 		Assert.Equal(153, ise.GetShellingSupportDamage());
@@ -47,13 +55,13 @@ public class ShellingSupportTests
 		{
 			Level = 99,
 			Condition = 85,
-			AllSlotInstance = new List<EquipmentDataMock>
+			SlotInstance = new List<IEquipmentData?>
 			{
-				new(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Suisei_EgusaSquadron]),
-				new(Db.MasterEquipment[EquipmentId.RadarLarge_Type32SurfaceRADAR]),
-				new(Db.MasterEquipment[EquipmentId.RadarLarge_Type32SurfaceRADAR]),
-				new(Db.MasterEquipment[EquipmentId.RadarLarge_Type32SurfaceRADAR]),
-			}.Cast<IEquipmentData>().ToList(),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Suisei_EgusaSquadron]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_Type32SurfaceRADAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_Type32SurfaceRADAR]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_Type32SurfaceRADAR]),
+			},
 		};
 
 		Assert.Equal(166, taihou.GetShellingSupportDamage());

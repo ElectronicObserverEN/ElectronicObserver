@@ -25,7 +25,7 @@ public class EvasionTests
 			LuckBase = 30,
 			FuelRate = 1,
 			EvasionFit = 3,
-			AllSlotInstance = new List<IEquipmentData>()
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type4PassiveSONAR])
 				{

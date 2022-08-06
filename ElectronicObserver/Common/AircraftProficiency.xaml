@@ -10,11 +10,18 @@
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
-	<Border
-		Background="Transparent"
-		DataContext="{Binding ElementName=AircraftProficiencyControl}"
-		ToolTip="{Binding AircraftLevel}"
-		>
+	<Border Background="Transparent" DataContext="{Binding ElementName=AircraftProficiencyControl}">
+		<Border.Style>
+			<Style TargetType="Border">
+				<Setter Property="ToolTip" Value="{Binding AircraftLevel}" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding AircraftLevel}" Value="0">
+						<Setter Property="ToolTip" Value="{x:Null}" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+		</Border.Style>
+
 		<Path HorizontalAlignment="Center" VerticalAlignment="Center">
 			<Path.Resources>
 				<SolidColorBrush x:Key="LowProficiencyBrush" Color="#669999" />

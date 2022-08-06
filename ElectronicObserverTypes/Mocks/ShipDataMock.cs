@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
@@ -33,16 +34,16 @@ public class ShipDataMock : IShipData
 	public int ExpNext { get; set; }
 	public double ExpNextPercentage { get; set; }
 	public int HPCurrent { get; set; }
-	public int HPMax => MasterShip.HPMax;
+	public int HPMax { get; set; }
 	public int Speed { get; set; }
 	public int Range { get; set; }
 	public IList<int> Slot { get; set; }
 	public IList<int> SlotMaster { get; set; }
-	public IList<IEquipmentData> SlotInstance { get; set; } = new List<IEquipmentData>();
+	public IList<IEquipmentData?> SlotInstance { get; set; } = new List<IEquipmentData?>();
 	public IList<IEquipmentDataMaster> SlotInstanceMaster { get; set; }
 	public int ExpansionSlot { get; set; }
 	public int ExpansionSlotMaster { get; set; }
-	public IEquipmentData ExpansionSlotInstance { get; set; }
+	public IEquipmentData? ExpansionSlotInstance { get; set; }
 	public IEquipmentDataMaster ExpansionSlotInstanceMaster { get; set; }
 	public IList<int> AllSlot { get; set; }
 	public IList<int> AllSlotMaster { get; set; }
@@ -108,7 +109,7 @@ public class ShipDataMock : IShipData
 	public int Fleet { get; set; }
 	public string FleetWithIndex { get; set; }
 	public bool IsMarried { get; set; }
-	public IList<IEquipmentData> AllSlotInstance { get; set; } = new List<IEquipmentData>();
+	public IList<IEquipmentData?> AllSlotInstance => SlotInstance.Append(ExpansionSlotInstance).ToList();
 	public bool CanNoSonarOpeningAsw { get; set; }
 	public bool CanAttackAtNight { get; set; }
 	public int DamageControlID { get; set; }

@@ -356,7 +356,7 @@ public class LoSTests
 		IShipData perth = new ShipDataMock(Db.MasterShips[ShipId.PerthKai])
 		{
 			Level = 168,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon])
 				{
@@ -394,7 +394,7 @@ public class LoSTests
 		IShipData nisshin = new ShipDataMock(Db.MasterShips[ShipId.NisshinA])
 		{
 			Level = 151,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
@@ -455,7 +455,7 @@ public class LoSTests
 		IShipData nisshin = new ShipDataMock(Db.MasterShips[ShipId.NisshinA])
 		{
 			Level = 151,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
@@ -466,7 +466,7 @@ public class LoSTests
 		IShipData yuubari = new ShipDataMock(Db.MasterShips[ShipId.YuubariKaiNiToku])
 		{
 			Level = 159,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
 			},
@@ -475,7 +475,7 @@ public class LoSTests
 		IShipData kuroshio = new ShipDataMock(Db.MasterShips[ShipId.KuroshioKaiNi])
 		{
 			Level = 162,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
 			},
@@ -484,7 +484,7 @@ public class LoSTests
 		IShipData kagerou = new ShipDataMock(Db.MasterShips[ShipId.KagerouKaiNi])
 		{
 			Level = 162,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
 			},
@@ -493,7 +493,7 @@ public class LoSTests
 		IShipData shiranui = new ShipDataMock(Db.MasterShips[ShipId.ShiranuiKaiNi])
 		{
 			Level = 161,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
 			},
@@ -502,7 +502,7 @@ public class LoSTests
 		IShipData naganami = new ShipDataMock(Db.MasterShips[ShipId.NaganamiKaiNi])
 		{
 			Level = 164,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
 			},
@@ -536,7 +536,7 @@ public class LoSTests
 		{
 			Level = 110,
 			LosFit = 4,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai]),

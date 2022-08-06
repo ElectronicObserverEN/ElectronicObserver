@@ -230,7 +230,7 @@ public class NightAttackTests
 			Level = 175,
 			LuckBase = 84,
 			Condition = 49,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
 				{
@@ -249,7 +249,7 @@ public class NightAttackTests
 
 		IShipData gotland = new ShipDataMock(Db.MasterShips[ShipId.Gotlandandra])
 		{
-			AllSlotInstance = new List<IEquipmentData>()
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
@@ -296,7 +296,7 @@ public class NightAttackTests
 		{
 			Level = 122,
 			LuckBase = 25,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
@@ -348,7 +348,7 @@ public class NightAttackTests
 		{
 			Level = 125,
 			LuckBase = 17,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
@@ -398,7 +398,7 @@ public class NightAttackTests
 			Level = 130,
 			LuckBase = 16,
 			FirepowerFit = 4,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_SwordfishMk_III_Skilled]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),

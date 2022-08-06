@@ -24,7 +24,7 @@ public class AccuracyTests
 			Level = 175,
 			Condition = 85,
 			LuckBase = 84,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
 				{
@@ -36,7 +36,7 @@ public class AccuracyTests
 		IFleetData fleet = new FleetDataMock
 		{
 			FleetType = FleetType.Single,
-			MembersInstance = new(new List<IShipData>
+			MembersInstance = new(new List<IShipData?>
 			{
 				bismarck
 			}),

@@ -27,7 +27,7 @@ public class FitBonusTest
 		IShipData hachijou = new ShipDataMock(Db.MasterShips[ShipId.HachijouKai])
 		{
 			Level = 175,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12cmSingleHighangleGunModelE]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12cmSingleHighangleGunModelE])
@@ -64,7 +64,7 @@ public class FitBonusTest
 		IShipData yikikaze = new ShipDataMock(Db.MasterShips[ShipId.YukikazeKaiNi])
 		{
 			Level = 151,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD])
@@ -104,7 +104,7 @@ public class FitBonusTest
 		IShipData yikikaze = new ShipDataMock(Db.MasterShips[ShipId.YukikazeKaiNi])
 		{
 			Level = 151,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD])
 				{
@@ -118,10 +118,10 @@ public class FitBonusTest
 				{
 					Level = 10
 				},
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts])
-				{
-					Level = 4
-				},
+			},
+			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts])
+			{
+				Level = 4
 			},
 		};
 
@@ -151,7 +151,7 @@ public class FitBonusTest
 		IShipData yamato = new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNiJuu])
 		{
 			Level = 99,
-			AllSlotInstance = new List<IEquipmentData>
+			SlotInstance = new List<IEquipmentData?>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_51cmTwinGun])
 				{
@@ -166,13 +166,12 @@ public class FitBonusTest
 				{
 					Level = 4
 				},
-				// 15.5cm Triple Secondary Gun Mount Kai Ni
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGunMountKaiNi])
 				{
 					Level = 8
 				},
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2]),
 			},
+			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2]),
 		};
 
 		FitBonusValue expectedBonus = new FitBonusValue()
