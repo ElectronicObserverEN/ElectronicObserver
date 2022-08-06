@@ -383,6 +383,16 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
+					d:Header="Expedition Check"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding ExpeditionCheck}"
+					Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpeditionCheckImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="Information"
 					Command="{Binding OpenViewCommand}"
 					CommandParameter="{Binding FormInformation}"
@@ -615,15 +625,6 @@
 					>
 					<MenuItem.Icon>
 						<Image Source="{Binding ExpCheckerImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<MenuItem
-					d:Header="Expedition Check"
-					Command="{Binding OpenExpeditionCheckCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}"
-					>
-					<MenuItem.Icon>
-						<Image Source="{Binding ExpeditionCheckImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem

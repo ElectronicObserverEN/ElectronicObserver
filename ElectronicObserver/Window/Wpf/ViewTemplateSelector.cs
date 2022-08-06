@@ -15,6 +15,8 @@ using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
+using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+
 namespace ElectronicObserver.Window.Wpf;
 
 public class ViewTemplateSelector : DataTemplateSelector
@@ -31,6 +33,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 
 	public DataTemplate? Headquarters { get; set; }
 	public DataTemplate? Quest { get; set; }
+	public DataTemplate? ExpeditionCheck { get; set; }
 	public DataTemplate? Information { get; set; }
 
 	public DataTemplate? Compass { get; set; }
@@ -56,6 +59,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		InformationViewModel => Information,
 		HeadquartersViewModel => Headquarters,
 		QuestViewModel => Quest,
+		ExpeditionCheckViewModel => ExpeditionCheck,
 
 		CompassViewModel => Compass,
 		BattleViewModel => Battle,

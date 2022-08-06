@@ -66,6 +66,7 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
+using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Utility.Mathematics;
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -173,6 +174,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	public HeadquartersViewModel Headquarters { get; }
 	public QuestViewModel Quest { get; }
+	public ExpeditionCheckViewModel ExpeditionCheck { get; }
 	public InformationViewModel FormInformation { get; }
 
 	public CompassViewModel Compass { get; }
@@ -356,6 +358,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
 		Views.Add(Quest = new QuestViewModel());
+		Views.Add(ExpeditionCheck = new ExpeditionCheckViewModel());
 		Views.Add(FormInformation = new InformationViewModel());
 
 		Views.Add(Compass = new CompassViewModel());
@@ -895,12 +898,6 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenExpChecker()
 	{
 		new DialogExpChecker().Show(Window);
-	}
-
-	[ICommand]
-	private void OpenExpeditionCheck()
-	{
-		new DialogExpeditionCheck().Show(Window);
 	}
 
 	[ICommand]
@@ -1814,7 +1811,7 @@ public partial class FormMainViewModel : ObservableObject
 			view.CanFloat = !LockLayout;
 			view.CanClose = !LockLayout;
 			view.CanMove = !LockLayout;
-			if (view.Title == "Group")
+			if (view.Title is "Group" or "Expedition Check")
 			{
 				view.CanClose = true;
 			}

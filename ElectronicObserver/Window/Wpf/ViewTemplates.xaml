@@ -6,6 +6,7 @@
 	xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
 	xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
 	xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
+	xmlns:expeditionCheck="clr-namespace:ElectronicObserver.Window.Wpf.ExpeditionCheck"
 	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
 	xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
 	xmlns:fleetPreset="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
@@ -59,6 +60,9 @@
 	<DataTemplate x:Key="QuestTemplate" DataType="{x:Type quest:QuestViewModel}">
 		<quest:QuestView ViewModel="{Binding}" />
 	</DataTemplate>
+	<DataTemplate x:Key="ExpeditionCheckTemplate" DataType="{x:Type expeditionCheck:ExpeditionCheckViewModel}">
+		<expeditionCheck:ExpeditionCheckView />
+	</DataTemplate>
 
 	<DataTemplate x:Key="CompassTemplate" DataType="{x:Type compass:CompassViewModel}">
 		<compass:CompassView ViewModel="{Binding}" />
@@ -78,6 +82,7 @@
 		Battle="{StaticResource BattleTemplate}"
 		Compass="{StaticResource CompassTemplate}"
 		Dock="{StaticResource DockTemplate}"
+		ExpeditionCheck="{StaticResource ExpeditionCheckTemplate}"
 		Fleet="{StaticResource FleetTemplate}"
 		FleetOverview="{StaticResource FleetOverviewTemplate}"
 		FleetPreset="{StaticResource FleetPresetTemplate}"
