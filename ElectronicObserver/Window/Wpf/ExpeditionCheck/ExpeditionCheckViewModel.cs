@@ -26,6 +26,9 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 	{
 		ExpeditionCheckTranslation = Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!;
 
+		Title = ExpeditionCheckTranslation.Title;
+		ExpeditionCheckTranslation.PropertyChanged += (_, _) => Title = ExpeditionCheckTranslation.Title;
+
 		LoadData();
 		SubscribeToApis();
 	}
@@ -67,8 +70,8 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 			AreaName = db.MapArea[mission.MapAreaID].NameEN,
 			AreaId = mission.MapAreaID,
 
-			ExpeditionSortId = mission.ID,
-			ExpeditionId = mission.DisplayID,
+			ExpeditionId = mission.ID,
+			ExpeditionDisplayId = mission.DisplayID,
 			ExpeditionName = mission.NameEN,
 			ExpeditionType = mission.ExpeditionType,
 
@@ -78,6 +81,8 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 			Fleet4Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[4]),
 			Conditions = MissionClearCondition.Check(mission.MissionID, null),
 		})
+			.OrderBy(m => m.AreaId)
+			.ThenBy(m => m.ExpeditionId)
 			.ToList();
 
 		foreach (ExpeditionCheckRow row in rows)

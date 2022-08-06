@@ -10,9 +10,9 @@ namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 public class ExpeditionCheckRow
 {
 	public int AreaId { get; set; }
-	public int ExpeditionSortId { get; set; }
+	public int ExpeditionId { get; set; }
 
-	public string ExpeditionId { get; set; }
+	public string ExpeditionDisplayId { get; set; }
 	public string AreaName { get; set; }
 	public string ExpeditionName { get; set; }
 
@@ -28,7 +28,7 @@ public class ExpeditionCheckRow
 
 	public ExpeditionType ExpeditionType { get; set; }
 
-	public string IdDisplay => $"{ExpeditionId}: {AreaName}";
+	public string IdDisplay => $"{ExpeditionDisplayId}: {AreaName}";
 
 	public SolidColorBrush Fleet1BackgroundColor => GetBackgroundColor(Fleet1Result).ToBrush();
 	public SolidColorBrush Fleet2BackgroundColor => GetBackgroundColor(Fleet2Result).ToBrush();
@@ -41,13 +41,13 @@ public class ExpeditionCheckRow
 	public string Fleet4Text => GetText(Fleet4Result);
 	public string ConditionText => GetSuccessText(Conditions);
 
-	public string Fleet1Tooltip => GetResultTooltip(Fleet1Result);
-	public string Fleet2Tooltip => GetResultTooltip(Fleet2Result);
-	public string Fleet3Tooltip => GetResultTooltip(Fleet3Result);
-	public string Fleet4Tooltip => GetResultTooltip(Fleet4Result);
-	public string ConditionTooltip => GetSuccessToolTip(Conditions);
+	public string? Fleet1Tooltip => GetResultTooltip(Fleet1Result);
+	public string? Fleet2Tooltip => GetResultTooltip(Fleet2Result);
+	public string? Fleet3Tooltip => GetResultTooltip(Fleet3Result);
+	public string? Fleet4Tooltip => GetResultTooltip(Fleet4Result);
+	public string? ConditionTooltip => GetSuccessToolTip(Conditions);
 
-	public int SortId => AreaId * 1000 + ExpeditionSortId;
+	public int SortId => AreaId * 1000 + ExpeditionId;
 
 	private System.Drawing.Color GetBackgroundColor(MissionClearConditionResult result) => result?.IsSuceeded switch
 	{
