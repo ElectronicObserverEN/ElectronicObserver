@@ -81,10 +81,15 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.ExpeditionCheckTranslation.Fleet1, Source={StaticResource Proxy}}"
 					>
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="{x:Type TextBlock}">
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="Background" Value="{Binding Fleet1BackgroundColor}" />
 							<Setter Property="ToolTip" Value="{Binding Fleet1Tooltip}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
 							<Setter Property="Padding" Value="4 0" />
 						</Style>
 					</DataGridTextColumn.ElementStyle>
@@ -97,10 +102,15 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.ExpeditionCheckTranslation.Fleet2, Source={StaticResource Proxy}}"
 					>
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="{x:Type TextBlock}">
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="Background" Value="{Binding Fleet2BackgroundColor}" />
 							<Setter Property="ToolTip" Value="{Binding Fleet2Tooltip}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
 							<Setter Property="Padding" Value="4 0" />
 						</Style>
 					</DataGridTextColumn.ElementStyle>
@@ -113,10 +123,15 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.ExpeditionCheckTranslation.Fleet3, Source={StaticResource Proxy}}"
 					>
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="{x:Type TextBlock}">
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="Background" Value="{Binding Fleet3BackgroundColor}" />
 							<Setter Property="ToolTip" Value="{Binding Fleet3Tooltip}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
 							<Setter Property="Padding" Value="4 0" />
 						</Style>
 					</DataGridTextColumn.ElementStyle>
@@ -129,10 +144,15 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.ExpeditionCheckTranslation.Fleet4, Source={StaticResource Proxy}}"
 					>
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="{x:Type TextBlock}">
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="Background" Value="{Binding Fleet4BackgroundColor}" />
 							<Setter Property="ToolTip" Value="{Binding Fleet4Tooltip}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
 							<Setter Property="Padding" Value="4 0" />
 						</Style>
 					</DataGridTextColumn.ElementStyle>
@@ -145,9 +165,14 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.ExpeditionCheckTranslation.Condition, Source={StaticResource Proxy}}"
 					>
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="{x:Type TextBlock}">
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="ToolTip" Value="{Binding ConditionTooltip}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
 							<Setter Property="Padding" Value="4 0" />
 						</Style>
 					</DataGridTextColumn.ElementStyle>
