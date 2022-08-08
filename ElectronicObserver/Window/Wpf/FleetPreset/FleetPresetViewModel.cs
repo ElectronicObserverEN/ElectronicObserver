@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
@@ -56,7 +57,7 @@ public class FleetPresetItemViewModel : ObservableObject
 
 		Name = CreateDefaultLabel();
 		Condition.ImageAlign = ContentAlignment.MiddleRight;
-
+		Condition.SetDesign(49);
 		// TODO: 本体側がもし 7 隻編成に対応したら変更してください
 		Ships = new();
 		for (int i = 0; i < 7; i++)
@@ -75,7 +76,7 @@ public class FleetPresetItemViewModel : ObservableObject
 		{
 			Name.Text = "----";
 			Name.ToolTip = null;
-
+			Condition.SetDesign(49);
 			foreach (var ship in Ships)
 			{
 				ship.Text = string.Empty;
@@ -90,7 +91,6 @@ public class FleetPresetItemViewModel : ObservableObject
 		int lowestCondition = preset.MembersInstance.Where(s => s != null).Select(s => s.Condition).DefaultIfEmpty(49).Min();
 		// FormFleet.SetConditionDesign(Name, lowestCondition);
 		Condition.SetDesign(lowestCondition);
-
 		Name.ToolTip = $"{FormFleetPreset.LowestCondition}: {lowestCondition}";
 
 		for (int i = 0; i < Ships.Count; i++)
