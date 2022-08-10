@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -21,7 +22,8 @@ namespace KancolleProgress.ViewModels;
 public enum Display
 {
 	Ships,
-	Event
+	Event,
+	Nationality
 }
 
 public partial class KancolleProgressViewModel : ObservableObject
@@ -83,10 +85,61 @@ public partial class KancolleProgressViewModel : ObservableObject
 		{
 			Display.Ships => MakeKancolleProgress,
 			Display.Event => MakeEventCheckList,
+			Display.Nationality => MakeNationalityList,
 			_ => () => { }
 		};
 
 		action();
+	}
+
+	private void MakeNationalityList()
+	{
+		if (!AllShips.Any()) return;
+		if (!UserShips.Any()) return;
+
+		IEnumerable<IShipData> allShips = AllShips
+			.Where(s => !s.IsAbyssalShip)
+			.Select(s => new ShipDataMock(s) { Name = s.NameEN, Level = 0, ShipID = s.ShipID, SortID = s.SortID })
+			.ToList<IShipData>();
+
+		Dictionary<int, ShipDataMock> baseShips = AllShips
+			.Where(s => !s.IsAbyssalShip && s.RemodelBeforeShipID == 0)
+			.Select(s => new ShipDataMock(s)
+			{
+				Name = s.NameEN,
+				Level = 0,
+				ShipID = s.ShipID,
+				SortID = s.SortID
+			})
+			.ToDictionary(s => s.ShipID, s => s);
+		foreach (IShipData ship in UserShips)
+		{
+			int baseShipId = ship.MasterShip.BaseShip().ShipID;
+
+			if (baseShips[baseShipId].Level < ship.Level)
+			{
+				baseShips[baseShipId].Level = ship.Level;
+			}
+		}
+
+		BaseShips = baseShips.Values;
+		OnPropertyChanged(nameof(BaseShips));
+
+		IEnumerable<ShipTypeGroup> groups = baseShips.Values
+			.OrderBy(s => s.SortID)
+			.GroupBy(s => s.MasterShip.Nationality().ToGroup())
+			.OrderBy(s => s.Key)
+			.Select(g => new ShipTypeGroup
+			(
+				Label: g.Key.Display(),
+				ClassGroups: g.GroupBy(s => s.MasterShip.ShipClass)
+					.Select(g => new ShipClassGroup
+					(
+						Ships: g.Select(s => new ShipViewModel(s))
+					))
+			));
+
+		TypeGroups = groups;
 	}
 
 	private void MakeKancolleProgress()

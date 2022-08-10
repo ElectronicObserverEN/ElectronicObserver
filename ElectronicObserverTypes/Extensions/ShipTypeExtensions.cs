@@ -98,4 +98,19 @@ public static class ShipTypeExtensions
 		ShipTypes.Unknown => throw new NotImplementedException(),
 		_ => throw new NotImplementedException()
 	};
+	public static ShipNationality ToGroup(this ShipNationality shipNationality) => shipNationality switch
+	{
+		ShipNationality.Japanese => ShipNationality.Japanese,
+		ShipNationality.Unknown => ShipNationality.Unknown,
+		ShipNationality.American => ShipNationality.American,
+		ShipNationality.Australian => ShipNationality.Australian,
+		ShipNationality.British => ShipNationality.British,
+		ShipNationality.Dutch => ShipNationality.Dutch,
+		ShipNationality.French => ShipNationality.French,
+		ShipNationality.German => ShipNationality.German,
+		ShipNationality.Italian => ShipNationality.Italian,
+		ShipNationality.Russian => ShipNationality.Russian,
+		ShipNationality.Swedish => ShipNationality.Swedish,
+		_ => throw new NotImplementedException()
+	};
 }
