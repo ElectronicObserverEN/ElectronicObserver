@@ -343,7 +343,9 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			"--disable-features=\"HardwareMediaKeyHandling\"",
 			"--lang=\"ja\"",
 			"--log-file=\"BrowserLog.log\" ",
-			"--enable-features=\"CanvasOopRasterization\""
+			"--enable-features=\"CanvasOopRasterization\"",
+			"--default-tile-height=512",
+			"--default-tile-width=512"
 		};
 
 		if (Configuration.ForceColorProfile)
