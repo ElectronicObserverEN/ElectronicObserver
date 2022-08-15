@@ -44,7 +44,7 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string LOS => DialogAlbumMasterShip.LOS.Replace("_", "__").Replace("&", "_");
 	public string AntiBomb => DialogAlbumMasterShip.AntiBomb.Replace("_", "__").Replace("&", "_");
 	// todo: translation
-	public string Luck => "運".Replace("_", "__").Replace("&", "_");
+	public string Luck => EncycloRes.Luck.Replace("_", "__").Replace("&", "_");
 	public string Bombing => DialogAlbumMasterShip.Bombing.Replace("_", "__").Replace("&", "_");
 	public string Accuracy => DialogAlbumMasterShip.Accuracy.Replace("_", "__").Replace("&", "_");
 
