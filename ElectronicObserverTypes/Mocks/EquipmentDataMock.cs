@@ -3,7 +3,7 @@
 public class EquipmentDataMock : IEquipmentData
 {
 	public int MasterID { get; set; }
-	public int EquipmentID { get; set; }
+	public int EquipmentID => (int)EquipmentId;
 	public EquipmentId EquipmentId => MasterEquipment.EquipmentId;
 	public bool IsLocked { get; set; }
 	public int Level { get; set; }

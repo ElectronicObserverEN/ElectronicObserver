@@ -628,7 +628,7 @@ public class DayAttackTests
 		FleetDataMock fleet = new()
 		{
 			FleetType = FleetType.Single,
-			MembersWithoutEscaped = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				yamashioMaru,
 			}),

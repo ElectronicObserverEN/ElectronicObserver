@@ -23,7 +23,7 @@ public interface IBaseAirCorpsSquadron
 	/// <summary>
 	/// 装備データ
 	/// </summary>
-	IEquipmentData EquipmentInstance { get; }
+	IEquipmentData? EquipmentInstance { get; }
 
 	/// <summary>
 	/// 装備ID

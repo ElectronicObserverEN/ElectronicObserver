@@ -4,6 +4,7 @@ namespace ElectronicObserverTypes.Serialization.DeckBuilder;
 
 public class DeckBuilderFleet
 {
+	[JsonPropertyName("name")] public string? Name { get; set; }
 	[JsonPropertyName("s1")] public DeckBuilderShip? Ship1 { get; set; }
 	[JsonPropertyName("s2")] public DeckBuilderShip? Ship2 { get; set; }
 	[JsonPropertyName("s3")] public DeckBuilderShip? Ship3 { get; set; }

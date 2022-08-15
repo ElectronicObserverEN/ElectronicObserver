@@ -244,7 +244,7 @@ public class ReplayManager : ResponseWrapper
 			{
 				Battle_replay.Lbas.Add(new Lba());
 				Battle_replay.Lbas[MatchedBases].Rid = baseAirCorps.AirCorpsID;
-				Battle_replay.Lbas[MatchedBases].Action = baseAirCorps.ActionKind;
+				Battle_replay.Lbas[MatchedBases].Action = (int)baseAirCorps.ActionKind;
 				Battle_replay.Lbas[MatchedBases].Range = new ReplayJSON.Range();
 				Battle_replay.Lbas[MatchedBases].Range.ApiBase = baseAirCorps.Base_Distance;
 				Battle_replay.Lbas[MatchedBases].Range.ApiBonus = baseAirCorps.Bonus_Distance;

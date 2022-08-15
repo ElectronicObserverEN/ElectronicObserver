@@ -546,7 +546,7 @@ public class LoSTests
 
 		FleetDataMock fleet = new()
 		{
-			MembersWithoutEscaped = new(new List<IShipData?>
+			MembersInstance = new(new List<IShipData?>
 			{
 				fletcher
 			})

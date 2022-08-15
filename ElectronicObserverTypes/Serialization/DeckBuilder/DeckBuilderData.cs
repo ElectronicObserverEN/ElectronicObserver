@@ -10,7 +10,7 @@ public class DeckBuilderData
 	[JsonPropertyName("f2")] public DeckBuilderFleet? Fleet2 { get; set; }
 	[JsonPropertyName("f3")] public DeckBuilderFleet? Fleet3 { get; set; }
 	[JsonPropertyName("f4")] public DeckBuilderFleet? Fleet4 { get; set; }
-	[JsonPropertyName("a1")] public DeckBuilderAirBase AirBase1 { get; set; } = new();
-	[JsonPropertyName("a2")] public DeckBuilderAirBase AirBase2 { get; set; } = new();
-	[JsonPropertyName("a3")] public DeckBuilderAirBase AirBase3 { get; set; } = new();
+	[JsonPropertyName("a1")] public DeckBuilderAirBase? AirBase1 { get; set; } = new();
+	[JsonPropertyName("a2")] public DeckBuilderAirBase? AirBase2 { get; set; } = new();
+	[JsonPropertyName("a3")] public DeckBuilderAirBase? AirBase3 { get; set; } = new();
 }

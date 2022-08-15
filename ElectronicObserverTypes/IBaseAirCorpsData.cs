@@ -38,7 +38,7 @@ public interface IBaseAirCorpsData
 	/// 行動指示
 	/// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
 	/// </summary>
-	int ActionKind { get; }
+	AirBaseActionKind ActionKind { get; }
 
 	/// <summary>
 	/// List of points (edge ?) the LBAS will strike

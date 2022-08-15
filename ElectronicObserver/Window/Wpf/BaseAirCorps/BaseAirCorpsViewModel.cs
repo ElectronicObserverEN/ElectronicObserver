@@ -279,8 +279,8 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 			}
 
 			sb.AppendLine(string.Format(FormBaseAirCorps.AirControlSummary,
-				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == 2).Select(c => Calculator.GetAirSuperiority(c)).DefaultIfEmpty(0).Sum(),
-				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == 2).Select(c => Calculator.GetAirSuperiority(c, isHighAltitude: true)).DefaultIfEmpty(0).Sum()
+				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetAirSuperiority(c)).DefaultIfEmpty(0).Sum(),
+				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetAirSuperiority(c, isHighAltitude: true)).DefaultIfEmpty(0).Sum()
 			));
 			sb.AppendLine(SetStrikePoints(corps));
 			Name.ToolTip = sb.ToString();
@@ -310,7 +310,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 					Math.Max((int)(airSuperiority * 1.5 - 1), 0),
 					Math.Max((int)(airSuperiority * 3.0 - 1), 0));
 
-				if (corps.ActionKind == 2)
+				if (corps.ActionKind == AirBaseActionKind.AirDefense)
 				{
 					int airSuperiorityHighAltitude = Calculator.GetAirSuperiority(corps, isHighAltitude: true);
 					int airSuperiorityHighAltitudeMax = Calculator.GetAirSuperiority(corps, isAircraftLevelMaximum: true, isHighAltitude: true);

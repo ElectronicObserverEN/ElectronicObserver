@@ -6,6 +6,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Utility;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Notifier;
 
@@ -169,11 +170,11 @@ public class NotifierBaseAirCorps : NotifierBase
 					messages.AddLast(Window.GeneralRes.BaseRedeployment);
 			}
 
-			if (NotifiesStandby && corps.ActionKind == 0)
+			if (NotifiesStandby && corps.ActionKind == AirBaseActionKind.Standby)
 				messages.AddLast(NotifierBaseAirCorpsResources.Standby);
-			if (NotifiesRetreat && corps.ActionKind == 3)
+			if (NotifiesRetreat && corps.ActionKind == AirBaseActionKind.TakeCover)
 				messages.AddLast(Window.GeneralRes.Retreating);
-			if (NotifiesRest && corps.ActionKind == 4)
+			if (NotifiesRest && corps.ActionKind == AirBaseActionKind.Rest)
 				messages.AddLast(NotifierBaseAirCorpsResources.Resting);
 
 			if (messages.Any())

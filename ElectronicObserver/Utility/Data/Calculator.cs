@@ -67,7 +67,7 @@ public static class Calculator
 	/// <param name="baseAirCorpsActionKind">基地航空隊の状態。基地航空隊でなければ-1</param>
 	/// <param name="isAircraftExpMaximum">艦載機の内部熟練度が当該レベルで最大値であるとして計算するか。falseなら最小値として計算します。</param>
 	/// <returns></returns>
-	public static int GetAirSuperiority(int equipmentID, int count, int aircraftLevel = 0, int level = 0, int baseAirCorpsActionKind = -1, bool isAircraftExpMaximum = false)
+	public static int GetAirSuperiority(int equipmentID, int count, int aircraftLevel = 0, int level = 0, AirBaseActionKind baseAirCorpsActionKind = AirBaseActionKind.None, bool isAircraftExpMaximum = false)
 	{
 
 		if (count <= 0)
@@ -81,7 +81,7 @@ public static class Calculator
 
 
 		// 通常の艦隊の場合、偵察機等の制空値は計算しない
-		if (baseAirCorpsActionKind == -1)
+		if (baseAirCorpsActionKind is AirBaseActionKind.None)
 		{
 			if (!AircraftLevelBonus.ContainsKey(category))
 				return 0;
@@ -99,7 +99,7 @@ public static class Calculator
 		double interceptorBonus = 0;    // 局地戦闘機の迎撃補正
 		if (category == EquipmentTypes.Interceptor)
 		{
-			if (baseAirCorpsActionKind == 2)        // 防空の場合
+			if (baseAirCorpsActionKind == AirBaseActionKind.AirDefense)
 				interceptorBonus = eq.Accuracy * 2 + eq.Evasion;
 			else
 				interceptorBonus = eq.Evasion * 1.5;
@@ -181,7 +181,7 @@ public static class Calculator
 		if (ship == null) return 0;
 
 		return ship.SlotInstance.Select((eq, i) => eq == null ? 0 :
-			GetAirSuperiority(eq.EquipmentID, ship.Aircraft[i], eq.AircraftLevel, eq.Level, -1, isAircraftLevelMaximum)).Sum();
+			GetAirSuperiority(eq.EquipmentID, ship.Aircraft[i], eq.AircraftLevel, eq.Level, AirBaseActionKind.None, isAircraftLevelMaximum)).Sum();
 	}
 
 	/// <summary>
@@ -230,10 +230,10 @@ public static class Calculator
 			// 偵察機補正計算
 			switch (aircorps.ActionKind)
 			{
-				case 1:     // 出撃
+				case AirBaseActionKind.Mission:
 					reconBonus = Math.Max(reconBonus, GetAirSuperioritySortieReconBonus(sq.EquipmentID));
 					break;
-				case 2:     // 防空
+				case AirBaseActionKind.AirDefense:
 					reconBonus = Math.Max(reconBonus, GetAirSuperiorityAirDefenseReconBonus(sq.EquipmentID));
 					break;
 			}
@@ -307,7 +307,7 @@ public static class Calculator
 	/// 基地航空中隊の制空戦力を求めます。
 	/// </summary>
 	/// <param name="squadron">対象の基地航空中隊。</param>
-	public static int GetAirSuperiority(IBaseAirCorpsSquadron squadron, int actionKind, bool isAircraftLevelMaximum = false)
+	public static int GetAirSuperiority(IBaseAirCorpsSquadron squadron, AirBaseActionKind actionKind, bool isAircraftLevelMaximum = false)
 	{
 		if (squadron == null || squadron.State != 1)
 			return 0;
@@ -330,7 +330,7 @@ public static class Calculator
 	{
 		return fleet.Select(id => KCDatabase.Instance.MasterShips[id])
 			.Select((ship, i) => ship == null ? 0 :
-				slot[i].Select((eqid, k) => GetAirSuperiority(eqid, ship.Aircraft[k], 7, 10, -1, true)).Sum()).Sum();
+				slot[i].Select((eqid, k) => GetAirSuperiority(eqid, ship.Aircraft[k], 7, 10, AirBaseActionKind.None, true)).Sum()).Sum();
 	}
 
 

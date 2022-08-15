@@ -203,24 +203,16 @@ public static class Constants
 	/// <summary>
 	/// 基地航空隊の行動指示を表す文字列を取得します。
 	/// </summary>
-	public static string GetBaseAirCorpsActionKind(int value)
+	public static string GetBaseAirCorpsActionKind(AirBaseActionKind value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Standby;
-			case 1:
-				return ConstantsRes.Mission;
-			case 2:
-				return ConstantsRes.AirDefense;
-			case 3:
-				return ConstantsRes.TakeCover;
-			case 4:
-				return ConstantsRes.Rest;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		AirBaseActionKind.Standby => ConstantsRes.Standby,
+		AirBaseActionKind.Mission => ConstantsRes.Mission,
+		AirBaseActionKind.AirDefense => ConstantsRes.AirDefense,
+		AirBaseActionKind.TakeCover => ConstantsRes.TakeCover,
+		AirBaseActionKind.Rest => ConstantsRes.Rest,
+
+		_ => ConstantsRes.Unknown,
+	};
 
 
 	/// <summary>
@@ -282,7 +274,7 @@ public static class Constants
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
 	/// </summary>
-	public static string GetShipClass(ShipClass id, ShipId shipId = ShipId.Souya645) 
+	public static string GetShipClass(ShipClass id, ShipId shipId = ShipId.Souya645)
 		=> GetShipClass((int)id, shipId);
 
 

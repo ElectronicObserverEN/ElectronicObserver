@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace ElectronicObserverTypes.Mocks;
 
@@ -13,9 +14,20 @@ public class FleetDataMock : IFleetData
 	public int ExpeditionDestination { get; set; }
 	public DateTime ExpeditionTime { get; set; }
 	public ReadOnlyCollection<int> Members { get; set; }
-	public ReadOnlyCollection<IShipData> MembersInstance { get; set; }
-	public ReadOnlyCollection<IShipData?>? MembersWithoutEscaped { get; set; } = new(new List<IShipData?>());
-	public ReadOnlyCollection<int> EscapedShipList { get; set; }
+	public ReadOnlyCollection<IShipData?>? MembersInstance { get; set; }
+	public ReadOnlyCollection<IShipData?>? MembersWithoutEscaped => MembersInstance switch
+	{
+		{ } ships => Array.AsReadOnly(ships
+			.Select(s => EscapedShipList.Contains(s?.MasterID ?? -1) switch
+			{
+				true => null,
+				false => s,
+			})
+			.ToArray()),
+
+		_ => null,
+	};
+	public ReadOnlyCollection<int> EscapedShipList { get; set; } = new(Array.Empty<int>());
 	public bool IsInSortie { get; set; }
 	public bool IsInPractice { get; set; }
 	public int ID { get; set; }

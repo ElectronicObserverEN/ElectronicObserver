@@ -1487,7 +1487,7 @@ public class FleetImageGenerator
 
 				// base params
 
-				g.DrawString(string.Format("【{0}】", Constants.GetBaseAirCorpsActionKind(baseAirCorps.ActionKind)), args.MediumFont, actionKindBrushes[baseAirCorps.ActionKind],
+				g.DrawString(string.Format("【{0}】", Constants.GetBaseAirCorpsActionKind(baseAirCorps.ActionKind)), args.MediumFont, actionKindBrushes[(int)baseAirCorps.ActionKind],
 					new Rectangle(basePointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, baseActionKindSize, baseParameterAreaSize), baseActionKindSize), formatMiddleLeft);
 				basePointer.X += baseActionKindSize.Width + baseParameterAreaInnerMargin.Width;
 

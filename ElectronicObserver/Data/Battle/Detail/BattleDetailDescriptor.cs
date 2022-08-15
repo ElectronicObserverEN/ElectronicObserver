@@ -214,7 +214,7 @@ public static class BattleDetailDescriptor
 							{
 								air += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s]);
 								if (KCDatabase.Instance.MasterEquipments[param.DefaultSlot[s]]?.IsAircraft ?? false)
-									airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, 1);
+									airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, AirBaseActionKind.Mission);
 							}
 						}
 						sb.AppendFormat(BattleRes.AirBaseAirPower, air, airbase);

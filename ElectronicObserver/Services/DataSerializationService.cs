@@ -170,6 +170,7 @@ public class DataSerializationService
 	{
 		{ } f => new()
 		{
+			Name = fleet.Name,
 			Ship1 = MakeDeckBuilderShip(f.MembersInstance.Skip(0).FirstOrDefault(), maxAircraftLevel),
 			Ship2 = MakeDeckBuilderShip(f.MembersInstance.Skip(1).FirstOrDefault(), maxAircraftLevel),
 			Ship3 = MakeDeckBuilderShip(f.MembersInstance.Skip(2).FirstOrDefault(), maxAircraftLevel),
@@ -201,7 +202,17 @@ public class DataSerializationService
 				Equipment5 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(4).FirstOrDefault(), maxAircraftLevel),
 				EquipmentExpansion = MakeDeckBuilderEquipment(s.ExpansionSlotInstance, maxAircraftLevel),
 			},
+			Hp = s.HPMax,
+			Firepower = s.FirepowerTotal,
+			Torpedo = s.TorpedoTotal,
+			AntiAir = s.AATotal,
+			Armor = s.ArmorTotal,
+			AntiSubmarine = s.ASWTotal,
+			Evasion = s.EvasionTotal,
+			Los = s.LOSTotal,
 			Luck = s.LuckTotal,
+			Speed = s.Speed,
+			Range = s.Range,
 		},
 
 		_ => null
@@ -231,7 +242,7 @@ public class DataSerializationService
 			_ => null
 		};
 
-	private static DeckBuilderAirBase MakeDeckBuilderAirBase
+	private static DeckBuilderAirBase? MakeDeckBuilderAirBase
 	(
 		IBaseAirCorpsData? airBase,
 		bool maxAircraftLevel
@@ -239,6 +250,7 @@ public class DataSerializationService
 	{
 		{ } ab => new()
 		{
+			Name = airBase.Name,
 			Equipment = new()
 			{
 				Equipment1 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(0).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
@@ -249,7 +261,7 @@ public class DataSerializationService
 			Mode = airBase.ActionKind,
 		},
 
-		_ => new()
+		_ => null,
 	};
 
 	private static IEnumerable<FleetAnalysisShip> MakeFleetAnalysisShips(IEnumerable<IShipData> ships)

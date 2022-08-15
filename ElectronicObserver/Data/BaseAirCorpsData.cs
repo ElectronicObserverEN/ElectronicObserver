@@ -52,7 +52,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 	/// 行動指示
 	/// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
 	/// </summary>
-	public int ActionKind { get; private set; }
+	public AirBaseActionKind ActionKind { get; private set; }
 
 	/// <summary>
 	/// List of points (edge ?) the LBAS will strike
@@ -96,7 +96,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 
 				if (index >= 0)
 				{
-					ActionKind = actions[index];
+					ActionKind = (AirBaseActionKind)actions[index];
 				}
 
 			}
@@ -121,7 +121,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 
 				Name = (string)data.api_name;
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-				ActionKind = (int)data.api_action_kind;
+				ActionKind = (AirBaseActionKind)data.api_action_kind;
 				Base_Distance = (int)data.api_distance.api_base;
 				Bonus_Distance = (int)data.api_distance.api_bonus;
 				SetSquadrons(apiname, data.api_plane_info);

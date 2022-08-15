@@ -42,7 +42,7 @@ public interface IFleetData
 	/// <summary>
 	/// 艦隊メンバー(艦船データ)
 	/// </summary>
-	ReadOnlyCollection<IShipData> MembersInstance { get; }
+	ReadOnlyCollection<IShipData?> MembersInstance { get; }
 
 	/// <summary>
 	/// 艦隊メンバー(艦船データ、退避艦を除く)

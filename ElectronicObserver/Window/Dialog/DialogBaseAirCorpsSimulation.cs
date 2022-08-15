@@ -284,13 +284,13 @@ public partial class DialogBaseAirCorpsSimulation : Form
 
 				var isranged = Utility.Configuration.Config.FormFleet.ShowAirSuperiorityRange;
 
-				int airSuperioritySortie = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, 1);
-				int airSuperioritySortieMax = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, 1, true);
+				int airSuperioritySortie = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, AirBaseActionKind.Mission);
+				int airSuperioritySortieMax = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, AirBaseActionKind.Mission, true);
 				AirSuperioritySortie.Text = isranged ? RangeString(airSuperioritySortie, airSuperioritySortieMax) : airSuperioritySortie.ToString();
 				AirSuperioritySortie.Tag = airSuperioritySortie;
 
-				int airSuperiorityAirDefense = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, 2);
-				int airSuperiorityAirDefenseMax = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, 2, true);
+				int airSuperiorityAirDefense = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, AirBaseActionKind.AirDefense);
+				int airSuperiorityAirDefenseMax = Calculator.GetAirSuperiority(equipment.EquipmentID, aircraftCount, equipment.AircraftLevel, equipment.Level, AirBaseActionKind.AirDefense, true);
 				AirSuperiorityAirDefense.Text = isranged ? RangeString(airSuperiorityAirDefense, airSuperiorityAirDefenseMax) : airSuperiorityAirDefense.ToString();
 				AirSuperiorityAirDefense.Tag = airSuperiorityAirDefense;
 
@@ -1068,13 +1068,13 @@ public partial class DialogBaseAirCorpsSimulation : Form
 			// 射程拡張も考慮して、 min - 3 まで確保しておく
 			var attackerfp = available
 				.Where(eq => SquadronAttackerCategories.Contains(eq.master.CategoryType) && eq.master.AircraftDistance >= minimumDistance - 3)
-				.Select(eqp => new { eqp.eq, eqp.master, fp = Calculator.GetAirSuperiority(eqp.master.EquipmentID, 18, eqp.eq.AircraftLevel, eqp.eq.Level, 1) })
+				.Select(eqp => new { eqp.eq, eqp.master, fp = Calculator.GetAirSuperiority(eqp.master.EquipmentID, 18, eqp.eq.AircraftLevel, eqp.eq.Level, AirBaseActionKind.Mission) })
 				.OrderByDescending(eq => eq.master.Torpedo + eq.master.Bomber)
 				.ThenBy(f => f.master.AircraftCost)
 				.AsEnumerable();
 
 
-			var fighterfp = fighter.Select(eqp => new { eqp.eq, eqp.master, fp = Calculator.GetAirSuperiority(eqp.master.EquipmentID, 18, eqp.eq.AircraftLevel, eqp.eq.Level, 1) })
+			var fighterfp = fighter.Select(eqp => new { eqp.eq, eqp.master, fp = Calculator.GetAirSuperiority(eqp.master.EquipmentID, 18, eqp.eq.AircraftLevel, eqp.eq.Level, AirBaseActionKind.Mission) })
 				.OrderByDescending(f => f.fp)
 				.ThenBy(f => f.master.AircraftCost);
 
@@ -1177,7 +1177,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 			}
 
 			var fighterfp = fighter
-				.Select(eqp => new { eqp.eq, eqp.master, fp = Calculator.GetAirSuperiority(eqp.master.EquipmentID, 18, eqp.eq.AircraftLevel, eqp.eq.Level, 2) })
+				.Select(eqp => new { eqp.eq, eqp.master, fp = Calculator.GetAirSuperiority(eqp.master.EquipmentID, 18, eqp.eq.AircraftLevel, eqp.eq.Level, AirBaseActionKind.AirDefense) })
 				.OrderByDescending(f => f.fp)
 				.ThenBy(f => f.master.AircraftCost);
 
