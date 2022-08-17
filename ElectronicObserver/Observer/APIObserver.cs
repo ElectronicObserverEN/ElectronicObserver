@@ -15,6 +15,7 @@ using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
+using Titanium.Web.Proxy.Network;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Observer;
@@ -722,7 +723,8 @@ public sealed class APIObserver
 			EnableConnectionPool = true,
 			ForwardToUpstreamGateway = true
 		};
-		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
+		Proxy.CertificateManager.CertificateEngine = CertificateEngine.DefaultWindows;
+		Proxy.CertificateManager.EnsureRootCertificate(true,true);
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
 	}
