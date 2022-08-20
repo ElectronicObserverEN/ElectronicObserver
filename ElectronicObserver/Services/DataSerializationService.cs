@@ -193,6 +193,7 @@ public class DataSerializationService
 		{
 			Id = s.MasterShip.ShipId,
 			Level = s.Level,
+			IsExpansionSlotAvailable = s.IsExpansionSlotAvailable,
 			Equipment = new()
 			{
 				Equipment1 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(0).FirstOrDefault(), maxAircraftLevel),

@@ -54,6 +54,7 @@ public static class Extensions
 		{
 			Level = deckBuilderShip.Level,
 			HPMax = deckBuilderShip.Hp,
+			IsExpansionSlotAvailable = deckBuilderShip.IsExpansionSlotAvailable,
 			SlotInstance = new List<IEquipmentData?>
 			{
 				ToEquipmentData(deckBuilderShip.Equipment.Equipment1),
