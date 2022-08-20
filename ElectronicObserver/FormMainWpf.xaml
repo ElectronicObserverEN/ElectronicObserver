@@ -594,14 +594,20 @@
 						</MenuItem.CommandParameter>
 					</MenuItem>
 				</MenuItem>
-				<MenuItem
-					d:Header="Export Fleet Image"
-					Command="{Binding OpenFleetImageGeneratorCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}"
-					>
+				<MenuItem d:Header="Export Fleet Image" Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}">
 					<MenuItem.Icon>
 						<Image Source="{Binding FleetImageGeneratorImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem d:Header="AB Simulator" Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}">
 					<MenuItem.Icon>

@@ -51,7 +51,11 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<GroupBox Grid.Row="0" Header="{Binding AirControlSimulator.Fleet}">
+		<GroupBox
+			Grid.Row="0"
+			Header="{Binding AirControlSimulator.Fleet}"
+			Visibility="{Binding FleetSelectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+			>
 			<StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<CheckBox Content="#1" IsChecked="{Binding Fleet1}" />
@@ -64,7 +68,11 @@
 			</StackPanel>
 		</GroupBox>
 
-		<GroupBox Grid.Row="1" Header="{Binding AirControlSimulator.AirBase}">
+		<GroupBox
+			Grid.Row="1"
+			Header="{Binding AirControlSimulator.AirBase}"
+			Visibility="{Binding AirBaseSelectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+			>
 			<StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<ComboBox ItemsSource="{Binding AirBaseAreas}" SelectedItem="{Binding AirBaseArea}">
@@ -90,7 +98,7 @@
 		<GroupBox
 			Grid.Row="2"
 			Header="{Binding AirControlSimulator.Data}"
-			Visibility="{Binding ShowDataGroup, Converter={StaticResource BooleanToVisibilityConverter}}"
+			Visibility="{Binding DataSelectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
 			>
 			<StackPanel Orientation="Horizontal">
 				<CheckBox Content="{Binding AirControlSimulator.Ships}" IsChecked="{Binding ShipData}" />

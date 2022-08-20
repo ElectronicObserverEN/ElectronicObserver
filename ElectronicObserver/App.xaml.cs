@@ -20,6 +20,7 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -190,6 +191,7 @@ public partial class App : Application
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
 			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<ExpeditionCheckTranslationViewModel>()
+			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()

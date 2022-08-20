@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -248,4 +249,7 @@ public static class Extensions
 
 		return conditions;
 	}
+
+	public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable)
+		=> new(enumerable);
 }

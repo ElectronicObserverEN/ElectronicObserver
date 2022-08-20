@@ -198,6 +198,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to コピー.
+        /// </summary>
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 自由入力欄.
         /// </summary>
         public static string CustomText {
@@ -388,6 +397,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 高度.
+        /// </summary>
+        public static string HighAltitudeShort {
+            get {
+                return ResourceManager.GetString("HighAltitudeShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦隊を横に並べる個数を指定します。
         ///これ以上の数の艦隊を出力したとき、改行されます。.
         /// </summary>
@@ -477,6 +495,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Layout {
             get {
                 return ResourceManager.GetString("Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロード.
+        /// </summary>
+        public static string LoadFromClipboard {
+            get {
+                return ResourceManager.GetString("LoadFromClipboard", resourceCulture);
             }
         }
         
@@ -765,6 +792,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アルバムステータス名を使用する.
+        /// </summary>
+        public static string UseAlbumStatusName {
+            get {
+                return ResourceManager.GetString("UseAlbumStatusName", resourceCulture);
             }
         }
     }

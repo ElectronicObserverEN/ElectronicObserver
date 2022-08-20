@@ -4,7 +4,7 @@ namespace ElectronicObserver.Window.Tools.AirControlSimulator;
 
 public class AirControlSimulatorTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => AirControlSimulator.Title;
+	public string Title => AirControlSimulator.DataSelection;
 
 	public string Fleet => AirControlSimulator.Fleet;
 	public string AirBase => AirControlSimulator.AirBase;

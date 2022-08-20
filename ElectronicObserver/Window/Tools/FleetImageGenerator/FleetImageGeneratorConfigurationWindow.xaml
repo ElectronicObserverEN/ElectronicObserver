@@ -1,0 +1,114 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.FleetImageGenerator.FleetImageGeneratorConfigurationWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.FleetImageGenerator"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding DialogFleetImageGenerator.Settings}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:FleetImageGeneratorViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:FleetImageGeneratorViewModel"
+	mc:Ignorable="d"
+	>
+	<Grid Margin="4">
+		<Grid.Resources>
+			<Style TargetType="TextBlock">
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Margin" Value="4 0" />
+			</Style>
+		</Grid.Resources>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<GroupBox Grid.Row="0" Header="{Binding DialogFleetImageGenerator.Font}">
+			<UniformGrid
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Columns="2"
+				>
+				<TextBlock Text="{Binding DialogFleetImageGenerator.FontTitle}" />
+				<ui:NumberBox
+					Minimum="6"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding TitleFontSize}"
+					/>
+
+				<TextBlock Text="{Binding DialogFleetImageGenerator.FontLarge}" />
+				<ui:NumberBox
+					Minimum="6"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding LargeTextFontSize}"
+					/>
+
+				<TextBlock Text="{Binding DialogFleetImageGenerator.FontMedium}" />
+				<ui:NumberBox
+					Minimum="6"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding MediumTextFontSize}"
+					/>
+
+				<TextBlock Text="{Binding DialogFleetImageGenerator.FontSmall}" />
+				<ui:NumberBox
+					Minimum="6"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding SmallTextFontSize}"
+					/>
+
+				<TextBlock Text="{Binding DialogFleetImageGenerator.DigitMedium}" />
+				<ui:NumberBox
+					Minimum="6"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding MediumDigitFontSize}"
+					/>
+
+				<TextBlock Text="{Binding DialogFleetImageGenerator.DigitSmall}" />
+				<ui:NumberBox
+					Minimum="6"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding SmallDigitFontSize}"
+					/>
+			</UniformGrid>
+		</GroupBox>
+
+		<GroupBox Grid.Row="1" Header="{Binding DialogFleetImageGenerator.Basic}">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0" Text="{Binding DialogFleetImageGenerator.FleetTitle}" />
+				<TextBox Grid.Row="1" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+
+				<TextBlock Grid.Row="2" Text="{Binding DialogFleetImageGenerator.Comment}" />
+				<TextBox
+					Grid.Row="3"
+					VerticalAlignment="Center"
+					AcceptsReturn="True"
+					HorizontalScrollBarVisibility="Auto"
+					Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
+					VerticalScrollBarVisibility="Auto"
+					/>
+
+				<CheckBox
+					Grid.Row="4"
+					Content="{Binding DialogFleetImageGenerator.UseAlbumStatusName}"
+					IsChecked="{Binding UseAlbumStatusName}"
+					/>
+			</Grid>
+
+		</GroupBox>
+	</Grid>
+</common:WindowBase>

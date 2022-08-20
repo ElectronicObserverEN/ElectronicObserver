@@ -357,4 +357,16 @@ settings to the default values?</value>
     <value>The fleet image will be exported to the clipboard.
 Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.</value>
   </data>
+  <data name="UseAlbumStatusName" xml:space="preserve">
+    <value>Use album status name</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>HA</value>
+  </data>
 </root>

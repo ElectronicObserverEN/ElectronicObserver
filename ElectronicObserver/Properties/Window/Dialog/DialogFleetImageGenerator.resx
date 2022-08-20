@@ -343,4 +343,16 @@
     <value>クリップボードに出力されます。
 ファイルに出力したい場合は、詳細タブの「クリップボードに出力する」を外してください。</value>
   </data>
+  <data name="UseAlbumStatusName" xml:space="preserve">
+    <value>アルバムステータス名を使用する</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>ロード</value>
+  </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>高度</value>
+  </data>
 </root>

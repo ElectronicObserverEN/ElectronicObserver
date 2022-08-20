@@ -79,7 +79,7 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 
 			BaseAirCorpsSimulationContentDialog dialog = new(new()
 			{
-				FleetOnly = true,
+				DataSelectionVisible = false,
 			});
 
 			if (dialog.ShowDialog(App.Current.MainWindow) is true)

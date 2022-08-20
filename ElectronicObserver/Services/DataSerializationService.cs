@@ -138,7 +138,7 @@ public class DataSerializationService
 		Equipment = equipment
 	};
 
-	private static DeckBuilderData MakeDeckBuilderData
+	public DeckBuilderData MakeDeckBuilderData
 	(
 		int hqLevel,
 		IFleetData? fleet1 = null,
@@ -259,6 +259,7 @@ public class DataSerializationService
 				Equipment4 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(3).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
 			},
 			Mode = airBase.ActionKind,
+			Distance = airBase.Distance,
 		},
 
 		_ => null,
