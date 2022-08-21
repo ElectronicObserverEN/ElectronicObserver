@@ -231,6 +231,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>QuestTrackerManager.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\EquipmentPicker.Designer.cs">
+		  <DependentUpon>EquipmentPicker.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\ShipPicker.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -369,6 +374,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EventLockPlanner.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Tools\FitBonusViewer\FitBonusViewer.Designer.cs">
+		  <DependentUpon>FitBonusViewer.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.Designer.cs">
 		  <DesignTime>True</DesignTime>
@@ -624,6 +634,10 @@
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>QuestTrackerManager.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\EquipmentPicker.resx">
+		  <LastGenOutput>EquipmentPicker.Designer.cs</LastGenOutput>
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\ShipPicker.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>ShipPicker.Designer.cs</LastGenOutput>
@@ -723,6 +737,10 @@
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\FitBonusViewer\FitBonusViewer.resx">
+		  <LastGenOutput>FitBonusViewer.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

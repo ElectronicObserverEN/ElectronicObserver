@@ -22,6 +22,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>AaciStrings.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\EquipmentTypeGroups.Designer.cs">
+		  <DependentUpon>EquipmentTypeGroups.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Properties\ExpeditionType.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -39,9 +44,16 @@
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>AaciStrings.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\EquipmentTypeGroups.resx">
+		  <LastGenOutput>EquipmentTypeGroups.Designer.cs</LastGenOutput>
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\ExpeditionType.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>ExpeditionType.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\EquipmentTypeGroups.en.resx">
+		  <Generator></Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\ShipNationality.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
