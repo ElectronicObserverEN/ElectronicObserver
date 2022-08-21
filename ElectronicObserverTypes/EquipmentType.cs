@@ -182,36 +182,36 @@ public enum EquipmentTypes
 
 public enum EquipmentTypeGroup
 {
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "MainGun")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "MainGun")]
 	MainGun,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Secondaries")]
-	Secondaries,
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Secondary")]
+	Secondary,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Torpedo")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Torpedo")]
 	Torpedo,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Fighter")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Fighter")]
 	Fighter,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Bomber")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Bomber")]
 	Bomber,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "TorpedoBomber")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "TorpedoBomber")]
 	TorpedoBomber,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Seaplane")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "SeaplanesAndRecons")]
 	SeaplaneAndRecons,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Radar")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Radar")]
 	Radar,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "ASW")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "ASWGears")]
 	ASW,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Other")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Others")]
 	Other,
 
-	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Transport")]
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Transport")]
 	Transport = 10,
 }

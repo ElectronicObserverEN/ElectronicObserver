@@ -67,6 +67,7 @@ using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Tools.FitBonusViewer;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -952,6 +953,19 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		EventLockPlannerWindow.Show(Window);
+	}
+
+	[ICommand]
+	private void OpenFitBonusViewer()
+	{
+		if (KCDatabase.Instance.MasterShips.Count == 0)
+		{
+			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
+			return;
+		}
+
+		new FitBonusViewerWindow(new FitBonusViewerViewModel()).Show(Window);
 	}
 
 	[ICommand]

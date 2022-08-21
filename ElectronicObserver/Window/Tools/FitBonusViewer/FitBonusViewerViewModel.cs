@@ -13,6 +13,9 @@ namespace ElectronicObserver.Window.Tools.FitBonusViewer;
 
 public class FitBonusViewerViewModel : WindowViewModelBase
 {
+
+	public FitBonusViewerTranslationViewModel FitBonusViewer { get; } = new();
+
 	public ObservableCollection<FitBonusShipViewModel> FitBonusResults { get; set; } = new();
 
 	public FitBonusViewerViewModel()

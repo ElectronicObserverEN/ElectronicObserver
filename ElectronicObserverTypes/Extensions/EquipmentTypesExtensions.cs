@@ -16,7 +16,7 @@ public static class EquipmentTypesExtensions
 			EquipmentTypes.MainGunLarge2,
 		},
 
-		EquipmentTypeGroup.Secondaries => new[]
+		EquipmentTypeGroup.Secondary => new[]
 		{
 			EquipmentTypes.SecondaryGun,
 			EquipmentTypes.AAGun 
@@ -119,8 +119,8 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.MainGunLarge => EquipmentTypeGroup.MainGun,
 		EquipmentTypes.MainGunLarge2 => EquipmentTypeGroup.MainGun,
 
-		EquipmentTypes.SecondaryGun => EquipmentTypeGroup.Secondaries,
-		EquipmentTypes.AAGun => EquipmentTypeGroup.Secondaries,
+		EquipmentTypes.SecondaryGun => EquipmentTypeGroup.Secondary,
+		EquipmentTypes.AAGun => EquipmentTypeGroup.Secondary,
 
 		EquipmentTypes.Torpedo => EquipmentTypeGroup.Torpedo,
 		EquipmentTypes.MidgetSubmarine => EquipmentTypeGroup.Torpedo,

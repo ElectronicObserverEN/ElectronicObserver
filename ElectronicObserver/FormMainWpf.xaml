@@ -633,6 +633,11 @@
 						<Image Source="{Binding ExpCheckerImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Command="{Binding OpenFitBonusViewerCommand}" Header="{Binding FormMain.FitBonusViewerTitle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpCheckerImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<MenuItem
 					d:Header="Ship Progression List"
 					Command="{Binding OpenKancolleProgressCommand}"

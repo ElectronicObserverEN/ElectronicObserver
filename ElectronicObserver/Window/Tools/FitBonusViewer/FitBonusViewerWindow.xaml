@@ -7,7 +7,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.FitBonusViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	Title="{Binding EventLockPlanner.Title}"
+	Title="{Binding FitBonusViewer.Title}"
 	Width="900"
 	Height="600"
 	d:DataContext="{d:DesignInstance local:FitBonusViewerViewModel}"
@@ -47,9 +47,67 @@
 			<Setter Property="Padding" Value="2 0" />
 			<Setter Property="MinWidth" Value="0" />
 		</Style>
+
+		<DataTemplate x:Key="LockGroupTemplate" DataType="local:LockGroupViewModel">
+			<Grid Margin="1">
+				<Border
+					Grid.Row="1"
+					Padding="4"
+					BorderBrush="{Binding Background}"
+					BorderThickness="1"
+					/>
+			</Grid>
+
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid>
-		<ui:ItemsRepeater ItemsSource="{Binding FitBonusResults}" />
+		<ItemsControl ItemsSource="{Binding FitBonusResults}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Border
+						Margin="1"
+						Padding="2"
+						BorderThickness="1"
+						>
+
+						<Grid Background="Transparent">
+							<TextBlock Text="{Binding Ship.MasterShip.NameEN}" />
+
+							<ItemsControl ItemsSource="{Binding EquipmentList}">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Border
+											Margin="1"
+											Padding="2"
+											BorderThickness="1"
+											>
+
+											<Grid Background="Transparent">
+												<Button Command="{Binding OpenEquipmentPickerCommand}" Content="{Binding SelectedEquipment.MasterEquipment.NameEN}" />
+											</Grid>
+
+										</Border>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</Grid>
+
+					</Border>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
 	</Grid>
 </common:WindowBase>
