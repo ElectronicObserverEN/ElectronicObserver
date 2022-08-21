@@ -3,7 +3,9 @@ using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
+using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Services;
 
@@ -68,5 +70,59 @@ public class ToolService
 				Process.Start(psi);
 				*/
 		}
+	}
+
+	public void FleetImageGenerator()
+	{
+		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
+		(
+			KCDatabase.Instance.Admiral.Level,
+			KCDatabase.Instance.Fleet.Fleets[1],
+			KCDatabase.Instance.Fleet.Fleets[2],
+			KCDatabase.Instance.Fleet.Fleets[3],
+			KCDatabase.Instance.Fleet.Fleets[4]
+		);
+
+		FleetImageGeneratorImageDataModel model = new()
+		{
+			Fleet1Visible = true,
+			Fleet2Visible = KCDatabase.Instance.Fleet.CombinedFlag > 0,
+			DeckBuilderData = data,
+		};
+
+		new FleetImageGeneratorWindow(model).Show(App.Current.MainWindow);
+	}
+
+	/// <summary>
+	/// Generates deck builder json of data that was selected for export.
+	/// </summary>
+	/// <returns>null if data selection is canceled, deck builder data otherwise</returns>
+	public string? DeckBuilderFleetExport(AirControlSimulatorViewModel? viewModel = null)
+	{
+		viewModel ??= new();
+
+		BaseAirCorpsSimulationContentDialog dialog = new(viewModel);
+
+		if (dialog.ShowDialog(App.Current.MainWindow) is not true) return null;
+
+		AirControlSimulatorViewModel result = dialog.Result!;
+
+		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(b => b.MapAreaID == result.AirBaseArea?.AreaId)
+			.ToList();
+
+		return DataSerializationService.DeckBuilder
+		(
+			KCDatabase.Instance.Admiral.Level,
+			result.Fleet1 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(0).FirstOrDefault() : null,
+			result.Fleet2 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(1).FirstOrDefault() : null,
+			result.Fleet3 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(2).FirstOrDefault() : null,
+			result.Fleet4 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(3).FirstOrDefault() : null,
+			bases.Skip(0).FirstOrDefault(),
+			bases.Skip(1).FirstOrDefault(),
+			bases.Skip(2).FirstOrDefault(),
+			result.MaxAircraftLevelFleet,
+			result.MaxAircraftLevelAirBase
+		);
 	}
 }

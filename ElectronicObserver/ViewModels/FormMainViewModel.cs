@@ -875,9 +875,16 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenFleetImageGenerator()
+	private void OpenFleetImageGenerator(bool useNewVersion)
 	{
-		new DialogFleetImageGenerator(1).Show(Window);
+		if (useNewVersion)
+		{
+			ToolService.FleetImageGenerator();
+		}
+		else
+		{
+			new DialogFleetImageGenerator(1).Show(Window);
+		}
 	}
 
 	[ICommand]

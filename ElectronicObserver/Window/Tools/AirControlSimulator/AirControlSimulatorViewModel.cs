@@ -7,6 +7,7 @@ using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Window.Tools.AirControlSimulator;
 
+// todo: rename to FleetDataExportViewModel (rename will probably break jot, so need to handle that too)
 public partial class AirControlSimulatorViewModel : WindowViewModelBase
 {
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }

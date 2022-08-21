@@ -6,6 +6,7 @@ public class DeckBuilderShip
 {
 	[JsonPropertyName("id")] public ShipId Id { get; set; }
 	[JsonPropertyName("lv")] public int Level { get; set; }
+	[JsonPropertyName("exa")] public bool IsExpansionSlotAvailable { get; set; }
 	[JsonPropertyName("items")] public DeckBuilderEquipmentList Equipment { get; set; } = new();
 	[JsonPropertyName("hp")] public int Hp { get; set; }
 	[JsonPropertyName("fp")] public int Firepower { get; set; }

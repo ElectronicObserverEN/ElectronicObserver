@@ -106,6 +106,15 @@ namespace ElectronicObserver.Window.Tools.AirControlSimulator {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to データ選択.
+        /// </summary>
+        public static string DataSelection {
+            get {
+                return ResourceManager.GetString("DataSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装備.
         /// </summary>
         public static string Equipment {

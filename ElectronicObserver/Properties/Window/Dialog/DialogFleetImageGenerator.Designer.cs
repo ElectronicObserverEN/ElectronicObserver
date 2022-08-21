@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogFleetImageGenerator {
@@ -198,6 +198,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to コピー.
+        /// </summary>
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 自由入力欄.
         /// </summary>
         public static string CustomText {
@@ -252,6 +261,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 行方不明の艦娘の画像をダウンロードする.
+        /// </summary>
+        public static string DownloadMissingShipImage {
+            get {
+                return ResourceManager.GetString("DownloadMissingShipImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 編成画像を出力するためには、艦船画像を保存する設定を有効にする必要があります。
         ///有効にしますか？.
         /// </summary>
@@ -276,6 +294,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string ExportFailure {
             get {
                 return ResourceManager.GetString("ExportFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1}のイメージタイプ{0}のダウンロードに失敗しました。.
+        /// </summary>
+        public static string FailedToDownloadImage {
+            get {
+                return ResourceManager.GetString("FailedToDownloadImage", resourceCulture);
             }
         }
         
@@ -388,6 +415,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 高度.
+        /// </summary>
+        public static string HighAltitudeShort {
+            get {
+                return ResourceManager.GetString("HighAltitudeShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦隊を横に並べる個数を指定します。
         ///これ以上の数の艦隊を出力したとき、改行されます。.
         /// </summary>
@@ -477,6 +513,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Layout {
             get {
                 return ResourceManager.GetString("Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロード.
+        /// </summary>
+        public static string LoadFromClipboard {
+            get {
+                return ResourceManager.GetString("LoadFromClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最大装備名幅.
+        /// </summary>
+        public static string MaxEquipmentNameWidth {
+            get {
+                return ResourceManager.GetString("MaxEquipmentNameWidth", resourceCulture);
             }
         }
         
@@ -742,6 +796,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {1}のイメージタイプ{0}のダウンロードに成功しました。.
+        /// </summary>
+        public static string SuccessfullyDownloadedImage {
+            get {
+                return ResourceManager.GetString("SuccessfullyDownloadedImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to タイトルとファイル名を同期.
         /// </summary>
         public static string SyncronizeTitleAndFileName {
@@ -765,6 +828,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アルバムステータス名を使用する.
+        /// </summary>
+        public static string UseAlbumStatusName {
+            get {
+                return ResourceManager.GetString("UseAlbumStatusName", resourceCulture);
             }
         }
     }

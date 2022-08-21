@@ -1,0 +1,58 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Tools.FleetImageGenerator.ShipParameter"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.FleetImageGenerator"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="ShipStatControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<Grid DataContext="{Binding ElementName=ShipStatControl}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<common:ParameterIcon
+			Grid.Column="0"
+			VerticalAlignment="Center"
+			ParameterType="{Binding ParameterType}"
+			>
+			<common:ParameterIcon.Style>
+				<Style TargetType="common:ParameterIcon">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding ParameterType}">
+							<DataTrigger.Value>
+								<electronicObserverTypes:ParameterType>
+									None
+								</electronicObserverTypes:ParameterType>
+							</DataTrigger.Value>
+							<Setter Property="Visibility" Value="Collapsed" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</common:ParameterIcon.Style>
+		</common:ParameterIcon>
+
+		<TextBlock
+			Grid.Column="1"
+			Margin="2 0"
+			VerticalAlignment="Center"
+			Foreground="#008888"
+			Text="{Binding ParameterName}"
+			/>
+
+		<TextBlock
+			Grid.Column="2"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Center"
+			Text="{Binding ParameterValue}"
+			/>
+	</Grid>
+</UserControl>

@@ -9,7 +9,7 @@
 		<Platforms>x64</Platforms>
 		<Nullable>enable</Nullable>
 		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<ApplicationIcon>74eo.ico</ApplicationIcon>
@@ -25,9 +25,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.1.10.2</AssemblyVersion>
-		<FileVersion>5.1.10.2</FileVersion>
-		<Version>5.1.10.2</Version>
+		<AssemblyVersion>5.1.10.3</AssemblyVersion>
+		<FileVersion>5.1.10.3</FileVersion>
+		<Version>5.1.10.3</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -354,6 +354,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EventLockPlanner.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FleetImageGenerator.resx</DependentUpon>
 		</Compile>
 		<None Include=".editorconfig" />
 		<Page Include="Properties\DesignTimeResources.xaml">
@@ -690,6 +695,10 @@
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>

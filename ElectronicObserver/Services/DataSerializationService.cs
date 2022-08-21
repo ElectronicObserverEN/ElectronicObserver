@@ -138,7 +138,7 @@ public class DataSerializationService
 		Equipment = equipment
 	};
 
-	private static DeckBuilderData MakeDeckBuilderData
+	public DeckBuilderData MakeDeckBuilderData
 	(
 		int hqLevel,
 		IFleetData? fleet1 = null,
@@ -193,6 +193,7 @@ public class DataSerializationService
 		{
 			Id = s.MasterShip.ShipId,
 			Level = s.Level,
+			IsExpansionSlotAvailable = s.IsExpansionSlotAvailable,
 			Equipment = new()
 			{
 				Equipment1 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(0).FirstOrDefault(), maxAircraftLevel),
