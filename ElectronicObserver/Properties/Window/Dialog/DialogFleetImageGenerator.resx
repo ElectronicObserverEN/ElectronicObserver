@@ -355,4 +355,7 @@
   <data name="HighAltitudeShort" xml:space="preserve">
     <value>高度</value>
   </data>
+  <data name="MaxEquipmentNameWidth" xml:space="preserve">
+    <value>最大装備名幅</value>
+  </data>
 </root>

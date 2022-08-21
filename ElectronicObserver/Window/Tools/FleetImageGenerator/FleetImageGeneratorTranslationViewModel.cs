@@ -42,4 +42,5 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string SaveImageDialog => Properties.Window.Dialog.DialogFleetImageGenerator.SaveImageDialog;
 	
 	public string UseAlbumStatusName => Properties.Window.Dialog.DialogFleetImageGenerator.UseAlbumStatusName;
+	public string MaxEquipmentNameWidth => Properties.Window.Dialog.DialogFleetImageGenerator.MaxEquipmentNameWidth;
 }

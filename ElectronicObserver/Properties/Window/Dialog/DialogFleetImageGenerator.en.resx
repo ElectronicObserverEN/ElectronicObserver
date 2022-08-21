@@ -369,4 +369,7 @@ Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.<
   <data name="HighAltitudeShort" xml:space="preserve">
     <value>HA</value>
   </data>
+  <data name="MaxEquipmentNameWidth" xml:space="preserve">
+    <value>Max equipment name width</value>
+  </data>
 </root>

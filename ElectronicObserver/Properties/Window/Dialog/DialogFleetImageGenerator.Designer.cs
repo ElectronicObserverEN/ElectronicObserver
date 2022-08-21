@@ -508,6 +508,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 最大装備名幅.
+        /// </summary>
+        public static string MaxEquipmentNameWidth {
+            get {
+                return ResourceManager.GetString("MaxEquipmentNameWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 現在の艦隊を出力するための艦船画像データが不足しています。
         ///
         ///キャッシュを削除したのち再読み込みを行い、

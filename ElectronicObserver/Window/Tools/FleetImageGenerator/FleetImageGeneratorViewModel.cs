@@ -33,6 +33,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public int SmallDigitFontSize { get; set; } = 12;
 
 	public bool UseAlbumStatusName { get; set; } = true;
+	public int MaxEquipmentNameWidth { get; set; } = 200;
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -161,6 +162,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		SmallTextFontSize = (int)Configuration.Config.FleetImageGenerator.Argument.SmallFont.ToSize();
 		MediumDigitFontSize = (int)Configuration.Config.FleetImageGenerator.Argument.MediumDigitFont.ToSize();
 		SmallDigitFontSize = (int)Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont.ToSize();
+		MaxEquipmentNameWidth = Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth;
 	}
 
 	private void SaveConfig()
@@ -195,6 +197,8 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		
 		Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont, SmallDigitFontSize);
+
+		Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth = MaxEquipmentNameWidth;
 	}
 
 	public override void Closed()

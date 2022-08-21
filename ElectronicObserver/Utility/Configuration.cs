@@ -1787,6 +1787,7 @@ public sealed class Configuration
 			public bool DisableOverwritePrompt { get; set; }
 			public bool AutoSetFileNameToDate { get; set; }
 			public bool SyncronizeTitleAndFileName { get; set; }
+			public int MaxEquipmentNameWidth { get; set; }
 
 			public ConfigFleetImageGenerator()
 				: base()
@@ -1799,6 +1800,7 @@ public sealed class Configuration
 				DisableOverwritePrompt = false;
 				AutoSetFileNameToDate = false;
 				SyncronizeTitleAndFileName = false;
+				MaxEquipmentNameWidth = 200;
 			}
 		}
 		[DataMember]
