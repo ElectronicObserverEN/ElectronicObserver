@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserverTypes;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ElectronicObserverTypes;
 
 public enum EquipmentTypes
 {
@@ -176,4 +178,40 @@ public enum EquipmentTypes
 	/// <summary>艦上偵察機(II)</summary>
 	CarrierBasedRecon2 = 94,
 
+}
+
+public enum EquipmentTypeGroup
+{
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "MainGun")]
+	MainGun,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Secondaries")]
+	Secondaries,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Torpedo")]
+	Torpedo,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Fighter")]
+	Fighter,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Bomber")]
+	Bomber,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "TorpedoBomber")]
+	TorpedoBomber,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Seaplane")]
+	SeaplaneAndRecons,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Radar")]
+	Radar,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "ASW")]
+	ASW,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Other")]
+	Other,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypes), Name = "Transport")]
+	Transport = 10,
 }

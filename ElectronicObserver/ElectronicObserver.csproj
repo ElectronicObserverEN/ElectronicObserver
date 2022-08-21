@@ -692,4 +692,12 @@
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Window\Dialog\EquipmentPicker\EquipmentPickerView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Window\Tools\FitBonusViewer\FitBonusViewerWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	</ItemGroup>
 </Project>
