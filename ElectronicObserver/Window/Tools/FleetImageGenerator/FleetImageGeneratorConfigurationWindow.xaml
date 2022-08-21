@@ -88,6 +88,7 @@
 					<RowDefinition />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 
 				<TextBlock Grid.Row="0" Text="{Binding DialogFleetImageGenerator.FleetTitle}" />
@@ -118,6 +119,12 @@
 						Value="{Binding MaxEquipmentNameWidth}"
 						/>
 				</StackPanel>
+
+				<CheckBox
+					Grid.Row="6"
+					Content="{Binding DialogFleetImageGenerator.DownloadMissingShipImage}"
+					IsChecked="{Binding DownloadMissingShipImage}"
+					/>
 			</Grid>
 
 		</GroupBox>

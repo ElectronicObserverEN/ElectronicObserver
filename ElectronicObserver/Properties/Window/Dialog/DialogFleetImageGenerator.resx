@@ -358,4 +358,13 @@
   <data name="MaxEquipmentNameWidth" xml:space="preserve">
     <value>最大装備名幅</value>
   </data>
+  <data name="SuccessfullyDownloadedImage" xml:space="preserve">
+    <value>{1}のイメージタイプ{0}のダウンロードに成功しました。</value>
+  </data>
+  <data name="FailedToDownloadImage" xml:space="preserve">
+    <value>{1}のイメージタイプ{0}のダウンロードに失敗しました。</value>
+  </data>
+  <data name="DownloadMissingShipImage" xml:space="preserve">
+    <value>行方不明の艦娘の画像をダウンロードする</value>
+  </data>
 </root>

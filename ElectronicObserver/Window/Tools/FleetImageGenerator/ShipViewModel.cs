@@ -1,7 +1,16 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
+using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
@@ -77,6 +86,51 @@ public class ShipViewModel : ObservableObject
 			_ => null,
 		};
 
+		if (Configuration.Config.FleetImageGenerator.DownloadMissingShipImage)
+		{
+			Task.Run(DownloadImage);
+		}
+
 		return this;
+	}
+
+	private async void DownloadImage()
+	{
+		IEnumerable<string> RequiredImageResourceTypes() => this switch
+		{
+			CardShipViewModel => new List<string> { KCResourceHelper.ResourceTypeShipCard },
+			CutInShipViewModel => new List<string> { KCResourceHelper.ResourceTypeShipName, KCResourceHelper.ResourceTypeShipCutin },
+			BannerShipViewModel => new List<string> { KCResourceHelper.ResourceTypeShipBanner },
+
+			_ => throw new NotImplementedException(),
+		};
+
+		int? shipId = (int)Id;
+
+		if (shipId is not int id) return;
+
+		foreach (string resourceType in RequiredImageResourceTypes())
+		{
+			try
+			{
+				string? imageUri = KCResourceHelper.GetShipImagePath(id, false, resourceType);
+
+				if (File.Exists(imageUri)) return;
+
+				await Ioc.Default
+					.GetRequiredService<GameAssetDownloaderService>()
+					.DownloadImage(id, resourceType);
+
+				Logger.Add(2, string.Format(DialogFleetImageGenerator.SuccessfullyDownloadedImage, resourceType, Name));
+
+				// in xaml the image source binding is set to Id
+				// so after the image has been downloaded, this will force the image to reload
+				OnPropertyChanged(nameof(Id));
+			}
+			catch
+			{
+				Logger.Add(2, string.Format(DialogFleetImageGenerator.FailedToDownloadImage, resourceType, Name));
+			}
+		}
 	}
 }

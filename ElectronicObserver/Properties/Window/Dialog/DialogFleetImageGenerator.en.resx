@@ -372,4 +372,13 @@ Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.<
   <data name="MaxEquipmentNameWidth" xml:space="preserve">
     <value>Max equipment name width</value>
   </data>
+  <data name="SuccessfullyDownloadedImage" xml:space="preserve">
+    <value>Successfully downloaded image type {0} for {1}.</value>
+  </data>
+  <data name="FailedToDownloadImage" xml:space="preserve">
+    <value>Failed to downloaded image type {0} for {1}.</value>
+  </data>
+  <data name="DownloadMissingShipImage" xml:space="preserve">
+    <value>Download missing ship image</value>
+  </data>
 </root>

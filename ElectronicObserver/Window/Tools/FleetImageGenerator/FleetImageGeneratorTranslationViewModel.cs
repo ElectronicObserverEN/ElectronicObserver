@@ -43,4 +43,5 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	
 	public string UseAlbumStatusName => Properties.Window.Dialog.DialogFleetImageGenerator.UseAlbumStatusName;
 	public string MaxEquipmentNameWidth => Properties.Window.Dialog.DialogFleetImageGenerator.MaxEquipmentNameWidth;
+	public string DownloadMissingShipImage => Properties.Window.Dialog.DialogFleetImageGenerator.DownloadMissingShipImage;
 }

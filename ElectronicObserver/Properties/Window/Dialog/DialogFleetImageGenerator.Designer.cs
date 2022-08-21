@@ -261,6 +261,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 行方不明の艦娘の画像をダウンロードする.
+        /// </summary>
+        public static string DownloadMissingShipImage {
+            get {
+                return ResourceManager.GetString("DownloadMissingShipImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 編成画像を出力するためには、艦船画像を保存する設定を有効にする必要があります。
         ///有効にしますか？.
         /// </summary>
@@ -285,6 +294,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string ExportFailure {
             get {
                 return ResourceManager.GetString("ExportFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1}のイメージタイプ{0}のダウンロードに失敗しました。.
+        /// </summary>
+        public static string FailedToDownloadImage {
+            get {
+                return ResourceManager.GetString("FailedToDownloadImage", resourceCulture);
             }
         }
         
@@ -774,6 +792,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string SpecifiedFontDoesNotExist {
             get {
                 return ResourceManager.GetString("SpecifiedFontDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1}のイメージタイプ{0}のダウンロードに成功しました。.
+        /// </summary>
+        public static string SuccessfullyDownloadedImage {
+            get {
+                return ResourceManager.GetString("SuccessfullyDownloadedImage", resourceCulture);
             }
         }
         

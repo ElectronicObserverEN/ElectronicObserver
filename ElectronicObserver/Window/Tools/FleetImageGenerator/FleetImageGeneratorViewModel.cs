@@ -34,6 +34,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 	public bool UseAlbumStatusName { get; set; } = true;
 	public int MaxEquipmentNameWidth { get; set; } = 200;
+	public bool DownloadMissingShipImage { get; set; }
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -145,6 +146,13 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 			LoadModel(ImageDataModel);
 		};
 
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(DownloadMissingShipImage)) return;
+
+			Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
+		};
+
 		ImageDataModel = model;
 
 		LoadConfig();
@@ -163,14 +171,15 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		MediumDigitFontSize = (int)Configuration.Config.FleetImageGenerator.Argument.MediumDigitFont.ToSize();
 		SmallDigitFontSize = (int)Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont.ToSize();
 		MaxEquipmentNameWidth = Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth;
+		DownloadMissingShipImage = Configuration.Config.FleetImageGenerator.DownloadMissingShipImage;
 	}
 
 	private void SaveConfig()
 	{
-		System.Drawing.Font NewFont(System.Drawing.Font font, int size, bool isTitle = false) => 
+		System.Drawing.Font NewFont(System.Drawing.Font font, int size, bool isTitle = false) =>
 			new
 			(
-				font.FontFamily, 
+				font.FontFamily,
 				size,
 				isTitle ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular,
 				System.Drawing.GraphicsUnit.Pixel
@@ -180,25 +189,26 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.Argument.Comment = Comment ?? "";
 		Configuration.Config.FleetImageGenerator.ImageType = (int)ImageType;
 
-		Configuration.Config.FleetImageGenerator.Argument.TitleFont = 
+		Configuration.Config.FleetImageGenerator.Argument.TitleFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.TitleFont, TitleFontSize, true);
 
 		Configuration.Config.FleetImageGenerator.Argument.LargeFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.LargeFont, LargeTextFontSize);
-		
+
 		Configuration.Config.FleetImageGenerator.Argument.MediumFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.MediumFont, MediumTextFontSize);
-		
+
 		Configuration.Config.FleetImageGenerator.Argument.SmallFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.SmallFont, SmallTextFontSize);
-		
+
 		Configuration.Config.FleetImageGenerator.Argument.MediumDigitFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.MediumDigitFont, MediumDigitFontSize);
-		
+
 		Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont =
 			NewFont(Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont, SmallDigitFontSize);
 
 		Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth = MaxEquipmentNameWidth;
+		Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
 	}
 
 	public override void Closed()

@@ -574,7 +574,7 @@
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" SharedSizeGroup="EquipmentSlotSize" />
 					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition />
+					<ColumnDefinition SharedSizeGroup="EquipmentName" />
 					<ColumnDefinition Width="Auto" SharedSizeGroup="EquipmentLevel" />
 					<ColumnDefinition Width="Auto" SharedSizeGroup="EquipmentAircraftLevel" />
 				</Grid.ColumnDefinitions>
