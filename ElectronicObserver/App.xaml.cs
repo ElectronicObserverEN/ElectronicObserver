@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -68,8 +69,10 @@ public partial class App : Application
 	protected override void OnStartup(StartupEventArgs e)
 	{
 		bool allowMultiInstance = e.Args.Contains("-m") || e.Args.Contains("--multi-instance");
-
-
+		foreach (var item in Assembly.GetExecutingAssembly().GetReferencedAssemblies().ToList())
+		{
+			Assembly.Load(item);
+		}
 		using (var mutex = new Mutex(false, Application.ResourceAssembly.Location.Replace('\\', '/'),
 			out var created))
 		{
