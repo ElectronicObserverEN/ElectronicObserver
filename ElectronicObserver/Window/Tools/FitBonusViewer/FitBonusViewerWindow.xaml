@@ -83,7 +83,7 @@
 							<ItemsControl ItemsSource="{Binding EquipmentList}">
 								<ItemsControl.ItemsPanel>
 									<ItemsPanelTemplate>
-										<StackPanel Orientation="Horizontal" />
+										<StackPanel Orientation="Vertical" />
 									</ItemsPanelTemplate>
 								</ItemsControl.ItemsPanel>
 
@@ -103,6 +103,8 @@
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>
 							</ItemsControl>
+
+							<Button Command="{Binding AddEquipmentCommand}" Content="{Binding DataContext.FitBonusViewer.AddEquipment, Source={StaticResource Proxy}}" />
 						</Grid>
 
 					</Border>

@@ -88,4 +88,14 @@ public partial class FitBonusShipViewModel
 			};	
 		}
 	}
+
+	[ICommand]
+	private void AddEquipment()
+	{
+		FitBonusEquipmentViewModel vm = new FitBonusEquipmentViewModel(null);
+
+		EquipmentList.Add(vm);
+
+		vm.OpenEquipmentPickerCommand.Execute(null);
+	}
 }

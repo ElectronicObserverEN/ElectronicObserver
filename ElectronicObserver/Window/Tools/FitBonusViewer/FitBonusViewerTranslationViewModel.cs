@@ -9,4 +9,5 @@ namespace ElectronicObserver.Window.Tools.FitBonusViewer;
 public class FitBonusViewerTranslationViewModel
 {
 	public static string Title => FitBonusViewer.Title;
+	public static string AddEquipment => FitBonusViewer.AddEquipment;
 }

@@ -63,6 +63,15 @@ namespace ElectronicObserver.Window.Tools.FitBonusViewer {
         /// <summary>
         ///   Looks up a localized string similar to ???.
         /// </summary>
+        internal static string AddEquipment {
+            get {
+                return ResourceManager.GetString("AddEquipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
