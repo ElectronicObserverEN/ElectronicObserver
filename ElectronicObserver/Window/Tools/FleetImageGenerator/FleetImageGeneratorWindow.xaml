@@ -743,6 +743,12 @@
 				Content="{Binding DialogFleetImageGenerator.LoadFromClipboard}"
 				/>
 
+			<Button
+				Margin="4 0"
+				Click="SaveImage"
+				Content="{Binding DialogFleetImageGenerator.SaveImageToFile}"
+				/>
+
 			<RadioButton Command="{Binding ChangeImageTypeCommand}" Content="{Binding DialogFleetImageGenerator.ImageTypeCard}">
 				<RadioButton.CommandParameter>
 					<local:ImageType>Card</local:ImageType>

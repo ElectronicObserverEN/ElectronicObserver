@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ElectronicObserver.Properties.Window.Dialog;
+
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 /// <summary>
@@ -61,6 +65,8 @@ public partial class FleetImageGeneratorWindow
 	private void CopyImageToClipboard(object sender, RoutedEventArgs e)
 	{
 		Clipboard.SetImage(GenerateFleetImage(ImageContent));
+
+		Utility.Logger.Add(2, DialogFleetImageGenerator.FleetImageExportedSuccessfully);
 	}
 
 	private void LoadImageFromClipboard(object sender, RoutedEventArgs e)
@@ -78,7 +84,7 @@ public partial class FleetImageGeneratorWindow
 		try
 		{
 			FleetImageGeneratorImageDataModel? model = JsonSerializer.Deserialize<FleetImageGeneratorImageDataModel>(imageData);
-			
+
 			if (model is null)
 			{
 				// failed to parse image data
@@ -89,7 +95,54 @@ public partial class FleetImageGeneratorWindow
 		}
 		catch (Exception exception)
 		{
-			
+
 		}
+	}
+
+	private void SaveImage(object sender, RoutedEventArgs e)
+	{
+		if (string.IsNullOrWhiteSpace(ViewModel.ImageSaveLocation))
+		{
+			MessageBox.Show(DialogFleetImageGenerator.EnterDestinationPath, DialogFleetImageGenerator.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			return;
+		}
+
+		if (ViewModel.ImageSaveLocation.ToCharArray().Intersect(Path.GetInvalidPathChars()).Any())
+		{
+			MessageBox.Show(DialogFleetImageGenerator.PathContainsInvalidCharacters, DialogFleetImageGenerator.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			return;
+		}
+
+		if (!ViewModel.DisableOverwritePrompt && File.Exists(ViewModel.ImageSaveLocation))
+		{
+			if (MessageBox.Show(string.Format(DialogFleetImageGenerator.OverwriteExistingFile, Path.GetFileName(ViewModel.ImageSaveLocation)), DialogFleetImageGenerator.OverwriteConfirmation,
+					MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No)
+				== MessageBoxResult.No)
+			{
+				return;
+			}
+		}
+
+		BitmapSource image = GenerateFleetImage(ImageContent);
+
+		Directory.CreateDirectory(ViewModel.ImageSaveLocation);
+
+		string fileName = Path.Combine(ViewModel.ImageSaveLocation, $"{DateTime.Now:yyyyMMdd_HHmmssff}.png");
+		using FileStream file = new(fileName, FileMode.OpenOrCreate);
+
+		PngBitmapEncoder encoder = new();
+		encoder.Frames.Add(BitmapFrame.Create(image));
+		encoder.Save(file);
+
+		Utility.Logger.Add(2, DialogFleetImageGenerator.FleetImageExportedSuccessfully);
+
+		if (!ViewModel.OpenImageAfterOutput) return;
+
+		ProcessStartInfo psi = new()
+		{
+			FileName = fileName,
+			UseShellExecute = true,
+		};
+		Process.Start(psi);
 	}
 }

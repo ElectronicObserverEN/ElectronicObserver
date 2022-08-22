@@ -80,23 +80,12 @@
 		</GroupBox>
 
 		<GroupBox Grid.Row="1" Header="{Binding DialogFleetImageGenerator.Basic}">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
+			<StackPanel>
+				<TextBlock Text="{Binding DialogFleetImageGenerator.FleetTitle}" />
+				<TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
-				<TextBlock Grid.Row="0" Text="{Binding DialogFleetImageGenerator.FleetTitle}" />
-				<TextBox Grid.Row="1" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-
-				<TextBlock Grid.Row="2" Text="{Binding DialogFleetImageGenerator.Comment}" />
+				<TextBlock Text="{Binding DialogFleetImageGenerator.Comment}" />
 				<TextBox
-					Grid.Row="3"
 					VerticalAlignment="Center"
 					AcceptsReturn="True"
 					HorizontalScrollBarVisibility="Auto"
@@ -104,13 +93,9 @@
 					VerticalScrollBarVisibility="Auto"
 					/>
 
-				<CheckBox
-					Grid.Row="4"
-					Content="{Binding DialogFleetImageGenerator.UseAlbumStatusName}"
-					IsChecked="{Binding UseAlbumStatusName}"
-					/>
+				<CheckBox Content="{Binding DialogFleetImageGenerator.UseAlbumStatusName}" IsChecked="{Binding UseAlbumStatusName}" />
 
-				<StackPanel Grid.Row="5" Orientation="Horizontal">
+				<StackPanel Orientation="Horizontal">
 					<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.MaxEquipmentNameWidth}" />
 					<TextBlock Margin="0 0 4 0" Text=":" />
 					<ui:NumberBox
@@ -120,13 +105,38 @@
 						/>
 				</StackPanel>
 
-				<CheckBox
-					Grid.Row="6"
-					Content="{Binding DialogFleetImageGenerator.DownloadMissingShipImage}"
-					IsChecked="{Binding DownloadMissingShipImage}"
-					/>
-			</Grid>
+				<CheckBox Content="{Binding DialogFleetImageGenerator.DownloadMissingShipImage}" IsChecked="{Binding DownloadMissingShipImage}" />
 
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.GroupOutputPath}" />
+					<TextBlock Text=":" />
+				</StackPanel>
+
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+
+					<TextBox
+						Grid.Column="0"
+						VerticalAlignment="Center"
+						Text="{Binding ImageSaveLocation}"
+						/>
+					<Button
+						Grid.Column="1"
+						VerticalAlignment="Center"
+						Command="{Binding SelectImageSaveFolderCommand}"
+						Content="..."
+						/>
+				</Grid>
+
+				<CheckBox
+					Content="{Binding DialogFleetImageGenerator.OpenImageAfterOutput}"
+					IsChecked="{Binding OpenImageAfterOutput}"
+					ToolTip="{Binding DialogFleetImageGenerator.OpenImageAfterOutputToolTip}"
+					/>
+			</StackPanel>
 		</GroupBox>
 	</Grid>
 </common:WindowBase>
