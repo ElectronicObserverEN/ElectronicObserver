@@ -228,4 +228,10 @@
   <data name="ReinforcementSlot" xml:space="preserve">
     <value>補強スロット</value>
   </data>
+  <data name="Luck" xml:space="preserve">
+    <value>運</value>
+  </data>
+  <data name="ShipId" xml:space="preserve">
+    <value>艦船ID:</value>
+  </data>
 </root>

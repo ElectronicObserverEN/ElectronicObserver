@@ -218,54 +218,81 @@
 												<views:ToolTipStat
 													Base="{Binding Ship.FirepowerBase}"
 													Icon="{StaticResource Firepower}"
+													ParameterName="{Binding FormFleet.Firepower}"
 													Total="{Binding Ship.FirepowerTotal}"
 													/>
 
 												<views:ToolTipStat
 													Base="{Binding Ship.TorpedoBase}"
 													Icon="{StaticResource Torpedo}"
+													ParameterName="{Binding FormFleet.Torpedo}"
 													Total="{Binding Ship.TorpedoTotal}"
 													/>
 
 												<views:ToolTipStat
 													Base="{Binding Ship.AABase}"
 													Icon="{StaticResource AntiAir}"
+													ParameterName="{Binding FormFleet.AA}"
 													Total="{Binding Ship.AATotal}"
 													/>
 
 												<views:ToolTipStat
 													Base="{Binding Ship.ArmorBase}"
 													Icon="{StaticResource Armor}"
+													ParameterName="{Binding FormFleet.Armor}"
 													Total="{Binding Ship.ArmorTotal}"
 													/>
 
 												<views:ToolTipStat
 													Base="{Binding Ship.ASWBase}"
 													Icon="{StaticResource AntiSubmarine}"
+													ParameterName="{Binding FormFleet.ASW}"
 													Total="{Binding Ship.ASWTotal}"
 													/>
 
 												<views:ToolTipStat
 													Base="{Binding Ship.EvasionBase}"
 													Icon="{StaticResource Evasion}"
+													ParameterName="{Binding FormFleet.Evasion}"
 													Total="{Binding Ship.EvasionTotal}"
 													/>
 
 												<views:ToolTipStat
 													Base="{Binding Ship.LOSBase}"
 													Icon="{StaticResource Los}"
+													ParameterName="{Binding FormFleet.LOS}"
 													Total="{Binding Ship.LOSTotal}"
 													/>
 
-												<views:ToolTipStat Base="{Binding Ship.LuckTotal}" Icon="{StaticResource Luck}" />
+												<views:ToolTipStat
+													Base="{Binding Ship.LuckTotal}"
+													Icon="{StaticResource Luck}"
+													ParameterName="{Binding FormFleet.Luck}"
+													/>
 
-												<views:ToolTipStat Base="{Binding EquipmentAccuracy}" Icon="{StaticResource Accuracy}" />
+												<views:ToolTipStat
+													Base="{Binding EquipmentAccuracy}"
+													Icon="{StaticResource Accuracy}"
+													ParameterName="{Binding FormFleet.Accuracy}"
+													/>
 
-												<views:ToolTipStat Base="{Binding EquipmentBomber}" Icon="{StaticResource Bomber}" />
+												<views:ToolTipStat
+													Base="{Binding EquipmentBomber}"
+													Icon="{StaticResource Bomber}"
+													ParameterName="{Binding FormFleet.Bombing}"
+													/>
 
-												<views:ToolTipStat Base="{Binding Ship.Range, Converter={StaticResource RangeConverter}}" Icon="{StaticResource Range}" />
+												<views:ToolTipStat
+													Base="{Binding Ship.Range, Converter={StaticResource RangeConverter}}"
+													Icon="{StaticResource Range}"
+													ParameterName="{Binding FormFleet.Range}"
+													/>
 
-												<views:ToolTipStat Base="{Binding Ship.Speed, Converter={StaticResource SpeedConverter}}" Icon="{StaticResource Speed}" />
+												<views:ToolTipStat
+													Base="{Binding Ship.Speed, Converter={StaticResource SpeedConverter}}"
+													Icon="{StaticResource Speed}"
+													ParameterName="{Binding FormFleet.Speed}"
+													/>
 
 												<TextBlock Text="{Binding FormFleet.RightClickToOpenEncyclopedia}" />
 											</StackPanel>

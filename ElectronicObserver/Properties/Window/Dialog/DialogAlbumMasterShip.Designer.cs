@@ -233,6 +233,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 運.
+        /// </summary>
+        public static string Luck {
+            get {
+                return ResourceManager.GetString("Luck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出現海域検索.
         /// </summary>
         public static string MapOrRecipeSearchCaption {
@@ -341,6 +350,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string ShipClassUnknown {
             get {
                 return ResourceManager.GetString("ShipClassUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船ID:.
+        /// </summary>
+        public static string ShipId {
+            get {
+                return ResourceManager.GetString("ShipId", resourceCulture);
             }
         }
         

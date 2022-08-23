@@ -499,6 +499,26 @@ public record AntiAirCutIn
 		},
 		new()
 		{
+			Id = 27,
+			FixedBonus = 5,
+			VariableBonus = 1.55,
+			Rate = 0.60,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.OoyodoKai,
+					},
+					HighAngleMusashi = 1,
+					AaRocketMod = 1,
+					AntiAirRadar = 1,
+				},
+			},
+		},
+		new()
+		{
 			Id = 28,
 			FixedBonus = 4,
 			VariableBonus = 1.4,

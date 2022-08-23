@@ -15,7 +15,7 @@
 	x:TypeArguments="local:FleetImageGeneratorViewModel"
 	mc:Ignorable="d"
 	>
-	<Grid Margin="4">
+	<Grid>
 		<Grid.Resources>
 			<Style TargetType="TextBlock">
 				<Setter Property="VerticalAlignment" Value="Center" />
@@ -29,114 +29,117 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<GroupBox Grid.Row="0" Header="{Binding DialogFleetImageGenerator.Font}">
-			<UniformGrid
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Columns="2"
-				>
-				<TextBlock Text="{Binding DialogFleetImageGenerator.FontTitle}" />
-				<ui:NumberBox
-					Minimum="6"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding TitleFontSize}"
-					/>
+		<TabControl Grid.Row="0">
+			<TabItem Header="{Binding DialogFleetImageGenerator.Basic}">
+				<StackPanel Margin="4">
+					<TextBlock Text="{Binding DialogFleetImageGenerator.FleetTitle}" />
+					<TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
-				<TextBlock Text="{Binding DialogFleetImageGenerator.FontLarge}" />
-				<ui:NumberBox
-					Minimum="6"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding LargeTextFontSize}"
-					/>
-
-				<TextBlock Text="{Binding DialogFleetImageGenerator.FontMedium}" />
-				<ui:NumberBox
-					Minimum="6"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding MediumTextFontSize}"
-					/>
-
-				<TextBlock Text="{Binding DialogFleetImageGenerator.FontSmall}" />
-				<ui:NumberBox
-					Minimum="6"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding SmallTextFontSize}"
-					/>
-
-				<TextBlock Text="{Binding DialogFleetImageGenerator.DigitMedium}" />
-				<ui:NumberBox
-					Minimum="6"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding MediumDigitFontSize}"
-					/>
-
-				<TextBlock Text="{Binding DialogFleetImageGenerator.DigitSmall}" />
-				<ui:NumberBox
-					Minimum="6"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding SmallDigitFontSize}"
-					/>
-			</UniformGrid>
-		</GroupBox>
-
-		<GroupBox Grid.Row="1" Header="{Binding DialogFleetImageGenerator.Basic}">
-			<StackPanel>
-				<TextBlock Text="{Binding DialogFleetImageGenerator.FleetTitle}" />
-				<TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-
-				<TextBlock Text="{Binding DialogFleetImageGenerator.Comment}" />
-				<TextBox
-					VerticalAlignment="Center"
-					AcceptsReturn="True"
-					HorizontalScrollBarVisibility="Auto"
-					Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
-					VerticalScrollBarVisibility="Auto"
-					/>
-
-				<CheckBox Content="{Binding DialogFleetImageGenerator.UseAlbumStatusName}" IsChecked="{Binding UseAlbumStatusName}" />
-
-				<StackPanel Orientation="Horizontal">
-					<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.MaxEquipmentNameWidth}" />
-					<TextBlock Margin="0 0 4 0" Text=":" />
-					<ui:NumberBox
-						Minimum="60"
-						SpinButtonPlacementMode="Inline"
-						Value="{Binding MaxEquipmentNameWidth}"
-						/>
-				</StackPanel>
-
-				<CheckBox Content="{Binding DialogFleetImageGenerator.DownloadMissingShipImage}" IsChecked="{Binding DownloadMissingShipImage}" />
-
-				<StackPanel Orientation="Horizontal">
-					<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.GroupOutputPath}" />
-					<TextBlock Text=":" />
-				</StackPanel>
-
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition />
-						<ColumnDefinition Width="Auto" />
-					</Grid.ColumnDefinitions>
-
+					<TextBlock Text="{Binding DialogFleetImageGenerator.Comment}" />
 					<TextBox
-						Grid.Column="0"
 						VerticalAlignment="Center"
-						Text="{Binding ImageSaveLocation}"
+						AcceptsReturn="True"
+						HorizontalScrollBarVisibility="Auto"
+						Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
+						VerticalScrollBarVisibility="Auto"
 						/>
-					<Button
-						Grid.Column="1"
-						VerticalAlignment="Center"
-						Command="{Binding SelectImageSaveFolderCommand}"
-						Content="..."
-						/>
-				</Grid>
 
-				<CheckBox
-					Content="{Binding DialogFleetImageGenerator.OpenImageAfterOutput}"
-					IsChecked="{Binding OpenImageAfterOutput}"
-					ToolTip="{Binding DialogFleetImageGenerator.OpenImageAfterOutputToolTip}"
-					/>
-			</StackPanel>
-		</GroupBox>
+					<CheckBox Content="{Binding DialogFleetImageGenerator.UseAlbumStatusName}" IsChecked="{Binding UseAlbumStatusName}" />
+
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.MaxEquipmentNameWidth}" />
+						<TextBlock Margin="0 0 4 0" Text=":" />
+						<ui:NumberBox
+							Minimum="60"
+							SpinButtonPlacementMode="Inline"
+							Value="{Binding MaxEquipmentNameWidth}"
+							/>
+					</StackPanel>
+
+					<CheckBox Content="{Binding DialogFleetImageGenerator.DownloadMissingShipImage}" IsChecked="{Binding DownloadMissingShipImage}" />
+
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.GroupOutputPath}" />
+						<TextBlock Text=":" />
+					</StackPanel>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+
+						<TextBox
+							Grid.Column="0"
+							VerticalAlignment="Center"
+							Text="{Binding ImageSaveLocation}"
+							/>
+						<Button
+							Grid.Column="1"
+							VerticalAlignment="Center"
+							Command="{Binding SelectImageSaveFolderCommand}"
+							Content="..."
+							/>
+					</Grid>
+
+					<CheckBox
+						Content="{Binding DialogFleetImageGenerator.OpenImageAfterOutput}"
+						IsChecked="{Binding OpenImageAfterOutput}"
+						ToolTip="{Binding DialogFleetImageGenerator.OpenImageAfterOutputToolTip}"
+						/>
+				</StackPanel>
+			</TabItem>
+
+			<TabItem Header="{Binding DialogFleetImageGenerator.Font}">
+				<UniformGrid
+					Margin="4"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					Columns="2"
+					>
+					<TextBlock Text="{Binding DialogFleetImageGenerator.FontTitle}" />
+					<ui:NumberBox
+						Minimum="6"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding TitleFontSize}"
+						/>
+
+					<TextBlock Text="{Binding DialogFleetImageGenerator.FontLarge}" />
+					<ui:NumberBox
+						Minimum="6"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding LargeTextFontSize}"
+						/>
+
+					<TextBlock Text="{Binding DialogFleetImageGenerator.FontMedium}" />
+					<ui:NumberBox
+						Minimum="6"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding MediumTextFontSize}"
+						/>
+
+					<TextBlock Text="{Binding DialogFleetImageGenerator.FontSmall}" />
+					<ui:NumberBox
+						Minimum="6"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding SmallTextFontSize}"
+						/>
+
+					<TextBlock Text="{Binding DialogFleetImageGenerator.DigitMedium}" />
+					<ui:NumberBox
+						Minimum="6"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding MediumDigitFontSize}"
+						/>
+
+					<TextBlock Text="{Binding DialogFleetImageGenerator.DigitSmall}" />
+					<ui:NumberBox
+						Minimum="6"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding SmallDigitFontSize}"
+						/>
+				</UniformGrid>
+			</TabItem>
+		</TabControl>
 	</Grid>
 </common:WindowBase>
