@@ -720,7 +720,7 @@ public sealed class APIObserver
 			TcpTimeWaitSeconds = 10,
 			ConnectionTimeOutSeconds = 15,
 			ReuseSocket = true,
-			EnableConnectionPool = true,
+			EnableConnectionPool = false,
 			ForwardToUpstreamGateway = true
 		};
 		Proxy.CertificateManager.CertificateEngine = CertificateEngine.DefaultWindows;

@@ -61,7 +61,7 @@
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
 
-		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1447-beta" />
+		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1450" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="AirControlSimulator\AirControlSimulator.Designer.cs">
