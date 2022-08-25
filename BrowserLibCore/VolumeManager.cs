@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Management;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace BrowserLibCore;
 
@@ -103,21 +104,32 @@ public class VolumeManager
 	/// <returns>データ。取得に失敗した場合は null。</returns>
 	private static ISimpleAudioVolume? GetVolumeObject(uint processID) => GetVolumeObject(pid => processID == pid);
 
-
+	// https://stackoverflow.com/questions/44823368/call-to-managementobjectsearchert-get-crashes-with-invalidcastexception
+	// https://stackoverflow.com/questions/23454396/rpc-e-cantcallout-ininputsynccall-when-trying-to-access-usb-device
 	private static Dictionary<uint, string> GetCommandLine(string processName)
 	{
-		string query =
-			"SELECT ProcessId, CommandLine " +
-			"FROM Win32_Process " +
-			$"WHERE Name = \"{processName}\"" +
-			"AND CommandLine LIKE \"%--utility-sub-type=audio.mojom.AudioService%\"";
+		Dictionary<uint, string> processes = new();
 
-		using ManagementObjectSearcher searcher = new(query);
-		using ManagementObjectCollection objects = searcher.Get();
+		Thread thread = new(() =>
+		{
+			string query =
+				"SELECT ProcessId, CommandLine " +
+				"FROM Win32_Process " +
+				$"WHERE Name = \"{processName}\"" +
+				"AND CommandLine LIKE \"%--utility-sub-type=audio.mojom.AudioService%\"";
 
-		return objects.Cast<ManagementBaseObject>()
-			.Select(o => (Id: (uint)o["ProcessId"], Args: (string)o["CommandLine"]))
-			.ToDictionary(t => t.Id, t => t.Args);
+			using ManagementObjectSearcher searcher = new(query);
+			using ManagementObjectCollection objects = searcher.Get();
+
+			foreach (ManagementBaseObject o in objects)
+			{
+				processes.Add((uint)o["ProcessId"], (string)o["CommandLine"]);
+			}
+		});
+		thread.Start();
+		thread.Join();
+
+		return processes;
 	}
 
 	/// <summary>

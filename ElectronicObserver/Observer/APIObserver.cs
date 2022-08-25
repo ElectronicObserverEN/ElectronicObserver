@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -10,6 +11,8 @@ using System.Windows.Forms;
 using System.Windows.Threading;
 using DynaJson;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
+using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
@@ -612,8 +615,11 @@ public sealed class APIObserver
 	private ProxyServer Proxy { get; }
 	private ExplicitProxyEndPoint Endpoint { get; set; }
 
+	private ElectronicObserverContext Db { get; }
+
 	private APIObserver()
 	{
+		Db = new();
 
 		APIList = new APIDictionary
 		{
@@ -812,6 +818,37 @@ public sealed class APIObserver
 		Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 		string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
+
+		if (baseurl.Contains("/kcsapi/"))
+		{
+			List<string> ignoredApis = new()
+			{
+				"api_start2/getData",
+			};
+
+			string apiName = baseurl.Split("/kcsapi/").Last();
+
+			if (!ignoredApis.Contains(apiName))
+			{
+				await Db.ApiFiles.AddAsync(new()
+				{
+					ApiFileType = ApiFileType.Request,
+					Name = apiName,
+					Content = await e.GetRequestBodyAsString(),
+					TimeStamp = DateTime.Now,
+				});
+
+				await Db.ApiFiles.AddAsync(new()
+				{
+					ApiFileType = ApiFileType.Response,
+					Name = apiName,
+					Content = await e.GetResponseBodyAsString(),
+					TimeStamp = DateTime.Now,
+				});
+
+				await Db.SaveChangesAsync();
+			}
+		}
 
 		// request
 		if (baseurl.Contains("/kcsapi/"))
