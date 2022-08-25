@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogAlbumMasterShip {
@@ -233,6 +233,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 運.
+        /// </summary>
+        public static string Luck {
+            get {
+                return ResourceManager.GetString("Luck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出現海域検索.
         /// </summary>
         public static string MapOrRecipeSearchCaption {
@@ -341,6 +350,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string ShipClassUnknown {
             get {
                 return ResourceManager.GetString("ShipClassUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船ID:.
+        /// </summary>
+        public static string ShipId {
+            get {
+                return ResourceManager.GetString("ShipId", resourceCulture);
             }
         }
         

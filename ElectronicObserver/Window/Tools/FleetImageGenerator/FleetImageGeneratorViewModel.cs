@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -9,7 +11,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
@@ -35,6 +36,11 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public bool UseAlbumStatusName { get; set; } = true;
 	public int MaxEquipmentNameWidth { get; set; } = 200;
 	public bool DownloadMissingShipImage { get; set; }
+
+	public string ImageSaveLocation { get; set; }
+	public bool DisableOverwritePrompt { get; set; }
+	public bool AutoSetFileNameToDate { get; set; }
+	public bool OpenImageAfterOutput { get; set; }
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -172,6 +178,11 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		SmallDigitFontSize = (int)Configuration.Config.FleetImageGenerator.Argument.SmallDigitFont.ToSize();
 		MaxEquipmentNameWidth = Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth;
 		DownloadMissingShipImage = Configuration.Config.FleetImageGenerator.DownloadMissingShipImage;
+
+		ImageSaveLocation = Configuration.Config.FleetImageGenerator.ImageSaveLocation;
+		DisableOverwritePrompt = Configuration.Config.FleetImageGenerator.DisableOverwritePrompt;
+		AutoSetFileNameToDate = Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate;
+		OpenImageAfterOutput = Configuration.Config.FleetImageGenerator.OpenImageAfterOutput;
 	}
 
 	private void SaveConfig()
@@ -209,6 +220,11 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth = MaxEquipmentNameWidth;
 		Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
+		
+		Configuration.Config.FleetImageGenerator.ImageSaveLocation = ImageSaveLocation;
+		Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate = AutoSetFileNameToDate;
+		Configuration.Config.FleetImageGenerator.DisableOverwritePrompt = DisableOverwritePrompt;
+		Configuration.Config.FleetImageGenerator.OpenImageAfterOutput = OpenImageAfterOutput;
 	}
 
 	public override void Closed()
@@ -324,5 +340,19 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		if (window is null) return;
 
 		new FleetImageGeneratorConfigurationWindow(this).Show(window);
+	}
+
+	[ICommand]
+	private void SelectImageSaveFolder()
+	{
+		System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new()
+		{
+			RootFolder = Environment.SpecialFolder.Desktop,
+			SelectedPath = Path.GetFullPath(ImageSaveLocation),
+		};
+
+		if (folderBrowserDialog.ShowDialog() is not System.Windows.Forms.DialogResult.OK) return;
+
+		ImageSaveLocation = folderBrowserDialog.SelectedPath;
 	}
 }

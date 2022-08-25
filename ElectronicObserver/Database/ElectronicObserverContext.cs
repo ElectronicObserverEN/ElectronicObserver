@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
@@ -18,6 +22,7 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<WorldModel> Worlds { get; set; } = null!;
 	public DbSet<MapModel> Maps { get; set; } = null!;
 	public DbSet<CellModel> Cells { get; set; } = null!;
+	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
 
 	private string DbPath { get; }
 
@@ -45,7 +50,7 @@ public class ElectronicObserverContext : DbContext
 		builder.Entity<EventLockPlannerModel>()
 			.Property(s => s.Phases)
 			.HasConversion(JsonConverter<List<EventPhaseModel>>());
-		
+
 		builder.Entity<WorldModel>()
 			.HasKey(w => w.Id);
 
@@ -65,6 +70,17 @@ public class ElectronicObserverContext : DbContext
 		builder.Entity<AutoRefreshModel>()
 			.Property(a => a.Rules)
 			.HasConversion(JsonConverter<List<AutoRefreshRuleModel>>());
+
+		builder.Entity<ApiFile>()
+			.HasKey(a => a.Id);
+
+		builder.Entity<ApiFile>()
+			.Property(a => a.Content)
+			.HasConversion(new ValueConverter<string, byte[]>
+			(
+				s => CompressBytes(System.Text.Encoding.UTF8.GetBytes(s)),
+				b => System.Text.Encoding.UTF8.GetString(DecompressBytes(b))
+			));
 	}
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new
@@ -78,4 +94,50 @@ public class ElectronicObserverContext : DbContext
 		null or "" => new T(),
 		_ => JsonSerializer.Deserialize<T>(s)!
 	};
+
+	private static byte[] CompressBytes(byte[] bytes)
+	{
+		using MemoryStream outputStream = new();
+		using (BrotliStream compressStream = new(outputStream, CompressionLevel.SmallestSize))
+		{
+			compressStream.Write(bytes, 0, bytes.Length);
+		}
+
+		return outputStream.ToArray();
+	}
+
+	private static byte[] DecompressBytes(byte[] bytes)
+	{
+		using MemoryStream inputStream = new(bytes);
+		using MemoryStream outputStream = new();
+		using (BrotliStream decompressStream = new(inputStream, CompressionMode.Decompress))
+		{
+			decompressStream.CopyTo(outputStream);
+		}
+
+		return outputStream.ToArray();
+	}
+
+	private static async Task<byte[]> CompressBytesAsync(byte[] bytes, CancellationToken cancel = default)
+	{
+		using var outputStream = new MemoryStream();
+		await using (var compressStream = new BrotliStream(outputStream, CompressionLevel.SmallestSize))
+		{
+			await compressStream.WriteAsync(bytes, 0, bytes.Length, cancel);
+		}
+
+		return outputStream.ToArray();
+	}
+
+	private static async Task<byte[]> DecompressBytesAsync(byte[] bytes, CancellationToken cancel = default)
+	{
+		using var inputStream = new MemoryStream(bytes);
+		using var outputStream = new MemoryStream();
+		await using (var decompressStream = new BrotliStream(inputStream, CompressionMode.Decompress))
+		{
+			await decompressStream.CopyToAsync(outputStream, cancel);
+		}
+
+		return outputStream.ToArray();
+	}
 }

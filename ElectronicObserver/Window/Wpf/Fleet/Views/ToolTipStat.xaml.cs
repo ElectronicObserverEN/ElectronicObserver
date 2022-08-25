@@ -28,6 +28,15 @@ public partial class ToolTipStat : UserControl
 		set => SetValue(IconProperty, value);
 	}
 
+	public static readonly DependencyProperty ParameterNameProperty = DependencyProperty.Register(
+		nameof(ParameterName), typeof(string), typeof(ToolTipStat), new PropertyMetadata(default(string?)));
+
+	public string? ParameterName
+	{
+		get => (string?)GetValue(ParameterNameProperty);
+		set => SetValue(ParameterNameProperty, value);
+	}
+
 	public static readonly DependencyProperty BaseProperty = DependencyProperty.Register(
 		nameof(Base), typeof(string), typeof(ToolTipStat), new PropertyMetadata(default(string)));
 

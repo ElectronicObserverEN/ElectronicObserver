@@ -381,4 +381,7 @@ Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.<
   <data name="DownloadMissingShipImage" xml:space="preserve">
     <value>Download missing ship image</value>
   </data>
+  <data name="SaveImageToFile" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

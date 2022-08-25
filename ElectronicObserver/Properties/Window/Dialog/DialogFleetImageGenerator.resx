@@ -367,4 +367,7 @@
   <data name="DownloadMissingShipImage" xml:space="preserve">
     <value>行方不明の艦娘の画像をダウンロードする</value>
   </data>
+  <data name="SaveImageToFile" xml:space="preserve">
+    <value>保存</value>
+  </data>
 </root>

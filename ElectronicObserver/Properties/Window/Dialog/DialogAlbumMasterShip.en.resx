@@ -240,4 +240,10 @@ Right click to open in a new window.</value>
   <data name="ReinforcementSlot" xml:space="preserve">
     <value>Reinforcement Slot</value>
   </data>
+  <data name="Luck" xml:space="preserve">
+    <value>Luck</value>
+  </data>
+  <data name="ShipId" xml:space="preserve">
+    <value>Ship ID:</value>
+  </data>
 </root>

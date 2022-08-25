@@ -1,6 +1,5 @@
-﻿using ElectronicObserver.Window.Dialog;
-using DialogAlbumMasterEquipment = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
-using DialogAlbumMasterShip = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterShip;
+﻿using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -22,66 +21,64 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string StripMenu_View_ShowAppearingArea => DialogAlbumMasterEquipment.StripMenu_View_ShowAppearingArea.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_ShowShipGraphicViewer => DialogAlbumMasterShip.StripMenu_View_ShowShipGraphicViewer.Replace("_", "__").Replace("&", "_");
 
-	public string ShipView_ShipType => EncycloRes.ShipType.Replace("_", "__").Replace("&", "_");
-	public string ShipView_Name => EncycloRes.ShipName.Replace("_", "__").Replace("&", "_");
+	public string ShipView_ShipType => EncycloRes.ShipType;
+	public string ShipView_Name => EncycloRes.ShipName;
 
-	public string TitleDayAttack => EncycloRes.DayAttack.Replace("_", "__").Replace("&", "_");
-	public string TitleNightAttack => EncycloRes.NightAttack.Replace("_", "__").Replace("&", "_");
-	public string TitleAirSuperiority => EncycloRes.AirPower.Replace("_", "__").Replace("&", "_");
+	public string TitleDayAttack => EncycloRes.DayAttack;
+	public string TitleNightAttack => EncycloRes.NightAttack;
+	public string TitleAirSuperiority => EncycloRes.AirPower;
 
-	// todo: translate
-	public string ShipId => "艦船ID:".Replace("_", "__").Replace("&", "_");
-	public string LibraryId => DialogAlbumMasterEquipment.LibraryId.Replace("_", "__").Replace("&", "_");
+	public string ShipId => DialogAlbumMasterShip.ShipId;
+	public string LibraryId => DialogAlbumMasterEquipment.LibraryId;
 
-	public string TitleHP => DialogAlbumMasterShip.TitleHP.Replace("_", "__").Replace("&", "_");
-	public string Firepower => DialogAlbumMasterShip.Firepower.Replace("_", "__").Replace("&", "_");
-	public string Torpedo => DialogAlbumMasterShip.Torpedo.Replace("_", "__").Replace("&", "_");
-	public string AA => DialogAlbumMasterShip.AA.Replace("_", "__").Replace("&", "_");
-	public string Armor => DialogAlbumMasterShip.Armor.Replace("_", "__").Replace("&", "_");
-	public string ASW => DialogAlbumMasterShip.ASW.Replace("_", "__").Replace("&", "_");
-	public string Evasion => DialogAlbumMasterShip.Evasion.Replace("_", "__").Replace("&", "_");
-	public string Interception => DialogAlbumMasterShip.Interception.Replace("_", "__").Replace("&", "_");
-	public string LOS => DialogAlbumMasterShip.LOS.Replace("_", "__").Replace("&", "_");
-	public string AntiBomb => DialogAlbumMasterShip.AntiBomb.Replace("_", "__").Replace("&", "_");
-	// todo: translation
-	public string Luck => "運".Replace("_", "__").Replace("&", "_");
-	public string Bombing => DialogAlbumMasterShip.Bombing.Replace("_", "__").Replace("&", "_");
-	public string Accuracy => DialogAlbumMasterShip.Accuracy.Replace("_", "__").Replace("&", "_");
+	public string TitleHP => DialogAlbumMasterShip.TitleHP;
+	public string Firepower => DialogAlbumMasterShip.Firepower;
+	public string Torpedo => DialogAlbumMasterShip.Torpedo;
+	public string AA => DialogAlbumMasterShip.AA;
+	public string Armor => DialogAlbumMasterShip.Armor;
+	public string ASW => DialogAlbumMasterShip.ASW;
+	public string Evasion => DialogAlbumMasterShip.Evasion;
+	public string Interception => DialogAlbumMasterShip.Interception;
+	public string LOS => DialogAlbumMasterShip.LOS;
+	public string AntiBomb => DialogAlbumMasterShip.AntiBomb;
+	public string Luck => DialogAlbumMasterShip.Luck;
+	public string Bombing => DialogAlbumMasterShip.Bombing;
+	public string Accuracy => DialogAlbumMasterShip.Accuracy;
 
-	public string TitleParameterMax => EncycloRes.Maximum.Replace("_", "__").Replace("&", "_");
-	public string TitleParameterMin => EncycloRes.Initial.Replace("_", "__").Replace("&", "_");
-	public string BaseValue => EncycloRes.BaseValue.Replace("_", "__").Replace("&", "_");
-	public string WithEquipValue => EncycloRes.WithEquipValue.Replace("_", "__").Replace("&", "_");
+	public string TitleParameterMax => EncycloRes.Maximum;
+	public string TitleParameterMin => EncycloRes.Initial;
+	public string BaseValue => EncycloRes.BaseValue;
+	public string WithEquipValue => EncycloRes.WithEquipValue;
 
-	public string ShipClassId => DialogAlbumMasterShip.ShipClassId.Replace("_", "__").Replace("&", "_");
-	public string ShipClassUnknown => DialogAlbumMasterShip.ShipClassUnknown.Replace("_", "__").Replace("&", "_");
-	public string Installation => DialogAlbumMasterShip.Installation.Replace("_", "__").Replace("&", "_");
-	public string Equippable => DialogAlbumMasterEquipment.Equippable.Replace("_", "__").Replace("&", "_");
+	public string ShipClassId => DialogAlbumMasterShip.ShipClassId;
+	public string ShipClassUnknown => DialogAlbumMasterShip.ShipClassUnknown;
+	public string Installation => DialogAlbumMasterShip.Installation;
+	public string Equippable => DialogAlbumMasterEquipment.Equippable;
 
-	public string DefaultRange => DialogAlbumMasterShip.DefaultRange.Replace("_", "__").Replace("&", "_");
-	public string Empty => DialogAlbumMasterShip.Empty.Replace("_", "__").Replace("&", "_");
-	public string ReinforcementSlot => DialogAlbumMasterShip.ReinforcementSlot.Replace("_", "__").Replace("&", "_");
+	public string DefaultRange => DialogAlbumMasterShip.DefaultRange;
+	public string Empty => DialogAlbumMasterShip.Empty;
+	public string ReinforcementSlot => DialogAlbumMasterShip.ReinforcementSlot;
 
-	public string ParameterLevelToolTip => DialogAlbumMasterShip.ParameterLevelToolTip.Replace("_", "__").Replace("&", "_");
-	public string ShipBannerToolTip => DialogAlbumMasterShip.ShipBannerToolTip.Replace("_", "__").Replace("&", "_");
-	public string ResourceNameToolTip => DialogAlbumMasterShip.ResourceNameToolTip.Replace("_", "__").Replace("&", "_");
-	public string HpMinToolTip => DialogAlbumMasterShip.HpMinToolTip.Replace("_", "__").Replace("&", "_");
-	public string HpMaxToolTip => DialogAlbumMasterShip.HpMaxToolTip.Replace("_", "__").Replace("&", "_");
-	public string RepairTooltip => EncycloRes.RepairTooltip.Replace("_", "__").Replace("&", "_");
+	public string ParameterLevelToolTip => DialogAlbumMasterShip.ParameterLevelToolTip;
+	public string ShipBannerToolTip => DialogAlbumMasterShip.ShipBannerToolTip;
+	public string ResourceNameToolTip => DialogAlbumMasterShip.ResourceNameToolTip;
+	public string HpMinToolTip => DialogAlbumMasterShip.HpMinToolTip;
+	public string HpMaxToolTip => DialogAlbumMasterShip.HpMaxToolTip;
+	public string RepairTooltip => EncycloRes.RepairTooltip;
 
-	public string RightClickToCopy => DialogAlbumMasterEquipment.RightClickToCopy.Replace("_", "__").Replace("&", "_");
-	public string RightClickToOpenInNewWindow => DialogAlbumMasterShip.RightClickToOpenInNewWindow.Replace("_", "__").Replace("&", "_");
-	public string RemodelBeforeShipNameToolTip => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip.Replace("_", "__").Replace("&", "_");
-	public string ActionReport => DialogAlbumMasterShip.ActionReport.Replace("_", "__").Replace("&", "_");
-	public string AviationMaterial => DialogAlbumMasterShip.AviationMaterial.Replace("_", "__").Replace("&", "_");
-	public string CsvExportFailed => DialogAlbumMasterShip.CsvExportFailed.Replace("_", "__").Replace("&", "_");
-	public string SelectAShip => DialogAlbumMasterShip.SelectAShip.Replace("_", "__").Replace("&", "_");
-	public string Unknown => DialogAlbumMasterShip.Unknown.Replace("_", "__").Replace("&", "_");
-	public string Recipe => DialogAlbumMasterShip.Recipe.Replace("_", "__").Replace("&", "_");
-	public string FailedToFindMapOrRecipe => DialogAlbumMasterShip.FailedToFindMapOrRecipe.Replace("_", "__").Replace("&", "_");
-	public string MapOrRecipeSearchCaption => DialogAlbumMasterShip.MapOrRecipeSearchCaption.Replace("_", "__").Replace("&", "_");
-	public string SpecifyTargetShip => DialogAlbumMasterShip.SpecifyTargetShip.Replace("_", "__").Replace("&", "_");
-	public string NoShipSelectedCaption => DialogAlbumMasterShip.NoShipSelectedCaption.Replace("_", "__").Replace("&", "_");
+	public string RightClickToCopy => DialogAlbumMasterEquipment.RightClickToCopy;
+	public string RightClickToOpenInNewWindow => DialogAlbumMasterShip.RightClickToOpenInNewWindow;
+	public string RemodelBeforeShipNameToolTip => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip;
+	public string ActionReport => DialogAlbumMasterShip.ActionReport;
+	public string AviationMaterial => DialogAlbumMasterShip.AviationMaterial;
+	public string CsvExportFailed => DialogAlbumMasterShip.CsvExportFailed;
+	public string SelectAShip => DialogAlbumMasterShip.SelectAShip;
+	public string Unknown => DialogAlbumMasterShip.Unknown;
+	public string Recipe => DialogAlbumMasterShip.Recipe;
+	public string FailedToFindMapOrRecipe => DialogAlbumMasterShip.FailedToFindMapOrRecipe;
+	public string MapOrRecipeSearchCaption => DialogAlbumMasterShip.MapOrRecipeSearchCaption;
+	public string SpecifyTargetShip => DialogAlbumMasterShip.SpecifyTargetShip;
+	public string NoShipSelectedCaption => DialogAlbumMasterShip.NoShipSelectedCaption;
 
-	public string Title => EncycloRes.ShipEncyclopedia.Replace("_", "__").Replace("&", "_");
+	public string Title => EncycloRes.ShipEncyclopedia;
 }

@@ -1789,6 +1789,7 @@ public sealed class Configuration
 			public bool SyncronizeTitleAndFileName { get; set; }
 			public int MaxEquipmentNameWidth { get; set; }
 			public bool DownloadMissingShipImage { get; set; }
+			public string ImageSaveLocation { get; set; }
 
 			public ConfigFleetImageGenerator()
 				: base()
@@ -1803,6 +1804,7 @@ public sealed class Configuration
 				SyncronizeTitleAndFileName = false;
 				MaxEquipmentNameWidth = 200;
 				DownloadMissingShipImage = true;
+				ImageSaveLocation = "FleetImageGenerator";
 			}
 		}
 		[DataMember]

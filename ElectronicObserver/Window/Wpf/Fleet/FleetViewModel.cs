@@ -843,10 +843,13 @@ public partial class FleetViewModel : AnchorableViewModel
 	[ICommand]
 	private void OutputFleetImage()
 	{
-		using (var dialog = new DialogFleetImageGenerator(FleetId))
+		ToolService.FleetImageGenerator(new()
 		{
-			dialog.ShowDialog(App.Current.MainWindow);
-		}
+			Fleet1Visible = FleetId is 1,
+			Fleet2Visible = FleetId is 2 || (FleetId is 1 && KCDatabase.Instance.Fleet.CombinedFlag > 0),
+			Fleet3Visible = FleetId is 3,
+			Fleet4Visible = FleetId is 4,
+		});
 	}
 
 	[ICommand]

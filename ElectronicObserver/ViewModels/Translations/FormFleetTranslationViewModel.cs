@@ -1,64 +1,66 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserver.Window;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
 public class FormFleetTranslationViewModel : TranslationBaseViewModel
 {
-	public string CopyFleetText => Properties.Window.FormFleet.CopyFleetText.Replace("_", "__").Replace("&", "_");
-	public string ShipNameToolTip => Properties.Window.FormFleet.ShipNameToolTip.Replace("_", "__").Replace("&", "_");
+	public string CopyFleetText => Properties.Window.FormFleet.CopyFleetText;
+	public string ShipNameToolTip => Properties.Window.FormFleet.ShipNameToolTip;
 	public string RightClickToOpenEncyclopedia => Properties.Window.FormFleet.RightClickToOpenEncyclopedia;
-	public string ExpCalcHint => Properties.Window.FormFleet.ExpCalcHint.Replace("_", "__").Replace("&", "_");
+	public string ExpCalcHint => Properties.Window.FormFleet.ExpCalcHint;
 
-	public string CvciFba => Properties.Window.FormFleet.CvciFba.Replace("_", "__").Replace("&", "_");
-	public string CvciBba => Properties.Window.FormFleet.CvciBba.Replace("_", "__").Replace("&", "_");
-	public string CvciBa => Properties.Window.FormFleet.CvciBa.Replace("_", "__").Replace("&", "_");
+	public string CvciFba => Properties.Window.FormFleet.CvciFba;
+	public string CvciBba => Properties.Window.FormFleet.CvciBba;
+	public string CvciBa => Properties.Window.FormFleet.CvciBa;
 
-	public string CvnciFfa => Properties.Window.FormFleet.CvnciFfa.Replace("_", "__").Replace("&", "_");
-	public string CvnciFa => Properties.Window.FormFleet.CvnciFa.Replace("_", "__").Replace("&", "_");
-	public string CvnciPhoto => Properties.Window.FormFleet.CvnciPhoto.Replace("_", "__").Replace("&", "_");
-	public string CvnciFoo => Properties.Window.FormFleet.CvnciFoo.Replace("_", "__").Replace("&", "_");
+	public string CvnciFfa => Properties.Window.FormFleet.CvnciFfa;
+	public string CvnciFa => Properties.Window.FormFleet.CvnciFa;
+	public string CvnciPhoto => Properties.Window.FormFleet.CvnciPhoto;
+	public string CvnciFoo => Properties.Window.FormFleet.CvnciFoo;
 
-	public string LateModelTorpedoSubmarineEquipment => Properties.Window.FormFleet.LateModelTorpedoSubmarineEquipment.Replace("_", "__").Replace("&", "_");
-	public string LateModelTorpedo2 => Properties.Window.FormFleet.LateModelTorpedo2.Replace("_", "__").Replace("&", "_");
+	public string LateModelTorpedoSubmarineEquipment => Properties.Window.FormFleet.LateModelTorpedoSubmarineEquipment;
+	public string LateModelTorpedo2 => Properties.Window.FormFleet.LateModelTorpedo2;
 
-	public string Power => Properties.Window.FormFleet.Power.Replace("_", "__").Replace("&", "_");
-	public string Accuracy => Properties.Window.FormFleet.Accuracy.Replace("_", "__").Replace("&", "_");
+	public string Power => Properties.Window.FormFleet.Power;
+	public string Accuracy => Properties.Window.FormFleet.Accuracy;
 
-	public string Asw => Properties.Window.FormFleet.Asw.Replace("_", "__").Replace("&", "_");
-	public string OpeningAsw => Properties.Window.FormFleet.OpeningAsw.Replace("_", "__").Replace("&", "_");
-	public string Aarb => Properties.Window.FormFleet.Aarb.Replace("_", "__").Replace("&", "_");
-	public string AirstrikePower => Properties.Window.FormFleet.AirstrikePower.Replace("_", "__").Replace("&", "_");
+	public string Asw => Properties.Window.FormFleet.Asw;
+	public string OpeningAsw => Properties.Window.FormFleet.OpeningAsw;
+	public string Aarb => Properties.Window.FormFleet.Aarb;
+	public string AirstrikePower => Properties.Window.FormFleet.AirstrikePower;
 
-	public string NoShips => FleetRes.NoShips.Replace("_", "__").Replace("&", "_");
-	public string CriticalDamageAdvance => FleetRes.CriticalDamageAdvance.Replace("_", "__").Replace("&", "_");
-	public string OnSortie => FleetRes.OnSortie.Replace("_", "__").Replace("&", "_");
-	public string ExpeditionToolTip => FleetRes.ExpeditionToolTip.Replace("_", "__").Replace("&", "_");
-	public string CriticallyDamagedShip => FleetRes.CriticallyDamagedShip.Replace("_", "__").Replace("&", "_");
-	public string Repairing => FleetRes.Repairing.Replace("_", "__").Replace("&", "_");
-	public string RepairTimeHeader => FleetRes.RepairTimeHeader.Replace("_", "__").Replace("&", "_");
-	public string RepairTimeDetail => FleetRes.RepairTimeDetail.Replace("_", "__").Replace("&", "_");
-	public string OnDock => FleetRes.OnDock.Replace("_", "__").Replace("&", "_");
-	public string DockCompletionTime => FleetRes.DockCompletionTime.Replace("_", "__").Replace("&", "_");
-	public string SupplyNeeded => FleetRes.SupplyNeeded.Replace("_", "__").Replace("&", "_");
-	public string ResupplyTooltip => FleetRes.ResupplyTooltip.Replace("_", "__").Replace("&", "_");
-	public string RecoveryTimeToolTip => FleetRes.RecoveryTimeToolTip.Replace("_", "__").Replace("&", "_");
-	public string FightingSpiritHigh => FleetRes.FightingSpiritHigh.Replace("_", "__").Replace("&", "_");
-	public string SparkledTooltip => FleetRes.SparkledTooltip.Replace("_", "__").Replace("&", "_");
-	public string ReadyToSortie => FleetRes.ReadyToSortie.Replace("_", "__").Replace("&", "_");
-	public string Fatigued => FleetRes.Fatigued.Replace("_", "__").Replace("&", "_");
+	public string NoShips => FleetRes.NoShips;
+	public string CriticalDamageAdvance => FleetRes.CriticalDamageAdvance;
+	public string OnSortie => FleetRes.OnSortie;
+	public string ExpeditionToolTip => FleetRes.ExpeditionToolTip;
+	public string CriticallyDamagedShip => FleetRes.CriticallyDamagedShip;
+	public string Repairing => FleetRes.Repairing;
+	public string RepairTimeHeader => FleetRes.RepairTimeHeader;
+	public string RepairTimeDetail => FleetRes.RepairTimeDetail;
+	public string OnDock => FleetRes.OnDock;
+	public string DockCompletionTime => FleetRes.DockCompletionTime;
+	public string SupplyNeeded => FleetRes.SupplyNeeded;
+	public string ResupplyTooltip => FleetRes.ResupplyTooltip;
+	public string RecoveryTimeToolTip => FleetRes.RecoveryTimeToolTip;
+	public string FightingSpiritHigh => FleetRes.FightingSpiritHigh;
+	public string SparkledTooltip => FleetRes.SparkledTooltip;
+	public string ReadyToSortie => FleetRes.ReadyToSortie;
+	public string Fatigued => FleetRes.Fatigued;
 
-	public string SupportTypeNone => Properties.Window.FormFleet.SupportTypeNone.Replace("_", "__").Replace("&", "_");
-	public string SupportTypeAerial => Properties.Window.FormFleet.SupportTypeAerial.Replace("_", "__").Replace("&", "_");
-	public string SupportTypeShelling => Properties.Window.FormFleet.SupportTypeShelling.Replace("_", "__").Replace("&", "_");
-	public string SupportTypeTorpedo => Properties.Window.FormFleet.SupportTypeTorpedo.Replace("_", "__").Replace("&", "_");
+	public string SupportTypeNone => Properties.Window.FormFleet.SupportTypeNone;
+	public string SupportTypeAerial => Properties.Window.FormFleet.SupportTypeAerial;
+	public string SupportTypeShelling => Properties.Window.FormFleet.SupportTypeShelling;
+	public string SupportTypeTorpedo => Properties.Window.FormFleet.SupportTypeTorpedo;
 
-	public string FleetNameToolTip => Properties.Window.FormFleet.FleetNameToolTip.Replace("_", "__").Replace("&", "_");
-	public string WithoutProficiency => Properties.Window.FormFleet.WithoutProficiency.Replace("_", "__").Replace("&", "_");
-	public string WithProficiency => Properties.Window.FormFleet.WithProficiency.Replace("_", "__").Replace("&", "_");
-	public string FleetLosToolTip => Properties.Window.FormFleet.FleetLosToolTip.Replace("_", "__").Replace("&", "_");
-	public string ContactSelection => Properties.Window.FormFleet.ContactSelection.Replace("_", "__").Replace("&", "_");
-	public string ContactProbability => Properties.Window.FormFleet.ContactProbability.Replace("_", "__").Replace("&", "_");
-	public string ResourceToolTip => FleetRes.ResourceToolTip.Replace("_", "__").Replace("&", "_");
+	public string FleetNameToolTip => Properties.Window.FormFleet.FleetNameToolTip;
+	public string WithoutProficiency => Properties.Window.FormFleet.WithoutProficiency;
+	public string WithProficiency => Properties.Window.FormFleet.WithProficiency;
+	public string FleetLosToolTip => Properties.Window.FormFleet.FleetLosToolTip;
+	public string ContactSelection => Properties.Window.FormFleet.ContactSelection;
+	public string ContactProbability => Properties.Window.FormFleet.ContactProbability;
+	public string ResourceToolTip => FleetRes.ResourceToolTip;
 
 	public string ContextMenuFleet_CopyFleet => Properties.Window.FormFleet.ContextMenuFleet_CopyFleet.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_CopyFleetDeckBuilder => Properties.Window.FormFleet.ContextMenuFleet_CopyFleetDeckBuilder.Replace("_", "__").Replace("&", "_");
@@ -75,4 +77,19 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string ContextMenuFleet_Capture => Properties.Window.FormFleet.ContextMenuFleet_Capture.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_OutputFleetImage => Properties.Window.FormFleet.ContextMenuFleet_OutputFleetImage.Replace("_", "__").Replace("&", "_");
 	public string AirControlSimulator => Window.Tools.AirControlSimulator.AirControlSimulator.Title;
+
+	public string HP => DialogAlbumMasterShip.TitleHP;
+	public string Firepower => DialogAlbumMasterShip.Firepower;
+	public string Torpedo => DialogAlbumMasterShip.Torpedo;
+	public string AA => DialogAlbumMasterShip.AA;
+	public string Armor => DialogAlbumMasterShip.Armor;
+	public string ASW => DialogAlbumMasterShip.ASW;
+	public string Evasion => DialogAlbumMasterShip.Evasion;
+	public string Interception => DialogAlbumMasterShip.Interception;
+	public string LOS => DialogAlbumMasterShip.LOS;
+	public string AntiBomb => DialogAlbumMasterShip.AntiBomb;
+	public string Luck => DialogAlbumMasterShip.Luck;
+	public string Bombing => DialogAlbumMasterShip.Bombing;
+	public string Range => GeneralRes.Range;
+	public string Speed => GeneralRes.Speed;
 }

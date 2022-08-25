@@ -715,6 +715,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 保存.
+        /// </summary>
+        public static string SaveImageToFile {
+            get {
+                return ResourceManager.GetString("SaveImageToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 背景画像を検索・指定するダイアログを開きます。.
         /// </summary>
         public static string SearchBackgroundImagePathToolTip {

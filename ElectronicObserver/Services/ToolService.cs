@@ -72,7 +72,7 @@ public class ToolService
 		}
 	}
 
-	public void FleetImageGenerator()
+	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null)
 	{
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
@@ -83,12 +83,13 @@ public class ToolService
 			KCDatabase.Instance.Fleet.Fleets[4]
 		);
 
-		FleetImageGeneratorImageDataModel model = new()
+		model ??= new()
 		{
 			Fleet1Visible = true,
 			Fleet2Visible = KCDatabase.Instance.Fleet.CombinedFlag > 0,
-			DeckBuilderData = data,
 		};
+
+		model.DeckBuilderData = data;
 
 		new FleetImageGeneratorWindow(model).Show(App.Current.MainWindow);
 	}

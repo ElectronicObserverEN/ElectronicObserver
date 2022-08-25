@@ -85,6 +85,6 @@ public class GameAssetDownloaderService
 
 		string paddedShipId = shipId.ToString().PadLeft(4, '0');
 
-		return $"""kcs2/resources/ship/{folderName}/{paddedShipId}_{imageHash}.png""";
+		return $"kcs2/resources/ship/{folderName}/{paddedShipId}_{imageHash}.png";
 	}
 }
