@@ -78,11 +78,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	private string BrowserCachePath => BrowserConstants.CachePath;
 
 	private string StyleClassID { get; } = Guid.NewGuid().ToString().Substring(0, 8);
-	private float WorkaroundVolume => IsMuted switch
-	{
-		true => 0,
-		_ => RealVolume
-	};
 	// user setting for stylesheet
 	public bool StyleSheetEnabled { get; set; }
 	// todo: flag to temporarily disable the stylesheet
@@ -384,7 +379,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		Browser.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarted;
 		Browser.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
 		Browser.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
-		Browser.CoreWebView2.IsMuted = true;
+		Browser.CoreWebView2.IsMuted = Configuration.IsMute;
 		Browser.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		Browser.PreviewKeyDown += Browser_PreviewKeyDown;
 		SetCookie();
@@ -422,7 +417,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		//RealVolume = (int)(VolumeManager.Volume * 100);
 		// for some reason WebView2 doesn't remember the old mute state
 		// so we set the manager mute state based on the config
-		//VolumeManager.IsMute = Configuration.IsMute;
+		VolumeManager.IsMute = Configuration.IsMute;
 		Browser!.CoreWebView2.IsMuted = false;
 	}
 
@@ -589,7 +584,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		});
 
 		IsMuted = Configuration.IsMute;
-		RealVolume = (int)Configuration.Volume;
+
 		// SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu_Other_ClearCache.Visible = conf.EnableDebugMenu;
@@ -620,7 +615,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		DestroyDMMreloadDialog();
 
 		//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
-		Browser.CoreWebView2.IsMuted = false;
 		SetVolumeState();
 	}
 
@@ -902,8 +896,9 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 			if (VolumeManager is not null)
 			{
-				//RealVolume = (int)(VolumeManager.Volume * 100);
-				VolumeManager.Volume = WorkaroundVolume / 100;
+				IsMuted = VolumeManager.IsMute;
+				RealVolume = (int)(VolumeManager.Volume * 100);
+				Browser.CoreWebView2.IsMuted = VolumeManager.IsMute;
 			}
 			else
 			{
@@ -917,7 +912,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			IsMuted = false;
 			RealVolume = 100;
 		}
-		Configuration.Volume = RealVolume;
 		Configuration.IsMute = IsMuted;
 		ConfigurationUpdated();
 	}
@@ -1020,11 +1014,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			}
 			else
 			{
-				//VolumeManager.ToggleMute();
-
-				IsMuted = !IsMuted;
-
-				VolumeManager.Volume = (float)WorkaroundVolume / 100;
+				VolumeManager.ToggleMute();
 
 			}
 		}
@@ -1050,8 +1040,8 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			if (VolumeManager is not null)
 			{
 				IsMuted = false;
-				//VolumeManager.IsMute = false;
-				VolumeManager.Volume = WorkaroundVolume / 100;
+				VolumeManager.IsMute = false;
+				VolumeManager.Volume = RealVolume / 100;
 				// control.BackColor = System.Drawing.SystemColors.Window;
 			}
 			else
