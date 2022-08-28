@@ -110,24 +110,34 @@ public class VolumeManager
 	{
 		Dictionary<uint, string> processes = new();
 
-		Thread thread = new(() =>
+		// this throws if there's problems with WMI
+		// https://github.com/ElectronicObserverEN/ElectronicObserver/issues/231
+		try
 		{
-			string query =
-				"SELECT ProcessId, CommandLine " +
-				"FROM Win32_Process " +
-				$"WHERE Name = \"{processName}\"" +
-				"AND CommandLine LIKE \"%--utility-sub-type=audio.mojom.AudioService%\"";
-
-			using ManagementObjectSearcher searcher = new(query);
-			using ManagementObjectCollection objects = searcher.Get();
-
-			foreach (ManagementBaseObject o in objects)
+			Thread thread = new(() =>
 			{
-				processes.Add((uint)o["ProcessId"], (string)o["CommandLine"]);
-			}
-		});
-		thread.Start();
-		thread.Join();
+				string query =
+					"SELECT ProcessId, CommandLine " +
+					"FROM Win32_Process " +
+					$"WHERE Name = \"{processName}\"" +
+					"AND CommandLine LIKE \"%--utility-sub-type=audio.mojom.AudioService%\"";
+
+				using ManagementObjectSearcher searcher = new(query);
+				using ManagementObjectCollection objects = searcher.Get();
+
+				foreach (ManagementBaseObject o in objects)
+				{
+					processes.Add((uint)o["ProcessId"], (string)o["CommandLine"]);
+				}
+			});
+			thread.Start();
+			thread.Join();
+		}
+		catch
+		{
+			// log?
+		}
+		
 
 		return processes;
 	}
