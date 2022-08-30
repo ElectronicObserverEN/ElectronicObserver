@@ -340,7 +340,8 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			"--log-file=\"BrowserLog.log\" ",
 			"--enable-features=\"CanvasOopRasterization\"",
 			"--default-tile-height=512",
-			"--default-tile-width=512"
+			"--default-tile-width=512",
+			"--enable-webgl-draft-extensions"
 		};
 
 		if (Configuration.ForceColorProfile)
