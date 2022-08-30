@@ -730,7 +730,7 @@ public sealed class APIObserver
 			ForwardToUpstreamGateway = true
 		};
 		Proxy.CertificateManager.CertificateEngine = CertificateEngine.DefaultWindows;
-		Proxy.CertificateManager.EnsureRootCertificate(true,true);
+		Proxy.CertificateManager.EnsureRootCertificate(true, true);
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
 	}
@@ -819,36 +819,7 @@ public sealed class APIObserver
 
 		string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
 
-		if (baseurl.Contains("/kcsapi/"))
-		{
-			List<string> ignoredApis = new()
-			{
-				"api_start2/getData",
-			};
 
-			string apiName = baseurl.Split("/kcsapi/").Last();
-
-			if (!ignoredApis.Contains(apiName))
-			{
-				await Db.ApiFiles.AddAsync(new()
-				{
-					ApiFileType = ApiFileType.Request,
-					Name = apiName,
-					Content = await e.GetRequestBodyAsString(),
-					TimeStamp = DateTime.Now,
-				});
-
-				await Db.ApiFiles.AddAsync(new()
-				{
-					ApiFileType = ApiFileType.Response,
-					Name = apiName,
-					Content = await e.GetResponseBodyAsString(),
-					TimeStamp = DateTime.Now,
-				});
-
-				await Db.SaveChangesAsync();
-			}
-		}
 
 		// request
 		if (baseurl.Contains("/kcsapi/"))
@@ -975,7 +946,36 @@ public sealed class APIObserver
 					}));
 
 				}
+				if (baseurl.Contains("/kcsapi/"))
+				{
+					List<string> ignoredApis = new()
+					{
+					"api_start2/getData",
+					};
 
+					string apiName = baseurl.Split("/kcsapi/").Last();
+
+					if (!ignoredApis.Contains(apiName))
+					{
+						await Db.ApiFiles.AddAsync(new()
+						{
+							ApiFileType = ApiFileType.Request,
+							Name = apiName,
+							Content = await e.GetRequestBodyAsString(),
+							TimeStamp = DateTime.Now,
+						});
+
+						await Db.ApiFiles.AddAsync(new()
+						{
+							ApiFileType = ApiFileType.Response,
+							Name = apiName,
+							Content = await e.GetResponseBodyAsString(),
+							TimeStamp = DateTime.Now,
+						});
+
+						await Db.SaveChangesAsync();
+					}
+				}
 			}
 			catch (Exception ex)
 			{
