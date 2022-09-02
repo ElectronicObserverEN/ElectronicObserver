@@ -884,7 +884,11 @@
 					</ItemsControl>
 
 					<StackPanel Grid.Row="2" Orientation="Horizontal">
-						<TextBlock Margin="4 0" Text="{Binding Comment}">
+						<TextBlock
+							Margin="4 0"
+							FontSize="{Binding ViewModel.CommentFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							Text="{Binding Comment}"
+							>
 							<TextBlock.Style>
 								<Style TargetType="TextBlock">
 									<Setter Property="Visibility" Value="Visible" />

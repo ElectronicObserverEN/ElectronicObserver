@@ -85,6 +85,9 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		_ => MediumTextFontSize,
 	};
 
+	// todo: might be better to have a separate value for this?
+	public int CommentFontSize => EquipmentNameFontSize;
+
 	public int AirBaseFontSize => MediumTextFontSize;
 
 	public int HqLevel { get; set; }
