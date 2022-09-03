@@ -975,7 +975,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	private void Mute()
 	{
 		if (Browser is null) return;
-
+		start:
 		if (VolumeManager == null)
 		{
 			// VolumeManager being null can mean the browser is muted
@@ -1011,19 +1011,25 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		{
 			if (VolumeManager is null)
 			{
-				System.Media.SystemSounds.Beep.Play();
+				TryGetVolumeManager();
 			}
 			else
 			{
-				VolumeManager.ToggleMute();
-
+				try
+				{
+					VolumeManager.ToggleMute();
+				}
+				catch (Exception)
+				{
+					VolumeManager = null;
+					goto start;
+				}
 			}
 		}
 		catch (Exception)
 		{
 			System.Media.SystemSounds.Beep.Play();
 		}
-
 		SetVolumeState();
 	}
 
