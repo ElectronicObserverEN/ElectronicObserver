@@ -981,7 +981,7 @@ public partial class DialogConfiguration : Form
 
 			if (changed)
 			{
-				APIObserver.Instance.Start(config.Connection.Port, _UIControl);
+				APIObserver.Instance.Start(config.Connection.Port, App.Current.MainWindow);
 			}
 
 		}

@@ -870,6 +870,16 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 	private void TryGetVolumeManager()
 	{
 		VolumeManager = VolumeManager.CreateInstanceByProcessName("msedgewebview2", ProxySettings);
+
+		if (VolumeManager is not null && Browser is not null)
+		{
+			// we're calling this from an async task so the dispatcher is needed
+			App.Current.Dispatcher.Invoke(() =>
+			{
+				VolumeManager.IsMute = Browser.CoreWebView2.IsMuted;
+				RealVolume = (int)(VolumeManager.Volume * 100);
+			});
+		}
 	}
 
 	private void SetVolumeState()
@@ -968,6 +978,32 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 		if (VolumeManager == null)
 		{
+			// VolumeManager being null can mean the browser is muted
+			// so the sound process doesn't get created
+			// make sure the browser isn't muted
+			if (Browser.CoreWebView2.IsMuted)
+			{
+				Browser.CoreWebView2.IsMuted = false;
+				SetVolumeState();
+
+				// because the volume manager gets created some time after you un-mute the browser
+				// and the browser doesn't have an event indicating when that will happen
+				// just try to grab the volume manager after un-muting, with a bit of delay
+				Task.Run(async () =>
+				{
+					int maxRetryCount = 100;
+					int retryCount = 0;
+
+					while (VolumeManager is null && retryCount < maxRetryCount)
+					{
+						await Task.Delay(100);
+						TryGetVolumeManager();
+						retryCount++;
+					}
+				});
+				return;
+			}
+
 			TryGetVolumeManager();
 		}
 
@@ -975,14 +1011,6 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		{
 			if (VolumeManager is null)
 			{
-				// VolumeManager being null can mean the browser is muted
-				// so the sound process doesn't get created
-				// make sure the browser isn't muted
-				if (Browser.CoreWebView2.IsMuted)
-				{
-					Browser.CoreWebView2.IsMuted = false;
-				}
-
 				System.Media.SystemSounds.Beep.Play();
 			}
 			else

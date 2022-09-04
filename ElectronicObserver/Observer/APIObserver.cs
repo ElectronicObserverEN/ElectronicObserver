@@ -751,15 +751,11 @@ public sealed class APIObserver
 			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, false);
 			Proxy.AddEndPoint(Endpoint);
 
-			if (c.UseUpstreamProxy)
+			Proxy.UpStreamHttpProxy = c switch
 			{
-				Proxy.UpStreamHttpProxy = new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort);
-			}
-			else if (c.UseSystemProxy)
-			{
-				// todo system proxy
-				// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SystemProxy);
-			}
+				{UseUpstreamProxy: true} => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
+				_ => null,
+			};
 
 			Proxy.Start();
 			ProxyPort = portID;
