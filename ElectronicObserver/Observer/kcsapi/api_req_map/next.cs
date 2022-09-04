@@ -11,11 +11,10 @@ public class next : APIBase
 	public override void OnResponseReceived(dynamic data)
 	{
 		KCDatabase db = KCDatabase.Instance;
-		db.Replays.LoadFromResponse(APIName, data);
 
 		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
 		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
-
+		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 		base.OnResponseReceived((object)data);
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
