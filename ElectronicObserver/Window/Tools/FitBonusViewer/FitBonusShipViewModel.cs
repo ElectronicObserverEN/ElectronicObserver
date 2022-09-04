@@ -72,6 +72,23 @@ public partial class FitBonusShipViewModel
 		}
 
 		FitBonusTotal = ship.GetFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
+
+		List<FitBonusResult> fitBonuses = new (FitBonusResults);
+
+		foreach (FitBonusEquipmentViewModel equipment in EquipmentList)
+		{
+			equipment.FitBonuses.Clear();
+
+			if (equipment.SelectedEquipment is null) continue;
+
+			List<FitBonusResult> bonusesForThisEquipment = fitBonuses.FindAll(bonus => bonus.EquipmentTypes.Contains(equipment.SelectedEquipment.MasterEquipment.CategoryType) || bonus.EquipmentIds.Contains(equipment.SelectedEquipment.MasterEquipment.EquipmentId));
+
+			foreach (FitBonusResult result in bonusesForThisEquipment)
+			{
+				fitBonuses.Remove(result);
+				equipment.FitBonuses.Add(result);
+			}
+		}
 	}
 
 	[ICommand]

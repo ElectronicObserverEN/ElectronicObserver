@@ -1,10 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.EquipmentPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
+using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Window.Tools.FitBonusViewer;
 
@@ -14,6 +16,8 @@ public partial class FitBonusEquipmentViewModel : ObservableObject
 	private IEquipmentData? selectedEquipment;
 
 	private EquipmentPickerViewModel EquipmentPickerViewModel = new();
+
+	public ObservableCollection<FitBonusResult> FitBonuses { get; set; } = new();
 
 	public FitBonusEquipmentViewModel()
 	{

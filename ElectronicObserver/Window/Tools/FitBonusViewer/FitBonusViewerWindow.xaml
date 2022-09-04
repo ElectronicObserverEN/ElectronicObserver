@@ -97,6 +97,47 @@
 
 											<Grid Background="Transparent">
 												<Button Command="{Binding OpenEquipmentPickerCommand}" Content="{Binding SelectedEquipment.MasterEquipment.NameEN}" />
+
+												<ItemsControl ItemsSource="{Binding FitBonuses}">
+													<ItemsControl.ItemsPanel>
+														<ItemsPanelTemplate>
+															<StackPanel Orientation="Vertical" />
+														</ItemsPanelTemplate>
+													</ItemsControl.ItemsPanel>
+
+													<ItemsControl.ItemTemplate>
+														<DataTemplate>
+															<Border
+																Margin="1"
+																Padding="2"
+																BorderThickness="1"
+																>
+
+																<Grid Background="Transparent">
+																	<TextBlock Text="From" />
+																	<ItemsControl ItemsSource="{Binding EquipmentTypes}">
+																		<ItemsControl.ItemsPanel>
+																			<ItemsPanelTemplate>
+																				<StackPanel Orientation="Vertical" />
+																			</ItemsPanelTemplate>
+																		</ItemsControl.ItemsPanel>
+
+																		<ItemsControl.ItemTemplate>
+																			<DataTemplate>
+
+																				<Grid Background="Transparent">
+																					<Image />
+																				</Grid>
+
+																			</DataTemplate>
+																		</ItemsControl.ItemTemplate>
+																	</ItemsControl>
+																</Grid>
+
+															</Border>
+														</DataTemplate>
+													</ItemsControl.ItemTemplate>
+												</ItemsControl>
 											</Grid>
 
 										</Border>
