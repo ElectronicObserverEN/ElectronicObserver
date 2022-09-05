@@ -169,6 +169,20 @@ public class OpeningAswTests
 		};
 
 		Assert.True(zuihou.CanDoOpeningAsw());
+
+		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel22_634AirGroup]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12_MurataSquadron]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Ju87CKai2_KMXSkilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron]),
+			},
+		};
+
+		Assert.False(zuihou.CanDoOpeningAsw());
 	}
 
 	[Fact(DisplayName = "CVL 100 ASW condition")]
