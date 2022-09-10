@@ -139,10 +139,10 @@
   <data name="Details" xml:space="preserve">
     <value>詳細</value>
   </data>
-  <data name="SyncronizeTitleAndFileName" xml:space="preserve">
+  <data name="SynchronizeTitleAndFileName" xml:space="preserve">
     <value>タイトルとファイル名を同期</value>
   </data>
-  <data name="SyncronizeTitleAndFileNameToolTip" xml:space="preserve">
+  <data name="SynchronizeTitleAndFileNameToolTip" xml:space="preserve">
     <value>タイトルと出力ファイル名を同じにします。</value>
   </data>
   <data name="AutoSetFileNameToDate" xml:space="preserve">

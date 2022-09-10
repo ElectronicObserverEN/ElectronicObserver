@@ -41,6 +41,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public bool DisableOverwritePrompt { get; set; }
 	public bool AutoSetFileNameToDate { get; set; }
 	public bool OpenImageAfterOutput { get; set; }
+	public bool SynchronizeTitleAndFileName { get; set; }
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -186,6 +187,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		DisableOverwritePrompt = Configuration.Config.FleetImageGenerator.DisableOverwritePrompt;
 		AutoSetFileNameToDate = Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate;
 		OpenImageAfterOutput = Configuration.Config.FleetImageGenerator.OpenImageAfterOutput;
+		SynchronizeTitleAndFileName = Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName;
 	}
 
 	private void SaveConfig()
@@ -228,6 +230,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate = AutoSetFileNameToDate;
 		Configuration.Config.FleetImageGenerator.DisableOverwritePrompt = DisableOverwritePrompt;
 		Configuration.Config.FleetImageGenerator.OpenImageAfterOutput = OpenImageAfterOutput;
+		Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName = SynchronizeTitleAndFileName;
 	}
 
 	public override void Closed()

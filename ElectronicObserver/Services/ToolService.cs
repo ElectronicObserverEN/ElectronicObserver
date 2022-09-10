@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
+using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
@@ -74,6 +76,19 @@ public class ToolService
 
 	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null)
 	{
+		if (!KCDatabase.Instance.Ships.Any())
+		{
+			MessageBox.Show
+			(
+				Properties.Window.Dialog.DialogExpChecker.NoShipsAvailable,
+				Properties.Window.Dialog.DialogExpChecker.ShipsUnavailable,
+				MessageBoxButton.OK,
+				MessageBoxImage.Error
+			);
+
+			return;
+		}
+
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			KCDatabase.Instance.Admiral.Level,
@@ -125,5 +140,25 @@ public class ToolService
 			result.MaxAircraftLevelFleet,
 			result.MaxAircraftLevelAirBase
 		);
+	}
+
+	public void ExpChecker(ExpCheckerViewModel? viewModel = null)
+	{
+		if (!KCDatabase.Instance.Ships.Any())
+		{
+			MessageBox.Show
+			(
+				Properties.Window.Dialog.DialogExpChecker.NoShipsAvailable,
+				Properties.Window.Dialog.DialogExpChecker.ShipsUnavailable,
+				MessageBoxButton.OK,
+				MessageBoxImage.Error
+			);
+
+			return;
+		}
+
+		viewModel ??= new();
+
+		new ExpCheckerWindow(viewModel).Show(App.Current.MainWindow);
 	}
 }

@@ -45,12 +45,14 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
+using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
@@ -66,7 +68,6 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
-using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Utility.Mathematics;
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -902,9 +903,16 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenExpChecker()
+	private void OpenExpChecker(bool useNewVersion)
 	{
-		new DialogExpChecker().Show(Window);
+		if (useNewVersion)
+		{
+			ToolService.ExpChecker();
+		}
+		else
+		{
+			new DialogExpChecker().Show(Window);
+		}
 	}
 
 	[ICommand]

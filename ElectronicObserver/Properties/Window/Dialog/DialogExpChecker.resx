@@ -110,7 +110,7 @@
     <value>現在艦隊に所属している艦のみ選択可能にします。</value>
   </data>
   <data name="SortieExp" xml:space="preserve">
-    <value>出撃あたりの獲得Exp:</value>
+    <value>出撃あたりの獲得Exp</value>
   </data>
   <data name="ShowAllASWEquipments" xml:space="preserve">
     <value>対潜装備全表示</value>
@@ -144,7 +144,7 @@
     <value>対潜</value>
   </data>
   <data name="ColumnEquipment" xml:space="preserve">
-    <value>先制対潜装備"</value>
+    <value>先制対潜装備</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>必要経験値計算</value>

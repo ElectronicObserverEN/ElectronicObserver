@@ -101,19 +101,34 @@ public partial class FleetImageGeneratorWindow
 
 	private void SaveImage(object sender, RoutedEventArgs e)
 	{
-		if (string.IsNullOrWhiteSpace(ViewModel.ImageSaveLocation))
+		static string? FileName(string? desiredName) => desiredName switch
+		{
+			null => null,
+			_ => new string(desiredName.ToCharArray().Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray()),
+		};
+
+		string fileName = ViewModel switch
+		{
+			{ SynchronizeTitleAndFileName: true } when !string.IsNullOrEmpty(FileName(ViewModel.Title))
+				=> $"{FileName(ViewModel.Title)}.png",
+
+			_ => $"{DateTime.Now:yyyyMMdd_HHmmssff}.png",
+		};
+		string filePath = Path.Combine(ViewModel.ImageSaveLocation, fileName);
+
+		if (string.IsNullOrWhiteSpace(filePath))
 		{
 			MessageBox.Show(DialogFleetImageGenerator.EnterDestinationPath, DialogFleetImageGenerator.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			return;
 		}
 
-		if (ViewModel.ImageSaveLocation.ToCharArray().Intersect(Path.GetInvalidPathChars()).Any())
+		if (filePath.ToCharArray().Intersect(Path.GetInvalidPathChars()).Any())
 		{
 			MessageBox.Show(DialogFleetImageGenerator.PathContainsInvalidCharacters, DialogFleetImageGenerator.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			return;
 		}
 
-		if (!ViewModel.DisableOverwritePrompt && File.Exists(ViewModel.ImageSaveLocation))
+		if (!ViewModel.DisableOverwritePrompt && File.Exists(filePath))
 		{
 			if (MessageBox.Show(string.Format(DialogFleetImageGenerator.OverwriteExistingFile, Path.GetFileName(ViewModel.ImageSaveLocation)), DialogFleetImageGenerator.OverwriteConfirmation,
 					MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No)
@@ -127,8 +142,7 @@ public partial class FleetImageGeneratorWindow
 
 		Directory.CreateDirectory(ViewModel.ImageSaveLocation);
 
-		string fileName = Path.Combine(ViewModel.ImageSaveLocation, $"{DateTime.Now:yyyyMMdd_HHmmssff}.png");
-		using FileStream file = new(fileName, FileMode.OpenOrCreate);
+		using FileStream file = new(filePath, FileMode.OpenOrCreate);
 
 		PngBitmapEncoder encoder = new();
 		encoder.Frames.Add(BitmapFrame.Create(image));
@@ -140,7 +154,7 @@ public partial class FleetImageGeneratorWindow
 
 		ProcessStartInfo psi = new()
 		{
-			FileName = fileName,
+			FileName = filePath,
 			UseShellExecute = true,
 		};
 		Process.Start(psi);

@@ -21,6 +21,7 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserverTypes.Data;
@@ -195,6 +196,7 @@ public partial class App : Application
 			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<ExpeditionCheckTranslationViewModel>()
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
+			.AddSingleton<ExpCheckerTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
@@ -251,6 +253,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<ExpeditionCheckView>()
+			.Property(w => w.ViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<ExpCheckerWindow>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
 

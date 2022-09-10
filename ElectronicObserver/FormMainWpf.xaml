@@ -624,14 +624,20 @@
 						</MenuItem.CommandParameter>
 					</MenuItem>
 				</MenuItem>
-				<MenuItem
-					d:Header="Exp Calculator"
-					Command="{Binding OpenExpCheckerCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
-					>
+				<MenuItem d:Header="Exp Calculator" Header="{Binding FormMain.StripMenu_Tool_ExpChecker}">
 					<MenuItem.Icon>
 						<Image Source="{Binding ExpCheckerImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenExpCheckerCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenExpCheckerCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Ship Progression List"

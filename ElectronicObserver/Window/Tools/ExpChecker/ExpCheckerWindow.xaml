@@ -1,0 +1,140 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.ExpChecker.ExpCheckerWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.ExpChecker"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:ExpCheckerViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:ExpCheckerViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:ExpCheckerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+		<Style TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="Padding" Value="2 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="MinWidth" Value="0" />
+		</Style>
+	</Window.Resources>
+
+	<Grid Margin="5">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<GroupBox Grid.Row="0" Header="{Binding ExpChecker.DisplayCriteria}">
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="{Binding ExpChecker.Ship}" />
+					<ComboBox ItemsSource="{Binding Ships}" SelectedValue="{Binding SelectedShip}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding NameWithLevel}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<CheckBox
+						Content="{Binding ExpChecker.SearchInFleet}"
+						IsChecked="{Binding SearchInFleet}"
+						ToolTip="{Binding ExpChecker.SearchInFleetToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding ExpChecker.ShowAllLevel}"
+						IsChecked="{Binding ShowAllLevel}"
+						ToolTip="{Binding ExpChecker.ShowAllLevelToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding ExpChecker.ShowAllASWEquipments}"
+						IsChecked="{Binding ShowAllASWEquipments}"
+						ToolTip="{Binding ExpChecker.ShowAllASWEquipmentsToolTip}"
+						/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Foreground="Red" Text="{Binding WarningText}">
+						<TextBlock.Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding WarningText}" Value="">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+					</TextBlock>
+
+					<TextBlock Text="{Binding ExpChecker.AswOffset}" ToolTip="{Binding ExpChecker.ASWModernizationToolTip}" />
+					<ui:NumberBox
+						Maximum="9"
+						Minimum="0"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding ASWModernization}"
+						/>
+
+					<TextBlock Text="{Binding ExpChecker.SortieExp}" />
+					<ui:NumberBox SpinButtonPlacementMode="Inline" Value="{Binding SortieExp}" />
+				</StackPanel>
+			</StackPanel>
+		</GroupBox>
+
+		<GroupBox Grid.Row="1" Header="{Binding GroupExpText}">
+			<DataGrid
+				AutoGenerateColumns="False"
+				HeadersVisibility="Column"
+				IsReadOnly="True"
+				ItemsSource="{Binding DataGridItems, IsAsync=True}"
+				>
+				<b:Interaction.Behaviors>
+					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+				</b:Interaction.Behaviors>
+
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Level}" Header="Lv">
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="Background" Value="Transparent" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding IsRemodelLevel}" Value="True">
+										<Setter Property="Background" Value="Green" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTextColumn Binding="{Binding NeededExp}" Header="{Binding DataContext.ExpChecker.GroupExp, Source={StaticResource Proxy}}" />
+					<DataGridTextColumn Binding="{Binding SortieCount}" Header="{Binding DataContext.ExpChecker.ColumnSortieCount, Source={StaticResource Proxy}}" />
+					<DataGridTextColumn Binding="{Binding Asw}" Header="{Binding DataContext.ExpChecker.ASW, Source={StaticResource Proxy}}" />
+					<DataGridTextColumn Binding="{Binding EquipmentList}" Header="{Binding DataContext.ExpChecker.ColumnEquipment, Source={StaticResource Proxy}}">
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="ToolTip" Value="{Binding ToolTip}" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+	</Grid>
+</common:WindowBase>

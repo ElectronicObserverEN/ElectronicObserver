@@ -87,6 +87,18 @@
 						IsChecked="{Binding OpenImageAfterOutput}"
 						ToolTip="{Binding DialogFleetImageGenerator.OpenImageAfterOutputToolTip}"
 						/>
+
+					<CheckBox
+						Content="{Binding DialogFleetImageGenerator.SynchronizeTitleAndFileName}"
+						IsChecked="{Binding SynchronizeTitleAndFileName}"
+						ToolTip="{Binding DialogFleetImageGenerator.SynchronizeTitleAndFileNameToolTip}"
+						/>
+
+					<CheckBox
+						Content="{Binding DialogFleetImageGenerator.DisableOverwritePrompt}"
+						IsChecked="{Binding DisableOverwritePrompt}"
+						ToolTip="{Binding DialogFleetImageGenerator.DisableOverwritePromptToolTip}"
+						/>
 				</StackPanel>
 			</TabItem>
 
