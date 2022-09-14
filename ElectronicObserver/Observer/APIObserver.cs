@@ -727,7 +727,9 @@ public sealed class APIObserver
 			ConnectionTimeOutSeconds = 15,
 			ReuseSocket = true,
 			EnableConnectionPool = true,
-			ForwardToUpstreamGateway = true
+			ForwardToUpstreamGateway = true,
+			MaxCachedConnections = 12,
+			ThreadPoolWorkerThread = 32
 		};
 		Proxy.CertificateManager.CertificateEngine = CertificateEngine.DefaultWindows;
 		Proxy.CertificateManager.EnsureRootCertificate(true, true);
@@ -756,7 +758,7 @@ public sealed class APIObserver
 
 			Proxy.UpStreamHttpProxy = c switch
 			{
-				{UseUpstreamProxy: true} => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
+				{ UseUpstreamProxy: true } => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
 				_ => null,
 			};
 
@@ -823,7 +825,6 @@ public sealed class APIObserver
 
 			string url = baseurl;
 			string body = await e.GetRequestBodyAsString();
-
 			//保存
 			if (c.SaveReceivedData && c.SaveRequest)
 			{
@@ -836,7 +837,7 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					await control.Dispatcher.InvokeAsync(() => LoadRequest(url, body));
+					await control.Dispatcher.BeginInvoke(() => LoadRequest(url, body));
 					break;
 			}
 		}
@@ -876,7 +877,6 @@ public sealed class APIObserver
 					// stringはイミュータブルなのでOK
 					string url = baseurl;
 					string body = await e.GetResponseBodyAsString();
-
 					Task.Run((Action)(() =>
 					{
 						SaveResponse(url, body);
@@ -910,13 +910,9 @@ public sealed class APIObserver
 							tpath = tpath.Remove(index);
 						}
 					}
-
-
-
 					// 非同期で書き出し処理するので取っておく
 					byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
 					Array.Copy(await e.GetResponseBody(), responseCopy, (await e.GetResponseBody()).Length);
-
 					Task.Run((Action)(() =>
 					{
 						try
@@ -942,36 +938,7 @@ public sealed class APIObserver
 					}));
 
 				}
-				if (baseurl.Contains("/kcsapi/"))
-				{
-					List<string> ignoredApis = new()
-					{
-					"api_start2/getData",
-					};
 
-					string apiName = baseurl.Split("/kcsapi/").Last();
-
-					if (!ignoredApis.Contains(apiName))
-					{
-						await Db.ApiFiles.AddAsync(new()
-						{
-							ApiFileType = ApiFileType.Request,
-							Name = apiName,
-							Content = await e.GetRequestBodyAsString(),
-							TimeStamp = DateTime.Now,
-						});
-
-						await Db.ApiFiles.AddAsync(new()
-						{
-							ApiFileType = ApiFileType.Response,
-							Name = apiName,
-							Content = await e.GetResponseBodyAsString(),
-							TimeStamp = DateTime.Now,
-						});
-
-						await Db.SaveChangesAsync();
-					}
-				}
 			}
 			catch (Exception ex)
 			{
@@ -994,11 +961,40 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					await control.Dispatcher.InvokeAsync(() => LoadResponse(url, body));
+					await control.Dispatcher.BeginInvoke(() => LoadResponse(url, body));
 					break;
 			}
 		}
+		if (baseurl.Contains("/kcsapi/"))
+		{
+			List<string> ignoredApis = new()
+					{
+					"api_start2/getData",
+					};
 
+			string apiName = baseurl.Split("/kcsapi/").Last();
+
+			if (!ignoredApis.Contains(apiName))
+			{
+				await Db.ApiFiles.AddAsync(new()
+				{
+					ApiFileType = ApiFileType.Request,
+					Name = apiName,
+					Content = await e.GetRequestBodyAsString(),
+					TimeStamp = DateTime.Now,
+				});
+
+				await Db.ApiFiles.AddAsync(new()
+				{
+					ApiFileType = ApiFileType.Response,
+					Name = apiName,
+					Content = await e.GetResponseBodyAsString(),
+					TimeStamp = DateTime.Now,
+				});
+
+				await Db.SaveChangesAsync();
+			}
+		}
 
 		if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 		{
