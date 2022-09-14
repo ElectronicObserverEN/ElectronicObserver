@@ -161,4 +161,7 @@
   <data name="Fcf" xml:space="preserve">
     <value>司令部施設</value>
   </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>ロックプランの読み込みに失敗しました。</value>
+  </data>
 </root>

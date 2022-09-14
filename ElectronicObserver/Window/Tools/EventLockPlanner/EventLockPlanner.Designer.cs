@@ -133,6 +133,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ロックプランの読み込みに失敗しました。.
+        /// </summary>
+        internal static string InvalidModelState {
+            get {
+                return ResourceManager.GetString("InvalidModelState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 終了しました.
         /// </summary>
         internal static string IsFinished {

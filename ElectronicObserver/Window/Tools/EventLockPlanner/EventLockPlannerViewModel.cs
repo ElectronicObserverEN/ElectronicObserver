@@ -194,7 +194,15 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 		foreach (ShipLockModel shipLockModel in model.ShipLocks)
 		{
-			LockGroupViewModel lockGroup = LockGroups[shipLockModel.PlannedLock - 1];
+			int lockIndex = shipLockModel.PlannedLock - 1;
+
+			if (lockIndex < 0 || lockIndex > LockGroups.Count)
+			{
+				Logger.Add(2, EventLockPlanner.InvalidModelState);
+				return;
+			}
+
+			LockGroupViewModel lockGroup = LockGroups[lockIndex];
 			ShipLockViewModel? shipLock = NoLockGroup.Ships.FirstOrDefault(l => l.Ship.ID == shipLockModel.Id);
 
 			if (shipLock is null) continue;
