@@ -261,6 +261,11 @@ public partial class App : Application
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
 
+		tracker
+			.Configure<BaseAirCorpsSimulationContentDialog>()
+			.Property(w => w.ViewModel.MaxAircraftLevelFleet)
+			.Property(w => w.ViewModel.MaxAircraftLevelAirBase);
+
 		return tracker;
 	}
 }
