@@ -265,6 +265,9 @@ public partial class App : Application
 			.Configure<BaseAirCorpsSimulationContentDialog>()
 			.Property(w => w.ViewModel.MaxAircraftLevelFleet)
 			.Property(w => w.ViewModel.MaxAircraftLevelAirBase);
+		tracker
+			.Configure<FleetImageGeneratorWindow>()
+			.Property(w => w.ViewModel.UseAlbumStatusName);
 
 		return tracker;
 	}
