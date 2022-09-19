@@ -46,5 +46,7 @@ public class FormBattleTranslationViewModel : TranslationBaseViewModel
 	public string WinRank => Properties.Window.FormBattle.WinRank.Replace("_", "__").Replace("&", "_");
 	public string DamageEnemy => Properties.Window.FormBattle.DamageEnemy.Replace("_", "__").Replace("&", "_");
 
+	public string CompactMode => Properties.Window.FormBattle.CompactMode;
+
 	public string Title => GeneralRes.Battle.Replace("_", "__").Replace("&", "_");
 }

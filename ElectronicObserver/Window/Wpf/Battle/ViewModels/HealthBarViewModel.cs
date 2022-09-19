@@ -19,6 +19,8 @@ public class HealthBarViewModel : ObservableObject
 	private System.Drawing.Color MainFontColor { get; set; }
 	private System.Drawing.Color SubFontColor { get; set; }
 	public bool Visible { get; set; }
+	public bool CompactMode { get; set; }
+	public bool ShowShipClassText => !CompactMode;
 
 	public int Health => Math.Max(0, Value);
 	public string DamageTaken => (Value - PrevValue).ToString("+0;-0;-0");

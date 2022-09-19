@@ -133,6 +133,8 @@ public partial class BattleViewModel : AnchorableViewModel
 	public List<HealthBarViewModel> EnemyMainHPBars { get; } = new();
 	public List<HealthBarViewModel> EnemyEscortHPBars { get; } = new();
 
+	public bool CompactMode { get; set; }
+
 	public BattleViewModel() : base("Battle", "Battle",
 		ImageSourceIcons.GetIcon(IconContent.FormBattle))
 	{
@@ -209,6 +211,18 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqPractice_Battle.ResponseReceived += Updated;
 		o.ApiReqPractice_MidnightBattle.ResponseReceived += Updated;
 		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(CompactMode)) return;
+
+			Utility.Configuration.Config.FormBattle.CompactMode = CompactMode;
+
+			foreach (HealthBarViewModel hpBar in HPBars)
+			{
+				hpBar.CompactMode = CompactMode;
+			}
+		};
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
@@ -1081,7 +1095,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					name = ship.NameWithLevel;
 					isEscaped = bd.Initial.FriendFleet.EscapedShipList.Contains(ship.MasterID);
 					isLandBase = ship.MasterShip.IsLandBase;
-					bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 				}
 
 				bar.ToolTip = string.Format
@@ -1121,7 +1135,7 @@ public partial class BattleViewModel : AnchorableViewModel
 				IShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
 
 				var bar = HPBars[refindex];
-				bar.Text = Constants.GetShipClassClassification(ship.ShipType);
+				bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
 				SetEnemyBackground(refindex);
 
 				bar.ToolTip =
@@ -1160,7 +1174,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
 
 					var bar = HPBars[refindex];
-					bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 
 					bar.ToolTip = string.Format(
 						"{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n" + GeneralRes.DamageDone + ": {7}\r\n\r\n{8}",
@@ -1218,7 +1232,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
 
 					var bar = HPBars[refindex];
-					bar.Text = Constants.GetShipClassClassification(ship.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
 					SetEnemyBackground(refindex);
 
 					bar.ToolTip =
@@ -1248,31 +1262,6 @@ public partial class BattleViewModel : AnchorableViewModel
 				DisableHPBar(i);
 			*/
 		}
-
-
-
-
-		if ((isFriendCombined || (hasFriend7thShip && !Utility.Configuration.Config.FormBattle.Display7thAsSingleLine)) && isEnemyCombined)
-		{
-			foreach (var bar in HPBars)
-			{
-				//bar.Size = SmallBarSize;
-				bar.Text = null;
-			}
-		}
-		else
-		{
-			bool showShipType = Utility.Configuration.Config.FormBattle.ShowShipTypeInHPBar;
-
-			foreach (var bar in HPBars)
-			{
-				//bar.Size = DefaultBarSize;
-
-				if (!showShipType)
-					bar.Text = "HP:";
-			}
-		}
-
 
 		{   // support
 			PhaseSupport support = null;
@@ -1600,6 +1589,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			hpBar.ColorMorphing = config.UI.BarColorMorphing;
 		}
 
+		CompactMode = Utility.Configuration.Config.FormBattle.CompactMode;
 
 		/*
 		MainFont = TableTop.Font = TableBottom.Font = Font = config.UI.MainFont;

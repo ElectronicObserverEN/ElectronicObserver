@@ -26,7 +26,11 @@
 				<MenuItem Command="{Binding ShowBattleDetailCommand}" Header="{Binding FormBattle.RightClickMenu_ShowBattleDetail}" />
 				<Separator />
 				<MenuItem Command="{Binding ShowBattleResultCommand}" Header="{Binding FormBattle.RightClickMenu_ShowBattleResult}" />
-
+				<MenuItem
+					Header="{Binding FormBattle.CompactMode}"
+					IsCheckable="True"
+					IsChecked="{Binding CompactMode}"
+					/>
 			</ContextMenu>
 		</Border.ContextMenu>
 
@@ -257,8 +261,30 @@
 
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
-							<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
-							<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
+							<ColumnDefinition>
+								<ColumnDefinition.Style>
+									<Style TargetType="ColumnDefinition">
+										<Setter Property="SharedSizeGroup" Value="BattleViewEscortColumn" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding CompactMode}" Value="True">
+												<Setter Property="SharedSizeGroup" Value="bceec138_6610_400f_81e6_750f945f9a7a" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</ColumnDefinition.Style>
+							</ColumnDefinition>
+							<ColumnDefinition>
+								<ColumnDefinition.Style>
+									<Style TargetType="ColumnDefinition">
+										<Setter Property="SharedSizeGroup" Value="BattleViewEscortColumn" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding CompactMode}" Value="True">
+												<Setter Property="SharedSizeGroup" Value="a28ea019_603a_4b66_920c_adaffbc992b0" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</ColumnDefinition.Style>
+							</ColumnDefinition>
 							<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
 						</Grid.ColumnDefinitions>
 

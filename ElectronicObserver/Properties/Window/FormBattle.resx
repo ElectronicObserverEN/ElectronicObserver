@@ -157,4 +157,7 @@
   <data name="FleetFriendShort" xml:space="preserve">
     <value>自軍</value>
   </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>コンパクトモード(_C)</value>
+  </data>
 </root>

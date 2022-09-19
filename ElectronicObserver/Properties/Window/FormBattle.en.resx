@@ -168,4 +168,7 @@
   <data name="FleetFriendShort" xml:space="preserve">
     <value>Friendly</value>
   </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>_Compact mode</value>
+  </data>
 </root>

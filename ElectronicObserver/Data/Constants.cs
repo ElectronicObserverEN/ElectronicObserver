@@ -214,62 +214,66 @@ public static class Constants
 		_ => ConstantsRes.Unknown,
 	};
 
+	/// <summary>
+	/// 艦種略号を取得します。
+	/// </summary>
+	public static string ShipTypeShort(ShipTypes shiptype) => shiptype switch
+	{
+		ShipTypes.Escort => "海防",
+		ShipTypes.Destroyer => "駆逐",
+		ShipTypes.LightCruiser => "軽巡",
+		ShipTypes.TorpedoCruiser => "雷巡",
+		ShipTypes.HeavyCruiser => "重巡",
+		ShipTypes.AviationCruiser => "航巡",
+		ShipTypes.LightAircraftCarrier => "軽空",
+		ShipTypes.Battlecruiser => "高戦",
+		ShipTypes.Battleship => "戦艦",
+		ShipTypes.AviationBattleship => "空戦",
+		ShipTypes.AircraftCarrier => "正空",
+		ShipTypes.SuperDreadnoughts => "戦艦",
+		ShipTypes.Submarine => "潜水",
+		ShipTypes.SubmarineAircraftCarrier => "潜空",
+		ShipTypes.Transport => "補給",
+		ShipTypes.SeaplaneTender => "水母",
+		ShipTypes.AmphibiousAssaultShip => "揚陸",
+		ShipTypes.ArmoredAircraftCarrier => "装空",
+		ShipTypes.RepairShip => "工作",
+		ShipTypes.SubmarineTender => "潜母",
+		ShipTypes.TrainingCruiser => "練巡",
+		ShipTypes.FleetOiler => "補給",
+		_ => "IX",
+	};
 
 	/// <summary>
 	/// 艦種略号を取得します。
 	/// </summary>
-	public static string GetShipClassClassification(ShipTypes shiptype)
+	// todo: need to figure out how to do this via resx files
+	public static string ShipTypeShortEnglish(ShipTypes shiptype) => shiptype switch
 	{
-		switch (shiptype)
-		{
-			case ShipTypes.Escort:
-				return "DE";
-			case ShipTypes.Destroyer:
-				return "DD";
-			case ShipTypes.LightCruiser:
-				return "CL";
-			case ShipTypes.TorpedoCruiser:
-				return "CLT";
-			case ShipTypes.HeavyCruiser:
-				return "CA";
-			case ShipTypes.AviationCruiser:
-				return "CAV";
-			case ShipTypes.LightAircraftCarrier:
-				return "CVL";
-			case ShipTypes.Battlecruiser:
-				return "BC";    // ? FBB, CC?
-			case ShipTypes.Battleship:
-				return "BB";
-			case ShipTypes.AviationBattleship:
-				return "BBV";
-			case ShipTypes.AircraftCarrier:
-				return "CV";
-			case ShipTypes.SuperDreadnoughts:
-				return "BB";
-			case ShipTypes.Submarine:
-				return "SS";
-			case ShipTypes.SubmarineAircraftCarrier:
-				return "SSV";
-			case ShipTypes.Transport:
-				return "AP";    // ? AO?
-			case ShipTypes.SeaplaneTender:
-				return "AV";
-			case ShipTypes.AmphibiousAssaultShip:
-				return "LHA";
-			case ShipTypes.ArmoredAircraftCarrier:
-				return "CVB";
-			case ShipTypes.RepairShip:
-				return "AR";
-			case ShipTypes.SubmarineTender:
-				return "AS";
-			case ShipTypes.TrainingCruiser:
-				return "CT";
-			case ShipTypes.FleetOiler:
-				return "AO";
-			default:
-				return "IX";
-		}
-	}
+		ShipTypes.Escort => "DE",
+		ShipTypes.Destroyer => "DD",
+		ShipTypes.LightCruiser => "CL",
+		ShipTypes.TorpedoCruiser => "CLT",
+		ShipTypes.HeavyCruiser => "CA",
+		ShipTypes.AviationCruiser => "CAV",
+		ShipTypes.LightAircraftCarrier => "CVL",
+		ShipTypes.Battlecruiser => "BC",
+		ShipTypes.Battleship => "BB",
+		ShipTypes.AviationBattleship => "BBV",
+		ShipTypes.AircraftCarrier => "CV",
+		ShipTypes.SuperDreadnoughts => "BB",
+		ShipTypes.Submarine => "SS",
+		ShipTypes.SubmarineAircraftCarrier => "SSV",
+		ShipTypes.Transport => "AP",
+		ShipTypes.SeaplaneTender => "AV",
+		ShipTypes.AmphibiousAssaultShip => "LHA",
+		ShipTypes.ArmoredAircraftCarrier => "CVB",
+		ShipTypes.RepairShip => "AR",
+		ShipTypes.SubmarineTender => "AS",
+		ShipTypes.TrainingCruiser => "CT",
+		ShipTypes.FleetOiler => "AO",
+		_ => "IX",
+	};
 
 	/// <summary>
 	/// 艦型を表す文字列を取得します。

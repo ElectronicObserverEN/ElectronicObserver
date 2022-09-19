@@ -133,6 +133,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to コンパクトモード(_C).
+        /// </summary>
+        public static string CompactMode {
+            get {
+                return ResourceManager.GetString("CompactMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 触接中.
         /// </summary>
         public static string Contact {

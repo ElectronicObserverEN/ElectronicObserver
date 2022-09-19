@@ -1460,6 +1460,11 @@ public sealed class Configuration
 			/// </summary>
 			public bool Display7thAsSingleLine { get; set; }
 
+			/// <summary>
+			/// Hide ship type from the left side of the HP bar
+			/// </summary>
+			public bool CompactMode { get; set; }
+
 
 			public ConfigFormBattle()
 			{
@@ -1468,6 +1473,7 @@ public sealed class Configuration
 				ShowHPBar = true;
 				ShowShipTypeInHPBar = false;
 				Display7thAsSingleLine = true;
+				CompactMode = false;
 			}
 		}
 
