@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -107,6 +108,11 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		_ => 2,
 	};
 
+	private FleetViewModel? Fleet1 { get; set; }
+	private FleetViewModel? Fleet2 { get; set; }
+	private FleetViewModel? Fleet3 { get; set; }
+	private FleetViewModel? Fleet4 { get; set; }
+
 	public ObservableCollection<FleetViewModel> Fleets { get; set; } = new();
 
 	public ObservableCollection<AirBaseViewModel> AirBases { get; set; } = new();
@@ -126,26 +132,98 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		PropertyChanged += (sender, args) =>
 		{
-			bool shouldUpdateFleetVisibility = args.PropertyName is
-				nameof(Fleets) or
-				nameof(Fleet1Visible) or
-				nameof(Fleet2Visible) or
-				nameof(Fleet3Visible) or
-				nameof(Fleet4Visible);
+			if (args.PropertyName is not (nameof(Fleet1) or nameof(Fleet1Visible))) return;
 
-			if (!shouldUpdateFleetVisibility) return;
-
-			foreach (FleetViewModel fleet in Fleets)
+			if (Fleet1?.Model is null)
 			{
-				fleet.FleetEnabled = fleet.Id switch
-				{
-					1 => Fleet1Visible,
-					2 => Fleet2Visible,
-					3 => Fleet3Visible,
-					4 => Fleet4Visible,
+				Fleet1Visible = false;
+				return;
+			}
 
-					_ => false,
+			if (Fleets.Contains(Fleet1) && !Fleet1Visible)
+			{
+				Fleets.Remove(Fleet1);
+			}
+
+			if (!Fleets.Contains(Fleet1) && Fleet1Visible)
+			{
+				Fleets.Insert(0, Fleet1);
+			}
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not (nameof(Fleet2) or nameof(Fleet2Visible))) return;
+
+			if (Fleet2?.Model is null)
+			{
+				Fleet2Visible = false;
+				return;
+			}
+
+			if (Fleets.Contains(Fleet2) && !Fleet2Visible)
+			{
+				Fleets.Remove(Fleet2);
+			}
+
+			if (!Fleets.Contains(Fleet2) && Fleet2Visible)
+			{
+				int index = Fleet1 switch
+				{
+					null => 0,
+					_ => Fleets.IndexOf(Fleet1) + 1,
 				};
+
+				Fleets.Insert(index, Fleet2);
+			}
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not (nameof(Fleet3) or nameof(Fleet3Visible))) return;
+
+			if (Fleet3?.Model is null)
+			{
+				Fleet3Visible = false;
+				return;
+			}
+
+			if (Fleets.Contains(Fleet3) && !Fleet3Visible)
+			{
+				Fleets.Remove(Fleet3);
+			}
+
+			if (!Fleets.Contains(Fleet3) && Fleet3Visible)
+			{
+				int index = Fleet4 switch
+				{
+					null => 0,
+					_ when Fleets.Contains(Fleet4) => Fleets.IndexOf(Fleet4),
+					_ => Fleets.Count,
+				};
+
+				Fleets.Insert(index, Fleet3);
+			}
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not (nameof(Fleet4) or nameof(Fleet4Visible))) return;
+
+			if (Fleet4?.Model is null)
+			{
+				Fleet4Visible = false;
+				return;
+			}
+
+			if (Fleets.Contains(Fleet4) && !Fleet4Visible)
+			{
+				Fleets.Remove(Fleet4);
+			}
+
+			if (!Fleets.Contains(Fleet4) && Fleet4Visible)
+			{
+				Fleets.Insert(Fleets.Count, Fleet4);
 			}
 		};
 
@@ -225,7 +303,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		Configuration.Config.FleetImageGenerator.MaxEquipmentNameWidth = MaxEquipmentNameWidth;
 		Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
-		
+
 		Configuration.Config.FleetImageGenerator.ImageSaveLocation = ImageSaveLocation;
 		Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate = AutoSetFileNameToDate;
 		Configuration.Config.FleetImageGenerator.DisableOverwritePrompt = DisableOverwritePrompt;
@@ -279,6 +357,9 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 	private void LoadModel(FleetImageGeneratorImageDataModel model)
 	{
+		LoadFleets(model);
+		LoadAirBases(model);
+
 		HqLevel = model.DeckBuilderData.HqLevel;
 
 		Title = model.Title;
@@ -288,17 +369,21 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Fleet2Visible = model.Fleet2Visible;
 		Fleet3Visible = model.Fleet3Visible;
 		Fleet4Visible = model.Fleet4Visible;
-
-		LoadFleets(model);
-		LoadAirBases(model);
 	}
 
 	private void LoadFleets(FleetImageGeneratorImageDataModel model)
 	{
-		Fleets = model.DeckBuilderData
+		Fleets.Clear();
+
+		List<FleetViewModel> fleets = model.DeckBuilderData
 			.GetFleetList()
 			.Select((f, i) => new FleetViewModel().Initialize(f, i, ImageType))
-			.ToObservableCollection();
+			.ToList();
+
+		Fleet1 = fleets.FirstOrDefault();
+		Fleet2 = fleets.Skip(1).FirstOrDefault();
+		Fleet3 = fleets.Skip(2).FirstOrDefault();
+		Fleet4 = fleets.Skip(3).FirstOrDefault();
 	}
 
 	private void LoadAirBases(FleetImageGeneratorImageDataModel model)

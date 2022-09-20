@@ -18,8 +18,7 @@ public class FleetViewModel : ObservableObject
 	public IFleetData? Model { get; set; }
 
 	public int Id { get; set; }
-	public bool FleetEnabled { get; set; }
-	public bool Visible => FleetEnabled && Model is not null;
+	public bool Visible => Model is not null;
 
 	public string Name { get; set; } = "";
 
