@@ -48,8 +48,8 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string ReflectDamageGraphicToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.ReflectDamageGraphicToolTip;
 	public string ShipColumn => Properties.Window.Dialog.DialogFleetImageGenerator.ShipColumn;
 	public string HorizontalShipCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalShipCountToolTip;
-	public string HorizontalFleetCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalFleetCountToolTip;
 	public string FleetColumn => Properties.Window.Dialog.DialogFleetImageGenerator.FleetColumn;
+	public string HorizontalFleetCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalFleetCountToolTip;
 
 	public string Font => Properties.Window.Dialog.DialogFleetImageGenerator.Font;
 	public string ButtonClearFont => Properties.Window.Dialog.DialogFleetImageGenerator.ButtonClearFont;

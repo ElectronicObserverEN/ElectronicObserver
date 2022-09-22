@@ -37,6 +37,7 @@
 
 					<TextBlock Text="{Binding DialogFleetImageGenerator.Comment}" />
 					<TextBox
+						Padding="0 0 0 20"
 						VerticalAlignment="Center"
 						AcceptsReturn="True"
 						HorizontalScrollBarVisibility="Auto"
@@ -99,6 +100,18 @@
 						IsChecked="{Binding DisableOverwritePrompt}"
 						ToolTip="{Binding DialogFleetImageGenerator.DisableOverwritePromptToolTip}"
 						/>
+
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Margin="4 0 0 0" Text="{Binding DialogFleetImageGenerator.MaxEquipmentNameWidth}" />
+						<TextBlock Margin="0 0 4 0" Text=":" />
+						<ui:NumberBox
+							Minimum="1"
+							SpinButtonPlacementMode="Inline"
+							Text="{Binding DialogFleetImageGenerator.FleetColumn, Mode=OneWay}"
+							ToolTip="{Binding DialogFleetImageGenerator.HorizontalFleetCountToolTip}"
+							Value="{Binding DesiredFleetColumns}"
+							/>
+					</StackPanel>
 				</StackPanel>
 			</TabItem>
 

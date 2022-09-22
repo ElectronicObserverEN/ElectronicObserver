@@ -43,6 +43,19 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public bool AutoSetFileNameToDate { get; set; }
 	public bool OpenImageAfterOutput { get; set; }
 	public bool SynchronizeTitleAndFileName { get; set; }
+	public int DesiredFleetColumns { get; set; }
+	// if there are more columns than fleets, UniformGrid will still reserve space for those columns
+	// making the exported image stretched
+	public int FleetColumns => Math.Min(DesiredFleetColumns, DisplayedFleetCount);
+
+	private int DisplayedFleetCount => new List<bool>
+	{
+		Fleet1Visible,
+		Fleet2Visible,
+		Fleet3Visible,
+		Fleet4Visible,
+	}.Count(v => v);
+
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -266,6 +279,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		AutoSetFileNameToDate = Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate;
 		OpenImageAfterOutput = Configuration.Config.FleetImageGenerator.OpenImageAfterOutput;
 		SynchronizeTitleAndFileName = Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName;
+		DesiredFleetColumns = Configuration.Config.FleetImageGenerator.Argument.HorizontalFleetCount;
 	}
 
 	private void SaveConfig()
@@ -309,6 +323,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.DisableOverwritePrompt = DisableOverwritePrompt;
 		Configuration.Config.FleetImageGenerator.OpenImageAfterOutput = OpenImageAfterOutput;
 		Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName = SynchronizeTitleAndFileName;
+		Configuration.Config.FleetImageGenerator.Argument.HorizontalFleetCount = DesiredFleetColumns;
 	}
 
 	public override void Closed()
