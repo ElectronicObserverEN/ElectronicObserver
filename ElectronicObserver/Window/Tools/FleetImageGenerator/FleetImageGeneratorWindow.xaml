@@ -883,8 +883,15 @@
 						</ItemsControl.ItemsPanel>
 					</ItemsControl>
 
-					<StackPanel Grid.Row="2" Orientation="Horizontal">
+					<Grid Grid.Row="2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
 						<TextBlock
+							Grid.Column="0"
 							Margin="4 0"
 							FontSize="{Binding ViewModel.CommentFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
 							Text="{Binding Comment}"
@@ -904,14 +911,14 @@
 							</TextBlock.Style>
 						</TextBlock>
 
-						<ItemsControl ItemsSource="{Binding AirBases, IsAsync=True}">
+						<ItemsControl Grid.Column="1" ItemsSource="{Binding AirBases, IsAsync=True}">
 							<ItemsControl.ItemsPanel>
 								<ItemsPanelTemplate>
 									<UniformGrid Rows="1" />
 								</ItemsPanelTemplate>
 							</ItemsControl.ItemsPanel>
 						</ItemsControl>
-					</StackPanel>
+					</Grid>
 				</Grid>
 			</Border>
 		</ScrollViewer>
