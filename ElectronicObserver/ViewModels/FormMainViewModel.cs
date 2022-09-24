@@ -1434,46 +1434,37 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
 
-			if (!ship.ASW.IsDetermined)
+			if (wikiShip.ASW.Minimum >= 0)
 			{
-				if (wikiShip.ASW.Minimum >= 0)
-				{
-					ship.ASW.MinimumEstMin = wikiShip.ASW.Minimum;
-					ship.ASW.MinimumEstMax = wikiShip.ASW.Minimum;
-				}
-
-				if (wikiShip.ASW.Maximum >= 0)
-				{
-					ship.ASW.Maximum = wikiShip.ASW.Maximum;
-				}
+				ship.ASW.MinimumEstMin = wikiShip.ASW.Minimum;
+				ship.ASW.MinimumEstMax = wikiShip.ASW.Minimum;
 			}
 
-			if (!ship.LOS.IsDetermined)
+			if (wikiShip.ASW.Maximum >= 0)
 			{
-				if (wikiShip.LOS.Minimum >= 0)
-				{
-					ship.LOS.MinimumEstMin = wikiShip.LOS.Minimum;
-					ship.LOS.MinimumEstMax = wikiShip.LOS.Minimum;
-				}
-
-				if (wikiShip.LOS.Maximum >= 0)
-				{
-					ship.LOS.Maximum = wikiShip.LOS.Maximum;
-				}
+				ship.ASW.Maximum = wikiShip.ASW.Maximum;
 			}
 
-			if (!ship.Evasion.IsDetermined)
+			if (wikiShip.LOS.Minimum >= 0)
 			{
-				if (wikiShip.Evasion.Minimum >= 0)
-				{
-					ship.Evasion.MinimumEstMin = wikiShip.Evasion.Minimum;
-					ship.Evasion.MinimumEstMax = wikiShip.Evasion.Minimum;
-				}
+				ship.LOS.MinimumEstMin = wikiShip.LOS.Minimum;
+				ship.LOS.MinimumEstMax = wikiShip.LOS.Minimum;
+			}
 
-				if (wikiShip.Evasion.Maximum >= 0)
-				{
-					ship.Evasion.Maximum = wikiShip.Evasion.Maximum;
-				}
+			if (wikiShip.LOS.Maximum >= 0)
+			{
+				ship.LOS.Maximum = wikiShip.LOS.Maximum;
+			}
+
+			if (wikiShip.Evasion.Minimum >= 0)
+			{
+				ship.Evasion.MinimumEstMin = wikiShip.Evasion.Minimum;
+				ship.Evasion.MinimumEstMax = wikiShip.Evasion.Minimum;
+			}
+
+			if (wikiShip.Evasion.Maximum >= 0)
+			{
+				ship.Evasion.Maximum = wikiShip.Evasion.Maximum;
 			}
 
 			if (wikiShip.DefaultSlot is not null)

@@ -494,7 +494,7 @@ public static class ShipDataExtensions
 		{ MasterShip.ShipType: ShipTypes.LightCruiser } or
 		{ MasterShip.ShipType: ShipTypes.TrainingCruiser } or
 		{ MasterShip.ShipType: ShipTypes.TorpedoCruiser } or
-		{ MasterShip.ShipType: ShipTypes.Transport }
+		{ MasterShip.ShipType: ShipTypes.FleetOiler }
 			=> ship.HasSonar() && ship.ASWTotal >= 100,
 
 		{ MasterShip.ShipType: ShipTypes.Escort } => ship.ASWTotal switch
