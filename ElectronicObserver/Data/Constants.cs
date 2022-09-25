@@ -411,6 +411,9 @@ public static class Constants
 			case 113: return "Conte di Cavour級";
 			case 114: return "Gato級";
 			case 115: return "特2TL型";
+			case 116: return "Independence級";
+			case 117: return "鵜来型";
+			case 118: return "Ranger級";
 			default: return "不明";
 		}
 	}
