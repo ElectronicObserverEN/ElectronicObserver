@@ -18,10 +18,6 @@
 	mc:Ignorable="d"
 	>
 
-	<Window.Resources>
-		<local:BattleDetailBindingProxy x:Key="Proxy" DataContext="{Binding}" />
-	</Window.Resources>
-
 	<Grid Margin="5">
 		<ScrollViewer HorizontalScrollBarVisibility="Visible">
 			<TextBlock Text="{Binding BattleDetailText}" />
