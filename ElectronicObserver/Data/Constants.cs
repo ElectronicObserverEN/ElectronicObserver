@@ -215,7 +215,27 @@ public static class Constants
 	};
 
 	/// <summary>
-	/// 艦種略号を取得します。
+	/// 海防艦　　　　→　海防 <br />
+	/// 駆逐艦　　　　→　駆逐 <br />
+	/// 軽巡洋艦　　　→　軽巡 <br />
+	/// 重雷装巡洋艦　→　雷巡 <br />
+	/// 重巡洋艦　　　→　重巡 <br />
+	/// 航空巡洋艦　　→　航巡 <br />
+	/// 軽空母　　　　→　軽空 <br />
+	/// 巡洋戦艦　　　→　高戦 <br />
+	/// 戦艦　　　　　→　戦艦 <br />
+	/// 航空戦艦　　　→　航戦 <br />
+	/// 正規空母　　　→　正空 <br />
+	/// 弩級戦艦　　　→　戦艦 <br />
+	/// 潜水艦　　　　→　潜水 <br />
+	/// 潜水空母　　　→　潜空 <br />
+	/// 補給艦　　　　→　補給 <br />
+	/// 水上機母艦　　→　水母 <br />
+	/// 揚陸艦　　　　→　揚陸 <br />
+	/// 装甲空母　　　→　装空 <br />
+	/// 工作艦　　　　→　工作 <br />
+	/// 潜水母艦　　　→　潜母 <br />
+	/// 練習巡洋艦　　→　練巡 <br />
 	/// </summary>
 	public static string ShipTypeShort(ShipTypes shiptype) => shiptype switch
 	{
@@ -228,7 +248,7 @@ public static class Constants
 		ShipTypes.LightAircraftCarrier => "軽空",
 		ShipTypes.Battlecruiser => "高戦",
 		ShipTypes.Battleship => "戦艦",
-		ShipTypes.AviationBattleship => "空戦",
+		ShipTypes.AviationBattleship => "航戦",
 		ShipTypes.AircraftCarrier => "正空",
 		ShipTypes.SuperDreadnoughts => "戦艦",
 		ShipTypes.Submarine => "潜水",

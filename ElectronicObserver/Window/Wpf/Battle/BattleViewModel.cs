@@ -15,6 +15,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Dialog.BattleDetail;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
@@ -235,11 +236,11 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined) return;
 
-		var dialog = new Dialog.DialogBattleDetail
+		var dialog = new BattleDetailView(new BattleDetailViewModel()
 		{
-			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm),
-			// Location = RightClickMenu.Location
-		};
+			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm)
+		});
+
 		dialog.Show(App.Current.MainWindow);
 	}
 

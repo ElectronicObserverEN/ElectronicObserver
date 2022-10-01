@@ -135,6 +135,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DialogBaseAirCorpsSimulation.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogBattleDetail.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogBattleDetail.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogConfiguration.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -530,6 +535,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogBaseAirCorpsSimulation.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>DialogBaseAirCorpsSimulation.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogBattleDetail.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogBattleDetail.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfiguration.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
