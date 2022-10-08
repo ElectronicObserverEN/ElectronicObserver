@@ -292,4 +292,19 @@ public class OpeningAswTests
 
 		Assert.True(yamashioMaru.CanDoOpeningAsw());
 	}
+	[Fact(DisplayName = "CVL with spanner 65ASW Condition")]
+	public void OpeningASWTest8()
+	{
+		ShipDataMock gambierbay = new(Db.MasterShips[ShipId.GambierBayMkII])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_SkilledDeckPersonnel_AviationMaintenancePersonnel]),
+			},
+		};
+
+		Assert.True(gambierbay.CanDoOpeningAsw());
+	}
 }
