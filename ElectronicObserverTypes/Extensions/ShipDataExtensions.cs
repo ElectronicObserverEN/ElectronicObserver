@@ -448,6 +448,7 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.JervisKai } or
 	{ ShipId: ShipId.JanusKai } or
 	{ ShipId: ShipId.SamuelBRobertsKai } or
+	{ ShipId: ShipId.SamuelBRobertsMkII } or
 	{ ShipId: ShipId.IsuzuKaiNi } or
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
