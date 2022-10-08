@@ -472,7 +472,7 @@ public static class ShipDataExtensions
 
 		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
 		{
-			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft(),
+			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft() || ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft(),
 			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft(),
 			>= 50 => ship.MasterShip.ShipId switch
 			{
