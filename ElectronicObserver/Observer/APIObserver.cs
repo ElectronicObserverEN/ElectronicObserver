@@ -727,9 +727,7 @@ public sealed class APIObserver
 			ConnectionTimeOutSeconds = 15,
 			ReuseSocket = true,
 			EnableConnectionPool = true,
-			ForwardToUpstreamGateway = true,
-			MaxCachedConnections = 12,
-			ThreadPoolWorkerThread = 32
+			ForwardToUpstreamGateway = true
 		};
 		Proxy.CertificateManager.CertificateEngine = CertificateEngine.DefaultWindows;
 		Proxy.CertificateManager.EnsureRootCertificate(true, true);
