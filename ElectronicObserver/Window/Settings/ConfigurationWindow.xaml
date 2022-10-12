@@ -1,0 +1,69 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Settings.ConfigurationWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding Translation.Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:ConfigurationViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:ConfigurationViewModel"
+	mc:Ignorable="d"
+	>
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<TabControl Grid.Row="0">
+			<TabItem Header="{Binding Translation.Communication}" />
+			<TabItem Header="{Binding Translation.UI}" />
+			<TabItem Header="{Binding Translation.Log}" />
+			<TabItem Header="{Binding Translation.Behavior}" />
+			<TabItem Header="{Binding Translation.Debug}" />
+			<TabItem Header="{Binding Translation.Window}" />
+			<TabItem Header="{Binding Translation.SubWindow}" />
+			<TabItem Header="{Binding Translation.Notification}" />
+			<TabItem Header="{Binding Translation.BGM}" />
+		</TabControl>
+
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<StackPanel
+				Grid.Column="0"
+				VerticalAlignment="Bottom"
+				Orientation="Horizontal"
+				>
+				<TextBlock Text="{Binding Translation.Log_PlayTime}" />
+				<TextBlock Text=":" />
+				<TextBlock Margin="4 0" Text="{Binding Log_PlayTime}" />
+			</StackPanel>
+
+			<Button
+				Grid.Column="1"
+				Margin="4 0"
+				Command="{Binding ConfirmCommand}"
+				Content="{Binding Translation.OK}"
+				/>
+
+			<Button
+				Grid.Column="2"
+				Margin="4 0"
+				Command="{Binding CancelCommand}"
+				Content="{Binding Translation.Cancel}"
+				/>
+		</Grid>
+	</Grid>
+
+</common:WindowBase>

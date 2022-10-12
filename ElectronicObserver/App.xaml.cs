@@ -14,6 +14,7 @@ using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
@@ -162,6 +163,8 @@ public partial class App : Application
 	{
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
+			// config translations
+			.AddSingleton<ConfigurationTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

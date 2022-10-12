@@ -36,6 +36,7 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Dialog.ResourceChartWPF;
 using ElectronicObserver.Window.Integrate;
+using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
@@ -644,15 +645,22 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenConfiguration()
+	private void OpenConfiguration(bool useNewVersion)
 	{
 		UpdatePlayTime();
 
-		using DialogConfiguration dialog = new(Configuration.Config);
-		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
+		if (useNewVersion)
+		{
+			new ConfigurationWindow(new()).Show(Window);
+		}
+		else
+		{
+			using DialogConfiguration dialog = new(Configuration.Config);
+			if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
-		dialog.ToConfiguration(Configuration.Config);
-		Configuration.Instance.OnConfigurationChanged();
+			dialog.ToConfiguration(Configuration.Config);
+			Configuration.Instance.OnConfigurationChanged();
+		}
 	}
 
 	#endregion

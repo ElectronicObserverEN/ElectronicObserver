@@ -245,14 +245,20 @@
 						/>
 				</MenuItem>
 				<Separator />
-				<MenuItem
-					d:Header="Settings"
-					Command="{Binding OpenConfigurationCommand}"
-					Header="{Binding FormMain.StripMenu_File_Configuration}"
-					>
+				<MenuItem d:Header="Settings" Header="{Binding FormMain.StripMenu_File_Configuration}">
 					<MenuItem.Icon>
 						<Image Source="{Binding ConfigurationImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenConfigurationCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenConfigurationCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 			</MenuItem>
 			<MenuItem
