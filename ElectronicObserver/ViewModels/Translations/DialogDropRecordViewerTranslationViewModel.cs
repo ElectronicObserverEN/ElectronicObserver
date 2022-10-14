@@ -54,9 +54,14 @@ public class DialogDropRecordViewerTranslationViewModel : TranslationBaseViewMod
 	public string SelectedItems => DialogDropRecordViewer.SelectedItems;
 
 	public string BattleHistoryNotFound => DialogDropRecordViewer.BattleHistoryNotFound;
+	public string ReplayFileNotFound =>"Replay File not found";
 	public string SearchingBattleHistory => DialogDropRecordViewer.SearchingBattleHistory;
 	public string OpenBattleHistory => DialogDropRecordViewer.OpenBattleHistory;
+	public string OpenBattleLog => "Open Battle Log";
+	public string OpenReplayFile => "Open Replay File";
+	public string CopyReplayURL => "Copy Replay URL";
+	public string CopiedReplayURL => "Replay URL Copied: {0}";
 	public string CouldNotOpenBattleHistory => DialogDropRecordViewer.CouldNotOpenBattleHistory;
-
+	public string CouldNotOpenReplayFile => "Could not open Replay File";
 	public string Today => DialogDropRecordViewer.Today;
 }
