@@ -1,14 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Timers;
+using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window.Settings;
 
 public partial class ConfigurationViewModel : WindowViewModelBase
 {
 	public ConfigurationTranslationViewModel Translation { get; }
+
+	public Connection.ConfigurationConnectionViewModel Connection { get; }
+
+	private IEnumerable<ConfigurationViewModelBase> Configurations()
+	{
+		yield return Connection;
+	}
 
 	private Timer Timer { get; } = new();
 	public string Log_PlayTime { get; set; } = "";
@@ -21,8 +34,10 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationTranslationViewModel>();
 
+		Connection = new(Configuration.Config.Connection);
+
 		ShownTime = DateTime.Now;
-		PlayTimeCache = Utility.Configuration.Config.Log.PlayTime;
+		PlayTimeCache = Configuration.Config.Log.PlayTime;
 		UpdatePlayTime();
 
 		Timer.Interval = 1000;
@@ -40,15 +55,35 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		Log_PlayTime = Utility.Mathematics.DateTimeHelper.ToTimeElapsedString(TimeSpan.FromSeconds(PlayTimeCache + elapsed));
 	}
 
-	private void SaveConfigurations()
+	private bool TrySaveConfigurations()
 	{
+		List<ValidationResult> errors = Configurations()
+			.SelectMany(c => c.GetErrors())
+			.DistinctBy(v => v.ErrorMessage)
+			.ToList();
 
+		if (errors.Any())
+		{
+			string caption = DialogConfiguration.DialogCaptionErrorTitle;
+			string errorMessage = string.Join("\n", errors);
+
+			MessageBox.Show(App.Current!.MainWindow!, errorMessage, caption, MessageBoxButton.OK, MessageBoxImage.Error);
+			
+			return false;
+		}
+
+		foreach (ConfigurationViewModelBase configuration in Configurations())
+		{
+			configuration.Save();
+		}
+
+		return true;
 	}
 
 	[ICommand]
 	private void Confirm()
 	{
-		SaveConfigurations();
+		if (!TrySaveConfigurations()) return;
 
 		DialogResult = true;
 	}

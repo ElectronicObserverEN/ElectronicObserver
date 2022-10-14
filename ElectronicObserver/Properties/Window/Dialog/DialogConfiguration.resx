@@ -734,4 +734,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
     <value>ブラウザ上で右クリックすると、コンテキストメニューが表示されます。</value>
   </data>
+  <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
+    <value>ポートと上流プロキシポートの値は異なる必要があります</value>
+  </data>
 </root>
