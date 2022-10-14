@@ -419,4 +419,7 @@
   <data name="ItemNameXmasSelectGiftBox" xml:space="preserve">
     <value>Xmas Select Gift Box</value>
   </data>
+  <data name="Pumpkin" xml:space="preserve">
+    <value>南瓜</value>
+  </data>
 </root>

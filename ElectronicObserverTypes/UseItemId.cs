@@ -61,4 +61,5 @@ public enum UseItemId
 	Sardine = 93,
 	NewModelArmamentMaterials = 94,
 	SubmarineSupplyMaterials = 95,
+	Pumpkin = 96,
 }

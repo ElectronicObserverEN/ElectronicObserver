@@ -865,6 +865,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 南瓜.
+        /// </summary>
+        public static string Pumpkin {
+            get {
+                return ResourceManager.GetString("Pumpkin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 今日: {0:+##;-##;±0}
         ///今週: {1:+##;-##;±0}
         ///今月: {2:+##;-##;±0}.
