@@ -4,6 +4,7 @@
 		<LangVersion>latest</LangVersion>
 		<Nullable>Enable</Nullable>
 		<LangVersion>preview</LangVersion>
+		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <DebugType>embedded</DebugType>
