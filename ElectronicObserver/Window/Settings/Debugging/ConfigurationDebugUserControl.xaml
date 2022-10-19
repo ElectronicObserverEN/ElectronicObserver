@@ -1,0 +1,43 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.Debugging.ConfigurationDebugUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Debugging"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationDebugViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<StackPanel Margin="4">
+		<CheckBox
+			Content="{Binding Translation.Debug_EnableDebugMenu}"
+			IsChecked="{Binding EnableDebugMenu}"
+			ToolTip="{Binding Translation.Debug_EnableDebugMenuToolTip}"
+			/>
+
+		<CheckBox Content="{Binding Translation.Debug_AlertOnError}" IsChecked="{Binding AlertOnError}" />
+
+		<CheckBox
+			Content="{Binding Translation.Debug_LoadAPIListOnLoad}"
+			IsChecked="{Binding LoadAPIListOnLoad}"
+			ToolTip="{Binding Translation.Debug_LoadAPIListOnLoadToolTip}"
+			Visibility="{Binding EnableDebugMenu, Converter={StaticResource BooleanToVisibilityConverter}}"
+			/>
+
+		<Grid Visibility="{Binding EnableDebugMenu, Converter={StaticResource BooleanToVisibilityConverter}}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBox Grid.Column="0" Text="{Binding APIListPath}" />
+			<Button
+				Grid.Column="1"
+				Command="{Binding SelectApiListPathCommand}"
+				Content="..."
+				/>
+		</Grid>
+	</StackPanel>
+</UserControl>

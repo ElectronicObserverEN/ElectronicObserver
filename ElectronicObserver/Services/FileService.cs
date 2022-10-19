@@ -124,4 +124,21 @@ public class FileService
 				MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 	}
+
+	public string? OpenApiListPath(string path)
+	{
+		OpenFileDialog dialog = new()
+		{
+			Filter = "Text File|*.txt|File|*",
+			Title = "API リストを開く",
+		};
+
+		PathHelper.InitOpenFileDialog(path, dialog);
+
+		return dialog.ShowDialog(MainWindow) switch
+		{
+			true => PathHelper.GetPathFromOpenFileDialog(dialog),
+			_ => null,
+		};
+	}
 }

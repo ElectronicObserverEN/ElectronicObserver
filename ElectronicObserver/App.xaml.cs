@@ -8,14 +8,21 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
+using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.Debugging;
+using ElectronicObserver.Window.Settings.Log;
+using ElectronicObserver.Window.Settings.UI;
+using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
@@ -25,6 +32,7 @@ using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -149,6 +157,9 @@ public partial class App : Application
 			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(0));
 
+			UpdateFont();
+			Configuration.Instance.ConfigurationChanged += UpdateFont;
+
 			FormMainWpf mainWindow = new();
 
 			MainWindow = mainWindow;
@@ -160,6 +171,18 @@ public partial class App : Application
 		}
 	}
 
+	private void UpdateFont()
+	{
+		FontOverrides? overrides = Resources.MergedDictionaries
+			.OfType<FontOverrides>()
+			.FirstOrDefault();
+
+		if (overrides is null) return;
+
+		overrides.FontFamily = new FontFamily(Configuration.Config.UI.MainFont.FontData.Name);
+		overrides.FontSize = Configuration.Config.UI.MainFont.FontData.ToSize();
+	}
+
 	private void ConfigureServices()
 	{
 		ServiceProvider services = new ServiceCollection()
@@ -167,6 +190,11 @@ public partial class App : Application
 			// config translations
 			.AddSingleton<ConfigurationTranslationViewModel>()
 			.AddSingleton<ConfigurationConnectionTranslationViewModel>()
+			.AddSingleton<ConfigurationUITranslationViewModel>()
+			.AddSingleton<ConfigurationLogTranslationViewModel>()
+			.AddSingleton<ConfigurationBehaviorTranslationViewModel>()
+			.AddSingleton<ConfigurationDebugTranslationViewModel>()
+			.AddSingleton<ConfigurationWindowTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

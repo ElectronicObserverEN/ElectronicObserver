@@ -104,7 +104,6 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 
 		return (viewModel.Port == viewModel.UpstreamProxyPort) switch
 		{
-			// todo: translation
 			true => new(DialogConfiguration.PortAndUpstreamPortMustBeDifferent),
 			_ => ValidationResult.Success!,
 		};

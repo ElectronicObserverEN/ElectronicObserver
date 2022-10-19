@@ -1,0 +1,112 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.Window.ConfigurationWindowUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Window"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationWindowViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<StackPanel Margin="4">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Grid.Column="0" Text="{Binding Translation.LayoutFile}" />
+			<TextBox Grid.Column="1" Text="{Binding LayoutFilePath}" />
+			<Button Grid.Column="2" Content="..." />
+		</Grid>
+
+		<StackPanel Orientation="Horizontal">
+			<CheckBox Content="{Binding Translation.Life_ConfirmOnClosing}" IsChecked="{Binding ConfirmOnClosing}" />
+			<CheckBox
+				Content="{Binding Translation.Life_LockLayout}"
+				IsChecked="{Binding LockLayout}"
+				ToolTip="{Binding Translation.Life_LockLayoutToolTip}"
+				/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal">
+			<CheckBox Content="{Binding Translation.Life_TopMost}" IsChecked="{Binding TopMost}" />
+			<CheckBox
+				Content="{Binding Translation.Life_CanCloseFloatWindowInLock}"
+				IsChecked="{Binding CanCloseFloatWindowInLock}"
+				ToolTip="{Binding Translation.Life_CanCloseFloatWindowInLockToolTip}"
+				/>
+		</StackPanel>
+
+		<CheckBox Content="{Binding Translation.Life_CheckUpdateInformation}" IsChecked="{Binding CheckUpdateInformation}" />
+
+		<CheckBox Content="{Binding Translation.Life_ShowStatusBar}" IsChecked="{Binding ShowStatusBar}" />
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.ClockMode}" />
+
+			<RadioButton Command="{Binding SetClockFormatCommand}" Content="{Binding Translation.Life_ClockFormat_ServerTime}">
+				<RadioButton.CommandParameter>
+					<local:ClockFormat>Server</local:ClockFormat>
+				</RadioButton.CommandParameter>
+
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ClockFormat}">
+								<DataTrigger.Value>
+									<local:ClockFormat>Server</local:ClockFormat>
+								</DataTrigger.Value>
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+
+			<RadioButton Command="{Binding SetClockFormatCommand}" Content="{Binding Translation.Life_ClockFormat_PvpReset}">
+				<RadioButton.CommandParameter>
+					<local:ClockFormat>ExerciseReset</local:ClockFormat>
+				</RadioButton.CommandParameter>
+
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ClockFormat}">
+								<DataTrigger.Value>
+									<local:ClockFormat>ExerciseReset</local:ClockFormat>
+								</DataTrigger.Value>
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+
+			<RadioButton Command="{Binding SetClockFormatCommand}" Content="{Binding Translation.Life_ClockFormat_QuestReset}">
+				<RadioButton.CommandParameter>
+					<local:ClockFormat>QuestReset</local:ClockFormat>
+				</RadioButton.CommandParameter>
+
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ClockFormat}">
+								<DataTrigger.Value>
+									<local:ClockFormat>QuestReset</local:ClockFormat>
+								</DataTrigger.Value>
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+		</StackPanel>
+	</StackPanel>
+</UserControl>
