@@ -174,6 +174,10 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public virtual void Save()
 	{
+		// those 2 are mostly used to dispose existing dialogs from the test function
+		NotifierBase.LoadSound(SoundPath);
+		NotifierBase.DialogData.LoadImage(ImagePath);
+
 		NotifierBase.IsEnabled = IsEnabled;
 
 		NotifierBase.PlaysSound = PlaysSound;
