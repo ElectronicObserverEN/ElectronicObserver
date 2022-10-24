@@ -103,5 +103,5 @@ public class ConfigurationNotificationBaseTranslationViewModel : TranslationBase
 
 	public string Error => Properties.Window.Dialog.DialogConfiguration.DialogCaptionErrorTitle;
 
-	public string Title = NotifyRes.Title;
+	public string Title => NotifyRes.Title;
 }

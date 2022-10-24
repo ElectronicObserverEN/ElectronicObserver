@@ -12,7 +12,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Notification"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	Title="ConfigurationNotificationDialog"
+	Title="{Binding Translation.Title}"
 	Width="800"
 	Height="450"
 	d:DataContext="{d:DesignInstance local:ConfigurationNotificationDialogViewModel}"
