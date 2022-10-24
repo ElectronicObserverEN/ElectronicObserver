@@ -199,7 +199,10 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public static ValidationResult ValidateImagePath(string path, ValidationContext context)
 	{
-		if (context.ObjectInstance is not ConfigurationNotificationBaseViewModel viewModel) throw new Exception();
+		if (context.ObjectInstance is not ConfigurationNotificationBaseViewModel viewModel)
+		{
+			throw new NotImplementedException();
+		}
 
 		return (viewModel.ImageChanged && viewModel.DrawsImage && !viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath)) switch
 		{
@@ -210,7 +213,10 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public static ValidationResult ValidateSoundPath(string path, ValidationContext context)
 	{
-		if (context.ObjectInstance is not ConfigurationNotificationBaseViewModel viewModel) throw new Exception();
+		if (context.ObjectInstance is not ConfigurationNotificationBaseViewModel viewModel)
+		{
+			throw new NotImplementedException();
+		}
 
 		return (viewModel.SoundChanged && viewModel.PlaysSound && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath)) switch
 		{
