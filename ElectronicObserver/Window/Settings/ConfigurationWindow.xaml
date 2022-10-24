@@ -10,6 +10,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
 	xmlns:log="clr-namespace:ElectronicObserver.Window.Settings.Log"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:notification="clr-namespace:ElectronicObserver.Window.Settings.Notification"
 	xmlns:subWindow="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -67,6 +68,10 @@
 		<DataTemplate DataType="{x:Type subWindow:ConfigurationSubWindowViewModel}">
 			<subWindow:ConfigurationSubWindowUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type notification:ConfigurationNotificationViewModel}">
+			<notification:ConfigurationNotificationUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="10">
@@ -83,7 +88,7 @@
 			<TabItem Content="{Binding Debug}" Header="{Binding Translation.Debug}" />
 			<TabItem Content="{Binding Window}" Header="{Binding Translation.Window}" />
 			<TabItem Content="{Binding SubWindow}" Header="{Binding Translation.SubWindow}" />
-			<TabItem Header="{Binding Translation.Notification}" />
+			<TabItem Content="{Binding Notification}" Header="{Binding Translation.Notification}" />
 			<TabItem Header="{Binding Translation.BGM}" />
 		</TabControl>
 

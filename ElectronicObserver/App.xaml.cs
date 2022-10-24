@@ -19,6 +19,8 @@ using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.Connection;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
+using ElectronicObserver.Window.Settings.Notification;
+using ElectronicObserver.Window.Settings.Notification.Base;
 using ElectronicObserver.Window.Settings.SubWindow;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
@@ -190,6 +192,8 @@ public partial class App : Application
 			.AddSingleton<ConfigurationDebugTranslationViewModel>()
 			.AddSingleton<ConfigurationWindowTranslationViewModel>()
 			.AddSingleton<ConfigurationSubWindowTranslationViewModel>()
+			.AddSingleton<ConfigurationNotificationTranslationViewModel>()
+			.AddSingleton<ConfigurationNotificationBaseTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
