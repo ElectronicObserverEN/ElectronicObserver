@@ -14,7 +14,7 @@ using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
-public partial class ConfigurationNotificationBaseViewModel : ObservableValidator
+public partial class ConfigurationNotificationBaseViewModel : ObservableValidator, IDisposable
 {
 	public ConfigurationNotificationBaseTranslationViewModel Translation { get; }
 	private FileService FileService { get; }
@@ -174,10 +174,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public virtual void Save()
 	{
-		// those 2 are mostly used to dispose existing dialogs from the test function
-		NotifierBase.LoadSound(SoundPath);
-		NotifierBase.DialogData.LoadImage(ImagePath);
-
 		NotifierBase.IsEnabled = IsEnabled;
 
 		NotifierBase.PlaysSound = PlaysSound;
@@ -271,6 +267,11 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 		NotifierBase.DialogData.Message = Translation.TestNotification;
 		NotifierBase.Notify();
+	}
+
+	public void Dispose()
+	{
+		NotifierBase.Sound.Close();
 	}
 }
 

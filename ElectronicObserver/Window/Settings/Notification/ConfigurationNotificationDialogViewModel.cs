@@ -31,12 +31,16 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 	{
 		if (!Config.TrySaveConfiguration()) return;
 
+		Config.Dispose();
+
 		DialogResult = true;
 	}
 
 	[ICommand]
 	private void Cancel()
 	{
+		Config.Dispose();
+
 		DialogResult = false;
 	}
 }
