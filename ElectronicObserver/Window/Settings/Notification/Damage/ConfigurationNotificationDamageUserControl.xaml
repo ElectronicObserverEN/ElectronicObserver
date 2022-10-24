@@ -25,7 +25,11 @@
 			Margin="4"
 			Header="{Binding Translation.GroupDamage}"
 			>
-			<UniformGrid HorizontalAlignment="Left" Columns="3">
+			<UniformGrid
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Columns="3"
+				>
 				<CheckBox
 					Content="{Binding Translation.NotifiesBefore}"
 					IsChecked="{Binding NotifiesBefore}"
