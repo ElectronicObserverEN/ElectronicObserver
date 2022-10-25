@@ -19,10 +19,10 @@ namespace ElectronicObserver.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class NotifyRes {
+    public class NotifyRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Window.Dialog.NotifyRes", typeof(NotifyRes).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 表示時にダイアログをアクティブにします。
         ///無効にすると操作を妨げない代わりにダイアログが隠れやすくなります。.
         /// </summary>
-        internal static string ActivationHint {
+        public static string ActivationHint {
             get {
                 return ResourceManager.GetString("ActivationHint", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 下.
         /// </summary>
-        internal static string AlignBottom {
+        public static string AlignBottom {
             get {
                 return ResourceManager.GetString("AlignBottom", resourceCulture);
             }
@@ -82,7 +82,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 左下.
         /// </summary>
-        internal static string AlignBottomLeft {
+        public static string AlignBottomLeft {
             get {
                 return ResourceManager.GetString("AlignBottomLeft", resourceCulture);
             }
@@ -91,7 +91,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 右下.
         /// </summary>
-        internal static string AlignBottomRight {
+        public static string AlignBottomRight {
             get {
                 return ResourceManager.GetString("AlignBottomRight", resourceCulture);
             }
@@ -100,7 +100,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 中央.
         /// </summary>
-        internal static string AlignCenter {
+        public static string AlignCenter {
             get {
                 return ResourceManager.GetString("AlignCenter", resourceCulture);
             }
@@ -109,7 +109,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知ダイアログの出現位置を設定します。.
         /// </summary>
-        internal static string AlignHint {
+        public static string AlignHint {
             get {
                 return ResourceManager.GetString("AlignHint", resourceCulture);
             }
@@ -118,7 +118,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 左.
         /// </summary>
-        internal static string AlignLeft {
+        public static string AlignLeft {
             get {
                 return ResourceManager.GetString("AlignLeft", resourceCulture);
             }
@@ -127,7 +127,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 手動(絶対).
         /// </summary>
-        internal static string AlignManualAbs {
+        public static string AlignManualAbs {
             get {
                 return ResourceManager.GetString("AlignManualAbs", resourceCulture);
             }
@@ -136,7 +136,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 手動(相対).
         /// </summary>
-        internal static string AlignManualRel {
+        public static string AlignManualRel {
             get {
                 return ResourceManager.GetString("AlignManualRel", resourceCulture);
             }
@@ -145,7 +145,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 配置.
         /// </summary>
-        internal static string Alignment {
+        public static string Alignment {
             get {
                 return ResourceManager.GetString("Alignment", resourceCulture);
             }
@@ -154,7 +154,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 右.
         /// </summary>
-        internal static string AlignRight {
+        public static string AlignRight {
             get {
                 return ResourceManager.GetString("AlignRight", resourceCulture);
             }
@@ -163,7 +163,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 上.
         /// </summary>
-        internal static string AlignTop {
+        public static string AlignTop {
             get {
                 return ResourceManager.GetString("AlignTop", resourceCulture);
             }
@@ -172,7 +172,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 左上.
         /// </summary>
-        internal static string AlignTopLeft {
+        public static string AlignTopLeft {
             get {
                 return ResourceManager.GetString("AlignTopLeft", resourceCulture);
             }
@@ -181,7 +181,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 右上.
         /// </summary>
-        internal static string AlignTopRight {
+        public static string AlignTopRight {
             get {
                 return ResourceManager.GetString("AlignTopRight", resourceCulture);
             }
@@ -190,7 +190,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 未指定.
         /// </summary>
-        internal static string AlignUnset {
+        public static string AlignUnset {
             get {
                 return ResourceManager.GetString("AlignUnset", resourceCulture);
             }
@@ -199,7 +199,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 自動で閉じる.
         /// </summary>
-        internal static string AutoClose {
+        public static string AutoClose {
             get {
                 return ResourceManager.GetString("AutoClose", resourceCulture);
             }
@@ -210,7 +210,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///このラベルの■に色プレビューが表示されます。
         ///.
         /// </summary>
-        internal static string BackColorDispHint {
+        public static string BackColorDispHint {
             get {
                 return ResourceManager.GetString("BackColorDispHint", resourceCulture);
             }
@@ -219,7 +219,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to ■背景色.
         /// </summary>
-        internal static string BackColorDisplay {
+        public static string BackColorDisplay {
             get {
                 return ResourceManager.GetString("BackColorDisplay", resourceCulture);
             }
@@ -230,7 +230,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///左側のラベルの■に色プレビューが表示されます。
         ///.
         /// </summary>
-        internal static string BackColorSelect {
+        public static string BackColorSelect {
             get {
                 return ResourceManager.GetString("BackColorSelect", resourceCulture);
             }
@@ -239,7 +239,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 閉じる.
         /// </summary>
-        internal static string CloseOn {
+        public static string CloseOn {
             get {
                 return ResourceManager.GetString("CloseOn", resourceCulture);
             }
@@ -248,7 +248,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 大破警告.
         /// </summary>
-        internal static string DamageOptions {
+        public static string DamageOptions {
             get {
                 return ResourceManager.GetString("DamageOptions", resourceCulture);
             }
@@ -257,7 +257,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to メッセージを表示する.
         /// </summary>
-        internal static string DisplayMessage {
+        public static string DisplayMessage {
             get {
                 return ResourceManager.GetString("DisplayMessage", resourceCulture);
             }
@@ -267,7 +267,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to ダイアログ内に通知テキストを描画するかを設定します。
         ///画像のみで足りる場合は非表示にできます。.
         /// </summary>
-        internal static string DisplayMessageHint {
+        public static string DisplayMessageHint {
             get {
                 return ResourceManager.GetString("DisplayMessageHint", resourceCulture);
             }
@@ -276,7 +276,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 窓枠を表示する.
         /// </summary>
-        internal static string DisplayWindowBorder {
+        public static string DisplayWindowBorder {
             get {
                 return ResourceManager.GetString("DisplayWindowBorder", resourceCulture);
             }
@@ -285,7 +285,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 有効にする.
         /// </summary>
-        internal static string Enable {
+        public static string Enable {
             get {
                 return ResourceManager.GetString("Enable", resourceCulture);
             }
@@ -294,7 +294,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知を有効にする.
         /// </summary>
-        internal static string EnableNotify {
+        public static string EnableNotify {
             get {
                 return ResourceManager.GetString("EnableNotify", resourceCulture);
             }
@@ -303,7 +303,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 画像ファイルの読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedLoadImage {
+        public static string FailedLoadImage {
             get {
                 return ResourceManager.GetString("FailedLoadImage", resourceCulture);
             }
@@ -312,7 +312,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 音声ファイルの読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedLoadSound {
+        public static string FailedLoadSound {
             get {
                 return ResourceManager.GetString("FailedLoadSound", resourceCulture);
             }
@@ -323,7 +323,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///このラベルの■に色プレビューが表示されます。
         ///.
         /// </summary>
-        internal static string ForeColorDispHint {
+        public static string ForeColorDispHint {
             get {
                 return ResourceManager.GetString("ForeColorDispHint", resourceCulture);
             }
@@ -332,7 +332,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to ■前景色.
         /// </summary>
-        internal static string ForeColorDisplay {
+        public static string ForeColorDisplay {
             get {
                 return ResourceManager.GetString("ForeColorDisplay", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 通知ダイアログの文字色を指定します。
         ///左側のラベルの■に色プレビューが表示されます。.
         /// </summary>
-        internal static string ForeColorSelect {
+        public static string ForeColorSelect {
             get {
                 return ResourceManager.GetString("ForeColorSelect", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知を早める.
         /// </summary>
-        internal static string HurryBy {
+        public static string HurryBy {
             get {
                 return ResourceManager.GetString("HurryBy", resourceCulture);
             }
@@ -361,7 +361,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 通知を早める秒数を指定します。
         ///遠征・入渠を60秒早めるのがおすすめです。.
         /// </summary>
-        internal static string HurryHint {
+        public static string HurryHint {
             get {
                 return ResourceManager.GetString("HurryHint", resourceCulture);
             }
@@ -370,7 +370,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知画像.
         /// </summary>
-        internal static string Image {
+        public static string Image {
             get {
                 return ResourceManager.GetString("Image", resourceCulture);
             }
@@ -379,7 +379,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to ダメコン装備艦を含める.
         /// </summary>
-        internal static string IncludeDamecon {
+        public static string IncludeDamecon {
             get {
                 return ResourceManager.GetString("IncludeDamecon", resourceCulture);
             }
@@ -388,7 +388,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 旗艦を含める.
         /// </summary>
-        internal static string IncludeFlagship {
+        public static string IncludeFlagship {
             get {
                 return ResourceManager.GetString("IncludeFlagship", resourceCulture);
             }
@@ -397,7 +397,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 非ロック艦を含める.
         /// </summary>
-        internal static string IncludeUnlocked {
+        public static string IncludeUnlocked {
             get {
                 return ResourceManager.GetString("IncludeUnlocked", resourceCulture);
             }
@@ -407,7 +407,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 通知ダイアログを放置した時に自動で閉じるまでの時間を指定します。
         ///0秒を指定した場合は時間経過では閉じません。.
         /// </summary>
-        internal static string IntervalHint {
+        public static string IntervalHint {
             get {
                 return ResourceManager.GetString("IntervalHint", resourceCulture);
             }
@@ -416,7 +416,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 左クリック.
         /// </summary>
-        internal static string LeftClick {
+        public static string LeftClick {
             get {
                 return ResourceManager.GetString("LeftClick", resourceCulture);
             }
@@ -425,7 +425,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 左ダブルクリック.
         /// </summary>
-        internal static string LeftDoubleClick {
+        public static string LeftDoubleClick {
             get {
                 return ResourceManager.GetString("LeftDoubleClick", resourceCulture);
             }
@@ -434,7 +434,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 座標.
         /// </summary>
-        internal static string Location {
+        public static string Location {
             get {
                 return ResourceManager.GetString("Location", resourceCulture);
             }
@@ -443,7 +443,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 配置：手動設定時の出現座標を指定します。.
         /// </summary>
-        internal static string LocXHint {
+        public static string LocXHint {
             get {
                 return ResourceManager.GetString("LocXHint", resourceCulture);
             }
@@ -452,7 +452,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 配置：手動設定時の出現座標を指定します。.
         /// </summary>
-        internal static string LocYHint {
+        public static string LocYHint {
             get {
                 return ResourceManager.GetString("LocYHint", resourceCulture);
             }
@@ -462,7 +462,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 通知する大破艦の最低Lvを指定します。
         ///これよりLvの低い艦は通知されないので注意してください。.
         /// </summary>
-        internal static string LvHint {
+        public static string LvHint {
             get {
                 return ResourceManager.GetString("LvHint", resourceCulture);
             }
@@ -471,7 +471,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 中クリック.
         /// </summary>
-        internal static string MiddleClick {
+        public static string MiddleClick {
             get {
                 return ResourceManager.GetString("MiddleClick", resourceCulture);
             }
@@ -480,7 +480,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 中ダブルクリック.
         /// </summary>
-        internal static string MiddleDoubleClick {
+        public static string MiddleDoubleClick {
             get {
                 return ResourceManager.GetString("MiddleDoubleClick", resourceCulture);
             }
@@ -489,7 +489,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 最低Lv.
         /// </summary>
-        internal static string MinLv {
+        public static string MinLv {
             get {
                 return ResourceManager.GetString("MinLv", resourceCulture);
             }
@@ -498,7 +498,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to マウスオーバー.
         /// </summary>
-        internal static string MouseOver {
+        public static string MouseOver {
             get {
                 return ResourceManager.GetString("MouseOver", resourceCulture);
             }
@@ -507,7 +507,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 事後通知を有効にする.
         /// </summary>
-        internal static string NotifyAfter {
+        public static string NotifyAfter {
             get {
                 return ResourceManager.GetString("NotifyAfter", resourceCulture);
             }
@@ -516,7 +516,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 大破進撃中に通知します。.
         /// </summary>
-        internal static string NotifyAfterHint {
+        public static string NotifyAfterHint {
             get {
                 return ResourceManager.GetString("NotifyAfterHint", resourceCulture);
             }
@@ -525,7 +525,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 事前通知を有効にする.
         /// </summary>
-        internal static string NotifyBefore {
+        public static string NotifyBefore {
             get {
                 return ResourceManager.GetString("NotifyBefore", resourceCulture);
             }
@@ -534,7 +534,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 出撃前及び戦闘開始直後に通知します。.
         /// </summary>
-        internal static string NotifyBeforeHint {
+        public static string NotifyBeforeHint {
             get {
                 return ResourceManager.GetString("NotifyBeforeHint", resourceCulture);
             }
@@ -543,7 +543,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知ダイアログ.
         /// </summary>
-        internal static string NotifyDialog {
+        public static string NotifyDialog {
             get {
                 return ResourceManager.GetString("NotifyDialog", resourceCulture);
             }
@@ -552,7 +552,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知システム: ダイアログボックスでの画像の描画に失敗しました。.
         /// </summary>
-        internal static string NotifyDisplayError {
+        public static string NotifyDisplayError {
             get {
                 return ResourceManager.GetString("NotifyDisplayError", resourceCulture);
             }
@@ -561,7 +561,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to マップの最終セルでも通知するかを指定します。.
         /// </summary>
-        internal static string NotifyEndHint {
+        public static string NotifyEndHint {
             get {
                 return ResourceManager.GetString("NotifyEndHint", resourceCulture);
             }
@@ -570,7 +570,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 終点でも通知する.
         /// </summary>
-        internal static string NotifyEndNodes {
+        public static string NotifyEndNodes {
             get {
                 return ResourceManager.GetString("NotifyEndNodes", resourceCulture);
             }
@@ -579,7 +579,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 事中通知を有効にする.
         /// </summary>
-        internal static string NotifyNow {
+        public static string NotifyNow {
             get {
                 return ResourceManager.GetString("NotifyNow", resourceCulture);
             }
@@ -588,7 +588,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 出撃前及び戦闘終了時に通知します。.
         /// </summary>
-        internal static string NotifyNowHint {
+        public static string NotifyNowHint {
             get {
                 return ResourceManager.GetString("NotifyNowHint", resourceCulture);
             }
@@ -597,7 +597,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 画像ファイルを開く.
         /// </summary>
-        internal static string OpenImage {
+        public static string OpenImage {
             get {
                 return ResourceManager.GetString("OpenImage", resourceCulture);
             }
@@ -606,7 +606,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 音声ファイルを開く.
         /// </summary>
-        internal static string OpenSound {
+        public static string OpenSound {
             get {
                 return ResourceManager.GetString("OpenSound", resourceCulture);
             }
@@ -615,7 +615,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 右クリック.
         /// </summary>
-        internal static string RightClick {
+        public static string RightClick {
             get {
                 return ResourceManager.GetString("RightClick", resourceCulture);
             }
@@ -624,7 +624,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 右ダブルクリック.
         /// </summary>
-        internal static string RightDoubleClick {
+        public static string RightDoubleClick {
             get {
                 return ResourceManager.GetString("RightDoubleClick", resourceCulture);
             }
@@ -633,7 +633,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 秒.
         /// </summary>
-        internal static string Sec {
+        public static string Sec {
             get {
                 return ResourceManager.GetString("Sec", resourceCulture);
             }
@@ -642,7 +642,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 最前面に表示する.
         /// </summary>
-        internal static string ShowOnTop {
+        public static string ShowOnTop {
             get {
                 return ResourceManager.GetString("ShowOnTop", resourceCulture);
             }
@@ -651,7 +651,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 表示時にアクティベートする.
         /// </summary>
-        internal static string ShowWithActivation {
+        public static string ShowWithActivation {
             get {
                 return ResourceManager.GetString("ShowWithActivation", resourceCulture);
             }
@@ -660,16 +660,26 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知音.
         /// </summary>
-        internal static string Sound {
+        public static string Sound {
             get {
                 return ResourceManager.GetString("Sound", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to パスのファイル名部分を削除し、フォルダ指定にします。
+        ///パスにフォルダを指定した場合、そのフォルダに含まれる音声ファイルがランダムに再生されます。.
+        /// </summary>
+        public static string SoundPathDirectorizeToolTip {
+            get {
+                return ResourceManager.GetString("SoundPathDirectorizeToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to テスト.
         /// </summary>
-        internal static string Test {
+        public static string Test {
             get {
                 return ResourceManager.GetString("Test", resourceCulture);
             }
@@ -679,7 +689,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 通知のテスト再生を行います。
         ///設定が適用・保存されるため注意してください。.
         /// </summary>
-        internal static string TestHint {
+        public static string TestHint {
             get {
                 return ResourceManager.GetString("TestHint", resourceCulture);
             }
@@ -688,7 +698,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to テスト 通知です。.
         /// </summary>
-        internal static string TestNotification {
+        public static string TestNotification {
             get {
                 return ResourceManager.GetString("TestNotification", resourceCulture);
             }
@@ -697,7 +707,7 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知の設定.
         /// </summary>
-        internal static string Title {
+        public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
@@ -707,7 +717,7 @@ namespace ElectronicObserver.Window.Dialog {
         ///   Looks up a localized string similar to 通知ダイアログのウィンドウ枠を表示するかを指定できます。
         ///画像のみで足りる場合は非表示にできます。.
         /// </summary>
-        internal static string WindowBorderHint {
+        public static string WindowBorderHint {
             get {
                 return ResourceManager.GetString("WindowBorderHint", resourceCulture);
             }

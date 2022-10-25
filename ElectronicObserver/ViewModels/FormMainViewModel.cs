@@ -639,7 +639,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (useNewVersion)
 		{
-			new ConfigurationWindow(new()).Show(Window);
+			new ConfigurationWindow(new()).ShowDialog(Window);
 		}
 		else
 		{

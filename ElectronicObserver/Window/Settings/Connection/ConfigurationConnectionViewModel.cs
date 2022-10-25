@@ -100,7 +100,10 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 
 	public static ValidationResult ValidatePorts(int port, ValidationContext context)
 	{
-		if (context.ObjectInstance is not ConfigurationConnectionViewModel viewModel) throw new Exception();
+		if (context.ObjectInstance is not ConfigurationConnectionViewModel viewModel)
+		{
+			throw new NotImplementedException();
+		}
 
 		return (viewModel.Port == viewModel.UpstreamProxyPort) switch
 		{

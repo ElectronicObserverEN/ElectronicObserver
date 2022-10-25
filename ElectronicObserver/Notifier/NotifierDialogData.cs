@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Notifier;
 
@@ -220,39 +222,51 @@ public enum NotifierDialogAlignment
 {
 
 	/// <summary>未設定です。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignUnset")]
 	NotSet,
 
 	/// <summary>左上に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignTopLeft")]
 	TopLeft,
 
 	/// <summary>上中央に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignTop")]
 	TopCenter,
 
 	/// <summary>右上に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignTopRight")]
 	TopRight,
 
 	/// <summary>左中央に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignLeft")]
 	MiddleLeft,
 
 	/// <summary>中央に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignCenter")]
 	MiddleCenter,
 
 	/// <summary>右中央に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignRight")]
 	MiddleRight,
 
 	/// <summary>左下に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignBottomLeft")]
 	BottomLeft,
 
 	/// <summary>下中央に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignBottom")]
 	BottomCenter,
 
 	/// <summary>右下に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignBottomRight")]
 	BottomRight,
 
 	/// <summary>ユーザーが設定した座標に配置されます。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignManualAbs")]
 	Custom,
 
 	/// <summary>ユーザーが設定した座標に配置されます(ブラウザウィンドウの中心を原点とする相対座標)。</summary>
+	[Display(ResourceType = typeof(NotifyRes), Name = "AlignManualRel")]
 	CustomRelative,
 }
 
@@ -265,12 +279,20 @@ public enum NotifierDialogClickFlags
 {
 
 	None = 0x0,
+	[Display(ResourceType = typeof(NotifyRes), Name = "LeftClick")]
 	Left = 0x1,
+	[Display(ResourceType = typeof(NotifyRes), Name = "LeftDoubleClick")]
 	LeftDouble = 0x2,
+	[Display(ResourceType = typeof(NotifyRes), Name = "RightClick")]
 	Right = 0x4,
+	[Display(ResourceType = typeof(NotifyRes), Name = "RightDoubleClick")]
 	RightDouble = 0x8,
+	[Display(ResourceType = typeof(NotifyRes), Name = "MiddleClick")]
 	Middle = 0x10,
+	[Display(ResourceType = typeof(NotifyRes), Name = "MiddleDoubleClick")]
 	MiddleDouble = 0x20,
+	[Display(ResourceType = typeof(NotifyRes), Name = "MouseOver")]
+	MouseOver = 0x40,
 
 	/// <summary>最高位ビット</summary>
 	HighestBit = 6,

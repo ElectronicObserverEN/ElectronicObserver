@@ -163,6 +163,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 未編成・配置転換中.
+        /// </summary>
+        public static string BaseAirCorps_NotOrganized {
+            get {
+                return ResourceManager.GetString("BaseAirCorps_NotOrganized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出撃前に、いずれかの中隊が未編成か、配置転換中のときに通知します。.
+        /// </summary>
+        public static string BaseAirCorps_NotOrganizedToolTip {
+            get {
+                return ResourceManager.GetString("BaseAirCorps_NotOrganizedToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 未補給時.
         /// </summary>
         public static string BaseAirCorps_NotSupplied {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Dialog;
 using Microsoft.Win32;
 using Ookii.Dialogs.Wpf;
 
@@ -138,6 +140,56 @@ public class FileService
 		return dialog.ShowDialog(MainWindow) switch
 		{
 			true => PathHelper.GetPathFromOpenFileDialog(dialog),
+			_ => null,
+		};
+	}
+
+	public string? OpenSoundPath(string? path)
+	{
+		OpenFileDialog dialog = new()
+		{
+			Filter = "音楽ファイル|" + string.Join(";", MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*",
+			Title = NotifyRes.OpenSound,
+		};
+
+		if (!string.IsNullOrEmpty(path))
+		{
+			try
+			{
+				dialog.InitialDirectory = Path.GetDirectoryName(path);
+
+			}
+			catch (Exception) { }
+		}
+
+		return dialog.ShowDialog(MainWindow) switch
+		{
+			true => dialog.FileName,
+			_ => null,
+		};
+	}
+
+	public string? OpenImagePath(string? path)
+	{
+		OpenFileDialog dialog = new()
+		{
+			Filter = "Image|*.bmp;*.div;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.png;*.tif;*.tiff|BMP|*.bmp;*.div|JPEG|*.jpg;*.jpeg;*.jpe;*.jfif|GIF|*.gif|PNG|*.png|TIFF|*.tif;*.tiff|File|*",
+			Title = NotifyRes.OpenImage,
+		};
+
+		if (!string.IsNullOrEmpty(path))
+		{
+			try
+			{
+				dialog.InitialDirectory = Path.GetDirectoryName(path);
+
+			}
+			catch (Exception) { }
+		}
+
+		return dialog.ShowDialog(MainWindow) switch
+		{
+			true => dialog.FileName,
 			_ => null,
 		};
 	}
