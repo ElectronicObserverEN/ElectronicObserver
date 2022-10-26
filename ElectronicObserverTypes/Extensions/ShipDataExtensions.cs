@@ -99,9 +99,9 @@ public static class ShipDataExtensions
 		.Any(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedFighter);
 
 	public static bool HasBomber(this IShipData ship, int count = 1) => ship.AllSlotInstance
-																			.Zip(ship.Aircraft, (e, size) => (e, size))
-																			.Count(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedBomber)
-																		>= count;
+		.Zip(ship.Aircraft, (e, size) => (e, size))
+		.Count(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedBomber)
+		>= count;
 
 	public static bool HasAttacker(this IShipData ship) => ship.AllSlotInstance
 		.Zip(ship.Aircraft, (e, size) => (e, size))
@@ -114,8 +114,7 @@ public static class ShipDataExtensions
 		>= count;
 
 	public static bool HasTorpedo(this IShipData ship, int count = 1) => ship.AllSlotInstance
-																			 .Count(e => e?.MasterEquipment.IsTorpedo == true)
-																		 >= count;
+		.Count(e => e?.MasterEquipment.IsTorpedo == true) >= count;
 
 	public static bool HasSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SurfaceShipPersonnel);
@@ -151,15 +150,14 @@ public static class ShipDataExtensions
 		.Any(e => e?.MasterEquipment.IsNightAviationPersonnel == true);
 
 	public static bool HasNightFighter(this IShipData ship, int count = 1) => ship.AllSlotInstance
-																				  .Count(e => e?.MasterEquipment.IsNightFighter == true)
-																			  >= count;
+		.Count(e => e?.MasterEquipment.IsNightFighter == true) >= count;
 
 	public static bool HasNightAttacker(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsNightAttacker == true);
 
 	public static bool HasNightAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
-																				   .Count(e => e?.MasterEquipment.IsNightAircraft == true || e?.IsNightCapableAircraft() == true)
-																			   >= count;
+		.Count(e => e?.MasterEquipment.IsNightAircraft == true || e?.IsNightCapableAircraft() == true)
+		>= count;
 
 	public static bool HasNightPhototoubePlane(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.EquipmentId == EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs);
@@ -168,8 +166,7 @@ public static class ShipDataExtensions
 		.Any(e => e?.MasterEquipment.IsSwordfish ?? false);
 
 	public static bool HasLateModelTorp(this IShipData ship, int count = 1) => ship.AllSlotInstance
-																				   .Count(e => e?.MasterEquipment.IsLateModelTorpedo() == true)
-																			   >= count;
+		.Count(e => e?.MasterEquipment.IsLateModelTorpedo() == true) >= count;
 
 	public static bool HasSubmarineEquipment(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SubmarineEquipment);
