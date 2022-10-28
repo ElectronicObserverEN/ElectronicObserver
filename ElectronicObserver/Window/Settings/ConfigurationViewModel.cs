@@ -10,6 +10,7 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Behavior;
+using ElectronicObserver.Window.Settings.BGM;
 using ElectronicObserver.Window.Settings.Connection;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
@@ -32,6 +33,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	public ConfigurationWindowViewModel Window { get; }
 	public ConfigurationSubWindowViewModel SubWindow { get; }
 	public ConfigurationNotificationViewModel Notification { get; }
+	public ConfigurationBGMViewModel BGM { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -43,6 +45,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		yield return Window;
 		yield return SubWindow;
 		yield return Notification;
+		yield return BGM;
 	}
 
 	private Timer Timer { get; } = new();
@@ -64,6 +67,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		Window = new(Configuration.Config.Life);
 		SubWindow = new(Configuration.Config);
 		Notification = new(Configuration.Config);
+		BGM = new(Configuration.Config.BGMPlayer);
 
 		ShownTime = DateTime.Now;
 		PlayTimeCache = Configuration.Config.Log.PlayTime;

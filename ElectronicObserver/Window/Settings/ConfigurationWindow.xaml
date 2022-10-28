@@ -3,6 +3,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:behavior="clr-namespace:ElectronicObserver.Window.Settings.Behavior"
+	xmlns:bgm="clr-namespace:ElectronicObserver.Window.Settings.BGM"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -72,6 +73,10 @@
 		<DataTemplate DataType="{x:Type notification:ConfigurationNotificationViewModel}">
 			<notification:ConfigurationNotificationUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type bgm:ConfigurationBGMViewModel}">
+			<bgm:ConfigurationBGMUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="10">
@@ -89,7 +94,7 @@
 			<TabItem Content="{Binding Window}" Header="{Binding Translation.Window}" />
 			<TabItem Content="{Binding SubWindow}" Header="{Binding Translation.SubWindow}" />
 			<TabItem Content="{Binding Notification}" Header="{Binding Translation.Notification}" />
-			<TabItem Header="{Binding Translation.BGM}" />
+			<TabItem Content="{Binding BGM}" Header="{Binding Translation.BGM}" />
 		</TabControl>
 
 		<Grid Grid.Row="1">

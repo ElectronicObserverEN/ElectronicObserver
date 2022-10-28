@@ -1,0 +1,137 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Settings.BGM.SoundHandleEditDialog"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.BGM"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="{Binding Title}"
+	Width="500"
+	Height="170"
+	controls:WindowHelper.UseModernWindowStyle="True"
+	d:DataContext="{d:DesignInstance local:SoundHandleEditViewModel}"
+	x:TypeArguments="local:SoundHandleEditViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<Style TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="Padding" Value="2 0" />
+			<Setter Property="MinWidth" Value="0" />
+		</Style>
+
+		<Style TargetType="controls:NumberBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+	</Window.Resources>
+
+	<Grid Margin="4">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<TextBlock
+			Grid.Row="0"
+			Grid.Column="0"
+			Text="{Binding Translation.Path}"
+			/>
+
+		<TextBox
+			Grid.Row="0"
+			Grid.Column="1"
+			Text="{Binding SoundHandle.Path}"
+			/>
+
+		<Button
+			Grid.Row="0"
+			Grid.Column="2"
+			Command="{Binding OpenSoundPathCommand}"
+			Content="..."
+			/>
+
+		<StackPanel
+			Grid.Row="1"
+			Grid.Column="0"
+			Grid.ColumnSpan="2"
+			Orientation="Horizontal"
+			>
+			<CheckBox Content="{Binding Translation.Loop}" IsChecked="{Binding SoundHandle.IsLoop}" />
+
+			<TextBlock Text="{Binding Translation.Lead}" />
+			<controls:NumberBox
+				Minimum="0"
+				NumberFormatter="{Binding DoubleFormatter}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding SoundHandle.LoopHeadPosition}"
+				/>
+			<TextBlock Text="{Binding Translation.Second}" />
+		</StackPanel>
+
+		<Button
+			Grid.Row="1"
+			Grid.Column="2"
+			Command="{Binding SoundPathDirectorizeCommand}"
+			Content="Dir"
+			/>
+
+		<StackPanel
+			Grid.Row="2"
+			Grid.Column="0"
+			Grid.ColumnSpan="3"
+			Orientation="Horizontal"
+			>
+			<TextBlock Text="{Binding Translation.Volume}" />
+
+			<controls:NumberBox
+				Maximum="100"
+				Minimum="0"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding SoundHandle.Volume}"
+				/>
+		</StackPanel>
+
+		<Grid
+			Grid.Row="3"
+			Grid.Column="0"
+			Grid.ColumnSpan="3"
+			>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Button
+				Grid.Column="1"
+				Command="{Binding ConfirmCommand}"
+				Content="OK"
+				/>
+
+			<Button
+				Grid.Column="2"
+				Command="{Binding CancelCommand}"
+				Content="{Binding Translation.Cancel}"
+				/>
+		</Grid>
+	</Grid>
+</common:WindowBase>

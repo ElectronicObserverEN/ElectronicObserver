@@ -494,6 +494,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 編集.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装備情報表示：.
         /// </summary>
         public static string EquipmentLevelDisplay {
@@ -1552,7 +1561,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to ポートと上流プロキシポートの値は異なる必要があります.
         /// </summary>
         public static string PortAndUpstreamPortMustBeDifferent {
             get {

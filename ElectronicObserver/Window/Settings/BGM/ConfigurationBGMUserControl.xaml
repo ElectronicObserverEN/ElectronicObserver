@@ -1,0 +1,101 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.BGM.ConfigurationBGMUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.BGM"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
+	d:DataContext="{d:DesignInstance local:ConfigurationBGMViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<local:ConfigurationBGMBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<CheckBox Content="{Binding Translation.BGMPlayer_Enabled}" IsChecked="{Binding Enabled}" />
+
+			<CheckBox
+				Content="{Binding Translation.BGMPlayer_SyncBrowserMute}"
+				IsChecked="{Binding SyncBrowserMute}"
+				ToolTip="{Binding Translation.BGMPlayer_SyncBrowserMuteToolTip}"
+				/>
+
+			<controls:NumberBox
+				Maximum="100"
+				Minimum="0"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding SetAllVolumeValue}"
+				/>
+
+			<Button Command="{Binding SetAllVolumeCommand}" Content="{Binding Translation.BGMPlayer_SetVolumeAll}" />
+		</StackPanel>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			HeadersVisibility="Column"
+			IsReadOnly="False"
+			ItemsSource="{Binding Handles}"
+			>
+			<!--
+			todo: fix column persistence
+			
+			this user control is used in a tab control
+			tab controls unload their content when you switch away from the tab
+			this causes ColumnProperties and SortDescriptions to be set to null
+			first of all this causes a NRE in PersistentColumnsBehavior, but it also breaks jot tracking
+			
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+			</b:Interaction.Behaviors>
+			-->
+
+			<DataGrid.Columns>
+				<DataGridCheckBoxColumn Binding="{Binding Enabled}" Header="〇" />
+
+				<DataGridTextColumn
+					Binding="{Binding Name}"
+					Header="{Binding DataContext.Translation.BGMPlayer_ColumnContent, Source={StaticResource Proxy}}"
+					IsReadOnly="True"
+					/>
+
+				<DataGridTextColumn
+					Width="*"
+					Binding="{Binding Path}"
+					Header="{Binding DataContext.Translation.BGMPlayer_ColumnPath, Source={StaticResource Proxy}}"
+					IsReadOnly="True"
+					>
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+							<Setter Property="ToolTip" Value="{Binding Path}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.Translation.BGMPlayer_ColumnSetting, Source={StaticResource Proxy}}" IsReadOnly="True">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button
+								Command="{Binding DataContext.EditSoundHandleCommand, Source={StaticResource Proxy}}"
+								CommandParameter="{Binding}"
+								Content="{Binding DataContext.Translation.Edit, Source={StaticResource Proxy}}"
+								/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

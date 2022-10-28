@@ -18,6 +18,7 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
+using ElectronicObserver.Window.Settings.BGM;
 using ElectronicObserver.Window.Settings.Connection;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
@@ -201,6 +202,8 @@ public partial class App : Application
 			.AddSingleton<ConfigurationSubWindowTranslationViewModel>()
 			.AddSingleton<ConfigurationNotificationTranslationViewModel>()
 			.AddSingleton<ConfigurationNotificationBaseTranslationViewModel>()
+			.AddSingleton<ConfigurationBGMTranslationViewModel>()
+			.AddSingleton<SoundHandleEditTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
@@ -308,6 +311,11 @@ public partial class App : Application
 		tracker
 			.Configure<FleetImageGeneratorWindow>()
 			.Property(w => w.ViewModel.UseAlbumStatusName);
+
+		tracker
+			.Configure<ConfigurationWindow>()
+			.Property(w => w.ViewModel.BGM.ColumnProperties)
+			.Property(w => w.ViewModel.BGM.SortDescriptions);
 
 		return tracker;
 	}
