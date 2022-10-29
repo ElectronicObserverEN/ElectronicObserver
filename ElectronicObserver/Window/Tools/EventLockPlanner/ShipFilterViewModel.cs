@@ -32,6 +32,8 @@ public partial class ShipFilterViewModel : ObservableObject
 	public bool CanEquipFcf { get; set; }
 	public bool HasExpansionSlot { get; set; }
 	public string? NameFilter { get; set; } = "";
+	public bool IsSpeedFast { get; set; } = true;
+	public bool IsSpeedSlow { get; set; } = true;
 
 	public ShipFilterViewModel()
 	{
@@ -69,7 +71,9 @@ public partial class ShipFilterViewModel : ObservableObject
 		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
 		if (CanEquipFcf && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility)) return false;
 		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
-		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
+		if (!IsSpeedFast && (ship.MasterShip.Speed == 10)) return false;
+		if (!IsSpeedSlow && (ship.MasterShip.Speed == 5)) return false;
+			if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
 		// other filters
 
 		return true;
