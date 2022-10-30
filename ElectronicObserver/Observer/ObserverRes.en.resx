@@ -174,4 +174,19 @@
   <data name="DoingExercises" xml:space="preserve">
     <value>⚓ Doing PVP</value>
   </data>
+  <data name="APIObserverFailed" xml:space="preserve">
+    <value>APIObserver: 受信開始に失敗しました。</value>
+  </data>
+  <data name="ResponseRecieved" xml:space="preserve">
+    <value>Received response: </value>
+  </data>
+  <data name="Error201" xml:space="preserve">
+    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  </data>
+  <data name="ErrorFromServer" xml:space="preserve">
+    <value>Error code {0} was received from the server</value>
+  </data>
+  <data name="ErrorResponse" xml:space="preserve">
+    <value>There was an error while receiving the response.</value>
+  </data>
 </root>

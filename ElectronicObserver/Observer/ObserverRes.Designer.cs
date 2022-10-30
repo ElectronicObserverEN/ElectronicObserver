@@ -19,7 +19,7 @@ namespace ElectronicObserver.Observer {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ObserverRes {
@@ -79,6 +79,15 @@ namespace ElectronicObserver.Observer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to APIObserver: Failed to start observation..
+        /// </summary>
+        public static string APIObserverFailed {
+            get {
+                return ResourceManager.GetString("APIObserverFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装甲.
         /// </summary>
         public static string Armor {
@@ -111,6 +120,33 @@ namespace ElectronicObserver.Observer {
         public static string DoingExercises {
             get {
                 return ResourceManager.GetString("DoingExercises", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to エラーコード201が受信されました。これは、マクロ検出によって、または別のデバイスから艦これを起動することによってトリガーされる可能性があります。.
+        /// </summary>
+        public static string Error201 {
+            get {
+                return ResourceManager.GetString("Error201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 猫を検出しました。(エラーコード: {0} ).
+        /// </summary>
+        public static string ErrorFromServer {
+            get {
+                return ResourceManager.GetString("ErrorFromServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Responseの受信中にエラーが発生しました。.
+        /// </summary>
+        public static string ErrorResponse {
+            get {
+                return ResourceManager.GetString("ErrorResponse", resourceCulture);
             }
         }
         
@@ -210,6 +246,15 @@ namespace ElectronicObserver.Observer {
         public static string RepairingShips {
             get {
                 return ResourceManager.GetString("RepairingShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Responseを受信しました : .
+        /// </summary>
+        public static string ResponseRecieved {
+            get {
+                return ResourceManager.GetString("ResponseRecieved", resourceCulture);
             }
         }
         
