@@ -1,14 +1,14 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace ElectronicObserver.Window.Settings.Notification;
+namespace ElectronicObserver.Common;
 
-public class FlagEnumWrapper : ObservableObject
+public class CheckBoxEnumViewModel : ObservableObject
 {
 	public Enum Value { get; }
 	public bool IsChecked { get; set; }
 
-	public FlagEnumWrapper(Enum value)
+	public CheckBoxEnumViewModel(Enum value)
 	{
 		Value = value;
 	}

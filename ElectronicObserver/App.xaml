@@ -290,6 +290,14 @@
 					</Trigger>
 				</ControlTemplate.Triggers>
 			</ControlTemplate>
+
+			<DataTemplate DataType="{x:Type common:CheckBoxEnumViewModel}">
+				<CheckBox
+					Margin="0 -5"
+					Content="{Binding Value, Converter={StaticResource EnumDisplayConverter}}"
+					IsChecked="{Binding IsChecked}"
+					/>
+			</DataTemplate>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

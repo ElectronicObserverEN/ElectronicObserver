@@ -67,9 +67,11 @@ public class FileService
 	/// <returns>Selected folder path or null if no path was selected.</returns>
 	public string? SelectFolder(string path)
 	{
+		string fullPath = Path.GetFullPath(path);
+
 		VistaFolderBrowserDialog dialog = new()
 		{
-			SelectedPath = path,
+			SelectedPath = fullPath,
 		};
 
 		return dialog.ShowDialog(MainWindow) switch

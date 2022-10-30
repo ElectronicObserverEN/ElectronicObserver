@@ -7,6 +7,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Common;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
@@ -22,7 +23,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 	private Configuration.ConfigurationData.ConfigNotifierBase Config { get; }
 	protected virtual NotifierBase NotifierBase { get; }
 
-	public List<FlagEnumWrapper> ClickFlags { get; }
+	public List<CheckBoxEnumViewModel> ClickFlags { get; }
 	public List<NotifierDialogAlignment> DialogAlignments { get; }
 
 	public bool IsEnabled { get; set; }
@@ -86,7 +87,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 		ClickFlags = Enum.GetValues<NotifierDialogClickFlags>()
 			.Where(f => f is not (NotifierDialogClickFlags.None or NotifierDialogClickFlags.HighestBit))
-			.Select(f => new FlagEnumWrapper(f))
+			.Select(f => new CheckBoxEnumViewModel(f))
 			.ToList();
 
 		DialogAlignments = Enum.GetValues<NotifierDialogAlignment>().ToList();
@@ -94,11 +95,11 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		Config = config;
 		NotifierBase = notifier;
 
-		foreach (FlagEnumWrapper clickFlag in ClickFlags)
+		foreach (CheckBoxEnumViewModel clickFlag in ClickFlags)
 		{
 			clickFlag.PropertyChanged += (sender, args) =>
 			{
-				if (args.PropertyName is not nameof(FlagEnumWrapper.IsChecked)) return;
+				if (args.PropertyName is not nameof(CheckBoxEnumViewModel.IsChecked)) return;
 				if (clickFlag.Value is not NotifierDialogClickFlags clickFlagValue) return;
 
 				ClickFlag ^= clickFlagValue;
@@ -145,7 +146,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		ForeColor = Color.FromArgb(NotifierBase.DialogData.ForeColor.A, NotifierBase.DialogData.ForeColor.R, NotifierBase.DialogData.ForeColor.G, NotifierBase.DialogData.ForeColor.B);
 		BackColor = Color.FromArgb(NotifierBase.DialogData.BackColor.A, NotifierBase.DialogData.BackColor.R, NotifierBase.DialogData.BackColor.G, NotifierBase.DialogData.BackColor.B);
 
-		foreach (FlagEnumWrapper clickFlag in ClickFlags)
+		foreach (CheckBoxEnumViewModel clickFlag in ClickFlags)
 		{
 			clickFlag.IsChecked = ClickFlag.HasFlag(clickFlag.Value);
 		}

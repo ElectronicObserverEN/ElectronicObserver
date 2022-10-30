@@ -1,0 +1,80 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.SubWindow.Headquarters.ConfigurationHeadquartersUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:data="clr-namespace:ElectronicObserver.Data"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Headquarters"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationHeadquartersViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type data:UseItemMaster}">
+			<TextBlock Text="{Binding NameTranslated}" />
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<CheckBox
+			Grid.Row="0"
+			Grid.Column="0"
+			Grid.ColumnSpan="2"
+			Content="{Binding Translation.BlinkAtMaximum}"
+			IsChecked="{Binding BlinkAtMaximum}"
+			/>
+
+		<TextBlock
+			Grid.Row="1"
+			Grid.Column="0"
+			Text="{Binding Translation.Show}"
+			/>
+
+		<StackPanel
+			Grid.Row="1"
+			Grid.Column="1"
+			Orientation="Horizontal"
+			>
+			<TextBlock Text="{Binding Translation.OtherItem}" />
+
+			<ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+				<ComboBox.Style>
+					<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+						<Setter Property="IsEnabled" Value="True" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Items.Count}" Value="0">
+								<Setter Property="IsEnabled" Value="False" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ComboBox.Style>
+			</ComboBox>
+		</StackPanel>
+
+		<ItemsControl
+			Grid.Row="2"
+			Grid.Column="0"
+			Grid.ColumnSpan="2"
+			ItemsSource="{Binding ItemVisibilities}"
+			>
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel Orientation="Vertical" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+	</Grid>
+</UserControl>

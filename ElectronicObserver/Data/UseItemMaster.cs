@@ -90,9 +90,9 @@ public class UseItemMaster : ResponseWrapper, IIdentifiable
 		UseItemId.NewModelArmamentMaterials => Properties.Window.FormHeadQuarters.ItemNameNewModelArmamentMaterials,
 		UseItemId.SubmarineSupplyMaterials => Properties.Window.FormHeadQuarters.ItemNameSubmarineSupplyMaterials,
 		UseItemId.Pumpkin => Properties.Window.FormHeadQuarters.Pumpkin,
-_ => Name,
+		_ => Name,
 	};
-		
+
 
 	/// <summary>
 	/// アイテム名

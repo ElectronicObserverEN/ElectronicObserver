@@ -25,6 +25,17 @@ using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.Notification;
 using ElectronicObserver.Window.Settings.Notification.Base;
 using ElectronicObserver.Window.Settings.SubWindow;
+using ElectronicObserver.Window.Settings.SubWindow.AirBase;
+using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
+using ElectronicObserver.Window.Settings.SubWindow.Browser;
+using ElectronicObserver.Window.Settings.SubWindow.Combat;
+using ElectronicObserver.Window.Settings.SubWindow.Compass;
+using ElectronicObserver.Window.Settings.SubWindow.Dock;
+using ElectronicObserver.Window.Settings.SubWindow.Fleet;
+using ElectronicObserver.Window.Settings.SubWindow.Group;
+using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
+using ElectronicObserver.Window.Settings.SubWindow.Json;
+using ElectronicObserver.Window.Settings.SubWindow.Quest;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -204,6 +215,17 @@ public partial class App : Application
 			.AddSingleton<ConfigurationNotificationBaseTranslationViewModel>()
 			.AddSingleton<ConfigurationBGMTranslationViewModel>()
 			.AddSingleton<SoundHandleEditTranslationViewModel>()
+			.AddSingleton<ConfigurationFleetTranslationViewModel>()
+			.AddSingleton<ConfigurationArsenalTranslationViewModel>()
+			.AddSingleton<ConfigurationDockTranslationViewModel>()
+			.AddSingleton<ConfigurationHeadquartersTranslationViewModel>()
+			.AddSingleton<ConfigurationCompassTranslationViewModel>()
+			.AddSingleton<ConfigurationQuestTranslationViewModel>()
+			.AddSingleton<ConfigurationGroupTranslationViewModel>()
+			.AddSingleton<ConfigurationCombatTranslationViewModel>()
+			.AddSingleton<ConfigurationBrowserTranslationViewModel>()
+			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
+			.AddSingleton<ConfigurationJsonTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

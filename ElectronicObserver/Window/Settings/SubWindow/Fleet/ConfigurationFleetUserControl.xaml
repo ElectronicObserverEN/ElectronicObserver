@@ -1,0 +1,187 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.SubWindow.Fleet.ConfigurationFleetUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:control="clr-namespace:ElectronicObserver.Window.Control"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationFleetViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type local:FleetStateDisplayMode}">
+			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type local:AirSuperiorityMethod}">
+			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type control:LevelVisibilityFlag}">
+			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<StackPanel>
+		<CheckBox Content="{Binding Translation.FormFleet_ShowAircraft}" IsChecked="{Binding ShowAircraft}" />
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.FleetStatus}" />
+			<ComboBox ItemsSource="{Binding FleetStateDisplayModes}" SelectedItem="{Binding FleetStateDisplayMode}" />
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.AirSuperiorityMethod}" />
+			<ComboBox ItemsSource="{Binding AirSuperiorityMethods}" SelectedItem="{Binding AirSuperiorityMethod}" />
+		</StackPanel>
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="0"
+				Content="{Binding Translation.FormFleet_IsScrollable}"
+				IsChecked="{Binding IsScrollable}"
+				ToolTip="{Binding Translation.FormFleet_IsScrollableToolTip}"
+				/>
+
+			<StackPanel
+				Grid.Row="0"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Orientation="Horizontal"
+				>
+				<TextBlock Text="{Binding Translation.EquipmentLevelDisplay}" />
+				<ComboBox
+					ItemsSource="{Binding LevelVisibilityFlags}"
+					SelectedItem="{Binding EquipmentLevelVisibility}"
+					ToolTip="{Binding Translation.FormFleet_EquipmentLevelVisibilityToolTip}"
+					/>
+			</StackPanel>
+
+			<CheckBox
+				Grid.Row="1"
+				Grid.Column="0"
+				Content="{Binding Translation.FormFleet_FixShipNameWidth}"
+				IsChecked="{Binding FixShipNameWidth}"
+				ToolTip="{Binding Translation.FormFleet_FixedShipNameWidthToolTip}"
+				/>
+
+			<controls:NumberBox
+				Grid.Row="1"
+				Grid.Column="1"
+				HorizontalAlignment="Left"
+				IsEnabled="{Binding FixShipNameWidth}"
+				Minimum="0"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding FixedShipNameWidth}"
+				/>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="0"
+				Content="{Binding Translation.FormFleet_ShortenHPBar}"
+				IsChecked="{Binding ShortenHPBar}"
+				ToolTip="{Binding Translation.ShortenHPHint}"
+				/>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="1"
+				Content="{Binding Translation.FormFleet_ShowAnchorageRepairingTimer}"
+				IsChecked="{Binding ShowAnchorageRepairingTimer}"
+				ToolTip="{Binding Translation.FormFleet_ShowAnchorageRepairingTimerToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="2"
+				Content="{Binding Translation.FormFleet_BlinkAtDamaged}"
+				IsChecked="{Binding BlinkAtDamaged}"
+				ToolTip="{Binding Translation.FormFleet_BlinkAtDamagedToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="3"
+				Grid.Column="0"
+				Content="{Binding Translation.FormFleet_ShowNextExp}"
+				IsChecked="{Binding ShowNextExp}"
+				ToolTip="{Binding Translation.FormFleet_ShowNextExpToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="3"
+				Grid.Column="1"
+				Content="{Binding Translation.FormFleet_ReflectAnchorageRepairHealing}"
+				IsChecked="{Binding ReflectAnchorageRepairHealing}"
+				ToolTip="{Binding Translation.FormFleet_ReflectAnchorageRepairHealingToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="3"
+				Grid.Column="2"
+				Content="{Binding Translation.FormFleet_EmphasizesSubFleetInPort}"
+				IsChecked="{Binding EmphasizesSubFleetInPort}"
+				ToolTip="{Binding Translation.FormFleet_EmphasizesSubFleetInPortToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="4"
+				Grid.Column="0"
+				Content="{Binding Translation.FormFleet_ShowConditionIcon}"
+				IsChecked="{Binding ShowConditionIcon}"
+				ToolTip="{Binding Translation.FormFleet_ShowConditionIconToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="4"
+				Grid.Column="1"
+				Content="{Binding Translation.FormFleet_BlinkAtCompletion}"
+				IsChecked="{Binding BlinkAtCompletion}"
+				ToolTip="{Binding Translation.FormFleet_BlinkAtCompletionToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="4"
+				Grid.Column="2"
+				Content="{Binding Translation.FormFleet_AppliesSallyAreaColor}"
+				IsChecked="{Binding AppliesSallyAreaColor}"
+				ToolTip="{Binding Translation.FormFleet_AppliesSallyAreaColorToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="5"
+				Grid.Column="0"
+				Content="{Binding Translation.FormFleet_ShowAirSuperiorityRange}"
+				IsChecked="{Binding ShowAirSuperiorityRange}"
+				ToolTip="{Binding Translation.FormFleet_ShowAirSuperiorityRangeToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="5"
+				Grid.Column="1"
+				Content="{Binding Translation.FormFleet_ShowAircraftLevelByNumber}"
+				IsChecked="{Binding ShowAircraftLevelByNumber}"
+				ToolTip="{Binding Translation.FormFleet_ShowAircraftLevelByNumberToolTip}"
+				/>
+		</Grid>
+	</StackPanel>
+</UserControl>

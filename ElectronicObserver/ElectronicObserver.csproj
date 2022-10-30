@@ -24,9 +24,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.1.12.1</AssemblyVersion>
-		<FileVersion>5.1.12.1</FileVersion>
-		<Version>5.1.12.1</Version>
+		<AssemblyVersion>5.1.12.2</AssemblyVersion>
+		<FileVersion>5.1.12.2</FileVersion>
+		<Version>5.1.12.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -323,6 +323,11 @@
 		</Compile>
 		<Compile Update="Window\Control\WindowCaptureButton.cs">
 			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="Window\Dialog\ConfigRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ConfigRes.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Dialog\DialogExpeditionCheck.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -682,6 +687,10 @@
 		<EmbeddedResource Update="Properties\Window\FormWindowCapture.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>FormWindowCapture.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\ConfigRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
 			<Generator>ResXFileCodeGenerator</Generator>

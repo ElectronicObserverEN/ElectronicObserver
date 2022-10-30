@@ -154,4 +154,19 @@
   <data name="DoingExercises" xml:space="preserve">
     <value>⚓ 演習</value>
   </data>
+  <data name="APIObserverFailed" xml:space="preserve">
+    <value>APIObserver: Failed to start observation.</value>
+  </data>
+  <data name="ResponseRecieved" xml:space="preserve">
+    <value>Responseを受信しました : </value>
+  </data>
+  <data name="Error201" xml:space="preserve">
+    <value>エラーコード201が受信されました。これは、マクロ検出によって、または別のデバイスから艦これを起動することによってトリガーされる可能性があります。</value>
+  </data>
+  <data name="ErrorFromServer" xml:space="preserve">
+    <value>猫を検出しました。(エラーコード: {0} )</value>
+  </data>
+  <data name="ErrorResponse" xml:space="preserve">
+    <value>Responseの受信中にエラーが発生しました。</value>
+  </data>
 </root>

@@ -2,25 +2,82 @@
 	x:Class="ElectronicObserver.Window.Settings.SubWindow.ConfigurationSubWindowUserControl"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:airBase="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.AirBase"
+	xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Arsenal"
+	xmlns:browser="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Browser"
+	xmlns:combat="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Combat"
+	xmlns:compass="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Compass"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:dock="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Dock"
+	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
+	xmlns:group="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Group"
+	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Headquarters"
+	xmlns:json="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Json"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:quest="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Quest"
 	d:DataContext="{d:DesignInstance local:ConfigurationSubWindowViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type fleet:ConfigurationFleetViewModel}">
+			<fleet:ConfigurationFleetUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type arsenal:ConfigurationArsenalViewModel}">
+			<arsenal:ConfigurationArsenalUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type dock:ConfigurationDockViewModel}">
+			<dock:ConfigurationDockUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type headquarters:ConfigurationHeadquartersViewModel}">
+			<headquarters:ConfigurationHeadquartersUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type compass:ConfigurationCompassViewModel}">
+			<compass:ConfigurationCompassUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type quest:ConfigurationQuestViewModel}">
+			<quest:ConfigurationQuestUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type group:ConfigurationGroupViewModel}">
+			<group:ConfigurationGroupUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type combat:ConfigurationCombatViewModel}">
+			<combat:ConfigurationCombatUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type browser:ConfigurationBrowserViewModel}">
+			<browser:ConfigurationBrowserUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type airBase:ConfigurationAirBaseViewModel}">
+			<airBase:ConfigurationAirBaseUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type json:ConfigurationJsonViewModel}">
+			<json:ConfigurationJsonUserControl />
+		</DataTemplate>
+	</UserControl.Resources>
+
 	<TabControl>
-		<TabItem Header="{Binding Translation.Fleet}" />
-		<TabItem Header="{Binding Translation.Arsenal}" />
-		<TabItem Header="{Binding Translation.Dock}" />
-		<TabItem Header="{Binding Translation.HQ}" />
-		<TabItem Header="{Binding Translation.Compass}" />
-		<TabItem Header="{Binding Translation.Quests}" />
-		<TabItem Header="{Binding Translation.Group}" />
-		<TabItem Header="{Binding Translation.Combat}" />
-		<TabItem Header="{Binding Translation.Browser}" />
-		<TabItem Header="{Binding Translation.AB}" />
-		<TabItem Header="{Binding Translation.JSON}" />
+		<TabItem Content="{Binding Fleet}" Header="{Binding Translation.Fleet}" />
+		<TabItem Content="{Binding Arsenal}" Header="{Binding Translation.Arsenal}" />
+		<TabItem Content="{Binding Dock}" Header="{Binding Translation.Dock}" />
+		<TabItem Content="{Binding Headquarters}" Header="{Binding Translation.HQ}" />
+		<TabItem Content="{Binding Compass}" Header="{Binding Translation.Compass}" />
+		<TabItem Content="{Binding Quest}" Header="{Binding Translation.Quests}" />
+		<TabItem Content="{Binding Group}" Header="{Binding Translation.Group}" />
+		<TabItem Content="{Binding Combat}" Header="{Binding Translation.Combat}" />
+		<TabItem Content="{Binding Browser}" Header="{Binding Translation.Browser}" />
+		<TabItem Content="{Binding AirBase}" Header="{Binding Translation.AB}" />
+		<TabItem Content="{Binding Json}" Header="{Binding Translation.JSON}" />
 	</TabControl>
 </UserControl>

@@ -1,0 +1,245 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.SubWindow.Browser.ConfigurationBrowserUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Browser"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationBrowserViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<DataTemplate DataType="local:ScreenshotSaveMode">
+			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type local:DockStyle}">
+			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="0"
+				Content="{Binding Translation.EnableBrowser}"
+				IsChecked="{Binding IsEnabled}"
+				/>
+
+			<StackPanel
+				Grid.Row="1"
+				Grid.Column="0"
+				Orientation="Horizontal"
+				>
+				<TextBlock Text="{Binding Translation.Zoom}" />
+
+				<controls:NumberBox
+					Maximum="1000"
+					Minimum="10"
+					SpinButtonPlacementMode="Inline"
+					Value="{Binding ZoomRate}"
+					/>
+
+				<TextBlock Text="%" />
+			</StackPanel>
+
+			<CheckBox
+				Grid.Row="1"
+				Grid.Column="1"
+				Content="{Binding Translation.FormBrowser_ZoomFit}"
+				IsChecked="{Binding ZoomFit}"
+				ToolTip="{Binding Translation.FitHint}"
+				/>
+
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="2"
+				Content="{Binding Translation.FormBrowser_ConfirmAtRefresh}"
+				IsChecked="{Binding ConfirmAtRefresh}"
+				ToolTip="{Binding Translation.FormBrowser_ConfirmAtRefreshToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="1"
+				Grid.Column="2"
+				Content="{Binding Translation.FormBrowser_AppliesStyleSheet}"
+				IsChecked="{Binding AppliesStyleSheet}"
+				ToolTip="{Binding Translation.ApplyStyleSheetHint}"
+				/>
+
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="3"
+				Content="{Binding Translation.FormBrowser_UseGadgetRedirect}"
+				IsChecked="{Binding UseGadgetRedirect}"
+				ToolTip="{Binding Translation.FormBrowser_UseGadgetRedirectToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="1"
+				Grid.Column="3"
+				Content="{Binding Translation.FormBrowser_IsContextMenuEnabled}"
+				IsChecked="{Binding IsBrowserContextMenuEnabled}"
+				ToolTip="{Binding Translation.FormBrowser_ShowContextMenuToolTip}"
+				/>
+		</Grid>
+
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Grid.Column="0" Text="{Binding Translation.LoginURL}" />
+
+			<TextBox Grid.Column="1" Text="{Binding LogInPageURL}" />
+		</Grid>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.ToolMenuDockStyle}" />
+
+			<ComboBox ItemsSource="{Binding DockStyles}" SelectedItem="{Binding ToolMenuDockStyle}" />
+
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_IsDMMreloadDialogDestroyable}"
+				IsChecked="{Binding IsDMMreloadDialogDestroyable}"
+				ToolTip="{Binding Translation.FormBrowser_IsDMMreloadDialogDestroyableToolTip}"
+				/>
+		</StackPanel>
+
+		<GroupBox Grid.Row="3" Header="{Binding Translation.Screenshot}">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<StackPanel
+					Grid.Row="0"
+					Grid.Column="0"
+					Grid.ColumnSpan="3"
+					Orientation="Horizontal"
+					>
+					<ItemsControl ItemsSource="{Binding ScreenshotFormats}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+
+						<ItemsControl.ItemTemplate>
+							<DataTemplate DataType="{x:Type common:CheckBoxEnumViewModel}">
+								<RadioButton
+									MinWidth="0"
+									Margin="4 0"
+									Padding="2 0"
+									VerticalContentAlignment="Center"
+									Content="{Binding Value}"
+									IsChecked="{Binding IsChecked}"
+									/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+
+					<CheckBox
+						Content="{Binding Translation.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration}"
+						IsChecked="{Binding AvoidTwitterDeterioration}"
+						ToolTip="{Binding Translation.FormBrowser_ScreenShotFormat_AvoidTwitterDeteriorationToolTip}"
+						/>
+
+					<TextBlock Text="{Binding Translation.Output}" />
+					<ComboBox ItemsSource="{Binding ScreenshotSaveModes}" SelectedItem="{Binding ScreenShotSaveMode}" />
+				</StackPanel>
+
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Text="{Binding Translation.SaveLocation}"
+					/>
+
+				<TextBox
+					Grid.Row="1"
+					Grid.Column="1"
+					Text="{Binding ScreenShotPath}"
+					/>
+
+				<Button
+					Grid.Row="1"
+					Grid.Column="2"
+					Command="{Binding SelectScreenshotFolderCommand}"
+					Content="..."
+					/>
+			</Grid>
+		</GroupBox>
+
+		<WrapPanel Grid.Row="4" Orientation="Vertical">
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_HardwareAccelerationEnabled}"
+				IsChecked="{Binding HardwareAccelerationEnabled}"
+				ToolTip="{Binding Translation.FormBrowser_HardwareAccelerationEnabledToolTip}"
+				/>
+
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_PreserveDrawingBuffer}"
+				IsChecked="{Binding PreserveDrawingBuffer}"
+				ToolTip="{Binding Translation.FormBrowser_PreserveDrawingBufferToolTip}"
+				/>
+
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_ForceColorProfile}"
+				IsChecked="{Binding ForceColorProfile}"
+				ToolTip="{Binding Translation.FormBrowser_ForceColorProfileToolTip}"
+				/>
+
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_SavesBrowserLog}"
+				IsChecked="{Binding SavesBrowserLog}"
+				ToolTip="{Binding Translation.FormBrowser_SavesBrowserLogTooltip}"
+				/>
+
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_UseVulkanWorkaround}"
+				IsChecked="{Binding UseVulkanWorkaround}"
+				ToolTip="{Binding Translation.FormBrowser_UseVulkanWorkaroundToolTip}"
+				/>
+		</WrapPanel>
+
+		<TextBlock
+			Grid.Row="5"
+			Foreground="Red"
+			Text="{Binding Translation.RestartNotice}"
+			/>
+	</Grid>
+</UserControl>

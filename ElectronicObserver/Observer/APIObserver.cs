@@ -771,7 +771,7 @@ public sealed class APIObserver
 		catch (Exception ex)
 		{
 
-			Utility.Logger.Add(3, "APIObserver: Failed to start observation. " + ex.Message);
+			Utility.Logger.Add(3, ObserverRes.APIObserverFailed + ex.Message);
 			ProxyPort = 0;
 		}
 
@@ -1049,7 +1049,7 @@ public sealed class APIObserver
 		try
 		{
 
-			Utility.Logger.Add(1, "Received response: " + shortpath);
+			Utility.Logger.Add(1, ObserverRes.ResponseRecieved + shortpath);
 
 			SystemEvents.UpdateTimerEnabled = false;
 
@@ -1062,12 +1062,11 @@ public sealed class APIObserver
 				if (result == 201)
 				{
 					Utility.Logger.Add(3,
-						"Error code 201 was received. It may be triggered by macro detection " +
-						"or by starting KanColle from another device.");
+						ObserverRes.Error201);
 				}
 				else
 				{
-					throw new InvalidOperationException($"Error code {result} was received from the server.");
+					throw new InvalidOperationException(string.Format(ObserverRes.ErrorFromServer,result));
 				}
 			}
 
@@ -1099,7 +1098,7 @@ public sealed class APIObserver
 		{
 
 			ErrorReporter.SendErrorReport(ex,
-				"There was an error while receiving the response.",
+				ObserverRes.ErrorResponse,
 				shortpath, data);
 
 		}

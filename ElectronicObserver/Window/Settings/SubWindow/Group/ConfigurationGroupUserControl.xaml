@@ -1,0 +1,37 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.SubWindow.Group.ConfigurationGroupUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Group"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationGroupViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type local:ShipNameSortMethod}">
+			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+		</DataTemplate>
+	</UserControl.Resources>
+	<StackPanel>
+		<CheckBox
+			Content="{Binding Translation.AutoUpdate}"
+			IsChecked="{Binding AutoUpdate}"
+			ToolTip="{Binding Translation.AutoUpdateHint}"
+			/>
+
+		<CheckBox
+			Content="{Binding Translation.FormShipGroup_ShowStatusBar}"
+			IsChecked="{Binding ShowStatusBar}"
+			ToolTip="{Binding Translation.ShowStatusbarHint}"
+			/>
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.ShipNameSortMethod}" />
+
+			<ComboBox ItemsSource="{Binding ShipNameSortMethods}" SelectedItem="{Binding ShipNameSortMethod}" />
+		</StackPanel>
+	</StackPanel>
+</UserControl>

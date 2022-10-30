@@ -1,4 +1,8 @@
-﻿namespace ElectronicObserver.Window.Control;
+﻿using System.ComponentModel.DataAnnotations;
+using ElectronicObserver.Window.Dialog;
+using DialogConfiguration = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
+
+namespace ElectronicObserver.Window.Control;
 
 /// <summary>
 /// 装備改修レベル・艦載機熟練度の表示フラグ
@@ -7,23 +11,30 @@ public enum LevelVisibilityFlag
 {
 
 	/// <summary> 非表示 </summary>
+	[Display(ResourceType = typeof(ConfigRes), Name = "EquipmentLevelVisibility_Hidden")]
 	Invisible,
 
 	/// <summary> 改修レベルのみ </summary>
+	[Display(ResourceType = typeof(ConfigRes), Name = "EquipmentLevelVisibility_ImprovOnly")]
 	LevelOnly,
 
 	/// <summary> 艦載機熟練度のみ </summary>
+	[Display(ResourceType = typeof(ConfigRes), Name = "EquipmentLevelVisibility_ProfOnly")]
 	AircraftLevelOnly,
 
 	/// <summary> 改修レベル優先 </summary>
+	[Display(ResourceType = typeof(ConfigRes), Name = "EquipmentLevelVisibility_ImprovPrio")]
 	LevelPriority,
 
 	/// <summary> 艦載機熟練度優先 </summary>
+	[Display(ResourceType = typeof(ConfigRes), Name = "EquipmentLevelVisibility_ProfPrio")]
 	AircraftLevelPriority,
 
 	/// <summary> 両方表示 </summary>
+	[Display(ResourceType = typeof(ConfigRes), Name = "EquipmentLevelVisibility_Both")]
 	Both,
 
 	/// <summary> 両方表示(艦載機熟練度はアイコンにオーバーレイする) </summary>
+	[Display(ResourceType = typeof(DialogConfiguration), Name = "EquipmentLevelVisibility_OverlayProficiency")]
 	AircraftLevelOverlay,
 }
