@@ -72,8 +72,8 @@
 			</ItemsControl.ItemsPanel>
 		</ItemsControl>
 
-		<StackPanel Grid.Row="1">
-			<ItemsControl ItemsSource="{Binding Filters.TypeFilters}">
+		<StackPanel Grid.Row="1" DataContext="{Binding Filters}">
+			<ItemsControl ItemsSource="{Binding TypeFilters}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
 						<WrapPanel Orientation="Horizontal" />
@@ -89,7 +89,7 @@
 			<TextBox
 				Width="300"
 				HorizontalAlignment="Left"
-				Text="{Binding Filters.NameFilter, UpdateSourceTrigger=PropertyChanged}"
+				Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
 				/>
 		</StackPanel>
 

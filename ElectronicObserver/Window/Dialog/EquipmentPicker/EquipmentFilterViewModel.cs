@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
@@ -11,14 +13,18 @@ public partial class EquipmentFilterViewModel : ObservableObject
 {
 	public List<Filter> TypeFilters { get; }
 
+	private TransliterationService TransliterationService { get; }
+
 	public string? NameFilter { get; set; } = "";
 
 	public EquipmentFilterViewModel()
 	{
+		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
+
 		TypeFilters = Enum.GetValues<EquipmentTypeGroup>()
 			.Select(t => new Filter(t)
 			{
-				IsChecked = true,
+				IsChecked = false,
 			})
 			.ToList();
 
@@ -36,27 +42,8 @@ public partial class EquipmentFilterViewModel : ObservableObject
 			.ToList();
 
 		if (!enabledFilters.Contains(equipment.MasterEquipment.CategoryType)) return false;
-		if (!string.IsNullOrEmpty(NameFilter) && !equipment.MasterEquipment.NameEN.ToUpper().Contains(NameFilter.ToUpper())) return false;
+		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment.MasterEquipment, NameFilter)) return false;
 
 		return true;
-	}
-
-	[ICommand]
-	private void ToggleEquipmentTypes()
-	{
-		if (TypeFilters.All(f => f.IsChecked))
-		{
-			foreach (Filter typeFilter in TypeFilters)
-			{
-				typeFilter.IsChecked = false;
-			}
-		}
-		else
-		{
-			foreach (Filter typeFilter in TypeFilters)
-			{
-				typeFilter.IsChecked = true;
-			}
-		}
 	}
 }
