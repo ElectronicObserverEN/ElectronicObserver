@@ -61,7 +61,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 対潜水.
         /// </summary>
         public static string ASWGears {
             get {
@@ -70,7 +70,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 爆撃機.
         /// </summary>
         public static string Bomber {
             get {
@@ -79,7 +79,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 戦闘機.
         /// </summary>
         public static string Fighter {
             get {
@@ -88,7 +88,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 主砲.
         /// </summary>
         public static string MainGun {
             get {
@@ -97,7 +97,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 他.
         /// </summary>
         public static string Others {
             get {
@@ -106,7 +106,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 電探.
         /// </summary>
         public static string Radar {
             get {
@@ -115,7 +115,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 偵察機.
         /// </summary>
         public static string SeaplanesAndRecons {
             get {
@@ -124,7 +124,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 副砲.
         /// </summary>
         public static string Secondary {
             get {
@@ -133,7 +133,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 魚雷.
         /// </summary>
         public static string Torpedo {
             get {
@@ -142,7 +142,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 攻撃機.
         /// </summary>
         public static string TorpedoBomber {
             get {
@@ -151,7 +151,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 輸送.
         /// </summary>
         public static string Transport {
             get {

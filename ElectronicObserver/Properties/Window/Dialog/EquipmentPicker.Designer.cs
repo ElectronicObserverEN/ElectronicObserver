@@ -61,7 +61,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 装備ピッカー.
         /// </summary>
         public static string Title {
             get {
