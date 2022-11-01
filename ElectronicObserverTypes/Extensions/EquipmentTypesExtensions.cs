@@ -32,15 +32,12 @@ public static class EquipmentTypesExtensions
 		EquipmentTypeGroup.Fighter => new[]
 		{
 			EquipmentTypes.CarrierBasedFighter,
-			EquipmentTypes.Interceptor,
 			EquipmentTypes.JetFighter,
 		},
 
 		EquipmentTypeGroup.Bomber => new[]
 		{
 			EquipmentTypes.CarrierBasedBomber,
-			EquipmentTypes.LandBasedAttacker,
-			EquipmentTypes.HeavyBomber,
 			EquipmentTypes.JetBomber,
 		},
 
@@ -48,6 +45,17 @@ public static class EquipmentTypesExtensions
 		{
 			EquipmentTypes.CarrierBasedTorpedo,
 			EquipmentTypes.JetTorpedo,
+		},
+
+		EquipmentTypeGroup.LandBasedFighters => new[]
+		{
+			EquipmentTypes.Interceptor,
+		},
+
+		EquipmentTypeGroup.LandBasedBombers => new[]
+		{
+			EquipmentTypes.LandBasedAttacker,
+			EquipmentTypes.HeavyBomber,
 		},
 
 		EquipmentTypeGroup.SeaplaneAndRecons => new[]
@@ -127,16 +135,18 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.SubmarineTorpedo => EquipmentTypeGroup.Torpedo,
 
 		EquipmentTypes.CarrierBasedFighter => EquipmentTypeGroup.Fighter,
-		EquipmentTypes.Interceptor => EquipmentTypeGroup.Fighter,
 		EquipmentTypes.JetFighter => EquipmentTypeGroup.Fighter,
 
 		EquipmentTypes.CarrierBasedBomber => EquipmentTypeGroup.Bomber,
-		EquipmentTypes.LandBasedAttacker => EquipmentTypeGroup.Bomber,
-		EquipmentTypes.HeavyBomber => EquipmentTypeGroup.Bomber,
 		EquipmentTypes.JetBomber => EquipmentTypeGroup.Bomber,
 
 		EquipmentTypes.CarrierBasedTorpedo => EquipmentTypeGroup.TorpedoBomber,
 		EquipmentTypes.JetTorpedo => EquipmentTypeGroup.TorpedoBomber,
+
+		EquipmentTypes.Interceptor => EquipmentTypeGroup.LandBasedFighters,
+
+		EquipmentTypes.LandBasedAttacker => EquipmentTypeGroup.LandBasedBombers,
+		EquipmentTypes.HeavyBomber => EquipmentTypeGroup.LandBasedBombers,
 
 		EquipmentTypes.CarrierBasedRecon => EquipmentTypeGroup.SeaplaneAndRecons,
 		EquipmentTypes.SeaplaneRecon => EquipmentTypeGroup.SeaplaneAndRecons,

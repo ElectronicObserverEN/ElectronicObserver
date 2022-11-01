@@ -21,7 +21,7 @@
 	>
 	<Window.Resources>
 
-		<DataTemplate x:Key="AircraftProficiencyTemplate" DataType="local:EquipmentPickerRow">
+		<DataTemplate x:Key="AircraftProficiencyTemplate" DataType="electronicObserverData:IEquipmentData">
 			<common:AircraftProficiency AircraftLevel="{Binding AircraftLevel}" />
 		</DataTemplate>
 
@@ -146,7 +146,7 @@
 
 				<DataGridTemplateColumn Width="Auto" SortMemberPath="IconType">
 					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate DataType="local:EquipmentListRow">
+						<DataTemplate>
 							<common:EquipmentIcon Type="{Binding MasterEquipment.IconTypeTyped}" />
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>

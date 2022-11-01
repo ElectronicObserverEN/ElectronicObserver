@@ -126,6 +126,12 @@
   <data name="Fighter" xml:space="preserve">
     <value>戦闘機</value>
   </data>
+  <data name="LandBasedBombers" xml:space="preserve">
+    <value>陸攻</value>
+  </data>
+  <data name="LandBasedFighters" xml:space="preserve">
+    <value>陸戦</value>
+  </data>
   <data name="MainGun" xml:space="preserve">
     <value>主砲</value>
   </data>

@@ -126,6 +126,12 @@
   <data name="Fighter" xml:space="preserve">
     <value>Fighter</value>
   </data>
+  <data name="LandBasedBombers" xml:space="preserve">
+    <value>Land based bomber</value>
+  </data>
+  <data name="LandBasedFighters" xml:space="preserve">
+    <value>Land based fighter</value>
+  </data>
   <data name="MainGun" xml:space="preserve">
     <value>Main gun</value>
   </data>

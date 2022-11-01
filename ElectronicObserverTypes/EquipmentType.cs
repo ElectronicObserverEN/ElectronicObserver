@@ -200,6 +200,12 @@ public enum EquipmentTypeGroup
 	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "TorpedoBomber")]
 	TorpedoBomber,
 
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "LandBasedFighters")]
+	LandBasedFighters,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "LandBasedBombers")]
+	LandBasedBombers,
+
 	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "SeaplanesAndRecons")]
 	SeaplaneAndRecons,
 
@@ -213,5 +219,5 @@ public enum EquipmentTypeGroup
 	Other,
 
 	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Transport")]
-	Transport = 10,
+	Transport,
 }

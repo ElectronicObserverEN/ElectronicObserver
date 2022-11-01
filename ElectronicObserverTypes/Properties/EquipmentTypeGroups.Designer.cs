@@ -88,6 +88,24 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 陸攻.
+        /// </summary>
+        public static string LandBasedBombers {
+            get {
+                return ResourceManager.GetString("LandBasedBombers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 陸戦.
+        /// </summary>
+        public static string LandBasedFighters {
+            get {
+                return ResourceManager.GetString("LandBasedFighters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 主砲.
         /// </summary>
         public static string MainGun {

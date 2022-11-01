@@ -21,10 +21,6 @@
 	>
 	<Window.Resources>
 
-		<DataTemplate x:Key="AircraftProficiencyTemplate" DataType="local:EquipmentPickerRow">
-			<common:AircraftProficiency AircraftLevel="{Binding AircraftLevel}" />
-		</DataTemplate>
-
 		<local:EquipmentPickerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
 		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
@@ -146,7 +142,7 @@
 
 				<DataGridTemplateColumn Width="Auto" SortMemberPath="IconType">
 					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate DataType="local:EquipmentListRow">
+						<DataTemplate>
 							<common:EquipmentIcon Type="{Binding MasterEquipment.IconTypeTyped}" />
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
