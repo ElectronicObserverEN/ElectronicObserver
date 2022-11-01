@@ -1,60 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 
 public partial class EquipmentPickerViewModel : WindowViewModelBase
 {
-	public List<Filter> TypeFilters { get; }
+	public EquipmentPickerTranslationViewModel Translations { get; set; } = new();
 
-	private List<EquipmentData> AllEquipments => KCDatabase.Instance.Equipments
+	public EquipmentFilterViewModel Filters { get; set; } = new();
+
+	private List<IEquipmentData> AllEquipments => KCDatabase.Instance.Equipments
 		.Values
-		.Cast<EquipmentData>()
-		.OrderBy(s => s.MasterID)
+		.Cast<IEquipmentData>()
 		.ToList();
 
-	public ObservableCollection<EquipmentGroup> EquipmentGroups { get; set; } = new();
+	public ObservableCollection<IEquipmentData> EquipmentsFiltered { get; set; } = new();
 
-	public EquipmentData? PickedEquipment { get; private set; }
+	public IEquipmentData? SelectedEquipment { get; set; }
 
 	public EquipmentPickerViewModel()
 	{
-		TypeFilters = Enum.GetValues<EquipmentTypeGroup>().Select(t => new Filter(t)).ToList();
-
-		foreach (Filter filter in TypeFilters)
-		{
-			filter.PropertyChanged += Filter_PropertyChanged;
-		}
+		RefreshList();
+		Filters.PropertyChanged += Filters_PropertyChanged;
 	}
 
-	[ICommand]
-	private void SelectEquipment(EquipmentData? equipment)
-	{
-		PickedEquipment = equipment;
-	}
+	private void RefreshList() => 	
+		EquipmentsFiltered = new(AllEquipments
+			.Where(s => Filters.MeetsFilterCondition(s))
+			.OrderBy(s => s.MasterEquipment.CategoryType)
+			.ThenBy(s => s.MasterID));
 
-	private void Filter_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private void Filters_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		List<EquipmentTypes> enabledFilters = TypeFilters
-			.Where(f => f.IsChecked)
-			.SelectMany(f => f.Value.ToTypes())
-			.ToList();
-
-		EquipmentGroups = new(AllEquipments
-			.Where(s => enabledFilters.Contains(s.MasterEquipment.CategoryType))
-			.GroupBy(s => s.MasterEquipment.CategoryType)
-			.Select(g => new EquipmentGroup
-			{
-				Id = g.Key,
-				Name = KCDatabase.Instance.EquipmentTypes[(int)g.Key].NameEN,
-				Equipments = g.ToList(),
-			}).ToList());
+		RefreshList();
 	}
 }

@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Window.Tools.DropRecordViewer;
-using ElectronicObserverTypes;
+﻿using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 /// <summary>
@@ -11,26 +9,13 @@ public partial class EquipmentPickerView
 	public EquipmentPickerView(EquipmentPickerViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
-
-		ViewModel.SelectEquipmentCommand.Execute(null);
-
-		ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-
-		Closing += EquipmentPicker_Closing;
 	}
 
-	private void EquipmentPicker_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
-	{
-		ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
-	}
+	public IEquipmentData? PickedEquipment { get; private set; }
 
-	private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private void EventSetter_OnHandler(object sender, System.Windows.Input.MouseButtonEventArgs e)
 	{
-		if (e.PropertyName is not nameof(ViewModel.PickedEquipment)) return;
-
-		PickedEquipment = ViewModel.PickedEquipment;
+		PickedEquipment = ViewModel.SelectedEquipment;
 		DialogResult = true;
 	}
-
-	public EquipmentData? PickedEquipment { get; private set; }
 }

@@ -20,6 +20,11 @@
 	mc:Ignorable="d"
 	>
 	<Window.Resources>
+
+		<DataTemplate x:Key="AircraftProficiencyTemplate" DataType="local:EquipmentPickerRow">
+			<common:AircraftProficiency AircraftLevel="{Binding AircraftLevel}" />
+		</DataTemplate>
+
 		<local:EquipmentPickerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
 		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
@@ -67,46 +72,112 @@
 			</ItemsControl.ItemsPanel>
 		</ItemsControl>
 
-		<ItemsControl Grid.Row="1" ItemsSource="{Binding TypeFilters}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<WrapPanel Orientation="Horizontal" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<CheckBox Content="{Binding Display}" IsChecked="{Binding IsChecked}" />
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
-
-		<ScrollViewer Grid.Row="2">
-			<ItemsControl ItemsSource="{Binding EquipmentGroups}">
+		<StackPanel Grid.Row="1">
+			<ItemsControl ItemsSource="{Binding Filters.TypeFilters}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
-						<VirtualizingStackPanel
-							CanHorizontallyScroll="False"
-							CanVerticallyScroll="True"
-							IsVirtualizing="True"
-							VirtualizationMode="Recycling"
-							/>
+						<WrapPanel Orientation="Horizontal" />
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<StackPanel>
-							<TextBlock Text="{Binding Name}" />
-							<ItemsControl ItemTemplate="{StaticResource EquipmentTemplate}" ItemsSource="{Binding Equipments}">
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<WrapPanel Orientation="Horizontal" />
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-							</ItemsControl>
-						</StackPanel>
+						<CheckBox Content="{Binding Display}" IsChecked="{Binding IsChecked}" />
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
-		</ScrollViewer>
+
+			<TextBox
+				Width="300"
+				HorizontalAlignment="Left"
+				Text="{Binding Filters.NameFilter, UpdateSourceTrigger=PropertyChanged}"
+				/>
+		</StackPanel>
+
+		<DataGrid
+			Grid.Row="2"
+			AutoGenerateColumns="False"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding EquipmentsFiltered}"
+			SelectedItem="{Binding SelectedEquipment}"
+			SelectionMode="Single"
+			VerticalScrollBarVisibility="Visible"
+			>
+
+			<DataGrid.RowStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
+					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
+				</Style>
+			</DataGrid.RowStyle>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="Padding" Value="5 0" />
+					<Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}" />
+					<Style.Triggers>
+						<Trigger Property="SortDirection" Value="{x:Null}">
+							<Setter Property="Padding" Value="5 0" />
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<ui:DataGridHelper.CheckBoxColumnElementStyle>
+				<Style BasedOn="{StaticResource DataGridReadOnlyCheckBoxStyle}" TargetType="CheckBox">
+					<Setter Property="Margin" Value="0" />
+					<Setter Property="Padding" Value="0" />
+					<Setter Property="HorizontalAlignment" Value="Center" />
+				</Style>
+			</ui:DataGridHelper.CheckBoxColumnElementStyle>
+
+			<ui:DataGridHelper.TextColumnElementStyle>
+				<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
+					<Setter Property="Padding" Value="5 0" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				</Style>
+			</ui:DataGridHelper.TextColumnElementStyle>
+
+			<DataGrid.Columns>
+
+				<DataGridTemplateColumn Width="Auto" SortMemberPath="IconType">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate DataType="local:EquipmentListRow">
+							<common:EquipmentIcon Type="{Binding MasterEquipment.IconTypeTyped}" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTextColumn
+					Binding="{Binding MasterEquipment.NameEN}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="ID"
+					/>
+
+				<DataGridTemplateColumn
+					Width="Auto"
+					CellTemplate="{StaticResource AircraftProficiencyTemplate}"
+					Header="{Binding DataContext.Translations.AircraftLevel, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Binding="{Binding Level, Mode=OneWay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.Translations.Level, Source={StaticResource Proxy}}"
+					/>
+
+
+			</DataGrid.Columns>
+
+
+		</DataGrid>
 	</Grid>
 </common:WindowBase>
