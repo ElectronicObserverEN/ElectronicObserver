@@ -39,5 +39,7 @@
 				Content="..."
 				/>
 		</Grid>
+		<Button Command="{Binding OpenEquipmentPickerCommand}" Content="Try equipment picker" />
+		<Button Command="{Binding OpenMasterEquipmentPickerCommand}" Content="Try master equipment picker" />
 	</StackPanel>
 </UserControl>

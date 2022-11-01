@@ -1,0 +1,1020 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyName>ElectronicObserver</AssemblyName>
+    <IntermediateOutputPath>obj\x64\Debug\</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>I:\MyGit\ElectronicObserver\ElectronicObserver\obj\</MSBuildProjectExtensionsPath>
+    <_TargetAssemblyProjectName>ElectronicObserver</_TargetAssemblyProjectName>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows7</TargetFramework>
+    <RuntimeFrameworkVersion>6.0.5</RuntimeFrameworkVersion>
+    <OutputType>WinExe</OutputType>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <Platforms>x64</Platforms>
+    <Nullable>enable</Nullable>
+    <SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>74eo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <StartupObject>ElectronicObserver.App</StartupObject>
+    <Title>Electronic Observer</Title>
+    <Description />
+    <Configuration />
+    <Company />
+    <Product>ElectronicObserver</Product>
+    <Copyright>Copyright ©  2014 Andante</Copyright>
+    <Trademark />
+    <Culture />
+    <AssemblyVersion>5.1.9.2</AssemblyVersion>
+    <FileVersion>5.1.9.2</FileVersion>
+    <Version>5.1.9.2</Version>
+    <AnalysisLevel>preview</AnalysisLevel>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="AvalonDockTesting\**" />
+    <EmbeddedResource Remove="AvalonDockTesting\**" />
+    <None Remove="AvalonDockTesting\**" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Data\ConstantsRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConstantsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Data\DataRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Data\FleetRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FleetRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Data\Quest\QuestTracking.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QuestTracking.resx</DependentUpon>
+    </Compile>
+    <Compile Update="LoggerRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoggerRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Notifier\NotifierRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NotifierRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Observer\ObserverRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ObserverRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Data\BattleRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BattleRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\ResourceRecord.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceRecord.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Utility\SoftwareInformation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SoftwareInformation.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogAlbumMasterEquipment.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogAlbumMasterEquipment.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogAlbumMasterShip.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogAlbumMasterShip.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogAlbumShipParameter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogAlbumShipParameter.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogAntiAirDefense.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogAntiAirDefense.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogBaseAirCorpsSimulation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogBaseAirCorpsSimulation.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogConfiguration.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogConfiguration.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogConfigurationNotifier.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogConfigurationNotifier.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogConstructionRecordViewer.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogConstructionRecordViewer.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogDevelopmentRecordViewer.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogDevelopmentRecordViewer.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogDropRecordViewer.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogDropRecordViewer.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogEquipmentList.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogEquipmentList.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogExpChecker.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogExpChecker.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogExpeditionCheck.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogExpeditionCheck.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogFleetImageGenerator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogFleetImageGenerator.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogLocalAPILoader2.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogLocalAPILoader2.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogResourceChart.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogResourceChart.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogShipGraphicViewer.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogShipGraphicViewer.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogShipGroupColumnFilter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogShipGroupColumnFilter.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogShipGroupCSVOutput.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogShipGroupCSVOutput.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogShipGroupFilter.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogShipGroupSortOrder.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogShipGroupSortOrder.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogVersion.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogVersion.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\QuestTrackerManager.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QuestTrackerManager.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\Dialog\ShipPicker.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShipPicker.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormBaseAirCorps.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormBaseAirCorps.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormBattle.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormBattle.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormBrowserHost.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormBrowserHost.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormCompass.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormCompass.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormDock.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormDock.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormFleet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormFleet.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormFleetOverview.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormFleetOverview.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormFleetPreset.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormFleetPreset.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormHeadQuarters.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormHeadQuarters.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormInformation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormInformation.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormJson.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormJson.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormMain.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormMain.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormQuest.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormQuest.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormShipGroup.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormShipGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Window\FormWindowCapture.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormWindowCapture.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ViewModels\Translations\ImageTextControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\Control\FleetState.cs" />
+    <Compile Update="Window\Control\ImageLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Window\Control\ShipStatusEquipment.cs" />
+    <Compile Update="Window\Control\ShipStatusHP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Window\Control\WindowCaptureButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Window\Dialog\DialogExpeditionCheck.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogExpeditionCheck.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Window\Dialog\DialogRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Window\GeneralRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GeneralRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Window\Menus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Menus.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Window\Tools\AirControlSimulator\AirControlSimulator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AirControlSimulator.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Window\Tools\AutoRefresh\AutoRefresh.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AutoRefresh.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EventLockPlanner.resx</DependentUpon>
+    </Compile>
+    <None Include=".editorconfig" />
+    <None Update="Assets.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\ColorScheme.example.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\ColorScheme.Dark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="74eo.ico" />
+    <Content Include="Other\Information\apilist.txt" />
+    <Content Include="Other\Information\todo.txt" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <ProjectReference Include="..\ElectronicObserver.TestData\ElectronicObserver.TestData.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj" />
+    <ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
+    <ProjectReference Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+    <ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+    <PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
+    <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
+    <PackageReference Include="DotnetRuntimeBootstrapper" Version="2.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
+    <PackageReference Include="Jot" Version="2.1.13" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
+    <PackageReference Include="DynaJson" Version="2.2.0" />
+    <PackageReference Include="ScottPlot" Version="4.1.45" />
+    <PackageReference Include="ScottPlot.WPF" Version="4.1.45" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
+    <PackageReference Include="System.Management" Version="6.0.0" />
+    <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+    <PackageReference Include="Grpc" Version="2.41.0" />
+    <PackageReference Include="Grpc.Core" Version="2.41.0" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.41.0" />
+    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="MagicOnion" Version="3.0.13" />
+    <PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
+    <PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
+    <PackageReference Include="MessagePack" Version="2.3.85" />
+    <PackageReference Include="MessagePack.Annotations" Version="2.3.85" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+    <PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
+    <PackageReference Include="Titanium.Web.Proxy" Version="3.1.1397" />
+    <PackageReference Include="WanaKana-net" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Observer\kcsapi\api_start2.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Splashscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib.dll">
+      <Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Data\ConstantsRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Data\DataRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Data\FleetRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Data\Quest\QuestTracking.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LoggerRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoggerRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Notifier\NotifierRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Observer\ObserverRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ObserverRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Data\BattleRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BattleRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\ResourceRecord.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceRecord.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Utility\SoftwareInformation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SoftwareInformation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumMasterEquipment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogAlbumMasterEquipment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumMasterShip.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogAlbumMasterShip.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumShipParameter.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogAlbumShipParameter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogAntiAirDefense.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogAntiAirDefense.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogBaseAirCorpsSimulation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogBaseAirCorpsSimulation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogConfiguration.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogConfiguration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogConfigurationNotifier.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogConfigurationNotifier.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogConstructionRecordViewer.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogConstructionRecordViewer.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogDevelopmentRecordViewer.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogDevelopmentRecordViewer.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogDropRecordViewer.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogDropRecordViewer.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogEquipmentList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogEquipmentList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogExpChecker.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogExpChecker.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogExpeditionCheck.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogExpeditionCheck.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogFleetImageGenerator.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogFleetImageGenerator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogLocalAPILoader2.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogLocalAPILoader2.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogResourceChart.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogResourceChart.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGraphicViewer.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogShipGraphicViewer.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupColumnFilter.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogShipGroupColumnFilter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupCSVOutput.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogShipGroupCSVOutput.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogShipGroupFilter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupSortOrder.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogShipGroupSortOrder.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogVersion.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogVersion.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\QuestTrackerManager.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>QuestTrackerManager.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\ShipPicker.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShipPicker.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormBaseAirCorps.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormBaseAirCorps.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormBattle.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormBattle.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormBrowserHost.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormBrowserHost.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormCompass.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormCompass.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormDock.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormDock.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormFleet.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormFleet.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormFleetOverview.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormFleetOverview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormFleetPreset.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormFleetPreset.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormHeadQuarters.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormHeadQuarters.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormInformation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormInformation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormJson.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormJson.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormMain.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormMain.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormQuest.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormQuest.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormShipGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormShipGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\FormWindowCapture.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormWindowCapture.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogExpeditionCheck.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\Dialog\DialogRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\GeneralRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\Menus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\Tools\AirControlSimulator\AirControlSimulator.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\Tools\AutoRefresh\AutoRefresh.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AutoRefresh.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\Accessibility.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\dirkster.avalondock\4.60.0\lib\net5.0-windows7.0\AvalonDock.dll" />
+    <ReferencePath Include="I:\MyGit\ElectronicObserver\AvalonDock.Themes.VS2013\bin\x64\Debug\netcoreapp3.1\win-x64\AvalonDock.Themes.VS2013.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\portable.bouncycastle\1.8.8\lib\netstandard2.0\BouncyCastle.Crypto.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\brotlisharplib\0.3.3\lib\netstandard2.0\BrotliSharpLib.dll" />
+    <ReferencePath Include="I:\MyGit\ElectronicObserver\BrowserLibCore\bin\x64\Debug\netcoreapp3.1\BrowserLibCore.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\dirkster.colorpickerlib\1.6.2\lib\netcoreapp3.0\ColorPickerLib.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\communitytoolkit.mvvm\8.0.0-preview3\lib\net6.0\CommunityToolkit.Mvvm.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\controlzex\4.4.0\lib\netcoreapp3.1\ControlzEx.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\discordrichpresence\1.0.175\lib\netstandard2.0\DiscordRPC.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\dynajson\2.2.0\lib\netstandard2.0\DynaJson.dll" />
+    <ReferencePath Include="I:\MyGit\ElectronicObserver\ElectronicObserver.TestData\bin\x64\Debug\net6.0\ElectronicObserver.TestData.dll" />
+    <ReferencePath Include="I:\MyGit\ElectronicObserver\ElectronicObserverTypes\bin\Debug\net6.0\ElectronicObserverTypes.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\gong-wpf-dragdrop\3.0.0\lib\net6.0-windows7.0\GongSolutions.WPF.DragDrop.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\grpc.core.api\2.41.0\lib\netstandard2.0\Grpc.Core.Api.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\grpc.core\2.41.0\lib\netstandard2.0\Grpc.Core.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\jot\2.1.13\lib\netstandard2.0\Jot.dll" />
+    <ReferencePath Include="I:\MyGit\ElectronicObserver\KancolleProgress\bin\x64\Debug\net6.0-windows\KancolleProgress.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\log4net\2.0.12\lib\netstandard2.0\log4net.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\magiconion.abstractions\3.0.13\lib\netstandard2.0\MagicOnion.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\magiconion\3.0.13\lib\netstandard2.0\MagicOnion.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\magiconion.hosting\3.0.13\lib\netstandard2.1\MagicOnion.Hosting.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\mahapps.metro\2.4.9\lib\netcoreapp3.1\MahApps.Metro.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\messagepack.annotations\2.3.85\lib\netstandard2.0\MessagePack.Annotations.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\messagepack\2.3.85\lib\net5.0\MessagePack.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.appcenter.analytics\4.3.0\lib\netcoreapp3.0\Microsoft.AppCenter.Analytics.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.appcenter.crashes\4.3.0\lib\netcoreapp3.0\Microsoft.AppCenter.Crashes.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.appcenter\4.3.0\lib\netcoreapp3.0\Microsoft.AppCenter.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.bcl.asyncinterfaces\6.0.0\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.data.sqlite.core\6.0.4\lib\net6.0\Microsoft.Data.Sqlite.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.entityframeworkcore.abstractions\6.0.4\lib\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.entityframeworkcore\6.0.4\lib\net6.0\Microsoft.EntityFrameworkCore.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.entityframeworkcore.relational\6.0.4\lib\net6.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.entityframeworkcore.sqlite.core\6.0.4\lib\net6.0\Microsoft.EntityFrameworkCore.Sqlite.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.caching.abstractions\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.caching.memory\6.0.1\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.abstractions\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.binder\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.commandline\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.CommandLine.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.environmentvariables\6.0.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.fileextensions\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.json\6.0.0\lib\netstandard2.1\Microsoft.Extensions.Configuration.Json.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.configuration.usersecrets\6.0.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\6.0.0\lib\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.dependencyinjection\6.0.0\lib\net6.0\Microsoft.Extensions.DependencyInjection.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.dependencymodel\6.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyModel.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.fileproviders.abstractions\6.0.0\lib\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.fileproviders.physical\6.0.0\lib\net6.0\Microsoft.Extensions.FileProviders.Physical.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.filesystemglobbing\6.0.0\lib\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.hosting.abstractions\6.0.0\lib\netstandard2.1\Microsoft.Extensions.Hosting.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.hosting\6.0.1\lib\net6.0\Microsoft.Extensions.Hosting.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.0\lib\net6.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging.configuration\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Configuration.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging.console\6.0.0\lib\net6.0\Microsoft.Extensions.Logging.Console.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging.debug\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Debug.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging\6.0.0\lib\netstandard2.1\Microsoft.Extensions.Logging.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging.eventlog\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.EventLog.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.logging.eventsource\6.0.0\lib\net6.0\Microsoft.Extensions.Logging.EventSource.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.options.configurationextensions\6.0.0\lib\netstandard2.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.options\6.0.0\lib\netstandard2.1\Microsoft.Extensions.Options.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.extensions.primitives\6.0.0\lib\net6.0\Microsoft.Extensions.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\Microsoft.VisualBasic.Core.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\Microsoft.VisualBasic.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\Microsoft.VisualBasic.Forms.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\Microsoft.Win32.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\Microsoft.Win32.Registry.AccessControl.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\Microsoft.Win32.Registry.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\Microsoft.Win32.SystemEvents.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.39\lib\net5.0-windows7.0\Microsoft.Xaml.Behaviors.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\modernwpfui\0.9.6\lib\net5.0-windows7.0\ModernWpf.Controls.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\modernwpfui\0.9.6\lib\net5.0-windows7.0\ModernWpf.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\modernwpfui.mahapps\0.9.5\lib\net5.0-windows7.0\ModernWpf.MahApps.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\netstandard.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\dirkster.numericupdownlib\2.4.2\lib\netcoreapp3.0\NumericUpDownLib.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.Aero.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.Aero2.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.AeroLite.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.Classic.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.Luna.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.Royale.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationUI.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\propertychanged.fody\3.4.0\lib\netstandard2.1\PropertyChanged.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\ReachFramework.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\scottplot\4.1.45\lib\net5.0\ScottPlot.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\scottplot.wpf\4.1.45\lib\net6.0-windows7.0\ScottPlot.WPF.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\sqlitepclraw.bundle_e_sqlite3\2.0.6\lib\netstandard2.0\SQLitePCLRaw.batteries_v2.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\sqlitepclraw.core\2.0.6\lib\netstandard2.0\SQLitePCLRaw.core.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\sqlitepclraw.bundle_green\2.0.2\lib\netcoreapp3.0\SQLitePCLRaw.nativelibrary.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\sqlitepclraw.provider.dynamic_cdecl\2.0.2\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\sqlitepclraw.provider.e_sqlite3\2.0.6\lib\net5.0\SQLitePCLRaw.provider.e_sqlite3.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.AppContext.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Buffers.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.CodeDom.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Collections.Concurrent.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Collections.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Collections.Immutable.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Collections.NonGeneric.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Collections.Specialized.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ComponentModel.Annotations.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ComponentModel.DataAnnotations.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ComponentModel.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ComponentModel.EventBasedAsync.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ComponentModel.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ComponentModel.TypeConverter.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Configuration.ConfigurationManager.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Configuration.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Console.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Data.Common.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Data.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\system.data.sqlclient\4.8.3\ref\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Design.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.Contracts.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.Debug.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.DiagnosticSource.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.EventLog.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.FileVersionInfo.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.PerformanceCounter.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.Process.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.StackTrace.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.TextWriterTraceListener.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.Tools.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.TraceSource.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Diagnostics.Tracing.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.DirectoryServices.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Drawing.Common.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Drawing.Design.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Drawing.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Dynamic.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Formats.Asn1.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Globalization.Calendars.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Globalization.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Globalization.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.Compression.Brotli.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.Compression.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.Compression.FileSystem.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.Compression.ZipFile.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.FileSystem.AccessControl.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.FileSystem.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.FileSystem.DriveInfo.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.FileSystem.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.FileSystem.Watcher.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.IsolatedStorage.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.MemoryMappedFiles.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.IO.Packaging.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.Pipes.AccessControl.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.Pipes.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.IO.UnmanagedMemoryStream.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Linq.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Linq.Expressions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Linq.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Linq.Queryable.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\system.management\6.0.0\lib\net6.0\System.Management.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Memory.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Http.Json.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.HttpListener.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Mail.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.NameResolution.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.NetworkInformation.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Ping.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Requests.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Security.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.ServicePoint.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.Sockets.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.WebClient.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.WebHeaderCollection.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.WebProxy.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.WebSockets.Client.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Net.WebSockets.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Numerics.Vectors.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ObjectModel.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Printing.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.DispatchProxy.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.Emit.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.Emit.ILGeneration.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.Emit.Lightweight.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.Metadata.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Reflection.TypeExtensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Resources.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Resources.Reader.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Resources.ResourceManager.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Resources.Writer.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.CompilerServices.VisualC.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Handles.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.InteropServices.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Intrinsics.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Loader.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Serialization.Formatters.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Serialization.Json.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Serialization.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Runtime.Serialization.Xml.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.AccessControl.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Claims.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Algorithms.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Cng.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Csp.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.OpenSsl.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Pkcs.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.X509Certificates.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Security.Cryptography.Xml.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Security.Permissions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Principal.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.Principal.Windows.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Security.SecureString.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ServiceModel.Web.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ServiceProcess.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Text.Encoding.CodePages.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Text.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Text.Encoding.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Text.Encodings.Web.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Text.Json.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Text.RegularExpressions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Threading.AccessControl.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Channels.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Overlapped.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Tasks.Dataflow.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Tasks.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Tasks.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Tasks.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Thread.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.ThreadPool.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Threading.Timer.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Transactions.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Transactions.Local.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.ValueTuple.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Web.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Web.HttpUtility.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Controls.Ribbon.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Windows.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Extensions.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\system.windows.forms.datavisualization\1.0.0-prerelease.20110.1\ref\netcoreapp3.0\System.Windows.Forms.DataVisualization.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Forms.Design.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Forms.Design.Editors.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Forms.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Input.Manipulations.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Windows.Presentation.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.ReaderWriter.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.XDocument.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.XmlDocument.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.XmlSerializer.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.XPath.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.Xml.XPath.XDocument.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\titanium.web.proxy\3.1.1397\lib\netstandard2.1\Titanium.Web.Proxy.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\UIAutomationClient.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\UIAutomationClientSideProviders.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\UIAutomationProvider.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\UIAutomationTypes.dll" />
+    <ReferencePath Include="C:\Users\jojol\.nuget\packages\wanakana-net\1.0.0\lib\netstandard2.0\WanaKanaNet.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\WindowsBase.dll" />
+    <ReferencePath Include="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\WindowsFormsIntegration.dll" />
+    <ReferencePath Include="obj\x64\Debug\net6.0-windows7\Interop.WMPLib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\FormMainWpf.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Dialog\DialogKancolleProgressWpf.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Dialog\QuestTrackerManager\QuestTrackerManagerWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Dialog\ResourceChartWPF\ChartItemToggle.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Dialog\ResourceChartWPF\ResourceChartWPF.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Dialog\ShipPicker\ShipPickerView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Dialog\VersionInformation\VersionInformation.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\AirControlSimulator\AirControlSimulatorDialog.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\AirDefense\AirDefenseWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\AutoRefresh\AutoRefreshWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\Common\ImageTextControl.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\ConstructionRecordViewer\ConstructionRecordViewerWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\DevelopmentRecordViewer\DevelopmentRecordViewerWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\DialogAlbumMasterEquipment\DialogAlbumMasterEquipmentWpf.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\DialogAlbumMasterEquipment\EquipmentStatControl.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\DialogAlbumMasterShip\DialogAlbumMasterShipWpf.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\DialogAlbumMasterShip\ShipStatControl.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\DropRecordViewer\DropRecordViewerWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\EquipmentList\EquipmentListWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\EventLockPlanner\EventLockPlannerWindow.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Tools\EventLockPlanner\NumberRange.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Arsenal\ArsenalView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\BaseAirCorps\BaseAirCorpsView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Battle\BattleView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Battle\Views\HealthBarView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Compass\CompassView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Compass\Views\BattleView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Compass\Views\EnemyListView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Compass\Views\TextView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Dock\DockView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\FleetOverview\FleetOverviewView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\FleetPreset\FleetPresetView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Fleet\FleetView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Fleet\Views\FleetStateView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Fleet\Views\ShipSlotView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Headquarters\HeadquartersView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\InformationView\InformationView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Log\LogView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\Quest\QuestView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\ShipGroupWinforms\ShipGroupWinformsView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\ShipGroup\ShipGroupView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\Window\Wpf\WinformsHost\WinformsHostView.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\App.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\ElectronicObserver_Content.g.cs" />
+    <Compile Include="I:\MyGit\ElectronicObserver\ElectronicObserver\obj\x64\Debug\net6.0-windows7\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>
