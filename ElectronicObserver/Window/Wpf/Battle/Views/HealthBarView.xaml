@@ -29,11 +29,20 @@
 
 			<Grid x:Name="HealthBarText" Grid.Row="0">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition
-						Width="Auto"
-						MinWidth="20"
-						SharedSizeGroup="HealthBarSideValue"
-						/>
+					<ColumnDefinition Width="Auto">
+						<ColumnDefinition.Style>
+							<Style TargetType="ColumnDefinition">
+								<Setter Property="SharedSizeGroup" Value="HealthBarSideValue" />
+								<Setter Property="MinWidth" Value="20" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding CompactMode}" Value="True">
+										<Setter Property="SharedSizeGroup" Value="ad31f7a9_fc96_489c_a402_f4ad30dadb06" />
+										<Setter Property="MinWidth" Value="0" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</ColumnDefinition.Style>
+					</ColumnDefinition>
 					<ColumnDefinition Width="*" MinWidth="30" />
 					<ColumnDefinition
 						Width="Auto"
@@ -49,6 +58,7 @@
 					FontSize="9"
 					Foreground="{Binding SubFontBrush}"
 					Text="{Binding Text}"
+					Visibility="{Binding ShowShipClassText, Converter={StaticResource BooleanToVisibilityConverter}}"
 					/>
 				<TextBlock
 					Grid.Column="1"

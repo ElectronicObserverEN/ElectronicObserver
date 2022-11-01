@@ -221,9 +221,16 @@ Enabling this option will prevent accidental user interaction
   <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
     <value>Always: always trigger notification every 20 minutes.
 Akashi as flagship: + only if Akashi is set as flagship.
-Ship needed repair: + only if there ships needed repair.</value>
+Ship needed repair: + only if there ships needed repair.
+Preset: + including fleets saved as presets.</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>Unassigned/Relocating</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>Before a sortie, notify if any base slot is unassigned or relocating.</value>
   </data>
 </root>

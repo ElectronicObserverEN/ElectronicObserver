@@ -344,4 +344,8 @@
     <value>通知ダイアログのウィンドウ枠を表示するかを指定できます。
 画像のみで足りる場合は非表示にできます。</value>
   </data>
+  <data name="SoundPathDirectorizeToolTip" xml:space="preserve">
+    <value>パスのファイル名部分を削除し、フォルダ指定にします。
+パスにフォルダを指定した場合、そのフォルダに含まれる音声ファイルがランダムに再生されます。</value>
+  </data>
 </root>

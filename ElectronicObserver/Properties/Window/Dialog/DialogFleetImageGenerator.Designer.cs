@@ -816,18 +816,18 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to タイトルとファイル名を同期.
         /// </summary>
-        public static string SyncronizeTitleAndFileName {
+        public static string SynchronizeTitleAndFileName {
             get {
-                return ResourceManager.GetString("SyncronizeTitleAndFileName", resourceCulture);
+                return ResourceManager.GetString("SynchronizeTitleAndFileName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to タイトルと出力ファイル名を同じにします。.
         /// </summary>
-        public static string SyncronizeTitleAndFileNameToolTip {
+        public static string SynchronizeTitleAndFileNameToolTip {
             get {
-                return ResourceManager.GetString("SyncronizeTitleAndFileNameToolTip", resourceCulture);
+                return ResourceManager.GetString("SynchronizeTitleAndFileNameToolTip", resourceCulture);
             }
         }
         

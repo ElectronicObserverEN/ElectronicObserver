@@ -85,6 +85,12 @@ public class ShipTranslationData : TranslationBase
 
 	public string TypeName(string rawData) => isTypeLoaded && TypeList.ContainsKey(rawData) ? TypeList[rawData] : rawData;
 
+	public string TypeNameShort(ShipTypes shipType) => isTypeLoaded switch
+	{
+		true => Constants.ShipTypeShortEnglish(shipType),
+		_ => Constants.ShipTypeShort(shipType),
+	};
+
 	public ShipTranslationData()
 	{
 		Initialize();

@@ -169,6 +169,20 @@ public class OpeningAswTests
 		};
 
 		Assert.True(zuihou.CanDoOpeningAsw());
+
+		zuihou = new(Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel22_634AirGroup]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12_MurataSquadron]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Ju87CKai2_KMXSkilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron]),
+			},
+		};
+
+		Assert.False(zuihou.CanDoOpeningAsw());
 	}
 
 	[Fact(DisplayName = "CVL 100 ASW condition")]
@@ -238,5 +252,44 @@ public class OpeningAswTests
 		};
 
 		Assert.True(hyuuga.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Oilers")]
+	public void OpeningAswTest7()
+	{
+		ShipDataMock souya = new(Db.MasterShips[ShipId.Souya699])
+		{
+			Level = 175,
+			ASWModernized = 50,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
+			},
+		};
+
+		Assert.True(souya.CanDoOpeningAsw());
+
+		ShipDataMock hayasui = new(Db.MasterShips[ShipId.HayasuiKai])
+		{
+			Level = 175,
+			ASWModernized = 50,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
+			},
+		};
+
+		Assert.True(hayasui.CanDoOpeningAsw());
+
+		ShipDataMock yamashioMaru = new(Db.MasterShips[ShipId.YamashioMaruKai])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
+			},
+		};
+
+		Assert.True(yamashioMaru.CanDoOpeningAsw());
 	}
 }

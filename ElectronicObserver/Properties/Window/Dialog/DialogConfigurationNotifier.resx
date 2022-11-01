@@ -215,4 +215,10 @@
   <data name="TestNotification" xml:space="preserve">
     <value>テスト 通知です。</value>
   </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>未編成・配置転換中</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>出撃前に、いずれかの中隊が未編成か、配置転換中のときに通知します。</value>
+  </data>
 </root>

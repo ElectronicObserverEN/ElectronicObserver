@@ -30,10 +30,11 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 
 	public string Details => Properties.Window.Dialog.DialogFleetImageGenerator.Details;
 	public string GroupOutputPath => Properties.Window.Dialog.DialogFleetImageGenerator.GroupOutputPath;
-	public string SyncronizeTitleAndFileName => Properties.Window.Dialog.DialogFleetImageGenerator.SyncronizeTitleAndFileName;
-	public string SyncronizeTitleAndFileNameToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.SyncronizeTitleAndFileNameToolTip;
+	public string SynchronizeTitleAndFileName => Properties.Window.Dialog.DialogFleetImageGenerator.SynchronizeTitleAndFileName;
+	public string SynchronizeTitleAndFileNameToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.SynchronizeTitleAndFileNameToolTip;
 	public string AutoSetFileNameToDateToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.AutoSetFileNameToDateToolTip;
 	public string OutputToClipboardToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OutputToClipboardToolTip;
+	public string DisableOverwritePrompt => Properties.Window.Dialog.DialogFleetImageGenerator.DisableOverwritePrompt;
 	public string DisableOverwritePromptToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.DisableOverwritePromptToolTip;
 	public string OpenImageAfterOutput => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageAfterOutput;
 	public string OpenImageAfterOutputToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageAfterOutputToolTip;
@@ -47,8 +48,8 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string ReflectDamageGraphicToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.ReflectDamageGraphicToolTip;
 	public string ShipColumn => Properties.Window.Dialog.DialogFleetImageGenerator.ShipColumn;
 	public string HorizontalShipCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalShipCountToolTip;
-	public string HorizontalFleetCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalFleetCountToolTip;
 	public string FleetColumn => Properties.Window.Dialog.DialogFleetImageGenerator.FleetColumn;
+	public string HorizontalFleetCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalFleetCountToolTip;
 
 	public string Font => Properties.Window.Dialog.DialogFleetImageGenerator.Font;
 	public string ButtonClearFont => Properties.Window.Dialog.DialogFleetImageGenerator.ButtonClearFont;

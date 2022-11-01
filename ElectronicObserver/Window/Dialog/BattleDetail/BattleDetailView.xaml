@@ -1,0 +1,26 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Dialog.BattleDetail.BattleDetailView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.BattleDetail"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:p="clr-namespace:ElectronicObserver.Properties.Window.Dialog"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	x:Name="BattleDetailControl"
+	Title="{x:Static p:DialogBattleDetail.Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:BattleDetailViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:BattleDetailViewModel"
+	mc:Ignorable="d"
+	>
+
+	<Grid Margin="5">
+		<ScrollViewer HorizontalScrollBarVisibility="Visible">
+			<TextBlock Text="{Binding BattleDetailText}" />
+		</ScrollViewer>
+	</Grid>
+</common:WindowBase>

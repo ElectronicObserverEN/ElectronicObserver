@@ -89,7 +89,8 @@ public class UseItemMaster : ResponseWrapper, IIdentifiable
 		UseItemId.Sardine => Properties.Window.FormHeadQuarters.ItemNameSardine,
 		UseItemId.NewModelArmamentMaterials => Properties.Window.FormHeadQuarters.ItemNameNewModelArmamentMaterials,
 		UseItemId.SubmarineSupplyMaterials => Properties.Window.FormHeadQuarters.ItemNameSubmarineSupplyMaterials,
-		_ => Name,
+		UseItemId.Pumpkin => Properties.Window.FormHeadQuarters.Pumpkin,
+_ => Name,
 	};
 		
 

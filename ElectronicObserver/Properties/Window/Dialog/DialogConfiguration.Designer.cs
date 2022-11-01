@@ -1552,6 +1552,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PortAndUpstreamPortMustBeDifferent {
+            get {
+                return ResourceManager.GetString("PortAndUpstreamPortMustBeDifferent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 即時.
         /// </summary>
         public static string ProgressAutoSaving_Immediately {

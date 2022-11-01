@@ -159,10 +159,10 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
-  <data name="SyncronizeTitleAndFileName" xml:space="preserve">
+  <data name="SynchronizeTitleAndFileName" xml:space="preserve">
     <value>Syncronize image title and file name</value>
   </data>
-  <data name="SyncronizeTitleAndFileNameToolTip" xml:space="preserve">
+  <data name="SynchronizeTitleAndFileNameToolTip" xml:space="preserve">
     <value>Automatically use the image title as file name and vice versa.</value>
   </data>
   <data name="AutoSetFileNameToDate" xml:space="preserve">

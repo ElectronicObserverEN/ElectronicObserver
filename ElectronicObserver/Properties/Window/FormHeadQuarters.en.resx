@@ -368,4 +368,7 @@ Monthly: {2:+##;-##;±0}</value>
   <data name="ItemNameXmasSelectGiftBox" xml:space="preserve">
     <value>Xmas Select Gift Box</value>
   </data>
+  <data name="Pumpkin" xml:space="preserve">
+    <value>Pumpkin</value>
+  </data>
 </root>

@@ -283,9 +283,16 @@ public static class ShipDataExtensions
 	public static bool HasAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsAntiSubmarineAircraft is true) >= count;
 
-	public static bool HasSpecialAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Count(e => e?.MasterEquipment.IsAntiSubmarineAircraft is true &&
+	public static bool HasSpecialAntiSubmarineAttacker(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.CategoryType is EquipmentTypes.CarrierBasedTorpedo &&
 			e.MasterEquipment.ASW >= 7)
+		>= count;
+
+	public static bool HasAswPatrolAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.CategoryType is
+			EquipmentTypes.FlyingBoat or
+			EquipmentTypes.ASPatrol or
+			EquipmentTypes.Autogyro)
 		>= count;
 
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
@@ -441,6 +448,7 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.JervisKai } or
 	{ ShipId: ShipId.JanusKai } or
 	{ ShipId: ShipId.SamuelBRobertsKai } or
+	{ ShipId: ShipId.SamuelBRobertsMkII } or
 	{ ShipId: ShipId.IsuzuKaiNi } or
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
@@ -466,12 +474,12 @@ public static class ShipDataExtensions
 		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
 		{
 			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft(),
-			>= 65 => ship.HasSpecialAntiSubmarineAircraft(),
+			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft(),
 			>= 50 => ship.MasterShip.ShipId switch
 			{
 				ShipId.SuzuyaCVLKaiNi or ShipId.KumanoCVLKaiNi => false,
 
-				_ => ship.HasSonar() && ship.HasSpecialAntiSubmarineAircraft(),
+				_ => ship.HasSonar() && (ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft()),
 			},
 
 			_ => false,
@@ -487,7 +495,7 @@ public static class ShipDataExtensions
 		{ MasterShip.ShipType: ShipTypes.LightCruiser } or
 		{ MasterShip.ShipType: ShipTypes.TrainingCruiser } or
 		{ MasterShip.ShipType: ShipTypes.TorpedoCruiser } or
-		{ MasterShip.ShipType: ShipTypes.Transport }
+		{ MasterShip.ShipType: ShipTypes.FleetOiler }
 			=> ship.HasSonar() && ship.ASWTotal >= 100,
 
 		{ MasterShip.ShipType: ShipTypes.Escort } => ship.ASWTotal switch

@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogConfigurationNotifier {
@@ -159,6 +159,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string BaseAirCorps_NormalMapToolTip {
             get {
                 return ResourceManager.GetString("BaseAirCorps_NormalMapToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未編成・配置転換中.
+        /// </summary>
+        public static string BaseAirCorps_NotOrganized {
+            get {
+                return ResourceManager.GetString("BaseAirCorps_NotOrganized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出撃前に、いずれかの中隊が未編成か、配置転換中のときに通知します。.
+        /// </summary>
+        public static string BaseAirCorps_NotOrganizedToolTip {
+            get {
+                return ResourceManager.GetString("BaseAirCorps_NotOrganizedToolTip", resourceCulture);
             }
         }
         

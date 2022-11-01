@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogExpChecker {
@@ -106,7 +106,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 先制対潜装備&quot;.
+        ///   Looks up a localized string similar to 先制対潜装備.
         /// </summary>
         public static string ColumnEquipment {
             get {
@@ -243,7 +243,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 出撃あたりの獲得Exp:.
+        ///   Looks up a localized string similar to 出撃あたりの獲得Exp.
         /// </summary>
         public static string SortieExp {
             get {

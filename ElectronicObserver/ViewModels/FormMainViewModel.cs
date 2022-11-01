@@ -36,6 +36,7 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Dialog.ResourceChartWPF;
 using ElectronicObserver.Window.Integrate;
+using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
@@ -45,12 +46,14 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
+using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
@@ -66,8 +69,6 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
-using ElectronicObserver.Window.Wpf.ExpeditionCheck;
-using ElectronicObserver.Window.Tools.FitBonusViewer;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -82,6 +83,7 @@ public partial class FormMainViewModel : ObservableObject
 	private Configuration.ConfigurationData Config { get; }
 	public FormMainTranslationViewModel FormMain { get; }
 	private ToolService ToolService { get; }
+	private FileService FileService { get; }
 	private System.Windows.Forms.Timer UIUpdateTimer { get; }
 	public bool Topmost { get; set; }
 	public int GridSplitterSize { get; set; } = 1;
@@ -207,6 +209,7 @@ public partial class FormMainViewModel : ObservableObject
 		Config = Configuration.Config;
 		FormMain = Ioc.Default.GetService<FormMainTranslationViewModel>()!;
 		ToolService = Ioc.Default.GetService<ToolService>()!;
+		FileService = Ioc.Default.GetService<FileService>()!;
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
@@ -426,6 +429,7 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			if (args.PropertyName is not nameof(GridSplitterSize)) return;
 
+			SaveLayout(Window);
 			LoadLayout(Window);
 		};
 
@@ -434,6 +438,7 @@ public partial class FormMainViewModel : ObservableObject
 			if (args.PropertyName is not nameof(LockLayout)) return;
 
 			Config.Life.LockLayout = LockLayout;
+			SaveLayout(Window);
 			ConfigurationChanged();
 		};
 
@@ -580,23 +585,15 @@ public partial class FormMainViewModel : ObservableObject
 		SetAnchorableProperties();
 	}
 
-	private string LayoutFilter => "Layout File|*.xml";
-
 	[ICommand]
 	private void OpenLayout()
 	{
-		using OpenFileDialog dialog = new()
-		{
-			Filter = LayoutFilter,
-			Title = Properties.Window.FormMain.OpenLayoutCaption
-		};
+		string? newLayoutPath = FileService.OpenLayoutPath(Configuration.Config.Life.LayoutFilePath);
 
-		PathHelper.InitOpenFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
-
-		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
+		if (newLayoutPath is null) return;
 
 		string oldLayoutPath = Configuration.Config.Life.LayoutFilePath;
-		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromOpenFileDialog(dialog);
+		Configuration.Config.Life.LayoutFilePath = newLayoutPath;
 
 		try
 		{
@@ -619,17 +616,11 @@ public partial class FormMainViewModel : ObservableObject
 	[ICommand]
 	private void SaveLayoutAs()
 	{
-		using SaveFileDialog dialog = new()
-		{
-			Filter = LayoutFilter,
-			Title = Properties.Window.FormMain.SaveLayoutCaption
-		};
+		string? newLayoutPath = FileService.SaveLayoutPath(Configuration.Config.Life.LayoutFilePath);
 
-		PathHelper.InitSaveFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
+		if (newLayoutPath is null) return;
 
-		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
-
-		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromSaveFileDialog(dialog);
+		Configuration.Config.Life.LayoutFilePath = newLayoutPath;
 		SaveLayout(Window);
 	}
 
@@ -641,15 +632,22 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenConfiguration()
+	private void OpenConfiguration(bool useNewVersion)
 	{
 		UpdatePlayTime();
 
-		using DialogConfiguration dialog = new(Configuration.Config);
-		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
+		if (useNewVersion)
+		{
+			new ConfigurationWindow(new()).ShowDialog(Window);
+		}
+		else
+		{
+			using DialogConfiguration dialog = new(Configuration.Config);
+			if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
-		dialog.ToConfiguration(Configuration.Config);
-		Configuration.Instance.OnConfigurationChanged();
+			dialog.ToConfiguration(Configuration.Config);
+			Configuration.Instance.OnConfigurationChanged();
+		}
 	}
 
 	#endregion
@@ -902,9 +900,16 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenExpChecker()
+	private void OpenExpChecker(bool useNewVersion)
 	{
-		new DialogExpChecker().Show(Window);
+		if (useNewVersion)
+		{
+			ToolService.ExpChecker();
+		}
+		else
+		{
+			new DialogExpChecker().Show(Window);
+		}
 	}
 
 	[ICommand]
@@ -953,19 +958,6 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		EventLockPlannerWindow.Show(Window);
-	}
-
-	[ICommand]
-	private void OpenFitBonusViewer()
-	{
-		if (KCDatabase.Instance.MasterShips.Count == 0)
-		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
-				MessageBoxButton.OK, MessageBoxImage.Error);
-			return;
-		}
-
-		new FitBonusViewerWindow(new FitBonusViewerViewModel()).Show(Window);
 	}
 
 	[ICommand]
@@ -1437,46 +1429,37 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
 
-			if (!ship.ASW.IsDetermined)
+			if (wikiShip.ASW.Minimum >= 0)
 			{
-				if (wikiShip.ASW.Minimum >= 0)
-				{
-					ship.ASW.MinimumEstMin = wikiShip.ASW.Minimum;
-					ship.ASW.MinimumEstMax = wikiShip.ASW.Minimum;
-				}
-
-				if (wikiShip.ASW.Maximum >= 0)
-				{
-					ship.ASW.Maximum = wikiShip.ASW.Maximum;
-				}
+				ship.ASW.MinimumEstMin = wikiShip.ASW.Minimum;
+				ship.ASW.MinimumEstMax = wikiShip.ASW.Minimum;
 			}
 
-			if (!ship.LOS.IsDetermined)
+			if (wikiShip.ASW.Maximum >= 0)
 			{
-				if (wikiShip.LOS.Minimum >= 0)
-				{
-					ship.LOS.MinimumEstMin = wikiShip.LOS.Minimum;
-					ship.LOS.MinimumEstMax = wikiShip.LOS.Minimum;
-				}
-
-				if (wikiShip.LOS.Maximum >= 0)
-				{
-					ship.LOS.Maximum = wikiShip.LOS.Maximum;
-				}
+				ship.ASW.Maximum = wikiShip.ASW.Maximum;
 			}
 
-			if (!ship.Evasion.IsDetermined)
+			if (wikiShip.LOS.Minimum >= 0)
 			{
-				if (wikiShip.Evasion.Minimum >= 0)
-				{
-					ship.Evasion.MinimumEstMin = wikiShip.Evasion.Minimum;
-					ship.Evasion.MinimumEstMax = wikiShip.Evasion.Minimum;
-				}
+				ship.LOS.MinimumEstMin = wikiShip.LOS.Minimum;
+				ship.LOS.MinimumEstMax = wikiShip.LOS.Minimum;
+			}
 
-				if (wikiShip.Evasion.Maximum >= 0)
-				{
-					ship.Evasion.Maximum = wikiShip.Evasion.Maximum;
-				}
+			if (wikiShip.LOS.Maximum >= 0)
+			{
+				ship.LOS.Maximum = wikiShip.LOS.Maximum;
+			}
+
+			if (wikiShip.Evasion.Minimum >= 0)
+			{
+				ship.Evasion.MinimumEstMin = wikiShip.Evasion.Minimum;
+				ship.Evasion.MinimumEstMax = wikiShip.Evasion.Minimum;
+			}
+
+			if (wikiShip.Evasion.Maximum >= 0)
+			{
+				ship.Evasion.Maximum = wikiShip.Evasion.Maximum;
 			}
 
 			if (wikiShip.DefaultSlot is not null)

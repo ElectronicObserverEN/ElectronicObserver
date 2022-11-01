@@ -85,8 +85,8 @@ public partial class DialogFleetImageGenerator : Form
 
 		tabPage2.Text = Translation.Details;
 		groupBox2.Text = Translation.GroupOutputPath;
-		SyncronizeTitleAndFileName.Text = Translation.SyncronizeTitleAndFileName;
-		ToolTipInfo.SetToolTip(SyncronizeTitleAndFileName, Translation.SyncronizeTitleAndFileNameToolTip);
+		SyncronizeTitleAndFileName.Text = Translation.SynchronizeTitleAndFileName;
+		ToolTipInfo.SetToolTip(SyncronizeTitleAndFileName, Translation.SynchronizeTitleAndFileNameToolTip);
 		ToolTipInfo.SetToolTip(AutoSetFileNameToDate, Translation.AutoSetFileNameToDateToolTip);
 		ToolTipInfo.SetToolTip(OutputToClipboard, Translation.OutputToClipboardToolTip);
 		ToolTipInfo.SetToolTip(DisableOverwritePrompt, Translation.DisableOverwritePromptToolTip);

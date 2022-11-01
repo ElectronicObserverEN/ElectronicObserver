@@ -1,0 +1,64 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Settings.Log.ConfigurationLogUserControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Log"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DataContext="{d:DesignInstance local:ConfigurationLogViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<StackPanel Margin="4">
+		<StackPanel Orientation="Horizontal">
+			<CheckBox Content="{Binding Translation.Log_SaveLogFlag}" IsChecked="{Binding SaveLogFlag}" />
+			<CheckBox
+				Content="{Binding Translation.Log_SaveLogImmediately}"
+				IsChecked="{Binding SaveLogImmediately}"
+				ToolTip="{Binding Translation.Log_SaveLogImmediatelyToolTip}"
+				/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.LoggingLevel}" />
+			<controls:NumberBox
+				Maximum="3"
+				Minimum="0"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding LogLevel}"
+				/>
+			<CheckBox
+				Content="{Binding Translation.Log_ShowSpoiler}"
+				IsChecked="{Binding ShowSpoiler}"
+				ToolTip="{Binding Translation.Log_ShowSpoilerToolTip}"
+				/>
+		</StackPanel>
+
+		<CheckBox
+			Content="{Binding Translation.Log_SaveErrorReport}"
+			IsChecked="{Binding SaveErrorReport}"
+			ToolTip="{Binding Translation.SaveErrorToolTip}"
+			/>
+
+		<StackPanel Orientation="Horizontal">
+			<StackPanel.Resources>
+				<DataTemplate DataType="{x:Type local:EncodingOption}">
+					<TextBlock Text="{Binding Display}" />
+				</DataTemplate>
+			</StackPanel.Resources>
+
+			<TextBlock Text="{Binding Translation.Encoding}" ToolTip="{Binding Translation.EncodingToolTip}" />
+			<ComboBox ItemsSource="{Binding Encodings}" SelectedItem="{Binding SelectedEncoding}" />
+		</StackPanel>
+
+		<TextBlock Text="{Binding Translation.CorruptLogs}" />
+
+		<CheckBox
+			Content="{Binding Translation.Log_SaveBattleLog}"
+			IsChecked="{Binding SaveBattleLog}"
+			ToolTip="{Binding Translation.Log_SaveBattleLogToolTip}"
+			/>
+	</StackPanel>
+</UserControl>

@@ -343,4 +343,8 @@ Check to make sure you have applied or saved settings first.</value>
     <value>Display the border to the notification dialog.
 Disabling allows you to only show an image.</value>
   </data>
+  <data name="SoundPathDirectorizeToolTip" xml:space="preserve">
+    <value>Delete the filename part in the previous file path column.
+Specifying a folder as the file path will enable the program to randomly play an audio file from the folder as notification sound.</value>
+  </data>
 </root>

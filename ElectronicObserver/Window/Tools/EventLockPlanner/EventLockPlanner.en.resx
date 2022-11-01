@@ -181,4 +181,7 @@ Are you sure you want to continue?</value>
   <data name="Fcf" xml:space="preserve">
     <value>FCF</value>
   </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>Failed to load lock plan.</value>
+  </data>
 </root>

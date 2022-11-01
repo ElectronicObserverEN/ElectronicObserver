@@ -6,12 +6,24 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.Window.Settings;
+using ElectronicObserver.Window.Settings.Behavior;
+using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.Debugging;
+using ElectronicObserver.Window.Settings.Log;
+using ElectronicObserver.Window.Settings.Notification;
+using ElectronicObserver.Window.Settings.Notification.Base;
+using ElectronicObserver.Window.Settings.SubWindow;
+using ElectronicObserver.Window.Settings.UI;
+using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
@@ -19,7 +31,9 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -139,6 +153,9 @@ public partial class App : Application
 			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(0));
 
+			UpdateFont();
+			Configuration.Instance.ConfigurationChanged += UpdateFont;
+
 			FormMainWpf mainWindow = new();
 
 			MainWindow = mainWindow;
@@ -150,10 +167,33 @@ public partial class App : Application
 		}
 	}
 
+	private void UpdateFont()
+	{
+		FontOverrides? overrides = Resources.MergedDictionaries
+			.OfType<FontOverrides>()
+			.FirstOrDefault();
+
+		if (overrides is null) return;
+
+		overrides.FontFamily = new FontFamily(Configuration.Config.UI.MainFont.FontData.Name);
+		overrides.FontSize = Configuration.Config.UI.MainFont.FontData.ToSize();
+	}
+
 	private void ConfigureServices()
 	{
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
+			// config translations
+			.AddSingleton<ConfigurationTranslationViewModel>()
+			.AddSingleton<ConfigurationConnectionTranslationViewModel>()
+			.AddSingleton<ConfigurationUITranslationViewModel>()
+			.AddSingleton<ConfigurationLogTranslationViewModel>()
+			.AddSingleton<ConfigurationBehaviorTranslationViewModel>()
+			.AddSingleton<ConfigurationDebugTranslationViewModel>()
+			.AddSingleton<ConfigurationWindowTranslationViewModel>()
+			.AddSingleton<ConfigurationSubWindowTranslationViewModel>()
+			.AddSingleton<ConfigurationNotificationTranslationViewModel>()
+			.AddSingleton<ConfigurationNotificationBaseTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
@@ -188,6 +228,7 @@ public partial class App : Application
 			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<ExpeditionCheckTranslationViewModel>()
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
+			.AddSingleton<ExpCheckerTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
@@ -196,6 +237,7 @@ public partial class App : Application
 			.AddSingleton<ToolService>()
 			.AddSingleton<TransliterationService>()
 			.AddSingleton<GameAssetDownloaderService>()
+			.AddSingleton<FileService>()
 			// external
 			.AddSingleton(JotTracker())
 
@@ -246,6 +288,16 @@ public partial class App : Application
 			.Configure<ExpeditionCheckView>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<ExpCheckerWindow>()
+			.Property(w => w.ViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<BaseAirCorpsSimulationContentDialog>()
+			.Property(w => w.ViewModel.MaxAircraftLevelFleet)
+			.Property(w => w.ViewModel.MaxAircraftLevelAirBase);
 
 		return tracker;
 	}

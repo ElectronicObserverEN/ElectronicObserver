@@ -40,4 +40,6 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 	public string Tank => EventLockPlanner.Tank;
 	public string Fcf => EventLockPlanner.Fcf;
 	public string Expansion => GeneralRes.Expansion;
+
+	public string InvalidModelState => EventLockPlanner.InvalidModelState;
 }

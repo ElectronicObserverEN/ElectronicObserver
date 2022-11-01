@@ -130,7 +130,7 @@
     <value>Display ships only from current fleets.</value>
   </data>
   <data name="SortieExp" xml:space="preserve">
-    <value>Sortie exp:</value>
+    <value>Sortie exp</value>
   </data>
   <data name="ShowAllASWEquipments" xml:space="preserve">
     <value>All ASW</value>

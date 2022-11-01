@@ -11,6 +11,37 @@ public static class PathHelper
 	/// <summary>
 	/// OpenFileDialog を、指定されたパスで初期化します。
 	/// </summary>
+	public static void InitOpenFileDialog(string path, Microsoft.Win32.OpenFileDialog dialog)
+	{
+
+		if (path == null || path.Trim().Length == 0) return;
+
+		string parent = Path.GetDirectoryName(Path.GetFullPath(path));
+
+		if (File.Exists(path))
+		{
+			dialog.InitialDirectory = parent;
+			dialog.FileName = Path.GetFileName(path);
+
+		}
+		else if (Directory.Exists(path))
+		{
+			dialog.InitialDirectory = path;
+			dialog.FileName = "";
+
+		}
+		else if (Directory.Exists(parent))
+		{
+			dialog.InitialDirectory = parent;
+			dialog.FileName = "";
+
+		}
+
+	}
+
+	/// <summary>
+	/// OpenFileDialog を、指定されたパスで初期化します。
+	/// </summary>
 	public static void InitOpenFileDialog(string path, OpenFileDialog dialog)
 	{
 
@@ -43,6 +74,24 @@ public static class PathHelper
 	/// <summary>
 	/// OpenFileDialog からパスを取得します。
 	/// </summary>
+	public static string GetPathFromOpenFileDialog(Microsoft.Win32.OpenFileDialog dialog)
+	{
+
+		string path = dialog.FileName;
+
+		// カレントディレクトリ以下にあるなら相対パスとして記録する
+		string currentDir = Directory.GetCurrentDirectory() + @"\";
+		if (path != null && path.IndexOf(currentDir) == 0)
+		{
+			path = path.Remove(0, currentDir.Length);
+		}
+
+		return path;
+	}
+
+	/// <summary>
+	/// OpenFileDialog からパスを取得します。
+	/// </summary>
 	public static string GetPathFromOpenFileDialog(OpenFileDialog dialog)
 	{
 
@@ -62,6 +111,22 @@ public static class PathHelper
 	/// <summary>
 	/// OpenFileDialog を利用し、パスを取得します。
 	/// </summary>
+	public static string ProcessOpenFileDialog(string path, Microsoft.Win32.OpenFileDialog dialog)
+	{
+
+		InitOpenFileDialog(path, dialog);
+
+		if (dialog.ShowDialog(App.Current.MainWindow) == true)
+		{
+			return GetPathFromOpenFileDialog(dialog);
+		}
+
+		return path;
+	}
+
+	/// <summary>
+	/// OpenFileDialog を利用し、パスを取得します。
+	/// </summary>
 	public static string ProcessOpenFileDialog(string path, OpenFileDialog dialog)
 	{
 
@@ -76,6 +141,37 @@ public static class PathHelper
 	}
 
 
+
+	/// <summary>
+	/// SaveFileDialog を、指定されたパスで初期化します。
+	/// </summary>
+	public static void InitSaveFileDialog(string path, Microsoft.Win32.SaveFileDialog dialog)
+	{
+
+		if (path == null || path.Trim().Length == 0) return;
+
+		string parent = Path.GetDirectoryName(Path.GetFullPath(path));
+
+		if (File.Exists(path))
+		{
+			dialog.InitialDirectory = parent;
+			dialog.FileName = Path.GetFileName(path);
+
+		}
+		else if (Directory.Exists(path))
+		{
+			dialog.InitialDirectory = path;
+			dialog.FileName = "";
+
+		}
+		else if (Directory.Exists(parent))
+		{
+			dialog.InitialDirectory = parent;
+			dialog.FileName = "";
+
+		}
+
+	}
 
 	/// <summary>
 	/// SaveFileDialog を、指定されたパスで初期化します。
@@ -108,6 +204,24 @@ public static class PathHelper
 
 	}
 
+
+	/// <summary>
+	/// SaveFileDialog からパスを取得します。
+	/// </summary>
+	public static string GetPathFromSaveFileDialog(Microsoft.Win32.SaveFileDialog dialog)
+	{
+
+		string path = dialog.FileName;
+
+		// カレントディレクトリ以下にあるなら相対パスとして記録する
+		string currentDir = Directory.GetCurrentDirectory() + @"\";
+		if (path != null && path.IndexOf(currentDir) == 0)
+		{
+			path = path.Remove(0, currentDir.Length);
+		}
+
+		return path;
+	}
 
 	/// <summary>
 	/// SaveFileDialog からパスを取得します。
