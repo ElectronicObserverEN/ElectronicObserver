@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Window.Tools.DropRecordViewer;
+﻿using ElectronicObserver.Data;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
@@ -31,5 +32,5 @@ public partial class EquipmentPickerView
 		DialogResult = true;
 	}
 
-	public IEquipmentDataMaster? PickedEquipment { get; private set; }
+	public EquipmentData? PickedEquipment { get; private set; }
 }

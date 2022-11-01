@@ -14,15 +14,15 @@ public partial class EquipmentPickerViewModel : WindowViewModelBase
 {
 	public List<Filter> TypeFilters { get; }
 
-	private List<IEquipmentDataMaster> AllEquipments => KCDatabase.Instance.MasterEquipments.Values
-		.Where(s => !s.IsAbyssalEquipment)
-		.OrderBy(s => s.EquipmentID)
-		.Cast<IEquipmentDataMaster>()
+	private List<EquipmentData> AllEquipments => KCDatabase.Instance.Equipments
+		.Values
+		.Cast<EquipmentData>()
+		.OrderBy(s => s.MasterID)
 		.ToList();
 
 	public ObservableCollection<EquipmentGroup> EquipmentGroups { get; set; } = new();
 
-	public IEquipmentDataMaster? PickedEquipment { get; private set; }
+	public EquipmentData? PickedEquipment { get; private set; }
 
 	public EquipmentPickerViewModel()
 	{
@@ -35,7 +35,7 @@ public partial class EquipmentPickerViewModel : WindowViewModelBase
 	}
 
 	[ICommand]
-	private void SelectEquipment(IEquipmentDataMaster? equipment)
+	private void SelectEquipment(EquipmentData? equipment)
 	{
 		PickedEquipment = equipment;
 	}
@@ -48,8 +48,8 @@ public partial class EquipmentPickerViewModel : WindowViewModelBase
 			.ToList();
 
 		EquipmentGroups = new(AllEquipments
-			.Where(s => enabledFilters.Contains(s.CategoryType))
-			.GroupBy(s => s.CategoryType)
+			.Where(s => enabledFilters.Contains(s.MasterEquipment.CategoryType))
+			.GroupBy(s => s.MasterEquipment.CategoryType)
 			.Select(g => new EquipmentGroup
 			{
 				Id = g.Key,

@@ -5,7 +5,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dropRecordViewer="clr-namespace:ElectronicObserver.Window.Tools.DropRecordViewer"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:electronicObserverData="clr-namespace:ElectronicObserver.Data"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentPicker"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:ElectronicObserver.Properties.Window.Dialog"
@@ -33,12 +33,12 @@
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 		</Style>
 
-		<DataTemplate x:Key="EquipmentTemplate" DataType="{x:Type electronicObserverTypes:IEquipmentDataMaster}">
+		<DataTemplate x:Key="EquipmentTemplate" DataType="{x:Type electronicObserverData:EquipmentData}">
 			<Button
 				Margin="4"
 				Command="{Binding ViewModel.SelectShipCommand, ElementName=ShipPickerControl}"
 				CommandParameter="{Binding}"
-				Content="{Binding NameEN}"
+				Content="{Binding MasterEquipment.NameEN}"
 				/>
 		</DataTemplate>
 
@@ -59,11 +59,7 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<ItemsControl
-			Grid.Row="0"
-			ItemTemplate="{StaticResource OptionTemplate}"
-			ItemsSource="{Binding DropRecordOptions}"
-			>
+		<ItemsControl Grid.Row="0" ItemTemplate="{StaticResource OptionTemplate}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel Orientation="Horizontal" />
