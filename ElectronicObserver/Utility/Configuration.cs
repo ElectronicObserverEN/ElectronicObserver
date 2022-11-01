@@ -464,6 +464,11 @@ public sealed class Configuration
 			/// </summary>
 			public bool IsLayoutFixed;
 
+			/// <summary>
+			/// When enabled, you can search for fonts by writing text in the combobox.
+			/// When text search is enabled, the combobox input can't be localized.
+			/// </summary>
+			public bool FontFamilyTextSearch { get; set; }
 
 			public ConfigUI()
 			{
@@ -503,6 +508,7 @@ public sealed class Configuration
 				JapaneseEquipmentType = disableTranslations;
 				DisableOtherTranslations = disableTranslations;
 				UseOriginalNodeId = false;
+				FontFamilyTextSearch = false;
 			}
 		}
 		/// <summary>UI</summary>

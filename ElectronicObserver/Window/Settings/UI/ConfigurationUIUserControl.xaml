@@ -11,6 +11,12 @@
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type FontFamily}">
+			<TextBlock Text="{Binding Converter={StaticResource FontFamilyDisplayConverter}}" />
+		</DataTemplate>
+	</UserControl.Resources>
+
 	<StackPanel Margin="4">
 		<Grid>
 			<Grid.RowDefinitions>
@@ -19,6 +25,7 @@
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
@@ -33,7 +40,7 @@
 			<ComboBox
 				Grid.Row="0"
 				Grid.Column="1"
-				IsEditable="True"
+				IsEditable="{Binding FontFamilyTextSearch}"
 				ItemsSource="{Binding AllFontFamilies}"
 				SelectedItem="{Binding MainFontFamily}"
 				/>
@@ -46,6 +53,14 @@
 				Value="{Binding MainFontSize}"
 				/>
 
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="3"
+				Content="{Binding Translation.TextSearch}"
+				IsChecked="{Binding FontFamilyTextSearch}"
+				ToolTip="{Binding Translation.TextSearchToolTip}"
+				/>
+
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="0"
@@ -55,7 +70,7 @@
 			<ComboBox
 				Grid.Row="1"
 				Grid.Column="1"
-				IsEditable="True"
+				IsEditable="{Binding FontFamilyTextSearch}"
 				ItemsSource="{Binding AllFontFamilies}"
 				SelectedItem="{Binding SubFontFamily}"
 				/>

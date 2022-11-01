@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using WanaKanaNet;
 
@@ -51,5 +52,12 @@ public class TransliterationService
 		bool result = romajiName.Contains(romajiFilter.ToLower());
 
 		return result;
+	}
+
+	public bool Matches(IEquipmentDataMaster equip, string filter)
+	{
+		bool Search(string searchWord) => Calculator.ToHiragana(equip.NameEN.ToLower()).Contains(searchWord);
+
+		return Search(Calculator.ToHiragana(filter.ToLower())) || Search(Calculator.RomaToHira(filter));
 	}
 }

@@ -633,4 +633,11 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="NewFormula33" xml:space="preserve">
     <value>新判定式(33)</value>
   </data>
+  <data name="TextSearch" xml:space="preserve">
+    <value>テキスト検索</value>
+  </data>
+  <data name="TextSearchToolTip" xml:space="preserve">
+    <value>ドロップダウンメニューからフォントを探す代わりに、名前を書いて検索できるようにしました。
+この機能を有効にすると、ローカライゼーションが正しく機能しない場合があります。</value>
+  </data>
 </root>

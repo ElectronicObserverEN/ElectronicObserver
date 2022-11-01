@@ -230,6 +230,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>QuestTrackerManager.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\EquipmentPicker.Designer.cs">
+		  <DependentUpon>EquipmentPicker.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\ShipPicker.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -623,6 +628,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\QuestTrackerManager.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>QuestTrackerManager.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\EquipmentPicker.resx">
+		  <LastGenOutput>EquipmentPicker.Designer.cs</LastGenOutput>
+		  <Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\ShipPicker.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

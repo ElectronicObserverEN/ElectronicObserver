@@ -1387,6 +1387,25 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to テキスト検索.
+        /// </summary>
+        public static string TextSearch {
+            get {
+                return ResourceManager.GetString("TextSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ドロップダウンメニューからフォントを探す代わりに、名前を書いて検索できるようにしました。
+        ///この機能を有効にすると、ローカライゼーションが正しく機能しない場合があります。.
+        /// </summary>
+        public static string TextSearchToolTip {
+            get {
+                return ResourceManager.GetString("TextSearchToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to テーマ.
         /// </summary>
         public static string Theme {

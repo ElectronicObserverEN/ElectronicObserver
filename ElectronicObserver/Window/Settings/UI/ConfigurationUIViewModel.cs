@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Converters;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Wpf;
 
@@ -21,6 +22,8 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 
 	public FontFamily SubFontFamily { get; set; }
 	public int SubFontSize { get; set; }
+
+	public bool FontFamilyTextSearch { get; set; }
 
 	public string Culture { get; set; }
 
@@ -73,11 +76,55 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Load(config);
 	}
 
+	private FontFamily FindFont(string name)
+	{
+		FontFamily? exactMatch = AllFontFamilies
+			.FirstOrDefault(f => f.FamilyNames.Values?.Contains(name) == true);
+
+		if (exactMatch is not null)
+		{
+			return exactMatch;
+		}
+
+		return AllFontFamilies.FirstOrDefault(f => f.FamilyNames.Values
+			?.Any(name.StartsWith) == true) ?? new FontFamily("Meiryo UI");
+	}
+
+	private System.Drawing.Font? FindWinformsFont(FontFamily font, int size)
+	{
+		System.Drawing.Font NewFont(System.Drawing.FontFamily fontFamily, int size)
+			=> new(fontFamily, size, System.Drawing.GraphicsUnit.Pixel);
+
+		System.Drawing.FontFamily[] families = System.Drawing.FontFamily.Families;
+		FontFamilyDisplayConverter converter = new();
+
+		string fontFamilyName = (string)converter
+			.Convert(font, typeof(string), null, null)!;
+
+
+		System.Drawing.FontFamily? exactMatch = families
+			.FirstOrDefault(f => f.Name == fontFamilyName);
+
+		if (exactMatch is not null)
+		{
+			return NewFont(exactMatch, size);
+		}
+
+		System.Drawing.FontFamily? mainFontFamily = families
+			.FirstOrDefault(f => f.Name.StartsWith(fontFamilyName));
+
+		return mainFontFamily switch
+		{
+			null => null,
+			_ => NewFont(mainFontFamily, size),
+		};
+	}
+
 	private void Load(Configuration.ConfigurationData.ConfigUI config)
 	{
-		MainFontFamily = new(config.MainFont.FontData.FontFamily.Name);
+		MainFontFamily = FindFont(config.MainFont.FontData.FontFamily.Name);
 		MainFontSize = (int)config.MainFont.FontData.ToSize();
-		SubFontFamily = new(config.SubFont.FontData.FontFamily.Name);
+		SubFontFamily = FindFont(config.SubFont.FontData.FontFamily.Name);
 		SubFontSize = (int)config.SubFont.FontData.ToSize();
 		Culture = config.Culture;
 		JapaneseShipName = config.JapaneseShipName;
@@ -102,15 +149,21 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		AllowSortIndexing = config.AllowSortIndexing;
 		BarColorMorphing = config.BarColorMorphing;
 		IsLayoutFixed = config.IsLayoutFixed;
+		FontFamilyTextSearch = config.FontFamilyTextSearch;
 	}
 
 	public override void Save()
 	{
-		System.Drawing.Font NewFont(string fontFamily, int size) =>
-			new(fontFamily, size, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-
-		Config.MainFont = new(NewFont(MainFontFamily.Source, MainFontSize));
-		Config.SubFont = new(NewFont(SubFontFamily.Source, SubFontSize));
+		Config.MainFont = FindWinformsFont(MainFontFamily, MainFontSize) switch
+		{
+			{} font => font,
+			_ => Config.MainFont,
+		};
+		Config.SubFont = FindWinformsFont(SubFontFamily, SubFontSize) switch
+		{
+			{ } font => font,
+			_ => Config.SubFont,
+		};
 		Config.Culture = Culture;
 		Config.JapaneseShipName = JapaneseShipName;
 		Config.JapaneseShipType = JapaneseShipType;
@@ -134,6 +187,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Config.AllowSortIndexing = AllowSortIndexing;
 		Config.BarColorMorphing = BarColorMorphing;
 		Config.IsLayoutFixed = IsLayoutFixed;
+		Config.FontFamilyTextSearch = FontFamilyTextSearch;
 	}
 
 	[ICommand]

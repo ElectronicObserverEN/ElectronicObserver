@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserverTypes;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ElectronicObserverTypes;
 
 public enum EquipmentTypes
 {

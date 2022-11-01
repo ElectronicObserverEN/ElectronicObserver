@@ -633,4 +633,11 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="FleetBlinkAtCompletion" xml:space="preserve">
     <value>Blink at timer completion</value>
   </data>
+  <data name="TextSearch" xml:space="preserve">
+    <value>Text search</value>
+  </data>
+  <data name="TextSearchToolTip" xml:space="preserve">
+    <value>Instead of searching for fonts from a drop-down menu, you can now search by name.
+If this feature is enabled, localisation may not function correctly.</value>
+  </data>
 </root>
