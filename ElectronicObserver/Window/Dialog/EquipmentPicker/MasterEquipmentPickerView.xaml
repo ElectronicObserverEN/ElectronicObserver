@@ -5,7 +5,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dropRecordViewer="clr-namespace:ElectronicObserver.Window.Tools.DropRecordViewer"
-	xmlns:electronicObserverData="clr-namespace:ElectronicObserver.Data"
+	xmlns:electronicObserverType="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentPicker"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:ElectronicObserver.Properties.Window.Dialog"
@@ -34,7 +34,7 @@
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 		</Style>
 
-		<DataTemplate x:Key="EquipmentTemplate" DataType="{x:Type electronicObserverData:EquipmentData}">
+		<DataTemplate x:Key="EquipmentTemplate" DataType="{x:Type electronicObserverType:IEquipmentData}">
 			<Button
 				Margin="4"
 				Command="{Binding ViewModel.SelectShipCommand, ElementName=ShipPickerControl}"
