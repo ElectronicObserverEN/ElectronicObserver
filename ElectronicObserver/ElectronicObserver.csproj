@@ -375,11 +375,6 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EventLockPlanner.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Window\Tools\FitBonusViewer\FitBonusViewer.Designer.cs">
-		  <DependentUpon>FitBonusViewer.resx</DependentUpon>
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		</Compile>
 		<Compile Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -738,10 +733,6 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Window\Tools\FitBonusViewer\FitBonusViewer.resx">
-		  <LastGenOutput>FitBonusViewer.Designer.cs</LastGenOutput>
-		  <Generator>ResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
@@ -752,9 +743,6 @@
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
 	  <Page Update="Window\Dialog\EquipmentPicker\EquipmentDataPickerView.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	  </Page>
-	  <Page Update="Window\Tools\FitBonusViewer\FitBonusViewerWindow.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
 	</ItemGroup>
