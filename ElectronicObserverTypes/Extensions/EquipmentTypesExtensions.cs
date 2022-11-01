@@ -192,7 +192,7 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.TransportContainer or
 		EquipmentTypes.SpecialAmphibiousTank => EquipmentTypeGroup.Transport,
 
-		EquipmentTypes.VTFuse => throw new NotImplementedException(),
-		_ => throw new NotImplementedException(),
+		EquipmentTypes.VTFuse or
+		_ => EquipmentTypeGroup.Unknown,
 	};
 }
