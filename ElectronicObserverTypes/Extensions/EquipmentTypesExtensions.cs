@@ -122,74 +122,74 @@ public static class EquipmentTypesExtensions
 
 	public static EquipmentTypeGroup ToGroup(this EquipmentTypes type) => type switch
 	{
-		EquipmentTypes.MainGunSmall => EquipmentTypeGroup.MainGun,
-		EquipmentTypes.MainGunMedium => EquipmentTypeGroup.MainGun,
-		EquipmentTypes.MainGunLarge => EquipmentTypeGroup.MainGun,
+		EquipmentTypes.MainGunSmall or
+		EquipmentTypes.MainGunMedium or
+		EquipmentTypes.MainGunLarge or
 		EquipmentTypes.MainGunLarge2 => EquipmentTypeGroup.MainGun,
 
-		EquipmentTypes.SecondaryGun => EquipmentTypeGroup.Secondary,
+		EquipmentTypes.SecondaryGun or
 		EquipmentTypes.AAGun => EquipmentTypeGroup.Secondary,
 
-		EquipmentTypes.Torpedo => EquipmentTypeGroup.Torpedo,
-		EquipmentTypes.MidgetSubmarine => EquipmentTypeGroup.Torpedo,
+		EquipmentTypes.Torpedo or
+		EquipmentTypes.MidgetSubmarine or
 		EquipmentTypes.SubmarineTorpedo => EquipmentTypeGroup.Torpedo,
 
-		EquipmentTypes.CarrierBasedFighter => EquipmentTypeGroup.Fighter,
+		EquipmentTypes.CarrierBasedFighter or
 		EquipmentTypes.JetFighter => EquipmentTypeGroup.Fighter,
 
-		EquipmentTypes.CarrierBasedBomber => EquipmentTypeGroup.Bomber,
+		EquipmentTypes.CarrierBasedBomber or
 		EquipmentTypes.JetBomber => EquipmentTypeGroup.Bomber,
 
-		EquipmentTypes.CarrierBasedTorpedo => EquipmentTypeGroup.TorpedoBomber,
+		EquipmentTypes.CarrierBasedTorpedo or
 		EquipmentTypes.JetTorpedo => EquipmentTypeGroup.TorpedoBomber,
 
 		EquipmentTypes.Interceptor => EquipmentTypeGroup.LandBasedFighters,
 
-		EquipmentTypes.LandBasedAttacker => EquipmentTypeGroup.LandBasedBombers,
+		EquipmentTypes.LandBasedAttacker or
 		EquipmentTypes.HeavyBomber => EquipmentTypeGroup.LandBasedBombers,
 
-		EquipmentTypes.CarrierBasedRecon => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.SeaplaneRecon => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.SeaplaneBomber => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.Autogyro => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.ASPatrol => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.FlyingBoat => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.SeaplaneFighter => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.LandBasedRecon => EquipmentTypeGroup.SeaplaneAndRecons,
-		EquipmentTypes.JetRecon => EquipmentTypeGroup.SeaplaneAndRecons,
+		EquipmentTypes.CarrierBasedRecon or
+		EquipmentTypes.SeaplaneRecon or
+		EquipmentTypes.SeaplaneBomber or
+		EquipmentTypes.Autogyro or
+		EquipmentTypes.ASPatrol or
+		EquipmentTypes.FlyingBoat or
+		EquipmentTypes.SeaplaneFighter or
+		EquipmentTypes.LandBasedRecon or
+		EquipmentTypes.JetRecon or
 		EquipmentTypes.CarrierBasedRecon2 => EquipmentTypeGroup.SeaplaneAndRecons,
 
-		EquipmentTypes.RadarSmall => EquipmentTypeGroup.Radar,
-		EquipmentTypes.RadarLarge => EquipmentTypeGroup.Radar,
+		EquipmentTypes.RadarSmall or
+		EquipmentTypes.RadarLarge or
 		EquipmentTypes.RadarLarge2 => EquipmentTypeGroup.Radar,
 
-		EquipmentTypes.Sonar => EquipmentTypeGroup.ASW,
-		EquipmentTypes.DepthCharge => EquipmentTypeGroup.ASW,
+		EquipmentTypes.Sonar or
+		EquipmentTypes.DepthCharge or
 		EquipmentTypes.SonarLarge => EquipmentTypeGroup.ASW,
 
-		EquipmentTypes.ExtraArmor => EquipmentTypeGroup.Other,
-		EquipmentTypes.Engine => EquipmentTypeGroup.Other,
-		EquipmentTypes.AAShell => EquipmentTypeGroup.Other,
-		EquipmentTypes.APShell => EquipmentTypeGroup.Other,
-		EquipmentTypes.DamageControl => EquipmentTypeGroup.Other,
-		EquipmentTypes.ExtraArmorMedium => EquipmentTypeGroup.Other,
-		EquipmentTypes.ExtraArmorLarge => EquipmentTypeGroup.Other,
-		EquipmentTypes.Searchlight => EquipmentTypeGroup.Other,
-		EquipmentTypes.RepairFacility => EquipmentTypeGroup.Other,
-		EquipmentTypes.StarShell => EquipmentTypeGroup.Other,
-		EquipmentTypes.CommandFacility => EquipmentTypeGroup.Other,
-		EquipmentTypes.AviationPersonnel => EquipmentTypeGroup.Other,
-		EquipmentTypes.AADirector => EquipmentTypeGroup.Other,
-		EquipmentTypes.Rocket => EquipmentTypeGroup.Other,
-		EquipmentTypes.SurfaceShipPersonnel => EquipmentTypeGroup.Other,
-		EquipmentTypes.SearchlightLarge => EquipmentTypeGroup.Other,
-		EquipmentTypes.Ration => EquipmentTypeGroup.Other,
-		EquipmentTypes.Supplies => EquipmentTypeGroup.Other,
-		EquipmentTypes.TransportMaterial => EquipmentTypeGroup.Other,
+		EquipmentTypes.ExtraArmor or
+		EquipmentTypes.Engine or
+		EquipmentTypes.AAShell or
+		EquipmentTypes.APShell or
+		EquipmentTypes.DamageControl or
+		EquipmentTypes.ExtraArmorMedium or
+		EquipmentTypes.ExtraArmorLarge or
+		EquipmentTypes.Searchlight or
+		EquipmentTypes.RepairFacility or
+		EquipmentTypes.StarShell or
+		EquipmentTypes.CommandFacility or
+		EquipmentTypes.AviationPersonnel or
+		EquipmentTypes.AADirector or
+		EquipmentTypes.Rocket or
+		EquipmentTypes.SurfaceShipPersonnel or
+		EquipmentTypes.SearchlightLarge or
+		EquipmentTypes.Ration or
+		EquipmentTypes.Supplies or
+		EquipmentTypes.TransportMaterial or
 		EquipmentTypes.SubmarineEquipment => EquipmentTypeGroup.Other,
 
-		EquipmentTypes.LandingCraft => EquipmentTypeGroup.Transport,
-		EquipmentTypes.TransportContainer => EquipmentTypeGroup.Transport,
+		EquipmentTypes.LandingCraft or
+		EquipmentTypes.TransportContainer or
 		EquipmentTypes.SpecialAmphibiousTank => EquipmentTypeGroup.Transport,
 
 		EquipmentTypes.VTFuse => throw new NotImplementedException(),
