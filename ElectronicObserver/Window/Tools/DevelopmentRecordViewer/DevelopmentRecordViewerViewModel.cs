@@ -9,7 +9,6 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Services;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
@@ -32,13 +31,10 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	public List<DevelopmentRecordRow> SelectedRows { get; set; } = new();
 
 	public object SelectedCategory { get; set; } = DevelopmentRecordOption.All;
-	public IEquipmentDataMaster? SelectedEquipment { get; set; } = null;
+	public object SelectedEquipment { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedFlagshipType { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedFlagship { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedRecipe { get; set; } = DevelopmentRecordOption.All;
-
-	public bool ShowSuccess { get; set; } = true;
-	public bool ShowFailed { get; set; } = true;
 
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
@@ -212,9 +208,10 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			SelectedFlagship is not DevelopmentRecordOption.All ? 2 :
 			SelectedFlagshipType is not DevelopmentRecordOption.All ? 1 : 0;
 
-		bool showAll = ShowFailed && ShowSuccess && SelectedEquipment is null;
-
-		int priorityEquipment = !showAll && !ShowSuccess ? 2 : !showAll ? 1 : 0;
+		int priorityEquipment =
+			SelectedEquipment is not DevelopmentRecordOption.All &&
+			SelectedEquipment is not DevelopmentRecordOption.Success ? 2 :
+			SelectedCategory is not DevelopmentRecordOption.All ? 1 : 0;
 
 
 		int i = 0;
@@ -259,26 +256,23 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 
 			if (SelectedCategory is EquipmentTypes equipmentType && equipmentType != eq?.CategoryType) continue;
 
-			// Apply equipment filters : 
-			if (SelectedEquipment != null)
+			switch (SelectedEquipment)
 			{
-				if (SelectedEquipment.EquipmentID != r.EquipmentID)
-					continue;
+				case DevelopmentRecordOption.All:
+					break;
+				case DevelopmentRecordOption.Success:
+					if (r.EquipmentID == -1)
+						continue;
+					break;
+				case DevelopmentRecordOption.Failure:
+					if (r.EquipmentID != -1)
+						continue;
+					break;
+				case IEquipmentDataMaster equipment:
+					if (equipment.EquipmentID != r.EquipmentID)
+						continue;
+					break;
 			}
-			
-			bool equipmentConditionChecked = (ShowSuccess, ShowFailed) switch
-			{
-				// same as showing everything
-				(true, true) => true,
-				// same as showing nothing
-				(false, false) => false,
-				//Show if sucess
-				(true, false) => r.EquipmentID != -1,
-				// Show if failed
-				(false, true) => r.EquipmentID == -1,
-			};
-
-			if (!equipmentConditionChecked) continue;
 
 			if (SelectedRecipe is string recipe && recipe != currentRecipe) continue;
 
@@ -479,21 +473,5 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		if (calendar is null) return;
 
 		calendar.SelectedDate = DateTime.Now.Date;
-	}
-
-	public IEquipmentDataMaster? SelectedMasterEquipment { get; set; }
-
-	public string SelectedEquipmentName { get; set; } = "Pick an equipment";
-
-	[ICommand]
-	private void OpenMasterEquipmentPicker()
-	{
-		EquipmentPickerService service = Ioc.Default.GetService<EquipmentPickerService>()!;
-
-		SelectedEquipment = service.OpenMasterEquipmentPicker();
-		ShowSuccess = SelectedEquipment is not null;
-		ShowFailed = !ShowSuccess;
-
-		SelectedEquipmentName = SelectedEquipment is null ? "Pick an equipment" : SelectedEquipment.NameEN;
 	}
 }

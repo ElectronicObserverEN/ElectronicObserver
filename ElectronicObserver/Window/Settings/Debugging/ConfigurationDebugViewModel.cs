@@ -1,11 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Dialog.EquipmentPicker;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Settings.Debugging;
 
@@ -63,29 +59,4 @@ public partial class ConfigurationDebugViewModel : ConfigurationViewModelBase
 
 		APIListPath = newPath;
 	}
-
-
-	#region Testing
-
-	public IEquipmentData? SelectedEquipment { get; set; }
-
-	[ICommand]
-	private void OpenEquipmentPicker()
-	{
-		EquipmentPickerService service = Ioc.Default.GetService<EquipmentPickerService>()!;
-
-		SelectedEquipment = service.OpenEquipmentPicker();
-	}
-
-	public IEquipmentDataMaster? SelectedMasterEquipment { get; set; }
-
-	[ICommand]
-	private void OpenMasterEquipmentPicker()
-	{
-		EquipmentPickerService service = Ioc.Default.GetService<EquipmentPickerService>()!;
-
-		SelectedMasterEquipment = service.OpenMasterEquipmentPicker();
-	}
-
-	#endregion
 }
