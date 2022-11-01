@@ -263,6 +263,7 @@ public partial class App : Application
 			.AddSingleton<TransliterationService>()
 			.AddSingleton<GameAssetDownloaderService>()
 			.AddSingleton<FileService>()
+			.AddSingleton<EquipmentPickerService>()
 			// external
 			.AddSingleton(JotTracker())
 

@@ -4,9 +4,9 @@ namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 /// <summary>
 /// Interaction logic for EquipmentPicker.xaml
 /// </summary>
-public partial class EquipmentPickerView
+public partial class EquipmentDataPickerView
 {
-	public EquipmentPickerView(EquipmentPickerViewModel viewModel) : base(viewModel)
+	public EquipmentDataPickerView(EquipmentDataPickerViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
 	}

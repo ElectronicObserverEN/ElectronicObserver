@@ -748,7 +748,10 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-	  <Page Update="Window\Dialog\EquipmentPicker\EquipmentPickerView.xaml">
+	  <Page Update="Window\Dialog\EquipmentPicker\MasterEquipmentPickerView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Window\Dialog\EquipmentPicker\EquipmentDataPickerView.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
 	  <Page Update="Window\Tools\FitBonusViewer\FitBonusViewerWindow.xaml">

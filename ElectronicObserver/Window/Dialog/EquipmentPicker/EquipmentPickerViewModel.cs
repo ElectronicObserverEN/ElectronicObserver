@@ -2,33 +2,29 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Common;
-using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 
-public partial class EquipmentPickerViewModel : WindowViewModelBase
+public abstract partial class EquipmentPickerViewModel : WindowViewModelBase
 {
 	public EquipmentPickerTranslationViewModel Translations { get; set; } = new();
 
 	public EquipmentFilterViewModel Filters { get; set; } = new();
 
-	private List<IEquipmentData> AllEquipments => KCDatabase.Instance.Equipments
-		.Values
-		.Cast<IEquipmentData>()
-		.ToList();
+	protected abstract List<IEquipmentData> AllEquipments { get; }
 
 	public ObservableCollection<IEquipmentData> EquipmentsFiltered { get; set; } = new();
 
 	public IEquipmentData? SelectedEquipment { get; set; }
 
-	public EquipmentPickerViewModel()
+	protected EquipmentPickerViewModel()
 	{
 		RefreshList();
 		Filters.PropertyChanged += Filters_PropertyChanged;
 	}
 
-	private void RefreshList() => 	
+	private void RefreshList() =>
 		EquipmentsFiltered = new(AllEquipments
 			.Where(s => Filters.MeetsFilterCondition(s))
 			.OrderBy(s => s.MasterEquipment.CategoryType)
