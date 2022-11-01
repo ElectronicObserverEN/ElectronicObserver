@@ -10,7 +10,7 @@ public class EquipmentPickerService
 
 	public IEquipmentData? OpenEquipmentPicker()
 	{
-		EquipmentDataPickerView equipmentPicker = new(new ());
+		EquipmentDataPickerView equipmentPicker = new(new());
 
 		equipmentPicker.ShowDialog(MainWindow);
 

@@ -40,42 +40,15 @@
 			<Setter Property="Padding" Value="2 0" />
 			<Setter Property="MinWidth" Value="0" />
 		</Style>
-
-		<DataTemplate x:Key="EquipmentTemplate" DataType="{x:Type electronicObserverTypes:IEquipmentData}">
-			<Button
-				Margin="4"
-				Command="{Binding ViewModel.SelectShipCommand, ElementName=ShipPickerControl}"
-				CommandParameter="{Binding}"
-				Content="{Binding MasterEquipment.NameEN}"
-				/>
-		</DataTemplate>
-
-		<DataTemplate x:Key="OptionTemplate" DataType="{x:Type dropRecordViewer:DropRecordOption}">
-			<Button
-				Margin="4"
-				Command="{Binding ViewModel.SelectOptionCommand, ElementName=ShipPickerControl}"
-				CommandParameter="{Binding}"
-				Content="{Binding Converter={StaticResource EnumDisplayConverter}}"
-				/>
-		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="5">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<ItemsControl Grid.Row="0" ItemTemplate="{StaticResource OptionTemplate}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<WrapPanel Orientation="Horizontal" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</ItemsControl>
-
-		<StackPanel Grid.Row="1" DataContext="{Binding Filters}">
+		<StackPanel Grid.Row="0" DataContext="{Binding Filters}">
 			<ItemsControl ItemsSource="{Binding TypeFilters}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
@@ -97,7 +70,7 @@
 		</StackPanel>
 
 		<DataGrid
-			Grid.Row="2"
+			Grid.Row="1"
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
