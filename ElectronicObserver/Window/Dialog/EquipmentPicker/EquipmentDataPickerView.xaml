@@ -36,6 +36,9 @@
 			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="Padding" Value="2 0" />
+			<Setter Property="MinWidth" Value="0" />
 		</Style>
 
 		<DataTemplate x:Key="EquipmentTemplate" DataType="{x:Type electronicObserverTypes:IEquipmentData}">
@@ -157,7 +160,7 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="ID"
+					Header="{Binding DataContext.Translations.Name, Source={StaticResource Proxy}}"
 					/>
 
 				<DataGridTemplateColumn
