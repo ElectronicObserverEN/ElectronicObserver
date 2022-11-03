@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
@@ -6,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,9 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<WorldModel> Worlds { get; set; } = null!;
 	public DbSet<MapModel> Maps { get; set; } = null!;
 	public DbSet<CellModel> Cells { get; set; } = null!;
+	[Obsolete("Use ApiFileService")]
 	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
+	public DbSet<SortieRecord> Sorties { get; set; } = null!;
 
 	private string DbPath { get; }
 

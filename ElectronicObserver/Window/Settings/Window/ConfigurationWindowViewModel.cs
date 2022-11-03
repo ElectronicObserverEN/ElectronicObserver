@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window.Settings.Window;
 
 public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 {
+	public FileService FileService { get; }
 	public ConfigurationWindowTranslationViewModel Translation { get; }
 
 	private Configuration.ConfigurationData.ConfigLife Config { get; }
@@ -28,6 +30,7 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 
 	public ConfigurationWindowViewModel(Configuration.ConfigurationData.ConfigLife config)
 	{
+		FileService = Ioc.Default.GetRequiredService<FileService>();
 		Translation = Ioc.Default.GetRequiredService<ConfigurationWindowTranslationViewModel>();
 
 		Config = config;
@@ -64,5 +67,15 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 		if (clockFormat is not { } format) return;
 
 		ClockFormat = format;
+	}
+
+	[ICommand]
+	private void OpenLayout()
+	{
+		string? newLayoutPath = FileService.OpenLayoutPath(LayoutFilePath);
+
+		if(newLayoutPath is null) return;
+
+		LayoutFilePath = newLayoutPath;
 	}
 }

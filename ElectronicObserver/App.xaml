@@ -41,6 +41,7 @@
 			<converters:AaciIdDisplayConverter x:Key="AaciIdDisplayConverter" />
 			<converters:ShipClassDisplayConverter x:Key="ShipClassDisplayConverter" />
 			<converters:FontFamilyDisplayConverter x:Key="FontFamilyDisplayConverter" />
+			<converters:DateTimeDisplayConverter x:Key="DateTimeDisplayConverter" />
 
 			<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml

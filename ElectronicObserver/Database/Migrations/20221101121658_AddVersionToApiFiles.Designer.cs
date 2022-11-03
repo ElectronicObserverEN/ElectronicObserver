@@ -3,6 +3,7 @@ using System;
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20221101121658_AddVersionToApiFiles")]
+    partial class AddVersionToApiFiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
@@ -34,9 +36,6 @@ namespace ElectronicObserver.Database.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SortieRecordId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("TEXT");
 
@@ -44,8 +43,6 @@ namespace ElectronicObserver.Database.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SortieRecordId");
 
                     b.ToTable("ApiFiles");
                 });
@@ -101,23 +98,6 @@ namespace ElectronicObserver.Database.Migrations
                     b.ToTable("Worlds");
                 });
 
-            modelBuilder.Entity("ElectronicObserver.Database.Sortie.SortieRecord", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Map")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("World")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sorties");
-                });
-
             modelBuilder.Entity("ElectronicObserver.Window.Tools.AutoRefresh.AutoRefreshModel", b =>
                 {
                     b.Property<int>("Id")
@@ -161,18 +141,6 @@ namespace ElectronicObserver.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EventLockPlans");
-                });
-
-            modelBuilder.Entity("ElectronicObserver.Database.KancolleApi.ApiFile", b =>
-                {
-                    b.HasOne("ElectronicObserver.Database.Sortie.SortieRecord", null)
-                        .WithMany("ApiFiles")
-                        .HasForeignKey("SortieRecordId");
-                });
-
-            modelBuilder.Entity("ElectronicObserver.Database.Sortie.SortieRecord", b =>
-                {
-                    b.Navigation("ApiFiles");
                 });
 #pragma warning restore 612, 618
         }

@@ -416,7 +416,7 @@ Can increase the number of status bar messages.</value>
     <value>Weekly</value>
   </data>
   <data name="Window" xml:space="preserve">
-    <value>Layout</value>
+    <value>Window</value>
   </data>
   <data name="ZoomRate" xml:space="preserve">
     <value>Zoom</value>

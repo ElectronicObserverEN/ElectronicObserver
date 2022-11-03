@@ -40,6 +40,7 @@ using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
+using ElectronicObserver.Window.Tools.DatabaseExplorer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
@@ -196,6 +197,13 @@ public partial class FormMainViewModel : ObservableObject
 
 	private string GeneratedDataFolder => "Generated";
 	public bool GenerateMasterDataVisible =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
+
+	public bool DatabaseBrowserVisible =>
 #if DEBUG
 		true;
 #else
@@ -978,6 +986,12 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		AutoRefreshWindow.Show(Window);
+	}
+
+	[ICommand]
+	private void OpenDatabaseExplorer()
+	{
+		new DatabaseExplorerWindow().Show(Window);
 	}
 
 	#endregion

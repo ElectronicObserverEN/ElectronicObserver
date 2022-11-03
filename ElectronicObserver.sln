@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.TestData
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.SourceGenerators", "ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj", "{61B5D946-B3E5-45AE-91AB-55B061DA14FD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.KancolleApi", "ElectronicObserver.KancolleApi\ElectronicObserver.KancolleApi.csproj", "{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -75,6 +77,10 @@ Global
 		{61B5D946-B3E5-45AE-91AB-55B061DA14FD}.Debug|x64.Build.0 = Debug|Any CPU
 		{61B5D946-B3E5-45AE-91AB-55B061DA14FD}.Release|x64.ActiveCfg = Release|Any CPU
 		{61B5D946-B3E5-45AE-91AB-55B061DA14FD}.Release|x64.Build.0 = Release|Any CPU
+		{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}.Debug|x64.Build.0 = Debug|Any CPU
+		{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}.Release|x64.ActiveCfg = Release|Any CPU
+		{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

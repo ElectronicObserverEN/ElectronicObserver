@@ -678,6 +678,11 @@
 						<Image Source="{Binding AutoRefreshImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem
+					Command="{Binding OpenDatabaseExplorerCommand}"
+					Header="Db explorer"
+					Visibility="{Binding DatabaseBrowserVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+					/>
 			</MenuItem>
 			<MenuItem
 				Height="Auto"

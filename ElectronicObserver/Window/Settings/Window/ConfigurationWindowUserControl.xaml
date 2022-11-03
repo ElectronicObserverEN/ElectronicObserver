@@ -20,7 +20,11 @@
 
 			<TextBlock Grid.Column="0" Text="{Binding Translation.LayoutFile}" />
 			<TextBox Grid.Column="1" Text="{Binding LayoutFilePath}" />
-			<Button Grid.Column="2" Content="..." />
+			<Button
+				Grid.Column="2"
+				Command="{Binding OpenLayoutCommand}"
+				Content="..."
+				/>
 		</Grid>
 
 		<StackPanel Orientation="Horizontal">

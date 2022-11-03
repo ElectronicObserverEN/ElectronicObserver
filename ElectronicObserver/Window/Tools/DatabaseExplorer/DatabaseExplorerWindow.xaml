@@ -1,0 +1,71 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.DatabaseExplorer.DatabaseExplorerWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DatabaseExplorer"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="DatabaseExplorerWindow"
+	Width="800"
+	Height="450"
+	controls:WindowHelper.UseModernWindowStyle="True"
+	d:DataContext="{d:DesignInstance local:DatabaseExplorerViewModel}"
+	x:TypeArguments="local:DatabaseExplorerViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:DatabaseExplorerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<controls:NumberBox
+				Minimum="1"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding Limit}"
+				/>
+
+			<TextBox Text="{Binding ApiNameFilter}" />
+
+			<Button Command="{Binding SearchCommand}" Content="Search" />
+		</StackPanel>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding ApiFiles}"
+			>
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+				<DataGridTextColumn Binding="{Binding ApiFileType}" Header="ApiFileType" />
+				<DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+				<DataGridTextColumn
+					Width="*"
+					Binding="{Binding Content}"
+					Header="Content"
+					/>
+				<DataGridTextColumn Binding="{Binding TimeStamp, Converter={StaticResource DateTimeDisplayConverter}}" Header="TimeStamp" />
+				<DataGridTemplateColumn>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button
+								Command="{Binding DataContext.CopyContentCommand, Source={StaticResource Proxy}}"
+								CommandParameter="{Binding}"
+								Content="Copy"
+								/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</common:WindowBase>

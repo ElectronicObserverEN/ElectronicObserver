@@ -336,7 +336,7 @@ Use it at your own risk.</value>
     <value>Confirm on exit</value>
   </data>
   <data name="Window" xml:space="preserve">
-    <value>Window</value>
+    <value>Subwindow</value>
   </data>
   <data name="Fleet" xml:space="preserve">
     <value>Fleet</value>
