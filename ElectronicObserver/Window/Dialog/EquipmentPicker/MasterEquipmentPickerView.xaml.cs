@@ -1,4 +1,5 @@
-﻿using ElectronicObserverTypes;
+﻿using System.Windows.Controls;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 /// <summary>
@@ -15,7 +16,10 @@ public partial class MasterEquipmentPickerView
 
 	private void EventSetter_OnHandler(object sender, System.Windows.Input.MouseButtonEventArgs e)
 	{
-		PickedEquipment = ViewModel.SelectedEquipment?.MasterEquipment;
-		DialogResult = true;
+		if (sender is DataGridRow row && row.DataContext is IEquipmentData equipment)
+		{
+			PickedEquipment = equipment.MasterEquipment;
+			DialogResult = true;
+		}
 	}
 }

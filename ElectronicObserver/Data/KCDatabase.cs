@@ -3,6 +3,7 @@ using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 using static ElectronicObserver.Data.Constants;
@@ -178,6 +179,11 @@ public sealed class KCDatabase : IKCDatabase
 	private SystemQuestTrackerManager? _systemQuestTrackerManager;
 	public SystemQuestTrackerManager SystemQuestTrackerManager => _systemQuestTrackerManager ??= new();
 
+
+	private EquipmentUpgradePlanManager? _equipmentUpgradePlanManager;
+	public EquipmentUpgradePlanManager EquipmentUpgradePlanManager => _equipmentUpgradePlanManager ??= new();
+
+
 	private KCDatabase()
 	{
 
@@ -231,6 +237,7 @@ public sealed class KCDatabase : IKCDatabase
 
 		QuestTrackerManagers.Load();
 		SystemQuestTrackerManager.Load();
+		EquipmentUpgradePlanManager.Load();
 	}
 
 	public void Save()
@@ -239,6 +246,7 @@ public sealed class KCDatabase : IKCDatabase
 		QuestProgress.Save();
 		QuestTrackerManagers.Save();
 		SystemQuestTrackerManager.Save();
+		EquipmentUpgradePlanManager.Save();
 	}
 
 }

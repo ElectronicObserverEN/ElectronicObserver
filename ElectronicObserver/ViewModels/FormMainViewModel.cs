@@ -70,6 +70,7 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -943,6 +944,20 @@ public partial class FormMainViewModel : ObservableObject
 		}
 
 		new QuestTrackerManagerWindow().Show(Window);
+	}
+	
+	[ICommand]
+	private void OpenEquipmentUpgradePlanner()
+	{
+		if (!KCDatabase.Instance.EquipmentUpgradePlanManager.IsInitialized)
+		{
+			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
+
+			return;
+		}
+
+		new EquipmentUpgradePlannerWindow(new EquipmentUpgradePlannerViewModel()).Show(Window);
 	}
 
 	[ICommand]

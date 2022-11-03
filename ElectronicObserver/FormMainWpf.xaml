@@ -673,6 +673,11 @@
 						<Image Source="{Binding QuestImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Command="{Binding OpenEquipmentUpgradePlannerCommand}" Header="{Binding FormMain.EquipmentUpgradePlannerTitle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<MenuItem Command="{Binding OpenAutoRefreshCommand}" Header="{Binding FormMain.AutoRefreshTitle}">
 					<MenuItem.Icon>
 						<Image Source="{Binding AutoRefreshImageSource}" />
