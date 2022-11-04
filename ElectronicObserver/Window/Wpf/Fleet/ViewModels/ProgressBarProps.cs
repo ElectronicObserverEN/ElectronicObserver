@@ -16,6 +16,7 @@ public class ProgressBarProps : ObservableObject
 	public Visibility Visibility { get; set; } = Visibility.Visible;
 
 	public SolidColorBrush Foreground { get; set; }
+	public SolidColorBrush Background { get; set; }
 
 	private static double GetPercentage(int value, int max)
 	{
