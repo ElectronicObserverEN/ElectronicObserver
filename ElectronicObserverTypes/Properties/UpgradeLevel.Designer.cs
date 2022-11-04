@@ -158,5 +158,14 @@ namespace ElectronicObserverTypes.Properties {
                 return ResourceManager.GetString("Two", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不明.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
     }
 }
