@@ -53,18 +53,17 @@ public class EquipmentUpgradePlanManager
 
 		// Try to load the owned equipment
 		// not found => scrapped ? lost ? logged on another acc ? (what to do ?)
-		IEquipmentData equipmentData;
-
-		if (model.EquipmentMasterId is int _dropIdNotNull && KCDatabase.Instance.Equipments.ContainsKey(_dropIdNotNull))
+		// not found => Set to null 
+		// TODO : when upgrading something that isn't in the plan list look for an entry with the same equipment id and master id null and assign it at that moment 
+		IEquipmentData equipmentData = model.EquipmentMasterId switch
 		{
-			equipmentData = KCDatabase.Instance.Equipments[_dropIdNotNull]!;
-		}
-		else
-		{
-			equipmentData = new EquipmentDataMock(masterEquipment);
-		}
-
-		// TODO : try to match to an owned equipment (if _equipment is null) => do a method that can be called on some api updates (craft/drop/reward/...)
+			int => KCDatabase.Instance.Equipments.ContainsKey((int)model.EquipmentMasterId) switch
+			{
+				true => KCDatabase.Instance.Equipments[(int)model.EquipmentMasterId]!,
+				_ => new EquipmentDataMock(masterEquipment)
+			},
+			_ => new EquipmentDataMock(masterEquipment)
+		};
 
 		PlannedUpgrades.Add(new EquipmentUpgradePlanItemViewModel(equipmentData)
 		{
@@ -86,7 +85,7 @@ public class EquipmentUpgradePlanManager
 			EquipmentUpgradePlanItemModel model = db.EquipmentUpgradePlanItems.Find(viewModel.Id) ?? db.EquipmentUpgradePlanItems.Add(new()).Entity;
 
 			model.EquipmentId = viewModel.Equipment.EquipmentId;
-			model.EquipmentMasterId = viewModel.Equipment.MasterID;
+			model.EquipmentMasterId = viewModel.Equipment.MasterID > 0 ? viewModel.Equipment.MasterID : null;
 			model.DesiredUpgradeLevel = viewModel.DesiredUpgradeLevel;
 			model.Finished = viewModel.Finished;
 			model.Priority = viewModel.Priority;

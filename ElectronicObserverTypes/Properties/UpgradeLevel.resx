@@ -150,7 +150,7 @@
   <data name="Two" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>不明</value>
+  <data name="Zero" xml:space="preserve">
+    <value>0</value>
   </data>
 </root>

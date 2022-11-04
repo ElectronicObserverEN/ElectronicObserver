@@ -40,6 +40,16 @@
 			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+
+		<Style TargetType="{x:Type ui:NumberBox}">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4" />
 		</Style>
 
 		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
@@ -50,27 +60,112 @@
 
 	</Window.Resources>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+	<ScrollViewer>
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
 
 
-		<Button
-			Grid.Row="0"
-			Command="{Binding AddEquipmentPlanCommand}"
-			Content="Add owned equipment"
-			/>
+			<Button
+				Grid.Row="0"
+				Command="{Binding AddEquipmentPlanCommand}"
+				Content="Add owned equipment"
+				/>
 
-		<ItemsControl Grid.Row="1" ItemsSource="{Binding PlannedUpgrades}">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal">
-						<Button Content="{Binding Equipment.MasterEquipment.NameEN}" />
-					</StackPanel>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
-	</Grid>
+			<ItemsControl
+				Grid.Row="1"
+				Margin="0 5"
+				ItemsSource="{Binding PlannedUpgrades}"
+				>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border BorderThickness="1">
+							<Border.Style>
+								<Style TargetType="Border">
+									<Setter Property="Visibility" Value="Visible" />
+									<Setter Property="BorderBrush" Value="Gray" />
+								</Style>
+							</Border.Style>
+
+							<Grid Margin="4 10">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="*" />
+								</Grid.RowDefinitions>
+
+								<Button
+									Grid.Row="0"
+									Command="{Binding OpenEquipmentPickerCommand}"
+									Content="{Binding EquipmentDisplay}"
+									/>
+
+								<Grid Grid.Row="1" Margin="4 10">
+
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="*" />
+									</Grid.RowDefinitions>
+
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+
+									<TextBlock
+										Grid.Row="0"
+										Grid.Column="0"
+										Margin="2 8"
+										Text="Goal"
+										/>
+									<ComboBox
+										Grid.Row="0"
+										Grid.Column="1"
+										ItemsSource="{Binding PossibleUpgradeLevels}"
+										SelectedItem="{Binding DesiredUpgradeLevel}"
+										>
+										<ComboBox.ItemTemplate>
+											<DataTemplate DataType="local:UpgradeLevel">
+												<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+											</DataTemplate>
+										</ComboBox.ItemTemplate>
+									</ComboBox>
+
+									<TextBlock
+										Grid.Row="1"
+										Grid.Column="0"
+										Margin="2 8"
+										Text="Priority"
+										/>
+									<ui:NumberBox
+										Grid.Row="1"
+										Grid.Column="1"
+										HorizontalAlignment="Left"
+										Value="{Binding Priority}"
+										/>
+
+									<TextBlock
+										Grid.Row="2"
+										Grid.Column="0"
+										Margin="2 8"
+										Text="Is finished ?"
+										/>
+									<CheckBox
+										Grid.Row="2"
+										Grid.Column="1"
+										IsChecked="{Binding Finished}"
+										IsEnabled="False"
+										/>
+								</Grid>
+							</Grid>
+						</Border>
+
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</Grid>
+	</ScrollViewer>
 </common:WindowBase>

@@ -5,8 +5,8 @@ namespace ElectronicObserverTypes;
 public enum UpgradeLevel
 {
 	/// <summary>Unknown</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Unknown")]
-	Unknown = 0,
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Zero")]
+	Zero = 0,
 
 	/// <summary>1</summary>
 	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "One")]
@@ -50,5 +50,5 @@ public enum UpgradeLevel
 
 	/// <summary>Equipment conversion</summary>
 	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Conversion")]
-	Conversion = -1,
+	Conversion = -1
 }

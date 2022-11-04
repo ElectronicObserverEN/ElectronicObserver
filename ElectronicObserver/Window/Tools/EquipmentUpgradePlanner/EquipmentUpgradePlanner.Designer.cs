@@ -63,9 +63,27 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         /// <summary>
         ///   Looks up a localized string similar to ???.
         /// </summary>
+        public static string NotOwned {
+            get {
+                return ResourceManager.GetString("NotOwned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string UpgradeLevel {
+            get {
+                return ResourceManager.GetString("UpgradeLevel", resourceCulture);
             }
         }
     }

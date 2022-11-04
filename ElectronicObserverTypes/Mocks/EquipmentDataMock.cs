@@ -7,6 +7,7 @@ public class EquipmentDataMock : IEquipmentData
 	public EquipmentId EquipmentId => MasterEquipment.EquipmentId;
 	public bool IsLocked { get; set; }
 	public int Level { get; set; }
+	public UpgradeLevel UpgradeLevel { get; set; }
 	public int AircraftLevel { get; set; }
 	public IEquipmentDataMaster MasterEquipment { get; }
 	public string Name { get; set; }

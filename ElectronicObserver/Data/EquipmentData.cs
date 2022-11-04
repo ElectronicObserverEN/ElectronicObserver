@@ -56,6 +56,11 @@ public class EquipmentData : ResponseWrapper, IIdentifiable, IEquipmentData
 
 
 	/// <summary>
+	/// 改修Level
+	/// </summary>
+	public UpgradeLevel UpgradeLevel => (UpgradeLevel)Level;
+
+	/// <summary>
 	/// 艦載機熟練度
 	/// </summary>
 	public int AircraftLevel => RawData.api_alv() ? (int)RawData.api_alv : 0;

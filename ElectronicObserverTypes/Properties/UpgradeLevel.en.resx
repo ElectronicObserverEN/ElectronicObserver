@@ -153,4 +153,7 @@
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
+  <data name="Zero" xml:space="preserve">
+    <value>0</value>
+  </data>
 </root>

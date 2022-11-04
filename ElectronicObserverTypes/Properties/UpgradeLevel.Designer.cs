@@ -160,11 +160,11 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 不明.
+        ///   Looks up a localized string similar to 0.
         /// </summary>
-        public static string Unknown {
+        public static string Zero {
             get {
-                return ResourceManager.GetString("Unknown", resourceCulture);
+                return ResourceManager.GetString("Zero", resourceCulture);
             }
         }
     }
