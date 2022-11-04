@@ -455,6 +455,7 @@
 										<StackPanel Width="32" VerticalAlignment="Center">
 											<ProgressBar
 												Margin="0 2"
+												Background="{Binding Background}"
 												DataContext="{Binding BarFuel}"
 												Foreground="{Binding Foreground}"
 												Maximum="{Binding MaximumValue}"
@@ -462,6 +463,7 @@
 												/>
 											<ProgressBar
 												Margin="0 2"
+												Background="{Binding Background}"
 												DataContext="{Binding BarAmmo}"
 												Foreground="{Binding Foreground}"
 												Maximum="{Binding MaximumValue}"
