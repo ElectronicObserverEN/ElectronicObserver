@@ -4,10 +4,11 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Converters;
+using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
@@ -32,24 +33,58 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public int Priority { get; set; }
 
 	private readonly EquipmentPickerService EquipmentPicker;
+	public EquipmentUpgradePlanItemModel Plan { get; private set; }
 
-	public EquipmentUpgradePlanItemViewModel(IEquipmentData equipment)
+	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
-		PropertyChanged += EquipmentUpgradePlanItemViewModel_PropertyChanged;
+		Plan = plan;
 
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
-		Equipment = equipment;
+
+		LoadModel();
+
+		PropertyChanged += EquipmentUpgradePlanItemViewModel_PropertyChanged;
+	}
+
+	private void LoadModel()
+	{
+		Id = Plan.Id;
+		DesiredUpgradeLevel = Plan.DesiredUpgradeLevel;
+		Finished = Plan.Finished;
+		Priority = Plan.Priority;
+
+		if (!KCDatabase.Instance.MasterEquipments.ContainsKey((int)Plan.EquipmentId)) return;
+
+		IEquipmentDataMaster masterEquipment = KCDatabase.Instance.MasterEquipments[(int)Plan.EquipmentId];
+
+		// Try to load the owned equipment
+		// not found => scrapped ? lost ? logged on another acc ? (what to do ?)
+		// not found => Set to null 
+		// TODO : when upgrading something that isn't in the plan list look for an entry with the same equipment id and master id null and assign it at that moment 
+		IEquipmentData equipmentData = Plan.EquipmentMasterId switch
+		{
+			int => KCDatabase.Instance.Equipments.ContainsKey((int)Plan.EquipmentMasterId) switch
+			{
+				true => KCDatabase.Instance.Equipments[(int)Plan.EquipmentMasterId]!,
+				_ => new EquipmentDataMock(masterEquipment)
+			},
+			_ => new EquipmentDataMock(masterEquipment)
+		};
+
+		Equipment = equipmentData;
+		Update();
 	}
 
 	private void EquipmentUpgradePlanItemViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName != nameof(Equipment)) return;
+		if (e.PropertyName == nameof(Equipment)) Update();
 
-		UpdateEquipmentDisplay();
+		Save();
 	}
 
-	public void UpdateEquipmentDisplay()
+	public void Update()
 	{
+		// Update the equipment display
 		if (Equipment is null)
 		{
 			EquipmentName = "";
@@ -64,6 +99,15 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		else
 			CurrentLevelDisplay = EquipmentUpgradePlanner.NotOwned;
 
+	}
+
+	public void Save()
+	{
+		Plan.EquipmentId = Equipment?.EquipmentId ?? EquipmentId.Unknown;
+		Plan.EquipmentMasterId = Equipment?.MasterID > 0 ? Equipment.MasterID : null;
+		Plan.DesiredUpgradeLevel = DesiredUpgradeLevel;
+		Plan.Finished = Finished;
+		Plan.Priority = Priority;
 	}
 
 	[ICommand]

@@ -40,10 +40,13 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	{
 		IEquipmentData? equipment = EquipmentPicker.OpenEquipmentPicker();
 
-		if (equipment != null) PlannedUpgrades.Add(new EquipmentUpgradePlanItemViewModel(equipment)
+		if (equipment != null)
 		{
+			EquipmentUpgradePlanItemViewModel newPlan = KCDatabase.Instance.EquipmentUpgradePlanManager.AddPlan();
+
 			// Use a setting to set default level ?
-			DesiredUpgradeLevel = UpgradeLevel.Max
-		});
+			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
+			newPlan.Equipment = equipment;
+		}
 	}
 }
