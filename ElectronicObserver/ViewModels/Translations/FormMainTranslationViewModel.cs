@@ -2,6 +2,7 @@
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -45,6 +46,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_View_ShipGroup => Properties.Window.FormMain.View_ShipGroup.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Dock => Properties.Window.FormMain.View_Dock.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Arsenal => Properties.Window.FormMain.View_Arsenal.Replace("_", "__").Replace("&", "_");
+	public string EquipmentUpgradePlanViewerTitle => EquipmentUpgradePlanViewer.Title;
 	public string StripMenu_View_BaseAirCorps => Properties.Window.FormMain.View_BaseAirCorps.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Headquarters => Properties.Window.FormMain.View_Headquarters.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Quest => Properties.Window.FormMain.View_Quest.Replace("_", "__").Replace("&", "_");

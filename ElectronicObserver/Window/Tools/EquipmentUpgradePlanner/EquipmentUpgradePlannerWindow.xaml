@@ -80,9 +80,16 @@
 				Margin="0 5"
 				ItemsSource="{Binding PlannedUpgrades}"
 				>
+
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Border BorderThickness="1">
+						<Border Width="400" BorderThickness="1">
 							<Border.Style>
 								<Style TargetType="Border">
 									<Setter Property="Visibility" Value="Visible" />
@@ -99,12 +106,13 @@
 								<Button
 									Grid.Row="0"
 									Command="{Binding OpenEquipmentPickerCommand}"
-									Content="{Binding EquipmentDisplay}"
+									Content="{Binding EquipmentName}"
 									/>
 
 								<Grid Grid.Row="1" Margin="4 10">
 
 									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
 										<RowDefinition Height="Auto" />
 										<RowDefinition Height="Auto" />
 										<RowDefinition Height="*" />
@@ -119,10 +127,23 @@
 										Grid.Row="0"
 										Grid.Column="0"
 										Margin="2 8"
+										Text="{Binding DataContext.EquipmentUpgradePlanner.UpgradeLevel, Source={StaticResource Proxy}}"
+										/>
+									<TextBlock
+										Grid.Row="0"
+										Grid.Column="1"
+										Margin="2 8"
+										Text="{Binding CurrentLevelDisplay}"
+										/>
+
+									<TextBlock
+										Grid.Row="1"
+										Grid.Column="0"
+										Margin="2 8"
 										Text="{Binding DataContext.EquipmentUpgradePlanner.Goal, Source={StaticResource Proxy}}"
 										/>
 									<ComboBox
-										Grid.Row="0"
+										Grid.Row="1"
 										Grid.Column="1"
 										ItemsSource="{Binding PossibleUpgradeLevels}"
 										SelectedItem="{Binding DesiredUpgradeLevel}"
@@ -135,29 +156,28 @@
 									</ComboBox>
 
 									<TextBlock
-										Grid.Row="1"
+										Grid.Row="2"
 										Grid.Column="0"
 										Margin="2 8"
 										Text="{Binding DataContext.EquipmentUpgradePlanner.Priority, Source={StaticResource Proxy}}"
 										/>
 									<ui:NumberBox
-										Grid.Row="1"
+										Grid.Row="2"
 										Grid.Column="1"
 										HorizontalAlignment="Left"
 										Value="{Binding Priority}"
 										/>
 
 									<TextBlock
-										Grid.Row="2"
+										Grid.Row="3"
 										Grid.Column="0"
 										Margin="2 8"
 										Text="{Binding DataContext.EquipmentUpgradePlanner.IsFinished, Source={StaticResource Proxy}}"
 										/>
 									<CheckBox
-										Grid.Row="2"
+										Grid.Row="3"
 										Grid.Column="1"
 										IsChecked="{Binding Finished}"
-										IsEnabled="False"
 										/>
 								</Grid>
 							</Grid>

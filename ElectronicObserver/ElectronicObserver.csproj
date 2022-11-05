@@ -385,6 +385,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FleetImageGenerator.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EquipmentUpgradePlanViewer.resx</DependentUpon>
+		</Compile>
 		<None Include=".editorconfig" />
 		<Page Include="Properties\DesignTimeResources.xaml">
 			<SubType>Designer</SubType>

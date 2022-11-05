@@ -31,6 +31,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public override void Loaded()
 	{
+		base.Loaded();
 		PlannedUpgrades = KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades;
 	}
 

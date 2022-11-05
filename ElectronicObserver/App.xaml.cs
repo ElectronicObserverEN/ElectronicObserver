@@ -46,6 +46,7 @@ using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Wpf;
+using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -237,6 +238,7 @@ public partial class App : Application
 			.AddSingleton<FormQuestTranslationViewModel>()
 			.AddSingleton<FormShipGroupTranslationViewModel>()
 			.AddSingleton<FormWindowCaptureTranslationViewModel>()
+			.AddSingleton<EquipmentUpgradePlanViewerTranslationViewModel>()
 			// tool translations
 			.AddSingleton<DialogAlbumMasterShipTranslationViewModel>()
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
@@ -312,6 +314,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<ExpeditionCheckView>()
+			.Property(w => w.ViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<EquipmentUpgradePlanViewerView>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
 

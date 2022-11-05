@@ -19,7 +19,8 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public UpgradeLevel DesiredUpgradeLevel { get; set; }
 
-	public string? EquipmentDisplay { get; set; }
+	public string EquipmentName { get; set; } = "";
+	public string CurrentLevelDisplay { get; set; } = "";
 
 	public List<UpgradeLevel> PossibleUpgradeLevels { get; set; } =
 		Enum.GetValues<UpgradeLevel>()
@@ -49,9 +50,20 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public void UpdateEquipmentDisplay()
 	{
-		if (Equipment is null) EquipmentDisplay = "";
-		else if (Equipment.MasterID > 0) EquipmentDisplay = $"{Equipment.MasterEquipment.NameEN} - {EquipmentUpgradePlanner.UpgradeLevel}: {Equipment.UpgradeLevel.Display()}";
-		else EquipmentDisplay = $"{Equipment.MasterEquipment.NameEN} - {EquipmentUpgradePlanner.NotOwned}";
+		if (Equipment is null)
+		{
+			EquipmentName = "";
+			CurrentLevelDisplay = "";
+			return;
+		}
+
+		EquipmentName = Equipment.MasterEquipment.NameEN;
+
+		if (Equipment.MasterID > 0)
+			CurrentLevelDisplay = Equipment.UpgradeLevel.Display();
+		else
+			CurrentLevelDisplay = EquipmentUpgradePlanner.NotOwned;
+
 	}
 
 	[ICommand]
