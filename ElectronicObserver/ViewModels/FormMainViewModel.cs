@@ -717,22 +717,13 @@ public partial class FormMainViewModel : ObservableObject
 	#region Tools
 
 	[ICommand]
-	private void OpenEquipmentList(bool useNewVersion)
+	private void OpenEquipmentList()
 	{
-		if (useNewVersion)
-		{
-			new EquipmentListWindow().Show(Window);
-		}
-		else
-		{
-			DialogEquipmentList equipmentList = new DialogEquipmentList();
-			RefreshTopMost();
-			equipmentList.Show(Window);
-		}
+		new EquipmentListWindow().Show(Window);
 	}
 
 	[ICommand]
-	private void OpenDropRecord(bool useNewVersion)
+	private void OpenDropRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -748,18 +739,11 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		if (useNewVersion)
-		{
-			new DropRecordViewerWindow().Show(Window);
-		}
-		else
-		{
-			new DialogDropRecordViewer().Show(Window);
-		}
+		new DropRecordViewerWindow().Show(Window);
 	}
 
 	[ICommand]
-	private void OpenDevelopmentRecord(bool useNewVersion)
+	private void OpenDevelopmentRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -775,18 +759,11 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		if (useNewVersion)
-		{
-			new DevelopmentRecordViewerWindow().Show(Window);
-		}
-		else
-		{
-			new DialogDevelopmentRecordViewer().Show(Window);
-		}
+		new DevelopmentRecordViewerWindow().Show(Window);
 	}
 
 	[ICommand]
-	private void OpenConstructionRecord(bool useNewVersion)
+	private void OpenConstructionRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -802,27 +779,13 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		if (useNewVersion)
-		{
-			new ConstructionRecordViewerWindow().Show(Window);
-		}
-		else
-		{
-			new DialogConstructionRecordViewer().Show(Window);
-		}
+		new ConstructionRecordViewerWindow().Show(Window);
 	}
 
 	[ICommand]
-	private void OpenResourceChart(bool useNewVersion)
+	private void OpenResourceChart()
 	{
-		if (useNewVersion)
-		{
-			new ResourceChartWPF().Show(Window);
-		}
-		else
-		{
-			new DialogResourceChart().Show(Window);
-		}
+		new ResourceChartWPF().Show(Window);
 	}
 
 	[ICommand]
@@ -858,67 +821,39 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenAntiAirDefense(bool useNewVersion)
+	private void OpenAntiAirDefense()
 	{
-		if (useNewVersion)
+		if (!KCDatabase.Instance.Fleet.IsAvailable)
 		{
-			if (!KCDatabase.Instance.Fleet.IsAvailable)
-			{
-				MessageBox.Show
-				(
-					Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
-					Properties.Window.Dialog.DialogAntiAirDefense.Error,
-					MessageBoxButton.OK, MessageBoxImage.Error
-				);
+			MessageBox.Show
+			(
+				Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
+				Properties.Window.Dialog.DialogAntiAirDefense.Error,
+				MessageBoxButton.OK, MessageBoxImage.Error
+			);
 
-				return;
-			}
+			return;
+		}
 
-			new AirDefenseWindow(new()).Show(Window);
-		}
-		else
-		{
-			new DialogAntiAirDefense().Show(Window);
-		}
+		new AirDefenseWindow(new()).Show(Window);
 	}
 
 	[ICommand]
-	private void OpenFleetImageGenerator(bool useNewVersion)
+	private void OpenFleetImageGenerator()
 	{
-		if (useNewVersion)
-		{
-			ToolService.FleetImageGenerator();
-		}
-		else
-		{
-			new DialogFleetImageGenerator(1).Show(Window);
-		}
+		ToolService.FleetImageGenerator();
 	}
 
 	[ICommand]
-	private void OpenBaseAirCorpsSimulation(bool useNewVersion)
+	private void OpenBaseAirCorpsSimulation()
 	{
-		if (useNewVersion)
-		{
-			ToolService.AirControlSimulator();
-		}
-		else
-		{
-			new DialogBaseAirCorpsSimulation().Show(Window);
-		}
+		ToolService.AirControlSimulator();
 	}
 
 	[ICommand]
-	private void OpenExpChecker(bool useNewVersion)
+	private void OpenExpChecker()
 	{
-		if (useNewVersion)
-		{
-			ToolService.ExpChecker();
-		}
-		else
-		{
-			new DialogExpChecker().Show(Window);
-		}
+		ToolService.ExpChecker();
 	}
 
 	[ICommand]

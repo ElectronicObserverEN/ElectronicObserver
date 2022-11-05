@@ -489,81 +489,51 @@
 				d:Header="Tools"
 				Header="{Binding FormMain.StripMenu_Tool}"
 				>
-				<MenuItem d:Header="Equipment List" Header="{Binding FormMain.StripMenu_Tool_EquipmentList}">
+				<MenuItem
+					d:Header="Equipment List"
+					Command="{Binding OpenEquipmentListCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_EquipmentList}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding EquipmentListImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
 				<Separator />
-				<MenuItem d:Header="Drop Record" Header="{Binding FormMain.StripMenu_Tool_DropRecord}">
+				<MenuItem
+					d:Header="Drop Record"
+					Command="{Binding OpenDropRecordCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_DropRecord}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding DropRecordImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
-				<MenuItem d:Header="Development Record" Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}">
+				<MenuItem
+					d:Header="Development Record"
+					Command="{Binding OpenDevelopmentRecordCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding DevelopmentRecordImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
-				<MenuItem d:Header="Construction Record" Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}">
+				<MenuItem
+					d:Header="Construction Record"
+					Command="{Binding OpenConstructionRecordCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding ConstructionRecordImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
-				<MenuItem d:Header="Resource Chart" Header="{Binding FormMain.StripMenu_Tool_ResourceChart}">
+				<MenuItem
+					d:Header="Resource Chart"
+					Command="{Binding OpenResourceChartCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_ResourceChart}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding ResourceChartImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenResourceChartCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenResourceChartCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
 				<Separator />
 				<MenuItem
@@ -585,65 +555,41 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem d:Header="AA Defense" Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}">
+				<MenuItem
+					d:Header="AA Defense"
+					Command="{Binding OpenAntiAirDefenseCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding AntiAirDefenseImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
-				<MenuItem d:Header="Export Fleet Image" Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}">
+				<MenuItem
+					d:Header="Export Fleet Image"
+					Command="{Binding OpenFleetImageGeneratorCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding FleetImageGeneratorImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
-				<MenuItem d:Header="AB Simulator" Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}">
+				<MenuItem
+					d:Header="AB Simulator"
+					Command="{Binding OpenBaseAirCorpsSimulationCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
-				<MenuItem d:Header="Exp Calculator" Header="{Binding FormMain.StripMenu_Tool_ExpChecker}">
+				<MenuItem
+					d:Header="Exp Calculator"
+					Command="{Binding OpenExpCheckerCommand}"
+					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
+					>
 					<MenuItem.Icon>
 						<Image Source="{Binding ExpCheckerImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenExpCheckerCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenExpCheckerCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Ship Progression List"
