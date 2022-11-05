@@ -1,6 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
@@ -18,6 +19,28 @@ public class ShipResourceViewModel : ObservableObject
 
 		BarFuel.PropertyChanged += Bar_PropertyChanged;
 		BarAmmo.PropertyChanged += Bar_PropertyChanged;
+		SystemEvents.UpdateTimerTick += UpdateTimerTick;
+	}
+
+	private void UpdateTimerTick()
+	{
+		var c = Configuration.Config;
+		if (BarFuel.Value <= 0)
+		{
+			BarFuel.Background = DateTime.Now.Second % 2 == 0 ? System.Windows.Media.Brushes.Maroon : c.UI.SubBackColor.ToBrush();
+		}
+		else
+		{
+			BarFuel.Background = c.UI.SubBackColor.ToBrush();
+		}
+		if (BarAmmo.Value <= 0)
+		{
+			BarAmmo.Background = DateTime.Now.Second % 2 == 0 ? System.Windows.Media.Brushes.Maroon : c.UI.SubBackColor.ToBrush();
+		}
+		else
+		{
+			BarAmmo.Background = c.UI.SubBackColor.ToBrush();
+		}
 	}
 
 	private void Bar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
