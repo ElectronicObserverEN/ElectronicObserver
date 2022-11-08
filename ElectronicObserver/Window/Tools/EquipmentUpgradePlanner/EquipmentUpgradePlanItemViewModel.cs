@@ -59,8 +59,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 		// Try to load the owned equipment
 		// not found => scrapped ? lost ? logged on another acc ? (what to do ?)
-		// not found => Set to null 
-		// TODO : when upgrading something that isn't in the plan list look for an entry with the same equipment id and master id null and assign it at that moment 
+		// not found => Set to null  
 		IEquipmentData equipmentData = Plan.EquipmentMasterId switch
 		{
 			int => KCDatabase.Instance.Equipments.ContainsKey((int)Plan.EquipmentMasterId) switch

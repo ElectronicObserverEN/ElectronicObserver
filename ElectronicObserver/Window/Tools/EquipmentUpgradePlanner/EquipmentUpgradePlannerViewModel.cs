@@ -18,9 +18,10 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
 public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 {
-	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; set; } = new();
+	private ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; set; } = new();
+	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFilteredAndSorted { get; set; } = new();
 
-	public EquipmentUpgradePlanner EquipmentUpgradePlanner { get; set; } = new();
+	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; set; } = new();
 
 	private readonly EquipmentPickerService EquipmentPicker;
 
@@ -33,6 +34,8 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	{
 		base.Loaded();
 		PlannedUpgrades = KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades;
+		PlannedUpgrades.CollectionChanged += (_, _) => Update();
+		Update();
 	}
 
 	[ICommand]
@@ -47,6 +50,23 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.Equipment = equipment;
+		}
+	}
+
+	[ICommand]
+	public void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
+	{
+		KCDatabase.Instance.EquipmentUpgradePlanManager.RemovePlan(planToRemove);
+	}
+
+	private void Update()
+	{
+		PlannedUpgradesFilteredAndSorted.Clear();
+
+		// TODO : add a way to hide finished
+		foreach (EquipmentUpgradePlanItemViewModel plan in PlannedUpgrades.OrderBy(plan => plan.Finished))
+		{
+			PlannedUpgradesFilteredAndSorted.Add(plan);
 		}
 	}
 }
