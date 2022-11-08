@@ -67,7 +67,7 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="Equipment"
+					Header="{Binding DataContext.Translation.Equipment, Source={StaticResource Proxy}}"
 					/>
 
 				<DataGridTextColumn
@@ -76,7 +76,7 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="Current level"
+					Header="{Binding DataContext.Translation.CurrentLevel, Source={StaticResource Proxy}}"
 					/>
 
 				<DataGridTextColumn
@@ -85,7 +85,7 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="Current level"
+					Header="{Binding DataContext.Translation.Goal, Source={StaticResource Proxy}}"
 					/>
 
 				<DataGridTextColumn
@@ -94,13 +94,13 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="Priority"
+					Header="{Binding DataContext.Translation.Priority, Source={StaticResource Proxy}}"
 					/>
 
 				<DataGridCheckBoxColumn
 					Width="Auto"
 					Binding="{Binding Finished}"
-					Header="Finished ?"
+					Header="{Binding DataContext.Translation.IsFinished, Source={StaticResource Proxy}}"
 					/>
 
 			</DataGrid.Columns>

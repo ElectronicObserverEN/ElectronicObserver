@@ -78,6 +78,7 @@
 			<ItemsControl
 				Grid.Row="1"
 				Margin="0 5"
+				HorizontalAlignment="Center"
 				ItemsSource="{Binding PlannedUpgrades}"
 				>
 

@@ -752,5 +752,9 @@
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EquipmentUpgradePlanViewer.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 </Project>
