@@ -23,6 +23,8 @@ public class EquipmentUpgradePlanManager
 	/// </summary>
 	private EquipmentData? CurrentUpgradeEquipment { get; set; }
 
+	public event EventHandler? OnPlanFinished;
+
 	public EquipmentUpgradePlanManager()
 	{
 		SubscribeToApi();
@@ -48,7 +50,14 @@ public class EquipmentUpgradePlanManager
 
 		foreach (EquipmentUpgradePlanItemModel model in models)
 		{
-			PlannedUpgrades.Add(new EquipmentUpgradePlanItemViewModel(model));
+			EquipmentUpgradePlanItemViewModel plan = new(model);
+			plan.PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName is not nameof(plan.Finished)) return;
+
+				OnPlanFinished?.Invoke(this, EventArgs.Empty);
+			};
+			PlannedUpgrades.Add(plan);
 		}
 
 		IsInitialized = true;
