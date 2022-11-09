@@ -23,7 +23,7 @@ public class EquipmentUpgradePlanManager
 	/// </summary>
 	private EquipmentData? CurrentUpgradeEquipment { get; set; }
 
-	public event EventHandler? OnPlanFinished;
+	public event EventHandler? PlanFinished;
 
 	public EquipmentUpgradePlanManager()
 	{
@@ -55,7 +55,7 @@ public class EquipmentUpgradePlanManager
 			{
 				if (args.PropertyName is not nameof(plan.Finished)) return;
 
-				OnPlanFinished?.Invoke(this, EventArgs.Empty);
+				PlanFinished?.Invoke(this, EventArgs.Empty);
 			};
 			PlannedUpgrades.Add(plan);
 		}

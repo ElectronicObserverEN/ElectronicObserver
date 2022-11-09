@@ -32,7 +32,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
-		KCDatabase.Instance.EquipmentUpgradePlanManager.OnPlanFinished += (_, _) => Update();
+		KCDatabase.Instance.EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		PropertyChanged += EquipmentUpgradePlanViewerViewModel_PropertyChanged; 
 	}
 
