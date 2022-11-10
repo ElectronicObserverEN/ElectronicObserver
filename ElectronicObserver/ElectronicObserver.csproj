@@ -438,7 +438,6 @@
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="ScottPlot" Version="4.1.45" />
 		<PackageReference Include="ScottPlot.WPF" Version="4.1.45" />
-		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
 		<PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
 		<PackageReference Include="System.Management" Version="6.0.0" />
 		<PackageReference Include="DiscordRichPresence" Version="1.1.1.14" />

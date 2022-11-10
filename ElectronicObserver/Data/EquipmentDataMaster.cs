@@ -133,7 +133,7 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	/// <summary>
 	/// 深海棲艦専用装備かどうか
 	/// </summary>
-	public bool IsAbyssalEquipment => EquipmentID > 500;
+	public bool IsAbyssalEquipment => EquipmentID > 1500;
 
 
 	/// <summary>
