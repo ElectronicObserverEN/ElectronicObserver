@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-windows</TargetFrameworks>
+		<TargetFramework>net7.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
