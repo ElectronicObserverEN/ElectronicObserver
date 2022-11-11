@@ -107,8 +107,6 @@ public class EquipmentUpgradePlanManager
 		// Equipment not found => shouldn't happen
 		if (!KCDatabase.Instance.Equipments.ContainsKey(idEquipment)) return;
 
-		EquipmentData newEquipment = KCDatabase.Instance.Equipments[idEquipment]!;
-
 		// Find the upgrade plan
 		EquipmentUpgradePlanItemViewModel? plan = FindEquipmentPlanFromEquipmentData(CurrentUpgradeEquipment);
 

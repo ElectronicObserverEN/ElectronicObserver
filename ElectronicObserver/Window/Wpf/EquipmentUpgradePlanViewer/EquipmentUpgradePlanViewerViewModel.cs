@@ -15,7 +15,6 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 
 public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 {
-	private ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades = new();
 	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFiltered { get; set; } = new();
 
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
@@ -33,7 +32,9 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
 		KCDatabase.Instance.EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
-		PropertyChanged += EquipmentUpgradePlanViewerViewModel_PropertyChanged; 
+		PropertyChanged += EquipmentUpgradePlanViewerViewModel_PropertyChanged;
+
+		KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades.CollectionChanged += (_, _) => Update();
 	}
 
 	private void EquipmentUpgradePlanViewerViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -46,7 +47,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 	{
 		PlannedUpgradesFiltered.Clear();
 
-		foreach (EquipmentUpgradePlanItemViewModel plan in PlannedUpgrades.Where(plan => DisplayFinished || !plan.Finished))
+		foreach (EquipmentUpgradePlanItemViewModel plan in KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades.Where(plan => DisplayFinished || !plan.Finished))
 		{
 			PlannedUpgradesFiltered.Add(plan);
 		}
@@ -55,7 +56,6 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 	public override void Loaded()
 	{
 		base.Loaded();
-		PlannedUpgrades = KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades;
-		PlannedUpgrades.CollectionChanged += (_, _) => Update();
+		Update();
 	}
 }
