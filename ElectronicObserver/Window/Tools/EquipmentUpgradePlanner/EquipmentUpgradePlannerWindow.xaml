@@ -18,19 +18,7 @@
 	<Window.Resources>
 		<local:EquipmentUpgradePlannerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
-		<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
-			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-		</Style>
-
 		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-		</Style>
-
-		<Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
 			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
@@ -69,11 +57,26 @@
 			</Grid.RowDefinitions>
 
 
-			<Button
-				Grid.Row="0"
-				Command="{Binding AddEquipmentPlanCommand}"
-				Content="Add owned equipment"
-				/>
+			<StackPanel Grid.Row="0" Orientation="Horizontal">
+				<Button
+					Margin="10 0 0 0"
+					Command="{Binding AddEquipmentPlanCommand}"
+					Content="{Binding EquipmentUpgradePlanner.AddOwnedEquipment}"
+					/>
+
+				<Button
+					Margin="10 0 0 0"
+					Command="{Binding AddEquipmentPlanFromMasterDataCommand}"
+					Content="{Binding EquipmentUpgradePlanner.AddEquipmentFromLibrary}"
+					/>
+
+				<CheckBox
+					Margin="10 0 0 0"
+					Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
+					IsChecked="{Binding DisplayFinished}"
+					/>
+			</StackPanel>
+
 
 			<ItemsControl
 				Grid.Row="1"

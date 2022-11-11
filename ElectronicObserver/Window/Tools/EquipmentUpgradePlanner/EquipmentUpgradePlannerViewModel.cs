@@ -13,6 +13,7 @@ using ElectronicObserver.Properties.Window;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
+using Jot;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
@@ -25,6 +26,8 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	private readonly EquipmentPickerService EquipmentPicker;
 
+	public bool DisplayFinished { get; set; } = true;
+
 	public EquipmentUpgradePlannerViewModel()
 	{
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
@@ -35,6 +38,15 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		base.Loaded();
 		PlannedUpgrades = KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades;
 		PlannedUpgrades.CollectionChanged += (_, _) => Update();
+		KCDatabase.Instance.EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
+		PropertyChanged += EquipmentUpgradePlannerViewModel_PropertyChanged;
+		Update();
+	}
+
+	private void EquipmentUpgradePlannerViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName != nameof(DisplayFinished)) return;
+
 		Update();
 	}
 
@@ -54,6 +66,21 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	}
 
 	[ICommand]
+	public void AddEquipmentPlanFromMasterData()
+	{
+		IEquipmentDataMaster? equipment = EquipmentPicker.OpenMasterEquipmentPicker();
+
+		if (equipment != null)
+		{
+			EquipmentUpgradePlanItemViewModel newPlan = KCDatabase.Instance.EquipmentUpgradePlanManager.AddPlan();
+
+			// Use a setting to set default level ?
+			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
+			newPlan.Equipment = new EquipmentDataMock(equipment);
+		}
+	}
+
+	[ICommand]
 	public void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
 	{
 		KCDatabase.Instance.EquipmentUpgradePlanManager.RemovePlan(planToRemove);
@@ -63,8 +90,13 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	{
 		PlannedUpgradesFilteredAndSorted.Clear();
 
+		List<EquipmentUpgradePlanItemViewModel> plans = PlannedUpgrades
+			.Where(plan => DisplayFinished || !plan.Finished)
+			.OrderBy(plan => plan.Finished)
+			.ToList();
+
 		// TODO : add a way to hide finished
-		foreach (EquipmentUpgradePlanItemViewModel plan in PlannedUpgrades.OrderBy(plan => plan.Finished))
+		foreach (EquipmentUpgradePlanItemViewModel plan in plans)
 		{
 			PlannedUpgradesFilteredAndSorted.Add(plan);
 		}

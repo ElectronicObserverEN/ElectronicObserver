@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddEquipmentFromLibrary" xml:space="preserve">
+    <value>Add equipment from library</value>
+  </data>
+  <data name="AddOwnedEquipment" xml:space="preserve">
+    <value>Add owned equipment</value>
+  </data>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>Display finished</value>
+  </data>
   <data name="Goal" xml:space="preserve">
     <value>Goal</value>
   </data>

@@ -8,4 +8,7 @@ public class EquipmentUpgradePlannerTranslationViewModel
 	public string Remove => EquipmentUpgradePlanner.Remove;
 	public string Title => EquipmentUpgradePlanner.Title;
 	public string UpgradeLevel => EquipmentUpgradePlanner.UpgradeLevel;
+	public string AddEquipmentFromLibrary => EquipmentUpgradePlanner.AddEquipmentFromLibrary;
+	public string AddOwnedEquipment => EquipmentUpgradePlanner.AddOwnedEquipment;
+	public string DisplayFinished => EquipmentUpgradePlanner.DisplayFinished;
 }

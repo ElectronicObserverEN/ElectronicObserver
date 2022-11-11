@@ -42,6 +42,7 @@ using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.EquipmentList;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
@@ -319,8 +320,13 @@ public partial class App : Application
 
 		tracker
 			.Configure<EquipmentUpgradePlanViewerView>()
+			.Property(w => w.ViewModel.DisplayFinished)
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<EquipmentUpgradePlannerWindow>()
+			.Property(w => w.ViewModel.DisplayFinished);
 
 		tracker
 			.Configure<ExpCheckerWindow>()

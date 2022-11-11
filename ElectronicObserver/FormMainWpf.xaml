@@ -358,7 +358,6 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
-					d:Header="Arsenal"
 					Command="{Binding OpenViewCommand}"
 					CommandParameter="{Binding EquipmentUpgradePlanViewer}"
 					Header="{Binding FormMain.EquipmentUpgradePlanViewerTitle}"
