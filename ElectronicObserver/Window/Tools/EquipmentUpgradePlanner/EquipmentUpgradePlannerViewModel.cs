@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
-using ElectronicObserver.Database;
-using ElectronicObserver.Properties.Window;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
-using Jot;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
@@ -95,7 +89,6 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			.OrderBy(plan => plan.Finished)
 			.ToList();
 
-		// TODO : add a way to hide finished
 		foreach (EquipmentUpgradePlanItemViewModel plan in plans)
 		{
 			PlannedUpgradesFilteredAndSorted.Add(plan);

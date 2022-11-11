@@ -9,7 +9,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 
