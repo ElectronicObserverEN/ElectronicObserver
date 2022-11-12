@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.TestData
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.SourceGenerators", "ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj", "{61B5D946-B3E5-45AE-91AB-55B061DA14FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.KancolleApi", "ElectronicObserver.KancolleApi\ElectronicObserver.KancolleApi.csproj", "{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.KancolleApi.Types", "ElectronicObserver.KancolleApi\ElectronicObserver.KancolleApi.Types.csproj", "{019ABE13-C7A2-44BA-9763-5F7933BA4AE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

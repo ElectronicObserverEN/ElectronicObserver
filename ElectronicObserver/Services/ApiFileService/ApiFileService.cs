@@ -9,9 +9,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.KancolleApi;
-using ElectronicObserver.KancolleApi.ApiPort.Port.Response;
-using ElectronicObserver.KancolleApi.ApiReqMap.Start.Response;
+using ElectronicObserver.KancolleApi.Types;
+using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 
 namespace ElectronicObserver.Services.ApiFileService;
 
@@ -158,10 +158,10 @@ public class ApiFileService : ObservableObject
 
 			if (response?.ApiData is not null)
 			{
-				response.ApiData.ApiShip = Enumerable.Empty<ApiShip>();
-				response.ApiData.ApiDeckPort = Enumerable.Empty<ApiDeckPort>();
-				response.ApiData.ApiLog = Enumerable.Empty<ApiLog>();
-				response.ApiData.ApiNdock = Enumerable.Empty<ApiNdock>();
+				response.ApiData.ApiShip = new();
+				response.ApiData.ApiDeckPort = new();
+				response.ApiData.ApiLog = new();
+				response.ApiData.ApiNdock = new();
 
 				responseBody = JsonSerializer.Serialize(response);
 			}
