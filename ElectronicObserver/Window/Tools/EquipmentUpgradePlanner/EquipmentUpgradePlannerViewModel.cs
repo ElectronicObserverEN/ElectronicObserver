@@ -18,7 +18,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; set; } = new();
 
-	private readonly EquipmentPickerService EquipmentPicker;
+	private EquipmentPickerService EquipmentPicker { get; set; }
 
 	public bool DisplayFinished { get; set; } = true;
 
