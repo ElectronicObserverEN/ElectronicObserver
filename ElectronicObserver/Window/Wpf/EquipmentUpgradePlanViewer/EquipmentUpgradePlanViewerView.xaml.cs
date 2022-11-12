@@ -6,6 +6,12 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 /// </summary>
 public partial class EquipmentUpgradePlanViewerView
 {
+	public EquipmentUpgradePlanViewerViewModel ViewModel
+	{
+		get => (EquipmentUpgradePlanViewerViewModel)GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
+
 	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register
 	(
 		nameof(ViewModel),
@@ -14,7 +20,7 @@ public partial class EquipmentUpgradePlanViewerView
 		new PropertyMetadata(default(EquipmentUpgradePlanViewerViewModel))
 	);
 
-	public EquipmentUpgradePlanViewerView() : base(new EquipmentUpgradePlanViewerViewModel())
+	public EquipmentUpgradePlanViewerView()
 	{
 		InitializeComponent();
 	}

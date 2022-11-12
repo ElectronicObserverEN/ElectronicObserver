@@ -72,6 +72,7 @@ using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
+using Jot;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -2015,6 +2016,7 @@ public partial class FormMainViewModel : ObservableObject
 		RecordManager.Instance.SavePartial();
 		KCDatabase.Instance.Save();
 		APIObserver.Instance.Stop();
+		Ioc.Default.GetService<Tracker>().PersistAll();
 
 		Logger.Add(2, Resources.ClosingComplete);
 

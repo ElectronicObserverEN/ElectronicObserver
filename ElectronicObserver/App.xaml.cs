@@ -319,10 +319,10 @@ public partial class App : Application
 			.Property(w => w.ViewModel.SortDescriptions);
 
 		tracker
-			.Configure<EquipmentUpgradePlanViewerView>()
-			.Property(w => w.ViewModel.DisplayFinished)
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Configure<EquipmentUpgradePlanViewerViewModel>()
+			.Property(w => w.DisplayFinished)
+			.Property(w => w.ColumnProperties)
+			.Property(w => w.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()

@@ -65,7 +65,7 @@
 		<expeditionCheck:ExpeditionCheckView />
 	</DataTemplate>
 	<DataTemplate x:Key="EquipmentUpgradePlanViewerTemplate" DataType="{x:Type equipmentUpgradePlanner:EquipmentUpgradePlanViewerViewModel}">
-		<equipmentUpgradePlanner:EquipmentUpgradePlanViewerView />
+		<equipmentUpgradePlanner:EquipmentUpgradePlanViewerView ViewModel="{Binding}" />
 	</DataTemplate>
 
 	<DataTemplate x:Key="CompassTemplate" DataType="{x:Type compass:CompassViewModel}">
