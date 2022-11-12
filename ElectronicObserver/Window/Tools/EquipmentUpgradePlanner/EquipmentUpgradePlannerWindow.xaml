@@ -6,6 +6,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:types="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding EquipmentUpgradePlanner.Title}"
 	Width="900"
@@ -158,7 +159,7 @@
 										SelectedItem="{Binding DesiredUpgradeLevel}"
 										>
 										<ComboBox.ItemTemplate>
-											<DataTemplate DataType="local:UpgradeLevel">
+											<DataTemplate DataType="{x:Type types:UpgradeLevel}">
 												<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
 											</DataTemplate>
 										</ComboBox.ItemTemplate>
