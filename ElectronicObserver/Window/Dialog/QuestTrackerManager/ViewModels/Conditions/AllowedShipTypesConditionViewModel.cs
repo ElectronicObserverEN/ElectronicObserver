@@ -24,7 +24,7 @@ public partial class AllowedShipTypesConditionViewModel : ObservableObject, ICon
 	{
 		Model = model;
 
-		AllTypes = Enum.GetValues<ShipTypes>();
+		AllTypes = Enum.GetValues<ShipTypes>().Where(t => t is not ShipTypes.Unknown);
 
 		Model.PropertyChanged += (sender, args) =>
 		{

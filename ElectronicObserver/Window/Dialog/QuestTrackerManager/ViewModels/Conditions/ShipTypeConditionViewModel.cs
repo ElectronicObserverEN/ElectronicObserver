@@ -42,7 +42,7 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 		MustBeFlagship = Model.MustBeFlagship;
 		ComparisonType = Model.ComparisonType;
 
-		AllTypes = Enum.GetValues(typeof(ShipTypes)).Cast<ShipTypes>();
+		AllTypes = Enum.GetValues<ShipTypes>().Where(t => t is not ShipTypes.Unknown);
 		ComparisonTypes = Enum.GetValues<ComparisonType>();
 
 		Model.PropertyChanged += (sender, args) =>
