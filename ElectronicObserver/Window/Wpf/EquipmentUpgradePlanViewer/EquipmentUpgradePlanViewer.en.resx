@@ -130,7 +130,7 @@
     <value>Goal</value>
   </data>
   <data name="IsFinished" xml:space="preserve">
-    <value>Finished ?</value>
+    <value>Finished</value>
   </data>
   <data name="Priority" xml:space="preserve">
     <value>Priority</value>

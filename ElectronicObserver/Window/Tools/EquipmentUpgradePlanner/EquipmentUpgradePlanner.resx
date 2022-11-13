@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddEquipmentFromLibrary" xml:space="preserve">
-    <value>???</value>
+    <value>未所持装備から選択</value>
   </data>
   <data name="AddOwnedEquipment" xml:space="preserve">
-    <value>???</value>
+    <value>所持装備から選択</value>
   </data>
   <data name="DisplayFinished" xml:space="preserve">
-    <value>???</value>
+    <value>表示完了</value>
   </data>
   <data name="Goal" xml:space="preserve">
-    <value>???</value>
+    <value>目標</value>
   </data>
   <data name="IsFinished" xml:space="preserve">
-    <value>???</value>
+    <value>完了</value>
   </data>
   <data name="NotOwned" xml:space="preserve">
-    <value>???</value>
+    <value>未所持</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>???</value>
+    <value>優先順位</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>除去</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>???</value>
+    <value>改修計画</value>
   </data>
   <data name="UpgradeLevel" xml:space="preserve">
-    <value>???</value>
+    <value>改修値</value>
   </data>
 </root>

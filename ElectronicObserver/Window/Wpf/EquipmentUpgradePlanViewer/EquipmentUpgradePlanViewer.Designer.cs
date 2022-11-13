@@ -62,7 +62,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 改修値.
         /// </summary>
         public static string CurrentLevel {
             get {
@@ -71,7 +71,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 表示完了.
         /// </summary>
         public static string DisplayFinished {
             get {
@@ -80,7 +80,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 装備.
         /// </summary>
         public static string Equipment {
             get {
@@ -89,7 +89,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 目標.
         /// </summary>
         public static string Goal {
             get {
@@ -98,7 +98,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 完了.
         /// </summary>
         public static string IsFinished {
             get {
@@ -107,7 +107,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 優先順位.
         /// </summary>
         public static string Priority {
             get {
@@ -116,7 +116,7 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 改修計画.
         /// </summary>
         public static string Title {
             get {

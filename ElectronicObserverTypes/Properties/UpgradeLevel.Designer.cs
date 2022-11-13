@@ -61,7 +61,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 改修更新.
         /// </summary>
         public static string Conversion {
             get {
@@ -97,7 +97,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to Max.
         /// </summary>
         public static string Max {
             get {
@@ -156,6 +156,15 @@ namespace ElectronicObserverTypes.Properties {
         public static string Two {
             get {
                 return ResourceManager.GetString("Two", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不明.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

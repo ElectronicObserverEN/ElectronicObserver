@@ -130,7 +130,7 @@
     <value>Goal</value>
   </data>
   <data name="IsFinished" xml:space="preserve">
-    <value>Is finished ?</value>
+    <value>Finished</value>
   </data>
   <data name="NotOwned" xml:space="preserve">
     <value>Not Owned</value>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Conversion" xml:space="preserve">
-    <value>???</value>
+    <value>改修更新</value>
   </data>
   <data name="Eight" xml:space="preserve">
     <value>8</value>
@@ -130,7 +130,7 @@
     <value>4</value>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>???</value>
+    <value>Max</value>
   </data>
   <data name="Nine" xml:space="preserve">
     <value>9</value>
@@ -152,5 +152,8 @@
   </data>
   <data name="Zero" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>不明</value>
   </data>
 </root>

@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 未所持装備から選択.
         /// </summary>
         public static string AddEquipmentFromLibrary {
             get {
@@ -70,7 +70,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 所持装備から選択.
         /// </summary>
         public static string AddOwnedEquipment {
             get {
@@ -79,7 +79,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 表示完了.
         /// </summary>
         public static string DisplayFinished {
             get {
@@ -88,7 +88,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 目標.
         /// </summary>
         public static string Goal {
             get {
@@ -97,7 +97,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 完了.
         /// </summary>
         public static string IsFinished {
             get {
@@ -106,7 +106,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 未所持.
         /// </summary>
         public static string NotOwned {
             get {
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 優先順位.
         /// </summary>
         public static string Priority {
             get {
@@ -133,7 +133,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 改修計画.
         /// </summary>
         public static string Title {
             get {
@@ -142,7 +142,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 改修値.
         /// </summary>
         public static string UpgradeLevel {
             get {
