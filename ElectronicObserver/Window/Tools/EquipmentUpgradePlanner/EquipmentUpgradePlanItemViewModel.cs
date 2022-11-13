@@ -13,8 +13,6 @@ using ElectronicObserverTypes.Mocks;
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 {
-	public int? Id { get; set; }
-
 	public int? EquipmentId { get; set; }
 
 	public EquipmentId EquipmentMasterDataId { get; set; }
@@ -67,7 +65,6 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	private void LoadModel()
 	{
-		Id = Plan.Id;
 		DesiredUpgradeLevel = Plan.DesiredUpgradeLevel;
 		Finished = Plan.Finished;
 		Priority = Plan.Priority;
