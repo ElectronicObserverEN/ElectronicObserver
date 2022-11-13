@@ -116,8 +116,16 @@
 									Grid.Column="0"
 									Grid.ColumnSpan="2"
 									Command="{Binding OpenEquipmentPickerCommand}"
-									Content="{Binding EquipmentName}"
-									/>
+									ToolTip="{Binding EquipmentName}"
+									>
+									<Button.Content>
+										<TextBlock
+											MaxWidth="150"
+											Text="{Binding EquipmentName}"
+											TextTrimming="CharacterEllipsis"
+											/>
+									</Button.Content>
+								</Button>
 
 								<Button
 									Grid.Row="1"
