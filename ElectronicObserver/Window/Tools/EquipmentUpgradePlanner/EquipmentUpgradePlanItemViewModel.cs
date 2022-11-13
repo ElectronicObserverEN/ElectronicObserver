@@ -15,26 +15,24 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 {
 	public int? Id { get; set; }
 
-	[ObservableProperty]
-	private int? equipmentId;
+	public int? EquipmentId { get; set; }
 
-	[ObservableProperty]
-	private EquipmentId equipmentMasterDataId;
+	public EquipmentId EquipmentMasterDataId { get; set; }
 
-	public IEquipmentData? Equipment => equipmentId switch
+	public IEquipmentData? Equipment => EquipmentId switch
 	{
 		int id => KCDatabase.Instance.Equipments.ContainsKey(id) switch
 		{
 			true => KCDatabase.Instance.Equipments[id]!,
-			_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)equipmentMasterDataId) switch
+			_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)EquipmentMasterDataId) switch
 			{
-				true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)equipmentMasterDataId]),
+				true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)EquipmentMasterDataId]),
 				_ => null,
 			}
 		},
-		_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)equipmentMasterDataId) switch
+		_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)EquipmentMasterDataId) switch
 		{
-			true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)equipmentMasterDataId]),
+			true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)EquipmentMasterDataId]),
 			_ => null,
 		}
 	};
@@ -122,7 +120,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		IEquipmentData? newEquip = EquipmentPicker.OpenEquipmentPicker();
 		if (newEquip != null)
 		{
-			equipmentId = newEquip.MasterID;
+			EquipmentId = newEquip.MasterID;
 		}
 	}
 
