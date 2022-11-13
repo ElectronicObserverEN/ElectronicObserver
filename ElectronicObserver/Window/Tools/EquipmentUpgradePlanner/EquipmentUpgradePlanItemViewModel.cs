@@ -23,9 +23,9 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public IEquipmentData? Equipment => equipmentId switch
 	{
-		int => KCDatabase.Instance.Equipments.ContainsKey((int)equipmentId) switch
+		int id => KCDatabase.Instance.Equipments.ContainsKey(id) switch
 		{
-			true => KCDatabase.Instance.Equipments[(int)equipmentId]!,
+			true => KCDatabase.Instance.Equipments[id]!,
 			_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)equipmentMasterDataId) switch
 			{
 				true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)equipmentMasterDataId]),
