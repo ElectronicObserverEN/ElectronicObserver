@@ -55,7 +55,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
-			newPlan.Equipment = equipment;
+			newPlan.EquipmentId = equipment.MasterID;
 		}
 	}
 
@@ -70,7 +70,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
-			newPlan.Equipment = new EquipmentDataMock(equipment);
+			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
 		}
 	}
 

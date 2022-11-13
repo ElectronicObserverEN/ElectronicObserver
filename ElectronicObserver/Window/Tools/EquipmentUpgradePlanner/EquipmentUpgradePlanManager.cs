@@ -124,13 +124,12 @@ public class EquipmentUpgradePlanManager
 
 	private void UpdatePlanAfterEquipmentConversion(EquipmentUpgradePlanItemViewModel plan, int oldEquipmentMasterId)
 	{
-		IEquipmentDataMaster masterEquipment = KCDatabase.Instance.MasterEquipments[oldEquipmentMasterId]!;
-
 		// Equipment conversion = plan finished anyway since we can't go higher 
 		plan.Finished = true;
 		// Also unset the equipment id (drop id) since it changed masterId
 		// This should be enough ?
-		plan.Equipment = new EquipmentDataMock(masterEquipment);
+		plan.EquipmentMasterDataId = (EquipmentId)oldEquipmentMasterId;
+		plan.EquipmentId = null;
 	}
 
 	private void UpdatePlanAfterEquipmentImprovment(EquipmentUpgradePlanItemViewModel plan)
@@ -171,7 +170,7 @@ public class EquipmentUpgradePlanManager
 		// Assign the plan to this equipment
 		if (foundPlan != null)
 		{
-			foundPlan.Equipment = equipmentData;
+			foundPlan.EquipmentId = equipmentData.MasterID;
 		}
 
 		return foundPlan;

@@ -16,7 +16,28 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public int? Id { get; set; }
 
 	[ObservableProperty]
-	private IEquipmentData? equipment;
+	private int? equipmentId;
+
+	[ObservableProperty]
+	private EquipmentId equipmentMasterDataId;
+
+	public IEquipmentData? Equipment => equipmentId switch
+	{
+		int => KCDatabase.Instance.Equipments.ContainsKey((int)equipmentId) switch
+		{
+			true => KCDatabase.Instance.Equipments[(int)equipmentId]!,
+			_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)equipmentMasterDataId) switch
+			{
+				true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)equipmentMasterDataId]),
+				_ => null,
+			}
+		},
+		_ => KCDatabase.Instance.MasterEquipments.ContainsKey((int)equipmentMasterDataId) switch
+		{
+			true => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)equipmentMasterDataId]),
+			_ => null,
+		}
+	};
 
 	public UpgradeLevel DesiredUpgradeLevel { get; set; }
 
@@ -52,37 +73,23 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		DesiredUpgradeLevel = Plan.DesiredUpgradeLevel;
 		Finished = Plan.Finished;
 		Priority = Plan.Priority;
+		EquipmentId = Plan.EquipmentMasterId;
+		EquipmentMasterDataId = Plan.EquipmentId;
 
-		if (!KCDatabase.Instance.MasterEquipments.ContainsKey((int)Plan.EquipmentId)) return;
-
-		IEquipmentDataMaster masterEquipment = KCDatabase.Instance.MasterEquipments[(int)Plan.EquipmentId];
-
-		// Try to load the owned equipment
-		// not found => scrapped ? lost ? logged on another acc ? (what to do ?)
-		// not found => Set to null  
-		IEquipmentData equipmentData = Plan.EquipmentMasterId switch
-		{
-			int => KCDatabase.Instance.Equipments.ContainsKey((int)Plan.EquipmentMasterId) switch
-			{
-				true => KCDatabase.Instance.Equipments[(int)Plan.EquipmentMasterId]!,
-				_ => new EquipmentDataMock(masterEquipment)
-			},
-			_ => new EquipmentDataMock(masterEquipment)
-		};
-
-		Equipment = equipmentData;
 		Update();
 	}
 
 	private void EquipmentUpgradePlanItemViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName == nameof(Equipment)) Update();
+		if (e.PropertyName is nameof(EquipmentId) or nameof(EquipmentMasterDataId)) Update();
 
 		Save();
 	}
 
 	public void Update()
 	{
+		if (Equipment != null) EquipmentMasterDataId = Equipment.MasterEquipment.EquipmentId;
+
 		// Update the equipment display
 		if (Equipment is null)
 		{
@@ -102,7 +109,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public void Save()
 	{
-		Plan.EquipmentId = Equipment?.EquipmentId ?? EquipmentId.Unknown;
+		Plan.EquipmentId = EquipmentMasterDataId;
 		Plan.EquipmentMasterId = Equipment?.MasterID > 0 ? Equipment.MasterID : null;
 		Plan.DesiredUpgradeLevel = DesiredUpgradeLevel;
 		Plan.Finished = Finished;
@@ -115,7 +122,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		IEquipmentData? newEquip = EquipmentPicker.OpenEquipmentPicker();
 		if (newEquip != null)
 		{
-			Equipment = newEquip;
+			equipmentId = newEquip.MasterID;
 		}
 	}
 
