@@ -583,12 +583,18 @@ public static class Calculator
 	}
 
 
-	private static readonly Dictionary<int, double> EquipmentExpeditionBonus = new Dictionary<int, double>() {
-		{ 68, 0.05 },	// 大発動艇
-		{ 166, 0.02 },	// 大発戦車
-		{ 167, 0.01 },	// 内火艇
-		{ 193, 0.05 },	// 特大発動艇
+	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new() 
+	{
+		{ EquipmentId.LandingCraft_DaihatsuLC, 0.05 },
+		{ EquipmentId.LandingCraft_TokuDaihatsuLC, 0.05 },
+		{ EquipmentId.LandingCraft_ArmedDaihatsu, 0.03 },
+		{ EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce, 0.02 },
+		{ EquipmentId.LandingCraft_Soukoutei_ABClass, 0.02 },
+		{ EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification, 0.02 },
+		{ EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank, 0.02 },
+		{ EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank, 0.01 },
 	};
+
 	/// <summary>
 	/// 遠征資源の大発ボーナスを取得します。
 	/// </summary>
@@ -597,9 +603,9 @@ public static class Calculator
 		var eqs = fleet.MembersInstance
 			.Where(s => s != null)
 			.SelectMany(s => s.SlotInstance)
-			.Where(eq => eq != null && EquipmentExpeditionBonus.ContainsKey(eq.EquipmentID));
+			.Where(eq => eq != null && EquipmentExpeditionBonus.ContainsKey(eq.EquipmentId));
 
-		double normalBonus = eqs.Sum(eq => EquipmentExpeditionBonus[eq.EquipmentID])
+		double normalBonus = eqs.Sum(eq => EquipmentExpeditionBonus[eq.EquipmentId])
 							 + fleet.MembersInstance.Count(s => s != null && s.ShipID == 487) * 0.05;        // 鬼怒改二
 
 		normalBonus = Math.Min(normalBonus, 0.2);
