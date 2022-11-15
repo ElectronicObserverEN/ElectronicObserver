@@ -179,11 +179,6 @@ public sealed class KCDatabase : IKCDatabase
 	private SystemQuestTrackerManager? _systemQuestTrackerManager;
 	public SystemQuestTrackerManager SystemQuestTrackerManager => _systemQuestTrackerManager ??= new();
 
-
-	private EquipmentUpgradePlanManager? _equipmentUpgradePlanManager;
-	public EquipmentUpgradePlanManager EquipmentUpgradePlanManager => _equipmentUpgradePlanManager ??= new();
-
-
 	private KCDatabase()
 	{
 
@@ -237,7 +232,6 @@ public sealed class KCDatabase : IKCDatabase
 
 		QuestTrackerManagers.Load();
 		SystemQuestTrackerManager.Load();
-		EquipmentUpgradePlanManager.Load();
 	}
 
 	public void Save()
@@ -246,7 +240,6 @@ public sealed class KCDatabase : IKCDatabase
 		QuestProgress.Save();
 		QuestTrackerManagers.Save();
 		SystemQuestTrackerManager.Save();
-		EquipmentUpgradePlanManager.Save();
 	}
 
 }

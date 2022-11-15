@@ -888,7 +888,7 @@ public partial class FormMainViewModel : ObservableObject
 	[ICommand]
 	private void OpenEquipmentUpgradePlanner()
 	{
-		if (!KCDatabase.Instance.EquipmentUpgradePlanManager.IsInitialized)
+		if (!KCDatabase.Instance.Equipments.Any())
 		{
 			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);

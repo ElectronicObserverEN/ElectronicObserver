@@ -6,16 +6,13 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public class EquipmentUpgradePlanManager
 {
-	public bool IsInitialized { get; private set; } = false;
+	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; } = new();
 
-	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; private set; } = new();
-
-	private ElectronicObserverContext DatabaseContext { get; set; } = new();
+	private ElectronicObserverContext DatabaseContext { get; } = new();
 
 	/// <summary>
 	/// Property to store the equipment Data before the upgrade
@@ -33,33 +30,28 @@ public class EquipmentUpgradePlanManager
 	{
 		APIObserver o = APIObserver.Instance;
 
-		o.ApiPort_Port.ResponseReceived += (_, __) => Load();
+		o.ApiPort_Port.ResponseReceived += Initialize;
 		o.ApiReqKousyou_RemodelSlot.ResponseReceived += HandleEquipmentUpgradeResponse;
 		o.ApiReqKousyou_RemodelSlot.RequestReceived += HandleEquipmentUpgradeRequest;
 	}
 
-	public void Load()
+	private void Initialize(string apiname, object data)
 	{
-		if (IsInitialized) return;
-		if (!KCDatabase.Instance.MasterEquipments.Any()) return;
+		Load();
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= Initialize;
+	}
 
+	private void Load()
+	{
 		PlannedUpgrades.Clear();
 
 		List<EquipmentUpgradePlanItemModel> models = DatabaseContext.EquipmentUpgradePlanItems.ToList();
 
 		foreach (EquipmentUpgradePlanItemModel model in models)
 		{
-			EquipmentUpgradePlanItemViewModel plan = new(model);
-			plan.PropertyChanged += (sender, args) =>
-			{
-				if (args.PropertyName is not nameof(plan.Finished)) return;
-
-				PlanFinished?.Invoke(this, EventArgs.Empty);
-			};
+			EquipmentUpgradePlanItemViewModel plan = MakePlanViewModel(model);
 			PlannedUpgrades.Add(plan);
 		}
-
-		IsInitialized = true;
 	}
 
 	public EquipmentUpgradePlanItemViewModel AddPlan()
@@ -67,10 +59,24 @@ public class EquipmentUpgradePlanManager
 		EquipmentUpgradePlanItemModel plan = new();
 		DatabaseContext.EquipmentUpgradePlanItems.Add(plan);
 
-		EquipmentUpgradePlanItemViewModel planViewModel = new(plan);
+		EquipmentUpgradePlanItemViewModel planViewModel = MakePlanViewModel(plan);
 		PlannedUpgrades.Add(planViewModel);
 
 		return planViewModel;
+	}
+
+	private EquipmentUpgradePlanItemViewModel MakePlanViewModel(EquipmentUpgradePlanItemModel model)
+	{
+		EquipmentUpgradePlanItemViewModel plan = new(model);
+
+		plan.PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(plan.Finished)) return;
+
+			PlanFinished?.Invoke(this, EventArgs.Empty);
+		};
+
+		return plan;
 	}
 
 	public void RemovePlan(EquipmentUpgradePlanItemViewModel planViewModel)
@@ -81,7 +87,6 @@ public class EquipmentUpgradePlanManager
 
 	public void Save()
 	{
-		if (!IsInitialized) return;
 		DatabaseContext.SaveChanges();
 	}
 
