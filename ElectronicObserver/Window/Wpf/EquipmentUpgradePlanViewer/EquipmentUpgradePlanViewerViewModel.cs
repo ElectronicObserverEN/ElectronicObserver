@@ -2,10 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Behaviors.PersistentColumns;
-using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
@@ -23,6 +21,8 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 
 	public EquipmentUpgradePlanViewerTranslationViewModel Translation { get; }
 
+	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
+
 	public bool DisplayFinished { get; set; } = false;
 	private Tracker Tracker { get; }
 
@@ -32,12 +32,14 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Translation = Ioc.Default.GetService<EquipmentUpgradePlanViewerTranslationViewModel>()!;
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 
+		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
+
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
-		KCDatabase.Instance.EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
+		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		PropertyChanged += EquipmentUpgradePlanViewerViewModel_PropertyChanged;
 
-		KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades.CollectionChanged += (_, _) => Update();
+		EquipmentUpgradePlanManager.PlannedUpgrades.CollectionChanged += (_, _) => Update();
 
 		StartJotTracking();
 	}
@@ -52,7 +54,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 	{
 		PlannedUpgradesFiltered.Clear();
 
-		foreach (EquipmentUpgradePlanItemViewModel plan in KCDatabase.Instance.EquipmentUpgradePlanManager.PlannedUpgrades.Where(plan => DisplayFinished || !plan.Finished))
+		foreach (EquipmentUpgradePlanItemViewModel plan in EquipmentUpgradePlanManager.PlannedUpgrades.Where(plan => DisplayFinished || !plan.Finished))
 		{
 			PlannedUpgradesFiltered.Add(plan);
 		}

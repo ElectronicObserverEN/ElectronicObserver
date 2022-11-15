@@ -267,6 +267,7 @@ public partial class App : Application
 			.AddSingleton<GameAssetDownloaderService>()
 			.AddSingleton<FileService>()
 			.AddSingleton<EquipmentPickerService>()
+			.AddSingleton<EquipmentUpgradePlanManager>()
 			// external
 			.AddSingleton(JotTracker())
 
