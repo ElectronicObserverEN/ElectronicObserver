@@ -49,8 +49,8 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public int Priority { get; set; }
 
-	private readonly EquipmentPickerService EquipmentPicker;
-	public EquipmentUpgradePlanItemModel Plan { get; private set; }
+	private EquipmentPickerService EquipmentPicker { get; }
+	public EquipmentUpgradePlanItemModel Plan { get; }
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{

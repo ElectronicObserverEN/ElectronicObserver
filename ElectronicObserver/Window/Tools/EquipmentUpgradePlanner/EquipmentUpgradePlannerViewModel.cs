@@ -11,8 +11,8 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
 public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 {
-	private ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; set; } = new();
-	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFilteredAndSorted { get; set; } = new();
+	private ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; }
+	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFilteredAndSorted { get; } = new();
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; set; } = new();
 
@@ -25,12 +25,12 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	{
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
+		PlannedUpgrades = EquipmentUpgradePlanManager.PlannedUpgrades;
 	}
 
 	public override void Loaded()
 	{
 		base.Loaded();
-		PlannedUpgrades = EquipmentUpgradePlanManager.PlannedUpgrades;
 		PlannedUpgrades.CollectionChanged += (_, _) => Update();
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		PropertyChanged += EquipmentUpgradePlannerViewModel_PropertyChanged;
