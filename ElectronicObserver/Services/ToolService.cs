@@ -166,7 +166,7 @@ public class ToolService
 
 	public void EquipmentUpgradePlanner(EquipmentUpgradePlannerViewModel? viewModel = null)
 	{
-		if (!KCDatabase.Instance.EquipmentUpgradePlanManager.IsInitialized)
+		if (!KCDatabase.Instance.Equipments.Any())
 		{
 			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
