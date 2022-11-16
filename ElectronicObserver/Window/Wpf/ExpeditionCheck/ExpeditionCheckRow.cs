@@ -34,7 +34,9 @@ public class ExpeditionCheckRow
 	public SolidColorBrush Fleet2BackgroundColor => GetBackgroundColor(Fleet2Result).ToBrush();
 	public SolidColorBrush Fleet3BackgroundColor => GetBackgroundColor(Fleet3Result).ToBrush();
 	public SolidColorBrush Fleet4BackgroundColor => GetBackgroundColor(Fleet4Result).ToBrush();
-
+	public SolidColorBrush ExpeditionNameBackgroundColor => GetBackground().ToBrush();
+	public SolidColorBrush ExpeditionIDBackgroundColor => GetBackground().ToBrush();
+	public SolidColorBrush ConditionBackgroundColor => GetBackground().ToBrush();
 	public string Fleet1Text => GetText(Fleet1Result);
 	public string Fleet2Text => GetText(Fleet2Result);
 	public string Fleet3Text => GetText(Fleet3Result);
@@ -56,9 +58,19 @@ public class ExpeditionCheckRow
 			0 => System.Drawing.Color.MistyRose,
 			_ => System.Drawing.Color.FromArgb(255, 255, 63, 63)
 		},
-		_ => System.Drawing.Color.Transparent
+		_ => GetBackground()
 	};
-
+	private System.Drawing.Color GetBackground()
+	{
+		if(AreaId % 2 == 1 && AreaId != 7)
+		{
+			return Utility.Configuration.Config.UI.BackColor;
+		}
+		else
+		{
+			return Utility.Configuration.Config.UI.SubBackColor;
+		}
+	}
 	private string GetText(MissionClearConditionResult result) => result?.IsSuceeded switch
 	{
 		true => GetSuccessText(result),
