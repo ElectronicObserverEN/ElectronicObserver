@@ -6,6 +6,7 @@
 	xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
 	xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
 	xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
+	xmlns:equipmentUpgradePlanner="clr-namespace:ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer"
 	xmlns:expeditionCheck="clr-namespace:ElectronicObserver.Window.Wpf.ExpeditionCheck"
 	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
 	xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
@@ -63,6 +64,9 @@
 	<DataTemplate x:Key="ExpeditionCheckTemplate" DataType="{x:Type expeditionCheck:ExpeditionCheckViewModel}">
 		<expeditionCheck:ExpeditionCheckView />
 	</DataTemplate>
+	<DataTemplate x:Key="EquipmentUpgradePlanViewerTemplate" DataType="{x:Type equipmentUpgradePlanner:EquipmentUpgradePlanViewerViewModel}">
+		<equipmentUpgradePlanner:EquipmentUpgradePlanViewerView ViewModel="{Binding}" />
+	</DataTemplate>
 
 	<DataTemplate x:Key="CompassTemplate" DataType="{x:Type compass:CompassViewModel}">
 		<compass:CompassView ViewModel="{Binding}" />
@@ -82,6 +86,7 @@
 		Battle="{StaticResource BattleTemplate}"
 		Compass="{StaticResource CompassTemplate}"
 		Dock="{StaticResource DockTemplate}"
+		EquipmentUpgradePlanViewer="{StaticResource EquipmentUpgradePlanViewerTemplate}"
 		ExpeditionCheck="{StaticResource ExpeditionCheckTemplate}"
 		Fleet="{StaticResource FleetTemplate}"
 		FleetOverview="{StaticResource FleetOverviewTemplate}"

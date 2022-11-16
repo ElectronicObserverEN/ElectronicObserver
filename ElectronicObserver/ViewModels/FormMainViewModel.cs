@@ -70,6 +70,9 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
+using Jot;
 using ElectronicObserver.Utility.Mathematics;
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -132,6 +135,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? FleetPresetImageSource { get; }
 	public ImageSource? DockImageSource { get; }
 	public ImageSource? ArsenalImageSource { get; }
+	public ImageSource? EquipmentUpgradePlanImageSource { get; }
 	public ImageSource? BaseAirCorpsImageSource { get; }
 	public ImageSource? HeadquartersImageSource { get; }
 	public ImageSource? QuestImageSource { get; }
@@ -174,6 +178,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	public DockViewModel Dock { get; }
 	public ArsenalViewModel Arsenal { get; }
+	public EquipmentUpgradePlanViewerViewModel EquipmentUpgradePlanViewer { get; }
 	public BaseAirCorpsViewModel BaseAirCorps { get; }
 
 	public HeadquartersViewModel Headquarters { get; }
@@ -273,6 +278,7 @@ public partial class FormMainViewModel : ObservableObject
 		FleetPresetImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleetPreset);
 		DockImageSource = ImageSourceIcons.GetIcon(IconContent.FormDock);
 		ArsenalImageSource = ImageSourceIcons.GetIcon(IconContent.FormArsenal);
+		EquipmentUpgradePlanImageSource = ImageSourceIcons.GetIcon(IconContent.ItemModdingMaterial);
 		BaseAirCorpsImageSource = ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps);
 		HeadquartersImageSource = ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters);
 		QuestImageSource = ImageSourceIcons.GetIcon(IconContent.FormQuest);
@@ -365,7 +371,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 
 		Views.Add(Dock = new DockViewModel());
-		Views.Add(Arsenal = new ArsenalViewModel());
+		Views.Add(Arsenal = new ArsenalViewModel()); 
+		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel()); 
 		Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
@@ -877,6 +884,12 @@ public partial class FormMainViewModel : ObservableObject
 		}
 
 		new QuestTrackerManagerWindow().Show(Window);
+	}
+	
+	[ICommand]
+	private void OpenEquipmentUpgradePlanner()
+	{
+		ToolService.EquipmentUpgradePlanner();
 	}
 
 	[ICommand]
@@ -2004,6 +2017,7 @@ public partial class FormMainViewModel : ObservableObject
 		RecordManager.Instance.SavePartial();
 		KCDatabase.Instance.Save();
 		APIObserver.Instance.Stop();
+		Ioc.Default.GetService<Tracker>().PersistAll();
 
 		Logger.Add(2, Resources.ClosingComplete);
 

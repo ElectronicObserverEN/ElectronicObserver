@@ -369,6 +369,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>AutoRefresh.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\EquipmentUpgradePlanner\EquipmentUpgradePlanner.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EquipmentUpgradePlanner.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -378,6 +383,11 @@
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FleetImageGenerator.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EquipmentUpgradePlanViewer.resx</DependentUpon>
 		</Compile>
 		<None Include=".editorconfig" />
 		<Page Include="Properties\DesignTimeResources.xaml">
@@ -729,6 +739,10 @@
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>AutoRefresh.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\EquipmentUpgradePlanner\EquipmentUpgradePlanner.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EquipmentUpgradePlanner.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
@@ -736,6 +750,10 @@
 		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EquipmentUpgradePlanViewer.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 	<Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">

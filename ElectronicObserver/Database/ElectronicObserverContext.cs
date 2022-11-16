@@ -9,6 +9,7 @@ using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.AutoRefresh;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -27,6 +28,7 @@ public class ElectronicObserverContext : DbContext
 	[Obsolete("Use ApiFileService")]
 	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
 	public DbSet<SortieRecord> Sorties { get; set; } = null!;
+	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
 
 	private string DbPath { get; }
 

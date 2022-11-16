@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ElectronicObserver.Data.Battle;
+﻿using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;

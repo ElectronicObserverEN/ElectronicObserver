@@ -44,10 +44,12 @@ using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.EquipmentList;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Wpf;
+using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -244,6 +246,7 @@ public partial class App : Application
 			.AddSingleton<FormQuestTranslationViewModel>()
 			.AddSingleton<FormShipGroupTranslationViewModel>()
 			.AddSingleton<FormWindowCaptureTranslationViewModel>()
+			.AddSingleton<EquipmentUpgradePlanViewerTranslationViewModel>()
 			// tool translations
 			.AddSingleton<DialogAlbumMasterShipTranslationViewModel>()
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
@@ -271,6 +274,7 @@ public partial class App : Application
 			.AddSingleton<GameAssetDownloaderService>()
 			.AddSingleton<FileService>()
 			.AddSingleton<EquipmentPickerService>()
+			.AddSingleton<EquipmentUpgradePlanManager>()
 			// external
 			.AddSingleton(JotTracker())
 
@@ -321,6 +325,16 @@ public partial class App : Application
 			.Configure<ExpeditionCheckView>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<EquipmentUpgradePlanViewerViewModel>()
+			.Property(w => w.DisplayFinished)
+			.Property(w => w.ColumnProperties)
+			.Property(w => w.SortDescriptions);
+
+		tracker
+			.Configure<EquipmentUpgradePlannerWindow>()
+			.Property(w => w.ViewModel.DisplayFinished);
 
 		tracker
 			.Configure<ExpCheckerWindow>()

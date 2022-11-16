@@ -358,6 +358,15 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding EquipmentUpgradePlanViewer}"
+					Header="{Binding FormMain.EquipmentUpgradePlanViewerTitle}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding EquipmentUpgradePlanImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="AB"
 					Command="{Binding OpenViewCommand}"
 					CommandParameter="{Binding BaseAirCorps}"
@@ -615,6 +624,11 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Command="{Binding OpenEquipmentUpgradePlannerCommand}" Header="{Binding FormMain.EquipmentUpgradePlannerTitle}">
 					<MenuItem.Icon>
 						<Image Source="{Binding QuestImageSource}" />
 					</MenuItem.Icon>

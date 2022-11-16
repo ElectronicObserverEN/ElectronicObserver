@@ -16,6 +16,7 @@ using ElectronicObserver.Window.Wpf.WinformsHost;
 using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 
 namespace ElectronicObserver.Window.Wpf;
 
@@ -29,6 +30,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 
 	public DataTemplate? Dock { get; set; }
 	public DataTemplate? Arsenal { get; set; }
+	public DataTemplate? EquipmentUpgradePlanViewer { get; set; }
 	public DataTemplate? BaseAirCorps { get; set; }
 
 	public DataTemplate? Headquarters { get; set; }
@@ -55,6 +57,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		LogViewModel => Log,
 		DockViewModel => Dock,
 		ArsenalViewModel => Arsenal,
+		EquipmentUpgradePlanViewerViewModel => EquipmentUpgradePlanViewer,
 		BaseAirCorpsViewModel => BaseAirCorps,
 		InformationViewModel => Information,
 		HeadquartersViewModel => Headquarters,

@@ -4,6 +4,7 @@ using System.Windows;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserverTypes;
@@ -160,5 +161,21 @@ public class ToolService
 		viewModel ??= new();
 
 		new ExpCheckerWindow(viewModel).Show(App.Current.MainWindow);
+	}
+
+
+	public void EquipmentUpgradePlanner(EquipmentUpgradePlannerViewModel? viewModel = null)
+	{
+		if (!KCDatabase.Instance.Equipments.Any())
+		{
+			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
+
+			return;
+		}
+
+		viewModel ??= new();
+
+		new EquipmentUpgradePlannerWindow(viewModel).Show(App.Current.MainWindow);
 	}
 }

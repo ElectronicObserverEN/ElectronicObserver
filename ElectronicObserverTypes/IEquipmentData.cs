@@ -28,6 +28,11 @@ public interface IEquipmentData
 	int Level { get; }
 
 	/// <summary>
+	/// 改修Level
+	/// </summary>
+	UpgradeLevel UpgradeLevel { get; }
+
+	/// <summary>
 	/// 艦載機熟練度
 	/// </summary>
 	int AircraftLevel { get; }

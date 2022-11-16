@@ -1,0 +1,107 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer.EquipmentUpgradePlanViewerView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
+	Width="auto"
+	Height="auto"
+	d:DataContext="{d:DesignInstance Type=local:EquipmentUpgradePlanViewerViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+
+	<UserControl.Resources>
+		<local:EquipmentUpgradePlanViewerViewBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+
+		<ContextMenu x:Key="OptionsContextMenu" DataContext="{StaticResource Proxy}">
+			<MenuItem
+				Header="{Binding DataContext.Translation.DisplayFinished}"
+				IsCheckable="True"
+				IsChecked="{Binding DataContext.DisplayFinished}"
+				/>
+		</ContextMenu>
+
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.Resources>
+			<Style TargetType="TextBlock">
+				<Setter Property="Margin" Value="4 0" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+			</Style>
+		</Grid.Resources>
+
+		<DataGrid
+			AutoGenerateColumns="False"
+			ColumnWidth="90"
+			ContextMenu="{StaticResource OptionsContextMenu}"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"
+			>
+
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding EquipmentName}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.Translation.Equipment, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding CurrentLevelDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.Translation.CurrentLevel, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding DesiredUpgradeLevel, Converter={StaticResource EnumDisplayConverter}}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.Translation.Goal, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Priority}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.Translation.Priority, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridCheckBoxColumn
+					Width="Auto"
+					Binding="{Binding Finished}"
+					Header="{Binding DataContext.Translation.IsFinished, Source={StaticResource Proxy}}"
+					/>
+
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>
