@@ -65,7 +65,13 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="ID"
 					SortMemberPath="SortId"
-					/>
+					>
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+							<Setter Property="Background" Value="{Binding ExpeditionIDBackgroundColor}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
 				<DataGridTextColumn
 					Width="Auto"
 					Binding="{Binding ExpeditionName}"
@@ -73,7 +79,13 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.ExpeditionCheckTranslation.Name, Source={StaticResource Proxy}}"
-					/>
+					>
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+							<Setter Property="Background" Value="{Binding ExpeditionNameBackgroundColor}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
 				<DataGridTextColumn
 					Binding="{Binding Fleet1Text}"
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
@@ -168,6 +180,7 @@
 					<DataGridTextColumn.CellStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="ToolTip" Value="{Binding ConditionTooltip}" />
+							<Setter Property="Background" Value="{Binding ConditionBackgroundColor}" />
 						</Style>
 					</DataGridTextColumn.CellStyle>
 
