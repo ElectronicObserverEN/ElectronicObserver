@@ -34,9 +34,7 @@ public class ExpeditionCheckRow
 	public SolidColorBrush Fleet2BackgroundColor => GetBackgroundColor(Fleet2Result).ToBrush();
 	public SolidColorBrush Fleet3BackgroundColor => GetBackgroundColor(Fleet3Result).ToBrush();
 	public SolidColorBrush Fleet4BackgroundColor => GetBackgroundColor(Fleet4Result).ToBrush();
-	public SolidColorBrush ExpeditionNameBackgroundColor => GetBackground().ToBrush();
-	public SolidColorBrush ExpeditionIDBackgroundColor => GetBackground().ToBrush();
-	public SolidColorBrush ConditionBackgroundColor => GetBackground().ToBrush();
+	public SolidColorBrush WorldBackgroundColor => GetBackground().ToBrush();
 	public string Fleet1Text => GetText(Fleet1Result);
 	public string Fleet2Text => GetText(Fleet2Result);
 	public string Fleet3Text => GetText(Fleet3Result);

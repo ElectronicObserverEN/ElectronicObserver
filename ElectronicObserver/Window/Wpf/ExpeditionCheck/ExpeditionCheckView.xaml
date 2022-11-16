@@ -68,7 +68,7 @@
 					>
 					<DataGridTextColumn.CellStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
-							<Setter Property="Background" Value="{Binding ExpeditionIDBackgroundColor}" />
+							<Setter Property="Background" Value="{Binding WorldBackgroundColor}" />
 						</Style>
 					</DataGridTextColumn.CellStyle>
 				</DataGridTextColumn>
@@ -82,7 +82,7 @@
 					>
 					<DataGridTextColumn.CellStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
-							<Setter Property="Background" Value="{Binding ExpeditionNameBackgroundColor}" />
+							<Setter Property="Background" Value="{Binding WorldBackgroundColor}" />
 						</Style>
 					</DataGridTextColumn.CellStyle>
 				</DataGridTextColumn>
@@ -180,7 +180,7 @@
 					<DataGridTextColumn.CellStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="ToolTip" Value="{Binding ConditionTooltip}" />
-							<Setter Property="Background" Value="{Binding ConditionBackgroundColor}" />
+							<Setter Property="Background" Value="{Binding WorldBackgroundColor}" />
 						</Style>
 					</DataGridTextColumn.CellStyle>
 
