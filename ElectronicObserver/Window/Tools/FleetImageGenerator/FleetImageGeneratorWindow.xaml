@@ -87,6 +87,27 @@
 								</ItemsPanelTemplate>
 							</ItemsControl.ItemsPanel>
 						</ItemsControl>
+						<common:EquipmentIcon VerticalAlignment="Center" Type="TransportContainer" />
+						<TextBlock
+							VerticalAlignment="Center"
+							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							Text="TP:"
+							/>
+						<TextBlock
+							VerticalAlignment="Center"
+							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							Text="{Binding TPAmountARank}"
+							/>
+						<TextBlock
+							VerticalAlignment="Center"
+							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							Text="/"
+							/>
+						<TextBlock
+							VerticalAlignment="Center"
+							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							Text="{Binding TPAmountSRank}"
+							/>
 					</StackPanel>
 				</Grid>
 

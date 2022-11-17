@@ -27,7 +27,9 @@ public class FleetViewModel : ObservableObject
 	public List<LosValue> LosValues { get; set; } = new();
 
 	public ObservableCollection<ShipViewModel> Ships { get; set; } = new();
+	public int TPAmountSRank { get; set; }
 
+	public int TPAmountARank { get; set; }
 	public FleetViewModel()
 	{
 		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
@@ -61,7 +63,8 @@ public class FleetViewModel : ObservableObject
 				_ => throw new NotImplementedException(),
 			})
 			.ToObservableCollection();
-
+		TPAmountSRank = Calculator.GetTPDamage(fleet);
+		TPAmountARank = (int)Math.Floor(Calculator.GetTPDamage(fleet) * 0.7);
 		return this;
 	}
 
