@@ -18,7 +18,7 @@ public class ApiDeckPort
 	[System.Text.Json.Serialization.JsonPropertyName("api_mission")]
 	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
 	[System.ComponentModel.DataAnnotations.Required]
-	public List<int> ApiMission { get; set; } = new();
+	public List<long> ApiMission { get; set; } = new();
 
 	[System.Text.Json.Serialization.JsonPropertyName("api_name")]
 	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]

@@ -135,7 +135,7 @@ public class ApiPortBasic
 
 	[System.Text.Json.Serialization.JsonPropertyName("api_starttime")]
 	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	public int ApiStarttime { get; set; } = default!;
+	public long ApiStarttime { get; set; } = default!;
 
 	[System.Text.Json.Serialization.JsonPropertyName("api_tutorial")]
 	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
