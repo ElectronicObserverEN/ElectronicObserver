@@ -10,7 +10,7 @@ public class ApiSupportHourai
 	[JsonPropertyName("api_damage")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiDamage { get; set; } = new();
+	public List<double> ApiDamage { get; set; } = new();
 
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

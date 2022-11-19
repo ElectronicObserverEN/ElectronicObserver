@@ -78,7 +78,7 @@ public class ApiPictureBookList
 	[JsonPropertyName("api_state")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<ApiState> ApiState { get; set; } = new();
+	public List<List<int>> ApiState { get; set; } = new();
 
 	[JsonPropertyName("api_stype")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

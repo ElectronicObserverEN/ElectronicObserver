@@ -54,9 +54,12 @@ public class ApiReqMapNextResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiHappening? ApiHappening { get; set; } = default!;
 
+	/// <summary>
+	/// Element type is <see cref="Models.ApiItemget"/> or <see cref="List{T}"/> of <see cref="Models.ApiItemget"/>s.
+	/// </summary>
 	[JsonPropertyName("api_itemget")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<ApiItemget>? ApiItemget { get; set; } = default!;
+	public object? ApiItemget { get; set; } = default!;
 
 	[JsonPropertyName("api_itemget_eo_comment")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

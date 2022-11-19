@@ -109,7 +109,7 @@ public class ApiReqCombinedBattleEcMidnightBattleResponse
 	[JsonPropertyName("api_hougeki")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiReqCombinedBattleEcMidnightBattleResponseApiHougeki ApiHougeki { get; set; } = new();
+	public ApiHougeki ApiHougeki { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

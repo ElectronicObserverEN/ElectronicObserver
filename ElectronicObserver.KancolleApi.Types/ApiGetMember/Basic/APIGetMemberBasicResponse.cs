@@ -131,7 +131,7 @@ public class ApiGetMemberBasicResponse
 
 	[JsonPropertyName("api_starttime")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiStarttime { get; set; } = default!;
+	public long ApiStarttime { get; set; } = default!;
 
 	[JsonPropertyName("api_tutorial")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

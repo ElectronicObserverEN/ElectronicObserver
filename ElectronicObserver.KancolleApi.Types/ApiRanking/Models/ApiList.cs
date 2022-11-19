@@ -37,5 +37,5 @@ public class ApiList
 	[JsonPropertyName("api_wuhnhojjxmke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public int ApiWuhnhojjxmke { get; set; }
+	public long ApiWuhnhojjxmke { get; set; }
 }

@@ -25,7 +25,7 @@ public class ApiStage3
 	[JsonPropertyName("api_fbak_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiFbakFlag { get; set; } = new();
+	public List<int?> ApiFbakFlag { get; set; } = new();
 
 	[JsonPropertyName("api_fcl_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -40,5 +40,5 @@ public class ApiStage3
 	[JsonPropertyName("api_frai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiFraiFlag { get; set; } = new();
+	public List<int?> ApiFraiFlag { get; set; } = new();
 }

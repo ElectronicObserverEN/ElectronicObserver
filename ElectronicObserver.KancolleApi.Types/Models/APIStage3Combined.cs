@@ -15,7 +15,7 @@ public class ApiStage3Combined
 	[JsonPropertyName("api_fdam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiFdam { get; set; } = new();
+	public List<double> ApiFdam { get; set; } = new();
 
 	[JsonPropertyName("api_frai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
