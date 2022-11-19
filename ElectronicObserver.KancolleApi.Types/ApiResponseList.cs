@@ -2,10 +2,10 @@
 
 namespace ElectronicObserver.KancolleApi.Types;
 
-public class ApiResponse<T> where T : class, new()
+public class ApiResponseList<T> where T : class, new()
 {
 	[JsonPropertyName("api_data")]
-	public T ApiData { get; set; } = new();
+	public List<T> ApiData { get; set; } = new();
 
 	[JsonPropertyName("api_result")]
 	public int ApiResult { get; set; }
