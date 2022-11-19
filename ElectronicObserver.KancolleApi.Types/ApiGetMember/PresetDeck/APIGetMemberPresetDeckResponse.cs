@@ -4,12 +4,12 @@ namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.PresetDeck;
 
 public class ApiGetMemberPresetDeckResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_deck")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_deck")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public IDictionary<string, ApiDeck> ApiDeck { get; set; } = new Dictionary<string, ApiDeck>();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_max_num")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_max_num")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiMaxNum { get; set; } = default!;
 }

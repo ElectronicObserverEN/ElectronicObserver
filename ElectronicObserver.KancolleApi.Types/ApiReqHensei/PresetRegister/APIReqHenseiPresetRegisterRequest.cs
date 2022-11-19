@@ -2,28 +2,28 @@
 
 public class ApiReqHenseiPresetRegisterRequest
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_deck_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_deck_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiDeckId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_name")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_name")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_name_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_name_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiNameId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_preset_no")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_preset_no")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiPresetNo { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_verno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_verno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

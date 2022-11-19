@@ -2,18 +2,18 @@
 
 public class ApiGetMemberShip2Request
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_sort_key")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_sort_key")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiSortKey { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_verno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_verno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("spi_sort_order")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("spi_sort_order")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string SpiSortOrder { get; set; } = default!;
 }

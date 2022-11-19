@@ -2,29 +2,29 @@
 
 public class ApiMstUseitem
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_category")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_category")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiCategory { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_description")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_description")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<string> ApiDescription { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_name")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_name")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_price")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_price")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiPrice { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_usetype")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_usetype")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiUsetype { get; set; } = default!;
 }

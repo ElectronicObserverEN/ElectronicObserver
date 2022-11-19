@@ -2,23 +2,23 @@
 
 public class ApiReqHenseiChangeRequest
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ship_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShipId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_idx")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ship_idx")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShipIdx { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_verno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_verno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

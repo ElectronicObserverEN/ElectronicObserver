@@ -2,12 +2,12 @@
 
 public class ApiMstEquipShip
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_equip_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_equip_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiEquipType { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_ship_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiShipId { get; set; } = default!;
 }

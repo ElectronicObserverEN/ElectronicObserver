@@ -2,23 +2,23 @@
 
 public class ApiReqNyukyoStartRequest
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_highspeed")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_highspeed")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiHighspeed { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ndock_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ndock_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiNdockId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ship_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShipId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_verno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_verno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

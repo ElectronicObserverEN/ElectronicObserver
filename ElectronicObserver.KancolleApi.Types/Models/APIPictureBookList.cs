@@ -2,126 +2,110 @@
 
 public class ApiPictureBookList
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_baku")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_baku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiBaku { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_cnum")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_cnum")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiCnum { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ctype")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_ctype")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiCtype { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_flag")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_flag")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiFlag { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_houg")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_houg")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiHoug { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_houk")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_houk")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiHouk { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_houm")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_houm")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiHoum { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_index_no")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_index_no")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiIndexNo { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_info")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiInfo { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_kaih")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_kaih")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiKaih { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_leng")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_leng")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiLeng { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_name")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_name")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_q_voice_info")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_q_voice_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<ApiqVoiceInfo>? ApiQVoiceInfo { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_raig")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_raig")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiRaig { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_saku")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_saku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiSaku { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_sinfo")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_sinfo")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiSinfo { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_soku")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_soku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiSoku { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_souk")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_souk")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiSouk { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_state")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_state")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiState> ApiState { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_stype")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_stype")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiStype { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_table_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_table_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiTableId { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_taik")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_taik")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiTaik { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_tais")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_tais")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiTais { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_tyku")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_tyku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiTyku { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiType { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_yomi")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_yomi")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiYomi { get; set; } = default!;
 }

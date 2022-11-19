@@ -5,65 +5,61 @@ namespace ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 
 public class ApiPortPortResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_basic")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_basic")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiPortBasic ApiBasic { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_c_flag")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_c_flag")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiCFlag { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_combined_flag")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_combined_flag")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiCombinedFlag { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_deck_port")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_deck_port")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiDeckPort> ApiDeckPort { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_dest_ship_slot")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_dest_ship_slot")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiDestShipSlot { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_event_object")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_event_object")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiEventObject? ApiEventObject { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_log")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_log")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiLog> ApiLog { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_material")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_material")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMaterial> ApiMaterial { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ndock")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_ndock")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiGetMemberNdockResponse> ApiNdock { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_p_bgm_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_p_bgm_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiPBgmId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_parallel_quest_count")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_parallel_quest_count")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiParallelQuestCount { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_plane_info")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_plane_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiPortPlaneInfo? ApiPlaneInfo { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_ship")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiShip> ApiShip { get; set; } = new();
 }

@@ -2,13 +2,13 @@
 
 public class ApiEscape
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_escape_idx")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_escape_idx")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiEscapeIdx { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_tow_idx")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_tow_idx")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiTowIdx { get; set; } = new();
 }

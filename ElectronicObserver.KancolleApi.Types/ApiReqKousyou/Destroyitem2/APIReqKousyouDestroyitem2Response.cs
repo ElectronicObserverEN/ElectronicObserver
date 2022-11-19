@@ -2,8 +2,8 @@
 
 public class ApiReqKousyouDestroyitem2Response
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_get_material")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_get_material")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiGetMaterial { get; set; } = new();
 }

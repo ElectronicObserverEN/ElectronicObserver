@@ -2,13 +2,13 @@
 
 public class ApiFriendlyBattle
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_flare_pos")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_flare_pos")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiFlarePos { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_hougeki")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_hougeki")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiFriendlyBattleApiHougeki ApiHougeki { get; set; } = new();
 }

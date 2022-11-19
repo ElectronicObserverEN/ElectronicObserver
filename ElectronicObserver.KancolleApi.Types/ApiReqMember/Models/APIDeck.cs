@@ -2,8 +2,8 @@
 
 public class ApiDeck
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_ships")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_ships")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiShip> ApiShips { get; set; } = new();
 }

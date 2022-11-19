@@ -4,103 +4,103 @@ namespace ElectronicObserver.KancolleApi.Types.ApiStart2.GetData;
 
 public class ApiStart2GetDataResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_bgm")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_bgm")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstBgm> ApiMstBgm { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_const")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_const")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiMstConst ApiMstConst { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_equip_exslot")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_equip_exslot")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiMstEquipExslot { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_equip_exslot_ship")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_equip_exslot_ship")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstEquipExslotShip> ApiMstEquipExslotShip { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_equip_ship")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_equip_ship")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstEquipShip> ApiMstEquipShip { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_furniture")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_furniture")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstFurniture> ApiMstFurniture { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_furnituregraph")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_furnituregraph")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstFurnituregraph> ApiMstFurnituregraph { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_item_shop")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_item_shop")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiMstItemShop ApiMstItemShop { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_maparea")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_maparea")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstMaparea> ApiMstMaparea { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_mapbgm")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_mapbgm")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstMapbgm> ApiMstMapbgm { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_mapinfo")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_mapinfo")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstMapinfo> ApiMstMapinfo { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_mission")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_mission")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstMission> ApiMstMission { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_payitem")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_payitem")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstPayitem> ApiMstPayitem { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_ship")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_ship")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstShip> ApiMstShip { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_shipgraph")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_shipgraph")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstShipgraph> ApiMstShipgraph { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_shipupgrade")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_shipupgrade")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstShipupgrade> ApiMstShipupgrade { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_slotitem")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_slotitem")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstSlotitem> ApiMstSlotitem { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_slotitem_equiptype")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_slotitem_equiptype")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstSlotitemEquiptype> ApiMstSlotitemEquiptype { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_stype")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_stype")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstStype> ApiMstStype { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_useitem")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_useitem")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiMstUseitem> ApiMstUseitem { get; set; } = new();
 }

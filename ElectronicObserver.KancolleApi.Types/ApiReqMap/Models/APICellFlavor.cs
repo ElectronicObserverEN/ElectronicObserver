@@ -2,12 +2,12 @@
 
 public class ApiCellFlavor
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_message")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_message")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiMessage { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiType { get; set; } = default!;
 }

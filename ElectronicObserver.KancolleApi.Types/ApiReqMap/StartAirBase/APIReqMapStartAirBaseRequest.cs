@@ -2,23 +2,20 @@
 
 public class ApiReqMapStartAirBaseRequest
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_strike_point_1")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_strike_point_1")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiStrikePoint1 { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_strike_point_2")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_strike_point_2")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiStrikePoint2 { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_strike_point_3")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_strike_point_3")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiStrikePoint3 { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_verno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_verno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

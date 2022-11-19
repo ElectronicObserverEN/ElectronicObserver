@@ -2,29 +2,29 @@
 
 public class ApiMstStype
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_equip_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_equip_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public IDictionary<string, int> ApiEquipType { get; set; } = new Dictionary<string, int>();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_kcnt")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_kcnt")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiKcnt { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_name")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_name")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_scnt")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_scnt")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiScnt { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_sortno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_sortno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiSortno { get; set; } = default!;
 }

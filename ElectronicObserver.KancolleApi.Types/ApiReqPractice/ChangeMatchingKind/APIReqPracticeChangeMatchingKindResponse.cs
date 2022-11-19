@@ -2,7 +2,7 @@
 
 public class ApiReqPracticeChangeMatchingKindResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_update_flag")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_update_flag")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiUpdateFlag { get; set; } = default!;
 }

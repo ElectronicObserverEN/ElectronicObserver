@@ -2,18 +2,17 @@
 
 public class ApiReqMapNextRequest
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_cell_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_cell_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiCellId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_recovery_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_recovery_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiRecoveryType { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_verno")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_verno")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

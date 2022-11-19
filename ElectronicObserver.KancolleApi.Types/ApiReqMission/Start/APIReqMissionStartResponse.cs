@@ -2,12 +2,12 @@
 
 public class ApiReqMissionStartResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_complatetime")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_complatetime")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiComplatetime { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_complatetime_str")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_complatetime_str")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiComplatetimeStr { get; set; } = default!;
 }

@@ -4,17 +4,17 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Clearitemget;
 
 public class ApiReqQuestClearitemgetResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_bounus")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_bounus")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiBounus> ApiBounus { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_bounus_count")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_bounus_count")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiBounusCount { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_material")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_material")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiMaterial { get; set; } = new();
 }

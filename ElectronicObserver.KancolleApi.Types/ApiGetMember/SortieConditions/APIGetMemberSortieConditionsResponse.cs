@@ -4,8 +4,8 @@ namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.SortieConditions;
 
 public class ApiGetMemberSortieConditionsResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_war")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_war")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiWar ApiWar { get; set; } = new();
 }

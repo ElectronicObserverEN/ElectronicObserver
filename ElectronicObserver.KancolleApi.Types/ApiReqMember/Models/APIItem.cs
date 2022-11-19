@@ -2,20 +2,20 @@
 
 public class ApiItem
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_getmes")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_getmes")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiGetmes { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mode")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_mode")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiMode { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_mst_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiMstId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiType { get; set; } = default!;
 }

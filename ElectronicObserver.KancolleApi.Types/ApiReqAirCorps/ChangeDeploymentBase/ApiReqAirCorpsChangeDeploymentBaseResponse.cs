@@ -6,7 +6,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.ChangeDeploymentBa
 public class ApiReqAirCorpsChangeDeploymentBaseResponse
 {
 	[JsonPropertyName("api_base_items")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiBaseItem> ApiBaseItems { get; set; } = new();
 }

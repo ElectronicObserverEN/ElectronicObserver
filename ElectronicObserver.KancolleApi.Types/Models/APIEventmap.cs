@@ -2,22 +2,20 @@
 
 public class ApiEventmap
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_max_maphp")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_max_maphp")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiMaxMaphp { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_now_maphp")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_now_maphp")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiNowMaphp { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_selected_rank")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_selected_rank")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiSelectedRank { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_state")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_state")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiState { get; set; } = default!;
 
 }

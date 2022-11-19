@@ -2,35 +2,35 @@
 
 public class ApiMstPayitem
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_description")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_description")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiDescription { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_item")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_item")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiItem { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_name")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_name")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_price")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_price")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiPrice { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_shop_description")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_shop_description")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShopDescription { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiType { get; set; } = default!;
 }

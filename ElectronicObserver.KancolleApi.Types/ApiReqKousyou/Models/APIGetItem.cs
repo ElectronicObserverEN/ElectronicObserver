@@ -2,11 +2,11 @@
 
 public class ApiGetItem
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_slotitem_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_slotitem_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiSlotitemId { get; set; } = default!;
 }

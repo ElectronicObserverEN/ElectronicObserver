@@ -2,20 +2,20 @@
 
 public class ApiLandingHp
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_max_hp")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_max_hp")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiMaxHp { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_now_hp")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_now_hp")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiNowHp { get; set; } = default!;
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
-	[System.Text.Json.Serialization.JsonPropertyName("api_sub_value")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_sub_value")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public object ApiSubValue { get; set; } = default!;
 }

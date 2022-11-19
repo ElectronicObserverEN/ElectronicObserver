@@ -2,22 +2,22 @@
 
 public class ApiGetShip
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_getmes")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ship_getmes")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShipGetmes { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_ship_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiShipId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_name")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ship_name")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShipName { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_type")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+	[JsonPropertyName("api_ship_type")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
 	public string ApiShipType { get; set; } = default!;
 }

@@ -2,21 +2,21 @@
 
 public class ApiKouku
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_plane_from")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_plane_from")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<List<int>?> ApiPlaneFrom { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_stage1")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_stage1")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiStage1 ApiStage1 { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_stage2")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_stage2")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiStage2? ApiStage2 { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_stage3")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_stage3")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiStage3? ApiStage3 { get; set; } = default!;
 }

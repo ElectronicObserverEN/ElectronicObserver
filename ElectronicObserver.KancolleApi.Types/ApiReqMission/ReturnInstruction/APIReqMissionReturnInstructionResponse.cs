@@ -2,8 +2,8 @@
 
 public class ApiReqMissionReturnInstructionResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_mission")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mission")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiMission { get; set; } = new();
 }

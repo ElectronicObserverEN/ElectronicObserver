@@ -2,18 +2,15 @@
 
 public class ApiReqHenseiChangeResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_change_count")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_change_count")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiChangeCount { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_result")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_result")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiResult { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_result_msg")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_result_msg")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public string? ApiResultMsg { get; set; } = default!;
 }

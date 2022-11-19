@@ -2,22 +2,19 @@
 
 public class ApiReqMemberPayitemuseResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_caution_flag")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_caution_flag")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiCautionFlag { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_flag")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_flag")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiFlag { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_max_chara")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_max_chara")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiMaxChara { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_max_slotitem")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition =
-		System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault)]
+	[JsonPropertyName("api_max_slotitem")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int? ApiMaxSlotitem { get; set; } = default!;
 }

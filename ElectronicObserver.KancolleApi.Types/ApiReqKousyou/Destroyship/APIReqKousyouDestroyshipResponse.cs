@@ -2,13 +2,13 @@
 
 public class ApiReqKousyouDestroyshipResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_material")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_material")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<int> ApiMaterial { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_unset_list")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_unset_list")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public IDictionary<string, List<int>> ApiUnsetList { get; set; } = new Dictionary<string, List<int>>();
 }

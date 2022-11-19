@@ -2,13 +2,13 @@
 
 public class ApiAirBaseDatumElement
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_count")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_count")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public int ApiCount { get; set; }
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_mst_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_mst_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public int ApiMstId { get; set; }
 }

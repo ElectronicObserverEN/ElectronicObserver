@@ -6,26 +6,26 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.Getship;
 
 public class ApiReqKousyouGetshipResponse
 {
-	[System.Text.Json.Serialization.JsonPropertyName("api_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_kdock")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_kdock")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiGetMemberKdockResponse> ApiKdock { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_ship")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public ApiShip ApiShip { get; set; } = new();
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_ship_id")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
+	[JsonPropertyName("api_ship_id")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiShipId { get; set; } = default!;
 
-	[System.Text.Json.Serialization.JsonPropertyName("api_slotitem")]
-	[System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]
-	[System.ComponentModel.DataAnnotations.Required]
+	[JsonPropertyName("api_slotitem")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiSlotitem> ApiSlotitem { get; set; } = new();
 }
