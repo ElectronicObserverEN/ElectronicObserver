@@ -32,8 +32,11 @@ public class ApiOpeningTaisen
 	[Required]
 	public List<List<int>> ApiDfList { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_si_list")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<List<string>> ApiSiList { get; set; } = new();
+	public List<List<object>> ApiSiList { get; set; } = new();
 }

@@ -51,9 +51,12 @@ public class ApiReqMissionResultResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiMemberExp { get; set; } = default!;
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_member_lv")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public string ApiMemberLv { get; set; } = default!;
+	public object ApiMemberLv { get; set; } = default!;
 
 	[JsonPropertyName("api_quest_level")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

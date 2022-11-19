@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiInjectionKouku
 {
@@ -20,7 +22,7 @@ public class ApiInjectionKouku
 	[JsonPropertyName("api_stage3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiInjectionKoukuApiStage3 ApiStage3 { get; set; } = new();
+	public ApiStage3 ApiStage3 { get; set; } = new();
 
 	[JsonPropertyName("api_stage3_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

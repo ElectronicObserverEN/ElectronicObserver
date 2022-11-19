@@ -10,7 +10,7 @@ public class ApiRaigekiClass
 	[JsonPropertyName("api_edam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEdam { get; set; } = new();
+	public List<double> ApiEdam { get; set; } = new();
 
 	[JsonPropertyName("api_erai")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
