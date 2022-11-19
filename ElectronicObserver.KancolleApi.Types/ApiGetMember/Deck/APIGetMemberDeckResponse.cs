@@ -18,7 +18,7 @@ public class ApiGetMemberDeckResponse
 	[JsonPropertyName("api_mission")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiMission { get; set; } = new();
+	public List<long> ApiMission { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

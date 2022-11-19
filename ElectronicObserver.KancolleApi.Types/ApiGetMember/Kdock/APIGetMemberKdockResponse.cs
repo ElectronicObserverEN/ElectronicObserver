@@ -4,7 +4,7 @@ public class ApiGetMemberKdockResponse
 {
 	[JsonPropertyName("api_complete_time")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCompleteTime { get; set; } = default!;
+	public long ApiCompleteTime { get; set; } = default!;
 
 	[JsonPropertyName("api_complete_time_str")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -53,7 +53,7 @@ public class ApiReqMissionResultResponse
 
 	[JsonPropertyName("api_member_lv")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberLv { get; set; } = default!;
+	public string ApiMemberLv { get; set; } = default!;
 
 	[JsonPropertyName("api_quest_level")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

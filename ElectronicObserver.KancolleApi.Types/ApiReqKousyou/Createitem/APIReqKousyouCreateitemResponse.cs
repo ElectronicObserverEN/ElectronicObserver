@@ -20,5 +20,5 @@ public class ApiReqKousyouCreateitemResponse
 
 	[JsonPropertyName("api_unset_items")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiUnsetItem? ApiUnsetItems { get; set; } = default!;
+	public List<ApiUnsetItem> ApiUnsetItems { get; set; } = new();
 }

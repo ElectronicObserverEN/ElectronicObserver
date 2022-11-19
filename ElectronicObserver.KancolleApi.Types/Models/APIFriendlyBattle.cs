@@ -10,5 +10,5 @@ public class ApiFriendlyBattle
 	[JsonPropertyName("api_hougeki")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiFriendlyBattleApiHougeki ApiHougeki { get; set; } = new();
+	public ApiHougeki ApiHougeki { get; set; } = new();
 }

@@ -4,7 +4,7 @@ public class ApiReqMissionStartResponse
 {
 	[JsonPropertyName("api_complatetime")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiComplatetime { get; set; } = default!;
+	public long ApiComplatetime { get; set; } = default!;
 
 	[JsonPropertyName("api_complatetime_str")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

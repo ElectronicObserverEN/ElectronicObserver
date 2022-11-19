@@ -20,7 +20,7 @@ public class ApiHougeki
 	[JsonPropertyName("api_damage")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<List<int>> ApiDamage { get; set; } = new();
+	public List<List<long>> ApiDamage { get; set; } = new();
 
 	[JsonPropertyName("api_df_list")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
