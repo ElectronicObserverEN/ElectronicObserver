@@ -27,7 +27,7 @@ public class FleetViewModel : ObservableObject
 	public List<LosValue> LosValues { get; set; } = new();
 
 	public ObservableCollection<ShipViewModel> Ships { get; set; } = new();
-
+	public List<TPValue> TPValues { get; set; } = new();
 	public FleetViewModel()
 	{
 		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
@@ -50,7 +50,8 @@ public class FleetViewModel : ObservableObject
 		LosValues = Enumerable.Range(1, 4)
 			.Select(w => new LosValue(w, Math.Round(Calculator.GetSearchingAbility_New33(fleet, w), 2, MidpointRounding.ToNegativeInfinity)))
 			.ToList();
-
+		TPValues.Add(new TPValue("S", Calculator.GetTPDamage(fleet)));
+		TPValues.Add(new TPValue("A", (int)(Calculator.GetTPDamage(fleet) * 0.7)));
 		Ships = FilterStrikingForce(fleet.MembersInstance)
 			.Select(s => imageType switch
 			{
