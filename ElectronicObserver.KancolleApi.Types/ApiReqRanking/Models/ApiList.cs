@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ElectronicObserver.KancolleApi.Types.ApiRanking.Models;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 
 public class ApiList
 {

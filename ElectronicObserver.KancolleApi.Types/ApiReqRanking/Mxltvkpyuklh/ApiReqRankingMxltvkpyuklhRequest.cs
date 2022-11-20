@@ -1,6 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;
 
-public class ApiReqKousyouRemodelSlotlistRequest
+public class ApiReqRankingMxltvkpyuklhRequest
 {
 	[JsonPropertyName("api_token")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -11,4 +11,9 @@ public class ApiReqKousyouRemodelSlotlistRequest
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
+
+	[JsonPropertyName("api_ranking")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
+	public string ApiRanking { get; set; } = default!;
 }

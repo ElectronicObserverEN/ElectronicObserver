@@ -1,6 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKaisou.CanPresetSlotSelect;
 
-public class ApiReqKousyouRemodelSlotlistRequest
+public class ApiReqKaisouCanPresetSlotSelectRequest
 {
 	[JsonPropertyName("api_token")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

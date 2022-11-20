@@ -1,6 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.GetEventSelectedReward;
 
-public class ApiReqKousyouRemodelSlotlistRequest
+public class ApiReqMemberGetEventSelectedRewardRequest
 {
 	[JsonPropertyName("api_token")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -11,4 +11,9 @@ public class ApiReqKousyouRemodelSlotlistRequest
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
+
+	[JsonPropertyName("api_selected_dict[21]")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required(AllowEmptyStrings = true)]
+	public string ApiSelectedDict21 { get; set; } = default!;
 }

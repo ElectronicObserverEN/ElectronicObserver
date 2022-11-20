@@ -1,6 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.GoBackPort;
 
-public class ApiReqKousyouRemodelSlotlistRequest
+public class ApiReqSortieGobackPortRequest
 {
 	[JsonPropertyName("api_token")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

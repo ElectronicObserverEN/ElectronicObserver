@@ -1,7 +1,6 @@
-﻿using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.ApiRanking.Models;
+﻿using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 
-namespace ElectronicObserver.KancolleApi.Types.ApiRanking.Mxltvkpyuklh;
+namespace ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;
 
 public class ApiReqRankingMxltvkpyuklhResponse
 {
