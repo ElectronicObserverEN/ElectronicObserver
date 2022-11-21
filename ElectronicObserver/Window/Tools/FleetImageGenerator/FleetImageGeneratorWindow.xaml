@@ -43,30 +43,6 @@
 					/>
 			</StackPanel>
 		</DataTemplate>
-		<DataTemplate DataType="{x:Type local:TPValue}">
-			<StackPanel
-				Margin="0 0 10 0"
-				VerticalAlignment="Bottom"
-				Orientation="Horizontal"
-				>
-				<TextBlock x:Name="slashTextBlock" Text="/ " />
-				<TextBlock
-					VerticalAlignment="Center"
-					FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
-					Text="{Binding Value}"
-					/>
-				<TextBlock
-					VerticalAlignment="Bottom"
-					FontSize="10"
-					Text="{Binding Rank}"
-					/>
-			</StackPanel>
-			<DataTemplate.Triggers>
-				<DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
-					<Setter TargetName="slashTextBlock" Property="Visibility" Value="Collapsed" />
-				</DataTrigger>
-			</DataTemplate.Triggers>
-		</DataTemplate>
 		<DataTemplate DataType="{x:Type local:FleetViewModel}">
 			<Grid Margin="2 0" Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
 				<Grid.RowDefinitions>
@@ -122,17 +98,27 @@
 							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
 							Text=":"
 							/>
-						<ItemsControl
+						<TextBlock
 							VerticalAlignment="Center"
 							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
-							ItemsSource="{Binding TPValues, IsAsync=True}"
-							>
-							<ItemsControl.ItemsPanel>
-								<ItemsPanelTemplate>
-									<StackPanel Orientation="Horizontal" />
-								</ItemsPanelTemplate>
-							</ItemsControl.ItemsPanel>
-						</ItemsControl>
+							Text="{Binding TPValueS}"
+							/>
+						<TextBlock
+							VerticalAlignment="Bottom"
+							FontSize="10"
+							Text="S"
+							/>
+						<TextBlock FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}" Text=" / " />
+						<TextBlock
+							VerticalAlignment="Center"
+							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							Text="{Binding TPValueA}"
+							/>
+						<TextBlock
+							VerticalAlignment="Bottom"
+							FontSize="10"
+							Text="A"
+							/>
 					</StackPanel>
 				</Grid>
 
