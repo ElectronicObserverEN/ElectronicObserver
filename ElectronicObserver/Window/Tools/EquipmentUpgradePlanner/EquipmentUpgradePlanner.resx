@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddEquipmentFromLibrary" xml:space="preserve">
-    <value>未所持装備から選択</value>
+    <value>全装備から選択</value>
   </data>
   <data name="AddOwnedEquipment" xml:space="preserve">
     <value>所持装備から選択</value>
@@ -146,5 +146,8 @@
   </data>
   <data name="UpgradeLevel" xml:space="preserve">
     <value>改修値</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>未割り当て</value>
   </data>
 </root>

@@ -147,4 +147,7 @@
   <data name="UpgradeLevel" xml:space="preserve">
     <value>Level</value>
   </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Unassigned</value>
+  </data>
 </root>

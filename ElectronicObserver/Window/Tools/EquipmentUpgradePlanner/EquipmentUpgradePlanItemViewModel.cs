@@ -98,7 +98,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		if (Equipment.MasterID > 0)
 			CurrentLevelDisplay = Equipment.UpgradeLevel.Display();
 		else
-			CurrentLevelDisplay = EquipmentUpgradePlanner.NotOwned;
+			CurrentLevelDisplay = EquipmentUpgradePlanner.Unassigned;
 
 	}
 

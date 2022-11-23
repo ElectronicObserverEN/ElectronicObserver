@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 未所持装備から選択.
+        ///   Looks up a localized string similar to 全装備から選択.
         /// </summary>
         public static string AddEquipmentFromLibrary {
             get {
@@ -138,6 +138,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未割り当て.
+        /// </summary>
+        public static string Unassigned {
+            get {
+                return ResourceManager.GetString("Unassigned", resourceCulture);
             }
         }
         
