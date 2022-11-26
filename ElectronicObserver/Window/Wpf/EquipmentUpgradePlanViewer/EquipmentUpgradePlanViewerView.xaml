@@ -75,7 +75,18 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.Translation.CurrentLevel, Source={StaticResource Proxy}}"
-					/>
+					>
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+							<Setter Property="ToolTip" Value="{x:Null}" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Equipment.MasterID}" Value="0">
+									<Setter Property="ToolTip" Value="{Binding DataContext.Translation.UnassignedToolTip, Source={StaticResource Proxy}}" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
 
 				<DataGridTextColumn
 					Width="Auto"

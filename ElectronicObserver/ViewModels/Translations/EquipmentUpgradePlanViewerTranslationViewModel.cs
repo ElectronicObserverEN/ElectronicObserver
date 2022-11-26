@@ -11,5 +11,5 @@ public class EquipmentUpgradePlanViewerTranslationViewModel : TranslationBaseVie
 	public string Goal => EquipmentUpgradePlanViewer.Goal;
 	public string IsFinished => EquipmentUpgradePlanViewer.IsFinished;
 	public string Priority => EquipmentUpgradePlanViewer.Priority;
-
+	public string UnassignedToolTip => EquipmentUpgradePlanViewer.UnassignedToolTip;
 }

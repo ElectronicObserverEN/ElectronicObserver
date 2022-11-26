@@ -123,5 +123,14 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未割り当てとなっている装備は改修を実施した際に反映される.
+        /// </summary>
+        public static string UnassignedToolTip {
+            get {
+                return ResourceManager.GetString("UnassignedToolTip", resourceCulture);
+            }
+        }
     }
 }
