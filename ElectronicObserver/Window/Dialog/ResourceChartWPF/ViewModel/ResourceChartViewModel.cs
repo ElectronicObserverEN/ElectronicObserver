@@ -33,7 +33,7 @@ public partial class ResourceChartViewModel : WindowViewModelBase
 	public double ToolTipHorizontalOffset { get; set; }
 	public double ToolTipVerticalOffset { get; set; }
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectToday(Calendar? calendar)
 	{
 		if (calendar is null) return;

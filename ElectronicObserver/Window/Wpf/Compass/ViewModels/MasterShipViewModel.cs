@@ -76,7 +76,7 @@ public partial class MasterShipViewModel : ObservableObject
 
 	private bool CanOpenShipEncyclopedia(int id) => id > 0;
 
-	[ICommand(CanExecute = nameof(CanOpenShipEncyclopedia))]
+	[RelayCommand(CanExecute = nameof(CanOpenShipEncyclopedia))]
 	private void OpenShipEncyclopedia(int shipId)
 	{
 		new DialogAlbumMasterShipWpf(shipId).Show(App.Current.MainWindow);

@@ -26,7 +26,7 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 		Config.Load();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Confirm()
 	{
 		if (!Config.TrySaveConfiguration()) return;
@@ -36,7 +36,7 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 		DialogResult = true;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Cancel()
 	{
 		Config.Dispose();

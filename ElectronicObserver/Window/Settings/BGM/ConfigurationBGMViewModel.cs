@@ -47,7 +47,7 @@ public partial class ConfigurationBGMViewModel : ConfigurationViewModelBase
 		Config.SyncBrowserMute = SyncBrowserMute;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetAllVolume()
 	{
 		foreach (SoundHandleViewModel handle in Handles)
@@ -57,7 +57,7 @@ public partial class ConfigurationBGMViewModel : ConfigurationViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void EditSoundHandle(SoundHandleViewModel? handle)
 	{
 		if (handle is null) return;

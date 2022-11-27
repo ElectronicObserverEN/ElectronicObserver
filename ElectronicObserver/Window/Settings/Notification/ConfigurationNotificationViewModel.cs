@@ -50,7 +50,7 @@ namespace ElectronicObserver.Window.Settings.Notification
 			// no need to save here because it's already saved in the dialog
 		}
 
-		[ICommand]
+		[RelayCommand]
 		private void OpenNotificationConfigDialog(Base.ConfigurationNotificationBaseViewModel? config)
 		{
 			if (config is null) return;

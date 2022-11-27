@@ -64,9 +64,9 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 		AirBaseArea = AirBaseAreas.MaxBy(b => b.AreaId);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Confirm() => DialogResult = true;
 
-	[ICommand]
+	[RelayCommand]
 	private void Cancel() => DialogResult = false;
 }

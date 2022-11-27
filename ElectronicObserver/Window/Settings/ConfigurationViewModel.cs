@@ -113,7 +113,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		return true;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Confirm()
 	{
 		if (!TrySaveConfigurations()) return;
@@ -122,7 +122,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		DialogResult = true;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Cancel()
 	{
 		DialogResult = false;

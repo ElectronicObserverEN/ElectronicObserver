@@ -672,7 +672,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenShipPicker()
 	{
 		ShipPickerViewModel.DropRecordOptions = Enum.GetValues<DropRecordOption>().ToList();
@@ -690,7 +690,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		ShipPickerViewModel.DropRecordOptions = null;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StartSearch()
 	{
 
@@ -710,7 +710,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		Searcher.RunWorkerAsync();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectToday(Calendar? calendar)
 	{
 		if (calendar is null) return;

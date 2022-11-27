@@ -608,7 +608,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StartSearch()
 	{
 		if (Searcher.IsBusy)
@@ -709,7 +709,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectToday(Calendar? calendar)
 	{
 		if (calendar is null) return;

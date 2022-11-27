@@ -98,7 +98,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetRecordAutoSaving(RecordAutoSaving? recordAutoSaving)
 	{
 		if (recordAutoSaving is not { } autoSaving) return;
@@ -106,7 +106,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		RecordAutoSaving = autoSaving;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetPowerEngagementForm(EngagementType? engagementType)
 	{
 		if (engagementType is not { } engagement) return;
@@ -114,7 +114,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		PowerEngagementForm = engagement;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void ForceUpdate()
 	{
 		await SoftwareUpdater.CheckUpdateAsync();

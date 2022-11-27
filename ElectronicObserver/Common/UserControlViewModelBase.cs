@@ -43,7 +43,7 @@ public partial class UserControlViewModelBase : ObservableObject
 
 	}
 
-	[ICommand(CanExecute = nameof(CanClose))]
+	[RelayCommand(CanExecute = nameof(CanClose))]
 	protected virtual void Close()
 	{
 		Visibility = Visibility.Collapsed;

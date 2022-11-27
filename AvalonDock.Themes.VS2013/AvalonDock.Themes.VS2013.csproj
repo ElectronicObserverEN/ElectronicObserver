@@ -30,8 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
-	  <PackageReference Include="Grpc" Version="2.41.1" />
-	  <PackageReference Include="Grpc.Core.Api" Version="2.41.1" />
+	  <PackageReference Include="Dirkster.AvalonDock" Version="4.70.3" />
   </ItemGroup>
 </Project>

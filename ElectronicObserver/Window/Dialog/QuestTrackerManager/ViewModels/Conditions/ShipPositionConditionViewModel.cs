@@ -80,7 +80,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenShipPicker()
 	{
 		ShipPickerView shipPicker = new(ShipPickerViewModel);

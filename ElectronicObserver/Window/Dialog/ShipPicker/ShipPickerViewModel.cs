@@ -40,14 +40,14 @@ public partial class ShipPickerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectShip(IShipDataMaster? ship)
 	{
 		PickedShip = ship;
 	}
 
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectOption(DropRecordOption? option)
 	{
 		PickedOption = option;

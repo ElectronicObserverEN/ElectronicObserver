@@ -76,13 +76,13 @@ public partial class ShipNationalityConditionViewModel : ObservableObject, ICond
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddType()
 	{
 		Model.Nationalities.Add(SelectedNationality);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveType(ShipNationality nationality)
 	{
 		Model.Nationalities.Remove(nationality);

@@ -37,13 +37,13 @@ public partial class AllowedShipTypesConditionViewModel : ObservableObject, ICon
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddType()
 	{
 		Model.Types.Add(SelectedType);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveType(ShipTypes s)
 	{
 		Model.Types.Remove(s);

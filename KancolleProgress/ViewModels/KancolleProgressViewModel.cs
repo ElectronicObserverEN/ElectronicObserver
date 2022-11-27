@@ -323,13 +323,13 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Concat(DisplayGroups(openingAswGroup));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetDisplay(Display display)
 	{
 		Display = display;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ExportAsCsv()
 	{
 		List<List<ShipViewModel>> shipLists = TypeGroups

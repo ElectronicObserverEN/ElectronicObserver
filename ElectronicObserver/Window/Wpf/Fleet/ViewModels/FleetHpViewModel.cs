@@ -75,7 +75,7 @@ public partial class FleetHpViewModel : ObservableObject
 		Foreground = MainForeground;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MouseEnter()
 	{
 		_onMouse = true;
@@ -85,7 +85,7 @@ public partial class FleetHpViewModel : ObservableObject
 		*/
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MouseLeave()
 	{
 		_onMouse = false;

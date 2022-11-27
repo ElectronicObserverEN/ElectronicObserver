@@ -61,7 +61,7 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 		Config.CanCloseFloatWindowInLock = CanCloseFloatWindowInLock;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetClockFormat(ClockFormat? clockFormat)
 	{
 		if (clockFormat is not { } format) return;
@@ -69,7 +69,7 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 		ClockFormat = format;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenLayout()
 	{
 		string? newLayoutPath = FileService.OpenLayoutPath(LayoutFilePath);

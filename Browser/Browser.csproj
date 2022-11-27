@@ -39,29 +39,28 @@
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
-		<PackageReference Include="Grpc" Version="2.41.1" />
-		<PackageReference Include="Grpc.Core" Version="2.41.1" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.41.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="Grpc" Version="2.46.5" />
+		<PackageReference Include="Grpc.Core" Version="2.46.5" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.50.0" />
 		<PackageReference Include="Jot" Version="2.1.13" />
-		<PackageReference Include="log4net" Version="2.0.13" />
+		<PackageReference Include="log4net" Version="2.0.15" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
-		<PackageReference Include="MessagePack" Version="2.3.85" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.3.85" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
-		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
-		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1414-prerelease" />
+		<PackageReference Include="MessagePack" Version="2.4.59" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.4.59" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1418.22" />
 		<PackageReference Include="Microsoft.Web.WebView2.DevToolsProtocolExtension" Version="1.0.824" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
-		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-
-		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1450" />
+		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="AirControlSimulator\AirControlSimulator.Designer.cs">

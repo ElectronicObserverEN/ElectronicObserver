@@ -33,7 +33,7 @@ public partial class FleetLevelViewModel : ObservableObject
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenExpChecker()
 	{
 		ToolService.ExpChecker(new ExpCheckerViewModel(Tag));

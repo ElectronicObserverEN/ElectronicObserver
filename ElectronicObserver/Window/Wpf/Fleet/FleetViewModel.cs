@@ -447,7 +447,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	#region Commands
 
-	[ICommand]
+	[RelayCommand]
 	private void Copy()
 	{
 
@@ -522,7 +522,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// 「艦隊デッキビルダー」用編成コピー
 	/// <see cref="http://www.kancolle-calc.net/deckbuilder.html"/>
 	/// </summary>
-	[ICommand]
+	[RelayCommand]
 	private void CopyDeckBuilder()
 	{
 
@@ -583,7 +583,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// 「艦隊晒しページ」用編成コピー
 	/// <see cref="http://kancolle-calc.net/kanmusu_list.html"/>
 	/// </summary>
-	[ICommand]
+	[RelayCommand]
 	private void CopyKanmusuList()
 	{
 
@@ -648,7 +648,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// 
 	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
 	/// </summary>
-	[ICommand]
+	[RelayCommand]
 	private void CopyFleetAnalysis()
 	{
 		KCDatabase db = KCDatabase.Instance;
@@ -696,13 +696,13 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// <summary>
 	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
 	/// </summary>
-	[ICommand]
+	[RelayCommand]
 	private void CopyFleetAnalysisEquip()
 	{
 		Clipboard.SetDataObject(GenerateEquipList(false));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyFleetAnalysisAllEquip()
 	{
 		Clipboard.SetDataObject(GenerateEquipList(true));
@@ -733,7 +733,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// Short versions are for the fleet analysis spreadsheet
 	/// <see cref="https://docs.google.com/spreadsheets/d/1NuLlff6EXM0XQ_qNHP9lEOosbwHXamaVNJb72M7ZLoY"/>
 	/// </summary>
-	[ICommand]
+	[RelayCommand]
 	private void CopyFleetAnalysisShipsShort()
 	{
 		KCDatabase db = KCDatabase.Instance;
@@ -775,13 +775,13 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(json);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyFleetAnalysisLockedEquipShort()
 	{
 		GenerateEquipListShort(false);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyFleetAnalysisAllEquipShort()
 	{
 		GenerateEquipListShort(true);
@@ -812,7 +812,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AntiAirDetails()
 	{
 		AirDefenseViewModel viewModel = new()
@@ -840,7 +840,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	}
 	*/
 
-	[ICommand]
+	[RelayCommand]
 	private void OutputFleetImage()
 	{
 		ToolService.FleetImageGenerator(new()
@@ -852,7 +852,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		});
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenAirControlSimulator()
 	{
 		ToolService.AirControlSimulator(new()

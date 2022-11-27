@@ -50,7 +50,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		Update();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddEquipmentPlan()
 	{
 		IEquipmentData? equipment = EquipmentPicker.OpenEquipmentPicker();
@@ -65,7 +65,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddEquipmentPlanFromMasterData()
 	{
 		IEquipmentDataMaster? equipment = EquipmentPicker.OpenMasterEquipmentPicker();
@@ -80,7 +80,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
 	{
 		EquipmentUpgradePlanManager.RemovePlan(planToRemove);

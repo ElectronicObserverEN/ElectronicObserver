@@ -50,7 +50,7 @@ public partial class ConfigurationDebugViewModel : ConfigurationViewModelBase
 		Config.AlertOnError = AlertOnError;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectApiListPath()
 	{
 		string? newPath = FileService.OpenApiListPath(APIListPath);

@@ -17,7 +17,7 @@ public partial class SortieExplorerViewModel : ObservableObject
 
 	private ElectronicObserverContext Db { get; } = new();
 
-	[ICommand]
+	[RelayCommand]
 	private void Search()
 	{
 		Sorties.Clear();

@@ -17,7 +17,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 		AirControlSimulator = Ioc.Default.GetService<AirControlSimulatorTranslationViewModel>()!;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void UpdateFleet()
 	{
 		string? data = await BrowserViewModel.BrowserHost.GetFleetData();
@@ -27,7 +27,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 		ExecuteScriptAsync?.Invoke($"loadDeckBuilder('{data}')");
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void UpdateShips()
 	{
 		string data = await BrowserViewModel.BrowserHost.GetShipData();
@@ -35,7 +35,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 		ExecuteScriptAsync?.Invoke($"loadShipData('{data}')");
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void UpdateEquipment(bool? allEquipment)
 	{
 		if (allEquipment is not bool all) return;

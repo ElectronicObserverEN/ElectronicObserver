@@ -105,7 +105,7 @@ public partial class EventPhaseViewModel : ObservableObject, IDropTarget
 		Ships.Insert(index, shipLock);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddLockToPhase(LockGroupViewModel? lockGroup)
 	{
 		if (lockGroup is null) return;
@@ -113,7 +113,7 @@ public partial class EventPhaseViewModel : ObservableObject, IDropTarget
 		PhaseLockGroups.Add(lockGroup);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveLockFromPhase(LockGroupViewModel? lockGroup)
 	{
 		if (lockGroup is null) return;
@@ -121,7 +121,7 @@ public partial class EventPhaseViewModel : ObservableObject, IDropTarget
 		PhaseLockGroups.Remove(lockGroup);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveShipLock(ShipLockViewModel? shipLock)
 	{
 		if (shipLock is null) return;

@@ -410,7 +410,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 			.ToObservableCollection();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ChangeImageType(ImageType? imageType)
 	{
 		if (imageType is not { } type) return;
@@ -418,7 +418,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		ImageType = type;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadAirBases()
 	{
 		string? abData = Tools.DeckBuilderFleetExport(new()
@@ -440,7 +440,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 			.ToObservableCollection();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenConfiguration(System.Windows.Window? window)
 	{
 		if (window is null) return;
@@ -448,7 +448,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		new FleetImageGeneratorConfigurationWindow(this).Show(window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectImageSaveFolder()
 	{
 		System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new()

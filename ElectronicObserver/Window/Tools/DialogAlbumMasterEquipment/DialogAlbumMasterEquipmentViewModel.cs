@@ -80,7 +80,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenShipEncyclopedia(IShipDataMaster? ship)
 	{
 		if (ship is null) return;
@@ -88,7 +88,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		new DialogAlbumMasterShipWpf(ship).Show(App.Current.MainWindow);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void OpenEquipmentEncyclopedia(IEquipmentDataMaster? equip)
 	{
 		if (equip is null) return;
@@ -96,7 +96,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		new DialogAlbumMasterEquipmentWpf(equip.ID).Show(App.Current.MainWindow);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_File_OutputCSVUser_Click()
 	{
 		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
@@ -156,7 +156,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_File_OutputCSVData_Click()
 	{
 		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
@@ -216,7 +216,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_CopyEquipmentName_Click()
 	{
 		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
@@ -226,7 +226,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 			System.Media.SystemSounds.Exclamation.Play();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_CopyEquipmentData_Click()
 	{
 		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
@@ -281,7 +281,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_GoogleEquipmentName_Click()
 	{
 		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
@@ -309,7 +309,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_View_ShowAppearingArea_Click()
 	{
 		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;

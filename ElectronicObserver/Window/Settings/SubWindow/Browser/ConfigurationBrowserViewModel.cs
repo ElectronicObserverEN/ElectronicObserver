@@ -178,7 +178,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectScreenshotFolder()
 	{
 		string? newSaveDataPath = FileService.SelectFolder(ScreenShotPath);

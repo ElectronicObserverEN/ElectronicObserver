@@ -90,7 +90,7 @@ public partial class FleetStatusViewModel : ObservableObject
 		ConfigurationChanged();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void IncreaseBranchWeight()
 	{
 		BranchWeight--;

@@ -229,7 +229,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		ConfigurationChanged();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ShowBattleDetail()
 	{
 		var bm = KCDatabase.Instance.Battle;
@@ -244,7 +244,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		dialog.Show(App.Current.MainWindow);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ShowBattleResult()
 	{
 		ViewVisible = true;

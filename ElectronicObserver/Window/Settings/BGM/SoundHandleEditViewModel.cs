@@ -28,7 +28,7 @@ public partial class SoundHandleEditViewModel : WindowViewModelBase
 		SoundHandle = soundHandle;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenSoundPath()
 	{
 		string? newPath = FileService.OpenSoundPath(SoundHandle.Path);
@@ -38,7 +38,7 @@ public partial class SoundHandleEditViewModel : WindowViewModelBase
 		SoundHandle.Path = newPath;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SoundPathDirectorize()
 	{
 		if (string.IsNullOrWhiteSpace(SoundHandle.Path)) return;
@@ -53,7 +53,7 @@ public partial class SoundHandleEditViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Confirm()
 	{
 		SoundHandle.Save();
@@ -61,7 +61,7 @@ public partial class SoundHandleEditViewModel : WindowViewModelBase
 		DialogResult = true;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Cancel()
 	{
 		SoundHandle.Load();

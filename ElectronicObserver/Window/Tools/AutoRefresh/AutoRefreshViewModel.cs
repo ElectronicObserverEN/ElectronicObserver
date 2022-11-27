@@ -139,7 +139,7 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddRule()
 	{
 		if (SelectedMap is null) return;
@@ -155,7 +155,7 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 		Rules.Add(rule);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveRule(AutoRefreshRuleViewModel? rule)
 	{
 		if (rule is null) return;

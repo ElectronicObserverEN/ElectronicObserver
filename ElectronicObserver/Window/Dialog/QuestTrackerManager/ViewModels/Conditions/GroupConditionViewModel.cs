@@ -114,7 +114,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 		return conditions;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddCondition()
 	{
 		Model.Conditions.Add(SelectedConditionType switch
@@ -133,7 +133,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 		});
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveCondition(ICondition? condition)
 	{
 		if (condition is null) return;

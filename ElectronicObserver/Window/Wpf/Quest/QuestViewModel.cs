@@ -523,7 +523,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		View = view;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MenuMain_Initialize_Click()
 	{
 		if (MessageBox.Show(GeneralRes.InitializeQuestData, GeneralRes.InitQuestTitle,
@@ -573,7 +573,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		Configuration.Config.FormQuest.ColumnWidth = Columns.Select(c => (int)c.Width.DisplayValue).ToList();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ManuMain_QuestTitle_Click()
 	{
 		if (SelectedQuest is null) return;
@@ -581,7 +581,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		Clipboard.SetText(SelectedQuest.QuestName);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ManuMain_QuestDescription_Click()
 	{
 		if (SelectedQuest is null) return;
@@ -589,7 +589,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		Clipboard.SetText(SelectedQuest.QuestDescription.Replace(Environment.NewLine, ""));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ManuMain_QuestTranslate_Click()
 	{
 		bool needTranslation = false;
@@ -620,7 +620,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		Clipboard.SetText(serializedOutput);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LookUpOnDuckDuckGo()
 	{
 		if (SelectedQuest is null) return;
@@ -646,7 +646,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LookUpOnStartpage()
 	{
 		if (SelectedQuest is null) return;
@@ -672,7 +672,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MenuMain_KcwikiQuest_Click()
 	{
 		if (SelectedQuest == null) return;
@@ -698,7 +698,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MenuProgress_Increment_Click()
 	{
 		if (SelectedQuest is null) return;
@@ -723,7 +723,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MenuProgress_Decrement_Click()
 	{
 		if (SelectedQuest is null) return;
@@ -748,7 +748,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void MenuProgress_Reset_Click()
 	{
 		if (SelectedQuest is null) return;
@@ -783,7 +783,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		Updated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ManageTracker()
 	{
 		if (SelectedQuest is null) return;

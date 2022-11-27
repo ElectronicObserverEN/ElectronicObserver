@@ -100,7 +100,7 @@ public partial class TrackerViewModel : ObservableObject
 		_ => null
 	}).ToList();
 
-	[ICommand]
+	[RelayCommand]
 	private void AddTask()
 	{
 		Model.Tasks.Add(TaskTypeType switch
@@ -148,7 +148,7 @@ public partial class TrackerViewModel : ObservableObject
 		});
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveTask(IQuestTask? task)
 	{
 		if (task is null) return;
@@ -156,7 +156,7 @@ public partial class TrackerViewModel : ObservableObject
 		Model.Tasks.Remove(task);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyTracker()
 	{
 		Clipboard.SetDataObject(SerializeTracker());

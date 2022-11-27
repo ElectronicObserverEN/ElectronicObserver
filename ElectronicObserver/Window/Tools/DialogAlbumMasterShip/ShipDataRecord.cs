@@ -517,7 +517,7 @@ public partial class ShipDataRecord : ObservableObject
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SwitchMessage()
 	{
 		DisplayedMessage = DisplayedMessage switch

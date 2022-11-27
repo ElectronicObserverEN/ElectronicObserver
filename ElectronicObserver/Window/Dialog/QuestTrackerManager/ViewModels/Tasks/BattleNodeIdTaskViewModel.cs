@@ -94,13 +94,13 @@ public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskVie
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddNodeId()
 	{
 		NodeIds.Add(new());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveNodeId(NodeIdViewModel nodeId)
 	{
 		NodeIds.Remove(nodeId);

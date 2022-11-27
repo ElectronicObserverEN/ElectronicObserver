@@ -301,7 +301,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		new DialogAlbumMasterEquipmentWpf(id).Show(App.Current.MainWindow);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SaveAsCsv()
 	{
 		SaveCsvDialog.Title = DialogEquipmentList.SaveCSVDialog;
@@ -340,13 +340,13 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	}
 
 
-	[ICommand]
+	[RelayCommand]
 	private void Update()
 	{
 		UpdateView();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyToFleetAnalysis()
 	{
 		Clipboard.SetDataObject(FleetViewModel.GenerateEquipList(!ShowLockedEquipmentOnly));

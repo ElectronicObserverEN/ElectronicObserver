@@ -77,7 +77,7 @@ public partial class NodeReachTaskViewModel : ObservableObject, IQuestTaskViewMo
 		UpdateDisplay(sender, e);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddNodeId()
 	{
 		AddNodeId(1);
@@ -91,7 +91,7 @@ public partial class NodeReachTaskViewModel : ObservableObject, IQuestTaskViewMo
 		NodeIds.Add(node);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveNodeId(NodeIdViewModel nodeId)
 	{
 		NodeIds.Remove(nodeId);

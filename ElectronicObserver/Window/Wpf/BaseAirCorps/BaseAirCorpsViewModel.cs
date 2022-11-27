@@ -572,7 +572,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		*/
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyOrganization(int? areaid)
 	{
 		areaid ??= -1;
@@ -635,7 +635,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void DisplayRelocatedEquipments()
 	{
 		string message = string.Join("\r\n", KCDatabase.Instance.RelocatedEquipments.Values

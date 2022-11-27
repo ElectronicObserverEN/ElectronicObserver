@@ -112,7 +112,7 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectSaveDataPath()
 	{
 		string? newSaveDataPath = FileService.SelectFolder(SaveDataPath);
@@ -122,7 +122,7 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 		SaveDataPath = newSaveDataPath;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ExportConnectionScript()
 	{
 		FileService.ExportConnectionScript(Port);

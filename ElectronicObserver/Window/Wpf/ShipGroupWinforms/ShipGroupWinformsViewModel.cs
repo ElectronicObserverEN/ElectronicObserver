@@ -86,7 +86,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
 		PreviousGroup = SelectedGroup;
@@ -106,7 +106,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		PreviousGroup.IsSelected = false;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddGroup()
 	{
 		using DialogTextInput dialog = new(FormShipGroup.DialogGroupAddTitle, FormShipGroup.DialogGroupAddDescription);
@@ -129,7 +129,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		Groups.Add(new(group));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyGroup(ShipGroupItem group)
 	{
 		using var dialog = new DialogTextInput(FormShipGroup.DialogGroupCopyTitle, FormShipGroup.DialogGroupCopyDescription);
@@ -146,7 +146,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		Groups.Add(new(newGroup));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RenameGroup(ShipGroupItem group)
 	{
 		using var dialog = new DialogTextInput(FormShipGroup.DialogGroupRenameTitle, FormShipGroup.DialogGroupRenameDescription);
@@ -158,7 +158,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void DeleteGroup(ShipGroupItem group)
 	{
 		if (MessageBox.Show(string.Format(FormShipGroup.DialogGroupDeleteDescription, group.Name),

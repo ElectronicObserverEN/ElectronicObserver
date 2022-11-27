@@ -47,7 +47,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		return new();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyTrackersToClipboard()
 	{
 		List<TrackerModel> trackers = Trackers.Select(t => t.Model).ToList();
@@ -55,7 +55,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadTrackerFromClipboard()
 	{
 		try
@@ -71,7 +71,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyAllTrackersToClipboard()
 	{
 		// Copy all trackers from quest tracker manager and system trackers.
@@ -114,7 +114,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		KCDatabase.Instance.Quest.OnQuestUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddTracker()
 	{
 		if (Quest is null) return;
@@ -130,7 +130,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		KCDatabase.Instance.Quest.OnQuestUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveTracker(TrackerViewModel? tracker)
 	{
 		if (tracker is null) return;

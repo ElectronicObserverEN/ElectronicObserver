@@ -84,14 +84,14 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddLock()
 	{
 		int id = LockGroups.Count + 1;
 		LockGroups.Add(new(id) { Name = $"{id}" });
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveLock()
 	{
 		if (LockGroups.Count is 0) return;
@@ -106,13 +106,13 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		LockGroups.Remove(group);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddPhase()
 	{
 		EventPhases.Add(new(LockGroups));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemovePhase()
 	{
 		if (EventPhases.Count is 0) return;
@@ -120,7 +120,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		EventPhases.Remove(EventPhases[^1]);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void DeletePhase(EventPhaseViewModel? phase)
 	{
 		if(phase is null) return;
@@ -243,13 +243,13 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyLocksToClipboard()
 	{
 		Clipboard.SetDataObject(DataSerializationService.EventLockPlanner(this));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadLocksFromClipboard()
 	{
 		if (MessageBox.Show
@@ -276,7 +276,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		ImportLocks(data);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadEventLocks()
 	{
 		if (MessageBox.Show

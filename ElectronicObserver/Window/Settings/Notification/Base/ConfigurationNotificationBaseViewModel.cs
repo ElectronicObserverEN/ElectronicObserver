@@ -226,7 +226,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenSoundPath()
 	{
 		string? newPath = FileService.OpenSoundPath(SoundPath);
@@ -236,7 +236,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		SoundPath = newPath;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenImagePath()
 	{
 		string? newPath = FileService.OpenImagePath(ImagePath);
@@ -246,7 +246,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		ImagePath = newPath;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SoundPathDirectorize()
 	{
 		if (string.IsNullOrWhiteSpace(SoundPath)) return;
@@ -261,7 +261,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Test()
 	{
 		if (!TrySaveConfiguration()) return;

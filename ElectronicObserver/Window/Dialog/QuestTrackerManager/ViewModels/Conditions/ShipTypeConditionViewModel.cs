@@ -70,13 +70,13 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 		};
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddType()
 	{
 		Model.Types.Add(SelectedType);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveType(ShipTypes s)
 	{
 		Model.Types.Remove(s);

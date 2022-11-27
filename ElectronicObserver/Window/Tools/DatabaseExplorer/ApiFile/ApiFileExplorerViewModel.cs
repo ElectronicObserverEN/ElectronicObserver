@@ -18,7 +18,7 @@ public partial class ApiFileExplorerViewModel : ObservableObject
 
 	public string? ApiNameFilter { get; set; }
 
-	[ICommand]
+	[RelayCommand]
 	private void Search()
 	{
 		ApiFiles.Clear();
@@ -44,7 +44,7 @@ public partial class ApiFileExplorerViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyContent(Database.KancolleApi.ApiFile? file)
 	{
 		if (file is null) return;

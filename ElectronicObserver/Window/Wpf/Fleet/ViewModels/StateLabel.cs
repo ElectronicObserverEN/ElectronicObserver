@@ -102,14 +102,14 @@ public partial class StateLabel : ObservableObject
 		// Label.Text = (!AutoShorten || _onmouse) ? Text : ShortenedText;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	void MouseEnter()
 	{
 		_onmouse = true;
 		UpdateText();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	void MouseLeave()
 	{
 		_onmouse = false;

@@ -50,7 +50,7 @@ public partial class AutoRefreshRuleViewModel : ObservableObject
 		SelectedCell = AllCells.FirstOrDefault();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddAllowedCell()
 	{
 		if (SelectedCell?.Ids is null) return;
@@ -61,13 +61,13 @@ public partial class AutoRefreshRuleViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddAllowedCellManual()
 	{
 		AllowedCells.Add(new(ManualCellId));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveAllowedCell(CellViewModel? cell)
 	{
 		if (cell is null) return;

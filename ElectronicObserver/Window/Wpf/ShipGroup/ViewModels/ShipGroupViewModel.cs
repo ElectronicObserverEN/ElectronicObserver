@@ -158,7 +158,7 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 		SetShips();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SelectGroup(string name)
 	{
 		SelectedGroup = Db.ShipGroup.ShipGroups.Values.First(g => g.Name == name);

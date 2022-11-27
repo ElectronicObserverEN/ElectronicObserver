@@ -79,7 +79,7 @@ public partial class ShipFilterViewModel : ObservableObject
 		return true;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ToggleShipTypes()
 	{
 		if (TypeFilters.All(f => f.IsChecked))

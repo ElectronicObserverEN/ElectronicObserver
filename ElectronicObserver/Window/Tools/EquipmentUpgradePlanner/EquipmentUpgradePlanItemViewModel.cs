@@ -111,7 +111,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		Plan.Priority = Priority;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void OpenEquipmentPicker()
 	{
 		IEquipmentData? newEquip = EquipmentPicker.OpenEquipmentPicker();

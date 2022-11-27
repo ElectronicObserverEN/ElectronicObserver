@@ -55,13 +55,13 @@ public partial class PartialShipConditionViewModelV2 : ObservableObject, ICondit
 		return conditions;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AddCondition()
 	{
 		Model.Conditions.Add(new ShipConditionModelV2());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void RemoveCondition(ShipConditionModelV2? condition)
 	{
 		if (condition is null) return;

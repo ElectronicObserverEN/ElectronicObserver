@@ -129,7 +129,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		ChangeShip(ship);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ChangeShip(IShipDataMaster? ship)
 	{
 		if (ship is null) return;
@@ -138,7 +138,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 			?? AllShips.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenShipEncyclopedia(IShipDataMaster? ship)
 	{
 		if (ship is null) return;
@@ -146,7 +146,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		new DialogAlbumMasterShipWpf(ship).Show(App.Current.MainWindow);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenEquipmentEncyclopedia(IEquipmentDataMaster? equip)
 	{
 		if (equip is null) return;
@@ -155,7 +155,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	}
 
 
-	[ICommand]
+	[RelayCommand]
 	private void ResourceName_MouseClick()
 	{
 		if (SelectedShip is null) return;
@@ -165,7 +165,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_File_OutputCSVData_Click()
 	{
 		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
@@ -270,7 +270,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_File_OutputCSVUser_Click()
 	{
 		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
@@ -367,7 +367,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_File_MergeDefaultRecord_Click()
 	{
 		if (MessageBox.Show("デフォルトレコードの情報をもとに、艦船レコードを更新します。\r\nよろしいですか？", "レコード更新確認", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel) == MessageBoxResult.Cancel)
@@ -412,7 +412,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_EditParameter_Click()
 	{
 
@@ -428,7 +428,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		OnPropertyChanged(nameof(SelectedShip));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_CopyShipName_Click()
 	{
 		if (SelectedShip is not null)
@@ -441,7 +441,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_CopyShipData_Click()
 	{
 		IShipDataMaster? ship = SelectedShip?.Ship;
@@ -585,7 +585,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_GoogleShipName_Click()
 	{
 		IShipDataMaster? ship = SelectedShip?.Ship;
@@ -611,7 +611,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_Edit_CopySpecialEquipmentTable_Click()
 	{
 		var sb = new StringBuilder();
@@ -663,7 +663,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_View_ShowAppearingArea_Click()
 	{
 		IShipDataMaster? ship = SelectedShip?.Ship;
@@ -681,7 +681,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		MessageBox.Show(result, DialogAlbumMasterShip.MapOrRecipeSearchCaption, MessageBoxButton.OK, MessageBoxImage.Information);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_View_ShowShipGraphicViewer_Click()
 	{
 		if (SelectedShip is not null)

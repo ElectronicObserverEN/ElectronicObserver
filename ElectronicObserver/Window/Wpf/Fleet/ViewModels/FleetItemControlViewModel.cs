@@ -37,7 +37,7 @@ public partial class FleetItemControlViewModel : ObservableObject
 		ConfigurationChanged();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenShipEncyclopedia()
 	{
 		new DialogAlbumMasterShipWpf(Tag).Show(App.Current.MainWindow);

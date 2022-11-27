@@ -190,7 +190,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Config.FontFamilyTextSearch = FontFamilyTextSearch;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetTheme(ThemeMode? themeMode)
 	{
 		if (themeMode is not { } mode) return;
@@ -198,7 +198,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		ThemeMode = mode;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetLanguage(string? language)
 	{
 		if (language is null) return;

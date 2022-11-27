@@ -51,7 +51,7 @@ public partial class LogViewModel : AnchorableViewModel
 		LogList.Add(data.ToString());
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ContextMenuLog_Clear_Click()
 	{
 		LogList.Clear();
