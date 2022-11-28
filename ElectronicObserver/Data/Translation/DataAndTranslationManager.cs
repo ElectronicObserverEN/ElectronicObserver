@@ -20,6 +20,7 @@ public class DataAndTranslationManager
 	public OperationData Operation { get; private set; }
 	public LockTranslationData Lock { get; private set; }
 	public FitBonusData FitBonus { get; private set; }
+	public EquipmentUpgradeData EquipmentUpgrade { get; private set; }
 
 	public DataAndTranslationManager()
 	{
@@ -36,6 +37,7 @@ public class DataAndTranslationManager
 		Ship = new ShipTranslationData();
 		Lock = new LockTranslationData();
 		FitBonus = new FitBonusData();
+		EquipmentUpgrade = new EquipmentUpgradeData();
 	}
 
 

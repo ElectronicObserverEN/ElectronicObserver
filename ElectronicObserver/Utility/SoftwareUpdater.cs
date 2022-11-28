@@ -152,6 +152,11 @@ internal class SoftwareUpdater
 				downloadList.Add(Path.Combine("Data", "FitBonuses.json"));
 			}
 
+			if (CurrentVersion.EquipmentUpgrades < LatestVersion.EquipmentUpgrades)
+			{
+				downloadList.Add(Path.Combine("Data", "EquipmentUpgrades.json"));
+			}
+
 			needReload = downloadList.Any();
 			downloadList.Add("update.json");
 			downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "update.json"));
@@ -294,6 +299,12 @@ internal class SoftwareUpdater
 			};
 			int eventLocksVersion = (int)dataJson.Locks;
 
+			int equipmentUpgradesVersion = dataJson.EquipmentUpgrades() switch
+			{
+				true => (int)dataJson.EquipmentUpgrades,
+				_ => 0
+			};
+
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
 			var eventState = (MaintenanceState)(int)dataJson.event_state;
 
@@ -315,6 +326,7 @@ internal class SoftwareUpdater
 				MaintenanceDate = maintenanceDate,
 				EventState = eventState,
 				FitBonuses = fitBonusesVersion,
+				EquipmentUpgrades = equipmentUpgradesVersion,
 			};
 		}
 		catch (Exception e)
@@ -361,6 +373,7 @@ public class UpdateData
 	public int EventLocks { get; set; }
 	public int LockTranslations { get; set; }
 	public int FitBonuses { get; set; }
+	public int EquipmentUpgrades { get; set; }
 	public DateTime MaintenanceDate { get; set; }
 
 	/// <summary>
