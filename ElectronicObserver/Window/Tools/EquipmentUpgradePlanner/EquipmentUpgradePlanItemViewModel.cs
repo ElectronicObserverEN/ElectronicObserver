@@ -48,6 +48,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public bool Finished { get; set; }
 
 	public int Priority { get; set; }
+	public UpgradeLevel SliderLevel { get; set; }
 
 	private EquipmentPickerService EquipmentPicker { get; }
 	public EquipmentUpgradePlanItemModel Plan { get; }
@@ -67,6 +68,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	{
 		DesiredUpgradeLevel = Plan.DesiredUpgradeLevel;
 		Finished = Plan.Finished;
+		SliderLevel = Plan.SliderLevel;
 		Priority = Plan.Priority;
 		EquipmentId = Plan.EquipmentMasterId;
 		EquipmentMasterDataId = Plan.EquipmentId;
@@ -109,6 +111,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		Plan.DesiredUpgradeLevel = DesiredUpgradeLevel;
 		Plan.Finished = Finished;
 		Plan.Priority = Priority;
+		Plan.SliderLevel = SliderLevel;
 	}
 
 	[RelayCommand]

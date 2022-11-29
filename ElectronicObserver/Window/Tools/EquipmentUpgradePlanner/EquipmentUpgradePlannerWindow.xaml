@@ -103,6 +103,7 @@
 									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
 									<RowDefinition Height="*" />
 								</Grid.RowDefinitions>
 
@@ -192,6 +193,43 @@
 									Grid.Column="1"
 									IsChecked="{Binding Finished}"
 									/>
+
+								<Grid
+									Grid.Row="6"
+									Grid.Column="0"
+									Grid.ColumnSpan="2"
+									>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="*" />
+									</Grid.RowDefinitions>
+
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" SharedSizeGroup="Column1" />
+										<ColumnDefinition Width="*" SharedSizeGroup="Column2" />
+									</Grid.ColumnDefinitions>
+
+									<TextBlock Grid.Row="0" Text="Cost" />
+
+									<TextBlock
+										Grid.Row="1"
+										Grid.Column="0"
+										Margin="2 8"
+										Text="Use slider from level"
+										/>
+									<ComboBox
+										Grid.Row="1"
+										Grid.Column="1"
+										ItemsSource="{Binding PossibleUpgradeLevels}"
+										SelectedItem="{Binding SliderLevel}"
+										>
+										<ComboBox.ItemTemplate>
+											<DataTemplate DataType="{x:Type types:UpgradeLevel}">
+												<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+											</DataTemplate>
+										</ComboBox.ItemTemplate>
+									</ComboBox>
+								</Grid>
 							</Grid>
 						</Border>
 
