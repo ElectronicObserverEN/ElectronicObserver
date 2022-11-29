@@ -20,4 +20,10 @@ public class EquipmentUpgradePlanItemModel
 	public bool Finished { get; set; }
 
 	public int Priority { get; set; }
+
+	/// <summary>
+	/// Level at which the user is gonna start using the slider for improvments
+	/// Used for cost calculation
+	/// </summary>
+	public UpgradeLevel SliderLevel { get; set; }
 }
