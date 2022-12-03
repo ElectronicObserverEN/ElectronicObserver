@@ -11,7 +11,6 @@ using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
-using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility;
 
