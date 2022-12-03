@@ -340,7 +340,7 @@
 										<ItemsControl
 											Grid.Row="2"
 											Grid.Column="0"
-											Grid.ColumnSpan="2"
+											Grid.ColumnSpan="4"
 											ItemsSource="{Binding Cost.RequiredEquipments}"
 											>
 											<ItemsControl.ItemTemplate>
@@ -374,7 +374,7 @@
 										<ItemsControl
 											Grid.Row="3"
 											Grid.Column="0"
-											Grid.ColumnSpan="2"
+											Grid.ColumnSpan="4"
 											ItemsSource="{Binding Cost.RequiredConsumables}"
 											>
 											<ItemsControl.ItemTemplate>
