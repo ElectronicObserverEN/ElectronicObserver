@@ -154,7 +154,7 @@ internal class SoftwareUpdater
 
 			if (CurrentVersion.EquipmentUpgrades < LatestVersion.EquipmentUpgrades)
 			{
-				downloadList.Add(Path.Combine("Data", "EquipmentUpgrades.json"));
+				downloadList.Add(("EquipmentUpgrades.json", DataType.Data));
 			}
 
 			needReload = downloadList.Any();
