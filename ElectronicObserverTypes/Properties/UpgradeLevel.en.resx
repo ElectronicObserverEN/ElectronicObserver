@@ -132,6 +132,9 @@
   <data name="Max" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
+  </data>
   <data name="Nine" xml:space="preserve">
     <value>9</value>
   </data>

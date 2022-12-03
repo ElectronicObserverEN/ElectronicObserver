@@ -79,6 +79,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string Cost {
+            get {
+                return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 表示完了.
         /// </summary>
         public static string DisplayFinished {
@@ -93,6 +102,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         public static string Goal {
             get {
                 return ResourceManager.GetString("Goal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string Helper {
+            get {
+                return ResourceManager.GetString("Helper", resourceCulture);
             }
         }
         
@@ -156,6 +174,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         public static string UpgradeLevel {
             get {
                 return ResourceManager.GetString("UpgradeLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string UseSliderFromLevel {
+            get {
+                return ResourceManager.GetString("UseSliderFromLevel", resourceCulture);
             }
         }
     }

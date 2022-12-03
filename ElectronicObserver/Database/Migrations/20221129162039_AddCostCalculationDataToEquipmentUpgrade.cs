@@ -4,10 +4,17 @@
 
 namespace ElectronicObserver.Database.Migrations
 {
-    public partial class EquipmentUpgradePlanItemModel : Migration
+    public partial class AddCostCalculationDataToEquipmentUpgrade : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "SelectedHelper",
+                table: "EquipmentUpgradePlanItems",
+                type: "INTEGER",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.AddColumn<int>(
                 name: "SliderLevel",
                 table: "EquipmentUpgradePlanItems",
@@ -18,6 +25,10 @@ namespace ElectronicObserver.Database.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "SelectedHelper",
+                table: "EquipmentUpgradePlanItems");
+
             migrationBuilder.DropColumn(
                 name: "SliderLevel",
                 table: "EquipmentUpgradePlanItems");

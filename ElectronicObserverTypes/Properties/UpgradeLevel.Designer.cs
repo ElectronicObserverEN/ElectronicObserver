@@ -106,6 +106,15 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string Never {
+            get {
+                return ResourceManager.GetString("Never", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 9.
         /// </summary>
         public static string Nine {

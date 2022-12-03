@@ -5,7 +5,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
@@ -13,6 +15,8 @@ using ElectronicObserverTypes.Mocks;
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 {
+	public EquipmentUpgradeData EquipmentUpgradeData { get; set; } = new();
+
 	public int? EquipmentId { get; set; }
 
 	public EquipmentId EquipmentMasterDataId { get; set; }
@@ -48,7 +52,18 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public bool Finished { get; set; }
 
 	public int Priority { get; set; }
-	public UpgradeLevel SliderLevel { get; set; }
+	public SliderUpgradeLevel SliderLevel { get; set; }
+
+	public IShipDataMaster? SelectedHelper { get; set; }
+
+	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
+		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
+		.SelectMany(data => data.Improvement)
+		.SelectMany(improvment => improvment.Helpers)
+		.SelectMany(helpers => helpers.ShipIds)
+		.Distinct()
+		.Select(id => KCDatabase.Instance.MasterShips[id])
+		.ToList();
 
 	private EquipmentPickerService EquipmentPicker { get; }
 	public EquipmentUpgradePlanItemModel Plan { get; }
@@ -69,6 +84,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		DesiredUpgradeLevel = Plan.DesiredUpgradeLevel;
 		Finished = Plan.Finished;
 		SliderLevel = Plan.SliderLevel;
+		SelectedHelper = KCDatabase.Instance.MasterShips[(int)Plan.SelectedHelper];
 		Priority = Plan.Priority;
 		EquipmentId = Plan.EquipmentMasterId;
 		EquipmentMasterDataId = Plan.EquipmentId;
@@ -82,6 +98,14 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 		Save();
 	}
+
+	public EquipmentUpgradePlanCostModel CalculateCost()
+	{
+		if (Equipment is null) return new EquipmentUpgradePlanCostModel();
+
+		return Equipment.CalculateUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, DesiredUpgradeLevel, SliderLevel);
+	}
+
 
 	public void Update()
 	{
@@ -112,6 +136,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		Plan.Finished = Finished;
 		Plan.Priority = Priority;
 		Plan.SliderLevel = SliderLevel;
+		Plan.SelectedHelper = SelectedHelper?.ShipId ?? ShipId.Unknown;
 	}
 
 	[RelayCommand]

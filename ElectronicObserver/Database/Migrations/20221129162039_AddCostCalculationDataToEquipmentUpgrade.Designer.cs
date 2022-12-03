@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    [Migration("20221129112810_EquipmentUpgradePlanItemModel")]
-    partial class EquipmentUpgradePlanItemModel
+    [Migration("20221129162039_AddCostCalculationDataToEquipmentUpgrade")]
+    partial class AddCostCalculationDataToEquipmentUpgrade
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,6 +161,9 @@ namespace ElectronicObserver.Database.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Priority")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SelectedHelper")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SliderLevel")

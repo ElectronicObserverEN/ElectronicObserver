@@ -201,6 +201,7 @@
 									>
 									<Grid.RowDefinitions>
 										<RowDefinition Height="Auto" />
+										<RowDefinition Height="Auto" />
 										<RowDefinition Height="*" />
 									</Grid.RowDefinitions>
 
@@ -209,13 +210,13 @@
 										<ColumnDefinition Width="*" SharedSizeGroup="Column2" />
 									</Grid.ColumnDefinitions>
 
-									<TextBlock Grid.Row="0" Text="Cost" />
+									<TextBlock Grid.Row="0" Text="{Binding DataContext.EquipmentUpgradePlanner.Cost, Source={StaticResource Proxy}}" />
 
 									<TextBlock
 										Grid.Row="1"
 										Grid.Column="0"
 										Margin="2 8"
-										Text="Use slider from level"
+										Text="{Binding DataContext.EquipmentUpgradePlanner.UseSliderFromLevel, Source={StaticResource Proxy}}"
 										/>
 									<ComboBox
 										Grid.Row="1"
@@ -226,6 +227,25 @@
 										<ComboBox.ItemTemplate>
 											<DataTemplate DataType="{x:Type types:UpgradeLevel}">
 												<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+											</DataTemplate>
+										</ComboBox.ItemTemplate>
+									</ComboBox>
+
+									<TextBlock
+										Grid.Row="2"
+										Grid.Column="0"
+										Margin="2 8"
+										Text="{Binding DataContext.EquipmentUpgradePlanner.Helper, Source={StaticResource Proxy}}"
+										/>
+									<ComboBox
+										Grid.Row="2"
+										Grid.Column="1"
+										ItemsSource="{Binding PossibleHelpers}"
+										SelectedItem="{Binding SelectedHelper}"
+										>
+										<ComboBox.ItemTemplate>
+											<DataTemplate DataType="{x:Type types:IShipDataMaster}">
+												<TextBlock Text="{Binding NameEN}" />
 											</DataTemplate>
 										</ComboBox.ItemTemplate>
 									</ComboBox>

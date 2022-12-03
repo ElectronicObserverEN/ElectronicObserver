@@ -25,5 +25,11 @@ public class EquipmentUpgradePlanItemModel
 	/// Level at which the user is gonna start using the slider for improvments
 	/// Used for cost calculation
 	/// </summary>
-	public UpgradeLevel SliderLevel { get; set; }
+	public SliderUpgradeLevel SliderLevel { get; set; }
+
+	/// <summary>
+	/// Helper for upgrades
+	/// Used for cost calculation
+	/// </summary>
+	public ShipId SelectedHelper { get; set; }
 }

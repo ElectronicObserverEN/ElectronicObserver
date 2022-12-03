@@ -150,4 +150,13 @@
   <data name="Unassigned" xml:space="preserve">
     <value>未割り当て</value>
   </data>
+  <data name="Cost" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="UseSliderFromLevel" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="Helper" xml:space="preserve">
+    <value>???</value>
+  </data>
 </root>
