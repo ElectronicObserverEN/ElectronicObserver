@@ -39,15 +39,4 @@ public class DataAndTranslationManager
 		FitBonus = new FitBonusData();
 		EquipmentUpgrade = new EquipmentUpgradeData();
 	}
-
-
-	public enum TranslationFile
-	{
-		destination,
-		equipment,
-		expedition,
-		operation,
-		quest,
-		ship
-	}
 }
