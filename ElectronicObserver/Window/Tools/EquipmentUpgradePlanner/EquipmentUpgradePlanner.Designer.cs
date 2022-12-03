@@ -81,6 +81,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         /// <summary>
         ///   Looks up a localized string similar to ???.
         /// </summary>
+        public static string ConvertTo {
+            get {
+                return ResourceManager.GetString("ConvertTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
         public static string Cost {
             get {
                 return ResourceManager.GetString("Cost", resourceCulture);
@@ -133,6 +142,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string Owned {
+            get {
+                return ResourceManager.GetString("Owned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 優先順位.
         /// </summary>
         public static string Priority {
@@ -147,6 +165,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string Required {
+            get {
+                return ResourceManager.GetString("Required", resourceCulture);
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -11,6 +12,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
+using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
@@ -60,7 +62,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public IShipDataMaster? SelectedHelper { get; set; }
 
-	public EquipmentUpgradePlanCostModel Cost { get; set; } = new();
+	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
 
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
@@ -70,6 +72,9 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		.Distinct()
 		.Select(id => KCDatabase.Instance.MasterShips[id])
 		.ToList();
+
+	public string EquipmentAfterConversionDisplay { get; set; } = "";
+	public Visibility EquipmentAfterConversionVisible => string.IsNullOrEmpty(EquipmentAfterConversionDisplay) ? Visibility.Collapsed : Visibility.Visible;
 
 	private EquipmentPickerService EquipmentPicker { get; }
 	public EquipmentUpgradePlanItemModel Plan { get; }
@@ -132,7 +137,30 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		else
 			CurrentLevelDisplay = EquipmentUpgradePlanner.Unassigned;
 
-		Cost = CalculateCost();
+		Cost = new(CalculateCost());
+		UpdatePostConversionEquipmentDisplay();
+	}
+
+	public void UpdatePostConversionEquipmentDisplay()
+	{
+		if (DesiredUpgradeLevel != UpgradeLevel.Conversion)
+		{
+			EquipmentAfterConversionDisplay = "";
+			return;
+		}
+
+		EquipmentUpgradeConversionModel? equipmentAfter = EquipmentUpgradeData.UpgradeList
+			.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
+			.SelectMany(data => data.Improvement)
+			.Where(improvment => SelectedHelper is null || improvment.Helpers.Where(helper => helper.ShipIds.Contains(SelectedHelper.ShipID)).Any())
+			.FirstOrDefault()?.ConversionData;
+
+		EquipmentAfterConversionDisplay = equipmentAfter switch
+		{
+			EquipmentUpgradeConversionModel data => 
+				$"{KCDatabase.Instance.MasterEquipments[data.IdEquipmentAfter].NameEN}{(equipmentAfter.EquipmentLevelAfter > 0 ? $" +{equipmentAfter.EquipmentLevelAfter}" : "")}",
+			_ => "",
+		};
 	}
 
 	public void Save()

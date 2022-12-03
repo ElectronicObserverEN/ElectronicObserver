@@ -159,4 +159,13 @@
   <data name="Helper" xml:space="preserve">
     <value>???</value>
   </data>
+  <data name="ConvertTo" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>???</value>
+  </data>
 </root>

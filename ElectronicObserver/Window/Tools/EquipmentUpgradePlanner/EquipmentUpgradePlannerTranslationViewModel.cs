@@ -14,4 +14,7 @@ public class EquipmentUpgradePlannerTranslationViewModel
 	public string Cost => EquipmentUpgradePlanner.Cost;
 	public string UseSliderFromLevel => EquipmentUpgradePlanner.UseSliderFromLevel;
 	public string Helper => EquipmentUpgradePlanner.Helper;
+	public string ConvertTo => EquipmentUpgradePlanner.ConvertTo;
+	public string Owned => EquipmentUpgradePlanner.Owned;
+	public string Required => EquipmentUpgradePlanner.Required;
 }

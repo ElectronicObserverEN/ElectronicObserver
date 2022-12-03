@@ -64,10 +64,8 @@ public class EquipmentUpgradePlanCostModel
 			})
 			.ToList();
 
-		newModel.RequiredEquipments.AddRange(a.RequiredEquipments);
-		newModel.RequiredEquipments.AddRange(b.RequiredEquipments);
-
-		newModel.RequiredEquipments = newModel.RequiredEquipments
+		newModel.RequiredEquipments = a.RequiredEquipments
+			.Concat(b.RequiredEquipments)
 			.GroupBy(cost => cost.Id)
 			.Select(costGroup => new EquipmentUpgradePlanCostItemModel
 			{
