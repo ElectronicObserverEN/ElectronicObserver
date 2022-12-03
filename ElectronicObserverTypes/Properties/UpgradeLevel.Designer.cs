@@ -106,7 +106,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to なし.
         /// </summary>
         public static string Never {
             get {

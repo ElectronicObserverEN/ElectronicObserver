@@ -79,7 +79,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 更新.
         /// </summary>
         public static string ConvertTo {
             get {
@@ -88,7 +88,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 必要資材.
         /// </summary>
         public static string Cost {
             get {
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 二番艦.
         /// </summary>
         public static string Helper {
             get {
@@ -205,7 +205,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 確実化.
         /// </summary>
         public static string UseSliderFromLevel {
             get {
