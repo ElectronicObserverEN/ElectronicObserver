@@ -19,7 +19,6 @@ public class ShipTranslationData : TranslationBase
 	private bool isShipLoaded => Configuration.Config.UI.JapaneseShipName == false && ShipList != null && SuffixList != null;
 	private bool isTypeLoaded => Configuration.Config.UI.JapaneseShipType == false && TypeList != null;
 	private bool isClassLoaded => Configuration.Config.UI.JapaneseShipName == false && ClassList != null;
-	
 	private Dictionary<ShipId, string> NameCache { get; } = new();
 
 	public string Name(string rawData, ShipId shipId)
