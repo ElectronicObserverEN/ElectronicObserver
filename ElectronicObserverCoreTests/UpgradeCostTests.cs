@@ -75,7 +75,7 @@ public class UpgradeCostTests
 			}
 		};
 
-		AssertCostEquals(expectedCost, cost);
+		Assert.Equal(expectedCost, cost);
 	}
 
 	[Fact]
@@ -152,36 +152,6 @@ public class UpgradeCostTests
 			}
 		};
 
-		AssertCostEquals(expectedCost, cost);
-	}
-
-	private void AssertCostEquals(EquipmentUpgradePlanCostModel expected, EquipmentUpgradePlanCostModel actual)
-	{
-		Assert.Equal(expected.Fuel, actual.Fuel);
-		Assert.Equal(expected.Ammo, actual.Ammo);
-		Assert.Equal(expected.Steel, actual.Steel);
-		Assert.Equal(expected.Bauxite, actual.Bauxite);
-
-		Assert.Equal(expected.RequiredEquipments.Count, actual.RequiredEquipments.Count);
-
-		foreach (EquipmentUpgradePlanCostItemModel expectedDetail in expected.RequiredEquipments)
-		{
-			EquipmentUpgradePlanCostItemModel? actualDetail = actual.RequiredEquipments.FirstOrDefault(detail => detail.Id == expectedDetail.Id);
-
-			Assert.NotNull(actualDetail);
-
-			Assert.Equal(expectedDetail.Required, actualDetail.Required);
-		}
-
-		Assert.Equal(expected.RequiredConsumables.Count, actual.RequiredConsumables.Count);
-
-		foreach (EquipmentUpgradePlanCostItemModel expectedDetail in expected.RequiredConsumables)
-		{
-			EquipmentUpgradePlanCostItemModel? actualDetail = actual.RequiredConsumables.FirstOrDefault(detail => detail.Id == expectedDetail.Id);
-
-			Assert.NotNull(actualDetail);
-
-			Assert.Equal(expectedDetail.Required, actualDetail.Required);
-		}
+		Assert.Equal(expectedCost, cost);
 	}
 }

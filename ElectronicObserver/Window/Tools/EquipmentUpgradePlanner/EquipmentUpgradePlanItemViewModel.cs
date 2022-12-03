@@ -49,12 +49,18 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 			.Where(e => e != UpgradeLevel.Zero)
 			.ToList();
 
+	public List<SliderUpgradeLevel> PossibleSliderLevels { get; set; } =
+		Enum.GetValues<SliderUpgradeLevel>()
+			.ToList();
+
 	public bool Finished { get; set; }
 
 	public int Priority { get; set; }
 	public SliderUpgradeLevel SliderLevel { get; set; }
 
 	public IShipDataMaster? SelectedHelper { get; set; }
+
+	public EquipmentUpgradePlanCostModel Cost { get; set; } = new();
 
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
@@ -94,7 +100,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	private void EquipmentUpgradePlanItemViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(EquipmentId) or nameof(EquipmentMasterDataId)) Update();
+		if (e.PropertyName is nameof(EquipmentId) or nameof(EquipmentMasterDataId) or nameof(SelectedHelper) or nameof(SliderLevel) or nameof(DesiredUpgradeLevel)) Update();
 
 		Save();
 	}
@@ -126,6 +132,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		else
 			CurrentLevelDisplay = EquipmentUpgradePlanner.Unassigned;
 
+		Cost = CalculateCost();
 	}
 
 	public void Save()

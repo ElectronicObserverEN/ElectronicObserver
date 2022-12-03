@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserverTypes;
@@ -16,27 +17,18 @@ public static class EquipmentUpgradeCost
 
 		if (upgradeData is null) return cost;
 
-		if (helper is null) return cost;
 		EquipmentUpgradeImprovmentModel? improvmentModel = GetImprovmentModelDependingOnHelper(upgradeData.Improvement, helper);
 
 		if (improvmentModel is null) return cost;
 
-		UpgradeLevel level = equipment.UpgradeLevel;
+		List<UpgradeLevel> levels = Enum.GetValues<UpgradeLevel>().OrderBy(val => val).ToList();
 
-		// 0 -> 10
-		while ((level < UpgradeLevel.Max && targetedLevel == UpgradeLevel.Conversion) || (level < targetedLevel && targetedLevel != UpgradeLevel.Conversion))
+		foreach (UpgradeLevel level in levels.SkipWhile(l => l <= equipment.UpgradeLevel))
 		{
-			level++;
-
-			bool useSlider = sliderLevel != SliderUpgradeLevel.Conversion && sliderLevel != SliderUpgradeLevel.Never && (int)level >= (int)sliderLevel;
-
+			bool useSlider = sliderLevel != SliderUpgradeLevel.Never && (int)level >= (int)sliderLevel;
 			cost += improvmentModel.CalculateUpgradeLevelCost(level, useSlider);
-		}
 
-		// Conversion
-		if (targetedLevel == UpgradeLevel.Conversion)
-		{
-			cost += improvmentModel.CalculateUpgradeLevelCost(UpgradeLevel.Conversion, sliderLevel != SliderUpgradeLevel.Never);
+			if (level == targetedLevel) return cost;
 		}
 
 		return cost;

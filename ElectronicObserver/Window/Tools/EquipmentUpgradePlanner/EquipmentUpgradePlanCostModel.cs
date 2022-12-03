@@ -78,4 +78,33 @@ public class EquipmentUpgradePlanCostModel
 
 		return newModel;
 	}
+
+	public override bool Equals(object? other)
+	{
+		if (other is not EquipmentUpgradePlanCostModel) return false;
+		EquipmentUpgradePlanCostModel otherCost = (EquipmentUpgradePlanCostModel)other;
+
+		if (Fuel != otherCost.Fuel) return false;
+		if (Ammo != otherCost.Ammo) return false;
+		if (Steel != otherCost.Steel) return false;
+		if (Bauxite != otherCost.Bauxite) return false;
+
+		if (RequiredEquipments.Count != otherCost.RequiredEquipments.Count) return false;
+
+		foreach((EquipmentUpgradePlanCostItemModel v, EquipmentUpgradePlanCostItemModel ov) in RequiredEquipments.Zip(otherCost.RequiredEquipments, (v, ov) => (v, ov)))
+		{
+			if (!v.Equals(ov)) return false;
+		}
+		
+		if (RequiredConsumables.Count != otherCost.RequiredConsumables.Count) return false;
+
+		foreach ((EquipmentUpgradePlanCostItemModel v, EquipmentUpgradePlanCostItemModel ov) in RequiredConsumables.Zip(otherCost.RequiredConsumables, (v, ov) => (v, ov)))
+		{
+			if (!v.Equals(ov)) return false;
+		}
+
+		return true;
+	}
+
+	public override int GetHashCode() => base.GetHashCode();
 }

@@ -21,7 +21,13 @@ namespace ElectronicObserver.Database.Migrations
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
-        }
+
+			migrationBuilder.Sql($"""
+				UPDATE EquipmentUpgradePlanItems
+				SET DesiredUpgradeLevel=255
+				WHERE DesiredUpgradeLevel=-1
+				""");
+		}
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
