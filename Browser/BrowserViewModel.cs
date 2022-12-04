@@ -340,7 +340,9 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			"--log-file=\"BrowserLog.log\" ",
 			"--enable-features=\"CanvasOopRasterization\"",
 			"--disable-background-timer-throttling",
-			"--enable-hardware-overlays=single-fullscreen"
+			"--enable-hardware-overlays=single-fullscreen",
+			"--disable-backgrounding-occluded-windows",
+			"--canvas-2d-layers"
 		};
 
 		if (Configuration.ForceColorProfile)
