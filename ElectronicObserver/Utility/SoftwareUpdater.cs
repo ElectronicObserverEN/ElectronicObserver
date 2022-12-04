@@ -111,56 +111,56 @@ internal class SoftwareUpdater
 				UpdateSoftware();
 			}*/
 
-			var downloadList = new List<string>();
-			var needReload = false;
+			List<(string FileName, DataType Type)> downloadList = new();
+			bool needReload = false;
 
 			if (CurrentVersion.Equipment != LatestVersion.Equipment)
-				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "equipment.json"));
+				downloadList.Add(("equipment.json", DataType.Translation));
 
 			if (CurrentVersion.Expedition != LatestVersion.Expedition)
-				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "expedition.json"));
+				downloadList.Add(("expedition.json", DataType.Translation));
 
 			if (CurrentVersion.Destination != LatestVersion.Destination)
-				downloadList.Add(Path.Combine("Data", "destination.json"));
+				downloadList.Add((("destination.json", DataType.Data)));
 
 			if (CurrentVersion.Operation != LatestVersion.Operation)
-				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "operation.json"));
+				downloadList.Add(("operation.json", DataType.Translation));
 
 			if (CurrentVersion.Quest != LatestVersion.Quest)
-				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "quest.json"));
+				downloadList.Add(("quest.json", DataType.Translation));
 
 			if (CurrentVersion.Ship != LatestVersion.Ship)
-				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "ship.json"));
+				downloadList.Add(("ship.json", DataType.Translation));
 
 			if (CurrentVersion.QuestTrackers < LatestVersion.QuestTrackers)
 			{
-				downloadList.Add(Path.Combine("Data", "QuestTrackers.json"));
+				downloadList.Add(("QuestTrackers.json", DataType.Data));
 			}
 
 			if (CurrentVersion.EventLocks < LatestVersion.EventLocks)
 			{
-				downloadList.Add(Path.Combine("Data", "Locks.json"));
+				downloadList.Add(("Locks.json", DataType.Data));
 			}
 
 			if (CurrentVersion.LockTranslations < LatestVersion.LockTranslations)
 			{
-				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "Locks.json"));
+				downloadList.Add(("Locks.json", DataType.Translation));
 			}
 
 			if (CurrentVersion.FitBonuses < LatestVersion.FitBonuses)
 			{
-				downloadList.Add(Path.Combine("Data", "FitBonuses.json"));
+				downloadList.Add(("FitBonuses.json", DataType.Data));
 			}
 
 			needReload = downloadList.Any();
-			downloadList.Add("update.json");
-			downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "update.json"));
+			downloadList.Add(("update.json", DataType.Data));
+			downloadList.Add(("update.json", DataType.Translation));
 
-			var taskList = new List<Task>();
-			var filenames = downloadList.ToArray();
-			foreach (var filename in filenames)
+			List<Task> taskList = new();
+
+			foreach ((string fileName, DataType type) in downloadList)
 			{
-				taskList.Add(Task.Run(() => DownloadData(filename)));
+				taskList.Add(Task.Run(() => DownloadData(fileName, type)));
 			}
 
 			await Task.WhenAll(taskList);
@@ -324,10 +324,19 @@ internal class SoftwareUpdater
 		return data;
 	}
 
-	private static async Task DownloadData(string filename)
+	private static string GetFullPath(string fileName, DataType type) => type switch
 	{
+		DataType.Translation => Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, fileName),
+		DataType.Data => Path.Combine("Data", fileName),
+	};
+
+	public static async Task DownloadData(string filename, DataType type)
+	{
+		filename = GetFullPath(filename, type);
+
 		string path = Path.Combine(DataAndTranslationManager.WorkingFolder, filename);
-		string  url = Path.Combine(Configuration.Config.Control.UpdateRepoURL.AbsoluteUri, filename);
+		string url = Path.Combine(Configuration.Config.Control.UpdateRepoURL.AbsoluteUri, filename);
+
 		try
 		{
 			using HttpClient client = new();

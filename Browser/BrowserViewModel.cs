@@ -224,7 +224,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 
 		if (version is not null)
 		{
-			if (CoreWebView2Environment.CompareBrowserVersions(version, "97.0.1072.76") < 0)
+			if (CoreWebView2Environment.CompareBrowserVersions(version, "107.0.1418.22") < 0)
 			{
 				AddLog(2, FormBrowser.OlderBrowserVersionDetected);
 

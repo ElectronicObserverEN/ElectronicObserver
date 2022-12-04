@@ -37,15 +37,4 @@ public class DataAndTranslationManager
 		Lock = new LockTranslationData();
 		FitBonus = new FitBonusData();
 	}
-
-
-	public enum TranslationFile
-	{
-		destination,
-		equipment,
-		expedition,
-		operation,
-		quest,
-		ship
-	}
 }

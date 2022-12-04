@@ -1,13 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using DynaJson;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.Translation;
 
 public abstract class TranslationBase
 {
-	public TranslationBase() { }
+	private int RetryCount { get; set; }
+	private int MaxRetries => 1;
+
+
 	public abstract void Initialize();
 
 	// todo: use the generic version instead of this one for all translation files
@@ -23,15 +28,15 @@ public abstract class TranslationBase
 		}
 		catch (FileNotFoundException)
 		{
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			Logger.Add(3, GetType().Name + ": File does not exists.");
 		}
 		catch (DirectoryNotFoundException)
 		{
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			Logger.Add(3, GetType().Name + ": File does not exists.");
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
+			ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
 		}
 
 		return null;
@@ -47,15 +52,35 @@ public abstract class TranslationBase
 		}
 		catch (FileNotFoundException)
 		{
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			string fileName = Path.GetFileName(path);
+
+			if (RetryCount >= MaxRetries)
+			{
+				Logger.Add(3, fileName + ": File does not exists.");
+				return null;
+			}
+
+			RetryCount++;
+
+			DataType type = path.Contains(DataAndTranslationManager.DataFolder) switch
+			{
+				true => DataType.Data,
+				_ => DataType.Translation,
+			};
+
+			Task.Run(async () =>
+			{
+				await SoftwareUpdater.DownloadData(fileName, type);
+				Initialize();
+			});
 		}
 		catch (DirectoryNotFoundException)
 		{
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			Logger.Add(3, Path.GetFileName(path) + ": File does not exists.");
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
+			ErrorReporter.SendErrorReport(ex, "Failed to load " + Path.GetFileName(path));
 		}
 
 		return null;
