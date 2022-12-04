@@ -25,7 +25,7 @@ public class EquipmentUpgradePlanItemModel
 	/// Level at which the user is gonna start using the slider for improvments
 	/// Used for cost calculation
 	/// </summary>
-	public SliderUpgradeLevel SliderLevel { get; set; }
+	public SliderUpgradeLevel SliderLevel { get; set; } = SliderUpgradeLevel.Never;
 
 	/// <summary>
 	/// Helper for upgrades

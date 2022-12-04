@@ -79,13 +79,15 @@ public class EquipmentUpgradePlanCostModel
 
 	public override bool Equals(object? other)
 	{
-		if (other is not EquipmentUpgradePlanCostModel) return false;
-		EquipmentUpgradePlanCostModel otherCost = (EquipmentUpgradePlanCostModel)other;
+		if (other is not EquipmentUpgradePlanCostModel otherCost) return false;
 
 		if (Fuel != otherCost.Fuel) return false;
 		if (Ammo != otherCost.Ammo) return false;
 		if (Steel != otherCost.Steel) return false;
 		if (Bauxite != otherCost.Bauxite) return false;
+
+		if (ImprovmentMaterial != otherCost.ImprovmentMaterial) return false;
+		if (DevelopmentMaterial != otherCost.DevelopmentMaterial) return false;
 
 		if (RequiredEquipments.Count != otherCost.RequiredEquipments.Count) return false;
 

@@ -29,7 +29,7 @@ public class UpgradeCostTests
 			// lvl 2 -> 10
 			DesiredUpgradeLevel = UpgradeLevel.Max,
 			EquipmentId = EquipmentId.LandBasedAttacker_Type1AttackBomberModel22A,
-			SliderLevel = SliderUpgradeLevel.Seven,
+			SliderLevel = SliderUpgradeLevel.FromLevel6,
 			SelectedHelper = ShipId.KirishimaKaiNi
 		};
 
@@ -81,7 +81,7 @@ public class UpgradeCostTests
 			// lvl 0 -> Conversion
 			DesiredUpgradeLevel = UpgradeLevel.Conversion,
 			EquipmentId = EquipmentId.MainGunLarge_16inchTripleGunMk_7,
-			SliderLevel = SliderUpgradeLevel.Eight,
+			SliderLevel = SliderUpgradeLevel.FromLevel7,
 			SelectedHelper = ShipId.Iowa
 		};
 
@@ -159,7 +159,7 @@ public class UpgradeCostTests
 			// lvl 8 -> Conversion
 			DesiredUpgradeLevel = UpgradeLevel.Conversion,
 			EquipmentId = EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai,
-			SliderLevel = SliderUpgradeLevel.Eight,
+			SliderLevel = SliderUpgradeLevel.FromLevel7,
 			SelectedHelper = ShipId.FletcherMkII
 		};
 
@@ -234,7 +234,7 @@ public class UpgradeCostTests
 			// lvl 0 -> Conversion
 			DesiredUpgradeLevel = UpgradeLevel.Conversion,
 			EquipmentId = EquipmentId.CarrierBasedBomber_Type99DiveBomber_EgusaSquadron,
-			SliderLevel = SliderUpgradeLevel.Conversion,
+			SliderLevel = SliderUpgradeLevel.ConversionOnly,
 			SelectedHelper = ShipId.SouryuuKaiNi
 		};
 
@@ -309,6 +309,92 @@ public class UpgradeCostTests
 		Assert.Equal(expectedCost, cost);
 
 
+	}
+
+
+	[Fact]
+	public void UpgradeCostTest5()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			// lvl 0 -> Conversion
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai,
+			SliderLevel = SliderUpgradeLevel.FromLevel6,
+			SelectedHelper = ShipId.FletcherMkII
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Zero
+		};
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel);
+
+
+		EquipmentUpgradePlanCostModel expectedCost = new EquipmentUpgradePlanCostModel()
+		{
+			Fuel = 11 * 30,
+			Ammo = 11 * 90,
+			Steel = 11 * 190,
+			Bauxite = 11 * 180,
+
+			DevelopmentMaterial =
+			// 0 -> 6
+			(6 * 12) +
+			// 6 -> Max (Slider)
+			(4 * 22) +
+			// Conversion (Slider)
+			(1 * 39),
+
+			ImprovmentMaterial =
+			// 0 -> 6
+			(6 * 7) +
+			// 6 -> Max (Slider)
+			(4 * 11) +
+			// Conversion (Slider)
+			(1 * 18),
+
+			RequiredConsumables = new()
+			{
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)UseItemId.NewModelArmamentMaterials,
+					Required = 2
+				},
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)UseItemId.Medals,
+					Required = 2
+				},
+			},
+			RequiredEquipments = new()
+			{
+				// 0 -> 6
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.MainGunSmall_12cmSingleHighangleGunModelE,
+					Required = 6 * 2
+				},
+				// 6 -> Max
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.MainGunSmall_5inchSingleGunMk_30,
+					Required = 4 * 1
+				},
+				// Conversion
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.RadarSmall_GFCSMk_37,
+					Required = 1
+				}
+			}
+		};
+
+		Assert.Equal(expectedCost, cost);
 	}
 
 }

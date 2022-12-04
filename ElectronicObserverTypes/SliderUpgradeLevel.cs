@@ -3,31 +3,31 @@
 namespace ElectronicObserverTypes;
 public enum SliderUpgradeLevel
 {
-	/// <summary>Never</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Never")]
-	Never = 0,
+	/// <summary>Starting from level 5</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "FromLevel5")]
+	FromLevel5 = 5,
 
-	/// <summary>6</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Six")]
-	Six = 6,
+	/// <summary>Starting from level 6</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "FromLevel6")]
+	FromLevel6 = 6,
 
-	/// <summary>7</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Seven")]
-	Seven = 7,
+	/// <summary>Starting from level 7</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "FromLevel7")]
+	FromLevel7 = 7,
 
-	/// <summary>8</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Eight")]
-	Eight = 8,
+	/// <summary>Starting from level 8</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "FromLevel8")]
+	FromLevel8 = 8,
 
-	/// <summary>9</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Nine")]
-	Nine = 9,
-
-	/// <summary>Max</summary>
-	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Max")]
-	Max = 10,
+	/// <summary>Starting from level 9</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "FromLevel9")]
+	FromLevel9 = 9,
 
 	/// <summary>Equipment conversion</summary>
 	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Conversion")]
-	Conversion = 255
+	ConversionOnly = 10,
+
+	/// <summary>Never</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Never")]
+	Never = 256,
 }

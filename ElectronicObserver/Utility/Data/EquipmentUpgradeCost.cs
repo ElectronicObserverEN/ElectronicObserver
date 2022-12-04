@@ -25,7 +25,7 @@ public static class EquipmentUpgradeCost
 
 		foreach (UpgradeLevel level in levels.SkipWhile(l => l <= equipment.UpgradeLevel))
 		{
-			bool useSlider = sliderLevel != SliderUpgradeLevel.Never && (int)level >= (int)sliderLevel;
+			bool useSlider = (int)level > (int)sliderLevel;
 			cost += improvmentModel.CalculateUpgradeLevelCost(level, useSlider);
 
 			if (level == targetedLevel) return cost;
