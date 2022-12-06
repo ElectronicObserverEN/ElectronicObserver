@@ -126,7 +126,6 @@ public class EquipmentUpgradePlanManager
 
 		plan.Update();
 
-		// Save the data
 		Save();
 	}
 
