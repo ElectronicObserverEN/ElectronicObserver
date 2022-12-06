@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Media;
+using Browser.CefSharpBrowser;
 using Browser.WebView2Browser;
 
 namespace Browser;
@@ -14,7 +16,7 @@ public partial class BrowserView
 	{
 		InitializeComponent();
 
-		ViewModel = new WebView2ViewModel(host, port, culture);
+		ViewModel = new CefSharpViewModel(host, port, culture);
 
 		Loaded += ViewModel.OnLoaded;
 		DataContext = ViewModel;
@@ -23,6 +25,8 @@ public partial class BrowserView
 	private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
 	{
 		if (sender is not FrameworkElement control) return;
+
+		ViewModel.DpiScale = VisualTreeHelper.GetDpi(this);
 
 		ViewModel.ActualHeight = control.ActualHeight;
 		ViewModel.ActualWidth = control.ActualWidth;

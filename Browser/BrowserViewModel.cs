@@ -29,7 +29,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	private string Host { get; }
 	private int Port { get; }
-	private string Culture { get; set; }
+	protected string Culture { get; set; }
 	protected IBrowserHost BrowserHost { get; }
 	protected string? ProxySettings { get; private set; }
 
@@ -48,6 +48,10 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	private bool ShouldStyleSheetApply { get; set; } = true;
 	protected bool StyleSheetApplied => StyleSheetEnabled && ShouldStyleSheetApply;
 
+	/// <summary>
+	/// WebView2 doesn't need this.
+	/// </summary>
+	public DpiScale DpiScale { get; set; }
 	public double ActualWidth { get; set; }
 	public double ActualHeight { get; set; }
 
