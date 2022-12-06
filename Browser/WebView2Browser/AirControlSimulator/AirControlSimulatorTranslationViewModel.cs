@@ -1,4 +1,4 @@
-﻿namespace Browser.AirControlSimulator;
+﻿namespace Browser.WebView2Browser.AirControlSimulator;
 
 public class AirControlSimulatorTranslationViewModel
 {

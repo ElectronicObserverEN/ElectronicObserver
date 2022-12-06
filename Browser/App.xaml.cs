@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Browser.AirControlSimulator;
+using Browser.WebView2Browser.AirControlSimulator;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 using Jot.Storage;

@@ -1,22 +1,26 @@
-﻿using System.Windows;
+﻿using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
-namespace Browser.AirControlSimulator;
+namespace Browser.WebView2Browser.AirControlSimulator;
 
 /// <summary>
 /// Interaction logic for AirControlSimulatorWindow.xaml
 /// </summary>
-public partial class AirControlSimulatorWindow : Window
+public partial class AirControlSimulatorWindow
 {
 	private Tracker Tracker { get; }
-	private AirControlSimulatorViewModel ViewModel { get; } = new();
+	private AirControlSimulatorViewModel ViewModel { get; }
 
-	public AirControlSimulatorWindow(string url)
+	public AirControlSimulatorWindow(string url, IBrowserHost browserHost)
 	{
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 
-		ViewModel.Uri = url;
+		ViewModel = new(browserHost)
+		{
+			Uri = url,
+		};
+
 		DataContext = ViewModel;
 
 		InitializeComponent();
@@ -38,7 +42,7 @@ public partial class AirControlSimulatorWindow : Window
 
 	private async void InitializeAsync()
 	{
-		await Browser.EnsureCoreWebView2Async(BrowserViewModel.Environment);
+		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 
 		Browser.CoreWebView2.Navigate(ViewModel.Uri);
 	}

@@ -1,26 +1,30 @@
 ﻿using System;
+using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Browser.AirControlSimulator;
+namespace Browser.WebView2Browser.AirControlSimulator;
 
 public partial class AirControlSimulatorViewModel : ObservableObject
 {
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }
 
+	public IBrowserHost BrowserHost { get; }
+
 	public string Uri { get; set; }
 	public Action<string>? ExecuteScriptAsync { get; set; }
 
-	public AirControlSimulatorViewModel()
+	public AirControlSimulatorViewModel(IBrowserHost browserHost)
 	{
 		AirControlSimulator = Ioc.Default.GetService<AirControlSimulatorTranslationViewModel>()!;
+		BrowserHost = browserHost;
 	}
 
 	[RelayCommand]
 	private async void UpdateFleet()
 	{
-		string? data = await BrowserViewModel.BrowserHost.GetFleetData();
+		string? data = await BrowserHost.GetFleetData();
 
 		if(data is null) return;
 
@@ -30,7 +34,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	[RelayCommand]
 	private async void UpdateShips()
 	{
-		string data = await BrowserViewModel.BrowserHost.GetShipData();
+		string data = await BrowserHost.GetShipData();
 
 		ExecuteScriptAsync?.Invoke($"loadShipData('{data}')");
 	}
@@ -40,7 +44,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	{
 		if (allEquipment is not bool all) return;
 
-		string data = await BrowserViewModel.BrowserHost.GetEquipmentData(all);
+		string data = await BrowserHost.GetEquipmentData(all);
 
 		ExecuteScriptAsync?.Invoke($"loadItemData('{data}')");
 	}

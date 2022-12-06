@@ -62,7 +62,7 @@
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Update="AirControlSimulator\AirControlSimulator.Designer.cs">
+		<Compile Update="WebView2Browser\AirControlSimulator\AirControlSimulator.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>AirControlSimulator.resx</DependentUpon>
@@ -74,7 +74,7 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<EmbeddedResource Update="AirControlSimulator\AirControlSimulator.resx">
+		<EmbeddedResource Update="WebView2Browser\AirControlSimulator\AirControlSimulator.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
 		</EmbeddedResource>

@@ -5,7 +5,8 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 using Microsoft.Web.WebView2.Core;
-namespace Browser.ExtraBrowser;
+
+namespace Browser.WebView2Browser.ExtraBrowser;
 
 public partial class ExtraBrowserWindow : Window
 {
@@ -36,7 +37,7 @@ public partial class ExtraBrowserWindow : Window
 
 	private async void InitializeAsync()
 	{
-		await Browser.EnsureCoreWebView2Async(BrowserViewModel.Environment);
+		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 		
 		Browser.Source = new Uri("http://www.duckduckgo.com");
 		txtBoxAddress.Text = "http://www.duckduckgo.com";
