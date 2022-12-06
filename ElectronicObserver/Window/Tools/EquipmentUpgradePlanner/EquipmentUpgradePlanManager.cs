@@ -125,6 +125,9 @@ public class EquipmentUpgradePlanManager
 
 
 		plan.Update();
+
+		// Save the data
+		Save();
 	}
 
 	private void UpdatePlanAfterEquipmentConversion(EquipmentUpgradePlanItemViewModel plan, int oldEquipmentMasterId)
