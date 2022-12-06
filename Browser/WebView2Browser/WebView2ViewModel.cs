@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -763,19 +762,4 @@ public class WebView2ViewModel : BrowserViewModel
 			Owner = App.Current.MainWindow,
 		}.Show();
 	}
-
-	#region 呪文
-
-	[DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]
-	public static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
-
-	[DllImport("user32.dll", EntryPoint = "SetWindowLongA", SetLastError = true)]
-	public static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
-
-	public const int GWL_STYLE = (-16);
-	public const uint WS_CHILD = 0x40000000;
-	public const uint WS_VISIBLE = 0x10000000;
-	public const int WM_ERASEBKGND = 0x14;
-
-	#endregion
 }

@@ -446,4 +446,19 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	[RelayCommand]
 	public abstract void OpenAirControlSimulator(string url);
+
+	#region 呪文
+
+	[DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]
+	public static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
+
+	[DllImport("user32.dll", EntryPoint = "SetWindowLongA", SetLastError = true)]
+	public static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
+
+	public const int GWL_STYLE = (-16);
+	public const uint WS_CHILD = 0x40000000;
+	public const uint WS_VISIBLE = 0x10000000;
+	public const int WM_ERASEBKGND = 0x14;
+
+	#endregion
 }
