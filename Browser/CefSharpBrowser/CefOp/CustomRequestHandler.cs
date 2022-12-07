@@ -1,5 +1,6 @@
 ﻿using Browser.Properties;
 using CefSharp;
+using CefSharp.DevTools;
 using CefSharp.Handler;
 
 namespace Browser.CefSharpBrowser.CefOp;
@@ -66,8 +67,17 @@ public class CustomRequestHandler : RequestHandler
 		{
 			return new ResRequestHandler();
 		}
+
 		if (UseGadgetRedirect && request.Url.Contains("gadget_html5"))
+		{
 			return new GadgetUrlHandler();
+		}
+
+		if (request.Url.Contains(@"accounts.google.com"))
+		{
+			using DevToolsClient tools = chromiumWebBrowser.GetDevToolsClient();
+			tools.Emulation.SetUserAgentOverrideAsync("Chrome");
+		}
 
 		return new CustomResourceRequestHandler(PixiSettingEnabled);
 	}
