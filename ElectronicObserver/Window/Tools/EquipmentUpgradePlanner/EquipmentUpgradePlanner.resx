@@ -163,10 +163,10 @@
     <value>更新</value>
   </data>
   <data name="Owned" xml:space="preserve">
-    <value>???</value>
+    <value>所持：</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>???</value>
+    <value>必要：</value>
   </data>
   <data name="TotalCost" xml:space="preserve">
     <value>???</value>
