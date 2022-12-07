@@ -163,9 +163,9 @@
     <value>更新</value>
   </data>
   <data name="Owned" xml:space="preserve">
-    <value>???</value>
+    <value>所有：</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>???</value>
+    <value>必要：</value>
   </data>
 </root>
