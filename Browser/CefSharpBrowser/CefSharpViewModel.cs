@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using Browser.CefSharpBrowser.AirControlSimulator;
 using Browser.CefSharpBrowser.CefOp;
 using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
@@ -647,6 +648,9 @@ public class CefSharpViewModel : BrowserViewModel
 
 	public override void OpenAirControlSimulator(string url)
 	{
-		throw new NotImplementedException();
+		new AirControlSimulatorWindow(url, BrowserHost)
+		{
+			Owner = App.Current.MainWindow,
+		}.Show();
 	}
 }

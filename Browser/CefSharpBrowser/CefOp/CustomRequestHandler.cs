@@ -15,7 +15,7 @@ public class CustomRequestHandler : RequestHandler
 
 	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect) : base()
 	{
-		this.PixiSettingEnabled = pixiSettingEnabled;
+		PixiSettingEnabled = pixiSettingEnabled;
 		UseGadgetRedirect = useGadgetRedirect;
 	}
 
