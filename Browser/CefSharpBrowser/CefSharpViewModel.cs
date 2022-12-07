@@ -113,6 +113,9 @@ public class CefSharpViewModel : BrowserViewModel
 
 		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 		settings.CefCommandLineArgs.Add("limit-fps", "60");
+		// 60 fps hacks
+		// https://github.com/cefsharp/CefSharp/issues/1261
+		// https://github.com/cefsharp/CefSharp/issues/2275
 		settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
 		settings.CefCommandLineArgs.Add("enable-begin-frame-scheduling", "1");
 
