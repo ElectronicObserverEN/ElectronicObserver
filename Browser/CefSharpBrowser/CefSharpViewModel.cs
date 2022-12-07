@@ -17,6 +17,8 @@ using CefSharp;
 using CefSharp.Handler;
 using CefSharp.Wpf;
 using CefSharp.Wpf.Internals;
+using CefSharp.Wpf.Rendering.Experimental;
+using Cef = CefSharp.Cef;
 using IBrowser = CefSharp.IBrowser;
 
 namespace Browser.CefSharpBrowser;
@@ -111,6 +113,8 @@ public class CefSharpViewModel : BrowserViewModel
 
 		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 		settings.CefCommandLineArgs.Add("limit-fps", "60");
+		settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
+		settings.CefCommandLineArgs.Add("enable-begin-frame-scheduling", "1");
 
 		// prevent CEF from taking over media keys
 		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
@@ -146,7 +150,13 @@ public class CefSharpViewModel : BrowserViewModel
 			KeyboardHandler = new KeyboardHandler(),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
+			BrowserSettings = new BrowserSettings
+			{
+				WindowlessFrameRate = 60,
+			},
 		};
+
+		CefSharp.RenderHandler = new CompositionTargetRenderHandler(CefSharp, CefSharp.DpiScaleFactor, CefSharp.DpiScaleFactor);
 
 		// Browser.WpfKeyboardHandler = new WpfKeyboardHandler(Browser);
 
