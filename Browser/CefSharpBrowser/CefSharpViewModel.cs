@@ -203,9 +203,6 @@ public class CefSharpViewModel : BrowserViewModel
 		};
 	}
 
-	// hack: it makes an infinite loop in the wpf version for some reason
-	private int Counter { get; set; }
-
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
 		// DocumentCompleted に相当?
@@ -213,21 +210,10 @@ public class CefSharpViewModel : BrowserViewModel
 
 		if (e.IsLoading) return;
 
-		App.Current.Dispatcher.Invoke(() =>
-		{
-			if (Counter > 0) return;
-			if (!CefSharp!.Address.Contains("redirect")) return;
-
-			Counter++;
-
-			SetCookie();
-			CefSharp.Reload();
-		});
-
 		App.Current.Dispatcher.BeginInvoke(() =>
 		{
 			ApplyStyleSheet();
-
+			SetCookie();
 			ApplyZoom();
 			DestroyDMMreloadDialog();
 		});
@@ -251,6 +237,81 @@ public class CefSharpViewModel : BrowserViewModel
 	private void SetCookie()
 	{
 		CefSharp.ExecuteScriptAsync(FormBrowser.RegionCookie);
+
+		// todo: would be nice if we could get it working this way
+		/*
+		ICookieManager cookieManager = CefSharp.GetCookieManager();
+		// cookieManager.DeleteCookies();
+
+		Cookie gamesCookie = new()
+		{
+			Domain = "games.dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/",
+			Value = "1",
+			Secure = true,
+		};
+
+		Cookie dmmCookie = new()
+		{
+			Domain = ".dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/",
+			Value = "1",
+			Secure = true,
+		};
+
+		Cookie accountsCookie = new()
+		{
+			Domain = "accounts.dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/",
+			Value = "1",
+			Secure = true,
+		};
+
+		Cookie osapiCookie = new()
+		{
+			Domain = "osapi.dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/",
+			Value = "1",
+			Secure = true,
+		};
+
+		Cookie gameServerCookie = new()
+		{
+			Domain = "203.104.209.7",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/",
+			Value = "1",
+			Secure = true,
+		};
+
+		Cookie gamePathCookie = new()
+		{
+			Domain = "www.dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/netgame/",
+			Value = "1",
+			Secure = true,
+		};
+
+		string url = "http://www.dmm.com/";
+
+		cookieManager.SetCookie("https://games.dmm.com", gamesCookie);
+		cookieManager.SetCookie("https://www.dmm.com", dmmCookie);
+		cookieManager.SetCookie("https://accounts.dmm.com", accountsCookie);
+		cookieManager.SetCookie(url, osapiCookie);
+		cookieManager.SetCookie(url, gameServerCookie);
+		cookieManager.SetCookie("http://www.dmm.com/netgame", gamePathCookie);
+		*/
 	}
 
 	protected override void ApplyZoom()
