@@ -27,6 +27,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 	public CefSharpViewModel(string host, int port, string culture) : base(host, port, culture)
 	{
+		// Debugger.Launch();
 	}
 
 	public override async void OnLoaded(object sender, RoutedEventArgs e)
@@ -623,13 +624,15 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.GetBrowser().ShowDevTools();
 	}
 
-	protected override void ClearCache()
+	protected override async void ClearCache()
 	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
 		if (MessageBox.Show(FormBrowser.ClearCacheMessage, FormBrowser.ClearCacheTitle,
 				MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
 		{
-			// todo
-			// BrowserHost.ClearCache();
+			await CefSharp.ClearCache();
+			AddLog(2, FormBrowser.CacheCleared);
 		}
 	}
 
