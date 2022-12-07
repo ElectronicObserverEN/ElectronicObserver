@@ -12,13 +12,7 @@ internal class ResRequestHandler : ResourceRequestHandler
 		{
 			return CefReturnValue.Cancel;
 		}
-		// remove range request to allow bgm cachings
-		if (request.Url.Contains(@"kcs2/resources/bgm"))
-		{
-			var headers = request.Headers;
-			headers.Remove("Range");
-			request.Headers = headers;
-		}
+
 		return base.OnBeforeResourceLoad(chromiumWebBrowser, browser, frame, request, callback);
 	}
 
