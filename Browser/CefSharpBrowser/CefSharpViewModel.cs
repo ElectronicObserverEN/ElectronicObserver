@@ -236,8 +236,6 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		// todo: would be nice if we could get it working this way
-
 		ICookieManager cookieManager = CefSharp.GetCookieManager();
 
 		Cookie dmmCookie = new()
