@@ -236,22 +236,9 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		CefSharp.ExecuteScriptAsync(FormBrowser.RegionCookie);
-
 		// todo: would be nice if we could get it working this way
-		/*
-		ICookieManager cookieManager = CefSharp.GetCookieManager();
-		// cookieManager.DeleteCookies();
 
-		Cookie gamesCookie = new()
-		{
-			Domain = "games.dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/",
-			Value = "1",
-			Secure = true,
-		};
+		ICookieManager cookieManager = CefSharp.GetCookieManager();
 
 		Cookie dmmCookie = new()
 		{
@@ -260,58 +247,9 @@ public class CefSharpViewModel : BrowserViewModel
 			Name = "ckcy",
 			Path = "/",
 			Value = "1",
-			Secure = true,
+			Secure = false
 		};
-
-		Cookie accountsCookie = new()
-		{
-			Domain = "accounts.dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/",
-			Value = "1",
-			Secure = true,
-		};
-
-		Cookie osapiCookie = new()
-		{
-			Domain = "osapi.dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/",
-			Value = "1",
-			Secure = true,
-		};
-
-		Cookie gameServerCookie = new()
-		{
-			Domain = "203.104.209.7",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/",
-			Value = "1",
-			Secure = true,
-		};
-
-		Cookie gamePathCookie = new()
-		{
-			Domain = "www.dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/netgame/",
-			Value = "1",
-			Secure = true,
-		};
-
-		string url = "http://www.dmm.com/";
-
-		cookieManager.SetCookie("https://games.dmm.com", gamesCookie);
-		cookieManager.SetCookie("https://www.dmm.com", dmmCookie);
-		cookieManager.SetCookie("https://accounts.dmm.com", accountsCookie);
-		cookieManager.SetCookie(url, osapiCookie);
-		cookieManager.SetCookie(url, gameServerCookie);
-		cookieManager.SetCookie("http://www.dmm.com/netgame", gamePathCookie);
-		*/
+		cookieManager.SetCookieAsync("https://www.dmm.com", dmmCookie).Wait();
 	}
 
 	protected override void ApplyZoom()
