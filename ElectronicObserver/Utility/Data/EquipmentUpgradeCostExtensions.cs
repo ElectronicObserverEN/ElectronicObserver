@@ -6,11 +6,11 @@ using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.Data;
-public static class EquipmentUpgradeCost
+public static class EquipmentUpgradeCostExtensions
 {
 	public static EquipmentUpgradePlanCostModel CalculateUpgradeCost(this IEquipmentData equipment, List<EquipmentUpgradeDataModel> upgradesData, IShipDataMaster? helper, UpgradeLevel targetedLevel, SliderUpgradeLevel sliderLevel)
 	{
-		EquipmentUpgradePlanCostModel cost = new EquipmentUpgradePlanCostModel();
+		EquipmentUpgradePlanCostModel cost = new();
 
 
 		EquipmentUpgradeDataModel? upgradeData = upgradesData.FirstOrDefault(data => data.EquipmentId == (int?)equipment.EquipmentId);

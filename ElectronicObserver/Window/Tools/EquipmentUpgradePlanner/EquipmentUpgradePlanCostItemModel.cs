@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
-public class EquipmentUpgradePlanCostItemModel
+public record EquipmentUpgradePlanCostItemModel
 {
 	/// <summary>
 	/// Id of the item
@@ -11,16 +11,4 @@ public class EquipmentUpgradePlanCostItemModel
 	/// Number of this equipment required
 	/// </summary>
 	public int Required { get; set; }
-
-	public override bool Equals(object? other)
-	{
-		if (other is not EquipmentUpgradePlanCostItemModel otherCost) return false;
-
-		if (Id != otherCost.Id) return false;
-		if (Required != otherCost.Required) return false;
-
-		return true;
-	}
-
-	public override int GetHashCode() => base.GetHashCode();
 }
