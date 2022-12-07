@@ -163,7 +163,7 @@
     <value>更新</value>
   </data>
   <data name="Owned" xml:space="preserve">
-    <value>所有：</value>
+    <value>所持：</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>必要：</value>

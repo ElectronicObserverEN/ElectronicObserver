@@ -142,7 +142,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 所有：.
+        ///   Looks up a localized string similar to 所持：.
         /// </summary>
         public static string Owned {
             get {
