@@ -1,21 +1,22 @@
-﻿using System.Diagnostics;
-using System;
-using System.Windows;
-using System.Windows.Interop;
-using CefSharp.Wpf;
-using CefSharp.Handler;
-using CefSharp;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using Browser.CefSharpBrowser.CefOp;
+using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
+using CefSharp;
+using CefSharp.Handler;
+using CefSharp.Wpf;
 using CefSharp.Wpf.Internals;
 using IBrowser = CefSharp.IBrowser;
-using System.Threading.Tasks;
 
 namespace Browser.CefSharpBrowser;
 
@@ -638,7 +639,10 @@ public class CefSharpViewModel : BrowserViewModel
 
 	public override void OpenExtraBrowser()
 	{
-		throw new NotImplementedException();
+		new ExtraBrowserWindow
+		{
+			Owner = App.Current.MainWindow,
+		}.Show();
 	}
 
 	public override void OpenAirControlSimulator(string url)
