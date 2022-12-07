@@ -20,6 +20,7 @@ public class EquipmentUpgradePlanManager
 	private EquipmentData? CurrentUpgradeEquipment { get; set; }
 
 	public event EventHandler? PlanFinished;
+	public event EventHandler? PlanCostUpdated;
 
 	public EquipmentUpgradePlanManager()
 	{
@@ -74,6 +75,14 @@ public class EquipmentUpgradePlanManager
 			if (args.PropertyName is not nameof(plan.Finished)) return;
 
 			PlanFinished?.Invoke(this, EventArgs.Empty);
+		};
+
+
+		plan.PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(plan.Cost)) return;
+
+			PlanCostUpdated?.Invoke(this, EventArgs.Empty);
 		};
 
 		return plan;

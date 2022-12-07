@@ -17,4 +17,5 @@ public class EquipmentUpgradePlannerTranslationViewModel
 	public string ConvertTo => EquipmentUpgradePlanner.ConvertTo;
 	public string Owned => EquipmentUpgradePlanner.Owned;
 	public string Required => EquipmentUpgradePlanner.Required;
+	public string TotalCost => EquipmentUpgradePlanner.TotalCost;
 }

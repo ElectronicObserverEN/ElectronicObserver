@@ -168,4 +168,7 @@
   <data name="Required" xml:space="preserve">
     <value>Required :</value>
   </data>
+  <data name="TotalCost" xml:space="preserve">
+    <value>Total cost</value>
+  </data>
 </root>
