@@ -525,7 +525,18 @@
 						InputGestureText="F7"
 						>
 						<MenuItem.Icon>
-							<Image Source="{Binding MuteStateImage}" />
+							<Image>
+								<Image.Style>
+									<Style TargetType="{x:Type Image}">
+										<Setter Property="Source" Value="{Binding Icons.Unmute}" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding IsMuted}" Value="True">
+												<Setter Property="Source" Value="{Binding Icons.Mute}" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Image.Style>
+							</Image>
 						</MenuItem.Icon>
 					</MenuItem>
 					<Separator />

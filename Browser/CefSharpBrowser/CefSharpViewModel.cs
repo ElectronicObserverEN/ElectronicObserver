@@ -396,6 +396,7 @@ public class CefSharpViewModel : BrowserViewModel
 		RealVolume = (int)volume;
 		Configuration.Volume = volume;
 		Configuration.IsMute = mute;
+		IsMuted = mute;
 		ConfigurationUpdated();
 	}
 
