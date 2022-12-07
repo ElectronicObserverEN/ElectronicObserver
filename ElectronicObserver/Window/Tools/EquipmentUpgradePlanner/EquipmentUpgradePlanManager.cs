@@ -130,7 +130,7 @@ public class EquipmentUpgradePlanManager
 		if (data.api_remodel_id() && data.api_remodel_id[0] != data.api_remodel_id[1])
 			UpdatePlanAfterEquipmentConversion(plan, (int)data.api_remodel_id[0]);
 		else
-			UpdatePlanAfterEquipmentImprovment(plan);
+			UpdatePlanAfterEquipmentImprovement(plan);
 
 
 		plan.Update();
@@ -148,7 +148,7 @@ public class EquipmentUpgradePlanManager
 		plan.EquipmentId = null;
 	}
 
-	private void UpdatePlanAfterEquipmentImprovment(EquipmentUpgradePlanItemViewModel plan)
+	private void UpdatePlanAfterEquipmentImprovement(EquipmentUpgradePlanItemViewModel plan)
 	{
 		if (plan.DesiredUpgradeLevel == UpgradeLevel.Conversion) return;
 

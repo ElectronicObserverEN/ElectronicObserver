@@ -67,7 +67,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
 		.SelectMany(data => data.Improvement)
-		.SelectMany(improvment => improvment.Helpers)
+		.SelectMany(improvement => improvement.Helpers)
 		.SelectMany(helpers => helpers.ShipIds)
 		.Distinct()
 		.Select(id => KCDatabase.Instance.MasterShips[id])
@@ -152,7 +152,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		EquipmentUpgradeConversionModel? equipmentAfter = EquipmentUpgradeData.UpgradeList
 			.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
 			.SelectMany(data => data.Improvement)
-			.Where(improvment => SelectedHelper is null || improvment.Helpers.Where(helper => helper.ShipIds.Contains(SelectedHelper.ShipID)).Any())
+			.Where(improvement => SelectedHelper is null || improvement.Helpers.Where(helper => helper.ShipIds.Contains(SelectedHelper.ShipID)).Any())
 			.FirstOrDefault()?.ConversionData;
 
 		EquipmentAfterConversionDisplay = equipmentAfter switch

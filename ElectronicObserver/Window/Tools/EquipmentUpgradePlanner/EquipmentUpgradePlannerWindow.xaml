@@ -121,7 +121,7 @@
 					Margin="8 0"
 					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding ImprovmentMaterial}"
+					Text="{Binding ImprovementMaterial}"
 					/>
 
 				<ItemsControl

@@ -2,7 +2,7 @@
 
 namespace ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
-public class EquipmentUpgradeImprovmentCostItemDetail
+public class EquipmentUpgradeImprovementCostItemDetail
 {
     /// <summary>
     /// Id of the item

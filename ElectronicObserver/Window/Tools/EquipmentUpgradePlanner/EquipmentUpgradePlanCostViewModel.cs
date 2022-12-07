@@ -16,7 +16,7 @@ public class EquipmentUpgradePlanCostViewModel
 	/// <summary>
 	/// "screws"
 	/// </summary>
-	public int ImprovmentMaterial { get; set; }
+	public int ImprovementMaterial { get; set; }
 
 	/// <summary>
 	/// "devmats"
@@ -35,7 +35,7 @@ public class EquipmentUpgradePlanCostViewModel
 		Bauxite = model.Bauxite;
 
 		DevelopmentMaterial = model.DevelopmentMaterial;
-		ImprovmentMaterial = model.ImprovmentMaterial;
+		ImprovementMaterial = model.ImprovementMaterial;
 
 		RequiredEquipments = model.RequiredEquipments.Select(item => new EquipmentUpgradePlanCostEquipmentViewModel(item)).ToList();
 		RequiredConsumables = model.RequiredConsumables.Select(item => new EquipmentUpgradePlanCostConsumableViewModel(item)).ToList();

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
-public class EquipmentUpgradeImprovmentCostDetail
+public class EquipmentUpgradeImprovementCostDetail
 {
     /// <summary>
     /// Devmat cost
@@ -30,9 +30,9 @@ public class EquipmentUpgradeImprovmentCostDetail
     public int SliderImproveMatCost { get; set; }
 
     [JsonPropertyName("equips")]
-    public List<EquipmentUpgradeImprovmentCostItemDetail> EquipmentDetail { get; set; } = new List<EquipmentUpgradeImprovmentCostItemDetail>();
+    public List<EquipmentUpgradeImprovementCostItemDetail> EquipmentDetail { get; set; } = new List<EquipmentUpgradeImprovementCostItemDetail>();
 
     [JsonPropertyName("consumable")]
-    public List<EquipmentUpgradeImprovmentCostItemDetail> ConsumableDetail { get; set; } = new List<EquipmentUpgradeImprovmentCostItemDetail>();
+    public List<EquipmentUpgradeImprovementCostItemDetail> ConsumableDetail { get; set; } = new List<EquipmentUpgradeImprovementCostItemDetail>();
 
 }

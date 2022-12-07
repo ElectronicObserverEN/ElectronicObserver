@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
-public class EquipmentUpgradeImprovmentModel
+public class EquipmentUpgradeImprovementModel
 {
 	[JsonPropertyName("convert")]
 	public EquipmentUpgradeConversionModel? ConversionData { get; set; }
@@ -12,5 +12,5 @@ public class EquipmentUpgradeImprovmentModel
 	public List<EquipmentUpgradeHelpersModel> Helpers { get; set; } = new List<EquipmentUpgradeHelpersModel>();
 
 	[JsonPropertyName("costs")]
-	public EquipmentUpgradeImprovmentCost Costs { get; set; } = new EquipmentUpgradeImprovmentCost();
+	public EquipmentUpgradeImprovementCost Costs { get; set; } = new EquipmentUpgradeImprovementCost();
 }

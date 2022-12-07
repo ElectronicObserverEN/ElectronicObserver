@@ -22,7 +22,7 @@ public class EquipmentUpgradePlanItemModel
 	public int Priority { get; set; }
 
 	/// <summary>
-	/// Level at which the user is gonna start using the slider for improvments
+	/// Level at which the user is gonna start using the slider for improvements
 	/// Used for cost calculation
 	/// </summary>
 	public SliderUpgradeLevel SliderLevel { get; set; } = SliderUpgradeLevel.Never;

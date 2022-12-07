@@ -2,7 +2,7 @@
 
 namespace ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
-public class EquipmentUpgradeImprovmentCost
+public class EquipmentUpgradeImprovementCost
 {
     [JsonPropertyName("fuel")]
     public int Fuel { get; set; }
@@ -20,17 +20,17 @@ public class EquipmentUpgradeImprovmentCost
     /// Costs for level 0 -> 6
     /// </summary>
     [JsonPropertyName("p1")]
-    public EquipmentUpgradeImprovmentCostDetail Cost0To5 { get; set; } = new();
+    public EquipmentUpgradeImprovementCostDetail Cost0To5 { get; set; } = new();
 
     /// <summary>
     /// Costs for level 7 -> 10
     /// </summary>
     [JsonPropertyName("p2")]
-    public EquipmentUpgradeImprovmentCostDetail Cost6To9 { get; set; } = new ();
+    public EquipmentUpgradeImprovementCostDetail Cost6To9 { get; set; } = new ();
 
     /// <summary>
     /// Costs for conversion
     /// </summary>
     [JsonPropertyName("conv")]
-    public EquipmentUpgradeImprovmentCostDetail? CostMax { get; set; } = null;
+    public EquipmentUpgradeImprovementCostDetail? CostMax { get; set; } = null;
 }

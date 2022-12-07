@@ -50,7 +50,7 @@ public class UpgradeCostTests
 			Bauxite = 8 * 540,
 
 			DevelopmentMaterial = (4 * 6) + (4 * 9),
-			ImprovmentMaterial = (4 * 4) + (4 * 6),
+			ImprovementMaterial = (4 * 4) + (4 * 6),
 
 			RequiredConsumables = new(),
 			RequiredEquipments = new()
@@ -111,7 +111,7 @@ public class UpgradeCostTests
 			// Conversion (Slider)
 			(1 * 28),
 
-			ImprovmentMaterial =
+			ImprovementMaterial =
 			// 0 -> 6
 			(6 * 6) +
 			// 6 -> 7
@@ -185,7 +185,7 @@ public class UpgradeCostTests
 			// Conversion (Slider)
 			(1 * 39),
 
-			ImprovmentMaterial =
+			ImprovementMaterial =
 			// 7 -> Max (Slider)
 			(2 * 11) +
 			// Conversion (Slider)
@@ -262,7 +262,7 @@ public class UpgradeCostTests
 			// Conversion (Slider)
 			(1 * 28),
 
-			ImprovmentMaterial =
+			ImprovementMaterial =
 			// 0 -> 6
 			(6 * 4) +
 			// 6 -> Max
@@ -350,7 +350,7 @@ public class UpgradeCostTests
 			// Conversion (Slider)
 			(1 * 39),
 
-			ImprovmentMaterial =
+			ImprovementMaterial =
 			// 0 -> 6
 			(6 * 7) +
 			// 6 -> Max (Slider)

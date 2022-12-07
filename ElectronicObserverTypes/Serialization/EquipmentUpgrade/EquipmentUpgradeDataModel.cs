@@ -9,10 +9,10 @@ public class EquipmentUpgradeDataModel
     public int EquipmentId { get; set; }
 
     /// <summary>
-    /// Improvments possibles for this equipment
+    /// Improvements possibles for this equipment
     /// </summary>
     [JsonPropertyName("improvement")]
-    public List<EquipmentUpgradeImprovmentModel> Improvement { get; set; } = new List<EquipmentUpgradeImprovmentModel>();
+    public List<EquipmentUpgradeImprovementModel> Improvement { get; set; } = new List<EquipmentUpgradeImprovementModel>();
 
     /// <summary>
     /// This equipment can be converted to those equipments

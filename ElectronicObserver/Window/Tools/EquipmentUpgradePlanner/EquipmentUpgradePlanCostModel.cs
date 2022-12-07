@@ -16,7 +16,7 @@ public class EquipmentUpgradePlanCostModel
 	/// <summary>
 	/// "screws"
 	/// </summary>
-	public int ImprovmentMaterial { get; set; }
+	public int ImprovementMaterial { get; set; }
 
 	/// <summary>
 	/// "devmats"
@@ -34,7 +34,7 @@ public class EquipmentUpgradePlanCostModel
 		Steel = a.Steel * b,
 		Bauxite = a.Bauxite * b,
 
-		ImprovmentMaterial = a.ImprovmentMaterial * b,
+		ImprovementMaterial = a.ImprovementMaterial * b,
 		DevelopmentMaterial = a.DevelopmentMaterial * b,
 
 		RequiredConsumables = a.RequiredConsumables.Select(cons => new EquipmentUpgradePlanCostItemModel() { Required = cons.Required * b }).ToList(),
@@ -50,7 +50,7 @@ public class EquipmentUpgradePlanCostModel
 			Steel = a.Steel + b.Steel,
 			Bauxite = a.Bauxite + b.Bauxite,
 
-			ImprovmentMaterial = a.ImprovmentMaterial + b.ImprovmentMaterial,
+			ImprovementMaterial = a.ImprovementMaterial + b.ImprovementMaterial,
 			DevelopmentMaterial = a.DevelopmentMaterial + b.DevelopmentMaterial,
 		};
 
@@ -86,7 +86,7 @@ public class EquipmentUpgradePlanCostModel
 		if (Steel != otherCost.Steel) return false;
 		if (Bauxite != otherCost.Bauxite) return false;
 
-		if (ImprovmentMaterial != otherCost.ImprovmentMaterial) return false;
+		if (ImprovementMaterial != otherCost.ImprovementMaterial) return false;
 		if (DevelopmentMaterial != otherCost.DevelopmentMaterial) return false;
 
 		if (RequiredEquipments.Count != otherCost.RequiredEquipments.Count) return false;

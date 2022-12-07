@@ -30,12 +30,12 @@ public class FitBonusData
 	[JsonPropertyName("requiresNumType")] public int? NumberOfEquipmentTypesRequired { get; set; }
 
 	/// <summary>
-	/// Improvment level of the equipment required
+	/// Improvement level of the equipment required
 	/// </summary>
 	[JsonPropertyName("level")] public int? EquipmentLevel { get; set; }
 
 	/// <summary>
-	/// Number Of Equipments Required after applying the improvment filter
+	/// Number Of Equipments Required after applying the improvement filter
 	/// </summary>
 	[JsonPropertyName("num")] public int? NumberOfEquipmentsRequiredAfterOtherFilters { get; set; }
 

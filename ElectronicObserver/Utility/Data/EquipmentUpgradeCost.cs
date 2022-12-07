@@ -17,16 +17,16 @@ public static class EquipmentUpgradeCost
 
 		if (upgradeData is null) return cost;
 
-		EquipmentUpgradeImprovmentModel? improvmentModel = GetImprovmentModelDependingOnHelper(upgradeData.Improvement, helper);
+		EquipmentUpgradeImprovementModel? improvementModel = GetImprovementModelDependingOnHelper(upgradeData.Improvement, helper);
 
-		if (improvmentModel is null) return cost;
+		if (improvementModel is null) return cost;
 
 		List<UpgradeLevel> levels = Enum.GetValues<UpgradeLevel>().OrderBy(val => val).ToList();
 
 		foreach (UpgradeLevel level in levels.SkipWhile(l => l <= equipment.UpgradeLevel))
 		{
 			bool useSlider = (int)level > (int)sliderLevel;
-			cost += improvmentModel.CalculateUpgradeLevelCost(level, useSlider);
+			cost += improvementModel.CalculateUpgradeLevelCost(level, useSlider);
 
 			if (level == targetedLevel) return cost;
 		}
@@ -34,22 +34,22 @@ public static class EquipmentUpgradeCost
 		return cost;
 	}
 
-	public static EquipmentUpgradePlanCostModel CalculateUpgradeLevelCost(this EquipmentUpgradeImprovmentModel improvmentModel, UpgradeLevel level, bool useSlider)
+	public static EquipmentUpgradePlanCostModel CalculateUpgradeLevelCost(this EquipmentUpgradeImprovementModel improvementModel, UpgradeLevel level, bool useSlider)
 	{
-		EquipmentUpgradeImprovmentCostDetail? costDetail = improvmentModel.Costs.GetImprovmentCostDetailFromLevel(level);
+		EquipmentUpgradeImprovementCostDetail? costDetail = improvementModel.Costs.GetImprovementCostDetailFromLevel(level);
 
 		// Shouldn't happen ...
 		if (costDetail is null) return new EquipmentUpgradePlanCostModel();
 
 		return new EquipmentUpgradePlanCostModel()
 		{
-			Ammo = improvmentModel.Costs.Ammo,
-			Fuel = improvmentModel.Costs.Fuel,
-			Steel = improvmentModel.Costs.Steel,
-			Bauxite = improvmentModel.Costs.Bauxite,
+			Ammo = improvementModel.Costs.Ammo,
+			Fuel = improvementModel.Costs.Fuel,
+			Steel = improvementModel.Costs.Steel,
+			Bauxite = improvementModel.Costs.Bauxite,
 
 			DevelopmentMaterial = useSlider ? costDetail.SliderDevmatCost : costDetail.DevmatCost,
-			ImprovmentMaterial = useSlider ? costDetail.SliderImproveMatCost : costDetail.ImproveMatCost,
+			ImprovementMaterial = useSlider ? costDetail.SliderImproveMatCost : costDetail.ImproveMatCost,
 
 			RequiredConsumables = costDetail.ConsumableDetail.Select(cons => new EquipmentUpgradePlanCostItemModel()
 			{
@@ -66,7 +66,7 @@ public static class EquipmentUpgradeCost
 	}
 
 
-	public static EquipmentUpgradeImprovmentCostDetail? GetImprovmentCostDetailFromLevel(this EquipmentUpgradeImprovmentCost costDetail, UpgradeLevel level)
+	public static EquipmentUpgradeImprovementCostDetail? GetImprovementCostDetailFromLevel(this EquipmentUpgradeImprovementCost costDetail, UpgradeLevel level)
 		=> level switch
 		{
 			UpgradeLevel.Conversion => costDetail.CostMax,
@@ -75,15 +75,15 @@ public static class EquipmentUpgradeCost
 		};
 
 	/// <summary>
-	/// Return an improvment model depending on the flagship
+	/// Return an improvement model depending on the flagship
 	/// </summary>
-	/// <param name="improvments"></param>
+	/// <param name="improvements"></param>
 	/// <param name="helper"></param>
 	/// <returns></returns>
-	private static EquipmentUpgradeImprovmentModel? GetImprovmentModelDependingOnHelper(List<EquipmentUpgradeImprovmentModel> improvments, IShipDataMaster? helper)
+	private static EquipmentUpgradeImprovementModel? GetImprovementModelDependingOnHelper(List<EquipmentUpgradeImprovementModel> improvements, IShipDataMaster? helper)
 	{
-		if (helper is null) return improvments.FirstOrDefault();
+		if (helper is null) return improvements.FirstOrDefault();
 
-		return improvments.FirstOrDefault(imp => imp.Helpers.SelectMany(helpers => helpers.ShipIds).ToList().Contains(helper.ShipID));
+		return improvements.FirstOrDefault(imp => imp.Helpers.SelectMany(helpers => helpers.ShipIds).ToList().Contains(helper.ShipID));
 	}
 }
