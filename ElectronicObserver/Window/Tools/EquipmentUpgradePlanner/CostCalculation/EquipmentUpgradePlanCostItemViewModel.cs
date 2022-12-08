@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+﻿namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 public abstract class EquipmentUpgradePlanCostItemViewModel
 {
 	public int Required { get; set; }

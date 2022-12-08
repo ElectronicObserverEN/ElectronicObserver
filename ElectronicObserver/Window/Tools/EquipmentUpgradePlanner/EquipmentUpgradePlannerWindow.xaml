@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:common1="clr-namespace:ElectronicObserver.Window.Tools.Common"
+	xmlns:costs="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -49,7 +50,7 @@
 			<Setter Property="MinWidth" Value="0" />
 		</Style>
 
-		<DataTemplate x:Key="CostTemplate" DataType="{x:Type local:EquipmentUpgradePlanCostViewModel}">
+		<DataTemplate x:Key="CostTemplate" DataType="{x:Type costs:EquipmentUpgradePlanCostViewModel}">
 			<Grid>
 				<Grid.Resources>
 					<Style TargetType="common1:ImageTextControl">

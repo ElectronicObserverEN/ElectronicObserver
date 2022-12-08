@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 public class EquipmentUpgradePlanCostViewModel
 {
