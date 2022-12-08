@@ -50,11 +50,7 @@
 		</Style>
 
 		<DataTemplate x:Key="CostTemplate" DataType="{x:Type local:EquipmentUpgradePlanCostViewModel}">
-			<Grid
-				Grid.Row="3"
-				Grid.Column="0"
-				Grid.ColumnSpan="2"
-				>
+			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
