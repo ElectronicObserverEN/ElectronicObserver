@@ -21,7 +21,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 	public EquipmentUpgradePlanCostViewModel TotalCost { get; set; } = new(new());
 
-	public GridLength PlanListWidth { get; set; } = GridLength.Auto;
+	public GridLength PlanListWidth { get; set; } = new GridLength(350, GridUnitType.Pixel);
 
 	public bool DisplayFinished { get; set; } = true;
 
@@ -37,6 +37,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		base.Loaded();
 		PlannedUpgrades.CollectionChanged += (_, _) => Update();
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
+		EquipmentUpgradePlanManager.PlanFinished += (_, _) => UpdateTotalCost();
 		EquipmentUpgradePlanManager.PlanCostUpdated += (_, _) => UpdateTotalCost();
 		PropertyChanged += EquipmentUpgradePlannerViewModel_PropertyChanged;
 		Update();
@@ -94,7 +95,9 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 
 	private void UpdateTotalCost() 
-		=> TotalCost = new(PlannedUpgrades.Aggregate(new EquipmentUpgradePlanCostModel(), (cost, viewModel) => cost + viewModel.CalculateCost(), totalCost => totalCost));
+		=> TotalCost = new(PlannedUpgrades
+			.Where(plan => !plan.Finished)
+			.Aggregate(new EquipmentUpgradePlanCostModel(), (cost, viewModel) => cost + viewModel.Cost.Model, totalCost => totalCost));
 
 	private void Update()
 	{

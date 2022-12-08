@@ -190,9 +190,9 @@
 	<Grid>
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="{Binding PlanListWidth, Mode=TwoWay}" />
-			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="{Binding PlanListWidth, Mode=TwoWay}" />
 		</Grid.ColumnDefinitions>
 
 		<ScrollViewer Grid.Column="0">

@@ -5,6 +5,8 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
 public class EquipmentUpgradePlanCostViewModel
 {
+	public EquipmentUpgradePlanCostModel Model { get; set; }
+
 	public int Fuel { get; set; }
 
 	public int Ammo { get; set; }
@@ -29,6 +31,8 @@ public class EquipmentUpgradePlanCostViewModel
 
 	public EquipmentUpgradePlanCostViewModel(EquipmentUpgradePlanCostModel model)
 	{
+		Model = model;
+
 		Fuel = model.Fuel;
 		Ammo = model.Ammo;
 		Steel = model.Steel;
