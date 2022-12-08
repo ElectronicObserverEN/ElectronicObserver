@@ -91,14 +91,14 @@ public class EquipmentUpgradePlanCostModel
 
 		if (RequiredEquipments.Count != otherCost.RequiredEquipments.Count) return false;
 
-		foreach ((var v, var ov) in RequiredEquipments.Zip(otherCost.RequiredEquipments, (v, ov) => (v, ov)))
+		foreach ((EquipmentUpgradePlanCostItemModel v, EquipmentUpgradePlanCostItemModel ov) in RequiredEquipments.Zip(otherCost.RequiredEquipments, (v, ov) => (v, ov)))
 		{
 			if (!v.Equals(ov)) return false;
 		}
 
 		if (RequiredConsumables.Count != otherCost.RequiredConsumables.Count) return false;
 
-		foreach ((var v, var ov) in RequiredConsumables.Zip(otherCost.RequiredConsumables, (v, ov) => (v, ov)))
+		foreach ((EquipmentUpgradePlanCostItemModel v, EquipmentUpgradePlanCostItemModel ov) in RequiredConsumables.Zip(otherCost.RequiredConsumables, (v, ov) => (v, ov)))
 		{
 			if (!v.Equals(ov)) return false;
 		}

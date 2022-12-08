@@ -8,9 +8,9 @@ public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanC
 
 	public EquipmentUpgradePlanCostConsumableViewModel(EquipmentUpgradePlanCostItemModel model) : base(model)
 	{
-		var db = KCDatabase.Instance;
+		KCDatabase db = KCDatabase.Instance;
 
-		var item = db.UseItems[model.Id];
+		UseItem? item = db.UseItems[model.Id];
 
 		Owned = item?.Count ?? 0;
 

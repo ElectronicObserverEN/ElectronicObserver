@@ -9,7 +9,7 @@ public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCo
 
 	public EquipmentUpgradePlanCostEquipmentViewModel(EquipmentUpgradePlanCostItemModel model) : base(model)
 	{
-		var db = KCDatabase.Instance;
+		KCDatabase db = KCDatabase.Instance;
 
 		Owned = db.Equipments.Where(eq => eq.Value?.EquipmentID == model.Id).Count();
 
