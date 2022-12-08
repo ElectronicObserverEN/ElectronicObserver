@@ -161,6 +161,12 @@ namespace ElectronicObserver.Database.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("SelectedHelper")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SliderLevel")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("EquipmentUpgradePlanItems");

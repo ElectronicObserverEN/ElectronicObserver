@@ -79,6 +79,24 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 更新.
+        /// </summary>
+        public static string ConvertTo {
+            get {
+                return ResourceManager.GetString("ConvertTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 必要資材.
+        /// </summary>
+        public static string Cost {
+            get {
+                return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 表示完了.
         /// </summary>
         public static string DisplayFinished {
@@ -93,6 +111,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         public static string Goal {
             get {
                 return ResourceManager.GetString("Goal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 二番艦.
+        /// </summary>
+        public static string Helper {
+            get {
+                return ResourceManager.GetString("Helper", resourceCulture);
             }
         }
         
@@ -115,6 +142,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 所持：.
+        /// </summary>
+        public static string Owned {
+            get {
+                return ResourceManager.GetString("Owned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 優先順位.
         /// </summary>
         public static string Priority {
@@ -133,11 +169,29 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 必要：.
+        /// </summary>
+        public static string Required {
+            get {
+                return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 改修計画.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string TotalCost {
+            get {
+                return ResourceManager.GetString("TotalCost", resourceCulture);
             }
         }
         
@@ -156,6 +210,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         public static string UpgradeLevel {
             get {
                 return ResourceManager.GetString("UpgradeLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確実化.
+        /// </summary>
+        public static string UseSliderFromLevel {
+            get {
+                return ResourceManager.GetString("UseSliderFromLevel", resourceCulture);
             }
         }
     }

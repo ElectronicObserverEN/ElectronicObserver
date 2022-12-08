@@ -97,11 +97,65 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 5 ～.
+        /// </summary>
+        public static string FromLevel5 {
+            get {
+                return ResourceManager.GetString("FromLevel5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6 ～.
+        /// </summary>
+        public static string FromLevel6 {
+            get {
+                return ResourceManager.GetString("FromLevel6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7 ～.
+        /// </summary>
+        public static string FromLevel7 {
+            get {
+                return ResourceManager.GetString("FromLevel7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8 ～.
+        /// </summary>
+        public static string FromLevel8 {
+            get {
+                return ResourceManager.GetString("FromLevel8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9 ～.
+        /// </summary>
+        public static string FromLevel9 {
+            get {
+                return ResourceManager.GetString("FromLevel9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max.
         /// </summary>
         public static string Max {
             get {
                 return ResourceManager.GetString("Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to なし.
+        /// </summary>
+        public static string Never {
+            get {
+                return ResourceManager.GetString("Never", resourceCulture);
             }
         }
         

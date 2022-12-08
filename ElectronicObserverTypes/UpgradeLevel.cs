@@ -50,5 +50,5 @@ public enum UpgradeLevel
 
 	/// <summary>Equipment conversion</summary>
 	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Conversion")]
-	Conversion = -1
+	Conversion = 255
 }

@@ -1,0 +1,667 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Interop;
+using Browser.CefSharpBrowser.AirControlSimulator;
+using Browser.CefSharpBrowser.CefOp;
+using Browser.CefSharpBrowser.ExtraBrowser;
+using BrowserLibCore;
+using CefSharp;
+using CefSharp.Handler;
+using CefSharp.Wpf;
+using CefSharp.Wpf.Internals;
+using CefSharp.Wpf.Rendering.Experimental;
+using Cef = CefSharp.Cef;
+using IBrowser = CefSharp.IBrowser;
+
+namespace Browser.CefSharpBrowser;
+
+public class CefSharpViewModel : BrowserViewModel
+{
+	public override object? Browser => CefSharp;
+	private ChromiumWebBrowser? CefSharp { get; set; }
+	private static string BrowserCachePath => BrowserConstants.WebView2CachePath;
+
+	public CefSharpViewModel(string host, int port, string culture) : base(host, port, culture)
+	{
+		// Debugger.Launch();
+	}
+
+	public override async void OnLoaded(object sender, RoutedEventArgs e)
+	{
+		if (sender is not Window window) return;
+
+		IntPtr handle = new WindowInteropHelper(window).Handle;
+		SetWindowLong(handle, GWL_STYLE, WS_CHILD);
+
+		ConfigurationChanged();
+
+		// ウィンドウの親子設定＆ホストプロセスから接続してもらう
+		await BrowserHost.ConnectToBrowser((long)handle);
+
+		// 親ウィンドウが生きているか確認
+		HeartbeatTimer.Elapsed += async (sender2, e2) =>
+		{
+			try
+			{
+				bool alive = await BrowserHost.IsServerAlive();
+			}
+			catch (Exception)
+			{
+				Debug.WriteLine("host died");
+				Exit();
+			}
+		};
+		HeartbeatTimer.Interval = 2000; // 2秒ごと　
+		HeartbeatTimer.Start();
+
+		SetIconResource();
+
+		InitializeAsync();
+	}
+
+	/// <summary>
+	/// ブラウザを初期化します。
+	/// 最初の呼び出しのみ有効です。二回目以降は何もしません。
+	/// </summary>
+	protected override void InitializeAsync()
+	{
+		if (CefSharp is not null) return;
+		if (ProxySettings is null) return;
+		if (Configuration is null) return;
+
+		Cef.EnableHighDPISupport();
+
+		CefSettings? settings;
+
+		try
+		{
+			settings = new CefSettings
+			{
+				CachePath = Path.GetFullPath(BrowserCachePath),
+				Locale = "ja",
+				AcceptLanguageList = "ja,en-US,en", // todo: いる？
+				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
+				LogFile = "BrowserLog.log",
+			};
+		}
+		catch (BadImageFormatException)
+		{
+			if (MessageBox.Show(FormBrowser.InstallVisualCpp, FormBrowser.CefSharpLoadErrorTitle,
+					MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
+				== MessageBoxResult.Yes)
+			{
+				ProcessStartInfo psi = new()
+				{
+					FileName = @"https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+			throw;
+		}
+
+		if (!Configuration.HardwareAccelerationEnabled)
+			settings.DisableGpuAcceleration();
+
+		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
+		settings.CefCommandLineArgs.Add("limit-fps", "60");
+		// 60 fps hacks
+		// https://github.com/cefsharp/CefSharp/issues/1261
+		// https://github.com/cefsharp/CefSharp/issues/2275
+		settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
+		settings.CefCommandLineArgs.Add("enable-begin-frame-scheduling", "1");
+
+		// prevent CEF from taking over media keys
+		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
+		{
+			List<string> disabledFeatures = settings.CefCommandLineArgs["disable-features"]
+				.Split(",")
+				.ToList();
+
+			disabledFeatures.Add("HardwareMediaKeyHandling");
+
+			settings.CefCommandLineArgs["disable-features"] = string.Join(",", disabledFeatures);
+		}
+		else
+		{
+			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling");
+		}
+
+
+		if (Configuration.ForceColorProfile)
+		{
+			settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
+		}
+
+		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
+		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
+
+		var requestHandler = new CustomRequestHandler(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
+		requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
+
+		CefSharp = new ChromiumWebBrowser(KanColleUrl)
+		{
+			RequestHandler = requestHandler,
+			KeyboardHandler = new KeyboardHandler(),
+			MenuHandler = new MenuHandler(),
+			DragHandler = new DragHandler(),
+			BrowserSettings = new BrowserSettings
+			{
+				WindowlessFrameRate = 60,
+			},
+		};
+
+		CefSharp.RenderHandler = new CompositionTargetRenderHandler(CefSharp, CefSharp.DpiScaleFactor, CefSharp.DpiScaleFactor);
+
+		// Browser.WpfKeyboardHandler = new WpfKeyboardHandler(Browser);
+
+		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
+		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
+		CefSharp.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
+
+		CefSharp.PreviewKeyDown += (sender, args) =>
+		{
+			CultureInfo c = new(Culture);
+
+			Thread.CurrentThread.CurrentCulture = c;
+			Thread.CurrentThread.CurrentUICulture = c;
+
+			switch (args.Key)
+			{
+				case Key.F2:
+					ScreenshotCommand.Execute(null);
+					break;
+
+				case Key.F5:
+					// hard refresh if ctrl is pressed
+					if ((args.GetModifiers() & CefEventFlags.ControlDown) == CefEventFlags.ControlDown)
+					{
+						HardRefreshCommand.Execute(null);
+					}
+					else
+					{
+						RefreshCommand.Execute(null);
+					}
+					break;
+
+				case Key.F7:
+					MuteCommand.Execute(null);
+					break;
+
+				case Key.F12:
+					OpenDevtoolsCommand.Execute(null);
+					break;
+			}
+		};
+	}
+
+	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
+	{
+		// DocumentCompleted に相当?
+		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
+
+		if (e.IsLoading) return;
+
+		App.Current.Dispatcher.BeginInvoke(() =>
+		{
+			ApplyStyleSheet();
+			SetCookie();
+			ApplyZoom();
+			DestroyDMMreloadDialog();
+		});
+	}
+
+	// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
+	// その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
+	// 応急処置として失敗したとき後で再試行するようにしてみる
+	private string? NavigateCache { get; set; }
+
+	private void Browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
+	{
+		if (CefSharp is { IsBrowserInitialized: true } || NavigateCache is null) return;
+
+		// ロードが完了したので再試行
+		string url = NavigateCache; // 非同期コールするのでコピーを取っておく必要がある
+		App.Current.Dispatcher.BeginInvoke((Action)(() => Navigate(url)));
+		NavigateCache = null;
+	}
+
+	private void SetCookie()
+	{
+		ICookieManager cookieManager = CefSharp.GetCookieManager();
+
+		Cookie dmmCookie = new()
+		{
+			Domain = ".dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/",
+			Value = "1",
+			Secure = false
+		};
+		cookieManager.SetCookieAsync("https://www.dmm.com", dmmCookie).Wait();
+	}
+
+	protected override void ApplyZoom()
+	{
+		if (Configuration is null) return;
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		double zoomRate = Configuration.ZoomRate;
+		bool fit = Configuration.ZoomFit && StyleSheetApplied;
+
+		double zoomFactor;
+
+		if (fit)
+		{
+			double rateX = ActualWidth * DpiScale.DpiScaleX / KanColleSize.Width;
+			double rateY = ActualHeight * DpiScale.DpiScaleY / KanColleSize.Height;
+
+			zoomFactor = Math.Min(rateX, rateY);
+		}
+		else
+		{
+			zoomFactor = Math.Clamp(zoomRate, 0.1, 10);
+		}
+
+		// DpiScaleX and DpiScaleY should always be the same so it doesn't matter which one you use
+		CefSharp.SetZoomLevel(Math.Log(zoomFactor / DpiScale.DpiScaleX, 1.2));
+
+		if (StyleSheetApplied)
+		{
+			int newWidth = (int)(KanColleSize.Width * zoomFactor);
+			int newHeight = (int)(KanColleSize.Height * zoomFactor);
+
+			CefSharp.Width = newWidth;
+			CefSharp.Height = newHeight;
+		}
+
+		CurrentZoom = fit switch
+		{
+			true => FormBrowser.Other_Zoom_Current_Fit,
+			_ => FormBrowser.Other_Zoom_Current + $" {zoomRate:p1}",
+		};
+	}
+
+	protected override void ApplyStyleSheet()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		try
+		{
+			IFrame? mainframe = GetMainFrame();
+			IFrame? gameframe = GetGameFrame();
+
+			if (mainframe == null || gameframe == null) return;
+
+			if (!StyleSheetApplied)
+			{
+				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
+				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
+				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+			}
+			else
+			{
+				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassId));
+				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassId));
+				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+			}
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToApplyStylesheet);
+		}
+	}
+
+	private IFrame? GetMainFrame()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+
+		IBrowser browser = CefSharp.GetBrowser();
+		IFrame frame = browser.MainFrame;
+
+		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/")) switch
+		{
+			true => frame,
+			_ => null,
+		};
+	}
+
+	private IFrame? GetGameFrame()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+
+		IBrowser browser = CefSharp.GetBrowser();
+		IEnumerable<IFrame> frames = browser.GetFrameIdentifiers()
+			.Select(id => browser.GetFrame(id));
+
+		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/"));
+	}
+
+	private IFrame? GetKanColleFrame()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+
+		IBrowser browser = CefSharp.GetBrowser();
+		IEnumerable<IFrame> frames = browser.GetFrameIdentifiers()
+			.Select(id => browser.GetFrame(id));
+
+		return frames.FirstOrDefault(f => f.Url.Contains(@"/kcs2/index.php"));
+	}
+
+	protected override void DestroyDMMreloadDialog()
+	{
+		if (Configuration is null) return;
+		if (!Configuration.IsDMMreloadDialogDestroyable) return;
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		try
+		{
+			GetMainFrame()?.EvaluateScriptAsync(Properties.Resources.DMMScript);
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
+		}
+	}
+
+	protected override void TryGetVolumeManager()
+	{
+		VolumeManager = VolumeManager.CreateInstanceByProcessName("CefSharp.BrowserSubprocess");
+	}
+
+	protected override void SetVolumeState()
+	{
+		if (Configuration is null) return;
+
+		bool mute;
+		float volume;
+
+		try
+		{
+			if (VolumeManager == null)
+			{
+				TryGetVolumeManager();
+			}
+
+			mute = VolumeManager?.IsMute ?? false;
+			volume = (VolumeManager?.Volume ?? 1) * 100;
+		}
+		catch (Exception)
+		{
+			// 音量データ取得不能時
+			VolumeManager = null;
+			mute = false;
+			volume = 100;
+		}
+
+		RealVolume = (int)volume;
+		Configuration.Volume = volume;
+		Configuration.IsMute = mute;
+		IsMuted = mute;
+		ConfigurationUpdated();
+	}
+
+	public override void Navigate(string url)
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		CefSharp.Load(url);
+		// 大方ロードできないのであとで再試行する
+		NavigateCache = url;
+	}
+
+	protected override void RefreshBrowser() => RefreshBrowser(false);
+
+	protected override void RefreshBrowser(bool ignoreCache)
+	{
+		CefSharp?.Reload(ignoreCache);
+	}
+
+	protected override void Exit()
+	{
+		App.Current.Dispatcher.Invoke(() =>
+		{
+			HeartbeatTimer.Stop();
+			Task.Run(async () => await BrowserHost.DisposeAsync()).Wait();
+			Cef.Shutdown();
+			App.Current.Shutdown();
+		});
+	}
+
+	protected override async void Screenshot()
+	{
+		int savemode = Configuration.ScreenShotSaveMode;
+		int format = Configuration.ScreenShotFormat;
+		string folderPath = Configuration.ScreenShotPath;
+		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
+
+		System.Drawing.Bitmap? image = null;
+		try
+		{
+			image = await TakeScreenShot();
+
+
+			if (image == null) return;
+
+			if (is32bpp)
+			{
+				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+				{
+					var imgalt = new System.Drawing.Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+					using (var g = System.Drawing.Graphics.FromImage(imgalt))
+					{
+						g.DrawImage(image, new System.Drawing.Rectangle(0, 0, imgalt.Width, imgalt.Height));
+					}
+
+					image.Dispose();
+					image = imgalt;
+				}
+
+				// 不透明ピクセルのみだと jpeg 化されてしまうため、1px だけわずかに透明にする
+				System.Drawing.Color temp = image.GetPixel(image.Width - 1, image.Height - 1);
+				image.SetPixel(image.Width - 1, image.Height - 1, System.Drawing.Color.FromArgb(252, temp.R, temp.G, temp.B));
+			}
+			else
+			{
+				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format24bppRgb)
+				{
+					var imgalt = new System.Drawing.Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+					using (var g = System.Drawing.Graphics.FromImage(imgalt))
+					{
+						g.DrawImage(image, new System.Drawing.Rectangle(0, 0, imgalt.Width, imgalt.Height));
+					}
+
+					image.Dispose();
+					image = imgalt;
+				}
+			}
+
+
+			// to file
+			if ((savemode & 1) != 0)
+			{
+				try
+				{
+					Directory.CreateDirectory(folderPath);
+
+					string ext;
+					System.Drawing.Imaging.ImageFormat imgFormat;
+
+					switch (format)
+					{
+						case 1:
+							ext = "jpg";
+							imgFormat = System.Drawing.Imaging.ImageFormat.Jpeg;
+							break;
+						case 2:
+						default:
+							ext = "png";
+							imgFormat = System.Drawing.Imaging.ImageFormat.Png;
+							break;
+					}
+
+					string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
+					image.Save(path, imgFormat);
+					LastScreenShotPath = Path.GetFullPath(path);
+
+					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
+				}
+				catch (Exception ex)
+				{
+					SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
+				}
+			}
+
+
+			// to clipboard
+			if ((savemode & 2) != 0)
+			{
+				try
+				{
+					Clipboard.SetImage(image.ToBitmapSource());
+
+					if ((savemode & 3) != 3)
+						AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
+				}
+				catch (Exception ex)
+				{
+					SendErrorReport(ex.ToString(), FormBrowser.FailedToCopyScreenshotToClipboard);
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.ScreenshotError);
+		}
+		finally
+		{
+			image?.Dispose();
+		}
+	}
+
+	/// <summary>
+	/// スクリーンショットを撮影します。
+	/// </summary>
+	private async Task<System.Drawing.Bitmap?> TakeScreenShot()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+
+		IFrame? kancolleFrame = GetKanColleFrame();
+
+		if (kancolleFrame is null)
+		{
+			AddLog(3, FormBrowser.KancolleNotLoadedCannotTakeScreenshot);
+			System.Media.SystemSounds.Beep.Play();
+			return null;
+		}
+
+
+		Task<ScreenShotPacket> InternalTakeScreenShot()
+		{
+			ScreenShotPacket request = new();
+
+			string script = $@"
+(async function()
+{{
+	await CefSharp.BindObjectAsync('{request.ID}');
+	let canvas = document.querySelector('canvas');
+	requestAnimationFrame(() =>
+	{{
+		let dataurl = canvas.toDataURL('image/png');
+		{request.ID}.complete(dataurl);
+	}});
+}})();
+";
+
+			CefSharp.JavascriptObjectRepository.Register(request.ID, request);
+			kancolleFrame.ExecuteJavaScriptAsync(script);
+
+			return request.TaskSource.Task;
+		}
+
+		ScreenShotPacket result = await InternalTakeScreenShot();
+
+		// ごみ掃除
+		CefSharp.JavascriptObjectRepository.UnRegister(result.ID);
+		kancolleFrame.ExecuteJavaScriptAsync($@"delete {result.ID}");
+
+		return result.GetImage();
+	}
+
+	protected override void Mute()
+	{
+		if (VolumeManager == null)
+		{
+			TryGetVolumeManager();
+		}
+
+		try
+		{
+			if (VolumeManager is null)
+			{
+				System.Media.SystemSounds.Beep.Play();
+			}
+			else
+			{
+				VolumeManager.ToggleMute();
+			}
+		}
+		catch (Exception)
+		{
+
+		}
+
+		SetVolumeState();
+	}
+
+	protected override void GoTo()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		BrowserHost.RequestNavigation(CefSharp.GetMainFrame()?.Url ?? "");
+	}
+
+	protected override void OpenDevtools()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		CefSharp.GetBrowser().ShowDevTools();
+	}
+
+	protected override async void ClearCache()
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		if (MessageBox.Show(FormBrowser.ClearCacheMessage, FormBrowser.ClearCacheTitle,
+				MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
+		{
+			await CefSharp.ClearCache();
+			AddLog(2, FormBrowser.CacheCleared);
+		}
+	}
+
+	public override void OpenExtraBrowser()
+	{
+		new ExtraBrowserWindow
+		{
+			Owner = App.Current.MainWindow,
+		}.Show();
+	}
+
+	public override void OpenAirControlSimulator(string url)
+	{
+		new AirControlSimulatorWindow(url, BrowserHost)
+		{
+			Owner = App.Current.MainWindow,
+		}.Show();
+	}
+}

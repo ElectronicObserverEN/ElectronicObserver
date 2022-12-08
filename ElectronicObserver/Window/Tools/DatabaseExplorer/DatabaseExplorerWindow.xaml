@@ -3,6 +3,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:apiFiles="clr-namespace:ElectronicObserver.Window.Tools.DatabaseExplorer.ApiFile"
+	xmlns:apiTypeTester="clr-namespace:ElectronicObserver.Window.Tools.DatabaseExplorer.ApiTypeTester"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,10 +26,15 @@
 		<DataTemplate DataType="{x:Type sortie:SortieExplorerViewModel}">
 			<sortie:SortieExplorerUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type apiTypeTester:ApiTypeTesterViewModel}">
+			<apiTypeTester:ApiTypeTesterUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<TabControl>
 		<TabItem Content="{Binding ApiFileExplorer}" Header="Api files" />
 		<TabItem Content="{Binding SortieExplorer}" Header="Sorties" />
+		<TabItem Content="{Binding ApiTypeTester}" Header="Type testing" />
 	</TabControl>
 </common:WindowBase>

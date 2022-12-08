@@ -150,4 +150,25 @@
   <data name="Unassigned" xml:space="preserve">
     <value>Unassigned</value>
   </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="UseSliderFromLevel" xml:space="preserve">
+    <value>Use slider from level</value>
+  </data>
+  <data name="Helper" xml:space="preserve">
+    <value>Helper</value>
+  </data>
+  <data name="ConvertTo" xml:space="preserve">
+    <value>Convert to</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>Owned :</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required :</value>
+  </data>
+  <data name="TotalCost" xml:space="preserve">
+    <value>Total cost</value>
+  </data>
 </root>

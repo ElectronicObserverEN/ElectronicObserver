@@ -20,6 +20,7 @@ public class EquipmentUpgradePlanManager
 	private EquipmentData? CurrentUpgradeEquipment { get; set; }
 
 	public event EventHandler? PlanFinished;
+	public event EventHandler? PlanCostUpdated;
 
 	public EquipmentUpgradePlanManager()
 	{
@@ -76,6 +77,14 @@ public class EquipmentUpgradePlanManager
 			PlanFinished?.Invoke(this, EventArgs.Empty);
 		};
 
+
+		plan.PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(plan.Cost)) return;
+
+			PlanCostUpdated?.Invoke(this, EventArgs.Empty);
+		};
+
 		return plan;
 	}
 
@@ -121,10 +130,12 @@ public class EquipmentUpgradePlanManager
 		if (data.api_remodel_id() && data.api_remodel_id[0] != data.api_remodel_id[1])
 			UpdatePlanAfterEquipmentConversion(plan, (int)data.api_remodel_id[0]);
 		else
-			UpdatePlanAfterEquipmentImprovment(plan);
+			UpdatePlanAfterEquipmentImprovement(plan);
 
 
 		plan.Update();
+
+		Save();
 	}
 
 	private void UpdatePlanAfterEquipmentConversion(EquipmentUpgradePlanItemViewModel plan, int oldEquipmentMasterId)
@@ -137,7 +148,7 @@ public class EquipmentUpgradePlanManager
 		plan.EquipmentId = null;
 	}
 
-	private void UpdatePlanAfterEquipmentImprovment(EquipmentUpgradePlanItemViewModel plan)
+	private void UpdatePlanAfterEquipmentImprovement(EquipmentUpgradePlanItemViewModel plan)
 	{
 		if (plan.DesiredUpgradeLevel == UpgradeLevel.Conversion) return;
 

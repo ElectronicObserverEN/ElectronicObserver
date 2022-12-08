@@ -11,4 +11,11 @@ public class EquipmentUpgradePlannerTranslationViewModel
 	public string AddEquipmentFromLibrary => EquipmentUpgradePlanner.AddEquipmentFromLibrary;
 	public string AddOwnedEquipment => EquipmentUpgradePlanner.AddOwnedEquipment;
 	public string DisplayFinished => EquipmentUpgradePlanner.DisplayFinished;
+	public string Cost => EquipmentUpgradePlanner.Cost;
+	public string UseSliderFromLevel => EquipmentUpgradePlanner.UseSliderFromLevel;
+	public string Helper => EquipmentUpgradePlanner.Helper;
+	public string ConvertTo => EquipmentUpgradePlanner.ConvertTo;
+	public string Owned => EquipmentUpgradePlanner.Owned;
+	public string Required => EquipmentUpgradePlanner.Required;
+	public string TotalCost => EquipmentUpgradePlanner.TotalCost;
 }

@@ -150,4 +150,25 @@
   <data name="Unassigned" xml:space="preserve">
     <value>未割り当て</value>
   </data>
+  <data name="Cost" xml:space="preserve">
+    <value>必要資材</value>
+  </data>
+  <data name="UseSliderFromLevel" xml:space="preserve">
+    <value>確実化</value>
+  </data>
+  <data name="Helper" xml:space="preserve">
+    <value>二番艦</value>
+  </data>
+  <data name="ConvertTo" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>所持：</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>必要：</value>
+  </data>
+  <data name="TotalCost" xml:space="preserve">
+    <value>???</value>
+  </data>
 </root>

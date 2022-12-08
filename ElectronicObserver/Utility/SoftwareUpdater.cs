@@ -11,7 +11,6 @@ using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
-using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility;
 
@@ -150,6 +149,11 @@ internal class SoftwareUpdater
 			if (CurrentVersion.FitBonuses < LatestVersion.FitBonuses)
 			{
 				downloadList.Add(("FitBonuses.json", DataType.Data));
+			}
+
+			if (CurrentVersion.EquipmentUpgrades < LatestVersion.EquipmentUpgrades)
+			{
+				downloadList.Add(("EquipmentUpgrades.json", DataType.Data));
 			}
 
 			needReload = downloadList.Any();
@@ -294,6 +298,12 @@ internal class SoftwareUpdater
 			};
 			int eventLocksVersion = (int)dataJson.Locks;
 
+			int equipmentUpgradesVersion = dataJson.EquipmentUpgrades() switch
+			{
+				true => (int)dataJson.EquipmentUpgrades,
+				_ => 0
+			};
+
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
 			var eventState = (MaintenanceState)(int)dataJson.event_state;
 
@@ -315,6 +325,7 @@ internal class SoftwareUpdater
 				MaintenanceDate = maintenanceDate,
 				EventState = eventState,
 				FitBonuses = fitBonusesVersion,
+				EquipmentUpgrades = equipmentUpgradesVersion,
 			};
 		}
 		catch (Exception e)
@@ -370,6 +381,7 @@ public class UpdateData
 	public int EventLocks { get; set; }
 	public int LockTranslations { get; set; }
 	public int FitBonuses { get; set; }
+	public int EquipmentUpgrades { get; set; }
 	public DateTime MaintenanceDate { get; set; }
 
 	/// <summary>

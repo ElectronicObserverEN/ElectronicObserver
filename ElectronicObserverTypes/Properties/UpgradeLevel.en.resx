@@ -129,8 +129,26 @@
   <data name="Four" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="FromLevel5" xml:space="preserve">
+    <value>5 ～</value>
+  </data>
+  <data name="FromLevel6" xml:space="preserve">
+    <value>6 ～</value>
+  </data>
+  <data name="FromLevel7" xml:space="preserve">
+    <value>7 ～</value>
+  </data>
+  <data name="FromLevel8" xml:space="preserve">
+    <value>8 ～</value>
+  </data>
+  <data name="FromLevel9" xml:space="preserve">
+    <value>9 ～</value>
+  </data>
   <data name="Max" xml:space="preserve">
     <value>Max</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
   </data>
   <data name="Nine" xml:space="preserve">
     <value>9</value>

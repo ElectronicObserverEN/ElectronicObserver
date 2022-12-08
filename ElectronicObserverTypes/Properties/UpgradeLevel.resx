@@ -156,4 +156,22 @@
   <data name="Unknown" xml:space="preserve">
     <value>不明</value>
   </data>
+  <data name="Never" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="FromLevel5" xml:space="preserve">
+    <value>5 ～</value>
+  </data>
+  <data name="FromLevel6" xml:space="preserve">
+    <value>6 ～</value>
+  </data>
+  <data name="FromLevel7" xml:space="preserve">
+    <value>7 ～</value>
+  </data>
+  <data name="FromLevel8" xml:space="preserve">
+    <value>8 ～</value>
+  </data>
+  <data name="FromLevel9" xml:space="preserve">
+    <value>9 ～</value>
+  </data>
 </root>

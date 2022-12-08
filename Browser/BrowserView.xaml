@@ -3,11 +3,8 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="clr-namespace:Browser"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
 	Name="BrowserWindow"
 	Width="800"
 	Height="450"
@@ -397,11 +394,7 @@
 						</MenuItem.Icon>
 					</MenuItem>
 					<MenuItem d:Header="Previous Screenshot" Header="{Binding FormBrowser.ToolMenu_Other_LastScreenShot}">
-						<MenuItem
-							Width="Auto"
-							Height="Auto"
-							ContextMenuOpening="FrameworkElement_OnContextMenuOpening"
-							>
+						<MenuItem Width="Auto" Height="Auto">
 							<MenuItem.Header>
 								<Grid>
 									<TextBlock Text="{Binding FormBrowser.NoScreenshotYet}" />
@@ -533,7 +526,18 @@
 						InputGestureText="F7"
 						>
 						<MenuItem.Icon>
-							<Image Source="{Binding MuteStateImage}" />
+							<Image>
+								<Image.Style>
+									<Style TargetType="{x:Type Image}">
+										<Setter Property="Source" Value="{Binding Icons.Unmute}" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding IsMuted}" Value="True">
+												<Setter Property="Source" Value="{Binding Icons.Mute}" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Image.Style>
+							</Image>
 						</MenuItem.Icon>
 					</MenuItem>
 					<Separator />
