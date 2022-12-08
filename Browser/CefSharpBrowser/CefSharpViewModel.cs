@@ -167,32 +167,6 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 		CefSharp.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
-
-		CefSharp.PreviewKeyDown += (sender, args) =>
-		{
-			CultureInfo c = new(Culture);
-
-			Thread.CurrentThread.CurrentCulture = c;
-			Thread.CurrentThread.CurrentUICulture = c;
-
-			switch (args.Key)
-			{
-				case Key.F5:
-					// hard refresh if ctrl is pressed
-					if ((args.GetModifiers() & CefEventFlags.ControlDown) == CefEventFlags.ControlDown)
-					{
-						HardRefreshCommand.Execute(null);
-					}
-					else
-					{
-						RefreshCommand.Execute(null);
-					}
-					break;
-				case Key.F12:
-					OpenDevtoolsCommand.Execute(null);
-					break;
-			}
-		};
 	}
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
