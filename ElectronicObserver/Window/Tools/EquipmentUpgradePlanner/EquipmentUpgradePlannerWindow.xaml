@@ -51,6 +51,12 @@
 
 		<DataTemplate x:Key="CostTemplate" DataType="{x:Type local:EquipmentUpgradePlanCostViewModel}">
 			<Grid>
+				<Grid.Resources>
+					<Style TargetType="common1:ImageTextControl">
+						<Setter Property="Margin" Value="2 0" />
+					</Style>
+				</Grid.Resources>
+
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
@@ -68,8 +74,6 @@
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="0"
-					Margin="8 0"
-					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
 					Text="{Binding Fuel}"
 					/>
@@ -77,8 +81,6 @@
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="1"
-					Margin="8 0"
-					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
 					Text="{Binding Ammo}"
 					/>
@@ -86,8 +88,6 @@
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="2"
-					Margin="8 0"
-					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
 					Text="{Binding Steel}"
 					/>
@@ -95,8 +95,6 @@
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="3"
-					Margin="8 0"
-					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}"
 					Text="{Binding Bauxite}"
 					/>
@@ -105,8 +103,6 @@
 				<common1:ImageTextControl
 					Grid.Row="1"
 					Grid.Column="0"
-					Margin="8 0"
-					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ItemDevelopmentMaterial}, Converter={StaticResource ImageSourceConverter}}"
 					Text="{Binding DevelopmentMaterial}"
 					/>
@@ -114,8 +110,6 @@
 				<common1:ImageTextControl
 					Grid.Row="1"
 					Grid.Column="2"
-					Margin="8 0"
-					HorizontalAlignment="Left"
 					Image="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}"
 					Text="{Binding ImprovementMaterial}"
 					/>
