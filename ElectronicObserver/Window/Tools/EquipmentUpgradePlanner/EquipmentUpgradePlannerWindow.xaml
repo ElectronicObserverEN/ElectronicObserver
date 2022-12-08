@@ -409,6 +409,7 @@
 										<ContentControl
 											Grid.Row="3"
 											Grid.Column="0"
+											Grid.ColumnSpan="2"
 											Content="{Binding Cost}"
 											ContentTemplate="{StaticResource CostTemplate}"
 											/>
