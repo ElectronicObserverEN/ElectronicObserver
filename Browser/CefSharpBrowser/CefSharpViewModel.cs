@@ -177,10 +177,6 @@ public class CefSharpViewModel : BrowserViewModel
 
 			switch (args.Key)
 			{
-				case Key.F2:
-					ScreenshotCommand.Execute(null);
-					break;
-
 				case Key.F5:
 					// hard refresh if ctrl is pressed
 					if ((args.GetModifiers() & CefEventFlags.ControlDown) == CefEventFlags.ControlDown)
@@ -192,11 +188,6 @@ public class CefSharpViewModel : BrowserViewModel
 						RefreshCommand.Execute(null);
 					}
 					break;
-
-				case Key.F7:
-					MuteCommand.Execute(null);
-					break;
-
 				case Key.F12:
 					OpenDevtoolsCommand.Execute(null);
 					break;
