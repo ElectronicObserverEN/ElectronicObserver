@@ -21,7 +21,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 	public EquipmentUpgradePlanCostViewModel TotalCost { get; set; } = new(new());
 
-	public GridLength PlanListWidth { get; set; } = new GridLength(3, GridUnitType.Star);
+	public GridLength PlanListWidth { get; set; } = GridLength.Auto;
 
 	public bool DisplayFinished { get; set; } = true;
 

@@ -327,9 +327,8 @@ public partial class App : Application
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()
-			.Property(w => w.ViewModel.DisplayFinished);
-			// Doesn't seem to work, always set the width to auto? instead of the actual value
-			//.Property(w => w.ViewModel.PlanListWidth);
+			.Property(w => w.ViewModel.DisplayFinished)
+			.Property(w => w.ViewModel.PlanListWidth);
 
 		tracker
 			.Configure<ExpCheckerWindow>()
