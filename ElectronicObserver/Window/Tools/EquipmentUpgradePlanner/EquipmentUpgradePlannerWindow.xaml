@@ -6,6 +6,7 @@
 	xmlns:common1="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:costs="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:helpers="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
@@ -251,6 +252,7 @@
 										<RowDefinition Height="Auto" />
 										<RowDefinition Height="Auto" />
 										<RowDefinition Height="Auto" />
+										<RowDefinition Height="Auto" />
 										<RowDefinition Height="*" />
 									</Grid.RowDefinitions>
 
@@ -415,6 +417,77 @@
 											ContentTemplate="{StaticResource CostTemplate}"
 											/>
 									</Grid>
+
+									<StackPanel
+										Grid.Row="7"
+										Grid.Column="0"
+										Grid.ColumnSpan="2"
+										>
+										<TextBlock Text="Helpers" />
+
+										<ItemsControl
+											Grid.Row="1"
+											Margin="0 5"
+											HorizontalAlignment="Center"
+											Grid.IsSharedSizeScope="True"
+											ItemsSource="{Binding HelperViewModels}"
+											>
+
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+
+													<StackPanel Orientation="Vertical">
+														<ItemsControl
+															Grid.Row="1"
+															Margin="0 5"
+															HorizontalAlignment="Center"
+															Grid.IsSharedSizeScope="True"
+															ItemsSource="{Binding Helpers}"
+															>
+
+															<ItemsControl.ItemTemplate>
+																<DataTemplate>
+																	<TextBlock Text="{Binding NameEN}" />
+																</DataTemplate>
+															</ItemsControl.ItemTemplate>
+
+														</ItemsControl>
+
+														<ItemsControl
+															Grid.Row="1"
+															Margin="0 5"
+															HorizontalAlignment="Center"
+															Grid.IsSharedSizeScope="True"
+															ItemsSource="{Binding Days}"
+															>
+
+															<ItemsControl.ItemsPanel>
+																<ItemsPanelTemplate>
+																	<StackPanel Orientation="Horizontal" />
+																</ItemsPanelTemplate>
+															</ItemsControl.ItemsPanel>
+
+															<ItemsControl.ItemTemplate>
+																<DataTemplate>
+																	<Border
+																		Background="{Binding Background}"
+																		BorderBrush="Gray"
+																		BorderThickness="1"
+																		>
+																		<StackPanel Margin="5 3">
+																			<TextBlock Text="{Binding DisplayValue}" />
+																		</StackPanel>
+																	</Border>
+																</DataTemplate>
+															</ItemsControl.ItemTemplate>
+
+														</ItemsControl>
+													</StackPanel>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+
+										</ItemsControl>
+									</StackPanel>
 								</Grid>
 							</Border>
 

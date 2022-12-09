@@ -16,6 +16,7 @@ public class TranslationBaseViewModel : ObservableObject
 		Configuration.Instance.ConfigurationChanged += () =>
 		{
 			CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
+			cultureInfo.DateTimeFormat.FirstDayOfWeek = Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
 			Thread.CurrentThread.CurrentCulture = cultureInfo;
 			Thread.CurrentThread.CurrentUICulture = cultureInfo;
