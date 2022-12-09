@@ -187,7 +187,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 総計必要資材.
         /// </summary>
         public static string TotalCost {
             get {
