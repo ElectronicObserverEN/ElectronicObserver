@@ -10,13 +10,16 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
 public class EquipmentUpgradeHelpersViewModel
 {
-	/// <summary>
-	/// Should this be here ?
-	/// </summary>
-	public static List<DayOfWeek> DaysSortedDependingOnCulture =>
-		Enum.GetValues<DayOfWeek>()
-		.OrderBy(day => day < CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek ? day + 7 : day)
-		.ToList();
+	public static DayOfWeek[] DaysOfWeek { get; } = new DayOfWeek[]
+	{
+		DayOfWeek.Monday,
+		DayOfWeek.Tuesday,
+		DayOfWeek.Wednesday,
+		DayOfWeek.Thursday,
+		DayOfWeek.Friday,
+		DayOfWeek.Saturday,
+		DayOfWeek.Sunday
+	};
 
 	public List<IShipDataMaster> Helpers { get; set; } = new();
 
@@ -28,6 +31,6 @@ public class EquipmentUpgradeHelpersViewModel
 
 		Helpers = model.ShipIds.Select(ship => db.MasterShips[ship]).ToList();
 
-		Days = DaysSortedDependingOnCulture.Select(day => new EquipmentUpgradeHelpersDayViewModel(day, model.CanHelpOnDays.Contains(day))).ToList();
+		Days = DaysOfWeek.Select(day => new EquipmentUpgradeHelpersDayViewModel(day, model.CanHelpOnDays.Contains(day))).ToList();
 	}
 }
