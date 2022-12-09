@@ -60,6 +60,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public bool Finished { get; set; }
 
 	public int Priority { get; set; }
+
 	public SliderUpgradeLevel SliderLevel { get; set; }
 
 	public IShipDataMaster? SelectedHelper { get; set; }
