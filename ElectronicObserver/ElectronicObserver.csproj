@@ -385,6 +385,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FleetImageGenerator.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\SortieRecordViewer\SortieRecordViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>SortieRecordViewer.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -750,6 +755,10 @@
 		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\SortieRecordViewer\SortieRecordViewer.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>SortieRecordViewer.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

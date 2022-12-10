@@ -46,6 +46,7 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
+using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
@@ -244,6 +245,7 @@ public partial class App : Application
 			.AddSingleton<DialogAlbumMasterShipTranslationViewModel>()
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
+			.AddSingleton<SortieRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogResourceChartTranslationViewModel>()
