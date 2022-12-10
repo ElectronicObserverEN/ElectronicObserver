@@ -465,8 +465,6 @@
 									Grid.Column="0"
 									Grid.ColumnSpan="2"
 									>
-									<TextBlock Text="{Binding DataContext.EquipmentUpgradePlanner.Helpers, Source={StaticResource Proxy}}" />
-
 									<ItemsControl
 										Grid.Row="1"
 										Margin="0 5"
