@@ -31,6 +31,10 @@ public class ApiAirBaseAttack
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiStage3 ApiStage3 { get; set; } = default!;
 
+	[JsonPropertyName("api_stage3_combined")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiAirBaseAttackApiStage3? ApiStage3Combined { get; set; } = default!;
+
 	[JsonPropertyName("api_stage_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

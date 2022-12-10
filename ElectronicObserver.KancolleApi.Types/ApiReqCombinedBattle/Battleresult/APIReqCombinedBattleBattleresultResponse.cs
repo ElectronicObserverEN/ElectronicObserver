@@ -1,8 +1,9 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 
-public class ApiReqCombinedBattleBattleresultResponse
+public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 {
 	[JsonPropertyName("api_dests")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
