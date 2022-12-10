@@ -67,6 +67,8 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; set; } = new(); 
 
+	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new());
+
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
 
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
@@ -135,6 +137,16 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 				.Select(helpers => new EquipmentUpgradeHelpersViewModel(helpers))
 				.ToList(),
 			_ => new()
+		};
+
+		HelperViewModelCompact = Equipment switch
+		{
+			IEquipmentData equipment => new EquipmentUpgradeDaysViewModel(EquipmentUpgradeData.UpgradeList
+				.Where(data => data.EquipmentId == equipment.EquipmentID)
+				.SelectMany(data => data.Improvement)
+				.SelectMany(data => data.Helpers)
+				.ToList()),
+			_ => new(new())
 		};
 	}
 

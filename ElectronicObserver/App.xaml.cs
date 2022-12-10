@@ -328,6 +328,7 @@ public partial class App : Application
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()
 			.Property(w => w.ViewModel.Filters.DisplayFinished)
+			.Property(w => w.ViewModel.CompactMode)
 			.Property(w => w.ViewModel.PlanListWidth);
 
 		tracker

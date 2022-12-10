@@ -171,4 +171,7 @@
   <data name="TotalCost" xml:space="preserve">
     <value>Total cost</value>
   </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>Compact mode</value>
+  </data>
 </root>

@@ -187,6 +187,121 @@
 			</Grid>
 		</DataTemplate>
 
+		<DataTemplate x:Key="DetailedUpgradeDayDisplayTemplate" DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
+
+			<ItemsControl
+				Margin="0 5"
+				HorizontalAlignment="Center"
+				ItemsSource="{Binding HelperViewModels}"
+				>
+
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Vertical">
+							<ItemsControl
+								Margin="0 5"
+								HorizontalAlignment="Center"
+								ItemsSource="{Binding Helpers}"
+								>
+
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding NameEN}" />
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+
+							</ItemsControl>
+
+							<ItemsControl
+								Margin="0 5"
+								HorizontalAlignment="Center"
+								ItemsSource="{Binding Days}"
+								>
+
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Border
+											Background="{Binding Background}"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<StackPanel Margin="5 3">
+												<TextBlock Text="{Binding DisplayValue}" />
+											</StackPanel>
+										</Border>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+
+							</ItemsControl>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+
+			</ItemsControl>
+		</DataTemplate>
+
+		<DataTemplate x:Key="CompactUpgradeDayDisplayTemplate" DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
+			<StackPanel Orientation="Vertical">
+				<ItemsControl
+					Margin="0 5"
+					HorizontalAlignment="Center"
+					ItemsSource="{Binding HelperViewModelCompact.Days}"
+					>
+
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Border
+								Background="{Binding Background}"
+								BorderBrush="Gray"
+								BorderThickness="1"
+								>
+
+								<Border.Style>
+									<Style TargetType="Border">
+										<Setter Property="ToolTip">
+											<Setter.Value>
+												<ToolTip>
+													<ItemsControl ItemsSource="{Binding Helpers}">
+														<ItemsControl.ItemTemplate>
+															<DataTemplate>
+																<TextBlock Text="{Binding NameEN}" />
+															</DataTemplate>
+														</ItemsControl.ItemTemplate>
+													</ItemsControl>
+												</ToolTip>
+											</Setter.Value>
+										</Setter>
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding Helpers.Count}" Value="0">
+												<Setter Property="ToolTip" Value="{x:Null}" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Border.Style>
+
+								<StackPanel Margin="5 3">
+									<TextBlock Text="{Binding DisplayValue}" />
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+
+				</ItemsControl>
+			</StackPanel>
+		</DataTemplate>
+
 	</Window.Resources>
 
 	<Grid>
@@ -218,6 +333,12 @@
 				Margin="10 0 0 0"
 				Command="{Binding AddEquipmentPlanFromMasterDataCommand}"
 				Content="{Binding EquipmentUpgradePlanner.AddEquipmentFromLibrary}"
+				/>
+
+			<CheckBox
+				Margin="10 0 0 0"
+				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
+				IsChecked="{Binding CompactMode}"
 				/>
 
 			<CheckBox
@@ -465,68 +586,20 @@
 									Grid.Column="0"
 									Grid.ColumnSpan="2"
 									>
-									<ItemsControl
-										Grid.Row="1"
-										Margin="0 5"
-										HorizontalAlignment="Center"
-										Grid.IsSharedSizeScope="True"
-										ItemsSource="{Binding HelperViewModels}"
-										>
-
-										<ItemsControl.ItemTemplate>
-											<DataTemplate>
-
-												<StackPanel Orientation="Vertical">
-													<ItemsControl
-														Grid.Row="1"
-														Margin="0 5"
-														HorizontalAlignment="Center"
-														Grid.IsSharedSizeScope="True"
-														ItemsSource="{Binding Helpers}"
-														>
-
-														<ItemsControl.ItemTemplate>
-															<DataTemplate>
-																<TextBlock Text="{Binding NameEN}" />
-															</DataTemplate>
-														</ItemsControl.ItemTemplate>
-
-													</ItemsControl>
-
-													<ItemsControl
-														Grid.Row="1"
-														Margin="0 5"
-														HorizontalAlignment="Center"
-														Grid.IsSharedSizeScope="True"
-														ItemsSource="{Binding Days}"
-														>
-
-														<ItemsControl.ItemsPanel>
-															<ItemsPanelTemplate>
-																<StackPanel Orientation="Horizontal" />
-															</ItemsPanelTemplate>
-														</ItemsControl.ItemsPanel>
-
-														<ItemsControl.ItemTemplate>
-															<DataTemplate>
-																<Border
-																	Background="{Binding Background}"
-																	BorderBrush="Gray"
-																	BorderThickness="1"
-																	>
-																	<StackPanel Margin="5 3">
-																		<TextBlock Text="{Binding DisplayValue}" />
-																	</StackPanel>
-																</Border>
-															</DataTemplate>
-														</ItemsControl.ItemTemplate>
-
-													</ItemsControl>
-												</StackPanel>
-											</DataTemplate>
-										</ItemsControl.ItemTemplate>
-
-									</ItemsControl>
+									<ContentControl Content="{Binding}">
+										<ContentControl.Style>
+											<Style TargetType="ContentControl">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding DataContext.CompactMode, Source={StaticResource Proxy}}" Value="True">
+														<Setter Property="ContentTemplate" Value="{StaticResource CompactUpgradeDayDisplayTemplate}" />
+													</DataTrigger>
+													<DataTrigger Binding="{Binding DataContext.CompactMode, Source={StaticResource Proxy}}" Value="False">
+														<Setter Property="ContentTemplate" Value="{StaticResource DetailedUpgradeDayDisplayTemplate}" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</ContentControl.Style>
+									</ContentControl>
 								</StackPanel>
 							</Grid>
 						</Border>

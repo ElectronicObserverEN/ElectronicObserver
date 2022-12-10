@@ -26,6 +26,8 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
 
+	public bool CompactMode { get; set; } = false;
+
 	public EquipmentUpgradePlannerViewModel()
 	{
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
