@@ -54,6 +54,17 @@ public class FleetManager : APIWrapper
 
 	public FleetData? BossSupportFleetInstance => BossSupportFleet is int bossSupportIndex ? this[bossSupportIndex] : null;
 
+	public int? NodeSupportFleetId(int world) => world switch
+	{
+		> 21 => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination is 301)?.ID,
+		_ => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination is 33)?.ID,
+	};
+
+	public int? BossSupportFleetId(int world) => world switch
+	{
+		> 21 => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination is 302)?.ID,
+		_ => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination is 34)?.ID,
+	};
 
 	public FleetManager()
 	{
