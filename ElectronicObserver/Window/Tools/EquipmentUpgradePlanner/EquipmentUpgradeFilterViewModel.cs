@@ -14,7 +14,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 	public List<EquipmentUpgradeFilterDayViewModel> Days { get; set; } = new();
 
-	public DayOfWeek? SelectedDay { get; set; } = null;
+	public DayOfWeek? SelectedDay { get; set; }
 
 	public EquipmentUpgradeFilterViewModel()
 	{
@@ -43,6 +43,8 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 				format.IsChecked = dayValue == SelectedDay;
 			}
 		};
+
+		SelectedDay = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Today, "Tokyo Standard Time").DayOfWeek;
 	}
 
 	public bool MeetsFilterCondition(EquipmentUpgradePlanItemViewModel plan)

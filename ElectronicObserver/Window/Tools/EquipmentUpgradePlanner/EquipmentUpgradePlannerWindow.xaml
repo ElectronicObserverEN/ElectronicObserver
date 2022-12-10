@@ -357,9 +357,7 @@
 
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<StackPanel Orientation="Horizontal">
-							<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
-						</StackPanel>
+						<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
