@@ -124,6 +124,15 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ???.
+        /// </summary>
+        public static string Helpers {
+            get {
+                return ResourceManager.GetString("Helpers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 完了.
         /// </summary>
         public static string IsFinished {

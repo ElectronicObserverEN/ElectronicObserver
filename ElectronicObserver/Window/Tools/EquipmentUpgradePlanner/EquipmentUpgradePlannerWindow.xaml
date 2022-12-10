@@ -223,8 +223,25 @@
 			<CheckBox
 				Margin="10 0 0 0"
 				Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
-				IsChecked="{Binding DisplayFinished}"
+				IsChecked="{Binding Filters.DisplayFinished}"
 				/>
+
+			<ItemsControl ItemsSource="{Binding Filters.Days}">
+
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 		</StackPanel>
 
 		<ScrollViewer Grid.Row="1" Grid.Column="0">
@@ -244,9 +261,15 @@
 
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Border BorderBrush="Gray" BorderThickness="1">
+						<Border
+							Margin="2"
+							BorderBrush="Gray"
+							BorderThickness="2"
+							>
 							<Grid Margin="4 10">
 								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
@@ -344,8 +367,17 @@
 									IsChecked="{Binding Finished}"
 									/>
 
-								<Grid
+								<Border
 									Grid.Row="6"
+									Grid.Column="0"
+									Grid.ColumnSpan="2"
+									Margin="0 5"
+									BorderBrush="Gray"
+									BorderThickness="0 1 0 0"
+									/>
+
+								<Grid
+									Grid.Row="7"
 									Grid.Column="0"
 									Grid.ColumnSpan="2"
 									>
@@ -419,12 +451,21 @@
 										/>
 								</Grid>
 
+								<Border
+									Grid.Row="8"
+									Grid.Column="0"
+									Grid.ColumnSpan="2"
+									Margin="0 5"
+									BorderBrush="Gray"
+									BorderThickness="0 1 0 0"
+									/>
+
 								<StackPanel
-									Grid.Row="7"
+									Grid.Row="9"
 									Grid.Column="0"
 									Grid.ColumnSpan="2"
 									>
-									<TextBlock Text="Helpers" />
+									<TextBlock Text="{Binding DataContext.EquipmentUpgradePlanner.Helpers, Source={StaticResource Proxy}}" />
 
 									<ItemsControl
 										Grid.Row="1"

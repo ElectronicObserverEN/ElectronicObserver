@@ -171,4 +171,7 @@
   <data name="TotalCost" xml:space="preserve">
     <value>Total cost</value>
   </data>
+  <data name="Helpers" xml:space="preserve">
+    <value>Helpers</value>
+  </data>
 </root>
