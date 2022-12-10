@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
@@ -65,6 +66,8 @@ public class ApiFileService : ObservableObject
 	private async Task SaveApiData(string apiName, string requestBody, string responseBody)
 	{
 		if (IgnoredApis.Contains(apiName)) return;
+
+		requestBody = FormatRequest(requestBody);
 
 		responseBody = TrimSvdata(responseBody);
 		responseBody = TrimPort(apiName, responseBody);
@@ -134,6 +137,19 @@ public class ApiFileService : ObservableObject
 		}
 
 		file.TimeStamp = file.TimeStamp.ToUniversalTime();
+	}
+
+	/// <summary>
+	/// Convert query params to json.
+	/// </summary>
+	private static string FormatRequest(string requestBody)
+	{
+		NameValueCollection query = HttpUtility.ParseQueryString(requestBody);
+
+		Dictionary<string, string> dictionary = query.AllKeys
+			.ToDictionary(k => k!, k => query[k]!);
+
+		return JsonSerializer.Serialize(dictionary);
 	}
 
 	private static string TrimSvdata(string responseBody)
