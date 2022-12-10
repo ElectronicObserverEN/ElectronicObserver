@@ -25,7 +25,6 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<WorldModel> Worlds { get; set; } = null!;
 	public DbSet<MapModel> Maps { get; set; } = null!;
 	public DbSet<CellModel> Cells { get; set; } = null!;
-	[Obsolete("Use ApiFileService")]
 	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
 	public DbSet<SortieRecord> Sorties { get; set; } = null!;
 	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
