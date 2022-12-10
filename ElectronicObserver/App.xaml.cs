@@ -321,7 +321,7 @@ public partial class App : Application
 
 		tracker
 			.Configure<EquipmentUpgradePlanViewerViewModel>()
-			.Property(w => w.DisplayFinished)
+			.Property(w => w.Filters.DisplayFinished)
 			.Property(w => w.ColumnProperties)
 			.Property(w => w.SortDescriptions);
 
