@@ -37,7 +37,7 @@ public class ShipDataMock : IShipData
 	public int HPMax => IsMarried switch
 	{
 		true => MasterShip.HPMaxMarried + HPMaxModernized,
-		_ => MasterShip.HPMax + HPMaxModernized,
+		_ => MasterShip.HPMin + HPMaxModernized,
 	};
 	public int Speed { get; set; }
 	public int Range { get; set; }
