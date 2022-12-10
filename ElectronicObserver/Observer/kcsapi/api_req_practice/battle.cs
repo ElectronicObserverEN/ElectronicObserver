@@ -21,7 +21,6 @@ public class battle : APIBase
 	public override void OnResponseReceived(dynamic data)
 	{
 		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{

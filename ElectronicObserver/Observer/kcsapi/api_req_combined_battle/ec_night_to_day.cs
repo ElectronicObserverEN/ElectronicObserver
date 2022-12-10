@@ -9,7 +9,6 @@ public class ec_night_to_day : APIBase
 	{
 
 		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
 
 		base.OnResponseReceived((object)data);

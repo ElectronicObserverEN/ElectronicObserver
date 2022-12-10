@@ -18,7 +18,7 @@ public class start : APIBase
 		KCDatabase db = KCDatabase.Instance;
 
 		db.Battle.LoadFromResponse(APIName, data);
-		db.Replays.LoadFromResponse(APIName, data);
+
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.GetRPCData();
