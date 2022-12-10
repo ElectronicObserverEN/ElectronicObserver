@@ -79,7 +79,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to コンパクトモード.
         /// </summary>
         public static string CompactMode {
             get {
