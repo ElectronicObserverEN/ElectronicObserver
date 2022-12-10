@@ -36,22 +36,31 @@
 	</UserControl.Resources>
 
 	<StackPanel Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
-		<ItemsControl ItemsSource="{Binding Filters.Days}">
 
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Orientation="Horizontal" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
+		<StackPanel Orientation="Horizontal">
+			<CheckBox
+				Margin="10 0 0 0"
+				Content="{Binding Translation.All}"
+				IsChecked="{Binding Filters.SelectAllDay}"
+				/>
 
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal">
-						<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
-					</StackPanel>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+			<ItemsControl ItemsSource="{Binding Filters.Days}">
+
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
 
 		<DataGrid
 			AutoGenerateColumns="False"
