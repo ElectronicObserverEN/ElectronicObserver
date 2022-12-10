@@ -174,4 +174,7 @@
   <data name="CompactMode" xml:space="preserve">
     <value>Compact mode</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

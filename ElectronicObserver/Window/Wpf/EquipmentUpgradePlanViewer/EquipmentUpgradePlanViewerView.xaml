@@ -35,7 +35,7 @@
 
 	</UserControl.Resources>
 
-	<StackPanel>
+	<StackPanel Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
 		<ItemsControl ItemsSource="{Binding Filters.Days}">
 
 			<ItemsControl.ItemsPanel>
@@ -56,7 +56,6 @@
 		<DataGrid
 			AutoGenerateColumns="False"
 			ColumnWidth="90"
-			ContextMenu="{StaticResource OptionsContextMenu}"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
 			ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"

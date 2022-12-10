@@ -15,6 +15,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 	public List<EquipmentUpgradeFilterDayViewModel> Days { get; set; } = new();
 
 	public DayOfWeek? SelectedDay { get; set; }
+	public bool SelectAllDay { get; set; }
 
 	public EquipmentUpgradeFilterViewModel()
 	{
@@ -27,8 +28,14 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 				if (args.PropertyName is not nameof(day.IsChecked)) return;
 				if (sender is not CheckBoxEnumViewModel { IsChecked: bool isChecked, Value: DayOfWeek dayValue }) return;
 
-				if (SelectedDay == dayValue) SelectedDay = isChecked ? dayValue : null;
-				else if (isChecked) SelectedDay = dayValue;
+				if (isChecked)
+				{
+					SelectedDay = dayValue;
+				}
+				else if (SelectedDay == dayValue)
+				{
+					SelectedDay = null;
+				}
 			};
 		}
 
@@ -42,6 +49,16 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 				format.IsChecked = dayValue == SelectedDay;
 			}
+
+			SelectAllDay = SelectedDay is null;
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(SelectAllDay)) return;
+
+			if (SelectAllDay) SelectedDay = null;
+			else if (SelectedDay is null) SelectAllDay = true;
 		};
 
 		SelectedDay = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Today, "Tokyo Standard Time").DayOfWeek;
