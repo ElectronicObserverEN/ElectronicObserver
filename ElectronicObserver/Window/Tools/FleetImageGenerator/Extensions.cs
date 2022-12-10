@@ -53,7 +53,6 @@ public static class Extensions
 		ShipDataMock ship = new(Db.MasterShips[(int)deckBuilderShip.Id])
 		{
 			Level = deckBuilderShip.Level,
-			HPMax = deckBuilderShip.Hp,
 			IsExpansionSlotAvailable = deckBuilderShip.IsExpansionSlotAvailable,
 			SlotInstance = new List<IEquipmentData?>
 			{
@@ -65,6 +64,8 @@ public static class Extensions
 			},
 			ExpansionSlotInstance = ToEquipmentData(deckBuilderShip.Equipment.EquipmentExpansion),
 		};
+
+		ship.HPMaxModernized = deckBuilderShip.Hp - ship.HPMax;
 
 		IEnumerable<IEquipmentDataMaster> equip = ship.AllSlotInstance
 			.Where(e => e is not null)
