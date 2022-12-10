@@ -9,4 +9,6 @@ public class SortieRecord
 	public int World { get; set; }
 	public int Map { get; set; }
 	public List<ApiFile> ApiFiles { get; set; } = new();
+	public SortieFleetData FleetData { get; set; } = new();
+	public SortieMapData MapData { get; set; } = new();
 }

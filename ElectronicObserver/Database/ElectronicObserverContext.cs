@@ -87,6 +87,14 @@ public class ElectronicObserverContext : DbContext
 				s => CompressBytes(System.Text.Encoding.UTF8.GetBytes(s)),
 				b => System.Text.Encoding.UTF8.GetString(DecompressBytes(b))
 			));
+
+		builder.Entity<SortieRecord>()
+			.Property(s => s.FleetData)
+			.HasConversion(JsonConverter<SortieFleetData>());
+
+		builder.Entity<SortieRecord>()
+			.Property(s => s.MapData)
+			.HasConversion(JsonConverter<SortieMapData>());
 	}
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new
