@@ -23,12 +23,6 @@ namespace ElectronicObserver.Services.ApiFileService;
 // migrating all at once is very expensive
 public class ApiFileService : ObservableObject
 {
-	/// <summary>
-	/// Version 1 details: <br />
-	/// - removes the "svdata=" prefix from response body <br />
-	/// - uses UTC time instead of local time <br />
-	/// - "api_port/port" is trimmed <br />
-	/// </summary>
 	private static int CurrentApiFileVersion => 1;
 
 	private ElectronicObserverContext Db { get; } = new();
@@ -96,10 +90,8 @@ public class ApiFileService : ObservableObject
 			Version = CurrentApiFileVersion,
 		};
 
-#pragma warning disable CS0618
 		await Db.ApiFiles.AddAsync(requestFile);
 		await Db.ApiFiles.AddAsync(responseFile);
-#pragma warning restore CS0618
 
 		await ProcessSortieData(requestFile, responseFile);
 
@@ -116,33 +108,6 @@ public class ApiFileService : ObservableObject
 	public void SaveChanges()
 	{
 		Db.SaveChanges();
-	}
-
-	public List<ApiFile> Query(Func<IQueryable<ApiFile>, IQueryable<ApiFile>> query)
-	{
-#pragma warning disable CS0618
-		var apiFiles = query(Db.ApiFiles).ToList();
-#pragma warning restore CS0618
-
-		foreach (ApiFile file in apiFiles)
-		{
-			if (file.Version is 0)
-			{
-				Version0To1(file);
-			}
-		}
-
-		return apiFiles;
-	}
-
-	private static void Version0To1(ApiFile file)
-	{
-		if (file.ApiFileType == ApiFileType.Response)
-		{
-			file.Content = TrimSvdata(file.Content);
-		}
-
-		file.TimeStamp = file.TimeStamp.ToUniversalTime();
 	}
 
 	/// <summary>
