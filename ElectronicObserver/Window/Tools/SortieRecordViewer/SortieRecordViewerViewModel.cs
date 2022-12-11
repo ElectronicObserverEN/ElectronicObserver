@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
@@ -12,6 +11,8 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
+using ElectronicObserver.KancolleApi.Types;
+using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Services;
@@ -212,9 +213,40 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (sortie is null) return;
 
+		int hqLevel = KCDatabase.Instance.Admiral.Level;
+
+		if (sortie.ApiFiles.Any())
+		{
+			// get the last port response right before the sortie started
+			ApiFile? portFile = Db.ApiFiles
+				.Where(f => f.ApiFileType == ApiFileType.Response)
+				.Where(f => f.Name == "api_port/port")
+				.Where(f => f.TimeStamp < sortie.ApiFiles.First().TimeStamp)
+				.OrderByDescending(f => f.TimeStamp)
+				.FirstOrDefault();
+
+			if (portFile is not null)
+			{
+				try
+				{
+					ApiPortPortResponse? port = JsonSerializer
+						.Deserialize<ApiResponse<ApiPortPortResponse>>(portFile.Content)?.ApiData;
+
+					if (port != null)
+					{
+						hqLevel = port.ApiBasic.ApiLevel;
+					}
+				}
+				catch
+				{
+					// can probably ignore this
+				}
+			}
+		}
+
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
-			120,
+			hqLevel,
 			MakeFleet(sortie.FleetData.Fleets.Skip(0).FirstOrDefault()),
 			MakeFleet(sortie.FleetData.Fleets.Skip(1).FirstOrDefault()),
 			MakeFleet(sortie.FleetData.Fleets.Skip(2).FirstOrDefault()),
