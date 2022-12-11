@@ -12,6 +12,7 @@ public static class EquipmentUpgradeCostExtensions
 	{
 		EquipmentUpgradePlanCostModel cost = new();
 
+		if (targetedLevel <= equipment.UpgradeLevel) return cost;
 
 		EquipmentUpgradeDataModel? upgradeData = upgradesData.FirstOrDefault(data => data.EquipmentId == (int?)equipment.EquipmentId);
 

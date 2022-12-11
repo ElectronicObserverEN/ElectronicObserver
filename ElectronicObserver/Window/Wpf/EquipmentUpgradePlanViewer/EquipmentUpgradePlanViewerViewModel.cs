@@ -38,6 +38,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
+		EquipmentUpgradePlanManager.PlanEquipmentMasterUpdated += (_, _) => Update();
 		Filters.PropertyChanged += (_, _) => Update(); 
 
 		EquipmentUpgradePlanManager.PlannedUpgrades.CollectionChanged += (_, _) => Update();

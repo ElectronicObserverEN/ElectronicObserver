@@ -398,4 +398,85 @@ public class UpgradeCostTests
 		Assert.Equal(expectedCost, cost);
 	}
 
+
+	[Fact]
+	public void UpgradeCostTest6()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			// lvl 0 -> 6
+			DesiredUpgradeLevel = UpgradeLevel.Six,
+			EquipmentId = EquipmentId.Ration_CombatRation,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.NaganamiKaiNi
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Zero
+		};
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel);
+
+
+		EquipmentUpgradePlanCostModel expectedCost = new EquipmentUpgradePlanCostModel()
+		{
+			Fuel = 6 * 10,
+			Ammo = 6 * 0,
+			Steel = 6 * 0,
+			Bauxite = 6 * 5,
+
+			DevelopmentMaterial =
+			// 0 -> 6
+			(6 * 1),
+
+			ImprovementMaterial =
+			// 0 -> 6
+			(6 * 0),
+
+			RequiredConsumables = new(),
+			RequiredEquipments = new()
+			{
+				// 0 -> 6
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.Ration_CombatRation,
+					Required = 6 * 1
+				}
+			}
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
+
+	[Fact]
+	public void UpgradeCostTest7()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			// lvl 0 -> 6
+			DesiredUpgradeLevel = UpgradeLevel.Six,
+			EquipmentId = EquipmentId.Ration_CombatRation,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.NaganamiKaiNi
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Six
+		};
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel);
+
+		EquipmentUpgradePlanCostModel expectedCost = new();
+
+		Assert.Equal(expectedCost, cost);
+	}
+
 }
