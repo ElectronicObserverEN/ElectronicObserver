@@ -1,9 +1,10 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 
-public class ApiReqMapStartResponse
+public class ApiReqMapStartResponse : IMapProgressApi
 {
 	[JsonPropertyName("api_airsearch")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -9,6 +9,8 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
@@ -58,9 +60,14 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public bool Finished { get; set; }
 
 	public int Priority { get; set; }
+
 	public SliderUpgradeLevel SliderLevel { get; set; }
 
 	public IShipDataMaster? SelectedHelper { get; set; }
+
+	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; set; } = new(); 
+
+	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new());
 
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
 
@@ -101,11 +108,13 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		EquipmentMasterDataId = Plan.EquipmentId;
 
 		Update();
+		UpdateHelperDisplay();
 	}
 
 	private void EquipmentUpgradePlanItemViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is nameof(EquipmentId) or nameof(EquipmentMasterDataId) or nameof(SelectedHelper) or nameof(SliderLevel) or nameof(DesiredUpgradeLevel)) Update();
+		if (e.PropertyName is nameof(Equipment)) UpdateHelperDisplay();
 
 		Save();
 	}
@@ -117,6 +126,29 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		return Equipment.CalculateUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, DesiredUpgradeLevel, SliderLevel);
 	}
 
+	public void UpdateHelperDisplay()
+	{
+		HelperViewModels = Equipment switch
+		{
+			IEquipmentData equipment => EquipmentUpgradeData.UpgradeList
+				.Where(data => data.EquipmentId == equipment.EquipmentID)
+				.SelectMany(data => data.Improvement)
+				.SelectMany(data => data.Helpers)
+				.Select(helpers => new EquipmentUpgradeHelpersViewModel(helpers))
+				.ToList(),
+			_ => new()
+		};
+
+		HelperViewModelCompact = Equipment switch
+		{
+			IEquipmentData equipment => new EquipmentUpgradeDaysViewModel(EquipmentUpgradeData.UpgradeList
+				.Where(data => data.EquipmentId == equipment.EquipmentID)
+				.SelectMany(data => data.Improvement)
+				.SelectMany(data => data.Helpers)
+				.ToList()),
+			_ => new(new())
+		};
+	}
 
 	public void Update()
 	{

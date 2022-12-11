@@ -107,8 +107,16 @@ namespace ElectronicObserver.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("FleetData")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Map")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("MapData")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("World")
                         .HasColumnType("INTEGER");

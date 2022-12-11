@@ -169,6 +169,12 @@
     <value>必要：</value>
   </data>
   <data name="TotalCost" xml:space="preserve">
-    <value>???</value>
+    <value>総計必要資材</value>
+  </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>コンパクトモード</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全て</value>
   </data>
 </root>

@@ -9,7 +9,6 @@ public class battle_result : APIBase
 	{
 
 		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 
 		base.OnResponseReceived((object)data);
 	}

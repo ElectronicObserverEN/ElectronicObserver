@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiGetShip
 {
@@ -9,7 +11,7 @@ public class ApiGetShip
 
 	[JsonPropertyName("api_ship_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiShipId { get; set; } = default!;
+	public ShipId ApiShipId { get; set; } = default!;
 
 	[JsonPropertyName("api_ship_name")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

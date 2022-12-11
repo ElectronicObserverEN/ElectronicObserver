@@ -1,0 +1,79 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.SortieRecordViewer.SortieRecordViewerWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:sortie="clr-namespace:ElectronicObserver.Database.Sortie"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding SortieRecordViewer.Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:SortieRecordViewerViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:SortieRecordViewerViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:SortieRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+		<DataTemplate DataType="{x:Type sortie:SortieRecord}">
+			<StackPanel Margin="2" Orientation="Horizontal">
+				<StackPanel
+					Margin="2 0"
+					VerticalAlignment="Center"
+					Orientation="Horizontal"
+					>
+					<TextBlock Text="{Binding World}" />
+					<TextBlock Text="-" />
+					<TextBlock Text="{Binding Map}" />
+				</StackPanel>
+
+				<Button
+					Margin="2 0"
+					Command="{Binding DataContext.OpenFleetImageGeneratorCommand, Source={StaticResource Proxy}}"
+					CommandParameter="{Binding}"
+					Content="{Binding DataContext.SortieRecordViewer.FleetImage, Source={StaticResource Proxy}}"
+					/>
+
+				<Button
+					Margin="2 0"
+					Command="{Binding DataContext.CopyReplayToClipboardCommand, Source={StaticResource Proxy}}"
+					CommandParameter="{Binding}"
+					Content="{Binding DataContext.SortieRecordViewer.CopyReplay, Source={StaticResource Proxy}}"
+					/>
+			</StackPanel>
+		</DataTemplate>
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<ComboBox
+				Margin="2"
+				ItemsSource="{Binding Worlds}"
+				SelectedItem="{Binding World}"
+				/>
+			<ComboBox
+				Margin="2"
+				ItemsSource="{Binding Maps}"
+				SelectedItem="{Binding Map}"
+				/>
+			<Button
+				Margin="2"
+				Command="{Binding SearchCommand}"
+				Content="{Binding SortieRecordViewer.Search}"
+				/>
+		</StackPanel>
+
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+			<ItemsControl ItemsSource="{Binding Sorties}" />
+		</ScrollViewer>
+	</Grid>
+</common:WindowBase>

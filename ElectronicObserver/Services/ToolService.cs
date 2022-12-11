@@ -75,7 +75,7 @@ public class ToolService
 		}
 	}
 
-	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null)
+	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null, DeckBuilderData? data = null)
 	{
 		if (!KCDatabase.Instance.Ships.Any())
 		{
@@ -90,7 +90,7 @@ public class ToolService
 			return;
 		}
 
-		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
+		data ??= DataSerializationService.MakeDeckBuilderData
 		(
 			KCDatabase.Instance.Admiral.Level,
 			KCDatabase.Instance.Fleet.Fleets[1],

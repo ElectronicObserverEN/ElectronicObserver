@@ -119,7 +119,7 @@ public class port : APIBase
 
 			db.RelocatedEquipments.Clear();
 		}
-		db.Replays.LoadFromResponse(APIName, data);
+
 		db.Battle.LoadFromResponse(APIName, data);
 
 		// --- Reset airbase strike points

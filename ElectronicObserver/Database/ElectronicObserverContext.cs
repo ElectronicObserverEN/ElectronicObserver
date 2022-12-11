@@ -25,7 +25,6 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<WorldModel> Worlds { get; set; } = null!;
 	public DbSet<MapModel> Maps { get; set; } = null!;
 	public DbSet<CellModel> Cells { get; set; } = null!;
-	[Obsolete("Use ApiFileService")]
 	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
 	public DbSet<SortieRecord> Sorties { get; set; } = null!;
 	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
@@ -87,6 +86,14 @@ public class ElectronicObserverContext : DbContext
 				s => CompressBytes(System.Text.Encoding.UTF8.GetBytes(s)),
 				b => System.Text.Encoding.UTF8.GetString(DecompressBytes(b))
 			));
+
+		builder.Entity<SortieRecord>()
+			.Property(s => s.FleetData)
+			.HasConversion(JsonConverter<SortieFleetData>());
+
+		builder.Entity<SortieRecord>()
+			.Property(s => s.MapData)
+			.HasConversion(JsonConverter<SortieMapData>());
 	}
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new

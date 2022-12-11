@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Services.ApiFileService;
+using ElectronicObserver.Database;
 
 namespace ElectronicObserver.Window.Tools.DatabaseExplorer.ApiFile;
 
 public partial class ApiFileExplorerViewModel : ObservableObject
 {
-	private ApiFileService ApiFileService { get; } = new();
+	private ElectronicObserverContext Db { get; } = new();
 
 	public ObservableCollection<Database.KancolleApi.ApiFile> ApiFiles { get; } = new();
 
@@ -23,19 +22,16 @@ public partial class ApiFileExplorerViewModel : ObservableObject
 	{
 		ApiFiles.Clear();
 
-		List<Database.KancolleApi.ApiFile> files = ApiFileService.Query(files =>
+		IQueryable<Database.KancolleApi.ApiFile> files = Db.ApiFiles.AsQueryable();
+
+		files = files.OrderByDescending(f => f.Id);
+
+		if (!string.IsNullOrEmpty(ApiNameFilter))
 		{
-			files = files.OrderByDescending(f => f.Id);
+			files = files.Where(f => f.Name.Contains(ApiNameFilter));
+		}
 
-			if (!string.IsNullOrEmpty(ApiNameFilter))
-			{
-				files = files.Where(f => f.Name.Contains(ApiNameFilter));
-			}
-
-			files = files.Take(Limit);
-
-			return files;
-		});
+		files = files.Take(Limit);
 
 
 		foreach (Database.KancolleApi.ApiFile file in files)

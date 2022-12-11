@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -23,7 +24,9 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public GridLength PlanListWidth { get; set; } = new GridLength(350, GridUnitType.Pixel);
 
-	public bool DisplayFinished { get; set; } = true;
+	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
+
+	public bool CompactMode { get; set; } = false;
 
 	public EquipmentUpgradePlannerViewModel()
 	{
@@ -39,7 +42,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => UpdateTotalCost();
 		EquipmentUpgradePlanManager.PlanCostUpdated += (_, _) => UpdateTotalCost();
-		PropertyChanged += EquipmentUpgradePlannerViewModel_PropertyChanged;
+		Filters.PropertyChanged += (_, _) => Update();
 		Update();
 		UpdateTotalCost();
 	}
@@ -48,13 +51,6 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	{
 		base.Closed();
 		EquipmentUpgradePlanManager.Save();
-	}
-
-	private void EquipmentUpgradePlannerViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-	{
-		if (e.PropertyName != nameof(DisplayFinished)) return;
-
-		Update();
 	}
 
 	[RelayCommand]
@@ -104,7 +100,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		PlannedUpgradesFilteredAndSorted.Clear();
 
 		List<EquipmentUpgradePlanItemViewModel> plans = PlannedUpgrades
-			.Where(plan => DisplayFinished || !plan.Finished)
+			.Where(Filters.MeetsFilterCondition)
 			.OrderBy(plan => plan.Finished)
 			.ToList();
 

@@ -202,7 +202,7 @@ public partial class FormBrowserHost : Form
 		try
 		{
 			// プロセス起動
-			string arguments = $"{Host} {Port} {Utility.Configuration.Config.UI.Culture}";
+			string arguments = $"{Host} {Port} {Utility.Configuration.Config.UI.Culture} {Utility.Configuration.Config.FormBrowser.Browser}";
 
 			if (File.Exists(BrowserExeName))
 			{
@@ -554,7 +554,7 @@ public partial class FormBrowserHost : Form
 			var image = ResourceManager.Instance.Icons.Images[(int)IconContent.ConditionVeryTired];
 			e.Graphics.DrawImage(image, new Rectangle(16, 16, 16, 16));
 
-			e.Graphics.DrawString(GeneralRes.BrowserProcessClickStart, Utility.Configuration.Config.UI.MainFont, Brushes.Black, new PointF(48, 16));
+			e.Graphics.DrawString(GeneralRes.BrowserProcessClickStart, Utility.Configuration.Config.UI.MainFont, new SolidBrush(Utility.Configuration.Config.UI.ForeColor), new PointF(48, 16));
 		}
 	}
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Web;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiDmmPayment.Paycheck;
@@ -102,13 +103,12 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.GoBackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
-using ElectronicObserver.Services.ApiFileService;
 
 namespace ElectronicObserver.Window.Tools.DatabaseExplorer.ApiTypeTester;
 
 public partial class ApiTypeTesterViewModel
 {
-	private ApiFileService ApiFileService { get; } = new();
+	private ElectronicObserverContext Db { get; } = new();
 
 	public ObservableCollection<string> ParsingErrors { get; } = new();
 
@@ -117,40 +117,37 @@ public partial class ApiTypeTesterViewModel
 	{
 		ParsingErrors.Clear();
 
-		List<Database.KancolleApi.ApiFile> files = ApiFileService.Query(files =>
+		IQueryable<Database.KancolleApi.ApiFile> files = Db.ApiFiles.AsQueryable();
+
+		// files = files.Take(100000);
+
+		foreach (Database.KancolleApi.ApiFile file in files)
 		{
-			// files = files.Take(100000);
-
-			foreach (Database.KancolleApi.ApiFile file in files)
+			switch (file.ApiFileType)
 			{
-				switch (file.ApiFileType)
+				case ApiFileType.Request:
+					NameValueCollection query = HttpUtility.ParseQueryString(file.Content);
+
+					Dictionary<string, string> dictionary = query.AllKeys
+						.ToDictionary(k => k, k => query[k]);
+
+					file.Content = JsonSerializer.Serialize(dictionary);
+
+					ParseRequest(file);
+					break;
+
+				case ApiFileType.Response:
 				{
-					case ApiFileType.Request:
-						NameValueCollection query = HttpUtility.ParseQueryString(file.Content);
-
-						Dictionary<string, string> dictionary = query.AllKeys
-							.ToDictionary(k => k, k => query[k]);
-
-						file.Content = JsonSerializer.Serialize(dictionary);
-
-						ParseRequest(file);
-						break;
-
-					case ApiFileType.Response:
+					if (file.Content.StartsWith("s"))
 					{
-						if (file.Content.StartsWith("s"))
-						{
-							file.Content = file.Content[7..];
-						}
-
-						ParseResponse(file);
-						break;
+						file.Content = file.Content[7..];
 					}
+
+					ParseResponse(file);
+					break;
 				}
 			}
-
-			return files;
-		});
+		}
 	}
 
 	private void ParseRequest(Database.KancolleApi.ApiFile file)

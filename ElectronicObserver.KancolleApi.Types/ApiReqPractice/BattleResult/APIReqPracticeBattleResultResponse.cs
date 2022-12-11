@@ -1,5 +1,4 @@
-﻿
-using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Models;
+﻿using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 

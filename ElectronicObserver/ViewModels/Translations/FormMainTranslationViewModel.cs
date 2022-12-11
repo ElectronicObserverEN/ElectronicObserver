@@ -65,6 +65,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 
 	public string StripMenu_Tool => Properties.Window.FormMain.Tool.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_EquipmentList => Properties.Window.FormMain.Tool_EquipmentList.Replace("_", "__").Replace("&", "_");
+	public string SortieRecordViewer => Window.Tools.SortieRecordViewer.SortieRecordViewer.Title;
 	public string StripMenu_Tool_DropRecord => Properties.Window.FormMain.Tool_DropRecord.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_DevelopmentRecord => Properties.Window.FormMain.Tool_DevelopmentRecord.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ConstructionRecord => Properties.Window.FormMain.Tool_ConstructionRecord.Replace("_", "__").Replace("&", "_");

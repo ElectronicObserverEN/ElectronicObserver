@@ -509,6 +509,15 @@
 				</MenuItem>
 				<Separator />
 				<MenuItem
+					d:Header="Sortie Record"
+					Command="{Binding OpenSortieRecordCommand}"
+					Header="{Binding FormMain.SortieRecordViewer}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding EquipmentListImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="Drop Record"
 					Command="{Binding OpenDropRecordCommand}"
 					Header="{Binding FormMain.StripMenu_Tool_DropRecord}"

@@ -34,7 +34,11 @@ public class ShipDataMock : IShipData
 	public int ExpNext { get; set; }
 	public double ExpNextPercentage { get; set; }
 	public int HPCurrent { get; set; }
-	public int HPMax { get; set; }
+	public int HPMax => IsMarried switch
+	{
+		true => MasterShip.HPMaxMarried + HPMaxModernized,
+		_ => MasterShip.HPMin + HPMaxModernized,
+	};
 	public int Speed { get; set; }
 	public int Range { get; set; }
 	public IList<int> Slot { get; set; }
@@ -108,7 +112,7 @@ public class ShipDataMock : IShipData
 	public int RepairingDockID { get; set; }
 	public int Fleet { get; set; }
 	public string FleetWithIndex { get; set; }
-	public bool IsMarried { get; set; }
+	public bool IsMarried => Level > 99;
 	public IList<IEquipmentData?> AllSlotInstance => SlotInstance.Append(ExpansionSlotInstance).ToList();
 	public bool CanNoSonarOpeningAsw { get; set; }
 	public bool CanAttackAtNight { get; set; }

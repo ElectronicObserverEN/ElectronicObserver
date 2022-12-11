@@ -1,5 +1,6 @@
 ﻿using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
 using Xunit;

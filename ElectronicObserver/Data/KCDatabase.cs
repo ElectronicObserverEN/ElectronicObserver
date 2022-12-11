@@ -155,8 +155,6 @@ public sealed class KCDatabase : IKCDatabase
 	/// </summary>
 	public IDDictionary<RelocationData> RelocatedEquipments { get; private set; }
 
-	public ReplayManager Replays { get; private set; }
-
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
 	public DataAndTranslationManager Translation { get; private set; }
 
@@ -204,7 +202,6 @@ public sealed class KCDatabase : IKCDatabase
 		ShipGroup = new ShipGroupManager();
 		BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
 		RelocatedEquipments = new IDDictionary<RelocationData>();
-		Replays = new ReplayManager();
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
 		Translation = new DataAndTranslationManager();

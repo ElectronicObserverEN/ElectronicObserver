@@ -1,9 +1,10 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 
-public class ApiReqSortieBattleresultResponse
+public class ApiReqSortieBattleresultResponse : ISortieBattleResultApi
 {
 	[JsonPropertyName("api_dests")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -2,12 +2,12 @@
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCostItemViewModel
 {
 	public IEquipmentDataMaster Equipment { get; set; }
 
-	public EquipmentUpgradePlanCostEquipmentViewModel(EquipmentUpgradePlanCostItemModel model) : base (model)
+	public EquipmentUpgradePlanCostEquipmentViewModel(EquipmentUpgradePlanCostItemModel model) : base(model)
 	{
 		KCDatabase db = KCDatabase.Instance;
 

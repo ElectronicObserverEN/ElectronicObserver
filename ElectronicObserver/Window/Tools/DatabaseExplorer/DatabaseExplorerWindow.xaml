@@ -9,7 +9,6 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DatabaseExplorer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:sortie="clr-namespace:ElectronicObserver.Window.Tools.DatabaseExplorer.Sortie"
 	Title="DatabaseExplorerWindow"
 	Width="800"
 	Height="450"
@@ -23,10 +22,6 @@
 			<apiFiles:ApiFilesExplorerUserControl />
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type sortie:SortieExplorerViewModel}">
-			<sortie:SortieExplorerUserControl />
-		</DataTemplate>
-
 		<DataTemplate DataType="{x:Type apiTypeTester:ApiTypeTesterViewModel}">
 			<apiTypeTester:ApiTypeTesterUserControl />
 		</DataTemplate>
@@ -34,7 +29,6 @@
 
 	<TabControl>
 		<TabItem Content="{Binding ApiFileExplorer}" Header="Api files" />
-		<TabItem Content="{Binding SortieExplorer}" Header="Sorties" />
 		<TabItem Content="{Binding ApiTypeTester}" Header="Type testing" />
 	</TabControl>
 </common:WindowBase>

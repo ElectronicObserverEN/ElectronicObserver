@@ -614,7 +614,7 @@ public sealed class APIObserver
 	private ProxyServer Proxy { get; }
 	private ExplicitProxyEndPoint Endpoint { get; set; }
 
-	private ApiFileService ApiFileService { get; } = new();
+	private Lazy<ApiFileService> ApiFileService { get; } = new(() => new(KCDatabase.Instance));
 
 	private APIObserver()
 	{
@@ -819,7 +819,7 @@ public sealed class APIObserver
 			string requestBody = await e.GetRequestBodyAsString();
 			string responseBody = await e.GetResponseBodyAsString();
 
-			await ApiFileService.Add(apiName, requestBody, responseBody);
+			await ApiFileService.Value.Add(apiName, requestBody, responseBody);
 		}
 
 		// request

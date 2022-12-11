@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using Browser.CefSharpBrowser;
 using Browser.WebView2Browser;
+using BrowserLibCore;
 
 namespace Browser;
 
@@ -12,11 +13,15 @@ public partial class BrowserView
 {
 	public BrowserViewModel ViewModel { get; }
 	
-	public BrowserView(string host, int port, string culture)
+	public BrowserView(string host, int port, string culture, BrowserOption browser)
 	{
 		InitializeComponent();
 
-		ViewModel = new CefSharpViewModel(host, port, culture);
+		ViewModel = browser switch
+		{
+			BrowserOption.WebView2 => new WebView2ViewModel(host, port, culture),
+			_ => new CefSharpViewModel(host, port, culture),
+		};
 
 		Loaded += ViewModel.OnLoaded;
 		DataContext = ViewModel;

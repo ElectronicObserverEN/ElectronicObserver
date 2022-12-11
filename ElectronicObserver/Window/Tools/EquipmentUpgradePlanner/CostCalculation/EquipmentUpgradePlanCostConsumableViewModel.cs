@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using ElectronicObserver.Data;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanCostItemViewModel
 {
 	public UseItemMaster Consumable { get; set; }

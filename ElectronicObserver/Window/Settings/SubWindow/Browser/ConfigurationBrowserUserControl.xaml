@@ -28,11 +28,37 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Grid Grid.Row="0">
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<ItemsControl ItemsSource="{Binding EmbeddedBrowsers}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="{x:Type common:CheckBoxEnumViewModel}">
+						<RadioButton
+							MinWidth="0"
+							Margin="4 0"
+							Padding="2 0"
+							VerticalContentAlignment="Center"
+							Content="{Binding Value}"
+							IsChecked="{Binding IsChecked}"
+							/>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<TextBlock Text="*" />
+		</StackPanel>
+
+		<Grid Grid.Row="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
@@ -110,7 +136,7 @@
 				/>
 		</Grid>
 
-		<Grid Grid.Row="1">
+		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition />
@@ -121,7 +147,7 @@
 			<TextBox Grid.Column="1" Text="{Binding LogInPageURL}" />
 		</Grid>
 
-		<StackPanel Grid.Row="2" Orientation="Horizontal">
+		<StackPanel Grid.Row="3" Orientation="Horizontal">
 			<TextBlock Text="{Binding Translation.ToolMenuDockStyle}" />
 
 			<ComboBox ItemsSource="{Binding DockStyles}" SelectedItem="{Binding ToolMenuDockStyle}" />
@@ -133,7 +159,7 @@
 				/>
 		</StackPanel>
 
-		<GroupBox Grid.Row="3" Header="{Binding Translation.Screenshot}">
+		<GroupBox Grid.Row="4" Header="{Binding Translation.Screenshot}">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -204,7 +230,7 @@
 			</Grid>
 		</GroupBox>
 
-		<WrapPanel Grid.Row="4" Orientation="Vertical">
+		<WrapPanel Grid.Row="5" Orientation="Vertical">
 			<CheckBox
 				Content="{Binding Translation.FormBrowser_HardwareAccelerationEnabled}"
 				IsChecked="{Binding HardwareAccelerationEnabled}"
@@ -237,7 +263,7 @@
 		</WrapPanel>
 
 		<TextBlock
-			Grid.Row="5"
+			Grid.Row="6"
 			Foreground="Red"
 			Text="{Binding Translation.RestartNotice}"
 			/>

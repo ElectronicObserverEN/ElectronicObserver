@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using BrowserLibCore;
 using DynaJson;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
@@ -1214,6 +1215,7 @@ public sealed class Configuration
 		/// </summary>
 		public class ConfigFormBrowser : ConfigPartBase
 		{
+			public BrowserOption Browser { get; set; }
 
 			/// <summary>
 			/// ブラウザの拡大率 10-1000(%)
@@ -1332,6 +1334,7 @@ public sealed class Configuration
 
 			public ConfigFormBrowser()
 			{
+				Browser = BrowserOption.CefSharp;
 				ZoomRate = 1;
 				ZoomFit = false;
 				LogInPageURL = @"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";

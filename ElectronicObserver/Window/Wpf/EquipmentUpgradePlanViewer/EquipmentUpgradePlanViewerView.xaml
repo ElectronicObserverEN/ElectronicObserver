@@ -23,24 +23,54 @@
 			<MenuItem
 				Header="{Binding DataContext.Translation.DisplayFinished}"
 				IsCheckable="True"
-				IsChecked="{Binding DataContext.DisplayFinished}"
+				IsChecked="{Binding DataContext.Filters.DisplayFinished}"
 				/>
 		</ContextMenu>
 
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="Padding" Value="2 0" />
+			<Setter Property="MinWidth" Value="0" />
+		</Style>
+
 	</UserControl.Resources>
 
-	<Grid>
-		<Grid.Resources>
-			<Style TargetType="TextBlock">
-				<Setter Property="Margin" Value="4 0" />
-				<Setter Property="VerticalAlignment" Value="Center" />
-			</Style>
-		</Grid.Resources>
+	<Grid Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<CheckBox
+				Margin="10 0 0 0"
+				Content="{Binding Translation.All}"
+				IsChecked="{Binding Filters.SelectAllDay}"
+				/>
+
+			<ItemsControl ItemsSource="{Binding Filters.Days}">
+
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
 
 		<DataGrid
+			Grid.Row="1"
 			AutoGenerateColumns="False"
 			ColumnWidth="90"
-			ContextMenu="{StaticResource OptionsContextMenu}"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
 			ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"

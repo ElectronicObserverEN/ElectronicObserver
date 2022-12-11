@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -15,9 +16,12 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	private FileService FileService { get; }
 	private Configuration.ConfigurationData.ConfigFormBrowser Config { get; }
 
+	public List<CheckBoxEnumViewModel> EmbeddedBrowsers { get; }
 	public List<DockStyle> DockStyles { get; }
 	public List<CheckBoxEnumViewModel> ScreenshotFormats { get; }
 	public List<ScreenshotSaveMode> ScreenshotSaveModes { get; }
+
+	public BrowserOption Browser { get; set; }
 
 	public double ZoomRate { get; set; }
 
@@ -70,6 +74,10 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBrowserTranslationViewModel>();
 		FileService = Ioc.Default.GetRequiredService<FileService>();
 
+		EmbeddedBrowsers = Enum.GetValues<BrowserOption>()
+			.Select(b => new CheckBoxEnumViewModel(b))
+			.ToList();
+
 		DockStyles = Enum.GetValues<DockStyle>().ToList();
 		ScreenshotSaveModes = Enum.GetValues<ScreenshotSaveMode>().ToList();
 
@@ -77,8 +85,33 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 			.Select(f => new CheckBoxEnumViewModel(f))
 			.ToList();
 
+		foreach (CheckBoxEnumViewModel browser in EmbeddedBrowsers)
+		{
+			browser.IsChecked = browser.Value is BrowserOption bo && bo == Browser;
+			browser.PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName is not nameof(browser.IsChecked)) return;
+				if (sender is not CheckBoxEnumViewModel { IsChecked: true, Value: BrowserOption b }) return;
+
+				Browser = b;
+			};
+		}
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(Browser)) return;
+
+			foreach (CheckBoxEnumViewModel browser in EmbeddedBrowsers)
+			{
+				if (browser.Value is not BrowserOption b) return;
+
+				browser.IsChecked = b == Browser;
+			}
+		};
+
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
 		{
+			format.IsChecked = format.Value is ScreenshotFormat sf && sf == ScreenShotFormat;
 			format.PropertyChanged += (sender, args) =>
 			{
 				if (args.PropertyName is not nameof(format.IsChecked)) return;
@@ -106,6 +139,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	private void Load()
 	{
+		Browser = Config.Browser;
 		ZoomRate = Config.ZoomRate * 100;
 		ZoomFit = Config.ZoomFit;
 		LogInPageURL = Config.LogInPageURL;
@@ -145,6 +179,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	public override void Save()
 	{
+		Config.Browser = Browser;
 		Config.ZoomRate = ZoomRate / 100;
 		Config.ZoomFit = ZoomFit;
 		Config.LogInPageURL = LogInPageURL;

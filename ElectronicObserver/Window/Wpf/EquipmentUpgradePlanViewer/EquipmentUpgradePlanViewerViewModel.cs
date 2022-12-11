@@ -23,7 +23,8 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 
-	public bool DisplayFinished { get; set; } = false;
+	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
+
 	private Tracker Tracker { get; }
 
 
@@ -37,24 +38,18 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
-		PropertyChanged += EquipmentUpgradePlanViewerViewModel_PropertyChanged;
+		Filters.PropertyChanged += (_, _) => Update(); 
 
 		EquipmentUpgradePlanManager.PlannedUpgrades.CollectionChanged += (_, _) => Update();
 
 		StartJotTracking();
 	}
 
-	private void EquipmentUpgradePlanViewerViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-	{
-		if (e.PropertyName != nameof(DisplayFinished)) return;
-		Update();
-	}
-
 	private void Update()
 	{
 		PlannedUpgradesFiltered.Clear();
 
-		foreach (EquipmentUpgradePlanItemViewModel plan in EquipmentUpgradePlanManager.PlannedUpgrades.Where(plan => DisplayFinished || !plan.Finished))
+		foreach (EquipmentUpgradePlanItemViewModel plan in EquipmentUpgradePlanManager.PlannedUpgrades.Where(Filters.MeetsFilterCondition))
 		{
 			PlannedUpgradesFiltered.Add(plan);
 		}

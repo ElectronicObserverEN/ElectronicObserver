@@ -76,17 +76,17 @@ public class ApiReqCombinedBattleEcBattleResponse
 	[JsonPropertyName("api_hougeki1")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiHougeki ApiHougeki1 { get; set; } = new();
+	public ApiHougeki1 ApiHougeki1 { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiHougeki ApiHougeki2 { get; set; } = new();
+	public ApiHougeki1 ApiHougeki2 { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiHougeki ApiHougeki3 { get; set; } = new();
+	public ApiHougeki1 ApiHougeki3 { get; set; } = new();
 
 	[JsonPropertyName("api_hourai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

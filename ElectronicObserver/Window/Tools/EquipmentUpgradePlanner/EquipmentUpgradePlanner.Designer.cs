@@ -79,6 +79,24 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 全て.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to コンパクトモード.
+        /// </summary>
+        public static string CompactMode {
+            get {
+                return ResourceManager.GetString("CompactMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 更新.
         /// </summary>
         public static string ConvertTo {
@@ -187,7 +205,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
+        ///   Looks up a localized string similar to 総計必要資材.
         /// </summary>
         public static string TotalCost {
             get {

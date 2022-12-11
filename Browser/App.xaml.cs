@@ -2,9 +2,11 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Browser.WebView2Browser.AirControlSimulator;
+using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 using Jot.Storage;
@@ -53,21 +55,28 @@ public partial class App : Application
 		System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
 		string host = e.Args[0];
+
 		if (!int.TryParse(e.Args[1], out int port))
 		{
 			MessageBox.Show("Please start the application using ElectronicObserver.exe",
 				"Information", MessageBoxButton.OK, MessageBoxImage.Information);
 			return;
 		}
+
 		string culture = e.Args.Length switch
 		{
 			> 2 => e.Args[2],
 			_ => CultureInfo.CurrentCulture.Name switch
 			{
 				"ja-JP" => "ja-JP",
-				_ => "en-US"
-			}
+				_ => "en-US",
+			},
 		};
+
+		if (!Enum.TryParse(e.Args.Skip(3).FirstOrDefault(), out BrowserOption browserOption))
+		{
+			browserOption = BrowserOption.CefSharp;
+		}
 
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<FormBrowserTranslationViewModel>()
@@ -83,7 +92,7 @@ public partial class App : Application
 		ToolTipService.ShowDurationProperty.OverrideMetadata(
 			typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 
-		BrowserView browser = new(host, port, culture);
+		BrowserView browser = new(host, port, culture, browserOption);
 
 		MainWindow = browser;
 
