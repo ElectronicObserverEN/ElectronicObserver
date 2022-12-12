@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Interop;
 using Browser.CefSharpBrowser.AirControlSimulator;
 using Browser.CefSharpBrowser.CefOp;
@@ -15,9 +12,7 @@ using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
 using CefSharp;
 using CefSharp.Handler;
-using CefSharp.Wpf;
-using CefSharp.Wpf.Internals;
-using CefSharp.Wpf.Rendering.Experimental;
+using CefSharp.Wpf.HwndHost;
 using Cef = CefSharp.Cef;
 using IBrowser = CefSharp.IBrowser;
 
@@ -78,7 +73,6 @@ public class CefSharpViewModel : BrowserViewModel
 		if (Configuration is null) return;
 
 		Cef.EnableHighDPISupport();
-
 		CefSettings? settings;
 
 		try
@@ -112,13 +106,7 @@ public class CefSharpViewModel : BrowserViewModel
 			settings.DisableGpuAcceleration();
 
 		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
-
-		// 60 fps hacks
-		// https://github.com/cefsharp/CefSharp/issues/1261
-		// https://github.com/cefsharp/CefSharp/issues/2275
-
-		settings.CefCommandLineArgs.Add("enable-begin-frame-scheduling", "1");
-
+		settings.CefCommandLineArgs.Add("enable-features", "EnableDrDc");
 		// prevent CEF from taking over media keys
 		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
 		{
@@ -150,24 +138,16 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp = new ChromiumWebBrowser(KanColleUrl)
 		{
 			RequestHandler = requestHandler,
-			KeyboardHandler = new KeyboardHandler(),
+			KeyboardHandler = new CefKeyboardHandler(MuteCommand,RefreshCommand,ScreenshotCommand,HardRefreshCommand),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
-			BrowserSettings = new BrowserSettings
-			{
-				WindowlessFrameRate = 200,
-			},
+			BrowserSettings = new BrowserSettings()
 		};
-
-		CefSharp.RenderHandler = new CompositionTargetRenderHandler(CefSharp, CefSharp.DpiScaleFactor, CefSharp.DpiScaleFactor);
-
-		// Browser.WpfKeyboardHandler = new WpfKeyboardHandler(Browser);
-
+		//CefSharp.KeyboardHandler = new WpfKeyboardHandler(CefSharp);
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
-		CefSharp.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
+		CefSharp.IsBrowserInitializedChanged += (sender, args) => Navigate(KanColleUrl);
 	}
-
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
 		// DocumentCompleted に相当?
@@ -189,7 +169,7 @@ public class CefSharpViewModel : BrowserViewModel
 	// 応急処置として失敗したとき後で再試行するようにしてみる
 	private string? NavigateCache { get; set; }
 
-	private void Browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
+	private void Browser_IsBrowserInitializedChanged(object? sender, DependencyPropertyChangedEventArgs e)
 	{
 		if (CefSharp is { IsBrowserInitialized: true } || NavigateCache is null) return;
 
@@ -379,7 +359,7 @@ public class CefSharpViewModel : BrowserViewModel
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return;
 
-		CefSharp.Load(url);
+		CefSharp.LoadUrl(url);
 		// 大方ロードできないのであとで再試行する
 		NavigateCache = url;
 	}

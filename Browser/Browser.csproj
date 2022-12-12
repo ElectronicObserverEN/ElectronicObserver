@@ -38,6 +38,7 @@
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="CefSharp.Wpf.HwndHost" Version="107.1.120" />
 		<PackageReference Include="CefSharp.Wpf.NETCore" Version="107.1.120" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Grpc" Version="2.46.5" />
