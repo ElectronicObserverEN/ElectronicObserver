@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Threading;
 using Browser.CefSharpBrowser.AirControlSimulator;
 using Browser.CefSharpBrowser.CefOp;
 using Browser.CefSharpBrowser.ExtraBrowser;
@@ -429,9 +430,8 @@ public class CefSharpViewModel : BrowserViewModel
 					image = imgalt;
 				}
 			}
-
-
 			// to file
+			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
 			if ((savemode & 1) != 0)
 			{
 				try
@@ -472,7 +472,7 @@ public class CefSharpViewModel : BrowserViewModel
 			{
 				try
 				{
-					Clipboard.SetImage(image.ToBitmapSource());
+					App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(image.ToBitmapSource()));
 
 					if ((savemode & 3) != 3)
 						AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
