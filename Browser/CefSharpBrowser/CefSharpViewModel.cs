@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
-using System.Windows.Threading;
 using Browser.CefSharpBrowser.AirControlSimulator;
 using Browser.CefSharpBrowser.CefOp;
 using Browser.CefSharpBrowser.ExtraBrowser;
@@ -139,10 +138,9 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp = new ChromiumWebBrowser(KanColleUrl)
 		{
 			RequestHandler = requestHandler,
-			KeyboardHandler = new CefKeyboardHandler(MuteCommand,RefreshCommand,ScreenshotCommand,HardRefreshCommand),
+			KeyboardHandler = new CefKeyboardHandler(this),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
-			BrowserSettings = new BrowserSettings()
 		};
 		//CefSharp.KeyboardHandler = new WpfKeyboardHandler(CefSharp);
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
@@ -430,8 +428,10 @@ public class CefSharpViewModel : BrowserViewModel
 					image = imgalt;
 				}
 			}
+
+			App.Current.Dispatcher.Invoke(() => LastScreenshot = image.ToBitmapSource());
+
 			// to file
-			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
 			if ((savemode & 1) != 0)
 			{
 				try
@@ -472,10 +472,13 @@ public class CefSharpViewModel : BrowserViewModel
 			{
 				try
 				{
-					App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(image.ToBitmapSource()));
+					App.Current.Dispatcher.Invoke(() =>
+					{
+						Clipboard.SetImage(image.ToBitmapSource());
 
-					if ((savemode & 3) != 3)
-						AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
+						if ((savemode & 3) != 3)
+							AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
+					});
 				}
 				catch (Exception ex)
 				{

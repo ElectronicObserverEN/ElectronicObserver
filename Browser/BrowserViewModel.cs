@@ -29,7 +29,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	private string Host { get; }
 	private int Port { get; }
-	protected string Culture { get; set; }
+	public string Culture { get; protected set; }
 	protected IBrowserHost BrowserHost { get; }
 	protected string? ProxySettings { get; private set; }
 
