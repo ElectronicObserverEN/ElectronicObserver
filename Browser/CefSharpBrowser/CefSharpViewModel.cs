@@ -141,7 +141,6 @@ public class CefSharpViewModel : BrowserViewModel
 			KeyboardHandler = new CefKeyboardHandler(MuteCommand,RefreshCommand,ScreenshotCommand,HardRefreshCommand),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
-			BrowserSettings = new BrowserSettings()
 		};
 		//CefSharp.KeyboardHandler = new WpfKeyboardHandler(CefSharp);
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
