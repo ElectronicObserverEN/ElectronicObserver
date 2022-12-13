@@ -324,12 +324,16 @@ public partial class App : Application
 		tracker
 			.Configure<EquipmentUpgradePlanViewerViewModel>()
 			.Property(w => w.Filters.DisplayFinished)
+			.Property(w => w.Filters.SelectAllDay)
+			.Property(w => w.Filters.SelectToday)
 			.Property(w => w.ColumnProperties)
 			.Property(w => w.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()
 			.Property(w => w.ViewModel.Filters.DisplayFinished)
+			.Property(w => w.ViewModel.Filters.SelectAllDay)
+			.Property(w => w.ViewModel.Filters.SelectToday)
 			.Property(w => w.ViewModel.CompactMode)
 			.Property(w => w.ViewModel.PlanListWidth);
 

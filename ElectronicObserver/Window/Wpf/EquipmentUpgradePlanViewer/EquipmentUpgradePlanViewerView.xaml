@@ -43,11 +43,10 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<CheckBox
-				Margin="10 0 0 0"
-				Content="{Binding Translation.All}"
-				IsChecked="{Binding Filters.SelectAllDay}"
-				/>
+
+			<CheckBox Content="{Binding Filters.TodayDisplay}" IsChecked="{Binding Filters.SelectToday}" />
+
+			<CheckBox Content="{Binding Translation.All}" IsChecked="{Binding Filters.SelectAllDay}" />
 
 			<ItemsControl ItemsSource="{Binding Filters.Days}">
 
