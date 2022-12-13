@@ -4,6 +4,7 @@ using System.Windows.Input;
 using CefSharp;
 
 namespace Browser.CefSharpBrowser.CefOp;
+
 public class CefKeyboardHandler : IKeyboardHandler
 {
 	private CefSharpViewModel ViewModel { get; }
@@ -31,13 +32,13 @@ public class CefKeyboardHandler : IKeyboardHandler
 		{
 			case Key.F2:
 				ViewModel.ScreenshotCommand.Execute(null);
-				break;
+				return true;
 			case Key.F12:
 				chromiumWebBrowser.GetBrowser().ShowDevTools();
-				break;
+				return true;
 			case Key.F7:
 				ViewModel.MuteCommand.Execute(null);
-				break;
+				return true;
 			case Key.F5:
 				if (modifiers == CefEventFlags.ControlDown)
 				{
@@ -47,9 +48,9 @@ public class CefKeyboardHandler : IKeyboardHandler
 				{
 					ViewModel.RefreshCommand.Execute(null);
 				}
-				break;
+				return true;
 		}
 
-		return true;
+		return false;
 	}
 }
