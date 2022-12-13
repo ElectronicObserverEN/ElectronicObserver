@@ -58,7 +58,6 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 		PropertyChanged += (sender, args) =>
 		{
-			// On selected day change
 			if (args.PropertyName is not nameof(SelectedDay)) return;
 
 			foreach (CheckBoxEnumViewModel format in Days)
@@ -103,7 +102,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 	private void UpdateUpgradeDay()
 	{
-		// Since the views are subscibed to property changed of this viewmodel, just changing this property should be enough to refresh data
+		// Since the views are subscribed to property changed of this viewmodel, just changing this property should be enough to refresh data
 		Today = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
 	}
 
