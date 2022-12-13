@@ -157,7 +157,7 @@ internal class SoftwareUpdater
 			}
 
 			needReload = downloadList.Any();
-			downloadList.Add(("update.json", DataType.Data));
+			downloadList.Add(("update.json", DataType.None));
 			downloadList.Add(("update.json", DataType.Translation));
 
 			List<Task> taskList = new();
@@ -339,6 +339,7 @@ internal class SoftwareUpdater
 	{
 		DataType.Translation => Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, fileName),
 		DataType.Data => Path.Combine("Data", fileName),
+		DataType.None => fileName,
 	};
 
 	public static async Task DownloadData(string filename, DataType type)
