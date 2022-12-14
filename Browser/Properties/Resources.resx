@@ -226,7 +226,12 @@ catch(e) {
 if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
   </data>
   <data name="RegionCookie" xml:space="preserve">
-    <value>document.cookie = "ckcy=1;expires=Sun, 09 Feb 2025 09:00:09 GMT;domain=www.dmm.com;path=/netgame/";</value>
+    <value>var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
+var date = new Date();
+var expiryTime = parseInt(date.getTime()) + timeToAdd;
+date.setTime(expiryTime);
+var utcTime = date.toUTCString();
+document.cookie = "ckcy=1;expires="+utcTime+";domain=www.dmm.com;path=/netgame/";</value>
   </data>
   <data name="RemoveWelcomePopup" xml:space="preserve">
     <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>

@@ -175,13 +175,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 		if (e.IsLoading) return;
 
-		App.Current.Dispatcher.BeginInvoke(() =>
-		{
-			ApplyStyleSheet();
-			SetCookie();
-			ApplyZoom();
-			DestroyDMMreloadDialog();
-		});
+			App.Current.Dispatcher.BeginInvoke(() =>
+			{
+				ApplyStyleSheet();
+				SetCookie();
+				ApplyZoom();
+				DestroyDMMreloadDialog();
+			});
 	}
 
 	// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
@@ -201,18 +201,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		ICookieManager cookieManager = CefSharp.GetCookieManager();
-
-		Cookie dmmCookie = new()
-		{
-			Domain = ".dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/",
-			Value = "1",
-			Secure = false
-		};
-		cookieManager.SetCookieAsync("https://www.dmm.com", dmmCookie).Wait();
+		CefSharp.ExecuteScriptAsync(Properties.Resources.RegionCookie);
 	}
 
 	protected override void ApplyZoom()
