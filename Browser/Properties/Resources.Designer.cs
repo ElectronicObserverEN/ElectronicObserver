@@ -441,7 +441,12 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to document.cookie = &quot;ckcy=1;expires=Sun, 09 Feb 2025 09:00:09 GMT;domain=www.dmm.com;path=/netgame/&quot;;.
+        ///   Looks up a localized string similar to var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
+        ///var date = new Date();
+        ///var expiryTime = parseInt(date.getTime()) + timeToAdd;
+        ///date.setTime(expiryTime);
+        ///var utcTime = date.toUTCString();
+        ///document.cookie = &quot;ckcy=1;expires=&quot;+utcTime+&quot;;domain=www.dmm.com;path=/netgame/&quot;;.
         /// </summary>
         public static string RegionCookie {
             get {
