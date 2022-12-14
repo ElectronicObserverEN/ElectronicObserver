@@ -93,7 +93,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 			SelectAllDay = SelectedDay is null && !SelectToday;
 		};
 
-		SelectedDay = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
+		SelectToday = true;
 
 		SystemEvents.UpdateTimerTick += UpdateUpgradeDay;
 
