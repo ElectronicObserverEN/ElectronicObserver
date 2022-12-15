@@ -7,7 +7,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
 	Title="{Binding AirControlSimulator.Title}"
 	Width="800"
 	Height="450"
@@ -51,6 +50,8 @@
 			</Button>
 		</StackPanel>
 
-		<wpf:ChromiumWebBrowser x:Name="Browser" Grid.Row="1" />
+		<ContentControl Grid.Row="1">
+			<WindowsFormsHost x:Name="BrowserHost" />
+		</ContentControl>
 	</Grid>
 </Window>
