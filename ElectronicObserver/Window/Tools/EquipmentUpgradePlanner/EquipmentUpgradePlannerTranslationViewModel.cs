@@ -1,5 +1,7 @@
-﻿namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-public class EquipmentUpgradePlannerTranslationViewModel
+﻿using ElectronicObserver.ViewModels.Translations;
+
+namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewModel
 {
 	public string Goal => EquipmentUpgradePlanner.Goal;
 	public string IsFinished => EquipmentUpgradePlanner.IsFinished;
@@ -20,4 +22,5 @@ public class EquipmentUpgradePlannerTranslationViewModel
 	public string Required => EquipmentUpgradePlanner.Required;
 	public string TotalCost => EquipmentUpgradePlanner.TotalCost;
 	public string CompactMode => EquipmentUpgradePlanner.CompactMode;
+	public string Today => EquipmentUpgradePlanner.Today;
 }

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Media;
 using ElectronicObserver.Data;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
@@ -34,7 +35,7 @@ public class EquipmentUpgradeDayViewModel
 
 		BackgroundColor = helpers.Any() switch
 		{
-			true => day == TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Today, "Tokyo Standard Time").DayOfWeek ? Color.FromArgb(255, 30, 142, 255) : Color.FromArgb(153, 65, 65, 247),
+			true => day == DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek ? Color.FromArgb(255, 30, 142, 255) : Color.FromArgb(153, 65, 65, 247),
 			_ => Color.FromArgb(0, 0, 0, 0),
 		};
 	}

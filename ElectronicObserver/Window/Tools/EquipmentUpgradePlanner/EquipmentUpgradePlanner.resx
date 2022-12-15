@@ -177,4 +177,7 @@
   <data name="All" xml:space="preserve">
     <value>全て</value>
   </data>
+  <data name="Today" xml:space="preserve">
+    <value>本日 ({0})</value>
+  </data>
 </root>

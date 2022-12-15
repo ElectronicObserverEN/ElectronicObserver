@@ -353,11 +353,9 @@
 				BorderThickness="1"
 				/>
 
-			<CheckBox
-				Margin="10 0 0 0"
-				Content="{Binding EquipmentUpgradePlanner.All}"
-				IsChecked="{Binding Filters.SelectAllDay}"
-				/>
+			<CheckBox Content="{Binding Filters.TodayDisplay}" IsChecked="{Binding Filters.SelectToday}" />
+
+			<CheckBox Content="{Binding EquipmentUpgradePlanner.All}" IsChecked="{Binding Filters.SelectAllDay}" />
 
 			<ItemsControl ItemsSource="{Binding Filters.Days}">
 

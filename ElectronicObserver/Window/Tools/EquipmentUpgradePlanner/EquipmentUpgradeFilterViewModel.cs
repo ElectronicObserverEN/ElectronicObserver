@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Common;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -16,6 +19,19 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 	public DayOfWeek? SelectedDay { get; set; }
 	public bool SelectAllDay { get; set; }
+
+	public bool SelectToday { get; set; }
+
+	public DayOfWeek Today { get; set; }
+
+	public EquipmentUpgradePlannerTranslationViewModel Translations { get; set; } = new();
+
+	public string TodayDisplay => string.Format(Translations.Today, CultureInfo.CurrentCulture.Name switch
+	{
+		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Today)[..1],
+		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Today)[..3],
+	});
+
 
 	public EquipmentUpgradeFilterViewModel()
 	{
@@ -31,6 +47,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 				if (isChecked)
 				{
 					SelectedDay = dayValue;
+					SelectToday = false;
 				}
 				else if (SelectedDay == dayValue)
 				{
@@ -50,25 +67,56 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 				format.IsChecked = dayValue == SelectedDay;
 			}
 
-			SelectAllDay = SelectedDay is null;
+			SelectAllDay = SelectedDay is null && !SelectToday;
 		};
 
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(SelectAllDay)) return;
 
+			if (SelectAllDay) SelectToday = false;
+			else if (SelectedDay is null && !SelectToday) SelectAllDay = true;
+
 			if (SelectAllDay) SelectedDay = null;
-			else if (SelectedDay is null) SelectAllDay = true;
 		};
 
-		SelectedDay = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Today, "Tokyo Standard Time").DayOfWeek;
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(SelectToday)) return;
+
+			if (SelectToday)
+			{
+				SelectAllDay = false;
+				SelectedDay = null;
+			}
+
+			SelectAllDay = SelectedDay is null && !SelectToday;
+		};
+
+		SelectToday = true;
+
+		SystemEvents.UpdateTimerTick += UpdateUpgradeDay;
+
+		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged(nameof(TodayDisplay));
+	}
+
+	private void UpdateUpgradeDay()
+	{
+		// Since the views are subscribed to property changed of this viewmodel, just changing this property should be enough to refresh data
+		Today = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
 	}
 
 	public bool MeetsFilterCondition(EquipmentUpgradePlanItemViewModel plan)
 	{
 		if (!DisplayFinished && plan.Finished) return false;
 
-		if (SelectedDay is DayOfWeek selectedDay)
+		DayOfWeek? dayFilter = SelectToday switch
+		{
+			true => Today,
+			_ => SelectedDay
+		};
+
+		if (dayFilter is DayOfWeek selectedDay)
 		{
 			List<DayOfWeek> daysOfThePlan = plan.HelperViewModels
 				.SelectMany(helpers => helpers.Days)
