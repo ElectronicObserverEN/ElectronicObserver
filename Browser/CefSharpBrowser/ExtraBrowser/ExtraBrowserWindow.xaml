@@ -2,15 +2,13 @@
 	x:Class="Browser.CefSharpBrowser.ExtraBrowser.ExtraBrowserWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-	xmlns:behaviours="clr-namespace:Browser.CefSharpBrowser.ExtraBrowser.Behaviours"
 	xmlns:cef="clr-namespace:CefSharp;assembly=CefSharp.Core"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+	xmlns:winForms="clr-namespace:CefSharp.WinForms;assembly=CefSharp.WinForms"
 	x:Name="ExtraBrowser"
-	Title="{Binding Path=Title, ElementName=Browser, Converter={StaticResource TitleConverter}}"
+	Title="{Binding FormBrowser.Title, ElementName=ExtraBrowser}"
 	d:DataContext="{Binding ElementName=ExtraBrowser}"
 	ui:WindowHelper.UseModernWindowStyle="True"
 	WindowState="Maximized"
@@ -48,12 +46,12 @@
 			</Grid.ColumnDefinitions>
 			<Button
 				Grid.Column="0"
-				Command="{Binding WebBrowser.BackCommand, ElementName=Browser}"
+				Click="Back"
 				Content="←"
 				/>
 			<Button
 				Grid.Column="1"
-				Command="{Binding WebBrowser.ForwardCommand, ElementName=Browser}"
+				Click="Forward"
 				Content="→"
 				/>
 			<Button
@@ -67,28 +65,21 @@
 				Content="{Binding FormBrowser.AkashiList, ElementName=ExtraBrowser}"
 				/>
 			<TextBox
-				x:Name="txtBoxAddress"
+				x:Name="Address"
 				Grid.Column="4"
 				BorderBrush="Gray"
 				BorderThickness="1"
 				FontSize="12"
-				Text="{Binding Address, ElementName=Browser, FallbackValue=www.google.com}"
-				>
-				<behaviors:Interaction.Behaviors>
-					<behaviours:TextBoxBindingUpdateOnEnterBehaviour />
-				</behaviors:Interaction.Behaviors>
-			</TextBox>
+				/>
 		</Grid>
 		<Border
 			Grid.Row="2"
 			BorderBrush="Gray"
 			BorderThickness="0 1"
 			>
-			<wpf:ChromiumWebBrowser x:Name="Browser" Address="https://www.duckduckgo.com">
-				<behaviors:Interaction.Behaviors>
-					<behaviours:HoverLinkBehaviour x:Name="HoverLinkBehaviour" />
-				</behaviors:Interaction.Behaviors>
-			</wpf:ChromiumWebBrowser>
+			<WindowsFormsHost>
+				<winForms:ChromiumWebBrowser x:Name="Browser" />
+			</WindowsFormsHost>
 		</Border>
 		<ProgressBar
 			Grid.Row="1"
@@ -135,8 +126,7 @@
 					Chromium:<Run Text="{Binding Source={x:Static cef:Cef.ChromiumVersion}, Mode=OneTime}" />
 					, CEF:<Run Text="{Binding Source={x:Static cef:Cef.CefVersion}, Mode=OneTime}" />
 					, CefSharp:<Run Text="{Binding Source={x:Static cef:Cef.CefSharpVersion}, Mode=OneTime}" />
-					, Environment:<Run Text="{Binding Converter={StaticResource EnvironmentConverter}, Mode=OneTime}" />
-				</TextBlock>
+					, Environment: x64</TextBlock>
 			</StatusBarItem>
 		</StatusBar>
 	</Grid>

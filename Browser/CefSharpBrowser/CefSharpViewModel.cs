@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms.Integration;
 using System.Windows.Interop;
 using Browser.CefSharpBrowser.AirControlSimulator;
 using Browser.CefSharpBrowser.CefOp;
@@ -12,7 +13,7 @@ using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
 using CefSharp;
 using CefSharp.Handler;
-using CefSharp.Wpf.HwndHost;
+using CefSharp.WinForms;
 using Cef = CefSharp.Cef;
 using IBrowser = CefSharp.IBrowser;
 
@@ -20,7 +21,8 @@ namespace Browser.CefSharpBrowser;
 
 public class CefSharpViewModel : BrowserViewModel
 {
-	public override object? Browser => CefSharp;
+	public override object? Browser => Host;
+	private WindowsFormsHost Host { get; } = new();
 	private ChromiumWebBrowser? CefSharp { get; set; }
 	private static string BrowserCachePath => BrowserConstants.WebView2CachePath;
 
@@ -146,7 +148,10 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 		CefSharp.IsBrowserInitializedChanged += (sender, args) => Navigate(KanColleUrl);
+
+		Host.Child = CefSharp;
 	}
+
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
 		// DocumentCompleted に相当?

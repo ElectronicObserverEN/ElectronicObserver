@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CefSharp;
+using CefSharp.Handler;
+using CefSharp.WinForms;
 using Jot;
 
 namespace Browser.CefSharpBrowser.AirControlSimulator;
@@ -11,6 +13,8 @@ public partial class AirControlSimulatorWindow
 {
 	private Tracker Tracker { get; }
 	private AirControlSimulatorViewModel ViewModel { get; }
+
+	private ChromiumWebBrowser Browser { get; }
 
 	public AirControlSimulatorWindow(string url, BrowserLibCore.IBrowserHost browserHost)
 	{
@@ -25,7 +29,10 @@ public partial class AirControlSimulatorWindow
 
 		InitializeComponent();
 
-		ViewModel.ExecuteScriptAsync = s => Browser.ExecuteScriptAsync(s);
+		Browser = new();
+		BrowserHost.Child = Browser;
+
+		ViewModel.ExecuteScriptAsync = Browser.ExecuteScriptAsync;
 
 		InitializeAsync();
 
