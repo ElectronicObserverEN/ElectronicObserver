@@ -496,7 +496,7 @@ public class ShipParameterRecord : RecordBase
 
 			void TryToUpdate(Func<ShipParameterElement, int> getter, Action<ShipParameterElement, int> setter)
 			{
-				if (getter(this) == 0 && getter(other) != 0)
+				if (getter(this) != getter(other))
 				{
 					setter(this, getter(other));
 					isChanged = true;
@@ -526,12 +526,14 @@ public class ShipParameterRecord : RecordBase
 						to.MinimumEstMin = from.MinimumEstMin;
 						isChanged = true;
 					}
+
 					if (to.MinimumEstMax > from.MinimumEstMax)
 					{
 						to.MinimumEstMax = from.MinimumEstMax;
 						isChanged = true;
 					}
 				}
+
 				if (!from.IsMaximumDefault && from.Maximum != to.Maximum)
 				{
 					to.Maximum = from.Maximum;
@@ -548,13 +550,22 @@ public class ShipParameterRecord : RecordBase
 			TryToUpdate(e => e.LuckMax, (e, i) => e.LuckMax = i);
 			TryToUpdate(e => e.Range, (e, i) => e.Range = i);
 
+			bool ShouldUpdate(int[]? oldValues, int[]? newValues)
+			{
+				if (newValues is null) return false;
+				if (oldValues is null) return true;
+				if (oldValues.Length != newValues.Length) return true;
 
-			if (DefaultSlot == null && other.DefaultSlot != null)
+				return oldValues.Where((t, i) => t != newValues[i]).Any();
+			}
+
+			if (ShouldUpdate(DefaultSlot, other.DefaultSlot))
 			{
 				DefaultSlot = other.DefaultSlot.ToArray();
 				isChanged = true;
 			}
-			if (Aircraft == null && other.Aircraft != null)
+
+			if (ShouldUpdate(Aircraft, other.Aircraft))
 			{
 				Aircraft = other.Aircraft.ToArray();
 				isChanged = true;

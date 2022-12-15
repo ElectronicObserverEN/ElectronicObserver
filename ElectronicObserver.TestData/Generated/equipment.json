@@ -8126,7 +8126,92 @@
     "IconType": 20
   },
   {
-    "EquipmentId": 501,
+    "EquipmentId": 483,
+    "Name": "三式弾改二",
+    "Armor": 0,
+    "Firepower": 5,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 7,
+    "Asw": 0,
+    "Accuracy": 1,
+    "Evasion": 1,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 18,
+    "IconType": 12
+  },
+  {
+    "EquipmentId": 484,
+    "Name": "四式重爆 飛龍(熟練)+イ号一型甲 誘導弾",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 17,
+    "Bomber": 21,
+    "Aa": 5,
+    "Asw": 4,
+    "Accuracy": 3,
+    "Evasion": 0,
+    "LoS": 5,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 47,
+    "IconType": 37
+  },
+  {
+    "EquipmentId": 485,
+    "Name": "強風改二",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 6,
+    "Asw": 0,
+    "Accuracy": 1,
+    "Evasion": 4,
+    "LoS": 2,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 45,
+    "IconType": 43
+  },
+  {
+    "EquipmentId": 486,
+    "Name": "零式艦戦64型(制空戦闘機仕様)",
+    "Armor": 0,
+    "Firepower": 1,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 9,
+    "Asw": 0,
+    "Accuracy": 1,
+    "Evasion": 3,
+    "LoS": 1,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 6,
+    "IconType": 6
+  },
+  {
+    "EquipmentId": 487,
+    "Name": "零式艦戦64型(熟練爆戦)",
+    "Armor": 0,
+    "Firepower": 1,
+    "Torpedo": 0,
+    "Bomber": 6,
+    "Aa": 7,
+    "Asw": 3,
+    "Accuracy": 2,
+    "Evasion": 0,
+    "LoS": 2,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 7,
+    "IconType": 7
+  },
+  {
+    "EquipmentId": 1501,
     "Name": "5inch単装砲",
     "Armor": 0,
     "Firepower": 1,
@@ -8143,7 +8228,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 502,
+    "EquipmentId": 1502,
     "Name": "5inch連装砲",
     "Armor": 0,
     "Firepower": 2,
@@ -8160,7 +8245,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 503,
+    "EquipmentId": 1503,
     "Name": "3inch単装高角砲",
     "Armor": 0,
     "Firepower": 1,
@@ -8177,7 +8262,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 504,
+    "EquipmentId": 1504,
     "Name": "5inch単装高射砲",
     "Armor": 0,
     "Firepower": 2,
@@ -8194,7 +8279,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 505,
+    "EquipmentId": 1505,
     "Name": "8inch三連装砲",
     "Armor": 0,
     "Firepower": 8,
@@ -8211,7 +8296,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 506,
+    "EquipmentId": 1506,
     "Name": "6inch連装速射砲",
     "Armor": 0,
     "Firepower": 3,
@@ -8228,7 +8313,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 507,
+    "EquipmentId": 1507,
     "Name": "14inch連装砲",
     "Armor": 0,
     "Firepower": 10,
@@ -8245,7 +8330,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 508,
+    "EquipmentId": 1508,
     "Name": "16inch連装砲",
     "Armor": 0,
     "Firepower": 15,
@@ -8262,7 +8347,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 509,
+    "EquipmentId": 1509,
     "Name": "16inch三連装砲",
     "Armor": 0,
     "Firepower": 20,
@@ -8279,7 +8364,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 510,
+    "EquipmentId": 1510,
     "Name": "5inch単装高射砲",
     "Armor": 0,
     "Firepower": 1,
@@ -8296,7 +8381,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 511,
+    "EquipmentId": 1511,
     "Name": "6inch単装砲",
     "Armor": 0,
     "Firepower": 1,
@@ -8313,7 +8398,7 @@
     "IconType": 4
   },
   {
-    "EquipmentId": 512,
+    "EquipmentId": 1512,
     "Name": "12.5inch連装副砲",
     "Armor": 0,
     "Firepower": 7,
@@ -8330,7 +8415,7 @@
     "IconType": 4
   },
   {
-    "EquipmentId": 513,
+    "EquipmentId": 1513,
     "Name": "21inch魚雷前期型",
     "Armor": 0,
     "Firepower": 0,
@@ -8347,7 +8432,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 514,
+    "EquipmentId": 1514,
     "Name": "21inch魚雷後期型",
     "Armor": 0,
     "Firepower": 0,
@@ -8364,7 +8449,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 515,
+    "EquipmentId": 1515,
     "Name": "高速深海魚雷",
     "Armor": 0,
     "Firepower": 0,
@@ -8381,7 +8466,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 516,
+    "EquipmentId": 1516,
     "Name": "深海棲艦攻",
     "Armor": 0,
     "Firepower": 0,
@@ -8398,7 +8483,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 517,
+    "EquipmentId": 1517,
     "Name": "深海棲艦攻 Mark.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8415,7 +8500,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 518,
+    "EquipmentId": 1518,
     "Name": "深海棲艦攻 Mark.III",
     "Armor": 0,
     "Firepower": 0,
@@ -8432,7 +8517,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 519,
+    "EquipmentId": 1519,
     "Name": "深海棲艦戦",
     "Armor": 0,
     "Firepower": 0,
@@ -8449,7 +8534,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 520,
+    "EquipmentId": 1520,
     "Name": "深海棲艦戦 Mark.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8466,7 +8551,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 521,
+    "EquipmentId": 1521,
     "Name": "深海棲艦戦 Mark.III",
     "Armor": 0,
     "Firepower": 0,
@@ -8483,7 +8568,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 522,
+    "EquipmentId": 1522,
     "Name": "飛び魚艦戦",
     "Armor": 0,
     "Firepower": 0,
@@ -8500,7 +8585,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 523,
+    "EquipmentId": 1523,
     "Name": "深海棲艦爆",
     "Armor": 0,
     "Firepower": 0,
@@ -8517,7 +8602,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 524,
+    "EquipmentId": 1524,
     "Name": "深海棲艦爆 Mark.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8534,7 +8619,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 525,
+    "EquipmentId": 1525,
     "Name": "深海棲艦偵察機",
     "Armor": 0,
     "Firepower": 0,
@@ -8551,7 +8636,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 526,
+    "EquipmentId": 1526,
     "Name": "飛び魚偵察機",
     "Armor": 0,
     "Firepower": 0,
@@ -8568,7 +8653,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 527,
+    "EquipmentId": 1527,
     "Name": "対空レーダ― Mark.I",
     "Armor": 0,
     "Firepower": 0,
@@ -8585,7 +8670,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 528,
+    "EquipmentId": 1528,
     "Name": "水上レーダ― Mark.I",
     "Armor": 0,
     "Firepower": 0,
@@ -8602,7 +8687,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 529,
+    "EquipmentId": 1529,
     "Name": "水上レーダ― Mark.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8619,7 +8704,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 530,
+    "EquipmentId": 1530,
     "Name": "対空レーダ― Mark.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8636,7 +8721,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 531,
+    "EquipmentId": 1531,
     "Name": "深海水上レーダー",
     "Armor": 0,
     "Firepower": 0,
@@ -8653,7 +8738,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 532,
+    "EquipmentId": 1532,
     "Name": "深海対空レーダ―",
     "Armor": 0,
     "Firepower": 0,
@@ -8670,7 +8755,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 533,
+    "EquipmentId": 1533,
     "Name": "改良型深海タービン",
     "Armor": 0,
     "Firepower": 0,
@@ -8687,7 +8772,7 @@
     "IconType": 19
   },
   {
-    "EquipmentId": 534,
+    "EquipmentId": 1534,
     "Name": "強化型深海缶",
     "Armor": 0,
     "Firepower": 0,
@@ -8704,7 +8789,7 @@
     "IconType": 19
   },
   {
-    "EquipmentId": 535,
+    "EquipmentId": 1535,
     "Name": "対空散弾",
     "Armor": 0,
     "Firepower": 0,
@@ -8721,7 +8806,7 @@
     "IconType": 12
   },
   {
-    "EquipmentId": 536,
+    "EquipmentId": 1536,
     "Name": "劣化徹甲弾",
     "Armor": 0,
     "Firepower": 15,
@@ -8738,7 +8823,7 @@
     "IconType": 13
   },
   {
-    "EquipmentId": 537,
+    "EquipmentId": 1537,
     "Name": "12.7mm機銃",
     "Armor": 0,
     "Firepower": 0,
@@ -8755,7 +8840,7 @@
     "IconType": 15
   },
   {
-    "EquipmentId": 538,
+    "EquipmentId": 1538,
     "Name": "20mm機銃",
     "Armor": 0,
     "Firepower": 0,
@@ -8772,7 +8857,7 @@
     "IconType": 15
   },
   {
-    "EquipmentId": 539,
+    "EquipmentId": 1539,
     "Name": "40mm二連装機関砲",
     "Armor": 0,
     "Firepower": 0,
@@ -8789,7 +8874,7 @@
     "IconType": 15
   },
   {
-    "EquipmentId": 540,
+    "EquipmentId": 1540,
     "Name": "40mm四連装機関砲",
     "Armor": 0,
     "Firepower": 0,
@@ -8806,7 +8891,7 @@
     "IconType": 15
   },
   {
-    "EquipmentId": 541,
+    "EquipmentId": 1541,
     "Name": "深海烏賊魚雷",
     "Armor": 0,
     "Firepower": 0,
@@ -8823,7 +8908,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 542,
+    "EquipmentId": 1542,
     "Name": "深海爆雷投射機",
     "Armor": 0,
     "Firepower": 0,
@@ -8840,7 +8925,7 @@
     "IconType": 17
   },
   {
-    "EquipmentId": 543,
+    "EquipmentId": 1543,
     "Name": "深海ソナー",
     "Armor": 0,
     "Firepower": 0,
@@ -8857,7 +8942,7 @@
     "IconType": 18
   },
   {
-    "EquipmentId": 544,
+    "EquipmentId": 1544,
     "Name": "深海爆雷投射機 Mk.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8874,7 +8959,7 @@
     "IconType": 17
   },
   {
-    "EquipmentId": 545,
+    "EquipmentId": 1545,
     "Name": "深海ソナー Mk.II",
     "Armor": 0,
     "Firepower": 0,
@@ -8891,7 +8976,7 @@
     "IconType": 18
   },
   {
-    "EquipmentId": 546,
+    "EquipmentId": 1546,
     "Name": "飛び魚艦爆",
     "Armor": 0,
     "Firepower": 0,
@@ -8908,7 +8993,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 547,
+    "EquipmentId": 1547,
     "Name": "深海猫艦戦",
     "Armor": 0,
     "Firepower": 0,
@@ -8925,7 +9010,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 548,
+    "EquipmentId": 1548,
     "Name": "深海地獄艦爆",
     "Armor": 0,
     "Firepower": 0,
@@ -8942,7 +9027,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 549,
+    "EquipmentId": 1549,
     "Name": "深海復讐艦攻",
     "Armor": 0,
     "Firepower": 0,
@@ -8959,7 +9044,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 550,
+    "EquipmentId": 1550,
     "Name": "5inch連装両用莢砲",
     "Armor": 0,
     "Firepower": 2,
@@ -8976,7 +9061,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 551,
+    "EquipmentId": 1551,
     "Name": "20inch連装砲",
     "Armor": 0,
     "Firepower": 27,
@@ -8993,7 +9078,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 552,
+    "EquipmentId": 1552,
     "Name": "15inch要塞砲",
     "Armor": 3,
     "Firepower": 13,
@@ -9010,7 +9095,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 553,
+    "EquipmentId": 1553,
     "Name": "4inch連装両用砲+CIC",
     "Armor": 0,
     "Firepower": 5,
@@ -9027,7 +9112,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 554,
+    "EquipmentId": 1554,
     "Name": "深海水上攻撃機",
     "Armor": 0,
     "Firepower": 0,
@@ -9044,7 +9129,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 555,
+    "EquipmentId": 1555,
     "Name": "深海水上攻撃機改",
     "Armor": 0,
     "Firepower": 0,
@@ -9061,7 +9146,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 556,
+    "EquipmentId": 1556,
     "Name": "深海猫艦戦改",
     "Armor": 0,
     "Firepower": 0,
@@ -9078,7 +9163,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 557,
+    "EquipmentId": 1557,
     "Name": "深海地獄艦爆改",
     "Armor": 0,
     "Firepower": 0,
@@ -9095,7 +9180,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 558,
+    "EquipmentId": 1558,
     "Name": "深海復讐艦攻改",
     "Armor": 0,
     "Firepower": 0,
@@ -9112,7 +9197,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 559,
+    "EquipmentId": 1559,
     "Name": "深海FCS+CIC",
     "Armor": 0,
     "Firepower": 0,
@@ -9129,7 +9214,7 @@
     "IconType": 18
   },
   {
-    "EquipmentId": 560,
+    "EquipmentId": 1560,
     "Name": "深海探照灯",
     "Armor": 0,
     "Firepower": 2,
@@ -9146,7 +9231,7 @@
     "IconType": 24
   },
   {
-    "EquipmentId": 561,
+    "EquipmentId": 1561,
     "Name": "深海解放陸爆",
     "Armor": 0,
     "Firepower": 0,
@@ -9163,7 +9248,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 562,
+    "EquipmentId": 1562,
     "Name": "深海解放陸爆Ace",
     "Armor": 0,
     "Firepower": 0,
@@ -9180,7 +9265,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 563,
+    "EquipmentId": 1563,
     "Name": "8inch長射程連装砲",
     "Armor": 0,
     "Firepower": 8,
@@ -9197,7 +9282,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 564,
+    "EquipmentId": 1564,
     "Name": "深海水上偵察観測機",
     "Armor": 0,
     "Firepower": 0,
@@ -9214,7 +9299,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 565,
+    "EquipmentId": 1565,
     "Name": "5inch沿岸設置砲",
     "Armor": 2,
     "Firepower": 3,
@@ -9231,7 +9316,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 566,
+    "EquipmentId": 1566,
     "Name": "深海猫艦戦(爆装)",
     "Armor": 0,
     "Firepower": 0,
@@ -9248,7 +9333,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 567,
+    "EquipmentId": 1567,
     "Name": "沿岸設置レーダー",
     "Armor": 0,
     "Firepower": 0,
@@ -9265,7 +9350,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 568,
+    "EquipmentId": 1568,
     "Name": "16inch三連装砲",
     "Armor": 1,
     "Firepower": 24,
@@ -9282,7 +9367,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 569,
+    "EquipmentId": 1569,
     "Name": "深海偵察飛行艇",
     "Armor": 0,
     "Firepower": 3,
@@ -9299,7 +9384,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 570,
+    "EquipmentId": 1570,
     "Name": "高速深海魚雷 mod.2",
     "Armor": 0,
     "Firepower": 0,
@@ -9316,7 +9401,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 571,
+    "EquipmentId": 1571,
     "Name": "深海水母小鬼機",
     "Armor": 4,
     "Firepower": 4,
@@ -9333,7 +9418,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 572,
+    "EquipmentId": 1572,
     "Name": "深海熊猫艦戦",
     "Armor": 8,
     "Firepower": 8,
@@ -9350,7 +9435,7 @@
     "IconType": 6
   },
   {
-    "EquipmentId": 573,
+    "EquipmentId": 1573,
     "Name": "深海潜水下駄履き",
     "Armor": 3,
     "Firepower": 6,
@@ -9367,7 +9452,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 574,
+    "EquipmentId": 1574,
     "Name": "深海攻撃哨戒鷹",
     "Armor": 3,
     "Firepower": 3,
@@ -9384,7 +9469,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 575,
+    "EquipmentId": 1575,
     "Name": "深海攻撃哨戒鷹改",
     "Armor": 3,
     "Firepower": 5,
@@ -9401,7 +9486,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 576,
+    "EquipmentId": 1576,
     "Name": "深海12inch三連装砲",
     "Armor": 2,
     "Firepower": 16,
@@ -9418,7 +9503,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 577,
+    "EquipmentId": 1577,
     "Name": "深海15inch四連装砲",
     "Armor": 2,
     "Firepower": 24,
@@ -9435,7 +9520,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 578,
+    "EquipmentId": 1578,
     "Name": "深海15inch連装砲後期型",
     "Armor": 1,
     "Firepower": 19,
@@ -9452,7 +9537,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 579,
+    "EquipmentId": 1579,
     "Name": "深海14inch海峡連装砲",
     "Armor": 3,
     "Firepower": 17,
@@ -9469,7 +9554,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 580,
+    "EquipmentId": 1580,
     "Name": "深海待伏魚雷",
     "Armor": 0,
     "Firepower": 0,
@@ -9486,7 +9571,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 581,
+    "EquipmentId": 1581,
     "Name": "夜猫深海艦戦",
     "Armor": 0,
     "Firepower": 2,
@@ -9503,7 +9588,7 @@
     "IconType": 45
   },
   {
-    "EquipmentId": 582,
+    "EquipmentId": 1582,
     "Name": "夜深海艦爆",
     "Armor": 0,
     "Firepower": 3,
@@ -9520,7 +9605,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 583,
+    "EquipmentId": 1583,
     "Name": "夜復讐深海艦攻",
     "Armor": 0,
     "Firepower": 4,
@@ -9537,7 +9622,7 @@
     "IconType": 46
   },
   {
-    "EquipmentId": 584,
+    "EquipmentId": 1584,
     "Name": "深海14inch連装砲改",
     "Armor": 4,
     "Firepower": 22,
@@ -9554,7 +9639,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 585,
+    "EquipmentId": 1585,
     "Name": "深海16inch三連装砲改",
     "Armor": 5,
     "Firepower": 27,
@@ -9571,7 +9656,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 586,
+    "EquipmentId": 1586,
     "Name": "深海攻撃哨戒鷹改二",
     "Armor": 3,
     "Firepower": 9,
@@ -9588,7 +9673,7 @@
     "IconType": 8
   },
   {
-    "EquipmentId": 587,
+    "EquipmentId": 1587,
     "Name": "深海16inch三連装砲改二",
     "Armor": 6,
     "Firepower": 28,
@@ -9605,7 +9690,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 588,
+    "EquipmentId": 1588,
     "Name": "深海5inch連装砲C型",
     "Armor": 0,
     "Firepower": 6,
@@ -9622,7 +9707,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 589,
+    "EquipmentId": 1589,
     "Name": "深海5.5inch連装砲改",
     "Armor": 4,
     "Firepower": 8,
@@ -9639,7 +9724,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 590,
+    "EquipmentId": 1590,
     "Name": "深海標的",
     "Armor": 0,
     "Firepower": 4,
@@ -9656,7 +9741,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 591,
+    "EquipmentId": 1591,
     "Name": "深海5inch単装砲 Mk.30",
     "Armor": 0,
     "Firepower": 5,
@@ -9673,7 +9758,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 592,
+    "EquipmentId": 1592,
     "Name": "深海16inch Mk.VIII連装砲改",
     "Armor": 3,
     "Firepower": 23,
@@ -9690,7 +9775,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 593,
+    "EquipmentId": 1593,
     "Name": "高速深海魚雷 mod.3",
     "Armor": 0,
     "Firepower": 0,
@@ -9707,7 +9792,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 594,
+    "EquipmentId": 1594,
     "Name": "深海空要塞(偵察型)",
     "Armor": 0,
     "Firepower": 17,
@@ -9724,7 +9809,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 595,
+    "EquipmentId": 1595,
     "Name": "深海空要塞Ace(偵察型)",
     "Armor": 0,
     "Firepower": 17,
@@ -9741,7 +9826,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 596,
+    "EquipmentId": 1596,
     "Name": "深海6inch三連装新型速射砲",
     "Armor": 0,
     "Firepower": 14,
@@ -9758,7 +9843,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 597,
+    "EquipmentId": 1597,
     "Name": "深海空要塞(重爆型)",
     "Armor": 0,
     "Firepower": 17,
@@ -9775,7 +9860,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 598,
+    "EquipmentId": 1598,
     "Name": "深海空要塞Ace(重爆型)",
     "Armor": 0,
     "Firepower": 17,
@@ -9792,7 +9877,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 599,
+    "EquipmentId": 1599,
     "Name": "深海4.7inch砲 Mk.XII",
     "Armor": 0,
     "Firepower": 6,
@@ -9809,7 +9894,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 600,
+    "EquipmentId": 1600,
     "Name": "深海8inch連装速射砲",
     "Armor": 0,
     "Firepower": 10,
@@ -9826,7 +9911,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 601,
+    "EquipmentId": 1601,
     "Name": "深海8inch三連装砲 Mk.9",
     "Armor": 0,
     "Firepower": 12,
@@ -9843,7 +9928,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 602,
+    "EquipmentId": 1602,
     "Name": "深海5inch連装両用砲(集中配備)",
     "Armor": 0,
     "Firepower": 7,
@@ -9860,7 +9945,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 603,
+    "EquipmentId": 1603,
     "Name": "深海対空レーダーMark.III+FCS",
     "Armor": 0,
     "Firepower": 0,
@@ -9877,7 +9962,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 604,
+    "EquipmentId": 1604,
     "Name": "深海5inch連装砲A型",
     "Armor": 0,
     "Firepower": 6,
@@ -9894,7 +9979,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 605,
+    "EquipmentId": 1605,
     "Name": "深海潜水艦搭載電子兵装",
     "Armor": 0,
     "Firepower": 0,
@@ -9911,7 +9996,7 @@
     "IconType": 42
   },
   {
-    "EquipmentId": 606,
+    "EquipmentId": 1606,
     "Name": "深海5inch単装高角砲改二",
     "Armor": 0,
     "Firepower": 1,
@@ -9928,7 +10013,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 607,
+    "EquipmentId": 1607,
     "Name": "深海5inch連装高角砲改二",
     "Armor": 0,
     "Firepower": 2,
@@ -9945,7 +10030,7 @@
     "IconType": 16
   },
   {
-    "EquipmentId": 608,
+    "EquipmentId": 1608,
     "Name": "深海夜間航空作戦装備",
     "Armor": 0,
     "Firepower": 3,
@@ -9962,7 +10047,7 @@
     "IconType": 11
   },
   {
-    "EquipmentId": 609,
+    "EquipmentId": 1609,
     "Name": "深海16inch三連装砲 Mk6",
     "Armor": 3,
     "Firepower": 25,
@@ -9979,7 +10064,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 610,
+    "EquipmentId": 1610,
     "Name": "深海カモメ水偵",
     "Armor": 0,
     "Firepower": 0,
@@ -9996,7 +10081,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 611,
+    "EquipmentId": 1611,
     "Name": "深海海猫水偵",
     "Armor": 0,
     "Firepower": 3,
@@ -10013,7 +10098,7 @@
     "IconType": 10
   },
   {
-    "EquipmentId": 612,
+    "EquipmentId": 1612,
     "Name": "深海6inch三連装主砲 Mk.16",
     "Armor": 0,
     "Firepower": 13,
@@ -10030,7 +10115,7 @@
     "IconType": 2
   },
   {
-    "EquipmentId": 613,
+    "EquipmentId": 1613,
     "Name": "地中海12inch/46 連装砲",
     "Armor": 3,
     "Firepower": 14,
@@ -10047,7 +10132,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 614,
+    "EquipmentId": 1614,
     "Name": "地中海12inch/46 三連装砲",
     "Armor": 3,
     "Firepower": 17,
@@ -10064,7 +10149,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 615,
+    "EquipmentId": 1615,
     "Name": "地中海12.6inch/44 連装砲",
     "Armor": 3,
     "Firepower": 16,
@@ -10081,7 +10166,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 616,
+    "EquipmentId": 1616,
     "Name": "地中海12.6inch/44 三連装砲",
     "Armor": 3,
     "Firepower": 19,
@@ -10098,7 +10183,7 @@
     "IconType": 3
   },
   {
-    "EquipmentId": 617,
+    "EquipmentId": 1617,
     "Name": "夜猫深海艦戦II",
     "Armor": 0,
     "Firepower": 3,
@@ -10115,7 +10200,7 @@
     "IconType": 45
   },
   {
-    "EquipmentId": 618,
+    "EquipmentId": 1618,
     "Name": "夜深海艦爆II",
     "Armor": 0,
     "Firepower": 4,
@@ -10132,7 +10217,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 619,
+    "EquipmentId": 1619,
     "Name": "夜復讐深海艦攻II",
     "Armor": 0,
     "Firepower": 5,
@@ -10149,7 +10234,7 @@
     "IconType": 46
   },
   {
-    "EquipmentId": 620,
+    "EquipmentId": 1620,
     "Name": "深海戦爆複座鷹",
     "Armor": 3,
     "Firepower": 5,
@@ -10166,7 +10251,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 621,
+    "EquipmentId": 1621,
     "Name": "深海戦爆複座鷹改",
     "Armor": 3,
     "Firepower": 6,
@@ -10183,7 +10268,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 622,
+    "EquipmentId": 1622,
     "Name": "深海四連装(酸素)魚雷後期型",
     "Armor": 0,
     "Firepower": 0,
@@ -10200,7 +10285,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 623,
+    "EquipmentId": 1623,
     "Name": "深海5inch連装砲D型",
     "Armor": 1,
     "Firepower": 7,
@@ -10217,7 +10302,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 624,
+    "EquipmentId": 1624,
     "Name": "深海五連装(酸素)魚雷後期型",
     "Armor": 0,
     "Firepower": 0,
@@ -10234,7 +10319,7 @@
     "IconType": 5
   },
   {
-    "EquipmentId": 625,
+    "EquipmentId": 1625,
     "Name": "深海双発陸爆",
     "Armor": 0,
     "Firepower": 0,
@@ -10251,7 +10336,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 626,
+    "EquipmentId": 1626,
     "Name": "深海双発陸爆Ace",
     "Armor": 0,
     "Firepower": 0,
@@ -10268,7 +10353,7 @@
     "IconType": 7
   },
   {
-    "EquipmentId": 627,
+    "EquipmentId": 1627,
     "Name": "深海5inch連装砲C型",
     "Armor": 2,
     "Firepower": 6,
@@ -10285,7 +10370,7 @@
     "IconType": 1
   },
   {
-    "EquipmentId": 630,
+    "EquipmentId": 1630,
     "Name": "深海空超要塞",
     "Armor": 0,
     "Firepower": 18,
@@ -10302,7 +10387,7 @@
     "IconType": 37
   },
   {
-    "EquipmentId": 631,
+    "EquipmentId": 1631,
     "Name": "深海空超要塞改",
     "Armor": 0,
     "Firepower": 18,

@@ -10,11 +10,13 @@ using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Services.ApiFileService;
@@ -94,6 +96,7 @@ public class ApiFileService : ObservableObject
 		await Db.ApiFiles.AddAsync(responseFile);
 
 		await ProcessSortieData(requestFile, responseFile);
+		await ProcessExpeditionData(requestFile, responseFile);
 
 		await Db.SaveChangesAsync();
 	}
@@ -232,53 +235,8 @@ public class ApiFileService : ObservableObject
 						Name = f.Name,
 						Ships = f.MembersInstance
 							.Where(s => s is not null)
-							.Select(s => new SortieShip
-							{
-								Id = s.MasterShip.ShipId,
-								Level = s.Level,
-								Condition = s.Condition,
-								Kyouka = s.Kyouka.ToList(),
-								Fuel = s.Fuel,
-								Ammo = s.Ammo,
-								Range = s.Range,
-								Speed = s.Speed,
-								EquipmentSlots = s.SlotInstance
-									.Zip(s.Aircraft, (Equipment, AircraftCurrent) => (Equipment, AircraftCurrent))
-									.Zip(s.MasterShip.Aircraft, (s, AircraftMax) => new SortieEquipmentSlot
-									{
-										Equipment = s.Equipment switch
-										{
-											{ } => new()
-											{
-												Id = s.Equipment.EquipmentId,
-												Level = s.Equipment.Level,
-												AircraftLevel = s.Equipment.AircraftLevel,
-											},
-											_ => null,
-										},
-										AircraftCurrent = s.AircraftCurrent,
-										AircraftMax = AircraftMax,
-									}).ToList(),
-								ExpansionSlot = s.IsExpansionSlotAvailable switch
-								{
-									true => new()
-									{
-										Equipment = s.ExpansionSlotInstance switch
-										{
-											{ } eq => new()
-											{
-												Id = eq.EquipmentId,
-												Level = eq.Level,
-												AircraftLevel = eq.AircraftLevel,
-											},
-											_ => null,
-										},
-										AircraftCurrent = 0,
-										AircraftMax = 0,
-									},
-									_ => null,
-								},
-							}).ToList(),
+							.Select(MakeSortieShip)
+							.ToList(),
 					}).ToList(),
 				AirBases = KCDatabase.BaseAirCorps.Values
 					.Where(a => a.MapAreaID == map.MapAreaID)
@@ -337,4 +295,96 @@ public class ApiFileService : ObservableObject
 		SortieRecord.ApiFiles.Add(requestFile);
 		SortieRecord.ApiFiles.Add(responseFile);
 	}
+
+	private async Task ProcessExpeditionData(ApiFile requestFile, ApiFile responseFile)
+	{
+		if (requestFile.Name is not "api_req_mission/result") return;
+
+		ApiReqMissionResultRequest? request = null;
+		ApiResponse<ApiReqMissionResultResponse>? response = null;
+
+		try
+		{
+			request = JsonSerializer.Deserialize<ApiReqMissionResultRequest>(requestFile.Content);
+			response = JsonSerializer.Deserialize<ApiResponse<ApiReqMissionResultResponse>>(responseFile.Content);
+		}
+		catch
+		{
+			// todo: report failed parsing
+		}
+
+		if (request is null) return;
+		if (response is null) return;
+		if (!int.TryParse(request.ApiDeckId, out int fleetId)) return;
+
+		IFleetData f = KCDatabase.Instance.Fleet[fleetId];
+
+		SortieFleet fleet = new()
+		{
+			Name = f.Name,
+			Ships = f.MembersInstance
+				.Where(s => s is not null)
+				.Select(MakeSortieShip!)
+				.ToList(),
+		};
+
+		ExpeditionRecord expedition = new()
+		{
+			Expedition = f.ExpeditionDestination,
+			Fleet = fleet,
+		};
+
+		await Db.Expeditions.AddAsync(expedition);
+
+		expedition.ApiFiles.Add(requestFile);
+		expedition.ApiFiles.Add(responseFile);
+	}
+
+	private static SortieShip MakeSortieShip(IShipData s) => new()
+	{
+		Id = s.MasterShip.ShipId,
+		Level = s.Level,
+		Condition = s.Condition,
+		Kyouka = s.Kyouka.ToList(),
+		Fuel = s.Fuel,
+		Ammo = s.Ammo,
+		Range = s.Range,
+		Speed = s.Speed,
+		EquipmentSlots = s.SlotInstance
+			.Zip(s.Aircraft, (Equipment, AircraftCurrent) => (Equipment, AircraftCurrent))
+			.Zip(s.MasterShip.Aircraft, (s, AircraftMax) => new SortieEquipmentSlot
+			{
+				Equipment = s.Equipment switch
+				{
+					{ } => new()
+					{
+						Id = s.Equipment.EquipmentId,
+						Level = s.Equipment.Level,
+						AircraftLevel = s.Equipment.AircraftLevel,
+					},
+					_ => null,
+				},
+				AircraftCurrent = s.AircraftCurrent,
+				AircraftMax = AircraftMax,
+			}).ToList(),
+		ExpansionSlot = s.IsExpansionSlotAvailable switch
+		{
+			true => new()
+			{
+				Equipment = s.ExpansionSlotInstance switch
+				{
+					{ } eq => new()
+					{
+						Id = eq.EquipmentId,
+						Level = eq.Level,
+						AircraftLevel = eq.AircraftLevel,
+					},
+					_ => null,
+				},
+				AircraftCurrent = 0,
+				AircraftMax = 0,
+			},
+			_ => null,
+		},
+	};
 }

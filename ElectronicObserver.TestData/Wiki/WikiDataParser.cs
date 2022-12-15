@@ -162,6 +162,12 @@ public static class WikiDataParser
 				})
 				.Concat(Enumerable.Repeat(-1, 5))
 				.Take(5)
+				// wiki didn't update abyssal equipment ids from 501~ to 1501~ yet
+				.Select(i => i switch
+				{
+					-1 => -1,
+					_ => i + 1000,
+				})
 				.ToList();
 		}
 

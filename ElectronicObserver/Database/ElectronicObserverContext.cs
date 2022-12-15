@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Database.Sortie;
@@ -27,6 +28,7 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<CellModel> Cells { get; set; } = null!;
 	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
 	public DbSet<SortieRecord> Sorties { get; set; } = null!;
+	public DbSet<ExpeditionRecord> Expeditions { get; set; } = null!;
 	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
 
 	private string DbPath { get; }
@@ -94,6 +96,10 @@ public class ElectronicObserverContext : DbContext
 		builder.Entity<SortieRecord>()
 			.Property(s => s.MapData)
 			.HasConversion(JsonConverter<SortieMapData>());
+
+		builder.Entity<ExpeditionRecord>()
+			.Property(s => s.Fleet)
+			.HasConversion(JsonConverter<SortieFleet>());
 	}
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new
