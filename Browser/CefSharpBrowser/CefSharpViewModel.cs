@@ -175,13 +175,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 		if (e.IsLoading) return;
 
-			App.Current.Dispatcher.BeginInvoke(() =>
-			{
-				ApplyStyleSheet();
-				SetCookie();
-				ApplyZoom();
-				DestroyDMMreloadDialog();
-			});
+		App.Current.Dispatcher.BeginInvoke(() =>
+		{
+			ApplyStyleSheet();
+			SetCookie();
+			ApplyZoom();
+			DestroyDMMreloadDialog();
+		});
 	}
 
 	// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
