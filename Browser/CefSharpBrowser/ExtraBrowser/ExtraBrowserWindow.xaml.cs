@@ -16,6 +16,15 @@ public partial class ExtraBrowserWindow
 
 		Address.Text = "www.duckduckgo.com";
 		Browser.Load(Address.Text);
+		Address.PreviewKeyDown += Address_PreviewKeyDown;
+	}
+
+	private void Address_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+	{
+		if (e.Key == System.Windows.Input.Key.Enter)
+		{
+			Browser.Load(Address.Text);
+		}
 	}
 
 	private void DmmPointsButtonClick(object sender, RoutedEventArgs e)
