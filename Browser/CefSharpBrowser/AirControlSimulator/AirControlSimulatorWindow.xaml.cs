@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CefSharp;
-using CefSharp.Handler;
 using CefSharp.WinForms;
 using Jot;
 
