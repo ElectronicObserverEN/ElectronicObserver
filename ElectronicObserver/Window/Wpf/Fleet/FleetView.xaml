@@ -40,6 +40,48 @@
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			
+			storyboards get frozen for optimization purposes
+			which is why you can't use binding in them, but need hardcoded values instead
+			
+			<Storyboard
+				x:Key="EmptyResources"
+				RepeatBehavior="Forever"
+				Storyboard.TargetProperty="Background.Color"
+				Duration="0:0:2"
+				>
+				<ColorAnimationUsingKeyFrames>
+					<DiscreteColorKeyFrame KeyTime="0:0:0" Value="{Binding ResourceBackgroundBrush}" />
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames>
+					<DiscreteColorKeyFrame KeyTime="0:0:1" Value="Maroon" />
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames>
+					<DiscreteColorKeyFrame KeyTime="0:0:2" Value="{Binding ResourceBackgroundBrush}" />
+				</ColorAnimationUsingKeyFrames>
+			</Storyboard>
+
+			<ProgressBar Background="Transparent">
+				<ProgressBar.Style>
+					<Style BasedOn="{StaticResource DefaultProgressBarStyle}" TargetType="ProgressBar">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ShouldNotifyEmptyFuel}" Value="True">
+								<DataTrigger.EnterActions>
+									<BeginStoryboard Name="StartEmptyResourcesStoryboard" Storyboard="{StaticResource EmptyResources}" />
+								</DataTrigger.EnterActions>
+								<DataTrigger.ExitActions>
+									<SeekStoryboard
+										BeginStoryboardName="StartEmptyResourcesStoryboard"
+										Origin="BeginTime"
+										Offset="0:0:0"
+										/>
+									<StopStoryboard BeginStoryboardName="StartEmptyResourcesStoryboard" />
+								</DataTrigger.ExitActions>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ProgressBar.Style>
+			</ProgressBar>
+			
 			-->
 
 			<Style TargetType="Border">

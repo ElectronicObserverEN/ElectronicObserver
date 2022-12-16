@@ -325,7 +325,7 @@ public class FleetItemViewModel : ObservableObject
 			}
 
 			ShipResource.SetResources(Ship.Fuel, Ship.FuelMax, Ship.Ammo, Ship.AmmoMax);
-
+			ShipResource.IsEscaped = isEscaped;
 
 			Equipments.SetSlotList(Ship);
 			Equipments.ToolTip = GetEquipmentString(Ship);

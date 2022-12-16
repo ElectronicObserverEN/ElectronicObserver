@@ -8,10 +8,14 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
 public class ShipResourceViewModel : ObservableObject
 {
-	public FormFleetTranslationViewModel FormFleet { get; }
+	private FormFleetTranslationViewModel FormFleet { get; }
 
+	public bool IsEscaped { get; set; }
 	public ProgressBarProps BarFuel { get; } = new();
 	public ProgressBarProps BarAmmo { get; } = new();
+
+	private bool ShouldNotifyEmptyFuel => !IsEscaped && BarFuel.Value <= 0;
+	private bool ShouldNotifyEmptyAmmo => !IsEscaped && BarAmmo.Value <= 0;
 
 	public ShipResourceViewModel()
 	{
@@ -24,26 +28,22 @@ public class ShipResourceViewModel : ObservableObject
 
 	private void UpdateTimerTick()
 	{
-		var c = Configuration.Config;
-		if (BarFuel.Value <= 0)
+		bool isEvenTime = DateTime.Now.Second % 2 == 0;
+
+		BarFuel.Background = (ShouldNotifyEmptyFuel && isEvenTime) switch
 		{
-			BarFuel.Background = DateTime.Now.Second % 2 == 0 ? System.Windows.Media.Brushes.Maroon : c.UI.SubBackColor.ToBrush();
-		}
-		else
+			true => System.Windows.Media.Brushes.Maroon,
+			_ => Configuration.Config.UI.SubBackColor.ToBrush(),
+		};
+
+		BarAmmo.Background = (ShouldNotifyEmptyAmmo && isEvenTime) switch
 		{
-			BarFuel.Background = c.UI.SubBackColor.ToBrush();
-		}
-		if (BarAmmo.Value <= 0)
-		{
-			BarAmmo.Background = DateTime.Now.Second % 2 == 0 ? System.Windows.Media.Brushes.Maroon : c.UI.SubBackColor.ToBrush();
-		}
-		else
-		{
-			BarAmmo.Background = c.UI.SubBackColor.ToBrush();
-		}
+			true => System.Windows.Media.Brushes.Maroon,
+			_ => Configuration.Config.UI.SubBackColor.ToBrush(),
+		};
 	}
 
-	private void Bar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private void Bar_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is nameof(ProgressBarProps.Value) or nameof(ProgressBarProps.MaximumValue))
 		{
