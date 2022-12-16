@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
@@ -20,6 +21,8 @@ public class EquipmentUpgradeDayViewModel
 
 	public List<IShipDataMaster> Helpers { get; set; }
 
+	private TimeChangeService TimeService { get; } = Ioc.Default.GetService<TimeChangeService>()!;
+
 	public EquipmentUpgradeDayViewModel(DayOfWeek day, List<int> helpers)
 	{
 		KCDatabase db = KCDatabase.Instance;
@@ -33,9 +36,16 @@ public class EquipmentUpgradeDayViewModel
 			_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..3]
 		};
 
-		BackgroundColor = helpers.Any() switch
+		Update();
+
+		TimeService.DayChanged += () => Update();
+	}
+
+	private void Update()
+	{
+		BackgroundColor = Helpers.Any() switch
 		{
-			true => day == DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek ? Color.FromArgb(255, 30, 142, 255) : Color.FromArgb(153, 65, 65, 247),
+			true => DayValue == TimeService.CurrentDayOfWeekJST ? Color.FromArgb(255, 30, 142, 255) : Color.FromArgb(153, 65, 65, 247),
 			_ => Color.FromArgb(0, 0, 0, 0),
 		};
 	}

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Media;
-using ElectronicObserver.Utility.Mathematics;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Services;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
@@ -16,6 +17,8 @@ public class EquipmentUpgradeHelpersDayViewModel
 
 	public bool IsHelperDay { get; set; }
 
+	private TimeChangeService TimeService { get; } = Ioc.Default.GetService<TimeChangeService>()!;
+
 	public EquipmentUpgradeHelpersDayViewModel(DayOfWeek day, bool helperDay)
 	{
 		DayValue = day;
@@ -27,9 +30,16 @@ public class EquipmentUpgradeHelpersDayViewModel
 			_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..3]
 		};
 
-		BackgroundColor = helperDay switch
+		Update();
+
+		TimeService.DayChanged += () => Update();
+	}
+
+	private void Update()
+	{
+		BackgroundColor = IsHelperDay switch
 		{
-			true => day == DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek ? Color.FromArgb(255, 30, 142, 255) : Color.FromArgb(153, 65, 65, 247),
+			true => DayValue == TimeService.CurrentDayOfWeekJST ? Color.FromArgb(255, 30, 142, 255) : Color.FromArgb(153, 65, 65, 247),
 			_ => Color.FromArgb(0, 0, 0, 0),
 		};
 	}

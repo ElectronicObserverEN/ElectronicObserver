@@ -29,8 +29,8 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 	public string TodayDisplay => string.Format(Translations.Today, CultureInfo.CurrentCulture.Name switch
 	{
-		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.TodayJST)[..1],
-		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.TodayJST)[..3],
+		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.CurrentDayOfWeekJST)[..1],
+		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.CurrentDayOfWeekJST)[..3],
 	});
 
 
@@ -96,7 +96,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 		SelectToday = true;
 
-		TimeService.TodayChanged += () => OnPropertyChanged("");
+		TimeService.DayChanged += () => OnPropertyChanged("");
 
 		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged(nameof(TodayDisplay));
 	}
@@ -107,7 +107,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 		DayOfWeek? dayFilter = SelectToday switch
 		{
-			true => TimeService.TodayJST,
+			true => TimeService.CurrentDayOfWeekJST,
 			_ => SelectedDay
 		};
 
