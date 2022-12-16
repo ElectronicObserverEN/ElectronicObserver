@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -22,14 +23,14 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 	public bool SelectToday { get; set; }
 
-	public DayOfWeek Today { get; set; }
+	private TimeChangeService TimeService { get; } = Ioc.Default.GetService<TimeChangeService>()!;
 
 	public EquipmentUpgradePlannerTranslationViewModel Translations { get; set; } = new();
 
 	public string TodayDisplay => string.Format(Translations.Today, CultureInfo.CurrentCulture.Name switch
 	{
-		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Today)[..1],
-		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Today)[..3],
+		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.CurrentDayOfWeekJST)[..1],
+		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.CurrentDayOfWeekJST)[..3],
 	});
 
 
@@ -95,15 +96,9 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 		SelectToday = true;
 
-		SystemEvents.UpdateTimerTick += UpdateUpgradeDay;
+		TimeService.DayChanged += () => OnPropertyChanged("");
 
 		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged(nameof(TodayDisplay));
-	}
-
-	private void UpdateUpgradeDay()
-	{
-		// Since the views are subscribed to property changed of this viewmodel, just changing this property should be enough to refresh data
-		Today = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
 	}
 
 	public bool MeetsFilterCondition(EquipmentUpgradePlanItemViewModel plan)
@@ -112,7 +107,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 		DayOfWeek? dayFilter = SelectToday switch
 		{
-			true => Today,
+			true => TimeService.CurrentDayOfWeekJST,
 			_ => SelectedDay
 		};
 
