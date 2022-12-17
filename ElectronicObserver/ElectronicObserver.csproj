@@ -24,9 +24,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.1.13.5</AssemblyVersion>
-		<FileVersion>5.1.13.5</FileVersion>
-		<Version>5.1.13.5</Version>
+		<AssemblyVersion>5.2.0.0</AssemblyVersion>
+		<FileVersion>5.2.0.0</FileVersion>
+		<Version>5.2.0.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>

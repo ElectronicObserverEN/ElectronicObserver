@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -15,6 +16,7 @@ using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
@@ -46,7 +48,21 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public object World { get; set; } = AllRecords;
 	public object Map { get; set; } = AllRecords;
 
-	public ObservableCollection<SortieRecord> Sorties { get; } = new();
+	private DateTime DateTimeBegin =>
+		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
+	private DateTime DateTimeEnd =>
+		new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
+
+	public DateTime DateBegin { get; set; }
+	public DateTime TimeBegin { get; set; }
+	public DateTime DateEnd { get; set; }
+	public DateTime TimeEnd { get; set; }
+	public DateTime MinDate { get; set; }
+	public DateTime MaxDate { get; set; }
+
+	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+
+	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
 
 	public SortieRecordViewerViewModel()
 	{
@@ -54,6 +70,18 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
 		KcDatabase = Ioc.Default.GetRequiredService<IKCDatabase>();
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
+
+		MinDate = Db.Sorties
+			.Include(s => s.ApiFiles)
+			.OrderBy(s => s.Id)
+			.FirstOrDefault()
+			?.ApiFiles.Min(f => f.TimeStamp)
+			.ToLocalTime() ?? DateTime.Now;
+
+		MaxDate = DateTime.Now.AddDays(1);
+
+		DateBegin = MinDate.Date;
+		DateEnd = MaxDate.Date;
 
 		Worlds = Db.Worlds
 			.Select(w => w.Id)
@@ -82,12 +110,14 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			.AsQueryable()
 			.Where(s => World as string == AllRecords || s.World == World as int?)
 			.Where(s => Map as string == AllRecords || s.Map == Map as int?)
+			.Where(s => s.ApiFiles.Min(f => f.TimeStamp) > DateTimeBegin.ToUniversalTime())
+			.Where(s => s.ApiFiles.Min(f => f.TimeStamp) < DateTimeEnd.ToUniversalTime())
 			.OrderByDescending(f => f.Id)
 			.ToList();
 
 		foreach (SortieRecord file in sorties)
 		{
-			Sorties.Add(file);
+			Sorties.Add(new(file));
 		}
 	}
 
@@ -131,17 +161,17 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		"api_req_map/next";
 
 	[RelayCommand]
-	private static void CopyReplayToClipboard(SortieRecord? sortie)
+	private static void CopyReplayToClipboard(SortieRecordViewModel? sortie)
 	{
 		if (sortie is null) return;
 
-		ReplayData replay = sortie.ToReplayData();
+		ReplayData replay = sortie.Model.ToReplayData();
 
 		replay.Battles = new();
 
 		ReplayBattle battle = new();
 
-		foreach (ApiFile apiFile in sortie.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+		foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
 		{
 			if (IsMapProgressApi(apiFile.Name))
 			{
@@ -209,19 +239,19 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand]
-	private void OpenFleetImageGenerator(SortieRecord? sortie)
+	private void OpenFleetImageGenerator(SortieRecordViewModel? sortie)
 	{
 		if (sortie is null) return;
 
 		int hqLevel = KCDatabase.Instance.Admiral.Level;
 
-		if (sortie.ApiFiles.Any())
+		if (sortie.Model.ApiFiles.Any())
 		{
 			// get the last port response right before the sortie started
 			ApiFile? portFile = Db.ApiFiles
 				.Where(f => f.ApiFileType == ApiFileType.Response)
 				.Where(f => f.Name == "api_port/port")
-				.Where(f => f.TimeStamp < sortie.ApiFiles.First().TimeStamp)
+				.Where(f => f.TimeStamp < sortie.Model.ApiFiles.First().TimeStamp)
 				.OrderByDescending(f => f.TimeStamp)
 				.FirstOrDefault();
 
@@ -247,13 +277,13 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			hqLevel,
-			MakeFleet(sortie.FleetData.Fleets.Skip(0).FirstOrDefault()),
-			MakeFleet(sortie.FleetData.Fleets.Skip(1).FirstOrDefault()),
-			MakeFleet(sortie.FleetData.Fleets.Skip(2).FirstOrDefault()),
-			MakeFleet(sortie.FleetData.Fleets.Skip(3).FirstOrDefault()),
-			MakeAirBase(sortie.FleetData.AirBases.Skip(0).FirstOrDefault()),
-			MakeAirBase(sortie.FleetData.AirBases.Skip(1).FirstOrDefault()),
-			MakeAirBase(sortie.FleetData.AirBases.Skip(2).FirstOrDefault())
+			MakeFleet(sortie.Model.FleetData.Fleets.Skip(0).FirstOrDefault()),
+			MakeFleet(sortie.Model.FleetData.Fleets.Skip(1).FirstOrDefault()),
+			MakeFleet(sortie.Model.FleetData.Fleets.Skip(2).FirstOrDefault()),
+			MakeFleet(sortie.Model.FleetData.Fleets.Skip(3).FirstOrDefault()),
+			MakeAirBase(sortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault()),
+			MakeAirBase(sortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault()),
+			MakeAirBase(sortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault())
 		);
 
 		FleetImageGeneratorImageDataModel model = new()
@@ -265,6 +295,14 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		};
 
 		ToolService.FleetImageGenerator(model, data);
+	}
+
+	[RelayCommand]
+	private static void SelectToday(Calendar? calendar)
+	{
+		if (calendar is null) return;
+
+		calendar.SelectedDate = DateTime.Now.Date;
 	}
 
 	private IFleetData? MakeFleet(SortieFleet? fleet) => fleet switch
