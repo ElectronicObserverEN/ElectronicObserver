@@ -11,13 +11,15 @@ public class EquipmentListRow
 	public int RemainCount { get; }
 	public string ToolTipText { get; set; }
 	public int Tag { get; set; }
+	public int GameSort { get; }
 
-	public EquipmentListRow(int id, EquipmentIconType iconType, string name, int allCount, int remainCount)
+	public EquipmentListRow(IEquipmentDataMaster equipment, int allCount, int remainCount)
 	{
-		Id = id;
-		IconType = iconType;
-		Name = name;
+		Id = equipment.ID;
+		IconType = equipment.IconTypeTyped;
+		Name = equipment.NameEN;
 		AllCount = allCount;
 		RemainCount = remainCount;
+		GameSort = (int)equipment.CategoryType * 1000 + equipment.ID;
 	}
 }

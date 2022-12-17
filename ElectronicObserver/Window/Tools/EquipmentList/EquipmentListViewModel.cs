@@ -126,14 +126,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		foreach (int id in ids)
 		{
 
-			EquipmentListRow row = new
-			(
-				id,
-				masterEquipments[id].IconTypeTyped,
-				masterEquipments[id].NameEN,
-				allCount[id],
-				remainCount[id]
-			);
+			EquipmentListRow row = new(masterEquipments[id], allCount[id], remainCount[id]);
 
 			{
 				StringBuilder sb = new StringBuilder();

@@ -151,6 +151,7 @@
 						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 						Header="{Binding DataContext.DialogEquipmentList.EquipmentView_Name, Source={StaticResource Proxy}}"
+						SortMemberPath="GameSort"
 						>
 						<DataGridTextColumn.CellStyle>
 							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
