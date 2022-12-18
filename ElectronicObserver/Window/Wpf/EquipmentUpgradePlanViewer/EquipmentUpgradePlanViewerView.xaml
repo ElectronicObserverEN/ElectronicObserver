@@ -234,7 +234,7 @@
 
 				<ContentControl
 					Grid.Row="0"
-					Content="{Binding Cost}"
+					Content="{Binding NextUpgradeCost}"
 					ContentTemplate="{StaticResource CostTemplate}"
 					/>
 

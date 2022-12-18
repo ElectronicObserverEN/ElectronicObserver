@@ -70,6 +70,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new());
 
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
+	public EquipmentUpgradePlanCostViewModel NextUpgradeCost { get; set; } = new(new());
 
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
@@ -119,11 +120,12 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		Save();
 	}
 
-	public EquipmentUpgradePlanCostModel CalculateCost()
+	public void UpdateCosts()
 	{
-		if (Equipment is null) return new EquipmentUpgradePlanCostModel();
+		if (Equipment is null) return;
 
-		return Equipment.CalculateUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, DesiredUpgradeLevel, SliderLevel);
+		Cost = new(Equipment.CalculateUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, DesiredUpgradeLevel, SliderLevel));
+		NextUpgradeCost = new(Equipment.CalculateNextUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, SliderLevel));
 	}
 
 	public void UpdateHelperDisplay()
@@ -169,7 +171,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		else
 			CurrentLevelDisplay = EquipmentUpgradePlanner.Unassigned;
 
-		Cost = new(CalculateCost());
+		UpdateCosts();
 		UpdatePostConversionEquipmentDisplay();
 	}
 
