@@ -333,7 +333,7 @@ public class OpeningAswTests
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_634AirGroupwType3ClusterBombs]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
 			}
 		};
