@@ -293,7 +293,7 @@ public class OpeningAswTests
 		Assert.True(yamashioMaru.CanDoOpeningAsw());
 	}
 
-	[Fact(DisplayName = "CVL with spanner 65ASW Condition")]
+	[Fact(DisplayName = "CVL with 100+ ASW with 65ASW Condition")]
 	public void OpeningASWTest8()
 	{
 		ShipDataMock gambierbay = new(Db.MasterShips[ShipId.GambierBayMkII])
