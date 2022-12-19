@@ -473,8 +473,8 @@ public static class ShipDataExtensions
 
 		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
 		{
-			>= 100 => (ship.HasSonar() && ship.HasAntiSubmarineAircraft()) || ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size:-1) && ship.HasAntiSubmarineAircraft()),
-			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size: -1) && ship.HasAntiSubmarineAircraft()),
+			>= 100 => ship.OneHundredASWCond() || ship.SixtyFiveASWCond() || ship.ZeroSlotASWCond(),
+			>= 65 => ship.SixtyFiveASWCond() || ship.ZeroSlotASWCond(),
 			>= 50 => ship.MasterShip.ShipId switch
 			{
 				ShipId.SuzuyaCVLKaiNi or ShipId.KumanoCVLKaiNi => false,
@@ -506,7 +506,9 @@ public static class ShipDataExtensions
 
 		_ => false,
 	};
-
+	public static bool ZeroSlotASWCond(this IShipData ship) => ship.HasAswPatrolAircraft(size: -1) && ship.HasAntiSubmarineAircraft();
+	public static bool SixtyFiveASWCond(this IShipData ship) => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft();
+	public static bool OneHundredASWCond(this IShipData ship) => ship.HasSonar() && ship.HasAntiSubmarineAircraft();
 	private static bool HyuugaK2OpeningAswCondition(this IShipData ship)
 	{
 		List<IEquipmentData?> eqs = ship.AllSlotInstance
