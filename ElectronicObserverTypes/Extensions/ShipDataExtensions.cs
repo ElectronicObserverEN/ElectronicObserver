@@ -278,19 +278,22 @@ public static class ShipDataExtensions
 		.Count(e => e?.MasterEquipment.IsSonar() is true) >= count;
 
 	public static bool HasAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Count(e => e?.MasterEquipment.IsAntiSubmarineAircraft is true) >= count;
+		.Zip(ship.Aircraft, (e, size) => (e, size))
+		.Count(s => s.size > 0 && s.e?.MasterEquipment.IsAntiSubmarineAircraft is true)
+		>= count;
 
 	public static bool HasSpecialAntiSubmarineAttacker(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Count(e => e?.MasterEquipment.CategoryType is EquipmentTypes.CarrierBasedTorpedo &&
-			e.MasterEquipment.ASW >= 7)
+		.Zip(ship.Aircraft, (e, size) => (e, size))
+		.Count(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo && s.e?.MasterEquipment.ASW >= 7)
 		>= count;
 
-	public static bool HasAswPatrolAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Count(e => e?.MasterEquipment.CategoryType is
-			EquipmentTypes.FlyingBoat or
-			EquipmentTypes.ASPatrol or
-			EquipmentTypes.Autogyro)
-		>= count;
+	public static bool HasAswPatrolAircraft(this IShipData ship, int count = 1, int size = 0) => ship.AllSlotInstance
+			.Zip(ship.Aircraft, (e, size) => (e, size))
+			.Count(s => s.size > size && s.e?.MasterEquipment.CategoryType is
+				EquipmentTypes.FlyingBoat or
+				EquipmentTypes.ASPatrol or
+				EquipmentTypes.Autogyro)
+			>= count;
 
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
@@ -470,15 +473,13 @@ public static class ShipDataExtensions
 
 		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
 		{
-			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft() || ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft(),
-			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft(),
+			>= 100 => (ship.HasSonar() && ship.HasAntiSubmarineAircraft()) || ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size:-1) && ship.HasBomber()),
+			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size: -1) && ship.HasBomber()),
 			>= 50 => ship.MasterShip.ShipId switch
 			{
 				ShipId.SuzuyaCVLKaiNi or ShipId.KumanoCVLKaiNi => false,
-
 				_ => ship.HasSonar() && (ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft()),
 			},
-
 			_ => false,
 		},
 

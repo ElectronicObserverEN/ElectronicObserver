@@ -307,4 +307,36 @@ public class OpeningAswTests
 
 		Assert.True(gambierbay.CanDoOpeningAsw());
 	}
+	[Fact(DisplayName = "Housho k2s with 0 slot no OASW")]
+	public void OpeningASWTtest9()
+	{
+		ShipDataMock houshok2s = new(Db.MasterShips[ShipId.HoushouKaiNiSen])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
+			}
+		};
+		Assert.False(houshok2s.CanDoOpeningAsw());
+	}
+	[Fact(DisplayName = "Housho k2s with 0 slot And 1 aircraft OASW")]
+	public void OpeningASWTest10()
+	{
+		ShipDataMock houshok2s = new(Db.MasterShips[ShipId.HoushouKaiNiSen])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+			}
+		};
+		Assert.True(houshok2s.CanDoOpeningAsw());
+	}
 }
