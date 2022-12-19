@@ -292,6 +292,7 @@ public class OpeningAswTests
 
 		Assert.True(yamashioMaru.CanDoOpeningAsw());
 	}
+
 	[Fact(DisplayName = "CVL with spanner 65ASW Condition")]
 	public void OpeningASWTest8()
 	{
@@ -307,6 +308,7 @@ public class OpeningAswTests
 
 		Assert.True(gambierbay.CanDoOpeningAsw());
 	}
+
 	[Fact(DisplayName = "Housho k2s with 0 slot no OASW")]
 	public void OpeningASWTtest9()
 	{

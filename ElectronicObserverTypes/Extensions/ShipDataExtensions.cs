@@ -278,18 +278,18 @@ public static class ShipDataExtensions
 		.Count(e => e?.MasterEquipment.IsSonar() is true) >= count;
 
 	public static bool HasAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Zip(ship.Aircraft, (e, size) => (e, size))
-		.Count(s => s.size > 0 && s.e?.MasterEquipment.IsAntiSubmarineAircraft is true)
+		.Zip(ship.Aircraft, (e, Size) => (e, Size))
+		.Count(s => s.Size > 0 && s.e?.MasterEquipment.IsAntiSubmarineAircraft is true)
 		>= count;
 
 	public static bool HasSpecialAntiSubmarineAttacker(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Zip(ship.Aircraft, (e, size) => (e, size))
-		.Count(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo && s.e?.MasterEquipment.ASW >= 7)
+		.Zip(ship.Aircraft, (e, Size) => (e, Size))
+		.Count(s => s.Size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo && s.e?.MasterEquipment.ASW >= 7)
 		>= count;
 
 	public static bool HasAswPatrolAircraft(this IShipData ship, int count = 1, int size = 0) => ship.AllSlotInstance
-			.Zip(ship.Aircraft, (e, size) => (e, size))
-			.Count(s => s.size > size && s.e?.MasterEquipment.CategoryType is
+			.Zip(ship.Aircraft, (e, Size) => (e, Size))
+			.Count(s => s.Size > size && s.e?.MasterEquipment.CategoryType is
 				EquipmentTypes.FlyingBoat or
 				EquipmentTypes.ASPatrol or
 				EquipmentTypes.Autogyro)
