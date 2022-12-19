@@ -343,6 +343,17 @@
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
 
+			<DataGrid.RowStyle>
+				<Style TargetType="DataGridRow">
+					<Setter Property="Background" Value="#00FFFFFF" />
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding NextUpgradeCost.HasEnoughResources}" Value="False">
+							<Setter Property="Background" Value="#AAFF0000" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</DataGrid.RowStyle>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Width="Auto"
