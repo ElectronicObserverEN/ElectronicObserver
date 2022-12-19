@@ -286,11 +286,11 @@ public static class ShipDataExtensions
 		>= count;
 
 	public static bool HasAswPatrolAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
-			.Count(e => e?.MasterEquipment.CategoryType is
-				EquipmentTypes.FlyingBoat or
-				EquipmentTypes.ASPatrol or
-				EquipmentTypes.Autogyro)
-			>= count;
+		.Count(e => e?.MasterEquipment.CategoryType is
+			EquipmentTypes.FlyingBoat or
+			EquipmentTypes.ASPatrol or
+			EquipmentTypes.Autogyro)
+		>= count;
 
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
