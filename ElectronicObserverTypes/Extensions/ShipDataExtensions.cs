@@ -473,8 +473,8 @@ public static class ShipDataExtensions
 
 		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
 		{
-			>= 100 => (ship.HasSonar() && ship.HasAntiSubmarineAircraft()) || ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size:-1) && ship.HasBomber()),
-			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size: -1) && ship.HasBomber()),
+			>= 100 => (ship.HasSonar() && ship.HasAntiSubmarineAircraft()) || ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size:-1) && ship.HasAntiSubmarineAircraft()),
+			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft() || (ship.HasAswPatrolAircraft(size: -1) && ship.HasAntiSubmarineAircraft()),
 			>= 50 => ship.MasterShip.ShipId switch
 			{
 				ShipId.SuzuyaCVLKaiNi or ShipId.KumanoCVLKaiNi => false,
