@@ -140,6 +140,20 @@
 									</StackPanel>
 								</StackPanel.ToolTip>
 
+								<StackPanel.Style>
+									<Style TargetType="StackPanel">
+										<Style.Resources>
+											<Style TargetType="TextBlock">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
+														<Setter Property="Foreground" Value="Red" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</Style.Resources>
+									</Style>
+								</StackPanel.Style>
+
 								<TextBlock Text="{Binding Equipment.NameEN}" />
 								<TextBlock Margin="4 0 0 0" Text="(" />
 								<TextBlock Text="{Binding Owned}" />
@@ -173,6 +187,20 @@
 										</StackPanel>
 									</StackPanel>
 								</StackPanel.ToolTip>
+
+								<StackPanel.Style>
+									<Style TargetType="StackPanel">
+										<Style.Resources>
+											<Style TargetType="TextBlock">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
+														<Setter Property="Foreground" Value="Red" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</Style.Resources>
+									</Style>
+								</StackPanel.Style>
 
 								<TextBlock Text="{Binding Consumable.NameTranslated}" />
 								<TextBlock Margin="4 0 0 0" Text="(" />

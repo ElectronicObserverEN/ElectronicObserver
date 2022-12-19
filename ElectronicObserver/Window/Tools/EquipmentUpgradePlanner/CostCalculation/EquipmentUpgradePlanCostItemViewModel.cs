@@ -1,10 +1,9 @@
-﻿namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
-public abstract class EquipmentUpgradePlanCostItemViewModel
+﻿using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.ResourceDisplay;
+
+namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
+
+public abstract class EquipmentUpgradePlanCostItemViewModel : EquipmentUpgradePlanResourceDisplayViewModel
 {
-	public int Required { get; set; }
-
-	public int Owned { get; set; }
-
 	protected EquipmentUpgradePlanCostItemViewModel(EquipmentUpgradePlanCostItemModel model)
 	{
 		Required = model.Required;
