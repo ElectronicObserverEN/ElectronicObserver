@@ -325,6 +325,7 @@ public class OpeningAswTests
 		};
 		Assert.False(houshok2s.CanDoOpeningAsw());
 	}
+
 	[Fact(DisplayName = "Housho k2s with 0 slot And 1 aircraft OASW")]
 	public void OpeningASWTest10()
 	{
