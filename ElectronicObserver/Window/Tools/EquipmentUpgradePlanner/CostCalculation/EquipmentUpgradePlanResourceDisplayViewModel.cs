@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.ResourceDisplay;
+namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 public abstract class EquipmentUpgradePlanResourceDisplayViewModel : ObservableObject
 {

@@ -59,32 +59,46 @@
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 
+				<Grid.Style>
+					<Style TargetType="Grid">
+						<Style.Resources>
+							<Style TargetType="common1:ImageTextControl">
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
+										<Setter Property="Foreground" Value="Red" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</Style.Resources>
+					</Style>
+				</Grid.Style>
+
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="0"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Fuel}"
+					Text="{Binding Fuel.Required}"
 					/>
 
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="1"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Ammo}"
+					Text="{Binding Ammo.Required}"
 					/>
 
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="2"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Steel}"
+					Text="{Binding Steel.Required}"
 					/>
 
 				<common1:ImageTextControl
 					Grid.Row="0"
 					Grid.Column="3"
 					Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Bauxite}"
+					Text="{Binding Bauxite.Required}"
 					/>
 
 
@@ -92,14 +106,14 @@
 					Grid.Row="1"
 					Grid.Column="0"
 					Image="{Binding Source={x:Static resource:IconContent.ItemDevelopmentMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding DevelopmentMaterial}"
+					Text="{Binding DevelopmentMaterial.Required}"
 					/>
 
 				<common1:ImageTextControl
 					Grid.Row="1"
 					Grid.Column="2"
 					Image="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding ImprovementMaterial}"
+					Text="{Binding ImprovementMaterial.Required}"
 					/>
 
 				<ItemsControl
