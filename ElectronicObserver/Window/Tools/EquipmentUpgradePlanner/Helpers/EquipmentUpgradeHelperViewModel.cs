@@ -29,6 +29,18 @@ public class EquipmentUpgradeHelperViewModel : ObservableObject
 
 	public void SubscribeToApis()
 	{
+		// Post sortie update => Sunken ship, event rewards, ...
 		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
+
+		// Quest reward
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += (_, _) => Update();
+
+		// Craft / destroy / modernization
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => Update();
+
+		// Remodel
+		APIObserver.Instance.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => Update();
 	}
 }
