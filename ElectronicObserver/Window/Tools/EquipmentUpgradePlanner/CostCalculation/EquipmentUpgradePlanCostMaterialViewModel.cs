@@ -39,8 +39,7 @@ public class EquipmentUpgradePlanCostMaterialViewModel : EquipmentUpgradePlanRes
 		// Post sortie update => Sunken ship, event rewards, ...
 		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
 
-		// Quest
-		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiGetMember_Material.ResponseReceived += (_, _) => Update();
 
 		// Ressuply
 		APIObserver.Instance.ApiReqHokyu_Charge.ResponseReceived += (_, _) => Update();
@@ -48,7 +47,6 @@ public class EquipmentUpgradePlanCostMaterialViewModel : EquipmentUpgradePlanRes
 		// Craft / destroy / upgrade
 		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_CreateShip.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqKousyou_CreateItem.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += (_, _) => Update();
 
