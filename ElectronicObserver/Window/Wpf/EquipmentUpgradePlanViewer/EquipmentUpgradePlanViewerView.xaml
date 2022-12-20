@@ -239,7 +239,17 @@
 
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding NameEN}" />
+										<DataTemplate.Resources>
+											<Style TargetType="TextBlock">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
+														<Setter Property="Foreground" Value="Red" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</DataTemplate.Resources>
+
+										<TextBlock Text="{Binding Helper.NameEN}" />
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>
 
@@ -362,6 +372,18 @@
 						<DataTrigger Binding="{Binding NextUpgradeCost.HasEnoughResources}" Value="False">
 							<Setter Property="Background" Value="#AAFF0000" />
 						</DataTrigger>
+
+						<DataTrigger Binding="{Binding HasHelperForAtleastOneDayOfWeek}" Value="False">
+							<Setter Property="Background" Value="#AAFF0000" />
+						</DataTrigger>
+
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition Binding="{Binding DataContext.Filters.SelectToday, Source={StaticResource Proxy}}" Value="True" />
+								<Condition Binding="{Binding HasHelperForToday}" Value="False" />
+							</MultiDataTrigger.Conditions>
+							<Setter Property="Background" Value="#AAFF0000" />
+						</MultiDataTrigger>
 					</Style.Triggers>
 				</Style>
 			</DataGrid.RowStyle>

@@ -262,7 +262,17 @@
 
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding NameEN}" />
+										<DataTemplate.Resources>
+											<Style TargetType="TextBlock">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
+														<Setter Property="Foreground" Value="Red" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</DataTemplate.Resources>
+
+										<TextBlock Text="{Binding Helper.NameEN}" />
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>
 
@@ -332,7 +342,17 @@
 													<ItemsControl ItemsSource="{Binding Helpers}">
 														<ItemsControl.ItemTemplate>
 															<DataTemplate>
-																<TextBlock Text="{Binding NameEN}" />
+																<DataTemplate.Resources>
+																	<Style TargetType="TextBlock">
+																		<Style.Triggers>
+																			<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
+																				<Setter Property="Foreground" Value="Red" />
+																			</DataTrigger>
+																		</Style.Triggers>
+																	</Style>
+																</DataTemplate.Resources>
+
+																<TextBlock Text="{Binding Helper.NameEN}" />
 															</DataTemplate>
 														</ItemsControl.ItemTemplate>
 													</ItemsControl>

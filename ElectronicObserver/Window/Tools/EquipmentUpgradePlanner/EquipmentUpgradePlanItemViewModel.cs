@@ -65,9 +65,15 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public IShipDataMaster? SelectedHelper { get; set; }
 
-	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; set; } = new(); 
+	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; set; } = new();
 
 	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new());
+
+	public Dictionary<DayOfWeek, List<EquipmentUpgradeHelperViewModel>> HelpersPerDay => HelperViewModelCompact
+		.Days
+		.ToDictionary(helpers => helpers.DayValue, helpers => helpers.Helpers);
+
+	public List<EquipmentUpgradeHelperViewModel> HelpersForCurrentDay => HelpersPerDay[TimeChangeService.CurrentDayOfWeekJST];
 
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
 	public EquipmentUpgradePlanCostViewModel NextUpgradeCost { get; set; } = new(new());
@@ -85,17 +91,27 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 	public Visibility EquipmentAfterConversionVisible => string.IsNullOrEmpty(EquipmentAfterConversionDisplay) ? Visibility.Collapsed : Visibility.Visible;
 
 	private EquipmentPickerService EquipmentPicker { get; }
+	private TimeChangeService TimeChangeService { get; }
 	public EquipmentUpgradePlanItemModel Plan { get; }
+
+	public bool HasHelperForToday => HelpersForCurrentDay.Any(helpers => helpers.PlayerHasAtleastOne);
+
+	public bool HasHelperForAtleastOneDayOfWeek => HelpersPerDay
+		.SelectMany(day => day.Value)
+		.Any(helper => helper.PlayerHasAtleastOne);
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
 		Plan = plan;
 
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
+		TimeChangeService = Ioc.Default.GetService<TimeChangeService>()!;
 
 		LoadModel();
 
 		PropertyChanged += EquipmentUpgradePlanItemViewModel_PropertyChanged;
+
+		TimeChangeService.DayChanged += UpdateHasHelperProperties;
 	}
 
 	private void LoadModel()
@@ -150,6 +166,24 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 				.ToList()),
 			_ => new(new())
 		};
+
+		foreach (EquipmentUpgradeHelperViewModel helpers in HelpersPerDay.SelectMany(day => day.Value))
+		{
+			helpers.PropertyChanged += (_, args) =>
+			{
+				if (args.PropertyName is not nameof(EquipmentUpgradeHelperViewModel.PlayerHasAtleastOne)) return;
+
+				UpdateHasHelperProperties();
+			};
+		}
+
+		UpdateHasHelperProperties();
+	}
+
+	public void UpdateHasHelperProperties()
+	{
+		OnPropertyChanged(nameof(HasHelperForToday));
+		OnPropertyChanged(nameof(HasHelperForAtleastOneDayOfWeek));
 	}
 
 	public void Update()

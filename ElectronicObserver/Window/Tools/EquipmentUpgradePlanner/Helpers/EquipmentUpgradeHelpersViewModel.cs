@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Data;
 using ElectronicObserver.Services;
-using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
@@ -23,7 +21,7 @@ public class EquipmentUpgradeHelpersViewModel : ObservableObject
 		DayOfWeek.Sunday
 	};
 
-	public List<IShipDataMaster> Helpers { get; set; } = new();
+	public List<EquipmentUpgradeHelperViewModel> Helpers { get; set; } = new();
 
 	public List<EquipmentUpgradeHelpersDayViewModel> Days { get; set; } = new();
 
@@ -33,9 +31,7 @@ public class EquipmentUpgradeHelpersViewModel : ObservableObject
 
 	public EquipmentUpgradeHelpersViewModel(EquipmentUpgradeHelpersModel model)
 	{
-		KCDatabase db = KCDatabase.Instance;
-
-		Helpers = model.ShipIds.Select(ship => db.MasterShips[ship]).ToList();
+		Helpers = model.ShipIds.Select(ship => new EquipmentUpgradeHelperViewModel(ship)).ToList();
 
 		Days = DaysOfWeek.Select(day => new EquipmentUpgradeHelpersDayViewModel(day, model.CanHelpOnDays.Contains(day))).ToList();
 
