@@ -3,7 +3,6 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-	xmlns:common1="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:costs="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer"
@@ -39,11 +38,6 @@
 
 		<DataTemplate x:Key="CostTemplate" DataType="{x:Type costs:EquipmentUpgradePlanCostViewModel}">
 			<Grid>
-				<Grid.Resources>
-					<Style TargetType="common1:ImageTextControl">
-						<Setter Property="Margin" Value="2 0" />
-					</Style>
-				</Grid.Resources>
 
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -59,10 +53,11 @@
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 
-				<Grid.Style>
-					<Style TargetType="Grid">
+				<Grid.Resources>
+					<Style TargetType="StackPanel">
+						<Setter Property="Margin" Value="2 0" />
 						<Style.Resources>
-							<Style TargetType="common1:ImageTextControl">
+							<Style TargetType="TextBlock">
 								<Style.Triggers>
 									<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
 										<Setter Property="Foreground" Value="Red" />
@@ -71,50 +66,67 @@
 							</Style>
 						</Style.Resources>
 					</Style>
-				</Grid.Style>
+				</Grid.Resources>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="0"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Fuel.Required}"
-					/>
+					DataContext="{Binding Fuel}"
+					Orientation="Horizontal"
+					>
+					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="1"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Ammo.Required}"
-					/>
+					DataContext="{Binding Ammo}"
+					Orientation="Horizontal"
+					>
+					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="2"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Steel.Required}"
-					/>
+					DataContext="{Binding Steel}"
+					Orientation="Horizontal"
+					>
+					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="3"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Bauxite.Required}"
-					/>
+					DataContext="{Binding Bauxite}"
+					Orientation="Horizontal"
+					>
+					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="1"
 					Grid.Column="0"
-					Image="{Binding Source={x:Static resource:IconContent.ItemDevelopmentMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding DevelopmentMaterial.Required}"
-					/>
+					DataContext="{Binding DevelopmentMaterial}"
+					Orientation="Horizontal"
+					>
+					<Image Source="{Binding Source={x:Static resource:IconContent.ItemDevelopmentMaterial}, Converter={StaticResource ImageSourceConverter}}" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="1"
 					Grid.Column="2"
-					Image="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding ImprovementMaterial.Required}"
-					/>
+					DataContext="{Binding ImprovementMaterial}"
+					Orientation="Horizontal"
+					>
+					<Image Source="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
 				<ItemsControl
 					Grid.Row="2"
