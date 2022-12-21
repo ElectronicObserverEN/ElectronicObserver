@@ -1,0 +1,151 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Common.UseItemIcon"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="UseItemIconControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<Image
+		Width="16"
+		Height="16"
+		DataContext="{Binding ElementName=UseItemIconControl}"
+		>
+		<Image.Style>
+			<Style TargetType="Image">
+				<Setter Property="Source" Value="{StaticResource EquipmentIconType.Unknown}" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								InstantRepair
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.InstantRepair}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								InstantConstruction
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.InstantConstruction}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								DevelopmentMaterial
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.DevelopmentMaterial}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								ImproveMaterial
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.ModdingMaterial}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								Fuel
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Resource.Fuel}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								Ammo
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Resource.Ammo}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								Steel
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Resource.Steel}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								Bauxite
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Resource.Bauxite}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								FurnitureCoin
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.FurnitureCoin}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								RemodelBlueprints
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.Blueprint}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								PresentBox
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.PresentBox}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								PrototypeFlightDeckCatapult
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.Catapult}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								NewModelAviationArmamentMaterials
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.AviationMaterial}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								ActionReport
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.ActionReport}" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+		</Image.Style>
+	</Image>
+</UserControl>

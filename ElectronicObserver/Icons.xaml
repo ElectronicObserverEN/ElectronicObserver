@@ -74,4 +74,19 @@
 	<BitmapImage x:Key="EquipmentIconType.HeavyBomber" UriSource="pack://application:,,,/Assets/Equipment/HeavyBomber.png" />
 	<BitmapImage x:Key="EquipmentIconType.NightSeaplane" UriSource="pack://application:,,,/Assets/Equipment/NightSeaplane.png" />
 
+	<BitmapImage x:Key="Resource.Fuel" UriSource="pack://application:,,,/Assets/Resource/Fuel.png" />
+	<BitmapImage x:Key="Resource.Ammo" UriSource="pack://application:,,,/Assets/Resource/Ammo.png" />
+	<BitmapImage x:Key="Resource.Steel" UriSource="pack://application:,,,/Assets/Resource/Steel.png" />
+	<BitmapImage x:Key="Resource.Bauxite" UriSource="pack://application:,,,/Assets/Resource/Bauxite.png" />
+
+	<BitmapImage x:Key="Item.InstantRepair" UriSource="pack://application:,,,/Assets/Item/InstantRepair.png" />
+	<BitmapImage x:Key="Item.InstantConstruction" UriSource="pack://application:,,,/Assets/Item/InstantConstruction.png" />
+	<BitmapImage x:Key="Item.DevelopmentMaterial" UriSource="pack://application:,,,/Assets/Item/DevelopmentMaterial.png" />
+	<BitmapImage x:Key="Item.ModdingMaterial" UriSource="pack://application:,,,/Assets/Item/ModdingMaterial.png" />
+	<BitmapImage x:Key="Item.FurnitureCoin" UriSource="pack://application:,,,/Assets/Item/FurnitureCoin.png" />
+	<BitmapImage x:Key="Item.Blueprint" UriSource="pack://application:,,,/Assets/Item/Blueprint.png" />
+	<BitmapImage x:Key="Item.PresentBox" UriSource="pack://application:,,,/Assets/Item/PresentBox.png" />
+	<BitmapImage x:Key="Item.Catapult" UriSource="pack://application:,,,/Assets/Item/Catapult.png" />
+	<BitmapImage x:Key="Item.AviationMaterial" UriSource="pack://application:,,,/Assets/Item/AviationMaterial.png" />
+	<BitmapImage x:Key="Item.ActionReport" UriSource="pack://application:,,,/Assets/Item/ActionReport.png" />
 </ResourceDictionary>
