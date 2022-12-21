@@ -25,13 +25,10 @@ public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanC
 
 	public void SubscribeToApis()
 	{
-		// Post sortie update => Aquired new items from event rewards
 		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
 
-		// After quest clear => Aquired new items from quest rewards
 		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += (_, _) => Update();
 
-		// Item is used => eg. medals to blueprint
 		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += (_, _) => Update();
 
 		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += (_, _) => Update();

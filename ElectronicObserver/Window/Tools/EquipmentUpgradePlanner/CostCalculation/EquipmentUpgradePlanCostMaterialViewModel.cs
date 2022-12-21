@@ -7,8 +7,8 @@ public class EquipmentUpgradePlanCostMaterialViewModel : EquipmentUpgradePlanRes
 {
 	public UseItemId Type { get; set; }
 
-	public EquipmentUpgradePlanCostMaterialViewModel(int required, UseItemId type) 
-	{ 
+	public EquipmentUpgradePlanCostMaterialViewModel(int required, UseItemId type)
+	{
 		Required = required;
 		Type = type;
 
@@ -36,25 +36,20 @@ public class EquipmentUpgradePlanCostMaterialViewModel : EquipmentUpgradePlanRes
 
 	public void SubscribeToApis()
 	{
-		// Post sortie update => Sunken ship, event rewards, ...
 		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
 
 		APIObserver.Instance.ApiGetMember_Material.ResponseReceived += (_, _) => Update();
 
-		// Ressuply
 		APIObserver.Instance.ApiReqHokyu_Charge.ResponseReceived += (_, _) => Update();
 
-		// Craft / destroy / upgrade
 		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqKousyou_CreateItem.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += (_, _) => Update();
 
-		// AB
 		APIObserver.Instance.ApiReqAirCorps_Supply.ResponseReceived += (_, _) => Update();
 		APIObserver.Instance.ApiReqAirCorps_SetPlane.ResponseReceived += (_, _) => Update();
 
-		// Item is used => eg. medals to rsc
 		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += (_, _) => Update();
 
 	}
