@@ -139,7 +139,7 @@
 					<DataGridTemplateColumn Width="Auto" SortMemberPath="IconType">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate DataType="local:EquipmentListRow">
-								<Image Height="16" Source="{Binding IconType, Converter={StaticResource ImageSourceConverter}}" />
+								<common:EquipmentIcon Type="{Binding IconType}" />
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>
 					</DataGridTemplateColumn>
