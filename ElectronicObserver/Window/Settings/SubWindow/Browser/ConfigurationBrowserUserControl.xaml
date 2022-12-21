@@ -13,7 +13,7 @@
 	mc:Ignorable="d"
 	>
 	<UserControl.Resources>
-		<DataTemplate DataType="local:ScreenshotSaveMode">
+		<DataTemplate DataType="{x:Type local:ScreenshotSaveMode}">
 			<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
 		</DataTemplate>
 

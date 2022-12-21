@@ -3,10 +3,8 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
-	xmlns:common1="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:costs="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:helpers="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
@@ -53,12 +51,6 @@
 
 		<DataTemplate x:Key="CostTemplate" DataType="{x:Type costs:EquipmentUpgradePlanCostViewModel}">
 			<Grid>
-				<Grid.Resources>
-					<Style TargetType="common1:ImageTextControl">
-						<Setter Property="Margin" Value="2 0" />
-					</Style>
-				</Grid.Resources>
-
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
@@ -73,48 +65,80 @@
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 
-				<common1:ImageTextControl
+
+				<Grid.Resources>
+					<Style TargetType="StackPanel">
+						<Setter Property="Margin" Value="2 0" />
+						<Style.Resources>
+							<Style TargetType="TextBlock">
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
+										<Setter Property="Foreground" Value="Red" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</Style.Resources>
+					</Style>
+				</Grid.Resources>
+
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="0"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Fuel}"
-					/>
+					DataContext="{Binding Fuel}"
+					Orientation="Horizontal"
+					>
+					<common:UseItemIcon Type="Fuel" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="1"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Ammo}"
-					/>
+					DataContext="{Binding Ammo}"
+					Orientation="Horizontal"
+					>
+					<common:UseItemIcon Type="Ammo" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="2"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Steel}"
-					/>
+					DataContext="{Binding Steel}"
+					Orientation="Horizontal"
+					>
+					<common:UseItemIcon Type="Steel" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="0"
 					Grid.Column="3"
-					Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding Bauxite}"
-					/>
+					DataContext="{Binding Bauxite}"
+					Orientation="Horizontal"
+					>
+					<common:UseItemIcon Type="Bauxite" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
-
-				<common1:ImageTextControl
+				<StackPanel
 					Grid.Row="1"
 					Grid.Column="0"
-					Image="{Binding Source={x:Static resource:IconContent.ItemDevelopmentMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding DevelopmentMaterial}"
-					/>
-
-				<common1:ImageTextControl
+					DataContext="{Binding DevelopmentMaterial}"
+					Orientation="Horizontal"
+					>
+					<common:UseItemIcon Type="DevelopmentMaterial" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
+				<StackPanel
 					Grid.Row="1"
 					Grid.Column="2"
-					Image="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}"
-					Text="{Binding ImprovementMaterial}"
-					/>
+					DataContext="{Binding ImprovementMaterial}"
+					Orientation="Horizontal"
+					>
+					<common:UseItemIcon Type="ImproveMaterial" />
+					<TextBlock Margin="2 0" Text="{Binding Required}" />
+				</StackPanel>
 
 				<ItemsControl
 					Grid.Row="2"
@@ -140,12 +164,28 @@
 									</StackPanel>
 								</StackPanel.ToolTip>
 
-								<TextBlock Text="{Binding Equipment.NameEN}" />
-								<TextBlock Margin="4 0 0 0" Text="(" />
-								<TextBlock Text="{Binding Owned}" />
-								<TextBlock Text="/" />
-								<TextBlock Text="{Binding Required}" />
-								<TextBlock Text=")" />
+								<StackPanel Orientation="Horizontal">
+									<StackPanel.Style>
+										<Style TargetType="StackPanel">
+											<Style.Resources>
+												<Style TargetType="TextBlock">
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
+															<Setter Property="Foreground" Value="Red" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</Style.Resources>
+										</Style>
+									</StackPanel.Style>
+
+									<TextBlock Text="{Binding Equipment.NameEN}" />
+									<TextBlock Margin="4 0 0 0" Text="(" />
+									<TextBlock Text="{Binding Owned}" />
+									<TextBlock Text="/" />
+									<TextBlock Text="{Binding Required}" />
+									<TextBlock Text=")" />
+								</StackPanel>
 							</StackPanel>
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
@@ -174,12 +214,28 @@
 									</StackPanel>
 								</StackPanel.ToolTip>
 
-								<TextBlock Text="{Binding Consumable.NameTranslated}" />
-								<TextBlock Margin="4 0 0 0" Text="(" />
-								<TextBlock Text="{Binding Owned}" />
-								<TextBlock Text="/" />
-								<TextBlock Text="{Binding Required}" />
-								<TextBlock Text=")" />
+								<StackPanel Orientation="Horizontal">
+									<StackPanel.Style>
+										<Style TargetType="StackPanel">
+											<Style.Resources>
+												<Style TargetType="TextBlock">
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
+															<Setter Property="Foreground" Value="Red" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</Style.Resources>
+										</Style>
+									</StackPanel.Style>
+
+									<TextBlock Text="{Binding Consumable.NameTranslated}" />
+									<TextBlock Margin="4 0 0 0" Text="(" />
+									<TextBlock Text="{Binding Owned}" />
+									<TextBlock Text="/" />
+									<TextBlock Text="{Binding Required}" />
+									<TextBlock Text=")" />
+								</StackPanel>
 							</StackPanel>
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
@@ -206,7 +262,17 @@
 
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding NameEN}" />
+										<DataTemplate.Resources>
+											<Style TargetType="TextBlock">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
+														<Setter Property="Foreground" Value="Red" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</DataTemplate.Resources>
+
+										<TextBlock Text="{Binding Helper.NameEN}" />
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>
 
@@ -276,7 +342,17 @@
 													<ItemsControl ItemsSource="{Binding Helpers}">
 														<ItemsControl.ItemTemplate>
 															<DataTemplate>
-																<TextBlock Text="{Binding NameEN}" />
+																<DataTemplate.Resources>
+																	<Style TargetType="TextBlock">
+																		<Style.Triggers>
+																			<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
+																				<Setter Property="Foreground" Value="Red" />
+																			</DataTrigger>
+																		</Style.Triggers>
+																	</Style>
+																</DataTemplate.Resources>
+
+																<TextBlock Text="{Binding Helper.NameEN}" />
 															</DataTemplate>
 														</ItemsControl.ItemTemplate>
 													</ItemsControl>

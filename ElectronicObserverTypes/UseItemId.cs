@@ -2,6 +2,7 @@
 
 public enum UseItemId
 {
+	Unknown = 0,
 	InstantRepair = 1,
 	InstantConstruction = 2,
 	DevelopmentMaterial = 3,

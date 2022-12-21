@@ -9,7 +9,6 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
-	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="DialogAlbumMasterEquipmentView"
 	Title="{Binding Title}"
@@ -26,9 +25,6 @@
 	</d:Window.DataContext>
 
 	<Window.Resources>
-		<DataTemplate x:Key="EquipmentIconTemplate" DataType="{x:Type local:EquipmentDataViewModel}">
-			<Image Height="16" Source="{Binding Equipment.IconTypeTyped, Converter={StaticResource ImageSourceConverter}}" />
-		</DataTemplate>
 		<local:AlbumMasterEquipmentBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
 		<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
@@ -130,7 +126,13 @@
 							Header="ID"
 							/>
 
-						<DataGridTemplateColumn CellTemplate="{StaticResource EquipmentIconTemplate}" SortMemberPath="Equipment.IconTypeTyped" />
+						<DataGridTemplateColumn SortMemberPath="Equipment.IconTypeTyped">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<common1:EquipmentIcon Type="{Binding Equipment.IconTypeTyped}" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
 
 						<DataGridTextColumn
 							Width="110"
@@ -231,71 +233,71 @@
 								</Grid>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterFirepower}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Firepower}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleFirepower}"
 									Value="{Binding SelectedEquipment.Equipment.Firepower}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterTorpedo}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Torpedo}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleTorpedo}"
 									Value="{Binding SelectedEquipment.Equipment.Torpedo}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterAA}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource AntiAir}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleAA}"
 									Value="{Binding SelectedEquipment.Equipment.AA}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterArmor}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Armor}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleArmor}"
 									Value="{Binding SelectedEquipment.Equipment.Armor}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterASW}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource AntiSubmarine}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleASW}"
 									Value="{Binding SelectedEquipment.Equipment.ASW}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterEvasion}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Evasion}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleEvasion}"
 									Visibility="{Binding SelectedEquipment.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 									Value="{Binding SelectedEquipment.Equipment.Evasion}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterInterception}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Interception}"
 									Text="{Binding DialogAlbumMasterEquipment.Interception}"
 									Visibility="{Binding SelectedEquipment.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 									Value="{Binding SelectedEquipment.Equipment.Accuracy}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterLOS}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Los}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleLOS}"
 									Value="{Binding SelectedEquipment.Equipment.LOS}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterAccuracy}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Accuracy}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleAccuracy}"
 									Visibility="{Binding SelectedEquipment.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 									Value="{Binding SelectedEquipment.Equipment.Accuracy}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterAntiBomber}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource AntiBomber}"
 									Text="{Binding DialogAlbumMasterEquipment.AntiBomber}"
 									Visibility="{Binding SelectedEquipment.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 									Value="{Binding SelectedEquipment.Equipment.Accuracy}"
 									/>
 
 								<local:EquipmentStatControl
-									Image="{Binding Source={x:Static resource:IconContent.ParameterBomber}, Converter={StaticResource ImageSourceConverter}}"
+									Image="{StaticResource Bomber}"
 									Text="{Binding DialogAlbumMasterEquipment.TitleBomber}"
 									Value="{Binding SelectedEquipment.Equipment.Bomber}"
 									/>
@@ -381,10 +383,10 @@
 								<ColumnDefinition SharedSizeGroup="Scaled" />
 							</Grid.ColumnDefinitions>
 
-							<Image
+							<common1:ParameterIcon
 								Grid.Row="0"
 								Grid.Column="0"
-								Source="{Binding Source={x:Static resource:IconContent.ParameterSpeed}, Converter={StaticResource ImageSourceConverter}}"
+								ParameterType="Speed"
 								/>
 
 							<TextBlock
@@ -434,10 +436,10 @@
 								Grid.ColumnSpan="5"
 								/>
 
-							<Image
+							<common1:ParameterIcon
 								Grid.Row="4"
 								Grid.Column="0"
-								Source="{Binding Source={x:Static resource:IconContent.ParameterRange}, Converter={StaticResource ImageSourceConverter}}"
+								ParameterType="Range"
 								/>
 
 							<TextBlock
@@ -479,10 +481,10 @@
 								<ColumnDefinition SharedSizeGroup="Scaled" />
 							</Grid.ColumnDefinitions>
 
-							<Image
+							<common1:ParameterIcon
 								Grid.Row="0"
 								Grid.Column="0"
-								Source="{Binding Source={x:Static resource:IconContent.ParameterAircraftCost}, Converter={StaticResource ImageSourceConverter}}"
+								ParameterType="AircraftCost"
 								/>
 
 							<TextBlock
@@ -509,10 +511,10 @@
 								Grid.ColumnSpan="5"
 								/>
 
-							<Image
+							<common1:ParameterIcon
 								Grid.Row="2"
 								Grid.Column="0"
-								Source="{Binding Source={x:Static resource:IconContent.ParameterRange}, Converter={StaticResource ImageSourceConverter}}"
+								ParameterType="Range"
 								/>
 
 							<TextBlock
@@ -549,13 +551,13 @@
 
 							<TextBlock Margin="4 0" Text="解体" />
 
-							<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedEquipment.Equipment.Material[0]}" />
+							<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipment.Equipment.Material[0]}" />
 
-							<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedEquipment.Equipment.Material[1]}" />
+							<common:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding SelectedEquipment.Equipment.Material[1]}" />
 
-							<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedEquipment.Equipment.Material[2]}" />
+							<common:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding SelectedEquipment.Equipment.Material[2]}" />
 
-							<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedEquipment.Equipment.Material[3]}" />
+							<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedEquipment.Equipment.Material[3]}" />
 
 						</StackPanel>
 						<Separator />

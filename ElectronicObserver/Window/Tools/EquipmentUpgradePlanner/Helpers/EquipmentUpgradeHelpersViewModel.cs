@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using ElectronicObserver.Data;
-using ElectronicObserverTypes;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Services;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
-public class EquipmentUpgradeHelpersViewModel
+public class EquipmentUpgradeHelpersViewModel : ObservableObject
 {
 	public static DayOfWeek[] DaysOfWeek { get; } = new DayOfWeek[]
 	{
@@ -21,16 +21,20 @@ public class EquipmentUpgradeHelpersViewModel
 		DayOfWeek.Sunday
 	};
 
-	public List<IShipDataMaster> Helpers { get; set; } = new();
+	public List<EquipmentUpgradeHelperViewModel> Helpers { get; set; } = new();
 
 	public List<EquipmentUpgradeHelpersDayViewModel> Days { get; set; } = new();
 
+	private TimeChangeService TimeService { get; } = Ioc.Default.GetService<TimeChangeService>()!;
+
+	public bool CanHelpToday => Days.First(day => day.DayValue == TimeService.CurrentDayOfWeekJST).IsHelperDay;
+
 	public EquipmentUpgradeHelpersViewModel(EquipmentUpgradeHelpersModel model)
 	{
-		KCDatabase db = KCDatabase.Instance;
-
-		Helpers = model.ShipIds.Select(ship => db.MasterShips[ship]).ToList();
+		Helpers = model.ShipIds.Select(ship => new EquipmentUpgradeHelperViewModel(ship)).ToList();
 
 		Days = DaysOfWeek.Select(day => new EquipmentUpgradeHelpersDayViewModel(day, model.CanHelpOnDays.Contains(day))).ToList();
+
+		TimeService.DayChanged += () => OnPropertyChanged(nameof(CanHelpToday));
 	}
 }

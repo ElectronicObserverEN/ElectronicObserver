@@ -35,6 +35,9 @@ public static class EquipmentUpgradeCostExtensions
 		return cost;
 	}
 
+	public static EquipmentUpgradePlanCostModel CalculateNextUpgradeCost(this IEquipmentData equipment, List<EquipmentUpgradeDataModel> upgradesData, IShipDataMaster? helper, SliderUpgradeLevel sliderLevel)
+		=> CalculateUpgradeCost(equipment, upgradesData, helper, equipment.UpgradeLevel.GetNextLevel(), sliderLevel);
+
 	public static EquipmentUpgradePlanCostModel CalculateUpgradeLevelCost(this EquipmentUpgradeImprovementModel improvementModel, UpgradeLevel level, bool useSlider)
 	{
 		EquipmentUpgradeImprovementCostDetail? costDetail = improvementModel.Costs.GetImprovementCostDetailFromLevel(level);
@@ -86,5 +89,17 @@ public static class EquipmentUpgradeCostExtensions
 		if (helper is null) return improvements.FirstOrDefault();
 
 		return improvements.FirstOrDefault(imp => imp.Helpers.SelectMany(helpers => helpers.ShipIds).ToList().Contains(helper.ShipID));
+	}
+
+	/// <summary>
+	/// Return next level of the upgrade level
+	/// </summary>
+	/// <param name="currentLevel"></param>
+	/// <returns></returns>
+	public static UpgradeLevel GetNextLevel(this UpgradeLevel currentLevel)
+	{
+		if (currentLevel is UpgradeLevel.Max or UpgradeLevel.Conversion) return UpgradeLevel.Conversion;
+
+		return ++currentLevel;
 	}
 }
