@@ -312,150 +312,153 @@
 					/>
 			</Grid>
 		</DataTemplate>
-	</UserControl.Resources>
 
-	<Grid Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
+		<DataTemplate DataType="{x:Type local:EquipmentUpgradePlanViewerViewModel}">
+			<Grid Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+				<StackPanel Grid.Row="0" Orientation="Horizontal">
 
-		<StackPanel Grid.Row="0" Orientation="Horizontal">
+					<CheckBox Content="{Binding Filters.TodayDisplay}" IsChecked="{Binding Filters.SelectToday}" />
 
-			<CheckBox Content="{Binding Filters.TodayDisplay}" IsChecked="{Binding Filters.SelectToday}" />
+					<CheckBox Content="{Binding Translation.All}" IsChecked="{Binding Filters.SelectAllDay}" />
 
-			<CheckBox Content="{Binding Translation.All}" IsChecked="{Binding Filters.SelectAllDay}" />
+					<ItemsControl ItemsSource="{Binding Filters.Days}">
 
-			<ItemsControl ItemsSource="{Binding Filters.Days}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
 
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Horizontal" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</StackPanel>
 
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Orientation="Horizontal">
-							<CheckBox Content="{Binding DisplayValue}" IsChecked="{Binding IsChecked}" />
-						</StackPanel>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</StackPanel>
-
-		<DataGrid
-			Grid.Row="1"
-			AutoGenerateColumns="False"
-			ColumnWidth="90"
-			HeadersVisibility="Column"
-			IsReadOnly="True"
-			ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"
-			>
-
-			<b:Interaction.Behaviors>
-				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
-			</b:Interaction.Behaviors>
-
-			<DataGrid.ColumnHeaderStyle>
-				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
-					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-				</Style>
-			</DataGrid.ColumnHeaderStyle>
-
-			<DataGrid.RowStyle>
-				<Style TargetType="DataGridRow">
-					<Setter Property="Background" Value="#00FFFFFF" />
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding NextUpgradeCost.HasEnoughResources}" Value="False">
-							<Setter Property="Background" Value="#AAFF0000" />
-						</DataTrigger>
-
-						<DataTrigger Binding="{Binding HasHelperForAtleastOneDayOfWeek}" Value="False">
-							<Setter Property="Background" Value="#AAFF0000" />
-						</DataTrigger>
-
-						<MultiDataTrigger>
-							<MultiDataTrigger.Conditions>
-								<Condition Binding="{Binding DataContext.Filters.SelectToday, Source={StaticResource Proxy}}" Value="True" />
-								<Condition Binding="{Binding HasHelperForToday}" Value="False" />
-							</MultiDataTrigger.Conditions>
-							<Setter Property="Background" Value="#AAFF0000" />
-						</MultiDataTrigger>
-					</Style.Triggers>
-				</Style>
-			</DataGrid.RowStyle>
-
-			<DataGrid.Columns>
-				<DataGridTextColumn
-					Width="Auto"
-					Binding="{Binding EquipmentName}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.Translation.Equipment, Source={StaticResource Proxy}}"
+				<DataGrid
+					Grid.Row="1"
+					AutoGenerateColumns="False"
+					ColumnWidth="90"
+					HeadersVisibility="Column"
+					IsReadOnly="True"
+					ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"
 					>
 
+					<b:Interaction.Behaviors>
+						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+					</b:Interaction.Behaviors>
 
-					<DataGridTextColumn.CellStyle>
-						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
-							<Setter Property="ToolTip">
-								<Setter.Value>
-									<ContentControl Content="{Binding}" ContentTemplate="{StaticResource EquipmentUpgradeToolTip}" />
-								</Setter.Value>
-							</Setter>
+					<DataGrid.ColumnHeaderStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+							<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+							<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 						</Style>
-					</DataGridTextColumn.CellStyle>
-				</DataGridTextColumn>
+					</DataGrid.ColumnHeaderStyle>
 
-				<DataGridTextColumn
-					Width="Auto"
-					Binding="{Binding CurrentLevelDisplay}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.Translation.CurrentLevel, Source={StaticResource Proxy}}"
-					>
-					<DataGridTextColumn.CellStyle>
-						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
-							<Setter Property="ToolTip" Value="{x:Null}" />
+					<DataGrid.RowStyle>
+						<Style TargetType="DataGridRow">
+							<Setter Property="Background" Value="#00FFFFFF" />
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding Equipment.MasterID}" Value="0">
-									<Setter Property="ToolTip" Value="{Binding DataContext.Translation.UnassignedToolTip, Source={StaticResource Proxy}}" />
+								<DataTrigger Binding="{Binding NextUpgradeCost.HasEnoughResources}" Value="False">
+									<Setter Property="Background" Value="#AAFF0000" />
 								</DataTrigger>
+
+								<DataTrigger Binding="{Binding HasHelperForAtleastOneDayOfWeek}" Value="False">
+									<Setter Property="Background" Value="#AAFF0000" />
+								</DataTrigger>
+
+								<MultiDataTrigger>
+									<MultiDataTrigger.Conditions>
+										<Condition Binding="{Binding DataContext.Filters.SelectToday, Source={StaticResource Proxy}}" Value="True" />
+										<Condition Binding="{Binding HasHelperForToday}" Value="False" />
+									</MultiDataTrigger.Conditions>
+									<Setter Property="Background" Value="#AAFF0000" />
+								</MultiDataTrigger>
 							</Style.Triggers>
 						</Style>
-					</DataGridTextColumn.CellStyle>
-				</DataGridTextColumn>
+					</DataGrid.RowStyle>
 
-				<DataGridTextColumn
-					Width="Auto"
-					Binding="{Binding DesiredUpgradeLevel, Converter={StaticResource EnumDisplayConverter}}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.Translation.Goal, Source={StaticResource Proxy}}"
-					/>
+					<DataGrid.Columns>
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding EquipmentName}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.Translation.Equipment, Source={StaticResource Proxy}}"
+							>
 
-				<DataGridTextColumn
-					Width="Auto"
-					Binding="{Binding Priority}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.Translation.Priority, Source={StaticResource Proxy}}"
-					/>
 
-				<DataGridCheckBoxColumn
-					Width="Auto"
-					Binding="{Binding Finished}"
-					Header="{Binding DataContext.Translation.IsFinished, Source={StaticResource Proxy}}"
-					/>
+							<DataGridTextColumn.CellStyle>
+								<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+									<Setter Property="ToolTip">
+										<Setter.Value>
+											<ContentControl Content="{Binding}" ContentTemplate="{StaticResource EquipmentUpgradeToolTip}" />
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</DataGridTextColumn.CellStyle>
+						</DataGridTextColumn>
 
-			</DataGrid.Columns>
-		</DataGrid>
-	</Grid>
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding CurrentLevelDisplay}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.Translation.CurrentLevel, Source={StaticResource Proxy}}"
+							>
+							<DataGridTextColumn.CellStyle>
+								<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+									<Setter Property="ToolTip" Value="{x:Null}" />
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding Equipment.MasterID}" Value="0">
+											<Setter Property="ToolTip" Value="{Binding DataContext.Translation.UnassignedToolTip, Source={StaticResource Proxy}}" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</DataGridTextColumn.CellStyle>
+						</DataGridTextColumn>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding DesiredUpgradeLevel, Converter={StaticResource EnumDisplayConverter}}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.Translation.Goal, Source={StaticResource Proxy}}"
+							/>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding Priority}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.Translation.Priority, Source={StaticResource Proxy}}"
+							/>
+
+						<DataGridCheckBoxColumn
+							Width="Auto"
+							Binding="{Binding Finished}"
+							Header="{Binding DataContext.Translation.IsFinished, Source={StaticResource Proxy}}"
+							/>
+
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<ContentControl Content="{Binding}" />
 </UserControl>
