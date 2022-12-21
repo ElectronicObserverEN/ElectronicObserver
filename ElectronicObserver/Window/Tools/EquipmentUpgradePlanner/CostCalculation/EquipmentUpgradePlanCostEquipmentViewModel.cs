@@ -19,7 +19,7 @@ public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCo
 	public void Update()
 	{
 		KCDatabase db = KCDatabase.Instance;
-		Owned = db.Equipments.Count(eq => eq.Value?.EquipmentID == Equipment.EquipmentID);
+		Owned = db.Equipments.Count(eq => eq.Value?.EquipmentID == Equipment.EquipmentID && eq.Value.UpgradeLevel == UpgradeLevel.Zero);
 	}
 
 	public void SubscribeToApis()
