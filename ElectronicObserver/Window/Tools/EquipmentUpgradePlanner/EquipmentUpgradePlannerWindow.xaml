@@ -87,7 +87,7 @@
 					DataContext="{Binding Fuel}"
 					Orientation="Horizontal"
 					>
-					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}" />
+					<common:UseItemIcon Type="Fuel" />
 					<TextBlock Margin="2 0" Text="{Binding Required}" />
 				</StackPanel>
 
@@ -97,7 +97,7 @@
 					DataContext="{Binding Ammo}"
 					Orientation="Horizontal"
 					>
-					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}" />
+					<common:UseItemIcon Type="Ammo" />
 					<TextBlock Margin="2 0" Text="{Binding Required}" />
 				</StackPanel>
 
@@ -107,7 +107,7 @@
 					DataContext="{Binding Steel}"
 					Orientation="Horizontal"
 					>
-					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}" />
+					<common:UseItemIcon Type="Steel" />
 					<TextBlock Margin="2 0" Text="{Binding Required}" />
 				</StackPanel>
 
@@ -117,7 +117,7 @@
 					DataContext="{Binding Bauxite}"
 					Orientation="Horizontal"
 					>
-					<Image Source="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}" />
+					<common:UseItemIcon Type="Bauxite" />
 					<TextBlock Margin="2 0" Text="{Binding Required}" />
 				</StackPanel>
 
@@ -127,7 +127,7 @@
 					DataContext="{Binding DevelopmentMaterial}"
 					Orientation="Horizontal"
 					>
-					<Image Source="{Binding Source={x:Static resource:IconContent.ItemDevelopmentMaterial}, Converter={StaticResource ImageSourceConverter}}" />
+					<common:UseItemIcon Type="DevelopmentMaterial" />
 					<TextBlock Margin="2 0" Text="{Binding Required}" />
 				</StackPanel>
 				<StackPanel
@@ -136,7 +136,7 @@
 					DataContext="{Binding ImprovementMaterial}"
 					Orientation="Horizontal"
 					>
-					<Image Source="{Binding Source={x:Static resource:IconContent.ItemModdingMaterial}, Converter={StaticResource ImageSourceConverter}}" />
+					<common:UseItemIcon Type="ImproveMaterial" />
 					<TextBlock Margin="2 0" Text="{Binding Required}" />
 				</StackPanel>
 
