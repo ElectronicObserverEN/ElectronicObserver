@@ -165,6 +165,7 @@ public class CefSharpViewModel : BrowserViewModel
 				SetCookie();
 				ApplyZoom();
 				DestroyDMMreloadDialog();
+				SetVolumeState();
 			});
 	}
 
