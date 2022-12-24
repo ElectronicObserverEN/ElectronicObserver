@@ -314,6 +314,13 @@
 			<!--
 				no idea how to do right click the mvvm way
 			-->
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Click="BattleLog_Open" Header="{Binding DataContext.DialogDropRecordViewer.OpenBattleLog, Source={StaticResource Proxy}}" />
+					<MenuItem Click="Replay_Open" Header="{Binding DataContext.DialogDropRecordViewer.OpenReplayFile, Source={StaticResource Proxy}}" />
+					<MenuItem Click="ReplayURL_Open" Header="{Binding DataContext.DialogDropRecordViewer.CopyReplayURL, Source={StaticResource Proxy}}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
 			<DataGrid.RowStyle>
 				<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
 					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />

@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows7</TargetFramework>
-		<RuntimeFrameworkVersion>6.0.5</RuntimeFrameworkVersion>
+		<TargetFramework>net7.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -449,6 +448,7 @@
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
 		<PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+		<PackageReference Include="PKT.LZStringCSharp" Version="2.1.0" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="ScottPlot" Version="4.1.59" />

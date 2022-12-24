@@ -51,6 +51,7 @@ public class NotifierBattleEnd : NotifierBase
 
 	private void BattleStarted(string apiname, dynamic data)
 	{
+		Timer?.Stop();
 		Timer = new Timer
 		{
 			Enabled = Config.IdleTimerEnabled,

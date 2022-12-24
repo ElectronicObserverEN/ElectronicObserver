@@ -74,6 +74,7 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
+using ElectronicObserver.Utility.Mathematics;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -1768,6 +1769,11 @@ public partial class FormMainViewModel : ObservableObject
 		};
 		SetAnchorableProperties();
 		Topmost = c.Life.TopMost;
+		Window.ResizeMode = LockLayout switch
+		{
+			true => ResizeMode.CanMinimize,
+			_ => ResizeMode.CanResize
+		};
 		/*
 		StripMenu_File_Notification_MuteAll.Checked = Notifier.NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 
@@ -1782,6 +1788,11 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			view.CanFloat = !LockLayout;
 			view.CanClose = !LockLayout;
+			view.CanMove = !LockLayout;
+			if (view.Title is "Group" or "Expedition Check")
+			{
+				view.CanClose = true;
+			}
 		}
 	}
 
@@ -2026,5 +2037,29 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (Configuration.Config.Log.SaveLogFlag)
 			Logger.Save();
+	}
+	private void AdjustRecordsConstruct(string apiname, dynamic data)
+	{
+		var constructionRecord = new ConstructionRecord();
+		string constructPath = RecordManager.Instance.MasterPath + "\\" + constructionRecord.FileName;
+		string backupDirectoryPath = RecordManager.Instance.MasterPath + "\\Backup_" + DateTimeHelper.GetTimeStamp();
+
+
+		Directory.CreateDirectory(backupDirectoryPath);
+		File.Copy(constructPath, backupDirectoryPath + "\\" + constructionRecord.FileName);
+		constructionRecord.Load(RecordManager.Instance.MasterPath);
+		KCDatabase db = KCDatabase.Instance;
+		if (KCDatabase.Instance.MasterShips != null)
+		{
+			foreach (var record in constructionRecord.Record)
+			{
+				var ship = db.MasterShips[record.ShipID];
+				var flagship = db.MasterShips[record.FlagshipID];
+				record.ShipName = ship?.NameWithClass;
+				record.FlagshipName = flagship?.NameWithClass;
+				//Logger.Add(2, ship?.ToString());
+			}
+			constructionRecord.SaveAll(RecordManager.Instance.MasterPath);
+		}
 	}
 }

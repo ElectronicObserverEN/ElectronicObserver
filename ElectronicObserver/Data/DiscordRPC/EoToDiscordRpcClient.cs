@@ -51,6 +51,7 @@ public class EoToDiscordRpcClient
 
 		CurrentClient = new DiscordRpcClient(CurrentClientId);
 		CurrentClient.Initialize();
+		CurrentClient.SkipIdenticalPresence = false;
 		CurrentClient.OnReady += CurrentClient_OnReady;
 		CurrentClient.OnClose += CurrentClient_OnClose;
 	}

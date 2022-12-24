@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services.ApiFileService;
@@ -16,6 +17,7 @@ using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
+using Titanium.Web.Proxy.Network;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Observer;
@@ -720,11 +722,12 @@ public sealed class APIObserver
 			},
 			TcpTimeWaitSeconds = 10,
 			ConnectionTimeOutSeconds = 15,
-			ReuseSocket = false,
-			EnableConnectionPool = false,
+			ReuseSocket = true,
+			EnableConnectionPool = true,
 			ForwardToUpstreamGateway = true
 		};
-		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
+		Proxy.CertificateManager.CertificateEngine = CertificateEngine.DefaultWindows;
+		Proxy.CertificateManager.EnsureRootCertificate(true, true);
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
 	}
@@ -750,7 +753,7 @@ public sealed class APIObserver
 
 			Proxy.UpStreamHttpProxy = c switch
 			{
-				{UseUpstreamProxy: true} => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
+				{ UseUpstreamProxy: true } => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
 				_ => null,
 			};
 
@@ -787,6 +790,18 @@ public sealed class APIObserver
 	{
 		e.HttpClient.Request.KeepBody = true;
 		// need to read the request body here so it's available in ProxyOnBeforeResponse
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/maintenance.html"))
+		{
+			e.Redirect("https://kcwiki.github.io/cache/html/maintenance.html");
+		}
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/ban.png"))
+		{
+			e.Redirect("https://kcwiki.github.io/cache/html/ban.png");
+		}
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/deny.png"))
+		{
+			e.Redirect("https://kcwiki.github.io/cache/html/deny.png");
+		}
 		await e.GetRequestBodyAsString();
 	}
 
@@ -796,6 +811,7 @@ public sealed class APIObserver
 		Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 		string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
+
 
 		if (baseurl.Contains("/kcsapi/"))
 		{
@@ -812,7 +828,6 @@ public sealed class APIObserver
 
 			string url = baseurl;
 			string body = await e.GetRequestBodyAsString();
-
 			//保存
 			if (c.SaveReceivedData && c.SaveRequest)
 			{
@@ -825,7 +840,7 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					control.Dispatcher.Invoke(() => LoadRequest(url, body));
+					await control.Dispatcher.InvokeAsync(() => LoadRequest(url, body));
 					break;
 			}
 		}
@@ -865,7 +880,6 @@ public sealed class APIObserver
 					// stringはイミュータブルなのでOK
 					string url = baseurl;
 					string body = await e.GetResponseBodyAsString();
-
 					Task.Run((Action)(() =>
 					{
 						SaveResponse(url, body);
@@ -899,13 +913,9 @@ public sealed class APIObserver
 							tpath = tpath.Remove(index);
 						}
 					}
-
-
-
 					// 非同期で書き出し処理するので取っておく
 					byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
 					Array.Copy(await e.GetResponseBody(), responseCopy, (await e.GetResponseBody()).Length);
-
 					Task.Run((Action)(() =>
 					{
 						try
@@ -954,18 +964,16 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					control.Dispatcher.Invoke(() => LoadResponse(url, body));
+					await control.Dispatcher.InvokeAsync(() => LoadResponse(url, body));
 					break;
 			}
 		}
-
 
 		if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 		{
 			ServerAddress = e.HttpClient.Request.Host;
 		}
 	}
-
 	public void LoadRequest(string path, string data)
 	{
 
@@ -1075,7 +1083,6 @@ public sealed class APIObserver
 			SystemEvents.UpdateTimerEnabled = true;
 
 		}
-
 	}
 
 

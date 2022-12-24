@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
@@ -11,4 +12,6 @@ public class ShipFilterTranslationViewModel : ObservableObject
 	public string Fcf => EventLockPlanner.Fcf;
 	public string Expansion => GeneralRes.Expansion;
 	public string NameFilter => GeneralRes.ShipName;
+	public string SpeedFast => ConstantsRes.Fast;
+	public string SpeedSlow => ConstantsRes.Slow;
 }

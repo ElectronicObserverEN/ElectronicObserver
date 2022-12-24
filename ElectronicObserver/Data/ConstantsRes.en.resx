@@ -133,7 +133,7 @@
     <value>Air Battle</value>
   </data>
   <data name="AirDenialNew" xml:space="preserve">
-    <value>AI</value>
+    <value>AD</value>
   </data>
   <data name="AirParity" xml:space="preserve">
     <value>AP</value>
@@ -769,7 +769,7 @@
     <value>AA Cut-in type #{2} ( {0}, {1} )</value>
   </data>
   <data name="AirIncapability" xml:space="preserve">
-    <value>AI-</value>
+    <value>AI</value>
   </data>
   <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
     <value>DD CI (Torpx2+Lookout)</value>

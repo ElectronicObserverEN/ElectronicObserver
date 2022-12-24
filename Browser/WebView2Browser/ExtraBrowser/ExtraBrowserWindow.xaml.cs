@@ -102,7 +102,11 @@ public partial class ExtraBrowserWindow : Window
 		Browser.CoreWebView2.Navigate("https://akashi-list.me/");
 		txtBoxAddress.Text = "https://akashi-list.me/";
 	}
-
+	private void NoroButtonClick(object sender, RoutedEventArgs e)
+	{
+		Browser.CoreWebView2.Navigate("https://noro6.github.io/kc-web/#/");
+		txtBoxAddress.Text = "https://noro6.github.io/kc-web/#/";
+	}
 
 	private void ShowDevToolsMenuItemClick(object sender, RoutedEventArgs e)
 	{

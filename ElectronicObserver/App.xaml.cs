@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -88,13 +90,18 @@ public partial class App : Application
 			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
 			args.Handled = true;
 		};
+
+		ProfileOptimization.SetProfileRoot(Directory.GetCurrentDirectory());
+		ProfileOptimization.StartProfile("Startup.Profile");
 	}
 
 	protected override void OnStartup(StartupEventArgs e)
 	{
 		bool allowMultiInstance = e.Args.Contains("-m") || e.Args.Contains("--multi-instance");
-
-
+		foreach (var item in Assembly.GetExecutingAssembly().GetReferencedAssemblies().ToList())
+		{
+			Assembly.Load(item);
+		}
 		using (var mutex = new Mutex(false, Application.ResourceAssembly.Location.Replace('\\', '/'),
 			out var created))
 		{
@@ -347,6 +354,9 @@ public partial class App : Application
 			.Configure<BaseAirCorpsSimulationContentDialog>()
 			.Property(w => w.ViewModel.MaxAircraftLevelFleet)
 			.Property(w => w.ViewModel.MaxAircraftLevelAirBase);
+		tracker
+			.Configure<FleetImageGeneratorWindow>()
+			.Property(w => w.ViewModel.UseAlbumStatusName);
 
 		tracker
 			.Configure<ConfigurationWindow>()

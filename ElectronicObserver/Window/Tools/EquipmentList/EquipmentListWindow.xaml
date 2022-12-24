@@ -15,6 +15,7 @@
 	d:DataContext="{d:DesignInstance local:EquipmentListViewModel}"
 	ui:WindowHelper.UseModernWindowStyle="True"
 	x:TypeArguments="local:EquipmentListViewModel"
+	SizeToContent="Width"
 	mc:Ignorable="d"
 	>
 	<Window.Resources>

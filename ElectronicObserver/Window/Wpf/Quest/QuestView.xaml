@@ -159,6 +159,7 @@
 			CanUserAddRows="False"
 			CanUserDeleteRows="False"
 			CanUserReorderColumns="False"
+			CanUserResizeColumns="{Binding CanUserResizeColumn}"
 			CanUserResizeRows="False"
 			ColumnWidth="*"
 			HeadersVisibility="Column"

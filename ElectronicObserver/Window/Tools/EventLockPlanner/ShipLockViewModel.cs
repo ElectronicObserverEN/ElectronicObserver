@@ -23,6 +23,8 @@ public class ShipLockViewModel : ObservableObject
 	public bool CanUseTank => Ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank);
 	public bool CanUseFcf => Ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility);
 	public bool IsExpansionSlotAvailable => Ship.IsExpansionSlotAvailable;
+	public bool IsSpeedFast => Ship.MasterShip.Speed == 10;
+	public bool IsSpeedSlow => Ship.MasterShip.Speed == 5;
 
 	public ShipLockViewModel(IShipData ship)
 	{

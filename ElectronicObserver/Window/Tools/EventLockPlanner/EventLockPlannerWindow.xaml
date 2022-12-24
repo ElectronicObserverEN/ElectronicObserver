@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:controls="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+	xmlns:converter="clr-namespace:ElectronicObserver.Converters"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dd="urn:gong-wpf-dragdrop"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EventLockPlanner"
@@ -413,6 +414,8 @@
 					<CheckBox Content="{Binding ShipFilter.Fcf}" IsChecked="{Binding CanEquipFcf}" />
 
 					<CheckBox Content="{Binding ShipFilter.Expansion}" IsChecked="{Binding HasExpansionSlot}" />
+					<CheckBox Content="{Binding ShipFilter.SpeedFast}" IsChecked="{Binding IsSpeedFast}" />
+					<CheckBox Content="{Binding ShipFilter.SpeedSlow}" IsChecked="{Binding IsSpeedSlow}" />
 				</WrapPanel>
 			</Grid>
 
@@ -517,6 +520,13 @@
 						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 						Header="{Binding DataContext.EventLockPlanner.Luck, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.MasterShip.Speed, Converter={StaticResource SpeedConverter}}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.Speed, Source={StaticResource Proxy}}"
 						/>
 					<DataGridCheckBoxColumn Binding="{Binding CanUseDaihatsu, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Daihatsu, Source={StaticResource Proxy}}" />
 					<DataGridCheckBoxColumn Binding="{Binding CanUseTank, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Tank, Source={StaticResource Proxy}}" />

@@ -795,6 +795,7 @@
 							<Setter Property="CanFloat" Value="{Binding Model.CanFloat}" />
 							<Setter Property="CanClose" Value="{Binding Model.CanClose, Mode=TwoWay}" />
 							<Setter Property="CanHide" Value="False" />
+							<Setter Property="CanMove" Value="{Binding Model.CanMove, Mode=TwoWay}" />
 							<Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
 						</Style>
 					</local:ViewStyleSelector.AnchorableStyle>
@@ -806,7 +807,6 @@
 					<LayoutAnchorablePane AllowDuplicateContent="False" />
 				</LayoutPanel>
 			</LayoutRoot>
-
 		</DockingManager>
 
 		<StatusBar

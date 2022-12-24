@@ -10,7 +10,7 @@ public partial class AnchorableViewModel : UserControlViewModelBase
 	public ImageSource? IconSource { get; set; }
 
 	public bool CanFloat { get; set; }
-
+	public bool CanMove { get; set; }
 	protected AnchorableViewModel(string title, string contentId, ImageSource? icon = null)
 	{
 		Title = title;

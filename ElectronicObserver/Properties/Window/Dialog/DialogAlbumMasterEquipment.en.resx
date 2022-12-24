@@ -174,4 +174,7 @@
   <data name="FailedToSearchOnWeb" xml:space="preserve">
     <value>Failed to search on DuckDuckGo.</value>
   </data>
+  <data name="TitleSpeed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
 </root>

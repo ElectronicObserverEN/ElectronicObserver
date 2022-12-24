@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
@@ -20,6 +21,9 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
+using PKT.LZStringCSharp;
+using Clipboard = System.Windows.Clipboard;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
@@ -753,5 +757,80 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			StatusInfoText = DialogDropRecordViewer.CouldNotOpenBattleHistory;
 		}
 
+	}
+	public void RecordView_ReplayClick()
+	{
+		if (MergeRows) return;
+
+		try
+		{
+			if (SelectedRows.FirstOrDefault()?.Date is not { } time) return;
+
+			if (!Directory.Exists(Data.Battle.BattleManager.BattleLogPath))
+			{
+				StatusInfoText = DialogDropRecordViewer.ReplayFileNotFound;
+				return;
+			}
+
+			StatusInfoText = DialogDropRecordViewer.SearchingBattleHistory;
+			string? replayLogFile = Directory.EnumerateFiles(Data.ReplayManager.ReplayLogPath,
+					time.ToString("yyyyMMdd_HHmmss", System.Globalization.CultureInfo.InvariantCulture) + "*.txt",
+					SearchOption.TopDirectoryOnly)
+				.FirstOrDefault();
+
+			if (replayLogFile is null)
+			{
+				StatusInfoText = DialogDropRecordViewer.ReplayFileNotFound;
+				return;
+			}
+
+			StatusInfoText = string.Format(DialogDropRecordViewer.OpenBattleHistory, Path.GetFileName(replayLogFile));
+			ProcessStartInfo psi = new ProcessStartInfo
+			{
+				FileName = replayLogFile,
+				UseShellExecute = true
+			};
+			Process.Start(psi);
+		}
+		catch (Exception)
+		{
+			StatusInfoText = DialogDropRecordViewer.CouldNotOpenReplayFile;
+		}
+	}
+	public void RecordView_ReplayURLClick()
+	{
+		if (MergeRows) return;
+
+		try
+		{
+			if (SelectedRows.FirstOrDefault()?.Date is not { } time) return;
+
+			if (!Directory.Exists(Data.Battle.BattleManager.BattleLogPath))
+			{
+				StatusInfoText = DialogDropRecordViewer.ReplayFileNotFound;
+				return;
+			}
+
+			StatusInfoText = DialogDropRecordViewer.SearchingBattleHistory;
+			string? replayLogFile = Directory.EnumerateFiles(Data.ReplayManager.ReplayLogPath,
+					time.ToString("yyyyMMdd_HHmmss", System.Globalization.CultureInfo.InvariantCulture) + "*.txt",
+					SearchOption.TopDirectoryOnly)
+				.FirstOrDefault();
+
+			if (replayLogFile is null)
+			{
+				StatusInfoText = DialogDropRecordViewer.ReplayFileNotFound;
+				return;
+			}
+			string replay_string = File.ReadAllText(replayLogFile);
+			string compressed = LZString.CompressToEncodedURIComponent(replay_string);
+			Clipboard.SetText(@"https://kc3kai.github.io/kancolle-replay/battleplayer.html?fromLZString=" + compressed);
+			StatusInfoText = string.Format(DialogDropRecordViewer.CopiedReplayURL, @"https://kc3kai.github.io/kancolle-replay/battleplayer.html?fromLZString=" + compressed);
+
+		}
+		catch (Exception)
+		{
+			StatusInfoText = DialogDropRecordViewer.CouldNotOpenReplayFile;
+		}
 	}
 }

@@ -447,7 +447,58 @@ public class InformationViewModel : AnchorableViewModel
 		sb.AppendFormat(GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult((int)data.api_clear_result));
 		sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 		sb.AppendFormat(GeneralRes.ShipXP + ": +{0}\r\n", ((int[])data.api_get_ship_exp).Min());
+		if (Utility.Configuration.Config.Log.ShowSpoiler)
+		{
+			//materials
+			if (!(data.api_get_material is double))
+			{       //(強制帰還などで)ないときに -1 になる
+				int[] materials = (int[])data.api_get_material;
+				for (int i = 0; i < 4; i++)
+				{
+					if (materials[i] > 0)
+					{
+						sb.AppendLine(Constants.GetMaterialName(i + 1) + "+" + materials[i]);
+					}
+				}
 
+			}
+
+			// items
+			{
+				for (int i = 0; i < 2; i++)
+				{
+
+					int kind = (int)data.api_useitem_flag[i];
+
+					if (kind > 0)
+					{
+
+						int id = (int)data["api_get_item" + (i + 1)].api_useitem_id;
+						int count = (int)data["api_get_item" + (i + 1)].api_useitem_count;
+
+						switch (kind)
+						{
+							case 1:
+								sb.AppendLine(ConstantsRes.Bucket + "+" + count);
+								break;
+							case 2:
+								sb.AppendLine(ConstantsRes.Flamethrower + "+" + count);
+								break;
+							case 3:
+								sb.AppendLine(ConstantsRes.DevMat + "+" + count);
+								break;
+							case 4:
+								sb.AppendLine(KCDatabase.Instance.MasterUseItems[id].NameTranslated + "+" + count);
+								break;
+							case 5:
+								sb.AppendLine(ConstantsRes.FurnitureCoin + "+" + count);
+								break;
+						}
+
+					}
+				}
+			}
+		}
 		return sb.ToString();
 	}
 

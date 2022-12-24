@@ -22,6 +22,7 @@
 	FontFamily="{StaticResource ContentControlThemeFontFamily}"
 	FontSize="{StaticResource ControlContentThemeFontSize}"
 	Foreground="{StaticResource SystemControlPageTextBaseHighBrush}"
+	KeyboardNavigation.TabNavigation="None"
 	UseLayoutRounding="True"
 	mc:Ignorable="d"
 	>

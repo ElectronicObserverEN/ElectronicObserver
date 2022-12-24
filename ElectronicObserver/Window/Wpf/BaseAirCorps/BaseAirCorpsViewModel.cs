@@ -282,7 +282,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetAirSuperiority(c)).DefaultIfEmpty(0).Sum(),
 				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetAirSuperiority(c, isHighAltitude: true)).DefaultIfEmpty(0).Sum()
 			));
-
+			sb.AppendLine(SetStrikePoints(corps));
 			Name.ToolTip = sb.ToString();
 
 
@@ -348,6 +348,28 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		Visibility = (baseAirCorpsID != -1).ToVisibility();
 	}
 
+	private string SetStrikePoints(BaseAirCorpsData corps)
+	{
+		var compass = KCDatabase.Instance.Battle.Compass;
+		var config = Utility.Configuration.Config;
+		StringBuilder sb = new StringBuilder();
+		int i = 1;
+		foreach (var strikepoint in corps.StrikePoints)
+		{
+			if (!config.UI.UseOriginalNodeId)
+			{
+				sb.Append("Strike Point #" + i +" : ")
+					.AppendJoin(",", KCDatabase.Instance.Translation.Destination.DisplayID(compass.MapAreaID, compass.MapInfoID, strikepoint)).AppendLine();
+			}
+			else
+			{
+				sb.Append("Strike Point #" + i + " : ")
+					.AppendLine(string.Join(",", strikepoint));
+			}
+			i++;
+		}
+		return sb.ToString();
+	}
 	public void ConfigurationChanged()
 	{
 
@@ -455,7 +477,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;
 		api.ApiReqAirCorps_ExpandBase.ResponseReceived += Updated;
-
+		api.ApiReqMap_StartAirBase.ResponseReceived += Updated;
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 		ConfigurationChanged();
