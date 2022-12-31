@@ -382,7 +382,9 @@ public partial class FormIntegrate : Form
 									  WinAPI.WS_THICKFRAME |
 									  WinAPI.WS_MINIMIZEBOX |
 									  WinAPI.WS_MAXIMIZEBOX));
-		newStyle |= WinAPI.WS_CHILD;
+
+		// https://github.com/ElectronicObserverEN/ElectronicObserver/issues/269
+		// newStyle |= WinAPI.WS_CHILD;
 		WinAPI.SetWindowLong(hWnd, WinAPI.GWL_STYLE, new IntPtr(unchecked((int)newStyle)));
 		WinAPI.SetParent(hWnd, this.Handle);
 		WinAPI.MoveWindow(hWnd, 0, 0, this.Width, this.Height, true);

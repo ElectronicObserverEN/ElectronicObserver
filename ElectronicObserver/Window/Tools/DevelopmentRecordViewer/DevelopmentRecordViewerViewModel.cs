@@ -24,6 +24,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	public List<object> Categories { get; set; }
 	public List<object> Equipment { get; set; }
 	public List<object> FlagshipTypes { get; set; }
+	private List<object> AllFlagships { get; set; }
 	public List<object> Flagships { get; set; }
 	public List<object> Recipes { get; set; }
 
@@ -33,7 +34,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	public object SelectedCategory { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedEquipment { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedFlagshipType { get; set; } = DevelopmentRecordOption.All;
-	public object SelectedFlagship { get; set; } = DevelopmentRecordOption.All;
+	public object? SelectedFlagship { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedRecipe { get; set; } = DevelopmentRecordOption.All;
 
 	private DateTime DateTimeBegin =>
@@ -84,6 +85,24 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			if (args.PropertyName is not nameof(MergeRows)) return;
 
 			Rows = new();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not (nameof(SelectedFlagshipType) or nameof(AllFlagships))) return;
+
+			if (SelectedFlagshipType is not ShipTypes flagshipType)
+			{
+				Flagships = AllFlagships!;
+				return;
+			}
+
+			Flagships = AllFlagships!
+				.Where(f => f is IShipDataMaster ship && ship.ShipType == flagshipType)
+				.Prepend(DevelopmentRecordOption.All)
+				.ToList();
+
+			SelectedFlagship ??= DevelopmentRecordOption.All;
 		};
 
 		Loaded();
@@ -145,7 +164,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			.Prepend(DevelopmentRecordOption.All)
 			.ToList();
 
-		Flagships = Record.Record
+		AllFlagships = Record.Record
 			.Select(s => s.FlagshipID)
 			.Select(id => KCDatabase.Instance.MasterShips[id])
 			.DistinctBy(s => s.ShipId)

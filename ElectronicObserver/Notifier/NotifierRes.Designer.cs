@@ -277,7 +277,7 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}は{1}に改造されます。.
+        ///   Looks up a localized string similar to {0}は{1}に改造出来ます。.
         /// </summary>
         public static string RemodelText {
             get {

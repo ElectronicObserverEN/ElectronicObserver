@@ -157,7 +157,7 @@
     <value>通知システム: 通知音 {0} のロードに失敗しました。</value>
   </data>
   <data name="RemodelText" xml:space="preserve">
-    <value>{0}は{1}に改造されます。</value>
+    <value>{0}は{1}に改造出来ます。</value>
   </data>
   <data name="RemodelTitle" xml:space="preserve">
     <value>改造可能</value>
