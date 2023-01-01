@@ -1,10 +1,12 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
 
 public class ApiItem
 {
 	[JsonPropertyName("api_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiId { get; set; } = default!;
+	public UseItemId? ApiId { get; set; } = default!;
 
 	[JsonPropertyName("api_id_from")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

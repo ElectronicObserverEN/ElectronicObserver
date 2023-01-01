@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
 
 public class ApiBounus
 {
@@ -12,5 +14,5 @@ public class ApiBounus
 
 	[JsonPropertyName("api_type")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiType { get; set; } = default!;
+	public UseItemId ApiType { get; set; } = default!;
 }

@@ -13,8 +13,10 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
+using ElectronicObserver.KancolleApi.Types.ApiReqQuest.Clearitemget;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Window.Tools.SenkaViewer;
@@ -36,6 +38,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	public string TotalSenka => $"{SenkaViewer.Senka}：{TotalCalculationList.Sum(s => s.TotalSenkaGains):0.##}";
 	public string TotalNormalSenka => $"{SenkaViewer.NormalSenka}：{TotalCalculationList.Sum(s => s.HqExpSenkaGains):0.##}";
 	public string TotalExtraOperationSenka => $"{SenkaViewer.ExtraOperationSenka}：{TotalCalculationList.Sum(s => s.ExtraOperationSenkaGains):0.##}";
+	public string TotalQuestSenka => $"{SenkaViewer.QuestSenka}：{TotalCalculationList.Sum(s => s.QuestSenkaGains):0.##}";
 
 	private DateTime DateTimeBegin => new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
 	private DateTime DateTimeEnd => new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
@@ -73,7 +76,8 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 				f.Name == "api_req_combined_battle/battleresult" ||
 				f.Name == "api_req_practice/battle_result" ||
 				f.Name == "api_req_mission/result" ||
-				f.Name == "api_req_map/next")
+				f.Name == "api_req_map/next" ||
+				f.Name == "api_req_quest/clearitemget")
 			.ToList();
 
 		DateTime start = apiFiles.Min(f => f.TimeStamp);
@@ -95,6 +99,11 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 				.Where(f => f.TimeStamp > senkaRecord.Start)
 				.Where(f => f.TimeStamp < senkaRecord.End)
 				.Sum(GetExtraOperationSenka);
+
+			senkaRecord.QuestSenkaGains = apiFiles
+				.Where(f => f.TimeStamp > senkaRecord.Start)
+				.Where(f => f.TimeStamp < senkaRecord.End)
+				.Sum(GetQuestSenka);
 		}
 
 		SenkaRecords = senkaRecords;
@@ -190,6 +199,15 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 			_ => 0,
 		},
 		"api_req_map/next" => JsonSerializer.Deserialize<ApiResponse<ApiReqMapNextResponse>>(apiFile.Content)?.ApiData.ApiGetEoRate ?? 0,
+
+		_ => 0,
+	};
+
+	private double GetQuestSenka(ApiFile apiFile) => apiFile.Name switch
+	{
+		"api_req_quest/clearitemget" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestClearitemgetResponse>>(apiFile.Content)?.ApiData.ApiBounus
+			.FirstOrDefault(b => b.ApiType == UseItemId.Senka)
+			?.ApiCount?? 0,
 
 		_ => 0,
 	};

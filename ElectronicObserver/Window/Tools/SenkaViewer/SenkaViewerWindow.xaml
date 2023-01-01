@@ -98,6 +98,7 @@
 			<TextBlock Margin="4" Text="{Binding TotalSenka}" />
 			<TextBlock Margin="4" Text="{Binding TotalNormalSenka}" />
 			<TextBlock Margin="4" Text="{Binding TotalExtraOperationSenka}" />
+			<TextBlock Margin="4" Text="{Binding TotalQuestSenka}" />
 		</StackPanel>
 
 		<DataGrid
@@ -114,11 +115,7 @@
 				<DataGridTextColumn Binding="{Binding TotalSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.Senka, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding HqExpSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.NormalSenka, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding ExtraOperationSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.ExtraOperationSenka, Source={StaticResource Proxy}}" />
-				<DataGridTextColumn
-					Binding="{Binding QuestSenkaGains, StringFormat={}{0:+0.##}}"
-					Header="{Binding DataContext.SenkaViewer.QuestSenka, Source={StaticResource Proxy}}"
-					Visibility="Collapsed"
-					/>
+				<DataGridTextColumn Binding="{Binding QuestSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.QuestSenka, Source={StaticResource Proxy}}" />
 			</DataGrid.Columns>
 		</DataGrid>
 	</Grid>
