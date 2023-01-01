@@ -553,6 +553,15 @@
 						<Image Source="{Binding ResourceChartImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem
+					d:Header="Senka Viewer"
+					Command="{Binding OpenSenkaViewerCommand}"
+					Header="{Binding FormMain.SenkaViewer}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ResourceChartImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
 				<MenuItem
 					d:Header="Ship Encyclopedia"

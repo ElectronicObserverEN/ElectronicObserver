@@ -48,6 +48,7 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
+using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
@@ -256,6 +257,7 @@ public partial class App : Application
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogResourceChartTranslationViewModel>()
+			.AddSingleton<SenkaViewerTranslationViewModel>()
 			.AddSingleton<DialogEquipmentListTranslationViewModel>()
 			.AddSingleton<AirDefenseTranslationViewModel>()
 			.AddSingleton<QuestTrackerManagerTranslationViewModel>()
