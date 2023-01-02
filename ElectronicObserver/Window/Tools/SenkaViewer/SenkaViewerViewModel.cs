@@ -80,6 +80,8 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 				f.Name == "api_req_quest/clearitemget")
 			.ToList();
 
+		if (!apiFiles.Any()) return;
+
 		DateTime start = apiFiles.Min(f => f.TimeStamp);
 		start = DateTime.SpecifyKind(start, DateTimeKind.Utc);
 
