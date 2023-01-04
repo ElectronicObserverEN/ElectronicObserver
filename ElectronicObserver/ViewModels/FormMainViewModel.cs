@@ -71,6 +71,7 @@ using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
@@ -804,6 +805,12 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenResourceChart()
 	{
 		new ResourceChartWPF().Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenSenkaViewer()
+	{
+		new SenkaViewerWindow().Show(Window);
 	}
 
 	[RelayCommand]

@@ -24,6 +24,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 	public List<object> Categories { get; set; }
 	public List<object> Ships { get; set; }
 	public List<object> FlagshipTypes { get; set; }
+	private List<object> AllFlagships { get; set; }
 	public List<object> Flagships { get; set; }
 	public List<object> Recipes { get; set; }
 	public List<object> DevelopmentMaterials { get; set; }
@@ -35,7 +36,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 	public object SelectedShipType { get; set; } = ConstructionRecordOption.All;
 	public object SelectedShip { get; set; } = ConstructionRecordOption.All;
 	public object SelectedFlagshipType { get; set; } = ConstructionRecordOption.All;
-	public object SelectedFlagship { get; set; } = ConstructionRecordOption.All;
+	public object? SelectedFlagship { get; set; } = ConstructionRecordOption.All;
 	public object SelectedRecipe { get; set; } = ConstructionRecordOption.All;
 	public object SelectedDevelopmentMaterial { get; set; } = ConstructionRecordOption.All;
 	public object EmptyDockCount { get; set; } = ConstructionRecordOption.All;
@@ -84,6 +85,24 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			if (args.PropertyName is not (nameof(MergeRows) or nameof(IsLargeConstruction) or nameof(SelectedShip))) return;
 
 			Rows = new();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not (nameof(SelectedFlagshipType) or nameof(AllFlagships))) return;
+
+			if (SelectedFlagshipType is not ShipTypes flagshipType)
+			{
+				Flagships = AllFlagships!;
+				return;
+			}
+
+			Flagships = AllFlagships!
+				.Where(f => f is IShipDataMaster ship && ship.ShipType == flagshipType)
+				.Prepend(ConstructionRecordOption.All)
+				.ToList();
+
+			SelectedFlagship ??= ConstructionRecordOption.All;
 		};
 
 		Load();
@@ -142,7 +161,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			.Prepend(ConstructionRecordOption.All)
 			.ToList();
 
-		Flagships = Record.Record
+		AllFlagships = Record.Record
 			.Select(s => s.FlagshipID)
 			.Select(id => KCDatabase.Instance.MasterShips[id])
 			.DistinctBy(s => s.ShipId)

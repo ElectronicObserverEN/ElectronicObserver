@@ -150,7 +150,8 @@ public static class EquipmentDataExtensions
 		EquipmentId.DepthCharge_Type95DepthCharge or
 		EquipmentId.DepthCharge_Type2DepthCharge or
 		EquipmentId.DepthCharge_LightweightASWTorpedo_InitialTestModel or
-		EquipmentId.DepthCharge_Hedgehog_InitialModel;
+		EquipmentId.DepthCharge_Hedgehog_InitialModel or
+		EquipmentId.DepthCharge_Type2DepthChargeKaiNi;
 
 	/// <summary> 爆雷投射機かどうか(爆雷/対潜迫撃砲は含まない) </summary>
 	public static bool IsDepthChargeProjector(this IEquipmentDataMaster equip) => equip.EquipmentId is

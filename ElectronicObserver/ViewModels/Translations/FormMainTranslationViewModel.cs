@@ -70,6 +70,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_DevelopmentRecord => Properties.Window.FormMain.Tool_DevelopmentRecord.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ConstructionRecord => Properties.Window.FormMain.Tool_ConstructionRecord.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ResourceChart => Properties.Window.FormMain.Tool_ResourceChart.Replace("_", "__").Replace("&", "_");
+	public string SenkaViewer => Window.Tools.SenkaViewer.SenkaViewer.Title;
 	public string StripMenu_Tool_AlbumMasterShip => Properties.Window.FormMain.Tool_AlbumMasterShip.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_AlbumMasterEquipment => Properties.Window.FormMain.Tool_AlbumMasterEquipment.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_AntiAirDefense => Properties.Window.FormMain.Tool_AntiAirDefense.Replace("_", "__").Replace("&", "_");

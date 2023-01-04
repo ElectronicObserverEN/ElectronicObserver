@@ -10,6 +10,12 @@ public enum UseItemId
 	FurnitureBoxSmall = 10,
 	FurnitureBoxMedium = 11,
 	FurnitureBoxLarge = 12,
+
+	/// <summary>
+	/// Generic ID for different items? The actual item ID is api_item.api_id
+	/// </summary>
+	Item = 13,
+	Senka = 18,
 	Fuel = 31,
 	Ammo = 32,
 	Steel = 33,

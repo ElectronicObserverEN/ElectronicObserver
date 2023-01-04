@@ -25,9 +25,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.0.1</AssemblyVersion>
-		<FileVersion>5.2.0.1</FileVersion>
-		<Version>5.2.0.1</Version>
+		<AssemblyVersion>5.2.1.0</AssemblyVersion>
+		<FileVersion>5.2.1.0</FileVersion>
+		<Version>5.2.1.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -384,6 +384,11 @@
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FleetImageGenerator.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Tools\SenkaViewer\SenkaViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>SenkaViewer.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\SortieRecordViewer\SortieRecordViewer.Designer.cs">
 		  <DesignTime>True</DesignTime>
@@ -755,6 +760,10 @@
 		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\SenkaViewer\SenkaViewer.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>SenkaViewer.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\SortieRecordViewer\SortieRecordViewer.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>

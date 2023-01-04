@@ -30,9 +30,9 @@
 		<Copyright>Copyright ©  2015 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.0.1</AssemblyVersion>
-		<FileVersion>5.2.0.1</FileVersion>
-		<Version>5.2.0.1</Version>
+		<AssemblyVersion>5.2.1.0</AssemblyVersion>
+		<FileVersion>5.2.1.0</FileVersion>
+		<Version>5.2.1.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
