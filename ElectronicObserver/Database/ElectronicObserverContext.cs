@@ -12,6 +12,7 @@ using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using CellModel = ElectronicObserver.Database.MapData.CellModel;
@@ -30,6 +31,7 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<SortieRecord> Sorties { get; set; } = null!;
 	public DbSet<ExpeditionRecord> Expeditions { get; set; } = null!;
 	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
+	public DbSet<ShipTrainingPlanModel> ShipTrainingPlans { get; set; } = null!;
 
 	private string DbPath { get; }
 
