@@ -143,6 +143,12 @@
 				</Style>
 			</ui:DataGridHelper.TextColumnElementStyle>
 
+			<DataGrid.RowStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
+					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
+				</Style>
+			</DataGrid.RowStyle>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Binding="{Binding Ship.ID}"
