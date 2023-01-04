@@ -350,6 +350,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>NotifyRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Dialog\ShipDataPicker\ShipDataPicker.Designer.cs">
+		  <DependentUpon>ShipDataPicker.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Window\GeneralRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -732,6 +737,10 @@
 		<EmbeddedResource Update="Window\Dialog\NotifyRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\ShipDataPicker\ShipDataPicker.resx">
+		  <LastGenOutput>ShipDataPicker.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\GeneralRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
