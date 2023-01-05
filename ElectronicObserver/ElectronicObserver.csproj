@@ -323,6 +323,11 @@
 		<Compile Update="Window\Control\ImageLabel.cs">
 			<SubType>Component</SubType>
 		</Compile>
+		<Compile Update="Window\Control\ShipFilter\ShipFilter.Designer.cs">
+		  <DependentUpon>ShipFilter.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Window\Control\ShipStatusEquipment.cs" />
 		<Compile Update="Window\Control\ShipStatusHP.cs">
 			<SubType>UserControl</SubType>
@@ -721,6 +726,10 @@
 		<EmbeddedResource Update="Properties\Window\FormWindowCapture.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>FormWindowCapture.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Control\ShipFilter\ShipFilter.resx">
+		  <LastGenOutput>ShipFilter.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\ConfigRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

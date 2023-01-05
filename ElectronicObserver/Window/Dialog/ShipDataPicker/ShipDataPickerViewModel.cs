@@ -4,6 +4,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes;
 
