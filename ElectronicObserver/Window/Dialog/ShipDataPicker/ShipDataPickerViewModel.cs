@@ -19,6 +19,7 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 	public ShipFilterViewModel Filters { get; } = new();
 
 	public IShipData? PickedShip { get; private set; }
+	public ShipDataViewModel? SelectedShip { get; set; }
 
 	public ShipDataPickerTranslationViewModel ShipDataPicker { get; set; } = new();
 
@@ -47,5 +48,11 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 		{
 			ShipsFiltered.Add(ship);
 		}
+	}
+
+	[RelayCommand]
+	public void SelectShip()
+	{
+		PickedShip = SelectedShip?.Ship;
 	}
 }

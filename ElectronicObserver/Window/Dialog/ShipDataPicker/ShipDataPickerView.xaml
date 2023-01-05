@@ -54,6 +54,7 @@
 			HeadersVisibility="Column"
 			IsReadOnly="True"
 			ItemsSource="{Binding ShipsFiltered}"
+			SelectedItem="{Binding SelectedShip}"
 			SelectionMode="Single"
 			>
 			<DataGrid.ColumnHeaderStyle>
@@ -88,11 +89,9 @@
 				</Style>
 			</ui:DataGridHelper.TextColumnElementStyle>
 
-			<DataGrid.RowStyle>
-				<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
-					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
-				</Style>
-			</DataGrid.RowStyle>
+			<DataGrid.InputBindings>
+				<MouseBinding Command="{Binding SelectShipCommand}" MouseAction="LeftDoubleClick" />
+			</DataGrid.InputBindings>
 
 			<DataGrid.Columns>
 				<DataGridTextColumn
