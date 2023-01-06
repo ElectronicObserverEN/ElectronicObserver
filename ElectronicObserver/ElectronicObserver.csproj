@@ -76,6 +76,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>QuestTracking.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Data\ShipGroup\ExpressionDataRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ExpressionDataRes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="LoggerRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -534,6 +539,10 @@
 		<EmbeddedResource Update="Data\Quest\QuestTracking.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Data\ShipGroup\ExpressionDataRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ExpressionDataRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="LoggerRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

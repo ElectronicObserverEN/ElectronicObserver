@@ -19,7 +19,7 @@ namespace ElectronicObserver.Data.ShipGroup {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ExpressionDataRes {
@@ -835,7 +835,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Array Contains.
+        ///   Looks up a localized string similar to を含む.
         /// </summary>
         public static string StrArrayContains {
             get {
@@ -844,7 +844,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Array Not Contains.
+        ///   Looks up a localized string similar to を含まない.
         /// </summary>
         public static string StrArrayNotContains {
             get {
@@ -853,7 +853,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Begins With.
+        ///   Looks up a localized string similar to から始まる.
         /// </summary>
         public static string StrBeginsWith {
             get {
@@ -862,7 +862,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contains.
+        ///   Looks up a localized string similar to を含む.
         /// </summary>
         public static string StrContains {
             get {
@@ -871,7 +871,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End With.
+        ///   Looks up a localized string similar to で終わる.
         /// </summary>
         public static string StrEndWith {
             get {
@@ -880,7 +880,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ==.
+        ///   Looks up a localized string similar to と等しい.
         /// </summary>
         public static string StrEquals {
             get {
@@ -889,7 +889,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;=.
+        ///   Looks up a localized string similar to 以下.
         /// </summary>
         public static string StrLessEquals {
             get {
@@ -898,7 +898,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;.
+        ///   Looks up a localized string similar to より小さい.
         /// </summary>
         public static string StrLessThan {
             get {
@@ -907,7 +907,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt;=.
+        ///   Looks up a localized string similar to 以上.
         /// </summary>
         public static string StrMoreEquals {
             get {
@@ -916,7 +916,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt;.
+        ///   Looks up a localized string similar to より大きい.
         /// </summary>
         public static string StrMoreThan {
             get {
@@ -925,7 +925,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Begins With.
+        ///   Looks up a localized string similar to から始まらない.
         /// </summary>
         public static string StrNotBeginsWith {
             get {
@@ -934,7 +934,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Contains.
+        ///   Looks up a localized string similar to を含まない.
         /// </summary>
         public static string StrNotContains {
             get {
@@ -943,7 +943,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not End With.
+        ///   Looks up a localized string similar to で終わらない.
         /// </summary>
         public static string StrNotEndWith {
             get {
@@ -952,7 +952,7 @@ namespace ElectronicObserver.Data.ShipGroup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !=.
+        ///   Looks up a localized string similar to と等しくない.
         /// </summary>
         public static string StrNotEquals {
             get {
