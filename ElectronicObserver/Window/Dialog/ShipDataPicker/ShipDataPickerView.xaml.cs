@@ -1,7 +1,4 @@
-﻿using System.Windows.Controls;
-using ElectronicObserverTypes;
-
-namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
+﻿namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
 /// <summary>
 /// Interaction logic for ShipPickerView.xaml
 /// </summary>

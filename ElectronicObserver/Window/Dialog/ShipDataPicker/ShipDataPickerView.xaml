@@ -21,18 +21,6 @@
 	<Window.Resources>
 		<local:ShipDataPickerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
-		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-		</Style>
-
-		<Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
-			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-		</Style>
-
 		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
 			<Setter Property="Margin" Value="4 0" />
 			<Setter Property="Padding" Value="2 0" />
@@ -94,62 +82,14 @@
 			</DataGrid.InputBindings>
 
 			<DataGrid.Columns>
-				<DataGridTextColumn
-					Binding="{Binding Ship.ID}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="ID"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.MasterShip.ShipTypeName}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.ShipDataPicker.ShipType, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.Name}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.ShipDataPicker.Name, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.Level}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="Lv"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.FirepowerBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.ShipDataPicker.Firepower, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding NightPowerBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.ShipDataPicker.NightBattlePower, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.ASWBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.ShipDataPicker.ASW, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.LuckBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.ShipDataPicker.Luck, Source={StaticResource Proxy}}"
-					/>
+				<DataGridTextColumn Binding="{Binding Ship.ID}" Header="ID" />
+				<DataGridTextColumn Binding="{Binding Ship.MasterShip.ShipTypeName}" Header="{Binding DataContext.ShipDataPicker.ShipType, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Ship.Name}" Header="{Binding DataContext.ShipDataPicker.Name, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Ship.Level}" Header="Lv" />
+				<DataGridTextColumn Binding="{Binding Ship.FirepowerBase}" Header="{Binding DataContext.ShipDataPicker.Firepower, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding NightPowerBase}" Header="{Binding DataContext.ShipDataPicker.NightBattlePower, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Ship.ASWBase}" Header="{Binding DataContext.ShipDataPicker.ASW, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Ship.LuckBase}" Header="{Binding DataContext.ShipDataPicker.Luck, Source={StaticResource Proxy}}" />
 				<DataGridCheckBoxColumn Binding="{Binding CanUseDaihatsu, Mode=OneWay}" Header="{Binding DataContext.ShipDataPicker.Daihatsu, Source={StaticResource Proxy}}" />
 				<DataGridCheckBoxColumn Binding="{Binding CanUseTank, Mode=OneWay}" Header="{Binding DataContext.ShipDataPicker.Tank, Source={StaticResource Proxy}}" />
 				<DataGridCheckBoxColumn Binding="{Binding CanUseFcf, Mode=OneWay}" Header="{Binding DataContext.ShipDataPicker.Fcf, Source={StaticResource Proxy}}" />

@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Control.ShipFilter;
 
-public class ShipFilterTranslationViewModel : ObservableObject
+public class ShipFilterTranslationViewModel : TranslationBaseViewModel
 {
 	public string ASW => GeneralRes.ASW;
 	public string Luck => GeneralRes.Luck;
