@@ -6,6 +6,7 @@
 	xmlns:controls="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dd="urn:gong-wpf-dragdrop"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.ShipFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EventLockPlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -358,63 +359,7 @@
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
-			<Grid Grid.Row="0" DataContext="{Binding NoLockGroup.Filter}">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-
-				<WrapPanel Grid.Row="0">
-					<ItemsControl ItemsSource="{Binding TypeFilters}">
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<WrapPanel Orientation="Horizontal" />
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<CheckBox Content="{Binding Display}" IsChecked="{Binding IsChecked}" />
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
-
-					<Button Command="{Binding ToggleShipTypesCommand}" Content="{Binding DataContext.EventLockPlanner.ShipTypeToggle, Source={StaticResource Proxy}}" />
-				</WrapPanel>
-
-				<WrapPanel Grid.Row="1" Orientation="Horizontal">
-					<TextBlock
-						Margin="2 0"
-						VerticalAlignment="Center"
-						Text="{Binding ShipFilter.NameFilter}"
-						/>
-					<TextBox
-						Width="Auto"
-						Margin="2 0"
-						VerticalAlignment="Center"
-						Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
-						/>
-
-					<local:NumberRange
-						Maximum="{Binding AswMax}"
-						Minimum="{Binding AswMin}"
-						Text="{Binding ShipFilter.ASW}"
-						/>
-
-					<local:NumberRange
-						Maximum="{Binding LuckMax}"
-						Minimum="{Binding LuckMin}"
-						Text="{Binding ShipFilter.Luck}"
-						/>
-
-					<CheckBox Content="{Binding ShipFilter.Daihatsu}" IsChecked="{Binding CanEquipDaihatsu}" />
-
-					<CheckBox Content="{Binding ShipFilter.Tank}" IsChecked="{Binding CanEquipTank}" />
-
-					<CheckBox Content="{Binding ShipFilter.Fcf}" IsChecked="{Binding CanEquipFcf}" />
-
-					<CheckBox Content="{Binding ShipFilter.Expansion}" IsChecked="{Binding HasExpansionSlot}" />
-				</WrapPanel>
-			</Grid>
+			<filter:ShipFilterControl Grid.Row="0" DataContext="{Binding NoLockGroup.Filter}" />
 
 			<DataGrid
 				Grid.Row="1"

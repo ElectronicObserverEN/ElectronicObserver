@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace ElectronicObserver.Window.Tools.EventLockPlanner;
+namespace ElectronicObserver.Window.Control.ShipFilter;
 /// <summary>
 /// Interaction logic for NumberRange.xaml
 /// </summary>

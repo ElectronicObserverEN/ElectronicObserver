@@ -9,7 +9,7 @@ using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using WanaKanaNet;
-namespace ElectronicObserver.Window.Tools.EventLockPlanner;
+namespace ElectronicObserver.Window.Control.ShipFilter;
 
 public partial class ShipFilterViewModel : ObservableObject
 {

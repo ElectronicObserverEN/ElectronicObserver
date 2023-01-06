@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,6 +118,70 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Title" xml:space="preserve">
-    <value>Pick a ship</value>
+    <value>Event lock planner</value>
+  </data>
+  <data name="AddLock" xml:space="preserve">
+    <value>Add lock</value>
+  </data>
+  <data name="RemoveLock" xml:space="preserve">
+    <value>Remove lock</value>
+  </data>
+  <data name="Daihatsu" xml:space="preserve">
+    <value>Daihatsu</value>
+  </data>
+  <data name="Tank" xml:space="preserve">
+    <value>Tank</value>
+  </data>
+  <data name="AddPhase" xml:space="preserve">
+    <value>Add phase</value>
+  </data>
+  <data name="RemovePhase" xml:space="preserve">
+    <value>Remove phase</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>_Copy to clipboard</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>_Load from clipboard</value>
+  </data>
+  <data name="LoadEventLocks" xml:space="preserve">
+    <value>Load _event locks</value>
+  </data>
+  <data name="FailedToLoadLockData" xml:space="preserve">
+    <value>Failed to load lock data</value>
+  </data>
+  <data name="LockLoadWarningText" xml:space="preserve">
+    <value>Loading lock data will delete your current locks.
+Are you sure you want to continue?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="AssignLock" xml:space="preserve">
+    <value>Assign lock</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>_View</value>
+  </data>
+  <data name="ShowFinishedPhases" xml:space="preserve">
+    <value>_Show finished phases</value>
+  </data>
+  <data name="IsFinished" xml:space="preserve">
+    <value>Is finished</value>
+  </data>
+  <data name="ShipTypeToggle" xml:space="preserve">
+    <value>Toggle types</value>
+  </data>
+  <data name="Fcf" xml:space="preserve">
+    <value>FCF</value>
+  </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>Failed to load lock plan.</value>
   </data>
 </root>

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Window.Control.ShipFilter;
 using GongSolutions.Wpf.DragDrop;
 
 namespace ElectronicObserver.Window.Tools.EventLockPlanner;

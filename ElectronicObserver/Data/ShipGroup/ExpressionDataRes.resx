@@ -391,19 +391,19 @@
     <value>で終わる</value>
   </data>
   <data name="StrEquals" xml:space="preserve">
-    <value>==</value>
+    <value>と等しい</value>
   </data>
   <data name="StrLessEquals" xml:space="preserve">
-    <value>&lt;=</value>
+    <value>以下</value>
   </data>
   <data name="StrLessThan" xml:space="preserve">
-    <value>&lt;</value>
+    <value>より小さい</value>
   </data>
   <data name="StrMoreEquals" xml:space="preserve">
-    <value>&gt;=</value>
+    <value>以上</value>
   </data>
   <data name="StrMoreThan" xml:space="preserve">
-    <value>&gt;</value>
+    <value>より大きい</value>
   </data>
   <data name="StrNotBeginsWith" xml:space="preserve">
     <value>から始まらない</value>
@@ -415,7 +415,7 @@
     <value>で終わらない</value>
   </data>
   <data name="StrNotEquals" xml:space="preserve">
-    <value>!=</value>
+    <value>と等しくない</value>
   </data>
   <data name="TorpedoBase" xml:space="preserve">
     <value>基本雷装</value>

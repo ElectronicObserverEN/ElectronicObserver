@@ -76,6 +76,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>QuestTracking.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Data\ShipGroup\ExpressionDataRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ExpressionDataRes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="LoggerRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -323,6 +328,11 @@
 		<Compile Update="Window\Control\ImageLabel.cs">
 			<SubType>Component</SubType>
 		</Compile>
+		<Compile Update="Window\Control\ShipFilter\ShipFilter.Designer.cs">
+		  <DependentUpon>ShipFilter.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Window\Control\ShipStatusEquipment.cs" />
 		<Compile Update="Window\Control\ShipStatusHP.cs">
 			<SubType>UserControl</SubType>
@@ -349,6 +359,11 @@
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>NotifyRes.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Dialog\ShipDataPicker\ShipDataPicker.Designer.cs">
+		  <DependentUpon>ShipDataPicker.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
 		</Compile>
 		<Compile Update="Window\GeneralRes.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -524,6 +539,10 @@
 		<EmbeddedResource Update="Data\Quest\QuestTracking.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Data\ShipGroup\ExpressionDataRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ExpressionDataRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="LoggerRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
@@ -717,6 +736,10 @@
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>FormWindowCapture.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Control\ShipFilter\ShipFilter.resx">
+		  <LastGenOutput>ShipFilter.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\ConfigRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
@@ -732,6 +755,10 @@
 		<EmbeddedResource Update="Window\Dialog\NotifyRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\ShipDataPicker\ShipDataPicker.resx">
+		  <LastGenOutput>ShipDataPicker.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\GeneralRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
