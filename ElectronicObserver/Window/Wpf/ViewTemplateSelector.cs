@@ -17,6 +17,7 @@ using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
 namespace ElectronicObserver.Window.Wpf;
 
@@ -27,6 +28,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 	public DataTemplate? Group { get; set; }
 	public DataTemplate? GroupWinforms { get; set; }
 	public DataTemplate? FleetPreset { get; set; }
+	public DataTemplate? ShipTrainingPlanViewer { get; set; }
 
 	public DataTemplate? Dock { get; set; }
 	public DataTemplate? Arsenal { get; set; }
@@ -54,6 +56,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		ShipGroupViewModel => Group,
 		ShipGroupWinformsViewModel => GroupWinforms,
 		FleetPresetViewModel => FleetPreset,
+		ShipTrainingPlanViewerViewModel => ShipTrainingPlanViewer,
 		LogViewModel => Log,
 		DockViewModel => Dock,
 		ArsenalViewModel => Arsenal,

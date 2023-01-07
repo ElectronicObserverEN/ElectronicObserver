@@ -1,8 +1,9 @@
-﻿using ElectronicObserverTypes;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
-public class ShipTrainingPlanModel
+public class ShipTrainingPlanModel : ObservableObject
 {
 	public int Id { get; set; }
 	public int ShipId { get; set; }

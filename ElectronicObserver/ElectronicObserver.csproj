@@ -415,6 +415,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>EquipmentUpgradePlanViewer.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Wpf\ShipTrainingPlanner\ShipTrainingPlanner.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ShipTrainingPlanner.resx</DependentUpon>
+		</Compile>
 		<None Include=".editorconfig" />
 		<Page Include="Properties\DesignTimeResources.xaml">
 			<SubType>Designer</SubType>
@@ -799,6 +804,10 @@
 		<EmbeddedResource Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>EquipmentUpgradePlanViewer.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Wpf\ShipTrainingPlanner\ShipTrainingPlanner.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ShipTrainingPlanner.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 </Project>

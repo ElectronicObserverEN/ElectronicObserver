@@ -17,6 +17,7 @@
 	xmlns:quest="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
 	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
+	xmlns:shipTraining="clr-namespace:ElectronicObserver.Window.Wpf.ShipTrainingPlanner"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
 	xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
 	xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
@@ -37,6 +38,9 @@
 	</DataTemplate>
 	<DataTemplate x:Key="FleetPresetTemplate" DataType="{x:Type fleetPreset:FleetPresetViewModel}">
 		<fleetPreset:FleetPresetView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="ShipTrainingTemplate" DataType="{x:Type shipTraining:ShipTrainingPlanViewerViewModel}">
+		<shipTraining:ShipTrainingPlanViewerView ViewModel="{Binding}" />
 	</DataTemplate>
 
 	<DataTemplate x:Key="DockTemplate" DataType="{x:Type dock:DockViewModel}">
@@ -97,6 +101,7 @@
 		Information="{StaticResource InformationTemplate}"
 		Log="{StaticResource LogTemplate}"
 		Quest="{StaticResource QuestTemplate}"
+		ShipTrainingPlanViewer="{StaticResource ShipTrainingTemplate}"
 		WinformsHost="{StaticResource WinformsHostTemplate}"
 		/>
 </ResourceDictionary>

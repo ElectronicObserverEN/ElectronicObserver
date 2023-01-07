@@ -336,6 +336,16 @@
 						<Image Source="{Binding FleetPresetImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem
+					d:Header="Ship training"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding ShipTrainingPlanViewer}"
+					Header="{Binding FormMain.StripMenu_View_ShipTrainingPlanViewer}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipTrainingPlanImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
 				<MenuItem
 					d:Header="Dock"

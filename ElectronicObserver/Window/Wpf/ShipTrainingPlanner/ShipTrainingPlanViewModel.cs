@@ -1,11 +1,13 @@
-﻿using ElectronicObserver.Data;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-public class ShipTrainingPlanViewModel
+public class ShipTrainingPlanViewModel : ObservableObject
 {
-	private ShipTrainingPlanModel Model { get; }
+	public ShipTrainingPlanModel Model { get; }
 
 	public IShipData Ship { get; set; }
 
@@ -43,7 +45,13 @@ public class ShipTrainingPlanViewModel
 		TargetLuck = model.TargetLuck;
 		TargetHPBonus = model.TargetHPBonus;
 		TargetASWBonus = model.TargetASWBonus;
-		
+
+		PropertyChanged += OnPropertyChanged;
+	}
+
+	private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus)) Save();
 	}
 
 	private void Save()

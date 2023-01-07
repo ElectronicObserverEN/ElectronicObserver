@@ -52,6 +52,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
@@ -332,6 +333,11 @@ public partial class App : Application
 			.Property(w => w.Filters.SelectToday)
 			.Property(w => w.ColumnProperties)
 			.Property(w => w.SortDescriptions);
+
+		tracker
+			.Configure<ShipTrainingPlanViewerView>()
+			.Property(w => w.ViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()
