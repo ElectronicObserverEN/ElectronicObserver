@@ -120,6 +120,18 @@
   <data name="AddShip" xml:space="preserve">
     <value>??? (Add ship)</value>
   </data>
+  <data name="ASWBonus" xml:space="preserve">
+    <value>??? (ASW Bonus)</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>??? (Current)</value>
+  </data>
+  <data name="HPBonus" xml:space="preserve">
+    <value>??? (HP bonus)</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>??? (Level)</value>
+  </data>
   <data name="RemovePlan" xml:space="preserve">
     <value>??? (Remove plan)</value>
   </data>

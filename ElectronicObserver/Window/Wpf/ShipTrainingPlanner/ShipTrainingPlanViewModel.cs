@@ -1,11 +1,10 @@
-﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-public class ShipTrainingPlanViewModel : ObservableObject
+public partial class ShipTrainingPlanViewModel : ObservableObject
 {
 	public ShipTrainingPlanModel Model { get; }
 
@@ -13,9 +12,9 @@ public class ShipTrainingPlanViewModel : ObservableObject
 
 	public int TargetLevel { get; set; }
 
-	public int TargetHP => (Ship.IsMarried ? Ship.MasterShip.HPMaxMarried : Ship.MasterShip.HPMax) + TargetHPBonus;
+	public int TargetHP => Ship.HPMax + TargetHPBonus;
 
-	public int TargetASW => Ship.ASWModernized + TargetASWBonus - (Ship.ASWModernized - Ship.ASWBase);
+	public int TargetASW => Ship.ASWBase + TargetASWBonus;
 
 	/// <summary>
 	/// From 0 to 2
@@ -26,6 +25,8 @@ public class ShipTrainingPlanViewModel : ObservableObject
 	/// From 0 to 9
 	/// </summary>
 	public int TargetASWBonus { get; set; }
+
+	public int MaximumHPMod => Ship.HpMaxModernizable();
 
 	/// <summary>
 	/// Targetted amount of luck 
@@ -51,7 +52,13 @@ public class ShipTrainingPlanViewModel : ObservableObject
 
 	private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus)) Save();
+		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus))
+		{
+			Save();
+		}
+
+		if (e.PropertyName is nameof(TargetHPBonus)) OnPropertyChanged(nameof(TargetHP));
+		if (e.PropertyName is nameof(TargetASWBonus)) OnPropertyChanged(nameof(TargetASW));
 	}
 
 	private void Save()

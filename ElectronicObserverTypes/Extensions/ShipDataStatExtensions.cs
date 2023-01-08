@@ -30,17 +30,24 @@ public static class ShipDataStatExtensions
 	public static int HpMaxModernizable(this IShipDataMaster ship) =>
 		Math.Min(ship.HPMax - ship.HPMin, HpModernizableLimit);
 
+	public static int HpMaxModernizable(this IShipData ship) =>
+		ship.IsMarried ? ship.MasterShip.HpMaxMarriedModernizable() : ship.MasterShip.HpMaxModernizable();
+
 	/// <summary>
 	/// HP改修可能値(既婚時)
 	/// </summary>
 	public static int HpMaxMarriedModernizable(this IShipDataMaster ship) =>
 		Math.Min(ship.HPMax - ship.HPMaxMarried, HpModernizableLimit);
 
+
 	/// <summary>
 	/// 近代化改修後のHP(未婚時)
 	/// </summary>
 	public static int HpMaxModernized(this IShipDataMaster ship) =>
 		Math.Min(ship.HPMin + ship.HPMaxModernizable, ship.HPMax);
+
+	public static int HpMaxModernized(this IShipData ship) =>
+		ship.IsMarried ? ship.MasterShip.HpMaxMarriedModernized() : ship.MasterShip.HpMaxModernized();
 
 	/// <summary>
 	/// 近代化改修後のHP(既婚時)

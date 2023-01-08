@@ -8,15 +8,19 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
 public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 {
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; set; } = new();
+
+	public int MaximumLevel => ExpTable.ShipMaximumLevel;
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 

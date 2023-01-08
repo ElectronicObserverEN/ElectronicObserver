@@ -11,7 +11,7 @@ namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
 
 public partial class ShipDataPickerViewModel : WindowViewModelBase
 {
-	public List<ShipDataViewModel> AllShips { get; }
+	private List<ShipDataViewModel> AllShips { get; }
 
 	public ObservableCollection<ShipDataViewModel> ShipsFiltered { get; } = new();
 
