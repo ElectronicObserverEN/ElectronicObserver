@@ -335,9 +335,9 @@ public partial class App : Application
 			.Property(w => w.SortDescriptions);
 
 		tracker
-			.Configure<ShipTrainingPlanViewerView>()
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Configure<ShipTrainingPlanViewerViewModel>()
+			.Property(w => w.ColumnProperties)
+			.Property(w => w.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()

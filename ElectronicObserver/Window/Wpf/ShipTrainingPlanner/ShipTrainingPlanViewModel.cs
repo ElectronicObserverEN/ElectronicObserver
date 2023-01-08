@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
@@ -15,6 +16,8 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 	public int TargetHP => Ship.HPMax + TargetHPBonus;
 
 	public int TargetASW => Ship.ASWBase + TargetASWBonus;
+
+	public event Action? OnSave;
 
 	/// <summary>
 	/// From 0 to 2
@@ -47,10 +50,10 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 		TargetHPBonus = model.TargetHPBonus;
 		TargetASWBonus = model.TargetASWBonus;
 
-		PropertyChanged += OnPropertyChanged;
+		PropertyChanged += OnStatPropertyChanged;
 	}
 
-	private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private void OnStatPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus))
 		{
@@ -67,5 +70,7 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 		Model.TargetLuck = TargetLuck;
 		Model.TargetHPBonus = TargetHPBonus;
 		Model.TargetASWBonus = TargetASWBonus;
+
+		OnSave?.Invoke();
 	}
 }

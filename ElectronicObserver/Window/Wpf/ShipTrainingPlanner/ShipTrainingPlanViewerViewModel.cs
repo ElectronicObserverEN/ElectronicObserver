@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Data;
@@ -13,6 +14,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using Jot;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
@@ -29,12 +31,17 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; } = new();
 
+	private Tracker Tracker { get; }
+
 	public ShipTrainingPlanViewerViewModel() : base("ShipTrainingPlanViewer", "ShipTrainingPlanViewer", ImageSourceIcons.GetIcon(IconContent.ItemActionReport))
 	{
+		Tracker = Ioc.Default.GetService<Tracker>()!;
+
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
 
 		SubscribeToApi();
+		StartJotTracking();
 	}
 
 	private void SubscribeToApi()
@@ -52,12 +59,13 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		foreach (ShipTrainingPlanModel model in models)
 		{
-			model.PropertyChanged += (_, _) => DatabaseContext.SaveChanges();
-			Plans.Add(new(model));
+			ShipTrainingPlanViewModel viewModel = new(model);
+			viewModel.OnSave += () => DatabaseContext.SaveChanges();
+			Plans.Add(viewModel);
 		}
 	}
 
-	private ShipTrainingPlanModel NewPlan(IShipData ship)
+	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
 	{
 		ShipTrainingPlanModel newPlan = new()
 		{
@@ -69,9 +77,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		DatabaseContext.ShipTrainingPlans.Add(newPlan);
 		DatabaseContext.SaveChanges();
 
-		newPlan.PropertyChanged += (_, _) => DatabaseContext.SaveChanges();
+		ShipTrainingPlanViewModel newPlanViewModel = new(newPlan);
 
-		return newPlan;
+		newPlanViewModel.OnSave += () => DatabaseContext.SaveChanges();
+
+		return newPlanViewModel;
 	}
 
 	[RelayCommand]
@@ -100,7 +110,12 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		if (pickerViewModel.PickedShip is IShipData ship)
 		{
-			Plans.Add(new(NewPlan(ship)));
+			Plans.Add(NewPlan(ship));
 		}
+	}
+
+	private void StartJotTracking()
+	{
+		Tracker.Track(this);
 	}
 }
