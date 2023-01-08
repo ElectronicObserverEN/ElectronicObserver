@@ -132,6 +132,9 @@
   <data name="Level" xml:space="preserve">
     <value>??? (Level)</value>
   </data>
+  <data name="RemodelGoal" xml:space="preserve">
+    <value>??? (Remodel goal)</value>
+  </data>
   <data name="RemovePlan" xml:space="preserve">
     <value>??? (Remove plan)</value>
   </data>

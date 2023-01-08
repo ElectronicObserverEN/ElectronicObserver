@@ -14,4 +14,5 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 	public string ASWBonus => ShipTrainingPlanner.ASWBonus;
 	public string Luck => EncycloRes.Luck;
 	public string Current => ShipTrainingPlanner.Current;
+	public string RemodelGoal => ShipTrainingPlanner.RemodelGoal;
 }

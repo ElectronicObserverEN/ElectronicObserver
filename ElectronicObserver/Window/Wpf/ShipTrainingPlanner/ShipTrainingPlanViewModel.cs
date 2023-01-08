@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
+using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 
@@ -37,7 +40,9 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 	/// </summary>
 	public int TargetLuck { get; set; }
 
-	public ShipId? TargetRemodel { get; set; }
+	public IShipDataMaster? TargetRemodel { get; set; }
+
+	public List<IShipDataMaster> PossibleRemodels { get; } = new();
 
 	public ShipTrainingPlanViewModel(ShipTrainingPlanModel model)
 	{
@@ -50,12 +55,30 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 		TargetHPBonus = model.TargetHPBonus;
 		TargetASWBonus = model.TargetASWBonus;
 
+		if (model.TargetRemodel is ShipId _shipId)
+			TargetRemodel = KCDatabase.Instance.MasterShips[(int)_shipId];
+
+		Update();
+
 		PropertyChanged += OnStatPropertyChanged;
+	}
+
+	private void Update()
+	{
+		PossibleRemodels.Clear();
+
+		IShipDataMaster? remodel = Ship.MasterShip;
+
+		while (remodel is not null && !PossibleRemodels.Contains(remodel))
+		{
+			PossibleRemodels.Add(remodel);
+			remodel = remodel.RemodelAfterShip;
+		}
 	}
 
 	private void OnStatPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus))
+		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus) or nameof(TargetRemodel))
 		{
 			Save();
 		}
@@ -70,6 +93,7 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 		Model.TargetLuck = TargetLuck;
 		Model.TargetHPBonus = TargetHPBonus;
 		Model.TargetASWBonus = TargetASWBonus;
+		Model.TargetRemodel = TargetRemodel?.ShipId;
 
 		OnSave?.Invoke();
 	}

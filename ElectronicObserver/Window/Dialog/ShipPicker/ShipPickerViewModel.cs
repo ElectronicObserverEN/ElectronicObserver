@@ -19,25 +19,28 @@ public partial class ShipPickerViewModel : WindowViewModelBase
 	// might wanna figure out a better way to handle this
 	public List<DropRecordOption>? DropRecordOptions { get; set; }
 
-	private List<IShipDataMaster> AllShips => KCDatabase.Instance.MasterShips.Values
-		.Where(s => !s.IsAbyssalShip)
-		.OrderBy(s => s.SortID)
-		.Cast<IShipDataMaster>()
-		.ToList();
+	private List<IShipDataMaster> AllShips { get; }
 
 	public ObservableCollection<ClassGroup> ShipClassGroups { get; set; } = new();
 
 	public IShipDataMaster? PickedShip { get; private set; }
 	public DropRecordOption? PickedOption { get; private set; }
 
-	public ShipPickerViewModel()
+	public ShipPickerViewModel(IEnumerable<IShipDataMaster> ships)
 	{
+		AllShips = ships.ToList();
+
 		TypeFilters = Enum.GetValues<ShipTypeGroup>().Select(t => new Filter(t)).ToList();
 
 		foreach (Filter filter in TypeFilters)
 		{
 			filter.PropertyChanged += Filter_PropertyChanged;
 		}
+	}
+
+	public ShipPickerViewModel() : this(KCDatabase.Instance.MasterShips.Values.Where(s => !s.IsAbyssalShip).OrderBy(s => s.SortID))
+	{ 
+
 	}
 
 	[RelayCommand]

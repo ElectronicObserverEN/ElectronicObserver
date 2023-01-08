@@ -13,7 +13,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 using Jot;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;

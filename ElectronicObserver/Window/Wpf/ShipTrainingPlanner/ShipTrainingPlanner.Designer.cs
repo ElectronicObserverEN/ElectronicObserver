@@ -106,6 +106,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Remodel goal).
+        /// </summary>
+        internal static string RemodelGoal {
+            get {
+                return ResourceManager.GetString("RemodelGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (Remove plan).
         /// </summary>
         internal static string RemovePlan {

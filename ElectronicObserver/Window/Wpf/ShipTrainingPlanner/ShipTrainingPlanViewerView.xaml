@@ -211,6 +211,20 @@
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox
+								Margin="1 0"
+								VerticalAlignment="Center"
+								DisplayMemberPath="NameEN"
+								ItemsSource="{Binding PossibleRemodels}"
+								SelectedItem="{Binding TargetRemodel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 
 		</DataGrid>
