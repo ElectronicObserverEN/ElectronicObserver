@@ -266,6 +266,7 @@ public partial class App : Application
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
+			.AddSingleton<ShipTrainingPlanViewerViewModel>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()

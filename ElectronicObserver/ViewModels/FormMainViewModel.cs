@@ -374,7 +374,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(FormShipGroup = new ShipGroupWinformsViewModel());
 		// Views.Add(ShipGroup = new());
 		Views.Add(FleetPreset = new FleetPresetViewModel());
-		Views.Add(ShipTrainingPlanViewer = new ShipTrainingPlanViewerViewModel());
+		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
+		Views.Add(ShipTrainingPlanViewer);
 
 		Views.Add(Dock = new DockViewModel());
 		Views.Add(Arsenal = new ArsenalViewModel()); 

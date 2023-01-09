@@ -19,6 +19,8 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
 public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 {
+	private ShipDataPickerViewModel PickerViewModel { get; } = new();
+
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; set; } = new();
 
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
@@ -96,18 +98,16 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		List<int> alreadyAddedIds = Plans.Select(s => s.Ship.ID).ToList();
 
-		List<IShipData> ships = KCDatabase.Instance.Ships
+		PickerViewModel.LoadWithShips(KCDatabase.Instance.Ships
 			.Values
 			.Cast<IShipData>()
-			.Where(s => !alreadyAddedIds.Contains(s.ID))
-			.ToList();
+			.Where(s => !alreadyAddedIds.Contains(s.ID)));
 
-		ShipDataPickerViewModel pickerViewModel = new(ships);
-		ShipDataPickerView pickerView = new(pickerViewModel);
+		ShipDataPickerView pickerView = new(PickerViewModel);
 
 		pickerView.ShowDialog();
 
-		if (pickerViewModel.PickedShip is IShipData ship)
+		if (PickerViewModel.PickedShip is IShipData ship)
 		{
 			Plans.Add(NewPlan(ship));
 		}
