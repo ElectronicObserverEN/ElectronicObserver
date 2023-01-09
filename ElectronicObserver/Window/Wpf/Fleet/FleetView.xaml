@@ -353,6 +353,7 @@
 
 									<Border
 										Grid.Column="1"
+										Background="{Binding Background}"
 										DataContext="{Binding Level}"
 										ToolTip="{Binding ToolTip}"
 										>
@@ -379,6 +380,7 @@
 												Grid.Column="1"
 												Margin="0 2 2 2"
 												VerticalAlignment="Bottom"
+												Foreground="{Binding Foreground}"
 												Text="{Binding Value}"
 												TextAlignment="Right"
 												/>

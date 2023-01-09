@@ -12,6 +12,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Extensions;
@@ -190,26 +191,15 @@ public class FleetItemViewModel : ObservableObject
 				Constants.GetRange(Ship.Range),
 				Constants.GetSpeed(Ship.Speed)
 			);
-			{
-				if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-					Parent.ShipTagColors.Count > 0 &&
-					Ship.SallyArea > 0)
-				{
-					if (Utility.Configuration.Config.UI.ThemeMode != 0)
-						Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
-					Name.BackColor = Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
-				}
-				else
-				{
-					Name.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-					Name.BackColor = Color.Transparent;
-				}
-			}
 
+			Name.BackColor = GetShipBackColor();
+			Name.ForeColor = GetShipForeColor();
 
 			Level.Value = Ship.Level;
 			Level.ValueNext = Ship.ExpNext;
 			Level.Tag = Ship.MasterID;
+
+			Level.UpdateColors(); 
 
 			{
 				StringBuilder tip = new StringBuilder();
@@ -337,6 +327,36 @@ public class FleetItemViewModel : ObservableObject
 		}
 
 		Visible = shipMasterID != -1;
+	}
+
+	private Color GetShipBackColor()
+	{
+		//Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>()
+		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
+							Parent.ShipTagColors.Count > 0 &&
+							Ship?.SallyArea > 0)
+		{
+			return Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
+		}
+
+		return Color.Transparent;
+	}
+
+	private Color GetShipForeColor()
+	{
+		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
+							Parent.ShipTagColors.Count > 0 &&
+							Ship?.SallyArea > 0)
+		{
+			if (Configuration.Config.UI.ThemeMode != 0)
+				return Configuration.Config.UI.BackColor;
+		}
+		else
+		{
+			return Configuration.Config.UI.ForeColor;
+		}
+
+		return Color.Transparent;
 	}
 
 	private string GetEquipmentString(IShipData ship)

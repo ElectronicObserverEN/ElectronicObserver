@@ -6,6 +6,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using log4net.Core;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 public partial class ShipTrainingPlanViewModel : ObservableObject
@@ -21,6 +22,8 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 	public int TargetASW => Ship.ASWBase + TargetASWBonus;
 
 	public event Action? OnSave;
+
+	public bool ShipRemodelLevelReached => TargetRemodel is IShipDataMaster remodel && Ship.Level >= remodel.RemodelAfterLevel;
 
 	/// <summary>
 	/// From 0 to 2
