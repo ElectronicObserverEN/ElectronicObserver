@@ -88,6 +88,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Edit plan).
+        /// </summary>
+        internal static string EditPlan {
+            get {
+                return ResourceManager.GetString("EditPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (HP bonus).
         /// </summary>
         internal static string HPBonus {

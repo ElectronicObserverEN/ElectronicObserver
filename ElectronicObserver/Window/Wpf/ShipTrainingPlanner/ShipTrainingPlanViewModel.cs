@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-public partial class ShipTrainingPlanViewModel : ObservableObject
+public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 {
 	public ShipTrainingPlanModel Model { get; }
 
@@ -19,12 +21,13 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 	};
 
 	public int TargetLevel { get; set; }
+	public int MaximumLevel => ExpTable.ShipMaximumLevel;
 
 	public int TargetHP => Ship.HPMax + TargetHPBonus;
 
 	public int TargetASW => Ship.ASWBase + TargetASWBonus;
 
-	public event Action? OnSave;
+	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
 	public bool ShipRemodelLevelReached =>
 		TargetRemodel is IShipDataMaster remodel
@@ -56,17 +59,10 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 
 	public ShipTrainingPlanViewModel(ShipTrainingPlanModel model)
 	{
+		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
 		Model = model;
 
-		TargetLevel = model.TargetLevel;
-		TargetLuck = model.TargetLuck;
-		TargetHPBonus = model.TargetHPBonus;
-		TargetASWBonus = model.TargetASWBonus;
-
-		if (model.TargetRemodel is ShipId shipId)
-			TargetRemodel = KCDatabase.Instance.MasterShips[(int)shipId];
-
-		Update();
+		UpdateFromModel();
 
 		SubscribeToApi();
 		PropertyChanged += OnStatPropertyChanged;
@@ -97,8 +93,16 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(MaximumHPMod));
 	}
 
-	private void Update()
+	public void UpdateFromModel()
 	{
+		TargetLevel = Model.TargetLevel;
+		TargetLuck = Model.TargetLuck;
+		TargetHPBonus = Model.TargetHPBonus;
+		TargetASWBonus = Model.TargetASWBonus;
+
+		if (Model.TargetRemodel is ShipId shipId)
+			TargetRemodel = KCDatabase.Instance.MasterShips[(int)shipId];
+
 		PossibleRemodels.Clear();
 
 		IShipDataMaster? remodel = Ship.MasterShip;
@@ -112,23 +116,16 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 
 	private void OnStatPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(TargetLevel) or nameof(TargetLuck) or nameof(TargetHPBonus) or nameof(TargetASWBonus) or nameof(TargetRemodel))
-		{
-			Save();
-		}
-
 		if (e.PropertyName is nameof(TargetHPBonus)) OnPropertyChanged(nameof(TargetHP));
 		if (e.PropertyName is nameof(TargetASWBonus)) OnPropertyChanged(nameof(TargetASW));
 	}
 
-	private void Save()
+	public void Save()
 	{
 		Model.TargetLevel = TargetLevel;
 		Model.TargetLuck = TargetLuck;
 		Model.TargetHPBonus = TargetHPBonus;
 		Model.TargetASWBonus = TargetASWBonus;
 		Model.TargetRemodel = TargetRemodel?.ShipId;
-
-		OnSave?.Invoke();
 	}
 }

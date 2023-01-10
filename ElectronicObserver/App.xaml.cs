@@ -263,6 +263,7 @@ public partial class App : Application
 			.AddSingleton<ExpeditionCheckTranslationViewModel>()
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
+			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()

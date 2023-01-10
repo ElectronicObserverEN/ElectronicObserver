@@ -126,6 +126,9 @@
   <data name="Current" xml:space="preserve">
     <value>Current</value>
   </data>
+  <data name="EditPlan" xml:space="preserve">
+    <value>Edit plan</value>
+  </data>
   <data name="HPBonus" xml:space="preserve">
     <value>HP bonus</value>
   </data>

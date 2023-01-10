@@ -25,6 +25,8 @@
 
 				<StackPanel Grid.Row="0" Orientation="Horizontal">
 					<Button Command="{Binding OpenShipPickerToAddNewPlanCommand}" Content="{Binding ShipTrainingPlanner.AddShip}" />
+					<Button Command="{Binding OpenEditPopupSelectedPlanCommand}" Content="{Binding ShipTrainingPlanner.EditPlan}" />
+					<Button Command="{Binding RemoveSelectedPlanCommand}" Content="{Binding ShipTrainingPlanner.RemovePlan}" />
 				</StackPanel>
 
 				<DataGrid
@@ -34,6 +36,9 @@
 					HeadersVisibility="Column"
 					IsReadOnly="True"
 					ItemsSource="{Binding Plans}"
+					SelectedItem="{Binding SelectedPlan}"
+					SelectionMode="Single"
+					SelectionUnit="FullRow"
 					>
 
 					<b:Interaction.Behaviors>
@@ -52,6 +57,12 @@
 						<Style TargetType="DataGridRow">
 							<Style.Resources>
 								<ContextMenu x:Key="ShipRowContextMenu">
+									<MenuItem Command="{Binding DataContext.OpenShipPickerToAddNewPlanCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.ShipTrainingPlanner.AddShip, Source={StaticResource Proxy}, Mode=OneWay}" />
+									<MenuItem
+										Command="{Binding DataContext.OpenEditPopupCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Header="{Binding DataContext.ShipTrainingPlanner.EditPlan, Source={StaticResource Proxy}, Mode=OneWay}"
+										/>
 									<MenuItem
 										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
@@ -66,14 +77,6 @@
 							</Style.Setters>
 						</Style>
 					</DataGrid.RowStyle>
-
-					<DataGrid.CellStyle>
-						<Style TargetType="DataGridCell">
-							<Setter Property="BorderBrush" Value="Transparent" />
-							<Setter Property="Background" Value="Transparent" />
-							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-						</Style>
-					</DataGrid.CellStyle>
 
 					<DataGrid.Columns>
 						<DataGridTextColumn
@@ -98,13 +101,7 @@
 											VerticalAlignment="Center"
 											Text="/"
 											/>
-										<ui:NumberBox
-											VerticalAlignment="Center"
-											Maximum="{Binding DataContext.MaximumLevel, Source={StaticResource Proxy}}"
-											Minimum="{Binding Ship.Level}"
-											SpinButtonPlacementMode="Inline"
-											Value="{Binding TargetLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-											/>
+										<TextBlock VerticalAlignment="Center" Text="{Binding TargetLevel}" />
 									</StackPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
@@ -116,33 +113,33 @@
 									<StackPanel Margin="3" Orientation="Vertical">
 
 										<StackPanel Orientation="Horizontal">
+											<TextBlock
+												Margin="1 0"
+												VerticalAlignment="Center"
+												Text="+"
+												/>
 											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMaxModernized}" />
 											<TextBlock
-												Margin="5 0"
+												Margin="2 0 2 0"
 												VerticalAlignment="Center"
 												Text="/"
 												/>
-											<ui:NumberBox
-												VerticalAlignment="Center"
-												Maximum="{Binding MaximumHPMod}"
-												Minimum="{Binding Ship.HPMaxModernized}"
-												SpinButtonPlacementMode="Inline"
-												Value="{Binding TargetHPBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-												/>
+											<TextBlock VerticalAlignment="Center" Text="+" />
+											<TextBlock VerticalAlignment="Center" Text="{Binding TargetHPBonus}" />
 										</StackPanel>
 										<StackPanel Orientation="Horizontal">
-											<TextBlock
-												Margin="0 0 5 0"
-												VerticalAlignment="Center"
-												Text="{Binding DataContext.ShipTrainingPlanner.Current, Source={StaticResource Proxy}}"
-												/>
 											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMax}" />
 											<TextBlock
-												Margin="5 0"
+												Margin="2 0 2 0"
 												VerticalAlignment="Center"
 												Text="/"
 												/>
 											<TextBlock VerticalAlignment="Center" Text="{Binding TargetHP}" />
+											<TextBlock
+												Margin="2 0"
+												VerticalAlignment="Center"
+												Text="{Binding DataContext.ShipTrainingPlanner.HP, Source={StaticResource Proxy}}"
+												/>
 										</StackPanel>
 
 									</StackPanel>
@@ -156,33 +153,33 @@
 									<StackPanel Margin="3" Orientation="Vertical">
 
 										<StackPanel Orientation="Horizontal">
+											<TextBlock
+												Margin="1 0"
+												VerticalAlignment="Center"
+												Text="+"
+												/>
 											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWModernized}" />
 											<TextBlock
-												Margin="5 0"
+												Margin="2 0 2 0"
 												VerticalAlignment="Center"
 												Text="/"
 												/>
-											<ui:NumberBox
-												VerticalAlignment="Center"
-												Maximum="{Binding Ship.MasterShip.ASWModernizable}"
-												Minimum="{Binding Ship.ASWModernized}"
-												SpinButtonPlacementMode="Inline"
-												Value="{Binding TargetASWBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-												/>
+											<TextBlock VerticalAlignment="Center" Text="+" />
+											<TextBlock Text="{Binding TargetASWBonus}" />
 										</StackPanel>
 										<StackPanel Orientation="Horizontal">
-											<TextBlock
-												Margin="0 0 5 0"
-												VerticalAlignment="Center"
-												Text="{Binding DataContext.ShipTrainingPlanner.Current, Source={StaticResource Proxy}}"
-												/>
 											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWBase}" />
 											<TextBlock
-												Margin="5 0"
+												Margin="2 0 2 0"
 												VerticalAlignment="Center"
 												Text="/"
 												/>
 											<TextBlock VerticalAlignment="Center" Text="{Binding TargetASW}" />
+											<TextBlock
+												Margin="2 0"
+												VerticalAlignment="Center"
+												Text="{Binding DataContext.ShipTrainingPlanner.ASW, Source={StaticResource Proxy}}"
+												/>
 										</StackPanel>
 
 									</StackPanel>
@@ -193,38 +190,16 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.Luck, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Orientation="Horizontal">
-										<TextBlock VerticalAlignment="Center" Text="{Binding Ship.LuckBase}" />
-										<TextBlock
-											Margin="5 0"
-											VerticalAlignment="Center"
-											Text="/"
-											/>
-										<ui:NumberBox
-											VerticalAlignment="Center"
-											Maximum="{Binding Ship.MasterShip.LuckMax}"
-											Minimum="{Binding Ship.LuckBase}"
-											SpinButtonPlacementMode="Inline"
-											Value="{Binding TargetLuck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-											/>
+									<StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+										<TextBlock Text="{Binding Ship.LuckBase}" />
+										<TextBlock Margin="5 0" Text="/" />
+										<TextBlock Text="{Binding TargetLuck}" />
 									</StackPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
 
-						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}">
-							<DataGridTemplateColumn.CellTemplate>
-								<DataTemplate>
-									<ComboBox
-										Margin="1 0"
-										VerticalAlignment="Center"
-										DisplayMemberPath="NameEN"
-										ItemsSource="{Binding PossibleRemodels}"
-										SelectedItem="{Binding TargetRemodel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-										/>
-								</DataTemplate>
-							</DataGridTemplateColumn.CellTemplate>
-						</DataGridTemplateColumn>
+						<DataGridTextColumn Binding="{Binding Ship.MasterShip.NameWithClass}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
 					</DataGrid.Columns>
 
 				</DataGrid>

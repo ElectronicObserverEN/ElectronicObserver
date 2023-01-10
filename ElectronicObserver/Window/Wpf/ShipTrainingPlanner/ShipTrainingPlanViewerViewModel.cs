@@ -9,7 +9,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserverTypes;
@@ -23,20 +22,21 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; set; } = new();
 
-	public int MaximumLevel => ExpTable.ShipMaximumLevel;
-
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
 
-	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; } = new();
+	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
+
+	public ShipTrainingPlanViewModel? SelectedPlan { get; set; }
 
 	private Tracker Tracker { get; }
 
 	public ShipTrainingPlanViewerViewModel() : base("ShipTrainingPlanViewer", "ShipTrainingPlanViewer", ImageSourceIcons.GetIcon(IconContent.ItemActionReport))
 	{
 		Tracker = Ioc.Default.GetService<Tracker>()!;
+		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
@@ -75,7 +75,6 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		foreach (ShipTrainingPlanModel model in models)
 		{
 			ShipTrainingPlanViewModel viewModel = new(model);
-			viewModel.OnSave += () => DatabaseContext.SaveChanges();
 			Plans.Add(viewModel);
 		}
 	}
@@ -94,13 +93,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		ShipTrainingPlanViewModel newPlanViewModel = new(newPlan);
 
-		newPlanViewModel.OnSave += () => DatabaseContext.SaveChanges();
-
 		return newPlanViewModel;
 	}
 
 	[RelayCommand]
-	public void RemovePlan(ShipTrainingPlanViewModel plan)
+	private void RemovePlan(ShipTrainingPlanViewModel plan)
 	{
 		Plans.Remove(plan);
 		DatabaseContext.ShipTrainingPlans.Remove(plan.Model);
@@ -108,7 +105,39 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	}
 
 	[RelayCommand]
-	public void OpenShipPickerToAddNewPlan()
+	public void RemoveSelectedPlan()
+	{
+		if (SelectedPlan is not null)
+		{
+			RemovePlan(SelectedPlan);
+		}
+	}
+
+	[RelayCommand]
+	private void OpenEditPopup(ShipTrainingPlanViewModel plan)
+	{
+		ShipTrainingPlanViewModel viewModel = new(plan.Model);
+		ShipTrainingPlanView view = new(viewModel);
+
+		if (view.ShowDialog() is true)
+		{
+			viewModel.Save();
+			DatabaseContext.SaveChanges();
+			plan.UpdateFromModel();
+		}
+	}
+
+	[RelayCommand]
+	private void OpenEditPopupSelectedPlan()
+	{
+		if (SelectedPlan is not null)
+		{
+			OpenEditPopup(SelectedPlan);
+		}
+	}
+
+	[RelayCommand]
+	private void OpenShipPickerToAddNewPlan()
 	{
 		List<int> alreadyAddedIds = Plans.Select(s => s.Ship.ID).ToList();
 
