@@ -46,7 +46,7 @@ public partial class FleetLevelViewModel : ObservableObject
 
 		if (plan is not null && plan.ShipRemodelLevelReached)
 		{
-			BackColor = Configuration.Config.UI.Arsenal_BuildCompleteBG;
+			BackColor = Configuration.Config.UI.Fleet_RemodelReadyColor;
 			ForeColor = Configuration.Config.UI.BackColor;
 			SubFontColor = Configuration.Config.UI.SubBackColor;
 		}

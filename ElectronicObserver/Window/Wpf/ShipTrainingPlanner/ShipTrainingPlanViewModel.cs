@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
-using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using log4net.Core;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 public partial class ShipTrainingPlanViewModel : ObservableObject
@@ -23,7 +20,11 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 
 	public event Action? OnSave;
 
-	public bool ShipRemodelLevelReached => TargetRemodel is IShipDataMaster remodel && Ship.Level >= remodel.RemodelAfterLevel;
+	public bool ShipRemodelLevelReached =>
+		TargetRemodel is IShipDataMaster remodel
+		&& Ship.MasterShip.ShipId != remodel.ShipId
+		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
+		&& Ship.Level >= shipBefore.RemodelAfterLevel;
 
 	/// <summary>
 	/// From 0 to 2
@@ -58,8 +59,8 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 		TargetHPBonus = model.TargetHPBonus;
 		TargetASWBonus = model.TargetASWBonus;
 
-		if (model.TargetRemodel is ShipId _shipId)
-			TargetRemodel = KCDatabase.Instance.MasterShips[(int)_shipId];
+		if (model.TargetRemodel is ShipId shipId)
+			TargetRemodel = KCDatabase.Instance.MasterShips[(int)shipId];
 
 		Update();
 

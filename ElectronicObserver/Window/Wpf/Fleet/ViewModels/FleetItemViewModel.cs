@@ -331,7 +331,6 @@ public class FleetItemViewModel : ObservableObject
 
 	private Color GetShipBackColor()
 	{
-		//Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>()
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
 							Parent.ShipTagColors.Count > 0 &&
 							Ship?.SallyArea > 0)
