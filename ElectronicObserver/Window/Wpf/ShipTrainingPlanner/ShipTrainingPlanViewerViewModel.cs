@@ -59,7 +59,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		IEnumerable<int> shipId = idList.Split(',').Select(int.Parse);
 
 		ShipTrainingPlanViewModel? planFound = Plans.FirstOrDefault(plan => shipId.Contains(plan.Ship.ID));
-		if (planFound is not null) RemovePlan(planFound);
+
+		if (planFound is not null)
+		{
+			RemovePlan(planFound);
+		}
 	}
 
 	public void Initialize()
