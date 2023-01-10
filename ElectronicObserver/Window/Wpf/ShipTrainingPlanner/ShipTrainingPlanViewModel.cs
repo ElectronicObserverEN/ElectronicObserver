@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 public partial class ShipTrainingPlanViewModel : ObservableObject
@@ -54,6 +56,8 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 
 		Ship = KCDatabase.Instance.Ships[model.ShipId];
 
+		Ship ??= new ShipDataMock(new ShipDataMasterMock());
+
 		TargetLevel = model.TargetLevel;
 		TargetLuck = model.TargetLuck;
 		TargetHPBonus = model.TargetHPBonus;
@@ -64,7 +68,33 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 
 		Update();
 
+		SubscribeToApi();
 		PropertyChanged += OnStatPropertyChanged;
+	}
+
+	private void SubscribeToApi()
+	{
+		APIObserver o = APIObserver.Instance;
+
+		o.ApiPort_Port.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+
+		o.ApiReqMission_Result.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+		o.ApiReqPractice_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+		o.ApiReqSortie_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+
+		o.ApiReqKaisou_Marriage.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+
+		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+
+		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetASW));
+		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetASW));
+
+		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetHP));
+		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetHP));
+		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(MaximumHPMod));
+		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(MaximumHPMod));
 	}
 
 	private void Update()

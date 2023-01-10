@@ -49,12 +49,12 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		APIObserver o = APIObserver.Instance;
 
-		o.ApiPort_Port.ResponseReceived += (_, _) => Update();
+		o.ApiPort_Port.ResponseReceived += (_, _) => Initialize();
 	}
 
-	public void Update()
+	public void Initialize()
 	{
-		Plans.Clear();
+		if (Plans.Any()) return;
 
 		List<ShipTrainingPlanModel> models = DatabaseContext.ShipTrainingPlans.ToList();
 
