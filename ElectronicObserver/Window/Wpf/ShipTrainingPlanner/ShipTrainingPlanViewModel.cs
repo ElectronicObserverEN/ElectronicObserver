@@ -12,7 +12,11 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 {
 	public ShipTrainingPlanModel Model { get; }
 
-	public IShipData Ship { get; set; }
+	public IShipData Ship => KCDatabase.Instance.Ships[Model.ShipId] switch
+	{
+		IShipData => KCDatabase.Instance.Ships[Model.ShipId],
+		_ => new ShipDataMock(new ShipDataMasterMock())
+	};
 
 	public int TargetLevel { get; set; }
 
@@ -53,10 +57,6 @@ public partial class ShipTrainingPlanViewModel : ObservableObject
 	public ShipTrainingPlanViewModel(ShipTrainingPlanModel model)
 	{
 		Model = model;
-
-		Ship = KCDatabase.Instance.Ships[model.ShipId];
-
-		Ship ??= new ShipDataMock(new ShipDataMasterMock());
 
 		TargetLevel = model.TargetLevel;
 		TargetLuck = model.TargetLuck;
