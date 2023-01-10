@@ -55,7 +55,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private void OnShipScrap(string apiname, dynamic data)
 	{
-		string idList = data.api_ship_id.ToString();
+		string idList = data["api_ship_id"].ToString();
 		IEnumerable<int> shipId = idList.Split(',').Select(int.Parse);
 
 		ShipTrainingPlanViewModel? planFound = Plans.FirstOrDefault(plan => shipId.Contains(plan.Ship.ID));
