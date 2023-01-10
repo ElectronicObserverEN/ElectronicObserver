@@ -35,6 +35,8 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 	public void LoadWithShips(IEnumerable<IShipData> ships)
 	{
 		PickedShip = null;
+		SelectedShip = null;
+
 		AllShips = ships.Select(s => new ShipDataViewModel(s)).ToList();
 		ReloadShips();
 	}
