@@ -50,6 +50,16 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiPort_Port.ResponseReceived += (_, _) => Initialize();
+		o.ApiReqKousyou_DestroyShip.RequestReceived += OnShipScrap;
+	}
+
+	private void OnShipScrap(string apiname, dynamic data)
+	{
+		string idList = data.api_ship_id.ToString();
+		IEnumerable<int> shipId = idList.Split(',').Select(int.Parse);
+
+		ShipTrainingPlanViewModel? planFound = Plans.FirstOrDefault(plan => shipId.Contains(plan.Ship.ID));
+		if (planFound is not null) RemovePlan(planFound);
 	}
 
 	public void Initialize()
