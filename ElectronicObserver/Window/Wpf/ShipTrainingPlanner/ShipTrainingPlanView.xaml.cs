@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Common;
+﻿using System.Windows.Threading;
+using ElectronicObserver.Common;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 /// <summary>
@@ -8,6 +9,12 @@ public partial class ShipTrainingPlanView : WindowBase<ShipTrainingPlanViewModel
 {
 	public ShipTrainingPlanView(ShipTrainingPlanViewModel vm) : base(vm)
 	{
+		// https://github.com/Kinnara/ModernWpf/issues/378
+		SourceInitialized += (s, a) =>
+		{
+			Dispatcher.Invoke(InvalidateVisual, DispatcherPriority.Input);
+		};
+
 		InitializeComponent();
 	}
 
