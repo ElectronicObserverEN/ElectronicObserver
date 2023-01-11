@@ -26,4 +26,8 @@ public class ShipTrainingPlanModel : ObservableObject
 	public int TargetLuck { get; set; }
 
 	public ShipId? TargetRemodel { get; set; }
+
+	public bool NotifyOnRemodelReady { get; set; }
+
+	public bool NotifyOnAnyRemodelReady { get; set; }
 }

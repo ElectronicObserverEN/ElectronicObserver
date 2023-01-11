@@ -44,7 +44,7 @@ public partial class FleetLevelViewModel : ObservableObject
 	{
 		ShipTrainingPlanViewModel? plan = ShipTrainingPlanViewerViewModel.Plans.AsEnumerable().FirstOrDefault(plan => plan.Ship.MasterID == Tag);
 
-		if (plan is not null && plan.ShipRemodelLevelReached)
+		if (plan is not null && plan.ShouldNotifyRemodelReady)
 		{
 			BackColor = Configuration.Config.UI.Fleet_RemodelReadyColor;
 			ForeColor = Configuration.Config.UI.BackColor;

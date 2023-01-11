@@ -18,4 +18,8 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 	public string Current => ShipTrainingPlanner.Current;
 	public string RemodelGoal => ShipTrainingPlanner.RemodelGoal;
 	public string EditPlan => ShipTrainingPlanner.EditPlan;
+	public string Cancel => GeneralRes.Cancel;
+	public string OK => "OK";
+	public string NotifyTargetRemodelReady => ShipTrainingPlanner.NotifyTargetRemodelReady;
+	public string NotifyAnyRemodelReady => ShipTrainingPlanner.NotifyAnyRemodelReady;
 }

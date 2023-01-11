@@ -35,6 +35,18 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
 		&& Ship.Level >= shipBefore.RemodelAfterLevel;
 
+	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel;
+
+	public bool ShouldNotifyRemodelReady => NotifyOnAnyRemodelReady switch
+	{
+		true => ShipAnyRemodelLevelReached,
+		_ => NotifyOnRemodelReady switch
+		{
+			true => ShipRemodelLevelReached,
+			_ => false
+		}
+	};
+
 	/// <summary>
 	/// From 0 to 2
 	/// </summary>
@@ -56,6 +68,10 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public IShipDataMaster? TargetRemodel { get; set; }
 
 	public List<IShipDataMaster> PossibleRemodels { get; } = new();
+
+	public bool NotifyOnRemodelReady { get; set; }
+
+	public bool NotifyOnAnyRemodelReady { get; set; }
 
 	public ShipTrainingPlanViewModel(ShipTrainingPlanModel model)
 	{
@@ -100,6 +116,9 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		TargetHPBonus = Model.TargetHPBonus;
 		TargetASWBonus = Model.TargetASWBonus;
 
+		NotifyOnRemodelReady = Model.NotifyOnRemodelReady;
+		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
+
 		if (Model.TargetRemodel is ShipId shipId)
 			TargetRemodel = KCDatabase.Instance.MasterShips[(int)shipId];
 
@@ -127,5 +146,8 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		Model.TargetHPBonus = TargetHPBonus;
 		Model.TargetASWBonus = TargetASWBonus;
 		Model.TargetRemodel = TargetRemodel?.ShipId;
+
+		Model.NotifyOnRemodelReady = NotifyOnRemodelReady;
+		Model.NotifyOnAnyRemodelReady = NotifyOnAnyRemodelReady;
 	}
 }

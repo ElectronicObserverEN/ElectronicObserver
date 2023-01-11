@@ -135,6 +135,12 @@
   <data name="Level" xml:space="preserve">
     <value>Level</value>
   </data>
+  <data name="NotifyAnyRemodelReady" xml:space="preserve">
+    <value>Notify on any remodel ready</value>
+  </data>
+  <data name="NotifyTargetRemodelReady" xml:space="preserve">
+    <value>Notify on targeted remodel ready</value>
+  </data>
   <data name="RemodelGoal" xml:space="preserve">
     <value>Remodel goal</value>
   </data>

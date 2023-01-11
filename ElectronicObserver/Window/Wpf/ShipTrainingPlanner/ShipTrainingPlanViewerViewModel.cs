@@ -105,7 +105,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	}
 
 	[RelayCommand]
-	public void RemoveSelectedPlan()
+	private void RemoveSelectedPlan()
 	{
 		if (SelectedPlan is not null)
 		{

@@ -16,229 +16,248 @@
 	SizeToContent="WidthAndHeight"
 	mc:Ignorable="d"
 	>
-	<ScrollViewer>
-		<StackPanel Margin="5">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
+	<StackPanel Margin="5" Background="Transparent">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition />
-				</Grid.RowDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
 
-				<StackPanel
-					Grid.Row="0"
-					Grid.Column="0"
-					Grid.ColumnSpan="3"
-					Margin="5"
-					Orientation="Horizontal"
-					>
-					<Image
-						Width="160"
-						Margin="2"
-						Source="{Binding Ship.ID, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
-						Stretch="Uniform"
-						/>
-
-					<TextBlock Text="{Binding Ship.MasterShip.NameWithClass}" />
-				</StackPanel>
-
-				<TextBlock
-					Grid.Row="1"
-					Grid.Column="0"
-					VerticalAlignment="Center"
-					Text="{Binding ShipTrainingPlanner.Level}"
+			<StackPanel
+				Grid.Row="0"
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
+				Margin="5"
+				Orientation="Horizontal"
+				>
+				<Image
+					Width="160"
+					Margin="2"
+					Source="{Binding Ship.MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}}"
+					Stretch="Uniform"
 					/>
 
-				<StackPanel
-					Grid.Row="1"
-					Grid.Column="1"
-					Orientation="Horizontal"
-					>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Ship.Level}" />
-					<TextBlock
-						Margin="5 0"
-						VerticalAlignment="Center"
-						Text="/"
-						/>
-				</StackPanel>
-
-				<ui:NumberBox
-					Grid.Row="1"
-					Grid.Column="2"
-					Margin="5"
-					VerticalAlignment="Center"
-					Maximum="{Binding MaximumLevel}"
-					Minimum="{Binding Ship.Level}"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding TargetLevel}"
-					/>
-
-				<TextBlock
-					Grid.Row="2"
-					Grid.Column="0"
-					VerticalAlignment="Center"
-					Text="{Binding ShipTrainingPlanner.HPBonus}"
-					/>
-
-				<StackPanel
-					Grid.Row="2"
-					Grid.Column="1"
-					Orientation="Horizontal"
-					>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMaxModernized}" />
-					<TextBlock
-						Margin="5 0"
-						VerticalAlignment="Center"
-						Text="/"
-						/>
-				</StackPanel>
-				<ui:NumberBox
-					Grid.Row="2"
-					Grid.Column="2"
-					Margin="5"
-					VerticalAlignment="Center"
-					Maximum="{Binding MaximumHPMod}"
-					Minimum="{Binding Ship.HPMaxModernized}"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding TargetHPBonus}"
-					/>
-
-				<StackPanel
-					Grid.Row="3"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					Orientation="Horizontal"
-					>
-					<TextBlock
-						Margin="0 0 5 0"
-						VerticalAlignment="Center"
-						Text="{Binding ShipTrainingPlanner.Current}"
-						/>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMax}" />
-					<TextBlock
-						Margin="5 0"
-						VerticalAlignment="Center"
-						Text="/"
-						/>
-					<TextBlock VerticalAlignment="Center" Text="{Binding TargetHP}" />
-				</StackPanel>
-
-				<TextBlock
-					Grid.Row="4"
-					Grid.Column="0"
-					VerticalAlignment="Center"
-					Text="{Binding ShipTrainingPlanner.ASWBonus}"
-					/>
-
-				<StackPanel
-					Grid.Row="4"
-					Grid.Column="1"
-					Orientation="Horizontal"
-					>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWModernized}" />
-					<TextBlock
-						Margin="5 0"
-						VerticalAlignment="Center"
-						Text="/"
-						/>
-				</StackPanel>
-
-				<ui:NumberBox
-					Grid.Row="4"
-					Grid.Column="2"
-					Margin="5"
-					VerticalAlignment="Center"
-					Maximum="{Binding Ship.MasterShip.ASWModernizable}"
-					Minimum="{Binding Ship.ASWModernized}"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding TargetASWBonus}"
-					/>
-
-				<StackPanel
-					Grid.Row="5"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					Orientation="Horizontal"
-					>
-					<TextBlock
-						Margin="0 0 5 0"
-						VerticalAlignment="Center"
-						Text="{Binding ShipTrainingPlanner.Current}"
-						/>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWBase}" />
-					<TextBlock
-						Margin="5 0"
-						VerticalAlignment="Center"
-						Text="/"
-						/>
-					<TextBlock VerticalAlignment="Center" Text="{Binding TargetASW}" />
-				</StackPanel>
-
-				<TextBlock
-					Grid.Row="6"
-					Grid.Column="0"
-					VerticalAlignment="Center"
-					Text="{Binding ShipTrainingPlanner.Luck}"
-					/>
-
-				<StackPanel
-					Grid.Row="6"
-					Grid.Column="1"
-					Orientation="Horizontal"
-					>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Ship.LuckBase}" />
-					<TextBlock
-						Margin="5 0"
-						VerticalAlignment="Center"
-						Text="/"
-						/>
-				</StackPanel>
-
-				<ui:NumberBox
-					Grid.Row="6"
-					Grid.Column="2"
-					Margin="5"
-					VerticalAlignment="Center"
-					Maximum="{Binding Ship.MasterShip.LuckMax}"
-					Minimum="{Binding Ship.LuckBase}"
-					SpinButtonPlacementMode="Inline"
-					Value="{Binding TargetLuck}"
-					/>
-
-				<TextBlock
-					Grid.Row="7"
-					Grid.Column="0"
-					VerticalAlignment="Center"
-					Text="{Binding ShipTrainingPlanner.RemodelGoal}"
-					/>
-
-				<ComboBox
-					Grid.Row="7"
-					Grid.Column="1"
-					Grid.ColumnSpan="2"
-					Margin="5"
-					VerticalAlignment="Center"
-					DisplayMemberPath="NameEN"
-					ItemsSource="{Binding PossibleRemodels}"
-					SelectedItem="{Binding TargetRemodel}"
-					/>
-			</Grid>
-
-			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-				<Button Margin="5" Click="OnConfirmClick">Confirm</Button>
-				<Button Margin="5" Click="OnCancelClick">Cancel</Button>
+				<TextBlock Text="{Binding Ship.MasterShip.NameWithClass}" />
 			</StackPanel>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.Level}"
+				/>
+
+			<StackPanel
+				Grid.Row="1"
+				Grid.Column="1"
+				Orientation="Horizontal"
+				>
+				<TextBlock VerticalAlignment="Center" Text="{Binding Ship.Level}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="/"
+					/>
+			</StackPanel>
+
+			<ui:NumberBox
+				Grid.Row="1"
+				Grid.Column="2"
+				Margin="5"
+				VerticalAlignment="Center"
+				Maximum="{Binding MaximumLevel}"
+				Minimum="{Binding Ship.Level}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetLevel}"
+				/>
+
+			<TextBlock
+				Grid.Row="2"
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.HPBonus}"
+				/>
+
+			<StackPanel
+				Grid.Row="2"
+				Grid.Column="1"
+				Orientation="Horizontal"
+				>
+				<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMaxModernized}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="/"
+					/>
+			</StackPanel>
+			<ui:NumberBox
+				Grid.Row="2"
+				Grid.Column="2"
+				Margin="5"
+				VerticalAlignment="Center"
+				Maximum="{Binding MaximumHPMod}"
+				Minimum="{Binding Ship.HPMaxModernized}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetHPBonus}"
+				/>
+
+			<StackPanel
+				Grid.Row="3"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Orientation="Horizontal"
+				>
+				<TextBlock
+					Margin="0 0 5 0"
+					VerticalAlignment="Center"
+					Text="{Binding ShipTrainingPlanner.Current}"
+					/>
+				<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMax}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="/"
+					/>
+				<TextBlock VerticalAlignment="Center" Text="{Binding TargetHP}" />
+			</StackPanel>
+
+			<TextBlock
+				Grid.Row="4"
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.ASWBonus}"
+				/>
+
+			<StackPanel
+				Grid.Row="4"
+				Grid.Column="1"
+				Orientation="Horizontal"
+				>
+				<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWModernized}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="/"
+					/>
+			</StackPanel>
+
+			<ui:NumberBox
+				Grid.Row="4"
+				Grid.Column="2"
+				Margin="5"
+				VerticalAlignment="Center"
+				Maximum="{Binding Ship.MasterShip.ASWModernizable}"
+				Minimum="{Binding Ship.ASWModernized}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetASWBonus}"
+				/>
+
+			<StackPanel
+				Grid.Row="5"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Orientation="Horizontal"
+				>
+				<TextBlock
+					Margin="0 0 5 0"
+					VerticalAlignment="Center"
+					Text="{Binding ShipTrainingPlanner.Current}"
+					/>
+				<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWBase}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="/"
+					/>
+				<TextBlock VerticalAlignment="Center" Text="{Binding TargetASW}" />
+			</StackPanel>
+
+			<TextBlock
+				Grid.Row="6"
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.Luck}"
+				/>
+
+			<StackPanel
+				Grid.Row="6"
+				Grid.Column="1"
+				Orientation="Horizontal"
+				>
+				<TextBlock VerticalAlignment="Center" Text="{Binding Ship.LuckBase}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="/"
+					/>
+			</StackPanel>
+
+			<ui:NumberBox
+				Grid.Row="6"
+				Grid.Column="2"
+				Margin="5"
+				VerticalAlignment="Center"
+				Maximum="{Binding Ship.MasterShip.LuckMax}"
+				Minimum="{Binding Ship.LuckBase}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetLuck}"
+				/>
+
+			<TextBlock
+				Grid.Row="7"
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.RemodelGoal}"
+				/>
+
+			<ComboBox
+				Grid.Row="7"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Margin="5"
+				VerticalAlignment="Center"
+				DisplayMemberPath="NameEN"
+				ItemsSource="{Binding PossibleRemodels}"
+				SelectedItem="{Binding TargetRemodel}"
+				/>
+
+			<CheckBox
+				Grid.Row="8"
+				Content="{Binding ShipTrainingPlanner.NotifyTargetRemodelReady}"
+				IsChecked="{Binding NotifyOnRemodelReady}"
+				/>
+			<CheckBox
+				Grid.Row="10"
+				Content="{Binding ShipTrainingPlanner.NotifyAnyRemodelReady}"
+				IsChecked="{Binding NotifyOnAnyRemodelReady}"
+				/>
+		</Grid>
+
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+			<Button
+				Margin="5"
+				Click="OnConfirmClick"
+				Content="{Binding ShipTrainingPlanner.OK}"
+				/>
+			<Button
+				Margin="5"
+				Click="OnCancelClick"
+				Content="{Binding ShipTrainingPlanner.Cancel}"
+				/>
 		</StackPanel>
-	</ScrollViewer>
+	</StackPanel>
 </common:WindowBase>

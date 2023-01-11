@@ -115,6 +115,24 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Notify on any remodel ready).
+        /// </summary>
+        internal static string NotifyAnyRemodelReady {
+            get {
+                return ResourceManager.GetString("NotifyAnyRemodelReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Notify on targeted remodel ready).
+        /// </summary>
+        internal static string NotifyTargetRemodelReady {
+            get {
+                return ResourceManager.GetString("NotifyTargetRemodelReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (Remodel goal).
         /// </summary>
         internal static string RemodelGoal {
