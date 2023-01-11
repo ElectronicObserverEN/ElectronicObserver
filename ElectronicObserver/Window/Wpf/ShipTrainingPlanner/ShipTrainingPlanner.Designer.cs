@@ -151,7 +151,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Ship training plans).
+        ///   Looks up a localized string similar to ??? (Ship Training).
         /// </summary>
         internal static string ViewerTitle {
             get {

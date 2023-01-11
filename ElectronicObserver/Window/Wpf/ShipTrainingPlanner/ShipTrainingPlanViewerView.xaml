@@ -24,9 +24,21 @@
 				</Grid.RowDefinitions>
 
 				<StackPanel Grid.Row="0" Orientation="Horizontal">
-					<Button Command="{Binding OpenShipPickerToAddNewPlanCommand}" Content="{Binding ShipTrainingPlanner.AddShip}" />
-					<Button Command="{Binding OpenEditPopupSelectedPlanCommand}" Content="{Binding ShipTrainingPlanner.EditPlan}" />
-					<Button Command="{Binding RemoveSelectedPlanCommand}" Content="{Binding ShipTrainingPlanner.RemovePlan}" />
+					<Button
+						Margin="2 0"
+						Command="{Binding OpenShipPickerToAddNewPlanCommand}"
+						Content="{Binding ShipTrainingPlanner.AddShip}"
+						/>
+					<Button
+						Margin="2 0"
+						Command="{Binding OpenEditPopupSelectedPlanCommand}"
+						Content="{Binding ShipTrainingPlanner.EditPlan}"
+						/>
+					<Button
+						Margin="2 0"
+						Command="{Binding RemoveSelectedPlanCommand}"
+						Content="{Binding ShipTrainingPlanner.RemovePlan}"
+						/>
 				</StackPanel>
 
 				<DataGrid
