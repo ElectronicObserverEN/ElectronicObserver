@@ -132,7 +132,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		JapaneseEquipmentName = config.JapaneseEquipmentName;
 		JapaneseEquipmentType = config.JapaneseEquipmentType;
 		DisableOtherTranslations = config.DisableOtherTranslations;
-		UseOriginalNodeId = config.UseOriginalNodeId;
+		UseOriginalNodeId = !config.UseOriginalNodeId;
 		ThemeMode = (ThemeMode)config.ThemeMode;
 		ThemeID = config.ThemeID;
 		MaxAkashiPerHP = config.MaxAkashiPerHP;
@@ -170,7 +170,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Config.JapaneseEquipmentName = JapaneseEquipmentName;
 		Config.JapaneseEquipmentType = JapaneseEquipmentType;
 		Config.DisableOtherTranslations = DisableOtherTranslations;
-		Config.UseOriginalNodeId = UseOriginalNodeId;
+		Config.UseOriginalNodeId = !UseOriginalNodeId;
 		Config.ThemeMode = (int)ThemeMode;
 		Config.ThemeID = ThemeID;
 		Config.MaxAkashiPerHP = MaxAkashiPerHP;
