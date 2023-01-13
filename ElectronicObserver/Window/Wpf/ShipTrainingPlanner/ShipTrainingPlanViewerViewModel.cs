@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Numerics;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
@@ -168,7 +167,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 			ShipTrainingPlanView editForm = new(newPlan);
 
 			if (editForm.ShowDialog() is true)
-			{ 
+			{
 				Plans.Add(newPlan);
 				DatabaseContext.ShipTrainingPlans.Add(newPlan.Model);
 				DatabaseContext.SaveChanges();
