@@ -163,15 +163,20 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		if (PickerViewModel.PickedShip is IShipData ship)
 		{
-			ShipTrainingPlanViewModel newPlan = NewPlan(ship);
-			ShipTrainingPlanView editForm = new(newPlan);
+			AddNewPlan(ship);
+		}
+	}
 
-			if (editForm.ShowDialog() is true)
-			{
-				Plans.Add(newPlan);
-				DatabaseContext.ShipTrainingPlans.Add(newPlan.Model);
-				DatabaseContext.SaveChanges();
-			}
+	public void AddNewPlan(IShipData ship)
+	{
+		ShipTrainingPlanViewModel newPlan = NewPlan(ship);
+		ShipTrainingPlanView editForm = new(newPlan);
+
+		if (editForm.ShowDialog() is true)
+		{
+			Plans.Add(newPlan);
+			DatabaseContext.ShipTrainingPlans.Add(newPlan.Model);
+			DatabaseContext.SaveChanges();
 		}
 	}
 

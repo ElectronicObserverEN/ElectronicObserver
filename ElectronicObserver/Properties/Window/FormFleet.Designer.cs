@@ -196,6 +196,42 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Create Training Plan).
+        /// </summary>
+        public static string ContextMenuFleetShipLevel_CreateTrainingPlan {
+            get {
+                return ResourceManager.GetString("ContextMenuFleetShipLevel_CreateTrainingPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Edit Training Plan).
+        /// </summary>
+        public static string ContextMenuFleetShipLevel_EditTrainingPlan {
+            get {
+                return ResourceManager.GetString("ContextMenuFleetShipLevel_EditTrainingPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Open Exp. Calculator).
+        /// </summary>
+        public static string ContextMenuFleetShipLevel_OpenExpChecker {
+            get {
+                return ResourceManager.GetString("ContextMenuFleetShipLevel_OpenExpChecker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Remove Training Plan).
+        /// </summary>
+        public static string ContextMenuFleetShipLevel_RemoveTrainingPlan {
+            get {
+                return ResourceManager.GetString("ContextMenuFleetShipLevel_RemoveTrainingPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}    制空戦力{1} / 索敵能力 {2} / 輸送能力 {3}.
         /// </summary>
         public static string CopyFleetText {

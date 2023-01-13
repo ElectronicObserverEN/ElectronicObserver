@@ -3,6 +3,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
@@ -14,7 +15,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 public partial class FleetLevelViewModel : ObservableObject
 {
 	private ToolService ToolService { get; }
-	private ShipTrainingPlanViewerViewModel ShipTrainingPlanViewerViewModel { get; }
+	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewerViewModel { get; }
 
 	public string? TextNext { get; internal set; }
 	public int Value { get; set; }
@@ -34,17 +35,21 @@ public partial class FleetLevelViewModel : ObservableObject
 	public SolidColorBrush Background => BackColor.ToBrush();
 	public SolidColorBrush Foreground => ForeColor.ToBrush();
 
+	public ShipTrainingPlanViewModel? TrainingPlan { get; set; }
+
 	public FleetLevelViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 		ShipTrainingPlanViewerViewModel = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
+
+		ShipTrainingPlanViewerViewModel.Plans.CollectionChanged += (_ , _) => UpdateColors();
 	}
 
 	public void UpdateColors()
 	{
-		ShipTrainingPlanViewModel? plan = ShipTrainingPlanViewerViewModel.Plans.AsEnumerable().FirstOrDefault(plan => plan.Ship.MasterID == Tag);
+		TrainingPlan = ShipTrainingPlanViewerViewModel.Plans.AsEnumerable().FirstOrDefault(plan => plan.Ship.MasterID == Tag);
 
-		if (plan is not null && plan.ShouldNotifyRemodelReady)
+		if (TrainingPlan is not null && TrainingPlan.ShouldNotifyRemodelReady)
 		{
 			BackColor = Configuration.Config.UI.Fleet_RemodelReadyColor;
 			ForeColor = Configuration.Config.UI.BackColor;
@@ -62,5 +67,13 @@ public partial class FleetLevelViewModel : ObservableObject
 	private void OpenExpChecker()
 	{
 		ToolService.ExpChecker(new ExpCheckerViewModel(Tag));
+	}
+
+	[RelayCommand]
+	private void CreateTrainingPlan()
+	{
+		if (TrainingPlan is not null) return;
+
+		ShipTrainingPlanViewerViewModel.AddNewPlan(KCDatabase.Instance.Ships[Tag]);
 	}
 }

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
     <value>&amp;Copy</value>
@@ -269,5 +269,17 @@ Range: {20} / Speed: {21}
   </data>
   <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
     <value>(right click to open encyclopedia)</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
+    <value>Create Training Plan</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
+    <value>Open Exp. Calculator</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
+    <value>Edit Training Plan</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
+    <value>Remove Training Plan</value>
   </data>
 </root>

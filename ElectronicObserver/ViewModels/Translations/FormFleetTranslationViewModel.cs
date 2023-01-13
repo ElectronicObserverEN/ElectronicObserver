@@ -68,6 +68,11 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string ContextMenuFleet_CopyFleetAnalysis => Properties.Window.FormFleet.ContextMenuFleet_CopyFleetAnalysis.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_CopyFleetAnalysisLockedEquip => Properties.Window.FormFleet.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_CopyFleetAnalysisAllEquip => Properties.Window.FormFleet.ContextMenuFleet_CopyFleetAnalysisAllEquip.Replace("_", "__").Replace("&", "_");
+	
+	public string ContextMenuFleetShipLevel_OpenExpChecker => Properties.Window.FormFleet.ContextMenuFleetShipLevel_OpenExpChecker;
+	public string ContextMenuFleetShipLevel_CreateTrainingPlan => Properties.Window.FormFleet.ContextMenuFleetShipLevel_CreateTrainingPlan;
+	public string ContextMenuFleetShipLevel_EditTrainingPlan => Properties.Window.FormFleet.ContextMenuFleetShipLevel_EditTrainingPlan;
+	public string ContextMenuFleetShipLevel_RemoveTrainingPlan => Properties.Window.FormFleet.ContextMenuFleetShipLevel_RemoveTrainingPlan;
 
 	public string CopyToFleetAnalysisSpreadsheetShips => Properties.Window.FormFleet.CopyToFleetAnalysisSpreadsheetShips;
 	public string CopyToFleetAnalysisSpreadsheetLockedEquipment => Properties.Window.FormFleet.CopyToFleetAnalysisSpreadsheetLockedEquipment;
