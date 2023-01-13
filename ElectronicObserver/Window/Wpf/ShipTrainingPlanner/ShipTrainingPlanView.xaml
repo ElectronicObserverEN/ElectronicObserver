@@ -33,7 +33,6 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
@@ -237,11 +236,8 @@
 
 			<CheckBox
 				Grid.Row="8"
-				Content="{Binding ShipTrainingPlanner.NotifyTargetRemodelReady}"
-				IsChecked="{Binding NotifyOnRemodelReady}"
-				/>
-			<CheckBox
-				Grid.Row="10"
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
 				Content="{Binding ShipTrainingPlanner.NotifyAnyRemodelReady}"
 				IsChecked="{Binding NotifyOnAnyRemodelReady}"
 				/>

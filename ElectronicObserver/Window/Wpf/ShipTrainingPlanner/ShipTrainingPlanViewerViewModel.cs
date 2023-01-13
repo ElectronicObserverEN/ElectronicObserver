@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
@@ -88,10 +89,21 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 			TargetLuck = ship.LuckTotal
 		};
 
-		DatabaseContext.ShipTrainingPlans.Add(newPlan);
-		DatabaseContext.SaveChanges();
-
 		ShipTrainingPlanViewModel newPlanViewModel = new(newPlan);
+
+		// init some values like level or target remodel
+		IShipDataMaster? lastRemodel = newPlanViewModel.PossibleRemodels.LastOrDefault();
+		if (lastRemodel is not null)
+		{
+			newPlan.TargetRemodel = lastRemodel.ShipId;
+
+			if (lastRemodel.RemodelBeforeShip is IShipDataMaster shipBefore)
+			{
+				newPlan.TargetLevel = shipBefore.RemodelAfterLevel;
+			}
+
+			newPlanViewModel.UpdateFromModel();
+		}
 
 		return newPlanViewModel;
 	}
@@ -152,7 +164,15 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		if (PickerViewModel.PickedShip is IShipData ship)
 		{
-			Plans.Add(NewPlan(ship));
+			ShipTrainingPlanViewModel newPlan = NewPlan(ship);
+			ShipTrainingPlanView editForm = new(newPlan);
+
+			if (editForm.ShowDialog() is true)
+			{ 
+				Plans.Add(newPlan);
+				DatabaseContext.ShipTrainingPlans.Add(newPlan.Model);
+				DatabaseContext.SaveChanges();
+			}
 		}
 	}
 

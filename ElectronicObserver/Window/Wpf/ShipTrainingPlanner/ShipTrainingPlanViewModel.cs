@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -40,11 +39,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public bool ShouldNotifyRemodelReady => NotifyOnAnyRemodelReady switch
 	{
 		true => ShipAnyRemodelLevelReached,
-		_ => NotifyOnRemodelReady switch
-		{
-			true => ShipRemodelLevelReached,
-			_ => false
-		}
+		_ => ShipRemodelLevelReached
 	};
 
 	/// <summary>
@@ -68,8 +63,6 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public IShipDataMaster? TargetRemodel { get; set; }
 
 	public List<IShipDataMaster> PossibleRemodels { get; } = new();
-
-	public bool NotifyOnRemodelReady { get; set; }
 
 	public bool NotifyOnAnyRemodelReady { get; set; }
 
@@ -116,7 +109,6 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		TargetHPBonus = Model.TargetHPBonus;
 		TargetASWBonus = Model.TargetASWBonus;
 
-		NotifyOnRemodelReady = Model.NotifyOnRemodelReady;
 		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
 
 		if (Model.TargetRemodel is ShipId shipId)
@@ -147,7 +139,6 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		Model.TargetASWBonus = TargetASWBonus;
 		Model.TargetRemodel = TargetRemodel?.ShipId;
 
-		Model.NotifyOnRemodelReady = NotifyOnRemodelReady;
 		Model.NotifyOnAnyRemodelReady = NotifyOnAnyRemodelReady;
 	}
 }

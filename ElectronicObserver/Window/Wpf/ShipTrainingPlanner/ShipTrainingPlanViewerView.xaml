@@ -211,7 +211,7 @@
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
 
-						<DataGridTextColumn Binding="{Binding Ship.MasterShip.NameWithClass}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
+						<DataGridTextColumn Binding="{Binding TargetRemodel.NameWithClass}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
 					</DataGrid.Columns>
 
 				</DataGrid>
