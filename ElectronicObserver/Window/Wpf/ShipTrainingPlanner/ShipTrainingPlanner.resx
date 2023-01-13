@@ -129,6 +129,9 @@
   <data name="EditPlan" xml:space="preserve">
     <value>??? (Edit plan)</value>
   </data>
+  <data name="Exp" xml:space="preserve">
+    <value>??? (exp.)</value>
+  </data>
   <data name="HPBonus" xml:space="preserve">
     <value>??? (HP bonus)</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="NotifyTargetRemodelReady" xml:space="preserve">
     <value>??? (Notify on targeted remodel ready)</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>??? (Remaining)</value>
   </data>
   <data name="RemodelGoal" xml:space="preserve">
     <value>??? (Remodel goal)</value>

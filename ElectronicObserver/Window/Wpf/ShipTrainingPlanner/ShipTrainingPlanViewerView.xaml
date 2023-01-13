@@ -106,14 +106,30 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.Level, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Orientation="Horizontal">
-										<TextBlock VerticalAlignment="Center" Text="{Binding Ship.Level}" />
-										<TextBlock
-											Margin="5 0"
-											VerticalAlignment="Center"
-											Text="/"
-											/>
-										<TextBlock VerticalAlignment="Center" Text="{Binding TargetLevel}" />
+									<StackPanel Orientation="Vertical">
+										<StackPanel Orientation="Horizontal">
+											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.Level}" />
+											<TextBlock
+												Margin="5 0"
+												VerticalAlignment="Center"
+												Text="/"
+												/>
+											<TextBlock VerticalAlignment="Center" Text="{Binding TargetLevel}" />
+										</StackPanel>
+
+										<StackPanel Orientation="Horizontal">
+											<TextBlock
+												Margin="0 0 2 0"
+												VerticalAlignment="Center"
+												Text="{Binding DataContext.ShipTrainingPlanner.Remaining, Source={StaticResource Proxy}}"
+												/>
+											<TextBlock
+												Margin="2 0"
+												VerticalAlignment="Center"
+												Text="{Binding RemainingExpToTarget}"
+												/>
+											<TextBlock VerticalAlignment="Center" Text="{Binding DataContext.ShipTrainingPlanner.Exp, Source={StaticResource Proxy}}" />
+										</StackPanel>
 									</StackPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>

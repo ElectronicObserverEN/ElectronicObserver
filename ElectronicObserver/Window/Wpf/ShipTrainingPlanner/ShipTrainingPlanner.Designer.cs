@@ -97,6 +97,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (exp.).
+        /// </summary>
+        internal static string Exp {
+            get {
+                return ResourceManager.GetString("Exp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (HP bonus).
         /// </summary>
         internal static string HPBonus {
@@ -129,6 +138,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         internal static string NotifyTargetRemodelReady {
             get {
                 return ResourceManager.GetString("NotifyTargetRemodelReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Remaining).
+        /// </summary>
+        internal static string Remaining {
+            get {
+                return ResourceManager.GetString("Remaining", resourceCulture);
             }
         }
         

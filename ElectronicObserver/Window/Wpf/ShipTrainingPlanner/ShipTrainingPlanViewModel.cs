@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -21,6 +22,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 
 	public int TargetLevel { get; set; }
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
+	public int RemainingExpToTarget => Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, TargetLevel), 0);
 
 	public int TargetHP => Ship.HPMax + TargetHPBonus;
 

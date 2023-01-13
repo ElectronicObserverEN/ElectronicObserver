@@ -220,10 +220,32 @@ public class FleetItemViewModel : ObservableObject
 					tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
 				}
 
+				string? planTip = null;
+				int? planLevel = null;
+
+				if (Level.TrainingPlan is not null && !remodels.Select((_, remodelLevel) => remodelLevel).Contains(Level.TrainingPlan.TargetLevel))
+				{
+					planTip = Math
+						.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, Level.TrainingPlan.TargetLevel), 0)
+						.ToString("N0");
+
+					planLevel = Level.TrainingPlan.TargetLevel;
+				}
+
+				if (planLevel is not null && planLevel < 99)
+				{
+					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+				}
+
 				if (Ship.Level < 99)
 				{
 					string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
 					tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
+				}
+
+				if (planLevel is not null && planLevel > 99 && planLevel != ExpTable.ShipMaximumLevel)
+				{
+					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
 				}
 
 				if (Ship.Level < ExpTable.ShipMaximumLevel)
@@ -233,9 +255,6 @@ public class FleetItemViewModel : ObservableObject
 						.ToString("N0");
 					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
 				}
-
-
-				tip.AppendLine(FormFleet.ExpCalcHint);
 
 				Level.ToolTip = tip.ToString();
 			}

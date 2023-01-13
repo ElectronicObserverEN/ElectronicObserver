@@ -33,6 +33,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
@@ -84,15 +85,30 @@
 				Value="{Binding TargetLevel}"
 				/>
 
-			<TextBlock
+			<StackPanel
 				Grid.Row="2"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Orientation="Horizontal"
+				>
+				<TextBlock VerticalAlignment="Center" Text="{Binding ShipTrainingPlanner.Remaining}" />
+				<TextBlock
+					Margin="5 0"
+					VerticalAlignment="Center"
+					Text="{Binding RemainingExpToTarget}"
+					/>
+				<TextBlock VerticalAlignment="Center" Text="{Binding ShipTrainingPlanner.Exp}" />
+			</StackPanel>
+
+			<TextBlock
+				Grid.Row="3"
 				Grid.Column="0"
 				VerticalAlignment="Center"
 				Text="{Binding ShipTrainingPlanner.HPBonus}"
 				/>
 
 			<StackPanel
-				Grid.Row="2"
+				Grid.Row="3"
 				Grid.Column="1"
 				Orientation="Horizontal"
 				>
@@ -104,7 +120,7 @@
 					/>
 			</StackPanel>
 			<ui:NumberBox
-				Grid.Row="2"
+				Grid.Row="3"
 				Grid.Column="2"
 				Margin="5"
 				VerticalAlignment="Center"
@@ -115,7 +131,7 @@
 				/>
 
 			<StackPanel
-				Grid.Row="3"
+				Grid.Row="4"
 				Grid.Column="1"
 				Grid.ColumnSpan="2"
 				Orientation="Horizontal"
@@ -135,14 +151,14 @@
 			</StackPanel>
 
 			<TextBlock
-				Grid.Row="4"
+				Grid.Row="5"
 				Grid.Column="0"
 				VerticalAlignment="Center"
 				Text="{Binding ShipTrainingPlanner.ASWBonus}"
 				/>
 
 			<StackPanel
-				Grid.Row="4"
+				Grid.Row="5"
 				Grid.Column="1"
 				Orientation="Horizontal"
 				>
@@ -155,7 +171,7 @@
 			</StackPanel>
 
 			<ui:NumberBox
-				Grid.Row="4"
+				Grid.Row="5"
 				Grid.Column="2"
 				Margin="5"
 				VerticalAlignment="Center"
@@ -166,7 +182,7 @@
 				/>
 
 			<StackPanel
-				Grid.Row="5"
+				Grid.Row="6"
 				Grid.Column="1"
 				Grid.ColumnSpan="2"
 				Orientation="Horizontal"
@@ -186,14 +202,14 @@
 			</StackPanel>
 
 			<TextBlock
-				Grid.Row="6"
+				Grid.Row="7"
 				Grid.Column="0"
 				VerticalAlignment="Center"
 				Text="{Binding ShipTrainingPlanner.Luck}"
 				/>
 
 			<StackPanel
-				Grid.Row="6"
+				Grid.Row="7"
 				Grid.Column="1"
 				Orientation="Horizontal"
 				>
@@ -206,7 +222,7 @@
 			</StackPanel>
 
 			<ui:NumberBox
-				Grid.Row="6"
+				Grid.Row="7"
 				Grid.Column="2"
 				Margin="5"
 				VerticalAlignment="Center"
@@ -217,14 +233,14 @@
 				/>
 
 			<TextBlock
-				Grid.Row="7"
+				Grid.Row="8"
 				Grid.Column="0"
 				VerticalAlignment="Center"
 				Text="{Binding ShipTrainingPlanner.RemodelGoal}"
 				/>
 
 			<ComboBox
-				Grid.Row="7"
+				Grid.Row="8"
 				Grid.Column="1"
 				Grid.ColumnSpan="2"
 				Margin="5"
@@ -235,7 +251,7 @@
 				/>
 
 			<CheckBox
-				Grid.Row="8"
+				Grid.Row="9"
 				Grid.Column="0"
 				Grid.ColumnSpan="3"
 				Content="{Binding ShipTrainingPlanner.NotifyAnyRemodelReady}"

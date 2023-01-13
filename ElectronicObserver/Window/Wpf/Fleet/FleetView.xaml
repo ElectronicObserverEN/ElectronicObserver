@@ -356,7 +356,9 @@
 									<Border
 										Grid.Column="1"
 										Background="{Binding Background}"
+										Cursor="Help"
 										DataContext="{Binding Level}"
+										ForceCursor="True"
 										ToolTip="{Binding ToolTip}"
 										>
 										<Border.ContextMenu>
