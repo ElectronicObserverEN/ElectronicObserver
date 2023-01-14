@@ -16,6 +16,13 @@ public static class ShipDataExtensions
 			temp = temp.RemodelBeforeShip;
 		}
 
+		int unusedCode = 123;
+
+		if (true & true)
+		{
+			string unusedcode2 = null;
+		}
+
 		return temp;
 	}
 
