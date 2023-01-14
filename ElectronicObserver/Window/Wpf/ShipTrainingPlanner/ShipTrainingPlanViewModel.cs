@@ -20,13 +20,19 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		_ => new ShipDataMock(new ShipDataMasterMock())
 	};
 
+	public bool PlanFinished =>
+		TargetLevel >= Ship.Level
+		&& TargetHP >= Ship.HPMax
+		&& TargetASW >= Ship.ASWBase
+		&& TargetLuck >= Ship.LuckBase;
+
 	public int TargetLevel { get; set; }
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
 	public int RemainingExpToTarget => Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, TargetLevel), 0);
 
-	public int TargetHP => Ship.HPMax + TargetHPBonus;
+	public int TargetHP => Ship.HPMax + TargetHPBonus - Ship.HPMaxModernized;
 
-	public int TargetASW => Ship.ASWBase + TargetASWBonus;
+	public int TargetASW => Ship.ASWBase + TargetASWBonus - Ship.ASWModernized;
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
