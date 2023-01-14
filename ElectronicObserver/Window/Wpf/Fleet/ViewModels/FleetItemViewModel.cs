@@ -208,13 +208,14 @@ public class FleetItemViewModel : ObservableObject
 				if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
 					tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
 
-				var remodels = db.MasterShips.Values
+				List<(string, int)> remodels = db.MasterShips.Values
 					.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
 					.Where(s => s.RemodelTier > Ship.MasterShip.RemodelTier)
 					.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
-					.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0));
+					.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0))
+					.ToList();
 
-				foreach ((var name, int remodelLevel) in remodels)
+				foreach ((string name, int remodelLevel) in remodels)
 				{
 					int neededExp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, remodelLevel), 0);
 					tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
@@ -223,12 +224,9 @@ public class FleetItemViewModel : ObservableObject
 				string? planTip = null;
 				int? planLevel = null;
 
-				if (Level.TrainingPlan is not null && !remodels.Select((_, remodelLevel) => remodelLevel).Contains(Level.TrainingPlan.TargetLevel))
+				if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Item2).Contains(Level.TrainingPlan.TargetLevel))
 				{
-					planTip = Math
-						.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, Level.TrainingPlan.TargetLevel), 0)
-						.ToString("N0");
-
+					planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
 					planLevel = Level.TrainingPlan.TargetLevel;
 				}
 
