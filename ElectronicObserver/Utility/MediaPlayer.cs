@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using WMPLib;
 
 
 namespace ElectronicObserver.Utility;
@@ -14,7 +13,7 @@ namespace ElectronicObserver.Utility;
 /// </summary>
 public class MediaPlayer
 {
-	private WindowsMediaPlayerClass WMP { get; }
+	private dynamic WMP { get; }
 
 	public event Action<int> PlayStateChange = delegate { };
 	public event Action MediaEnded = delegate { };
@@ -56,12 +55,11 @@ public class MediaPlayer
 	{
 		try
 		{
-			WMP = new WindowsMediaPlayerClass
+			WMP = new
 			{
 				uiMode = "none"
 			};
 			WMP.settings.autoStart = false;
-			WMP.PlayStateChange += wmp_PlayStateChange;
 
 		}
 		catch (Exception e)
