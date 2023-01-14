@@ -21,11 +21,14 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private ShipDataPickerViewModel PickerViewModel { get; } = new();
 
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = new();
+	public List<ShipTrainingPlanViewModel> PlansFiltered { get; set; } = new();
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
+
+	public bool DisplayFinished { get; set; } = false;
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
@@ -40,9 +43,15 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
+		PropertyChanged += ShipTrainingPlanViewerViewModel_PropertyChanged;
 
 		SubscribeToApi();
 		StartJotTracking();
+	}
+
+	private void ShipTrainingPlanViewerViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is nameof(DisplayFinished)) UpdatePlanList();
 	}
 
 	private void SubscribeToApi()
@@ -77,6 +86,14 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		}
 
 		APIObserver.Instance.ApiPort_Port.ResponseReceived -= Initialize;
+		Plans.CollectionChanged += (_, _) => UpdatePlanList();
+
+		UpdatePlanList();
+	}
+
+	private void UpdatePlanList()
+	{
+		PlansFiltered = Plans.Where(plan => DisplayFinished || !plan.PlanFinished).ToList();
 	}
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
@@ -164,6 +181,17 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		if (PickerViewModel.PickedShip is IShipData ship)
 		{
 			AddNewPlan(ship);
+		}
+	}
+
+	[RelayCommand]
+	private void RemoveAllFinishedPlans()
+	{
+		List<ShipTrainingPlanViewModel> plansToRemove = Plans.Where(p => p.PlanFinished).ToList();
+
+		foreach (ShipTrainingPlanViewModel plan in plansToRemove)
+		{
+			RemovePlan(plan);
 		}
 	}
 

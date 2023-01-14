@@ -126,11 +126,17 @@
   <data name="Current" xml:space="preserve">
     <value>Current</value>
   </data>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>Display finished</value>
+  </data>
   <data name="EditPlan" xml:space="preserve">
     <value>Edit plan</value>
   </data>
   <data name="Exp" xml:space="preserve">
     <value>exp.</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
   </data>
   <data name="HPBonus" xml:space="preserve">
     <value>HP bonus</value>
@@ -149,6 +155,9 @@
   </data>
   <data name="RemodelGoal" xml:space="preserve">
     <value>Remodel goal</value>
+  </data>
+  <data name="RemoveFinishedPlans" xml:space="preserve">
+    <value>Remove finished plans</value>
   </data>
   <data name="RemovePlan" xml:space="preserve">
     <value>Remove plan</value>

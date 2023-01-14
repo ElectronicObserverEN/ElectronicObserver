@@ -39,6 +39,11 @@
 						Command="{Binding RemoveSelectedPlanCommand}"
 						Content="{Binding ShipTrainingPlanner.RemovePlan}"
 						/>
+					<CheckBox
+						Margin="2 0"
+						Content="{Binding ShipTrainingPlanner.DisplayFinished}"
+						IsChecked="{Binding DisplayFinished}"
+						/>
 				</StackPanel>
 
 				<DataGrid
@@ -47,7 +52,7 @@
 					ColumnWidth="90"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding Plans}"
+					ItemsSource="{Binding PlansFiltered}"
 					SelectedItem="{Binding SelectedPlan}"
 					SelectionMode="Single"
 					SelectionUnit="FullRow"
@@ -80,6 +85,8 @@
 										CommandParameter="{Binding}"
 										Header="{Binding DataContext.ShipTrainingPlanner.RemovePlan, Source={StaticResource Proxy}, Mode=OneWay}"
 										/>
+									<Separator />
+									<MenuItem Command="{Binding DataContext.RemoveAllFinishedPlansCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.ShipTrainingPlanner.RemoveFinishedPlans, Source={StaticResource Proxy}, Mode=OneWay}" />
 								</ContextMenu>
 							</Style.Resources>
 
@@ -228,6 +235,13 @@
 						</DataGridTemplateColumn>
 
 						<DataGridTextColumn Binding="{Binding TargetRemodel.NameWithClass}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
+
+						<DataGridCheckBoxColumn
+							Binding="{Binding PlanFinished, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.Finished, Source={StaticResource Proxy}}"
+							IsReadOnly="True"
+							/>
+
 					</DataGrid.Columns>
 
 				</DataGrid>

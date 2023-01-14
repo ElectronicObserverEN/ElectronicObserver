@@ -88,6 +88,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 表示完了.
+        /// </summary>
+        internal static string DisplayFinished {
+            get {
+                return ResourceManager.GetString("DisplayFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (Edit plan).
         /// </summary>
         internal static string EditPlan {
@@ -102,6 +111,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         internal static string Exp {
             get {
                 return ResourceManager.GetString("Exp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 完了.
+        /// </summary>
+        internal static string Finished {
+            get {
+                return ResourceManager.GetString("Finished", resourceCulture);
             }
         }
         
@@ -156,6 +174,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         internal static string RemodelGoal {
             get {
                 return ResourceManager.GetString("RemodelGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Remove finished plans).
+        /// </summary>
+        internal static string RemoveFinishedPlans {
+            get {
+                return ResourceManager.GetString("RemoveFinishedPlans", resourceCulture);
             }
         }
         

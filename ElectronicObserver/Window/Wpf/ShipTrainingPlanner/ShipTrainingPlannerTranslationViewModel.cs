@@ -24,4 +24,7 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 	public string NotifyAnyRemodelReady => ShipTrainingPlanner.NotifyAnyRemodelReady;
 	public string Remaining => ShipTrainingPlanner.Remaining;
 	public string Exp => ShipTrainingPlanner.Exp;
+	public string Finished => ShipTrainingPlanner.Finished;
+	public string DisplayFinished => ShipTrainingPlanner.DisplayFinished;
+	public string RemoveFinishedPlans => ShipTrainingPlanner.RemoveFinishedPlans;
 }

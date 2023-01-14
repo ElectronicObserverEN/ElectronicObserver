@@ -21,10 +21,11 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	};
 
 	public bool PlanFinished =>
-		TargetLevel >= Ship.Level
-		&& TargetHP >= Ship.HPMax
-		&& TargetASW >= Ship.ASWBase
-		&& TargetLuck >= Ship.LuckBase;
+		Ship.Level >= TargetLevel
+		&& Ship.HPMax >= TargetHP 
+		&& Ship.ASWBase >= TargetASW 
+		&& Ship.LuckBase >= TargetLuck
+		&& (TargetRemodel is null || Ship.MasterShip.ShipId == TargetRemodel.ShipId);
 
 	public int TargetLevel { get; set; }
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
