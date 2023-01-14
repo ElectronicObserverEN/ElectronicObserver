@@ -152,7 +152,7 @@ public class EOMediaPlayer
 	}
 
 
-	public IEnumerable<string> SearchSupportedFiles(string path, System.IO.SearchOption option = System.IO.SearchOption.TopDirectoryOnly)
+	public static IEnumerable<string> SearchSupportedFiles(string path, System.IO.SearchOption option = System.IO.SearchOption.TopDirectoryOnly)
 	{
 		return System.IO.Directory.EnumerateFiles(path, "*", option).Where(s => SupportedFileName.IsMatch(s));
 	}
@@ -337,7 +337,7 @@ public class EOMediaPlayer
 	// 即時変化させるとイベント終了直後に書き換えられて next が無視されるので苦肉の策
 	private async void OnMediaEnded()
 	{
-		await Task.Run(() => Task.WaitAll(Task.Delay(10)));
+		await Task.Delay(10);
 		MediaEnded();
 	}
 }

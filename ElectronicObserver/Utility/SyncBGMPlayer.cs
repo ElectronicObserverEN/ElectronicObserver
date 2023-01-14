@@ -90,7 +90,7 @@ public sealed class SyncBGMPlayer
 	}
 
 	public IDDictionary<SoundHandle> Handles { get; internal set; }
-	public bool Enabled;
+	public bool Enabled { get; set; }
 	public bool IsMute
 	{
 		get { return MediaPlayer.IsMute; }
@@ -302,7 +302,7 @@ public sealed class SyncBGMPlayer
 	}
 
 
-	private bool Play(SoundHandle sh)
+	private void Play(SoundHandle sh)
 	{
 		if (Enabled &&
 			sh != null &&
@@ -327,7 +327,7 @@ public sealed class SyncBGMPlayer
 			}
 			else
 			{
-				return false;
+				return;
 			}
 
 			_currentSoundHandleID = sh.HandleID;
@@ -337,11 +337,7 @@ public sealed class SyncBGMPlayer
 			if (!Utility.Configuration.Config.Control.UseSystemVolume)
 				MediaPlayer.Volume = sh.Volume;
 			MediaPlayer.Play();
-
-			return true;
 		}
-
-		return false;
 	}
 
 

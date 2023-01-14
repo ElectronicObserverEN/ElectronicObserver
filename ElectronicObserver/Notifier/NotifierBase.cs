@@ -31,12 +31,12 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 通知音
 	/// </summary>
-	public EOMediaPlayer Sound { get; protected set; }
+	public EOMediaPlayer Sound { get; protected set; } = default!;
 
 	/// <summary>
 	/// 通知音のパス
 	/// </summary>
-	public string SoundPath { get; set; }
+	public string SoundPath { get; set; } = "";
 
 	/// <summary>
 	/// 通知音を再生するか
@@ -101,7 +101,7 @@ public abstract class NotifierBase
 
 
 
-	public NotifierBase()
+	protected NotifierBase()
 	{
 
 		Initialize();
@@ -109,7 +109,7 @@ public abstract class NotifierBase
 
 	}
 
-	public NotifierBase(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
+	protected NotifierBase(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
 	{
 
 		Initialize();
@@ -251,7 +251,7 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 通知ダイアログを表示します。
 	/// </summary>
-	public void ShowDialog(System.Windows.Forms.FormClosingEventHandler customClosingHandler = null)
+	public void ShowDialog(System.Windows.Forms.FormClosingEventHandler? customClosingHandler = null)
 	{
 
 		if (ShowsDialog)
@@ -266,7 +266,7 @@ public abstract class NotifierBase
 		}
 	}
 
-	void dialog_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+	void dialog_FormClosing(object? sender, System.Windows.Forms.FormClosingEventArgs e)
 	{
 		if (LoopsSound)
 		{
@@ -286,7 +286,7 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 終了時のイベントハンドラを指定して通知を行います。
 	/// </summary>
-	public virtual void Notify(System.Windows.Forms.FormClosingEventHandler customClosingHandler)
+	public virtual void Notify(System.Windows.Forms.FormClosingEventHandler? customClosingHandler)
 	{
 
 		if (!IsEnabled || IsSilenced) return;

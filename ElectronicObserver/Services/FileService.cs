@@ -12,9 +12,9 @@ namespace ElectronicObserver.Services;
 
 public class FileService
 {
-	private System.Windows.Window MainWindow => App.Current!.MainWindow!;
+	private static System.Windows.Window MainWindow => App.Current!.MainWindow!;
 
-	private string LayoutFilter => "Layout File|*.xml";
+	private static string LayoutFilter => "Layout File|*.xml";
 
 	/// <summary>
 	/// Opens a file selection dialog to select a layout file.
@@ -163,7 +163,10 @@ public class FileService
 				dialog.InitialDirectory = Path.GetDirectoryName(path);
 
 			}
-			catch (Exception) { }
+			catch (Exception) 
+			{ 
+				// do not throw to avoid issues
+			}
 		}
 
 		return dialog.ShowDialog(MainWindow) switch
@@ -188,7 +191,10 @@ public class FileService
 				dialog.InitialDirectory = Path.GetDirectoryName(path);
 
 			}
-			catch (Exception) { }
+			catch (Exception) 
+			{ 
+				// do not throw to avoid issues
+			}
 		}
 
 		return dialog.ShowDialog(MainWindow) switch
