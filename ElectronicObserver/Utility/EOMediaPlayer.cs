@@ -9,17 +9,14 @@ using System.Windows.Media;
 
 namespace ElectronicObserver.Utility;
 
-/// <summary>
-/// Windows Media Player コントロールを利用して、音楽を再生するためのクラスです。(outdated)
-/// </summary>
 public class EOMediaPlayer
 {
-	private MediaPlayer WMP { get; }
+	private MediaPlayer MediaPlayer { get; }
 
 	public event Action MediaEnded = delegate { };
 
-	private List<string> _playlist;
-	private List<string> _realPlaylist;
+	private List<string> Playlist { get; set; }
+	private List<string> RealPlayList { get; set; }
 
 	private Random Rand { get; }
 
@@ -28,7 +25,7 @@ public class EOMediaPlayer
 	/// 対応している拡張子リスト
 	/// </summary>
 	public static readonly ReadOnlyCollection<string> SupportedExtensions =
-		new ReadOnlyCollection<string>(new List<string>() {
+		new(new List<string>() {
 			"asf",
 			"wma",
 			"mp2",
@@ -48,45 +45,27 @@ public class EOMediaPlayer
 			"mka",
 		});
 
-	private static readonly Regex SupportedFileName = new Regex(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled);
+	private static readonly Regex SupportedFileName = new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled);
 
 
 	public EOMediaPlayer()
 	{
-		try
-		{
-			WMP = new MediaPlayer
-			{
-				
-			};
-			//WMP.settings.autoStart = false;
-			WMP.MediaOpened += WMP_MediaOpened;
-			WMP.MediaEnded += WMP_MediaEnded;
+		MediaPlayer = new MediaPlayer();
 
-		}
-		catch (Exception e)
-		{
-			WMP = null;
-		}
+		MediaPlayer.MediaOpened += WMP_MediaOpened;
+		MediaPlayer.MediaEnded += WMP_MediaEnded;
 
 		IsLoop = false;
 		_isShuffle = false;
 		IsMute = false;
 		LoopHeadPosition = TimeSpan.Zero;
 		AutoPlay = false;
-		_playlist = new List<string>();
-		_realPlaylist = new List<string>();
+		Playlist = new List<string>();
+		RealPlayList = new List<string>();
 		Rand = new Random();
 
 		MediaEnded += MediaPlayer_MediaEnded;
 	}
-
-
-	/// <summary>
-	/// 利用可能かどうか
-	/// false の場合全機能が使用不可能
-	/// </summary>
-	public bool IsAvailable => WMP != null;
 
 	/// <summary>
 	/// メディアファイルのパス。
@@ -94,11 +73,11 @@ public class EOMediaPlayer
 	/// </summary>
 	public string SourcePath
 	{
-		get { return !IsAvailable ? string.Empty : WMP.Source?.ToString() ?? string.Empty; }
+		get { return MediaPlayer.Source?.ToString() ?? string.Empty; }
 		set
 		{
-			if (IsAvailable && WMP.Source?.ToString() != value && !string.IsNullOrEmpty(value))
-				WMP.Open(new(value));
+			if (MediaPlayer.Source?.ToString() != value && !string.IsNullOrEmpty(value))
+				MediaPlayer.Open(new(value));
 		}
 	}
 
@@ -110,8 +89,8 @@ public class EOMediaPlayer
 	/// </summary>
 	public int Volume
 	{
-		get { return !IsAvailable ? 0 : (int)(WMP.Volume * 100); }
-		set { if (IsAvailable) WMP.Volume = (double)value / 100; }
+		get { return (int)(MediaPlayer.Volume * 100); }
+		set { MediaPlayer.Volume = (double)value / 100; }
 	}
 
 	/// <summary>
@@ -119,8 +98,8 @@ public class EOMediaPlayer
 	/// </summary>
 	public bool IsMute
 	{
-		get { return IsAvailable && WMP.IsMuted; }
-		set { if (IsAvailable) WMP.IsMuted = value; }
+		get { return MediaPlayer.IsMuted; }
+		set { MediaPlayer.IsMuted = value; }
 	}
 
 
@@ -140,8 +119,8 @@ public class EOMediaPlayer
 	/// </summary>
 	public TimeSpan CurrentPosition
 	{
-		get { return !IsAvailable ? TimeSpan.Zero : WMP.Position; }
-		set { if (IsAvailable) WMP.Position = value; }
+		get { return MediaPlayer.Position; }
+		set { MediaPlayer.Position = value; }
 	}
 
 	/// <summary>
@@ -155,7 +134,7 @@ public class EOMediaPlayer
 	/// <returns></returns>
 	public List<string> GetPlaylist()
 	{
-		return new List<string>(_playlist);
+		return new List<string>(Playlist);
 	}
 
 	/// <summary>
@@ -165,9 +144,9 @@ public class EOMediaPlayer
 	public void SetPlaylist(IEnumerable<string> list)
 	{
 		if (list == null)
-			_playlist = new List<string>();
+			Playlist = new List<string>();
 		else
-			_playlist = list.Distinct().ToList();
+			Playlist = list.Distinct().ToList();
 
 		UpdateRealPlaylist();
 	}
@@ -202,11 +181,11 @@ public class EOMediaPlayer
 			if (_playingIndex != value)
 			{
 
-				if (value < 0 || _realPlaylist.Count <= value)
+				if (value < 0 || RealPlayList.Count <= value)
 					return;
 
 				_playingIndex = value;
-				SourcePath = _realPlaylist[_playingIndex];
+				SourcePath = RealPlayList[_playingIndex];
 				if (AutoPlay)
 					Play();
 			}
@@ -247,12 +226,10 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Play()
 	{
-		if (!IsAvailable) return;
+		if (RealPlayList.Count > 0 && SourcePath != RealPlayList[_playingIndex])
+			SourcePath = RealPlayList[_playingIndex];
 
-		if (_realPlaylist.Count > 0 && SourcePath != _realPlaylist[_playingIndex])
-			SourcePath = _realPlaylist[_playingIndex];
-
-		WMP.Play();
+		MediaPlayer.Play();
 	}
 
 	/// <summary>
@@ -260,9 +237,7 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Pause()
 	{
-		if (!IsAvailable) return;
-
-		WMP.Pause();
+		MediaPlayer.Pause();
 	}
 
 	/// <summary>
@@ -270,9 +245,7 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Stop()
 	{
-		if (!IsAvailable) return;
-
-		WMP.Stop();
+		MediaPlayer.Stop();
 	}
 
 	/// <summary>
@@ -280,9 +253,7 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Close()
 	{
-		if (!IsAvailable) return;
-
-		WMP.Close();
+		MediaPlayer.Close();
 	}
 
 
@@ -291,9 +262,7 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Next()
 	{
-		if (!IsAvailable) return;
-
-		if (PlayingIndex >= _realPlaylist.Count - 1)
+		if (PlayingIndex >= RealPlayList.Count - 1)
 		{
 			if (IsShuffle)
 				UpdateRealPlaylist();
@@ -311,27 +280,25 @@ public class EOMediaPlayer
 
 	private void UpdateRealPlaylist()
 	{
-		if (!IsAvailable) return;
-
 		if (!IsShuffle)
 		{
-			_realPlaylist = new List<string>(_playlist);
+			RealPlayList = new List<string>(Playlist);
 
 		}
 		else
 		{
 			// shuffle
-			_realPlaylist = _playlist.OrderBy(s => Guid.NewGuid()).ToList();
+			RealPlayList = Playlist.OrderBy(s => Guid.NewGuid()).ToList();
 
 			// 同じ曲が連続で流れるのを防ぐ
-			if (_realPlaylist.Count > 1 && SourcePath == _realPlaylist[0])
+			if (RealPlayList.Count > 1 && SourcePath == RealPlayList[0])
 			{
-				_realPlaylist = _realPlaylist.Skip(1).ToList();
-				_realPlaylist.Insert(Rand.Next(1, _realPlaylist.Count + 1), SourcePath);
+				RealPlayList = RealPlayList.Skip(1).ToList();
+				RealPlayList.Insert(Rand.Next(1, RealPlayList.Count + 1), SourcePath);
 			}
 		}
 
-		int index = _realPlaylist.IndexOf(SourcePath);
+		int index = RealPlayList.IndexOf(SourcePath);
 		PlayingIndex = index != -1 ? index : 0;
 	}
 
@@ -344,7 +311,7 @@ public class EOMediaPlayer
 	{
 		if (IsLoop)
 		{
-			WMP.Position = CurrentPosition;
+			MediaPlayer.Position = CurrentPosition;
 			CurrentPosition = LoopHeadPosition;
 		}
 
@@ -362,7 +329,7 @@ public class EOMediaPlayer
 
 		if (IsLoop)
 		{
-			WMP.Play();
+			MediaPlayer.Play();
 		}
 	}
 

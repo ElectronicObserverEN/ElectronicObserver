@@ -30,13 +30,6 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 		Filters.PropertyChanged += (_, _) => ReloadShips();
 
 		ReloadShips();
-
-		int unusedCode = 123;
-
-		if (true & true)
-		{
-			string unusedcode2 = null;
-		}
 	}
 
 	public void LoadWithShips(IEnumerable<IShipData> ships)
