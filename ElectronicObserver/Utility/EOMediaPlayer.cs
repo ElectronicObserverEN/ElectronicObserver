@@ -45,7 +45,7 @@ public class EOMediaPlayer
 			"mka",
 		});
 
-	private static readonly Regex SupportedFileName = new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled);
+	private static readonly Regex SupportedFileName = new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled, TimeSpan.FromSeconds(30));
 
 
 	public EOMediaPlayer()
