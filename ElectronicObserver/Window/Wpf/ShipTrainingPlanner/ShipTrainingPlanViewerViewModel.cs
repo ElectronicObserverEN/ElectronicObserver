@@ -20,7 +20,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 {
 	private ShipDataPickerViewModel PickerViewModel { get; } = new();
 
-	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; set; } = new();
+	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = new();
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
@@ -49,7 +49,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		APIObserver o = APIObserver.Instance;
 
-		o.ApiPort_Port.ResponseReceived += (_, _) => Initialize();
+		o.ApiPort_Port.ResponseReceived += Initialize;
 		o.ApiReqKousyou_DestroyShip.RequestReceived += OnShipScrap;
 	}
 
@@ -66,10 +66,8 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		}
 	}
 
-	public void Initialize()
+	private void Initialize(string apiname, dynamic data)
 	{
-		if (Plans.Any()) return;
-
 		List<ShipTrainingPlanModel> models = DatabaseContext.ShipTrainingPlans.ToList();
 
 		foreach (ShipTrainingPlanModel model in models)
@@ -77,6 +75,8 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 			ShipTrainingPlanViewModel viewModel = new(model);
 			Plans.Add(viewModel);
 		}
+
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= Initialize;
 	}
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
