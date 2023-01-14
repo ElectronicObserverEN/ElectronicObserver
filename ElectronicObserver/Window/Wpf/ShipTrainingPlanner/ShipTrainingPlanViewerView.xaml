@@ -132,18 +132,19 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.HPBonus, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Margin="2">
+									<StackPanel Margin="4 2" HorizontalAlignment="Center">
 
-										<TextBlock>
+										<TextBlock HorizontalAlignment="Center">
 											+<Run Text="{Binding Ship.HPMaxModernized, Mode=OneWay}" />
 											<Run Text="/" />
 											+<Run Text="{Binding TargetHPBonus, Mode=OneWay}" />
 										</TextBlock>
 
-										<TextBlock>
+										<TextBlock HorizontalAlignment="Center">
 											<Run Text="{Binding Ship.HPMax, Mode=OneWay}" />
 											<Run Text="/" />
 											<Run Text="{Binding TargetHP, Mode=OneWay}" />
+											<Run Text="{Binding DataContext.ShipTrainingPlanner.HP, Source={StaticResource Proxy}, Mode=OneWay}" />
 										</TextBlock>
 
 									</StackPanel>
@@ -154,18 +155,19 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.ASWBonus, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Margin="2">
+									<StackPanel Margin="4 2" HorizontalAlignment="Center">
 
-										<TextBlock>
+										<TextBlock HorizontalAlignment="Center">
 											+<Run Text="{Binding Ship.ASWModernized, Mode=OneWay}" />
 											<Run Text="/" />
 											+<Run Text="{Binding TargetASWBonus, Mode=OneWay}" />
 										</TextBlock>
 
-										<TextBlock>
+										<TextBlock HorizontalAlignment="Center">
 											<TextBlock Text="{Binding Ship.ASWBase, Mode=OneWay}" />
 											<TextBlock Text="/" />
 											<TextBlock Text="{Binding TargetASW, Mode=OneWay}" />
+											<Run Text="{Binding DataContext.ShipTrainingPlanner.ASW, Source={StaticResource Proxy}, Mode=OneWay}" />
 										</TextBlock>
 
 									</StackPanel>
@@ -176,7 +178,11 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.Luck, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock VerticalAlignment="Center">
+									<TextBlock
+										Margin="4 2"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										>
 										<Run Text="{Binding Ship.LuckBase, Mode=OneWay}" />
 										<Run Text="/" />
 										<Run Text="{Binding TargetLuck, Mode=OneWay}" />
