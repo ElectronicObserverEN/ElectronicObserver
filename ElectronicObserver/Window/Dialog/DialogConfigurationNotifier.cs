@@ -55,8 +55,8 @@ public partial class DialogConfigurationNotifier : Form
 		LocationY.Value = notifier.DialogData.Location.Y;
 		DrawsMessage.Checked = notifier.DialogData.DrawsMessage;
 		HasFormBorder.Checked = notifier.DialogData.HasFormBorder;
-		AccelInterval.Value = notifier.AccelInterval / 1000;
-		ClosingInterval.Value = notifier.DialogData.ClosingInterval / 1000;
+		AccelInterval.Value = (decimal)notifier.AccelInterval / 1000;
+		ClosingInterval.Value = (decimal)notifier.DialogData.ClosingInterval / 1000;
 		for (int i = 0; i < (int)NotifierDialogClickFlags.HighestBit; i++)
 			CloseList.SetItemChecked(i, ((int)notifier.DialogData.ClickFlag & (1 << i)) != 0);
 		CloseList.SetItemChecked((int)NotifierDialogClickFlags.HighestBit, notifier.DialogData.CloseOnMouseMove);
