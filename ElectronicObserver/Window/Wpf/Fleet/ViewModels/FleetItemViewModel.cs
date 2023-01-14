@@ -208,7 +208,7 @@ public class FleetItemViewModel : ObservableObject
 				if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
 					tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
 
-				List<(string, int)> remodels = db.MasterShips.Values
+				List<(string Name, int Level)> remodels = db.MasterShips.Values
 					.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
 					.Where(s => s.RemodelTier > Ship.MasterShip.RemodelTier)
 					.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
@@ -224,7 +224,7 @@ public class FleetItemViewModel : ObservableObject
 				string? planTip = null;
 				int? planLevel = null;
 
-				if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Item2).Contains(Level.TrainingPlan.TargetLevel))
+				if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Level).Contains(Level.TrainingPlan.TargetLevel))
 				{
 					planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
 					planLevel = Level.TrainingPlan.TargetLevel;
