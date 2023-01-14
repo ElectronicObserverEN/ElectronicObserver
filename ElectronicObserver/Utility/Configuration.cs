@@ -317,6 +317,8 @@ public sealed class Configuration
 			public Color Fleet_ColorConditionSparkle { get; set; }
 			[IgnoreDataMember] // 装备改修值
 			public Color Fleet_EquipmentLevelColor { get; set; }
+			[IgnoreDataMember]
+			public Color Fleet_RemodelReadyColor { get; set; }
 
 			// 视图 - 舰队一览
 			[IgnoreDataMember] // 大破 / 大破进击文字色
@@ -2130,6 +2132,7 @@ public sealed class Configuration
 		Config.UI.Fleet_ColorConditionLittleTired = ThemePanelColor("fleet", "conditionLittleTired");
 		Config.UI.Fleet_ColorConditionSparkle = ThemePanelColor("fleet", "conditionSparkle");
 		Config.UI.Fleet_EquipmentLevelColor = ThemePanelColor("fleet", "equipmentLevel");
+		Config.UI.Fleet_RemodelReadyColor = ThemePanelColor("fleet", "remodelReady");
 		Config.UI.FleetOverview_ShipDamagedFG = ThemePanelColor("fleetOverview", "shipDamagedFG");
 		Config.UI.FleetOverview_ShipDamagedBG = ThemePanelColor("fleetOverview", "shipDamagedBG");
 		Config.UI.FleetOverview_ExpeditionOverFG = ThemePanelColor("fleetOverview", "expeditionOverFG");
@@ -2240,85 +2243,52 @@ public sealed class Configuration
 		}
 		else
 		{
-			switch (form + "_" + name)
+			return (form + "_" + name) switch
 			{
 				// 视图 - 舰队
-				case "fleet_conditionVeryTired":
-					return Config.UI.Color_Red;
-				case "fleet_conditionTired":
-					return Config.UI.Color_Orange;
-				case "fleet_conditionLittleTired":
-					return Config.UI.Color_Yellow;
-				case "fleet_conditionSparkle":
-					return Config.UI.Color_Blue;
-				case "fleet_equipmentLevel":
-					return Config.UI.Color_Cyan;
+				"fleet_conditionVeryTired" => Config.UI.Color_Red,
+				"fleet_conditionTired" => Config.UI.Color_Orange,
+				"fleet_conditionLittleTired" => Config.UI.Color_Yellow,
+				"fleet_conditionSparkle" => Config.UI.Color_Blue,
+				"fleet_equipmentLevel" => Config.UI.Color_Cyan,
+				"fleet_remodelReady" => Color.FromArgb(0x90EE90),
 				// 视图 - 司令部
 				// 视图 - 任务
-				case "quest_typeHensei":
-					return Config.UI.Color_Green;
-				case "quest_typeShutsugeki":
-					return Config.UI.Color_Red;
-				case "quest_typeEnshu":
-					return Config.UI.Color_Green;
-				case "quest_typeEnsei":
-					return Config.UI.Color_Cyan;
-				case "quest_typeHokyu":
-					return Config.UI.Color_Yellow;
-				case "quest_typeKojo":
-					return Config.UI.Color_Orange;
-				case "quest_typeKaiso":
-					return Config.UI.Color_Violet;
-				case "quest_processLT50":
-					return Config.UI.Color_Orange;
-				case "quest_processLT80":
-					return Config.UI.Color_Green;
-				case "quest_processLT100":
-					return Config.UI.Color_Cyan;
-				case "quest_processDefault":
-					return Config.UI.Color_Blue;
+				"quest_typeHensei" => Config.UI.Color_Green,
+				"quest_typeShutsugeki" => Config.UI.Color_Red,
+				"quest_typeEnshu" => Config.UI.Color_Green,
+				"quest_typeEnsei" => Config.UI.Color_Cyan,
+				"quest_typeHokyu" => Config.UI.Color_Yellow,
+				"quest_typeKojo" => Config.UI.Color_Orange,
+				"quest_typeKaiso" => Config.UI.Color_Violet,
+				"quest_processLT50" => Config.UI.Color_Orange,
+				"quest_processLT80" => Config.UI.Color_Green,
+				"quest_processLT100" => Config.UI.Color_Cyan,
+				"quest_processDefault" => Config.UI.Color_Blue,
 				// 视图 - 罗盘
-				case "compass_shipClass2":
-					return Config.UI.Color_Red;
-				case "compass_shipClass3":
-					return Config.UI.Color_Orange;
-				case "compass_shipClass4":
-					return Config.UI.Color_Blue;
-				case "compass_shipClass5":
-					return Config.UI.Color_Magenta;
-				case "compass_shipClass6":
-					return Config.UI.Color_Yellow;
-				case "compass_eventKind3":
-					return Config.UI.Color_Violet;
-				case "compass_eventKind6":
-					return Config.UI.Color_Green;
-				case "compass_eventKind5":
-					return Config.UI.Color_Red;
-				case "compass_overlayBrush": // %75 透明度背景色
-					return Color.FromArgb(0xC0, Config.UI.BackColor);
+				"compass_shipClass2" => Config.UI.Color_Red,
+				"compass_shipClass3" => Config.UI.Color_Orange,
+				"compass_shipClass4" => Config.UI.Color_Blue,
+				"compass_shipClass5" => Config.UI.Color_Magenta,
+				"compass_shipClass6" => Config.UI.Color_Yellow,
+				"compass_eventKind3" => Config.UI.Color_Violet,
+				"compass_eventKind6" => Config.UI.Color_Green,
+				"compass_eventKind5" => Config.UI.Color_Red,
+				// %75 透明度背景色
+				"compass_overlayBrush" => Color.FromArgb(0xC0, Config.UI.BackColor),
 				// 视图 - 战斗
-				case "battle_barMVP":
-					return Config.UI.Color_Blue;
-				case "battle_textMVP":
-					return Config.UI.BackColor;
-				case "battle_textMVP2":
-					return Config.UI.SubBackColor;
-				case "battle_barEscaped":
-					return Config.UI.SubBackColor;
-				case "battle_textEscaped":
-					return Config.UI.ForeColor;
-				case "battle_textEscaped2":
-					return Config.UI.SubForeColor;
-				case "battle_barBossDamaged":
-					return Config.UI.Color_Orange;
-				case "battle_textBossDamaged":
-					return Config.UI.BackColor;
-				case "battle_textBossDamaged2":
-					return Config.UI.SubBackColor;
+				"battle_barMVP" => Config.UI.Color_Blue,
+				"battle_textMVP" => Config.UI.BackColor,
+				"battle_textMVP2" => Config.UI.SubBackColor,
+				"battle_barEscaped" => Config.UI.SubBackColor,
+				"battle_textEscaped" => Config.UI.ForeColor,
+				"battle_textEscaped2" => Config.UI.SubForeColor,
+				"battle_barBossDamaged" => Config.UI.Color_Orange,
+				"battle_textBossDamaged" => Config.UI.BackColor,
+				"battle_textBossDamaged2" => Config.UI.SubBackColor,
 				// 未定义颜色
-				default:
-					return Color.Magenta;
-			}
+				_ => Color.Magenta,
+			};
 		}
 	}
 

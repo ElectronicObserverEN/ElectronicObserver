@@ -429,4 +429,7 @@ Do you want to open this github issue?</value>
   <data name="New" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="View_ShipTraining" xml:space="preserve">
+    <value>Ship training</value>
+  </data>
 </root>

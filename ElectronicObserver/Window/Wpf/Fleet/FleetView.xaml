@@ -87,6 +87,8 @@
 			<Style TargetType="Border">
 				<Setter Property="Background" Value="Transparent" />
 			</Style>
+
+			<viewModels:FleetViewModelBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 		</ResourceDictionary>
 	</UserControl.Resources>
 
@@ -353,12 +355,67 @@
 
 									<Border
 										Grid.Column="1"
+										Background="{Binding Background}"
+										Cursor="Help"
 										DataContext="{Binding Level}"
+										ForceCursor="True"
 										ToolTip="{Binding ToolTip}"
 										>
-										<Border.InputBindings>
-											<MouseBinding Command="{Binding OpenExpCheckerCommand}" MouseAction="RightClick" />
-										</Border.InputBindings>
+										<Border.ContextMenu>
+											<ContextMenu>
+												<MenuItem Command="{Binding OpenExpCheckerCommand}" Header="{Binding DataContext.FormFleet.ContextMenuFleetShipLevel_OpenExpChecker, Source={StaticResource Proxy}}" />
+
+												<Separator />
+
+												<MenuItem Command="{Binding CreateTrainingPlanCommand}" Header="{Binding DataContext.FormFleet.ContextMenuFleetShipLevel_CreateTrainingPlan, Source={StaticResource Proxy}}">
+													<MenuItem.Style>
+														<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}">
+															<Setter Property="Visibility" Value="Collapsed" />
+															<Style.Triggers>
+																<DataTrigger Binding="{Binding TrainingPlan}" Value="{x:Null}">
+																	<Setter Property="Visibility" Value="Visible" />
+																</DataTrigger>
+															</Style.Triggers>
+														</Style>
+													</MenuItem.Style>
+												</MenuItem>
+
+												<MenuItem
+													Command="{Binding ShipTrainingPlanViewerViewModel.OpenEditPopupCommand}"
+													CommandParameter="{Binding TrainingPlan}"
+													Header="{Binding DataContext.FormFleet.ContextMenuFleetShipLevel_EditTrainingPlan, Source={StaticResource Proxy}}"
+													>
+													<MenuItem.Style>
+														<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}">
+															<Setter Property="Visibility" Value="Visible" />
+															<Style.Triggers>
+																<DataTrigger Binding="{Binding TrainingPlan}" Value="{x:Null}">
+																	<Setter Property="Visibility" Value="Collapsed" />
+																</DataTrigger>
+															</Style.Triggers>
+														</Style>
+													</MenuItem.Style>
+												</MenuItem>
+
+												<MenuItem
+													Command="{Binding ShipTrainingPlanViewerViewModel.RemovePlanCommand}"
+													CommandParameter="{Binding TrainingPlan}"
+													Header="{Binding DataContext.FormFleet.ContextMenuFleetShipLevel_RemoveTrainingPlan, Source={StaticResource Proxy}}"
+													>
+
+													<MenuItem.Style>
+														<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}">
+															<Setter Property="Visibility" Value="Visible" />
+															<Style.Triggers>
+																<DataTrigger Binding="{Binding TrainingPlan}" Value="{x:Null}">
+																	<Setter Property="Visibility" Value="Collapsed" />
+																</DataTrigger>
+															</Style.Triggers>
+														</Style>
+													</MenuItem.Style>
+												</MenuItem>
+											</ContextMenu>
+										</Border.ContextMenu>
 										<Grid>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="Auto" SharedSizeGroup="ShipLevelText" />
@@ -379,6 +436,7 @@
 												Grid.Column="1"
 												Margin="0 2 2 2"
 												VerticalAlignment="Bottom"
+												Foreground="{Binding Foreground}"
 												Text="{Binding Value}"
 												TextAlignment="Right"
 												/>

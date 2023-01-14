@@ -9,6 +9,8 @@ public partial class ShipDataPickerView
 		InitializeComponent();
 
 		viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
+		Closed += (_,_) => viewModel.PropertyChanged -= ViewModel_PropertyChanged;
 	}
 
 	private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

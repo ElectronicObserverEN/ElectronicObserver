@@ -11,7 +11,7 @@ namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
 
 public partial class ShipDataPickerViewModel : WindowViewModelBase
 {
-	private List<ShipDataViewModel> AllShips { get; }
+	private List<ShipDataViewModel> AllShips { get; set; }
 
 	public ObservableCollection<ShipDataViewModel> ShipsFiltered { get; } = new();
 
@@ -22,16 +22,22 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 
 	public ShipDataPickerTranslationViewModel ShipDataPicker { get; } = new();
 
+
 	public ShipDataPickerViewModel()
 	{
-		AllShips = KCDatabase.Instance.Ships
-			.Values
-			.Cast<IShipData>()
-			.Select(ship => new ShipDataViewModel(ship))
-			.ToList();
+		AllShips = KCDatabase.Instance.Ships.Values.Cast<IShipData>().Select(s => new ShipDataViewModel(s)).ToList();
 
 		Filters.PropertyChanged += (_, _) => ReloadShips();
 
+		ReloadShips();
+	}
+
+	public void LoadWithShips(IEnumerable<IShipData> ships)
+	{
+		PickedShip = null;
+		SelectedShip = null;
+
+		AllShips = ships.Select(s => new ShipDataViewModel(s)).ToList();
 		ReloadShips();
 	}
 

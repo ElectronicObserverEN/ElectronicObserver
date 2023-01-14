@@ -117,169 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
-    <value>&amp;Copy</value>
+  <data name="AddShip" xml:space="preserve">
+    <value>Add ship</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
-    <value>Copy (&amp;deck-builder)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
-    <value>Copy Ship &amp;List (kancolle-calc)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysis" xml:space="preserve">
-    <value>Copy Ship List (kancolle-&amp;fleetanalysis)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisLockedEquip" xml:space="preserve">
-    <value>Copy Locked Equip (kancolle-fleetanalysis)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisAllEquip" xml:space="preserve">
-    <value>Copy All Equip (kancolle-fleetanalysis)</value>
-  </data>
-  <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
-    <value>&amp;AA Defense</value>
-  </data>
-  <data name="ContextMenuFleet_Capture" xml:space="preserve">
-    <value>Copy as Image(&amp;S)</value>
-  </data>
-  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
-    <value>Save as &amp;Image...</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>*not loaded*</value>
-  </data>
-  <data name="SupportTypeNone" xml:space="preserve">
-    <value>n/a</value>
-  </data>
-  <data name="SupportTypeAerial" xml:space="preserve">
-    <value>Aerial Support</value>
-  </data>
-  <data name="SupportTypeShelling" xml:space="preserve">
-    <value>Support Shelling</value>
-  </data>
-  <data name="SupportTypeTorpedo" xml:space="preserve">
-    <value>Long-range Torpedo Attack</value>
-  </data>
-  <data name="FleetNameToolTip" xml:space="preserve">
-    <value>Lv sum: {0} / avg: {1:0.00}
-{2} fleet
-Support Expedition: {3}
-Total FP {4} ({20}) / Torp {5} / AA {6} ({21}) / ASW {7} ({22}) / LOS {8} ({23})
-Drum: {9} ({10} ships)
-Daihatsu: {11} ({12} ships, +{13:p1})
-TP: S {14} / A {15}
-Surface Radar: {24} ({25} ships)
-Consumption: {16} fuel / {17} ammo
-({18} fuel / {19} ammo per battle)
-</value>
-  </data>
-  <data name="WithoutProficiency" xml:space="preserve">
-    <value>w/o Proficiency</value>
-  </data>
-  <data name="WithProficiency" xml:space="preserve">
-    <value>w/ Proficiency</value>
-  </data>
-  <data name="FleetLosToolTip" xml:space="preserve">
-    <value>Formula 33 (n={0})
-　(Click to switch between weighting)
-
-Contact:
-　AS+ {1:p1} / AS {2:p1}
-</value>
-  </data>
-  <data name="ContactSelection" xml:space="preserve">
-    <value>Selection:</value>
-  </data>
-  <data name="ContactProbability" xml:space="preserve">
-    <value>　Acc+{0}: {1:p1}</value>
-  </data>
-  <data name="ShipNameToolTip" xml:space="preserve">
-    <value>{0}{1} {2}
-FP: {3}/{4}
-Torp: {5}/{6}
-AA: {7}/{8}
-Armor: {9}/{10}
-ASW: {11}/{12}
-Evasion: {13}/{14}
-LOS: {15}/{16}
-Luck: {17}
-Accuracy: {18:+#;-#;+0}
-Bombing: {19:+#;-#;+0}
-Range: {20} / Speed: {21}
-(right click to open encyclopedia)</value>
-  </data>
-  <data name="ExpCalcHint" xml:space="preserve">
-    <value>(right click to calculate exp)</value>
-  </data>
-  <data name="CvciFba" xml:space="preserve">
-    <value>CI (FBA)</value>
-  </data>
-  <data name="CvciBba" xml:space="preserve">
-    <value>CI (BBA)</value>
-  </data>
-  <data name="CvciBa" xml:space="preserve">
-    <value>CI (BA)</value>
-  </data>
-  <data name="Power" xml:space="preserve">
-    <value>Power</value>
-  </data>
-  <data name="Accuracy" xml:space="preserve">
-    <value>Accuracy</value>
-  </data>
-  <data name="CvnciFfa" xml:space="preserve">
-    <value>CI (FFA)</value>
-  </data>
-  <data name="CvnciFa" xml:space="preserve">
-    <value>CI (FA)</value>
-  </data>
-  <data name="CvnciPhoto" xml:space="preserve">
-    <value>CI (Photo)</value>
-  </data>
-  <data name="CvnciFoo" xml:space="preserve">
-    <value>CI (FOO)</value>
-  </data>
-  <data name="LateModelTorpedoSubmarineEquipment" xml:space="preserve">
-    <value>CI (Submarine Radar)</value>
-  </data>
-  <data name="LateModelTorpedo2" xml:space="preserve">
-    <value>CI (Late Model)</value>
-  </data>
-  <data name="Asw" xml:space="preserve">
+  <data name="ASWBonus" xml:space="preserve">
     <value>ASW</value>
   </data>
-  <data name="OpeningAsw" xml:space="preserve">
-    <value> (OASW)</value>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>Display finished</value>
   </data>
-  <data name="Aarb" xml:space="preserve">
-    <value>AARB</value>
+  <data name="EditPlan" xml:space="preserve">
+    <value>Edit plan</value>
   </data>
-  <data name="AirstrikePower" xml:space="preserve">
-    <value>Airstrike Power</value>
+  <data name="Exp" xml:space="preserve">
+    <value>exp.</value>
   </data>
-  <data name="CopyFleetText" xml:space="preserve">
-    <value>{0}    AS: {1} / LOS: {2} / TP: {3}</value>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
-    <value>Copy Ship List (fleet analysis spreadsheet)</value>
+  <data name="HPBonus" xml:space="preserve">
+    <value>HP</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
-    <value>Copy Locked Equip (fleet analysis spreadsheet)</value>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
-    <value>Copy All Equip (fleet analysis spreadsheet)</value>
+  <data name="NotifyAnyRemodelReady" xml:space="preserve">
+    <value>Notify on any remodel ready</value>
   </data>
-  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
-    <value>(right click to open encyclopedia)</value>
+  <data name="RemodelGoal" xml:space="preserve">
+    <value>Remodel</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
-    <value>Create Training Plan</value>
+  <data name="RemoveFinishedPlans" xml:space="preserve">
+    <value>Remove finished plans</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
-    <value>Open Exp. Calculator</value>
+  <data name="RemovePlan" xml:space="preserve">
+    <value>Remove plan</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
-    <value>Edit Training Plan</value>
+  <data name="ViewerTitle" xml:space="preserve">
+    <value>Ship Training</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
-    <value>Remove Training Plan</value>
+  <data name="NotifyAnyRemodelReadyToolTip" xml:space="preserve">
+    <value>Example: when trying to level Kamikaze from level 1 to remodel her to Kamikaze Kai Ni
+When disabled, you'll only be notified when you can remodel Kamikaze to Kamikaze Kai Ni
+When enabled, you'll be notified when you can remodel Kamikaze to Kamikaze Kai and when you can remodel Kamikaze Kai to Kamikaze Kai Ni</value>
   </data>
 </root>

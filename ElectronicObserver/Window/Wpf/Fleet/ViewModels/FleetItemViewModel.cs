@@ -12,6 +12,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Extensions;
@@ -190,26 +191,15 @@ public class FleetItemViewModel : ObservableObject
 				Constants.GetRange(Ship.Range),
 				Constants.GetSpeed(Ship.Speed)
 			);
-			{
-				if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-					Parent.ShipTagColors.Count > 0 &&
-					Ship.SallyArea > 0)
-				{
-					if (Utility.Configuration.Config.UI.ThemeMode != 0)
-						Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
-					Name.BackColor = Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
-				}
-				else
-				{
-					Name.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-					Name.BackColor = Color.Transparent;
-				}
-			}
 
+			Name.BackColor = GetShipBackColor();
+			Name.ForeColor = GetShipForeColor();
 
 			Level.Value = Ship.Level;
 			Level.ValueNext = Ship.ExpNext;
 			Level.Tag = Ship.MasterID;
+
+			Level.UpdateColors(); 
 
 			{
 				StringBuilder tip = new StringBuilder();
@@ -218,22 +208,42 @@ public class FleetItemViewModel : ObservableObject
 				if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
 					tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
 
-				var remodels = db.MasterShips.Values
+				List<(string Name, int Level)> remodels = db.MasterShips.Values
 					.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
 					.Where(s => s.RemodelTier > Ship.MasterShip.RemodelTier)
 					.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
-					.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0));
+					.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0))
+					.ToList();
 
-				foreach ((var name, int remodelLevel) in remodels)
+				foreach ((string name, int remodelLevel) in remodels)
 				{
 					int neededExp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, remodelLevel), 0);
 					tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
+				}
+
+				string? planTip = null;
+				int? planLevel = null;
+
+				if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Level).Contains(Level.TrainingPlan.TargetLevel))
+				{
+					planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
+					planLevel = Level.TrainingPlan.TargetLevel;
+				}
+
+				if (planLevel is not null && planLevel < 99)
+				{
+					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
 				}
 
 				if (Ship.Level < 99)
 				{
 					string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
 					tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
+				}
+
+				if (planLevel is not null && planLevel > 99 && planLevel != ExpTable.ShipMaximumLevel)
+				{
+					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
 				}
 
 				if (Ship.Level < ExpTable.ShipMaximumLevel)
@@ -243,9 +253,6 @@ public class FleetItemViewModel : ObservableObject
 						.ToString("N0");
 					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
 				}
-
-
-				tip.AppendLine(FormFleet.ExpCalcHint);
 
 				Level.ToolTip = tip.ToString();
 			}
@@ -337,6 +344,35 @@ public class FleetItemViewModel : ObservableObject
 		}
 
 		Visible = shipMasterID != -1;
+	}
+
+	private Color GetShipBackColor()
+	{
+		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
+							Parent.ShipTagColors.Count > 0 &&
+							Ship?.SallyArea > 0)
+		{
+			return Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
+		}
+
+		return Color.Transparent;
+	}
+
+	private Color GetShipForeColor()
+	{
+		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
+							Parent.ShipTagColors.Count > 0 &&
+							Ship?.SallyArea > 0)
+		{
+			if (Configuration.Config.UI.ThemeMode != 0)
+				return Configuration.Config.UI.BackColor;
+		}
+		else
+		{
+			return Configuration.Config.UI.ForeColor;
+		}
+
+		return Color.Transparent;
 	}
 
 	private string GetEquipmentString(IShipData ship)

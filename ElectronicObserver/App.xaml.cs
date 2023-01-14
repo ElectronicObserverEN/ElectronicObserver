@@ -54,6 +54,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
@@ -269,9 +270,11 @@ public partial class App : Application
 			.AddSingleton<ExpeditionCheckTranslationViewModel>()
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
+			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
+			.AddSingleton<ShipTrainingPlanViewerViewModel>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
@@ -339,6 +342,12 @@ public partial class App : Application
 			.Property(w => w.Filters.SelectToday)
 			.Property(w => w.ColumnProperties)
 			.Property(w => w.SortDescriptions);
+
+		tracker
+			.Configure<ShipTrainingPlanViewerViewModel>()
+			.Property(w => w.ColumnProperties)
+			.Property(w => w.SortDescriptions)
+			.Property(w => w.DisplayFinished);
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()

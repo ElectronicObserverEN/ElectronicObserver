@@ -75,7 +75,7 @@ using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
-using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -135,6 +135,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? FleetOverviewImageSource { get; }
 	public ImageSource? ShipGroupImageSource { get; }
 	public ImageSource? FleetPresetImageSource { get; }
+	public ImageSource? ShipTrainingPlanImageSource { get; }	
 	public ImageSource? DockImageSource { get; }
 	public ImageSource? ArsenalImageSource { get; }
 	public ImageSource? EquipmentUpgradePlanImageSource { get; }
@@ -177,6 +178,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ShipGroupWinformsViewModel FormShipGroup { get; }
 	public ShipGroupViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
+	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewer { get; }
 
 	public DockViewModel Dock { get; }
 	public ArsenalViewModel Arsenal { get; }
@@ -278,6 +280,7 @@ public partial class FormMainViewModel : ObservableObject
 		FleetOverviewImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleet);
 		ShipGroupImageSource = ImageSourceIcons.GetIcon(IconContent.FormShipGroup);
 		FleetPresetImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleetPreset);
+		ShipTrainingPlanImageSource = ImageSourceIcons.GetIcon(IconContent.ItemActionReport);
 		DockImageSource = ImageSourceIcons.GetIcon(IconContent.FormDock);
 		ArsenalImageSource = ImageSourceIcons.GetIcon(IconContent.FormArsenal);
 		EquipmentUpgradePlanImageSource = ImageSourceIcons.GetIcon(IconContent.ItemModdingMaterial);
@@ -371,6 +374,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(FormShipGroup = new ShipGroupWinformsViewModel());
 		// Views.Add(ShipGroup = new());
 		Views.Add(FleetPreset = new FleetPresetViewModel());
+		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
+		Views.Add(ShipTrainingPlanViewer);
 
 		Views.Add(Dock = new DockViewModel());
 		Views.Add(Arsenal = new ArsenalViewModel()); 

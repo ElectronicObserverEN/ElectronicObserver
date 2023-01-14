@@ -1,0 +1,228 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Wpf.ShipTrainingPlanner.ShipTrainingPlanView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.ShipTrainingPlanner"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding ShipTrainingPlanner.ViewTitle}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:ShipTrainingPlanViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:ShipTrainingPlanViewModel"
+	SizeToContent="WidthAndHeight"
+	mc:Ignorable="d"
+	>
+	<StackPanel Margin="5" Background="Transparent">
+		<StackPanel Margin="5" Orientation="Horizontal">
+			<Image
+				Width="160"
+				Margin="2"
+				Source="{Binding Ship.MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}}"
+				Stretch="Uniform"
+				/>
+
+			<TextBlock Text="{Binding Ship.MasterShip.NameWithClass}" />
+		</StackPanel>
+
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="0"
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.Level}"
+				/>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="1"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				>
+				<Run Text="{Binding Ship.Level, Mode=OneWay}" />
+				<Run Text="/" />
+			</TextBlock>
+
+			<ui:NumberBox
+				Grid.Row="0"
+				Grid.Column="2"
+				Margin="5 2"
+				Maximum="{Binding MaximumLevel}"
+				Minimum="{Binding Ship.Level}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetLevel}"
+				/>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				>
+				<Run Text="{Binding RemainingExpToTarget, Mode=OneWay}" />
+				<Run Text="{Binding ShipTrainingPlanner.Exp, Mode=OneWay}" />
+			</TextBlock>
+
+			<TextBlock
+				Grid.Row="2"
+				Grid.Column="0"
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.HPBonus}"
+				/>
+
+			<TextBlock
+				Grid.Row="2"
+				Grid.Column="1"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				>
+				<Run Text="{Binding Ship.HPMaxModernized, Mode=OneWay}" />
+				<Run Text="/" />
+			</TextBlock>
+
+			<ui:NumberBox
+				Grid.Row="2"
+				Grid.Column="2"
+				Margin="5 2"
+				Maximum="{Binding MaximumHPMod}"
+				Minimum="{Binding Ship.HPMaxModernized}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetHPBonus}"
+				/>
+
+			<TextBlock
+				Grid.Row="3"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				>
+				<Run Text="{Binding Ship.HPMax, Mode=OneWay}" />
+				<Run Text="/" />
+				<Run Text="{Binding TargetHP, Mode=OneWay}" />
+			</TextBlock>
+
+			<TextBlock
+				Grid.Row="4"
+				Grid.Column="0"
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.ASWBonus, Mode=OneWay}"
+				/>
+
+			<TextBlock
+				Grid.Row="4"
+				Grid.Column="1"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				>
+				<Run Text="{Binding Ship.ASWModernized, Mode=OneWay}" />
+				<Run Text="/" />
+			</TextBlock>
+
+			<ui:NumberBox
+				Grid.Row="4"
+				Grid.Column="2"
+				Margin="5 2"
+				Maximum="{Binding Ship.MasterShip.ASWModernizable}"
+				Minimum="{Binding Ship.ASWModernized}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetASWBonus}"
+				/>
+
+			<TextBlock
+				Grid.Row="5"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				>
+				<Run Text="{Binding Ship.ASWBase, Mode=OneWay}" />
+				<Run Text="/" />
+				<Run Text="{Binding TargetASW, Mode=OneWay}" />
+			</TextBlock>
+
+			<TextBlock
+				Grid.Row="6"
+				Grid.Column="0"
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.Luck}"
+				/>
+
+			<TextBlock
+				Grid.Row="6"
+				Grid.Column="1"
+				VerticalAlignment="Center"
+				>
+				<Run Text="{Binding Ship.LuckBase, Mode=OneWay}" />
+				<Run Text="/" />
+			</TextBlock>
+
+			<ui:NumberBox
+				Grid.Row="6"
+				Grid.Column="2"
+				Margin="5 2"
+				VerticalAlignment="Center"
+				Maximum="{Binding Ship.MasterShip.LuckMax}"
+				Minimum="{Binding Ship.LuckBase}"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding TargetLuck}"
+				/>
+
+			<TextBlock
+				Grid.Row="7"
+				Grid.Column="0"
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.RemodelGoal}"
+				/>
+
+			<ComboBox
+				Grid.Row="7"
+				Grid.Column="2"
+				Margin="5 2"
+				VerticalAlignment="Center"
+				DisplayMemberPath="NameEN"
+				ItemsSource="{Binding PossibleRemodels}"
+				SelectedItem="{Binding TargetRemodel}"
+				/>
+		</Grid>
+
+		<CheckBox
+			Content="{Binding ShipTrainingPlanner.NotifyAnyRemodelReady}"
+			IsChecked="{Binding NotifyOnAnyRemodelReady}"
+			ToolTip="{Binding ShipTrainingPlanner.NotifyAnyRemodelReadyToolTip}"
+			/>
+
+		<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+			<Button
+				Margin="5"
+				Click="OnConfirmClick"
+				Content="{Binding ShipTrainingPlanner.OK}"
+				/>
+			<Button
+				Margin="5"
+				Click="OnCancelClick"
+				Content="{Binding ShipTrainingPlanner.Cancel}"
+				/>
+		</StackPanel>
+	</StackPanel>
+</common:WindowBase>

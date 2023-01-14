@@ -95,7 +95,8 @@ public class Theme
 							""conditionTired"": ""#FFA07A"",
 							""conditionLittleTired"": ""#FFE4B5"",
 							""conditionSparkle"": ""#90EE90"",
-							""equipmentLevel"": ""#006666""
+							""equipmentLevel"": ""#006666"",
+							""remodelReady"": ""#90EE90""
 						},
 						""fleetOverview"": {
 							""shipDamagedFG"": ""#000000"",
@@ -259,7 +260,8 @@ public class Theme
 						""conditionTired"": ""#FFA07A"",
 						""conditionLittleTired"": ""#FFE4B5"",
 						""conditionSparkle"": ""#90EE90"",
-						""equipmentLevel"": ""#00FF00""
+						""equipmentLevel"": ""#00FF00"",
+						""remodelReady"": ""#90EE90""
 					},
 					""fleetOverview"": {
 						""shipDamagedFG"": ""#2D2D30"",

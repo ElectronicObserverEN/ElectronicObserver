@@ -3,6 +3,7 @@ using System;
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20230110191651_AddShipPlanRemodelBooleans")]
+    partial class AddShipPlanRemodelBooleans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
@@ -233,6 +235,9 @@ namespace ElectronicObserver.Database.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("NotifyOnAnyRemodelReady")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("NotifyOnRemodelReady")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ShipId")
