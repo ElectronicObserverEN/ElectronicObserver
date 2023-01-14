@@ -144,7 +144,6 @@
 											<Run Text="{Binding Ship.HPMax, Mode=OneWay}" />
 											<Run Text="/" />
 											<Run Text="{Binding TargetHP, Mode=OneWay}" />
-											<Run Text="{Binding DataContext.ShipTrainingPlanner.HP, Source={StaticResource Proxy}, Mode=OneWay}" />
 										</TextBlock>
 
 									</StackPanel>
@@ -167,7 +166,6 @@
 											<TextBlock Text="{Binding Ship.ASWBase, Mode=OneWay}" />
 											<TextBlock Text="/" />
 											<TextBlock Text="{Binding TargetASW, Mode=OneWay}" />
-											<Run Text="{Binding DataContext.ShipTrainingPlanner.ASW, Source={StaticResource Proxy}, Mode=OneWay}" />
 										</TextBlock>
 
 									</StackPanel>
