@@ -42,7 +42,7 @@ public partial class DialogConfigurationBGMPlayer : Form
 
 	private void DialogConfigurationBGMPlayer_Load(object sender, EventArgs e)
 	{
-		OpenMusicDialog.Filter = "音楽ファイル|" + string.Join(";", MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|ファイル|*";
+		OpenMusicDialog.Filter = "音楽ファイル|" + string.Join(";", EOMediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|ファイル|*";
 	}
 
 	private void ButtonAccept_Click(object sender, EventArgs e)

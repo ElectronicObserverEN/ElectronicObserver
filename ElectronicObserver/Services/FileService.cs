@@ -152,7 +152,7 @@ public class FileService
 	{
 		OpenFileDialog dialog = new()
 		{
-			Filter = "音楽ファイル|" + string.Join(";", MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*",
+			Filter = "音楽ファイル|" + string.Join(";", EOMediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*",
 			Title = NotifyRes.OpenSound,
 		};
 

@@ -97,7 +97,7 @@ public sealed class SyncBGMPlayer
 		set { _mp.IsMute = value; }
 	}
 
-	private MediaPlayer _mp;
+	private EOMediaPlayer _mp;
 	private SoundHandleID _currentSoundHandleID;
 	private bool _isBoss;
 
@@ -105,7 +105,7 @@ public sealed class SyncBGMPlayer
 	public SyncBGMPlayer()
 	{
 
-		_mp = new MediaPlayer();
+		_mp = new EOMediaPlayer();
 
 		if (!_mp.IsAvailable)
 			Utility.Logger.Add(3, "Windows Media Player のロードに失敗しました。音声の再生はできません。");
@@ -335,7 +335,7 @@ public sealed class SyncBGMPlayer
 			_currentSoundHandleID = sh.HandleID;
 
 			_mp.IsLoop = sh.IsLoop;
-			_mp.LoopHeadPosition = sh.LoopHeadPosition;
+			_mp.LoopHeadPosition = TimeSpan.FromSeconds(sh.LoopHeadPosition);
 			if (!Utility.Configuration.Config.Control.UseSystemVolume)
 				_mp.Volume = sh.Volume;
 			_mp.Play();

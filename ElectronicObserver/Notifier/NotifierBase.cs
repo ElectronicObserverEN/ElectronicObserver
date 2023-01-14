@@ -31,7 +31,7 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 通知音
 	/// </summary>
-	public MediaPlayer Sound { get; protected set; }
+	public EOMediaPlayer Sound { get; protected set; }
 
 	/// <summary>
 	/// 通知音のパス
@@ -131,7 +131,7 @@ public abstract class NotifierBase
 	{
 
 		SystemEvents.UpdateTimerTick += UpdateTimerTick;
-		Sound = new MediaPlayer
+		Sound = new EOMediaPlayer
 		{
 			IsShuffle = true
 		};
@@ -206,7 +206,7 @@ public abstract class NotifierBase
 
 			if (Sound != null && PlaysSound)
 			{
-				if (Sound.PlayState == 3)
+				if (Sound.PlayState == PlayState.Playing)
 				{       //playing
 					if (Sound.GetPlaylist().Any())
 						Sound.Next();

@@ -130,7 +130,7 @@ public partial class DialogConfigurationNotifier : Form
 			GroupBattleEnd.Enabled = false;
 		}
 
-		DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
+		DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.EOMediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
 	}
 
 	public void Translate()

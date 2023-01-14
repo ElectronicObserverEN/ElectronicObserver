@@ -4,24 +4,24 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 
 namespace ElectronicObserver.Utility;
 
 /// <summary>
-/// Windows Media Player コントロールを利用して、音楽を再生するためのクラスです。
+/// Windows Media Player コントロールを利用して、音楽を再生するためのクラスです。(outdated)
 /// </summary>
-public class MediaPlayer
+public class EOMediaPlayer
 {
-	private dynamic WMP { get; }
+	private MediaPlayer WMP { get; }
 
-	public event Action<int> PlayStateChange = delegate { };
 	public event Action MediaEnded = delegate { };
 
 	private List<string> _playlist;
 	private List<string> _realPlaylist;
 
-	private Random _rand;
+	private Random Rand { get; }
 
 
 	/// <summary>
@@ -51,15 +51,17 @@ public class MediaPlayer
 	private static readonly Regex SupportedFileName = new Regex(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled);
 
 
-	public MediaPlayer()
+	public EOMediaPlayer()
 	{
 		try
 		{
-			WMP = new
+			WMP = new MediaPlayer
 			{
-				uiMode = "none"
+				
 			};
-			WMP.settings.autoStart = false;
+			//WMP.settings.autoStart = false;
+			WMP.MediaOpened += WMP_MediaOpened;
+			WMP.MediaEnded += WMP_MediaEnded;
 
 		}
 		catch (Exception e)
@@ -70,11 +72,11 @@ public class MediaPlayer
 		IsLoop = false;
 		_isShuffle = false;
 		IsMute = false;
-		LoopHeadPosition = 0.0;
+		LoopHeadPosition = TimeSpan.Zero;
 		AutoPlay = false;
 		_playlist = new List<string>();
 		_realPlaylist = new List<string>();
-		_rand = new Random();
+		Rand = new Random();
 
 		MediaEnded += MediaPlayer_MediaEnded;
 	}
@@ -92,13 +94,14 @@ public class MediaPlayer
 	/// </summary>
 	public string SourcePath
 	{
-		get { return !IsAvailable ? string.Empty : WMP.URL; }
+		get { return !IsAvailable ? string.Empty : WMP.Source?.ToString() ?? string.Empty; }
 		set
 		{
-			if (IsAvailable && WMP.URL != value)
-				WMP.URL = value;
+			if (IsAvailable && WMP.Source?.ToString() != value && !string.IsNullOrEmpty(value))
+				WMP.Open(new(value));
 		}
 	}
+
 
 	/// <summary>
 	/// 音量
@@ -107,8 +110,8 @@ public class MediaPlayer
 	/// </summary>
 	public int Volume
 	{
-		get { return !IsAvailable ? 0 : WMP.settings.volume; }
-		set { if (IsAvailable) WMP.settings.volume = value; }
+		get { return !IsAvailable ? 0 : (int)(WMP.Volume * 100); }
+		set { if (IsAvailable) WMP.Volume = (double)value / 100; }
 	}
 
 	/// <summary>
@@ -116,58 +119,35 @@ public class MediaPlayer
 	/// </summary>
 	public bool IsMute
 	{
-		get { return !IsAvailable ? false : WMP.settings.mute; }
-		set { if (IsAvailable) WMP.settings.mute = value; }
+		get { return IsAvailable && WMP.IsMuted; }
+		set { if (IsAvailable) WMP.IsMuted = value; }
 	}
 
 
-	private bool _isLoop;
 	/// <summary>
 	/// ループするか
 	/// </summary>
-	public bool IsLoop
-	{
-		get { return _isLoop; }
-		set
-		{
-			_isLoop = value;
-			if (IsAvailable)
-				WMP.settings.setMode("loop", _isLoop);
-		}
-	}
+	public bool IsLoop { get; set; }
 
 	/// <summary>
 	/// ループ時の先頭 (秒単位)
 	/// </summary>
-	public double LoopHeadPosition { get; set; }
+	public TimeSpan LoopHeadPosition { get; set; }
 
 
 	/// <summary>
 	/// 現在の再生地点 (秒単位)
 	/// </summary>
-	public double CurrentPosition
+	public TimeSpan CurrentPosition
 	{
-		get { return !IsAvailable ? 0.0 : WMP.controls.currentPosition; }
-		set { if (IsAvailable) WMP.controls.currentPosition = value; }
+		get { return !IsAvailable ? TimeSpan.Zero : WMP.Position; }
+		set { if (IsAvailable) WMP.Position = value; }
 	}
 
 	/// <summary>
 	/// 再生状態
 	/// </summary>
-	public int PlayState => !IsAvailable ? 0 : (int)WMP.playState;
-
-	/// <summary>
-	/// 現在のメディアの名前
-	/// </summary>
-	public string MediaName => !IsAvailable ? string.Empty : WMP.currentMedia?.name;
-
-	/// <summary>
-	/// 現在のメディアの長さ(秒単位)
-	/// なければ 0
-	/// </summary>
-	public double Duration => !IsAvailable ? 0.0 : WMP.currentMedia?.duration ?? 0;
-
-
+	public PlayState PlayState { get; set; }
 
 	/// <summary>
 	/// プレイリストのコピーを取得します。
@@ -272,7 +252,7 @@ public class MediaPlayer
 		if (_realPlaylist.Count > 0 && SourcePath != _realPlaylist[_playingIndex])
 			SourcePath = _realPlaylist[_playingIndex];
 
-		WMP.controls.play();
+		WMP.Play();
 	}
 
 	/// <summary>
@@ -282,7 +262,7 @@ public class MediaPlayer
 	{
 		if (!IsAvailable) return;
 
-		WMP.controls.pause();
+		WMP.Pause();
 	}
 
 	/// <summary>
@@ -292,7 +272,7 @@ public class MediaPlayer
 	{
 		if (!IsAvailable) return;
 
-		WMP.controls.stop();
+		WMP.Stop();
 	}
 
 	/// <summary>
@@ -302,7 +282,7 @@ public class MediaPlayer
 	{
 		if (!IsAvailable) return;
 
-		WMP.close();
+		WMP.Close();
 	}
 
 
@@ -312,8 +292,6 @@ public class MediaPlayer
 	public void Next()
 	{
 		if (!IsAvailable) return;
-
-		int prevState = PlayState;
 
 		if (PlayingIndex >= _realPlaylist.Count - 1)
 		{
@@ -326,30 +304,10 @@ public class MediaPlayer
 			PlayingIndex++;
 		}
 
-		if (prevState == 3 || AutoPlay)     // Playing
+		if (AutoPlay)     // Playing
 			Play();
 	}
 
-	/// <summary>
-	/// 前の曲へ
-	/// </summary>
-	public void Prev()
-	{
-		if (!IsAvailable) return;
-
-		if (IsShuffle)
-			return;
-
-		int prevState = PlayState;
-
-		if (PlayingIndex == 0)
-			PlayingIndex = _realPlaylist.Count - 1;
-		else
-			PlayingIndex--;
-
-		if (prevState == 3 || AutoPlay)     // Playing
-			Play();
-	}
 
 	private void UpdateRealPlaylist()
 	{
@@ -369,7 +327,7 @@ public class MediaPlayer
 			if (_realPlaylist.Count > 1 && SourcePath == _realPlaylist[0])
 			{
 				_realPlaylist = _realPlaylist.Skip(1).ToList();
-				_realPlaylist.Insert(_rand.Next(1, _realPlaylist.Count + 1), SourcePath);
+				_realPlaylist.Insert(Rand.Next(1, _realPlaylist.Count + 1), SourcePath);
 			}
 		}
 
@@ -377,36 +335,23 @@ public class MediaPlayer
 		PlayingIndex = index != -1 ? index : 0;
 	}
 
-
-	private bool _loopflag = false;
-	void wmp_PlayStateChange(int NewState)
+	private void WMP_MediaOpened(object? sender, EventArgs e)
 	{
-
-		// ループ用処理
-		if (IsLoop && LoopHeadPosition > 0.0)
-		{
-			switch (NewState)
-			{
-				case 8:     //MediaEnded
-					_loopflag = true;
-					break;
-
-				case 3:     //playing
-					if (_loopflag)
-					{
-						CurrentPosition = LoopHeadPosition;
-						_loopflag = false;
-					}
-					break;
-			}
-		}
-
-		if (NewState == 8)  //MediaEnded
-			OnMediaEnded();
-
-		PlayStateChange(NewState);
+		PlayState = PlayState.Playing;
 	}
 
+	private void WMP_MediaEnded(object? sender, EventArgs e)
+	{
+		if (IsLoop)
+		{
+			WMP.Position = CurrentPosition;
+			CurrentPosition = LoopHeadPosition;
+		}
+
+		PlayState = PlayState.None;
+
+		OnMediaEnded();
+	}
 
 
 	void MediaPlayer_MediaEnded()
@@ -414,6 +359,11 @@ public class MediaPlayer
 		// プレイリストの処理
 		if (!IsLoop && AutoPlay)
 			Next();
+
+		if (IsLoop)
+		{
+			WMP.Play();
+		}
 	}
 
 
@@ -423,4 +373,10 @@ public class MediaPlayer
 		await Task.Run(() => Task.WaitAll(Task.Delay(10)));
 		MediaEnded();
 	}
+}
+
+public enum PlayState
+{
+	None,
+	Playing
 }
