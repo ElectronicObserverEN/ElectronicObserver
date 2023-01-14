@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Add ship).
+        ///   Looks up a localized string similar to 追加.
         /// </summary>
         internal static string AddShip {
             get {
@@ -70,20 +70,11 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (ASW Bonus).
+        ///   Looks up a localized string similar to 対潜.
         /// </summary>
         internal static string ASWBonus {
             get {
                 return ResourceManager.GetString("ASWBonus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ??? (Current).
-        /// </summary>
-        internal static string Current {
-            get {
-                return ResourceManager.GetString("Current", resourceCulture);
             }
         }
         
@@ -97,7 +88,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Edit plan).
+        ///   Looks up a localized string similar to 編集.
         /// </summary>
         internal static string EditPlan {
             get {
@@ -106,7 +97,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (exp.).
+        ///   Looks up a localized string similar to exp..
         /// </summary>
         internal static string Exp {
             get {
@@ -124,7 +115,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (HP bonus).
+        ///   Looks up a localized string similar to 耐久.
         /// </summary>
         internal static string HPBonus {
             get {
@@ -133,7 +124,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Level).
+        ///   Looks up a localized string similar to Lv.
         /// </summary>
         internal static string Level {
             get {
@@ -142,7 +133,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Notify on any remodel ready).
+        ///   Looks up a localized string similar to すべての改造について通知する.
         /// </summary>
         internal static string NotifyAnyRemodelReady {
             get {
@@ -151,25 +142,18 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Notify on targeted remodel ready).
+        ///   Looks up a localized string similar to 例：レベル1から神風をレベルアップして神風改二に改造しようとした場合
+        ///無効にすると、神風を神風改二に改造できるときだけ通知されます
+        ///有効にすると、神風を神風改に改造できるときと、神風改を神風改二に改造できるときに通知されます.
         /// </summary>
-        internal static string NotifyTargetRemodelReady {
+        internal static string NotifyAnyRemodelReadyToolTip {
             get {
-                return ResourceManager.GetString("NotifyTargetRemodelReady", resourceCulture);
+                return ResourceManager.GetString("NotifyAnyRemodelReadyToolTip", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Remaining).
-        /// </summary>
-        internal static string Remaining {
-            get {
-                return ResourceManager.GetString("Remaining", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ??? (Remodel goal).
+        ///   Looks up a localized string similar to 改造.
         /// </summary>
         internal static string RemodelGoal {
             get {
@@ -178,7 +162,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Remove finished plans).
+        ///   Looks up a localized string similar to 完了除去.
         /// </summary>
         internal static string RemoveFinishedPlans {
             get {
@@ -187,7 +171,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Remove plan).
+        ///   Looks up a localized string similar to 除去.
         /// </summary>
         internal static string RemovePlan {
             get {
@@ -196,7 +180,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Ship Training).
+        ///   Looks up a localized string similar to 艦娘訓練.
         /// </summary>
         internal static string ViewerTitle {
             get {

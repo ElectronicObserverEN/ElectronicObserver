@@ -121,10 +121,7 @@
     <value>Add ship</value>
   </data>
   <data name="ASWBonus" xml:space="preserve">
-    <value>ASW bonus</value>
-  </data>
-  <data name="Current" xml:space="preserve">
-    <value>Current</value>
+    <value>ASW</value>
   </data>
   <data name="DisplayFinished" xml:space="preserve">
     <value>Display finished</value>
@@ -139,7 +136,7 @@
     <value>Finished</value>
   </data>
   <data name="HPBonus" xml:space="preserve">
-    <value>HP bonus</value>
+    <value>HP</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
@@ -147,14 +144,8 @@
   <data name="NotifyAnyRemodelReady" xml:space="preserve">
     <value>Notify on any remodel ready</value>
   </data>
-  <data name="NotifyTargetRemodelReady" xml:space="preserve">
-    <value>Notify on targeted remodel ready</value>
-  </data>
-  <data name="Remaining" xml:space="preserve">
-    <value>Remaining</value>
-  </data>
   <data name="RemodelGoal" xml:space="preserve">
-    <value>Remodel goal</value>
+    <value>Remodel</value>
   </data>
   <data name="RemoveFinishedPlans" xml:space="preserve">
     <value>Remove finished plans</value>
@@ -164,5 +155,10 @@
   </data>
   <data name="ViewerTitle" xml:space="preserve">
     <value>Ship Training</value>
+  </data>
+  <data name="NotifyAnyRemodelReadyToolTip" xml:space="preserve">
+    <value>Example: when trying to level Kamikaze from level 1 to remodel her to Kamikaze Kai Ni
+When disabled, you'll only be notified when you can remodel Kamikaze to Kamikaze Kai Ni
+When enabled, you'll be notified when you can remodel Kamikaze to Kamikaze Kai and when you can remodel Kamikaze Kai to Kamikaze Kai Ni</value>
   </data>
 </root>

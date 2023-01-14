@@ -118,51 +118,47 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddShip" xml:space="preserve">
-    <value>??? (Add ship)</value>
+    <value>追加</value>
   </data>
   <data name="ASWBonus" xml:space="preserve">
-    <value>??? (ASW Bonus)</value>
-  </data>
-  <data name="Current" xml:space="preserve">
-    <value>??? (Current)</value>
+    <value>対潜</value>
   </data>
   <data name="DisplayFinished" xml:space="preserve">
     <value>表示完了</value>
   </data>
   <data name="EditPlan" xml:space="preserve">
-    <value>??? (Edit plan)</value>
+    <value>編集</value>
   </data>
   <data name="Exp" xml:space="preserve">
-    <value>??? (exp.)</value>
+    <value>exp.</value>
   </data>
   <data name="Finished" xml:space="preserve">
     <value>完了</value>
   </data>
   <data name="HPBonus" xml:space="preserve">
-    <value>??? (HP bonus)</value>
+    <value>耐久</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>??? (Level)</value>
+    <value>Lv</value>
   </data>
   <data name="NotifyAnyRemodelReady" xml:space="preserve">
-    <value>??? (Notify on any remodel ready)</value>
-  </data>
-  <data name="NotifyTargetRemodelReady" xml:space="preserve">
-    <value>??? (Notify on targeted remodel ready)</value>
-  </data>
-  <data name="Remaining" xml:space="preserve">
-    <value>??? (Remaining)</value>
+    <value>すべての改造について通知する</value>
   </data>
   <data name="RemodelGoal" xml:space="preserve">
-    <value>??? (Remodel goal)</value>
+    <value>改造</value>
   </data>
   <data name="RemoveFinishedPlans" xml:space="preserve">
-    <value>??? (Remove finished plans)</value>
+    <value>完了除去</value>
   </data>
   <data name="RemovePlan" xml:space="preserve">
-    <value>??? (Remove plan)</value>
+    <value>除去</value>
   </data>
   <data name="ViewerTitle" xml:space="preserve">
-    <value>??? (Ship Training)</value>
+    <value>艦娘訓練</value>
+  </data>
+  <data name="NotifyAnyRemodelReadyToolTip" xml:space="preserve">
+    <value>例：レベル1から神風をレベルアップして神風改二に改造しようとした場合
+無効にすると、神風を神風改二に改造できるときだけ通知されます
+有効にすると、神風を神風改に改造できるときと、神風改を神風改二に改造できるときに通知されます</value>
   </data>
 </root>

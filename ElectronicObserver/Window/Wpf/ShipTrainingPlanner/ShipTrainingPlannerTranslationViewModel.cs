@@ -15,14 +15,12 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 	public string HPBonus => ShipTrainingPlanner.HPBonus;
 	public string ASWBonus => ShipTrainingPlanner.ASWBonus;
 	public string Luck => EncycloRes.Luck;
-	public string Current => ShipTrainingPlanner.Current;
 	public string RemodelGoal => ShipTrainingPlanner.RemodelGoal;
 	public string EditPlan => ShipTrainingPlanner.EditPlan;
 	public string Cancel => GeneralRes.Cancel;
 	public string OK => "OK";
-	public string NotifyTargetRemodelReady => ShipTrainingPlanner.NotifyTargetRemodelReady;
 	public string NotifyAnyRemodelReady => ShipTrainingPlanner.NotifyAnyRemodelReady;
-	public string Remaining => ShipTrainingPlanner.Remaining;
+	public string NotifyAnyRemodelReadyToolTip => ShipTrainingPlanner.NotifyAnyRemodelReadyToolTip;
 	public string Exp => ShipTrainingPlanner.Exp;
 	public string Finished => ShipTrainingPlanner.Finished;
 	public string DisplayFinished => ShipTrainingPlanner.DisplayFinished;
