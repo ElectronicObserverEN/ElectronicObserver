@@ -73,7 +73,7 @@ public class EOMediaPlayer
 	/// </summary>
 	public string SourcePath
 	{
-		get { return MediaPlayer.Source?.ToString() ?? string.Empty; }
+		get => MediaPlayer.Source?.ToString() ?? string.Empty;
 		set
 		{
 			if (MediaPlayer.Source?.ToString() != value && !string.IsNullOrEmpty(value))
@@ -89,8 +89,8 @@ public class EOMediaPlayer
 	/// </summary>
 	public int Volume
 	{
-		get { return (int)(MediaPlayer.Volume * 100); }
-		set { MediaPlayer.Volume = (double)value / 100; }
+		get => (int)(MediaPlayer.Volume * 100);
+		set => MediaPlayer.Volume = (double)value / 100;
 	}
 
 	/// <summary>
@@ -98,8 +98,8 @@ public class EOMediaPlayer
 	/// </summary>
 	public bool IsMute
 	{
-		get { return MediaPlayer.IsMuted; }
-		set { MediaPlayer.IsMuted = value; }
+		get => MediaPlayer.IsMuted;
+		set => MediaPlayer.IsMuted = value;
 	}
 
 
@@ -119,8 +119,8 @@ public class EOMediaPlayer
 	/// </summary>
 	public TimeSpan CurrentPosition
 	{
-		get { return MediaPlayer.Position; }
-		set { MediaPlayer.Position = value; }
+		get => MediaPlayer.Position;
+		set => MediaPlayer.Position = value;
 	}
 
 	/// <summary>
@@ -141,9 +141,9 @@ public class EOMediaPlayer
 	/// プレイリストを設定します。
 	/// </summary>
 	/// <param name="list"></param>
-	public void SetPlaylist(IEnumerable<string> list)
+	public void SetPlaylist(IEnumerable<string>? list)
 	{
-		if (list == null)
+		if (list is null)
 			Playlist = new List<string>();
 		else
 			Playlist = list.Distinct().ToList();
@@ -175,7 +175,7 @@ public class EOMediaPlayer
 	/// </summary>
 	private int PlayingIndex
 	{
-		get { return _playingIndex; }
+		get => _playingIndex;
 		set
 		{
 			if (_playingIndex != value)
@@ -198,7 +198,7 @@ public class EOMediaPlayer
 	/// </summary>
 	public bool IsShuffle
 	{
-		get { return _isShuffle; }
+		get => _isShuffle; 
 		set
 		{
 			bool changed = _isShuffle != value;
@@ -340,10 +340,4 @@ public class EOMediaPlayer
 		await Task.Run(() => Task.WaitAll(Task.Delay(10)));
 		MediaEnded();
 	}
-}
-
-public enum PlayState
-{
-	None,
-	Playing
 }
