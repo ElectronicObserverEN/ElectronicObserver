@@ -113,30 +113,17 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.Level, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Orientation="Vertical">
-										<StackPanel Orientation="Horizontal">
-											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.Level}" />
-											<TextBlock
-												Margin="5 0"
-												VerticalAlignment="Center"
-												Text="/"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="{Binding TargetLevel}" />
-										</StackPanel>
+									<StackPanel Margin="2">
+										<TextBlock>
+											<Run Text="{Binding Ship.Level, Mode=OneWay}" />
+											<Run Text="/" />
+											<Run Text="{Binding TargetLevel, Mode=OneWay}" />
+										</TextBlock>
 
-										<StackPanel Orientation="Horizontal">
-											<TextBlock
-												Margin="0 0 2 0"
-												VerticalAlignment="Center"
-												Text="{Binding DataContext.ShipTrainingPlanner.Remaining, Source={StaticResource Proxy}}"
-												/>
-											<TextBlock
-												Margin="2 0"
-												VerticalAlignment="Center"
-												Text="{Binding RemainingExpToTarget}"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="{Binding DataContext.ShipTrainingPlanner.Exp, Source={StaticResource Proxy}}" />
-										</StackPanel>
+										<TextBlock>
+											<Run Text="{Binding RemainingExpToTarget, Mode=OneWay}" />
+											<Run Text="{Binding DataContext.ShipTrainingPlanner.Exp, Source={StaticResource Proxy}, Mode=OneWay}" />
+										</TextBlock>
 									</StackPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
@@ -145,37 +132,19 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.HPBonus, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Margin="3" Orientation="Vertical">
+									<StackPanel Margin="2">
 
-										<StackPanel Orientation="Horizontal">
-											<TextBlock
-												Margin="1 0"
-												VerticalAlignment="Center"
-												Text="+"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMaxModernized}" />
-											<TextBlock
-												Margin="2 0 2 0"
-												VerticalAlignment="Center"
-												Text="/"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="+" />
-											<TextBlock VerticalAlignment="Center" Text="{Binding TargetHPBonus}" />
-										</StackPanel>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.HPMax}" />
-											<TextBlock
-												Margin="2 0 2 0"
-												VerticalAlignment="Center"
-												Text="/"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="{Binding TargetHP}" />
-											<TextBlock
-												Margin="2 0"
-												VerticalAlignment="Center"
-												Text="{Binding DataContext.ShipTrainingPlanner.HP, Source={StaticResource Proxy}}"
-												/>
-										</StackPanel>
+										<TextBlock>
+											+<Run Text="{Binding Ship.HPMaxModernized, Mode=OneWay}" />
+											<Run Text="/" />
+											+<Run Text="{Binding TargetHPBonus, Mode=OneWay}" />
+										</TextBlock>
+
+										<TextBlock>
+											<Run Text="{Binding Ship.HPMax, Mode=OneWay}" />
+											<Run Text="/" />
+											<Run Text="{Binding TargetHP, Mode=OneWay}" />
+										</TextBlock>
 
 									</StackPanel>
 								</DataTemplate>
@@ -185,37 +154,19 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.ASWBonus, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel Margin="3" Orientation="Vertical">
+									<StackPanel Margin="2">
 
-										<StackPanel Orientation="Horizontal">
-											<TextBlock
-												Margin="1 0"
-												VerticalAlignment="Center"
-												Text="+"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWModernized}" />
-											<TextBlock
-												Margin="2 0 2 0"
-												VerticalAlignment="Center"
-												Text="/"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="+" />
-											<TextBlock Text="{Binding TargetASWBonus}" />
-										</StackPanel>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock VerticalAlignment="Center" Text="{Binding Ship.ASWBase}" />
-											<TextBlock
-												Margin="2 0 2 0"
-												VerticalAlignment="Center"
-												Text="/"
-												/>
-											<TextBlock VerticalAlignment="Center" Text="{Binding TargetASW}" />
-											<TextBlock
-												Margin="2 0"
-												VerticalAlignment="Center"
-												Text="{Binding DataContext.ShipTrainingPlanner.ASW, Source={StaticResource Proxy}}"
-												/>
-										</StackPanel>
+										<TextBlock>
+											+<Run Text="{Binding Ship.ASWModernized, Mode=OneWay}" />
+											<Run Text="/" />
+											+<Run Text="{Binding TargetASWBonus, Mode=OneWay}" />
+										</TextBlock>
+
+										<TextBlock>
+											<TextBlock Text="{Binding Ship.ASWBase, Mode=OneWay}" />
+											<TextBlock Text="/" />
+											<TextBlock Text="{Binding TargetASW, Mode=OneWay}" />
+										</TextBlock>
 
 									</StackPanel>
 								</DataTemplate>
@@ -225,22 +176,18 @@
 						<DataGridTemplateColumn Header="{Binding DataContext.ShipTrainingPlanner.Luck, Source={StaticResource Proxy}}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-										<TextBlock Text="{Binding Ship.LuckBase}" />
-										<TextBlock Margin="5 0" Text="/" />
-										<TextBlock Text="{Binding TargetLuck}" />
-									</StackPanel>
+									<TextBlock VerticalAlignment="Center">
+										<Run Text="{Binding Ship.LuckBase, Mode=OneWay}" />
+										<Run Text="/" />
+										<Run Text="{Binding TargetLuck, Mode=OneWay}" />
+									</TextBlock>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
 
 						<DataGridTextColumn Binding="{Binding TargetRemodel.NameEN}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
 
-						<DataGridCheckBoxColumn
-							Binding="{Binding PlanFinished, Mode=OneWay}"
-							Header="{Binding DataContext.ShipTrainingPlanner.Finished, Source={StaticResource Proxy}}"
-							IsReadOnly="True"
-							/>
+						<DataGridCheckBoxColumn Binding="{Binding PlanFinished, Mode=OneWay}" Header="{Binding DataContext.ShipTrainingPlanner.Finished, Source={StaticResource Proxy}}" />
 
 					</DataGrid.Columns>
 
