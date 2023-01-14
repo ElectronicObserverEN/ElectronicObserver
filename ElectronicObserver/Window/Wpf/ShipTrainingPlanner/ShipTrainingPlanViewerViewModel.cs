@@ -108,7 +108,8 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		ShipTrainingPlanViewModel newPlanViewModel = new(newPlan);
 
 		// init some values like level or target remodel
-		IShipDataMaster? lastRemodel = newPlanViewModel.PossibleRemodels.LastOrDefault();
+		IShipDataMaster? lastRemodel = newPlanViewModel.PossibleRemodels.LastOrDefault()?.Ship;
+
 		if (lastRemodel is not null)
 		{
 			newPlan.TargetRemodel = lastRemodel.ShipId;

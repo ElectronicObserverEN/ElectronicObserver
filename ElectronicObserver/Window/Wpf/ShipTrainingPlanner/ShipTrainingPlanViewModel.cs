@@ -25,7 +25,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		&& Ship.HPMax >= TargetHP 
 		&& Ship.ASWBase >= TargetASW 
 		&& Ship.LuckBase >= TargetLuck
-		&& (TargetRemodel is null || Ship.MasterShip.ShipId == TargetRemodel.ShipId);
+		&& (Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
 
 	public int TargetLevel { get; set; }
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
@@ -38,7 +38,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
 	public bool ShipRemodelLevelReached =>
-		TargetRemodel is IShipDataMaster remodel
+		TargetRemodel?.Ship is IShipDataMaster remodel
 		&& Ship.MasterShip.ShipId != remodel.ShipId
 		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
 		&& Ship.Level >= shipBefore.RemodelAfterLevel;
@@ -69,9 +69,9 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	/// </summary>
 	public int TargetLuck { get; set; }
 
-	public IShipDataMaster? TargetRemodel { get; set; }
+	public ComboBoxShip? TargetRemodel { get; set; }
 
-	public List<IShipDataMaster> PossibleRemodels { get; } = new();
+	public List<ComboBoxShip> PossibleRemodels { get; } = new();
 
 	public bool NotifyOnAnyRemodelReady { get; set; }
 
@@ -121,16 +121,17 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
 
 		if (Model.TargetRemodel is ShipId shipId)
-			TargetRemodel = KCDatabase.Instance.MasterShips[(int)shipId];
+			TargetRemodel = new(KCDatabase.Instance.MasterShips[(int)shipId]);
 
 		PossibleRemodels.Clear();
 
-		IShipDataMaster? remodel = Ship.MasterShip;
+		ComboBoxShip remodel = new(Ship.MasterShip);
 
-		while (remodel is not null && !PossibleRemodels.Contains(remodel))
+		while (!PossibleRemodels.Contains(remodel))
 		{
 			PossibleRemodels.Add(remodel);
-			remodel = remodel.RemodelAfterShip;
+			if (remodel.Ship.RemodelAfterShip is null) break;
+			remodel = new(remodel.Ship.RemodelAfterShip);
 		}
 	}
 
@@ -146,7 +147,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		Model.TargetLuck = TargetLuck;
 		Model.TargetHPBonus = TargetHPBonus;
 		Model.TargetASWBonus = TargetASWBonus;
-		Model.TargetRemodel = TargetRemodel?.ShipId;
+		Model.TargetRemodel = TargetRemodel?.Ship.ShipId;
 
 		Model.NotifyOnAnyRemodelReady = NotifyOnAnyRemodelReady;
 	}

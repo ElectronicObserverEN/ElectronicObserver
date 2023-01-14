@@ -234,7 +234,7 @@
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
 
-						<DataGridTextColumn Binding="{Binding TargetRemodel.NameWithClass}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
+						<DataGridTextColumn Binding="{Binding TargetRemodel.NameEN}" Header="{Binding DataContext.ShipTrainingPlanner.RemodelGoal, Source={StaticResource Proxy}}" />
 
 						<DataGridCheckBoxColumn
 							Binding="{Binding PlanFinished, Mode=OneWay}"
