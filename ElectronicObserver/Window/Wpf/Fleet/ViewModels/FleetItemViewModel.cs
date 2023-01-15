@@ -163,187 +163,217 @@ public class FleetItemViewModel : ObservableObject
 
 	public void Update(int shipMasterID)
 	{
-
 		KCDatabase db = KCDatabase.Instance;
 		Ship = db.Ships[shipMasterID];
 
-		if (Ship != null)
+		UpdateShip(shipMasterID);
+
+		Visible = shipMasterID != -1;
+	}
+
+	private void UpdateShip(int shipMasterID)
+	{
+		if (Ship is null)
 		{
-			bool isEscaped = KCDatabase.Instance.Fleet[Parent.FleetId].EscapedShipList.Contains(shipMasterID);
-			var equipments = Ship.AllSlotInstance.Where(eq => eq != null);
+			Name.Tag = -1;
+			return;
+		}
 
-			Name.Text = Ship.MasterShip.NameWithClass;
-			Name.Tag = Ship.ShipID;
-			Name.ToolTip = string.Format(
-				FormFleet.ShipNameToolTip,
-				Ship.SallyArea > 0 ? $"[{Ship.SallyArea}] " : "",
-				Ship.MasterShip.ShipTypeName, Ship.NameWithLevel,
-				Ship.FirepowerBase, Ship.FirepowerTotal,
-				Ship.TorpedoBase, Ship.TorpedoTotal,
-				Ship.AABase, Ship.AATotal,
-				Ship.ArmorBase, Ship.ArmorTotal,
-				Ship.ASWBase, Ship.ASWTotal,
-				Ship.EvasionBase, Ship.EvasionTotal,
-				Ship.LOSBase, Ship.LOSTotal,
-				Ship.LuckTotal,
-				equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Accuracy) : 0,
-				equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Bomber) : 0,
-				Constants.GetRange(Ship.Range),
-				Constants.GetSpeed(Ship.Speed)
-			);
+		KCDatabase db = KCDatabase.Instance;
 
-			Name.BackColor = GetShipBackColor();
-			Name.ForeColor = GetShipForeColor();
+		bool isEscaped = db.Fleet[Parent.FleetId].EscapedShipList.Contains(shipMasterID);
+		var equipments = Ship.AllSlotInstance.Where(eq => eq != null);
 
-			Level.Value = Ship.Level;
-			Level.ValueNext = Ship.ExpNext;
-			Level.Tag = Ship.MasterID;
+		UpdateShipName(equipments);
 
-			Level.UpdateColors(); 
+		UpdateLevel();
 
-			{
-				StringBuilder tip = new StringBuilder();
-				tip.AppendFormat("Total: {0:N0} exp.\r\n", Ship.ExpTotal);
+		UpdateHealth(isEscaped);
 
-				if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
-					tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
+		UpdateCondition();
 
-				List<(string Name, int Level)> remodels = db.MasterShips.Values
-					.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
-					.Where(s => s.RemodelTier > Ship.MasterShip.RemodelTier)
-					.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
-					.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0))
-					.ToList();
+		ShipResource.SetResources(Ship.Fuel, Ship.FuelMax, Ship.Ammo, Ship.AmmoMax);
+		ShipResource.IsEscaped = isEscaped;
 
-				foreach ((string name, int remodelLevel) in remodels)
-				{
-					int neededExp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, remodelLevel), 0);
-					tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
-				}
+		Equipments.SetSlotList(Ship);
+		Equipments.ToolTip = GetEquipmentString(Ship);
+	}
 
-				string? planTip = null;
-				int? planLevel = null;
+	private void UpdateCondition()
+	{
+		if (Ship is null) return;
+			
+		Condition.Text = Ship.Condition.ToString();
+		Condition.Tag = Ship.Condition;
+		Condition.SetDesign(Ship.Condition);
 
-				if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Level).Contains(Level.TrainingPlan.TargetLevel))
-				{
-					planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
-					planLevel = Level.TrainingPlan.TargetLevel;
-				}
-
-				if (planLevel is not null && planLevel < 99)
-				{
-					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
-				}
-
-				if (Ship.Level < 99)
-				{
-					string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
-					tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
-				}
-
-				if (planLevel is not null && planLevel > 99 && planLevel != ExpTable.ShipMaximumLevel)
-				{
-					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
-				}
-
-				if (Ship.Level < ExpTable.ShipMaximumLevel)
-				{
-					string lv175Exp = Math
-						.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
-						.ToString("N0");
-					tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
-				}
-
-				Level.ToolTip = tip.ToString();
-			}
-
-
-			// HP.SuspendUpdate();
-			HP.HPBar.Value = HP.PrevValue = Ship.HPCurrent;
-			HP.HPBar.MaximumValue = Ship.HPMax;
-			HP.UsePrevValue = false;
-			HP.ShowDifference = false;
-			{
-				int dockID = Ship.RepairingDockID;
-
-				if (dockID != -1)
-				{
-					HP.RepairTime = db.Docks[dockID].CompletionTime;
-					HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Visible;
-				}
-				else
-				{
-					HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Invisible;
-				}
-			}
-			HP.Tag = (Ship.RepairingDockID == -1 && 0.5 < Ship.HPRate && Ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(Ship.RepairTime).TotalSeconds : 0.0;
-			HP.BackColor = isEscaped switch
-			{
-				true => Utility.Configuration.Config.UI.SubBackColor,
-				_ => Color.Transparent
-			};
-			{
-				StringBuilder sb = new StringBuilder();
-				double hprate = (double)Ship.HPCurrent / Ship.HPMax;
-
-				sb.AppendFormat("HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState(hprate));
-				if (isEscaped)
-				{
-					sb.AppendLine(GeneralRes.Retreating);
-				}
-				else if (hprate > 0.50)
-				{
-					sb.AppendFormat(GeneralRes.ToMidAndHeavy + "\n", Ship.HPCurrent - Ship.HPMax / 2, Ship.HPCurrent - Ship.HPMax / 4);
-				}
-				else if (hprate > 0.25)
-				{
-					sb.AppendFormat(GeneralRes.ToHeavy + "\n", Ship.HPCurrent - Ship.HPMax / 4);
-				}
-				else
-				{
-					sb.AppendLine(GeneralRes.IsTaiha);
-				}
-
-				if (Ship.RepairTime > 0)
-				{
-					var span = DateTimeHelper.FromAPITimeSpan(Ship.RepairTime);
-					sb.AppendFormat(GeneralRes.DockTime + ": {0} @ {1}",
-						DateTimeHelper.ToTimeRemainString(span),
-						DateTimeHelper.ToTimeRemainString(Calculator.CalculateDockingUnitTime(Ship)));
-				}
-
-				HP.ToolTip = sb.ToString();
-			}
-			// HP.ResumeUpdate();
-
-
-			Condition.Text = Ship.Condition.ToString();
-			Condition.Tag = Ship.Condition;
-			Condition.SetDesign(Ship.Condition);
-
-			if (Ship.Condition < 49)
-			{
-				TimeSpan ts = new TimeSpan(0, (int)Math.Ceiling((49 - Ship.Condition) / 3.0) * 3, 0);
-				Condition.ToolTip = string.Format(GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds);
-			}
-			else
-			{
-				Condition.ToolTip = string.Format(GeneralRes.RemainingExpeds, (int)Math.Ceiling((Ship.Condition - 49) / 3.0));
-			}
-
-			ShipResource.SetResources(Ship.Fuel, Ship.FuelMax, Ship.Ammo, Ship.AmmoMax);
-			ShipResource.IsEscaped = isEscaped;
-
-			Equipments.SetSlotList(Ship);
-			Equipments.ToolTip = GetEquipmentString(Ship);
-
+		if (Ship.Condition < 49)
+		{
+			TimeSpan ts = new TimeSpan(0, (int)Math.Ceiling((49 - Ship.Condition) / 3.0) * 3, 0);
+			Condition.ToolTip = string.Format(GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds);
 		}
 		else
 		{
-			Name.Tag = -1;
+			Condition.ToolTip = string.Format(GeneralRes.RemainingExpeds, (int)Math.Ceiling((Ship.Condition - 49) / 3.0));
+		}
+	}
+
+	private void UpdateHealth(bool isEscaped)
+	{
+		KCDatabase db = KCDatabase.Instance;
+
+		if (Ship is null) return;
+
+		HP.HPBar.Value = HP.PrevValue = Ship.HPCurrent;
+		HP.HPBar.MaximumValue = Ship.HPMax;
+		HP.UsePrevValue = false;
+		HP.ShowDifference = false;
+
+		int dockID = Ship.RepairingDockID;
+
+		if (dockID != -1)
+		{
+			HP.RepairTime = db.Docks[dockID].CompletionTime;
+			HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Visible;
+		}
+		else
+		{
+			HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Invisible;
 		}
 
-		Visible = shipMasterID != -1;
+		HP.Tag = (Ship.RepairingDockID == -1 && 0.5 < Ship.HPRate && Ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(Ship.RepairTime).TotalSeconds : 0.0;
+		HP.BackColor = isEscaped switch
+		{
+			true => Utility.Configuration.Config.UI.SubBackColor,
+			_ => Color.Transparent
+		};
+
+
+		StringBuilder sb = new StringBuilder();
+		double hprate = (double)Ship.HPCurrent / Ship.HPMax;
+
+		sb.AppendFormat("HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState(hprate));
+		if (isEscaped)
+		{
+			sb.AppendLine(GeneralRes.Retreating);
+		}
+		else if (hprate > 0.50)
+		{
+			sb.AppendFormat(GeneralRes.ToMidAndHeavy + "\n", Ship.HPCurrent - Ship.HPMax / 2, Ship.HPCurrent - Ship.HPMax / 4);
+		}
+		else if (hprate > 0.25)
+		{
+			sb.AppendFormat(GeneralRes.ToHeavy + "\n", Ship.HPCurrent - Ship.HPMax / 4);
+		}
+		else
+		{
+			sb.AppendLine(GeneralRes.IsTaiha);
+		}
+
+		if (Ship.RepairTime > 0)
+		{
+			var span = DateTimeHelper.FromAPITimeSpan(Ship.RepairTime);
+			sb.AppendFormat(GeneralRes.DockTime + ": {0} @ {1}",
+				DateTimeHelper.ToTimeRemainString(span),
+				DateTimeHelper.ToTimeRemainString(Calculator.CalculateDockingUnitTime(Ship)));
+		}
+
+		HP.ToolTip = sb.ToString();
+	}
+
+	private void UpdateLevel()
+	{
+		if (Ship is null) return;
+
+		KCDatabase db = KCDatabase.Instance;
+
+		Level.Value = Ship.Level;
+		Level.ValueNext = Ship.ExpNext;
+		Level.Tag = Ship.MasterID;
+
+		Level.UpdateColors();
+
+		StringBuilder tip = new StringBuilder();
+		tip.AppendFormat("Total: {0:N0} exp.\r\n", Ship.ExpTotal);
+
+		if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
+			tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
+
+		List<(string Name, int Level)> remodels = db.MasterShips.Values
+			.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
+			.Where(s => s.RemodelTier > Ship.MasterShip.RemodelTier)
+			.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
+			.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0))
+			.ToList();
+
+		foreach ((string name, int remodelLevel) in remodels)
+		{
+			int neededExp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, remodelLevel), 0);
+			tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
+		}
+
+		string? planTip = null;
+		int? planLevel = null;
+
+		if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Level).Contains(Level.TrainingPlan.TargetLevel))
+		{
+			planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
+			planLevel = Level.TrainingPlan.TargetLevel;
+		}
+
+		if (planLevel is not null && planLevel < 99)
+		{
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+		}
+
+		if (Ship.Level < 99)
+		{
+			string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
+			tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
+		}
+
+		if (planLevel is not null && planLevel > 99 && planLevel != ExpTable.ShipMaximumLevel)
+		{
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+		}
+
+		if (Ship.Level < ExpTable.ShipMaximumLevel)
+		{
+			string lv175Exp = Math
+				.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
+				.ToString("N0");
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
+		}
+
+		Level.ToolTip = tip.ToString();
+	}
+
+	private void UpdateShipName(IEnumerable<IEquipmentData> equipments)
+	{
+		if (Ship is null) return;
+
+		Name.Text = Ship.MasterShip.NameWithClass;
+		Name.Tag = Ship.ShipID;
+		Name.ToolTip = string.Format(
+			FormFleet.ShipNameToolTip,
+			Ship.SallyArea > 0 ? $"[{Ship.SallyArea}] " : "",
+			Ship.MasterShip.ShipTypeName, Ship.NameWithLevel,
+			Ship.FirepowerBase, Ship.FirepowerTotal,
+			Ship.TorpedoBase, Ship.TorpedoTotal,
+			Ship.AABase, Ship.AATotal,
+			Ship.ArmorBase, Ship.ArmorTotal,
+			Ship.ASWBase, Ship.ASWTotal,
+			Ship.EvasionBase, Ship.EvasionTotal,
+			Ship.LOSBase, Ship.LOSTotal,
+			Ship.LuckTotal,
+			equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Accuracy) : 0,
+			equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Bomber) : 0,
+			Constants.GetRange(Ship.Range),
+			Constants.GetSpeed(Ship.Speed)
+		);
+
+		Name.BackColor = GetShipBackColor();
+		Name.ForeColor = GetShipForeColor();
 	}
 
 	private Color GetShipBackColor()

@@ -21,15 +21,19 @@
 		<LangVersion>preview</LangVersion>
 	<Platforms>x86;x64</Platforms>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+	<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />

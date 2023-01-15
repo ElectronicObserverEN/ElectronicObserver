@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<Platforms>x64</Platforms>
 		<LangVersion>Preview</LangVersion>
+		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 	  <DebugType>embedded</DebugType>
@@ -12,6 +13,9 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
 	  <DebugType>embedded</DebugType>
 	</PropertyGroup>
+	<ItemGroup>
+	  <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />

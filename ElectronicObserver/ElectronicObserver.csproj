@@ -30,15 +30,16 @@
 		<Version>5.2.1.1</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
 		<OutputPath>bin\x64\Debug\</OutputPath>
-		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
 		<OutputPath>bin\x64\Release\</OutputPath>
-		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 	<ItemGroup>
@@ -437,6 +438,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
+		<AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
 		<Content Include="74eo.ico" />
 		<Content Include="Other\Information\apilist.txt" />
 		<Content Include="Other\Information\todo.txt" />

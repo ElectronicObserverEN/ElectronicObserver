@@ -1,0 +1,15 @@
+{
+  "ServerUri": "https://sonarcloud.io/",
+  "Organization": {
+    "Key": "electronicobserveren",
+    "Name": "ElectronicObserverEN"
+  },
+  "ProjectKey": "ElectronicObserverEN_ElectronicObserver",
+  "ProjectName": "ElectronicObserver",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AYWINJkRib1uny_PcXyG",
+      "ProfileTimestamp": "2022-12-21T10:42:51Z"
+    }
+  }
+}
