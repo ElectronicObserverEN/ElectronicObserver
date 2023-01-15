@@ -1379,7 +1379,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	{
 
 		int rank = bm.PredictWinRank(out double friendrate, out double enemyrate);
-
+		bm.TrueRank = Constants.GetWinRank(rank);
 		DamageFriendText = friendrate.ToString("p1");
 		DamageEnemyText = enemyrate.ToString("p1");
 

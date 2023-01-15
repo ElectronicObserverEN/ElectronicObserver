@@ -48,7 +48,7 @@ public class BattleManager : APIWrapper
 	/// 戦闘結果データ
 	/// </summary>
 	public BattleResultData Result { get; private set; }
-
+	public string TrueRank { get; set; }
 	// In the api, heavy base air raid is implemented as 3 different air raid battles
 	// If we decide to collapse it down into 1 battle, this should be deleted
 	// and heavy base air raid moved to BattleDay like regular BattleBaseAirRaid
@@ -376,6 +376,7 @@ public class BattleManager : APIWrapper
 				BattleNight = null;
 				Result = null;
 				BattleMode = BattleModes.Undefined;
+				TrueRank = "";
 				DroppedShipCount = DroppedEquipmentCount = 0;
 				DroppedItemCount.Clear();
 				SpecialAttackCount.Clear();
