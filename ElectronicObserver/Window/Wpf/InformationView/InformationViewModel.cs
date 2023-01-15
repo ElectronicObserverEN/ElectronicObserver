@@ -509,7 +509,7 @@ public class InformationViewModel : AnchorableViewModel
 
 		sb.AppendLine(GeneralRes.BattleComplete);
 		sb.AppendFormat(GeneralRes.EnemyName + "\r\n", KCDatabase.Instance.Translation.Operation.FleetName(data.api_enemy_info.api_deck_name));
-		sb.AppendFormat(Translation.BattleResultRank + "\r\n", KCDatabase.Instance.Battle.TrueRank);
+		sb.AppendFormat(Translation.BattleResultRank + "\r\n", KCDatabase.Instance.Battle.PredictedBattleRank);
 		sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 
 		sb.Append(CheckGimmickUpdated(data));
