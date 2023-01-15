@@ -97,6 +97,9 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
 		o.ApiReqSortie_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
 
+		o.ApiPort_Port.ResponseReceived += (_, _) => OnPropertyChanged(nameof(RemainingExpToTarget));
+		o.ApiReqMap_Next.ResponseReceived += (_, _) => OnPropertyChanged(nameof(RemainingExpToTarget));
+
 		o.ApiReqKaisou_Marriage.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
 
 		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
