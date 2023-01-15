@@ -990,7 +990,6 @@ namespace ElectronicObserver.Window.Dialog
 			this.ShowInTaskbar = false;
 			this.Text = "通知の設定";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Load += new System.EventHandler(this.DialogConfigurationNotifier_Load);
 			this.GroupSound.ResumeLayout(false);
 			this.GroupSound.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SoundVolume)).EndInit();

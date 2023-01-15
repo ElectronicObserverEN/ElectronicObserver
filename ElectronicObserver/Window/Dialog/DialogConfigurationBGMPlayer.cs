@@ -42,7 +42,7 @@ public partial class DialogConfigurationBGMPlayer : Form
 
 	private void DialogConfigurationBGMPlayer_Load(object sender, EventArgs e)
 	{
-		OpenMusicDialog.Filter = "音楽ファイル|" + string.Join(";", MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|ファイル|*";
+		OpenMusicDialog.Filter = "音楽ファイル|" + string.Join(";", EOMediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|ファイル|*";
 	}
 
 	private void ButtonAccept_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ public partial class DialogConfigurationBGMPlayer : Form
 
 	private void FilePath_DragEnter(object sender, DragEventArgs e)
 	{
-		if (e.Data.GetDataPresent(DataFormats.FileDrop))
+		if (e.Data?.GetDataPresent(DataFormats.FileDrop) is true)
 			e.Effect = DragDropEffects.Copy;
 		else
 			e.Effect = DragDropEffects.None;
@@ -70,12 +70,13 @@ public partial class DialogConfigurationBGMPlayer : Form
 
 	private void FilePath_DragDrop(object sender, DragEventArgs e)
 	{
+		if (e.Data is null) return;
 		FilePath.Text = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
 	}
 
 	private void FilePathSearch_Click(object sender, EventArgs e)
 	{
-		if (OpenMusicDialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
+		if (OpenMusicDialog.ShowDialog(App.Current!.MainWindow!) == System.Windows.Forms.DialogResult.OK)
 		{
 			FilePath.Text = OpenMusicDialog.FileName;
 		}

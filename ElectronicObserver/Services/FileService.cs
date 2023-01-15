@@ -12,16 +12,16 @@ namespace ElectronicObserver.Services;
 
 public class FileService
 {
-	private System.Windows.Window MainWindow => App.Current!.MainWindow!;
+	private static System.Windows.Window MainWindow => App.Current!.MainWindow!;
 
-	private string LayoutFilter => "Layout File|*.xml";
+	private static string LayoutFilter => "Layout File|*.xml";
 
 	/// <summary>
 	/// Opens a file selection dialog to select a layout file.
 	/// </summary>
 	/// <param name="path">Current layout path.</param>
 	/// <returns>Selected file path or null if no path was selected.</returns>
-	public string? OpenLayoutPath(string path)
+	public static string? OpenLayoutPath(string path)
 	{
 		OpenFileDialog dialog = new()
 		{
@@ -43,7 +43,7 @@ public class FileService
 	/// </summary>
 	/// <param name="path">Current layout path.</param>
 	/// <returns>Selected file path or null if no path was selected.</returns>
-	public string? SaveLayoutPath(string path)
+	public static string? SaveLayoutPath(string path)
 	{
 		SaveFileDialog dialog = new()
 		{
@@ -65,7 +65,7 @@ public class FileService
 	/// </summary>
 	/// <param name="path">Current folder path.</param>
 	/// <returns>Selected folder path or null if no path was selected.</returns>
-	public string? SelectFolder(string path)
+	public static string? SelectFolder(string path)
 	{
 		if (string.IsNullOrEmpty(path)) return null;
 
@@ -83,7 +83,7 @@ public class FileService
 		};
 	}
 
-	public void ExportConnectionScript(int port)
+	public static void ExportConnectionScript(int port)
 	{
 		string? serverAddress = APIObserver.Instance.ServerAddress;
 
@@ -131,7 +131,7 @@ public class FileService
 		}
 	}
 
-	public string? OpenApiListPath(string path)
+	public static string? OpenApiListPath(string path)
 	{
 		OpenFileDialog dialog = new()
 		{
@@ -148,11 +148,11 @@ public class FileService
 		};
 	}
 
-	public string? OpenSoundPath(string? path)
+	public static string? OpenSoundPath(string? path)
 	{
 		OpenFileDialog dialog = new()
 		{
-			Filter = "音楽ファイル|" + string.Join(";", MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*",
+			Filter = "音楽ファイル|" + string.Join(";", EOMediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*",
 			Title = NotifyRes.OpenSound,
 		};
 
@@ -163,7 +163,10 @@ public class FileService
 				dialog.InitialDirectory = Path.GetDirectoryName(path);
 
 			}
-			catch (Exception) { }
+			catch (Exception) 
+			{ 
+				// do not throw to avoid issues
+			}
 		}
 
 		return dialog.ShowDialog(MainWindow) switch
@@ -173,7 +176,7 @@ public class FileService
 		};
 	}
 
-	public string? OpenImagePath(string? path)
+	public static string? OpenImagePath(string? path)
 	{
 		OpenFileDialog dialog = new()
 		{
@@ -188,7 +191,10 @@ public class FileService
 				dialog.InitialDirectory = Path.GetDirectoryName(path);
 
 			}
-			catch (Exception) { }
+			catch (Exception) 
+			{ 
+				// do not throw to avoid issues
+			}
 		}
 
 		return dialog.ShowDialog(MainWindow) switch

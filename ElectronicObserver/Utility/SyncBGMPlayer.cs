@@ -90,14 +90,14 @@ public sealed class SyncBGMPlayer
 	}
 
 	public IDDictionary<SoundHandle> Handles { get; internal set; }
-	public bool Enabled;
+	public bool Enabled { get; set; }
 	public bool IsMute
 	{
-		get { return _mp.IsMute; }
-		set { _mp.IsMute = value; }
+		get { return MediaPlayer.IsMute; }
+		set { MediaPlayer.IsMute = value; }
 	}
 
-	private MediaPlayer _mp;
+	private EOMediaPlayer MediaPlayer { get; }
 	private SoundHandleID _currentSoundHandleID;
 	private bool _isBoss;
 
@@ -105,13 +105,11 @@ public sealed class SyncBGMPlayer
 	public SyncBGMPlayer()
 	{
 
-		_mp = new MediaPlayer();
-
-		if (!_mp.IsAvailable)
-			Utility.Logger.Add(3, "Windows Media Player のロードに失敗しました。音声の再生はできません。");
-
-		_mp.AutoPlay = false;
-		_mp.IsShuffle = true;
+		MediaPlayer = new EOMediaPlayer
+		{
+			AutoPlay = false,
+			IsShuffle = true
+		};
 
 		_currentSoundHandleID = (SoundHandleID)(-1);
 		_isBoss = false;
@@ -192,7 +190,7 @@ public sealed class SyncBGMPlayer
 			IsMute = false;
 
 		// 設定変更を適用するためいったん閉じる
-		_mp.Close();
+		MediaPlayer.Close();
 		_currentSoundHandleID = (SoundHandleID)(-1);
 	}
 
@@ -207,7 +205,7 @@ public sealed class SyncBGMPlayer
 
 	public void SetInitialVolume(int volume)
 	{
-		_mp.Volume = volume;
+		MediaPlayer.Volume = volume;
 	}
 
 
@@ -304,7 +302,7 @@ public sealed class SyncBGMPlayer
 	}
 
 
-	private bool Play(SoundHandle sh)
+	private void Play(SoundHandle sh)
 	{
 		if (Enabled &&
 			sh != null &&
@@ -316,34 +314,30 @@ public sealed class SyncBGMPlayer
 
 			if (File.Exists(sh.Path))
 			{
-				_mp.Close();
-				_mp.SetPlaylist(null);
-				_mp.SourcePath = sh.Path;
+				MediaPlayer.Close();
+				MediaPlayer.SetPlaylist(null);
+				MediaPlayer.SourcePath = sh.Path;
 
 			}
 			else if (Directory.Exists(sh.Path))
 			{
-				_mp.Close();
-				_mp.SetPlaylistFromDirectory(sh.Path);
+				MediaPlayer.Close();
+				MediaPlayer.SetPlaylistFromDirectory(sh.Path);
 
 			}
 			else
 			{
-				return false;
+				return;
 			}
 
 			_currentSoundHandleID = sh.HandleID;
 
-			_mp.IsLoop = sh.IsLoop;
-			_mp.LoopHeadPosition = sh.LoopHeadPosition;
+			MediaPlayer.IsLoop = sh.IsLoop;
+			MediaPlayer.LoopHeadPosition = TimeSpan.FromSeconds(sh.LoopHeadPosition);
 			if (!Utility.Configuration.Config.Control.UseSystemVolume)
-				_mp.Volume = sh.Volume;
-			_mp.Play();
-
-			return true;
+				MediaPlayer.Volume = sh.Volume;
+			MediaPlayer.Play();
 		}
-
-		return false;
 	}
 
 

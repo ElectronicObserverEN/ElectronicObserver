@@ -15,9 +15,9 @@ namespace ElectronicObserver.Window.Dialog;
 public partial class DialogConfigurationNotifier : Form
 {
 
-	private NotifierBase _notifier;
-	private bool _soundChanged;
-	private bool _imageChanged;
+	private NotifierBase Notifier { get; }
+	private bool SoundChanged { get; set; }
+	private bool ImageChanged { get; set; }
 
 	public DialogConfigurationNotifier(NotifierBase notifier)
 	{
@@ -25,11 +25,11 @@ public partial class DialogConfigurationNotifier : Form
 
 		Translate();
 
-		_notifier = notifier;
+		Notifier = notifier;
 
 		//init base
-		_soundChanged = false;
-		_imageChanged = false;
+		SoundChanged = false;
+		ImageChanged = false;
 
 		GroupSound.AllowDrop = true;
 		GroupImage.AllowDrop = true;
@@ -55,8 +55,8 @@ public partial class DialogConfigurationNotifier : Form
 		LocationY.Value = notifier.DialogData.Location.Y;
 		DrawsMessage.Checked = notifier.DialogData.DrawsMessage;
 		HasFormBorder.Checked = notifier.DialogData.HasFormBorder;
-		AccelInterval.Value = notifier.AccelInterval / 1000;
-		ClosingInterval.Value = notifier.DialogData.ClosingInterval / 1000;
+		AccelInterval.Value = (decimal)notifier.AccelInterval / 1000;
+		ClosingInterval.Value = (decimal)notifier.DialogData.ClosingInterval / 1000;
 		for (int i = 0; i < (int)NotifierDialogClickFlags.HighestBit; i++)
 			CloseList.SetItemChecked(i, ((int)notifier.DialogData.ClickFlag & (1 << i)) != 0);
 		CloseList.SetItemChecked((int)NotifierDialogClickFlags.HighestBit, notifier.DialogData.CloseOnMouseMove);
@@ -65,8 +65,7 @@ public partial class DialogConfigurationNotifier : Form
 		BackColorPreview.ForeColor = notifier.DialogData.BackColor;
 		LevelBorder.Maximum = ExpTable.ShipMaximumLevel;
 
-		NotifierDamage ndmg = notifier as NotifierDamage;
-		if (ndmg != null)
+		if (notifier is NotifierDamage ndmg)
 		{
 			NotifiesBefore.Checked = ndmg.NotifiesBefore;
 			NotifiesNow.Checked = ndmg.NotifiesNow;
@@ -84,8 +83,7 @@ public partial class DialogConfigurationNotifier : Form
 			GroupDamage.Enabled = false;
 		}
 
-		NotifierAnchorageRepair nanc = notifier as NotifierAnchorageRepair;
-		if (nanc != null)
+		if (notifier is NotifierAnchorageRepair nanc)
 		{
 			AnchorageRepairNotificationLevel.SelectedIndex = nanc.NotificationLevel;
 
@@ -96,8 +94,7 @@ public partial class DialogConfigurationNotifier : Form
 			GroupAnchorageRepair.Enabled = false;
 		}
 
-		var nbac = notifier as NotifierBaseAirCorps;
-		if (nbac != null)
+		if (notifier is NotifierBaseAirCorps nbac)
 		{
 			BaseAirCorps_NotSupplied.Checked = nbac.NotifiesNotSupplied;
 			BaseAirCorps_Tired.Checked = nbac.NotifiesTired;
@@ -130,7 +127,7 @@ public partial class DialogConfigurationNotifier : Form
 			GroupBattleEnd.Enabled = false;
 		}
 
-		DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
+		DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.EOMediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
 	}
 
 	public void Translate()
@@ -254,17 +251,10 @@ public partial class DialogConfigurationNotifier : Form
 		Text = NotifyRes.Title;
 	}
 
-	private void DialogConfigurationNotifier_Load(object sender, EventArgs e)
-	{
-
-	}
-
-
-
 	private void GroupSound_DragEnter(object sender, DragEventArgs e)
 	{
 
-		if (e.Data.GetDataPresent(DataFormats.FileDrop))
+		if (e.Data?.GetDataPresent(DataFormats.FileDrop) is true)
 		{
 			e.Effect = DragDropEffects.Copy;
 		}
@@ -277,14 +267,14 @@ public partial class DialogConfigurationNotifier : Form
 
 	private void GroupSound_DragDrop(object sender, DragEventArgs e)
 	{
-
+		if (e.Data is null) return;
 		SoundPath.Text = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
 	}
 
 	private void GroupImage_DragEnter(object sender, DragEventArgs e)
 	{
 
-		if (e.Data.GetDataPresent(DataFormats.FileDrop))
+		if (e.Data?.GetDataPresent(DataFormats.FileDrop) is true)
 		{
 			e.Effect = DragDropEffects.Copy;
 		}
@@ -297,7 +287,7 @@ public partial class DialogConfigurationNotifier : Form
 
 	private void GroupImage_DragDrop(object sender, DragEventArgs e)
 	{
-
+		if (e.Data is null) return;
 		ImagePath.Text = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
 	}
 
@@ -306,13 +296,13 @@ public partial class DialogConfigurationNotifier : Form
 	private void SoundPath_TextChanged(object sender, EventArgs e)
 	{
 
-		_soundChanged = true;
+		SoundChanged = true;
 	}
 
 	private void ImagePath_TextChanged(object sender, EventArgs e)
 	{
 
-		_imageChanged = true;
+		ImageChanged = true;
 	}
 
 	private void SoundPathSearch_Click(object sender, EventArgs e)
@@ -325,10 +315,13 @@ public partial class DialogConfigurationNotifier : Form
 				DialogOpenSound.InitialDirectory = System.IO.Path.GetDirectoryName(SoundPath.Text);
 
 			}
-			catch (Exception) { }
+			catch (Exception) 
+			{
+				// do not throw to avoid issues
+			}
 		}
 
-		if (DialogOpenSound.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
+		if (DialogOpenSound.ShowDialog(App.Current!.MainWindow!) == System.Windows.Forms.DialogResult.OK)
 		{
 			SoundPath.Text = DialogOpenSound.FileName;
 		}
@@ -345,10 +338,13 @@ public partial class DialogConfigurationNotifier : Form
 				DialogOpenImage.InitialDirectory = System.IO.Path.GetDirectoryName(ImagePath.Text);
 
 			}
-			catch (Exception) { }
+			catch (Exception)
+			{
+				// do not throw to avoid issues
+			}
 		}
 
-		if (DialogOpenImage.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
+		if (DialogOpenImage.ShowDialog(App.Current!.MainWindow!) == System.Windows.Forms.DialogResult.OK)
 		{
 			ImagePath.Text = DialogOpenImage.FileName;
 		}
@@ -359,7 +355,7 @@ public partial class DialogConfigurationNotifier : Form
 	{
 
 		DialogColor.Color = ForeColorPreview.ForeColor;
-		if (DialogColor.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
+		if (DialogColor.ShowDialog(App.Current!.MainWindow!) == System.Windows.Forms.DialogResult.OK)
 		{
 			ForeColorPreview.ForeColor = DialogColor.Color;
 		}
@@ -369,7 +365,7 @@ public partial class DialogConfigurationNotifier : Form
 	{
 
 		DialogColor.Color = BackColorPreview.ForeColor;
-		if (DialogColor.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
+		if (DialogColor.ShowDialog(App.Current!.MainWindow!) == System.Windows.Forms.DialogResult.OK)
 		{
 			BackColorPreview.ForeColor = DialogColor.Color;
 		}
@@ -421,55 +417,46 @@ public partial class DialogConfigurationNotifier : Form
 
 	private bool SetConfiguration()
 	{
-
-
-		if (_soundChanged)
+		if (SoundChanged && !Notifier.LoadSound(SoundPath.Text) && PlaysSound.Checked)
 		{
-			if (!_notifier.LoadSound(SoundPath.Text) && PlaysSound.Checked)
-			{
-				MessageBox.Show(NotifyRes.FailedLoadSound, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return false;
-			}
+			MessageBox.Show(NotifyRes.FailedLoadSound, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
 		}
-		if (_imageChanged)
+		if (ImageChanged && !Notifier.DialogData.LoadImage(ImagePath.Text) && DrawsImage.Checked)
 		{
-			if (!_notifier.DialogData.LoadImage(ImagePath.Text) && DrawsImage.Checked)
-			{
-				MessageBox.Show(NotifyRes.FailedLoadImage, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return false;
-			}
+			MessageBox.Show(NotifyRes.FailedLoadImage, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
 		}
 
 
 		//set configuration
-		_notifier.IsEnabled = IsEnabled.Checked;
+		Notifier.IsEnabled = IsEnabled.Checked;
 
-		_notifier.PlaysSound = PlaysSound.Checked;
-		_notifier.DialogData.DrawsImage = DrawsImage.Checked;
-		_notifier.SoundVolume = (int)SoundVolume.Value;
-		_notifier.LoopsSound = LoopsSound.Checked;
+		Notifier.PlaysSound = PlaysSound.Checked;
+		Notifier.DialogData.DrawsImage = DrawsImage.Checked;
+		Notifier.SoundVolume = (int)SoundVolume.Value;
+		Notifier.LoopsSound = LoopsSound.Checked;
 
-		_notifier.ShowsDialog = ShowsDialog.Checked;
-		_notifier.DialogData.TopMost = TopMostFlag.Checked;
-		_notifier.DialogData.Alignment = (NotifierDialogAlignment)Alignment.SelectedIndex;
-		_notifier.DialogData.Location = new Point((int)LocationX.Value, (int)LocationY.Value);
-		_notifier.DialogData.DrawsMessage = DrawsMessage.Checked;
-		_notifier.DialogData.HasFormBorder = HasFormBorder.Checked;
-		_notifier.AccelInterval = (int)(AccelInterval.Value * 1000);
-		_notifier.DialogData.ClosingInterval = (int)(ClosingInterval.Value * 1000);
-		{
-			int flag = 0;
-			for (int i = 0; i < (int)NotifierDialogClickFlags.HighestBit; i++)
-				flag |= (CloseList.GetItemChecked(i) ? 1 : 0) << i;
-			_notifier.DialogData.ClickFlag = (NotifierDialogClickFlags)flag;
-		}
-		_notifier.DialogData.CloseOnMouseMove = CloseList.GetItemChecked((int)NotifierDialogClickFlags.HighestBit);
-		_notifier.DialogData.ForeColor = ForeColorPreview.ForeColor;
-		_notifier.DialogData.BackColor = BackColorPreview.ForeColor;
-		_notifier.DialogData.ShowWithActivation = ShowWithActivation.Checked;
+		Notifier.ShowsDialog = ShowsDialog.Checked;
+		Notifier.DialogData.TopMost = TopMostFlag.Checked;
+		Notifier.DialogData.Alignment = (NotifierDialogAlignment)Alignment.SelectedIndex;
+		Notifier.DialogData.Location = new Point((int)LocationX.Value, (int)LocationY.Value);
+		Notifier.DialogData.DrawsMessage = DrawsMessage.Checked;
+		Notifier.DialogData.HasFormBorder = HasFormBorder.Checked;
+		Notifier.AccelInterval = (int)(AccelInterval.Value * 1000);
+		Notifier.DialogData.ClosingInterval = (int)(ClosingInterval.Value * 1000);
 
-		var ndmg = _notifier as NotifierDamage;
-		if (ndmg != null)
+		int flag = 0;
+		for (int i = 0; i < (int)NotifierDialogClickFlags.HighestBit; i++)
+			flag |= (CloseList.GetItemChecked(i) ? 1 : 0) << i;
+		Notifier.DialogData.ClickFlag = (NotifierDialogClickFlags)flag;
+
+		Notifier.DialogData.CloseOnMouseMove = CloseList.GetItemChecked((int)NotifierDialogClickFlags.HighestBit);
+		Notifier.DialogData.ForeColor = ForeColorPreview.ForeColor;
+		Notifier.DialogData.BackColor = BackColorPreview.ForeColor;
+		Notifier.DialogData.ShowWithActivation = ShowWithActivation.Checked;
+
+		if (Notifier is NotifierDamage ndmg)
 		{
 			ndmg.NotifiesBefore = NotifiesBefore.Checked;
 			ndmg.NotifiesNow = NotifiesNow.Checked;
@@ -481,14 +468,12 @@ public partial class DialogConfigurationNotifier : Form
 			ndmg.NotifiesAtEndpoint = NotifiesAtEndpoint.Checked;
 		}
 
-		var nanc = _notifier as NotifierAnchorageRepair;
-		if (nanc != null)
+		if (Notifier is NotifierAnchorageRepair nanc)
 		{
 			nanc.NotificationLevel = AnchorageRepairNotificationLevel.SelectedIndex;
 		}
 
-		var nbac = _notifier as NotifierBaseAirCorps;
-		if (nbac != null)
+		if (Notifier is NotifierBaseAirCorps nbac)
 		{
 			nbac.NotifiesNotSupplied = BaseAirCorps_NotSupplied.Checked;
 			nbac.NotifiesTired = BaseAirCorps_Tired.Checked;
@@ -502,7 +487,7 @@ public partial class DialogConfigurationNotifier : Form
 			nbac.NotifiesEquipmentRelocation = BaseAirCorps_EquipmentRelocation.Checked;
 		}
 
-		if (_notifier is NotifierBattleEnd nba)
+		if (Notifier is NotifierBattleEnd nba)
 		{
 			nba.Config.IdleTimerEnabled = BattleEnd_IdleTimerEnabled.Checked;
 			nba.Config.IdleSeconds = (int)BattleEnd_IdleTime.Value;
@@ -517,15 +502,14 @@ public partial class DialogConfigurationNotifier : Form
 
 		if (!SetConfiguration()) return;
 
-		if (_notifier.DialogData.Alignment == NotifierDialogAlignment.Custom)
+		if (Notifier.DialogData.Alignment == NotifierDialogAlignment.Custom)
 		{
-			_notifier.DialogData.Message = Translation.TestNotificationCustomPositioning;
-			_notifier.Notify((_sender, _e) =>
+			Notifier.DialogData.Message = Translation.TestNotificationCustomPositioning;
+			Notifier.Notify((_sender, _e) =>
 			{
-				var dialog = _sender as DialogNotifier;
-				if (dialog != null)
+				if (_sender is DialogNotifier dialog)
 				{
-					_notifier.DialogData.Location = dialog.Location;
+					Notifier.DialogData.Location = dialog.Location;
 					LocationX.Value = dialog.Location.X;
 					LocationY.Value = dialog.Location.Y;
 				}
@@ -533,8 +517,8 @@ public partial class DialogConfigurationNotifier : Form
 		}
 		else
 		{
-			_notifier.DialogData.Message = Translation.TestNotification;
-			_notifier.Notify();
+			Notifier.DialogData.Message = Translation.TestNotification;
+			Notifier.Notify();
 		}
 	}
 
