@@ -1,5 +1,5 @@
 # Electronic Observer (七四式電子観測儀)
-[![Build status](https://ci.appveyor.com/api/projects/status/kdefw1fa6i0hvbvt?svg=true)](https://ci.appveyor.com/project/silfumus/electronicobserver)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ElectronicObserverEN_ElectronicObserver&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ElectronicObserverEN_ElectronicObserver)
 
 ![screenshot](https://cloud.githubusercontent.com/assets/6127734/21392624/18089a70-c7d4-11e6-8f85-55b877aef5b3.jpg)
 

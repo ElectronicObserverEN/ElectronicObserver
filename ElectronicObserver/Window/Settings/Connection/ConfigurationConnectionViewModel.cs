@@ -18,12 +18,14 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 	private Configuration.ConfigurationData.ConfigConnection ConfigConnection { get; }
 
 	[ObservableProperty]
+	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationConnectionViewModel), nameof(ValidatePorts))]
 	private ushort _port;
 
 	public bool SaveReceivedData { get; set; }
 
 	[ObservableProperty]
+	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationConnectionViewModel), nameof(ValidateFolder))]
 	private string _saveDataPath;
 
@@ -40,6 +42,7 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 	public bool UseUpstreamProxy { get; set; }
 
 	[ObservableProperty]
+	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationConnectionViewModel), nameof(ValidatePorts))]
 	private ushort _upstreamProxyPort;
 

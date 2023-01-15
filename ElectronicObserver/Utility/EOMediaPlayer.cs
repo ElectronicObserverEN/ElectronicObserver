@@ -229,6 +229,7 @@ public class EOMediaPlayer
 		if (RealPlayList.Count > 0 && SourcePath != RealPlayList[_playingIndex])
 			SourcePath = RealPlayList[_playingIndex];
 
+		MediaPlayer.Position = LoopHeadPosition;
 		MediaPlayer.Play();
 	}
 
