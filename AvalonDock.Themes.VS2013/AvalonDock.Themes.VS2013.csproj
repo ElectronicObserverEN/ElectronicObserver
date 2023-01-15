@@ -18,15 +18,10 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Platforms>x64</Platforms>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-	<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <Resource Include="**\*.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>
 
   <!-- NuGet Packaging -->
