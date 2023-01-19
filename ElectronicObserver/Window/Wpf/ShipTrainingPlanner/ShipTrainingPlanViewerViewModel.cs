@@ -67,7 +67,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		string idList = data["api_ship_id"].ToString();
 		IEnumerable<int> shipId = idList.Split(',').Select(int.Parse);
 
-		IEnumerable<ShipTrainingPlanViewModel> plansFound = Plans.Where(plan => shipId.Contains(plan.Ship.ID));
+		IEnumerable<ShipTrainingPlanViewModel> plansFound = Plans.Where(plan => shipId.Contains(plan.Model.ShipId));
 
 		foreach (ShipTrainingPlanViewModel planFound in plansFound)
 		{

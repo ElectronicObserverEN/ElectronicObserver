@@ -157,8 +157,6 @@ internal class SoftwareUpdater
 			}
 
 			needReload = downloadList.Any();
-			downloadList.Add(("update.json", DataType.None));
-			downloadList.Add(("update.json", DataType.Translation));
 
 			List<Task> taskList = new();
 
@@ -168,6 +166,12 @@ internal class SoftwareUpdater
 			}
 
 			await Task.WhenAll(taskList);
+
+			// it's possible that one of the other files fails to download (exception gets thrown)
+			// only update the update files after all files were downloaded successfully
+			await DownloadData("update.json", DataType.None);
+			await DownloadData("update.json", DataType.Translation);
+
 			if (needReload)
 			{
 				KCDatabase.Instance.Translation.Initialize();
@@ -354,14 +358,19 @@ internal class SoftwareUpdater
 			using HttpClient client = new();
 			using HttpResponseMessage response = await client.GetAsync(url);
 
+			response.EnsureSuccessStatusCode();
+
 			await File.WriteAllTextAsync(path, await response.Content.ReadAsStringAsync());
 
 			if (filename.Contains("update.json") == false)
+			{
 				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.FileUpdated, filename));
+			}
 		}
 		catch (Exception e)
 		{
 			Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.FailedToUpdateFile, filename, e.Message));
+			throw;
 		}
 	}
 }

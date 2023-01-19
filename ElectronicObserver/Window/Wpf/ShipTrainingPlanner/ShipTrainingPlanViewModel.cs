@@ -90,29 +90,25 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	{
 		APIObserver o = APIObserver.Instance;
 
-		o.ApiPort_Port.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+		o.ApiPort_Port.ResponseReceived += UpdateShipData;
+		o.ApiReqMap_Next.ResponseReceived += UpdateShipData;
 
-		o.ApiReqMission_Result.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
-		o.ApiReqPractice_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
-		o.ApiReqCombinedBattle_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
-		o.ApiReqSortie_BattleResult.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
+		o.ApiReqKaisou_Marriage.ResponseReceived += UpdateShipData;
 
-		o.ApiPort_Port.ResponseReceived += (_, _) => OnPropertyChanged(nameof(RemainingExpToTarget));
-		o.ApiReqMap_Next.ResponseReceived += (_, _) => OnPropertyChanged(nameof(RemainingExpToTarget));
-
-		o.ApiReqKaisou_Marriage.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
-
-		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
-		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(Ship));
-
-		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetASW));
-		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetASW));
-
-		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetHP));
-		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(TargetHP));
-		o.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => OnPropertyChanged(nameof(MaximumHPMod));
-		o.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => OnPropertyChanged(nameof(MaximumHPMod));
+		o.ApiReqKaisou_PowerUp.ResponseReceived += UpdateShipData;
+		o.ApiReqKaisou_Remodeling.ResponseReceived += UpdateShipData;
 	}
+
+	private void UpdateShipData(string apiname, object data)
+	{
+		OnPropertyChanged(nameof(Ship));
+		OnPropertyChanged(nameof(RemainingExpToTarget));
+		OnPropertyChanged(nameof(TargetASW));
+		OnPropertyChanged(nameof(TargetHP));
+		OnPropertyChanged(nameof(MaximumHPMod));
+		OnPropertyChanged(nameof(PlanFinished));
+	}
+
 
 	public void UpdateFromModel()
 	{
