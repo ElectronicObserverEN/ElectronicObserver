@@ -129,4 +129,7 @@
   <data name="ShipTypeToggle" xml:space="preserve">
     <value>Toggle types</value>
   </data>
+  <data name="Bulge" xml:space="preserve">
+    <value>Bulge</value>
+  </data>
 </root>

@@ -112,13 +112,13 @@ public partial class TrackerViewModel : ObservableObject
 			{
 				Map = new(7, 2),
 				Name = "-1",
-				NodeIds = new List<int> { 7 }
+				NodeIds = new List<int> { 7 },
 			},
 			QuestTaskType.World7Map2Boss2 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 2),
 				Name = "-2",
-				NodeIds = new List<int> { 15 }
+				NodeIds = new List<int> { 15 },
 			},
 			QuestTaskType.World7Map3Boss1 => new BattleNodeIdTaskModel
 			{
@@ -132,6 +132,24 @@ public partial class TrackerViewModel : ObservableObject
 				Name = "-2",
 				NodeIds = new List<int> { 18, 23, 24, 25 },
 			},
+			QuestTaskType.World7Map5Boss1 => new BattleNodeIdTaskModel
+			{
+				Map = new(7, 5),
+				Name = "-1",
+				NodeIds = new List<int> { 11 },
+			},
+			QuestTaskType.World7Map5Boss2 => new BattleNodeIdTaskModel
+			{
+				Map = new(7, 5),
+				Name = "-2",
+				NodeIds = new List<int> { 19 },
+			},
+			QuestTaskType.World7Map5Boss3 => new BattleNodeIdTaskModel
+			{
+				Map = new(7, 5),
+				Name = "-3",
+				NodeIds = new List<int> { 24, 25 },
+			},
 			QuestTaskType.EquipmentScrap => new EquipmentScrapTaskModel(),
 			QuestTaskType.EquipmentCategoryScrap => new EquipmentCategoryScrapTaskModel(),
 			QuestTaskType.EquipmentCardTypeScrap => new EquipmentCardTypeScrapTaskModel(),
@@ -143,7 +161,7 @@ public partial class TrackerViewModel : ObservableObject
 			{
 				Map = new(1, 6),
 				Name = "N",
-				NodeIds = new List<int> { 14, 17 }
+				NodeIds = new List<int> { 14, 17 },
 			},
 		});
 	}

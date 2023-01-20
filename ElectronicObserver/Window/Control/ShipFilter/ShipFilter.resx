@@ -129,4 +129,7 @@
   <data name="ShipTypeToggle" xml:space="preserve">
     <value>艦種トグル</value>
   </data>
+  <data name="Bulge" xml:space="preserve">
+    <value>バルジ</value>
+  </data>
 </root>

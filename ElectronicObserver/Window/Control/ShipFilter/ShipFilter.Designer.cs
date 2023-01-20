@@ -61,6 +61,15 @@ namespace ElectronicObserver.Window.Control.ShipFilter {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to バルジ.
+        /// </summary>
+        internal static string Bulge {
+            get {
+                return ResourceManager.GetString("Bulge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 大発系.
         /// </summary>
         internal static string Daihatsu {

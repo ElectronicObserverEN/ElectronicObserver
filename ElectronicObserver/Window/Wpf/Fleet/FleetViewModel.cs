@@ -584,7 +584,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// <see cref="http://kancolle-calc.net/kanmusu_list.html"/>
 	/// </summary>
 	[RelayCommand]
-	private void CopyKanmusuList()
+	private static void CopyKanmusuList()
 	{
 
 		StringBuilder sb = new StringBuilder();
@@ -594,39 +594,47 @@ public partial class FleetViewModel : AnchorableViewModel
 		sb.Append(".2");
 
 		// <たね艦娘(完全未改造時)のID, 艦娘リスト>　に分類
-		Dictionary<int, List<ShipData>> shiplist = new Dictionary<int, List<ShipData>>();
+		Dictionary<ShipId, List<ShipData>> shiplist = new();
 
-		foreach (var ship in db.Ships.Values.Where(s => s.IsLocked))
+		foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
 		{
-			var master = ship.MasterShip;
+			IShipDataMaster master = ship.MasterShip;
 			while (master.RemodelBeforeShip != null)
-				master = master.RemodelBeforeShip;
-
-			if (!shiplist.ContainsKey(master.ShipID))
 			{
-				shiplist.Add(master.ShipID, new List<ShipData>() { ship });
+				master = master.RemodelBeforeShip;
+			}
+
+			ShipId shipId = master.ShipId switch
+			{
+				ShipId.Souya645 or ShipId.Souya650 or ShipId.Souya699 => ShipId.Souya645,
+				_ => master.ShipId,
+			};
+
+			if (!shiplist.ContainsKey(shipId))
+			{
+				shiplist.Add(shipId, new List<ShipData> { ship });
 			}
 			else
 			{
-				shiplist[master.ShipID].Add(ship);
+				shiplist[shipId].Add(ship);
 			}
 		}
 
 		// 上で作った分類の各項を文字列化
-		foreach (var sl in shiplist)
+		foreach ((ShipId shipId, List<ShipData> shipList) in shiplist)
 		{
-			sb.Append("|").Append(sl.Key).Append(":");
+			sb.Append('|').Append((int)shipId).Append(':');
 
-			foreach (var ship in sl.Value.OrderByDescending(s => s.Level))
+			foreach (ShipData ship in shipList.OrderByDescending(s => s.Level))
 			{
 				sb.Append(ship.Level);
 
 				// 改造レベルに達しているのに未改造の艦は ".<たね=1, 改=2, 改二=3, ...>" を付加
 				if (ship.MasterShip.RemodelAfterShipID != 0 && ship.ExpNextRemodel == 0)
 				{
-					sb.Append(".");
+					sb.Append('.');
 					int count = 1;
-					var master = ship.MasterShip;
+					IShipDataMaster master = ship.MasterShip;
 					while (master.RemodelBeforeShip != null)
 					{
 						master = master.RemodelBeforeShip;
@@ -634,7 +642,7 @@ public partial class FleetViewModel : AnchorableViewModel
 					}
 					sb.Append(count);
 				}
-				sb.Append(",");
+				sb.Append(',');
 			}
 
 			// 余った "," を削除
