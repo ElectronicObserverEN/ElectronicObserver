@@ -20,12 +20,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		_ => new ShipDataMock(new ShipDataMasterMock())
 	};
 
-	public bool PlanFinished =>
-		Ship.Level >= TargetLevel
-		&& Ship.HPMax >= TargetHP 
-		&& Ship.ASWBase >= TargetASW 
-		&& Ship.LuckBase >= TargetLuck
-		&& (Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
+	public bool PlanFinished { get; set; }
 
 	public int TargetLevel { get; set; }
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
@@ -83,6 +78,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		UpdateFromModel();
 
 		SubscribeToApi();
+
 		PropertyChanged += OnStatPropertyChanged;
 	}
 
@@ -106,7 +102,18 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		OnPropertyChanged(nameof(TargetASW));
 		OnPropertyChanged(nameof(TargetHP));
 		OnPropertyChanged(nameof(MaximumHPMod));
-		OnPropertyChanged(nameof(PlanFinished));
+
+		UpdatePlanFinished();
+	}
+
+	private void UpdatePlanFinished()
+	{
+		PlanFinished =
+			Ship.Level >= TargetLevel
+			&& Ship.HPMax >= TargetHP
+			&& Ship.ASWBase >= TargetASW
+			&& Ship.LuckBase >= TargetLuck
+			&& (Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
 	}
 
 
@@ -132,6 +139,8 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 			if (remodel.Ship.RemodelAfterShip is null) break;
 			remodel = new(remodel.Ship.RemodelAfterShip);
 		}
+
+		UpdatePlanFinished();
 	}
 
 	private void OnStatPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
