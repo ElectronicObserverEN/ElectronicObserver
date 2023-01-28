@@ -43,9 +43,15 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
+		PropertyChanged += ShipTrainingPlanViewerViewModel_PropertyChanged;
 
 		SubscribeToApi();
 		StartJotTracking();
+	}
+
+	private void ShipTrainingPlanViewerViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is nameof(DisplayFinished)) UpdatePlanList();
 	}
 
 	private void SubscribeToApi()
@@ -80,6 +86,14 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		}
 
 		APIObserver.Instance.ApiPort_Port.ResponseReceived -= Initialize;
+		Plans.CollectionChanged += (_, _) => UpdatePlanList();
+
+		UpdatePlanList();
+	}
+
+	private void UpdatePlanList()
+	{
+		PlansFiltered = Plans.Where(plan => DisplayFinished || !plan.PlanFinished).ToList();
 	}
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)

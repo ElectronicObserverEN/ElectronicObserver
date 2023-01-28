@@ -52,7 +52,7 @@
 					ColumnWidth="90"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding Plans}"
+					ItemsSource="{Binding PlansFiltered}"
 					SelectedItem="{Binding SelectedPlan}"
 					SelectionMode="Single"
 					SelectionUnit="FullRow"
@@ -93,17 +93,7 @@
 							<Style.Setters>
 								<Setter Property="Background" Value="#00FFFFFF" />
 								<Setter Property="ContextMenu" Value="{StaticResource ShipRowContextMenu}" />
-								<Setter Property="Visibility" Value="Collapsed" />
 							</Style.Setters>
-
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding PlanFinished}" Value="False">
-									<Setter Property="Visibility" Value="Visible" />
-								</DataTrigger>
-								<DataTrigger Binding="{Binding DataContext.DisplayFinished, Source={StaticResource Proxy}}" Value="True">
-									<Setter Property="Visibility" Value="Visible" />
-								</DataTrigger>
-							</Style.Triggers>
 						</Style>
 					</DataGrid.RowStyle>
 
