@@ -82,6 +82,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		foreach (ShipTrainingPlanModel model in models)
 		{
 			ShipTrainingPlanViewModel viewModel = new(model);
+			viewModel.PropertyChanged += OnPlanViewModelPropertyChanged;
 			Plans.Add(viewModel);
 		}
 
@@ -89,6 +90,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		Plans.CollectionChanged += (_, _) => UpdatePlanList();
 
 		UpdatePlanList();
+	}
+
+	private void OnPlanViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is nameof(ShipTrainingPlanViewModel.PlanFinished)) UpdatePlanList();
 	}
 
 	private void UpdatePlanList()
@@ -205,6 +211,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		{
 			Plans.Add(newPlan);
 			DatabaseContext.ShipTrainingPlans.Add(newPlan.Model);
+			newPlan.PropertyChanged += OnPlanViewModelPropertyChanged;
 			DatabaseContext.SaveChanges();
 		}
 	}
