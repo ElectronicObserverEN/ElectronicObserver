@@ -78,7 +78,6 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		UpdateFromModel();
 
 		SubscribeToApi();
-		UpdatePlanFinished();
 
 		PropertyChanged += OnStatPropertyChanged;
 	}
