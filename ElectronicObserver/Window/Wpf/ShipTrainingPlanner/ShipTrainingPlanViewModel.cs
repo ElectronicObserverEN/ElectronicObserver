@@ -140,6 +140,8 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 			if (remodel.Ship.RemodelAfterShip is null) break;
 			remodel = new(remodel.Ship.RemodelAfterShip);
 		}
+
+		UpdatePlanFinished();
 	}
 
 	private void OnStatPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
