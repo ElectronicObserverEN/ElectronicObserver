@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="PagingControlViewElement"
 	d:DesignHeight="450"
@@ -12,22 +13,20 @@
 	mc:Ignorable="d"
 	>
 	<StackPanel DataContext="{Binding ViewModel, ElementName=PagingControlViewElement}" Orientation="Horizontal">
-		<Button
-			Command="{Binding PreviousPageCommand}"
-			Content="&lt;"
-			IsEnabled="{Binding PreviousPageEnabled}"
-			/>
 
 		<TextBlock Margin="5" VerticalAlignment="Center">
+			<Run Text="{Binding PagingControl.Page, Mode=OneWay}" />
 			<Run Text="{Binding CurrentPage}" />
 			<Run Text="/" />
 			<Run Text="{Binding LastPage, Mode=OneWay}" />
 		</TextBlock>
 
-		<Button
-			Command="{Binding NextPageCommand}"
-			Content="&gt;"
-			IsEnabled="{Binding NextPageEnabled}"
-			/>
+		<Button Command="{Binding PreviousPageCommand}" Content="&lt;" />
+
+		<Button Command="{Binding NextPageCommand}" Content="&gt;" />
+
+		<ui:NumberBox Minimum="1" Value="{Binding ItemsPerPage}" />
+
+		<TextBlock VerticalAlignment="Center" Text="{Binding PagingControl.ItemsPerPage, Mode=OneWay}" />
 	</StackPanel>
 </UserControl>
