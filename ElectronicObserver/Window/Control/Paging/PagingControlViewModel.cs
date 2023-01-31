@@ -5,7 +5,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging;
+namespace ElectronicObserver.Window.Control.Paging;
 
 public partial class PagingControlViewModel : ObservableObject
 {
@@ -28,6 +28,12 @@ public partial class PagingControlViewModel : ObservableObject
 		UpdateCollection();
 	}
 
+	public PagingControlViewModel(ObservableCollection<object?> items) : this()
+	{
+		Items = items;
+		Items.CollectionChanged += Items_CollectionChanged;
+	}
+
 	private void OnPagerUpdate2(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is nameof(CurrentPage) or nameof(LastPage)) return;
@@ -36,11 +42,6 @@ public partial class PagingControlViewModel : ObservableObject
 		PreviousPageCommand.NotifyCanExecuteChanged();
 	}
 
-	public PagingControlViewModel(ObservableCollection<object?> items) : this()
-	{
-		Items = items;
-		Items.CollectionChanged += Items_CollectionChanged;
-	}
 
 	private void Items_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 	{

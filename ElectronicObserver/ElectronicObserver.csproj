@@ -391,7 +391,7 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>EquipmentUpgradePlanner.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Window\Tools\EquipmentUpgradePlanner\Paging\PagingControl.Designer.cs">
+		<Compile Update="Window\Control\Paging\PagingControl.Designer.cs">
 		  <DependentUpon>PagingControl.resx</DependentUpon>
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -782,7 +782,7 @@
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>EquipmentUpgradePlanner.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Window\Tools\EquipmentUpgradePlanner\Paging\PagingControl.resx">
+		<EmbeddedResource Update="Window\Control\Paging\PagingControl.resx">
 		  <LastGenOutput>PagingControl.Designer.cs</LastGenOutput>
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>

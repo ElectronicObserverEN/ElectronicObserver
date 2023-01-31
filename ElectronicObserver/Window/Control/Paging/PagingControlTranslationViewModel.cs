@@ -1,6 +1,6 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging;
+namespace ElectronicObserver.Window.Control.Paging;
 
 public class PagingControlTranslationViewModel : TranslationBaseViewModel
 {

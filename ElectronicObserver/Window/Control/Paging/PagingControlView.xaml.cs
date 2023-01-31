@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging;
+namespace ElectronicObserver.Window.Control.Paging;
 
 /// <summary>
 /// Interaction logic for PagingControlView.xaml

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging {
+namespace ElectronicObserver.Window.Control.Paging {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging.PagingControl", typeof(PagingControl).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Window.Control.Paging.PagingControl", typeof(PagingControl).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
