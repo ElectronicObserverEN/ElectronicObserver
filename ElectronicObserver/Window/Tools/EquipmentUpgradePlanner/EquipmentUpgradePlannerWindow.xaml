@@ -7,6 +7,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:pager="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Paging"
 	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
 	xmlns:types="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -450,12 +451,11 @@
 		</StackPanel>
 
 		<ScrollViewer Grid.Row="1" Grid.Column="0">
-
 			<ItemsControl
 				Margin="0 5"
 				HorizontalAlignment="Center"
 				Grid.IsSharedSizeScope="True"
-				ItemsSource="{Binding PlannedUpgradesFilteredAndSorted}"
+				ItemsSource="{Binding PlannedUpgradesPager.ItemsPaged}"
 				>
 
 				<ItemsControl.ItemsPanel>
@@ -705,6 +705,8 @@
 
 		<ScrollViewer Grid.Row="1" Grid.Column="2">
 			<StackPanel Orientation="Vertical">
+				<pager:PagingControlView ViewModel="{Binding PlannedUpgradesPager}" />
+
 				<TextBlock Margin="2 0 0 5" Text="{Binding DataContext.EquipmentUpgradePlanner.TotalCost, Source={StaticResource Proxy}}" />
 				<ContentControl Content="{Binding TotalCost}" ContentTemplate="{StaticResource CostTemplate}" />
 			</StackPanel>
