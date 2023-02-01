@@ -238,7 +238,6 @@ public class ResourceRecord : RecordBase
 	{
 		DateTime now = DateTime.Now;
 		bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
-
 		now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 		DateTime lastday = new DateTime(now.Year, now.Month, 1).AddMonths(1).AddDays(-1);
 		DateTime firstday = new DateTime(now.Year, now.Month, 1);
@@ -305,7 +304,6 @@ public class ResourceRecord : RecordBase
 	{
 		DateTime now = DateTime.Now;
 		bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
-
 		now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 		DateTime lastday = new DateTime(now.Year, now.Month, 1).AddMonths(1).AddDays(-1);
 		DateTime firstday = new DateTime(now.Year, now.Month, 1);
@@ -362,13 +360,13 @@ public class ResourceRecord : RecordBase
 	{
 		DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 		DateTime endofrank = new DateTime(now.Year, now.Month, 1).AddHours(-2);
-		if (now.Day == endofrank.Day && now.TimeOfDay.Hours < 22)
+		if(now.Day == endofrank.Day && now.TimeOfDay.Hours >= 22)
 		{
-			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).Add(DateTimeHelper.GetTimeDifference()));
+			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).AddMonths(1).Add(DateTimeHelper.GetTimeDifference()));
 		}
 		else
 		{
-			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).AddMonths(1).Add(DateTimeHelper.GetTimeDifference()));
+			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).Add(DateTimeHelper.GetTimeDifference()));
 		}
 	}
 
