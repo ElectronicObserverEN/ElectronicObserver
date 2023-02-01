@@ -172,7 +172,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		DateTime firstDayPlusTwoMonths = firstDayThisMonth.AddMonths(2);
 		DateTime lastDayNextMonth = firstDayPlusTwoMonths.AddDays(-1);
 
-		return new(lastDayNextMonth.Year, lastDayNextMonth.Month, lastDayNextMonth.Day, 22, 0, 0);
+		return new(lastDayNextMonth.Year, lastDayNextMonth.Month, lastDayNextMonth.Day, 13, 0, 0, DateTimeKind.Utc);
 	}
 
 	private double GetHqExp(ApiFile apiFile) => apiFile.Name switch
