@@ -240,21 +240,58 @@ public class ResourceRecord : RecordBase
 		bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
 
 		now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-
+		DateTime lastday = new DateTime(now.Year, now.Month, 1).AddMonths(1).AddDays(-1);
+		DateTime firstday = new DateTime(now.Year, now.Month, 1);
 		DateTime target;
-		if (now.TimeOfDay.Hours < 2)
+		if (now.Day == lastday.Day)
 		{
-			target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0).Subtract(TimeSpan.FromDays(1));
+			if (now.TimeOfDay.Hours < 2)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0).Subtract(TimeSpan.FromDays(1));
+			}
+			else if (now.TimeOfDay.Hours < 14)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			}
+			else if (now.TimeOfDay.Hours < 22)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
+			}
+			else
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 22, 0, 0);
+			}
 		}
-		else if (now.TimeOfDay.Hours < 14)
+		else if (now.Day == firstday.Day)
 		{
-			target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			if(now.TimeOfDay.Hours < 2)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0).AddHours(-2);
+			}
+			else if (now.TimeOfDay.Hours < 14)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			}
+			else
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
+			}
 		}
 		else
 		{
-			target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
+		    if (now.TimeOfDay.Hours < 2)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0).Subtract(TimeSpan.FromDays(1));
+			}
+			else if (now.TimeOfDay.Hours < 14)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			}
+			else
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
+			}
 		}
-
 		if (isDst)
 			target += new TimeSpan(1, 0, 0);
 
@@ -270,15 +307,45 @@ public class ResourceRecord : RecordBase
 		bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
 
 		now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-
+		DateTime lastday = new DateTime(now.Year, now.Month, 1).AddMonths(1).AddDays(-1);
+		DateTime firstday = new DateTime(now.Year, now.Month, 1);
 		DateTime target;
-		if (now.TimeOfDay.Hours < 2)
+		if (now.Day == lastday.Day)
 		{
-			target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0).Subtract(TimeSpan.FromDays(1));
+			if (now.TimeOfDay.Hours < 22)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			}
+			else if (now.TimeOfDay.Hours < 2)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0).Subtract(TimeSpan.FromDays(1));
+			}
+			else
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 22, 0, 0);
+			}
+		}
+		else if (now.Day == firstday.Day)
+		{
+			if (now.TimeOfDay.Hours < 2)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0).AddHours(-2);
+			}
+			else
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			}
 		}
 		else
 		{
-			target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			if (now.TimeOfDay.Hours < 2)
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0).Subtract(TimeSpan.FromDays(1));
+			}
+			else
+			{
+				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
+			}
 		}
 
 		if (isDst)
@@ -294,8 +361,15 @@ public class ResourceRecord : RecordBase
 	public ResourceElement GetRecordMonth()
 	{
 		DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-
-		return GetRecord(new DateTime(now.Year, now.Month, 1).Add(DateTimeHelper.GetTimeDifference()));
+		DateTime endofrank = new DateTime(2023, 2, 1).AddHours(-2);
+		if (now.Day == endofrank.Day && now.TimeOfDay.Hours < 22)
+		{
+			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).Add(DateTimeHelper.GetTimeDifference()));
+		}
+		else
+		{
+			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).AddMonths(1).Add(DateTimeHelper.GetTimeDifference()));
+		}
 	}
 
 
