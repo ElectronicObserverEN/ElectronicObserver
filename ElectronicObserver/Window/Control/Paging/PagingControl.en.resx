@@ -120,7 +120,4 @@
   <data name="ItemsPerPage" xml:space="preserve">
     <value>Items per page</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>Page</value>
-  </data>
 </root>

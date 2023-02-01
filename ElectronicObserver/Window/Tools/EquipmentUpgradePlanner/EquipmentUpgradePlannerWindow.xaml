@@ -394,7 +394,7 @@
 			<ColumnDefinition Width="{Binding PlanListWidth, Mode=TwoWay}" />
 		</Grid.ColumnDefinitions>
 
-		<StackPanel
+		<WrapPanel
 			Grid.Row="0"
 			Grid.Column="0"
 			Grid.ColumnSpan="3"
@@ -456,14 +456,14 @@
 				/>
 
 			<pager:PagingControlView Margin="5 0 0 0" ViewModel="{Binding PlannedUpgradesPager}" />
-		</StackPanel>
+		</WrapPanel>
 
 		<ScrollViewer Grid.Row="1" Grid.Column="0">
 			<ItemsControl
 				Margin="0 5"
 				HorizontalAlignment="Center"
 				Grid.IsSharedSizeScope="True"
-				ItemsSource="{Binding PlannedUpgradesPager.ItemsPaged}"
+				ItemsSource="{Binding PlannedUpgradesPager.DisplayedItems}"
 				>
 
 				<ItemsControl.ItemsPanel>

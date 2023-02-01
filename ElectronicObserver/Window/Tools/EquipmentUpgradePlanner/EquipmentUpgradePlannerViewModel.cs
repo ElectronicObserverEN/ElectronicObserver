@@ -16,7 +16,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 {
 	private ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; }
 
-	public PagingControlViewModel PlannedUpgradesPager { get; }
+	public PagingControlViewModel<EquipmentUpgradePlanItemViewModel> PlannedUpgradesPager { get; }
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; set; } = new();
 
@@ -101,11 +101,9 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	private void Update()
 	{
-		List<EquipmentUpgradePlanItemViewModel> plans = PlannedUpgrades
+		PlannedUpgradesPager.Items = PlannedUpgrades
 			.Where(Filters.MeetsFilterCondition)
 			.OrderBy(plan => plan.Finished)
 			.ToList();
-
-		PlannedUpgradesPager.UpdateSourceCollection(plans);
 	}
 }

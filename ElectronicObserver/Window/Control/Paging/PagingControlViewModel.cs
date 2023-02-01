@@ -7,31 +7,25 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Control.Paging;
 
-public partial class PagingControlViewModel : ObservableObject
+public partial class PagingControlViewModel<T> : ObservableObject
 {
-	public int CurrentPage { get; set; } = 0;
+	public int CurrentPage { get; set; }
 
-	private ObservableCollection<object?> Items { get; set; } = new();
+	public List<T> Items { get; set; } = new();
 
-	public List<object?> ItemsPaged { get; set; } = new();
+	public List<T> DisplayedItems { get; private set; } = new();
 
 	public int ItemsPerPage { get; set; } = 10;
 
 	public int LastPage => (int)Math.Ceiling(Items.Count / (decimal)ItemsPerPage);
 
-	public PagingControlTranslationViewModel PagingControl { get; set; } = new();
+	public PagingControlTranslationViewModel PagingControl { get; } = new();
 
 	public PagingControlViewModel()
 	{
 		PropertyChanged += OnPagerUpdate;
 		PropertyChanged += OnPagerUpdate2;
 		UpdateCollection();
-	}
-
-	public PagingControlViewModel(ObservableCollection<object?> items) : this()
-	{
-		Items = items;
-		Items.CollectionChanged += Items_CollectionChanged;
 	}
 
 	private void OnPagerUpdate2(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -42,26 +36,20 @@ public partial class PagingControlViewModel : ObservableObject
 		PreviousPageCommand.NotifyCanExecuteChanged();
 	}
 
-
-	private void Items_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-	{
-		UpdateCollection();
-	}
-
 	private void OnPagerUpdate(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is not nameof(CurrentPage) and not nameof(ItemsPerPage)) return;
+		if (e.PropertyName is not nameof(CurrentPage) and not nameof(ItemsPerPage) and not nameof(Items)) return;
 
 		UpdateCollection();
 	}
 
 	private void UpdateCollection()
 	{
-		// dont go out of bound
+		// don't go out of bound
 		CurrentPage = Math.Max(CurrentPage, Items.Any() ? 1 : 0);
 		CurrentPage = Math.Min(CurrentPage, LastPage);
 
-		ItemsPaged = Items
+		DisplayedItems = Items
 			.Skip(ItemsPerPage * (CurrentPage - 1))
 			.Take(ItemsPerPage)
 			.ToList();
@@ -69,37 +57,17 @@ public partial class PagingControlViewModel : ObservableObject
 		OnPropertyChanged(nameof(LastPage));
 	}
 
-	/// <summary>
-	/// Batch update current collection
-	/// </summary>
-	/// <param name="collection"></param>
-	public void UpdateSourceCollection<T>(IList<T> collection)
-	{
-		// Unsubsribe from event may enhance perf on large collections ?
-		Items.CollectionChanged -= Items_CollectionChanged;
-
-		Items.Clear();
-
-		foreach (object? item in collection)
-		{
-			Items.Add(item);
-		}
-
-		Items.CollectionChanged += Items_CollectionChanged;
-		UpdateCollection();
-	}
-
-	public bool NextPageEnabled() => CurrentPage < LastPage;
-	public bool PreviousPageEnabled() => CurrentPage > 1;
+	private bool NextPageEnabled => CurrentPage < LastPage;
+	private bool PreviousPageEnabled => CurrentPage > 1;
 
 	[RelayCommand(CanExecute = nameof(NextPageEnabled))]
-	public void NextPage()
+	private void NextPage()
 	{
 		CurrentPage++;
 	}
 
 	[RelayCommand(CanExecute = nameof(PreviousPageEnabled))]
-	public void PreviousPage()
+	private void PreviousPage()
 	{
 		CurrentPage--;
 	}

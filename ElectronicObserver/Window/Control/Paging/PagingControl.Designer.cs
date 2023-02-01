@@ -68,14 +68,5 @@ namespace ElectronicObserver.Window.Control.Paging {
                 return ResourceManager.GetString("ItemsPerPage", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ??? (Page).
-        /// </summary>
-        public static string Page {
-            get {
-                return ResourceManager.GetString("Page", resourceCulture);
-            }
-        }
     }
 }
