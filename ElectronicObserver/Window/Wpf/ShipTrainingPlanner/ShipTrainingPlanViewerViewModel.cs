@@ -209,6 +209,8 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		if (editForm.ShowDialog() is true)
 		{
+			newPlan.Save();
+			newPlan.UpdateFromModel();
 			Plans.Add(newPlan);
 			DatabaseContext.ShipTrainingPlans.Add(newPlan.Model);
 			newPlan.PropertyChanged += OnPlanViewModelPropertyChanged;
