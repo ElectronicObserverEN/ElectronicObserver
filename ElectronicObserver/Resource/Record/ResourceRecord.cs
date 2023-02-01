@@ -361,7 +361,7 @@ public class ResourceRecord : RecordBase
 	public ResourceElement GetRecordMonth()
 	{
 		DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-		DateTime endofrank = new DateTime(2023, 2, 1).AddHours(-2);
+		DateTime endofrank = new DateTime(now.Year, now.Month, 1).AddHours(-2);
 		if (now.Day == endofrank.Day && now.TimeOfDay.Hours < 22)
 		{
 			return GetRecord(new DateTime(now.Year, now.Month, 1).AddHours(-2).Add(DateTimeHelper.GetTimeDifference()));
