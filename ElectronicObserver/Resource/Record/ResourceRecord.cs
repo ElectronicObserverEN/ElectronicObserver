@@ -244,7 +244,7 @@ public class ResourceRecord : RecordBase
 	/// </summary>
 	public ResourceElement GetRecordDay()
 	{
-		return GetRecord(SenkaViewerViewModel.GetDayStart(DateTime.UtcNow.ToLocalTime()));
+		return GetRecord(SenkaViewerViewModel.GetDayStart(DateTime.UtcNow).ToLocalTime());
 	}
 
 
@@ -253,7 +253,7 @@ public class ResourceRecord : RecordBase
 	/// </summary>
 	public ResourceElement GetRecordMonth()
 	{
-		return GetRecord(SenkaViewerViewModel.GetMonthStart(DateTime.UtcNow.ToLocalTime()));
+		return GetRecord(SenkaViewerViewModel.GetMonthStart(DateTime.UtcNow).ToLocalTime());
 	}
 
 
