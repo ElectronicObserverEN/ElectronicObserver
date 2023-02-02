@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
+using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -14,7 +15,8 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 {
 	private ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; }
-	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFilteredAndSorted { get; } = new();
+
+	public PagingControlViewModel PlannedUpgradesPager { get; }
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; set; } = new();
 
@@ -30,6 +32,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public EquipmentUpgradePlannerViewModel()
 	{
+		PlannedUpgradesPager = new();
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		PlannedUpgrades = EquipmentUpgradePlanManager.PlannedUpgrades;
@@ -98,16 +101,10 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	private void Update()
 	{
-		PlannedUpgradesFilteredAndSorted.Clear();
-
-		List<EquipmentUpgradePlanItemViewModel> plans = PlannedUpgrades
+		PlannedUpgradesPager.Items = PlannedUpgrades
 			.Where(Filters.MeetsFilterCondition)
 			.OrderBy(plan => plan.Finished)
+			.Cast<object>()
 			.ToList();
-
-		foreach (EquipmentUpgradePlanItemViewModel plan in plans)
-		{
-			PlannedUpgradesFilteredAndSorted.Add(plan);
-		}
 	}
 }

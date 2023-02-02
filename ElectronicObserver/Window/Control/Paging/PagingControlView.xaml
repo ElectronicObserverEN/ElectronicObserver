@@ -1,0 +1,29 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Control.Paging.PagingControlView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	x:Name="PagingControlViewElement"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<StackPanel DataContext="{Binding ViewModel, ElementName=PagingControlViewElement}" Orientation="Horizontal">
+
+		<TextBlock Margin="5" VerticalAlignment="Center">
+			<Run Text="{Binding CurrentPage}" />
+			<Run Text="/" />
+			<Run Text="{Binding LastPage, Mode=OneWay}" />
+		</TextBlock>
+
+		<Button Command="{Binding PreviousPageCommand}" Content="&lt;" />
+
+		<Button Command="{Binding NextPageCommand}" Content="&gt;" />
+
+		<ui:NumberBox Minimum="1" Value="{Binding ItemsPerPage}" />
+
+		<TextBlock VerticalAlignment="Center" Text="{Binding PagingControl.ItemsPerPage, Mode=OneWay}" />
+	</StackPanel>
+</UserControl>
