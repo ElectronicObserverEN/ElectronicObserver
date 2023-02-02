@@ -9,11 +9,11 @@ namespace ElectronicObserver.Window.Control.Paging;
 public partial class PagingControlView : UserControl
 {
 	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-		"ViewModel", typeof(object), typeof(PagingControlView), new PropertyMetadata(default(object)));
+		"ViewModel", typeof(PagingControlViewModel), typeof(PagingControlView), new PropertyMetadata(default(PagingControlViewModel)));
 
-	public object ViewModel
+	public PagingControlViewModel ViewModel
 	{
-		get => GetValue(ViewModelProperty);
+		get => (PagingControlViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

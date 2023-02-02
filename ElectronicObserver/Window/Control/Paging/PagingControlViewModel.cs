@@ -7,13 +7,13 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Control.Paging;
 
-public partial class PagingControlViewModel<T> : ObservableObject
+public partial class PagingControlViewModel : ObservableObject
 {
 	public int CurrentPage { get; set; } = 1;
 
-	public List<T> Items { get; set; } = new();
+	public List<object> Items { get; set; } = new();
 
-	public List<T> DisplayedItems { get; private set; } = new();
+	public List<object> DisplayedItems { get; private set; } = new();
 
 	public int ItemsPerPage { get; set; } = 10;
 
