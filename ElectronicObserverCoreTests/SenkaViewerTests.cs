@@ -91,4 +91,103 @@ public class SenkaViewerTests
 		Assert.Equal(time7, senkaRecords[5].Start);
 		Assert.Equal(time6, senkaRecords[5].End);
 	}
+
+	[Fact(DisplayName = "This session 1")]
+	public void SenkaViewerTest3()
+	{
+		DateTime date = new(2023, 01, 01, 05, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2023, 01, 01, 05, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2023, 01, 01, 17, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetSessionStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetSessionEnd(date));
+	}
+
+	[Fact(DisplayName = "This session 2")]
+	public void SenkaViewerTest4()
+	{
+		DateTime date = new(2023, 01, 01, 06, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2023, 01, 01, 05, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2023, 01, 01, 17, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetSessionStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetSessionEnd(date));
+	}
+
+	[Fact(DisplayName = "This session 3")]
+	public void SenkaViewerTest5()
+	{
+		DateTime date = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2022, 12, 31, 17, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetSessionStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetSessionEnd(date));
+	}
+
+	[Fact(DisplayName = "This session 4")]
+	public void SenkaViewerTest6()
+	{
+		DateTime date = new(2023, 01, 01, 00, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 12, 31, 17, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2023, 01, 01, 05, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetSessionStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetSessionEnd(date));
+	}
+
+	[Fact(DisplayName = "Today 1")]
+	public void SenkaViewerTest7()
+	{
+		DateTime date = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2023, 01, 01, 17, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetDayStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetDayEnd(date));
+	}
+
+	[Fact(DisplayName = "Today 2")]
+	public void SenkaViewerTest8()
+	{
+		DateTime date = new(2022, 12, 31, 22, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2023, 01, 01, 17, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetDayStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetDayEnd(date));
+	}
+
+	[Fact(DisplayName = "Today 3")]
+	public void SenkaViewerTest9()
+	{
+		DateTime date = new(2022, 12, 31, 12, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 12, 30, 17, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetDayStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetDayEnd(date));
+	}
+
+	[Fact(DisplayName = "This month 1")]
+	public void SenkaViewerTest10()
+	{
+		DateTime date = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2023, 01, 31, 13, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetMonthStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetMonthEnd(date));
+	}
+
+	[Fact(DisplayName = "This month 2")]
+	public void SenkaViewerTest11()
+	{
+		DateTime date = new(2022, 12, 31, 12, 00, 00, DateTimeKind.Utc);
+		DateTime expectedStart = new(2022, 11, 30, 13, 00, 00, DateTimeKind.Utc);
+		DateTime expectedEnd = new(2022, 12, 31, 13, 00, 00, DateTimeKind.Utc);
+
+		Assert.Equal(expectedStart, SenkaViewerViewModel.GetMonthStart(date));
+		Assert.Equal(expectedEnd, SenkaViewerViewModel.GetMonthEnd(date));
+	}
 }

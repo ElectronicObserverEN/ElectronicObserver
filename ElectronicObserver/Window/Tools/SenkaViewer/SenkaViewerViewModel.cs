@@ -111,68 +111,120 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		SenkaRecords = senkaRecords;
 	}
 
-	// 05:00 UTC = 14:00 JST
-	// 13:00 UTC = 22:00 JST
-	// 17:00 UTC = 02:00 JST
+	public static DateTime GetSessionStart(DateTime time)
+	{
+		DateTime endOfMonth = GetEndOfMonth(time);
+		DateTime previousDay = time.AddDays(-1);
+
+		return time.Hour switch
+		{
+			_ when time >= endOfMonth => endOfMonth,
+			< 5 => new DateTime(previousDay.Year, previousDay.Month, previousDay.Day, 17, 0, 0, DateTimeKind.Utc),
+			< 17 => new(time.Year, time.Month, time.Day, 5, 0, 0, DateTimeKind.Utc),
+			_ => new(time.Year, time.Month, time.Day, 17, 0, 0, DateTimeKind.Utc),
+		};
+	}
+
+	public static DateTime GetSessionEnd(DateTime time)
+	{
+		DateTime endOfMonth = GetEndOfMonth(time);
+		DateTime nextDay = time.AddDays(1);
+
+		DateTime sessionEnd = time.Hour switch
+		{
+			>= 17 => new(nextDay.Year, nextDay.Month, nextDay.Day, 5, 0, 0, DateTimeKind.Utc),
+			>= 5 => new(time.Year, time.Month, time.Day, 17, 0, 0, DateTimeKind.Utc),
+			_ => new(time.Year, time.Month, time.Day, 5, 0, 0, DateTimeKind.Utc),
+		};
+
+		return (sessionEnd > endOfMonth && time < endOfMonth) switch
+		{
+			true => endOfMonth,
+			_ => sessionEnd,
+		};
+	}
+
+	public static DateTime GetDayStart(DateTime time)
+	{
+		DateTime endOfMonth = GetEndOfMonth(time);
+		DateTime previousDay = time.AddDays(-1);
+
+		return time.Hour switch
+		{
+			_ when time >= endOfMonth => endOfMonth,
+			< 17 => new DateTime(previousDay.Year, previousDay.Month, previousDay.Day, 17, 0, 0, DateTimeKind.Utc),
+			_ => new(time.Year, time.Month, time.Day, 17, 0, 0, DateTimeKind.Utc),
+		};
+	}
+
+	public static DateTime GetDayEnd(DateTime time)
+	{
+		DateTime endOfMonth = GetEndOfMonth(time);
+		DateTime nextDay = time.AddDays(1);
+
+		DateTime sessionEnd = time.Hour switch
+		{
+			_ when time >= endOfMonth => new(nextDay.Year, nextDay.Month, nextDay.Day, 17, 0, 0, DateTimeKind.Utc),
+			>= 17 => new(nextDay.Year, nextDay.Month, nextDay.Day, 17, 0, 0, DateTimeKind.Utc),
+			_ => new(time.Year, time.Month, time.Day, 17, 0, 0, DateTimeKind.Utc),
+		};
+
+		return (sessionEnd > endOfMonth && time < endOfMonth) switch
+		{
+			true => endOfMonth,
+			_ => sessionEnd,
+		};
+	}
+
+	public static DateTime GetMonthStart(DateTime time)
+	{
+		DateTime endOfMonth = GetEndOfMonth(time);
+		DateTime previousMonth = new DateTime(time.Year, time.Month, 1, 0, 0, 0, DateTimeKind.Utc).AddDays(-1);
+
+		return (time >= endOfMonth) switch
+		{
+			true => endOfMonth,
+			_ => GetEndOfMonth(previousMonth),
+		};
+	}
+
+	public static DateTime GetMonthEnd(DateTime time)
+	{
+		DateTime endOfMonth = GetEndOfMonth(time);
+		DateTime nextMonth = endOfMonth.AddDays(1);
+
+		return (time >= endOfMonth) switch
+		{
+			true => GetEndOfMonth(nextMonth),
+			_ => endOfMonth,
+		};
+	}
+
+	private static DateTime GetEndOfMonth(DateTime time) => 
+		new(time.Year, time.Month, DateTime.DaysInMonth(time.Year, time.Month), 13, 0, 0, DateTimeKind.Utc);
+
+	/// <summary>
+	/// 05:00 UTC = 14:00 JST <br />
+	/// 13:00 UTC = 22:00 JST <br />
+	/// 17:00 UTC = 02:00 JST <br />
+	/// </summary>
 	public static List<SenkaRecord> GenerateSenkaRecords(DateTime start, DateTime end)
 	{
-		DateTime endOfMonth = new(start.Year, start.Month, DateTime.DaysInMonth(start.Year, start.Month), 13, 0, 0, DateTimeKind.Utc);
-
-		start = start.Hour switch
-		{
-			_ when start > endOfMonth => new(start.Year, start.Month, start.Day, 13, 0, 0, DateTimeKind.Utc),
-			< 5 => new(start.Year, start.Month, start.Day - 1, 17, 0, 0, DateTimeKind.Utc),
-			< 17 => new(start.Year, start.Month, start.Day, 5, 0, 0, DateTimeKind.Utc),
-			_ => new(start.Year, start.Month, start.Day, 17, 0, 0, DateTimeKind.Utc),
-		};
-
-		end = end.Hour switch
-		{
-			> 17 => new(end.Year, end.Month, end.Day + 1, 5, 0, 0, DateTimeKind.Utc),
-			> 5 => new(end.Year, end.Month, end.Day, 17, 0, 0, DateTimeKind.Utc),
-			_ => new(end.Year, end.Month, end.Day, 5, 0, 0, DateTimeKind.Utc),
-		};
-
-		if (start >= endOfMonth)
-		{
-			endOfMonth = GetNextEndOfMonth(endOfMonth);
-		}
+		start = GetSessionStart(start);
+		end = GetSessionEnd(end);
 
 		List<SenkaRecord> senkaRecords = new();
 
-		while (start < end)
+		do
 		{
-			DateTime currentEnd = start.AddHours(start.Hour switch
-			{
-				5 or 17 => 12,
-				13 => 4,
-			});
+			DateTime currentEnd = GetSessionEnd(start);
 
-			if (currentEnd > endOfMonth)
-			{
-				currentEnd = endOfMonth;
-				endOfMonth = GetNextEndOfMonth(endOfMonth);
-			}
-
-			senkaRecords.Insert(0, new()
-			{
-				Start = start,
-				End = currentEnd,
-			});
+			senkaRecords.Insert(0, new() { Start = start, End = currentEnd, });
 
 			start = currentEnd;
-		}
+		} while (start < end);
 
 		return senkaRecords;
-	}
-
-	private static DateTime GetNextEndOfMonth(DateTime reference)
-	{
-		DateTime firstDayThisMonth = new DateTime(reference.Year, reference.Month, 1);
-		DateTime firstDayPlusTwoMonths = firstDayThisMonth.AddMonths(2);
-		DateTime lastDayNextMonth = firstDayPlusTwoMonths.AddDays(-1);
-
-		return new(lastDayNextMonth.Year, lastDayNextMonth.Month, lastDayNextMonth.Day, 13, 0, 0, DateTimeKind.Utc);
 	}
 
 	private double GetHqExp(ApiFile apiFile) => apiFile.Name switch
@@ -209,7 +261,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	{
 		"api_req_quest/clearitemget" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestClearitemgetResponse>>(apiFile.Content)?.ApiData.ApiBounus
 			.FirstOrDefault(b => b.ApiType == UseItemId.Senka)
-			?.ApiCount?? 0,
+			?.ApiCount ?? 0,
 
 		_ => 0,
 	};
