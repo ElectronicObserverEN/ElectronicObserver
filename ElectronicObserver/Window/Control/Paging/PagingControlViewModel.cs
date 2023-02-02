@@ -9,7 +9,7 @@ namespace ElectronicObserver.Window.Control.Paging;
 
 public partial class PagingControlViewModel<T> : ObservableObject
 {
-	public int CurrentPage { get; set; }
+	public int CurrentPage { get; set; } = 1;
 
 	public List<T> Items { get; set; } = new();
 
@@ -17,7 +17,7 @@ public partial class PagingControlViewModel<T> : ObservableObject
 
 	public int ItemsPerPage { get; set; } = 10;
 
-	public int LastPage => (int)Math.Ceiling(Items.Count / (decimal)ItemsPerPage);
+	public int LastPage => Math.Max(1, (int)Math.Ceiling(Items.Count / (decimal)Math.Max(1, ItemsPerPage)));
 
 	public PagingControlTranslationViewModel PagingControl { get; } = new();
 
@@ -45,14 +45,17 @@ public partial class PagingControlViewModel<T> : ObservableObject
 
 	private void UpdateCollection()
 	{
-		// don't go out of bound
-		CurrentPage = Math.Max(CurrentPage, Items.Any() ? 1 : 0);
-		CurrentPage = Math.Min(CurrentPage, LastPage);
+		CurrentPage = Math.Clamp(CurrentPage, 1, LastPage);
 
-		DisplayedItems = Items
-			.Skip(ItemsPerPage * (CurrentPage - 1))
-			.Take(ItemsPerPage)
-			.ToList();
+		DisplayedItems = Items switch
+		{
+			{ Count: > 0 } => Items
+				.Skip(ItemsPerPage * (CurrentPage - 1))
+				.Take(ItemsPerPage)
+				.ToList(),
+
+			_ => new(),
+		};
 
 		OnPropertyChanged(nameof(LastPage));
 	}

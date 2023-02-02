@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Control.Paging {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Items per page).
+        ///   Looks up a localized string similar to ページサイズ.
         /// </summary>
         public static string ItemsPerPage {
             get {
