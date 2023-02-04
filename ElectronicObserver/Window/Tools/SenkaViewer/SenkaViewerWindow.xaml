@@ -113,7 +113,16 @@
 				<DataGridTextColumn Binding="{Binding Start, Converter={StaticResource DateTimeDisplayConverter}}" Header="{Binding DataContext.SenkaViewer.Start, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding End, Converter={StaticResource DateTimeDisplayConverter}}" Header="{Binding DataContext.SenkaViewer.End, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding TotalSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.Senka, Source={StaticResource Proxy}}" />
-				<DataGridTextColumn Binding="{Binding HqExpSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.NormalSenka, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding EstimatedHqExpSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.NormalSenka, Source={StaticResource Proxy}}">
+					<!--
+					todo
+					<DataGridTextColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+							<Setter Property="ToolTip" Value="{Binding HqExpSenkaGainsToolTip}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+					-->
+				</DataGridTextColumn>
 				<DataGridTextColumn Binding="{Binding ExtraOperationSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.ExtraOperationSenka, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding QuestSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.QuestSenka, Source={StaticResource Proxy}}" />
 			</DataGrid.Columns>

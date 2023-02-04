@@ -10,4 +10,5 @@ public class ApiFile
 	public string Content { get; set; } = "";
 	public DateTime TimeStamp { get; set; }
 	public int Version { get; set; }
+	public int? SortieRecordId { get; set; }
 }

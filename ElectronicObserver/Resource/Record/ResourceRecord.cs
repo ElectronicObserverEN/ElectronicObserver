@@ -205,7 +205,7 @@ public class ResourceRecord : RecordBase
 	/// <summary>
 	/// 指定した日時以降の最も古い記録を返します。
 	/// </summary>
-	public ResourceElement GetRecord(DateTime target)
+	public ResourceElement? GetRecord(DateTime target)
 	{
 
 		int i;

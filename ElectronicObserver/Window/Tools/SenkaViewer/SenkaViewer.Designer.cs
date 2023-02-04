@@ -61,6 +61,15 @@ namespace ElectronicObserver.Window.Tools.SenkaViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 推定される余剰利益.
+        /// </summary>
+        internal static string EstimatedExtraGains {
+            get {
+                return ResourceManager.GetString("EstimatedExtraGains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EO戦果.
         /// </summary>
         internal static string ExtraOperationSenka {
@@ -84,6 +93,15 @@ namespace ElectronicObserver.Window.Tools.SenkaViewer {
         internal static string QuestSenka {
             get {
                 return ResourceManager.GetString("QuestSenka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 録音された戦果.
+        /// </summary>
+        internal static string RecordedSenka {
+            get {
+                return ResourceManager.GetString("RecordedSenka", resourceCulture);
             }
         }
         

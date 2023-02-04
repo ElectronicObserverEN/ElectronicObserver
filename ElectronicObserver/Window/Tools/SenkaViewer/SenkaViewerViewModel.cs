@@ -16,6 +16,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 using ElectronicObserver.KancolleApi.Types.ApiReqQuest.Clearitemget;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.Properties.Window.Dialog;
+using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ namespace ElectronicObserver.Window.Tools.SenkaViewer;
 public partial class SenkaViewerViewModel : WindowViewModelBase
 {
 	private ElectronicObserverContext Db { get; } = new();
+	private ResourceRecord ResourceRecord { get; }
 	public SenkaViewerTranslationViewModel SenkaViewer { get; }
 
 	public List<SenkaRecord> SenkaRecords { get; set; } = new();
@@ -36,7 +38,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	};
 
 	public string TotalSenka => $"{SenkaViewer.Senka}：{TotalCalculationList.Sum(s => s.TotalSenkaGains):0.##}";
-	public string TotalNormalSenka => $"{SenkaViewer.NormalSenka}：{TotalCalculationList.Sum(s => s.HqExpSenkaGains):0.##}";
+	public string TotalNormalSenka => $"{SenkaViewer.NormalSenka}：{TotalCalculationList.Sum(s => s.EstimatedHqExpSenkaGains):0.##}";
 	public string TotalExtraOperationSenka => $"{SenkaViewer.ExtraOperationSenka}：{TotalCalculationList.Sum(s => s.ExtraOperationSenkaGains):0.##}";
 	public string TotalQuestSenka => $"{SenkaViewer.QuestSenka}：{TotalCalculationList.Sum(s => s.QuestSenkaGains):0.##}";
 
@@ -55,6 +57,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	public SenkaViewerViewModel()
 	{
 		SenkaViewer = Ioc.Default.GetRequiredService<SenkaViewerTranslationViewModel>();
+		ResourceRecord = RecordManager.Instance.Resource;
 
 		MinDate = Db.ApiFiles.Min(f => f.TimeStamp);
 		MaxDate = DateTime.Now.AddDays(1);
@@ -85,18 +88,35 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		DateTime start = apiFiles.Min(f => f.TimeStamp);
 		start = DateTime.SpecifyKind(start, DateTimeKind.Utc);
 
-		DateTime end = apiFiles.Max(f => f.TimeStamp);
-		end = DateTime.SpecifyKind(end, DateTimeKind.Utc);
+		DateTime end = DateTime.UtcNow;
 
 		List<SenkaRecord> senkaRecords = GenerateSenkaRecords(start, end);
 
 		foreach (SenkaRecord senkaRecord in senkaRecords)
 		{
-			senkaRecord.HqExpSenkaGains = apiFiles
-				.Where(f => f.TimeStamp > senkaRecord.Start)
-				.Where(f => f.TimeStamp < senkaRecord.End)
-				.Sum(GetHqExp) * 7 / 10000;
+			int? startHqExp = ResourceRecord.GetRecord(senkaRecord.Start.ToLocalTime())?.HQExp;
+			int? endHqExp = ResourceRecord.GetRecord(senkaRecord.End.ToLocalTime())?.HQExp;
 
+			startHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
+			endHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
+
+			senkaRecord.EstimatedHqExpSenkaGains = (startHqExp, endHqExp) switch
+			{
+				(int s, int e) => (e - s) * 7 / 10000.0,
+				_ => 0,
+			};
+
+			// todo: some values are still off compared to EstimatedHqExpSenkaGains even with full data
+			// the conditions probably aren't complete here
+			/*
+			senkaRecord.HqExpSenkaGains = apiFiles
+				.GroupBy(f => f.SortieRecordId)
+				.Where(g => g.Key is null || (g.Max(f => f.TimeStamp > senkaRecord.Start) && g.Max(f => f.TimeStamp < senkaRecord.End)))
+				.SelectMany(g => g.Select(f => f))
+				.Where(f => f.SortieRecordId is not null || f.TimeStamp > senkaRecord.Start)
+				.Where(f => f.SortieRecordId is not null || f.TimeStamp < senkaRecord.End)
+				.Sum(GetHqExp) * 7 / 10000;
+			*/
 			senkaRecord.ExtraOperationSenkaGains = apiFiles
 				.Where(f => f.TimeStamp > senkaRecord.Start)
 				.Where(f => f.TimeStamp < senkaRecord.End)
@@ -200,7 +220,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		};
 	}
 
-	private static DateTime GetEndOfMonth(DateTime time) => 
+	private static DateTime GetEndOfMonth(DateTime time) =>
 		new(time.Year, time.Month, DateTime.DaysInMonth(time.Year, time.Month), 13, 0, 0, DateTimeKind.Utc);
 
 	/// <summary>

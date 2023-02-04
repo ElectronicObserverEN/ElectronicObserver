@@ -112,4 +112,10 @@
   <data name="QuestSenka" xml:space="preserve">
     <value>任務戦果</value>
   </data>
+  <data name="RecordedSenka" xml:space="preserve">
+    <value>録音された戦果</value>
+  </data>
+  <data name="EstimatedExtraGains" xml:space="preserve">
+    <value>推定される余剰利益</value>
+  </data>
 </root>

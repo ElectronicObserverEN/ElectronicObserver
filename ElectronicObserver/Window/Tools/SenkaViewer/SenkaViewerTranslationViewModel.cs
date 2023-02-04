@@ -15,4 +15,7 @@ public class SenkaViewerTranslationViewModel : TranslationBaseViewModel
 	public string NormalSenka => SenkaViewer.NormalSenka;
 	public string ExtraOperationSenka => SenkaViewer.ExtraOperationSenka;
 	public string QuestSenka => SenkaViewer.QuestSenka;
+
+	public string RecordedSenka => SenkaViewer.RecordedSenka;
+	public string EstimatedExtraGains => SenkaViewer.EstimatedExtraGains;
 }

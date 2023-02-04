@@ -132,4 +132,10 @@
   <data name="QuestSenka" xml:space="preserve">
     <value>Quest senka</value>
   </data>
+  <data name="RecordedSenka" xml:space="preserve">
+    <value>Recorded senka</value>
+  </data>
+  <data name="EstimatedExtraGains" xml:space="preserve">
+    <value>Estimated extra gains</value>
+  </data>
 </root>
