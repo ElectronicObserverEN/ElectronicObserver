@@ -949,15 +949,6 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ???.
-        /// </summary>
-        public static string View_ShipTraining {
-            get {
-                return ResourceManager.GetString("View_ShipTraining", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ウィンドウキャプチャ(&amp;W).
         /// </summary>
         public static string WindowCapture {

@@ -196,7 +196,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Create Training Plan).
+        ///   Looks up a localized string similar to 艦娘訓練追加.
         /// </summary>
         public static string ContextMenuFleetShipLevel_CreateTrainingPlan {
             get {
@@ -205,7 +205,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Edit Training Plan).
+        ///   Looks up a localized string similar to 艦娘訓練編集.
         /// </summary>
         public static string ContextMenuFleetShipLevel_EditTrainingPlan {
             get {
@@ -214,7 +214,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Open Exp. Calculator).
+        ///   Looks up a localized string similar to 必要Exp計算.
         /// </summary>
         public static string ContextMenuFleetShipLevel_OpenExpChecker {
             get {
@@ -223,7 +223,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Remove Training Plan).
+        ///   Looks up a localized string similar to 艦娘訓練除去.
         /// </summary>
         public static string ContextMenuFleetShipLevel_RemoveTrainingPlan {
             get {

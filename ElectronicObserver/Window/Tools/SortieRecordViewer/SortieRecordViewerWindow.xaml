@@ -4,8 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:mocks="clr-namespace:ElectronicObserverTypes.Mocks;assembly=ElectronicObserverTypes"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding SortieRecordViewer.Title}"
 	Width="800"
@@ -19,8 +21,17 @@
 		<local:SortieRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
 		<DataTemplate DataType="{x:Type local:SortieRecordViewModel}">
-			<StackPanel Margin="2" Orientation="Horizontal">
+			<Grid Margin="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
 				<StackPanel
+					Grid.Column="0"
 					Margin="2 0"
 					VerticalAlignment="Center"
 					Orientation="Horizontal"
@@ -31,12 +42,32 @@
 				</StackPanel>
 
 				<TextBlock
+					Grid.Column="1"
 					Margin="2 0"
 					VerticalAlignment="Center"
 					Text="{Binding SortieStart, Converter={StaticResource DateTimeDisplayConverter}}"
 					/>
 
+				<ItemsControl Grid.Column="2" ItemsSource="{Binding Fleet.MembersInstance}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate DataType="{x:Type mocks:ShipDataMock}">
+							<Image
+								Width="100"
+								Margin="2 0"
+								Source="{Binding MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+								Stretch="Uniform"
+								/>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
 				<Button
+					Grid.Column="3"
 					Margin="2 0"
 					Command="{Binding DataContext.OpenFleetImageGeneratorCommand, Source={StaticResource Proxy}}"
 					CommandParameter="{Binding}"
@@ -44,12 +75,13 @@
 					/>
 
 				<Button
+					Grid.Column="4"
 					Margin="2 0"
 					Command="{Binding DataContext.CopyReplayToClipboardCommand, Source={StaticResource Proxy}}"
 					CommandParameter="{Binding}"
 					Content="{Binding DataContext.SortieRecordViewer.CopyReplay, Source={StaticResource Proxy}}"
 					/>
-			</StackPanel>
+			</Grid>
 		</DataTemplate>
 	</Window.Resources>
 

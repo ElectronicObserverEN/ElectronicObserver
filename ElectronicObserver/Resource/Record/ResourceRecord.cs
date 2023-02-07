@@ -234,7 +234,7 @@ public class ResourceRecord : RecordBase
 	/// <summary>
 	/// 前回の戦果更新以降の最も古い記録を返します。
 	/// </summary>
-	public ResourceElement GetRecordPrevious()
+	public ResourceElement? GetRecordPrevious()
 	{
 		return GetRecord(SenkaViewerViewModel.GetSessionStart(DateTime.UtcNow).ToLocalTime());
 	}
@@ -242,7 +242,7 @@ public class ResourceRecord : RecordBase
 	/// <summary>
 	/// 今日の戦果更新以降の最も古い記録を返します。
 	/// </summary>
-	public ResourceElement GetRecordDay()
+	public ResourceElement? GetRecordDay()
 	{
 		return GetRecord(SenkaViewerViewModel.GetDayStart(DateTime.UtcNow).ToLocalTime());
 	}
@@ -251,7 +251,7 @@ public class ResourceRecord : RecordBase
 	/// <summary>
 	/// 今月の戦果更新以降の最も古い記録を返します。
 	/// </summary>
-	public ResourceElement GetRecordMonth()
+	public ResourceElement? GetRecordMonth()
 	{
 		return GetRecord(SenkaViewerViewModel.GetMonthStart(DateTime.UtcNow).ToLocalTime());
 	}

@@ -271,15 +271,15 @@
     <value>(右クリックで図鑑)</value>
   </data>
   <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
-    <value>??? (Create Training Plan)</value>
+    <value>艦娘訓練追加</value>
   </data>
   <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
-    <value>??? (Open Exp. Calculator)</value>
+    <value>必要Exp計算</value>
   </data>
   <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
-    <value>??? (Edit Training Plan)</value>
+    <value>艦娘訓練編集</value>
   </data>
   <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
-    <value>??? (Remove Training Plan)</value>
+    <value>艦娘訓練除去</value>
   </data>
 </root>

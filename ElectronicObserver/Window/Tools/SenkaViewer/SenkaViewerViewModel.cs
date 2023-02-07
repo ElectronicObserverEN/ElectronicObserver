@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
@@ -85,10 +86,9 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 
 		if (!apiFiles.Any()) return;
 
-		DateTime start = apiFiles.Min(f => f.TimeStamp);
-		start = DateTime.SpecifyKind(start, DateTimeKind.Utc);
+		DateTime start = DateTimeBegin.ToUniversalTime();
 
-		DateTime end = DateTime.UtcNow;
+		DateTime end = DateTimeEnd.ToUniversalTime();
 
 		List<SenkaRecord> senkaRecords = GenerateSenkaRecords(start, end);
 
@@ -98,7 +98,12 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 			int? endHqExp = ResourceRecord.GetRecord(senkaRecord.End.ToLocalTime())?.HQExp;
 
 			startHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
-			endHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
+			endHqExp ??= KCDatabase.Instance.Admiral switch
+			{
+				{ IsAvailable: true } a => a.Exp,
+				_ => ResourceRecord.Record.LastOrDefault()?.HQExp,
+			};
+
 
 			senkaRecord.EstimatedHqExpSenkaGains = (startHqExp, endHqExp) switch
 			{
