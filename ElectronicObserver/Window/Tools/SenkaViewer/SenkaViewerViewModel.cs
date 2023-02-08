@@ -89,7 +89,10 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		DateTime start = DateTimeBegin.ToUniversalTime();
 
 		DateTime end = DateTimeEnd.ToUniversalTime();
-
+		if ( end > DateTime.UtcNow)
+		{
+			end = DateTime.UtcNow;
+		}
 		List<SenkaRecord> senkaRecords = GenerateSenkaRecords(start, end);
 
 		foreach (SenkaRecord senkaRecord in senkaRecords)
