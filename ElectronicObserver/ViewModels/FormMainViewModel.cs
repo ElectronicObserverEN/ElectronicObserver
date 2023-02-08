@@ -113,6 +113,8 @@ public partial class FormMainViewModel : ObservableObject
 	public double SubFontSize { get; set; }
 	public SolidColorBrush SubFontBrush { get; set; }
 
+	public string MaintenanceText { get; set; } = "";
+
 	public List<Theme> Themes { get; } = new()
 	{
 		new Vs2013LightTheme(),
@@ -1893,9 +1895,11 @@ public partial class FormMainViewModel : ObservableObject
 
 				string maintState = eventOrMaintenanceStarted switch
 				{
-					false => string.Format(message, maintTimer.ToString("dd\\ hh\\:mm\\:ss")),
+					false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
 					_ => message
 				};
+
+				MaintenanceText = maintState;
 
 				var resetMsg =
 					$"{FormMain.NextExerciseReset} {pvpTimer:hh\\:mm\\:ss}\r\n" +
