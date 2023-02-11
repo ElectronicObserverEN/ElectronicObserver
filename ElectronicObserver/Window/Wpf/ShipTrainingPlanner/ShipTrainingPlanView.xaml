@@ -44,6 +44,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
 			<TextBlock
@@ -190,13 +191,30 @@
 			<TextBlock
 				Grid.Row="7"
 				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding ShipTrainingPlanner.Priority}"
+				/>
+
+			<ui:NumberBox
+				Grid.Row="7"
+				Grid.Column="2"
+				Margin="5 2"
+				SpinButtonPlacementMode="Inline"
+				Value="{Binding Priority}"
+				/>
+
+			<TextBlock
+				Grid.Row="8"
+				Grid.Column="0"
 				Margin="5 0"
 				VerticalAlignment="Center"
 				Text="{Binding ShipTrainingPlanner.RemodelGoal}"
 				/>
 
 			<ComboBox
-				Grid.Row="7"
+				Grid.Row="8"
 				Grid.Column="2"
 				Margin="5 2"
 				VerticalAlignment="Center"

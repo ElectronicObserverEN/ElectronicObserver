@@ -161,4 +161,7 @@
 無効にすると、神風を神風改二に改造できるときだけ通知されます
 有効にすると、神風を神風改に改造できるときと、神風改を神風改二に改造できるときに通知されます</value>
   </data>
+  <data name="Priority" xml:space="preserve">
+    <value>優先順位</value>
+  </data>
 </root>

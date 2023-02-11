@@ -193,6 +193,8 @@
 
 						<DataGridCheckBoxColumn Binding="{Binding PlanFinished, Mode=OneWay}" Header="{Binding DataContext.ShipTrainingPlanner.Finished, Source={StaticResource Proxy}}" />
 
+						<DataGridTextColumn Binding="{Binding Priority}" Header="{Binding DataContext.ShipTrainingPlanner.Priority, Source={StaticResource Proxy}}" />
+
 					</DataGrid.Columns>
 
 				</DataGrid>
