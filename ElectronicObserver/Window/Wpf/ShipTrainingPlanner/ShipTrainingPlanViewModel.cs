@@ -21,6 +21,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	};
 
 	public bool PlanFinished { get; set; }
+	public int Priority { get; set; }
 
 	public int TargetLevel { get; set; }
 	public int MaximumLevel => ExpTable.ShipMaximumLevel;
@@ -124,6 +125,8 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		TargetHPBonus = Model.TargetHPBonus;
 		TargetASWBonus = Model.TargetASWBonus;
 
+		Priority = Model.Priority;
+
 		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
 
 		if (Model.TargetRemodel is ShipId shipId)
@@ -156,6 +159,8 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		Model.TargetHPBonus = TargetHPBonus;
 		Model.TargetASWBonus = TargetASWBonus;
 		Model.TargetRemodel = TargetRemodel?.Ship.ShipId;
+
+		Model.Priority = Priority;
 
 		Model.NotifyOnAnyRemodelReady = NotifyOnAnyRemodelReady;
 	}

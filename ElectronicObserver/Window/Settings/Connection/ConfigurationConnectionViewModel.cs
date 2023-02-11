@@ -24,10 +24,7 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 
 	public bool SaveReceivedData { get; set; }
 
-	[ObservableProperty]
-	[NotifyDataErrorInfo]
-	[CustomValidation(typeof(ConfigurationConnectionViewModel), nameof(ValidateFolder))]
-	private string _saveDataPath;
+	public string SaveDataPath { get; set; }
 
 	public bool SaveRequest { get; set; }
 
@@ -93,13 +90,12 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 		ConfigConnection.UpstreamProxyAddress = UpstreamProxyAddress;
 		ConfigConnection.UseSystemProxy = UseSystemProxy;
 		ConfigConnection.DownstreamProxy = DownstreamProxy;
-	}
 
-	public static ValidationResult ValidateFolder(string path) => Directory.Exists(path) switch
-	{
-		true => ValidationResult.Success!,
-		_ => new(DialogConfiguration.SaveDataPathDoesNotExist),
-	};
+		if (ConfigConnection.SaveReceivedData)
+		{
+			Directory.CreateDirectory(ConfigConnection.SaveDataPath);
+		}
+	}
 
 	public static ValidationResult ValidatePorts(int port, ValidationContext context)
 	{

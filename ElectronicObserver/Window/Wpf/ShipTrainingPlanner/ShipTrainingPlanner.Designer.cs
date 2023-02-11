@@ -153,6 +153,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 優先順位.
+        /// </summary>
+        internal static string Priority {
+            get {
+                return ResourceManager.GetString("Priority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 改造.
         /// </summary>
         internal static string RemodelGoal {

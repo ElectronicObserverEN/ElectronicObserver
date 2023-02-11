@@ -161,4 +161,7 @@
 When disabled, you'll only be notified when you can remodel Kamikaze to Kamikaze Kai Ni
 When enabled, you'll be notified when you can remodel Kamikaze to Kamikaze Kai and when you can remodel Kamikaze Kai to Kamikaze Kai Ni</value>
   </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
 </root>

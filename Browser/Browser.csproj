@@ -31,9 +31,9 @@
 		<Copyright>Copyright ©  2015 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.1.0</AssemblyVersion>
-		<FileVersion>5.2.1.0</FileVersion>
-		<Version>5.2.1.0</Version>
+		<AssemblyVersion>5.2.2.0</AssemblyVersion>
+		<FileVersion>5.2.2.0</FileVersion>
+		<Version>5.2.2.0</Version>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
@@ -43,7 +43,7 @@
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CefSharp.WinForms.NETCore" Version="107.1.90" />
+		<PackageReference Include="CefSharp.WinForms.NETCore" Version="109.1.110" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Grpc" Version="2.46.5" />
 		<PackageReference Include="Grpc.Core" Version="2.46.5" />

@@ -25,4 +25,5 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 	public string Finished => ShipTrainingPlanner.Finished;
 	public string DisplayFinished => ShipTrainingPlanner.DisplayFinished;
 	public string RemoveFinishedPlans => ShipTrainingPlanner.RemoveFinishedPlans;
+	public string Priority => ShipTrainingPlanner.Priority;
 }

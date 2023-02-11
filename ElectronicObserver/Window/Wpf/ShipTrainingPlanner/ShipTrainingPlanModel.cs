@@ -7,6 +7,9 @@ public class ShipTrainingPlanModel : ObservableObject
 {
 	public int Id { get; set; }
 	public int ShipId { get; set; }
+
+	public int Priority { get; set; }
+
 	public int TargetLevel { get; set; }
 
 	/// <summary>
