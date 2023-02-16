@@ -9,7 +9,7 @@ internal class GadgetUrlHandler : ResourceRequestHandler
 	{
 		if (request.Url.Contains(@"gadget_html5"))
 		{
-			return new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
+			return new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", "https://gre4bee.github.io/gadget_html5/");
 		}
 
 		return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
