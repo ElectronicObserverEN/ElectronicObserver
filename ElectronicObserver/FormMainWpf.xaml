@@ -752,6 +752,11 @@
 						Command="{Binding CheckForUpdateCommand}"
 						Header="{Binding FormMain.StripMenu_Help_Update}"
 						/>
+					<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="Open release notes">
+						<MenuItem.Icon>
+							<Image Source="{Binding ViewHelpImageSource}" />
+						</MenuItem.Icon>
+					</MenuItem>
 					<MenuItem
 						d:Header="About Electronic Observer"
 						Command="{Binding ViewVersionCommand}"
@@ -764,12 +769,32 @@
 				</MenuItem>
 			</Menu>
 
-			<TextBlock
+			<Menu
 				Grid.Column="1"
 				Height="Auto"
 				HorizontalAlignment="Right"
-				Text="{Binding MaintenanceText}"
-				/>
+				>
+				<MenuItem
+					Height="Auto"
+					Command="{Binding StartSoftwareUpdateCommand}"
+					Header="Update available"
+					Visibility="{Binding UpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+					>
+					<MenuItem Command="{Binding StartSoftwareUpdateCommand}" Header="Download update" />
+
+					<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="Open release notes">
+						<MenuItem.Icon>
+							<Image Source="{Binding ViewHelpImageSource}" />
+						</MenuItem.Icon>
+					</MenuItem>
+				</MenuItem>
+
+				<MenuItem
+					Height="Auto"
+					Header="{Binding MaintenanceText}"
+					Visibility="{Binding MaintenanceTextVisibility}"
+					/>
+			</Menu>
 		</Grid>
 		<DockingManager
 			x:Name="DockingManager"

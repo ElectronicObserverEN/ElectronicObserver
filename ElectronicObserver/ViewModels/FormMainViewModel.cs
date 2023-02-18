@@ -114,6 +114,8 @@ public partial class FormMainViewModel : ObservableObject
 	public SolidColorBrush SubFontBrush { get; set; }
 
 	public string MaintenanceText { get; set; } = "";
+	public Visibility MaintenanceTextVisibility => string.IsNullOrEmpty(MaintenanceText) ? Visibility.Collapsed : Visibility.Visible;
+	public bool UpdateAvailable { get; set; } = false;
 
 	public List<Theme> Themes { get; } = new()
 	{
@@ -1890,6 +1892,7 @@ public partial class FormMainViewModel : ObservableObject
 				};
 
 				MaintenanceText = maintState;
+				UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
 
 				var resetMsg =
 					$"{FormMain.NextExerciseReset} {pvpTimer:hh\\:mm\\:ss}\r\n" +
@@ -2043,5 +2046,20 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (Configuration.Config.Log.SaveLogFlag)
 			Logger.Save();
+	}
+
+	[RelayCommand]
+	private void StartSoftwareUpdate()
+		=> Task.Run(SoftwareUpdater.UpdateSoftware);
+
+	[RelayCommand]
+	private void OpenReleaseNotes()
+	{
+		ProcessStartInfo psi = new ProcessStartInfo
+		{
+			FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest",
+			UseShellExecute = true
+		};
+		Process.Start(psi);
 	}
 }
