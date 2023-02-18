@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data.Battle.Detail;
-using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 

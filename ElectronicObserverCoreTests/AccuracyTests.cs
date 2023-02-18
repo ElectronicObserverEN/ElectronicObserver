@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Mocks;
 using Xunit;
 

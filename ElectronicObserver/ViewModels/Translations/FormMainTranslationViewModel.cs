@@ -102,6 +102,10 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Help_Update => Properties.Window.FormMain.Help_Update.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Help_Version => Properties.Window.FormMain.Help_Version.Replace("_", "__").Replace("&", "_");
 
+	public string StripMenu_Update_UpdateAvailable => Properties.Window.FormMain.Update_UpdateAvailable;
+	public string StripMenu_Update_DownloadUpdate => Properties.Window.FormMain.Update_DownloadUpdate;
+	public string StripMenu_Update_OpenReleaseNotes => Properties.Window.FormMain.Update_OpenReleaseNotes;
+
 	public string StripStatus_Information => Properties.Window.FormMain.Information.Replace("_", "__").Replace("&", "_");
 	public string StripStatus_Clock => Properties.Window.FormMain.Clock.Replace("_", "__").Replace("&", "_");
 

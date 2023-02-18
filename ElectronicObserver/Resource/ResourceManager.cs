@@ -91,6 +91,7 @@ public sealed class ResourceManager
 		LandAssaulter,
 		HeavyBomber,
 		NightSeaplane,
+		NightSeaplaneBomber,
 		Locked,
 		Unknown,
 	}
@@ -338,6 +339,7 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandAssaulter.png", "Equipment_LandAssaulter");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/HeavyBomber.png", "Equipment_HeavyBomber");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplane.png", "Equipment_NightSeaplane");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplaneBomber.png", "Equipment_NightSeaplaneBomber");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
 

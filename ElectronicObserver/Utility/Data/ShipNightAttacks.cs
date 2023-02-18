@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -17,10 +18,10 @@ public static class ShipNightAttacks
 			// sub TCI or normal TCI
 			IEnumerable<Enum> specialAttack = SubmarineNightSpecialAttacks.Cast<Enum>()
 					.Concat(SurfaceShipNightSpecialAttacks.Cast<Enum>())
-					.FirstOrDefault(ship.CanDo!) switch
+					.FirstOrDefault(ship.CanDo) switch
 			{
 				Enum attack => new List<Enum> { attack },
-				_ => Enumerable.Empty<Enum>()
+				_ => Enumerable.Empty<Enum>(),
 			};
 
 			nightAttacks = nightAttacks
@@ -30,16 +31,21 @@ public static class ShipNightAttacks
 
 		if (ship.IsSurfaceShip())
 		{
+			if (ship.IsNightZuiunCutInShip())
+			{
+				nightAttacks = nightAttacks.Concat(ZuiunSpecialAttacks.Cast<Enum>());
+			}
+
 			if (ship.IsDestroyer())
 			{
 				nightAttacks = nightAttacks.Concat(DestroyerSpecialAttacks.Cast<Enum>());
 			}
 
 			IEnumerable<Enum> specialAttack =
-				SurfaceShipNightSpecialAttacks.Cast<Enum>().FirstOrDefault(ship.CanDo!) switch
+				SurfaceShipNightSpecialAttacks.Cast<Enum>().FirstOrDefault(ship.CanDo) switch
 				{
 					NightAttackKind attack => new List<Enum> { attack },
-					_ => Enumerable.Empty<Enum>()
+					_ => Enumerable.Empty<Enum>(),
 				};
 
 			nightAttacks = nightAttacks
@@ -60,8 +66,13 @@ public static class ShipNightAttacks
 				.Concat(new List<Enum> { NightAttackKind.Shelling });
 		}
 
-		return nightAttacks.Where(ship.CanDo!);
+		return nightAttacks.Where(ship.CanDo);
 	}
+
+	private static List<NightAttackKind> ZuiunSpecialAttacks => new()
+	{
+		NightAttackKind.CutinZuiun,
+	};
 
 	private static List<NightAttackKind> DestroyerSpecialAttacks => new()
 	{
@@ -89,25 +100,25 @@ public static class ShipNightAttacks
 		CvnciKind.FighterFighterAttacker,
 		CvnciKind.FighterAttacker,
 		CvnciKind.Phototube,
-		CvnciKind.FighterOtherOther
+		CvnciKind.FighterOtherOther,
 	};
 
 	private static List<NightAttackKind> SurfaceShipNightNormalAttacks => new()
 	{
-		NightAttackKind.Shelling
+		NightAttackKind.Shelling,
 	};
 
 	private static List<NightAttackKind> NightTorpedoAttacks => new()
 	{
-		NightAttackKind.Torpedo
+		NightAttackKind.Torpedo,
 	};
 
 	private static List<NightAttackKind> CarrierNightNormalAttacks => new()
 	{
-		NightAttackKind.AirAttack
+		NightAttackKind.AirAttack,
 	};
 
-	private static List<NightTorpedoCutinKind> SubmarineNightSpecialAttacks = new()
+	private static List<NightTorpedoCutinKind> SubmarineNightSpecialAttacks => new()
 	{
 		NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment,
 		NightTorpedoCutinKind.LateModelTorpedo2,
@@ -145,11 +156,13 @@ public static class ShipNightAttacks
 																	ship.HasSubmarineEquipment(),
 		NightTorpedoCutinKind.LateModelTorpedo2 => ship.HasLateModelTorp(2),
 
+		NightAttackKind.CutinZuiun => ship.HasMainGun(2) && ship.HasNightZuiun(),
+
 		NightAttackKind.Shelling => true,
 		NightAttackKind.Torpedo => true,
 		NightAttackKind.AirAttack => ship.HasNightAircraft(),
 
-		_ => false
+		_ => false,
 	};
 
 	public static bool DestroyerCutinTwoHitAvailable(this IShipData ship) => ship.Level >= 80;

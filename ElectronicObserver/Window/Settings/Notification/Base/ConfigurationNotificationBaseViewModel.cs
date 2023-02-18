@@ -138,7 +138,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		ClosingInterval = NotifierBase.DialogData.ClosingInterval / 1000;
 		AccelInterval = NotifierBase.AccelInterval / 1000;
 		CloseOnMouseMove = NotifierBase.DialogData.CloseOnMouseMove;
-		ClickFlag = NotifierBase.DialogData.ClickFlag;
 		Alignment = NotifierBase.DialogData.Alignment;
 		LocationX = NotifierBase.DialogData.Location.X;
 		LocationY = NotifierBase.DialogData.Location.Y;
@@ -150,7 +149,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 		foreach (CheckBoxEnumViewModel clickFlag in ClickFlags)
 		{
-			clickFlag.IsChecked = ClickFlag.HasFlag(clickFlag.Value);
+			clickFlag.IsChecked = NotifierBase.DialogData.ClickFlag.HasFlag(clickFlag.Value);
 		}
 	}
 

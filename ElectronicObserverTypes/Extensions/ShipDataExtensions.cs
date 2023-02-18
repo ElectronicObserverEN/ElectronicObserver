@@ -292,6 +292,10 @@ public static class ShipDataExtensions
 			EquipmentTypes.Autogyro)
 		>= count;
 
+	public static bool HasNightZuiun(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment)
+		>= count;
+
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
 		ShipId.IseKaiNi => true,
@@ -327,6 +331,12 @@ public static class ShipDataExtensions
 
 		_ => false
 	};
+
+	public static bool IsNightZuiunCutInShip(this IShipData ship) => ship.MasterShip.ShipType is
+		ShipTypes.LightCruiser or
+		ShipTypes.AviationCruiser or
+		ShipTypes.AviationBattleship or
+		ShipTypes.SeaplaneTender;
 
 	public static bool IsSpecialNightCarrier(this IShipData ship) => ship.MasterShip.ShipId is
 		ShipId.GrafZeppelin or

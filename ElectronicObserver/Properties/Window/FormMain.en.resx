@@ -123,9 +123,6 @@
   <data name="File" xml:space="preserve">
     <value>&amp;File</value>
   </data>
-  <data name="UpdateAvailable" xml:space="preserve">
-    <value>Electronic Observer v{0} is available!</value>
-  </data>
   <data name="ExitConfirmation" xml:space="preserve">
     <value>Are you sure you want to exit?</value>
   </data>
@@ -428,5 +425,14 @@ Do you want to open this github issue?</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="Update_DownloadUpdate" xml:space="preserve">
+    <value>_Download update</value>
+  </data>
+  <data name="Update_OpenReleaseNotes" xml:space="preserve">
+    <value>_Open release notes</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>_Update available</value>
   </data>
 </root>

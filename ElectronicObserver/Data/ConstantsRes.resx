@@ -1089,4 +1089,7 @@
   <data name="SpecialYamato12" xml:space="preserve">
     <value>第一戦隊、突撃！主砲、全力斉射ッ！</value>
   </data>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>夜間瑞雲カットイン</value>
+  </data>
 </root>

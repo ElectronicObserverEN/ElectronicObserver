@@ -12,9 +12,9 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
@@ -497,7 +497,13 @@ public class FleetItemViewModel : ObservableObject
 					_ => $"{attack}"
 				};
 
-				sb.AppendFormat($"\r\n・[{rate:P1}] - " +
+				static string AttackRateDisplay(double rate) => rate switch
+				{
+					0 => "???",
+					_ => $"{rate:P1}",
+				};
+
+				sb.AppendFormat($"\r\n・[{AttackRateDisplay(rate)}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");

@@ -489,4 +489,6 @@ public enum EquipmentId
 	CarrierBasedFighter_Type0FighterModel64_AirSuperiorityFighterSpecification = 486,
 	CarrierBasedBomber_Type0FighterModel64_SkilledFighterBomber = 487,
 	DepthCharge_Type2DepthChargeKaiNi = 488,
+	ASPatrol_Type1FighterHayabusaModelII_20thSquadron = 489,
+	SeaplaneBomber_PrototypeNightZuiun_AttackEquipment = 490,
 }

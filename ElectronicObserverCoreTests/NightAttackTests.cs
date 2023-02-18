@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Mocks;
 using Moq;
 using Xunit;

@@ -478,6 +478,15 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplane}" />
 					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								NightSeaplaneBomber
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplaneBomber}" />
+					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>

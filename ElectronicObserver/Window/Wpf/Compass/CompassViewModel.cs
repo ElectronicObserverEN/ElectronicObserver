@@ -14,6 +14,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Compass.ViewModels;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass;
 

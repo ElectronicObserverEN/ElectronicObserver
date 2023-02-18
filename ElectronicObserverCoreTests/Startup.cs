@@ -4,6 +4,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Database;
 using ElectronicObserver.TestData;
+using ElectronicObserver.TestData.Models;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
@@ -40,6 +41,11 @@ public class Startup
 		foreach (IShipDataMaster ship in masterShips.Values)
 		{
 			kcdb.MasterShips.Add(ship);
+		}
+
+		foreach (IEquipmentDataMaster equipment in testDb.MasterEquipment.Select(e => e.ToMasterEquipment()))
+		{
+			kcdb.MasterEquipments.Add(equipment);
 		}
 
 		Ioc.Default.ConfigureServices(new ServiceCollection()

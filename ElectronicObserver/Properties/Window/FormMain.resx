@@ -325,13 +325,10 @@
     <value>ディスコードでの参加</value>
   </data>
   <data name="Help_Update" xml:space="preserve">
-    <value>アップデートのチェック</value>
+    <value>更新プログラムのチェック</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value> を起動しています…</value>
-  </data>
-  <data name="UpdateAvailable" xml:space="preserve">
-    <value>七四式v{0}が登場</value>
   </data>
   <data name="ExitConfirmation" xml:space="preserve">
     <value>{0} を終了しますか？</value>
@@ -428,5 +425,14 @@
   </data>
   <data name="New" xml:space="preserve">
     <value>新</value>
+  </data>
+  <data name="Update_DownloadUpdate" xml:space="preserve">
+    <value>更新プログラムをダウンロード (_D)</value>
+  </data>
+  <data name="Update_OpenReleaseNotes" xml:space="preserve">
+    <value>リリースノートを開く (_O)</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>更新プログラムが利用可能 (_U)</value>
   </data>
 </root>

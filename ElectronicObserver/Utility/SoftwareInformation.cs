@@ -84,33 +84,10 @@ public static class SoftwareInformation
 			var json = JsonObject.Parse(e.Result);
 			DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
 			string version = json.ver;
-			string description = json.note.Replace("<br>", "\r\n");
 
 			if (UpdateTime < date)
 			{
 				Logger.Add(3, Resources.NewVersionFound + version);
-				Task.Run(() => SoftwareUpdater.UpdateSoftware());
-
-				var result = System.Windows.Forms.MessageBox.Show(
-					string.Format(Resources.AskForUpdate, version, description),
-					Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel,
-					System.Windows.Forms.MessageBoxIcon.Information,
-					System.Windows.Forms.MessageBoxDefaultButton.Button1);
-
-
-				if (result == System.Windows.Forms.DialogResult.Yes)
-				{
-					ProcessStartInfo psi = new ProcessStartInfo
-					{
-						FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest",
-						UseShellExecute = true
-					};
-					Process.Start(psi);
-				}
-				else if (result == System.Windows.Forms.DialogResult.Cancel)
-				{
-					Configuration.Config.Life.CheckUpdateInformation = false;
-				}
 			}
 			else
 			{

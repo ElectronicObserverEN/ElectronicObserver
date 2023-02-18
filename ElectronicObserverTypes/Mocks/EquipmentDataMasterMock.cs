@@ -12,7 +12,7 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public bool IsNightAviationPersonnel => this.IsNightAviationPersonnel();
 	public bool IsHightAltitudeFighter => this.IsHightAltitudeFighter();
 	public bool IsAARocketLauncher => this.IsAARocketLauncher();
-	public int ID { get; set; }
+	public int ID => EquipmentID;
 	public EquipmentId EquipmentId => (EquipmentId)EquipmentID;
 	public dynamic RawData { get; set; }
 	public bool IsAvailable { get; set; }

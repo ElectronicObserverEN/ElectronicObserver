@@ -412,7 +412,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップデートのチェック.
+        ///   Looks up a localized string similar to 更新プログラムのチェック.
         /// </summary>
         public static string Help_Update {
             get {
@@ -760,11 +760,29 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 七四式v{0}が登場.
+        ///   Looks up a localized string similar to 更新プログラムをダウンロード (_D).
         /// </summary>
-        public static string UpdateAvailable {
+        public static string Update_DownloadUpdate {
             get {
-                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
+                return ResourceManager.GetString("Update_DownloadUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to リリースノートを開く (_O).
+        /// </summary>
+        public static string Update_OpenReleaseNotes {
+            get {
+                return ResourceManager.GetString("Update_OpenReleaseNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 更新プログラムが利用可能 (_U).
+        /// </summary>
+        public static string Update_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
             }
         }
         

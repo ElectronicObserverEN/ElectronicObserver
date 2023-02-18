@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -171,7 +172,12 @@ public static class NightAttackPower
 		CvnciKind.Phototube => 1.2,
 		CvnciKind.FighterOtherOther => 1.18,
 
-		_ => 1
+		NightAttackKind.CutinZuiun when ship.HasNightZuiun(2) && ship.HasSurfaceRadar() => 1.36,
+		NightAttackKind.CutinZuiun when ship.HasNightZuiun(2) => 1.32,
+		NightAttackKind.CutinZuiun when ship.HasSurfaceRadar() => 1.28,
+		NightAttackKind.CutinZuiun => 1.24,
+
+		_ => 1,
 	};
 
 	private static double DGunMod(this IShipData ship) => ship.AllSlotInstance

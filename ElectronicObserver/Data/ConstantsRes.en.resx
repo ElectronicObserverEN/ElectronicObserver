@@ -1089,4 +1089,7 @@
   <data name="SpecialYamato12" xml:space="preserve">
     <value>Yamato touch (1, 2)</value>
   </data>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
 </root>

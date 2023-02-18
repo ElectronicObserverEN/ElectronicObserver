@@ -997,6 +997,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 夜間瑞雲カットイン.
+        /// </summary>
+        public static string CutinZuiun {
+            get {
+                return ResourceManager.GetString("CutinZuiun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 揚陸攻撃(大発動艇).
         /// </summary>
         public static string DaihatsuAttack {

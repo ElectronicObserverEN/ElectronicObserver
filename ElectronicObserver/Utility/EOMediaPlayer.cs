@@ -77,7 +77,9 @@ public class EOMediaPlayer
 		set
 		{
 			if (MediaPlayer.Source?.ToString() != value && !string.IsNullOrEmpty(value))
-				MediaPlayer.Open(new(value));
+			{
+				MediaPlayer.Open(new(value, UriKind.RelativeOrAbsolute));
+			}
 		}
 	}
 
