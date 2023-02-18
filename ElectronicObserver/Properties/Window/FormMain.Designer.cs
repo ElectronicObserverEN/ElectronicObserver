@@ -760,7 +760,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (&amp;Download update).
+        ///   Looks up a localized string similar to ??? (_Download update).
         /// </summary>
         public static string Update_DownloadUpdate {
             get {
@@ -769,7 +769,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (&amp;Open release notes).
+        ///   Looks up a localized string similar to ??? (_Open release notes).
         /// </summary>
         public static string Update_OpenReleaseNotes {
             get {
@@ -778,7 +778,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (&amp;Update available).
+        ///   Looks up a localized string similar to ??? (_Update available).
         /// </summary>
         public static string Update_UpdateAvailable {
             get {
