@@ -784,7 +784,6 @@
 
 				<MenuItem
 					Height="Auto"
-					Command="{Binding StartSoftwareUpdateCommand}"
 					Header="{Binding FormMain.StripMenu_Update_UpdateAvailable}"
 					Visibility="{Binding UpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
 					>
