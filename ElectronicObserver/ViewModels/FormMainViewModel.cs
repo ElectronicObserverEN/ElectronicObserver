@@ -580,12 +580,7 @@ public partial class FormMainViewModel : ObservableObject
 					MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
 				== MessageBoxResult.Yes)
 			{
-				ProcessStartInfo psi = new()
-				{
-					FileName = @"https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71",
-					UseShellExecute = true
-				};
-				Process.Start(psi);
+				OpenLink(@"https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71");
 			}
 		}
 
@@ -1640,12 +1635,7 @@ public partial class FormMainViewModel : ObservableObject
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
-			ProcessStartInfo psi = new()
-			{
-				FileName = "https://github.com/silfumus/ElectronicObserver/wiki",
-				UseShellExecute = true
-			};
-			Process.Start(psi);
+			OpenLink("https://github.com/silfumus/ElectronicObserver/wiki");
 		}
 
 	}
@@ -1658,33 +1648,14 @@ public partial class FormMainViewModel : ObservableObject
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
-			ProcessStartInfo psi = new()
-			{
-				FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/issues",
-				UseShellExecute = true
-			};
-			Process.Start(psi);
+			OpenLink("https://github.com/ElectronicObserverEN/ElectronicObserver/issues");
 		}
 
 	}
 
 	[RelayCommand]
 	private void JoinDiscord()
-	{
-		try
-		{
-			ProcessStartInfo psi = new()
-			{
-				FileName = @"https://discord.gg/6ZvX8DG",
-				UseShellExecute = true
-			};
-			Process.Start(psi);
-		}
-		catch (Exception ex)
-		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
-		}
-	}
+		=> OpenLink("https://discord.gg/6ZvX8DG");
 
 	[RelayCommand]
 	private async void CheckForUpdate()
@@ -1702,6 +1673,22 @@ public partial class FormMainViewModel : ObservableObject
 		window.ShowDialog(Window);
 	}
 
+	#endregion
+
+	#region Updates
+	[RelayCommand]
+	private void StartSoftwareUpdate()
+		=> Task.Run(SoftwareUpdater.UpdateSoftware);
+
+	[RelayCommand]
+	private void OpenReleaseNotes()
+		=> OpenLink("https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest");
+	#endregion
+
+	#region Maintenance timer
+	[RelayCommand]
+	private void OpenMaintenanceInformationLink()
+		=> OpenLink(SoftwareUpdater.LatestVersion.MaintenanceInformationLink);
 	#endregion
 
 	private void CallPumpkinHead(string apiname, dynamic data)
@@ -1977,6 +1964,23 @@ public partial class FormMainViewModel : ObservableObject
 		PrevPlayTimeRecorded = now;
 	}
 
+	private void OpenLink(string link)
+	{
+		try
+		{
+			ProcessStartInfo psi = new ProcessStartInfo
+			{
+				FileName = link,
+				UseShellExecute = true
+			};
+			Process.Start(psi);
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
+		}
+	}
+
 	[RelayCommand]
 	private void Closing(CancelEventArgs e)
 	{
@@ -2046,31 +2050,5 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (Configuration.Config.Log.SaveLogFlag)
 			Logger.Save();
-	}
-
-	[RelayCommand]
-	private void StartSoftwareUpdate()
-		=> Task.Run(SoftwareUpdater.UpdateSoftware);
-
-	[RelayCommand]
-	private void OpenReleaseNotes()
-	{
-		ProcessStartInfo psi = new ProcessStartInfo
-		{
-			FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest",
-			UseShellExecute = true
-		};
-		Process.Start(psi);
-	}
-
-	[RelayCommand]
-	private void OpenMaintenanceInformationLink()
-	{
-		ProcessStartInfo psi = new ProcessStartInfo
-		{
-			FileName = SoftwareUpdater.LatestVersion.MaintenanceInformationLink,
-			UseShellExecute = true
-		};
-		Process.Start(psi);
 	}
 }
