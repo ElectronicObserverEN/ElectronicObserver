@@ -123,9 +123,6 @@
   <data name="File" xml:space="preserve">
     <value>&amp;File</value>
   </data>
-  <data name="UpdateAvailable" xml:space="preserve">
-    <value>Electronic Observer v{0} is available!</value>
-  </data>
   <data name="ExitConfirmation" xml:space="preserve">
     <value>Are you sure you want to exit?</value>
   </data>
