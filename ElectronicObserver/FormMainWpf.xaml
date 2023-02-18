@@ -777,6 +777,7 @@
 
 				<MenuItem
 					Height="Auto"
+					Command="{Binding OpenMaintenanceInformationLinkCommand}"
 					Header="{Binding MaintenanceText}"
 					Visibility="{Binding MaintenanceTextVisibility}"
 					/>

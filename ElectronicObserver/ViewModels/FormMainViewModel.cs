@@ -2062,4 +2062,15 @@ public partial class FormMainViewModel : ObservableObject
 		};
 		Process.Start(psi);
 	}
+
+	[RelayCommand]
+	private void OpenMaintenanceInformationLink()
+	{
+		ProcessStartInfo psi = new ProcessStartInfo
+		{
+			FileName = SoftwareUpdater.LatestVersion.MaintenanceInformationLink,
+			UseShellExecute = true
+		};
+		Process.Start(psi);
+	}
 }

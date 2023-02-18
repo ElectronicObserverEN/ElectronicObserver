@@ -278,7 +278,6 @@ internal class SoftwareUpdater
 		{
 			DateTime buildDate = DateTimeHelper.CSVStringToTime(dataJson.bld_date);
 			var appVersion = (string)dataJson.ver;
-			var note = (string)dataJson.note;
 			var downloadUrl = (string)dataJson.url;
 
 			var eqVersion = (string)translationJson.equipment;
@@ -310,12 +309,12 @@ internal class SoftwareUpdater
 
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
 			var eventState = (MaintenanceState)(int)dataJson.event_state;
+			string maintenanceInformationLink = (string)dataJson.MaintInfoLink;
 
 			data = new UpdateData
 			{
 				BuildDate = buildDate,
 				AppVersion = appVersion,
-				Note = note,
 				AppDownloadUrl = downloadUrl,
 				Equipment = eqVersion,
 				Expedition = expedVersion,
@@ -330,6 +329,7 @@ internal class SoftwareUpdater
 				EventState = eventState,
 				FitBonuses = fitBonusesVersion,
 				EquipmentUpgrades = equipmentUpgradesVersion,
+				MaintenanceInformationLink = maintenanceInformationLink
 			};
 		}
 		catch (Exception e)
@@ -379,7 +379,6 @@ public class UpdateData
 {
 	public DateTime BuildDate { get; set; }
 	public string AppVersion { get; set; } = "0.0.0.0";
-	public string Note { get; set; } = "";
 	public string AppDownloadUrl { get; set; } = "";
 	public string Equipment { get; set; } = "";
 	public string Expedition { get; set; } = "";
@@ -393,6 +392,7 @@ public class UpdateData
 	public int FitBonuses { get; set; }
 	public int EquipmentUpgrades { get; set; }
 	public DateTime MaintenanceDate { get; set; }
+	public string MaintenanceInformationLink { get; set; } = "";
 
 	/// <summary>
 	/// 1=event start, 2=event end, 3=regular maintenance
