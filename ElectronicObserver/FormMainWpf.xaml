@@ -752,7 +752,7 @@
 						Command="{Binding CheckForUpdateCommand}"
 						Header="{Binding FormMain.StripMenu_Help_Update}"
 						/>
-					<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="Open release notes">
+					<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="{Binding FormMain.StripMenu_Update_OpenReleaseNotes}">
 						<MenuItem.Icon>
 							<Image Source="{Binding ViewHelpImageSource}" />
 						</MenuItem.Icon>
@@ -774,26 +774,27 @@
 				Height="Auto"
 				HorizontalAlignment="Right"
 				>
-				<MenuItem
-					Height="Auto"
-					Command="{Binding StartSoftwareUpdateCommand}"
-					Header="Update available"
-					Visibility="{Binding UpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-					>
-					<MenuItem Command="{Binding StartSoftwareUpdateCommand}" Header="Download update" />
-
-					<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="Open release notes">
-						<MenuItem.Icon>
-							<Image Source="{Binding ViewHelpImageSource}" />
-						</MenuItem.Icon>
-					</MenuItem>
-				</MenuItem>
 
 				<MenuItem
 					Height="Auto"
 					Header="{Binding MaintenanceText}"
 					Visibility="{Binding MaintenanceTextVisibility}"
 					/>
+
+				<MenuItem
+					Height="Auto"
+					Command="{Binding StartSoftwareUpdateCommand}"
+					Header="{Binding FormMain.StripMenu_Update_UpdateAvailable}"
+					Visibility="{Binding UpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+					>
+					<MenuItem Command="{Binding StartSoftwareUpdateCommand}" Header="{Binding FormMain.StripMenu_Update_DownloadUpdate}" />
+
+					<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="{Binding FormMain.StripMenu_Update_OpenReleaseNotes}">
+						<MenuItem.Icon>
+							<Image Source="{Binding ViewHelpImageSource}" />
+						</MenuItem.Icon>
+					</MenuItem>
+				</MenuItem>
 			</Menu>
 		</Grid>
 		<DockingManager

@@ -429,4 +429,13 @@
   <data name="New" xml:space="preserve">
     <value>新</value>
   </data>
+  <data name="Update_DownloadUpdate" xml:space="preserve">
+    <value>??? (&amp;Download update)</value>
+  </data>
+  <data name="Update_OpenReleaseNotes" xml:space="preserve">
+    <value>??? (&amp;Open release notes)</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>??? (&amp;Update available)</value>
+  </data>
 </root>

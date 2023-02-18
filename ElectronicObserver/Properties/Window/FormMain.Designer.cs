@@ -760,6 +760,33 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (&amp;Download update).
+        /// </summary>
+        public static string Update_DownloadUpdate {
+            get {
+                return ResourceManager.GetString("Update_DownloadUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (&amp;Open release notes).
+        /// </summary>
+        public static string Update_OpenReleaseNotes {
+            get {
+                return ResourceManager.GetString("Update_OpenReleaseNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (&amp;Update available).
+        /// </summary>
+        public static string Update_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 七四式v{0}が登場.
         /// </summary>
         public static string UpdateAvailable {
