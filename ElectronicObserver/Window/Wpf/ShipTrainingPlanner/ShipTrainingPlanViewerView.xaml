@@ -58,15 +58,18 @@
 					SelectionUnit="FullRow"
 					>
 
-					<b:Interaction.Behaviors>
-						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
-					</b:Interaction.Behaviors>
-
 					<DataGrid.ColumnHeaderStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
 							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 							<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 							<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+							<Setter Property="ContextMenu">
+								<Setter.Value>
+									<ContextMenu>
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="Open column selector" />
+									</ContextMenu>
+								</Setter.Value>
+							</Setter>
 						</Style>
 					</DataGrid.ColumnHeaderStyle>
 
@@ -99,9 +102,12 @@
 
 					<DataGrid.Columns>
 						<DataGridTextColumn
-							Width="Auto"
+							Width="{Binding DataContext.DataGridViewModel.NameColumn.Width, Source={StaticResource Proxy}}"
 							Binding="{Binding Ship.MasterShip.NameEN}"
-							Header="{Binding DataContext.ShipTrainingPlanner.ShipName, Source={StaticResource Proxy}}"
+							DisplayIndex="{Binding DataContext.DataGridViewModel.NameColumn.DisplayIndex, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.DataGridViewModel.NameColumn.Header, Source={StaticResource Proxy}}"
+							SortDirection="{Binding DataContext.DataGridViewModel.NameColumn.SortDirection, Source={StaticResource Proxy}}"
+							Visibility="{Binding DataContext.DataGridViewModel.NameColumn.Visibility, Source={StaticResource Proxy}}"
 							/>
 
 						<DataGridTextColumn
