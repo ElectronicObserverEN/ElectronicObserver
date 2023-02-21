@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Common.Datagrid;
 
@@ -17,18 +18,44 @@ public partial class ColumnViewModel : ObservableObject
 	private ListSortDirection? sortDirection;
 
 	[ObservableProperty]
-	private Visibility visibility = Visibility.Visible;
+	private bool visible = true;
 
 	[ObservableProperty]
 	private string header = "";
 
-	public ColumnViewModel()
+	public bool HasSortMemberPath => !string.IsNullOrEmpty(ColumnProperties.SortMemberPath);
+
+
+	public ColumnProperties ColumnProperties { get; set; }
+	public SortDescription? SortDescription { get; set; }
+
+	public ColumnViewModel(ColumnProperties properties, SortDescription? sortDescription)
 	{
-		PropertyChanged += ColumnViewModel_PropertyChanged;
+		ColumnProperties = properties;
+		SortDescription = sortDescription;
+
+		Visible = properties.Visibility is Visibility.Visible;
+		Header = properties.Header;
+
+		SortDirection = sortDescription switch
+		{
+			SortDescription direction => direction.Direction,
+			_ => null
+		};
 	}
 
-	private void ColumnViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+	public void SaveChanges()
 	{
+		ColumnProperties.Visibility = Visible ? Visibility.Visible : Visibility.Collapsed;
 
+		SortDescription = SortDirection switch
+		{
+			ListSortDirection direction => new()
+			{
+				Direction = direction,
+				PropertyName = ColumnProperties.SortMemberPath
+			},
+			_ => null
+		};
 	}
 }

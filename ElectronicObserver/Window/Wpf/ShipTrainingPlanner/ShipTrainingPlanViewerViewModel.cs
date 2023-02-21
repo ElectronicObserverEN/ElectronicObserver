@@ -26,7 +26,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
-	public ShipTrainingPlannerViewerDataGrid DataGridViewModel { get; set; } = new();
+	public DataGridViewModelBase DataGridViewModel { get; set; } = new();
 
 	public bool DisplayFinished { get; set; } = false;
 

@@ -31,6 +31,7 @@
 			Grid.Row="0"
 			AutoGenerateColumns="False"
 			CanUserAddRows="False"
+			CanUserDeleteRows="False"
 			ItemsSource="{Binding Columns}"
 			>
 			<DataGrid.Columns>
@@ -40,23 +41,38 @@
 					IsReadOnly="True"
 					/>
 
-				<DataGridComboBoxColumn
-					Header="Visibility"
-					ItemsSource="{Binding DataContext.Visibilities, Source={StaticResource Proxy}}"
-					SelectedItemBinding="{Binding Visibility}"
-					/>
+				<DataGridCheckBoxColumn Binding="{Binding Visible}" Header="Visible" />
 
-				<DataGridComboBoxColumn
-					Header="Sort direction"
-					ItemsSource="{Binding DataContext.SortDirections, Source={StaticResource Proxy}}"
-					SelectedItemBinding="{Binding SortDirection}"
-					/>
+				<DataGridTemplateColumn Header="Sort direction">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox
+								IsEnabled="{Binding HasSortMemberPath, Mode=OneWay}"
+								ItemsSource="{Binding DataContext.SortDirections, Source={StaticResource Proxy}}"
+								SelectedValue="{Binding SortDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 
-		<StackPanel Grid.Row="1" Orientation="Horizontal">
-			<Button Click="Button_Click_Cancel" Content="Cancel" />
-			<Button Click="Button_Click_Ok" Content="Ok" />
+		<StackPanel
+			Grid.Row="1"
+			Margin="10"
+			HorizontalAlignment="Right"
+			Orientation="Horizontal"
+			>
+			<Button
+				Margin="5"
+				Click="Button_Click_Cancel"
+				Content="Cancel"
+				/>
+			<Button
+				Margin="5"
+				Click="Button_Click_Ok"
+				Content="Ok"
+				/>
 		</StackPanel>
 	</Grid>
 </common:WindowBase>

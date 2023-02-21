@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Common.Datagrid
+﻿using System.Windows.Threading;
+
+namespace ElectronicObserver.Common.Datagrid
 {
 	/// <summary>
 	/// Interaction logic for ColumnSelectorView.xaml
@@ -7,6 +9,12 @@
 	{
 		public ColumnSelectorView(ColumnSelectorViewModel vm) : base(vm)
 		{
+			// https://github.com/Kinnara/ModernWpf/issues/378
+			SourceInitialized += (s, a) =>
+			{
+				Dispatcher.Invoke(InvalidateVisual, DispatcherPriority.Input);
+			};
+
 			InitializeComponent();
 		}
 

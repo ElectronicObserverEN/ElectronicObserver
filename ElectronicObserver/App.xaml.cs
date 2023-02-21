@@ -338,7 +338,8 @@ public partial class App : Application
 
 		tracker
 			.Configure<ShipTrainingPlanViewerViewModel>()
-			.Property(w => w.DataGridViewModel.Columns)
+			.Property(w => w.DataGridViewModel.ColumnProperties)
+			.Property(w => w.DataGridViewModel.SortDescriptions)
 			.Property(w => w.DisplayFinished);
 
 		tracker

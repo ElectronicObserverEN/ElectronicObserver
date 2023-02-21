@@ -58,6 +58,10 @@
 					SelectionUnit="FullRow"
 					>
 
+					<b:Interaction.Behaviors>
+						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
+					</b:Interaction.Behaviors>
+
 					<DataGrid.ColumnHeaderStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
 							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
@@ -102,12 +106,9 @@
 
 					<DataGrid.Columns>
 						<DataGridTextColumn
-							Width="{Binding DataContext.DataGridViewModel.NameColumn.Width, Source={StaticResource Proxy}}"
+							Width="Auto"
 							Binding="{Binding Ship.MasterShip.NameEN}"
-							DisplayIndex="{Binding DataContext.DataGridViewModel.NameColumn.DisplayIndex, Source={StaticResource Proxy}}"
-							Header="{Binding DataContext.DataGridViewModel.NameColumn.Header, Source={StaticResource Proxy}}"
-							SortDirection="{Binding DataContext.DataGridViewModel.NameColumn.SortDirection, Source={StaticResource Proxy}}"
-							Visibility="{Binding DataContext.DataGridViewModel.NameColumn.Visibility, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ShipName, Source={StaticResource Proxy}}"
 							/>
 
 						<DataGridTextColumn

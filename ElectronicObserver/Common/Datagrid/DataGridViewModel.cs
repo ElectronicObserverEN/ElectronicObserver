@@ -1,44 +1,52 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Common.Datagrid;
 
-public abstract class DataGridViewModelBase
+public partial class DataGridViewModelBase : ObservableObject
 {
-	public Dictionary<string, ColumnViewModel> Columns { get; set; } = new();
+	public List<ColumnProperties> ColumnProperties { get; set; } = new();
+	public List<SortDescription> SortDescriptions { get; set; } = new();
 
-	public ColumnViewModel? GetColumn(string name)
+	/// <summary>
+	/// List<SortDescription>.Find returns a non null SortDescription so i put my own .Find logic in this method
+	/// </summary>
+	/// <returns></returns>
+	private SortDescription? FindSortDescription(string sortMemberPath)
 	{
-		Columns.TryGetValue(name, out ColumnViewModel? col);
-		return col;
+		if (string.IsNullOrEmpty(sortMemberPath)) return null;
+		if (!SortDescriptions.Any(sort => sort.PropertyName == sortMemberPath)) return null;
+		return SortDescriptions.Find(sort => sort.PropertyName == sortMemberPath);
 	}
 
-	protected void OpenColumnSelectorBase()
+	[RelayCommand]
+	private void OpenColumnSelector()
 	{
-		List<ColumnViewModel> columnList = Columns.Values.ToList();
-		List<(ColumnViewModel, ColumnViewModel)> columns = columnList.Select(column => (column, new ColumnViewModel()
-		{
-			DisplayIndex = column.DisplayIndex,
-			Header = column.Header,
-			SortDirection = column.SortDirection,
-			Visibility = column.Visibility,
-			Width = column.Width
-		})).ToList();
+		List<ColumnViewModel> columns = ColumnProperties
+			.Select(column => new ColumnViewModel(column, FindSortDescription(column.SortMemberPath)))
+			.ToList();
 
-		List<ColumnViewModel> columnsForSelector = columns.Select(cols => cols.Item2).ToList();
-
-		ColumnSelectorView columnSelectionView = new(new(columnsForSelector));
+		ColumnSelectorView columnSelectionView = new(new(columns));
 
 		if (columnSelectionView.ShowDialog() == true)
 		{
 			// Apply changes
-			foreach ((ColumnViewModel column, ColumnViewModel columnAfterChanges) in columns)
+			foreach (ColumnViewModel column in columns)
 			{
-				column.Width = columnAfterChanges.Width;
-				column.Visibility = columnAfterChanges.Visibility;
-				column.DisplayIndex = columnAfterChanges.DisplayIndex;
-				column.SortDirection = columnAfterChanges.SortDirection;
+				column.SaveChanges();
 			}
+
+			// Trigger PropertyChanged "manually"
+			ColumnProperties = new(columns.Select(col => col.ColumnProperties));
+
+			SortDescriptions = new(columns
+				.Select(col => col.SortDescription)
+				.Where(col => col is not null)
+				.Cast<SortDescription>());
 		}
 	}
 }

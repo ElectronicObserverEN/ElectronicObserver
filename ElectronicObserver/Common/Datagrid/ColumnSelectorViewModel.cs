@@ -10,15 +10,8 @@ public class ColumnSelectorViewModel : WindowViewModelBase
 
 	public List<ListSortDirection?> SortDirections { get; } = new()
 	{
-		null,
 		ListSortDirection.Ascending,
 		ListSortDirection.Descending,
-	};
-
-	public List<Visibility> Visibilities { get; } = new()
-	{
-		Visibility.Visible,
-		Visibility.Hidden,
 	};
 
 	public ColumnSelectorViewModel(List<ColumnViewModel> columns)
