@@ -352,7 +352,7 @@ public class BattleNightDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetNightAttackKind((NightAttackKind)AttackType);
+		return NightAttack.AttackDisplay((NightAttackKind)AttackType);
 	}
 }
 
@@ -459,7 +459,7 @@ public class BattleFriendlyShellingDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetNightAttackKind((NightAttackKind)AttackType);
+		return NightAttack.AttackDisplay((NightAttackKind)AttackType);
 	}
 }
 

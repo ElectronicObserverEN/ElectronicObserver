@@ -465,7 +465,7 @@ public class FleetItemViewModel : ObservableObject
 			}
 		}
 
-		List<Enum> nightAttacks = ship.GetNightAttacks().ToList();
+		List<NightAttack> nightAttacks = ship.GetNightAttacks().ToList();
 		List<double> nightAttackRates = nightAttacks.Select(a => ship.GetNightAttackRate(a, fleet))
 			.ToList().TotalRates();
 
@@ -473,29 +473,11 @@ public class FleetItemViewModel : ObservableObject
 		{
 			sb.AppendFormat($"\r\n{GeneralRes.NightBattle}:");
 
-			foreach ((Enum attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
+			foreach ((NightAttack attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
 			{
 				double power = ship.GetNightAttackPower(attack, fleet);
 				double accuracy = ship.GetNightAttackAccuracy(attack, fleet);
-				string attackDisplay = attack switch
-				{
-					NightAttackKind nightAttack => Constants.GetNightAttackKind(nightAttack),
-					CvnciKind cvnci => cvnci switch
-					{
-						CvnciKind.FighterFighterAttacker => FormFleet.CvnciFfa,
-						CvnciKind.FighterAttacker => FormFleet.CvnciFa,
-						CvnciKind.Phototube => FormFleet.CvnciPhoto,
-						CvnciKind.FighterOtherOther => FormFleet.CvnciFoo,
-						_ => "?"
-					},
-					NightTorpedoCutinKind torpedoCutin => torpedoCutin switch
-					{
-						NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => FormFleet.LateModelTorpedoSubmarineEquipment,
-						NightTorpedoCutinKind.LateModelTorpedo2 => FormFleet.LateModelTorpedo2,
-						_ => "?"
-					},
-					_ => $"{attack}"
-				};
+				string attackDisplay = attack.Display;
 
 				static string AttackRateDisplay(double rate) => rate switch
 				{

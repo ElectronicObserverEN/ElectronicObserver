@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,151 +117,142 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
-    <value>編成テキストをコピー(&amp;C)</value>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
-    <value>編成をコピー(デッキビルダー)(&amp;D)</value>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>Normal Attack</value>
   </data>
-  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
-    <value>艦隊晒しページへコピー(&amp;R)</value>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>Laser Attack</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysis" xml:space="preserve">
-    <value>艦隊分析ページへコピー(&amp;F)</value>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>DA</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisLockedEquip" xml:space="preserve">
-    <value>艦隊分析ロックされた装備コピー</value>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>CI (MG+SG)</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisAllEquip" xml:space="preserve">
-    <value>艦隊分析全装備コピー</value>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>CI (MG+Radar)</value>
   </data>
-  <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
-    <value>対空砲火の詳細表示(&amp;A)</value>
+  <data name="CutinMainAp" xml:space="preserve">
+    <value>CI (MG+AP)</value>
   </data>
-  <data name="ContextMenuFleet_Capture" xml:space="preserve">
-    <value>この画面をキャプチャ(&amp;S)</value>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>CI (MG+MG)</value>
   </data>
-  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
-    <value>編成画像を出力(&amp;I)</value>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>CI (Carrier)</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>*not loaded*</value>
-    <comment>This is never displayed</comment>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>Nelson Touch</value>
   </data>
-  <data name="SupportTypeNone" xml:space="preserve">
-    <value>発動不能</value>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>Nagato Touch</value>
   </data>
-  <data name="SupportTypeAerial" xml:space="preserve">
-    <value>航空支援</value>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>Mutsu Touch</value>
   </data>
-  <data name="SupportTypeShelling" xml:space="preserve">
-    <value>支援射撃</value>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>Colorado Touch</value>
   </data>
-  <data name="SupportTypeTorpedo" xml:space="preserve">
-    <value>支援長距離雷撃</value>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>Kongou Touch</value>
   </data>
-  <data name="FleetNameToolTip" xml:space="preserve">
-    <value>Lv合計: {0} / 平均: {1:0.00}
-{2}艦隊
-支援攻撃: {3}
-合計火力 {4} ({20})  / 雷装 {5} / 対空 {6} ({21}) / 対潜 {7} ({22}) / 索敵 {8} ({23})
-ドラム缶搭載: {9}個 ({10}艦)
-大発動艇搭載: {11}個 ({12}艦, +{13:p1})
-輸送量(TP): S {14} / A {15}
-水上電探: {24}個 ({25}艦)
-総積載: 燃 {16} / 弾 {17}
-(1戦当たり 燃 {18} / 弾 {19})</value>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>CI (Zuiun)</value>
   </data>
-  <data name="WithoutProficiency" xml:space="preserve">
-    <value>熟練度なし</value>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>CI (Suisei)</value>
   </data>
-  <data name="WithProficiency" xml:space="preserve">
-    <value>熟練度あり</value>
+  <data name="SpecialSubmarineTender23" xml:space="preserve">
+    <value>Submarine fleet attack (2, 3)</value>
   </data>
-  <data name="FleetLosToolTip" xml:space="preserve">
-    <value>新判定式(33) 分岐点係数: {0}
-　(クリックで切り替え)
-
-触接開始率: 
-　確保 {1:p1} / 優勢 {2:p1}
-</value>
+  <data name="SpecialSubmarineTender34" xml:space="preserve">
+    <value>Submarine fleet attack (3, 4)</value>
   </data>
-  <data name="ContactSelection" xml:space="preserve">
-    <value>触接選択率: </value>
+  <data name="SpecialSubmarineTender24" xml:space="preserve">
+    <value>Submarine fleet attack (2, 4)</value>
   </data>
-  <data name="ContactProbability" xml:space="preserve">
-    <value>　命中{0} : {1:p1}</value>
+  <data name="SpecialYamato123" xml:space="preserve">
+    <value>Yamato touch (1, 2, 3)</value>
   </data>
-  <data name="ShipNameToolTip" xml:space="preserve">
-    <value>{0}{1} {2}
-火力: {3}/{4}
-雷装: {5}/{6}
-対空: {7}/{8}
-装甲: {9}/{10}
-対潜: {11}/{12}
-回避: {13}/{14}
-索敵: {15}/{16}
-運: {17}
-命中: {18:+#;-#;+0}
-爆装: {19:+#;-#;+0}
-射程: {20} / 速力: {21}
-(右クリックで図鑑)</value>
+  <data name="SpecialYamato12" xml:space="preserve">
+    <value>Yamato touch (1, 2)</value>
   </data>
-  <data name="ExpCalcHint" xml:space="preserve">
-    <value>(右クリックで必要Exp計算)</value>
+  <data name="Shelling" xml:space="preserve">
+    <value>Shelling</value>
   </data>
-  <data name="CvciFba" xml:space="preserve">
-    <value>空母カットイン(FBA)</value>
+  <data name="AirAttack" xml:space="preserve">
+    <value>Air Attack</value>
   </data>
-  <data name="CvciBba" xml:space="preserve">
-    <value>空母カットイン(BBA)</value>
+  <data name="DepthChargeAttack" xml:space="preserve">
+    <value>Depth Charge</value>
   </data>
-  <data name="CvciBa" xml:space="preserve">
-    <value>空母カットイン(BA)</value>
+  <data name="TorpedoAttack" xml:space="preserve">
+    <value>Torpedo Attack</value>
   </data>
-  <data name="Power" xml:space="preserve">
-    <value>威力</value>
+  <data name="RocketAttack" xml:space="preserve">
+    <value>Rocket Artillery</value>
   </data>
-  <data name="Accuracy" xml:space="preserve">
-    <value>命中</value>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>Amphibious Attack (Daihatsu)</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>対潜</value>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>Amphibious Attack (Toku Daihatsu)</value>
   </data>
-  <data name="OpeningAsw" xml:space="preserve">
-    <value> (先制可能)</value>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>Amphibious Attack (Daihatsu+Tank)</value>
   </data>
-  <data name="Aarb" xml:space="preserve">
-    <value>対空噴進弾幕</value>
+  <data name="TankAttack" xml:space="preserve">
+    <value>Amphibious Attack (Tank)</value>
   </data>
-  <data name="AirstrikePower" xml:space="preserve">
-    <value>航空威力</value>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>Amphibious Attack (Toku Daihatsu+Tank)</value>
   </data>
-  <data name="CopyFleetText" xml:space="preserve">
-    <value>{0}    制空戦力{1} / 索敵能力 {2} / 輸送能力 {3}</value>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>CI (MG+Torp)</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
-    <value>艦隊分析スプレッドシート艦娘へコピー</value>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>CI (Torpx2)</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
-    <value>艦隊分析スプレッドシートロックされた装備コピー</value>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>CI (MGx2+SG)</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
-    <value>艦隊分析スプレッドシート全装備コピー</value>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>CI (MGx3)</value>
   </data>
-  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
-    <value>(右クリックで図鑑)</value>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>DD CI (MG+Torp+Radar)</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
-    <value>艦娘訓練追加</value>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>DD CI (Torp+Lookout+Radar)</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
-    <value>必要Exp計算</value>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>DD CI (Torpx2+Lookout)</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
-    <value>艦娘訓練編集</value>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>DD CI (Torp+Drum+Lookout)</value>
   </data>
-  <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
-    <value>艦娘訓練除去</value>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
+  <data name="CvnciFfa" xml:space="preserve">
+    <value>CI (FFA)</value>
+  </data>
+  <data name="CvnciFa" xml:space="preserve">
+    <value>CI (FA)</value>
+  </data>
+  <data name="CvnciPhoto" xml:space="preserve">
+    <value>CI (Photo)</value>
+  </data>
+  <data name="CvnciFoo" xml:space="preserve">
+    <value>CI (FOO)</value>
+  </data>
+  <data name="LateModelTorpedoSubmarineEquipment" xml:space="preserve">
+    <value>CI (Submarine Radar)</value>
+  </data>
+  <data name="LateModelTorpedo2" xml:space="preserve">
+    <value>CI (Late Model)</value>
   </data>
 </root>

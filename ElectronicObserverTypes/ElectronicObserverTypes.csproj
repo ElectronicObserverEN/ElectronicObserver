@@ -26,6 +26,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>AaciStrings.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Attacks\AttackResources.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AttackResources.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\EquipmentTypeGroups.Designer.cs">
 		  <DependentUpon>EquipmentTypeGroups.resx</DependentUpon>
 		  <DesignTime>True</DesignTime>
@@ -52,6 +57,10 @@
 		<EmbeddedResource Update="AntiAir\AaciStrings.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>AaciStrings.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Attacks\AttackResources.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>AttackResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\EquipmentTypeGroups.resx">
 		  <LastGenOutput>EquipmentTypeGroups.Designer.cs</LastGenOutput>
