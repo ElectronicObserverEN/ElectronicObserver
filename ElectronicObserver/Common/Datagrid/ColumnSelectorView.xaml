@@ -7,7 +7,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Common.Datagrid"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	Title="ColumnSelectorView"
+	Title="{Binding ColumnSelector.ColumnsSelection}"
 	Width="800"
 	Height="450"
 	d:DataContext="{d:DesignInstance local:ColumnSelectorViewModel}"
@@ -37,11 +37,11 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Binding="{Binding Header}"
-					Header="Name"
+					Header="{Binding DataContext.ColumnSelector.Column, Source={StaticResource Proxy}}"
 					IsReadOnly="True"
 					/>
 
-				<DataGridCheckBoxColumn Binding="{Binding Visible}" Header="Visible" />
+				<DataGridCheckBoxColumn Binding="{Binding Visible}" Header="{Binding DataContext.ColumnSelector.Visible, Source={StaticResource Proxy}}" />
 			</DataGrid.Columns>
 		</DataGrid>
 
@@ -54,12 +54,12 @@
 			<Button
 				Margin="5"
 				Click="Button_Click_Ok"
-				Content="Ok"
+				Content="{Binding ColumnSelector.Ok}"
 				/>
 			<Button
 				Margin="5"
 				Click="Button_Click_Cancel"
-				Content="Cancel"
+				Content="{Binding ColumnSelector.Cancel}"
 				/>
 		</StackPanel>
 	</Grid>

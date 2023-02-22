@@ -12,6 +12,8 @@ public partial class DataGridViewModel : ObservableObject
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
 
+	public DataGridTranslationViewModel DataGrid { get; set; } = new();
+
 	[RelayCommand]
 	private void OpenColumnSelector()
 	{
