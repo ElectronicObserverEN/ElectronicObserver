@@ -15,9 +15,6 @@ public partial class ColumnViewModel : ObservableObject
 	private int displayIndex;
 
 	[ObservableProperty]
-	private ListSortDirection? sortDirection;
-
-	[ObservableProperty]
 	private bool visible = true;
 
 	[ObservableProperty]
@@ -27,35 +24,17 @@ public partial class ColumnViewModel : ObservableObject
 
 
 	public ColumnProperties ColumnProperties { get; set; }
-	public SortDescription? SortDescription { get; set; }
 
-	public ColumnViewModel(ColumnProperties properties, SortDescription? sortDescription)
+	public ColumnViewModel(ColumnProperties properties)
 	{
 		ColumnProperties = properties;
-		SortDescription = sortDescription;
 
 		Visible = properties.Visibility is Visibility.Visible;
 		Header = properties.Header;
-
-		SortDirection = sortDescription switch
-		{
-			SortDescription direction => direction.Direction,
-			_ => null
-		};
 	}
 
 	public void SaveChanges()
 	{
 		ColumnProperties.Visibility = Visible ? Visibility.Visible : Visibility.Collapsed;
-
-		SortDescription = SortDirection switch
-		{
-			ListSortDirection direction => new()
-			{
-				Direction = direction,
-				PropertyName = ColumnProperties.SortMemberPath
-			},
-			_ => null
-		};
 	}
 }

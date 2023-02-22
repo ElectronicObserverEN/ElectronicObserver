@@ -42,18 +42,6 @@
 					/>
 
 				<DataGridCheckBoxColumn Binding="{Binding Visible}" Header="Visible" />
-
-				<DataGridTemplateColumn Header="Sort direction">
-					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-							<ComboBox
-								IsEnabled="{Binding HasSortMemberPath, Mode=OneWay}"
-								ItemsSource="{Binding DataContext.SortDirections, Source={StaticResource Proxy}}"
-								SelectedValue="{Binding SortDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-								/>
-						</DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 
@@ -65,13 +53,13 @@
 			>
 			<Button
 				Margin="5"
-				Click="Button_Click_Cancel"
-				Content="Cancel"
+				Click="Button_Click_Ok"
+				Content="Ok"
 				/>
 			<Button
 				Margin="5"
-				Click="Button_Click_Ok"
-				Content="Ok"
+				Click="Button_Click_Cancel"
+				Content="Cancel"
 				/>
 		</StackPanel>
 	</Grid>

@@ -12,22 +12,11 @@ public partial class DataGridViewModel : ObservableObject
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
 
-	/// <summary>
-	/// List<SortDescription>.Find returns a non null SortDescription so i put my own .Find logic in this method
-	/// </summary>
-	/// <returns></returns>
-	private SortDescription? FindSortDescription(string sortMemberPath)
-	{
-		if (string.IsNullOrEmpty(sortMemberPath)) return null;
-		if (!SortDescriptions.Any(sort => sort.PropertyName == sortMemberPath)) return null;
-		return SortDescriptions.Find(sort => sort.PropertyName == sortMemberPath);
-	}
-
 	[RelayCommand]
 	private void OpenColumnSelector()
 	{
 		List<ColumnViewModel> columns = ColumnProperties
-			.Select(column => new ColumnViewModel(column, FindSortDescription(column.SortMemberPath)))
+			.Select(column => new ColumnViewModel(column))
 			.ToList();
 
 		ColumnSelectorView columnSelectionView = new(new(columns));
@@ -42,11 +31,6 @@ public partial class DataGridViewModel : ObservableObject
 
 			// Trigger PropertyChanged "manually"
 			ColumnProperties = new(columns.Select(col => col.ColumnProperties));
-
-			SortDescriptions = new(columns
-				.Select(col => col.SortDescription)
-				.Where(col => col is not null)
-				.Cast<SortDescription>());
 		}
 	}
 
