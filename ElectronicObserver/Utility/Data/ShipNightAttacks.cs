@@ -96,10 +96,10 @@ public static class ShipNightAttacks
 
 	private static IEnumerable<NightAttack> CarrierNightSpecialAttacks()
 	{
-		yield return NightAttack.CutinAirAttackFighterFighterAttacker;
-		yield return NightAttack.CutinAirAttackFighterAttacker;
-		yield return NightAttack.CutinAirAttackPhototube;
-		yield return NightAttack.CutinAirAttackFighterOtherOther;
+		yield return CvnciAttack.CutinAirAttackFighterFighterAttacker;
+		yield return CvnciAttack.CutinAirAttackFighterAttacker;
+		yield return CvnciAttack.CutinAirAttackPhototube;
+		yield return CvnciAttack.CutinAirAttackFighterOtherOther;
 	}
 
 	private static IEnumerable<NightAttack> SurfaceShipNightNormalAttacks()
@@ -119,8 +119,8 @@ public static class ShipNightAttacks
 
 	private static IEnumerable<NightAttack> SubmarineNightSpecialAttacks()
 	{
-		yield return NightAttack.CutinTorpedoTorpedoLateModelTorpedoSubmarineEquipment;
-		yield return NightAttack.CutinTorpedoTorpedoLateModelTorpedo2;
+		yield return SubmarineTorpedoCutinAttack.CutinTorpedoTorpedoLateModelTorpedoSubmarineEquipment;
+		yield return SubmarineTorpedoCutinAttack.CutinTorpedoTorpedoLateModelTorpedo2;
 	}
 
 	private static bool CanDo(this IShipData ship, NightAttack attack) => attack switch
@@ -143,13 +143,13 @@ public static class ShipNightAttacks
 		{ NightAttackKind: NightAttackKind.CutinTorpedoDrum } => ship.HasTorpedo() && ship.HasDestroyerSkilledLookouts() && ship.HasDrum(),
 		{ NightAttackKind: NightAttackKind.CutinTorpedoDrum2 } => ship.CanDo(NightAttack.CutinTorpedoDrum) && ship.DestroyerCutinTwoHitAvailable(),
 
-		{ NightAttackSubKind: CvnciKind.FighterFighterAttacker } => ship.HasNightFighter(2) && ship.HasNightAttacker(),
-		{ NightAttackSubKind: CvnciKind.FighterAttacker } => ship.IsNightCarrier() && ship.HasNightFighter() && ship.HasNightAttacker(),
-		{ NightAttackSubKind: CvnciKind.Phototube } => ship.HasNightPhototoubePlane() && (ship.HasNightFighter() || ship.HasNightAttacker()),
-		{ NightAttackSubKind: CvnciKind.FighterOtherOther } => ship.HasNightFighter() && ship.HasNightAircraft(3),
+		CvnciAttack { CvnciKind: CvnciKind.FighterFighterAttacker } => ship.HasNightFighter(2) && ship.HasNightAttacker(),
+		CvnciAttack { CvnciKind: CvnciKind.FighterAttacker } => ship.IsNightCarrier() && ship.HasNightFighter() && ship.HasNightAttacker(),
+		CvnciAttack { CvnciKind: CvnciKind.Phototube } => ship.HasNightPhototoubePlane() && (ship.HasNightFighter() || ship.HasNightAttacker()),
+		CvnciAttack { CvnciKind: CvnciKind.FighterOtherOther } => ship.HasNightFighter() && ship.HasNightAircraft(3),
 
-		{ NightAttackSubKind: NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment } => ship.HasLateModelTorp() && ship.HasSubmarineEquipment(),
-		{ NightAttackSubKind: NightTorpedoCutinKind.LateModelTorpedo2 } => ship.HasLateModelTorp(2),
+		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment } => ship.HasLateModelTorp() && ship.HasSubmarineEquipment(),
+		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedo2 } => ship.HasLateModelTorp(2),
 
 		{NightAttackKind: NightAttackKind.CutinZuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(),
 

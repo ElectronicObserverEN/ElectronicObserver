@@ -99,9 +99,9 @@ public class NightAttackTests
 
 		List<NightAttack> expected = new()
 		{
-			NightAttack.CutinAirAttackFighterFighterAttacker,
-			NightAttack.CutinAirAttackFighterAttacker,
-			NightAttack.CutinAirAttackFighterOtherOther,
+			CvnciAttack.CutinAirAttackFighterFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
 			NightAttack.AirAttack,
 		};
 
@@ -153,8 +153,8 @@ public class NightAttackTests
 
 		List<NightAttack> expected = new()
 		{
-			NightAttack.CutinAirAttackFighterAttacker,
-			NightAttack.CutinAirAttackFighterOtherOther,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
 			NightAttack.AirAttack,
 		};
 
@@ -317,9 +317,9 @@ public class NightAttackTests
 
 		List<NightAttack> expected = new()
 		{
-			NightAttack.CutinAirAttackFighterFighterAttacker,
-			NightAttack.CutinAirAttackFighterAttacker,
-			NightAttack.CutinAirAttackFighterOtherOther,
+			CvnciAttack.CutinAirAttackFighterFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
 			NightAttack.AirAttack,
 		};
 
@@ -369,8 +369,8 @@ public class NightAttackTests
 
 		List<NightAttack> expected = new()
 		{
-			NightAttack.CutinAirAttackFighterAttacker,
-			NightAttack.CutinAirAttackFighterOtherOther,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
 			NightAttack.AirAttack,
 		};
 

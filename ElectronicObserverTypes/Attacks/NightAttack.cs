@@ -1,23 +1,16 @@
-﻿using System;
-
-namespace ElectronicObserverTypes.Attacks;
+﻿namespace ElectronicObserverTypes.Attacks;
 
 public record NightAttack
 {
 	/// <summary>
 	/// API ID
 	/// </summary>
-	public NightAttackKind NightAttackKind { get; private init; }
+	public NightAttackKind NightAttackKind { get; protected init; }
 
-	/// <summary>
-	/// Extra specifiers like <see cref="CvnciKind"/> or <see cref="NightTorpedoCutinKind"/>.
-	/// </summary>
-	public Enum? NightAttackSubKind { get; private init; }
-
-	public double PowerModifier { get; private init; }
-	public double AccuracyModifier { get; private init; }
-	public int RateModifier { get; private init; }
-	public double NumberOfAttacks { get; private init; }
+	public double PowerModifier { get; protected init; }
+	public double AccuracyModifier { get; protected init; }
+	public int RateModifier { get; protected init; }
+	public double NumberOfAttacks { get; protected init; }
 
 	public static NightAttack NormalAttack { get; } = new()
 	{
@@ -55,26 +48,6 @@ public record NightAttack
 		NumberOfAttacks = 2,
 	};
 
-	public static NightAttack CutinTorpedoTorpedoLateModelTorpedoSubmarineEquipment { get; } = new()
-	{
-		NightAttackKind = NightAttackKind.CutinTorpedoTorpedo,
-		NightAttackSubKind = NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment,
-		PowerModifier = 1.75,
-		AccuracyModifier = 1.65,
-		RateModifier = 122,
-		NumberOfAttacks = 2,
-	};
-
-	public static NightAttack CutinTorpedoTorpedoLateModelTorpedo2 { get; } = new()
-	{
-		NightAttackKind = NightAttackKind.CutinTorpedoTorpedo,
-		NightAttackSubKind = NightTorpedoCutinKind.LateModelTorpedo2,
-		PowerModifier = 1.6,
-		AccuracyModifier = 1.65,
-		RateModifier = 122,
-		NumberOfAttacks = 2,
-	};
-
 	public static NightAttack CutinMainSub { get; } = new()
 	{
 		NightAttackKind = NightAttackKind.CutinMainSub,
@@ -90,46 +63,6 @@ public record NightAttack
 		PowerModifier = 2,
 		AccuracyModifier = 2,
 		RateModifier = 140,
-		NumberOfAttacks = 1,
-	};
-
-	public static NightAttack CutinAirAttackFighterFighterAttacker { get; } = new()
-	{
-		NightAttackKind = NightAttackKind.CutinAirAttack,
-		NightAttackSubKind = CvnciKind.FighterFighterAttacker,
-		PowerModifier = 1.25,
-		AccuracyModifier = 1,
-		RateModifier = 105,
-		NumberOfAttacks = 1,
-	};
-
-	public static NightAttack CutinAirAttackFighterAttacker { get; } = new()
-	{
-		NightAttackKind = NightAttackKind.CutinAirAttack,
-		NightAttackSubKind = CvnciKind.FighterAttacker,
-		PowerModifier = 1.2,
-		AccuracyModifier = 1,
-		RateModifier = 115,
-		NumberOfAttacks = 1,
-	};
-
-	public static NightAttack CutinAirAttackPhototube { get; } = new()
-	{
-		NightAttackKind = NightAttackKind.CutinAirAttack,
-		NightAttackSubKind = CvnciKind.Phototube,
-		PowerModifier = 1.2,
-		AccuracyModifier = 1,
-		RateModifier = 115,
-		NumberOfAttacks = 1,
-	};
-
-	public static NightAttack CutinAirAttackFighterOtherOther { get; } = new()
-	{
-		NightAttackKind = NightAttackKind.CutinAirAttack,
-		NightAttackSubKind = CvnciKind.FighterOtherOther,
-		PowerModifier = 1.18,
-		AccuracyModifier = 1,
-		RateModifier = 125,
 		NumberOfAttacks = 1,
 	};
 
@@ -381,18 +314,12 @@ public record NightAttack
 
 	 */
 
-	private NightAttack()
+	protected NightAttack()
 	{
 
 	}
 
-	public string Display => this switch
-	{
-		{ NightAttackSubKind: CvnciKind cvnci } => CvnciDisplay(cvnci),
-		{ NightAttackSubKind: NightTorpedoCutinKind torpedoCutin } => SubCutinDisplay(torpedoCutin),
-
-		_ => AttackDisplay(NightAttackKind),
-	};
+	public virtual string Display => AttackDisplay(NightAttackKind);
 
 	/// <summary>
 	/// 夜戦攻撃種別を表す文字列を取得します。
@@ -447,23 +374,5 @@ public record NightAttack
 		NightAttackKind.LandingTokuDaihatsuTank => AttackResources.LandingTokuDaihatsuTank,
 
 		_ => $"{AttackResources.Unknown}({(int)attack})",
-	};
-
-	public static string CvnciDisplay(CvnciKind cvnci) => cvnci switch
-	{
-		CvnciKind.FighterFighterAttacker => AttackResources.CvnciFfa,
-		CvnciKind.FighterAttacker => AttackResources.CvnciFa,
-		CvnciKind.Phototube => AttackResources.CvnciPhoto,
-		CvnciKind.FighterOtherOther => AttackResources.CvnciFoo,
-
-		_ => $"{AttackResources.Unknown}({(int)cvnci})",
-	};
-
-	public static string SubCutinDisplay(NightTorpedoCutinKind torpedoCutin) => torpedoCutin switch
-	{
-		NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => AttackResources.LateModelTorpedoSubmarineEquipment,
-		NightTorpedoCutinKind.LateModelTorpedo2 => AttackResources.LateModelTorpedo2,
-
-		_ => $"{AttackResources.Unknown}({(int)torpedoCutin})",
 	};
 }
