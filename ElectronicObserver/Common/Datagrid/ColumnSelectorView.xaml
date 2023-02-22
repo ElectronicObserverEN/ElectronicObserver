@@ -34,6 +34,22 @@
 			CanUserDeleteRows="False"
 			ItemsSource="{Binding Columns}"
 			>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}" />
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<ui:DataGridHelper.TextColumnElementStyle>
+				<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
+					<Setter Property="Padding" Value="5 0" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				</Style>
+			</ui:DataGridHelper.TextColumnElementStyle>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Binding="{Binding Header}"

@@ -2,12 +2,15 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 
 public abstract partial class EquipmentPickerViewModel : WindowViewModelBase
 {
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
+
 	public EquipmentPickerTranslationViewModel Translations { get; set; } = new();
 
 	public EquipmentFilterViewModel Filters { get; set; } = new();

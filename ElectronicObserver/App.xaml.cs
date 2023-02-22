@@ -14,6 +14,7 @@ using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
+using ElectronicObserver.Window.Dialog.EquipmentPicker;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
@@ -314,6 +315,16 @@ public partial class App : Application
 			.Configure<DialogAlbumMasterEquipmentWpf>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<EquipmentDataPickerView>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<MasterEquipmentPickerView>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentListWindow>()
