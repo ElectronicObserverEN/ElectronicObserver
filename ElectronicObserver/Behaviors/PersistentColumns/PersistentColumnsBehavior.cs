@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Microsoft.Xaml.Behaviors;
 
 namespace ElectronicObserver.Behaviors.PersistentColumns;
@@ -101,7 +102,13 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			dataGridColumn.SortDirection = columnProperties.SortDirection;
 			dataGridColumn.Visibility = columnProperties.Visibility;
 
-			columnProperties.Header = dataGridColumn.Header?.ToString() ?? "";
+			columnProperties.Header = dataGridColumn.Header switch
+			{
+				string stringHeader => stringHeader,
+				DataGridColumnHeader header => header.Content?.ToString() ?? "",
+				_ => "",
+			};
+
 			columnProperties.SortMemberPath = dataGridColumn.SortMemberPath?.ToString() ?? "";
 		}
 
@@ -145,7 +152,12 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			DisplayIndex = c.DisplayIndex,
 			SortDirection = c.SortDirection,
 			Visibility = c.Visibility,
-			Header = c.Header?.ToString() ?? "",
+			Header = c.Header switch
+			{
+				string stringHeader => stringHeader,
+				DataGridColumnHeader header => header.Content?.ToString() ?? "",
+				_ => "",
+			},
 			SortMemberPath = c.SortMemberPath?.ToString() ?? ""
 		}).ToList();
 

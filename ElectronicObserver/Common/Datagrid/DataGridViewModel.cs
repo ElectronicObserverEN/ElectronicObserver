@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Controls.Primitives;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
@@ -37,9 +38,15 @@ public partial class DataGridViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void HideColumn(string columnName)
+	private void HideColumn(object columnHeader)
 	{
-		ColumnProperties? column = ColumnProperties.FirstOrDefault(col => columnName == col.Header);
+		string headerText = columnHeader switch
+		{
+			string stringHeader => stringHeader,
+			_ => "",
+		};
+
+		ColumnProperties? column = ColumnProperties.FirstOrDefault(col => headerText == col.Header);
 
 		if (column is not null)
 		{

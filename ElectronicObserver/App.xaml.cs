@@ -379,6 +379,11 @@ public partial class App : Application
 			.Property(w => w.ViewModel.MaxAircraftLevelAirBase);
 
 		tracker
+			.Configure<AirDefenseWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
 			.Configure<ConfigurationWindow>()
 			.Property(w => w.ViewModel.BGM.ColumnProperties)
 			.Property(w => w.ViewModel.BGM.SortDescriptions);
