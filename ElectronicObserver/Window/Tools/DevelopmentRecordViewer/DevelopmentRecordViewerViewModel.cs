@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
@@ -63,6 +64,8 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	private string NameNotExist => Properties.Window.Dialog.DialogDevelopmentRecordViewer.NameNotExist; //(失敗)
 
 	public string Today => $"{DialogDevelopmentRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	public DevelopmentRecordViewerViewModel()
 	{
