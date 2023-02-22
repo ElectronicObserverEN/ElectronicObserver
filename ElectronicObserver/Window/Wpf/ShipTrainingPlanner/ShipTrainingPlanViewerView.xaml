@@ -58,6 +58,13 @@
 					SelectionUnit="FullRow"
 					>
 
+					<DataGrid.ContextMenu>
+						<ContextMenu>
+							<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="Open column selector" />
+							<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="Clear sorting" />
+						</ContextMenu>
+					</DataGrid.ContextMenu>
+
 					<b:Interaction.Behaviors>
 						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
 					</b:Interaction.Behaviors>
@@ -70,7 +77,14 @@
 							<Setter Property="ContextMenu">
 								<Setter.Value>
 									<ContextMenu>
+										<MenuItem
+											Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+											CommandParameter="{Binding}"
+											Header="Hide column"
+											/>
+										<Separator />
 										<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="Open column selector" />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="Clear sorting" />
 									</ContextMenu>
 								</Setter.Value>
 							</Setter>

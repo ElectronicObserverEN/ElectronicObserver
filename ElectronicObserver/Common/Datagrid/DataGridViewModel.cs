@@ -7,7 +7,7 @@ using ElectronicObserver.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Common.Datagrid;
 
-public partial class DataGridViewModelBase : ObservableObject
+public partial class DataGridViewModel : ObservableObject
 {
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
@@ -48,5 +48,25 @@ public partial class DataGridViewModelBase : ObservableObject
 				.Where(col => col is not null)
 				.Cast<SortDescription>());
 		}
+	}
+
+	[RelayCommand]
+	private void HideColumn(string columnName)
+	{
+		ColumnProperties? column = ColumnProperties.FirstOrDefault(col => columnName == col.Header);
+
+		if (column is not null)
+		{
+			column.Visibility = System.Windows.Visibility.Collapsed;
+
+			// Trigger PropertyChanged "manually"
+			ColumnProperties = new(ColumnProperties);
+		}
+	}
+
+	[RelayCommand]
+	private void ClearSorting()
+	{
+		SortDescriptions = new();
 	}
 }
