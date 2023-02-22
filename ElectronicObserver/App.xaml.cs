@@ -337,11 +337,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<EquipmentListWindow>()
-			.Property(w => w.ViewModel.EquipmentGridColumnProperties)
-			.Property(w => w.ViewModel.EquipmentGridSortDescriptions)
+			.Property(w => w.ViewModel.EquipmentGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.EquipmentGridViewModel.SortDescriptions)
 			.Property(w => w.ViewModel.EquipmentGridWidth)
-			.Property(w => w.ViewModel.DetailGridColumnProperties)
-			.Property(w => w.ViewModel.DetailGridSortDescriptions);
+			.Property(w => w.ViewModel.EquipmentDetaiGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.EquipmentDetaiGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<ExpeditionCheckView>()

@@ -102,8 +102,15 @@
 				SelectedItem="{Binding SelectedRow}"
 				SelectionMode="Single"
 				>
+				<DataGrid.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding EquipmentGridViewModel.OpenColumnSelectorCommand}" Header="{Binding EquipmentGridViewModel.DataGrid.OpenColumnSelector}" />
+						<MenuItem Command="{Binding EquipmentGridViewModel.ClearSortingCommand}" Header="{Binding EquipmentGridViewModel.DataGrid.ClearSorting}" />
+					</ContextMenu>
+				</DataGrid.ContextMenu>
+
 				<b:Interaction.Behaviors>
-					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding EquipmentGridColumnProperties}" SortDescriptions="{Binding EquipmentGridSortDescriptions}" />
+					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding EquipmentGridViewModel.ColumnProperties}" SortDescriptions="{Binding EquipmentGridViewModel.SortDescriptions}" />
 				</b:Interaction.Behaviors>
 
 				<DataGrid.ColumnHeaderStyle>
@@ -111,6 +118,20 @@
 						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						<Setter Property="ContextMenu">
+							<Setter.Value>
+								<ContextMenu>
+									<MenuItem
+										Command="{Binding DataContext.EquipmentGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Header="{Binding DataContext.EquipmentGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+										/>
+									<Separator />
+									<MenuItem Command="{Binding DataContext.EquipmentGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+									<MenuItem Command="{Binding DataContext.EquipmentGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+								</ContextMenu>
+							</Setter.Value>
+						</Setter>
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<DataGrid.RowStyle>
@@ -206,8 +227,15 @@
 				IsReadOnly="True"
 				ItemsSource="{Binding DetailRows}"
 				>
+				<DataGrid.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding EquipmentDetaiGridViewModel.OpenColumnSelectorCommand}" Header="{Binding EquipmentDetaiGridViewModel.DataGrid.OpenColumnSelector}" />
+						<MenuItem Command="{Binding EquipmentDetaiGridViewModel.ClearSortingCommand}" Header="{Binding EquipmentDetaiGridViewModel.DataGrid.ClearSorting}" />
+					</ContextMenu>
+				</DataGrid.ContextMenu>
+
 				<b:Interaction.Behaviors>
-					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DetailGridColumnProperties}" SortDescriptions="{Binding DetailGridSortDescriptions}" />
+					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding EquipmentDetaiGridViewModel.ColumnProperties}" SortDescriptions="{Binding EquipmentDetaiGridViewModel.SortDescriptions}" />
 				</b:Interaction.Behaviors>
 
 				<DataGrid.ColumnHeaderStyle>
@@ -215,6 +243,20 @@
 						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						<Setter Property="ContextMenu">
+							<Setter.Value>
+								<ContextMenu>
+									<MenuItem
+										Command="{Binding DataContext.EquipmentDetaiGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Header="{Binding DataContext.EquipmentDetaiGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+										/>
+									<Separator />
+									<MenuItem Command="{Binding DataContext.EquipmentDetaiGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentDetaiGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+									<MenuItem Command="{Binding DataContext.EquipmentDetaiGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentDetaiGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+								</ContextMenu>
+							</Setter.Value>
+						</Setter>
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<DataGrid.Columns>
