@@ -384,7 +384,7 @@
 				</DataGrid.ContextMenu>
 
 				<b:Interaction.Behaviors>
-					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
+					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataContext.DataGridViewModel.ColumnProperties, Source={StaticResource Proxy}}" SortDescriptions="{Binding DataContext.DataGridViewModel.SortDescriptions, Source={StaticResource Proxy}}" />
 				</b:Interaction.Behaviors>
 
 				<DataGrid.ColumnHeaderStyle>
