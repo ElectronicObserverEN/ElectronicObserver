@@ -150,17 +150,17 @@ public static class NightAttackPower
 	private static double NightAttackKindDamageMod(NightAttack attack, IShipData ship) => attack switch
 	{
 		{ NightAttackKind: NightAttackKind.CutinTorpedoPicket or NightAttackKind.CutinTorpedoPicket2 }
-			=> attack.AttackPowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
+			=> attack.PowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
 
 		{ NightAttackKind: NightAttackKind.CutinTorpedoRadar or NightAttackKind.CutinTorpedoRadar2 }
-			=> attack.AttackPowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
+			=> attack.PowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
 
 		{ NightAttackKind: NightAttackKind.CutinZuiun } when ship.HasNightZuiun(2) && ship.HasSurfaceRadar() => 1.36,
 		{ NightAttackKind: NightAttackKind.CutinZuiun } when ship.HasNightZuiun(2) => 1.32,
 		{ NightAttackKind: NightAttackKind.CutinZuiun } when ship.HasSurfaceRadar() => 1.28,
 		{ NightAttackKind: NightAttackKind.CutinZuiun } => 1.24,
 
-		_ => attack.AttackPowerModifier,
+		_ => attack.PowerModifier,
 	};
 
 	private static double DGunMod(this IShipData ship) => ship.AllSlotInstance

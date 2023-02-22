@@ -12,7 +12,7 @@ public static class NightAttackRate
 	{
 		if (attack.NightAttackKind is NightAttackKind.DoubleShelling) return 0.99;
 
-		int attackMod = attack.AttackRateModifier;
+		int attackMod = attack.RateModifier;
 		if (attackMod == 0) return 0;
 
 		double luckLevelPart = ship.LuckTotal switch
