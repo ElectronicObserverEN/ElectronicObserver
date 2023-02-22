@@ -70,7 +70,10 @@ public static class ShipNightAttacks
 
 	private static IEnumerable<NightAttack> ZuiunSpecialAttacks()
 	{
-		yield return NightAttack.CutinZuiun;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiunZuiunRadar;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiunZuiun;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiunRadar;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiun;
 	}
 
 	private static IEnumerable<NightAttack> DestroyerSpecialAttacks()
@@ -150,8 +153,11 @@ public static class ShipNightAttacks
 
 		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment } => ship.HasLateModelTorp() && ship.HasSubmarineEquipment(),
 		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedo2 } => ship.HasLateModelTorp(2),
-
-		{NightAttackKind: NightAttackKind.CutinZuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(),
+		
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunZuiunRadar } => ship.HasMainGun(2) && ship.HasNightZuiun(2) && ship.HasSurfaceRadar(),
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunZuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(2),
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunRadar } => ship.HasMainGun(2) && ship.HasNightZuiun() && ship.HasSurfaceRadar(),
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.Zuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(),
 
 		{ NightAttackKind: NightAttackKind.Shelling } => true,
 		{ NightAttackKind: NightAttackKind.Torpedo } => true,

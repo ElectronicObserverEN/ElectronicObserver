@@ -187,7 +187,7 @@ namespace ElectronicObserverTypes.Attacks {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 夜間瑞雲カットイン.
+        ///   Looks up a localized string similar to 夜間瑞雲夜戦カットイン.
         /// </summary>
         public static string CutinZuiun {
             get {
@@ -309,6 +309,33 @@ namespace ElectronicObserverTypes.Attacks {
         public static string LateModelTorpedoSubmarineEquipment {
             get {
                 return ResourceManager.GetString("LateModelTorpedoSubmarineEquipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜間瑞雲夜戦カットイン(瑞電).
+        /// </summary>
+        public static string NightZuiunCutinZuiunRadar {
+            get {
+                return ResourceManager.GetString("NightZuiunCutinZuiunRadar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜間瑞雲夜戦カットイン(瑞瑞).
+        /// </summary>
+        public static string NightZuiunCutinZuiunZuiun {
+            get {
+                return ResourceManager.GetString("NightZuiunCutinZuiunZuiun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜間瑞雲夜戦カットイン(瑞瑞電).
+        /// </summary>
+        public static string NightZuiunCutinZuiunZuiunRadar {
+            get {
+                return ResourceManager.GetString("NightZuiunCutinZuiunZuiunRadar", resourceCulture);
             }
         }
         

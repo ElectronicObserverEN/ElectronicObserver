@@ -255,4 +255,13 @@
   <data name="LateModelTorpedo2" xml:space="preserve">
     <value>CI (Late Model)</value>
   </data>
+  <data name="NightZuiunCutinZuiunRadar" xml:space="preserve">
+    <value>CI (Zuiun + Radar)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiun" xml:space="preserve">
+    <value>CI (Zuiun x2)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiunRadar" xml:space="preserve">
+    <value>CI (Zuiun x2 + Radar)</value>
+  </data>
 </root>

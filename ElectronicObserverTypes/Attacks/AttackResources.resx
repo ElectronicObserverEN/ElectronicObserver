@@ -235,7 +235,7 @@
     <value>駆逐カットイン(魚雷/ドラム/水雷見張員)</value>
   </data>
   <data name="CutinZuiun" xml:space="preserve">
-    <value>夜間瑞雲カットイン</value>
+    <value>夜間瑞雲夜戦カットイン</value>
   </data>
   <data name="CvnciFfa" xml:space="preserve">
     <value>空母カットイン(戦戦攻)</value>
@@ -254,5 +254,14 @@
   </data>
   <data name="LateModelTorpedo2" xml:space="preserve">
     <value>潜水カットイン(魚魚魚)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunRadar" xml:space="preserve">
+    <value>夜間瑞雲夜戦カットイン(瑞電)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiun" xml:space="preserve">
+    <value>夜間瑞雲夜戦カットイン(瑞瑞)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiunRadar" xml:space="preserve">
+    <value>夜間瑞雲夜戦カットイン(瑞瑞電)</value>
   </data>
 </root>

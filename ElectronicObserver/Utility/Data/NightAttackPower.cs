@@ -155,11 +155,6 @@ public static class NightAttackPower
 		{ NightAttackKind: NightAttackKind.CutinTorpedoRadar or NightAttackKind.CutinTorpedoRadar2 }
 			=> attack.PowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
 
-		{ NightAttackKind: NightAttackKind.CutinZuiun } when ship.HasNightZuiun(2) && ship.HasSurfaceRadar() => 1.36,
-		{ NightAttackKind: NightAttackKind.CutinZuiun } when ship.HasNightZuiun(2) => 1.32,
-		{ NightAttackKind: NightAttackKind.CutinZuiun } when ship.HasSurfaceRadar() => 1.28,
-		{ NightAttackKind: NightAttackKind.CutinZuiun } => 1.24,
-
 		_ => attack.PowerModifier,
 	};
 
