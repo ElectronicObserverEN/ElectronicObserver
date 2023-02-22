@@ -338,8 +338,8 @@ public partial class App : Application
 			.Property(w => w.Filters.DisplayFinished)
 			.Property(w => w.Filters.SelectAllDay)
 			.Property(w => w.Filters.SelectToday)
-			.Property(w => w.ColumnProperties)
-			.Property(w => w.SortDescriptions);
+			.Property(w => w.DataGridViewModel.ColumnProperties)
+			.Property(w => w.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<ShipTrainingPlanViewerViewModel>()
