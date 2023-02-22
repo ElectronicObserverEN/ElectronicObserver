@@ -311,8 +311,8 @@ public partial class App : Application
 
 		tracker
 			.Configure<DialogAlbumMasterShipWpf>()
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<DialogAlbumMasterEquipmentWpf>()
