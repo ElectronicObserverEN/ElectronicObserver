@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
@@ -54,6 +55,8 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	public DateTime MaxDate { get; set; }
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	public SenkaViewerViewModel()
 	{

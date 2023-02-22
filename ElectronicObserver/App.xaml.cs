@@ -321,21 +321,6 @@ public partial class App : Application
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
-			.Configure<EquipmentDataPickerView>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
-
-		tracker
-			.Configure<MasterEquipmentPickerView>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
-
-		tracker
-			.Configure<ShipDataPickerView>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
-
-		tracker
 			.Configure<EquipmentListWindow>()
 			.Property(w => w.ViewModel.EquipmentGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.EquipmentGridViewModel.SortDescriptions)
@@ -408,6 +393,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<EventLockPlannerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<SenkaViewerWindow>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
