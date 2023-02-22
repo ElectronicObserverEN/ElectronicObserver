@@ -1,8 +1,8 @@
-﻿namespace ElectronicObserverTypes;
+﻿namespace ElectronicObserverTypes.Attacks;
 
 public enum CvnciKind
 {
-	Unknown,
+	None,
 
 	FighterFighterAttacker,
 
