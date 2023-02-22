@@ -11,6 +11,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
@@ -80,6 +81,8 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	private const string MapAny = "*";
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	public DropRecordViewerViewModel()
 	{

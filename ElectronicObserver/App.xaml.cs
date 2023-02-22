@@ -46,6 +46,7 @@ using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
@@ -397,6 +398,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<DevelopmentRecordViewerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<DropRecordViewerWindow>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
