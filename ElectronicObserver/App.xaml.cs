@@ -15,6 +15,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Dialog.EquipmentPicker;
+using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
@@ -323,6 +324,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<MasterEquipmentPickerView>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<ShipDataPickerView>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
