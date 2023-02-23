@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Linq;
 using ElectronicObserver.Database.Expedition;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserverTypes;
 using System.Text.Json;
 using System.Collections.Generic;
 using ElectronicObserver.Data;
-using System.Windows;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 
@@ -36,7 +33,7 @@ public class ExpeditionRecordViewModel
 	public string? ClearResult { get; }
 	public string? ItemOneString { get; }
 	public string? ItemTwoString { get; }
-	public ExpeditionRecordViewModel(ExpeditionRecord record,ApiReqMissionResultResponse response, DateTime expeditionStart)
+	public ExpeditionRecordViewModel(ExpeditionRecord record, ApiReqMissionResultResponse response, DateTime expeditionStart)
 	{
 		if (response is null) return;
 		Model = record;
@@ -46,7 +43,7 @@ public class ExpeditionRecordViewModel
 		Fleet = record.Fleet.MakeFleet();
 		ItemList = response!.ApiUseitemFlag;
 		MaterialList = response!.ApiGetMaterial;
-		if(MaterialList.ToString() != "-1")
+		if (MaterialList.ToString() != "-1")
 		{
 			List<int>? list = JsonSerializer.Deserialize<List<int>>(MaterialList!.ToString()!);
 			MaterialFuel = list![0];

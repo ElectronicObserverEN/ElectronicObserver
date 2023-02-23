@@ -64,13 +64,10 @@
 					Grid.Column="3"
 					Margin="2 0"
 					VerticalAlignment="Center"
+					Background="Transparent"
 					Orientation="Horizontal"
+					ToolTip="{Binding ItemOneString}"
 					>
-					<TextBlock Text="{Binding ItemOneCount}" />
-					<common:UseItemIcon Type="{Binding ItemOneName}" />
-					<StackPanel.ToolTip>
-						<TextBlock Text="{Binding ItemOneString}" />
-					</StackPanel.ToolTip>
 					<StackPanel.Style>
 						<Style TargetType="StackPanel">
 							<Setter Property="Visibility" Value="Visible" />
@@ -81,18 +78,17 @@
 							</Style.Triggers>
 						</Style>
 					</StackPanel.Style>
+					<TextBlock Text="{Binding ItemOneCount}" />
+					<common:UseItemIcon Type="{Binding ItemOneName}" />
 				</StackPanel>
 				<StackPanel
 					Grid.Column="4"
 					Margin="2 0"
 					VerticalAlignment="Center"
+					Background="Transparent"
 					Orientation="Horizontal"
+					ToolTip="{Binding ItemTwoString}"
 					>
-					<TextBlock Text="{Binding ItemTwoCount}" />
-					<common:UseItemIcon Type="{Binding ItemTwoName}" />
-					<StackPanel.ToolTip>
-						<TextBlock Text="{Binding ItemTwoString}" />
-					</StackPanel.ToolTip>
 					<StackPanel.Style>
 						<Style TargetType="StackPanel">
 							<Setter Property="Visibility" Value="Visible" />
@@ -103,6 +99,8 @@
 							</Style.Triggers>
 						</Style>
 					</StackPanel.Style>
+					<TextBlock Text="{Binding ItemTwoCount}" />
+					<common:UseItemIcon Type="{Binding ItemTwoName}" />
 				</StackPanel>
 				<TextBlock
 					Grid.Column="5"
