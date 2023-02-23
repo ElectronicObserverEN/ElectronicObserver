@@ -68,6 +68,7 @@ public class ExpeditionRecordViewModel
 		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response!.ApiGetItem1?.ApiUseitemId) : "";
 		ItemTwoString = ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId) : "";
 	}
+
 	public string ParseUseItem(int? kind, int? key)
 	{
 		return kind switch
@@ -80,6 +81,7 @@ public class ExpeditionRecordViewModel
 			_ => "",
 		};
 	}
+
 	public UseItemId? ParseUseItemControl(int? kind, int? key)
 	{
 		return kind switch
