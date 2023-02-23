@@ -62,10 +62,10 @@ public class ExpeditionRecordViewModel
 			MaterialBaux = 0;
 		}
 		ItemOneID = ItemList[0];
-		ItemOneName = ParseUseItemControl(ItemOneID, response!.ApiGetItem1?.ApiUseitemId)!;
+		ItemOneName = ParseUseItemControl(ItemOneID, response!.ApiGetItem1?.ApiUseitemId)!.ToString();
 		ItemOneCount = response!.ApiGetItem1?.ApiUseitemCount;
 		ItemTwoID = ItemList[1];
-		ItemTwoName = ParseUseItemControl(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId)!;
+		ItemTwoName = ParseUseItemControl(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId)!.ToString();
 		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
 		ClearResult = Constants.GetExpeditionResult(response!.ApiClearResult);
 		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response!.ApiGetItem1?.ApiUseitemId) : "";
@@ -83,16 +83,16 @@ public class ExpeditionRecordViewModel
 			_ => "",
 		};
 	}
-	public string? ParseUseItemControl(int? kind, int? key)
+	public UseItemId? ParseUseItemControl(int? kind, int? key)
 	{
 		return kind switch
 		{
-			1 => "InstantRepair",
-			2 => "InstantConstruction",
-			3 => "DevelopmentMaterial",
-			4 => Enum.GetName(typeof(UseItemId), key!),
-			5 => "FurnitureCoin",
-			_ => "Unknown",
+			1 => UseItemId.InstantRepair,
+			2 => UseItemId.InstantConstruction,
+			3 => UseItemId.DevelopmentMaterial,
+			4 => (UseItemId)Enum.Parse(typeof(UseItemId), key.ToString()),
+			5 => UseItemId.FurnitureCoin,
+			_ => UseItemId.Unknown,
 		};
 	}
 }
