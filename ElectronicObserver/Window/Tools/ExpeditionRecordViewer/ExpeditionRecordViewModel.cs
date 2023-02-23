@@ -37,13 +37,14 @@ public class ExpeditionRecordViewModel
 	public string ItemTwoString => ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, ParseResponse()!.ApiGetItem2?.ApiUseitemId) : "";
 	public ExpeditionRecordViewModel(ExpeditionRecord expedition, DateTime expeditionStart)
 	{
+		ApiReqMissionResultResponse? response = ParseResponse();
 		Model = expedition;
 		ExpeditionStart = expeditionStart.ToLocalTime();
 		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == expedition.Expedition)?.MapAreaID;
 		DisplayID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == expedition.Expedition)?.DisplayID;
 		Fleet = expedition.Fleet.MakeFleet();
-		ItemList = ParseResponse()!.ApiUseitemFlag;
-		MaterialList = ParseResponse()!.ApiGetMaterial;
+		ItemList = response!.ApiUseitemFlag;
+		MaterialList = response!.ApiGetMaterial;
 		if(MaterialList.ToString() != "-1")
 		{
 			List<int>? list = JsonSerializer.Deserialize<List<int>>(MaterialList!.ToString()!);
@@ -61,10 +62,10 @@ public class ExpeditionRecordViewModel
 		}
 		ItemOneID = ItemList[0];
 		ItemOneName = ParseUseItemControl(ItemOneID, ParseResponse()!.ApiGetItem1?.ApiUseitemId)!;
-		ItemOneCount = ParseResponse()!.ApiGetItem1?.ApiUseitemCount;
+		ItemOneCount = response!.ApiGetItem1?.ApiUseitemCount;
 		ItemTwoID = ItemList[1];
 		ItemTwoName = ParseUseItemControl(ItemTwoID, ParseResponse()!.ApiGetItem2?.ApiUseitemId)!;
-		ItemTwoCount = ParseResponse()!.ApiGetItem2?.ApiUseitemCount;
+		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
 		ClearResult = Constants.GetExpeditionResult(ParseResponse()!.ApiClearResult);
 	}
 	public ApiReqMissionResultResponse? ParseResponse()
