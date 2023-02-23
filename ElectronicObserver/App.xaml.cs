@@ -325,8 +325,8 @@ public partial class App : Application
 			.Property(w => w.ViewModel.EquipmentGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.EquipmentGridViewModel.SortDescriptions)
 			.Property(w => w.ViewModel.EquipmentGridWidth)
-			.Property(w => w.ViewModel.EquipmentDetaiGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.EquipmentDetaiGridViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.EquipmentDetailGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.EquipmentDetailGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<ExpeditionCheckView>()

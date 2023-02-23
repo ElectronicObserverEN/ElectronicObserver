@@ -32,6 +32,7 @@
 			AutoGenerateColumns="False"
 			CanUserAddRows="False"
 			CanUserDeleteRows="False"
+			HeadersVisibility="Column"
 			ItemsSource="{Binding Columns}"
 			>
 
@@ -57,7 +58,17 @@
 					IsReadOnly="True"
 					/>
 
-				<DataGridCheckBoxColumn Binding="{Binding Visible}" Header="{Binding DataContext.ColumnSelector.Visible, Source={StaticResource Proxy}}" />
+				<DataGridTemplateColumn Header="{Binding DataContext.ColumnSelector.Visible, Source={StaticResource Proxy}}">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<CheckBox
+								MinWidth="0"
+								Margin="10 0"
+								IsChecked="{Binding Visible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 

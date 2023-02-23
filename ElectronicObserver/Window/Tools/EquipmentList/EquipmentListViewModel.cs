@@ -31,8 +31,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public GridLength EquipmentGridWidth { get; set; } = GridLength.Auto;
 
 	// todo: doesn't seem to work in the current implementation
-	// todo: check if new implementation is working
-	public DataGridViewModel EquipmentDetaiGridViewModel { get; set; } = new();
+	// Select an equipment with multiple detail items, sort by something, select a different equipment, sort data is lost.
+	public DataGridViewModel EquipmentDetailGridViewModel { get; set; } = new();
 
 	public List<EquipmentListRow> Rows { get; set; } = new();
 	public EquipmentListRow? SelectedRow { get; set; }
