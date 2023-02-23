@@ -15,27 +15,27 @@ namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 
 public class ExpeditionRecordViewModel
 {
-	public ExpeditionRecord Model { get; }
-	public int Id => Model.Id;
+	public ExpeditionRecord? Model { get; }
+	public int? Id => Model?.Id;
 	public DateTime ExpeditionStart { get; }
 	public IFleetData? Fleet { get; }
-	public List<int> ItemList { get; }
-	public object MaterialList { get; }
+	public List<int>? ItemList { get; }
+	public object? MaterialList { get; }
 	public int MaterialFuel { get; }
 	public int MaterialAmmo { get; }
 	public int MaterialSteel { get; }
 	public int MaterialBaux { get; }
 	public int? ItemOneID { get; }
-	public string ItemOneName { get; }
+	public string? ItemOneName { get; }
 	public int? ItemOneCount { get; }
 	public int? ItemTwoID { get; }
 	public int? MapAreaID { get; }
 	public string? DisplayID { get; }
-	public string ItemTwoName { get; }
+	public string? ItemTwoName { get; }
 	public int? ItemTwoCount { get; }
-	public string ClearResult { get; }
-	public string ItemOneString { get; }
-	public string ItemTwoString { get; }
+	public string? ClearResult { get; }
+	public string? ItemOneString { get; }
+	public string? ItemTwoString { get; }
 	public ExpeditionRecordViewModel(ExpeditionRecord record,ApiReqMissionResultResponse response, DateTime expeditionStart)
 	{
 		if (response is null) return;
@@ -90,7 +90,7 @@ public class ExpeditionRecordViewModel
 			1 => UseItemId.InstantRepair,
 			2 => UseItemId.InstantConstruction,
 			3 => UseItemId.DevelopmentMaterial,
-			4 => (UseItemId)Enum.Parse(typeof(UseItemId), key.ToString()),
+			4 => (UseItemId)Enum.Parse(typeof(UseItemId), key?.ToString() ?? ""),
 			5 => UseItemId.FurnitureCoin,
 			_ => UseItemId.Unknown,
 		};
