@@ -26,6 +26,7 @@ using System.Diagnostics;
 using ElectronicObserver.Utility;
 using System.Collections.Immutable;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
+using ElectronicObserver.Database.Expedition;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
@@ -110,13 +111,34 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 			.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
 			.Where(s => s.Expedition.ApiFiles.Count > 0)
 			.AsEnumerable()
-			.Select(s => new ExpeditionRecordViewModel(s.Expedition,JsonSerializer.Deserialize <ApiResponse<ApiReqMissionResultResponse>>(s.Expedition.ApiFiles.Find(f => f.ApiFileType == ApiFileType.Response && f.Name == "api_req_mission/result")!.Content)!.ApiData, s.TimeStamp))
-			.Where(s => (Mission as string == AllRecords || s.DisplayID == (string)Mission) && (World as string == AllRecords || s.MapAreaID == World as int?))
+			.Select(s => (s.Expedition, Response: ParseExpeditionResult(s.Expedition), s.TimeStamp))
+			.Where(s => s.Response is not null)
+			.Select(s => new ExpeditionRecordViewModel(s.Expedition, s.Response!, s.TimeStamp))
+			.Where(s => Mission as string == AllRecords || s.DisplayID == (string)Mission)
+			.Where(s => World as string == AllRecords || s.MapAreaID == World as int?)
 			.OrderByDescending(s => s.Id)
 			.Cast<object>()
 			.ToList();
 	}
+	private static ApiReqMissionResultResponse? ParseExpeditionResult(ExpeditionRecord record)
+	{
+		try
+		{
+			ApiFile? apiFile = record.ApiFiles
+				.Where(f => f.ApiFileType == ApiFileType.Response)
+				.FirstOrDefault(f => f.Name == "api_req_mission/result");
 
+			return apiFile switch
+			{
+				null => null,
+				_ => JsonSerializer.Deserialize<ApiResponse<ApiReqMissionResultResponse>>(apiFile.Content)?.ApiData,
+			};
+		}
+		catch
+		{
+			return null;
+		}
+	}
 	[RelayCommand]
 	private void OpenFleetImageGenerator(ExpeditionRecordViewModel? expedition)
 	{
