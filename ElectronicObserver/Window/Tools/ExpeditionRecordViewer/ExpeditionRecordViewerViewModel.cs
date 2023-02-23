@@ -77,12 +77,12 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 		DateBegin = MinDate.Date;
 		DateEnd = MaxDate.Date;
 		Worlds = KCDatabase.Instance.Mission.Values
-				.Select(w => w.MapAreaID)
-				.Distinct()
-				.ToList()
-				.Cast<object>()
-				.Prepend(AllRecords)
-				.ToList();
+			.Select(w => w.MapAreaID)
+			.Distinct()
+			.ToList()
+			.Cast<object>()
+			.Prepend(AllRecords)
+			.ToList();
 		Missions = KCDatabase.Instance.Mission.Values
 			.OrderBy(m => m.SortID)
 			.Select(m => m.DisplayID)

@@ -821,6 +821,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		new ExpeditionRecordViewerWindow().Show(Window);
 	}
+
 	[RelayCommand]
 	private void OpenAlbumMasterShip()
 	{

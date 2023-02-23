@@ -33,11 +33,12 @@ public class ExpeditionRecordViewModel
 	public string ItemTwoName { get; }
 	public int? ItemTwoCount { get; }
 	public string ClearResult { get; }
-	public string ItemOneString => ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, ParseResponse()!.ApiGetItem1?.ApiUseitemId) : "";
-	public string ItemTwoString => ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, ParseResponse()!.ApiGetItem2?.ApiUseitemId) : "";
+	private ApiReqMissionResultResponse? response => ParseResponse(Model);
+	public string ItemOneString => ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response!.ApiGetItem1?.ApiUseitemId) : "";
+	public string ItemTwoString => ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId) : "";
 	public ExpeditionRecordViewModel(ExpeditionRecord expedition, DateTime expeditionStart)
 	{
-		ApiReqMissionResultResponse? response = ParseResponse();
+
 		Model = expedition;
 		ExpeditionStart = expeditionStart.ToLocalTime();
 		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == expedition.Expedition)?.MapAreaID;
@@ -61,20 +62,20 @@ public class ExpeditionRecordViewModel
 			MaterialBaux = 0;
 		}
 		ItemOneID = ItemList[0];
-		ItemOneName = ParseUseItemControl(ItemOneID, ParseResponse()!.ApiGetItem1?.ApiUseitemId)!;
+		ItemOneName = ParseUseItemControl(ItemOneID, response!.ApiGetItem1?.ApiUseitemId)!;
 		ItemOneCount = response!.ApiGetItem1?.ApiUseitemCount;
 		ItemTwoID = ItemList[1];
-		ItemTwoName = ParseUseItemControl(ItemTwoID, ParseResponse()!.ApiGetItem2?.ApiUseitemId)!;
+		ItemTwoName = ParseUseItemControl(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId)!;
 		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
-		ClearResult = Constants.GetExpeditionResult(ParseResponse()!.ApiClearResult);
+		ClearResult = Constants.GetExpeditionResult(response!.ApiClearResult);
 	}
-	public ApiReqMissionResultResponse? ParseResponse()
+	public static ApiReqMissionResultResponse? ParseResponse(ExpeditionRecord expedition)
 	{
-		if(Model.ApiFiles.Count > 0)
+		if(expedition.ApiFiles.Count > 0)
 		{
 			try
 			{
-				ApiFile? result = Model.ApiFiles.Find(f => f.ApiFileType == ApiFileType.Response && f.Name == "api_req_mission/result");
+				ApiFile? result = expedition.ApiFiles.Find(f => f.ApiFileType == ApiFileType.Response && f.Name == "api_req_mission/result");
 				if (result is not null)
 				{
 					ApiReqMissionResultResponse? apiReqMissionResultResponse = JsonSerializer.Deserialize<ApiResponse<ApiReqMissionResultResponse>>(result.Content)?.ApiData;

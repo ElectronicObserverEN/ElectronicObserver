@@ -35,6 +35,7 @@ public class MissionData : APIWrapper, IIdentifiable
 	/// Expedition IDs sorted by world ingame
 	/// </summary>
 	public int SortID => (int)RawData.api_maparea_id * 1000 + (int)RawData.api_id;
+
 	/// <summary>
 	/// 遠征名
 	/// </summary>
