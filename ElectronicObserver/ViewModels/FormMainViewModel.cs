@@ -815,6 +815,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		new SenkaViewerWindow().Show(Window);
 	}
+
 	[RelayCommand]
 	private void OpenExpeditionRecordViewer()
 	{

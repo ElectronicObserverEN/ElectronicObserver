@@ -30,6 +30,7 @@ public class MissionData : APIWrapper, IIdentifiable
 	/// 海域カテゴリID
 	/// </summary>
 	public int MapAreaID => (int)RawData.api_maparea_id;
+
 	/// <summary>
 	/// Expedition IDs sorted by world ingame
 	/// </summary>
