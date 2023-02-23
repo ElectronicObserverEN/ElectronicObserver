@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ElectronicObserverTypes.Attacks;
+﻿namespace ElectronicObserverTypes.Attacks;
 
 public sealed record NightZuiunCutinAttack : NightAttack
 {
@@ -12,7 +10,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.Zuiun,
 		PowerModifier = 1.24,
 		AccuracyModifier = 1,
-		RateModifier = 150,
+		RateModifier = 160,
 		NumberOfAttacks = 2,
 	};
 
@@ -22,7 +20,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.ZuiunRadar,
 		PowerModifier = 1.28,
 		AccuracyModifier = 1,
-		RateModifier = 150,
+		RateModifier = 160,
 		NumberOfAttacks = 2,
 	};
 
@@ -32,7 +30,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.ZuiunZuiun,
 		PowerModifier = 1.32,
 		AccuracyModifier = 1,
-		RateModifier = 150,
+		RateModifier = 160,
 		NumberOfAttacks = 2,
 	};
 
@@ -42,7 +40,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.ZuiunZuiunRadar,
 		PowerModifier = 1.36,
 		AccuracyModifier = 1,
-		RateModifier = 150,
+		RateModifier = 160,
 		NumberOfAttacks = 2,
 	};
 
