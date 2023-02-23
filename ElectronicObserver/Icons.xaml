@@ -91,4 +91,9 @@
 	<BitmapImage x:Key="Item.Catapult" UriSource="pack://application:,,,/Assets/Item/Catapult.png" />
 	<BitmapImage x:Key="Item.AviationMaterial" UriSource="pack://application:,,,/Assets/Item/AviationMaterial.png" />
 	<BitmapImage x:Key="Item.ActionReport" UriSource="pack://application:,,,/Assets/Item/ActionReport.png" />
+
+	<BitmapImage x:Key="Item.SmallBox" UriSource="pack://application:,,,/Assets/Item/SmallBox.png" />
+	<BitmapImage x:Key="Item.MediumBox" UriSource="pack://application:,,,/Assets/Item/MediumBox.png" />
+	<BitmapImage x:Key="Item.LargeBox" UriSource="pack://application:,,,/Assets/Item/LargeBox.png" />
+	<BitmapImage x:Key="Item.Irako" UriSource="pack://application:,,,/Assets/Item/Irako.png" />
 </ResourceDictionary>

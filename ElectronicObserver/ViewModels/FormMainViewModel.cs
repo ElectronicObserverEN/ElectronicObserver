@@ -76,6 +76,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -814,7 +815,11 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		new SenkaViewerWindow().Show(Window);
 	}
-
+	[RelayCommand]
+	private void OpenExpeditionRecordViewer()
+	{
+		new ExpeditionRecordViewerWindow().Show(Window);
+	}
 	[RelayCommand]
 	private void OpenAlbumMasterShip()
 	{
