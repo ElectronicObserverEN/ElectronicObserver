@@ -2,14 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Policy;
 using System.Threading.Tasks;
-using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.TestData;
-using ElectronicObserver.TestData.Models;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
