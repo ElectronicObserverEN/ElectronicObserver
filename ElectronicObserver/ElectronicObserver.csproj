@@ -57,15 +57,15 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Update="Common\Datagrid\DataGrid.Designer.cs">
-		  <DependentUpon>DataGrid.resx</DependentUpon>
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		</Compile>
 		<Compile Update="Common\Datagrid\ColumnSelector.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>ColumnSelector.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Common\Datagrid\DataGrid.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DataGrid.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Data\ConstantsRes.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -536,13 +536,13 @@
 		<SplashScreen Include="SplashScreen.png" />
 	</ItemGroup>
 	<ItemGroup>
-		<EmbeddedResource Update="Common\Datagrid\DataGrid.resx">
-		  <LastGenOutput>DataGrid.Designer.cs</LastGenOutput>
-		  <Generator>ResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
 		<EmbeddedResource Update="Common\Datagrid\ColumnSelector.resx">
-		  <Generator>ResXFileCodeGenerator</Generator>
+		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ColumnSelector.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Common\Datagrid\DataGrid.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DataGrid.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Data\ConstantsRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClearSorting" xml:space="preserve">
-    <value>??? (Clear sorting)</value>
+    <value>並べ替えリセット</value>
   </data>
   <data name="HideColumn" xml:space="preserve">
-    <value>??? (Hide column)</value>
+    <value>隠す</value>
   </data>
   <data name="OpenColumnSelector" xml:space="preserve">
-    <value>??? (Open column selector)</value>
+    <value>列の表示設定</value>
   </data>
 </root>

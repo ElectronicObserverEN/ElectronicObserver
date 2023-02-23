@@ -22,7 +22,7 @@ namespace ElectronicObserver.Common.Datagrid {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ColumnSelector {
+    public class ColumnSelector {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Common.Datagrid {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Common.Datagrid.ColumnSelector", typeof(ColumnSelector).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Common.Datagrid {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,27 +61,27 @@ namespace ElectronicObserver.Common.Datagrid {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Column).
+        ///   Looks up a localized string similar to 列名.
         /// </summary>
-        internal static string Column {
+        public static string Column {
             get {
                 return ResourceManager.GetString("Column", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Columns selection).
+        ///   Looks up a localized string similar to 列選択.
         /// </summary>
-        internal static string ColumnsSelection {
+        public static string ColumnsSelection {
             get {
                 return ResourceManager.GetString("ColumnsSelection", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Visible).
+        ///   Looks up a localized string similar to 表示.
         /// </summary>
-        internal static string Visible {
+        public static string Visible {
             get {
                 return ResourceManager.GetString("Visible", resourceCulture);
             }

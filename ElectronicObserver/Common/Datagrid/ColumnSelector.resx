@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Column" xml:space="preserve">
-    <value>??? (Column)</value>
+    <value>列名</value>
   </data>
   <data name="ColumnsSelection" xml:space="preserve">
-    <value>??? (Columns selection)</value>
+    <value>列選択</value>
   </data>
   <data name="Visible" xml:space="preserve">
-    <value>??? (Visible)</value>
+    <value>表示</value>
   </data>
 </root>

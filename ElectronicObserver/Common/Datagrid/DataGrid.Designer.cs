@@ -22,7 +22,7 @@ namespace ElectronicObserver.Common.Datagrid {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class DataGrid {
+    public class DataGrid {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Common.Datagrid {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Common.Datagrid.DataGrid", typeof(DataGrid).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Common.Datagrid {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,27 +61,27 @@ namespace ElectronicObserver.Common.Datagrid {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Clear sorting).
+        ///   Looks up a localized string similar to 並べ替えリセット.
         /// </summary>
-        internal static string ClearSorting {
+        public static string ClearSorting {
             get {
                 return ResourceManager.GetString("ClearSorting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Hide column).
+        ///   Looks up a localized string similar to 隠す.
         /// </summary>
-        internal static string HideColumn {
+        public static string HideColumn {
             get {
                 return ResourceManager.GetString("HideColumn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Open column selector).
+        ///   Looks up a localized string similar to 列の表示設定.
         /// </summary>
-        internal static string OpenColumnSelector {
+        public static string OpenColumnSelector {
             get {
                 return ResourceManager.GetString("OpenColumnSelector", resourceCulture);
             }
