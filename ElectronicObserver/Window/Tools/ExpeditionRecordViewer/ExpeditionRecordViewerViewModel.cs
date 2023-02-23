@@ -120,6 +120,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 			.Cast<object>()
 			.ToList();
 	}
+
 	private static ApiReqMissionResultResponse? ParseExpeditionResult(ExpeditionRecord record)
 	{
 		try
@@ -139,6 +140,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 			return null;
 		}
 	}
+
 	[RelayCommand]
 	private void OpenFleetImageGenerator(ExpeditionRecordViewModel? expedition)
 	{
