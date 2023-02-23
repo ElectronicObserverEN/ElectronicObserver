@@ -61,6 +61,7 @@ public class Startup
 		await db.Database.MigrateAsync();
 
 		// Download data 
+		Directory.CreateDirectory(DataAndTranslationManager.DataFolder);
 		await DownloadData("https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/Data/EquipmentUpgrades.json", DataAndTranslationManager.DataFolder + @"\EquipmentUpgrades.json");
 		await DownloadData("https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/Data/FitBonuses.json", DataAndTranslationManager.DataFolder + @"\FitBonuses.json");
 	}
