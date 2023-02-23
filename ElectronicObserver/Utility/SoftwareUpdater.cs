@@ -14,7 +14,7 @@ using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
 
-internal class SoftwareUpdater
+public class SoftwareUpdater
 {
 	internal static string AppDataFolder =>
 		Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ElectronicObserver");
@@ -93,7 +93,7 @@ internal class SoftwareUpdater
 	}
 
 	/// <summary>
-	/// Check for update data, but only update translation data.
+	/// Check for update data, but only update translation data and game related data (Fit bonuses, equipment upgrades, ...)
 	/// </summary>
 	public static async Task CheckUpdateAsync()
 	{
