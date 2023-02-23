@@ -20,7 +20,6 @@
 	>
 	<Window.Resources>
 		<local:ExpeditionRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
-		<local:StringNullVisibilityConverter x:Key="StringNullToVisibilityConverter" />
 		<DataTemplate DataType="{x:Type local:ExpeditionRecordViewModel}">
 			<Grid Margin="2">
 				<Grid.ColumnDefinitions>
@@ -68,10 +67,20 @@
 					Orientation="Horizontal"
 					>
 					<TextBlock Text="{Binding ItemOneCount}" />
-					<common:UseItemIcon Type="{Binding ItemOneName}" Visibility="{Binding ItemOneName, Converter={StaticResource StringNullToVisibilityConverter}}" />
+					<common:UseItemIcon Type="{Binding ItemOneName}" />
 					<StackPanel.ToolTip>
 						<TextBlock Text="{Binding ItemOneString}" />
 					</StackPanel.ToolTip>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ItemOneCount}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
 				</StackPanel>
 				<StackPanel
 					Grid.Column="4"
@@ -80,10 +89,20 @@
 					Orientation="Horizontal"
 					>
 					<TextBlock Text="{Binding ItemTwoCount}" />
-					<common:UseItemIcon Type="{Binding ItemTwoName}" Visibility="{Binding ItemTwoName, Converter={StaticResource StringNullToVisibilityConverter}}" />
+					<common:UseItemIcon Type="{Binding ItemTwoName}" />
 					<StackPanel.ToolTip>
 						<TextBlock Text="{Binding ItemTwoString}" />
 					</StackPanel.ToolTip>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ItemTwoCount}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
 				</StackPanel>
 				<TextBlock
 					Grid.Column="5"

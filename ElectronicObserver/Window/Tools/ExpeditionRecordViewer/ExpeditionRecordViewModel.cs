@@ -9,6 +9,7 @@ using ElectronicObserverTypes;
 using System.Text.Json;
 using System.Collections.Generic;
 using ElectronicObserver.Data;
+using System.Windows;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 
@@ -33,17 +34,16 @@ public class ExpeditionRecordViewModel
 	public string ItemTwoName { get; }
 	public int? ItemTwoCount { get; }
 	public string ClearResult { get; }
-	private ApiReqMissionResultResponse? response => ParseResponse(Model);
-	public string ItemOneString => ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response!.ApiGetItem1?.ApiUseitemId) : "";
-	public string ItemTwoString => ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId) : "";
-	public ExpeditionRecordViewModel(ExpeditionRecord expedition, DateTime expeditionStart)
+	public string ItemOneString { get; }
+	public string ItemTwoString { get; }
+	public ExpeditionRecordViewModel(ExpeditionRecord record,ApiReqMissionResultResponse response, DateTime expeditionStart)
 	{
-
-		Model = expedition;
+		if (response is null) return;
+		Model = record;
 		ExpeditionStart = expeditionStart.ToLocalTime();
-		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == expedition.Expedition)?.MapAreaID;
-		DisplayID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == expedition.Expedition)?.DisplayID;
-		Fleet = expedition.Fleet.MakeFleet();
+		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.MapAreaID;
+		DisplayID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.DisplayID;
+		Fleet = record.Fleet.MakeFleet();
 		ItemList = response!.ApiUseitemFlag;
 		MaterialList = response!.ApiGetMaterial;
 		if(MaterialList.ToString() != "-1")
@@ -68,27 +68,8 @@ public class ExpeditionRecordViewModel
 		ItemTwoName = ParseUseItemControl(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId)!;
 		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
 		ClearResult = Constants.GetExpeditionResult(response!.ApiClearResult);
-	}
-	public static ApiReqMissionResultResponse? ParseResponse(ExpeditionRecord expedition)
-	{
-		if(expedition.ApiFiles.Count > 0)
-		{
-			try
-			{
-				ApiFile? result = expedition.ApiFiles.Find(f => f.ApiFileType == ApiFileType.Response && f.Name == "api_req_mission/result");
-				if (result is not null)
-				{
-					ApiReqMissionResultResponse? apiReqMissionResultResponse = JsonSerializer.Deserialize<ApiResponse<ApiReqMissionResultResponse>>(result.Content)?.ApiData;
-					if (apiReqMissionResultResponse is not null)
-					{
-						return apiReqMissionResultResponse;
-					}
-				}
-			}catch
-			{
-			}
-		}
-		return default;
+		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response!.ApiGetItem1?.ApiUseitemId) : "";
+		ItemTwoString = ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId) : "";
 	}
 	public string ParseUseItem(int? kind, int? key)
 	{
@@ -111,7 +92,7 @@ public class ExpeditionRecordViewModel
 			3 => "DevelopmentMaterial",
 			4 => Enum.GetName(typeof(UseItemId), key!),
 			5 => "FurnitureCoin",
-			_ => "",
+			_ => "Unknown",
 		};
 	}
 }

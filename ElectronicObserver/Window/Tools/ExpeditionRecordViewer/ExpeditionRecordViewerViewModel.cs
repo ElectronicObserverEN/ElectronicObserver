@@ -25,6 +25,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using ElectronicObserver.Utility;
 using System.Collections.Immutable;
+using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
@@ -107,8 +108,9 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 			})
 			.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
 			.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
+			.Where(s => s.Expedition.ApiFiles.Count > 0)
 			.AsEnumerable()
-			.Select(s => new ExpeditionRecordViewModel(s.Expedition, s.TimeStamp))
+			.Select(s => new ExpeditionRecordViewModel(s.Expedition,JsonSerializer.Deserialize <ApiResponse<ApiReqMissionResultResponse>>(s.Expedition.ApiFiles.Find(f => f.ApiFileType == ApiFileType.Response && f.Name == "api_req_mission/result")!.Content)!.ApiData, s.TimeStamp))
 			.Where(s => (Mission as string == AllRecords || s.DisplayID == (string)Mission) && (World as string == AllRecords || s.MapAreaID == World as int?))
 			.OrderByDescending(s => s.Id)
 			.Cast<object>()
