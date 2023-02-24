@@ -2,33 +2,28 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
+using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
-using ElectronicObserver.Window.Control.Paging;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-using ElectronicObserver.Utility;
-using System.Collections.Immutable;
-using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
-using ElectronicObserver.Database.Expedition;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
+
 public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
@@ -44,8 +39,10 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 	public object Mission { get; set; } = AllRecords;
 	public object World { get; set; } = AllRecords;
 	public PagingControlViewModel ExpeditionPager { get; }
+
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
+
 	private DateTime DateTimeEnd =>
 		new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
 
@@ -59,6 +56,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<ExpeditionRecordViewModel> Expeditions { get; } = new();
+
 	public ExpeditionRecordViewerViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
