@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserverTypes;
@@ -22,6 +23,7 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 
 	public ShipDataPickerTranslationViewModel ShipDataPicker { get; } = new();
 
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	public ShipDataPickerViewModel()
 	{

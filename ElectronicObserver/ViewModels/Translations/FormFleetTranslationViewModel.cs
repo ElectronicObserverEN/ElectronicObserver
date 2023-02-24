@@ -15,14 +15,6 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string CvciBba => Properties.Window.FormFleet.CvciBba;
 	public string CvciBa => Properties.Window.FormFleet.CvciBa;
 
-	public string CvnciFfa => Properties.Window.FormFleet.CvnciFfa;
-	public string CvnciFa => Properties.Window.FormFleet.CvnciFa;
-	public string CvnciPhoto => Properties.Window.FormFleet.CvnciPhoto;
-	public string CvnciFoo => Properties.Window.FormFleet.CvnciFoo;
-
-	public string LateModelTorpedoSubmarineEquipment => Properties.Window.FormFleet.LateModelTorpedoSubmarineEquipment;
-	public string LateModelTorpedo2 => Properties.Window.FormFleet.LateModelTorpedo2;
-
 	public string Power => Properties.Window.FormFleet.Power;
 	public string Accuracy => Properties.Window.FormFleet.Accuracy;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Utility.Data;
@@ -15,7 +14,7 @@ namespace ElectronicObserverCoreTests;
 public class NightAttackTests
 {
 	private DatabaseFixture Db { get; }
-	private int Precision => 3;
+	private static int Precision => 3;
 
 	public NightAttackTests(DatabaseFixture db)
 	{
@@ -44,18 +43,18 @@ public class NightAttackTests
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			bismarck
+			bismarck,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			NightAttackKind.CutinTorpedoTorpedo,
-			NightAttackKind.Shelling
+			NightAttack.CutinTorpedoTorpedo,
+			NightAttack.Shelling,
 		};
 
-		List<Enum> actual = bismarck.GetNightAttacks().ToList();
+		List<NightAttack> actual = bismarck.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -75,7 +74,7 @@ public class NightAttackTests
 		ShipStats stats = new ShipStats
 		{
 			Level = 122,
-			Luck = 25
+			Luck = 25,
 		};
 
 		List<IEquipmentData?> equip = new List<IEquipmentData?>
@@ -84,7 +83,7 @@ public class NightAttackTests
 			Equipment.ReppuuKaiNiESkilled(),
 			Equipment.T97NightAttacker(),
 			Equipment.ReppuuKaiNiE(),
-			Equipment.NightScamp()
+			Equipment.NightScamp(),
 		};
 
 		IShipData akagi = Ship.AkagiKaiNi(stats, equip);
@@ -93,20 +92,20 @@ public class NightAttackTests
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			akagi
+			akagi,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			CvnciKind.FighterFighterAttacker,
-			CvnciKind.FighterAttacker,
-			CvnciKind.FighterOtherOther,
-			NightAttackKind.AirAttack
+			CvnciAttack.CutinAirAttackFighterFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
+			NightAttack.AirAttack,
 		};
 
-		List<Enum> actual = akagi.GetNightAttacks().ToList();
+		List<NightAttack> actual = akagi.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -130,7 +129,7 @@ public class NightAttackTests
 		ShipStats stats = new ShipStats
 		{
 			Level = 125,
-			Luck = 17
+			Luck = 17,
 		};
 
 		List<IEquipmentData?> equip = new List<IEquipmentData?>
@@ -138,7 +137,7 @@ public class NightAttackTests
 			Equipment.T97NightAttacker(),
 			Equipment.T97NightAttacker(),
 			Equipment.ReppuuKaiNiESkilled(),
-			Equipment.NightScamp()
+			Equipment.NightScamp(),
 		};
 
 		IShipData taiyou = Ship.TaiyouKaiNi(stats, equip);
@@ -147,19 +146,19 @@ public class NightAttackTests
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			taiyou
+			taiyou,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			CvnciKind.FighterAttacker,
-			CvnciKind.FighterOtherOther,
-			NightAttackKind.AirAttack
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
+			NightAttack.AirAttack,
 		};
 
-		List<Enum> actual = taiyou.GetNightAttacks().ToList();
+		List<NightAttack> actual = taiyou.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -181,7 +180,7 @@ public class NightAttackTests
 		ShipStats stats = new ShipStats
 		{
 			Level = 130,
-			Luck = 16
+			Luck = 16,
 		};
 
 		List<IEquipmentData?> equip = new List<IEquipmentData?>
@@ -198,18 +197,18 @@ public class NightAttackTests
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			ark
+			ark,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			NightAttackKind.DoubleShelling,
-			NightAttackKind.Shelling
+			NightAttack.DoubleShelling,
+			NightAttack.Shelling,
 		};
 
-		List<Enum> actual = ark.GetNightAttacks().ToList();
+		List<NightAttack> actual = ark.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -245,7 +244,7 @@ public class NightAttackTests
 				{
 					Level = 10,
 				},
-			}
+			},
 		};
 
 		IShipData gotland = new ShipDataMock(Db.MasterShips[ShipId.Gotlandandra])
@@ -254,7 +253,7 @@ public class NightAttackTests
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
-			}
+			},
 		};
 
 		var fleetMock = new Mock<IFleetData>();
@@ -262,18 +261,18 @@ public class NightAttackTests
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
 			bismarck,
-			gotland
+			gotland,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			NightAttackKind.CutinTorpedoTorpedo,
-			NightAttackKind.Shelling
+			NightAttack.CutinTorpedoTorpedo,
+			NightAttack.Shelling,
 		};
 
-		List<Enum> actual = bismarck.GetNightAttacks().ToList();
+		List<NightAttack> actual = bismarck.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -304,27 +303,27 @@ public class NightAttackTests
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
-			}
+			},
 		};
 
 		var fleetMock = new Mock<IFleetData>();
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			akagi
+			akagi,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			CvnciKind.FighterFighterAttacker,
-			CvnciKind.FighterAttacker,
-			CvnciKind.FighterOtherOther,
-			NightAttackKind.AirAttack
+			CvnciAttack.CutinAirAttackFighterFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
+			NightAttack.AirAttack,
 		};
 
-		List<Enum> actual = akagi.GetNightAttacks().ToList();
+		List<NightAttack> actual = akagi.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -363,19 +362,19 @@ public class NightAttackTests
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			taiyou
+			taiyou,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			CvnciKind.FighterAttacker,
-			CvnciKind.FighterOtherOther,
-			NightAttackKind.AirAttack
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterOtherOther,
+			NightAttack.AirAttack,
 		};
 
-		List<Enum> actual = taiyou.GetNightAttacks().ToList();
+		List<NightAttack> actual = taiyou.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 
@@ -418,18 +417,18 @@ public class NightAttackTests
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			ark
+			ark,
 		}));
 
 		IFleetData fleet = fleetMock.Object;
 
-		List<Enum> expected = new List<Enum>
+		List<NightAttack> expected = new()
 		{
-			NightAttackKind.DoubleShelling,
-			NightAttackKind.Shelling
+			NightAttack.DoubleShelling,
+			NightAttack.Shelling,
 		};
 
-		List<Enum> actual = ark.GetNightAttacks().ToList();
+		List<NightAttack> actual = ark.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
 

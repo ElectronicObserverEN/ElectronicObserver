@@ -4,7 +4,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Database;
 using ElectronicObserver.TestData;
-using ElectronicObserver.TestData.Models;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
@@ -57,5 +57,8 @@ public class Startup
 
 		await using ElectronicObserverContext db = new();
 		await db.Database.MigrateAsync();
+
+		// Download data 
+		await SoftwareUpdater.CheckUpdateAsync();
 	}
 }

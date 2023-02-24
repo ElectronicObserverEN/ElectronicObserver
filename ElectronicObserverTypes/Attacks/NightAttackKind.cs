@@ -67,7 +67,7 @@ public enum NightAttackKind
 	SpecialColorado = 103,
 
 	/// <summary> 僚艦夜戦突撃 </summary>
-	SpecialKongo = 104,
+	SpecialKongou = 104,
 
 
 	/// <summary> 夜間瑞雲カットイン </summary>

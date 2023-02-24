@@ -108,7 +108,7 @@ public class PhaseNightBattle : PhaseBase
 					break;
 
 				case NightAttackKind.SpecialColorado:
-				case NightAttackKind.SpecialKongo:
+				case NightAttackKind.SpecialKongou:
 				case NightAttackKind.SpecialYamato3Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{

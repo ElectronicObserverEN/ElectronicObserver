@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
@@ -20,8 +19,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 {
 	public ExpCheckerTranslationViewModel ExpChecker { get; }
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	private string DefaultTitle => ExpChecker.Title;
 	public string Title { get; set; }

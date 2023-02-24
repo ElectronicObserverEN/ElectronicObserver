@@ -121,7 +121,7 @@
     <value>Column</value>
   </data>
   <data name="ColumnView_Visible" xml:space="preserve">
-    <value> </value>
+    <value>Visible</value>
   </data>
   <data name="ColumnView_VisibleToolTip" xml:space="preserve">
     <value>Select to enable the specified column.</value>

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
@@ -28,13 +27,12 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		Filter = "CSV|*.csv|File|*",
 	};
 
-	public List<ColumnProperties> EquipmentGridColumnProperties { get; set; } = new();
-	public List<SortDescription> EquipmentGridSortDescriptions { get; set; } = new();
+	public DataGridViewModel EquipmentGridViewModel { get; set; } = new();
 	public GridLength EquipmentGridWidth { get; set; } = GridLength.Auto;
 
 	// todo: doesn't seem to work in the current implementation
-	public List<ColumnProperties> DetailGridColumnProperties { get; set; } = new();
-	public List<SortDescription> DetailGridSortDescriptions { get; set; } = new();
+	// Select an equipment with multiple detail items, sort by something, select a different equipment, sort data is lost.
+	public DataGridViewModel EquipmentDetailGridViewModel { get; set; } = new();
 
 	public List<EquipmentListRow> Rows { get; set; } = new();
 	public EquipmentListRow? SelectedRow { get; set; }

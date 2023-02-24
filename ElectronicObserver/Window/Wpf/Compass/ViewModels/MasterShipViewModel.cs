@@ -12,6 +12,7 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 
@@ -227,7 +228,7 @@ public partial class MasterShipViewModel : ObservableObject
 
 		sb.AppendFormat("\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
 			Constants.GetDayAttackKind(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
-			Constants.GetNightAttackKind(Calculator.GetNightAttackKind(slot, ship.ShipID, -1)));
+			NightAttack.AttackDisplay(Calculator.GetNightAttackKind(slot, ship.ShipID, -1)));
 
 		/*
 		 todo: I don't think this matters in compass

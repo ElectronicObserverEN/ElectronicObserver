@@ -295,42 +295,6 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 空母カットイン(戦攻).
-        /// </summary>
-        public static string CvnciFa {
-            get {
-                return ResourceManager.GetString("CvnciFa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 空母カットイン(戦戦攻).
-        /// </summary>
-        public static string CvnciFfa {
-            get {
-                return ResourceManager.GetString("CvnciFfa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 空母カットイン(戦他他).
-        /// </summary>
-        public static string CvnciFoo {
-            get {
-                return ResourceManager.GetString("CvnciFoo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 空母カットイン(光電管).
-        /// </summary>
-        public static string CvnciPhoto {
-            get {
-                return ResourceManager.GetString("CvnciPhoto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to (右クリックで必要Exp計算).
         /// </summary>
         public static string ExpCalcHint {
@@ -368,24 +332,6 @@ namespace ElectronicObserver.Properties.Window {
         public static string FleetNameToolTip {
             get {
                 return ResourceManager.GetString("FleetNameToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 潜水カットイン(魚魚魚).
-        /// </summary>
-        public static string LateModelTorpedo2 {
-            get {
-                return ResourceManager.GetString("LateModelTorpedo2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 潜水カットイン(電魚).
-        /// </summary>
-        public static string LateModelTorpedoSubmarineEquipment {
-            get {
-                return ResourceManager.GetString("LateModelTorpedoSubmarineEquipment", resourceCulture);
             }
         }
         

@@ -8,7 +8,7 @@ namespace ElectronicObserver.Utility.Data;
 
 public static class NightAttackPower
 {
-	public static double GetNightAttackPower(this IShipData ship, Enum attack, IFleetData? fleet = null)
+	public static double GetNightAttackPower(this IShipData ship, NightAttack attack, IFleetData? fleet = null)
 	{
 		double basepower = ship.BaseNightAttackPower() + (fleet?.NightScoutBonus() ?? 0);
 
@@ -65,7 +65,7 @@ public static class NightAttackPower
 		_ when ship.IsSpecialNightCarrier() => ship.SurfaceShipBasePower(),
 		_ when ship.IsArkRoyal() => ship.ArkRoyalBasePower(),
 
-		_ => 0
+		_ => 0,
 	};
 
 	private static double SurfaceShipBasePower(this IShipData ship) =>
@@ -102,14 +102,14 @@ public static class NightAttackPower
 	private static double NightPlaneCountMod(this IEquipmentData equip) => equip switch
 	{
 		_ when equip.MasterEquipment.IsNightAircraft => 3,
-		_ => 0
+		_ => 0,
 	};
 
 	private static double NightPlanePowerMod(this IEquipmentData equip) => equip switch
 	{
 		_ when equip.MasterEquipment.IsNightAircraft => 0.45,
 		_ when equip.IsNightCapableAircraft() => 0.3,
-		_ => 0
+		_ => 0,
 	};
 
 	private static double GetNightBattleEquipmentLevelBonus(this IShipData ship) => ship.AllSlotInstance
@@ -141,57 +141,33 @@ public static class NightAttackPower
 				EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun => 0.3 * equip.Level,
 				EquipmentId.SecondaryGun_15_5cmTripleSecondaryGunKai => 0.3 * equip.Level,
 
-				_ => Math.Sqrt(equip.Level)
+				_ => Math.Sqrt(equip.Level),
 			},
 
-			_ => 0
+			_ => 0,
 		};
 
-	private static double NightAttackKindDamageMod(Enum attackKind, IShipData ship) => attackKind switch
+	private static double NightAttackKindDamageMod(NightAttack attack, IShipData ship) => attack switch
 	{
-		NightAttackKind.CutinTorpedoTorpedo => 1.5,
-		NightAttackKind.CutinMainMain => 2,
-		NightAttackKind.CutinMainSub => 1.75,
-		NightAttackKind.CutinMainTorpedo => 1.3,
-		NightAttackKind.DoubleShelling => 1.2,
+		{ NightAttackKind: NightAttackKind.CutinTorpedoPicket or NightAttackKind.CutinTorpedoPicket2 }
+			=> attack.PowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
 
-		NightAttackKind.CutinTorpedoPicket or
-			NightAttackKind.CutinTorpedoPicket2 => 1.2 * ship.DGunMod() * ship.DKai3GunMod(),
-		NightAttackKind.CutinTorpedoRadar or
-			NightAttackKind.CutinTorpedoRadar2 => 1.3 * ship.DGunMod() * ship.DKai3GunMod(),
-		NightAttackKind.CutinTorpedoDestroyerPicket or
-			NightAttackKind.CutinTorpedoDestroyerPicket2 => 1.5,
-		NightAttackKind.CutinTorpedoDrum or
-			NightAttackKind.CutinTorpedoDrum2 => 1.3,
+		{ NightAttackKind: NightAttackKind.CutinTorpedoRadar or NightAttackKind.CutinTorpedoRadar2 }
+			=> attack.PowerModifier * ship.DGunMod() * ship.DKai3GunMod(),
 
-		NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => 1.75,
-		NightTorpedoCutinKind.LateModelTorpedo2 => 1.6,
-
-		CvnciKind.FighterFighterAttacker => 1.25,
-		CvnciKind.FighterAttacker => 1.2,
-		CvnciKind.Phototube => 1.2,
-		CvnciKind.FighterOtherOther => 1.18,
-
-		NightAttackKind.CutinZuiun when ship.HasNightZuiun(2) && ship.HasSurfaceRadar() => 1.36,
-		NightAttackKind.CutinZuiun when ship.HasNightZuiun(2) => 1.32,
-		NightAttackKind.CutinZuiun when ship.HasSurfaceRadar() => 1.28,
-		NightAttackKind.CutinZuiun => 1.24,
-
-		_ => 1,
+		_ => attack.PowerModifier,
 	};
 
 	private static double DGunMod(this IShipData ship) => ship.AllSlotInstance
-			.Count(e => e?.EquipmentId switch
-			{
-				EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai2 => true,
-				EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3 => true,
-				_ => false
-			}) switch
-	{
-		0 => 1,
-		1 => 1.25,
-		_ => 1.25 * 1.125
-	};
+		.Count(e => e?.EquipmentId is
+			EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai2 or
+			EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3
+		) switch
+		{
+			0 => 1,
+			1 => 1.25,
+			_ => 1.25 * 1.125,
+		};
 
 	private static double DKai3GunMod(this IShipData ship) => ship.AllSlotInstance
 			.Count(e => e?.EquipmentId == EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3) switch

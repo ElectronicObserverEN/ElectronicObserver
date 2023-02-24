@@ -5,6 +5,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
@@ -25,8 +26,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	public bool DisplayFinished { get; set; } = false;
 

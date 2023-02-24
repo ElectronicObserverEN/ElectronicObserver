@@ -24,9 +24,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.2.1</AssemblyVersion>
-		<FileVersion>5.2.2.1</FileVersion>
-		<Version>5.2.2.1</Version>
+		<AssemblyVersion>5.2.2.2</AssemblyVersion>
+		<FileVersion>5.2.2.2</FileVersion>
+		<Version>5.2.2.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
@@ -56,6 +56,16 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
+		<Compile Update="Common\Datagrid\ColumnSelector.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ColumnSelector.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Common\Datagrid\DataGrid.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DataGrid.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Data\ConstantsRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -526,6 +536,14 @@
 		<SplashScreen Include="SplashScreen.png" />
 	</ItemGroup>
 	<ItemGroup>
+		<EmbeddedResource Update="Common\Datagrid\ColumnSelector.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ColumnSelector.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Common\Datagrid\DataGrid.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DataGrid.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Data\ConstantsRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>

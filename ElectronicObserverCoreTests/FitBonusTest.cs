@@ -12,11 +12,12 @@ public class FitBonusTest
 {
 	private DatabaseFixture Db { get; }
 
-	private static ElectronicObserver.Data.Translation.FitBonusData BonusData { get; } = new ();
+	private ElectronicObserver.Data.Translation.FitBonusData BonusData { get; }
 
 	public FitBonusTest(DatabaseFixture db)
 	{
 		Db = db;
+		BonusData = new();
 	}
 
 	[Fact]

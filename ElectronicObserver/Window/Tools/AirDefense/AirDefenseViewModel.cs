@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
@@ -50,6 +51,8 @@ public class AirDefenseViewModel : WindowViewModelBase
 		FormationType.ThirdPatrolFormation,
 		FormationType.FourthPatrolFormation,
 	};
+
+	public DataGridViewModel DataGridViewModel { get; set; } = new();
 
 	public AirDefenseViewModel()
 	{

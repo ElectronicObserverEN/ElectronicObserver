@@ -225,24 +225,6 @@
   <data name="Accuracy" xml:space="preserve">
     <value>命中</value>
   </data>
-  <data name="CvnciFfa" xml:space="preserve">
-    <value>空母カットイン(戦戦攻)</value>
-  </data>
-  <data name="CvnciFa" xml:space="preserve">
-    <value>空母カットイン(戦攻)</value>
-  </data>
-  <data name="CvnciPhoto" xml:space="preserve">
-    <value>空母カットイン(光電管)</value>
-  </data>
-  <data name="CvnciFoo" xml:space="preserve">
-    <value>空母カットイン(戦他他)</value>
-  </data>
-  <data name="LateModelTorpedoSubmarineEquipment" xml:space="preserve">
-    <value>潜水カットイン(電魚)</value>
-  </data>
-  <data name="LateModelTorpedo2" xml:space="preserve">
-    <value>潜水カットイン(魚魚魚)</value>
-  </data>
   <data name="Asw" xml:space="preserve">
     <value>対潜</value>
   </data>

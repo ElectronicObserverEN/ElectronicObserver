@@ -225,24 +225,6 @@ Range: {20} / Speed: {21}
   <data name="Accuracy" xml:space="preserve">
     <value>Accuracy</value>
   </data>
-  <data name="CvnciFfa" xml:space="preserve">
-    <value>CI (FFA)</value>
-  </data>
-  <data name="CvnciFa" xml:space="preserve">
-    <value>CI (FA)</value>
-  </data>
-  <data name="CvnciPhoto" xml:space="preserve">
-    <value>CI (Photo)</value>
-  </data>
-  <data name="CvnciFoo" xml:space="preserve">
-    <value>CI (FOO)</value>
-  </data>
-  <data name="LateModelTorpedoSubmarineEquipment" xml:space="preserve">
-    <value>CI (Submarine Radar)</value>
-  </data>
-  <data name="LateModelTorpedo2" xml:space="preserve">
-    <value>CI (Late Model)</value>
-  </data>
   <data name="Asw" xml:space="preserve">
     <value>ASW</value>
   </data>
