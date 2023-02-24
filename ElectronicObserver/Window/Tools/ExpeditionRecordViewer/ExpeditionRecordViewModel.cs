@@ -33,6 +33,7 @@ public class ExpeditionRecordViewModel
 	public string? ClearResult { get; }
 	public string? ItemOneString { get; }
 	public string? ItemTwoString { get; }
+
 	public ExpeditionRecordViewModel(ExpeditionRecord record, ApiReqMissionResultResponse response, DateTime expeditionStart)
 	{
 		if (response is null) return;
