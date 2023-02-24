@@ -24,17 +24,4 @@ public partial class DropRecordViewerWindow
 	{
 		ViewModel.RecordView_CellDoubleClick();
 	}
-
-	private void BattleLog_Open(object sender, System.Windows.RoutedEventArgs e)
-	{
-		ViewModel.RecordView_CellDoubleClick();
-	}
-	private void Replay_Open(object sender, System.Windows.RoutedEventArgs e)
-	{
-		ViewModel.RecordView_ReplayClick();
-	}
-	private void ReplayURL_Open(object sender, System.Windows.RoutedEventArgs e)
-	{
-		ViewModel.RecordView_ReplayURLClick();
-	}
 }
