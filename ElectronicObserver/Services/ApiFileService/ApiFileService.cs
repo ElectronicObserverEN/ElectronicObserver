@@ -229,14 +229,18 @@ public class ApiFileService : ObservableObject
 				BossSupportFleetId = bossSupportFleetId,
 				CombinedFlag = KCDatabase.Fleet.CombinedFlag,
 				Fleets = KCDatabase.Fleet.Fleets.Values
-					.Where(ShouldIncludeFleet)
-					.Select(f => new SortieFleet
+					.Select(f => ShouldIncludeFleet(f) switch
 					{
-						Name = f.Name,
-						Ships = f.MembersInstance
-							.Where(s => s is not null)
-							.Select(MakeSortieShip)
-							.ToList(),
+						true => new SortieFleet
+						{
+							Name = f.Name,
+							Ships = f.MembersInstance
+								.Where(s => s is not null)
+								.Select(MakeSortieShip)
+								.ToList(),
+						},
+
+						_ => null,
 					}).ToList(),
 				AirBases = KCDatabase.BaseAirCorps.Values
 					.Where(a => a.MapAreaID == map.MapAreaID)

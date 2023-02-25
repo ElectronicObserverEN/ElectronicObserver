@@ -19,6 +19,13 @@ public class SortieRecordViewModel
 	{
 		Model = sortie;
 		SortieStart = sortieStart.ToLocalTime();
-		Fleet = sortie.FleetData.Fleets[sortie.FleetData.FleetId - 1].MakeFleet();
+
+		Fleet = (sortie.FleetData.Fleets.Count >= sortie.FleetData.FleetId) switch
+		{
+			true => sortie.FleetData.Fleets[sortie.FleetData.FleetId - 1].MakeFleet(),
+			// in an earlier version, fleets that weren't supposed to be saved were skipped
+			// instead of being saved as null
+			_ => sortie.FleetData.Fleets.First().MakeFleet(),
+		};
 	}
 }

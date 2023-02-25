@@ -28,6 +28,7 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
+using ElectronicObserver.TestData.Models;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
@@ -1413,7 +1414,7 @@ public partial class FormMainViewModel : ObservableObject
 #if DEBUG
 		void GetMissingDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiShips)
 		{
-			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
+			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster? wikiShip)) return;
 
 			if (wikiShip.ASW.Minimum >= 0)
 			{
@@ -1454,9 +1455,9 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}
 
-		void GetMissingAbyssalDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips)
+		void GetMissingAbyssalDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips, List<int> abyssalAicraft)
 		{
-			if (!wikiAbyssalShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
+			if (!wikiAbyssalShips.TryGetValue(ship.ShipId, out IShipDataMaster? wikiShip)) return;
 
 			if (!ship.ASW.IsDetermined)
 			{
@@ -1504,7 +1505,8 @@ public partial class FormMainViewModel : ObservableObject
 			{
 				RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
 			}
-			RecordManager.Instance.ShipParameter.UpdateAircraft(ship.ShipID, wikiShip.Aircraft.ToArray());
+
+			RecordManager.Instance.ShipParameter.UpdateAircraft(ship.ShipID, abyssalAicraft.ToArray());
 
 			ShipParameterRecord.ShipParameterElement e = RecordManager.Instance.ShipParameter[ship.ShipID] ?? new();
 
@@ -1537,12 +1539,13 @@ public partial class FormMainViewModel : ObservableObject
 
 		Dictionary<ShipId, IShipDataMaster> wikiShips = TestData.Wiki.WikiDataParser.Ships(wikiEquipment);
 		Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips = TestData.Wiki.WikiDataParser.AbyssalShips(wikiAbyssalEquipment);
+		Dictionary<ShipId, List<int>> abyssalAircraft = await  TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
 
-		foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
+		foreach (IShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 		{
 			if (ship.IsAbyssalShip)
 			{
-				GetMissingAbyssalDataFromWiki(ship, wikiAbyssalShips);
+				GetMissingAbyssalDataFromWiki(ship, wikiAbyssalShips, abyssalAircraft[ship.ShipId]);
 			}
 			else
 			{
@@ -1558,8 +1561,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		await db.SaveChangesAsync();
 
-		var masterShips = db.MasterShips.ToList();
-		var masterEquipment = db.MasterEquipment.ToList();
+		List<ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
+		List<EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
 
 		JsonSerializerOptions options = new()
 		{
