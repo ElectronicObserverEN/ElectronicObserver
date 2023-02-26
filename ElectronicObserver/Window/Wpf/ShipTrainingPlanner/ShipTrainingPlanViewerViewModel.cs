@@ -23,7 +23,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private ShipDataPickerViewModel PickerViewModel { get; } = new();
 
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = new();
-	public ObservableCollection<ShipTrainingPlanViewModel> PlansFiltered { get; set; } = new();
+	public ICollectionView PlansFiltered { get; set; }
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
@@ -41,6 +41,8 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
+
+		PlansFiltered = CollectionViewSource.GetDefaultView(Plans);
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
@@ -100,12 +102,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private void UpdatePlanList()
 	{
-		PlansFiltered.Clear();
-
-		foreach(ShipTrainingPlanViewModel plan in Plans.Where(plan => DisplayFinished || !plan.PlanFinished))
-		{
-			PlansFiltered.Add(plan);
-		}
+		CollectionViewSource.GetDefaultView(Plans.Where(plan => DisplayFinished || !plan.PlanFinished));
 	}
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
