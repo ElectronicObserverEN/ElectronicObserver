@@ -181,18 +181,9 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 	private void SortDescriptionsChanged()
 	{
-		if (AssociatedObject is ICollectionView collection)
-		{
-			UpdateCollectionViewSortDescriptions(collection);
-		}
-		else if (AssociatedObject is not null)
-		{
-			UpdateDataGridSortDescriptions();
-		}
-	}
+		// Do nothing if source is ICollectionView, sorting is already correct in that case
+		if (AssociatedObject is null or ICollectionView) return;
 
-	private void UpdateDataGridSortDescriptions()
-	{
 		// need to save the new value cause SortDescriptions.Clear() will wipe it
 		List<SortDescription> sortDescriptions = SortDescriptions;
 
@@ -214,18 +205,6 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			if (column is null) continue;
 
 			column.SortDirection = sortDescription.Direction;
-		}
-	}
-
-	private void UpdateCollectionViewSortDescriptions(ICollectionView collection)
-	{
-		List<SortDescription> sortDescriptions = collection.SortDescriptions.ToList();
-
-		collection.SortDescriptions.Clear();
-
-		foreach (SortDescription sortDescription in sortDescriptions)
-		{
-			collection.SortDescriptions.Add(sortDescription);
 		}
 	}
 }
