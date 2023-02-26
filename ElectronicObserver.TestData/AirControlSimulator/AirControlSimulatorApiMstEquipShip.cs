@@ -8,5 +8,5 @@ public class AirControlSimulatorApiMstEquipShip
 	public int ApiShipId { get; set; }
 
 	[JsonPropertyName("api_equip_type")]
-	public List<int> ApiEquipType { get; set; }
+	public List<int> ApiEquipType { get; set; } = new();
 }

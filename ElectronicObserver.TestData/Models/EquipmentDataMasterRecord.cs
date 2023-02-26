@@ -6,7 +6,7 @@ namespace ElectronicObserver.TestData.Models;
 public class EquipmentDataMasterRecord
 {
 	public int EquipmentId { get; set; }
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 	public int Armor { get; set; }
 	public int Firepower { get; set; }
 	public int Torpedo { get; set; }

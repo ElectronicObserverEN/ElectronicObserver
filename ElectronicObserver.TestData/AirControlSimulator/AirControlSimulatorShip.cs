@@ -14,13 +14,13 @@ public class AirControlSimulatorShip
 	public int Type { get; set; }
 
 	[JsonPropertyName("name")]
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
 	[JsonPropertyName("s_count")]
 	public int SCount { get; set; }
 
 	[JsonPropertyName("slots")]
-	public List<int> Slots { get; set; }
+	public List<int> Slots { get; set; } = new();
 
 	[JsonPropertyName("final")]
 	public int Final { get; set; }

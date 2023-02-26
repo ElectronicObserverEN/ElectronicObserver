@@ -14,10 +14,10 @@ public class AirControlSimulatorItem
 	public int Itype { get; set; }
 
 	[JsonPropertyName("name")]
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
 	[JsonPropertyName("abbr")]
-	public string Abbr { get; set; }
+	public string Abbr { get; set; } = string.Empty;
 
 	[JsonPropertyName("fire")]
 	public int Fire { get; set; }

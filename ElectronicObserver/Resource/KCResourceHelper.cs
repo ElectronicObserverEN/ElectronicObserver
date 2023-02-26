@@ -65,10 +65,15 @@ public static class KCResourceHelper
 	/// </summary>
 	/// <param name="equipmentID">装備ID。</param>
 	/// <param name="resourceType">画像種別。["btxt_flat", "card", "card_t", "item_character", "item_on", "item_up", "remodel", "statustop_item"]</param>
+	/// <param name="useOldFormat">Old format used 3 digits for equipment id, new one uses 4 digits.</param>
 	/// <returns></returns>
-	private static string GetEquipmentResourcePath(int equipmentID, string resourceType)
+	private static string GetEquipmentResourcePath(int equipmentID, string resourceType, bool useOldFormat = false)
 	{
-		return $@"kcs2\resources\slot\{resourceType}\{equipmentID:d3}_";
+		return useOldFormat switch
+		{
+			true => $@"kcs2\resources\slot\{resourceType}\{equipmentID:d3}_",
+			_ => $@"kcs2\resources\slot\{resourceType}\{equipmentID:d4}_",
+		};
 	}
 
 
@@ -102,7 +107,8 @@ public static class KCResourceHelper
 		=> GetLatestResourcePath(GetShipResourcePath(shipID, isDamaged, resourceType));
 
 	public static string? GetEquipmentImagePath(int equipmentID, string resourceType)
-		=> GetLatestResourcePath(GetEquipmentResourcePath(equipmentID, resourceType));
+		=> GetLatestResourcePath(GetEquipmentResourcePath(equipmentID, resourceType))
+		?? GetLatestResourcePath(GetEquipmentResourcePath(equipmentID, resourceType, true));
 
 	public static bool HasShipImage(int shipID, bool isDamaged, string resourceType)
 		=> GetShipImagePath(shipID, isDamaged, resourceType) != null;
@@ -121,23 +127,6 @@ public static class KCResourceHelper
 	public static Bitmap? LoadShipImage(int shipID, bool isDamaged, string resourceType)
 	{
 		string resourcepath = GetShipResourcePath(shipID, isDamaged, resourceType);
-		string? realpath = GetLatestResourcePath(resourcepath);
-
-		if (realpath == null)
-			return null;
-
-		return new Bitmap(realpath);
-	}
-
-	/// <summary>
-	/// 装備の画像を読み込みます。
-	/// </summary>
-	/// <param name="equipmentID">装備ID。</param>
-	/// <param name="resourceType">画像種別。同クラスの定数を使用します。</param>
-	/// <returns>成功した場合は装備画像。失敗した場合は null。</returns>
-	public static Bitmap? LoadEquipmentImage(int equipmentID, string resourceType)
-	{
-		string resourcepath = GetEquipmentResourcePath(equipmentID, resourceType);
 		string? realpath = GetLatestResourcePath(resourcepath);
 
 		if (realpath == null)

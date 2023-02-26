@@ -8,8 +8,8 @@ public class AirControlSimulatorApiMstStype
 	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = string.Empty;
 
 	[JsonPropertyName("api_equip_type")]
-	public List<int> ApiEquipType { get; set; }
+	public List<int> ApiEquipType { get; set; } = new();
 }

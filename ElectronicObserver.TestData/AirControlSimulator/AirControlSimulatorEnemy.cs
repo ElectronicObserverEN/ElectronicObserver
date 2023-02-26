@@ -15,13 +15,13 @@ public class AirControlSimulatorEnemy
 	public int SlotCount { get; set; }
 
 	[JsonPropertyName("name")]
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
 	[JsonPropertyName("slots")]
-	public List<int> Slots { get; set; }
+	public List<int> Slots { get; set; } = new();
 
 	[JsonPropertyName("items")]
-	public List<int> Items { get; set; }
+	public List<int> Items { get; set; } = new();
 
 	[JsonPropertyName("hp")]
 	public int Hp { get; set; }
