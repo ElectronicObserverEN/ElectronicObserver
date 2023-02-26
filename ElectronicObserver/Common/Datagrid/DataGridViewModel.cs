@@ -1,30 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Common.Datagrid;
 
-public partial class DataGridViewModel : ObservableObject
+public partial class DataGridViewModel<T> : ObservableObject where T : IEnumerable
 {
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
 
 	public DataGridTranslationViewModel DataGrid { get; set; } = new();
 
-	public ICollectionView? Items { get; set; }
+	public T ItemsSource { get; set; }
+	public ICollectionView Items { get; set; }
 
-	public DataGridViewModel()
+	public DataGridViewModel(T items)
 	{
+		ItemsSource = items;
+		Items = CollectionViewSource.GetDefaultView(ItemsSource);
+
 		PropertyChanged += DataGridViewModel_PropertyChanged;
 	}
 
 	private void DataGridViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(Items) or nameof(SortDescriptions) && Items is not null)
+		if (e.PropertyName is nameof(ItemsSource))
+		{
+			Items = CollectionViewSource.GetDefaultView(ItemsSource);
+		}
+		else if (e.PropertyName is nameof(Items) or nameof(SortDescriptions) && Items is not null)
 		{
 			Items.SortDescriptions.Clear();
 
