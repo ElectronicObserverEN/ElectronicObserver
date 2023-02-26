@@ -181,8 +181,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 	private void SortDescriptionsChanged()
 	{
-		// Do nothing if source is ICollectionView, sorting is already correct in that case
-		if (AssociatedObject is null or ICollectionView) return;
+		if (AssociatedObject is null) return;
 
 		// need to save the new value cause SortDescriptions.Clear() will wipe it
 		List<SortDescription> sortDescriptions = SortDescriptions;
