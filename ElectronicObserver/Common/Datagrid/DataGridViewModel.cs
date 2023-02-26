@@ -15,6 +15,26 @@ public partial class DataGridViewModel : ObservableObject
 
 	public DataGridTranslationViewModel DataGrid { get; set; } = new();
 
+	public ICollectionView? Items { get; set; }
+
+	public DataGridViewModel()
+	{
+		PropertyChanged += DataGridViewModel_PropertyChanged;
+	}
+
+	private void DataGridViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is nameof(Items) or nameof(SortDescriptions) && Items is not null)
+		{
+			Items.SortDescriptions.Clear();
+
+			foreach (SortDescription sortDescription in SortDescriptions)
+			{
+				Items.SortDescriptions.Add(sortDescription);
+			}
+		}
+	}
+
 	[RelayCommand]
 	private void OpenColumnSelector()
 	{

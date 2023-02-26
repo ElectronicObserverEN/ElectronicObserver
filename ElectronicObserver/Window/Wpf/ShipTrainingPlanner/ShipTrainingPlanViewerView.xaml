@@ -52,7 +52,7 @@
 					ColumnWidth="90"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding PlansFiltered}"
+					ItemsSource="{Binding DataGridViewModel.Items}"
 					SelectedItem="{Binding SelectedPlan}"
 					SelectionMode="Single"
 					SelectionUnit="FullRow"
