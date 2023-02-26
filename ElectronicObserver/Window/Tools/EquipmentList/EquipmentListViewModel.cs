@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -37,7 +40,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public List<EquipmentListRow> Rows { get; set; } = new();
 	public EquipmentListRow? SelectedRow { get; set; }
 
-	public List<EquipmentListDetailRow> DetailRows { get; set; } = new();
+	public ObservableCollection<EquipmentListDetailRow> DetailRows { get; set; } = new();
 
 	public bool ShowLockedEquipmentOnly { get; set; }
 
@@ -50,6 +53,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public EquipmentListViewModel()
 	{
 		DialogEquipmentList = Ioc.Default.GetService<DialogEquipmentListTranslationViewModel>()!;
+
+		EquipmentDetailGridViewModel.Items = CollectionViewSource.GetDefaultView(new List<EquipmentListDetailRow>());
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -270,7 +275,12 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 			}
 		}
 
-		DetailRows = GroupRows(rows).ToList();
+		DetailRows.Clear();
+
+		foreach (EquipmentListDetailRow detailRow in GroupRows(rows))
+		{
+			DetailRows.Add(detailRow);
+		}
 	}
 
 	private static IEnumerable<EquipmentListDetailRow> GroupRows(IEnumerable<EquipmentListDetailRow> rows) =>

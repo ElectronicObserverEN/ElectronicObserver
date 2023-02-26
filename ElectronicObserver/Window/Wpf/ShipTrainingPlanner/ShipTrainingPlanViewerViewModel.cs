@@ -101,6 +101,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private void UpdatePlanList()
 	{
+		if (DataGridViewModel.Items is null) return;
 		DataGridViewModel.Items.Filter = plan => DisplayFinished || ((plan is ShipTrainingPlanViewModel planTyped) && planTyped.PlanFinished);
 	}
 
