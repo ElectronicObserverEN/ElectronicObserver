@@ -142,14 +142,31 @@ public abstract class ProgressData : IIdentifiable
 			QuestType = q.Type;
 		}
 
+		// quests where 50% still means 2/3 progress
+		static bool IsOldQuest(int questId) => questId is
+			256 or // BM2
+			261 or // BW10
+			303 or // C2
+			307 or // C5
+			324 or // C22
+			331 or // C31
+			333 or // C33
+			335 or // C35
+			337 or // C38
+			402 or // D2
+			416 or // D15
+			607 or // F7
+			612 or // F11
+			810 or // B63
+			886; // B119
+
 		Progress = q.Progress switch
 		{
 			// 50%
 			1 => ProgressMax switch
 			{
-				// BW10 is an exception
-				3 when QuestID is 261 => 2,
-				3 => 1,
+				3 when !IsOldQuest(QuestID) => 1,
+
 				_ => (int)Math.Max(Progress, Math.Ceiling((ProgressMax + SharedCounterShift) * 0.5) - SharedCounterShift),
 			},
 
