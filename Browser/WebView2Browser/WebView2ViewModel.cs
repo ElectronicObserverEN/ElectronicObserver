@@ -372,7 +372,7 @@ public class WebView2ViewModel : BrowserViewModel
 	{
 		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration.UseGadgetRedirect)
 		{
-			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
+			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://electronicobserveren.github.io/cache/gadget_html5/");
 		}
 		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
 		{
