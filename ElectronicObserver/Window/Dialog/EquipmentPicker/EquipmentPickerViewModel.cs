@@ -20,12 +20,13 @@ public abstract partial class EquipmentPickerViewModel : WindowViewModelBase
 	protected EquipmentPickerViewModel()
 	{
 		DataGridViewModel = new(new(AllEquipments));
-		RefreshList();
+		DataGridViewModel.FilterValue = Filters.MeetsFilterCondition;
+
 		Filters.PropertyChanged += Filters_PropertyChanged;
 	}
 
 	private void RefreshList() =>
-		DataGridViewModel.FilterValue = Filters.MeetsFilterCondition;
+		DataGridViewModel.Items.Refresh();
 
 	private void Filters_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
