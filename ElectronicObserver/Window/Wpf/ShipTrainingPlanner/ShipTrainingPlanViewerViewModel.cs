@@ -41,7 +41,10 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
 
-		DataGridViewModel = new(Plans);
+		DataGridViewModel = new(Plans)
+		{
+			FilterValue = plan => DisplayFinished || !plan.PlanFinished
+		};
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
@@ -99,11 +102,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		if (e.PropertyName is nameof(ShipTrainingPlanViewModel.PlanFinished)) UpdatePlanList();
 	}
 
-	private void UpdatePlanList()
-	{
-		if (DataGridViewModel.Items is null) return;
-		DataGridViewModel.FilterValue = plan => DisplayFinished || !plan.PlanFinished;
-	}
+	private void UpdatePlanList() => DataGridViewModel.Items.Refresh();
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
 	{

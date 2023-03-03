@@ -23,7 +23,6 @@ public partial class DataGridViewModel<T> : ObservableObject
 	public DataGridViewModel(ObservableCollection<T> items) : this()
 	{
 		ItemsSource = items;
-		OnPropertyChanged(nameof(ItemsSource));
 	}
 
 	public DataGridViewModel()
