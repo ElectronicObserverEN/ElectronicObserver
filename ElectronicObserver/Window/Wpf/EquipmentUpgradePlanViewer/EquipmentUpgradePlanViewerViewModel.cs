@@ -14,7 +14,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 {
 	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFiltered { get; set; } = new();
 
-	public DataGridViewModel<EquipmentUpgradePlanItemViewModel> DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<EquipmentUpgradePlanItemViewModel> DataGridViewModel { get; set; }
 
 	public EquipmentUpgradePlanViewerTranslationViewModel Translation { get; }
 

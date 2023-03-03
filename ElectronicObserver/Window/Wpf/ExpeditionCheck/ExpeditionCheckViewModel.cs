@@ -17,7 +17,7 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 
 	public ObservableCollection<ExpeditionCheckRow> Rows { get; } = new();
 
-	public DataGridViewModel<ExpeditionCheckRow> DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ExpeditionCheckRow> DataGridViewModel { get; set; }
 
 	public ExpeditionCheckViewModel() : base(Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!.Title, "ExpeditionCheck",
 		ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck))
