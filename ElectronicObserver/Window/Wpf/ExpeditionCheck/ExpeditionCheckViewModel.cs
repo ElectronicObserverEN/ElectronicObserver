@@ -17,12 +17,14 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 
 	public ObservableCollection<ExpeditionCheckRow> Rows { get; } = new();
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ExpeditionCheckRow> DataGridViewModel { get; set; } = new();
 
 	public ExpeditionCheckViewModel() : base(Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!.Title, "ExpeditionCheck",
 		ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck))
 	{
 		ExpeditionCheckTranslation = Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!;
+
+		DataGridViewModel = new(Rows);
 
 		Title = ExpeditionCheckTranslation.Title;
 		ExpeditionCheckTranslation.PropertyChanged += (_, _) => Title = ExpeditionCheckTranslation.Title;

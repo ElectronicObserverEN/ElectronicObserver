@@ -43,7 +43,7 @@
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding ShipsFiltered}"
+			ItemsSource="{Binding DataGridViewModel.Items}"
 			SelectedItem="{Binding SelectedShip}"
 			SelectionMode="Single"
 			>

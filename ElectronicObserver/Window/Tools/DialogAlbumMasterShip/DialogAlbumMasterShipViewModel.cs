@@ -31,7 +31,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	public DialogAlbumMasterShipTranslationViewModel DialogAlbumMasterShip { get; }
 	private TransliterationService TransliterationService { get; }
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ShipDataRecord> DataGridViewModel { get; set; } = new();
 
 	public string? SearchFilter { get; set; } = "";
 	public string? RomajiSearchFilter { get; set; } = "";
@@ -54,10 +54,6 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		_ => DialogAlbumMasterShip.TitleParameterMax
 	};
 
-	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
-	// probably due to multiple enumeration
-	public List<ShipDataRecord> Ships { get; set; }
-
 	public int Level { get; set; } = 175;
 	public ShipDataRecord? SelectedShip { get; set; }
 
@@ -75,7 +71,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
 
 		AllShips = KCDatabase.Instance.MasterShips.Values.Select(s => new ShipDataRecord(s));
-		Ships = AllShips.ToList();
+		DataGridViewModel.AddRange(AllShips);
 
 		PopulateCache();
 
@@ -106,17 +102,18 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(RomajiSearchFilter)) return;
 
-			Ships = AllShips.Where(s => RomajiSearchFilter switch
+			DataGridViewModel.ItemsSource.Clear();
+			DataGridViewModel.AddRange(AllShips.Where(s => RomajiSearchFilter switch
 			{
 				null or "" => true,
 				string f => TransliterationService.Matches(s.Ship, SearchFilter ?? "", f),
-			}).ToList();
+			}));
 		};
 	}
 
 	private void PopulateCache()
 	{
-		foreach (ShipDataRecord ship in Ships)
+		foreach (ShipDataRecord ship in DataGridViewModel.ItemsSource)
 		{
 			TransliterationService.GetRomajiName(ship.Ship);
 		}
@@ -132,7 +129,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	{
 		if (ship is null) return;
 
-		SelectedShip = Ships.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID)
+		SelectedShip = DataGridViewModel.ItemsSource.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID)
 			?? AllShips.FirstOrDefault(s => s.Ship.ShipID == ship.ShipID);
 	}
 

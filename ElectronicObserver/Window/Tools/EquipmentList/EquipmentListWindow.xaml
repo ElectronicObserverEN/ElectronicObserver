@@ -98,7 +98,7 @@
 				ColumnWidth="*"
 				HeadersVisibility="Column"
 				IsReadOnly="True"
-				ItemsSource="{Binding Rows}"
+				ItemsSource="{Binding EquipmentGridViewModel.Items}"
 				SelectedItem="{Binding SelectedRow}"
 				SelectionMode="Single"
 				>
@@ -225,7 +225,7 @@
 				ColumnWidth="*"
 				HeadersVisibility="Column"
 				IsReadOnly="True"
-				ItemsSource="{Binding DetailRows}"
+				ItemsSource="{Binding EquipmentDetailGridViewModel.Items}"
 				>
 				<DataGrid.ContextMenu>
 					<ContextMenu>

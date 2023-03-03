@@ -39,7 +39,6 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	public List<MapNode> Cells { get; set; } = new() { new(MapAny) };
 	public List<object> Difficulties { get; set; } = new() { MapAny };
 
-	public List<DropRecordRow> Rows { get; set; }
 	public List<DropRecordRow> SelectedRows { get; set; } = new();
 
 	public ImageSource? ShipIcon { get; }
@@ -82,7 +81,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<DropRecordRow> DataGridViewModel { get; set; } = new();
 
 	public DropRecordViewerViewModel()
 	{
@@ -146,7 +145,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(MergeRows)) return;
 
-			Rows = new();
+			DataGridViewModel.ItemsSource.Clear();
 		};
 
 		Loaded();
@@ -633,11 +632,13 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 			*/
 
-			Rows = MergeRows switch
+			rows = MergeRows switch
 			{
 				true => rows.OrderByDescending(r => r.Count).ToList(),
 				_ => rows.OrderByDescending(r => r.Index).ToList()
 			};
+
+			DataGridViewModel.AddRange(rows);
 
 			StatusInfoText = EncycloRes.SearchComplete + " (" + (int)(DateTime.Now - StatusInfoTag).TotalMilliseconds + " ms)";
 		}
@@ -658,14 +659,14 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		if (MergeRows)
 		{
 			int count = SelectedRows.Select(r => r.Count).Sum();
-			int allcount = Rows.Select(r => r.Count).Sum();
+			int allcount = DataGridViewModel.ItemsSource.Select(r => r.Count).Sum();
 
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				count, allcount, (double)count / allcount);
 		}
 		else
 		{
-			int allcount = Rows.Count;
+			int allcount = DataGridViewModel.ItemsSource.Count;
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				selectedCount, allcount, (double)selectedCount / allcount);
 		}

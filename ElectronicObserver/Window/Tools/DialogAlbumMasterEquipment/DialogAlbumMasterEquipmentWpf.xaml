@@ -88,7 +88,7 @@
 					EnableRowVirtualization="True"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding Equipment, IsAsync=True, NotifyOnTargetUpdated=True}"
+					ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True, NotifyOnTargetUpdated=True}"
 					SelectedItem="{Binding SelectedEquipment}"
 					SelectionMode="Single"
 					SelectionUnit="FullRow"

@@ -52,7 +52,7 @@ public class AirDefenseViewModel : WindowViewModelBase
 		FormationType.FourthPatrolFormation,
 	};
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<AirDefenseRowViewModel> DataGridViewModel { get; set; } = new();
 
 	public AirDefenseViewModel()
 	{
@@ -152,13 +152,13 @@ public class AirDefenseViewModel : WindowViewModelBase
 		double[] aaRocketBarrageProbability = ships.Select(ship => Calculator.GetAARocketBarrageProbability(ship)).ToArray();
 
 
-		Rows.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 		for (int i = 0; i < ships.Length; i++)
 		{
 			if (ships[i] == null) continue;
 
-			Rows.Add(new
+			DataGridViewModel.ItemsSource.Add(new
 			(
 				this,
 				ships[i].Name,

@@ -30,13 +30,12 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	private ResourceRecord ResourceRecord { get; }
 	public SenkaViewerTranslationViewModel SenkaViewer { get; }
 
-	public List<SenkaRecord> SenkaRecords { get; set; } = new();
 	public List<SenkaRecord> SelectedSenkaRecords { get; set; } = new();
 
 	private List<SenkaRecord> TotalCalculationList => SelectedSenkaRecords switch
 	{
 		{ Count: > 0 } => SelectedSenkaRecords,
-		_ => SenkaRecords,
+		_ => DataGridViewModel.ItemsSource.ToList(),
 	};
 
 	public string TotalSenka => $"{SenkaViewer.Senka}：{TotalCalculationList.Sum(s => s.TotalSenkaGains):0.##}";
@@ -56,7 +55,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<SenkaRecord> DataGridViewModel { get; set; } = new();
 
 	public SenkaViewerViewModel()
 	{
@@ -140,7 +139,8 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 				.Sum(GetQuestSenka);
 		}
 
-		SenkaRecords = senkaRecords;
+		DataGridViewModel.ItemsSource.Clear();
+		DataGridViewModel.AddRange(senkaRecords);
 	}
 
 	public static DateTime GetSessionStart(DateTime time)

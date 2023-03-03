@@ -14,7 +14,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 {
 	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFiltered { get; set; } = new();
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<EquipmentUpgradePlanItemViewModel> DataGridViewModel { get; set; } = new();
 
 	public EquipmentUpgradePlanViewerTranslationViewModel Translation { get; }
 
@@ -31,6 +31,8 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
+
+		DataGridViewModel = new(PlannedUpgradesFiltered);
 
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;

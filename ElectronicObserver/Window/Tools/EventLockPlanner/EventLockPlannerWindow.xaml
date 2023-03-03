@@ -373,7 +373,7 @@
 				DataContext="{Binding NoLockGroup}"
 				HeadersVisibility="Column"
 				IsReadOnly="True"
-				ItemsSource="{Binding Ships}"
+				ItemsSource="{Binding DataContext.DataGridViewModel.Items, Source={StaticResource Proxy}}"
 				SelectionMode="Single"
 				>
 				<DataGrid.ContextMenu>

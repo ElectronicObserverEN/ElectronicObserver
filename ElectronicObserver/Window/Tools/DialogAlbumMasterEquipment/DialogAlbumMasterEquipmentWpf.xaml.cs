@@ -19,7 +19,7 @@ public partial class DialogAlbumMasterEquipmentWpf
 
 	public DialogAlbumMasterEquipmentWpf(int equipId) : this()
 	{
-		ViewModel.SelectedEquipment = ViewModel.Equipment
+		ViewModel.SelectedEquipment = ViewModel.DataGridViewModel.ItemsSource
 			.FirstOrDefault(e => e.Equipment.ID == equipId);
 	}
 

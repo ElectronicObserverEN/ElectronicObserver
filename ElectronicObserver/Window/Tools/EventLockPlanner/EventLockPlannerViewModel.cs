@@ -37,13 +37,15 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	public delegate void TagChangedEventHandler();
 	public static event TagChangedEventHandler TagChanged = delegate { };
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ShipLockViewModel> DataGridViewModel { get; set; }
 
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips, LockTranslationData lockTranslator)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
 		DataSerializationService = Ioc.Default.GetService<DataSerializationService>()!;
 		LockTranslator = lockTranslator;
+
+		DataGridViewModel = new(NoLockGroup.Ships);
 
 		AllShipLocks = allShips.Select(s => new ShipLockViewModel(s)).ToList();
 	}

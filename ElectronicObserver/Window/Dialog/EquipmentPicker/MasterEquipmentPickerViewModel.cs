@@ -13,5 +13,7 @@ public class MasterEquipmentPickerViewModel : EquipmentPickerViewModel
 					.Where(s => !s.IsAbyssalEquipment)
 					.Select(s => new EquipmentDataMock(s))
 					.Cast<IEquipmentData>()
+					.OrderBy(s => s.MasterEquipment.CategoryType)
+					.ThenBy(s => s.MasterID)
 					.ToList();
 }

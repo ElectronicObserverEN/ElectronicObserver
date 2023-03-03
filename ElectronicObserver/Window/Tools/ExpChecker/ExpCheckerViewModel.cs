@@ -19,7 +19,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 {
 	public ExpCheckerTranslationViewModel ExpChecker { get; }
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<DataGridItem> DataGridViewModel { get; set; }
 
 	private string DefaultTitle => ExpChecker.Title;
 	public string Title { get; set; }
@@ -45,6 +45,8 @@ public class ExpCheckerViewModel : WindowViewModelBase
 
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
+
+		DataGridViewModel = new(DataGridItems);
 
 		PropertyChanged += (sender, args) =>
 		{

@@ -14,8 +14,6 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 {
 	private List<ShipDataViewModel> AllShips { get; set; }
 
-	public ObservableCollection<ShipDataViewModel> ShipsFiltered { get; } = new();
-
 	public ShipFilterViewModel Filters { get; } = new();
 
 	public IShipData? PickedShip { get; private set; }
@@ -23,11 +21,12 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 
 	public ShipDataPickerTranslationViewModel ShipDataPicker { get; } = new();
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ShipDataViewModel> DataGridViewModel { get; set; }
 
 	public ShipDataPickerViewModel()
 	{
 		AllShips = KCDatabase.Instance.Ships.Values.Cast<IShipData>().Select(s => new ShipDataViewModel(s)).ToList();
+		DataGridViewModel = new(new(AllShips));
 
 		Filters.PropertyChanged += (_, _) => ReloadShips();
 
@@ -44,18 +43,7 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 	}
 
 	private void ReloadShips()
-	{
-		ShipsFiltered.Clear();
-
-		List<ShipDataViewModel> filteredShips = AllShips
-			.Where(s => Filters.MeetsFilterCondition(s.Ship))
-			.ToList();
-
-		foreach (ShipDataViewModel ship in filteredShips)
-		{
-			ShipsFiltered.Add(ship);
-		}
-	}
+		=> DataGridViewModel.FilterValue = s => Filters.MeetsFilterCondition(s.Ship);
 
 	[RelayCommand]
 	public void SelectShip()

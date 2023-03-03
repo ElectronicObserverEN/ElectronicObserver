@@ -226,7 +226,7 @@
 			ColumnWidth="*"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding Rows}"
+			ItemsSource="{Binding DataGridViewModel.Items}"
 			SelectionChanged="Selector_OnSelectionChanged"
 			>
 			<DataGrid.ColumnHeaderStyle>

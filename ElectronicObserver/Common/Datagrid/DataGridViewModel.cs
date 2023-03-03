@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -9,19 +10,24 @@ using ElectronicObserver.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Common.Datagrid;
 
-public partial class DataGridViewModel<T> : ObservableObject where T : IEnumerable
+public partial class DataGridViewModel<T> : ObservableObject
 {
 	public List<ColumnProperties> ColumnProperties { get; set; } = new();
 	public List<SortDescription> SortDescriptions { get; set; } = new();
 
 	public DataGridTranslationViewModel DataGrid { get; set; } = new();
 
-	public T ItemsSource { get; set; }
-	public ICollectionView Items { get; set; }
+	public ICollectionView Items { get; private set; }
+	public ObservableCollection<T> ItemsSource { get; private set; }
 
-	public DataGridViewModel(T items)
+	public DataGridViewModel(ObservableCollection<T> items) : this()
 	{
 		ItemsSource = items;
+	}
+
+	public DataGridViewModel()
+	{
+		ItemsSource = new();
 		Items = CollectionViewSource.GetDefaultView(ItemsSource);
 
 		PropertyChanged += DataGridViewModel_PropertyChanged;
@@ -29,12 +35,10 @@ public partial class DataGridViewModel<T> : ObservableObject where T : IEnumerab
 
 	private void DataGridViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(ItemsSource))
+		if (e.PropertyName is nameof(Items) or nameof(SortDescriptions) or nameof(FilterValue))
 		{
-			Items = CollectionViewSource.GetDefaultView(ItemsSource);
-		}
-		else if (e.PropertyName is nameof(Items) or nameof(SortDescriptions) && Items is not null)
-		{
+			Items.Filter = CollectionFilter;
+
 			Items.SortDescriptions.Clear();
 
 			foreach (SortDescription sortDescription in SortDescriptions)
@@ -42,7 +46,33 @@ public partial class DataGridViewModel<T> : ObservableObject where T : IEnumerab
 				Items.SortDescriptions.Add(sortDescription);
 			}
 		}
+		if (e.PropertyName is nameof(ItemsSource))
+		{
+			Items = CollectionViewSource.GetDefaultView(ItemsSource);
+		}
 	}
+
+	#region Filtering
+	public delegate bool Filter(T item);
+	public Filter? FilterValue { get; set; }
+
+	private bool CollectionFilter(object item)
+	{
+		if (FilterValue is null) return true;
+
+		return (item is T typedItem && FilterValue(typedItem));
+	}
+	#endregion
+
+	#region Data manipulation
+	public void AddRange(IEnumerable<T> items)
+	{
+		List<T> newCollection = ItemsSource.ToList();
+		newCollection.AddRange(items);
+
+		ItemsSource = new(newCollection);
+	}
+	#endregion
 
 	[RelayCommand]
 	private void OpenColumnSelector()

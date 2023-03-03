@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -29,7 +30,6 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	public List<object> Flagships { get; set; }
 	public List<object> Recipes { get; set; }
 
-	public List<DevelopmentRecordRow> Rows { get; set; } = new();
 	public List<DevelopmentRecordRow> SelectedRows { get; set; } = new();
 
 	public object SelectedCategory { get; set; } = DevelopmentRecordOption.All;
@@ -65,7 +65,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDevelopmentRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<DevelopmentRecordRow> DataGridViewModel { get; set; } = new();
 
 	public DevelopmentRecordViewerViewModel()
 	{
@@ -87,7 +87,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(MergeRows)) return;
 
-			Rows = new();
+			DataGridViewModel.ItemsSource.Clear();
 		};
 
 		PropertyChanged += (sender, args) =>
@@ -433,9 +433,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		{
 			if(e.Result is not List<DevelopmentRecordRow> rows) return;
 
-			Rows = rows
-				.OrderByDescending(r => r.Index)
-				.ToList();
+			DataGridViewModel.AddRange(rows.OrderByDescending(r => r.Index));
 
 			StatusInfoText = EncycloRes.SearchComplete + "(" + (int)(DateTime.Now - StatusInfoTag).TotalMilliseconds + " ms)";
 		}
@@ -454,14 +452,14 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		if (MergeRows)
 		{
 			int count = SelectedRows.Sum(r => r.Count);
-			int allcount = Rows.Sum(r => r.Count);
+			int allcount = DataGridViewModel.ItemsSource.Sum(r => r.Count);
 
 			StatusInfoText = string.Format(DialogDevelopmentRecordViewer.SelectedItems + ": {0} / {1} ({2:p1})",
 				count, allcount, (double)count / allcount);
 		}
 		else
 		{
-			int allcount = Rows.Count;
+			int allcount = DataGridViewModel.ItemsSource.Count;
 			StatusInfoText = string.Format(DialogDevelopmentRecordViewer.SelectedItems + ": {0} / {1} ({2:p1})",
 				selectedCount, allcount, (double)selectedCount / allcount);
 		}
@@ -481,7 +479,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			return;
 		}
 
-		Rows.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 		StatusInfoText = EncycloRes.Searching + "...";
 		StatusInfoTag = DateTime.Now;

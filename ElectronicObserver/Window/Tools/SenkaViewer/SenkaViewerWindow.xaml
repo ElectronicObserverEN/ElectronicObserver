@@ -108,7 +108,7 @@
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding SenkaRecords}"
+			ItemsSource="{Binding DataGridViewModel.Items}"
 			SelectionChanged="Selector_OnSelectionChanged"
 			>
 			<DataGrid.ContextMenu>

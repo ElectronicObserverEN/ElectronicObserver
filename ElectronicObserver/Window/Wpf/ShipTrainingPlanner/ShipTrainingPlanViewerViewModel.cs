@@ -26,7 +26,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ShipTrainingPlanViewModel> DataGridViewModel { get; set; }
 
 	public bool DisplayFinished { get; set; } = false;
 
@@ -41,7 +41,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
 
-		DataGridViewModel.Items = CollectionViewSource.GetDefaultView(Plans);
+		DataGridViewModel = new(Plans);
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
@@ -102,7 +102,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private void UpdatePlanList()
 	{
 		if (DataGridViewModel.Items is null) return;
-		DataGridViewModel.Items.Filter = plan => DisplayFinished || ((plan is ShipTrainingPlanViewModel planTyped) && planTyped.PlanFinished);
+		DataGridViewModel.FilterValue = plan => DisplayFinished || !plan.PlanFinished;
 	}
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)

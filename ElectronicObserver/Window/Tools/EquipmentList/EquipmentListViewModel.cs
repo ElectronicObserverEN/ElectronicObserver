@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Data;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -30,12 +27,12 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		Filter = "CSV|*.csv|File|*",
 	};
 
-	public DataGridViewModel<List<EquipmentListRow>> EquipmentGridViewModel { get; set; }
+	public DataGridViewModel<EquipmentListRow> EquipmentGridViewModel { get; set; }
 	public GridLength EquipmentGridWidth { get; set; } = GridLength.Auto;
 
 	// todo: doesn't seem to work in the current implementation
 	// Select an equipment with multiple detail items, sort by something, select a different equipment, sort data is lost.
-	public DataGridViewModel<List<EquipmentListDetailRow>> EquipmentDetailGridViewModel { get; set; }
+	public DataGridViewModel<EquipmentListDetailRow> EquipmentDetailGridViewModel { get; set; }
 	public EquipmentListRow? SelectedRow { get; set; }
 
 	public bool ShowLockedEquipmentOnly { get; set; }
@@ -50,8 +47,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	{
 		DialogEquipmentList = Ioc.Default.GetService<DialogEquipmentListTranslationViewModel>()!;
 
-		EquipmentGridViewModel = new(new());
-		EquipmentDetailGridViewModel = new(new());
+		EquipmentGridViewModel = new();
+		EquipmentDetailGridViewModel = new();
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -152,11 +149,11 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		for (int i = 0; i < rows.Count; i++)
 			rows[i].Tag = i;
 
-		EquipmentGridViewModel.ItemsSource = rows
+		EquipmentGridViewModel.ItemsSource.Clear();
+		EquipmentGridViewModel.AddRange(rows
 			.OrderBy(r => masterEquipments[r.Id].CategoryType)
 			.ThenBy(r => r.Id)
-			.ThenBy(r => r.Name)
-			.ToList();
+			.ThenBy(r => r.Name));
 	}
 
 	private void UpdateDetailView(int equipmentID)

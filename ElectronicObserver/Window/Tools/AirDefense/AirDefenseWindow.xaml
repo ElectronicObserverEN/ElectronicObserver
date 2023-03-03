@@ -185,7 +185,7 @@
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding Rows}"
+			ItemsSource="{Binding DataGridViewModel.ItemsSource}"
 			>
 
 			<DataGrid.ContextMenu>

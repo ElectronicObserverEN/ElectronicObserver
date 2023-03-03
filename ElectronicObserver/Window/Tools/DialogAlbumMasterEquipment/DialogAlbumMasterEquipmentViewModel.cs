@@ -26,11 +26,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	private IEnumerable<EquipmentDataViewModel> AllEquipment { get; }
 	public DialogAlbumMasterEquipmentTranslationViewModel DialogAlbumMasterEquipment { get; }
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
-
-	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
-	// probably due to multiple enumeration
-	public List<EquipmentDataViewModel> Equipment { get; set; }
+	public DataGridViewModel<EquipmentDataViewModel> DataGridViewModel { get; set; } = new();
 
 	private bool Matches(IEquipmentDataMaster equip, string filter)
 	{
@@ -61,7 +57,8 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	{
 		AllEquipment = KCDatabase.Instance.MasterEquipments.Values
 			.Select(e => new EquipmentDataViewModel(e));
-		Equipment = AllEquipment.ToList();
+
+		DataGridViewModel.AddRange(AllEquipment);
 
 		DialogAlbumMasterEquipment =
 			Ioc.Default.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
@@ -70,11 +67,12 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(SearchFilter)) return;
 
-			Equipment = AllEquipment.Where(e => SearchFilter switch
+			DataGridViewModel.ItemsSource.Clear();
+			DataGridViewModel.AddRange(AllEquipment.Where(e => SearchFilter switch
 			{
 				null or "" => true,
 				string f => Matches(e.Equipment, f),
-			}).ToList();
+			}));
 		};
 	}
 

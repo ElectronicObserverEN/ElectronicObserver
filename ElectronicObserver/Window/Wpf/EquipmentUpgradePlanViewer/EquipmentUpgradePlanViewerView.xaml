@@ -350,7 +350,7 @@
 					ColumnWidth="90"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"
+					ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True}"
 					>
 
 					<DataGrid.ContextMenu>

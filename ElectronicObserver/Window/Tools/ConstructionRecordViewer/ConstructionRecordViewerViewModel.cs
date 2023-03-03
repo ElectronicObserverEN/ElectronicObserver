@@ -31,7 +31,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 	public List<object> DevelopmentMaterials { get; set; }
 	public List<object> EmptyDockCounts { get; set; }
 
-	public List<ConstructionRecordRow> Rows { get; set; } = new();
 	public List<ConstructionRecordRow> SelectedRows { get; set; } = new();
 
 	public object SelectedShipType { get; set; } = ConstructionRecordOption.All;
@@ -65,7 +64,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogConstructionRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ConstructionRecordRow> DataGridViewModel { get; set; } = new();
 
 	public ConstructionRecordViewerViewModel()
 	{
@@ -87,7 +86,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not (nameof(MergeRows) or nameof(IsLargeConstruction) or nameof(SelectedShip))) return;
 
-			Rows = new();
+			DataGridViewModel.ItemsSource.Clear();
 		};
 
 		PropertyChanged += (sender, args) =>
@@ -514,11 +513,8 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		{
 			if (e.Result is not List<ConstructionRecordRow> rows) return;
 
-			Rows = rows;
-			/*
-			RecordView.Sort(RecordView.SortedColumn ?? RecordView_Header,
-				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
-			*/
+			DataGridViewModel.AddRange(rows);
+
 			StatusInfoText = EncycloRes.SearchComplete + "(" + (int)(DateTime.Now - StatusInfoTag).TotalMilliseconds + " ms)";
 		}
 		else
@@ -624,7 +620,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		}
 		else
 		{
-			int allcount = Rows.Count;
+			int allcount = DataGridViewModel.ItemsSource.Count;
 			StatusInfoText = string.Format(Properties.Window.Dialog.DialogDropRecordViewer.SelectedItems,
 				selectedCount, allcount, (double)selectedCount / allcount);
 		}
@@ -643,7 +639,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			return;
 		}
 
-		Rows.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 		/*
 		// column initialize
