@@ -334,7 +334,8 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			rows[lv - minlv] = row;
 		}
 
-		DataGridItems = rows.ToObservableCollection();
+		DataGridItems.Clear();
+		DataGridViewModel.AddRange(rows);
 
 
 		Title = DefaultTitle + " - " + selectedShip.NameWithLevel;
@@ -608,7 +609,8 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			rows[lv - minlv] = row;
 		}
 
-		DataGridItems = rows.ToObservableCollection();
+		DataGridItems.Clear();
+		DataGridViewModel.AddRange(rows);
 
 		Title = DefaultTitle + " - " + selectedShip.NameWithLevel;
 		GroupExpText = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, {ExpChecker.ASW} {selectedShip.ASWBase} ({ExpChecker.Modernization}+{selectedShip.ASWModernized})";
