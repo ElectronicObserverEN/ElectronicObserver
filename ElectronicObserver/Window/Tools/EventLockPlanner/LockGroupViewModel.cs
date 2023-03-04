@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -136,7 +137,8 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 	public void Drop(IDropInfo dropInfo)
 	{
 		if (dropInfo.Data is not ShipLockViewModel shipLock) return;
-		if (dropInfo.DragInfo.SourceCollection is not ObservableCollection<ShipLockViewModel> source) return;
+		if (dropInfo.DragInfo.SourceCollection is not ListCollectionView source) return;
+		if (source.SourceCollection is not ObservableCollection<ShipLockViewModel>) return;
 
 		if (dropInfo.DragInfo.VisualSource is not ItemsControl { DataContext: LockGroupViewModel lockGroup }) return;
 
