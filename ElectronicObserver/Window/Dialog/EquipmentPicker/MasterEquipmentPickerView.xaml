@@ -71,7 +71,7 @@
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding DataGridViewModel.ItemsSource}"
+			ItemsSource="{Binding DataGridViewModel.Items}"
 			SelectedItem="{Binding SelectedEquipment}"
 			SelectionMode="Single"
 			VerticalScrollBarVisibility="Visible"
