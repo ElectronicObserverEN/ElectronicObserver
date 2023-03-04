@@ -29,11 +29,13 @@
 
 		<DataGrid
 			Grid.Row="0"
+			MaxHeight="300"
 			AutoGenerateColumns="False"
 			CanUserAddRows="False"
 			CanUserDeleteRows="False"
 			HeadersVisibility="Column"
 			ItemsSource="{Binding Columns}"
+			VerticalScrollBarVisibility="Auto"
 			>
 
 			<DataGrid.ColumnHeaderStyle>
