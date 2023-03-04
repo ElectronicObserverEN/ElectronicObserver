@@ -165,51 +165,51 @@
     <value>優先順位</value>
   </data>
   <data name="ASWBonusCurrent" xml:space="preserve">
-    <value>??? (ASW bonus (Current))</value>
+    <value>対潜改修</value>
   </data>
   <data name="ASWBonusTarget" xml:space="preserve">
-    <value>??? (ASW bonus (Target))</value>
+    <value>対潜改修目標</value>
   </data>
   <data name="ASWCurrent" xml:space="preserve">
-    <value>??? (ASW (Current))</value>
+    <value>対潜</value>
   </data>
   <data name="ASWTarget" xml:space="preserve">
-    <value>??? (ASW (Target))</value>
+    <value>対潜目標</value>
   </data>
   <data name="HPBonusCurrent" xml:space="preserve">
-    <value>??? (HP bonus (Current))</value>
+    <value>耐久改修</value>
   </data>
   <data name="HPBonusTarget" xml:space="preserve">
-    <value>??? (HP bonus (Target))</value>
+    <value>耐久改修目標</value>
   </data>
   <data name="HPCurrent" xml:space="preserve">
-    <value>??? (HP (Current))</value>
+    <value>耐久</value>
   </data>
   <data name="HPTarget" xml:space="preserve">
-    <value>??? (HP (Target))</value>
+    <value>耐久目標</value>
   </data>
   <data name="LevelCurrent" xml:space="preserve">
-    <value>??? (Level (Current))</value>
+    <value>レベル</value>
   </data>
   <data name="LevelTarget" xml:space="preserve">
-    <value>??? (Level (Target))</value>
+    <value>レベル目標</value>
   </data>
   <data name="LuckCurrent" xml:space="preserve">
-    <value>??? (Luck (Current))</value>
+    <value>運</value>
   </data>
   <data name="LuckTarget" xml:space="preserve">
-    <value>??? (Luck (Target))</value>
+    <value>運目標</value>
   </data>
   <data name="RemainingExp" xml:space="preserve">
-    <value>??? (Remaining exp.)</value>
+    <value>exp残</value>
   </data>
   <data name="ASWRemaining" xml:space="preserve">
-    <value>??? (ASW (Remaining))</value>
+    <value>対潜残</value>
   </data>
   <data name="HPRemaining" xml:space="preserve">
-    <value>??? (HP (Remaining))</value>
+    <value>耐久残</value>
   </data>
   <data name="LuckRemaining" xml:space="preserve">
-    <value>??? (Luck (Remaining))</value>
+    <value>運残</value>
   </data>
 </root>

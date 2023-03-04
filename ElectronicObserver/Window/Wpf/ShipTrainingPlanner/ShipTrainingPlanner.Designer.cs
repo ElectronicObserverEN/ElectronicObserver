@@ -79,7 +79,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (ASW bonus (Current)).
+        ///   Looks up a localized string similar to 対潜現在.
         /// </summary>
         internal static string ASWBonusCurrent {
             get {
@@ -88,7 +88,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (ASW bonus (Target)).
+        ///   Looks up a localized string similar to 対潜目標.
         /// </summary>
         internal static string ASWBonusTarget {
             get {
@@ -97,7 +97,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (ASW (Current)).
+        ///   Looks up a localized string similar to 対潜合計現在.
         /// </summary>
         internal static string ASWCurrent {
             get {
@@ -106,7 +106,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (ASW (Remaining)).
+        ///   Looks up a localized string similar to 対潜残.
         /// </summary>
         internal static string ASWRemaining {
             get {
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (ASW (Target)).
+        ///   Looks up a localized string similar to 対潜合計目標.
         /// </summary>
         internal static string ASWTarget {
             get {
