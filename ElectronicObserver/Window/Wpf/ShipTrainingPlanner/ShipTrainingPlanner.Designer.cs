@@ -106,6 +106,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (ASW (Remaining)).
+        /// </summary>
+        internal static string ASWRemaining {
+            get {
+                return ResourceManager.GetString("ASWRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (ASW (Target)).
         /// </summary>
         internal static string ASWTarget {
@@ -187,6 +196,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (HP (Remaining)).
+        /// </summary>
+        internal static string HPRemaining {
+            get {
+                return ResourceManager.GetString("HPRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ??? (HP (Target)).
         /// </summary>
         internal static string HPTarget {
@@ -228,6 +246,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         internal static string LuckCurrent {
             get {
                 return ResourceManager.GetString("LuckCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Luck (Remaining)).
+        /// </summary>
+        internal static string LuckRemaining {
+            get {
+                return ResourceManager.GetString("LuckRemaining", resourceCulture);
             }
         }
         

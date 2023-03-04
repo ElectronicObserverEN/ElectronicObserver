@@ -203,4 +203,13 @@ When enabled, you'll be notified when you can remodel Kamikaze to Kamikaze Kai a
   <data name="RemainingExp" xml:space="preserve">
     <value>Remaining exp.</value>
   </data>
+  <data name="ASWRemaining" xml:space="preserve">
+    <value>ASW (Remaining)</value>
+  </data>
+  <data name="HPRemaining" xml:space="preserve">
+    <value>HP (Remaining)</value>
+  </data>
+  <data name="LuckRemaining" xml:space="preserve">
+    <value>Luck (Remaining)</value>
+  </data>
 </root>

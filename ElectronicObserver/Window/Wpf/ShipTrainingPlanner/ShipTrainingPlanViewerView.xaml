@@ -258,6 +258,11 @@
 							Header="{Binding DataContext.ShipTrainingPlanner.HPTarget, Source={StaticResource Proxy}}"
 							Visibility="Collapsed"
 							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingHP, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPRemaining, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
 
 						<DataGridTextColumn
 							Binding="{Binding Ship.ASWModernized, Mode=OneWay}"
@@ -279,6 +284,11 @@
 							Header="{Binding DataContext.ShipTrainingPlanner.ASWTarget, Source={StaticResource Proxy}}"
 							Visibility="Collapsed"
 							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingASW, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWRemaining, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
 
 						<DataGridTextColumn
 							Binding="{Binding Ship.LuckBase, Mode=OneWay}"
@@ -288,6 +298,11 @@
 						<DataGridTextColumn
 							Binding="{Binding TargetLuck, Mode=OneWay}"
 							Header="{Binding DataContext.ShipTrainingPlanner.LuckTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingLuck, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LuckRemaining, Source={StaticResource Proxy}}"
 							Visibility="Collapsed"
 							/>
 					</DataGrid.Columns>
