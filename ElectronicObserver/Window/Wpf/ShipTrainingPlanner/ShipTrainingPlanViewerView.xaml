@@ -221,6 +221,75 @@
 
 						<DataGridTextColumn Binding="{Binding Priority}" Header="{Binding DataContext.ShipTrainingPlanner.Priority, Source={StaticResource Proxy}}" />
 
+						<!--  Hidden columns (available for sorting)  -->
+						<DataGridTextColumn
+							Binding="{Binding Ship.Level, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LevelCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetLevel, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LevelTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingExpToTarget, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.RemainingExp, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+
+						<DataGridTextColumn
+							Binding="{Binding Ship.HPMaxModernized, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPBonusCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetHPBonus, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPBonusTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding Ship.HPMax, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetHP, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+
+						<DataGridTextColumn
+							Binding="{Binding Ship.ASWModernized, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWBonusCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetASWBonus, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWBonusTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding Ship.ASWBase, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetASW, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+
+						<DataGridTextColumn
+							Binding="{Binding Ship.LuckBase, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LuckCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetLuck, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LuckTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
 					</DataGrid.Columns>
 
 				</DataGrid>

@@ -26,4 +26,17 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 	public string DisplayFinished => ShipTrainingPlanner.DisplayFinished;
 	public string RemoveFinishedPlans => ShipTrainingPlanner.RemoveFinishedPlans;
 	public string Priority => ShipTrainingPlanner.Priority;
+	public string ASWBonusCurrent => ShipTrainingPlanner.ASWBonusCurrent;
+	public string ASWBonusTarget => ShipTrainingPlanner.ASWBonusTarget;
+	public string ASWCurrent => ShipTrainingPlanner.ASWCurrent;
+	public string ASWTarget => ShipTrainingPlanner.ASWTarget;
+	public string HPBonusCurrent => ShipTrainingPlanner.HPBonusCurrent;
+	public string HPBonusTarget => ShipTrainingPlanner.HPBonusTarget;
+	public string HPCurrent => ShipTrainingPlanner.HPCurrent;
+	public string HPTarget => ShipTrainingPlanner.HPTarget;
+	public string LevelCurrent => ShipTrainingPlanner.LevelCurrent;
+	public string LevelTarget => ShipTrainingPlanner.LevelTarget;
+	public string LuckCurrent => ShipTrainingPlanner.LuckCurrent;
+	public string LuckTarget => ShipTrainingPlanner.LuckTarget;
+	public string RemainingExp => ShipTrainingPlanner.RemainingExp;
 }
