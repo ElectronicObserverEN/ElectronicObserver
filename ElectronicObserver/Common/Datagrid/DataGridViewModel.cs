@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -53,8 +54,7 @@ public partial class DataGridViewModel<T> : ObservableObject
 	}
 
 	#region Filtering
-	public delegate bool Filter(T item);
-	public Filter? FilterValue { get; set; }
+	public Func<T, bool>? FilterValue { get; set; }
 
 	private bool CollectionFilter(object item)
 	{
