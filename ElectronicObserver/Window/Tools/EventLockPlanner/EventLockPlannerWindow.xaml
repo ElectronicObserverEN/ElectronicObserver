@@ -72,7 +72,11 @@
 							</controls:ColorPicker.Resources>
 						</controls:ColorPicker>
 
-						<TextBox Margin="2" Text="{Binding Name}" />
+						<TextBox
+							Margin="2"
+							Foreground="{Binding Foreground}"
+							Text="{Binding Name}"
+							/>
 					</StackPanel>
 				</Border>
 
@@ -242,6 +246,7 @@
 													<TextBlock
 														Padding="2"
 														Background="{Binding Background}"
+														Foreground="{Binding Foreground}"
 														Text="{Binding Name}"
 														>
 														<TextBlock.ContextMenu>

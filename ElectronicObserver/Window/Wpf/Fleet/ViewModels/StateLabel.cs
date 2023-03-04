@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
@@ -77,11 +78,11 @@ public partial class StateLabel : ObservableObject
 		// AutoSize = true
 	};
 
-	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, System.Drawing.Color backColor)
+	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, Color backColor)
 	{
-		SetInformation(state, text, shortenedText, imageIndex, backColor, Utility.Configuration.Config.UI.ForeColor);
+		SetInformation(state, text, shortenedText, imageIndex, backColor, Utility.Configuration.Config.UI.ForeColor.ToWpfColor());
 	}
-	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, System.Drawing.Color backColor, System.Drawing.Color forecolor)
+	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, Color backColor, Color forecolor)
 	{
 		State = state;
 		Text = text;
@@ -94,7 +95,7 @@ public partial class StateLabel : ObservableObject
 
 	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex)
 	{
-		SetInformation(state, text, shortenedText, imageIndex, System.Drawing.Color.Transparent);
+		SetInformation(state, text, shortenedText, imageIndex, Colors.Transparent);
 	}
 
 	public void UpdateText()

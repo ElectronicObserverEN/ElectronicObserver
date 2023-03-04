@@ -22,15 +22,21 @@ public class ApiReqSortieBattleResponse
 	[Required]
 	public List<List<int>> ApiESlot { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEMaxhps { get; set; } = new();
+	public List<object> ApiEMaxhps { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiENowhps { get; set; } = new();
+	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_fParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

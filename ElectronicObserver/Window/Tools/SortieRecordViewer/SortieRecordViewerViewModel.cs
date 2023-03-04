@@ -18,6 +18,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
@@ -200,12 +201,26 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			if (IsFirstBattleApi(apiFile.Name))
 			{
-				battle.FirstBattle = apiFile.GetResponseApiData();
+				try
+				{
+					battle.FirstBattle = apiFile.GetResponseApiData();
+				}
+				catch (Exception e)
+				{
+					Logger.Add(2, SortieRecordViewer.FailedToParseApiData + e.StackTrace);
+				}
 			}
 
 			if (IsSecondBattleApi(apiFile.Name))
 			{
-				battle.SecondBattle = apiFile.GetResponseApiData();
+				try
+				{
+					battle.SecondBattle = apiFile.GetResponseApiData();
+				}
+				catch (Exception e)
+				{
+					Logger.Add(2, SortieRecordViewer.FailedToParseApiData + e.StackTrace);
+				}
 			}
 
 			if (IsBattleEndApi(apiFile.Name))

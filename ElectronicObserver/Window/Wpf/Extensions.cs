@@ -19,34 +19,37 @@ public static class Extensions
 	public static Visibility ToVisibility(this bool visible) => visible switch
 	{
 		true => Visibility.Visible,
-		_ => Visibility.Collapsed
+		_ => Visibility.Collapsed,
 	};
 
 	public static SolidColorBrush ToBrush(this System.Drawing.Color color) =>
-		new(Color.FromArgb(color.A, color.R, color.G, color.B));
+		new(color.ToWpfColor());
+
+	public static Color ToWpfColor(this System.Drawing.Color color) =>
+		Color.FromArgb(color.A, color.R, color.G, color.B);
 
 	public static float ToSize(this System.Drawing.Font font) => font.Size * font.Unit switch
 	{
 		System.Drawing.GraphicsUnit.Point => 4 / 3f,
-		_ => 1
+		_ => 1,
 	};
 
 	public static Uri ToAbsolute(this Uri uri) => uri switch
 	{
 		{ IsAbsoluteUri: true } => uri,
-		_ => new(new Uri(Process.GetCurrentProcess().MainModule.FileName), uri)
+		_ => new(new Uri(Environment.ProcessPath!), uri),
 	};
 
 	public static int ToSerializableValue(this ListSortDirection? sortDirection) => sortDirection switch
 	{
 		null => -1,
-		{ } => (int)sortDirection
+		{ } => (int)sortDirection,
 	};
 
 	public static ListSortDirection? ToSortDirection(this int sortDirection) => sortDirection switch
 	{
 		0 or 1 => (ListSortDirection)sortDirection,
-		_ => null
+		_ => null,
 	};
 
 	// todo: move to EOTypes.AA, not possible right now cause of ship class names
@@ -96,7 +99,7 @@ public static class Extensions
 			null => $"{ConstantsRes.Unknown}({cutIn.Id})",
 
 			{ } conditions => string.Join(" OR ", conditions
-				.Select(c => string.Join(", ", c.EquipmentConditions())))
+				.Select(c => string.Join(", ", c.EquipmentConditions()))),
 		};
 
 	public static string EquipmentConditionsMultiLineDisplay(this AntiAirCutIn cutIn) =>
@@ -105,7 +108,7 @@ public static class Extensions
 			null => $"{ConstantsRes.Unknown}({cutIn.Id})",
 
 			{ } conditions => string.Join("\nOR\n", conditions
-				.Select(c => string.Join("\n", c.EquipmentConditions())))
+				.Select(c => string.Join("\n", c.EquipmentConditions()))),
 		};
 
 	private static List<string> EquipmentConditions(this AntiAirCutInCondition condition)

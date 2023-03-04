@@ -129,4 +129,7 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="FailedToParseApiData" xml:space="preserve">
+    <value>Failed to parse API data.</value>
+  </data>
 </root>

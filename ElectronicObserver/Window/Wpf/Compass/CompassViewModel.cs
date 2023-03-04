@@ -300,6 +300,7 @@ public class CompassViewModel : AnchorableViewModel
 							compass.WhirlpoolItemAmount,
 							(double)compass.WhirlpoolItemAmount / Math.Max(materialmax, 1));
 
+						Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.DestinationID} {eventkind} {TextEventDetailText}");
 					}
 					break;
 

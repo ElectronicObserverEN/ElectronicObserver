@@ -14,4 +14,6 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 
 	public string FleetImage => SortieRecordViewer.FleetImage;
 	public string CopyReplay => SortieRecordViewer.CopyReplay;
+
+	public string FailedToParseApiData => SortieRecordViewer.FailedToParseApiData;
 }

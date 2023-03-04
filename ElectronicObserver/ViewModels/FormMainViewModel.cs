@@ -1834,6 +1834,9 @@ public partial class FormMainViewModel : ObservableObject
 		// 東京標準時
 		DateTime now = Utility.Mathematics.DateTimeHelper.GetJapanStandardTimeNow();
 
+		MaintenanceText = GetMaintenanceText(FormMain, now);
+		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
+
 		switch (ClockFormat)
 		{
 			case 0: //時計表示
@@ -1847,46 +1850,10 @@ public partial class FormMainViewModel : ObservableObject
 					questReset = questReset.AddHours(24);
 				var questTimer = questReset - now;
 
-				TimeSpan maintTimer = new(0);
-				MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
-				DateTime maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
-
-				if (eventState != MaintenanceState.None)
-				{
-					if (maintDate < now)
-						maintDate = now;
-					maintTimer = maintDate - now;
-				}
-
-				bool eventOrMaintenanceStarted = maintDate <= now;
-
-				string message = (eventState, eventOrMaintenanceStarted) switch
-				{
-					(MaintenanceState.EventStart, false) => FormMain.EventStartsIn,
-					(MaintenanceState.EventStart, _) => FormMain.EventHasStarted,
-
-					(MaintenanceState.EventEnd, false) => FormMain.EventEndsIn,
-					(MaintenanceState.EventEnd, _) => FormMain.EventHasEnded,
-
-					(MaintenanceState.Regular, false) => FormMain.MaintenanceStartsIn,
-					(MaintenanceState.Regular, _) => FormMain.MaintenanceHasStarted,
-
-					_ => string.Empty,
-				};
-
-				string maintState = eventOrMaintenanceStarted switch
-				{
-					false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
-					_ => message
-				};
-
-				MaintenanceText = maintState;
-				UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
-
 				var resetMsg =
 					$"{FormMain.NextExerciseReset} {pvpTimer:hh\\:mm\\:ss}\r\n" +
 					$"{FormMain.NextQuestReset} {questTimer:hh\\:mm\\:ss}\r\n" +
-					$"{maintState}";
+					$"{MaintenanceText}";
 
 				StripStatus.Clock = now.ToString("HH\\:mm\\:ss");
 				StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd)\r\n") + resetMsg;
@@ -1950,6 +1917,42 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}
 		*/
+	}
+
+	private static string GetMaintenanceText(FormMainTranslationViewModel formMain, DateTime now)
+	{
+		TimeSpan maintTimer = new(0);
+		MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
+		DateTime maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
+
+		if (eventState != MaintenanceState.None)
+		{
+			if (maintDate < now)
+				maintDate = now;
+			maintTimer = maintDate - now;
+		}
+
+		bool eventOrMaintenanceStarted = maintDate <= now;
+
+		string message = (eventState, eventOrMaintenanceStarted) switch
+		{
+			(MaintenanceState.EventStart, false) => formMain.EventStartsIn,
+			(MaintenanceState.EventStart, _) => formMain.EventHasStarted,
+
+			(MaintenanceState.EventEnd, false) => formMain.EventEndsIn,
+			(MaintenanceState.EventEnd, _) => formMain.EventHasEnded,
+
+			(MaintenanceState.Regular, false) => formMain.MaintenanceStartsIn,
+			(MaintenanceState.Regular, _) => formMain.MaintenanceHasStarted,
+
+			_ => string.Empty,
+		};
+
+		return eventOrMaintenanceStarted switch
+		{
+			false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
+			_ => message,
+		};
 	}
 
 	private void UpdatePlayTime()

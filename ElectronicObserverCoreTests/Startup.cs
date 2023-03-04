@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Database;
+using ElectronicObserver.Services;
 using ElectronicObserver.TestData;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.AutoRefresh;
@@ -50,6 +51,7 @@ public class Startup
 
 		Ioc.Default.ConfigureServices(new ServiceCollection()
 			.AddSingleton<IKCDatabase>(kcdb)
+			.AddSingleton<ColorService>()
 			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.BuildServiceProvider());
 

@@ -70,6 +70,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to APIデータの解析に失敗しました。.
+        /// </summary>
+        internal static string FailedToParseApiData {
+            get {
+                return ResourceManager.GetString("FailedToParseApiData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 編成画像出力.
         /// </summary>
         internal static string FleetImage {

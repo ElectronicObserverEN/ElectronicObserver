@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
@@ -56,17 +56,17 @@ public class FleetStateViewModel : ObservableObject
 										(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 		var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
-		Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
-		Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
+		Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG.ToWpfColor();
+		Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG.ToWpfColor();
 
-		Color colorInPortFG = Utility.Configuration.Config.UI.ForeColor;
-		Color colorInPortBG = Color.Transparent;
+		Color colorInPortFG = Utility.Configuration.Config.UI.ForeColor.ToWpfColor();
+		Color colorInPortBG = Colors.Transparent;
 
-		Color colorNotExpeditionFG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionFG;
-		Color colorNotExpeditionBG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionBG;
+		Color colorNotExpeditionFG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionFG.ToWpfColor();
+		Color colorNotExpeditionBG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionBG.ToWpfColor();
 
-		Color colorInExpeditionFG = Utility.Configuration.Config.UI.ForeColor;
-		Color colorInExpeditionBG = Color.Transparent;
+		Color colorInExpeditionFG = Utility.Configuration.Config.UI.ForeColor.ToWpfColor();
+		Color colorInExpeditionBG = Colors.Transparent;
 
 		//所属艦なし
 		if (fleet == null || fleet.Members.All(id => id == -1))
@@ -87,7 +87,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 
 				//大破出撃中
-				if (fleet.MembersWithoutEscaped.Any(s => s != null && s.HPRate <= 0.25))
+				if (fleet.MembersWithoutEscaped.Any(s => s is { HPRate: <= 0.25 }))
 				{
 					var state = GetStateLabel(index);
 
@@ -284,7 +284,7 @@ public class FleetStateViewModel : ObservableObject
 		{
 			for (int i = 0; i < index; i++)
 			{
-				if (StateLabels[i].Label.BackColor == System.Drawing.Color.Transparent)
+				if (StateLabels[i].Label.BackColor == Colors.Transparent)
 				{
 					StateLabels[i].Label.BackColor = colorNotExpeditionBG;
 					StateLabels[i].Label.ForeColor = colorNotExpeditionFG;
@@ -328,20 +328,20 @@ public class FleetStateViewModel : ObservableObject
 
 	public void RefreshFleetState()
 	{
-		Color foreColor = Utility.Configuration.Config.UI.ForeColor;
-		Color backColor = Color.Transparent;
+		Color foreColor = Utility.Configuration.Config.UI.ForeColor.ToWpfColor();
+		Color backColor = Colors.Transparent;
 
-		Color shipDamagedFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
-		Color shipDamagedBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
+		Color shipDamagedFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG.ToWpfColor();
+		Color shipDamagedBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG.ToWpfColor();
 
-		Color expeditionOverFG = Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverFG;
-		Color expeditionOverBG = Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverBG;
+		Color expeditionOverFG = Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverFG.ToWpfColor();
+		Color expeditionOverBG = Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverBG.ToWpfColor();
 
-		Color repairFinishedFG = Utility.Configuration.Config.UI.Dock_RepairFinishedFG;
-		Color repairFinishedBG = Utility.Configuration.Config.UI.Dock_RepairFinishedBG;
+		Color repairFinishedFG = Utility.Configuration.Config.UI.Dock_RepairFinishedFG.ToWpfColor();
+		Color repairFinishedBG = Utility.Configuration.Config.UI.Dock_RepairFinishedBG.ToWpfColor();
 
-		Color tiredRecoveredFG = Utility.Configuration.Config.UI.FleetOverview_TiredRecoveredFG;
-		Color tiredRecoveredBG = Utility.Configuration.Config.UI.FleetOverview_TiredRecoveredBG;
+		Color tiredRecoveredFG = Utility.Configuration.Config.UI.FleetOverview_TiredRecoveredFG.ToWpfColor();
+		Color tiredRecoveredBG = Utility.Configuration.Config.UI.FleetOverview_TiredRecoveredBG.ToWpfColor();
 
 		foreach (var state in StateLabels)
 		{

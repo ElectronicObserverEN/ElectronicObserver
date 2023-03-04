@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
@@ -21,6 +22,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
 public class FleetItemViewModel : ObservableObject
 {
+	private ColorService ColorService { get; }
 	public FormFleetTranslationViewModel FormFleet { get; }
 	private FleetViewModel Parent { get; }
 	private bool Visible { get; set; }
@@ -36,7 +38,8 @@ public class FleetItemViewModel : ObservableObject
 
 	public FleetItemViewModel(FleetViewModel parent)
 	{
-		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
+		ColorService = Ioc.Default.GetRequiredService<ColorService>();
+		FormFleet = Ioc.Default.GetRequiredService<FormFleetTranslationViewModel>();
 
 		Parent = parent;
 
@@ -245,7 +248,7 @@ public class FleetItemViewModel : ObservableObject
 		HP.BackColor = isEscaped switch
 		{
 			true => Utility.Configuration.Config.UI.SubBackColor,
-			_ => Color.Transparent
+			_ => System.Drawing.Color.Transparent
 		};
 
 
@@ -373,36 +376,31 @@ public class FleetItemViewModel : ObservableObject
 		);
 
 		Name.BackColor = GetShipBackColor();
-		Name.ForeColor = GetShipForeColor();
+		Name.ForeColor = GetShipForeColor(Name.BackColor);
 	}
 
 	private Color GetShipBackColor()
 	{
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-							Parent.ShipTagColors.Count > 0 &&
-							Ship?.SallyArea > 0)
+			Parent.ShipTagColors.Count > 0 &&
+			Ship?.SallyArea > 0)
 		{
-			return Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
+			return Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)].ToWpfColor();
 		}
 
-		return Color.Transparent;
+		return Colors.Transparent;
 	}
 
-	private Color GetShipForeColor()
+	private Color GetShipForeColor(Color backColor)
 	{
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-							Parent.ShipTagColors.Count > 0 &&
-							Ship?.SallyArea > 0)
+		    Parent.ShipTagColors.Count > 0 &&
+		    Ship?.SallyArea > 0)
 		{
-			if (Configuration.Config.UI.ThemeMode != 0)
-				return Configuration.Config.UI.BackColor;
-		}
-		else
-		{
-			return Configuration.Config.UI.ForeColor;
+			return ColorService.GetForegroundColor(backColor);
 		}
 
-		return Color.Transparent;
+		return Configuration.Config.UI.ForeColor.ToWpfColor();
 	}
 
 	private string GetEquipmentString(IShipData ship)

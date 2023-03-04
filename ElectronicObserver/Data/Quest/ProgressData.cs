@@ -144,8 +144,9 @@ public abstract class ProgressData : IIdentifiable
 
 		// quests where 50% still means 2/3 progress
 		static bool IsOldQuest(int questId) => questId is
-			256 or // BM2
-			261 or // BW10
+			218 or // Bd5
+			256 or // Bm2
+			261 or // Bw10
 			303 or // C2
 			307 or // C5
 			324 or // C22
@@ -156,6 +157,7 @@ public abstract class ProgressData : IIdentifiable
 			402 or // D2
 			416 or // D15
 			607 or // F7
+			608 or // F8
 			612 or // F11
 			810 or // B63
 			886; // B119

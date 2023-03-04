@@ -282,6 +282,7 @@ public partial class App : Application
 			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
+			.AddSingleton<ColorService>()
 			// external
 			.AddSingleton(JotTracker())
 

@@ -65,9 +65,19 @@
 					Margin="4 0"
 					d:Text="2400"
 					Foreground="{Binding MainFontBrush}"
-					Text="{Binding Health}"
 					TextAlignment="Center"
-					/>
+					>
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Text" Value="{Binding Health}" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding IsTargetable}" Value="False">
+									<Setter Property="Text" Value="N/A" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
 				<TextBlock
 					Grid.Column="2"
 					VerticalAlignment="Bottom"

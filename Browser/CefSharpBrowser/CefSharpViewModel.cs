@@ -153,6 +153,8 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
+		SetCookie();
+
 		// DocumentCompleted に相当?
 		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
 
@@ -161,7 +163,6 @@ public class CefSharpViewModel : BrowserViewModel
 		App.Current.Dispatcher.BeginInvoke(() =>
 		{
 			ApplyStyleSheet();
-			SetCookie();
 			ApplyZoom();
 			DestroyDMMreloadDialog();
 		});
@@ -174,7 +175,19 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		CefSharp.ExecuteScriptAsync(Properties.Resources.RegionCookie);
+		ICookieManager cookieManager = CefSharp.GetCookieManager();
+
+		Cookie dmmCookie = new()
+		{
+			Domain = ".www.dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/netgame/",
+			Value = "1",
+			Secure = false,
+		};
+
+		cookieManager.SetCookie("http://www.dmm.com", dmmCookie);
 	}
 
 	protected override void ApplyZoom()
