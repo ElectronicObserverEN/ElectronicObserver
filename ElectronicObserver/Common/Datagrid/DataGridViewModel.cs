@@ -19,7 +19,7 @@ public partial class DataGridViewModel<T> : ObservableObject
 	public DataGridTranslationViewModel DataGrid { get; set; } = new();
 
 	public ICollectionView Items { get; private set; }
-	public ObservableCollection<T> ItemsSource { get; private set; }
+	public ObservableCollection<T> ItemsSource { get; set; }
 
 	public DataGridViewModel(ObservableCollection<T> items) : this()
 	{
