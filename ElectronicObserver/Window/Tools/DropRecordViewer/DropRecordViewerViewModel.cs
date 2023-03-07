@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -81,11 +82,16 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public DataGridViewModel<DropRecordRow> DataGridViewModel { get; set; } = new();
+	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = new();
+	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; set; }
+	public DataGridViewModel<DropRecordRow> DataGridMergedRowsViewModel { get; set; }
 
 	public DropRecordViewerViewModel()
 	{
 		Record = RecordManager.Instance.ShipDrop;
+
+		DataGridRawRowsViewModel = new(RecordRows);
+		DataGridMergedRowsViewModel = new(RecordRows);
 
 		ShipIcon = ImageSourceIcons.GetIcon(IconContent.FormFleet);
 		ItemIcon = ImageSourceIcons.GetIcon(IconContent.ItemPresentBox);
@@ -145,7 +151,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(MergeRows)) return;
 
-			DataGridViewModel.ItemsSource.Clear();
+			RecordRows.Clear();
 		};
 
 		Loaded();
@@ -626,19 +632,15 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		{
 			if (e.Result is not List<DropRecordRow> rows) return;
 
-			/*
-			 reapply sort on new data (not sure if that's needed)
-			Rows.Sort(RecordView.SortedColumn ?? RecordView_Header,
-				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
-			*/
-
 			rows = MergeRows switch
 			{
 				true => rows.OrderByDescending(r => r.Count).ToList(),
 				_ => rows.OrderByDescending(r => r.Index).ToList()
 			};
 
-			DataGridViewModel.AddRange(rows);
+			RecordRows = new(rows);
+			DataGridRawRowsViewModel.ItemsSource = RecordRows;
+			DataGridMergedRowsViewModel.ItemsSource = RecordRows;
 
 			StatusInfoText = EncycloRes.SearchComplete + " (" + (int)(DateTime.Now - StatusInfoTag).TotalMilliseconds + " ms)";
 		}
@@ -659,14 +661,14 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		if (MergeRows)
 		{
 			int count = SelectedRows.Select(r => r.Count).Sum();
-			int allcount = DataGridViewModel.ItemsSource.Select(r => r.Count).Sum();
+			int allcount = RecordRows.Select(r => r.Count).Sum();
 
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				count, allcount, (double)count / allcount);
 		}
 		else
 		{
-			int allcount = DataGridViewModel.ItemsSource.Count;
+			int allcount = RecordRows.Count;
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				selectedCount, allcount, (double)selectedCount / allcount);
 		}

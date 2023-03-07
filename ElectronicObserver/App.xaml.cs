@@ -395,8 +395,10 @@ public partial class App : Application
 
 		tracker
 			.Configure<DropRecordViewerWindow>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.SortDescriptions);
 
 		tracker
 			.Configure<EventLockPlannerWindow>()
