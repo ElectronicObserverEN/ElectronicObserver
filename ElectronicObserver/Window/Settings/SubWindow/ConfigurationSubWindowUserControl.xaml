@@ -16,6 +16,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:quest="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Quest"
+	xmlns:shipTraining="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.ShipTraining"
 	d:DataContext="{d:DesignInstance local:ConfigurationSubWindowViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
@@ -65,6 +66,10 @@
 		<DataTemplate DataType="{x:Type json:ConfigurationJsonViewModel}">
 			<json:ConfigurationJsonUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type shipTraining:ConfigurationShipTrainingViewModel}">
+			<shipTraining:ConfigurationShipTrainingUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
@@ -74,6 +79,7 @@
 		<TabItem Content="{Binding Headquarters}" Header="{Binding Translation.HQ}" />
 		<TabItem Content="{Binding Compass}" Header="{Binding Translation.Compass}" />
 		<TabItem Content="{Binding Quest}" Header="{Binding Translation.Quests}" />
+		<TabItem Content="{Binding ShipTraining}" Header="{Binding Translation.ShipTraining}" />
 		<TabItem Content="{Binding Group}" Header="{Binding Translation.Group}" />
 		<TabItem Content="{Binding Combat}" Header="{Binding Translation.Combat}" />
 		<TabItem Content="{Binding Browser}" Header="{Binding Translation.Browser}" />

@@ -742,4 +742,11 @@ If you live in Japan or use a Japanese VPN you can keep this option disabled.</v
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
+    <value>Allow to add multiple plans for the same ship</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
+    <value>If unchecked, when adding a new ship training plan, the ship list will be filtered to only display ships without a training plan.
+If checked, no filter will be applied.</value>
+  </data>
 </root>

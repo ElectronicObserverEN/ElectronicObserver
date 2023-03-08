@@ -11,6 +11,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserverTypes;
@@ -178,10 +179,13 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		List<int> alreadyAddedIds = Plans.Select(s => s.Ship.ID).ToList();
 
-		PickerViewModel.LoadWithShips(KCDatabase.Instance.Ships
-			.Values
-			.Cast<IShipData>()
-			.Where(s => !alreadyAddedIds.Contains(s.ID)));
+		IEnumerable<IShipData> pickableShips = Configuration.Config.FormShipTraining.AllowMultiplePlanPerShip switch
+		{
+			true => KCDatabase.Instance.Ships.Values,
+			_ => KCDatabase.Instance.Ships.Values.Where(s => !alreadyAddedIds.Contains(s.ID))
+		};
+
+		PickerViewModel.LoadWithShips(pickableShips);
 
 		ShipDataPickerView pickerView = new(PickerViewModel);
 

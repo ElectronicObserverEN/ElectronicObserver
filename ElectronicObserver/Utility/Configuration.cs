@@ -1518,7 +1518,29 @@ public sealed class Configuration
 		[DataMember]
 		public ConfigFormBaseAirCorps FormBaseAirCorps { get; private set; }
 
+		/// <summary>
+		/// Ship training configuration
+		/// </summary>
+		public class ConfigFormShipTraining : ConfigPartBase
+		{
 
+			/// <summary>
+			/// Allow multiple plan for the same ship ?
+			/// </summary>
+			public bool AllowMultiplePlanPerShip { get; set; }
+
+
+			public ConfigFormShipTraining()
+			{
+				AllowMultiplePlanPerShip = false;
+			}
+		}
+
+		/// <summary>
+		/// Ship training configuration
+		/// </summary>
+		[DataMember]
+		public ConfigFormShipTraining FormShipTraining { get; private set; }
 
 		/// <summary>
 		/// 各[通知]ウィンドウの設定を扱います。
@@ -1908,6 +1930,7 @@ public sealed class Configuration
 			FormCompass = new ConfigFormCompass();
 			FormJson = new ConfigFormJson();
 			FormBaseAirCorps = new ConfigFormBaseAirCorps();
+			FormShipTraining = new();
 
 			NotifierExpedition = new ConfigNotifierBase();
 			NotifierConstruction = new ConfigNotifierBase();

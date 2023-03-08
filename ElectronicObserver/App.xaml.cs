@@ -37,6 +37,7 @@ using ElectronicObserver.Window.Settings.SubWindow.Group;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 using ElectronicObserver.Window.Settings.SubWindow.Json;
 using ElectronicObserver.Window.Settings.SubWindow.Quest;
+using ElectronicObserver.Window.Settings.SubWindow.ShipTraining;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -230,6 +231,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationBrowserTranslationViewModel>()
 			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
 			.AddSingleton<ConfigurationJsonTranslationViewModel>()
+			.AddSingleton<ConfigurationShipTrainingTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

@@ -12,6 +12,7 @@ public class ConfigurationSubWindowTranslationViewModel : TranslationBaseViewMod
 	public string Compass => GeneralRes.Compass;
 	public string Quests => ConfigRes.Quests;
 	public string Group => ConfigRes.Group;
+	public string ShipTraining => ConfigRes.ShipTraining;
 	public string Combat => Properties.Window.Dialog.DialogConfiguration.Combat;
 	public string Browser => Properties.Window.Dialog.DialogConfiguration.Browser;
 	public string AB => Properties.Window.Dialog.DialogConfiguration.AB;

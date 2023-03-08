@@ -1323,6 +1323,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦娘訓練.
+        /// </summary>
+        public static string ShipTraining {
+            get {
+                return ResourceManager.GetString("ShipTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HPバーを短縮し、スペースを節約します。.
         /// </summary>
         public static string ShortenHPHint {

@@ -1242,6 +1242,25 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Allow to add multiple plans for the same ship).
+        /// </summary>
+        public static string FormShipTraining_AllowMultiplePlanPerShip {
+            get {
+                return ResourceManager.GetString("FormShipTraining_AllowMultiplePlanPerShip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (If unchecked, when adding a new ship training plan, the ship list will be filtered to only display ships without a training plan.
+        ///If checked, no filter will be applied.).
+        /// </summary>
+        public static string FormShipTraining_AllowMultiplePlanPerShipToolTip {
+            get {
+                return ResourceManager.GetString("FormShipTraining_AllowMultiplePlanPerShipToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 司令部.
         /// </summary>
         public static string HQ {
