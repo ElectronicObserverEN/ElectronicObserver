@@ -13,6 +13,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Attacks;
@@ -315,18 +316,14 @@ public class FleetItemViewModel : ObservableObject
 			tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
 		}
 
-		string? planTip = null;
-		int? planLevel = null;
+		List<ShipTrainingPlanViewModel> plans = new();
+		IEnumerable<int> remodelLevels = remodels.Select((remodel) => remodel.Level);
 
-		if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Level).Contains(Level.TrainingPlan.TargetLevel))
-		{
-			planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
-			planLevel = Level.TrainingPlan.TargetLevel;
-		}
+		plans = Level.TrainingPlans.Where(p => !remodelLevels.Contains(p.TargetLevel)).ToList();
 
-		if (planLevel is not null && planLevel < 99)
+		foreach(ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
 		{
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
 		}
 
 		if (Ship.Level < 99)
@@ -335,9 +332,9 @@ public class FleetItemViewModel : ObservableObject
 			tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
 		}
 
-		if (planLevel is not null && planLevel > 99 && planLevel != ExpTable.ShipMaximumLevel)
+		foreach (ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel > 99 && p.TargetLevel != ExpTable.ShipMaximumLevel))
 		{
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
 		}
 
 		if (Ship.Level < ExpTable.ShipMaximumLevel)
