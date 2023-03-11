@@ -316,10 +316,8 @@ public class FleetItemViewModel : ObservableObject
 			tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
 		}
 
-		List<ShipTrainingPlanViewModel> plans = new();
 		IEnumerable<int> remodelLevels = remodels.Select((remodel) => remodel.Level);
-
-		plans = Level.TrainingPlans.Where(p => !remodelLevels.Contains(p.TargetLevel)).ToList();
+		List<ShipTrainingPlanViewModel> plans = Level.TrainingPlans.Where(p => !remodelLevels.Contains(p.TargetLevel)).ToList();
 
 		foreach(ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
 		{
