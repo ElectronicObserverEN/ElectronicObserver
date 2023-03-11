@@ -1242,7 +1242,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Allow to add multiple plans for the same ship).
+        ///   Looks up a localized string similar to 同じ艦娘に対して訓練プランを追加できるようにする.
         /// </summary>
         public static string FormShipTraining_AllowMultiplePlanPerShip {
             get {
@@ -1251,8 +1251,8 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (If unchecked, when adding a new ship training plan, the ship list will be filtered to only display ships without a training plan.
-        ///If checked, no filter will be applied.).
+        ///   Looks up a localized string similar to チェックを外すと、新しい艦娘の訓練プランを追加する際に、訓練プランのない艦娘だけが表示されるように艦娘リストがフィルタリングされます。
+        ///チェックした場合、フィルターは適用されません。.
         /// </summary>
         public static string FormShipTraining_AllowMultiplePlanPerShipToolTip {
             get {

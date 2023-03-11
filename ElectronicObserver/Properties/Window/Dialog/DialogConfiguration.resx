@@ -761,10 +761,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>編集</value>
   </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
-    <value>??? (Allow to add multiple plans for the same ship)</value>
+    <value>同じ艦娘に対して訓練プランを追加できるようにする</value>
   </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
-    <value>??? (If unchecked, when adding a new ship training plan, the ship list will be filtered to only display ships without a training plan.
-If checked, no filter will be applied.)</value>
+    <value>チェックを外すと、新しい艦娘の訓練プランを追加する際に、訓練プランのない艦娘だけが表示されるように艦娘リストがフィルタリングされます。
+チェックした場合、フィルターは適用されません。</value>
   </data>
 </root>
