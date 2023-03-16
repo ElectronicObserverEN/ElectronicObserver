@@ -694,7 +694,7 @@
     <value>Admiral Exp: +{0}</value>
   </data>
   <data name="BattleDetail_ShipExp" xml:space="preserve">
-    <value>Ship Exp: +{1}</value>
+    <value>Ship Exp: +{0}</value>
   </data>
   <data name="BattleDetail_FriendlyStarshell" xml:space="preserve">
     <value>Starshell: : {0} #{1}</value>

@@ -707,9 +707,8 @@ public static class BattleDetailDescriptor
 				result.MVPIndex == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleet.MembersInstance[result.MVPIndex - 1].NameWithLevel);
 		}
 
-		sb.AppendFormat(ConstantsRes.BattleDetail_AdmiralExp + "\r\n" + ConstantsRes.BattleDetail_ShipExp + "\r\n",
-			result.AdmiralExp, result.BaseExp);
-
+		sb.AppendFormat(ConstantsRes.BattleDetail_AdmiralExp + "\r\n", result.AdmiralExp);
+		sb.AppendFormat(ConstantsRes.BattleDetail_ShipExp + "\r\n", result.BaseExp);
 
 		if (!bm.IsPractice)
 		{

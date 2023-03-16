@@ -655,7 +655,7 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦娘基本経験値: +{1}.
+        ///   Looks up a localized string similar to 艦娘基本経験値: +{0}.
         /// </summary>
         public static string BattleDetail_ShipExp {
             get {

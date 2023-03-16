@@ -691,7 +691,7 @@
     <value>MVP(随伴艦隊): {0}</value>
   </data>
   <data name="BattleDetail_ShipExp" xml:space="preserve">
-    <value>艦娘基本経験値: +{1}</value>
+    <value>艦娘基本経験値: +{0}</value>
   </data>
   <data name="BattleDetail_AdmiralExp" xml:space="preserve">
     <value>提督経験値: +{0}</value>
