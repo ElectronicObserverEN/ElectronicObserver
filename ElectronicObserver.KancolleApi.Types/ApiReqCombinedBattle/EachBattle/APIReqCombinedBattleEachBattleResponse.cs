@@ -1,8 +1,9 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 
-public class ApiReqCombinedBattleEachBattleResponse
+public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -40,7 +41,7 @@ public class ApiReqCombinedBattleEachBattleResponse
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEMaxhps { get; set; } = new();
+	public List<object> ApiEMaxhps { get; set; } = new();
 
 	[JsonPropertyName("api_e_maxhps_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -50,7 +51,7 @@ public class ApiReqCombinedBattleEachBattleResponse
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiENowhps { get; set; } = new();
+	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_e_nowhps_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

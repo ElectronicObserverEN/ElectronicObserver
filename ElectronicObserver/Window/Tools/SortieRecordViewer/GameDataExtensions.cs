@@ -114,4 +114,54 @@ public static class GameDataExtensions
 
 		_ => 18,
 	};
+
+	public static IFleetData DeepClone(this IFleetData fleet) => new FleetDataMock
+	{
+		FleetID = fleet.FleetID,
+		Name = fleet.Name,
+		FleetType = fleet.FleetType,
+		ExpeditionState = fleet.ExpeditionState,
+		ExpeditionDestination = fleet.ExpeditionDestination,
+		ExpeditionTime = fleet.ExpeditionTime,
+		MembersInstance = new(fleet.MembersInstance.Select(DeepClone).ToList()),
+		EscapedShipList = new(fleet.EscapedShipList),
+		IsInSortie = fleet.IsInSortie,
+		IsInPractice = fleet.IsInPractice,
+		ID = fleet.ID,
+		SupportType = fleet.SupportType,
+		IsFlagshipRepairShip = fleet.IsFlagshipRepairShip,
+		CanAnchorageRepair = fleet.CanAnchorageRepair,
+		ConditionTime = fleet.ConditionTime,
+		RequestData = fleet.RequestData,
+		RawData = fleet.RawData,
+		IsAvailable = fleet.IsAvailable,
+	};
+
+	private static IShipData? DeepClone(this IShipData? ship) => ship switch
+	{
+		null => null,
+		_ => new ShipDataMock(ship.MasterShip)
+		{
+			// todo: rest of the stats and equipment deep clone
+			Level = ship.Level,
+			IsExpansionSlotAvailable = ship.IsExpansionSlotAvailable,
+			SlotInstance = ship.SlotInstance,
+			ExpansionSlotInstance = ship.ExpansionSlotInstance,
+			HPCurrent = ship.HPCurrent,
+			Fuel = ship.Fuel,
+			Ammo = ship.Ammo,
+			Range = ship.Range,
+			Speed = ship.Speed,
+			LuckModernized = ship.LuckModernized,
+			HPMaxModernized = ship.HPMaxModernized,
+			ASWModernized = ship.ASWModernized,
+			// FirepowerFit = ship.FirepowerFit,
+			// TorpedoFit = ship.TorpedoFit,
+			// AaFit = ship.AaFit,
+			// ArmorFit = ship.ArmorFit,
+			// EvasionFit = ship.EvasionFit,
+			// AswFit = ship.AswFit,
+			// LosFit = ship.LosFit,
+		},
+	};
 }

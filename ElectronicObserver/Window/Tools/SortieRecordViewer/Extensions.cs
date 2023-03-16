@@ -118,7 +118,7 @@ public static class Extensions
 		_ => throw new NotImplementedException(),
 	};
 
-	public static object? GetResponseApiData(this Database.KancolleApi.ApiFile file) => file.Name switch
+	public static object? GetResponseApiData(this ApiFile file) => file.Name switch
 	{
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiResponse<ApiDmmPaymentPaycheckResponse>>(file.Content)?.ApiData,
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberBasicResponse>>(file.Content)?.ApiData,
@@ -142,18 +142,8 @@ public static class Extensions
 		"api_req_air_corps/set_action" => JsonSerializer.Deserialize<ApiResponse<ApiReqAirCorpsSetActionResponse>>(file.Content)?.ApiData,
 		"api_req_air_corps/set_plane" => JsonSerializer.Deserialize<ApiResponse<ApiReqAirCorpsSetPlaneResponse>>(file.Content)?.ApiData,
 		"api_req_air_corps/supply" => JsonSerializer.Deserialize<ApiResponse<ApiReqAirCorpsSupplyResponse>>(file.Content)?.ApiData,
-		"api_req_battle_midnight/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqBattleMidnightBattleResponse>>(file.Content)?.ApiData,
-		"api_req_battle_midnight/sp_midnight" => JsonSerializer.Deserialize<ApiResponse<ApiReqBattleMidnightSpMidnightResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/battle_water" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleWaterResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/battleresult" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleresultResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/each_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEachBattleResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/each_battle_water" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEachBattleWaterResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/ec_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcBattleResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/goback_port" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleGobackPortResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/ld_airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleLdAirbattleResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content)?.ApiData,
 		"api_req_furniture/buy" => JsonSerializer.Deserialize<ApiResponse<ApiReqFurnitureBuyResponse>>(file.Content)?.ApiData,
 		"api_req_hensei/change" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiChangeResponse>>(file.Content)?.ApiData,
 		"api_req_hensei/combined" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiCombinedResponse>>(file.Content)?.ApiData,
@@ -210,11 +200,34 @@ public static class Extensions
 		"api_req_quest/start" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestStartResponse>>(file.Content)?.ApiData,
 		"api_req_quest/stop" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestStopResponse>>(file.Content)?.ApiData,
 		"api_req_ranking/mxltvkpyuklh" => JsonSerializer.Deserialize<ApiResponse<ApiReqRankingMxltvkpyuklhResponse>>(file.Content)?.ApiData,
-		"api_req_sortie/airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieAirbattleResponse>>(file.Content)?.ApiData,
-		"api_req_sortie/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieBattleResponse>>(file.Content)?.ApiData,
 		"api_req_sortie/battleresult" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieBattleresultResponse>>(file.Content)?.ApiData,
 		"api_req_sortie/goback_port" => JsonSerializer.Deserialize<ApiResponseNull<ApiReqSortieGobackPortResponse>>(file.Content)?.ApiData,
+
+		_ => file.GetBattleResponseApiData(),
+	};
+
+	public static object? GetBattleResponseApiData(this ApiFile file) => file.Name switch
+	{
+		"api_req_sortie/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieBattleResponse>>(file.Content)?.ApiData,
+		"api_req_battle_midnight/sp_midnight" => JsonSerializer.Deserialize<ApiResponse<ApiReqBattleMidnightSpMidnightResponse>>(file.Content)?.ApiData,
+		"api_req_sortie/airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieAirbattleResponse>>(file.Content)?.ApiData,
 		"api_req_sortie/ld_airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieLdAirbattleResponse>>(file.Content)?.ApiData,
+		"api_req_sortie/night_to_day" => throw new NotImplementedException(),
+		"api_req_sortie/ld_shooting" => throw new NotSupportedException(),
+		"api_req_combined_battle/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/sp_midnight" => throw new NotImplementedException(),
+		"api_req_combined_battle/airbattle" => throw new NotImplementedException(),
+		"api_req_combined_battle/battle_water" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleWaterResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/ld_airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleLdAirbattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/ec_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcBattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/ec_night_to_day" => throw new NotImplementedException(),
+		"api_req_combined_battle/each_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEachBattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/each_battle_water" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEachBattleWaterResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/ld_shooting" => throw new NotImplementedException(),
+
+		"api_req_battle_midnight/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqBattleMidnightBattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content)?.ApiData,
 
 		_ => throw new NotImplementedException(),
 	};

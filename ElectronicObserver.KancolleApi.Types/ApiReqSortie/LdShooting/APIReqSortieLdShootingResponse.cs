@@ -1,8 +1,9 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 
-public class ApiReqSortieLdShootingResponse
+public class ApiReqSortieLdShootingResponse : IBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -13,6 +14,8 @@ public class ApiReqSortieLdShootingResponse
 	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
 
+	public List<int>? ApiEscapeIdx { get; set; }
+
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -21,12 +24,12 @@ public class ApiReqSortieLdShootingResponse
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEMaxhps { get; set; } = new();
+	public List<object> ApiEMaxhps { get; set; } = new();
 
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiENowhps { get; set; } = new();
+	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_fParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

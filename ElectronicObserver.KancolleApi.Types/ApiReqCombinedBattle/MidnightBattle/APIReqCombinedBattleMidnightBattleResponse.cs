@@ -1,8 +1,9 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 
-public class ApiReqCombinedBattleMidnightBattleResponse
+public class ApiReqCombinedBattleMidnightBattleResponse : IBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -13,6 +14,8 @@ public class ApiReqCombinedBattleMidnightBattleResponse
 	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
 
+	public List<int>? ApiEscapeIdx { get; set; }
+
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -21,12 +24,12 @@ public class ApiReqCombinedBattleMidnightBattleResponse
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEMaxhps { get; set; } = new();
+	public List<object> ApiEMaxhps { get; set; } = new();
 
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiENowhps { get; set; } = new();
+	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_escape_idx_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -1,8 +1,10 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 
-public class ApiReqSortieBattleResponse
+public class ApiReqSortieBattleResponse : IDayBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -16,6 +18,9 @@ public class ApiReqSortieBattleResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
+
+	[JsonPropertyName("api_escape_idx")]
+	public List<int>? ApiEscapeIdx { get; set; }
 
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -72,7 +77,7 @@ public class ApiReqSortieBattleResponse
 
 	[JsonPropertyName("api_hougeki3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object? ApiHougeki3 { get; set; } = default!;
+	public ApiHougeki1? ApiHougeki3 { get; set; } = default!;
 
 	[JsonPropertyName("api_hourai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -115,7 +120,7 @@ public class ApiReqSortieBattleResponse
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSearch { get; set; } = new();
+	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

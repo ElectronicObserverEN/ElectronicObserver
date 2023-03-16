@@ -1,11 +1,14 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiHougeki
 {
 	[JsonPropertyName("api_at_eflag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiAtEflag { get; set; } = new();
+	public List<FleetFlag> ApiAtEflag { get; set; } = new();
 
 	[JsonPropertyName("api_at_list")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -15,7 +18,7 @@ public class ApiHougeki
 	[JsonPropertyName("api_cl_list")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<List<int>> ApiClList { get; set; } = new();
+	public List<List<HitType>> ApiClList { get; set; } = new();
 
 	[JsonPropertyName("api_damage")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -43,5 +46,5 @@ public class ApiHougeki
 	[JsonPropertyName("api_sp_list")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSpList { get; set; } = new();
+	public List<NightAttackKind> ApiSpList { get; set; } = new();
 }

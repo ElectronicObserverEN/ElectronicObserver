@@ -55,6 +55,8 @@ using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
@@ -271,10 +273,12 @@ public partial class App : Application
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
 			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
+			.AddSingleton<SortieDetailTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
+			.AddSingleton<BattleFactory>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()

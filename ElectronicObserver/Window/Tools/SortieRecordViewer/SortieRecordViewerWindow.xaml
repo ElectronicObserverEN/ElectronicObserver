@@ -28,6 +28,7 @@
 					<ColumnDefinition />
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 
 				<StackPanel
@@ -80,6 +81,14 @@
 					Command="{Binding DataContext.CopyReplayToClipboardCommand, Source={StaticResource Proxy}}"
 					CommandParameter="{Binding}"
 					Content="{Binding DataContext.SortieRecordViewer.CopyReplay, Source={StaticResource Proxy}}"
+					/>
+
+				<Button
+					Grid.Column="5"
+					Margin="2 0"
+					Command="{Binding DataContext.ShowSortieDetailsCommand, Source={StaticResource Proxy}}"
+					CommandParameter="{Binding}"
+					Content="{Binding DataContext.SortieRecordViewer.SortieDetail, Source={StaticResource Proxy}}"
 					/>
 			</Grid>
 		</DataTemplate>

@@ -11,22 +11,19 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
-using ElectronicObserverTypes.Serialization.FitBonus;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
@@ -330,5 +327,45 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		if (calendar is null) return;
 
 		calendar.SelectedDate = DateTime.Now.Date;
+	}
+
+	[RelayCommand]
+	private void ShowSortieDetails(SortieRecordViewModel? sortie)
+	{
+		if (sortie is null) return;
+
+		if (!sortie.Model.ApiFiles.Any())
+		{
+			sortie.Model.ApiFiles = Db.ApiFiles
+				.Where(f => f.SortieRecordId == sortie.Model.Id)
+				.ToList();
+		}
+
+		List<IFleetData?> fleets = sortie.Model.FleetData.Fleets.Select(f => f.MakeFleet()).ToList();
+		bool isCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
+
+		ApiFile startRequestFile = sortie.Model.ApiFiles
+			.First(f => f.ApiFileType is ApiFileType.Request && f.Name is "api_req_map/start");
+
+		ApiReqMapStartRequest startRequest = JsonSerializer
+			.Deserialize<ApiReqMapStartRequest>(startRequestFile.Content)
+			?? throw new Exception();
+
+		// fleetId is 1 based, so need to do -1 when fetching data from fleets
+		if (!int.TryParse(startRequest.ApiDeckId, out int fleetId)) throw new Exception();
+		if (fleets[fleetId - 1] is not IFleetData fleet) throw new Exception();
+
+		SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, fleet);
+
+		foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+		{
+			object? battleData = apiFile.GetResponseApiData();
+
+			if (battleData is null) continue;
+
+			sortieDetail.AddApiResponse(battleData);
+		}
+
+		new SortieDetailWindow(sortieDetail).Show();
 	}
 }
