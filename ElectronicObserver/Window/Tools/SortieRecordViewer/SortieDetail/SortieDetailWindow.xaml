@@ -6,9 +6,9 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:ui="http://schemas.modernwpf.com/2019"
-	xmlns:phase="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase"
 	xmlns:node="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node"
+	xmlns:phase="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding SortieDetail.Title}"
 	Width="800"
 	Height="450"
@@ -250,6 +250,15 @@
 							<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_EnemyEscortFleet, Source={StaticResource Proxy}}" />
 							<ItemsControl ItemsSource="{Binding FirstBattle.EnemyEscortFleetBeforeAfter}" />
 						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Grid.Row="2" Margin="0 10">
+						<TextBlock Text="{Binding Result}" />
+						<TextBlock Text="{Binding ResultRank}" />
+						<TextBlock Text="{Binding ResultMvpMain}" />
+						<TextBlock Text="{Binding AdmiralExp}" />
+						<TextBlock Text="{Binding BaseExp}" />
+						<TextBlock Text="{Binding DropShip}" />
 					</StackPanel>
 					<!--
 					todo:

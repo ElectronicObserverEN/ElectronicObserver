@@ -1,8 +1,11 @@
-﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
+﻿using ElectronicObserverTypes.Data;
+
+namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
 public class EmptyNode : SortieNode
 {
-	public EmptyNode(int world, int map, int cell) : base(world, map, cell)
+	public EmptyNode(IKCDatabase kcDatabase, int world, int map, int cell) 
+		: base(kcDatabase, world, map, cell)
 	{
 	}
 }

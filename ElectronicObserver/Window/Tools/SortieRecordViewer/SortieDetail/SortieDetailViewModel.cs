@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Deck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
@@ -97,11 +98,18 @@ public class SortieDetailViewModel : WindowViewModelBase
 			{
 				BattleNightOnly b = BattleFactory.CreateBattle(Fleet, battle);
 
-				node = new BattleNode(World, Map, cell, b);
+				node = new BattleNode(KCDatabase.Instance, World, Map, cell, b);
+			}
+
+			if (response is ApiReqSortieBattleresultResponse result)
+			{
+				if (node is not BattleNode battleNode) throw new NotImplementedException("Should be impossible.");
+
+				battleNode.AddResult(result);
 			}
 		}
 
-		Nodes.Add(node ?? new EmptyNode(World, Map, cell));
+		Nodes.Add(node ?? new EmptyNode(KCDatabase.Instance, World, Map, cell));
 
 		ApiResponseCache.Clear();
 	}
