@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+﻿using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
@@ -113,7 +114,7 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 
 	[JsonPropertyName("api_next_map_ids")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<string>? ApiNextMapIds { get; set; } = default!;
+	public List<object>? ApiNextMapIds { get; set; } = default!;
 
 	[JsonPropertyName("api_ope_suffix")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -137,4 +138,8 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required(AllowEmptyStrings = true)]
 	public string ApiWinRank { get; set; } = default!;
+
+	public ApiGetUseitem? ApiGetUseitem { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+	public ApiLandingHp? ApiLandingHp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+	public int ApiMapcellIncentive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 }

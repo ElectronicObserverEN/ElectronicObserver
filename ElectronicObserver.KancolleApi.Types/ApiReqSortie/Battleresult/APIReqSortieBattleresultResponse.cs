@@ -21,7 +21,7 @@ public class ApiReqSortieBattleresultResponse : ISortieBattleResultApi
 
 	[JsonPropertyName("api_escape")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object? ApiEscape { get; set; } = default!;
+	public ApiEscape? ApiEscape { get; set; } = default!;
 
 	[JsonPropertyName("api_escape_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
