@@ -444,7 +444,7 @@ public class FleetItemViewModel : ObservableObject
 				double accuracy = ship.GetDayAttackAccuracy(attack, fleet);
 				string attackDisplay = attack switch
 				{
-					DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
+					DayAttackKind dayAttack => DayAttack.AttackDisplay(dayAttack),
 					DayAirAttackCutinKind cvci => cvci switch
 					{
 						DayAirAttackCutinKind.FighterBomberAttacker => FormFleet.CvciFba,

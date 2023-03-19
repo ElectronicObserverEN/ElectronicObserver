@@ -469,7 +469,7 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	public string AirPower => Calculator.GetAirSuperiority(Ship).ToString();
-	public string DayAttack => Constants.GetDayAttackKind(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
+	public string DayAttack => ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
 	public string NightAttack => ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(Calculator.GetNightAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
 
 	#endregion

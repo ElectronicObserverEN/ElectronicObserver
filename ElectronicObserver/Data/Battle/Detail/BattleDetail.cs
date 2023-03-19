@@ -276,7 +276,7 @@ public class BattleDayDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetDayAttackKind((DayAttackKind)AttackType);
+		return DayAttack.AttackDisplay((DayAttackKind)AttackType);
 	}
 }
 
