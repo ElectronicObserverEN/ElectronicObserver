@@ -801,25 +801,20 @@ public static class Constants
 	/// <summary>
 	/// 制空戦の結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetAirSuperiority(int id)
-	{
-		switch (id)
-		{
-			case 0:
-				return ConstantsRes.AirParity;
-			case 1:
-				return ConstantsRes.AirSupremacy;
-			case 2:
-				return ConstantsRes.AirSuperiority;
-			case 3:
-				return ConstantsRes.AirDenialNew;
-			case 4:
-				return ConstantsRes.AirIncapability;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+	public static string GetAirSuperiority(int id) => GetAirSuperiority((AirState)id);
 
+	/// <summary>
+	/// 制空戦の結果を表す文字列を取得します。
+	/// </summary>
+	public static string GetAirSuperiority(AirState id) => id switch
+	{
+		AirState.Parity => ConstantsRes.AirParity,
+		AirState.Supremacy => ConstantsRes.AirSupremacy,
+		AirState.Superiority => ConstantsRes.AirSuperiority,
+		AirState.Denial => ConstantsRes.AirDenialNew,
+		AirState.Incapability => ConstantsRes.AirIncapability,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 勝利ランクを表すIDを取得します。
