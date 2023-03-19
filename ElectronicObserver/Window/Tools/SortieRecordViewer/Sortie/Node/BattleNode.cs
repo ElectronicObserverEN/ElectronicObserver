@@ -1,6 +1,5 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
@@ -10,7 +9,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 public class BattleNode : SortieNode
 {
 	public BattleData FirstBattle { get; }
-	public BattleData? SecondBattle { get; }
+	public BattleData? SecondBattle { get; set; }
 	public BattleResult? BattleResult { get; private set; }
 
 	public string Result => ConstantsRes.BattleDetail_Result;
@@ -60,7 +59,7 @@ public class BattleNode : SortieNode
 		_ => ConstantsRes.BattleDetail_Drop + ConstantsRes.NoNode,
 	};
 
-	public BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleNightOnly battle)
+	public BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle)
 		: base(kcDatabase, world, map, cell)
 	{
 		FirstBattle = battle;

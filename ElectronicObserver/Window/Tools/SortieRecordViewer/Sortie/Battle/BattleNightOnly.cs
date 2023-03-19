@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -11,14 +12,15 @@ public class BattleNightOnly : BattleNight
 	private static double FuelConsumption => 0.1;
 	private static double AmmoConsumption => 0.1;
 
-	public BattleNightOnly(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqBattleMidnightSpMidnightResponse battle) : base(kcDatabase, fleets, battle)
+	public BattleNightOnly(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqBattleMidnightSpMidnightResponse battle) 
+		: base(kcDatabase, fleets, battle)
 	{
-		foreach (var phase in GetPhases())
+		foreach (PhaseBase phase in GetPhases())
 		{
 			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
 		}
 
-		foreach (var ship in FleetsAfterBattle.Fleet.MembersWithoutEscaped!)
+		foreach (IShipData? ship in FleetsAfterBattle.Fleet.MembersWithoutEscaped!)
 		{
 			if (ship is null) continue;
 

@@ -32,7 +32,6 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
 	private DataSerializationService DataSerializationService { get; }
-	
 	private ElectronicObserverContext Db { get; } = new();
 
 	public SortieRecordViewerTranslationViewModel SortieRecordViewer { get; }
@@ -42,8 +41,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public List<object> Worlds { get; }
 	public List<object> Maps { get; }
 
-	public object World { get; set; } = AllRecords;
-	public object Map { get; set; } = AllRecords;
+	public object World { get; set; } = 5;
+	public object Map { get; set; } = 5;
 
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
@@ -78,8 +77,9 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		MaxDate = DateTime.Now.AddDays(1);
 
-		DateBegin = MinDate.Date;
+		DateBegin = new(2023, 03, 01);
 		DateEnd = MaxDate.Date;
+		TimeEnd = new(2023, 02, 01, 12, 10, 00);
 
 		Worlds = Db.Worlds
 			.Select(w => w.Id)
@@ -334,38 +334,45 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (sortie is null) return;
 
-		if (!sortie.Model.ApiFiles.Any())
+		try
 		{
-			sortie.Model.ApiFiles = Db.ApiFiles
-				.Where(f => f.SortieRecordId == sortie.Model.Id)
-				.ToList();
+			if (!sortie.Model.ApiFiles.Any())
+			{
+				sortie.Model.ApiFiles = Db.ApiFiles
+					.Where(f => f.SortieRecordId == sortie.Model.Id)
+					.ToList();
+			}
+
+			List<IFleetData?> fleets = sortie.Model.FleetData.Fleets.Select(f => f.MakeFleet()).ToList();
+			bool isCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
+
+			ApiFile startRequestFile = sortie.Model.ApiFiles
+				.First(f => f.ApiFileType is ApiFileType.Request && f.Name is "api_req_map/start");
+
+			ApiReqMapStartRequest startRequest = JsonSerializer
+				.Deserialize<ApiReqMapStartRequest>(startRequestFile.Content)
+				?? throw new Exception();
+
+			// fleetId is 1 based, so need to do -1 when fetching data from fleets
+			if (!int.TryParse(startRequest.ApiDeckId, out int fleetId)) throw new Exception();
+			if (fleets[fleetId - 1] is not IFleetData fleet) throw new Exception();
+
+			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, fleet);
+
+			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+			{
+				object? battleData = apiFile.GetResponseApiData();
+
+				if (battleData is null) continue;
+
+				sortieDetail.AddApiResponse(battleData);
+			}
+
+			new SortieDetailWindow(sortieDetail).Show();
 		}
-
-		List<IFleetData?> fleets = sortie.Model.FleetData.Fleets.Select(f => f.MakeFleet()).ToList();
-		bool isCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
-
-		ApiFile startRequestFile = sortie.Model.ApiFiles
-			.First(f => f.ApiFileType is ApiFileType.Request && f.Name is "api_req_map/start");
-
-		ApiReqMapStartRequest startRequest = JsonSerializer
-			.Deserialize<ApiReqMapStartRequest>(startRequestFile.Content)
-			?? throw new Exception();
-
-		// fleetId is 1 based, so need to do -1 when fetching data from fleets
-		if (!int.TryParse(startRequest.ApiDeckId, out int fleetId)) throw new Exception();
-		if (fleets[fleetId - 1] is not IFleetData fleet) throw new Exception();
-
-		SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, fleet);
-
-		foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+		catch (Exception e)
 		{
-			object? battleData = apiFile.GetResponseApiData();
-
-			if (battleData is null) continue;
-
-			sortieDetail.AddApiResponse(battleData);
+			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
 		}
-
-		new SortieDetailWindow(sortieDetail).Show();
 	}
 }

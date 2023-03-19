@@ -41,17 +41,21 @@ public abstract class BattleData
 	public SortieCost TotalSupplyCost => MainFleetSupplyCosts
 		.Aggregate(new SortieCost(), (a, b) => a + b);
 
-	public PhaseInitial Initial { get; }
-	public PhaseSearching Searching { get; }
-	public PhaseFriendlySupportInfo FriendlySupportInfo { get; }
-	public PhaseSupport Support { get; }
+	protected PhaseInitial Initial { get; }
+	protected PhaseSearching Searching { get; }
+	protected PhaseFriendlySupportInfo FriendlySupportInfo { get; }
+	protected PhaseSupport Support { get; }
 
 	public abstract IEnumerable<PhaseBase> Phases { get; }
 
 	protected BattleData(IKCDatabase kcDatabase, BattleFleets fleets, IBattleApiResponse battle)
 	{
 		Initial = new(kcDatabase, fleets, battle);
-		Searching = new(battle);
+		Searching = battle switch
+		{
+			IDayBattleApiResponse d => new(d),
+			_ => new(battle),
+		};
 		FriendlySupportInfo = new();
 		Support = new();
 	}

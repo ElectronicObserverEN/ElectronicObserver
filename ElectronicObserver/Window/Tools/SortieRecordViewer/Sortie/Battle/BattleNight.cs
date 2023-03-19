@@ -6,11 +6,12 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public abstract class BattleNight : BattleData
 {
-	public PhaseNightInitial NightInitial { get; }
-	public PhaseFriendlyShelling FriendlyShelling { get; }
-	public PhaseNightBattle NightBattle { get; }
+	protected PhaseNightInitial NightInitial { get; }
+	protected PhaseFriendlyShelling FriendlyShelling { get; }
+	protected PhaseNightBattle NightBattle { get; }
 
-	protected BattleNight(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle) : base(kcDatabase, fleets, battle)
+	protected BattleNight(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle) 
+		: base(kcDatabase, fleets, battle)
 	{
 		NightInitial = new(kcDatabase, fleets, battle);
 		FriendlyShelling = new();

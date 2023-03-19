@@ -1,0 +1,67 @@
+﻿using System;
+using System.Linq;
+using ElectronicObserver.Data;
+using ElectronicObserver.Properties.Data;
+using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
+
+namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+
+public class AirBattleAttackViewModel
+{
+	public int WaveIndex { get; }
+	public BattleIndex DefenderIndex { get; }
+	public IShipData Defender { get; set; }
+	public double Damage { get; }
+	public HitType HitType { get; }
+	public AirAttack AttackType { get; }
+	public string DamageDisplay { get; }
+
+	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
+	{
+		(> 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
+		(_, FleetFlag.Player) => BattleRes.EnemyAirSquadron,
+		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
+	};
+
+	public AirBattleAttackViewModel(BattleFleets fleets, int waveIndex, AirBattleAttack attack)
+	{
+		WaveIndex = waveIndex;
+		Damage = attack.Defenders.First().Damage;
+		HitType = attack.Defenders.First().CriticalFlag;
+
+		DefenderIndex = attack.Defenders.First().Defender;
+		Defender = fleets.GetShip(DefenderIndex)!;
+		AttackType = attack.AttackType;
+
+		DamageDisplay =
+			$"[{GetAttackKind(AttackType)}] " +
+			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)} " +
+			$"({Defender.HPCurrent} → {Math.Max(0, Defender.HPCurrent - Damage)})";
+	}
+
+	private static string GetAttackKind(AirAttack airAttack) => airAttack switch
+	{
+		AirAttack.Torpedo => ConstantsRes.TorpedoAttack,
+		AirAttack.Bombing => ConstantsRes.BombingAttack,
+		AirAttack.TorpedoBombing => ConstantsRes.TorpBombingAttack,
+		_ => ConstantsRes.Unknown,
+	};
+
+	private static string AttackDisplay(bool guardsFlagship, double damage, HitType hitType) => hitType switch
+	{
+		HitType.Hit => $"{HitDisplay(guardsFlagship, damage)} Dmg",
+		HitType.Critical => $"{HitDisplay(guardsFlagship, damage)} Critical!",
+		HitType.Miss => "Miss",
+		_ => "",
+	};
+
+	private static string HitDisplay(bool guardsFlagship, double damage)
+		=> $"{ProtectedDisplay(guardsFlagship)}{damage}";
+
+	private static string ProtectedDisplay(bool guardsFlagship) => guardsFlagship switch
+	{
+		true => "protected ",
+		_ => "",
+	};
+}

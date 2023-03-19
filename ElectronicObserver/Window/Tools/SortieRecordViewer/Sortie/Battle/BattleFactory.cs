@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 
@@ -12,6 +13,9 @@ public class BattleFactory
 	{
 		KcDatabase = kcDatabase;
 	}
+
+	public BattleNormalDay CreateBattle(IFleetData fleet, ApiReqSortieBattleResponse battle)
+		=> new(KcDatabase, new(fleet), battle);
 
 	public BattleNightOnly CreateBattle(IFleetData fleet, ApiReqBattleMidnightSpMidnightResponse battle)
 		=> new(KcDatabase, new(fleet), battle);

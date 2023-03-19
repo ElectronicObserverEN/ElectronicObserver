@@ -45,7 +45,7 @@ public interface IDayBattleApiResponse : IBattleApiResponse, IAirBaseBattle
 	/// <summary>
 	/// 開幕雷撃戦 api_opening_flag = 0 の時 null　中身はおそらく api_raigeki と同じ *スペルミス注意*
 	/// </summary>
-	ApiOpeningAtack? ApiOpeningAtack { get; set; }
+	ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	/// <summary>
 	/// 開幕雷撃フラグ 0=発動せず, 1=発動

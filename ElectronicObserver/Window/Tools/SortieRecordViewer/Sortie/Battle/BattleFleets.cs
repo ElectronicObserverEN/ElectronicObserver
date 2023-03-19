@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 public class BattleFleets
 {
 	public IFleetData Fleet { get; }
-	public IFleetData? EscortFleet { get; init; }
+	public IFleetData? EscortFleet { get; set; }
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 

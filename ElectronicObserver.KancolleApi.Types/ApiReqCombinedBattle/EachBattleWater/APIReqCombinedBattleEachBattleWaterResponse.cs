@@ -126,7 +126,7 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse
 	[JsonPropertyName("api_opening_atack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiOpeningAtack ApiOpeningAtack { get; set; } = new();
+	public ApiRaigekiClass ApiOpeningAtack { get; set; } = new();
 
 	[JsonPropertyName("api_opening_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -6,17 +6,17 @@ using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseNightBattleAttackViewModel
+public class PhaseShellingAttackViewModel
 {
 	public BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	private NightAttackKind AttackType { get; }
-	private List<NightAttack> Attacks { get; }
+	private DayAttackKind AttackType { get; }
+	private List<DayAttack> Attacks { get; }
 	public string DamageDisplay { get; }
 
-	public PhaseNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack)
+	public PhaseShellingAttackViewModel(BattleFleets fleets, PhaseShellingAttack attack)
 	{
 		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
@@ -24,7 +24,7 @@ public class PhaseNightBattleAttackViewModel
 		Defender = fleets.GetShip(DefenderIndex)!;
 		AttackType = attack.AttackType;
 		Attacks = attack.Defenders
-			.Select(d => new NightAttack
+			.Select(d => new DayAttack
 			{
 				Attacker = Attacker,
 				Defender = fleets.GetShip(d.Defender)!,
@@ -36,23 +36,23 @@ public class PhaseNightBattleAttackViewModel
 			.ToList();
 
 		DamageDisplay =
-			$"[{ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(AttackType)}] " +
+			$"[{ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(AttackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))} " +
 			$"({Defender.HPCurrent} → {Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage))})";
 
 	}
 
-	private static string AttackDisplay(NightAttack nightAttack) => nightAttack.CriticalFlag switch
+	private static string AttackDisplay(DayAttack dayAttack) => dayAttack.CriticalFlag switch
 	{
-		HitType.Hit => $"{HitDisplay(nightAttack)} Dmg",
-		HitType.Critical => $"{HitDisplay(nightAttack)} Critical!",
+		HitType.Hit => $"{HitDisplay(dayAttack)} Dmg",
+		HitType.Critical => $"{HitDisplay(dayAttack)} Critical!",
 		HitType.Miss => "Miss",
 		_ => "",
 	};
 
-	private static string HitDisplay(NightAttack nightAttack) => $"{ProtectedDisplay(nightAttack)}{nightAttack.Damage}";
+	private static string HitDisplay(DayAttack dayAttack) => $"{ProtectedDisplay(dayAttack)}{dayAttack.Damage}";
 
-	private static string ProtectedDisplay(NightAttack nightAttack) => nightAttack.GuardsFlagship switch
+	private static string ProtectedDisplay(DayAttack dayAttack) => dayAttack.GuardsFlagship switch
 	{
 		true => "protected ",
 		_ => "",

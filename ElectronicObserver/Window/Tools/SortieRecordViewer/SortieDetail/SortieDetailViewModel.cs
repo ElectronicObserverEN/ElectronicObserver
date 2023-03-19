@@ -5,11 +5,11 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
-using ElectronicObserver.KancolleApi.Types.ApiGetMember.Deck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
@@ -94,16 +94,23 @@ public class SortieDetailViewModel : WindowViewModelBase
 				_ => cell,
 			};
 
-			if (response is ApiReqBattleMidnightSpMidnightResponse battle)
-			{
-				BattleNightOnly b = BattleFactory.CreateBattle(Fleet, battle);
+			BattleData? battle = GetBattle(response);
 
-				node = new BattleNode(KCDatabase.Instance, World, Map, cell, b);
+			if (battle is not null)
+			{
+				if (node is BattleNode battleNode)
+				{
+					battleNode.SecondBattle = battle;
+				}
+				else
+				{
+					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle);
+				}
 			}
 
 			if (response is ApiReqSortieBattleresultResponse result)
 			{
-				if (node is not BattleNode battleNode) throw new NotImplementedException("Should be impossible.");
+				if (node is not BattleNode battleNode) continue;
 
 				battleNode.AddResult(result);
 			}
@@ -113,4 +120,12 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 		ApiResponseCache.Clear();
 	}
+
+	private BattleData? GetBattle(object api) => api switch
+	{
+		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(Fleet, a),
+		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(Fleet, a),
+
+		_ => null,
+	};
 }

@@ -48,6 +48,37 @@
 			</StackPanel>
 		</DataTemplate>
 
+		<DataTemplate DataType="{x:Type phase:DayAttack}">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding Damage}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseShellingAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:AirBattleAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding AttackerName, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
 		<DataTemplate DataType="{x:Type phase:PhaseInitial}">
 			<StackPanel Style="{StaticResource PhaseStyle}">
 				<TextBlock>
@@ -157,6 +188,132 @@
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type phase:PhaseNightBattle}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseShelling}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseJetBaseAirAttack}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseJetAirBattle}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirAttack}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseFriendlyAirBattle}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseAirBattle}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Stage1Display}" />
+
+				<TextBlock Text="{Binding TouchAircraftFriend}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftFriend}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<TextBlock Text="{Binding TouchAircraftEnemy}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftEnemy}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<TextBlock Margin="0 0 0 5" Text="{Binding Stage2Display}" />
+
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseOpeningAsw}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseTorpedo}">
 			<StackPanel Style="{StaticResource PhaseStyle}">
 				<TextBlock>
 					<Run Text="==" />

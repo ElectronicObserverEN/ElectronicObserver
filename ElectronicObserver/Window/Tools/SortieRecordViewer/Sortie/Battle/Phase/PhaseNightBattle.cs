@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
@@ -13,13 +14,10 @@ public class PhaseNightBattle : PhaseBase
 {
 	private ApiHougeki ShellingData { get; }
 
-	private bool IsFriendCombined { get; }
-	private bool IsEnemyCombined { get; }
-
 	public string Title => BattleRes.BattlePhaseNightBattle;
 
 	public List<PhaseNightBattleAttack> Attacks { get; } = new();
-	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; set; } = new();
+	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = new();
 
 	public PhaseNightBattle(ApiHougeki shellingData)
 	{
@@ -103,31 +101,34 @@ public class PhaseNightBattle : PhaseBase
 						damages[comboatk] += atk.Defenders[i].Damage;
 					}
 					break;
-
+				*/
 				case NightAttackKind.SpecialColorado:
-				case NightAttackKind.SpecialKongo:
+				case NightAttackKind.SpecialKongou:
 				case NightAttackKind.SpecialYamato3Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
-						List<FleetData> fleets = KCDatabase.Instance.Fleet.Fleets.Values
-							.Where(f => f.IsInSortie)
-							.ToList();
+						int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
+							.Count(f => f.IsInSortie);
 
-						BattleIndex comboatk = fleets.Count switch
+						PhaseNightBattleAttack comboAttack = atk with
 						{
 							// hack: Kongou night special attack index is messed up for combined fleet vs combined fleet
 							// todo: need to check what happens in case only 1 of the fleets is combined
 							// note: when testing via api replay you need a combined fleet in-game, else fleet data (count) won't be correct
-							2 when i < 6 => new(i + 6, 0, true, true),
-							_ => new BattleIndex(atk.Attacker.Side, i),
+							// #1, #2, #3
+							Attacker = fleetCount switch
+							{
+								2 when i < 6 => new(i + 6, FleetFlag.Player),
+								_ => new(i, FleetFlag.Player),
+							},
+							Defenders = new() { atk.Defenders[i] },
 						};
 
-						// BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack));
 						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
 					}
 					break;
-					*/
+
 				default:
 					foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 					{

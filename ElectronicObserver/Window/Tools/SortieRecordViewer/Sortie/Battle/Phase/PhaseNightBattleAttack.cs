@@ -3,11 +3,11 @@ using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseNightBattleAttack
+public record PhaseNightBattleAttack
 {
-	public BattleIndex Attacker { get; set; }
+	public BattleIndex Attacker { get; init; }
 	public bool NightAirAttackFlag { get; set; }
-	public NightAttackKind AttackType { get; set; }
+	public NightAttackKind AttackType { get; init; }
 	public List<int> EquipmentIDs { get; set; }
-	public List<PhaseNightBattleDefender> Defenders { get; set; } = new();
+	public List<PhaseNightBattleDefender> Defenders { get; init; } = new();
 }

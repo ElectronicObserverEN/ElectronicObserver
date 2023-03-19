@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
+﻿using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+
+namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 
 public class ApiStage3
 {
@@ -10,7 +12,7 @@ public class ApiStage3
 	[JsonPropertyName("api_ecl_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEclFlag { get; set; } = new();
+	public List<AirHitType> ApiEclFlag { get; set; } = new();
 
 	[JsonPropertyName("api_edam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -30,7 +32,7 @@ public class ApiStage3
 	[JsonPropertyName("api_fcl_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiFclFlag { get; set; } = new();
+	public List<AirHitType> ApiFclFlag { get; set; } = new();
 
 	[JsonPropertyName("api_fdam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
