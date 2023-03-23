@@ -87,23 +87,33 @@ public class PhaseAirBattleBase : PhaseBase
 			Stage2Display = sb.ToString();
 		}
 
-		Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, battleFleets.Fleet,
-			AirBattleData.ApiStage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
-			AirBattleData.ApiStage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
-			AirBattleData.ApiStage3.ApiFclFlag,
-			AirBattleData.ApiStage3.ApiFdam));
+		if (AirBattleData.ApiStage3 is not null)
+		{
+			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, battleFleets.Fleet,
+				AirBattleData.ApiStage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
+				AirBattleData.ApiStage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
+				AirBattleData.ApiStage3.ApiFclFlag,
+				AirBattleData.ApiStage3.ApiFdam));
+		}
 
-		Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
+		if (AirBattleData.ApiStage3Combined is not null)
+		{
+			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
 			AirBattleData.ApiStage3Combined.ApiFraiFlag,
 			AirBattleData.ApiStage3Combined.ApiFbakFlag,
 			AirBattleData.ApiStage3Combined.ApiFclFlag,
 			AirBattleData.ApiStage3Combined.ApiFdam));
+		}
 
-		Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.EnemyFleet,
+		if (AirBattleData.ApiStage3 is not null)
+		{
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.EnemyFleet,
 			AirBattleData.ApiStage3.ApiEraiFlag,
 			AirBattleData.ApiStage3.ApiEbakFlag,
 			AirBattleData.ApiStage3.ApiEclFlag,
 			AirBattleData.ApiStage3.ApiEdam));
+		}
+
 		/*
 		Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EnemyEscortFleet,
 			AirBattleData.ApiStage3Combined.ApiEraiFlag,
