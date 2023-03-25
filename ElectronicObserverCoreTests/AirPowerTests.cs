@@ -25,7 +25,7 @@ public class AirPowerTests
 		{
 			SlotInstance = new List<IEquipmentData?>
 			{
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.ASPatrol_Type1FighterHayabusaModelII_20thSquadron])
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.ASPatrol_Type1FighterHayabusaModelIIKai_20thSquadron])
 				{
 					Level = 10,
 					AircraftLevel = 7,
@@ -127,7 +127,7 @@ public class AirPowerTests
 	[Fact(DisplayName = "AB AS Patrol Hayabusa")]
 	public void AirPowerTest5()
 	{
-		EquipmentDataMock eq = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type1FighterHayabusaModelII_20thSquadron])
+		EquipmentDataMock eq = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type1FighterHayabusaModelIIKai_20thSquadron])
 		{
 			Level = 10,
 			AircraftLevel = 7,

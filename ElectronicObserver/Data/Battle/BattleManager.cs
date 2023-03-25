@@ -697,7 +697,14 @@ public class BattleManager : APIWrapper
 		for (int i = 0; i < firstInitial.EnemyInitialHPs.Length; i++)
 		{
 			int initial = firstInitial.EnemyInitialHPs[i];
-			if (initial < 0)
+			bool isTargetable = true;
+
+			if (firstInitial.IsEnemyTargetable.Length > i)
+			{
+				isTargetable = firstInitial.IsEnemyTargetable[i];
+			}
+
+			if (initial < 0 || !isTargetable)
 				continue;
 
 			int result = resultHPs[BattleIndex.Get(BattleSides.EnemyMain, i)];
@@ -715,7 +722,14 @@ public class BattleManager : APIWrapper
 			for (int i = 0; i < firstInitial.EnemyInitialHPsEscort.Length; i++)
 			{
 				int initial = firstInitial.EnemyInitialHPsEscort[i];
-				if (initial < 0)
+				bool isTargetable = true;
+
+				if (firstInitial.IsEnemyTargetableEscort.Length > i)
+				{
+					isTargetable = firstInitial.IsEnemyTargetableEscort[i];
+				}
+
+				if (initial < 0 || !isTargetable)
 					continue;
 
 				int result = resultHPs[BattleIndex.Get(BattleSides.EnemyEscort, i)];

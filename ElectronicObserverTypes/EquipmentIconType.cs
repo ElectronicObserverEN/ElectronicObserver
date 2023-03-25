@@ -155,6 +155,9 @@ public enum EquipmentIconType
 	/// <summary>夜間水上爆撃機</summary>
 	NightSeaplaneBomber = 51,
 
+	/// <summary>陸戦部隊</summary>
+	ArmyInfantry = 52,
+
 	Locked,
 	Unknown,
 }

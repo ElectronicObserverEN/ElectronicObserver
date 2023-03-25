@@ -18,11 +18,17 @@ public class ApiDestructionBattle : IBattleApiResponse
 	public List<List<int>> ApiEParam { get; set; }
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<object> ApiEMaxhps { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

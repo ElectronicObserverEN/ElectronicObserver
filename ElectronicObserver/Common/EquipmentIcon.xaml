@@ -487,6 +487,15 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplaneBomber}" />
 					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								ArmyInfantry
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.ArmyInfantry}" />
+					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>

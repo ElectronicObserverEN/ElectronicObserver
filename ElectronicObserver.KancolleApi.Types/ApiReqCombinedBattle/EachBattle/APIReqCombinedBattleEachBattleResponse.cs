@@ -38,6 +38,9 @@ public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
 	[Required]
 	public List<List<int>> ApiESlotCombined { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -48,6 +51,9 @@ public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
 	[Required]
 	public List<int> ApiEMaxhpsCombined { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -109,16 +115,16 @@ public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
 	[JsonPropertyName("api_hougeki1")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiHougeki ApiHougeki1 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki1 { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki? ApiHougeki2 { get; set; } = default!;
+	public ApiHougeki1? ApiHougeki2 { get; set; } = default!;
 
 	[JsonPropertyName("api_hougeki3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiHougeki ApiHougeki3 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki3 { get; set; } = new();
 
 	[JsonPropertyName("api_hourai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

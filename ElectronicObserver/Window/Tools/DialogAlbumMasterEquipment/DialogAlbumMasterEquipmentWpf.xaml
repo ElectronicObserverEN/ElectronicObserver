@@ -150,7 +150,11 @@
 						<DataGridTemplateColumn SortMemberPath="Equipment.IconTypeTyped">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<common1:EquipmentIcon Type="{Binding Equipment.IconTypeTyped}" />
+									<common1:EquipmentIcon Type="{Binding Equipment.IconTypeTyped}">
+										<common1:EquipmentIcon.ToolTip>
+											<TextBlock Text="{Binding Equipment.IconType}" />
+										</common1:EquipmentIcon.ToolTip>
+									</common1:EquipmentIcon>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>

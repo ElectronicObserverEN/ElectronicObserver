@@ -112,7 +112,7 @@ public class ShipDataMock : IShipData
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
 	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
 	public int EvasionBase => MasterShip.Evasion.GetParameter(Level);
-	public int ShipID { get; set; }
+	public int ShipID => (int)MasterShip.ShipId;
 	public int MasterID { get; set; }
 	public int SortID { get; set; }
 	public int SallyArea { get; set; }

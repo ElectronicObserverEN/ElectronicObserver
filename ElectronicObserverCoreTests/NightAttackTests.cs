@@ -441,4 +441,33 @@ public class NightAttackTests
 		Assert.Equal(0.99, totalRates[0], Precision);
 		Assert.Equal(0.01, totalRates[1], Precision);
 	}
+
+	[Fact]
+	public void NightAttackTest4TestData()
+	{
+		IShipData fuumii = new ShipDataMock(Db.MasterShips[ShipId.I203Kai])
+		{
+			Level = 175,
+			Condition = 49,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineTorpedo_SkilledSonarPersonnel_LateModelBowTorpedoMount_4tubes]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Engine_NewHighPressureTemperatureSteamBoiler]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineEquipment_LateModelRadar_PassiveRadiolocator_SnorkelEquipment])
+				{
+					Level = 2,
+				},
+			},
+		};
+
+		List<NightAttack> expected = new()
+		{
+			SubmarineTorpedoCutinAttack.CutinTorpedoTorpedoLateModelTorpedoSubmarineEquipment,
+			NightAttack.Torpedo,
+		};
+
+		List<NightAttack> actual = fuumii.GetNightAttacks().ToList();
+
+		Assert.Equal(expected, actual);
+	}
 }

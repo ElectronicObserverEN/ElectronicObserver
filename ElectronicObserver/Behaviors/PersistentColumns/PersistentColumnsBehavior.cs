@@ -93,23 +93,36 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		AssociatedObject.PreviewMouseLeftButtonUp += DataGridPreviewMouseLeftButtonUp;
 	}
 
+	/// <summary>
+	/// If the grid was never initialized before, DisplayIndex values can be -1
+	/// causing an exception.
+	/// </summary>
+	/// <returns></returns>
+	private bool WasGridInitialized()
+	{
+		return ColumnProperties.All(c => c.DisplayIndex >= 0);
+	}
+
 	private void DataGridLoaded(object sender, RoutedEventArgs e)
 	{
-		foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
+		if(WasGridInitialized())
 		{
-			dataGridColumn.Width = columnProperties.Width;
-			dataGridColumn.DisplayIndex = columnProperties.DisplayIndex;
-			dataGridColumn.SortDirection = columnProperties.SortDirection;
-			dataGridColumn.Visibility = columnProperties.Visibility;
-
-			columnProperties.Header = dataGridColumn.Header switch
+			foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
 			{
-				string stringHeader => stringHeader,
-				DataGridColumnHeader header => header.Content?.ToString() ?? "",
-				_ => "",
-			};
+				dataGridColumn.Width = columnProperties.Width;
+				dataGridColumn.DisplayIndex = columnProperties.DisplayIndex;
+				dataGridColumn.SortDirection = columnProperties.SortDirection;
+				dataGridColumn.Visibility = columnProperties.Visibility;
 
-			columnProperties.SortMemberPath = dataGridColumn.SortMemberPath?.ToString() ?? "";
+				columnProperties.Header = dataGridColumn.Header switch
+				{
+					string stringHeader => stringHeader,
+					DataGridColumnHeader header => header.Content?.ToString() ?? "",
+					_ => "",
+				};
+
+				columnProperties.SortMemberPath = dataGridColumn.SortMemberPath?.ToString() ?? "";
+			}
 		}
 
 		foreach (DataGridColumn? column in AssociatedObject.Columns)
@@ -149,7 +162,11 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		ColumnProperties = AssociatedObject.Columns.Select(c => new ColumnProperties
 		{
 			Width = c.Width,
-			DisplayIndex = c.DisplayIndex,
+			DisplayIndex = c.DisplayIndex switch
+			{
+				-1 => AssociatedObject.Columns.IndexOf(c),
+				int i => i,
+			},
 			SortDirection = c.SortDirection,
 			Visibility = c.Visibility,
 			Header = c.Header switch
@@ -169,6 +186,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	private void ColumnPropertiesChanged()
 	{
 		if (AssociatedObject is null) return;
+		if (!WasGridInitialized()) return;
 
 		foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
 		{

@@ -35,6 +35,9 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse
 	[Required]
 	public List<List<int>> ApiESlotCombined { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_maxhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -45,6 +48,9 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse
 	[Required]
 	public List<int> ApiEMaxhpsCombined { get; set; } = new();
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_e_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

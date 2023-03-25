@@ -434,6 +434,9 @@ public static class Constants
 			case 116: return "Independence級";
 			case 117: return "鵜来型";
 			case 118: return "Ranger級";
+			case 119: return "特種船M丙型";
+			case 120: return "第百一号型";
+			case 121: return "New Orleans級";
 			default: return "不明";
 		}
 	}

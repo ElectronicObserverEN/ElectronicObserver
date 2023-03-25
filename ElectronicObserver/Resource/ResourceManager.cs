@@ -92,6 +92,7 @@ public sealed class ResourceManager
 		HeavyBomber,
 		NightSeaplane,
 		NightSeaplaneBomber,
+		ArmyInfantry,
 		Locked,
 		Unknown,
 	}
@@ -340,9 +341,9 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/HeavyBomber.png", "Equipment_HeavyBomber");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplane.png", "Equipment_NightSeaplane");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplaneBomber.png", "Equipment_NightSeaplaneBomber");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/ArmyInfantry.png", "Equipment_ArmyInfantry");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
-
 		}
 
 	}
