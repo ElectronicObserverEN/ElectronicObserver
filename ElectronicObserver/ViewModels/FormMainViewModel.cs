@@ -117,6 +117,9 @@ public partial class FormMainViewModel : ObservableObject
 	public Visibility MaintenanceTextVisibility => string.IsNullOrEmpty(MaintenanceText) ? Visibility.Collapsed : Visibility.Visible;
 	public bool UpdateAvailable { get; set; } = false;
 
+	public string DownloadProgressString { get; private set; } = "";
+	public Visibility DownloadProgressVisibility { get; private set; } = Visibility.Collapsed;
+
 	public List<Theme> Themes { get; } = new()
 	{
 		new Vs2013LightTheme(),
@@ -467,6 +470,13 @@ public partial class FormMainViewModel : ObservableObject
 			Config.Life.LockLayout = LockLayout;
 			SaveLayout(Window);
 			ConfigurationChanged();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(DownloadProgressString)) return;
+
+			DownloadProgressVisibility = string.IsNullOrEmpty(DownloadProgressString) ? Visibility.Collapsed : Visibility.Visible;
 		};
 
 		Logger.Add(3, Resources.StartupComplete);
@@ -1836,6 +1846,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		MaintenanceText = GetMaintenanceText(FormMain, now);
 		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
+
+		DownloadProgressString = SoftwareUpdater.DownloadProgressString;
 
 		switch (ClockFormat)
 		{

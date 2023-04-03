@@ -760,6 +760,24 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Downloading update... ({0:##0.00}%)).
+        /// </summary>
+        public static string Update_DownloadingUpdate {
+            get {
+                return ResourceManager.GetString("Update_DownloadingUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Downloading updater... ({0:##0.00}%)).
+        /// </summary>
+        public static string Update_DownloadingUpdater {
+            get {
+                return ResourceManager.GetString("Update_DownloadingUpdater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 更新プログラムをダウンロード (_D).
         /// </summary>
         public static string Update_DownloadUpdate {

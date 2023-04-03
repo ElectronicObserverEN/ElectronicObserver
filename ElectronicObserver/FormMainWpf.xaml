@@ -175,6 +175,7 @@
 							<ColumnDefinition Width="Auto" />
 							<ColumnDefinition Width="Auto" />
 							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="Auto" />
 						</Grid.ColumnDefinitions>
 					</Grid>
@@ -806,6 +807,14 @@
 						<Image Source="{Binding ViewHelpImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+			</MenuItem>
+			<MenuItem
+				Grid.Column="7"
+				Height="Auto"
+				HorizontalAlignment="Right"
+				Header="{Binding DownloadProgressString}"
+				Visibility="{Binding DownloadProgressVisibility}"
+				>
 			</MenuItem>
 		</Menu>
 		<DockingManager
