@@ -709,6 +709,10 @@
 					Command="{Binding LoadInitialAPICommand}"
 					Header="{Binding FormMain.StripMenu_Debug_LoadInitialAPI}"
 					/>
+				<MenuItem
+					Command="{Binding LoadBaseAPICommand}"
+					Header="{Binding FormMain.StripMenu_Debug_LoadBaseAPI}"
+					/>
 				<Separator />
 				<MenuItem
 					d:Header="Load from _Old api__start2..."

@@ -435,4 +435,7 @@ Do you want to open this github issue?</value>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>_Update available</value>
   </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>Load saved API</value>
+  </data>
 </root>

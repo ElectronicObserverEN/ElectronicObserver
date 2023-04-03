@@ -92,6 +92,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Debug_LoadInitialAPI => Properties.Window.FormMain.Debug_LoadInitialAPI.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadRecordFromOld => Properties.Window.FormMain.Debug_LoadRecordFromOld.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_DeleteOldAPI => Properties.Window.FormMain.Debug_DeleteOldAPI.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_LoadBaseAPI => Properties.Window.FormMain.Debug_LoadBaseAPI;
 	public string StripMenu_Debug_RenameShipResource => Properties.Window.FormMain.Debug_RenameShipResource.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadDataFromOld => Properties.Window.FormMain.Debug_LoadDataFromOld.Replace("_", "__").Replace("&", "_");
 

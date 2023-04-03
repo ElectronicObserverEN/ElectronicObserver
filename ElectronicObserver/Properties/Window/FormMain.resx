@@ -435,4 +435,7 @@
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>更新プログラムが利用可能 (_U)</value>
   </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>??? (Load saved API)</value>
+  </data>
 </root>
