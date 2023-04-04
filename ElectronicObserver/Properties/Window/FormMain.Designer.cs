@@ -760,7 +760,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Downloading update... ({0:##0.00}%)).
+        ///   Looks up a localized string similar to 更新プログラムのダウンロード ({0:##0.00}%).
         /// </summary>
         public static string Update_DownloadingUpdate {
             get {
@@ -769,7 +769,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Downloading updater... ({0:##0.00}%)).
+        ///   Looks up a localized string similar to アップデータのダウンロード ({0:##0.00}%).
         /// </summary>
         public static string Update_DownloadingUpdater {
             get {
