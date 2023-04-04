@@ -17,7 +17,6 @@ public class DialogAlbumMasterEquipmentTranslationViewModel : TranslationBaseVie
 	public string StripMenu_View => DialogAlbumMasterEquipment.StripMenu_View.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_ShowAppearingArea => DialogAlbumMasterEquipment.StripMenu_View_ShowAppearingArea.Replace("_", "__").Replace("&", "_");
 
-	// todo: translate
 	public string Performance => EncycloRes.Performance;
 	public string EquipmentView_Type => DialogAlbumMasterEquipment.EquipmentView_Type.Replace("_", "__").Replace("&", "_");
 	public string EquipmentView_Name => DialogAlbumMasterEquipment.EquipmentView_Name.Replace("_", "__").Replace("&", "_");

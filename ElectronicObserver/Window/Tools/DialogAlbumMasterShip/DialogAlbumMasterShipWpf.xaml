@@ -402,7 +402,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="速力"
+									Text="{Binding DialogAlbumMasterShip.TitleSpeed}"
 									/>
 
 								<TextBlock
@@ -424,7 +424,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="レア"
+									Text="{Binding DialogAlbumMasterShip.TitleRarity}"
 									/>
 
 								<common:ImageTextControl
@@ -453,7 +453,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="射程"
+									Text="{Binding DialogAlbumMasterShip.DefaultRange}"
 									/>
 
 								<TextBlock
@@ -476,7 +476,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="消費"
+									Text="{Binding DialogAlbumMasterShip.TitleConsumption}"
 									/>
 
 								<common:ImageTextControl
@@ -578,7 +578,7 @@
 							Orientation="Horizontal"
 							>
 							<Image Source="{Binding Source={x:Static resource:IconContent.FormArsenal}, Converter={StaticResource ImageSourceConverter}}" />
-							<TextBlock Text="建造時間" />
+							<TextBlock Text="{Binding DialogAlbumMasterShip.TitleConstructionTime}"/>
 							<TextBlock Margin="4 0" Text="{Binding SelectedShip.BuildingTime}" />
 						</StackPanel>
 
@@ -590,7 +590,7 @@
 									</Style>
 								</StackPanel.Resources>
 
-								<TextBlock Margin="4 0" Text="解体" />
+								<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterShip.TitleDismantling}" />
 
 								<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedShip.Ship.Material[0]}" />
 
@@ -610,7 +610,7 @@
 									</Style>
 								</StackPanel.Resources>
 
-								<TextBlock Margin="4 0" Text="改修" />
+								<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterShip.TitleModernization}" />
 
 								<common:ImageTextControl Image="{StaticResource Firepower}" Text="{Binding SelectedShip.Ship.PowerUp[0]}" />
 
@@ -637,7 +637,7 @@
 								</StackPanel.Resources>
 
 								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="改装前" />
+									<TextBlock Text="{Binding DialogAlbumMasterShip.TitleBeforeRemodel}" />
 									<TextBlock Text="{Binding SelectedShip.RemodelBeforeShipName}" ToolTip="{Binding SelectedShip.RemodelBeforeShipNameToolTip}">
 										<TextBlock.InputBindings>
 											<MouseBinding
@@ -702,7 +702,7 @@
 								</StackPanel.Resources>
 
 								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="改装後" />
+									<TextBlock Text="{Binding DialogAlbumMasterShip.TitleAfterRemodel}" />
 									<TextBlock Text="{Binding SelectedShip.RemodelAfterShipName}" ToolTip="{Binding SelectedShip.RemodelAfterShipNameToolTip}">
 										<TextBlock.InputBindings>
 											<MouseBinding
