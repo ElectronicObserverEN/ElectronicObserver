@@ -124,7 +124,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Load saved API).
+        ///   Looks up a localized string similar to 保存したAPIをロードする.
         /// </summary>
         public static string Debug_LoadBaseAPI {
             get {

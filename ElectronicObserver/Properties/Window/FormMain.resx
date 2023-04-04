@@ -436,6 +436,6 @@
     <value>更新プログラムが利用可能 (_U)</value>
   </data>
   <data name="Debug_LoadBaseAPI" xml:space="preserve">
-    <value>??? (Load saved API)</value>
+    <value>保存したAPIをロードする</value>
   </data>
 </root>
