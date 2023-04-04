@@ -366,6 +366,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DialogRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Dialog\EncycloRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EncycloRes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Dialog\NotifyRes.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -771,6 +776,10 @@
 		<EmbeddedResource Update="Window\Dialog\DialogRes.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>DialogRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\EncycloRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EncycloRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\NotifyRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

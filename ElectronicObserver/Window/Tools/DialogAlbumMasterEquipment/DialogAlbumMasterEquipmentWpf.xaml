@@ -420,7 +420,7 @@
 								Margin="2 0"
 								HorizontalAlignment="Right"
 								Foreground="Gray"
-								Text="速力"
+								Text="{Binding DialogAlbumMasterEquipment.TitleSpeed}"
 								/>
 
 							<TextBlock
@@ -443,7 +443,7 @@
 								Grid.Column="1"
 								Margin="2 0"
 								HorizontalAlignment="Right"
-								Text="レア"
+								Text="{Binding DialogAlbumMasterEquipment.TitleRarity}"
 								/>
 
 							<common:ImageTextControl
@@ -472,7 +472,7 @@
 								Grid.Column="1"
 								Margin="2 0"
 								HorizontalAlignment="Right"
-								Text="射程"
+								Text="{Binding DialogAlbumMasterEquipment.TitleRange}"
 								/>
 
 							<TextBlock
@@ -574,7 +574,7 @@
 								</Style>
 							</StackPanel.Resources>
 
-							<TextBlock Margin="4 0" Text="解体" />
+							<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterEquipment.TitleDismantling}" />
 
 							<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipment.Equipment.Material[0]}" />
 
