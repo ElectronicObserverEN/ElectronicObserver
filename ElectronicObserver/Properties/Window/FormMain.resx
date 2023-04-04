@@ -441,4 +441,7 @@
   <data name="Update_DownloadingUpdater" xml:space="preserve">
     <value>アップデータのダウンロード ({0:##0.00}%)</value>
   </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>保存したAPIをロードする</value>
+  </data>
 </root>
