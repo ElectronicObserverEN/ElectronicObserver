@@ -1100,7 +1100,6 @@ public partial class FormMainViewModel : ObservableObject
 		}
 		catch (Exception ex)
 		{
-
 			Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
 		}
 	}
