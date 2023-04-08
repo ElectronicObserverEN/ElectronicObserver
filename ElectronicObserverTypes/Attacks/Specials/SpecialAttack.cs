@@ -5,10 +5,6 @@ namespace ElectronicObserverTypes.Attacks.Specials;
 
 public abstract record SpecialAttack
 {
-	public double TriggerRate { get; protected init; }
-
-	public IEnumerable<SpecialAttackHit> Attacks { get; protected init; } = new List<SpecialAttackHit>();
-
 	protected IFleetData Fleet { get; set; }
 
 	public virtual bool CanTriggerOnDay => true;
@@ -17,17 +13,17 @@ public abstract record SpecialAttack
 	protected SpecialAttack(IFleetData fleet)
 	{
 		Fleet = fleet;
-
-		TriggerRate = GetTriggerRate();
-		Attacks = TriggerRate != -1 ? GetAttacks() : new List<SpecialAttackHit>();
 	}
 
-	protected abstract double GetTriggerRate();
-	protected abstract IEnumerable<SpecialAttackHit> GetAttacks();
+	public virtual double GetTriggerRate() => 0;
+
+	public abstract bool CanTrigger();
+
+	public abstract IEnumerable<SpecialAttackHit> GetAttacks();
 
 	public List<SpecialAttackHit> GetHitsPerShip(int shipIndex)
 	{
-		return Attacks.Where(hit => hit.ShipIndex == shipIndex).ToList();
+		return GetAttacks().Where(hit => hit.ShipIndex == shipIndex).ToList();
 	}
 
 	public virtual double GetEngagmentModifier(EngagementType engagement) => 1;
@@ -36,7 +32,7 @@ public abstract record SpecialAttack
 
 	// TODO : Have something to display activation conditions
 
-	/* Note : engagment and fleet formation are not being taken into account */
+	/* Note : fleet formation are not being taken into account */
 
 	/*
 	DayAttackKind

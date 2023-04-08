@@ -354,6 +354,24 @@ public static class ShipDataExtensions
 		_ => false
 	};
 
+	public static bool IsBigSeven(this IShipData ship) => ship.MasterShip.ShipClassTyped switch
+	{
+		ShipClass.Nelson => true,
+		ShipClass.Nagato => true,
+		ShipClass.Colorado => true,
+		_ => false
+	};
+
+	public static bool IsFlagship(this IShipData ship, IFleetData fleet) => ship.Fleet switch
+	{
+		-1 => false,
+		_ => fleet.MembersInstance[0] switch
+		{
+			IShipData flagship => ship.MasterID == flagship.MasterID,
+			_ => false,
+		}
+	};
+
 	public static double GetHPDamageBonus(this IShipData ship) => ship.HPRate switch
 	{
 		_ when ship.HPRate <= 0.25 => 0.4,

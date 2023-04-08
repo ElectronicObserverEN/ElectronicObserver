@@ -1,0 +1,120 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using ElectronicObserverTypes.Extensions;
+
+namespace ElectronicObserverTypes.Attacks.Specials;
+
+public record ColoradoSpecialAttack : SpecialAttack
+{
+	public ColoradoSpecialAttack(IFleetData fleet) : base(fleet)
+	{
+	}
+
+	public override string GetDisplay() => AttackResources.SpecialColorado;
+
+	public override bool CanTrigger()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		if (!ships.Any()) return false;
+
+		IShipData? flagship = ships.First();
+		if (flagship is null) return false;
+		if (flagship.MasterShip.ShipClassTyped is not ShipClass.Colorado) return false;
+
+		if (flagship.HPRate <= 0.5) return false;
+
+		int availableShipCount = ships.Count(ship => ship?.HPCurrent > 0 && !ship.MasterShip.IsSubmarine) - Fleet.EscapedShipList.Count;
+		if (availableShipCount < 6) return false;
+
+		IShipData? firstHelper = ships[1];
+		if (firstHelper is null) return false;
+		if (firstHelper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
+		if (firstHelper.HPRate <= 0.25) return false;
+
+		IShipData? secondHelper = ships[2];
+		if (secondHelper is null) return false;
+		if (secondHelper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
+		if (secondHelper.HPRate <= 0.25) return false;
+
+		return true;
+	}
+
+	public override IEnumerable<SpecialAttackHit> GetAttacks()
+		=> new List<SpecialAttackHit>()
+		{
+			new SpecialAttackHit()
+			{
+				ShipIndex = 0,
+				AccuracyModifier = 1,
+				PowerModifier = GetFlagshipPowerModifier(),
+			},
+			new SpecialAttackHit()
+			{
+				ShipIndex = 1,
+				AccuracyModifier = 1,
+				PowerModifier = GetFirstHelperPowerModifier(),
+			},
+			new SpecialAttackHit()
+			{
+				ShipIndex = 2,
+				AccuracyModifier = 1,
+				PowerModifier = GetSecondHelperPowerModifier(),
+			},
+		};
+
+	private double GetFlagshipPowerModifier()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? flagship = ships[0];
+		if (flagship is null) return 1;
+
+		double mod = 1.5;
+
+		mod *= GetEquipmentPowerModifier(flagship);
+
+		return mod;
+	}
+
+	private double GetFirstHelperPowerModifier()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? firstHelper = ships[1];
+		if (firstHelper is null) return 1;
+
+		double mod = 1.3;
+
+		if (firstHelper.IsBigSeven()) mod *= 1.15;
+		mod *= GetEquipmentPowerModifier(firstHelper);
+
+		return mod;
+	}
+
+	private double GetSecondHelperPowerModifier()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? firstHelper = ships[1];
+		if (firstHelper is null) return 1;
+
+		double mod = 1.3;
+
+		if (firstHelper.IsBigSeven()) mod *= 1.17;
+		mod *= GetEquipmentPowerModifier(firstHelper);
+
+		return mod;
+	}
+
+	private double GetEquipmentPowerModifier(IShipData ship)
+	{
+		double mod = 1;
+
+		if (ship.HasApShell()) mod *= 1.35;
+		if (ship.HasRadar()) mod *= 1.15;
+		if (ship.SlotInstance.Any(item => item is not null && item.EquipmentId is EquipmentId.RadarSmall_SGRadar_LateModel)) mod *= 1.15;
+
+		return mod;
+	}
+}

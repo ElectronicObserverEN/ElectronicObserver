@@ -17,31 +17,30 @@ public record NagatoSpecialAttack : SpecialAttack
 		_ => "???"
 	};
 
-	protected override double GetTriggerRate()
+	public override bool CanTrigger()
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		if (!ships.Any()) return -1;
+		if (!ships.Any()) return false;
 
 		IShipData? flagship = ships.First();
-		if (flagship is null) return -1;
-		if (flagship.MasterShip.ShipId is not ShipId.NagatoKaiNi and not ShipId.MutsuKaiNi) return -1;
+		if (flagship is null) return false;
+		if (flagship.MasterShip.ShipId is not ShipId.NagatoKaiNi and not ShipId.MutsuKaiNi) return false;
 
-		if (flagship.HPRate <= 0.5) return -1;
+		if (flagship.HPRate <= 0.5) return false;
 
-		int availableShipCount = ships.Count(ship => ship?.HPCurrent > 0) - Fleet.EscapedShipList.Count;
-		if (availableShipCount < 6) return -1;
+		int availableShipCount = ships.Count(ship => ship?.HPCurrent > 0 && !ship.MasterShip.IsSubmarine) - Fleet.EscapedShipList.Count;
+		if (availableShipCount < 6) return false;
 
 		IShipData? helper = ships[1];
-		if (helper is null) return -1;
-		if (helper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return -1;
-		if (helper.HPRate <= 0.25) return -1;
+		if (helper is null) return false;
+		if (helper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
+		if (helper.HPRate <= 0.25) return false;
 
-		// todo : find formula
-		return 0;
+		return true;
 	}
 
-	protected override IEnumerable<SpecialAttackHit> GetAttacks()
+	public override IEnumerable<SpecialAttackHit> GetAttacks()
 		=> new List<SpecialAttackHit>()
 		{
 			new SpecialAttackHit()

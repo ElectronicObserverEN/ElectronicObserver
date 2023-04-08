@@ -451,7 +451,7 @@ public class FleetItemViewModel : ObservableObject
 
 					if (hit.ShipIndex == 0)
 					{
-						sb.AppendFormat($"・[{AttackRateDisplay(attack.TriggerRate)}] - " +
+						sb.AppendFormat($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
@@ -518,7 +518,7 @@ public class FleetItemViewModel : ObservableObject
 
 					if (hit.ShipIndex == 0)
 					{
-						sb.AppendFormat($"・[{AttackRateDisplay(attack.TriggerRate)}] - " +
+						sb.AppendFormat($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
