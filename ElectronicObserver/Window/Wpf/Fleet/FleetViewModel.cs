@@ -21,6 +21,7 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using System.Drawing;
+using ElectronicObserverTypes.Attacks.Specials;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 
@@ -34,6 +35,8 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	public int FleetId { get; }
 	public int AnchorageRepairBound { get; set; }
+
+	public IEnumerable<SpecialAttack> SpecialsAttacks { get; set; } = new List<SpecialAttack>();
 
 	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
 
@@ -116,8 +119,13 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		AnchorageRepairBound = fleet.CanAnchorageRepair ? 2 + fleet.MembersInstance[0].SlotInstance.Count(eq => eq != null && eq.MasterEquipment.CategoryType == EquipmentTypes.RepairFacility) : 0;
 
+		SpecialsAttacks = fleet.GetSpecialAttacks();
+
 		for (int i = 0; i < ControlMember.Count; i++)
 		{
+			ControlMember[i].SpecialAttackHitList = SpecialsAttacks
+				.ToDictionary(specialAttack => specialAttack, specialAttack => specialAttack.GetHitsPerShip(i));
+
 			ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
 		}
 

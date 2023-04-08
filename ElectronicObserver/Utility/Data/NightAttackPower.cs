@@ -2,6 +2,7 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -14,6 +15,21 @@ public static class NightAttackPower
 
 		basepower *= ship.GetHPDamageBonus();
 		basepower *= NightAttackKindDamageMod(attack, ship);
+
+		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
+
+		basepower = Math.Floor(Damage.Cap(basepower, Damage.NightAttackCap));
+
+		return basepower;
+	}
+
+	public static double GetNightAttackPower(this IShipData ship, SpecialAttack attack, SpecialAttackHit hit, IFleetData fleet, EngagementType engagement = EngagementType.Parallel)
+	{
+		double basepower = ship.BaseNightAttackPower() + fleet.NightScoutBonus();
+
+		basepower *= ship.GetHPDamageBonus();
+		basepower *= hit.PowerModifier;
+		basepower *= attack.GetEngagmentModifier(engagement);
 
 		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
 

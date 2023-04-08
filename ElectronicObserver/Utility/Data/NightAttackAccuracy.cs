@@ -2,6 +2,7 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -9,6 +10,25 @@ namespace ElectronicObserver.Utility.Data;
 public static class NightAttackAccuracy
 {
 	public static double GetNightAttackAccuracy(this IShipData ship, NightAttack attack, IFleetData fleet)
+	{
+		int baseAccuracy = fleet.BaseAccuracy();
+		double shipAccuracy = ship.Accuracy();
+		double equipAccuracy = ship.AllSlotInstance
+			.Where(e => e != null)
+			.Sum(e => e.MasterEquipment.Accuracy);
+
+		// if night equip is present assume it activates
+		return Math.Floor(fleet.NightScoutMod()
+						  * (baseAccuracy + fleet.StarShellBonus())
+						  + shipAccuracy
+						  + equipAccuracy)
+				* ship.ConditionMod()
+				* attack.AccuracyModifier
+				+ fleet.SearchlightBonus()
+				+ ship.HeavyCruiserBonus();
+	}
+
+	public static double GetNightAttackAccuracy(this IShipData ship, SpecialAttackHit attack, IFleetData fleet)
 	{
 		int baseAccuracy = fleet.BaseAccuracy();
 		double shipAccuracy = ship.Accuracy();

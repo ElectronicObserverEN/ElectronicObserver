@@ -2,6 +2,7 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -18,6 +19,21 @@ public static class DayAttackPower
 		basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));
 
 		basepower *= DayAttackMod(attack);
+
+		return (int)basepower;
+	}
+
+	public static int GetDayAttackPower(this IShipData ship, SpecialAttack attack, SpecialAttackHit hit, IFleetData fleet, EngagementType engagement = EngagementType.Parallel)
+	{
+		double basepower = ship.BaseDayAttackPower(fleet);
+
+		basepower *= ship.GetHPDamageBonus() * Damage.EngagementDayAttackMod(engagement);
+		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
+
+		basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));
+
+		basepower *= hit.PowerModifier;
+		basepower *= SpecialAttackEngagmentMod(attack, engagement);
 
 		return (int)basepower;
 	}
@@ -111,6 +127,13 @@ public static class DayAttackPower
 		DayAirAttackCutinKind.FighterBomberAttacker => 1.25,
 		DayAirAttackCutinKind.BomberBomberAttacker => 1.20,
 		DayAirAttackCutinKind.BomberAttacker => 1.15,
+
+		_ => 1
+	};
+
+	private static double SpecialAttackEngagmentMod(SpecialAttack attack, EngagementType engagment) => (attack, engagment) switch
+	{
+		(NelsonSpecialAttack, EngagementType.TDisadvantage) => 1.25,
 
 		_ => 1
 	};

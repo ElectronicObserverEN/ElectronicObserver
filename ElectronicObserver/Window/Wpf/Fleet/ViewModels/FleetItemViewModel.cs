@@ -17,6 +17,7 @@ using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
@@ -36,6 +37,8 @@ public class FleetItemViewModel : ObservableObject
 	public FleetConditionViewModel Condition { get; }
 	public ShipResourceViewModel ShipResource { get; }
 	public EquipmentItemViewModel Equipments { get; }
+
+	public Dictionary<SpecialAttack, List<SpecialAttackHit>> SpecialAttackHitList { get; set; } = new();
 
 	public FleetItemViewModel(FleetViewModel parent)
 	{
@@ -426,6 +429,38 @@ public class FleetItemViewModel : ObservableObject
 		EngagementType engagement = (EngagementType)Utility.Configuration.Config.Control.PowerEngagementForm;
 		IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetId];
 
+		if (SpecialAttackHitList.Any())
+		{
+			sb.AppendFormat($"\r\nSpecial attacks (Day) :\r\n");
+
+			foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList)
+			{
+				SpecialAttack attack = specialAttackData.Key;
+
+				foreach (SpecialAttackHit hit in specialAttackData.Value)
+				{
+					double power = ship.GetDayAttackPower(attack, hit, fleet, engagement);
+					double accuracy = ship.GetDayAttackAccuracy(hit, fleet);
+					string attackDisplay = attack.Display;
+
+					if (hit.HitNumber == 1)
+					{
+						sb.AppendFormat($"[{attack.TriggerRate:P1}] - " +
+								$"{attackDisplay} - " +
+								$"{FormFleet.Power}: {power} - " +
+								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+					}
+					else
+					{
+						sb.AppendFormat($"[Helper] - " +
+								$"{attackDisplay} - " +
+								$"{FormFleet.Power}: {power} - " +
+								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+					}
+				}
+			}
+		}
+
 		List<Enum> dayAttacks = ship.GetDayAttacks().ToList();
 
 		if (dayAttacks.Any())
@@ -458,6 +493,38 @@ public class FleetItemViewModel : ObservableObject
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+			}
+		}
+
+		if (SpecialAttackHitList.Any())
+		{
+			sb.AppendFormat($"\r\nSpecial attacks (Night) :\r\n");
+
+			foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList)
+			{
+				SpecialAttack attack = specialAttackData.Key;
+
+				foreach (SpecialAttackHit hit in specialAttackData.Value)
+				{
+					double power = ship.GetNightAttackPower(attack, hit, fleet, engagement);
+					double accuracy = ship.GetNightAttackAccuracy(hit, fleet);
+					string attackDisplay = attack.Display;
+
+					if (hit.HitNumber == 1)
+					{
+						sb.AppendFormat($"[{attack.TriggerRate:P1}] - " +
+								$"{attackDisplay} - " +
+								$"{FormFleet.Power}: {power} - " +
+								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+					}
+					else
+					{
+						sb.AppendFormat($"[Helper] - " +
+								$"{attackDisplay} - " +
+								$"{FormFleet.Power}: {power} - " +
+								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+					}
+				}
 			}
 		}
 
