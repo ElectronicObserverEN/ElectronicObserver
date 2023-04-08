@@ -406,6 +406,12 @@ public class FleetItemViewModel : ObservableObject
 
 	private string GetEquipmentString(IShipData ship)
 	{
+		static string AttackRateDisplay(double rate) => rate switch
+		{
+			0 => "???",
+			_ => $"{rate:P1}",
+		};
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.AppendFormat(ship.NameWithLevel + "\r\n");
@@ -441,18 +447,18 @@ public class FleetItemViewModel : ObservableObject
 				{
 					double power = ship.GetDayAttackPower(attack, hit, fleet, engagement);
 					double accuracy = ship.GetDayAttackAccuracy(hit, fleet);
-					string attackDisplay = attack.Display;
+					string attackDisplay = attack.GetDisplay();
 
 					if (hit.ShipIndex == 0)
 					{
-						sb.AppendFormat($"[{attack.TriggerRate:P1}] - " +
+						sb.AppendFormat($"・[{AttackRateDisplay(attack.TriggerRate)}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
 					}
 					else
 					{
-						sb.AppendFormat($"[Helper] - " +
+						sb.AppendFormat($"・[Helper] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
@@ -508,18 +514,18 @@ public class FleetItemViewModel : ObservableObject
 				{
 					double power = ship.GetNightAttackPower(attack, hit, fleet, engagement);
 					double accuracy = ship.GetNightAttackAccuracy(hit, fleet);
-					string attackDisplay = attack.Display;
+					string attackDisplay = attack.GetDisplay();
 
 					if (hit.ShipIndex == 0)
 					{
-						sb.AppendFormat($"[{attack.TriggerRate:P1}] - " +
+						sb.AppendFormat($"・[{AttackRateDisplay(attack.TriggerRate)}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
 					}
 					else
 					{
-						sb.AppendFormat($"[Helper] - " +
+						sb.AppendFormat($"・[Helper] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
@@ -541,12 +547,6 @@ public class FleetItemViewModel : ObservableObject
 				double power = ship.GetNightAttackPower(attack, fleet);
 				double accuracy = ship.GetNightAttackAccuracy(attack, fleet);
 				string attackDisplay = attack.Display;
-
-				static string AttackRateDisplay(double rate) => rate switch
-				{
-					0 => "???",
-					_ => $"{rate:P1}",
-				};
 
 				sb.AppendFormat($"\r\n・[{AttackRateDisplay(rate)}] - " +
 								$"{attackDisplay} - " +

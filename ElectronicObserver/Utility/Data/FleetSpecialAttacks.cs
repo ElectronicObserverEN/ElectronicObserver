@@ -12,8 +12,9 @@ public static class FleetSpecialAttacks
 		IEnumerable<SpecialAttack> attacks = new List<SpecialAttack>()
 		{
 			new NelsonSpecialAttack(fleet),
+			new NagatoSpecialAttack(fleet),
 		};
 
-		return attacks.Where(attack => attack.TriggerRate > 0);
+		return attacks.Where(attack => attack.TriggerRate != -1);
 	}
 }

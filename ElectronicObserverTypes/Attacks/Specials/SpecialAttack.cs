@@ -14,14 +14,12 @@ public abstract record SpecialAttack
 	public virtual bool CanTriggerOnDay => true;
 	public virtual bool CanTriggerOnNight => true;
 
-	public virtual string Display => "???";
-
 	protected SpecialAttack(IFleetData fleet)
 	{
 		Fleet = fleet;
 
 		TriggerRate = GetTriggerRate();
-		Attacks = TriggerRate > 0 ? GetAttacks() : new List<SpecialAttackHit>();
+		Attacks = TriggerRate != -1 ? GetAttacks() : new List<SpecialAttackHit>();
 	}
 
 	protected abstract double GetTriggerRate();
@@ -33,6 +31,8 @@ public abstract record SpecialAttack
 	}
 
 	public virtual double GetEngagmentModifier(EngagementType engagement) => 1;
+
+	public virtual string GetDisplay() => "???";
 
 	// TODO : Have something to display activation conditions
 
