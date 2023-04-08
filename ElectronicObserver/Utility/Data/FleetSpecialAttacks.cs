@@ -2,7 +2,6 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks.Specials;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -15,6 +14,7 @@ public static class FleetSpecialAttacks
 			new NelsonSpecialAttack(fleet),
 			new NagatoSpecialAttack(fleet),
 			new ColoradoSpecialAttack(fleet),
+			new Yamato12SpecialAttack(fleet),
 		};	
 
 		return attacks.Where(attack => attack.CanTrigger());
