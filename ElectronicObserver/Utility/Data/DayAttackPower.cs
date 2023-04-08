@@ -33,7 +33,7 @@ public static class DayAttackPower
 		basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));
 
 		basepower *= hit.PowerModifier;
-		basepower *= SpecialAttackEngagmentMod(attack, engagement);
+		basepower *= attack.GetEngagmentModifier(engagement);
 
 		return (int)basepower;
 	}
@@ -127,13 +127,6 @@ public static class DayAttackPower
 		DayAirAttackCutinKind.FighterBomberAttacker => 1.25,
 		DayAirAttackCutinKind.BomberBomberAttacker => 1.20,
 		DayAirAttackCutinKind.BomberAttacker => 1.15,
-
-		_ => 1
-	};
-
-	private static double SpecialAttackEngagmentMod(SpecialAttack attack, EngagementType engagment) => (attack, engagment) switch
-	{
-		(NelsonSpecialAttack, EngagementType.TDisadvantage) => 1.25,
 
 		_ => 1
 	};

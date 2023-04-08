@@ -437,13 +437,13 @@ public class FleetItemViewModel : ObservableObject
 			{
 				SpecialAttack attack = specialAttackData.Key;
 
-				foreach (SpecialAttackHit hit in specialAttackData.Value)
+				foreach (SpecialAttackHit hit in specialAttackData.Value.Distinct())
 				{
 					double power = ship.GetDayAttackPower(attack, hit, fleet, engagement);
 					double accuracy = ship.GetDayAttackAccuracy(hit, fleet);
 					string attackDisplay = attack.Display;
 
-					if (hit.HitNumber == 1)
+					if (hit.ShipIndex == 0)
 					{
 						sb.AppendFormat($"[{attack.TriggerRate:P1}] - " +
 								$"{attackDisplay} - " +
@@ -504,13 +504,13 @@ public class FleetItemViewModel : ObservableObject
 			{
 				SpecialAttack attack = specialAttackData.Key;
 
-				foreach (SpecialAttackHit hit in specialAttackData.Value)
+				foreach (SpecialAttackHit hit in specialAttackData.Value.Distinct())
 				{
 					double power = ship.GetNightAttackPower(attack, hit, fleet, engagement);
 					double accuracy = ship.GetNightAttackAccuracy(hit, fleet);
 					string attackDisplay = attack.Display;
 
-					if (hit.HitNumber == 1)
+					if (hit.ShipIndex == 0)
 					{
 						sb.AppendFormat($"[{attack.TriggerRate:P1}] - " +
 								$"{attackDisplay} - " +

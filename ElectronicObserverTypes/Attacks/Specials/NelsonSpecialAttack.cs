@@ -47,21 +47,18 @@ public record NelsonSpecialAttack : SpecialAttack
 		{
 			new SpecialAttackHit()
 			{
-				HitNumber = 1,
 				ShipIndex = 0,
 				AccuracyModifier = 1,
 				PowerModifier = 2,
 			},
 			new SpecialAttackHit()
 			{
-				HitNumber = 2,
 				ShipIndex = 2,
 				AccuracyModifier = 1,
 				PowerModifier = 2,
 			},
 			new SpecialAttackHit()
 			{
-				HitNumber = 3,
 				ShipIndex = 4,
 				AccuracyModifier = 1,
 				PowerModifier = 2,
