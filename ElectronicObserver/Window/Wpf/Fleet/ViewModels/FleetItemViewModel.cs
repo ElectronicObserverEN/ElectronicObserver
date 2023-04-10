@@ -439,7 +439,7 @@ public class FleetItemViewModel : ObservableObject
 		{
 			sb.AppendFormat($"\r\nSpecial attacks (Day) :\r\n");
 
-			foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList)
+			foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
 			{
 				SpecialAttack attack = specialAttackData.Key;
 
@@ -506,7 +506,7 @@ public class FleetItemViewModel : ObservableObject
 		{
 			sb.AppendFormat($"\r\nSpecial attacks (Night) :\r\n");
 
-			foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList)
+			foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnNight))
 			{
 				SpecialAttack attack = specialAttackData.Key;
 

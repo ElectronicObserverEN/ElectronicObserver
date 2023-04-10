@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes.Extensions;
 
@@ -60,6 +61,26 @@ public record Yamato12SpecialAttack : SpecialAttack
 				PowerModifier = GetHelperPowerModifier(),
 			},
 		};
+
+	public override double GetTriggerRate()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? flagship = ships.First();
+		if (flagship is null) return 0;
+
+		IShipData? helper = ships[1];
+		if (helper is null) return 0;
+
+		// https://twitter.com/chang1124414276/status/1634896670575198209?s=20
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) + 40;
+
+		if (flagship.MasterShip.ShipId is ShipId.YamatoKaiNi or ShipId.YamatoKaiNiJuu) rate += 2;
+		if (flagship.HasSurfaceRadar()) rate += 10;
+		if (helper.HasSurfaceRadar()) rate += 10;
+
+		return rate / 100;
+	}
 
 	private double GetFlagshipPowerModifier()
 	{
