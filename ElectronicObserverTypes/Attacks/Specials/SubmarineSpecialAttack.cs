@@ -53,7 +53,7 @@ public record SubmarineSpecialAttack : SpecialAttack
 		return GetHelperSubmarineIndexes().Any();
 	}
 
-	public override IEnumerable<SpecialAttackHit> GetAttacks()
+	public override List<SpecialAttackHit> GetAttacks()
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 

@@ -34,16 +34,16 @@ public record KongouSpecialAttack : SpecialAttack
 		return IsValidPair(flagship.MasterShip.ShipId, helper.MasterShip.ShipId);
 	}
 
-	public override IEnumerable<SpecialAttackHit> GetAttacks()
-		=> new List<SpecialAttackHit>()
+	public override List<SpecialAttackHit> GetAttacks()
+		=> new()
 		{
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
 				PowerModifier = 2.2,
 			},
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 1,
 				AccuracyModifier = 1,

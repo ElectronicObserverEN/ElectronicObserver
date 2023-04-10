@@ -19,7 +19,7 @@ public abstract record SpecialAttack
 
 	public abstract bool CanTrigger();
 
-	public abstract IEnumerable<SpecialAttackHit> GetAttacks();
+	public abstract List<SpecialAttackHit> GetAttacks();
 
 	public List<SpecialAttackHit> GetHitsPerShip(int shipIndex)
 	{

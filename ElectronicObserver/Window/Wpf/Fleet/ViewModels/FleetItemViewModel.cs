@@ -629,6 +629,8 @@ public class FleetItemViewModel : ObservableObject
 
 	private void AddDaySpecialAttacksToTooltip(IShipData ship, StringBuilder sb, EngagementType engagement, IFleetData fleet)
 	{
+		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnDay)) return;
+
 		sb.Append($"\r\n{FormFleet.SpecialAttacksDay}\r\n");
 
 		foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
@@ -647,13 +649,13 @@ public class FleetItemViewModel : ObservableObject
 
 	private void AddNightSpecialAttacksToTooltip(IShipData ship, StringBuilder sb, EngagementType engagement, IFleetData fleet)
 	{
+		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnNight)) return;
+
 		sb.Append($"\r\n{FormFleet.SpecialAttacksNight}\r\n");
 
-		foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnNight))
+		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnNight))
 		{
-			SpecialAttack attack = specialAttackData.Key;
-
-			foreach (SpecialAttackHit hit in specialAttackData.Value.Distinct())
+			foreach (SpecialAttackHit hit in hits.Distinct())
 			{
 				double power = ship.GetNightAttackPower(attack, hit, fleet, engagement);
 				double accuracy = ship.GetNightAttackAccuracy(hit, fleet);

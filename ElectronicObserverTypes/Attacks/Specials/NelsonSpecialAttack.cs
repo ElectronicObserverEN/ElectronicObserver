@@ -56,22 +56,22 @@ public record NelsonSpecialAttack : SpecialAttack
 		return (Math.Sqrt(flagship.Level) + Math.Sqrt(firstHelper.Level) + Math.Sqrt(secondHelper.Level) + flagship.LuckTotal * 0.24 + 25) / 100;
 	}
 
-	public override IEnumerable<SpecialAttackHit> GetAttacks()
-		=> new List<SpecialAttackHit>()
+	public override List<SpecialAttackHit> GetAttacks()
+		=> new()
 		{
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
 				PowerModifier = 2,
 			},
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 2,
 				AccuracyModifier = 1,
 				PowerModifier = 2,
 			},
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 4,
 				AccuracyModifier = 1,

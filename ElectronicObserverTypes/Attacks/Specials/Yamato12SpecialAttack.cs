@@ -39,22 +39,22 @@ public record Yamato12SpecialAttack : SpecialAttack
 		return true;
 	}
 
-	public override IEnumerable<SpecialAttackHit> GetAttacks()
-		=> new List<SpecialAttackHit>()
+	public override List<SpecialAttackHit> GetAttacks()
+		=> new()
 		{
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
 				PowerModifier = GetFlagshipPowerModifier(),
 			},
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
 				PowerModifier = GetFlagshipPowerModifier(),
 			},
-			new SpecialAttackHit()
+			new()
 			{
 				ShipIndex = 1,
 				AccuracyModifier = 1,
