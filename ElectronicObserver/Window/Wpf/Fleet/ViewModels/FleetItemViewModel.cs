@@ -451,17 +451,16 @@ public class FleetItemViewModel : ObservableObject
 
 					if (hit.ShipIndex == 0)
 					{
-						sb.AppendFormat($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - " +
-								$"{attackDisplay} - " +
-								$"{FormFleet.Power}: {power} - " +
-								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+						sb.Append($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
 					}
 					else
 					{
-						sb.AppendFormat($"・[Helper] - " +
-								$"{attackDisplay} - " +
-								$"{FormFleet.Power}: {power} - " +
-								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+						sb.Append($"・[Helper] - {attackDisplay}");
+					}
+
+					if (hit.PowerModifier > 0)
+					{
+						sb.Append($"- {FormFleet.Power}: {power} - {FormFleet.Accuracy}: {accuracy:0.##}");
 					}
 				}
 			}
@@ -518,17 +517,16 @@ public class FleetItemViewModel : ObservableObject
 
 					if (hit.ShipIndex == 0)
 					{
-						sb.AppendFormat($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - " +
-								$"{attackDisplay} - " +
-								$"{FormFleet.Power}: {power} - " +
-								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+						sb.Append($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
 					}
 					else
 					{
-						sb.AppendFormat($"・[Helper] - " +
-								$"{attackDisplay} - " +
-								$"{FormFleet.Power}: {power} - " +
-								$"{FormFleet.Accuracy}: {accuracy:0.##}");
+						sb.Append($"・[Helper] - {attackDisplay}");
+					}
+
+					if (hit.PowerModifier > 0)
+					{
+						sb.Append($"- {FormFleet.Power}: {power} - {FormFleet.Accuracy}: {accuracy:0.##}");
 					}
 				}
 			}

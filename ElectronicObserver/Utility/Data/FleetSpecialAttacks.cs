@@ -17,6 +17,7 @@ public static class FleetSpecialAttacks
 			new Yamato12SpecialAttack(fleet),
 			new Yamato123SpecialAttack(fleet),
 			new KongouSpecialAttack(fleet),
+			new SubmarineSpecialAttack(fleet),
 		};	
 
 		return attacks.Where(attack => attack.CanTrigger());

@@ -25,9 +25,16 @@ public static class DayAttackPower
 
 	public static int GetDayAttackPower(this IShipData ship, SpecialAttack attack, SpecialAttackHit hit, IFleetData fleet, EngagementType engagement = EngagementType.Parallel)
 	{
+		if (attack is SubmarineSpecialAttack)
+		{
+			// apparently there's no cap to this attack and it's not affected by engagment
+			return (int)(ship.TorpedoTotal * hit.PowerModifier);
+		}
+
 		double basepower = ship.BaseDayAttackPower(fleet);
 
 		basepower *= ship.GetHPDamageBonus() * Damage.EngagementDayAttackMod(engagement);
+		
 		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
 
 		basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));

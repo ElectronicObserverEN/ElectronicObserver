@@ -29,6 +29,13 @@ public static class NightAttackPower
 
 		basepower *= ship.GetHPDamageBonus();
 		basepower *= hit.PowerModifier;
+
+		if (attack is SubmarineSpecialAttack)
+		{
+			// No more mod will affect this attack and apparently there's no cap to it
+			return Math.Floor(basepower);
+		}
+
 		basepower *= attack.GetEngagmentModifier(engagement);
 
 		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();

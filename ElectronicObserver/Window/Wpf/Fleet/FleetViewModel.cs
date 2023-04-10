@@ -124,6 +124,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		for (int i = 0; i < ControlMember.Count; i++)
 		{
 			ControlMember[i].SpecialAttackHitList = SpecialsAttacks
+				.Where(specialAttack => specialAttack.GetHitsPerShip(i).Any())
 				.ToDictionary(specialAttack => specialAttack, specialAttack => specialAttack.GetHitsPerShip(i));
 
 			ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
