@@ -2,7 +2,6 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -25,21 +24,8 @@ public static class DayAttackAccuracy
 		return f2 * AttackKindMod(attack) * ship.ApShellMod();
 	}
 
-	public static double GetDayAttackAccuracy(this IShipData ship, SpecialAttackHit hit, IFleetData fleet)
-	{
-		int baseAccuracy = fleet.BaseAccuracy(ship) - fleet.PositionPenalty(ship);
-		double shipAccuracy = ship.Accuracy();
-		double equipAccuracy = ship.AllSlotInstance
-			.Where(e => e != null)
-			.Sum(e => e.MasterEquipment.Accuracy + e.DayAccuracyBonus());
-
-		double f1 = Math.Floor(baseAccuracy + shipAccuracy + equipAccuracy);
-		double f2 = Math.Floor(f1 * ship.ConditionMod() /* + gun fit */);
-
-		// todo: we currently assume the AP shell bonus always applies
-		// this is done for simplicity and consistency with damage calculation
-		return f2 * hit.AccuracyModifier * ship.ApShellMod();
-	}
+	public static double GetDayAttackAccuracy(this IShipData ship, Attack hit, IFleetData fleet) 
+		=> GetDayAttackAccuracy(ship, DayAttackKind.NormalAttack, fleet) * hit.AccuracyModifier;
 
 	private static int BaseAccuracy(this IFleetData fleet, IShipData ship) => (fleet.FleetType, ship.Fleet) switch
 	{
