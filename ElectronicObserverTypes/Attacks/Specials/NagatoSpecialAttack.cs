@@ -10,7 +10,7 @@ public record NagatoSpecialAttack : SpecialAttack
 	{
 	}
 
-	public override string GetDisplay() => Fleet.MembersInstance.ToList().FirstOrDefault() switch
+	public override string GetDisplay() => Fleet.MembersInstance.AsEnumerable().FirstOrDefault() switch
 	{
 		{ MasterShip.ShipId: ShipId.NagatoKaiNi } => AttackResources.SpecialNagato,
 		{ MasterShip.ShipId: ShipId.MutsuKaiNi } => AttackResources.SpecialMutsu,

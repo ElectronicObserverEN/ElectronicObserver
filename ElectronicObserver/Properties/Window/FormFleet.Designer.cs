@@ -336,6 +336,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Helper).
+        /// </summary>
+        public static string Helper {
+            get {
+                return ResourceManager.GetString("Helper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  (先制可能).
         /// </summary>
         public static string OpeningAsw {
@@ -380,6 +389,24 @@ namespace ElectronicObserver.Properties.Window {
         public static string ShipNameToolTip {
             get {
                 return ResourceManager.GetString("ShipNameToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Special attacks (Day) :).
+        /// </summary>
+        public static string SpecialAttacksDay {
+            get {
+                return ResourceManager.GetString("SpecialAttacksDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Special attacks (Night) :).
+        /// </summary>
+        public static string SpecialAttacksNight {
+            get {
+                return ResourceManager.GetString("SpecialAttacksNight", resourceCulture);
             }
         }
         
