@@ -24,8 +24,7 @@ public record Yamato123SpecialAttack : SpecialAttack
 		if (flagship.MasterShip.ShipId is not ShipId.YamatoKaiNiJuu and not ShipId.YamatoKaiNi) return false;
 		if (flagship.HPRate <= 0.5) return false;
 
-		int availableShipCount = ships.Count(ship => ship?.HPCurrent > 0 && !ship.MasterShip.IsSubmarine) - Fleet.EscapedShipList.Count;
-		if (availableShipCount < 6) return false;
+		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
 		IShipData? firstHelper = ships[1];
 		if (firstHelper is null) return false;

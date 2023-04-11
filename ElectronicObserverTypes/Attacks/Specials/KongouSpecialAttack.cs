@@ -18,9 +18,6 @@ public record KongouSpecialAttack : SpecialAttack
 
 		if (!ships.Any()) return false;
 
-		int availableShipCount = ships.Count(ship => ship?.HPCurrent > 0 && !ship.MasterShip.IsSubmarine) - Fleet.EscapedShipList.Count;
-		if (availableShipCount < 6) return false;
-
 		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 
