@@ -633,11 +633,9 @@ public class FleetItemViewModel : ObservableObject
 
 		sb.Append($"\r\n{FormFleet.SpecialAttacksDay}\r\n");
 
-		foreach (KeyValuePair<SpecialAttack, List<SpecialAttackHit>> specialAttackData in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
+		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
 		{
-			SpecialAttack attack = specialAttackData.Key;
-
-			foreach (SpecialAttackHit hit in specialAttackData.Value.Distinct())
+			foreach (SpecialAttackHit hit in hits.Distinct())
 			{
 				double power = ship.GetDayAttackPower(attack, hit, fleet, engagement);
 				double accuracy = ship.GetDayAttackAccuracy(hit, fleet);
