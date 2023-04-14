@@ -10,15 +10,15 @@ using Xunit;
 namespace ElectronicObserverCoreTests;
 
 [Collection(DatabaseCollection.Name)]
-public class Yamato12SpecialAttackTests
+public class Yamato123SpecialAttackTests
 {
 	private DatabaseFixture Db { get; }
 
 	private ShipDataMock Yamato => new(Db.MasterShips[ShipId.YamatoKaiNi]);
-	private ShipDataMock Musashi => new(Db.MasterShips[ShipId.MusashiKaiNi]);
+	private ShipDataMock Ise => new(Db.MasterShips[ShipId.IseKaiNi]);
+	private ShipDataMock Hyuuga => new(Db.MasterShips[ShipId.HyuugaKaiNi]);
 	private ShipDataMock Kamikaze => new(Db.MasterShips[ShipId.KamikazeKai]);
 	private ShipDataMock Hachijou => new(Db.MasterShips[ShipId.HachijouKai]);
-	private ShipDataMock Ukuru => new(Db.MasterShips[ShipId.UkuruKai]);
 	private ShipDataMock Furei => new(Db.MasterShips[ShipId.I201Kai])
 	{
 		MasterID = 1
@@ -28,17 +28,17 @@ public class Yamato12SpecialAttackTests
 		MasterID = 2
 	};
 
-	public Yamato12SpecialAttackTests(DatabaseFixture db)
+	public Yamato123SpecialAttackTests(DatabaseFixture db)
 	{
 		Db = db;
 	}
 
 	[Fact(DisplayName = "Can trigger - 6 ships with flagship shouha")]
-	public void YamatoAttack12TriggerTest9()
+	public void YamatoAttack123TriggerTest9()
 	{
 		FleetDataMock fleet = new();
 
-		Yamato12SpecialAttack specialAttack = new(fleet);
+		Yamato123SpecialAttack specialAttack = new(fleet);
 
 		ShipDataMock yamato = Yamato;
 		yamato.HPCurrent = 43;
@@ -46,10 +46,10 @@ public class Yamato12SpecialAttackTests
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
 			yamato,
-			Musashi,
-			Hachijou,
+			Ise,
+			Hyuuga,
 			Kamikaze,
-			Ukuru,
+			Hachijou,
 			Jervis
 		});
 
@@ -58,11 +58,11 @@ public class Yamato12SpecialAttackTests
 	}
 
 	[Fact(DisplayName = "Can trigger - 6 ships with flagship chuuha")]
-	public void YamatoAttack12TriggerTest10()
+	public void YamatoAttack123TriggerTest10()
 	{
 		FleetDataMock fleet = new();
 
-		Yamato12SpecialAttack specialAttack = new(fleet);
+		Yamato123SpecialAttack specialAttack = new(fleet);
 
 		ShipDataMock yamato = Yamato;
 		yamato.HPCurrent = 63;
@@ -70,35 +70,35 @@ public class Yamato12SpecialAttackTests
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
 			yamato,
-			Musashi,
-			Hachijou,
+			Ise,
+			Hyuuga,
 			Kamikaze,
-			Ukuru,
+			Hachijou,
 			Jervis
 		});
 
 		Assert.Single(fleet.GetSpecialAttacks());
-		Assert.IsType<Yamato12SpecialAttack>(fleet.GetSpecialAttacks().First());
+		Assert.IsType<Yamato123SpecialAttack>(fleet.GetSpecialAttacks().First());
 		Assert.True(specialAttack.CanTrigger());
 	}
 
 	[Fact(DisplayName = "Can trigger - 6 ships with helper shouha")]
-	public void YamatoAttack12TriggerTest11()
+	public void YamatoAttack123TriggerTest11()
 	{
 		FleetDataMock fleet = new();
 
-		Yamato12SpecialAttack specialAttack = new(fleet);
+		Yamato123SpecialAttack specialAttack = new(fleet);
 
-		ShipDataMock musashi = Musashi;
-		musashi.HPCurrent = 43;
+		ShipDataMock ise = Ise;
+		ise.HPCurrent = 26;
 
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
 			Yamato,
-			musashi,
-			Hachijou,
+			ise,
+			Hyuuga,
 			Kamikaze,
-			Ukuru,
+			Hachijou,
 			Jervis
 		});
 
@@ -107,88 +107,116 @@ public class Yamato12SpecialAttackTests
 	}
 
 	[Fact(DisplayName = "Can trigger - 6 ships with helper chuuha")]
-	public void YamatoAttack12TriggerTest12()
+	public void YamatoAttack123TriggerTest12()
 	{
 		FleetDataMock fleet = new();
 
-		Yamato12SpecialAttack specialAttack = new(fleet);
+		Yamato123SpecialAttack specialAttack = new(fleet);
 
-		ShipDataMock musashi = Musashi;
-		musashi.HPCurrent = 63;
+		ShipDataMock ise = Ise;
+		ise.HPCurrent = 51;
 
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
 			Yamato,
-			musashi,
-			Hachijou,
+			ise,
+			Hyuuga,
 			Kamikaze,
-			Ukuru,
+			Hachijou,
 			Jervis
 		});
 
 		Assert.Single(fleet.GetSpecialAttacks());
-		Assert.IsType<Yamato12SpecialAttack>(fleet.GetSpecialAttacks().First());
+		Assert.IsType<Yamato123SpecialAttack>(fleet.GetSpecialAttacks().First());
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - Musashi Yamato")]
-	public void YamatoAttack12TriggerTest13()
+	[Fact(DisplayName = "Can trigger - Yamato Musashi Nagato")]
+	public void YamatoAttack123TriggerTest13()
 	{
 		FleetDataMock fleet = new();
 
-		Yamato12SpecialAttack specialAttack = new(fleet);
+		Yamato123SpecialAttack specialAttack = new(fleet);
 
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			Musashi,
 			Yamato,
-			Hachijou,
+			new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi]),
+			new ShipDataMock(Db.MasterShips[ShipId.NagatoKaiNi]),
 			Kamikaze,
-			Ukuru,
+			Hachijou,
+			Jervis
+		});
+	
+		Assert.Equal(2, fleet.GetSpecialAttacks().Count());
+		Assert.Contains(new Yamato123SpecialAttack(fleet), fleet.GetSpecialAttacks());
+		Assert.Contains(new Yamato12SpecialAttack(fleet), fleet.GetSpecialAttacks());
+		Assert.True(specialAttack.CanTrigger());
+
+		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			Yamato,
+			new ShipDataMock(Db.MasterShips[ShipId.NagatoKaiNi]),
+			new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi]),
+			Kamikaze,
+			Hachijou,
+			Jervis
+		});
+
+		Assert.Empty(fleet.GetSpecialAttacks());
+		Assert.False(specialAttack.CanTrigger());
+	}
+
+	[Fact(DisplayName = "Can trigger - Yamato Ise Hyuuga (Valid)")]
+	public void YamatoAttack123TriggerTest14()
+	{
+		FleetDataMock fleet = new();
+
+		Yamato123SpecialAttack specialAttack = new(fleet);
+
+		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			Yamato,
+			Ise,
+			Hyuuga,
+			Kamikaze,
+			Hachijou,
 			Jervis
 		});
 
 		Assert.Single(fleet.GetSpecialAttacks());
-		Assert.IsType<Yamato12SpecialAttack>(fleet.GetSpecialAttacks().First());
+		Assert.IsType<Yamato123SpecialAttack>(fleet.GetSpecialAttacks().First());
 		Assert.True(specialAttack.CanTrigger());
-	}
-
-	[Fact(DisplayName = "Can trigger - Yamato Iowa (Valid)")]
-	public void YamatoAttack12TriggerTest14()
-	{
-		FleetDataMock fleet = new();
-
-		Yamato12SpecialAttack specialAttack = new(fleet);
 
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
 			Yamato,
-			new ShipDataMock(Db.MasterShips[ShipId.IowaKai]),
-			Hachijou,
+			Hyuuga,
+			Ise,
 			Kamikaze,
-			Ukuru,
+			Hachijou,
 			Jervis
 		});
 
 		Assert.Single(fleet.GetSpecialAttacks());
-		Assert.IsType<Yamato12SpecialAttack>(fleet.GetSpecialAttacks().First());
+		Assert.IsType<Yamato123SpecialAttack>(fleet.GetSpecialAttacks().First());
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - Yamato Iowa (Invalid)")]
-	public void YamatoAttack12TriggerTest15()
+	[Fact(DisplayName = "Can trigger - Yamato Ise Hyuuga (Invalid)")]
+	public void YamatoAttack123TriggerTest15()
 	{
 		FleetDataMock fleet = new();
 
-		Yamato12SpecialAttack specialAttack = new(fleet);
+		Yamato123SpecialAttack specialAttack = new(fleet);
 
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			new ShipDataMock(Db.MasterShips[ShipId.IowaKai]),
+			Ise,
 			Yamato,
-			Hachijou,
+			Hyuuga,
 			Kamikaze,
-			Ukuru,
+			Hachijou,
 			Jervis
 		});
 
@@ -197,24 +225,11 @@ public class Yamato12SpecialAttackTests
 
 		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			new ShipDataMock(Db.MasterShips[ShipId.IowaKai]),
-			Musashi,
-			Hachijou,
+			Yamato,
+			Ise,
+			new ShipDataMock(Db.MasterShips[ShipId.ColoradoKai]),
 			Kamikaze,
-			Ukuru,
-			Jervis
-		});
-
-		Assert.Empty(fleet.GetSpecialAttacks());
-		Assert.False(specialAttack.CanTrigger());
-
-		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
-		{
-			Musashi,
-			new ShipDataMock(Db.MasterShips[ShipId.IowaKai]),
 			Hachijou,
-			Kamikaze,
-			Ukuru,
 			Jervis
 		});
 

@@ -14,8 +14,8 @@ public static class FleetSpecialAttacks
 			new NelsonSpecialAttack(fleet),
 			new NagatoSpecialAttack(fleet),
 			new ColoradoSpecialAttack(fleet),
-			new Yamato12SpecialAttack(fleet),
 			new Yamato123SpecialAttack(fleet),
+			new Yamato12SpecialAttack(fleet),
 			new KongouSpecialAttack(fleet),
 			new SubmarineSpecialAttack(fleet),
 		};	

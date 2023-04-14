@@ -631,7 +631,7 @@ public class FleetItemViewModel : ObservableObject
 	{
 		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnDay)) return;
 
-		sb.Append($"\r\n{FormFleet.SpecialAttacksDay}\r\n");
+		sb.Append($"\r\n{FormFleet.SpecialAttacksDay}");
 
 		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
 		{
@@ -649,7 +649,7 @@ public class FleetItemViewModel : ObservableObject
 	{
 		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnNight)) return;
 
-		sb.Append($"\r\n{FormFleet.SpecialAttacksNight}\r\n");
+		sb.Append($"\r\n{FormFleet.SpecialAttacksNight}");
 
 		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnNight))
 		{
@@ -669,7 +669,7 @@ public class FleetItemViewModel : ObservableObject
 
 		if (hit.ShipIndex == 0)
 		{
-			sb.Append($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
+			sb.Append($"\r\n・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
 		}
 		else
 		{
