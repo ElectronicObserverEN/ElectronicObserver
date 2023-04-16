@@ -6,7 +6,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Mocks;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.SpecialAttacks;
