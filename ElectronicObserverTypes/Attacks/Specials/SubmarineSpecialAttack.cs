@@ -31,7 +31,7 @@ public record SubmarineSpecialAttack : SpecialAttack
 
 		return validSubmarines.Count switch
 		{
-			2 => new() { ships.IndexOf(validSubmarines[0], ships.IndexOf(validSubmarines[1])) },
+			2 => new() { ships.IndexOf(validSubmarines[0]), ships.IndexOf(validSubmarines[1]) },
 			3 => new() { 1, 3 },
 			_ => new()
 		};
