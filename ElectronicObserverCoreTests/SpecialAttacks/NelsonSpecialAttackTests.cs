@@ -19,7 +19,7 @@ public class NelsonSpecialAttackTests
 		Db = db;
 	}
 
-	[Fact(DisplayName = "Can trigger - Flagship shouha")]
+	[Fact(DisplayName = "Can trigger - Flagship chuuha")]
 	public void NelsonSpecialAttackTest1()
 	{
 		FleetDataMock fleet = new();
@@ -43,7 +43,7 @@ public class NelsonSpecialAttackTests
 		Assert.False(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - Flagship chuuha")]
+	[Fact(DisplayName = "Can trigger - Flagship shouha")]
 	public void NelsonSpecialAttackTest2()
 	{
 		FleetDataMock fleet = new();

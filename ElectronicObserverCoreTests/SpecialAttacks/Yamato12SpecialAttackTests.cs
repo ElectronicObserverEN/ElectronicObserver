@@ -26,7 +26,7 @@ public class Yamato12SpecialAttackTests
 		Db = db;
 	}
 
-	[Fact(DisplayName = "Can trigger - 6 ships with flagship shouha")]
+	[Fact(DisplayName = "Can trigger - 6 ships with flagship chuuha")]
 	public void YamatoAttack12TriggerTest9()
 	{
 		FleetDataMock fleet = new();
@@ -50,7 +50,7 @@ public class Yamato12SpecialAttackTests
 		Assert.False(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - 6 ships with flagship chuuha")]
+	[Fact(DisplayName = "Can trigger - 6 ships with flagship shouha")]
 	public void YamatoAttack12TriggerTest10()
 	{
 		FleetDataMock fleet = new();
@@ -75,7 +75,7 @@ public class Yamato12SpecialAttackTests
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - 6 ships with helper shouha")]
+	[Fact(DisplayName = "Can trigger - 6 ships with helper chuuha")]
 	public void YamatoAttack12TriggerTest11()
 	{
 		FleetDataMock fleet = new();
@@ -99,7 +99,7 @@ public class Yamato12SpecialAttackTests
 		Assert.False(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - 6 ships with helper chuuha")]
+	[Fact(DisplayName = "Can trigger - 6 ships with helper shouha")]
 	public void YamatoAttack12TriggerTest12()
 	{
 		FleetDataMock fleet = new();

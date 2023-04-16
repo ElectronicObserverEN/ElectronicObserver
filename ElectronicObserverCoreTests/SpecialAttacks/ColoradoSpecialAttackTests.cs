@@ -19,7 +19,7 @@ public class ColoradoSpecialAttackTests
 		Db = db;
 	}
 
-	[Fact(DisplayName = "Can trigger - Flagship shouha")]
+	[Fact(DisplayName = "Can trigger - Flagship chuuha")]
 	public void ColoradoSpecialAttackTest1()
 	{
 		FleetDataMock fleet = new();
@@ -43,7 +43,7 @@ public class ColoradoSpecialAttackTests
 		Assert.False(specialAttack.CanTrigger());
 	}
 
-	[Fact(DisplayName = "Can trigger - Flagship chuuha")]
+	[Fact(DisplayName = "Can trigger - Flagship shouha")]
 	public void ColoradoSpecialAttackTest2()
 	{
 		FleetDataMock fleet = new();
