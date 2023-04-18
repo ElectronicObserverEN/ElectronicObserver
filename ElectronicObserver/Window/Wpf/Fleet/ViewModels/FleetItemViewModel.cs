@@ -412,8 +412,6 @@ public class FleetItemViewModel : ObservableObject
 
 	private string GetEquipmentString(IShipData ship)
 	{
-		
-
 		StringBuilder sb = new StringBuilder();
 
 		sb.AppendFormat(ship.NameWithLevel + "\r\n");
@@ -432,7 +430,6 @@ public class FleetItemViewModel : ObservableObject
 		}
 
 		int[] slotmaster = ship.AllSlotMaster.ToArray();
-
 
 		EngagementType engagement = (EngagementType)Utility.Configuration.Config.Control.PowerEngagementForm;
 		IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetId];
