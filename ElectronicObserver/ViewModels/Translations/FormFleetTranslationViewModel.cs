@@ -93,5 +93,4 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 
 	public string SpecialAttacksDay => FormFleet.SpecialAttacksDay;
 	public string SpecialAttacksNight => FormFleet.SpecialAttacksNight;
-	public string Helper => FormFleet.Helper;
 }

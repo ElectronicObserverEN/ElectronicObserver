@@ -264,9 +264,6 @@ Range: {20} / Speed: {21}
   <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
     <value>Remove Training Plan</value>
   </data>
-  <data name="Helper" xml:space="preserve">
-    <value>Helper</value>
-  </data>
   <data name="SpecialAttacksDay" xml:space="preserve">
     <value>Special attacks (Day) :</value>
   </data>

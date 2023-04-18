@@ -667,18 +667,20 @@ public class FleetItemViewModel : ObservableObject
 	{
 		string attackDisplay = attack.GetDisplay();
 
+		sb.Append("\r\n");
+
 		if (hit.ShipIndex == 0)
 		{
-			sb.Append($"\r\n・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
+			sb.Append($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
 		}
 		else
 		{
-			sb.Append($"・[{FormFleet.Helper}] - {attackDisplay}");
+			sb.Append($"・{attackDisplay}");
 		}
 
 		if (hit.PowerModifier > 0)
 		{
-			sb.Append($"- {FormFleet.Power}: {power} - {FormFleet.Accuracy}: {accuracy:0.##}");
+			sb.Append($" - {FormFleet.Power}: {power} - {FormFleet.Accuracy}: {accuracy:0.##}");
 		}
 	}
 }
