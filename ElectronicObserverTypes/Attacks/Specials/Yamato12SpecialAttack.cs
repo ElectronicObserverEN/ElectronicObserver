@@ -31,7 +31,7 @@ public record Yamato12SpecialAttack : SpecialAttack
 		if (helper is null) return false;
 
 		if (flagship.MasterShip.ShipId is ShipId.MusashiKaiNi && helper.MasterShip.ShipId is not ShipId.YamatoKaiNiJuu and not ShipId.YamatoKaiNi) return false;
-		if (flagship.MasterShip.ShipId is ShipId.YamatoKaiNiJuu or ShipId.YamatoKaiNi && !IsYamatoHelper(helper)) return false;
+		if (flagship.MasterShip.ShipId is ShipId.YamatoKaiNiJuu or ShipId.YamatoKaiNi && !IsYamatoHelper(helper.MasterShip.ShipId)) return false;
 
 		if (helper.HPRate <= 0.5) return false;
 
@@ -128,12 +128,9 @@ public record Yamato12SpecialAttack : SpecialAttack
 		return mod;
 	}
 
-	private static bool IsYamatoHelper(IShipData ship) => ship.MasterShip.ShipId switch
-	{
-		ShipId.IowaKai => true,
-		ShipId.BismarckDrei => true,
-		ShipId.RichelieuKai => true,
-		ShipId.MusashiKaiNi => true,
-		_ => false,
-	};
+	private static bool IsYamatoHelper(ShipId id) => id is
+		ShipId.IowaKai or
+		ShipId.BismarckDrei or
+		ShipId.RichelieuKai or
+		ShipId.MusashiKaiNi;
 }

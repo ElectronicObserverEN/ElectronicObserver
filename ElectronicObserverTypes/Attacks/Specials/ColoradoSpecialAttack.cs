@@ -102,7 +102,7 @@ public record ColoradoSpecialAttack : SpecialAttack
 
 		if (ship.HasApShell()) mod *= 1.35;
 		if (ship.HasRadar()) mod *= 1.15;
-		if (ship.SlotInstance.Any(item => item is not null && item.EquipmentId is EquipmentId.RadarSmall_SGRadar_LateModel)) mod *= 1.15;
+		if (ship.SlotInstance.Any(item => item?.EquipmentId is EquipmentId.RadarSmall_SGRadar_LateModel)) mod *= 1.15;
 
 		return mod;
 	}

@@ -70,7 +70,7 @@ public record KongouSpecialAttack : SpecialAttack
 		// https://docs.google.com/spreadsheets/d/1xO0krWBDnevmp0zrqDs1MKek7YD-ly3B6av5R2GRpho/edit#gid=0
 		double rate = 4 * Math.Sqrt(flagship.Level) + 4 * Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) - 45;
 
-		if (flagship.AllSlotInstance.Any(e => e?.MasterEquipment?.IsSurfaceRadar is true && e?.MasterEquipment?.LOS >= 8))
+		if (flagship.AllSlotInstance.Any(e => e?.MasterEquipment is { IsSurfaceRadar: true, LOS: >= 8 }))
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
@@ -93,29 +93,20 @@ public record KongouSpecialAttack : SpecialAttack
 		return Math.Max(0, Math.Floor(rate)) / 100;
 	}
 
-	private static bool IsKongouClassThirdRemodel(ShipId ship) => ship switch
-	{
-		ShipId.KongouKaiNiC => true,
-		ShipId.HieiKaiNiC => true,
-		_ => false,
+	private static bool IsKongouClassThirdRemodel(ShipId id) => id is
+		ShipId.KongouKaiNiC or
+		ShipId.HieiKaiNiC;
 
-	};
 	private static bool IsValidPair(ShipId flagship, ShipId helper) => flagship switch
 	{
-		ShipId.KongouKaiNiC => helper switch
-		{
-			ShipId.HieiKaiNiC => true,
-			ShipId.HarunaKaiNi => true,
-			ShipId.WarspiteKai => true,
-			_ => false,
-		},
+		ShipId.KongouKaiNiC => helper is
+			ShipId.HieiKaiNiC or
+			ShipId.HarunaKaiNi or
+			ShipId.WarspiteKai,
 
-		ShipId.HieiKaiNiC => helper switch
-		{
-			ShipId.KirishimaKaiNi => true,
-			ShipId.KongouKaiNiC => true,
-			_ => false,
-		},
+		ShipId.HieiKaiNiC => helper is
+			ShipId.KirishimaKaiNi or
+			ShipId.KongouKaiNiC,
 
 		_ => false,
 	};
