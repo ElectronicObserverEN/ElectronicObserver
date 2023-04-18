@@ -393,7 +393,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Special attacks (Day) :).
+        ///   Looks up a localized string similar to 特殊砲撃(昼戦)：.
         /// </summary>
         public static string SpecialAttacksDay {
             get {
@@ -402,7 +402,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Special attacks (Night) :).
+        ///   Looks up a localized string similar to 特殊砲撃(夜戦)：.
         /// </summary>
         public static string SpecialAttacksNight {
             get {

@@ -268,9 +268,9 @@
     <value>??? (Helper)</value>
   </data>
   <data name="SpecialAttacksDay" xml:space="preserve">
-    <value>??? (Special attacks (Day) :)</value>
+    <value>特殊砲撃(昼戦)：</value>
   </data>
   <data name="SpecialAttacksNight" xml:space="preserve">
-    <value>??? (Special attacks (Night) :)</value>
+    <value>特殊砲撃(夜戦)：</value>
   </data>
 </root>
