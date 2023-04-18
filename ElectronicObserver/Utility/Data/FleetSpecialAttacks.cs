@@ -7,7 +7,7 @@ namespace ElectronicObserver.Utility.Data;
 
 public static class FleetSpecialAttacks
 {
-	public static IEnumerable<SpecialAttack> GetSpecialAttacks(this IFleetData fleet)
+	public static List<SpecialAttack> GetSpecialAttacks(this IFleetData fleet)
 	{
 		List<SpecialAttack> attacks = new List<SpecialAttack>()
 		{
@@ -20,6 +20,8 @@ public static class FleetSpecialAttacks
 			new SubmarineSpecialAttack(fleet),
 		};	
 
-		return attacks.Where(attack => attack.CanTrigger());
+		return attacks
+			.Where(attack => attack.CanTrigger())
+			.ToList();
 	}
 }

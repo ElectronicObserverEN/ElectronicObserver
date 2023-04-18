@@ -36,7 +36,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	public int FleetId { get; }
 	public int AnchorageRepairBound { get; set; }
 
-	public IEnumerable<SpecialAttack> SpecialsAttacks { get; set; } = new List<SpecialAttack>();
+	public List<SpecialAttack> SpecialsAttacks { get; set; } = new();
 
 	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
 
