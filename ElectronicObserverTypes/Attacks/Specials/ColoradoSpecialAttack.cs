@@ -26,17 +26,7 @@ public record ColoradoSpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		IShipData? firstHelper = ships[1];
-		if (firstHelper is null) return false;
-		if (firstHelper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
-		if (firstHelper.HPRate <= 0.25) return false;
-
-		IShipData? secondHelper = ships[2];
-		if (secondHelper is null) return false;
-		if (secondHelper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
-		if (secondHelper.HPRate <= 0.25) return false;
-
-		return true;
+		return MeetsHelperRequirement(ships[1]) && MeetsHelperRequirement(ships[2]);
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()
@@ -115,5 +105,14 @@ public record ColoradoSpecialAttack : SpecialAttack
 		if (ship.SlotInstance.Any(item => item is not null && item.EquipmentId is EquipmentId.RadarSmall_SGRadar_LateModel)) mod *= 1.15;
 
 		return mod;
+	}
+
+	private bool MeetsHelperRequirement(IShipData? helper)
+	{
+		if (helper is null) return false;
+		if (helper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
+		if (helper.HPRate <= 0.25) return false;
+
+		return true;
 	}
 }

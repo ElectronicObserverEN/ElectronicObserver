@@ -26,17 +26,10 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		IShipData? firstHelper = ships[1];
-		if (firstHelper is null) return false;
-
-		if (firstHelper.HPRate <= 0.5) return false;
-
-		IShipData? secondHelper = ships[2];
-		if (secondHelper is null) return false;
-
-		if (secondHelper.HPRate <= 0.5) return false;
-
-		return IsYamatoHelperPair(firstHelper.MasterShip.ShipId, secondHelper.MasterShip.ShipId);
+		return 
+			MeetsHelperRequirement(ships[1]) &&
+			MeetsHelperRequirement(ships[2]) &&
+			IsYamatoHelperPair(ships[1]!.MasterShip.ShipId, ships[2]!.MasterShip.ShipId);
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()
@@ -178,4 +171,12 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 		_ => IsMusashiAndNagatoClassPair(firstHelper, secondHelper) || IsNagatoClassPair(firstHelper, secondHelper) || IsIseClassPair(firstHelper, secondHelper),
 	};
+
+	private bool MeetsHelperRequirement(IShipData? helper)
+	{
+		if (helper is null) return false;
+		if (helper.HPRate <= 0.5) return false;
+
+		return true;
+	}
 }

@@ -25,17 +25,7 @@ public record NelsonSpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		IShipData? firstHelper = ships[2];
-		if (firstHelper is null) return false;
-		if (firstHelper.IsAircraftCarrier()) return false;
-		if (!firstHelper.IsSurfaceShip()) return false;
-
-		IShipData? secondHelper = ships[4];
-		if (secondHelper is null) return false;
-		if (secondHelper.IsAircraftCarrier()) return false;
-		if (!secondHelper.IsSurfaceShip()) return false;
-
-		return true; 
+		return MeetsHelperRequirement(ships[2]) && MeetsHelperRequirement(ships[4]); 
 	}
 
 	public override double GetTriggerRate()
@@ -85,4 +75,13 @@ public record NelsonSpecialAttack : SpecialAttack
 	};
 
 	public override string GetDisplay() => AttackResources.SpecialNelson;
+
+	private bool MeetsHelperRequirement(IShipData? helper)
+	{
+		if (helper is null) return false;
+		if (helper.IsAircraftCarrier()) return false;
+		if (!helper.IsSurfaceShip()) return false;
+
+		return true;
+	}
 }
