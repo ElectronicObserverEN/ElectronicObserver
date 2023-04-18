@@ -163,7 +163,7 @@ public class SubmarineSpecialAttackTests
 
 		List<int> expectedIndexes = new() { 0, 1, 2 };
 		List<Action<SpecialAttackHit>> elementInspector = expectedIndexes
-			.Select(index => new Action<SpecialAttackHit>((hit) => hit.ShipIndex = index))
+			.Select(index => new Action<SpecialAttackHit>((hit) => Assert.Equal(index, hit.ShipIndex)))
 			.ToList();
 
 		Assert.Collection(specialAttack.GetAttacks(), elementInspector.ToArray());
@@ -191,7 +191,7 @@ public class SubmarineSpecialAttackTests
 
 		List<int> expectedIndexes = new() { 0, 1, 3 };
 		List<Action<SpecialAttackHit>> elementInspector = expectedIndexes
-			.Select(index => new Action<SpecialAttackHit>((hit) => hit.ShipIndex = index))
+			.Select(index => new Action<SpecialAttackHit>((hit) => Assert.Equal(index, hit.ShipIndex)))
 			.ToList();
 
 		Assert.Collection(specialAttack.GetAttacks(), elementInspector.ToArray());
@@ -222,7 +222,7 @@ public class SubmarineSpecialAttackTests
 
 		List<int> expectedIndexes = new() { 0, 1, 2 };
 		List<Action<SpecialAttackHit>> elementInspector = expectedIndexes
-			.Select(index => new Action<SpecialAttackHit>((hit) => hit.ShipIndex = index))
+			.Select(index => new Action<SpecialAttackHit>((hit) => Assert.Equal(index, hit.ShipIndex)))
 			.ToList();
 
 		Assert.Collection(specialAttack.GetAttacks(), elementInspector.ToArray());
@@ -245,7 +245,7 @@ public class SubmarineSpecialAttackTests
 
 		expectedIndexes = new() { 0, 1, 3 };
 		elementInspector = expectedIndexes
-			.Select(index => new Action<SpecialAttackHit>((hit) => hit.ShipIndex = index))
+			.Select(index => new Action<SpecialAttackHit>((hit) => Assert.Equal(index, hit.ShipIndex)))
 			.ToList();
 
 		Assert.Collection(specialAttack.GetAttacks(), elementInspector.ToArray());
@@ -268,7 +268,7 @@ public class SubmarineSpecialAttackTests
 
 		expectedIndexes = new() { 0, 2, 3 };
 		elementInspector = expectedIndexes
-			.Select(index => new Action<SpecialAttackHit>((hit) => hit.ShipIndex = index))
+			.Select(index => new Action<SpecialAttackHit>((hit) => Assert.Equal(index, hit.ShipIndex)))
 			.ToList();
 
 		Assert.Collection(specialAttack.GetAttacks(), elementInspector.ToArray());
