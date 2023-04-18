@@ -141,7 +141,7 @@ public class Yamato123SpecialAttackTests
 			Jervis
 		});
 
-		Assert.Equal(2, fleet.GetSpecialAttacks().Count());
+		Assert.Equal(2, fleet.GetSpecialAttacks().Count);
 		Assert.Contains(new Yamato123SpecialAttack(fleet), fleet.GetSpecialAttacks());
 		Assert.Contains(new Yamato12SpecialAttack(fleet), fleet.GetSpecialAttacks());
 		Assert.True(specialAttack.CanTrigger());
