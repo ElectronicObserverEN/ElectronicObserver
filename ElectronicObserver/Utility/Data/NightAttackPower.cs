@@ -39,17 +39,12 @@ public static class NightAttackPower
 
 		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
 
-		basepower = Damage.Cap(basepower, Damage.NightAttackCap);
-
 		basepower *= hit.PowerModifier;
 
-		// Only kongou special is precapped 
-		// https://wikiwiki.jp/kancolle/戦闘について#bbNightSpecialShelling
-		basepower = attack switch 
-		{
-			KongouSpecialAttack => Damage.Cap(basepower, Damage.NightAttackCap),
-			_ => basepower,
-		};
+		basepower = Damage.Cap(basepower, Damage.NightAttackCap);
+
+		// Only kongou special is precapped (https://wikiwiki.jp/kancolle/戦闘について#bbNightSpecialShelling)
+		// But actually other sources seems to say all specials are precapped at night
 
 		return Math.Floor(basepower);
 	}
