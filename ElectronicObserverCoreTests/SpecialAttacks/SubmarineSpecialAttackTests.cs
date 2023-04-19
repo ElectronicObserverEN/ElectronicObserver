@@ -273,4 +273,52 @@ public class SubmarineSpecialAttackTests
 
 		Assert.Collection(specialAttack.GetAttacks(), elementInspector.ToArray());
 	}
+
+	[Fact(DisplayName = "Damage - Submarine special")]
+	public void SubmarineAttackDamage1()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.Taigei])
+				{
+					Level = 99,
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.I201Kai])
+				{
+					Level = 99,
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.I203Kai]),
+				new ShipDataMock(Db.MasterShips[ShipId.I13Kai])
+				{
+					Level = 175,
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineTorpedo_LateModel53cmBowTorpedo_8tubes]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineTorpedo_LateModel53cmBowTorpedo_8tubes]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineTorpedo_LateModel53cmBowTorpedo_8tubes]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineEquipment_LateModelSubmarineRadar_PassiveRadiolocator]),
+					},
+					TorpedoFit = 3
+				},
+			})
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(1.598, specialAttacksHits[1].PowerModifier, 3);
+		Assert.Equal(1.729, specialAttacksHits[2].PowerModifier, 3);
+
+		Assert.Equal(108, fleet.MembersInstance[1]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet));
+		Assert.Equal(235, fleet.MembersInstance[3]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet));
+
+		Assert.Equal(115, fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+		Assert.Equal(266, fleet.MembersInstance[3]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet), 3);
+	}
 }
