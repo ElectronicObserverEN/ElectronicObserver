@@ -118,4 +118,30 @@ public class KongouSpecialAttackTests
 		Assert.IsType<KongouSpecialAttack>(fleet.GetSpecialAttacks().First());
 		Assert.True(specialAttack.CanTrigger());
 	}
+
+	[Fact(DisplayName = "Damage - Kongou Hiei")]
+	public void KongouSpecialAttackDamage1()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.KongouKaiNiC]),
+				new ShipDataMock(Db.MasterShips[ShipId.HieiKaiNiC]),
+			})
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(2.2, specialAttacksHits[0].PowerModifier, 1);
+		Assert.Equal(2.2, specialAttacksHits[1].PowerModifier, 1);
+
+		Assert.Equal(314, fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
+		Assert.Equal(319, fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+	}
 }
