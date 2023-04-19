@@ -85,13 +85,13 @@ public record ColoradoSpecialAttack : SpecialAttack
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		IShipData? firstHelper = ships[1];
-		if (firstHelper is null) return 1;
+		IShipData? secondHelper = ships[2];
+		if (secondHelper is null) return 1;
 
 		double mod = 1.3;
 
-		if (firstHelper.IsBigSeven()) mod *= 1.17;
-		mod *= GetEquipmentPowerModifier(firstHelper);
+		if (secondHelper.IsBigSeven()) mod *= 1.17;
+		mod *= GetEquipmentPowerModifier(secondHelper);
 
 		return mod;
 	}

@@ -178,4 +178,60 @@ public class ColoradoSpecialAttackTests
 		Assert.Empty(fleet.GetSpecialAttacks());
 		Assert.False(specialAttack.CanTrigger());
 	}
+
+	[Fact(DisplayName = "Damage - Colorado Maryland Conte")]
+	public void ColoradoSpecialAttackDamage1()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.ColoradoKai])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_GFCSMk_37]),
+					},
+					FirepowerFit = 1
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.MarylandKai])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_SGRadar_LateModel]),
+					},
+					FirepowerFit = 3
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.ContediCavournuovo])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.ShimushuKai]),
+				new ShipDataMock(Db.MasterShips[ShipId.IshigakiKai]),
+			})
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(1.725, specialAttacksHits[0].PowerModifier, 3);
+		Assert.Equal(1.977, specialAttacksHits[1].PowerModifier, 3);
+		Assert.Equal(1.755, specialAttacksHits[2].PowerModifier, 3);
+
+		Assert.Equal(194, fleet.MembersInstance[0]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet));
+		Assert.Equal(229, fleet.MembersInstance[1]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet));
+		Assert.Equal(194, fleet.MembersInstance[2]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet));
+
+		Assert.Equal(186, fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
+		Assert.Equal(219, fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+		Assert.Equal(238, fleet.MembersInstance[2]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet), 3);
+	}
 }
