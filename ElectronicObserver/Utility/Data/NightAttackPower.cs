@@ -43,9 +43,6 @@ public static class NightAttackPower
 
 		basepower = Damage.Cap(basepower, Damage.NightAttackCap);
 
-		// Only kongou special is precapped (https://wikiwiki.jp/kancolle/戦闘について#bbNightSpecialShelling)
-		// But actually other sources seems to say all specials are precapped at night
-
 		return Math.Floor(basepower);
 	}
 
