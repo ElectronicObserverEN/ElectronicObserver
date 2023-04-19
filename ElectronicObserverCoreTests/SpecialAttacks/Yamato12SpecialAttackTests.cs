@@ -243,18 +243,6 @@ public class Yamato12SpecialAttackTests
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
 		Assert.Collection(specialAttacksHits, FlagshipPowerMod, FlagshipPowerMod, HelperPowerMod);
-
-		/*
-		static void flagshipDayPower(int? power) => Assert.Equal(171, power);
-		static void helperDayPower(int? power) => Assert.Equal(208, power);
-
-		Assert.Collection(specialAttacksHits.Select(hit => fleet.MembersInstance[hit.ShipIndex]?.GetDayAttackPower(specialAttack, hit, fleet)), flagshipDayPower, flagshipDayPower, helperDayPower);
-
-		static void flagshipNightPower(double? power) => Assert.Equal(221, power);
-		static void helperNightPower(double? power) => Assert.Equal(269, power);
-
-		Assert.Collection(specialAttacksHits.Select(hit => fleet.MembersInstance[hit.ShipIndex]?.GetNightAttackPower(specialAttack, hit, fleet)), flagshipNightPower, flagshipNightPower, helperNightPower);
-		*/
 	}
 
 	[Fact(DisplayName = "Damage - Yamato Musashi with radar")]
@@ -309,15 +297,17 @@ public class Yamato12SpecialAttackTests
 				{
 					SlotInstance = new List<IEquipmentData?>()
 					{
-						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
-					}
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+					FirepowerFit = 2
 				},
 				new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi])
 				{
 					SlotInstance = new List<IEquipmentData?>()
 					{
-						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
-					}
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+					FirepowerFit = 2
 				},
 				Hachijou,
 				Kamikaze,
@@ -337,6 +327,14 @@ public class Yamato12SpecialAttackTests
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
 		Assert.Collection(specialAttacksHits, FlagshipPowerMod, FlagshipPowerMod, HelperPowerMod);
+
+		Assert.Equal(336, fleet.MembersInstance[0]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet));
+		Assert.Equal(336, fleet.MembersInstance[0]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet));
+		Assert.Equal(409, fleet.MembersInstance[1]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet));
+
+		Assert.Equal(326, fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
+		Assert.Equal(326, fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+		Assert.Equal(366, fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet), 3);
 	}
 
 	[Fact(DisplayName = "Damage - Yamato Musashi with radar and AP shell")]
