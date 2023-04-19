@@ -219,31 +219,30 @@ public class Yamato12SpecialAttackTests
 	[Fact(DisplayName = "Damage - Yamato Musashi")]
 	public void YamatoAttack12AttackDamage1()
 	{
-		FleetDataMock fleet = new();
-
-		Yamato12SpecialAttack specialAttack = new(fleet);
-
-		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			Yamato,
-			Musashi,
-			Hachijou,
-			Kamikaze,
-			Ukuru,
-			Jervis
-		});
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				Yamato,
+				Musashi,
+				Hachijou,
+				Kamikaze,
+				Ukuru,
+				Jervis
+			})
+		};
 
 		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
 
 		Assert.NotEmpty(specialAttacks);
 		Assert.Single(specialAttacks);
 
-		static void flagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(1.54, hit.PowerModifier, 3);
-		static void helperPowerMod(SpecialAttackHit hit) => Assert.Equal(1.86, hit.PowerModifier, 3);
+		static void FlagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(1.54, hit.PowerModifier, 3);
+		static void HelperPowerMod(SpecialAttackHit hit) => Assert.Equal(1.86, hit.PowerModifier, 3);
 
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
-		Assert.Collection(specialAttacksHits, flagshipPowerMod, flagshipPowerMod, helperPowerMod);
+		Assert.Collection(specialAttacksHits, FlagshipPowerMod, FlagshipPowerMod, HelperPowerMod);
 
 		/*
 		static void flagshipDayPower(int? power) => Assert.Equal(171, power);
@@ -261,122 +260,125 @@ public class Yamato12SpecialAttackTests
 	[Fact(DisplayName = "Damage - Yamato Musashi with radar")]
 	public void YamatoAttack12AttackDamage2()
 	{
-		FleetDataMock fleet = new();
-
-		Yamato12SpecialAttack specialAttack = new(fleet);
-
-		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi]) {
-				SlotInstance = new List<IEquipmentData?>()
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi])
 				{
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
-				}
-			},
-			new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi]) {
-				SlotInstance = new List<IEquipmentData?>()
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
+					}
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi])
 				{
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
-				}
-			},
-			Hachijou,
-			Kamikaze,
-			Ukuru,
-			Jervis
-		});
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
+					}
+				},
+				Hachijou,
+				Kamikaze,
+				Ukuru,
+				Jervis
+			})
+		};
 
 		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
 
 		Assert.NotEmpty(specialAttacks);
 		Assert.Single(specialAttacks);
 
-		static void flagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(1.948, hit.PowerModifier, 3);
-		static void helperPowerMod(SpecialAttackHit hit) => Assert.Equal(2.353, hit.PowerModifier, 3);
+		static void FlagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(1.948, hit.PowerModifier, 3);
+		static void HelperPowerMod(SpecialAttackHit hit) => Assert.Equal(2.353, hit.PowerModifier, 3);
 
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
-		Assert.Collection(specialAttacksHits, flagshipPowerMod, flagshipPowerMod, helperPowerMod);
+		Assert.Collection(specialAttacksHits, FlagshipPowerMod, FlagshipPowerMod, HelperPowerMod);
 	}
 
 	[Fact(DisplayName = "Damage - Yamato Musashi with AP shell")]
 	public void YamatoAttack12AttackDamage4()
 	{
-		FleetDataMock fleet = new();
-
-		Yamato12SpecialAttack specialAttack = new(fleet);
-
-		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi]) {
-				SlotInstance = new List<IEquipmentData?>()
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi])
 				{
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
-				}
-			},
-			new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi]) {
-				SlotInstance = new List<IEquipmentData?>()
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
+					}
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi])
 				{
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
-				}
-			},
-			Hachijou,
-			Kamikaze,
-			Ukuru,
-			Jervis
-		});
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
+					}
+				},
+				Hachijou,
+				Kamikaze,
+				Ukuru,
+				Jervis
+			})
+		};
 
 		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
 
 		Assert.NotEmpty(specialAttacks);
 		Assert.Single(specialAttacks);
 
-		static void flagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(2.079, hit.PowerModifier, 3);
-		static void helperPowerMod(SpecialAttackHit hit) => Assert.Equal(2.511, hit.PowerModifier, 3);
+		static void FlagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(2.079, hit.PowerModifier, 3);
+		static void HelperPowerMod(SpecialAttackHit hit) => Assert.Equal(2.511, hit.PowerModifier, 3);
 
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
-		Assert.Collection(specialAttacksHits, flagshipPowerMod, flagshipPowerMod, helperPowerMod);
+		Assert.Collection(specialAttacksHits, FlagshipPowerMod, FlagshipPowerMod, HelperPowerMod);
 	}
 
 	[Fact(DisplayName = "Damage - Yamato Musashi with radar and AP shell")]
 	public void YamatoAttack12AttackDamage3()
 	{
-		FleetDataMock fleet = new();
-
-		Yamato12SpecialAttack specialAttack = new(fleet);
-
-		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi]) {
-				SlotInstance = new List<IEquipmentData?>()
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi])
 				{
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
-				}
-			},
-			new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi]) {
-				SlotInstance = new List<IEquipmentData?>()
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
+					}
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.MusashiKaiNi])
 				{
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
-					new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
-				}
-			},
-			Hachijou,
-			Kamikaze,
-			Ukuru,
-			Jervis
-		});
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
+					}
+				},
+				Hachijou,
+				Kamikaze,
+				Ukuru,
+				Jervis
+			})
+		};
 
 		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
 
 		Assert.NotEmpty(specialAttacks);
 		Assert.Single(specialAttacks);
 
-		static void flagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(2.63, hit.PowerModifier, 3);
-		static void helperPowerMod(SpecialAttackHit hit) => Assert.Equal(3.176, hit.PowerModifier, 3);
+		static void FlagshipPowerMod(SpecialAttackHit hit) => Assert.Equal(2.63, hit.PowerModifier, 3);
+		static void HelperPowerMod(SpecialAttackHit hit) => Assert.Equal(3.176, hit.PowerModifier, 3);
 
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
-		Assert.Collection(specialAttacksHits, flagshipPowerMod, flagshipPowerMod, helperPowerMod);
+		Assert.Collection(specialAttacksHits, FlagshipPowerMod, FlagshipPowerMod, HelperPowerMod);
 	}
 }
