@@ -229,4 +229,119 @@ public class Yamato123SpecialAttackTests
 		Assert.Empty(fleet.GetSpecialAttacks());
 		Assert.False(specialAttack.CanTrigger());
 	}
+
+	[Fact(DisplayName = "Damage - Yamato Nagato Mutsu")]
+	public void YamatoAttack123AttackDamage1()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+					FirepowerFit = 2
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.NagatoKaiNi])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+					FirepowerFit = 2
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.MutsuKaiNi])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+					FirepowerFit = 2
+				},
+				Hachijou,
+				Kamikaze,
+				Jervis
+			})
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(2.228, specialAttacksHits[0].PowerModifier, 3);
+		Assert.Equal(2.228, specialAttacksHits[1].PowerModifier, 3);
+		Assert.Equal(2.228, specialAttacksHits[2].PowerModifier, 3);
+
+		Assert.Equal(360, fleet.MembersInstance[0]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet));
+		Assert.Equal(302, fleet.MembersInstance[1]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet));
+		Assert.Equal(302, fleet.MembersInstance[2]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet));
+
+		Assert.Equal(349, fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
+		Assert.Equal(291, fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+		Assert.Equal(291, fleet.MembersInstance[2]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet), 3);
+	}
+
+	[Fact(DisplayName = "Damage - Yamato Colorado Maryland")]
+	public void YamatoAttack123AttackDamage2()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNi])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
+					},
+					FirepowerFit = 2
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.ColoradoKai])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_GFCSMk_37]),
+					},
+					FirepowerFit = 1
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.MarylandKai])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_GFCSMk_37]),
+					},
+					FirepowerFit = 1
+				},
+				Hachijou,
+				Kamikaze,
+				Jervis
+			})
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(2.562, specialAttacksHits[0].PowerModifier, 3);
+		Assert.Equal(1.725, specialAttacksHits[1].PowerModifier, 3);
+		Assert.Equal(1.897, specialAttacksHits[2].PowerModifier, 3);
+
+		Assert.Equal(425, fleet.MembersInstance[0]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet));
+		Assert.Equal(194, fleet.MembersInstance[1]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet));
+		Assert.Equal(216, fleet.MembersInstance[2]!.GetDayAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet));
+
+		Assert.Equal(367, fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
+		Assert.Equal(186, fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+		Assert.Equal(206, fleet.MembersInstance[2]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[2], fleet), 3);
+	}
 }
