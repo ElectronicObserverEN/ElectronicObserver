@@ -29,14 +29,6 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 	public DataGridViewModel<EquipmentDataViewModel> DataGridViewModel { get; set; } = new();
 
-	private bool Matches(IEquipmentDataMaster equip, string filter)
-	{
-		bool Search(string searchWord) => Calculator.ToHiragana(equip.NameEN.ToLower()).Contains(searchWord);
-
-		return Search(Calculator.ToHiragana(filter.ToLower())) ||
-			   Search(Calculator.RomaToHira(filter));
-	}
-
 	public EquipmentDataViewModel? SelectedEquipment { get; set; }
 	public bool DetailsVisible => SelectedEquipment is not null;
 
