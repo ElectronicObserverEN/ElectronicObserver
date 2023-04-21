@@ -8,6 +8,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentList"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentFilter"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding Title}"
 	Width="800"
@@ -67,6 +68,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
@@ -85,7 +87,9 @@
 			</MenuItem>
 		</Menu>
 
-		<Grid Grid.Row="1">
+		<filter:EquipmentFilterControl Grid.Row="1" DataContext="{Binding Filters}"/>
+
+		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="{Binding EquipmentGridWidth, Mode=TwoWay}" />
 				<ColumnDefinition Width="Auto" />

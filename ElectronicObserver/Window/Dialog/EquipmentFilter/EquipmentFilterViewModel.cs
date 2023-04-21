@@ -17,7 +17,12 @@ public partial class EquipmentFilterViewModel : ObservableObject
 
 	public string? NameFilter { get; set; } = "";
 
-	public EquipmentFilterViewModel()
+	public EquipmentFilterViewModel() : this (false)
+	{
+
+	}
+
+	public EquipmentFilterViewModel(bool typesCheckedByDefault)
 	{
 		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
 
@@ -25,25 +30,28 @@ public partial class EquipmentFilterViewModel : ObservableObject
 			.Where(e => e != EquipmentTypeGroup.Unknown)
 			.Select(t => new Filter(t)
 			{
-				IsChecked = false,
+				IsChecked = typesCheckedByDefault,
 			})
 			.ToList();
 
-		foreach (var filter in TypeFilters)
+		foreach (Filter filter in TypeFilters)
 		{
 			filter.PropertyChanged += (_, _) => OnPropertyChanged(string.Empty);
 		}
 	}
 
 	public bool MeetsFilterCondition(IEquipmentData equipment)
+		=> MeetsFilterCondition(equipment.MasterEquipment);
+
+	public bool MeetsFilterCondition(IEquipmentDataMaster equipment)
 	{
-		var enabledFilters = TypeFilters
+		List<EquipmentTypes> enabledFilters = TypeFilters
 			.Where(f => f.IsChecked)
 			.SelectMany(f => f.Value.ToTypes())
 			.ToList();
 
-		if (!enabledFilters.Contains(equipment.MasterEquipment.CategoryType)) return false;
-		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment.MasterEquipment, NameFilter)) return false;
+		if (!enabledFilters.Contains(equipment.CategoryType)) return false;
+		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment, NameFilter)) return false;
 
 		return true;
 	}

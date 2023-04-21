@@ -16,6 +16,7 @@ using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Dialog.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 
@@ -39,7 +40,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	public EquipmentDataViewModel? SelectedEquipment { get; set; }
 	public bool DetailsVisible => SelectedEquipment is not null;
 
-	public string SearchFilter { get; set; } = "";
+	public EquipmentFilterViewModel Filters { get; private set; } = new(true);
 
 	public string Title => SelectedEquipment switch
 	{
@@ -58,22 +59,18 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		AllEquipment = KCDatabase.Instance.MasterEquipments.Values
 			.Select(e => new EquipmentDataViewModel(e));
 
-		DataGridViewModel.AddRange(AllEquipment);
-
 		DialogAlbumMasterEquipment =
 			Ioc.Default.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
 
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(SearchFilter)) return;
+		Filters.PropertyChanged += (_, _) => RefreshGrid();
 
-			DataGridViewModel.ItemsSource.Clear();
-			DataGridViewModel.AddRange(AllEquipment.Where(e => SearchFilter switch
-			{
-				null or "" => true,
-				string f => Matches(e.Equipment, f),
-			}));
-		};
+		RefreshGrid();
+	}
+
+	private void RefreshGrid()
+	{
+		DataGridViewModel.ItemsSource.Clear();
+		DataGridViewModel.AddRange(AllEquipment.Where(e => Filters.MeetsFilterCondition(e.Equipment)));
 	}
 
 	[RelayCommand]
