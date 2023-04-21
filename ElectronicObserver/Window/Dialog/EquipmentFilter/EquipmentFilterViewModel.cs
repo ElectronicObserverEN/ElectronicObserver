@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
+
+namespace ElectronicObserver.Window.Dialog.EquipmentFilter;
 
 public partial class EquipmentFilterViewModel : ObservableObject
 {
@@ -29,7 +29,7 @@ public partial class EquipmentFilterViewModel : ObservableObject
 			})
 			.ToList();
 
-		foreach (Filter filter in TypeFilters)
+		foreach (var filter in TypeFilters)
 		{
 			filter.PropertyChanged += (_, _) => OnPropertyChanged(string.Empty);
 		}
@@ -37,7 +37,7 @@ public partial class EquipmentFilterViewModel : ObservableObject
 
 	public bool MeetsFilterCondition(IEquipmentData equipment)
 	{
-		List<EquipmentTypes> enabledFilters = TypeFilters
+		var enabledFilters = TypeFilters
 			.Where(f => f.IsChecked)
 			.SelectMany(f => f.Value.ToTypes())
 			.ToList();

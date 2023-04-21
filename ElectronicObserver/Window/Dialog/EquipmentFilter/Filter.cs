@@ -2,7 +2,7 @@
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 
-namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
+namespace ElectronicObserver.Window.Dialog.EquipmentFilter;
 
 public class Filter : ObservableObject
 {
