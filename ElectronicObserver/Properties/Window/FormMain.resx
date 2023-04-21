@@ -435,4 +435,13 @@
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>更新プログラムが利用可能 (_U)</value>
   </data>
+  <data name="Update_DownloadingUpdate" xml:space="preserve">
+    <value>更新プログラムのダウンロード ({0:##0.00}%)</value>
+  </data>
+  <data name="Update_DownloadingUpdater" xml:space="preserve">
+    <value>アップデータのダウンロード ({0:##0.00}%)</value>
+  </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>保存したAPIをロードする</value>
+  </data>
 </root>

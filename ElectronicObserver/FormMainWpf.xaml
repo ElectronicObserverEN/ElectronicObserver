@@ -175,6 +175,7 @@
 							<ColumnDefinition Width="Auto" />
 							<ColumnDefinition Width="Auto" />
 							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="Auto" />
 						</Grid.ColumnDefinitions>
 					</Grid>
@@ -709,6 +710,10 @@
 					Command="{Binding LoadInitialAPICommand}"
 					Header="{Binding FormMain.StripMenu_Debug_LoadInitialAPI}"
 					/>
+				<MenuItem
+					Command="{Binding LoadBaseAPICommand}"
+					Header="{Binding FormMain.StripMenu_Debug_LoadBaseAPI}"
+					/>
 				<Separator />
 				<MenuItem
 					d:Header="Load from _Old api__start2..."
@@ -806,6 +811,14 @@
 						<Image Source="{Binding ViewHelpImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+			</MenuItem>
+			<MenuItem
+				Grid.Column="7"
+				Height="Auto"
+				HorizontalAlignment="Right"
+				Header="{Binding DownloadProgressString}"
+				Visibility="{Binding DownloadProgressVisibility}"
+				>
 			</MenuItem>
 		</Menu>
 		<DockingManager

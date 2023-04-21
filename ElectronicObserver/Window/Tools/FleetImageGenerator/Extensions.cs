@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 
@@ -134,20 +135,9 @@ public static class Extensions
 			EquipmentInstance = ToEquipmentData(deckBuilderEquipment),
 		};
 
-		abSlot.AircraftMax = AirBaseAircraftCount(abSlot.EquipmentInstance?.MasterEquipment);
-		abSlot.AircraftCurrent = AirBaseAircraftCount(abSlot.EquipmentInstance?.MasterEquipment);
+		abSlot.AircraftMax = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
+		abSlot.AircraftCurrent = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
 
 		return abSlot;
 	}
-
-	private static int AirBaseAircraftCount(IEquipmentDataMaster? equipment) => equipment?.CategoryType switch
-	{
-		null => 0,
-
-		EquipmentTypes.CarrierBasedRecon => 4,
-		EquipmentTypes.FlyingBoat => 4,
-		EquipmentTypes.HeavyBomber => 9,
-
-		_ => 18,
-	};
 }

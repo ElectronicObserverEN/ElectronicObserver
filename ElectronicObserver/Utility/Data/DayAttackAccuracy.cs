@@ -24,6 +24,9 @@ public static class DayAttackAccuracy
 		return f2 * AttackKindMod(attack) * ship.ApShellMod();
 	}
 
+	public static double GetDayAttackAccuracy(this IShipData ship, Attack hit, IFleetData fleet) 
+		=> GetDayAttackAccuracy(ship, DayAttackKind.NormalAttack, fleet) * hit.AccuracyModifier;
+
 	private static int BaseAccuracy(this IFleetData fleet, IShipData ship) => (fleet.FleetType, ship.Fleet) switch
 	{
 		(FleetType.Single, _) => 90,

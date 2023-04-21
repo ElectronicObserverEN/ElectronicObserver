@@ -1,14 +1,12 @@
 ﻿namespace ElectronicObserverTypes.Attacks;
 
-public record NightAttack
+public record NightAttack : Attack
 {
 	/// <summary>
 	/// API ID
 	/// </summary>
 	public NightAttackKind NightAttackKind { get; protected init; }
 
-	public double PowerModifier { get; protected init; }
-	public double AccuracyModifier { get; protected init; }
 	public int RateModifier { get; protected init; }
 	public double NumberOfAttacks { get; protected init; }
 

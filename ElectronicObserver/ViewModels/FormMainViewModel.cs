@@ -117,6 +117,9 @@ public partial class FormMainViewModel : ObservableObject
 	public Visibility MaintenanceTextVisibility => string.IsNullOrEmpty(MaintenanceText) ? Visibility.Collapsed : Visibility.Visible;
 	public bool UpdateAvailable { get; set; } = false;
 
+	public string DownloadProgressString { get; private set; } = "";
+	public Visibility DownloadProgressVisibility { get; private set; } = Visibility.Collapsed;
+
 	public List<Theme> Themes { get; } = new()
 	{
 		new Vs2013LightTheme(),
@@ -408,23 +411,10 @@ public partial class FormMainViewModel : ObservableObject
 		CancellationTokenSource cts = new();
 		Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 
-		/*
-		// デバッグ: 開始時にAPIリストを読み込む
-		if (Configuration.Config.Debug.LoadAPIListOnLoad)
-		{
-			try
-			{
-				await Task.Factory.StartNew(() => LoadAPIList(Configuration.Config.Debug.APIListPath));
-
-				Activate();     // 上記ロードに時間がかかるとウィンドウが表示されなくなることがあるので
-			}
-			catch (Exception ex)
-			{
-
-				Utility.Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
-			}
-		}
-		*/
+#if DEBUG
+		// Run only on debug for now (kinda worried it breaks stuff like equipment upgrade planner with the Initialize member that is only called once)
+		Task.Run(LoadBaseAPI);
+#endif
 
 		APIObserver.Instance.ResponseReceived += (a, b) => UpdatePlayTime();
 
@@ -467,6 +457,13 @@ public partial class FormMainViewModel : ObservableObject
 			Config.Life.LockLayout = LockLayout;
 			SaveLayout(Window);
 			ConfigurationChanged();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(DownloadProgressString)) return;
+
+			DownloadProgressVisibility = string.IsNullOrEmpty(DownloadProgressString) ? Visibility.Collapsed : Visibility.Visible;
 		};
 
 		Logger.Add(3, Resources.StartupComplete);
@@ -1094,6 +1091,51 @@ public partial class FormMainViewModel : ObservableObject
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Load some API files if they are saved
+	/// </summary>
+	[RelayCommand]
+	private async Task LoadBaseAPI()
+	{
+		if (string.IsNullOrEmpty(Config.Connection.SaveDataPath)) return;
+		if (!Directory.Exists(Config.Connection.SaveDataPath)) return;
+
+		try
+		{
+			await LoadAPIResponse("api_start2/getData");
+			await LoadAPIResponse("api_get_member/require_info");
+			await LoadAPIResponse("api_port/port");
+			await LoadAPIResponse("api_get_member/questlist");
+		}
+		catch (Exception ex)
+		{
+			Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
+		}
+	}
+
+	private async Task LoadAPIResponse(string apiName)
+	{
+		if (string.IsNullOrEmpty(Config.Connection.SaveDataPath)) return;
+		if (!Directory.Exists(Config.Connection.SaveDataPath)) return;
+
+		if (!APIObserver.Instance.APIList.ContainsKey(apiName)) return;
+
+		APIBase api = APIObserver.Instance.APIList[apiName];
+
+		if (!api.IsResponseSupported) return;
+
+		string filePath = Path.Combine(Config.Connection.SaveDataPath, "kcsapi", apiName);
+
+		if (!File.Exists(filePath)) return;
+
+		string data = await File.ReadAllTextAsync(filePath);
+
+		Window.Dispatcher.Invoke((() =>
+		{
+			APIObserver.Instance.LoadResponse($"/kcsapi/{apiName}", data);
+		})); 
 	}
 
 	[RelayCommand]
@@ -1836,6 +1878,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		MaintenanceText = GetMaintenanceText(FormMain, now);
 		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
+
+		DownloadProgressString = SoftwareUpdater.DownloadProgressString;
 
 		switch (ClockFormat)
 		{

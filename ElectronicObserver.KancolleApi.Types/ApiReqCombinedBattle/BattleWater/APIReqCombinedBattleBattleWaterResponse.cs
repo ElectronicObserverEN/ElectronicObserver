@@ -92,7 +92,7 @@ public class ApiReqCombinedBattleBattleWaterResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_hougeki3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki? ApiHougeki3 { get; set; } = default!;
+	public ApiHougeki1? ApiHougeki3 { get; set; } = default!;
 
 	[JsonPropertyName("api_hourai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -31,7 +31,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
 		&& Ship.Level >= shipBefore.RemodelAfterLevel;
 
-	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel;
+	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel && Ship.MasterShip.RemodelAfterLevel > 0;
 
 	public bool ShouldNotifyRemodelReady => NotifyOnAnyRemodelReady switch
 	{

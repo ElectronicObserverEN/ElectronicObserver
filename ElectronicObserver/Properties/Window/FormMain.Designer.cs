@@ -124,6 +124,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 保存したAPIをロードする.
+        /// </summary>
+        public static string Debug_LoadBaseAPI {
+            get {
+                return ResourceManager.GetString("Debug_LoadBaseAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 旧 api_start2から深海棲艦を復元(&amp;A)....
         /// </summary>
         public static string Debug_LoadDataFromOld {
@@ -756,6 +765,24 @@ namespace ElectronicObserver.Properties.Window {
         public static string Tool_ResourceChart {
             get {
                 return ResourceManager.GetString("Tool_ResourceChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 更新プログラムのダウンロード ({0:##0.00}%).
+        /// </summary>
+        public static string Update_DownloadingUpdate {
+            get {
+                return ResourceManager.GetString("Update_DownloadingUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アップデータのダウンロード ({0:##0.00}%).
+        /// </summary>
+        public static string Update_DownloadingUpdater {
+            get {
+                return ResourceManager.GetString("Update_DownloadingUpdater", resourceCulture);
             }
         }
         

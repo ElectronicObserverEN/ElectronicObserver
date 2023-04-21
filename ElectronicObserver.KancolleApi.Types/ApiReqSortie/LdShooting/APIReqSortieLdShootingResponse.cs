@@ -60,7 +60,7 @@ public class ApiReqSortieLdShootingResponse : IBattleApiResponse
 	[JsonPropertyName("api_hougeki1")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiHougeki ApiHougeki1 { get; set; } = new();
+	public ApiHougeki1 ApiHougeki1 { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

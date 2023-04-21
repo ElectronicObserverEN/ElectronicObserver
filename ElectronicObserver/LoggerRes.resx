@@ -237,7 +237,7 @@
     <value>アイテム「{0}」を入手しました。( 合計: {1}個 )</value>
   </data>
   <data name="JustMarried" xml:space="preserve">
-    <value>{0} とケッコンカッコカリしました。おめでとうございます！</value>
+    <value>{0} とケッコンカッコカリしました。おめでとうございます！(運+{1}→{2}/{3})</value>
   </data>
   <data name="LoadedRecords" xml:space="preserve">
     <value>レコードをロードしました。</value>

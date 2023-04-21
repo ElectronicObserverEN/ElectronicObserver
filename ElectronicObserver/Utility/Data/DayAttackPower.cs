@@ -2,6 +2,7 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -18,6 +19,28 @@ public static class DayAttackPower
 		basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));
 
 		basepower *= DayAttackMod(attack);
+
+		return (int)basepower;
+	}
+
+	public static int GetDayAttackPower(this IShipData ship, SpecialAttack attack, SpecialAttackHit hit, IFleetData fleet, EngagementType engagement = EngagementType.Parallel)
+	{
+		if (attack is SubmarineSpecialAttack)
+		{
+			// apparently there's no cap to this attack and it's not affected by engagment
+			return (int)(ship.TorpedoTotal * hit.PowerModifier);
+		}
+
+		double basepower = ship.BaseDayAttackPower(fleet);
+
+		basepower *= ship.GetHPDamageBonus() * Damage.EngagementDayAttackMod(engagement);
+		
+		basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
+
+		basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));
+
+		basepower *= hit.PowerModifier;
+		basepower *= attack.GetEngagmentModifier(engagement);
 
 		return (int)basepower;
 	}

@@ -2,13 +2,14 @@
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
 public static class NightAttackAccuracy
 {
-	public static double GetNightAttackAccuracy(this IShipData ship, NightAttack attack, IFleetData fleet)
+	public static double GetNightAttackAccuracy(this IShipData ship, Attack attack, IFleetData fleet)
 	{
 		int baseAccuracy = fleet.BaseAccuracy();
 		double shipAccuracy = ship.Accuracy();

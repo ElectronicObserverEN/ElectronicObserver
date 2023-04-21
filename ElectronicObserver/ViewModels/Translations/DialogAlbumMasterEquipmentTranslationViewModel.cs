@@ -1,4 +1,5 @@
-﻿using DialogAlbumMasterEquipment = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
+﻿using ElectronicObserver.Window.Dialog;
+using DialogAlbumMasterEquipment = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -16,8 +17,7 @@ public class DialogAlbumMasterEquipmentTranslationViewModel : TranslationBaseVie
 	public string StripMenu_View => DialogAlbumMasterEquipment.StripMenu_View.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_ShowAppearingArea => DialogAlbumMasterEquipment.StripMenu_View_ShowAppearingArea.Replace("_", "__").Replace("&", "_");
 
-	// todo: translate
-	public string Performance => "性能";
+	public string Performance => EncycloRes.Performance;
 	public string EquipmentView_Type => DialogAlbumMasterEquipment.EquipmentView_Type.Replace("_", "__").Replace("&", "_");
 	public string EquipmentView_Name => DialogAlbumMasterEquipment.EquipmentView_Name.Replace("_", "__").Replace("&", "_");
 
@@ -31,6 +31,7 @@ public class DialogAlbumMasterEquipmentTranslationViewModel : TranslationBaseVie
 
 	public string TitleRange => DialogAlbumMasterEquipment.TitleRange.Replace("_", "__").Replace("&", "_");
 	public string TitleSpeed => DialogAlbumMasterEquipment.TitleSpeed.Replace("_", "__").Replace("&", "_");
+	public string TitleRarity => EncycloRes.Rarity;
 	public string TitleBomber => DialogAlbumMasterEquipment.TitleBomber.Replace("_", "__").Replace("&", "_");
 	public string TitleLOS => DialogAlbumMasterEquipment.TitleLOS.Replace("_", "__").Replace("&", "_");
 	public string TitleFirepower => DialogAlbumMasterEquipment.TitleFirepower.Replace("_", "__").Replace("&", "_");
@@ -39,6 +40,7 @@ public class DialogAlbumMasterEquipmentTranslationViewModel : TranslationBaseVie
 	public string TitleArmor => DialogAlbumMasterEquipment.TitleArmor.Replace("_", "__").Replace("&", "_");
 	public string TitleASW => DialogAlbumMasterEquipment.TitleASW.Replace("_", "__").Replace("&", "_");
 	public string TitleEvasion => DialogAlbumMasterEquipment.TitleEvasion.Replace("_", "__").Replace("&", "_");
+	public string TitleDismantling => EncycloRes.Dismantling;
 	public string Interception => DialogAlbumMasterEquipment.Interception.Replace("_", "__").Replace("&", "_");
 	public string TitleAccuracy => DialogAlbumMasterEquipment.TitleAccuracy.Replace("_", "__").Replace("&", "_");
 	public string AntiBomber => DialogAlbumMasterEquipment.AntiBomber.Replace("_", "__").Replace("&", "_");

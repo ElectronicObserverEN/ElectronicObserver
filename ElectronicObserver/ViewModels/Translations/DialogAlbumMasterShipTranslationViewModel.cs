@@ -44,6 +44,9 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string Luck => DialogAlbumMasterShip.Luck;
 	public string Bombing => DialogAlbumMasterShip.Bombing;
 	public string Accuracy => DialogAlbumMasterShip.Accuracy;
+	public string TitleSpeed => EncycloRes.Speed;
+	public string TitleRarity => EncycloRes.Rarity;
+	public string TitleConsumption => EncycloRes.Consumption;
 
 	public string TitleParameterMax => EncycloRes.Maximum;
 	public string TitleParameterMin => EncycloRes.Initial;
@@ -58,6 +61,13 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string DefaultRange => DialogAlbumMasterShip.DefaultRange;
 	public string Empty => DialogAlbumMasterShip.Empty;
 	public string ReinforcementSlot => DialogAlbumMasterShip.ReinforcementSlot;
+
+	public string TitleConstructionTime => EncycloRes.ConstructionTime;
+	public string TitleDismantling => EncycloRes.Dismantling;
+	public string TitleModernization => EncycloRes.Modernization;
+
+	public string TitleBeforeRemodel => EncycloRes.BeforeRemodel;
+	public string TitleAfterRemodel => EncycloRes.AfterRemodel;
 
 	public string ParameterLevelToolTip => DialogAlbumMasterShip.ParameterLevelToolTip;
 	public string ShipBannerToolTip => DialogAlbumMasterShip.ShipBannerToolTip;

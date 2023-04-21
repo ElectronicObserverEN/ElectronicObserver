@@ -147,7 +147,7 @@ public class ShipDataMock : IShipData
 	{
 		MasterShip = ship;
 
-		HPCurrent = MasterShip.HPMax;
+		HPCurrent = MasterShip.HPMin;
 
 		Aircraft = MasterShip.Aircraft;
 

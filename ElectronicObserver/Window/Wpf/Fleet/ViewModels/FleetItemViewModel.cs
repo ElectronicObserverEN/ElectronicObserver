@@ -17,6 +17,7 @@ using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
@@ -36,6 +37,8 @@ public class FleetItemViewModel : ObservableObject
 	public FleetConditionViewModel Condition { get; }
 	public ShipResourceViewModel ShipResource { get; }
 	public EquipmentItemViewModel Equipments { get; }
+
+	public Dictionary<SpecialAttack, List<SpecialAttackHit>> SpecialAttackHitList { get; set; } = new();
 
 	public FleetItemViewModel(FleetViewModel parent)
 	{
@@ -401,6 +404,12 @@ public class FleetItemViewModel : ObservableObject
 		return Configuration.Config.UI.ForeColor.ToWpfColor();
 	}
 
+	private string AttackRateDisplay(double rate) => rate switch
+	{
+		0 => "???",
+		_ => $"{rate:P1}",
+	};
+
 	private string GetEquipmentString(IShipData ship)
 	{
 		StringBuilder sb = new StringBuilder();
@@ -422,9 +431,13 @@ public class FleetItemViewModel : ObservableObject
 
 		int[] slotmaster = ship.AllSlotMaster.ToArray();
 
-
 		EngagementType engagement = (EngagementType)Utility.Configuration.Config.Control.PowerEngagementForm;
 		IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetId];
+
+		if (SpecialAttackHitList.Any())
+		{
+			AddDaySpecialAttacksToTooltip(ship, sb, engagement, fleet);
+		}
 
 		List<Enum> dayAttacks = ship.GetDayAttacks().ToList();
 
@@ -461,6 +474,11 @@ public class FleetItemViewModel : ObservableObject
 			}
 		}
 
+		if (SpecialAttackHitList.Any())
+		{
+			AddNightSpecialAttacksToTooltip(ship, sb, engagement, fleet);
+		}
+
 		List<NightAttack> nightAttacks = ship.GetNightAttacks().ToList();
 		List<double> nightAttackRates = nightAttacks.Select(a => ship.GetNightAttackRate(a, fleet))
 			.ToList().TotalRates();
@@ -475,12 +493,6 @@ public class FleetItemViewModel : ObservableObject
 				double accuracy = ship.GetNightAttackAccuracy(attack, fleet);
 				string attackDisplay = attack.Display;
 
-				static string AttackRateDisplay(double rate) => rate switch
-				{
-					0 => "???",
-					_ => $"{rate:P1}",
-				};
-
 				sb.AppendFormat($"\r\n・[{AttackRateDisplay(rate)}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
@@ -491,7 +503,7 @@ public class FleetItemViewModel : ObservableObject
 		sb.AppendLine();
 
 		sb.AppendLine($"{ConstantsRes.ShellingSupport}: " +
-					  $"{FormFleet.Power}: {ship.GetShellingSupportDamage()} - " +
+					  $"{FormFleet.Power}: {ship.GetShellingSupportDamage(engagement)} - " +
 					  $"{FormFleet.Accuracy}: {ship.GetShellingSupportAccuracy():0.##}");
 
 		{
@@ -612,4 +624,60 @@ public class FleetItemViewModel : ObservableObject
 		return sb.ToString();
 	}
 
+	private void AddDaySpecialAttacksToTooltip(IShipData ship, StringBuilder sb, EngagementType engagement, IFleetData fleet)
+	{
+		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnDay)) return;
+
+		sb.Append($"\r\n{FormFleet.SpecialAttacksDay}");
+
+		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
+		{
+			foreach (SpecialAttackHit hit in hits.Distinct())
+			{
+				double power = ship.GetDayAttackPower(attack, hit, fleet, engagement);
+				double accuracy = ship.GetDayAttackAccuracy(hit, fleet);
+
+				AddSpecialAttackToTooltip(sb, attack, hit, power, accuracy);
+			}
+		}
+	}
+
+	private void AddNightSpecialAttacksToTooltip(IShipData ship, StringBuilder sb, EngagementType engagement, IFleetData fleet)
+	{
+		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnNight)) return;
+
+		sb.Append($"\r\n{FormFleet.SpecialAttacksNight}");
+
+		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnNight))
+		{
+			foreach (SpecialAttackHit hit in hits.Distinct())
+			{
+				double power = ship.GetNightAttackPower(attack, hit, fleet, engagement);
+				double accuracy = ship.GetNightAttackAccuracy(hit, fleet);
+
+				AddSpecialAttackToTooltip(sb, attack, hit, power, accuracy);
+			}
+		}
+	}
+
+	private void AddSpecialAttackToTooltip(StringBuilder sb, SpecialAttack attack, SpecialAttackHit hit, double power, double accuracy)
+	{
+		string attackDisplay = attack.GetDisplay();
+
+		sb.Append("\r\n");
+
+		if (hit.ShipIndex == 0)
+		{
+			sb.Append($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
+		}
+		else
+		{
+			sb.Append($"・{attackDisplay}");
+		}
+
+		if (hit.PowerModifier > 0)
+		{
+			sb.Append($" - {FormFleet.Power}: {power} - {FormFleet.Accuracy}: {accuracy:0.##}");
+		}
+	}
 }

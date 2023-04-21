@@ -384,6 +384,24 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 特殊砲撃(昼戦)：.
+        /// </summary>
+        public static string SpecialAttacksDay {
+            get {
+                return ResourceManager.GetString("SpecialAttacksDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 特殊砲撃(夜戦)：.
+        /// </summary>
+        public static string SpecialAttacksNight {
+            get {
+                return ResourceManager.GetString("SpecialAttacksNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 航空支援.
         /// </summary>
         public static string SupportTypeAerial {

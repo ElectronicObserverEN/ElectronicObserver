@@ -221,4 +221,18 @@ public static class EquipmentDataExtensions
 	public static bool UsesSlotSpace(this IEquipmentDataMaster equip) => equip.CategoryType
 		is not (EquipmentTypes.Ration or EquipmentTypes.DamageControl or EquipmentTypes.Supplies);
 
+	public static int AirBaseAircraftCount(this IEquipmentDataMaster? equipment) => equipment?.CategoryType switch
+	{
+		null => 0,
+
+		EquipmentTypes.CarrierBasedRecon or
+		EquipmentTypes.CarrierBasedRecon2 or
+		EquipmentTypes.LandBasedRecon or
+		EquipmentTypes.SeaplaneRecon or
+		EquipmentTypes.FlyingBoat => 4,
+
+		EquipmentTypes.HeavyBomber => 9,
+
+		_ => 18,
+	};
 }

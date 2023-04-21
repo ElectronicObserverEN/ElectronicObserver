@@ -302,17 +302,20 @@ public partial class FormShipGroup: Form
 
 		ShipView.Font = Font = config.UI.MainFont;
 
-		CSDefaultLeft.Font =
-			CSDefaultCenter.Font =
-				CSDefaultRight.Font =
-					CSRedRight.Font =
-						CSOrangeRight.Font =
-							CSYellowRight.Font =
-								CSGreenRight.Font =
-									CSGrayRight.Font =
-										CSCherryRight.Font =
-											CSIsLocked.Font =
-												config.UI.MainFont;
+		CSDefaultLeft.Font = config.UI.MainFont;
+		CSDefaultCenter.Font = config.UI.MainFont;
+		CSDefaultRight.Font = config.UI.MainFont;
+		CSRedRight.Font = config.UI.MainFont;
+		CSOrangeRight.Font = config.UI.MainFont;
+		CSYellowRight.Font = config.UI.MainFont;
+		CSGreenRight.Font = config.UI.MainFont;
+		CSGrayRight.Font = config.UI.MainFont;
+		CSCherryRight.Font = config.UI.MainFont;
+		CSBlueRight.Font = config.UI.MainFont;
+		CSPurpleRight.Font = config.UI.MainFont;
+		CSCyanRight.Font = config.UI.MainFont;
+		CSIsLocked.Font = config.UI.MainFont;
+
 
 		_shipNameSortMethod = config.FormShipGroup.ShipNameSortMethod;
 
@@ -330,7 +333,8 @@ public partial class FormShipGroup: Form
 			ShipView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
 			if (ShipView.Rows.Count > 0)
-				rowHeight = ShipView.Rows[0].GetPreferredHeight(0, DataGridViewAutoSizeRowMode.AllCellsExceptHeader, false);
+				rowHeight = ShipView.Rows[0]
+					.GetPreferredHeight(0, DataGridViewAutoSizeRowMode.AllCellsExceptHeader, false);
 			else
 				rowHeight = 21;
 		}

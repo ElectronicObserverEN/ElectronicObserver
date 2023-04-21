@@ -10,7 +10,7 @@ public sealed record SubmarineTorpedoCutinAttack : NightAttack
 		NightTorpedoCutinKind = NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment,
 		PowerModifier = 1.75,
 		AccuracyModifier = 1.65,
-		RateModifier = 122,
+		RateModifier = 105,
 		NumberOfAttacks = 2,
 	};
 
@@ -20,7 +20,7 @@ public sealed record SubmarineTorpedoCutinAttack : NightAttack
 		NightTorpedoCutinKind = NightTorpedoCutinKind.LateModelTorpedo2,
 		PowerModifier = 1.6,
 		AccuracyModifier = 1.65,
-		RateModifier = 122,
+		RateModifier = 110,
 		NumberOfAttacks = 2,
 	};
 

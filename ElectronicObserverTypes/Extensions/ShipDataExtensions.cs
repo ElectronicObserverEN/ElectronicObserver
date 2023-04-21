@@ -354,6 +354,21 @@ public static class ShipDataExtensions
 		_ => false
 	};
 
+	public static bool IsBigSeven(this IShipData ship) => ship.MasterShip.ShipClassTyped is
+		ShipClass.Nelson or
+		ShipClass.Nagato or
+		ShipClass.Colorado;
+
+	public static bool IsFlagship(this IShipData ship, IFleetData fleet) => ship.Fleet switch
+	{
+		-1 => false,
+		_ => fleet.MembersInstance[0] switch
+		{
+			IShipData flagship => ship.MasterID == flagship.MasterID,
+			_ => false,
+		}
+	};
+
 	public static double GetHPDamageBonus(this IShipData ship) => ship.HPRate switch
 	{
 		_ when ship.HPRate <= 0.25 => 0.4,
@@ -459,7 +474,7 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.IsuzuKaiNi } or
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
-	{ ShipClassTyped: ShipClass.Fletcher };
+	{ ShipClassTyped: ShipClass.Fletcher, ShipId: not ShipId.HeywoodLE };
 
 	public static bool CanDoOpeningAsw(this IShipData ship) => ship switch
 	{
@@ -493,7 +508,8 @@ public static class ShipDataExtensions
 		{ MasterShip.ShipId: ShipId.ShinshuuMaruKai } or
 		{ MasterShip.ShipId: ShipId.FusouKaiNi } or
 		{ MasterShip.ShipId: ShipId.YamashiroKaiNi } or
-		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu }
+		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu } or
+		{ MasterShip.ShipClassTyped: ShipClass.KumanoMaru }
 			=> ship.HasSonar() && ship.HasAntiSubmarineAircraft() && ship.ASWTotal >= 100,
 
 		{ MasterShip.ShipType: ShipTypes.Destroyer } or

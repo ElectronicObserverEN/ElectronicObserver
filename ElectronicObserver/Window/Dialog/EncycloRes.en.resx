@@ -415,4 +415,7 @@ Will not apply to some items.</value>
   <data name="SearchingNow" xml:space="preserve">
     <value>Searching...</value>
   </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Effects</value>
+  </data>
 </root>

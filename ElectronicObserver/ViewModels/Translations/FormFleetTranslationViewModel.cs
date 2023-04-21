@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Properties.Window;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Window;
 
@@ -89,4 +90,7 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string Bombing => DialogAlbumMasterShip.Bombing;
 	public string Range => GeneralRes.Range;
 	public string Speed => GeneralRes.Speed;
+
+	public string SpecialAttacksDay => FormFleet.SpecialAttacksDay;
+	public string SpecialAttacksNight => FormFleet.SpecialAttacksNight;
 }

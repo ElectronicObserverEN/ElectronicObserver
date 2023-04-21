@@ -140,7 +140,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			return;
 		}
 
-		DataGridItems.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 
 		// 空母系は面倒なので省略
@@ -345,7 +345,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 
 	private void SetResults(DataGridItem[] rows)
 	{
-		DataGridItems.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 		DataGridViewModel.AddRange(rows);
 	}
 
@@ -396,7 +396,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			ASWModernized = selectedShip.ASWModernized,
 		};
 
-		DataGridItems.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 		Dictionary<int, List<ASWEquipmentData[]>> allPossibleSetups = new();
 		if (ShowAllASWEquipments)

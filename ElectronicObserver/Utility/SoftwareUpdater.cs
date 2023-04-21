@@ -11,6 +11,7 @@ using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Utility;
 
@@ -31,10 +32,14 @@ public class SoftwareUpdater
 
 	private static string TranslationUpdateFile => Path.Combine(DataAndTranslationManager.TranslationFolder, "update.json");
 
+	public static string DownloadProgressString { get; private set; } = "";
+
+	public static SoftwareDownloadTranslationViewModel SoftwareDownload { get; } = new();
+
 	/// <summary>
 	/// Perform software update in background 
 	/// </summary>
-	public static void UpdateSoftware()
+	public static async Task UpdateSoftware()
 	{
 		if (WaitForRestart) return;
 
@@ -47,7 +52,7 @@ public class SoftwareUpdater
 			try
 			{
 				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.StartedDownloadingUpdate, url));
-				DownloadUpdate(url);
+				await DownloadUpdate(url);
 				Logger.Add(1, Properties.Utility.SoftwareInformation.DownloadFinished);
 			}
 			catch
@@ -58,7 +63,7 @@ public class SoftwareUpdater
 
 		try
 		{
-			DownloadUpdater();
+			await DownloadUpdater();
 		}
 		catch
 		{
@@ -235,16 +240,21 @@ public class SoftwareUpdater
 		}
 	}
 
-	private static void DownloadUpdater()
+	private static async Task DownloadUpdater()
 	{
 		try
 		{
-			using var client = new WebClient();
+			using HttpClient client = new();
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 			var url = @"https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/Data/EOUpdater.exe";
 			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
-			client.DownloadFile(url, updaterFile);
+			Progress<float> progress = new();
+			progress.ProgressChanged += (_, progress) => DownloadProgressString = string.Format(SoftwareDownload.Update_DownloadingUpdater, progress);
+
+			using FileStream file = new(updaterFile, FileMode.Create);
+			await client.DownloadDataAsync(url, file, progress);
+
 			Logger.Add(1, Properties.Utility.SoftwareInformation.UpdaterDownloadFinished);
 		}
 		catch (Exception e)
@@ -252,22 +262,35 @@ public class SoftwareUpdater
 			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadUpdater + e);
 			throw;
 		}
+		finally
+		{
+			DownloadProgressString = "";
+		}
 	}
 
-	private static void DownloadUpdate(string url)
+	private static async Task DownloadUpdate(string url)
 	{
 		try
 		{
-			using var client = new WebClient();
+			using HttpClient client = new();
 			string tempFile = AppDataFolder + @"\latest.zip"; ;
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 			Console.WriteLine(Properties.Utility.SoftwareInformation.DownloadingUpdate);
-			client.DownloadFile(url, tempFile);
+
+			Progress<float> progress = new();
+			progress.ProgressChanged += (_, progress) => DownloadProgressString = string.Format(SoftwareDownload.Update_DownloadingUpdate, progress);
+
+			using FileStream file = new(tempFile, FileMode.Create);
+			await client.DownloadDataAsync(url, file, progress);
 		}
 		catch (Exception e)
 		{
 			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadElectronicObserver + e.Message);
 			throw;
+		}
+		finally
+		{
+			DownloadProgressString = "";
 		}
 	}
 

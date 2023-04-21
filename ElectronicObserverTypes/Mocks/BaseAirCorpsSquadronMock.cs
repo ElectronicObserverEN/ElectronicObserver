@@ -1,4 +1,5 @@
 ﻿using System;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
 
@@ -26,20 +27,9 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 	{
 		EquipmentInstance = equipment;
 		EquipmentInstanceMaster = equipment.MasterEquipment;
-		AircraftCurrent = AirBaseAircraftCount(equipment.MasterEquipment);
-		AircraftMax = AirBaseAircraftCount(equipment.MasterEquipment);
+		AircraftCurrent = equipment.MasterEquipment.AirBaseAircraftCount();
+		AircraftMax = equipment.MasterEquipment.AirBaseAircraftCount();
 	}
-
-	private static int AirBaseAircraftCount(IEquipmentDataMaster? equipment) => equipment?.CategoryType switch
-	{
-		null => 0,
-
-		EquipmentTypes.CarrierBasedRecon => 4,
-		EquipmentTypes.FlyingBoat => 4,
-		EquipmentTypes.HeavyBomber => 9,
-
-		_ => 18,
-	};
 
 	public void LoadFromResponse(string apiname, object elem)
 	{
