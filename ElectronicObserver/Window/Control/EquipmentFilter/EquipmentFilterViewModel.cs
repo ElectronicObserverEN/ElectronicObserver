@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 
-namespace ElectronicObserver.Window.Dialog.EquipmentFilter;
+namespace ElectronicObserver.Window.Control.EquipmentFilter;
 
 public partial class EquipmentFilterViewModel : ObservableObject
 {
@@ -16,6 +17,8 @@ public partial class EquipmentFilterViewModel : ObservableObject
 	private TransliterationService TransliterationService { get; }
 
 	public string? NameFilter { get; set; } = "";
+
+	public EquipmentFilterTranslationViewModel EquipmentFilter { get; } = new();
 
 	public EquipmentFilterViewModel() : this (false)
 	{
@@ -54,5 +57,24 @@ public partial class EquipmentFilterViewModel : ObservableObject
 		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment, NameFilter)) return false;
 
 		return true;
+	}
+
+	[RelayCommand]
+	private void ToggleEquipmentTypes()
+	{
+		if (TypeFilters.All(f => f.IsChecked))
+		{
+			foreach (Filter typeFilter in TypeFilters)
+			{
+				typeFilter.IsChecked = false;
+			}
+		}
+		else
+		{
+			foreach (Filter typeFilter in TypeFilters)
+			{
+				typeFilter.IsChecked = true;
+			}
+		}
 	}
 }

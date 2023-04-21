@@ -8,7 +8,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentList"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
-	xmlns:filter="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentFilter"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding Title}"
 	Width="800"

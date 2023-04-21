@@ -6,7 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentPicker"
-	xmlns:filter="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentFilter"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:ElectronicObserver.Properties.Window.Dialog"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"

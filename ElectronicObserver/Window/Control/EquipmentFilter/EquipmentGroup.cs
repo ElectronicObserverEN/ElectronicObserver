@@ -2,7 +2,7 @@
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Window.Dialog.EquipmentFilter;
+namespace ElectronicObserver.Window.Control.EquipmentFilter;
 
 public class EquipmentGroup
 {

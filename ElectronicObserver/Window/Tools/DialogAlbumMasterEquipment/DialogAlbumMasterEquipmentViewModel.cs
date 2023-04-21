@@ -16,7 +16,7 @@ using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Dialog.EquipmentFilter;
+using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 

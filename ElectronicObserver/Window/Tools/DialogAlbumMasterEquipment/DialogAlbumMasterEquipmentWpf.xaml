@@ -9,7 +9,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
-	xmlns:filter="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentFilter"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="DialogAlbumMasterEquipmentView"
 	Title="{Binding Title}"

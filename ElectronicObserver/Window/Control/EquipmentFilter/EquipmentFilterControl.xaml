@@ -1,12 +1,12 @@
 ﻿<UserControl
-	x:Class="ElectronicObserver.Window.Dialog.EquipmentFilter.EquipmentFilterControl"
+	x:Class="ElectronicObserver.Window.Control.EquipmentFilter.EquipmentFilterControl"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
-	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentFilter"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	d:DataContext="{d:DesignInstance local:EquipmentFilterViewModel}"
 	mc:Ignorable="d"
@@ -19,8 +19,8 @@
 			<Setter Property="MinWidth" Value="0" />
 		</Style>
 	</UserControl.Resources>
-	
-	<StackPanel Grid.Row="0">
+
+	<StackPanel>
 		<ItemsControl ItemsSource="{Binding TypeFilters}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
@@ -34,10 +34,14 @@
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
 
-		<TextBox
+		<StackPanel Orientation="Horizontal">
+			<TextBox
 				Width="300"
 				HorizontalAlignment="Left"
 				Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
 				/>
+
+			<Button Command="{Binding ToggleEquipmentTypesCommand}" Margin="5 0" Content="{Binding EquipmentFilter.TypeToggle}"></Button>
+		</StackPanel>
 	</StackPanel>
 </UserControl>

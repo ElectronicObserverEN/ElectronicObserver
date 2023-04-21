@@ -12,7 +12,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Dialog.EquipmentFilter;
+using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
@@ -36,7 +36,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public DataGridViewModel<EquipmentListDetailRow> EquipmentDetailGridViewModel { get; set; }
 	public EquipmentListRow? SelectedRow { get; set; }
 
-	public EquipmentFilterViewModel Filters { get; private set; } = new();
+	public EquipmentFilterViewModel Filters { get; private set; } = new(true);
 
 	public bool ShowLockedEquipmentOnly { get; set; }
 

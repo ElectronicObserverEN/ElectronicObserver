@@ -371,6 +371,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>EncycloRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Control\EquipmentFilter\EquipmentFilter.Designer.cs">
+		  <DependentUpon>EquipmentFilter.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
 		<Compile Update="Window\Dialog\NotifyRes.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -780,6 +785,10 @@
 		<EmbeddedResource Update="Window\Dialog\EncycloRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>EncycloRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Control\EquipmentFilter\EquipmentFilter.resx">
+		  <LastGenOutput>EquipmentFilter.Designer.cs</LastGenOutput>
+		  <Generator>ResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\NotifyRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
