@@ -36,38 +36,22 @@ public class ExpeditionRecordViewModel
 
 	public ExpeditionRecordViewModel(ExpeditionRecord record, ApiReqMissionResultResponse response, DateTime expeditionStart)
 	{
-		if (response is null) return;
 		Model = record;
 		ExpeditionStart = expeditionStart.ToLocalTime();
 		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.MapAreaID;
 		DisplayID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.DisplayID;
 		Fleet = record.Fleet.MakeFleet();
-		ItemList = response!.ApiUseitemFlag;
-		MaterialList = response!.ApiGetMaterial;
-		if (MaterialList.ToString() != "-1")
-		{
-			List<int>? list = JsonSerializer.Deserialize<List<int>>(MaterialList!.ToString()!);
-			MaterialFuel = list![0];
-			MaterialAmmo = list![1];
-			MaterialSteel = list![2];
-			MaterialBaux = list![3];
-		}
-		else
-		{
-			MaterialFuel = 0;
-			MaterialAmmo = 0;
-			MaterialSteel = 0;
-			MaterialBaux = 0;
-		}
+		ItemList = response.ApiUseitemFlag;
+		MaterialList = response.ApiGetMaterial.ToString() != "-1" ? JsonSerializer.Deserialize<List<int>>(response.ApiGetMaterial.ToString()!) : new List<int>(new int[4]);
 		ItemOneID = ItemList[0];
-		ItemOneName = ParseUseItemControl(ItemOneID, response!.ApiGetItem1?.ApiUseitemId)!.ToString();
-		ItemOneCount = response!.ApiGetItem1?.ApiUseitemCount;
+		ItemOneName = ParseUseItemControl(ItemOneID, response.ApiGetItem1?.ApiUseitemId).ToString();
+		ItemOneCount = response.ApiGetItem1?.ApiUseitemCount;
 		ItemTwoID = ItemList[1];
-		ItemTwoName = ParseUseItemControl(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId)!.ToString();
+		ItemTwoName = ParseUseItemControl(ItemTwoID, response.ApiGetItem2?.ApiUseitemId).ToString();
 		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
-		ClearResult = Constants.GetExpeditionResult(response!.ApiClearResult);
-		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response!.ApiGetItem1?.ApiUseitemId) : "";
-		ItemTwoString = ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response!.ApiGetItem2?.ApiUseitemId) : "";
+		ClearResult = Constants.GetExpeditionResult(response.ApiClearResult);
+		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response.ApiGetItem1?.ApiUseitemId) : "";
+		ItemTwoString = ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response.ApiGetItem2?.ApiUseitemId) : "";
 	}
 
 	public string ParseUseItem(int? kind, int? key)
@@ -83,14 +67,16 @@ public class ExpeditionRecordViewModel
 		};
 	}
 
-	public UseItemId? ParseUseItemControl(int? kind, int? key)
+	public UseItemId ParseUseItemControl(int? kind, int? key)
 	{
+		if (key is not int id) return UseItemId.Unknown;
+
 		return kind switch
 		{
 			1 => UseItemId.InstantRepair,
 			2 => UseItemId.InstantConstruction,
 			3 => UseItemId.DevelopmentMaterial,
-			4 => (UseItemId)Enum.Parse(typeof(UseItemId), key?.ToString() ?? ""),
+			4 => (UseItemId)id,
 			5 => UseItemId.FurnitureCoin,
 			_ => UseItemId.Unknown,
 		};

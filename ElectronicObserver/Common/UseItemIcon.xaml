@@ -153,6 +153,7 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource Item.Irako}" />
 					</DataTrigger>
+
 					<DataTrigger Binding="{Binding Type}">
 						<DataTrigger.Value>
 							<electronicObserverTypes:UseItemId>
@@ -161,6 +162,7 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource Item.SmallBox}" />
 					</DataTrigger>
+
 					<DataTrigger Binding="{Binding Type}">
 						<DataTrigger.Value>
 							<electronicObserverTypes:UseItemId>
@@ -169,6 +171,7 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource Item.MediumBox}" />
 					</DataTrigger>
+
 					<DataTrigger Binding="{Binding Type}">
 						<DataTrigger.Value>
 							<electronicObserverTypes:UseItemId>
