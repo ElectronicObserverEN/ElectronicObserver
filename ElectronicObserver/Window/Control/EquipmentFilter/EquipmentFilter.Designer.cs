@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Control.EquipmentFilter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Toggle types).
+        ///   Looks up a localized string similar to 装備種トグル.
         /// </summary>
         internal static string TypeToggle {
             get {
