@@ -51,7 +51,7 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0">
-			<filter:EquipmentFilterControl DataContext="{Binding Filters}"></filter:EquipmentFilterControl>
+			<filter:EquipmentFilterControl DataContext="{Binding Filters}" />
 		</StackPanel>
 
 		<DataGrid

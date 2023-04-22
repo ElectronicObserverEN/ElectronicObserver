@@ -6,10 +6,10 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:common1="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
-	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="DialogAlbumMasterEquipmentView"
 	Title="{Binding Title}"
@@ -58,7 +58,7 @@
 			</MenuItem>
 		</Menu>
 
-		<filter:EquipmentFilterControl DataContext="{Binding Filters}" Grid.Row="1"></filter:EquipmentFilterControl>
+		<filter:EquipmentFilterControl Grid.Row="1" DataContext="{Binding Filters}" />
 
 		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
@@ -67,25 +67,25 @@
 			</Grid.ColumnDefinitions>
 
 			<DataGrid
-					x:Name="DataGrid"
-					Grid.Column="0"
-					AutoGenerateColumns="False"
-					CanUserAddRows="False"
-					CanUserDeleteRows="False"
-					CanUserReorderColumns="False"
-					CanUserResizeRows="False"
-					EnableColumnVirtualization="True"
-					EnableRowVirtualization="True"
-					HeadersVisibility="Column"
-					IsReadOnly="True"
-					ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True, NotifyOnTargetUpdated=True}"
-					SelectedItem="{Binding SelectedEquipment}"
-					SelectionMode="Single"
-					SelectionUnit="FullRow"
-					TargetUpdated="DataGrid_OnTargetUpdated"
-					VirtualizingStackPanel.IsVirtualizing="True"
-					VirtualizingStackPanel.VirtualizationMode="Recycling"
-					>
+				x:Name="DataGrid"
+				Grid.Column="0"
+				AutoGenerateColumns="False"
+				CanUserAddRows="False"
+				CanUserDeleteRows="False"
+				CanUserReorderColumns="False"
+				CanUserResizeRows="False"
+				EnableColumnVirtualization="True"
+				EnableRowVirtualization="True"
+				HeadersVisibility="Column"
+				IsReadOnly="True"
+				ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True, NotifyOnTargetUpdated=True}"
+				SelectedItem="{Binding SelectedEquipment}"
+				SelectionMode="Single"
+				SelectionUnit="FullRow"
+				TargetUpdated="DataGrid_OnTargetUpdated"
+				VirtualizingStackPanel.IsVirtualizing="True"
+				VirtualizingStackPanel.VirtualizationMode="Recycling"
+				>
 				<DataGrid.ContextMenu>
 					<ContextMenu>
 						<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
@@ -106,10 +106,10 @@
 							<Setter.Value>
 								<ContextMenu>
 									<MenuItem
-											Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
-											CommandParameter="{Binding}"
-											Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
-											/>
+										Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+										/>
 									<Separator />
 									<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
 									<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
@@ -119,8 +119,8 @@
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<!--
-						no idea how to do right click the mvvm way
-					-->
+					no idea how to do right click the mvvm way
+				-->
 				<DataGrid.RowStyle>
 					<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
 						<EventSetter Event="MouseRightButtonUp" Handler="EventSetter_OnHandler" />
@@ -129,13 +129,13 @@
 
 				<DataGrid.Columns>
 					<DataGridTextColumn
-							Width="60"
-							Binding="{Binding Equipment.ID}"
-							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-							Header="ID"
-							/>
+						Width="60"
+						Binding="{Binding Equipment.ID}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="ID"
+						/>
 
 					<DataGridTemplateColumn SortMemberPath="Equipment.IconTypeTyped">
 						<DataGridTemplateColumn.CellTemplate>
@@ -150,22 +150,22 @@
 					</DataGridTemplateColumn>
 
 					<DataGridTextColumn
-							Width="110"
-							Binding="{Binding Equipment.CategoryTypeInstance.NameEN}"
-							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-							Header="{Binding DataContext.DialogAlbumMasterEquipment.EquipmentView_Type, Source={StaticResource Proxy}}"
-							/>
+						Width="110"
+						Binding="{Binding Equipment.CategoryTypeInstance.NameEN}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogAlbumMasterEquipment.EquipmentView_Type, Source={StaticResource Proxy}}"
+						/>
 
 					<DataGridTextColumn
-							Width="120"
-							Binding="{Binding Equipment.NameEN}"
-							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-							Header="{Binding DataContext.DialogAlbumMasterEquipment.EquipmentView_Name, Source={StaticResource Proxy}}"
-							/>
+						Width="120"
+						Binding="{Binding Equipment.NameEN}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogAlbumMasterEquipment.EquipmentView_Name, Source={StaticResource Proxy}}"
+						/>
 				</DataGrid.Columns>
 			</DataGrid>
 

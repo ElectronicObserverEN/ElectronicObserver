@@ -5,8 +5,8 @@
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentPicker"
 	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentPicker"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:ElectronicObserver.Properties.Window.Dialog"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
@@ -46,9 +46,7 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0">
-			<filter:EquipmentFilterControl DataContext="{Binding Filters}"></filter:EquipmentFilterControl>
-		</StackPanel>
+		<filter:EquipmentFilterControl Grid.Row="0" DataContext="{Binding Filters}" />
 
 		<DataGrid
 			Grid.Row="1"
