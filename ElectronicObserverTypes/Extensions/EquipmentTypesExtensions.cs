@@ -76,7 +76,8 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.Ration or
 		EquipmentTypes.Supplies or
 		EquipmentTypes.TransportMaterial or
-		EquipmentTypes.SubmarineEquipment => EquipmentTypeGroup.Other,
+		EquipmentTypes.SubmarineEquipment or 
+		EquipmentTypes.ArmyInfantry => EquipmentTypeGroup.Other,
 
 		EquipmentTypes.LandingCraft or
 		EquipmentTypes.TransportContainer or
