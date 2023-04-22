@@ -12,7 +12,7 @@ namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 
 public class ExpeditionRecordViewModel
 {
-	public ExpeditionRecord? Model { get; }
+	public ExpeditionRecord Model { get; }
 	public int? Id => Model?.Id;
 	public DateTime ExpeditionStart { get; }
 	public IFleetData? Fleet { get; }

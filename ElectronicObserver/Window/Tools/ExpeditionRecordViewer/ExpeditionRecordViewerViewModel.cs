@@ -146,7 +146,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 
 		int hqLevel = KCDatabase.Instance.Admiral.Level;
 
-		if (expedition.Model is not null && expedition.Model.ApiFiles.Any())
+		if (expedition.Model.ApiFiles.Any())
 		{
 			// get the last port response right before the sortie started
 			ApiFile? portFile = Db.ApiFiles
@@ -178,7 +178,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			hqLevel,
-			expedition?.Model?.Fleet.MakeFleet()
+			expedition?.Model.Fleet.MakeFleet()
 	);
 
 		FleetImageGeneratorImageDataModel model = new()
