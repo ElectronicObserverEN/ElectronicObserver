@@ -30,7 +30,6 @@ public partial class EquipmentFilterViewModel : ObservableObject
 		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
 
 		TypeFilters = Enum.GetValues<EquipmentTypeGroup>()
-			.Where(e => e != EquipmentTypeGroup.Unknown)
 			.Select(t => new Filter(t)
 			{
 				IsChecked = typesCheckedByDefault,

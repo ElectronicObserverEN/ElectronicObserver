@@ -83,8 +83,6 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.TransportContainer or
 		EquipmentTypes.SpecialAmphibiousTank => EquipmentTypeGroup.Transport,
 
-		EquipmentTypes.VTFuse => EquipmentTypeGroup.Unknown,
-
 		_ => EquipmentTypeGroup.Other
 	};
 }
