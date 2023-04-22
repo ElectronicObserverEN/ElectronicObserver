@@ -15,24 +15,29 @@ public class ExpeditionRecordViewModel
 	public ExpeditionRecord Model { get; }
 	public int? Id => Model?.Id;
 	public DateTime ExpeditionStart { get; }
+
+	public int? MapAreaID { get; }
+	public string? DisplayID { get; }
+
 	public IFleetData? Fleet { get; }
-	public List<int>? ItemList { get; }
+
 	public object? MaterialList { get; }
 	public int MaterialFuel { get; }
 	public int MaterialAmmo { get; }
 	public int MaterialSteel { get; }
 	public int MaterialBaux { get; }
+
+	public List<int>? ItemList { get; }
 	public int? ItemOneID { get; }
 	public string? ItemOneName { get; }
 	public int? ItemOneCount { get; }
+	public string? ItemOneString { get; }
 	public int? ItemTwoID { get; }
-	public int? MapAreaID { get; }
-	public string? DisplayID { get; }
 	public string? ItemTwoName { get; }
 	public int? ItemTwoCount { get; }
-	public string? ClearResult { get; }
-	public string? ItemOneString { get; }
 	public string? ItemTwoString { get; }
+
+	public string? ClearResult { get; }
 
 	public ExpeditionRecordViewModel(ExpeditionRecord record, ApiReqMissionResultResponse response, DateTime expeditionStart)
 	{
@@ -46,15 +51,15 @@ public class ExpeditionRecordViewModel
 		ItemOneID = ItemList[0];
 		ItemOneName = ParseUseItemControl(ItemOneID, response.ApiGetItem1?.ApiUseitemId).ToString();
 		ItemOneCount = response.ApiGetItem1?.ApiUseitemCount;
+		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response.ApiGetItem1?.ApiUseitemId) : "";
 		ItemTwoID = ItemList[1];
 		ItemTwoName = ParseUseItemControl(ItemTwoID, response.ApiGetItem2?.ApiUseitemId).ToString();
 		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
-		ClearResult = Constants.GetExpeditionResult(response.ApiClearResult);
-		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response.ApiGetItem1?.ApiUseitemId) : "";
 		ItemTwoString = ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response.ApiGetItem2?.ApiUseitemId) : "";
+		ClearResult = Constants.GetExpeditionResult(response.ApiClearResult);
 	}
 
-	public string ParseUseItem(int? kind, int? key)
+	private string ParseUseItem(int? kind, int? key)
 	{
 		return kind switch
 		{
@@ -67,7 +72,7 @@ public class ExpeditionRecordViewModel
 		};
 	}
 
-	public UseItemId ParseUseItemControl(int? kind, int? key)
+	private UseItemId ParseUseItemControl(int? kind, int? key)
 	{
 		if (key is not int id) return UseItemId.Unknown;
 
