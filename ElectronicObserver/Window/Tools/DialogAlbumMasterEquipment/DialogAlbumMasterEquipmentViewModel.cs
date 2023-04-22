@@ -32,7 +32,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	public EquipmentDataViewModel? SelectedEquipment { get; set; }
 	public bool DetailsVisible => SelectedEquipment is not null;
 
-	public EquipmentFilterViewModel Filters { get; private set; } = new(true);
+	public EquipmentFilterViewModel Filters { get; } = new(true);
 
 	public string Title => SelectedEquipment switch
 	{

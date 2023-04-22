@@ -36,7 +36,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public DataGridViewModel<EquipmentListDetailRow> EquipmentDetailGridViewModel { get; set; }
 	public EquipmentListRow? SelectedRow { get; set; }
 
-	public EquipmentFilterViewModel Filters { get; private set; } = new(true);
+	public EquipmentFilterViewModel Filters { get; } = new(true);
 
 	public bool ShowLockedEquipmentOnly { get; set; }
 
