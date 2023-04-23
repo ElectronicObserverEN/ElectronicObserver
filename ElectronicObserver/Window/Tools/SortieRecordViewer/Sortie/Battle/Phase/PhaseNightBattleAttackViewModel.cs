@@ -17,14 +17,15 @@ public class PhaseNightBattleAttackViewModel
 	private List<NightAttack> Attacks { get; }
 	public string DamageDisplay { get; }
 
-	public PhaseNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack)
+	public PhaseNightBattleAttackViewModel(BattleFleets fleets, BattleIndex attacker,
+		BattleIndex defender, NightAttackKind attackType, List<PhaseNightBattleDefender> defenders)
 	{
-		AttackerIndex = attack.Attacker;
+		AttackerIndex = attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
-		DefenderIndex = attack.Defenders.First().Defender;
+		DefenderIndex = defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
-		AttackType = attack.AttackType;
-		Attacks = attack.Defenders
+		AttackType = attackType;
+		Attacks = defenders
 			.Select(d => new NightAttack
 			{
 				Attacker = Attacker,

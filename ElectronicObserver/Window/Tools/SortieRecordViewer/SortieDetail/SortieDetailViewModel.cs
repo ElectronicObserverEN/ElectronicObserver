@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
+using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
@@ -94,7 +95,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 				_ => cell,
 			};
 
-			BattleData? battle = GetBattle(response);
+			BattleData? battle = GetBattle(response, node);
 
 			if (battle is not null)
 			{
@@ -121,10 +122,35 @@ public class SortieDetailViewModel : WindowViewModelBase
 		ApiResponseCache.Clear();
 	}
 
-	private BattleData? GetBattle(object api) => api switch
+	private BattleData? GetBattle(object api, SortieNode? node) => node switch
 	{
-		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(Fleet, a),
-		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(Fleet, a),
+		BattleNode b => GetBattle(api, b.FirstBattle.FleetsAfterBattle),
+		_ => GetBattle(api, Fleet),
+	};
+
+	/// <summary>
+	/// Used to initialize first battles.
+	/// </summary>
+	/// <param name="api"></param>
+	/// <param name="fleet"></param>
+	/// <returns></returns>
+	private BattleData? GetBattle(object api, IFleetData fleet) => api switch
+	{
+		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(fleet, a),
+		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(fleet, a),
+
+		_ => null,
+	};
+
+	/// <summary>
+	/// Used to initialize second battles.
+	/// </summary>
+	/// <param name="api"></param>
+	/// <param name="fleets"></param>
+	/// <returns></returns>
+	private BattleData? GetBattle(object api, BattleFleets fleets) => api switch
+	{
+		ApiReqBattleMidnightBattleResponse a => BattleFactory.CreateBattle(fleets, a),
 
 		_ => null,
 	};

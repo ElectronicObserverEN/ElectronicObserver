@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Properties.Data;
@@ -145,10 +146,17 @@ public class PhaseInitial : PhaseBase
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
 			.Zip(battle.ApiESlot, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
+			.Zip(battle.ApiENowhps, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
 			.Select(t => t.Id switch
 			{
 				> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
 				{
+					HPCurrent = t.Hp switch
+					{
+						JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
+						JsonElement { ValueKind: JsonValueKind.String } s => KcDatabase.MasterShips[t.Id].HPMin,
+						_ => throw new NotImplementedException(),
+					},
 					Level = t.Level,
 					SlotInstance = t.Equipment
 						.Select(id => id switch
