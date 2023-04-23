@@ -37,9 +37,14 @@ public class PhaseShellingAttackViewModel
 
 		DamageDisplay =
 			$"[{ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(AttackType)}] " +
-			$"{string.Join(", ", Attacks.Select(AttackDisplay))} " +
-			$"({Defender.HPCurrent} → {Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage))})";
+			$"{string.Join(", ", Attacks.Select(AttackDisplay))} ";
 
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+
+		if (Defender.HPCurrent != hpAfterAttacks)
+		{
+			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
+		}
 	}
 
 	private static string AttackDisplay(DayAttack dayAttack) => dayAttack.CriticalFlag switch
