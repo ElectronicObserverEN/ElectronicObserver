@@ -124,7 +124,9 @@ public class PhaseNightBattle : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack));
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets,
+							comboAttack.Attacker, comboAttack.Defenders.First().Defender, 
+							comboAttack.AttackType, comboAttack.Defenders));
 						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
@@ -133,7 +135,7 @@ public class PhaseNightBattle : PhaseBase
 					foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 					{
 						// BattleDetails.Add(new BattleNightDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[defs.Key]));
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, atk));
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, atk.Attacker, defs.Key, atk.AttackType, defs.ToList()));
 						AddDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
 					}
 					// damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
