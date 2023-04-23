@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
@@ -59,7 +60,7 @@ public class PhaseShellingAttackViewModel
 
 	private static string ProtectedDisplay(DayAttack dayAttack) => dayAttack.GuardsFlagship switch
 	{
-		true => "protected ",
+		true => $"<{BattleRes.Protected}> ",
 		_ => "",
 	};
 }

@@ -61,7 +61,7 @@ public class AirBattleAttackViewModel
 
 	private static string ProtectedDisplay(bool guardsFlagship) => guardsFlagship switch
 	{
-		true => "protected ",
+		true => $"<{BattleRes.Protected}> ",
 		_ => "",
 	};
 }
