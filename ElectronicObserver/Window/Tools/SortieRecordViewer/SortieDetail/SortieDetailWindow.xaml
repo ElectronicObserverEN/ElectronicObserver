@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail.SortieDetailWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:battle="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail"
@@ -329,6 +330,74 @@
 			<Expander Header="{Binding DisplayCell}" />
 		</DataTemplate>
 
+		<DataTemplate DataType="{x:Type battle:BattleData}">
+			<StackPanel>
+				<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_BattleEnd, Source={StaticResource Proxy}}" />
+
+				<!--  todo: AB data for air raid battles  -->
+
+				<TextBlock Margin="0 4">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendMainFleet, Source={StaticResource Proxy}}" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding EscortFleetBeforeAfter}" Value="{x:Null}">
+									<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendFleet, Source={StaticResource Proxy}}" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+				<ItemsControl ItemsSource="{Binding MainFleetBeforeAfter}" />
+
+				<StackPanel>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding EscortFleetBeforeAfter}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
+
+					<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_FriendEscortFleet, Source={StaticResource Proxy}}" />
+					<ItemsControl ItemsSource="{Binding EscortFleetBeforeAfter}" />
+				</StackPanel>
+
+				<TextBlock Margin="0 4">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_EnemyEscortFleet, Source={StaticResource Proxy}}" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding EnemyEscortFleetBeforeAfter}" Value="{x:Null}">
+									<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_EnemyFleet, Source={StaticResource Proxy}}" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+				<ItemsControl ItemsSource="{Binding EnemyMainFleetBeforeAfter}" />
+
+				<StackPanel>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding EnemyEscortFleetBeforeAfter}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
+
+					<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_EnemyEscortFleet, Source={StaticResource Proxy}}" />
+					<ItemsControl ItemsSource="{Binding EnemyEscortFleetBeforeAfter}" />
+				</StackPanel>
+			</StackPanel>
+		</DataTemplate>
+
 		<DataTemplate DataType="{x:Type node:BattleNode}">
 			<Expander Header="{Binding DisplayCell}">
 				<Grid Margin="4">
@@ -343,73 +412,24 @@
 
 					<ItemsControl Grid.Row="0" ItemsSource="{Binding FirstBattle.Phases}" />
 
-					<StackPanel Grid.Row="1">
-						<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_BattleEnd, Source={StaticResource Proxy}}" />
+					<ContentControl Grid.Row="1" Content="{Binding FirstBattle}" />
 
-						<!--  todo: AB data for air raid battles  -->
+					<ItemsControl Grid.Row="2" ItemsSource="{Binding SecondBattle.Phases}">
+						<ItemsControl.Style>
+							<Style TargetType="ItemsControl">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding SecondBattle}" Value="{x:Null}">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</ItemsControl.Style>
+					</ItemsControl>
 
-						<TextBlock Margin="0 4">
-							<TextBlock.Style>
-								<Style TargetType="TextBlock">
-									<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendMainFleet, Source={StaticResource Proxy}}" />
-									<Style.Triggers>
-										<DataTrigger Binding="{Binding FirstBattle.EscortFleetBeforeAfter}" Value="{x:Null}">
-											<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendFleet, Source={StaticResource Proxy}}" />
-										</DataTrigger>
-									</Style.Triggers>
-								</Style>
-							</TextBlock.Style>
-						</TextBlock>
-						<ItemsControl ItemsSource="{Binding FirstBattle.MainFleetBeforeAfter}" />
+					<ContentControl Grid.Row="3" Content="{Binding SecondBattle}" />
 
-						<StackPanel>
-							<StackPanel.Style>
-								<Style TargetType="StackPanel">
-									<Setter Property="Visibility" Value="Visible" />
-									<Style.Triggers>
-										<DataTrigger Binding="{Binding FirstBattle.EscortFleetBeforeAfter}" Value="{x:Null}">
-											<Setter Property="Visibility" Value="Collapsed" />
-										</DataTrigger>
-									</Style.Triggers>
-								</Style>
-							</StackPanel.Style>
-
-							<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_FriendEscortFleet, Source={StaticResource Proxy}}" />
-							<ItemsControl ItemsSource="{Binding FirstBattle.EscortFleetBeforeAfter}" />
-						</StackPanel>
-
-						<TextBlock Margin="0 4">
-							<TextBlock.Style>
-								<Style TargetType="TextBlock">
-									<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_EnemyEscortFleet, Source={StaticResource Proxy}}" />
-									<Style.Triggers>
-										<DataTrigger Binding="{Binding FirstBattle.EnemyEscortFleetBeforeAfter}" Value="{x:Null}">
-											<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_EnemyFleet, Source={StaticResource Proxy}}" />
-										</DataTrigger>
-									</Style.Triggers>
-								</Style>
-							</TextBlock.Style>
-						</TextBlock>
-						<ItemsControl ItemsSource="{Binding FirstBattle.EnemyMainFleetBeforeAfter}" />
-
-						<StackPanel>
-							<StackPanel.Style>
-								<Style TargetType="StackPanel">
-									<Setter Property="Visibility" Value="Visible" />
-									<Style.Triggers>
-										<DataTrigger Binding="{Binding FirstBattle.EnemyEscortFleetBeforeAfter}" Value="{x:Null}">
-											<Setter Property="Visibility" Value="Collapsed" />
-										</DataTrigger>
-									</Style.Triggers>
-								</Style>
-							</StackPanel.Style>
-
-							<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_EnemyEscortFleet, Source={StaticResource Proxy}}" />
-							<ItemsControl ItemsSource="{Binding FirstBattle.EnemyEscortFleetBeforeAfter}" />
-						</StackPanel>
-					</StackPanel>
-
-					<StackPanel Grid.Row="2" Margin="0 10">
+					<StackPanel Grid.Row="4" Margin="0 10">
 						<TextBlock Text="{Binding Result}" />
 						<TextBlock Text="{Binding ResultRank}" />
 						<TextBlock Text="{Binding ResultMvpMain}" />
