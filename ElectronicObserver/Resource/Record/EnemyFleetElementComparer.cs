@@ -8,6 +8,9 @@ public class EnemyFleetElementComparer : IEqualityComparer<EnemyFleetRecord.Enem
 {
 	public bool Equals(EnemyFleetRecord.EnemyFleetElement? x, EnemyFleetRecord.EnemyFleetElement? y)
 	{
+		if (x is null && y is null) return true;
+		if (x is null || y is null) return false;
+
 		foreach ((int? firstShip, int? secondShip) in x.FleetMember.Zip(y.FleetMember, (sa, sb) => (sa, sb)))
 		{
 			if (firstShip != secondShip) return false;
