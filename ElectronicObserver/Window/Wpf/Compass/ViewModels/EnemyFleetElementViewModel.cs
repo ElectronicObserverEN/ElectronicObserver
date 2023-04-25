@@ -27,7 +27,9 @@ public class EnemyFleetElementViewModel : ObservableObject
 		.Select(s => new MasterShipViewModel { Ship = s })
 		.Take(6);
 
-	public string Formation => Constants.GetFormationShort(EnemyFleetCandidate.Formation);
+	public List<int> Formations { get; set; } = new();
+
+	public string FormationString => string.Join('/', Formations.Select(Constants.GetFormationShort));
 
 	public ImageSource? AirIcon { get; } = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedFighter);
 	public string Air => Calculator.GetAirSuperiority(EnemyFleetCandidate.FleetMember).ToString();

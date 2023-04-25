@@ -47,9 +47,11 @@ public class CompassViewModel : AnchorableViewModel
 	private List<EnemyFleetRecord.EnemyFleetElement>? _enemyFleetCandidate { get; set; }
 
 	public IEnumerable<EnemyFleetElementViewModel> EnemyFleetCandidate => _enemyFleetCandidate?
+		.GroupBy(f => f, new EnemyFleetElementComparer())
 		.Select(f => new EnemyFleetElementViewModel
 		{
-			EnemyFleetCandidate = f
+			EnemyFleetCandidate = f.First(),
+			Formations = f.Select(fleet => fleet.Formation).ToList()
 		}) ?? Enumerable.Empty<EnemyFleetElementViewModel>();
 
 	public IEnumerable<MasterShipViewModel>? EnemyFleet { get; set; }
