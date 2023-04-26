@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Compass.Views"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="clr-namespace:ElectronicObserver.Window.Wpf.Compass.ViewModels"
 	x:Name="EnemyListControl"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
@@ -18,9 +19,13 @@
 					<StackPanel CanHorizontallyScroll="True" Orientation="Horizontal" />
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
+
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<StackPanel.Resources>
+							<vm:EnemyFleetElementViewModelProxy x:Key="Proxy" DataContext="{Binding}" />
+						</StackPanel.Resources>
 						<StackPanel.Style>
 							<Style TargetType="StackPanel">
 								<Style.Resources>
@@ -41,19 +46,6 @@
 							BorderThickness="1"
 							>
 							<ItemsControl ItemsSource="{Binding FleetMember}">
-								<ItemsControl.Style>
-									<Style TargetType="ItemsControl">
-										<Style.Resources>
-											<Style TargetType="TextBlock">
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding IsPreviewed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True">
-														<Setter Property="FontWeight" Value="Bold" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</Style.Resources>
-									</Style>
-								</ItemsControl.Style>
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
 										<TextBlock
@@ -63,6 +55,16 @@
 											TextTrimming="CharacterEllipsis"
 											ToolTip="{Binding NameToolTip}"
 											>
+											<TextBlock.Style>
+												<Style TargetType="TextBlock">
+													<Setter Property="FontWeight" Value="Normal" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding DataContext.IsPreviewed, Source={StaticResource Proxy}}" Value="True">
+															<Setter Property="FontWeight" Value="Bold" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</TextBlock.Style>
 											<TextBlock.InputBindings>
 												<MouseBinding
 													Command="{Binding OpenShipEncyclopediaCommand}"
