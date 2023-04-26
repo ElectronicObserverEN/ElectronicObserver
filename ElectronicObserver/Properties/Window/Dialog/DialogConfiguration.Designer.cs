@@ -161,6 +161,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (Display all enemy compositions).
+        /// </summary>
+        public static string Compass_DisplayAllPossibleEnemyComps {
+            get {
+                return ResourceManager.GetString("Compass_DisplayAllPossibleEnemyComps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (By default, only the compositions matching the preview from map screen will be shown. If you enable this setting, the preview will be ignored and all compositions will be shown.).
+        /// </summary>
+        public static string Compass_DisplayAllPossibleEnemyCompsTooltip {
+            get {
+                return ResourceManager.GetString("Compass_DisplayAllPossibleEnemyCompsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 音量一括設定の確認.
         /// </summary>
         public static string ConfirmSetting {

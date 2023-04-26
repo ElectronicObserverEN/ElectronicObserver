@@ -60,6 +60,7 @@ public class EnemyFleetElementViewModel : ObservableObject
 
 	private bool IsPreviewedFleet()
 	{
+		if (Db.Battle.Compass is null) return false;
 		List<EDeckInfo> fleets = Db.Battle.Compass.EnemyFleetPreview;
 
 		if (!Db.Battle.Compass.EnemyFleetPreview.Any()) return false;

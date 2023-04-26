@@ -32,7 +32,7 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	public int ApiCommentKind { get; set; } = default!;
 
 	/// <summary>
-	/// Enemy fleet preview. Seems to always be only 1 element?
+	/// Enemy fleet preview. Only one element against single fleet. Two elements if fighting combined fleet.
 	/// </summary>
 	[JsonPropertyName("api_e_deck_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

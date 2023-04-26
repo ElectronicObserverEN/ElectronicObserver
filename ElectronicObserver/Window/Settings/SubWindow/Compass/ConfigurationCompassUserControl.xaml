@@ -21,6 +21,12 @@
 				ToolTip="{Binding Translation.FormArsenal_MaxShipNameWidthToolTip}"
 				Value="{Binding MaxShipNameWidth}"
 				/>
+
+			<CheckBox
+				Content="{Binding Translation.Compass_DisplayAllPossibleEnemyComps}"
+				IsChecked="{Binding DisplayAllEnemyCompositions}"
+				ToolTip="{Binding Translation.Compass_DisplayAllPossibleEnemyCompsToolTip}"
+				/>
 		</StackPanel>
 	</StackPanel>
 </UserControl>

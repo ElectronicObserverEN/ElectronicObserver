@@ -10,4 +10,6 @@ public class ConfigurationCompassTranslationViewModel : TranslationBaseViewModel
 	public string FormFleet_IsScrollable => Properties.Window.Dialog.DialogConfiguration.FormFleet_IsScrollable;
 	public string FormFleet_IsScrollableToolTip => Properties.Window.Dialog.DialogConfiguration.FormFleet_IsScrollableToolTip;
 	public string CandidateDisplayCount => ConfigRes.CandidateDisplayCount;
+	public string Compass_DisplayAllPossibleEnemyComps => Properties.Window.Dialog.DialogConfiguration.Compass_DisplayAllPossibleEnemyComps;
+	public string Compass_DisplayAllPossibleEnemyCompsToolTip => Properties.Window.Dialog.DialogConfiguration.Compass_DisplayAllPossibleEnemyCompsTooltip;
 }

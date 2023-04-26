@@ -1393,12 +1393,18 @@ public sealed class Configuration
 			/// </summary>
 			public int MaxShipNameWidth { get; set; }
 
+			/// <summary>
+			/// By default, only the compositions matching the preview from map screen will be shown. <br></br>
+			/// If you enable this setting, the preview will be ignored and all compositions will be shown.
+			/// </summary>
+			public bool DisplayAllEnemyCompositions { get; set; }
 
 			public ConfigFormCompass()
 			{
 				CandidateDisplayCount = 4;
 				IsScrollable = false;
 				MaxShipNameWidth = 60;
+				DisplayAllEnemyCompositions = false;
 			}
 		}
 		/// <summary>[羅針盤]ウィンドウ</summary>
