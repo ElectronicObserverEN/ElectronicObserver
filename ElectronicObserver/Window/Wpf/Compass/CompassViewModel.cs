@@ -48,11 +48,12 @@ public class CompassViewModel : AnchorableViewModel
 
 	public IEnumerable<EnemyFleetElementViewModel> EnemyFleetCandidate => GetAllCandidateFleetViewModels() switch
 	{
-		List<EnemyFleetElementViewModel> fleets => fleets switch
-		{
-			{ Count: 0 } => fleets,
-			_ => fleets.Where(vm => Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions || vm.IsPreviewed),
-		},
+		List<EnemyFleetElementViewModel> fleets => 
+			fleets.Where(vm => Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions || vm.IsPreviewed).ToList() switch
+			{
+				{ Count: > 0 } fleetsFiltered => fleetsFiltered,
+				_ => fleets,
+			},
 		_ => Enumerable.Empty<EnemyFleetElementViewModel>()
 	};
 
