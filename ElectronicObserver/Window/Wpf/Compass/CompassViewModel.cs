@@ -46,16 +46,7 @@ public class CompassViewModel : AnchorableViewModel
 
 	private List<EnemyFleetRecord.EnemyFleetElement>? _enemyFleetCandidate { get; set; }
 
-	public IEnumerable<EnemyFleetElementViewModel> EnemyFleetCandidate => GetAllCandidateFleetViewModels() switch
-	{
-		List<EnemyFleetElementViewModel> fleets => 
-			fleets.Where(vm => Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions || vm.IsPreviewed).ToList() switch
-			{
-				{ Count: > 0 } fleetsFiltered => fleetsFiltered,
-				_ => fleets,
-			},
-		_ => Enumerable.Empty<EnemyFleetElementViewModel>()
-	};
+	public IEnumerable<EnemyFleetElementViewModel> EnemyFleetCandidate => GetFilteredCandidateFleetViewModels();
 
 	public IEnumerable<MasterShipViewModel>? EnemyFleet { get; set; }
 
@@ -564,6 +555,18 @@ public class CompassViewModel : AnchorableViewModel
 					Formations = f.Select(fleet => fleet.Formation).ToList()
 				})
 				.ToList();
+
+	private List<EnemyFleetElementViewModel> GetFilteredCandidateFleetViewModels()
+		=> GetAllCandidateFleetViewModels() switch
+		{
+			List<EnemyFleetElementViewModel> fleets =>
+				fleets.Where(vm => Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions || vm.IsPreviewed).ToList() switch
+				{
+					{ Count: > 0 } fleetsFiltered => fleetsFiltered,
+					_ => fleets,
+				},
+			_ => new List<EnemyFleetElementViewModel>()
+		};
 
 	private string GetMaterialInfo(CompassData compass)
 	{
