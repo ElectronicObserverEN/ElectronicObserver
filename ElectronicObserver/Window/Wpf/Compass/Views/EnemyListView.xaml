@@ -21,12 +21,39 @@
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<StackPanel.Style>
+							<Style TargetType="StackPanel">
+								<Style.Resources>
+									<Style TargetType="TextBlock">
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding IsPreviewed}" Value="True">
+												<Setter Property="FontWeight" Value="Bold" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Style.Resources>
+							</Style>
+						</StackPanel.Style>
+
 						<Border
 							Padding="2"
 							BorderBrush="#444"
 							BorderThickness="1"
 							>
 							<ItemsControl ItemsSource="{Binding FleetMember}">
+								<ItemsControl.Style>
+									<Style TargetType="ItemsControl">
+										<Style.Resources>
+											<Style TargetType="TextBlock">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding IsPreviewed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True">
+														<Setter Property="FontWeight" Value="Bold" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</Style.Resources>
+									</Style>
+								</ItemsControl.Style>
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
 										<TextBlock

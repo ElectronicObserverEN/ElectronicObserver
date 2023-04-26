@@ -5,6 +5,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
@@ -36,6 +37,8 @@ public class EnemyFleetElementViewModel : ObservableObject
 	public string? AirToolTip =>
 		GetAirSuperiorityString(Calculator.GetAirSuperiority(EnemyFleetCandidate.FleetMember));
 
+	public bool IsPreviewed => IsPreviewedFleet();
+
 	public EnemyFleetElementViewModel()
 	{
 		Db = KCDatabase.Instance;
@@ -53,5 +56,40 @@ public class EnemyFleetElementViewModel : ObservableObject
 				(int)(air / 3.0 + 1));
 		}
 		return null;
+	}
+
+	private bool IsPreviewedFleet()
+	{
+		List<EDeckInfo> fleets = Db.Battle.Compass.EnemyFleetPreview;
+
+		if (!Db.Battle.Compass.EnemyFleetPreview.Any()) return false;
+
+		if (!CompareFleets(fleets.First(), EnemyFleetCandidate.FleetMember.Take(6))) return false;
+
+		if (fleets.Count is 2 && !CompareFleets(fleets[1], EnemyFleetCandidate.FleetMember.Skip(6).Take(6))) return false;
+
+		return true;
+	}
+
+	private bool CompareFleets(EDeckInfo preview, IEnumerable<int> savedFleet)
+	{
+		int shipCountSaved = savedFleet.Count(id => id > 0);
+
+		bool countMatches = preview.ApiKind switch
+		{
+			0 => shipCountSaved == preview.ApiShipIds.Count,
+			1 => shipCountSaved is 4,
+			2 => shipCountSaved >= 5,
+			_ => false
+		};
+
+		if (!countMatches) return false;
+
+		foreach ((ShipId shipPreview, int shipSaved) in preview.ApiShipIds.Zip(savedFleet.Take(preview.ApiShipIds.Count)))
+		{
+			if ((int)shipPreview != shipSaved) return false;
+		}
+
+		return true;
 	}
 }
