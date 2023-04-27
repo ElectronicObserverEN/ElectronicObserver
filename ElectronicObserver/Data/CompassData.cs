@@ -16,17 +16,17 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 海域カテゴリID(2-3でいう2)
 	/// </summary>
-	public int MapAreaID => (int)RawData.api_maparea_id;
+	public int MapAreaID => 6;
 
 	/// <summary>
 	/// 海域カテゴリ内番号(2-3でいう3)
 	/// </summary>
-	public int MapInfoID => (int)RawData.api_mapinfo_no;
+	public int MapInfoID => 5;
 
 	/// <summary>
 	/// 次に向かうセルのID
 	/// </summary>
-	public int Destination => (int)RawData.api_no;
+	public int Destination => 13;
 
 	/// <summary>
 	/// Map Node Display ID
