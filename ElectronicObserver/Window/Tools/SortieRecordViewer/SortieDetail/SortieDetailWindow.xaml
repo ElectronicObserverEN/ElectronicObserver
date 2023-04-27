@@ -236,18 +236,6 @@
 			</StackPanel>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type phase:PhaseBaseAirAttack}">
-			<StackPanel Style="{StaticResource PhaseStyle}">
-				<TextBlock>
-					<Run Text="==" />
-					<Run Text="{Binding Title, Mode=OneWay}" />
-					<Run Text="==" />
-				</TextBlock>
-
-				<TextBlock Text="{Binding Display}" />
-			</StackPanel>
-		</DataTemplate>
-
 		<DataTemplate DataType="{x:Type phase:PhaseFriendlyAirBattle}">
 			<StackPanel Style="{StaticResource PhaseStyle}">
 				<TextBlock>
@@ -260,14 +248,8 @@
 			</StackPanel>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type phase:PhaseAirBattle}">
+		<DataTemplate x:Key="PhaseAirBattleBase" DataType="{x:Type phase:PhaseAirBattleBase}">
 			<StackPanel Style="{StaticResource PhaseStyle}">
-				<TextBlock>
-					<Run Text="==" />
-					<Run Text="{Binding Title, Mode=OneWay}" />
-					<Run Text="==" />
-				</TextBlock>
-
 				<TextBlock Text="{Binding Stage1Display}" />
 
 				<TextBlock Text="{Binding TouchAircraftFriend}">
@@ -299,6 +281,38 @@
 				<TextBlock Margin="0 0 0 5" Text="{Binding Stage2Display}" />
 
 				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseAirBattle}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirAttackUnit}">
+			<StackPanel>
+				<TextBlock Text="{Binding Display}" />
+
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirAttack}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<ItemsControl ItemsSource="{Binding Units}" />
 			</StackPanel>
 		</DataTemplate>
 

@@ -1,8 +1,9 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 
 namespace ElectronicObserver.KancolleApi.Types.Models;
 
-public class ApiAirBaseAttack
+public class ApiAirBaseAttack : IApiAirBattle
 {
 	[JsonPropertyName("api_base_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -33,7 +34,7 @@ public class ApiAirBaseAttack
 
 	[JsonPropertyName("api_stage3_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiAirBaseAttackApiStage3? ApiStage3Combined { get; set; } = default!;
+	public ApiStage3Combined? ApiStage3Combined { get; set; } = default!;
 
 	[JsonPropertyName("api_stage_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -41,8 +41,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public List<object> Worlds { get; }
 	public List<object> Maps { get; }
 
-	public object World { get; set; } = 5;
-	public object Map { get; set; } = 5;
+	public object World { get; set; } = 56;
+	public object Map { get; set; } = 1;
 
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
@@ -77,9 +77,9 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		MaxDate = DateTime.Now.AddDays(1);
 
-		DateBegin = new(2023, 03, 01);
-		DateEnd = MaxDate.Date;
-		TimeEnd = new(2023, 02, 01, 12, 10, 00);
+		DateBegin = new(2023, 04, 01);
+		DateEnd = new(2023, 04, 01, 23, 00, 00);
+		TimeEnd = new(2023, 04, 01, 23, 00, 00);
 
 		Worlds = Db.Worlds
 			.Select(w => w.Id)

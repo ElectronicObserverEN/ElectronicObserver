@@ -1,4 +1,6 @@
-﻿using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
+﻿using System.Collections.Generic;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
 
@@ -8,7 +10,7 @@ public abstract class BattleDay : BattleData
 {
 	protected PhaseJetBaseAirAttack JetBaseAirAttack { get; }
 	protected PhaseJetAirBattle JetAirBattle { get; }
-	protected PhaseBaseAirAttack BaseAirAttack { get; }
+	protected PhaseBaseAirAttack? BaseAirAttack { get; }
 	protected PhaseFriendlyAirBattle FriendlyAirBattle { get; }
 	protected PhaseAirBattle AirBattle { get; }
 	protected PhaseOpeningAsw OpeningAsw { get; }
@@ -23,7 +25,7 @@ public abstract class BattleDay : BattleData
 	{
 		JetBaseAirAttack = new();
 		JetAirBattle = new();
-		BaseAirAttack = new();
+		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		FriendlyAirBattle = new();
 		AirBattle = new(battle.ApiKouku);
 		OpeningAsw = new();
@@ -33,4 +35,10 @@ public abstract class BattleDay : BattleData
 		Shelling3 = new(battle.ApiHougeki3, DayShellingPhase.Third);
 		Torpedo = new(battle.ApiRaigeki, TorpedoPhase.Closing);
 	}
+
+	private PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
 }

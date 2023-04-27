@@ -1,8 +1,9 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 
 namespace ElectronicObserver.KancolleApi.Types.Models;
 
-public class ApiKouku
+public class ApiKouku : IApiAirBattle
 {
 	[JsonPropertyName("api_plane_from")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -6,20 +6,20 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleNormalDay : BattleDay
+public sealed class BattleNormalDay : BattleDay
 {
 	public BattleNormalDay(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqSortieBattleResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
-		foreach (PhaseBase phase in GetPhases())
+		foreach (PhaseBase phase in Phases)
 		{
 			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
 		}
 	}
 
-	public override IEnumerable<PhaseBase> Phases => GetPhases().Where(p => p.IsAvailable);
+	public override IEnumerable<PhaseBase> Phases => GetPhases().Where(p => p?.IsAvailable is true)!;
 
-	private IEnumerable<PhaseBase> GetPhases()
+	private IEnumerable<PhaseBase?> GetPhases()
 	{
 		yield return Initial;
 		yield return Searching;

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
-using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
@@ -13,8 +13,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseAirBattleBase : PhaseBase
 {
-	private ApiKouku AirBattleData { get; }
-	private int WaveIndex { get; }
+	private IApiAirBattle AirBattleData { get; }
+	protected int WaveIndex { get; }
 
 	public List<int> LaunchedShipIndexFriend { get; }
 	public List<int> LaunchedShipIndexEnemy { get; }
@@ -47,15 +47,16 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? Stage2Display { get; set; }
 
-	protected PhaseAirBattleBase(ApiKouku airBattleData)
+	protected PhaseAirBattleBase(IApiAirBattle airBattleData, int waveIndex = 0)
 	{
 		AirBattleData = airBattleData;
+		WaveIndex = waveIndex;
 
 		LaunchedShipIndexFriend = GetLaunchedShipIndex(airBattleData, 0);
 		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData, 1);
 	}
 
-	private static List<int> GetLaunchedShipIndex(ApiKouku airBattleData, int index) =>
+	private static List<int> GetLaunchedShipIndex(IApiAirBattle airBattleData, int index) =>
 		airBattleData.ApiPlaneFrom
 			.Skip(index)
 			.FirstOrDefault()
