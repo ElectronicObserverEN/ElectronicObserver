@@ -161,7 +161,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Display all enemy compositions).
+        ///   Looks up a localized string similar to 敵の候補をすべて表示する.
         /// </summary>
         public static string Compass_DisplayAllPossibleEnemyComps {
             get {
@@ -170,7 +170,8 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (By default, only the compositions matching the preview from map screen will be shown. If you enable this setting, the preview will be ignored and all compositions will be shown.).
+        ///   Looks up a localized string similar to 無効の場合、プレビューに一致する候補のみが表示されます。
+        ///有効の場合、プレビューは無視され、すべての候補が表示されます。.
         /// </summary>
         public static string Compass_DisplayAllPossibleEnemyCompsTooltip {
             get {
