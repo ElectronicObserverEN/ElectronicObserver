@@ -43,7 +43,11 @@ public partial class MasterShipViewModel : ObservableObject
 	public int Armor { get; set; }
 
 	public int ShipId => Ship?.ShipID ?? -1;
-	public string Name => Ship?.NameEN ?? "-";
+	public string Name => ShipId switch
+	{
+		0 => "???",
+		_ => Ship?.NameEN ?? "-"
+	};
 	public int MaxNameWidth { get; set; }
 	public string? NameToolTip => Ship switch
 	{

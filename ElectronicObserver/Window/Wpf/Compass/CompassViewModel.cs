@@ -6,6 +6,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
@@ -546,7 +547,7 @@ public class CompassViewModel : AnchorableViewModel
 		*/
 	}
 
-	private List<EnemyFleetElementViewModel>? GetAllCandidateFleetViewModels()
+	private List<EnemyFleetElementViewModel>? GetAllRecordCandidateFleetViewModels()
 		=> _enemyFleetCandidate?
 				.GroupBy(f => f, new EnemyFleetElementComparer())
 				.Select(f => new EnemyFleetElementViewModel
@@ -557,16 +558,65 @@ public class CompassViewModel : AnchorableViewModel
 				.ToList();
 
 	private List<EnemyFleetElementViewModel> GetFilteredCandidateFleetViewModels()
-		=> GetAllCandidateFleetViewModels() switch
+	{
+		List<EnemyFleetElementViewModel> allCandidates = GetAllRecordCandidateFleetViewModels() ?? new();
+
+		if (!allCandidates.Any(vm => vm.IsPreviewed) && MakeEnemyFleetFromPreview() is EnemyFleetElementViewModel previewFleet)
 		{
-			List<EnemyFleetElementViewModel> fleets =>
-				fleets.Where(vm => Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions || vm.IsPreviewed).ToList() switch
-				{
-					{ Count: > 0 } fleetsFiltered => fleetsFiltered,
-					_ => fleets,
-				},
-			_ => new List<EnemyFleetElementViewModel>()
+			allCandidates.Add(previewFleet);
+		}
+
+		if (Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions) return allCandidates;
+
+		List<EnemyFleetElementViewModel> filteredCandidates = allCandidates.Where(vm => vm.IsPreviewed).ToList();
+
+		return filteredCandidates.Count switch
+		{
+			0 => allCandidates,
+			_ => filteredCandidates
 		};
+	}
+
+	private EnemyFleetElementViewModel? MakeEnemyFleetFromPreview()
+	{
+		if (Db.Battle.Compass is null) return null;
+		if (!Db.Battle.Compass.EnemyFleetPreview.Any()) return null;
+
+		List<EDeckInfo> previewFleet = Db.Battle.Compass.EnemyFleetPreview;
+
+		List<int> fleetIds = MakeEnemyFleetPartFromPreview(previewFleet.First());
+		fleetIds.AddRange(MakeEnemyFleetPartFromPreview(previewFleet.Count > 1 ? previewFleet[1] : null));
+
+		EnemyFleetElementViewModel vm = new EnemyFleetElementViewModel
+		{
+			EnemyFleetCandidate = new EnemyFleetRecord.EnemyFleetElement("", 0, 0, 0, 0, 0, fleetIds.ToArray(), new int[12], 0),
+			Formations = new() { 0 }
+		};
+
+		return vm;
+	}
+
+	private List<int> MakeEnemyFleetPartFromPreview(EDeckInfo? fleetPart)
+	{
+		if (fleetPart is null) return Enumerable.Repeat(-1, 6).ToList();
+
+		List<int> previewShipIds = fleetPart
+			.ApiShipIds
+			.Cast<int>()
+			.ToList();
+
+		List<int> padIds = fleetPart.ApiKind switch
+		{
+			1 => new List<int>() { 0 },
+			2 => new List<int>() { 0, 0, 0 },
+			_ => new()
+		};
+
+		previewShipIds.AddRange(padIds);
+		previewShipIds.AddRange(Enumerable.Repeat(-1, 6));
+
+		return previewShipIds.Take(6).ToList();
+	}
 
 	private string GetMaterialInfo(CompassData compass)
 	{

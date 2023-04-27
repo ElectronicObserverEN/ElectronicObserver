@@ -28,7 +28,7 @@ public class EnemyFleetElementViewModel : ObservableObject
 		.Select(s => new MasterShipViewModel { Ship = s })
 		.Take(6);
 
-	public List<int> Formations { get; set; } = new();
+	public List<int> Formations { get; init; } = new();
 
 	public string FormationString => string.Join('/', Formations.Select(Constants.GetFormationShort));
 
