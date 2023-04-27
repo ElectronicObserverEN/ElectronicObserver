@@ -26,27 +26,54 @@
 							BorderBrush="#444"
 							BorderThickness="1"
 							>
-							<ItemsControl ItemsSource="{Binding FleetMember}">
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<TextBlock
-											MaxWidth="{Binding MaxNameWidth}"
-											Foreground="{Binding ShipNameBrush}"
-											Text="{Binding Name}"
-											TextTrimming="CharacterEllipsis"
-											ToolTip="{Binding NameToolTip}"
-											>
-											<TextBlock.InputBindings>
-												<MouseBinding
-													Command="{Binding OpenShipEncyclopediaCommand}"
-													CommandParameter="{Binding ShipId}"
-													MouseAction="RightClick"
-													/>
-											</TextBlock.InputBindings>
-										</TextBlock>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
+							<StackPanel Orientation="Horizontal">
+								<ItemsControl
+									Margin="0 0 3 0"
+									ItemsSource="{Binding EscortFleetMember}"
+									Visibility="{Binding Path=HasEscortFleet, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
+									>
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<TextBlock
+												MaxWidth="{Binding MaxNameWidth}"
+												Foreground="{Binding ShipNameBrush}"
+												Text="{Binding Name}"
+												TextTrimming="CharacterEllipsis"
+												ToolTip="{Binding NameToolTip}"
+												>
+												<TextBlock.InputBindings>
+													<MouseBinding
+														Command="{Binding OpenShipEncyclopediaCommand}"
+														CommandParameter="{Binding ShipId}"
+														MouseAction="RightClick"
+														/>
+												</TextBlock.InputBindings>
+											</TextBlock>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+								<ItemsControl ItemsSource="{Binding MainFleetMember}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<TextBlock
+												MaxWidth="{Binding MaxNameWidth}"
+												Foreground="{Binding ShipNameBrush}"
+												Text="{Binding Name}"
+												TextTrimming="CharacterEllipsis"
+												ToolTip="{Binding NameToolTip}"
+												>
+												<TextBlock.InputBindings>
+													<MouseBinding
+														Command="{Binding OpenShipEncyclopediaCommand}"
+														CommandParameter="{Binding ShipId}"
+														MouseAction="RightClick"
+														/>
+												</TextBlock.InputBindings>
+											</TextBlock>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</StackPanel>
 						</Border>
 						<Border
 							Padding="2"
