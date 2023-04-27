@@ -11,7 +11,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
@@ -43,9 +42,9 @@ public partial class MasterShipViewModel : ObservableObject
 	public int Armor { get; set; }
 
 	public int ShipId => Ship?.ShipID ?? -1;
-	public string Name => ShipId switch
+	public string Name => Unknown switch
 	{
-		0 => "???",
+		true => "???",
 		_ => Ship?.NameEN ?? "-"
 	};
 	public int MaxNameWidth { get; set; }
@@ -67,6 +66,8 @@ public partial class MasterShipViewModel : ObservableObject
 		{ IsAbyssalShip: true } => Ship.GetShipNameColor().ToBrush(),
 		_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
 	};
+
+	public bool Unknown { get; init; }
 
 	public MasterShipViewModel()
 	{

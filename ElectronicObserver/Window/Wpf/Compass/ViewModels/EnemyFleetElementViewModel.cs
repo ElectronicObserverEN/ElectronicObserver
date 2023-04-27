@@ -22,10 +22,9 @@ public class EnemyFleetElementViewModel : ObservableObject
 	public IEnumerable<MasterShipViewModel> FleetMember => EnemyFleetCandidate.FleetMember
 		.Select(i => i switch
 		{
-			< 1 => null,
-			_ => Db.MasterShips[i]
+			< 1 => new MasterShipViewModel { Unknown = i is 0 },
+			_ => new MasterShipViewModel { Ship = Db.MasterShips[i] }
 		})
-		.Select(s => new MasterShipViewModel { Ship = s })
 		.Take(6);
 
 	public List<int> Formations { get; init; } = new();
