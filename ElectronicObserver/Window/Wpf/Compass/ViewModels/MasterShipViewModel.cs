@@ -19,19 +19,19 @@ public partial class MasterShipViewModel : ObservableObject
 {
 	public IShipDataMaster? Ship { get; set; }
 
-	public IEnumerable<MasterShipSlotViewModel> Slots => Slot?.Select(id => id switch
-															 {
-																 > 0 => KCDatabase.Instance.MasterEquipments[id],
-																 _ => null
-															 })
-															 .Zip(Ship?.Aircraft ?? Enumerable.Empty<int>(), (equip, size) => (Equipment: equip, Size: size))
-															 .Select(s => new MasterShipSlotViewModel
-															 {
-																 Equipment = s.Equipment,
-																 Size = s.Size
-															 })
-															 .Take(Math.Max(Slot?.Count(id => id > 0) ?? 0, Ship?.SlotSize ?? 0))
-														 ?? Enumerable.Empty<MasterShipSlotViewModel>();
+	public IEnumerable<MasterShipSlotViewModel> Slots => Slot?.Select(id => id switch 
+		{
+			> 0 => KCDatabase.Instance.MasterEquipments[id],
+			_ => null,
+		})
+		.Zip(Ship?.Aircraft ?? Enumerable.Empty<int>(), (equip, size) => (Equipment: equip, Size: size))
+		.Select(s => new MasterShipSlotViewModel
+		{
+			Equipment = s.Equipment,
+			Size = s.Size,
+		})
+		.Take(Math.Max(Slot?.Count(id => id > 0) ?? 0, Ship?.SlotSize ?? 0)) 
+	?? Enumerable.Empty<MasterShipSlotViewModel>();
 
 	public int[]? Slot { get; set; }
 	public int Level { get; set; } = -1;
@@ -42,7 +42,7 @@ public partial class MasterShipViewModel : ObservableObject
 	public int Armor { get; set; }
 
 	public int ShipId => Ship?.ShipID ?? -1;
-	public string Name => Unknown switch
+	public string Name => IsUnknown switch
 	{
 		true => "???",
 		_ => Ship?.NameEN ?? "-"
@@ -67,7 +67,7 @@ public partial class MasterShipViewModel : ObservableObject
 		_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
 	};
 
-	public bool Unknown { get; init; }
+	public bool IsUnknown { get; init; }
 
 	public MasterShipViewModel()
 	{

@@ -22,14 +22,14 @@ public class EnemyFleetElementViewModel : ObservableObject
 	private IEnumerable<MasterShipViewModel> FleetMember => EnemyFleetCandidate.FleetMember
 		.Select(i => i switch
 		{
-			< 1 => new MasterShipViewModel { Unknown = i is 0 },
+			< 1 => new MasterShipViewModel { IsUnknown = i is 0 },
 			_ => new MasterShipViewModel { Ship = Db.MasterShips[i] }
 		});
 
 	public IEnumerable<MasterShipViewModel> MainFleetMember => FleetMember.Take(6);
 	public IEnumerable<MasterShipViewModel> EscortFleetMember => FleetMember.Skip(6).Take(6);
 
-	public bool HasEscortFleet => EscortFleetMember.Any(ship => ship.ShipId > 1);
+	public bool HasEscortFleet => EscortFleetMember.Any(ship => ship.ShipId > 0);
 
 	public List<int> Formations { get; init; } = new();
 
