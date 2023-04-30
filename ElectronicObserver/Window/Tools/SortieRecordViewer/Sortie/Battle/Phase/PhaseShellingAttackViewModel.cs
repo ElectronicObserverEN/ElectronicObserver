@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Data;
 using ElectronicObserver.Properties.Data;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
@@ -23,7 +25,7 @@ public class PhaseShellingAttackViewModel
 		Attacker = fleets.GetShip(AttackerIndex)!;
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
-		AttackType = attack.AttackType;
+		AttackType = ProcessAttack(Attacker, Defender, attack.AttackType);
 		Attacks = attack.Defenders
 			.Select(d => new DayAttack
 			{
@@ -63,4 +65,16 @@ public class PhaseShellingAttackViewModel
 		true => $"<{BattleRes.Protected}> ",
 		_ => "",
 	};
+
+	private static DayAttackKind ProcessAttack(IShipData attacker, IShipData defender, DayAttackKind attack)
+	{
+		if (attack is not DayAttackKind.NormalAttack) return attack;
+
+		int[] slots = attacker.AllSlotInstance
+			.Where(e => e is not null)
+			.Select(e => e!.EquipmentID)
+			.ToArray();
+
+		return Calculator.GetDayAttackKind(slots, attacker.ShipID, defender.ShipID, false);
+	}
 }
