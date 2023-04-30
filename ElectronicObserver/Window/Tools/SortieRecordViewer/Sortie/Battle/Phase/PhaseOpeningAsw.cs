@@ -1,10 +1,15 @@
-﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+﻿using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserver.Properties.Data;
 
-public class PhaseOpeningAsw : PhaseBase
+namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+
+public class PhaseOpeningAsw : PhaseShelling
 {
-	public override bool IsAvailable => false;
+	public override bool IsAvailable => true;
 
-	public string Title => "";
+	public override string Title => BattleRes.BattlePhaseOpeningAsw;
 
-	public string Display => "";
+	public PhaseOpeningAsw(ApiHougeki1? shellingData) : base(shellingData, DayShellingPhase.First)
+	{
+	}
 }

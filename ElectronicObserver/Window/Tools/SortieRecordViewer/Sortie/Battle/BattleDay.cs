@@ -13,7 +13,7 @@ public abstract class BattleDay : BattleData
 	protected PhaseBaseAirAttack? BaseAirAttack { get; }
 	protected PhaseFriendlyAirBattle FriendlyAirBattle { get; }
 	protected PhaseAirBattle AirBattle { get; }
-	protected PhaseOpeningAsw OpeningAsw { get; }
+	protected PhaseOpeningAsw? OpeningAsw { get; }
 	protected PhaseTorpedo OpeningTorpedo { get; }
 	protected PhaseShelling Shelling1 { get; }
 	protected PhaseShelling Shelling2 { get; }
@@ -28,7 +28,7 @@ public abstract class BattleDay : BattleData
 		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		FriendlyAirBattle = new();
 		AirBattle = new(battle.ApiKouku);
-		OpeningAsw = new();
+		OpeningAsw = GetOpeningAswPhase(battle.ApiOpeningTaisen);
 		OpeningTorpedo = new(battle.ApiOpeningAtack, TorpedoPhase.Opening);
 		Shelling1 = new(battle.ApiHougeki1, DayShellingPhase.First);
 		Shelling2 = new(battle.ApiHougeki2, DayShellingPhase.Second);
@@ -37,6 +37,12 @@ public abstract class BattleDay : BattleData
 	}
 
 	private PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
+	private PhaseOpeningAsw? GetOpeningAswPhase(ApiHougeki1? a) => a switch
 	{
 		null => null,
 		_ => new(a),

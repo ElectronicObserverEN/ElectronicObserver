@@ -23,7 +23,7 @@ public class PhaseShelling : PhaseBase
 
 	public override bool IsAvailable => ShellingData is not null;
 
-	public string Title => DayShellingPhase switch
+	public virtual string Title => DayShellingPhase switch
 	{
 		DayShellingPhase.First => BattleRes.BattlePhaseShellingFirst,
 		DayShellingPhase.Second => BattleRes.BattlePhaseShellingSecond,
