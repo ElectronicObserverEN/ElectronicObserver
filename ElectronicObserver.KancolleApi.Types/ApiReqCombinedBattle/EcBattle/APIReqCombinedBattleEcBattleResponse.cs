@@ -121,7 +121,7 @@ public class ApiReqCombinedBattleEcBattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_opening_taisen")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiOpeningTaisen? ApiOpeningTaisen { get; set; } = default!;
+	public ApiHougeki1? ApiOpeningTaisen { get; set; } = default!;
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
