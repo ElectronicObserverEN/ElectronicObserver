@@ -25,11 +25,14 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 	public int World { get; }
 	public int Map { get; }
-	public IFleetData Fleet { get; }
+	private IFleetData Fleet { get; }
+	private IFleetData? EscortFleet { get; }
+	private List<IBaseAirCorpsData>? AirBases { get; }
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(int world, int map, IFleetData fleet)
+	public SortieDetailViewModel(int world, int map, IFleetData fleet,
+		IFleetData? escortFleet = null, List<IBaseAirCorpsData>? airBases = null)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
 		BattleFactory = Ioc.Default.GetRequiredService<BattleFactory>();
@@ -37,6 +40,8 @@ public class SortieDetailViewModel : WindowViewModelBase
 		World = world;
 		Map = map;
 		Fleet = fleet;
+		EscortFleet = escortFleet;
+		AirBases = airBases;
 	}
 
 	private List<object> ApiResponseCache { get; } = new();
@@ -125,19 +130,18 @@ public class SortieDetailViewModel : WindowViewModelBase
 	private BattleData? GetBattle(object api, SortieNode? node) => node switch
 	{
 		BattleNode b => GetBattle(api, b.FirstBattle.FleetsAfterBattle),
-		_ => GetBattle(api, Fleet),
+		_ => GetBattle(api),
 	};
 
 	/// <summary>
 	/// Used to initialize first battles.
 	/// </summary>
 	/// <param name="api"></param>
-	/// <param name="fleet"></param>
 	/// <returns></returns>
-	private BattleData? GetBattle(object api, IFleetData fleet) => api switch
+	private BattleData? GetBattle(object api) => api switch
 	{
-		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(fleet, a),
-		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(fleet, a),
+		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(a, Fleet),
+		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleet),
 
 		_ => null,
 	};
@@ -150,7 +154,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 	/// <returns></returns>
 	private BattleData? GetBattle(object api, BattleFleets fleets) => api switch
 	{
-		ApiReqBattleMidnightBattleResponse a => BattleFactory.CreateBattle(fleets, a),
+		ApiReqBattleMidnightBattleResponse a => BattleFactory.CreateBattle(a, fleets),
 
 		_ => null,
 	};

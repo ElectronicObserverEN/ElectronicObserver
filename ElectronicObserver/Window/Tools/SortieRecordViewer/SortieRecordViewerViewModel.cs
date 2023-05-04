@@ -77,9 +77,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		MaxDate = DateTime.Now.AddDays(1);
 
-		DateBegin = new(2023, 04, 01);
-		DateEnd = new(2023, 04, 01, 23, 00, 00);
-		TimeEnd = new(2023, 04, 01, 23, 00, 00);
+		DateBegin = MinDate.Date;
+		DateEnd = MaxDate.Date;
 
 		Worlds = Db.Worlds
 			.Select(w => w.Id)
@@ -345,6 +344,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			List<IFleetData?> fleets = sortie.Model.FleetData.Fleets.Select(f => f.MakeFleet()).ToList();
 			bool isCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
+			List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases.Select(f => f.MakeAirBase()).ToList();
 
 			ApiFile startRequestFile = sortie.Model.ApiFiles
 				.First(f => f.ApiFileType is ApiFileType.Request && f.Name is "api_req_map/start");
@@ -355,9 +355,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			// fleetId is 1 based, so need to do -1 when fetching data from fleets
 			if (!int.TryParse(startRequest.ApiDeckId, out int fleetId)) throw new Exception();
-			if (fleets[fleetId - 1] is not IFleetData fleet) throw new Exception();
+			if (fleets.Skip(fleetId - 1).FirstOrDefault() is not IFleetData fleet) throw new Exception();
 
-			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, fleet);
+			IFleetData? escortFleet = isCombinedFleet switch
+			{
+				true => fleets.Skip(fleetId).FirstOrDefault(),
+				_ => null,
+			};
+
+			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, fleet, escortFleet, airBases);
 
 			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
 			{

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -6,18 +7,21 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 public class BattleFleets
 {
 	public IFleetData Fleet { get; }
-	public IFleetData? EscortFleet { get; set; }
+	public IFleetData? EscortFleet { get; }
+	public List<IBaseAirCorpsData> AirBases { get; }
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
-	public BattleFleets(IFleetData fleet)
+	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null,
+		List<IBaseAirCorpsData>? airBases = null)
 	{
 		Fleet = fleet;
+		EscortFleet = escortFleet;
+		AirBases = airBases ?? new();
 	}
 
-	public BattleFleets Clone() => new(CloneFleet(Fleet))
+	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), AirBases)
 	{
-		EscortFleet = CloneFleet(EscortFleet),
 		EnemyFleet = CloneFleet(EnemyFleet),
 		EnemyEscortFleet = CloneFleet(EnemyEscortFleet),
 	};

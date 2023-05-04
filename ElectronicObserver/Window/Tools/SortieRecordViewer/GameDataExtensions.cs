@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
@@ -74,6 +75,7 @@ public static class GameDataExtensions
 		_ => null,
 	};
 
+	[return: NotNullIfNotNull(nameof(airBase))]
 	public static IBaseAirCorpsData? MakeAirBase(this SortieAirBase? airBase) => airBase switch
 	{
 		{ } => new BaseAirCorpsDataMock

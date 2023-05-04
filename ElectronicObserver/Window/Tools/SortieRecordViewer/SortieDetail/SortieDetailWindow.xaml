@@ -125,6 +125,10 @@
 
 					<TextBlock Text="{Binding EnemyEscortFleetDisplay}" />
 				</StackPanel>
+
+				<StackPanel Margin="0 10 0 0" Visibility="{Binding HasAirBaseAttack, Converter={StaticResource BooleanToVisibilityConverter}}">
+					<TextBlock Text="{Binding AirBaseDisplay}" />
+				</StackPanel>
 			</StackPanel>
 		</DataTemplate>
 

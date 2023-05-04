@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
@@ -40,6 +41,12 @@ public class PhaseInitial : PhaseBase
 	public string? PlayerEscortFleetDisplay => FleetDisplay(FleetsAfterPhase?.EscortFleet, true, ConstantsRes.BattleDetail_FriendEscortFleet);
 	public string? EnemyMainFleetDisplay => EnemyFleetDisplay(FleetsAfterPhase?.EnemyFleet, false, EnemyMainFleetTitle);
 	public string? EnemyEscortFleetDisplay => EnemyFleetDisplay(FleetsAfterPhase?.EnemyEscortFleet, true, ConstantsRes.BattleDetail_EnemyEscortFleet);
+
+	public string? AirBaseDisplay => HasAirBaseAttack switch
+	{
+		true => MakeAirBaseString(),
+		_ => null,
+	};
 
 	private static int GetFleetIndex(int index, bool isEscort) => isEscort switch
 	{
@@ -135,11 +142,18 @@ public class PhaseInitial : PhaseBase
 			).Where(str => str != null))}",
 	};
 
+	public bool HasAirBaseAttack { get; }
 
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IBattleApiResponse battle)
 	{
 		KcDatabase = kcDatabase;
 		FleetsBeforePhase = fleets;
+
+		HasAirBaseAttack = battle switch
+		{
+			IAirBaseBattle abb => abb.ApiAirBaseAttack is not null,
+			_ => false,
+		};
 
 		FriendInitialHPs = battle.ApiFNowhps;
 
@@ -208,4 +222,23 @@ public class PhaseInitial : PhaseBase
 	private static List<LosValue> GetLosValues(IFleetData fleet) => Enumerable.Range(1, 4)
 		.Select(w => new LosValue(w, Math.Round(Calculator.GetSearchingAbility_New33(fleet, w), 2, MidpointRounding.ToNegativeInfinity)))
 		.ToList();
+
+	private string MakeAirBaseString()
+	{
+		StringBuilder sb = new();
+
+		sb.AppendLine(ConstantsRes.BattleDetail_AirBase);
+
+		foreach (IBaseAirCorpsData corps in FleetsBeforePhase!.AirBases)
+		{
+			sb.AppendFormat("{0} [{1}] " + BattleRes.AirSuperiority + " {2}\r\n　{3}\r\n",
+				corps.Name, Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
+				Calculator.GetAirSuperiorityRangeString(corps),
+				string.Join(", ", corps.Squadrons.Values
+					.Where(sq => sq is { State: 1, EquipmentInstance: not null })
+					.Select(sq => sq.EquipmentInstance!.NameWithLevel)));
+		}
+
+		return sb.ToString();
+	}
 }
