@@ -4,7 +4,12 @@ namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
 public interface IAirBaseBattle
 {
-	// todo: api_air_base_injection
+	/// <summary>
+	/// 基地航空隊　噴式強襲攻撃<br />
+	/// <br />
+	/// AB jet attack
+	/// </summary>
+	ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
 
 	/// <summary>
 	/// 基地航空隊攻撃　[攻撃回数]

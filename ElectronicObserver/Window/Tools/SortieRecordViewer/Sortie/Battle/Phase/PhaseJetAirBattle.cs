@@ -1,10 +1,16 @@
-﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+﻿using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserver.Properties.Data;
 
-public class PhaseJetAirBattle : PhaseBase
+namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+
+public class PhaseJetAirBattle : PhaseAirBattleBase
 {
-	public override bool IsAvailable => false;
+	public override bool IsAvailable => true;
 
-	public string Title => "";
+	public string Title => BattleRes.BattlePhaseJet;
 
-	public string Display => "";
+	public PhaseJetAirBattle(ApiInjectionKouku apiInjectionKouku) : base(apiInjectionKouku)
+	{
+		
+	}
 }

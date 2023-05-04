@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
@@ -13,7 +15,44 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseAirBattleBase : PhaseBase
 {
-	private IApiAirBattle AirBattleData { get; }
+	/// <summary>
+	/// <see cref="IApiAirBattle" /> or <see cref="ApiInjectionKouku" />
+	/// </summary>
+	private object AirBattleData { get; }
+
+	private ApiStage1? Stage1 => AirBattleData switch
+	{
+		IApiAirBattle aab => aab.ApiStage1,
+		ApiInjectionKouku jet => jet.ApiStage1,
+		_ => null,
+	};
+
+	private ApiStage2? Stage2 => AirBattleData switch
+	{
+		IApiAirBattle aab => aab.ApiStage2,
+		_ => null,
+	};
+
+	private ApiStage2Jet? Stage2Jet => AirBattleData switch
+	{
+		ApiInjectionKouku jet => jet.ApiStage2,
+		_ => null,
+	};
+
+	private ApiStage3? Stage3 => AirBattleData switch
+	{
+		IApiAirBattle aab => aab.ApiStage3,
+		ApiInjectionKouku jet => jet.ApiStage3,
+		_ => null,
+	};
+
+	private ApiStage3? Stage3Combined => AirBattleData switch
+	{
+		IApiAirBattle aab => aab.ApiStage3Combined,
+		ApiInjectionKouku jet => jet.ApiStage3Combined,
+		_ => null,
+	};
+
 	protected int WaveIndex { get; }
 
 	public List<int> LaunchedShipIndexFriend { get; }
@@ -22,42 +61,65 @@ public class PhaseAirBattleBase : PhaseBase
 	private List<AirBattleAttack> Attacks { get; } = new();
 	public List<AirBattleAttackViewModel> AttackDisplays { get; } = new();
 
-	public string? Stage1Display => AirBattleData.ApiStage1 switch
-	{
-		{ } st1 => $"""
-		Stage 1: {Constants.GetAirSuperiority(st1.ApiDispSeiku)}
-		　{BattleRes.Friendly}: -{st1.ApiFLostcount}/{st1.ApiFCount}
-		　{BattleRes.Enemy}: -{st1.ApiELostcount}/{st1.ApiECount}
-		""",
+	public string? Stage1Display { get; }
 
-		_ => null,
-	};
-
-	public string? TouchAircraftFriend => AirBattleData.ApiStage1?.ApiTouchPlane switch
+	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
 		[EquipmentId id and > 0, ..] => $"　{BattleRes.Contact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
 		_ => null,
 	};
 
-	public string? TouchAircraftEnemy => AirBattleData.ApiStage1?.ApiTouchPlane switch
+	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
 		[_, EquipmentId id and > 0, ..] => $"　{BattleRes.EnemyContact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
 		_ => null,
 	};
 
-	public string? Stage2Display { get; set; }
+	public string? Stage2Display { get; private set; }
 
 	protected PhaseAirBattleBase(IApiAirBattle airBattleData, int waveIndex = 0)
 	{
 		AirBattleData = airBattleData;
 		WaveIndex = waveIndex;
 
-		LaunchedShipIndexFriend = GetLaunchedShipIndex(airBattleData, 0);
-		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData, 1);
+		if (airBattleData.ApiStage1 is not null)
+		{
+			Stage1Display = GetStage1Display
+			(
+				airBattleData.ApiStage1.ApiDispSeiku,
+				airBattleData.ApiStage1.ApiFLostcount,
+				airBattleData.ApiStage1.ApiFCount,
+				airBattleData.ApiStage1.ApiELostcount,
+				airBattleData.ApiStage1.ApiECount
+			);
+		}
+
+		LaunchedShipIndexFriend = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 0);
+		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 1);
 	}
 
-	private static List<int> GetLaunchedShipIndex(IApiAirBattle airBattleData, int index) =>
-		airBattleData.ApiPlaneFrom
+	protected PhaseAirBattleBase(ApiInjectionKouku apiInjectionKouku)
+	{
+		AirBattleData = apiInjectionKouku;
+
+		if (apiInjectionKouku.ApiStage1 is not null)
+		{
+			Stage1Display = GetStage1Display
+			(
+				AirState.Unknown,
+				apiInjectionKouku.ApiStage1.ApiFLostcount,
+				apiInjectionKouku.ApiStage1.ApiFCount,
+				apiInjectionKouku.ApiStage1.ApiELostcount,
+				apiInjectionKouku.ApiStage1.ApiECount
+			);
+		}
+
+		LaunchedShipIndexFriend = GetLaunchedShipIndex(apiInjectionKouku.ApiPlaneFrom, 0);
+		LaunchedShipIndexEnemy = GetLaunchedShipIndex(apiInjectionKouku.ApiPlaneFrom, 1);
+	}
+
+	private static List<int> GetLaunchedShipIndex(List<List<int>?> apiPlaneFrom, int index) =>
+		apiPlaneFrom
 			.Skip(index)
 			.FirstOrDefault()
 			?.Where(i => i > 0)
@@ -69,59 +131,73 @@ public class PhaseAirBattleBase : PhaseBase
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 
-		if (AirBattleData.ApiStage2 is { } st2)
+		if (Stage2 is { } stage2)
 		{
 			StringBuilder sb = new();
 
 			sb.Append("Stage 2:");
-			if (st2.ApiAirFire is not null)
+			if (stage2.ApiAirFire is not null)
 			{
 				sb.AppendFormat(BattleRes.AaciType,
-					battleFleets.GetShip(new(st2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
-					AntiAirCutIn.FromId(st2.ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
-					st2.ApiAirFire.ApiKind);
+					battleFleets.GetShip(new(stage2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
+					AntiAirCutIn.FromId(stage2.ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
+					stage2.ApiAirFire.ApiKind);
 			}
 			sb.AppendLine();
-			sb.AppendLine($"　{BattleRes.Friendly}: -{st2.ApiFLostcount}/{st2.ApiFCount}");
-			sb.Append($"　{BattleRes.Enemy}: -{st2.ApiELostcount}/{st2.ApiECount}");
+			sb.AppendLine($"　{BattleRes.Friendly}: -{stage2.ApiFLostcount}/{stage2.ApiFCount}");
+			sb.Append($"　{BattleRes.Enemy}: -{stage2.ApiELostcount}/{stage2.ApiECount}");
+
+			Stage2Display = sb.ToString();
+		}
+		else if (Stage2Jet is { } stage2Jet)
+		{
+			StringBuilder sb = new();
+
+			sb.Append("Stage 2:");
+			sb.AppendLine();
+			sb.AppendLine($"　{BattleRes.Friendly}: -{stage2Jet.ApiFLostcount}/{stage2Jet.ApiFCount}");
+			sb.Append($"　{BattleRes.Enemy}: -{stage2Jet.ApiELostcount}/{stage2Jet.ApiECount}");
 
 			Stage2Display = sb.ToString();
 		}
 
-		if (AirBattleData.ApiStage3 is not null)
+		ApiStage3? stage3 = Stage3;
+		ApiStage3? stage3Combined = Stage3Combined;
+
+		if (stage3 is not null)
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, battleFleets.Fleet,
-				AirBattleData.ApiStage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
-				AirBattleData.ApiStage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
-				AirBattleData.ApiStage3.ApiFclFlag,
-				AirBattleData.ApiStage3.ApiFdam));
+				stage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
+				stage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
+				stage3.ApiFclFlag,
+				stage3.ApiFdam));
 		}
 
-		if (AirBattleData.ApiStage3Combined is not null)
+		if (stage3Combined is not null)
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
-			AirBattleData.ApiStage3Combined.ApiFraiFlag.Select(i => i ?? 0).ToList(),
-			AirBattleData.ApiStage3Combined.ApiFbakFlag.Select(i => i ?? 0).ToList(),
-			AirBattleData.ApiStage3Combined.ApiFclFlag,
-			AirBattleData.ApiStage3Combined.ApiFdam));
+				stage3Combined.ApiFraiFlag.Select(i => i ?? 0).ToList(),
+				stage3Combined.ApiFbakFlag.Select(i => i ?? 0).ToList(),
+				stage3Combined.ApiFclFlag,
+				stage3Combined.ApiFdam));
 		}
 
-		if (AirBattleData.ApiStage3 is not null)
+		if (stage3 is not null)
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.EnemyFleet,
-			AirBattleData.ApiStage3.ApiEraiFlag,
-			AirBattleData.ApiStage3.ApiEbakFlag,
-			AirBattleData.ApiStage3.ApiEclFlag,
-			AirBattleData.ApiStage3.ApiEdam));
+				stage3.ApiEraiFlag,
+				stage3.ApiEbakFlag,
+				stage3.ApiEclFlag,
+				stage3.ApiEdam));
 		}
 
-		if (AirBattleData.ApiStage3Combined is not null)
+		if (stage3Combined is not null)
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EnemyEscortFleet,
-				AirBattleData.ApiStage3Combined.ApiEraiFlag,
-				AirBattleData.ApiStage3Combined.ApiEbakFlag,
-				AirBattleData.ApiStage3Combined.ApiEclFlag,
-				AirBattleData.ApiStage3Combined.ApiEdam));
+				stage3Combined.ApiEraiFlag,
+				stage3Combined.ApiEbakFlag,
+				stage3Combined.ApiEclFlag,
+				stage3Combined.ApiEdam));
 		}
 
 		foreach (AirBattleAttack attack in Attacks.Where(attack => attack.AttackType is not AirAttack.None))
@@ -136,7 +212,7 @@ public class PhaseAirBattleBase : PhaseBase
 	}
 
 	private List<AirBattleAttack> GetAttacks(FleetFlag fleetFlag, int indexOffset, IFleetData? fleet,
-		List<int> torpedoFlags, List<int> bomberFlags, List<AirHitType> criticalFlags, List<double> damages) 
+		List<int> torpedoFlags, List<int> bomberFlags, List<AirHitType> criticalFlags, List<double> damages)
 		=> fleet?.MembersInstance
 			.Select((s, i) => (Ship: s, Index: i + indexOffset))
 			.Zip(torpedoFlags, (t, f) => (t.Ship, t.Index, TorpedoFlag: f))
@@ -172,4 +248,11 @@ public class PhaseAirBattleBase : PhaseBase
 			}).ToList()
 			?? new();
 
+	private string GetStage1Display(AirState airState, int friendlyLost, int friendlyTotal,
+		int enemyLost, int enemyTotal) =>
+		$"""
+		Stage 1: {Constants.GetAirSuperiority(airState)}
+		　{BattleRes.Friendly}: -{friendlyLost}/{friendlyTotal}
+		　{BattleRes.Enemy}: -{enemyLost}/{enemyTotal}
+		""";
 }

@@ -26,7 +26,7 @@ public class ApiAirBaseAttack : IApiAirBattle
 
 	[JsonPropertyName("api_stage2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiStage? ApiStage2 { get; set; } = default!;
+	public ApiStage2? ApiStage2 { get; set; } = default!;
 
 	[JsonPropertyName("api_stage3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

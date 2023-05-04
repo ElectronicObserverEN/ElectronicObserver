@@ -6,6 +6,10 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 
 public class ApiReqSortieBattleResponse : IDayBattleApiResponse
 {
+	[JsonPropertyName("api_air_base_injection")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
+
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; } = default!;

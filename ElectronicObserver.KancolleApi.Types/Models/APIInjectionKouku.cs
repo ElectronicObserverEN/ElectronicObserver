@@ -12,12 +12,12 @@ public class ApiInjectionKouku
 	[JsonPropertyName("api_stage1")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiStage ApiStage1 { get; set; } = new();
+	public ApiStage1? ApiStage1 { get; set; } = new();
 
 	[JsonPropertyName("api_stage2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiStage ApiStage2 { get; set; } = new();
+	public ApiStage2Jet? ApiStage2 { get; set; } = new();
 
 	[JsonPropertyName("api_stage3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

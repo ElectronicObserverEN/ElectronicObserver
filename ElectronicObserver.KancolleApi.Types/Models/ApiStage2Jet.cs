@@ -1,13 +1,7 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿namespace ElectronicObserver.KancolleApi.Types.Models;
 
-namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
-
-public class ApiStage2
+public class ApiStage2Jet
 {
-	[JsonPropertyName("api_air_fire")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiAirFire? ApiAirFire { get; set; } = default!;
-
 	[JsonPropertyName("api_e_count")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiECount { get; set; } = default!;

@@ -24,7 +24,7 @@ public abstract class BattleDay : BattleData
 		: base(kcDatabase, fleets, battle)
 	{
 		JetBaseAirAttack = new();
-		JetAirBattle = new();
+		JetAirBattle = new(battle.ApiInjectionKouku);
 		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		FriendlyAirBattle = new();
 		AirBattle = new(battle.ApiKouku);
@@ -35,6 +35,12 @@ public abstract class BattleDay : BattleData
 		Shelling3 = new(battle.ApiHougeki3, DayShellingPhase.Third);
 		Torpedo = new(battle.ApiRaigeki, TorpedoPhase.Closing);
 	}
+
+	private PhaseJetAirBattle? GetJetAirBattlePhase(ApiInjectionKouku? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
 
 	private PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
 	{

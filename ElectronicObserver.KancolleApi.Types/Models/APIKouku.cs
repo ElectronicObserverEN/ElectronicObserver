@@ -18,7 +18,7 @@ public class ApiKouku : IApiAirBattle
 	[JsonPropertyName("api_stage2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiStage? ApiStage2 { get; set; } = new();
+	public ApiStage2? ApiStage2 { get; set; } = new();
 
 	[JsonPropertyName("api_stage3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
