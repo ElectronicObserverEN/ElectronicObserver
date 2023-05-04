@@ -27,5 +27,5 @@ public class ApiInjectionKouku
 	[JsonPropertyName("api_stage3_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiStage3Combined ApiStage3Combined { get; set; } = new();
+	public ApiStage3 ApiStage3Combined { get; set; } = new();
 }

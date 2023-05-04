@@ -8,6 +8,9 @@ using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
@@ -66,9 +69,9 @@ public class SortieDetailViewModel : WindowViewModelBase
 			return;
 		}
 
-		if (response is ApiReqSortieBattleresultResponse result)
+		if (response is ApiReqSortieBattleresultResponse or ApiReqCombinedBattleBattleresultResponse)
 		{
-			ApiResponseCache.Add(result);
+			ApiResponseCache.Add(response);
 
 			ProcessResponseCache();
 
@@ -142,6 +145,11 @@ public class SortieDetailViewModel : WindowViewModelBase
 	{
 		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(a, Fleet),
 		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleet),
+
+		_ when EscortFleet is null => throw new Exception("Missing escort fleet data."),
+
+		ApiReqCombinedBattleEachBattleResponse a => BattleFactory.CreateBattle(a, Fleet, EscortFleet, AirBases),
+		ApiReqCombinedBattleBattleResponse a => null,
 
 		_ => null,
 	};

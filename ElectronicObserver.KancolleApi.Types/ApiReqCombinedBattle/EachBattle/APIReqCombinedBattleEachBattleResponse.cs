@@ -1,9 +1,10 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 
-public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
+public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse, IDayBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -154,7 +155,7 @@ public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_opening_taisen")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object? ApiOpeningTaisen { get; set; } = default!;
+	public ApiHougeki1? ApiOpeningTaisen { get; set; } = default!;
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -168,7 +169,7 @@ public class ApiReqCombinedBattleEachBattleResponse : IBattleApiResponse
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSearch { get; set; } = new();
+	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

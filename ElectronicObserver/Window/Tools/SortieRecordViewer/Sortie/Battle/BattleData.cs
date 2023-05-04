@@ -50,7 +50,11 @@ public abstract class BattleData
 
 	protected BattleData(IKCDatabase kcDatabase, BattleFleets fleets, IBattleApiResponse battle)
 	{
-		Initial = new(kcDatabase, fleets, battle);
+		Initial = battle switch
+		{
+			ICombinedBattleApiResponse c => new(kcDatabase, fleets, c),
+			_ => new(kcDatabase, fleets, battle),
+		};
 		Searching = battle switch
 		{
 			IDayBattleApiResponse d => new(d),

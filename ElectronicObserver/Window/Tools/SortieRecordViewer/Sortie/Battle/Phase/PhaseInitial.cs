@@ -57,8 +57,8 @@ public class PhaseInitial : PhaseBase
 	private static string? FleetDisplay(IFleetData? fleet, bool isEscort, string title) => fleet switch
 	{
 		null => null,
-		_ => $"{FleetHeader(fleet, title)}\n" + 
-			string.Join("\n", fleet.MembersInstance.Select((ship, i) => 
+		_ => $"{FleetHeader(fleet, title)}\n" +
+			string.Join("\n", fleet.MembersInstance.Select((ship, i) =>
 				ShipDisplay(fleet, ship, GetFleetIndex(i, isEscort)))),
 	};
 
@@ -71,7 +71,7 @@ public class PhaseInitial : PhaseBase
 	{
 		null => null,
 
-		_ => $"#{index}: {ship.MasterShip.ShipTypeName} {ship.NameWithLevel} " + 
+		_ => $"#{index}: {ship.MasterShip.ShipTypeName} {ship.NameWithLevel} " +
 			$"HP: {ship.HPCurrent}/{ship.HPMax} - " +
 			$"{GeneralRes.Firepower}:{ship.FirepowerBase}, " +
 			$"{GeneralRes.Torpedo}:{ship.TorpedoBase}, " +
@@ -79,15 +79,15 @@ public class PhaseInitial : PhaseBase
 			$"{GeneralRes.Armor}:{ship.ArmorBase}" +
 			$"{EscapedText(fleet.EscapedShipList.Contains(ship.MasterID))}" +
 			$"\n" +
-			$" {string.Join(", ", ship.AllSlotInstance.Zip(ship.ExpansionSlot switch 
-				{
-					> 0 => ship.Aircraft.Concat(new[] { 0 }),
-					_ => ship.Aircraft,
-				},
+			$" {string.Join(", ", ship.AllSlotInstance.Zip(ship.ExpansionSlot switch
+			{
+				> 0 => ship.Aircraft.Concat(new[] { 0 }),
+				_ => ship.Aircraft,
+			},
 				(eq, aircraft) => eq switch
 				{
 					null => null,
-					{MasterEquipment.IsAircraft: true} => $"[{aircraft}] {eq.NameWithLevel}",
+					{ MasterEquipment.IsAircraft: true } => $"[{aircraft}] {eq.NameWithLevel}",
 					_ => eq.NameWithLevel,
 				}
 			).Where(str => str != null))}",
@@ -129,10 +129,10 @@ public class PhaseInitial : PhaseBase
 			$"{GeneralRes.Armor}:{ship.ArmorBase}" +
 			$"\n" +
 			$" {string.Join(", ", ship.AllSlotInstance.Zip(ship.ExpansionSlot switch
-				{
-					> 0 => ship.Aircraft.Concat(new[] { 0 }),
-					_ => ship.Aircraft,
-				},
+			{
+				> 0 => ship.Aircraft.Concat(new[] { 0 }),
+				_ => ship.Aircraft,
+			},
 				(eq, aircraft) => eq switch
 				{
 					null => null,
@@ -190,7 +190,29 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle) : this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
 		// todo
-		EnemyMembersEscortInstance = null;
+		EnemyMembersEscortInstance = battle.ApiShipKeCombined
+			.Zip(battle.ApiShipLvCombined, (id, level) => (Id: id, Level: level))
+			.Zip(battle.ApiESlotCombined, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
+			.Zip(battle.ApiENowhpsCombined, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
+			.Select(t => t.Id switch
+			{
+				> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
+				{
+					HPCurrent = t.Hp,
+					Level = t.Level,
+					SlotInstance = t.Equipment
+						.Select(id => id switch
+						{
+							> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
+							_ => null,
+						})
+						.Cast<IEquipmentData?>()
+						.ToList(),
+				},
+				_ => null,
+			})
+			.Cast<IShipData?>()
+			.ToList();
 	}
 
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
@@ -201,6 +223,14 @@ public class PhaseInitial : PhaseBase
 		{
 			MembersInstance = new(EnemyMembersInstance),
 		};
+
+		if (EnemyMembersEscortInstance is not null)
+		{
+			battleFleets.EnemyEscortFleet = new FleetDataMock
+			{
+				MembersInstance = new(EnemyMembersEscortInstance),
+			};
+		}
 
 		foreach ((IShipData? ship, int hp) in battleFleets.Fleet.MembersInstance.Zip(FriendInitialHPs))
 		{

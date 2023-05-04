@@ -10,5 +10,5 @@ public interface IApiAirBattle
 	ApiStage1? ApiStage1 { get; set; }
 	ApiStage? ApiStage2 { get; set; }
 	ApiStage3? ApiStage3 { get; set; }
-	ApiStage3Combined? ApiStage3Combined { get; set; }
+	ApiStage3? ApiStage3Combined { get; set; }
 }

@@ -55,7 +55,7 @@ public interface IDayBattleApiResponse : IBattleApiResponse, IAirBaseBattle
 	/// <summary>
 	/// 開幕対潜攻撃　上の=0のとき null　メンバの配列はすべて [攻撃フェイズの回数]　フォーマットは砲撃戦と同じ
 	/// </summary>
-	ApiHougeki1 ApiOpeningTaisen { get; set; }
+	ApiHougeki1? ApiOpeningTaisen { get; set; }
 
 	/// <summary>
 	/// 開幕対潜攻撃フラグ 0=なし 1=あり

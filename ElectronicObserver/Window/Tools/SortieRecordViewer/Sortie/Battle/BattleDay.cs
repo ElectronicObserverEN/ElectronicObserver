@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
@@ -20,7 +20,7 @@ public abstract class BattleDay : BattleData
 	protected PhaseShelling Shelling3 { get; }
 	protected PhaseTorpedo Torpedo { get; }
 
-	protected BattleDay(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqSortieBattleResponse battle)
+	protected BattleDay(IKCDatabase kcDatabase, BattleFleets fleets, IDayBattleApiResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
 		JetBaseAirAttack = new();

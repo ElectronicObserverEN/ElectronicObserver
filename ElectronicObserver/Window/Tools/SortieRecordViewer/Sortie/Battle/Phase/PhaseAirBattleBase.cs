@@ -77,13 +77,13 @@ public class PhaseAirBattleBase : PhaseBase
 			if (st2.ApiAirFire is not null)
 			{
 				sb.AppendFormat(BattleRes.AaciType,
-					battleFleets.GetShip(new(st2.ApiAirFire.ApiIdx, FleetFlag.Player)),
+					battleFleets.GetShip(new(st2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
 					AntiAirCutIn.FromId(st2.ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
 					st2.ApiAirFire.ApiKind);
 			}
 			sb.AppendLine();
 			sb.AppendLine($"　{BattleRes.Friendly}: -{st2.ApiFLostcount}/{st2.ApiFCount}");
-			sb.AppendLine($"　{BattleRes.Enemy}: -{st2.ApiELostcount}/{st2.ApiECount}");
+			sb.Append($"　{BattleRes.Enemy}: -{st2.ApiELostcount}/{st2.ApiECount}");
 
 			Stage2Display = sb.ToString();
 		}
@@ -100,8 +100,8 @@ public class PhaseAirBattleBase : PhaseBase
 		if (AirBattleData.ApiStage3Combined is not null)
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
-			AirBattleData.ApiStage3Combined.ApiFraiFlag,
-			AirBattleData.ApiStage3Combined.ApiFbakFlag,
+			AirBattleData.ApiStage3Combined.ApiFraiFlag.Select(i => i ?? 0).ToList(),
+			AirBattleData.ApiStage3Combined.ApiFbakFlag.Select(i => i ?? 0).ToList(),
 			AirBattleData.ApiStage3Combined.ApiFclFlag,
 			AirBattleData.ApiStage3Combined.ApiFdam));
 		}
@@ -115,13 +115,14 @@ public class PhaseAirBattleBase : PhaseBase
 			AirBattleData.ApiStage3.ApiEdam));
 		}
 
-		/*
-		Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EnemyEscortFleet,
-			AirBattleData.ApiStage3Combined.ApiEraiFlag,
-			AirBattleData.ApiStage3Combined.ApiEbakFlag,
-			AirBattleData.ApiStage3Combined.ApiEclFlag,
-			AirBattleData.ApiStage3Combined.ApiEdam));
-		*/
+		if (AirBattleData.ApiStage3Combined is not null)
+		{
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EnemyEscortFleet,
+				AirBattleData.ApiStage3Combined.ApiEraiFlag,
+				AirBattleData.ApiStage3Combined.ApiEbakFlag,
+				AirBattleData.ApiStage3Combined.ApiEclFlag,
+				AirBattleData.ApiStage3Combined.ApiEdam));
+		}
 
 		foreach (AirBattleAttack attack in Attacks.Where(attack => attack.AttackType is not AirAttack.None))
 		{
