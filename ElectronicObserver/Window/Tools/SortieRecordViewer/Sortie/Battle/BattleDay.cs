@@ -9,7 +9,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 public abstract class BattleDay : BattleData
 {
 	protected PhaseJetBaseAirAttack JetBaseAirAttack { get; }
-	protected PhaseJetAirBattle JetAirBattle { get; }
+	protected PhaseJetAirBattle? JetAirBattle { get; }
 	protected PhaseBaseAirAttack? BaseAirAttack { get; }
 	protected PhaseFriendlyAirBattle FriendlyAirBattle { get; }
 	protected PhaseAirBattle AirBattle { get; }
@@ -24,7 +24,7 @@ public abstract class BattleDay : BattleData
 		: base(kcDatabase, fleets, battle)
 	{
 		JetBaseAirAttack = new();
-		JetAirBattle = new(battle.ApiInjectionKouku);
+		JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		FriendlyAirBattle = new();
 		AirBattle = new(battle.ApiKouku);
@@ -36,19 +36,19 @@ public abstract class BattleDay : BattleData
 		Torpedo = new(battle.ApiRaigeki, TorpedoPhase.Closing);
 	}
 
-	private PhaseJetAirBattle? GetJetAirBattlePhase(ApiInjectionKouku? a) => a switch
+	private static PhaseJetAirBattle? GetJetAirBattlePhase(ApiInjectionKouku? a) => a switch
 	{
 		null => null,
 		_ => new(a),
 	};
 
-	private PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
+	private static PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
 	{
 		null => null,
 		_ => new(a),
 	};
 
-	private PhaseOpeningAsw? GetOpeningAswPhase(ApiHougeki1? a) => a switch
+	private static PhaseOpeningAsw? GetOpeningAswPhase(ApiHougeki1? a) => a switch
 	{
 		null => null,
 		_ => new(a),
