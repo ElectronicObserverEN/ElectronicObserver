@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiAirBaseAttackApiStage3
 {
@@ -10,7 +12,7 @@ public class ApiAirBaseAttackApiStage3
 	[JsonPropertyName("api_ecl_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiEclFlag { get; set; } = new();
+	public List<AirHitType> ApiEclFlag { get; set; } = new();
 
 	[JsonPropertyName("api_edam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

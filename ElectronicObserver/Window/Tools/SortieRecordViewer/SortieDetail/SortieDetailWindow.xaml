@@ -68,6 +68,18 @@
 			</StackPanel>
 		</DataTemplate>
 
+		<DataTemplate DataType="{x:Type phase:PhaseSupportAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
 		<DataTemplate DataType="{x:Type phase:AirBattleAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
@@ -188,7 +200,7 @@
 					<Run Text="==" />
 				</TextBlock>
 
-				<TextBlock Text="{Binding Display}" />
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>
 		</DataTemplate>
 

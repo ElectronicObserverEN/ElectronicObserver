@@ -1,11 +1,13 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes.Attacks;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiSupportHourai
 {
 	[JsonPropertyName("api_cl_list")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiClList { get; set; } = new();
+	public List<HitType> ApiClList { get; set; } = new();
 
 	[JsonPropertyName("api_damage")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

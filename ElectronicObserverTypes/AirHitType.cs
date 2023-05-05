@@ -1,7 +1,7 @@
-﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+﻿namespace ElectronicObserverTypes;
 
 public enum AirHitType
 {
-	HitOrMiss,
-	Critical,
+	HitOrMiss = 0,
+	Critical = 1,
 }

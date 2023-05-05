@@ -1,4 +1,4 @@
-﻿using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+﻿using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 

@@ -4,7 +4,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 
-public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse, IDayBattleApiResponse
+public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse, IDayBattleApiResponse, IDaySupportApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -198,7 +198,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_support_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSupportFlag { get; set; } = default!;
+	public SupportType ApiSupportFlag { get; set; }
 
 	[JsonPropertyName("api_support_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

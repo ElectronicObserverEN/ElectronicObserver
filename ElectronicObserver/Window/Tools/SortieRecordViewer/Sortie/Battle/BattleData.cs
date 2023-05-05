@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
@@ -44,7 +45,7 @@ public abstract class BattleData
 	protected PhaseInitial Initial { get; }
 	protected PhaseSearching Searching { get; }
 	protected PhaseFriendlySupportInfo FriendlySupportInfo { get; }
-	protected PhaseSupport Support { get; }
+	protected PhaseSupport? Support { get; }
 
 	public abstract IEnumerable<PhaseBase> Phases { get; }
 
@@ -61,7 +62,11 @@ public abstract class BattleData
 			_ => new(battle),
 		};
 		FriendlySupportInfo = new();
-		Support = new();
+		Support = battle switch
+		{
+			IDaySupportApiResponse day => GetSupportPhase(day.ApiSupportFlag, day.ApiSupportInfo, false),
+			_ => null,
+		};
 	}
 
 	private static SortieCost RepairCost(IShipData? before, IShipData? after) => (before, after) switch
@@ -87,4 +92,11 @@ public abstract class BattleData
 
 		_ => new(),
 	};
+
+	private static PhaseSupport? GetSupportPhase(SupportType apiSupportFlag, ApiSupportInfo? a,
+		bool isNightSupport) => a switch
+		{
+			null => null,
+			_ => new(apiSupportFlag, a, isNightSupport),
+		};
 }
