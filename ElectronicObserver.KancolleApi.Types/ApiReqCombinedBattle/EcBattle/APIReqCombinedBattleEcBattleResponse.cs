@@ -24,6 +24,8 @@ public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, IEnem
 	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
 
+	[JsonPropertyName("api_escape_idx")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiEscapeIdx { get; set; }
 
 	[JsonPropertyName("api_eParam_combined")]
@@ -89,6 +91,7 @@ public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, IEnem
 
 	[JsonPropertyName("api_flavor_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
 	public List<ApiFlavorInfo>? ApiFlavorInfo { get; set; }
 
 	[JsonPropertyName("api_hougeki1")]

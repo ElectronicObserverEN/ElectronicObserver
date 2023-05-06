@@ -39,7 +39,11 @@ public class ApiDestructionBattle : IBattleApiResponse
 	[Required]
 	public List<int> ApiFMaxhps { get; set; } = new();
 
-	public List<List<int>> ApiFParam { get; set; }
+	[JsonPropertyName("api_fParam")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	[Required]
+	public List<List<int>> ApiFParam { get; set; } = new();
+
 
 	[JsonPropertyName("api_f_nowhps")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
