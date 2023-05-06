@@ -25,6 +25,7 @@ public class PhaseFriendlySupportInfo : PhaseBase
 		int count = apiFriendlyInfo.ApiShipId.Count;
 		count = Math.Min(count, apiFriendlyInfo.ApiShipLv.Count);
 		count = Math.Min(count, apiFriendlyInfo.ApiSlot.Count);
+		count = Math.Min(count, apiFriendlyInfo.ApiSlotEx.Count);
 		count = Math.Min(count, apiFriendlyInfo.ApiNowhps.Count);
 		count = Math.Min(count, apiFriendlyInfo.ApiMaxhps.Count);
 		count = Math.Min(count, apiFriendlyInfo.ApiParam.Count);
@@ -43,6 +44,7 @@ public class PhaseFriendlySupportInfo : PhaseBase
 				Level = apiFriendlyInfo.ApiShipLv[i],
 				HPCurrent = apiFriendlyInfo.ApiNowhps[i],
 				SlotInstance = apiFriendlyInfo.ApiSlot[i]
+					.Append(apiFriendlyInfo.ApiSlotEx[i])
 					.Select(id => id switch
 					{
 						> 0 => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)id]),
@@ -52,10 +54,10 @@ public class PhaseFriendlySupportInfo : PhaseBase
 					.ToList(),
 			};
 
-			ship.FirepowerFit = apiFriendlyInfo.ApiParam[i][0] - ship.FirepowerTotal;
-			ship.TorpedoFit = apiFriendlyInfo.ApiParam[i][1] - ship.TorpedoTotal;
-			ship.AaFit = apiFriendlyInfo.ApiParam[i][2] - ship.AATotal;
-			ship.ArmorFit = apiFriendlyInfo.ApiParam[i][3] - ship.ArmorTotal;
+			ship.FirepowerModernized += apiFriendlyInfo.ApiParam[i][0] - ship.FirepowerBase;
+			ship.TorpedoModernized += apiFriendlyInfo.ApiParam[i][1] - ship.TorpedoBase;
+			ship.AAModernized += apiFriendlyInfo.ApiParam[i][2] - ship.AABase;
+			ship.ArmorModernized += apiFriendlyInfo.ApiParam[i][3] - ship.ArmorBase;
 			
 			Ships.Add(ship);
 		}
@@ -97,7 +99,7 @@ public class PhaseFriendlySupportInfo : PhaseBase
 				ship.MasterShip.ShipTypeName, ship.MasterShip.NameWithClass,
 				ship.Level,
 				ship.HPCurrent, ship.HPMax,
-				ship.FirepowerTotal, ship.TorpedoTotal, ship.AATotal, ship.ArmorTotal);
+				ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
 
 			sb.Append("　");
 			sb.AppendLine(string.Join(", ", ship.AllSlotInstance

@@ -242,7 +242,9 @@ public class PhaseInitial : PhaseBase
 
 		foreach ((IShipData? ship, int hp) in battleFleets.Fleet.MembersInstance.Zip(FriendInitialHPs))
 		{
-			((ShipDataMock)ship).HPCurrent = hp;
+			if (ship is not ShipDataMock s) continue;
+
+			s.HPCurrent = hp;
 		}
 
 		FleetsAfterPhase = battleFleets.Clone();

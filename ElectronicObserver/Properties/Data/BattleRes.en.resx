@@ -291,4 +291,7 @@
   <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
     <value>Night Support Expedition</value>
   </data>
+  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
+    <value>Friendly Fleet Shelling</value>
+  </data>
 </root>

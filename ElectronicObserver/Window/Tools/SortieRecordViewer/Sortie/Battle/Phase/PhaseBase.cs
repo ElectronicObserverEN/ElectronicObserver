@@ -18,9 +18,19 @@ public class PhaseBase
 		return battleFleets;
 	}
 
-	protected void AddDamage(BattleFleets fleets, BattleIndex index, int damage)
+	protected static void AddDamage(BattleFleets fleets, BattleIndex index, int damage)
 	{
 		IShipData? ship = fleets.GetShip(index);
+
+		if (ship is ShipDataMock s)
+		{
+			s.HPCurrent -= damage;
+		}
+	}
+
+	protected static void AddFriendDamage(BattleFleets fleets, BattleIndex index, int damage)
+	{
+		IShipData? ship = fleets.GetFriendShip(index);
 
 		if (ship is ShipDataMock s)
 		{

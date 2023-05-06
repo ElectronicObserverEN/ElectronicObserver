@@ -13,7 +13,7 @@ public class PhaseFriendlyShelling : PhaseBase
 {
 	private ApiHougeki ShellingData { get; }
 
-	public string Title => BattleRes.BattlePhaseNightBattle;
+	public string Title => BattleRes.BattlePhaseFriendlyShelling;
 
 	private List<PhaseNightBattleAttack> Attacks { get; } = new();
 	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = new();
@@ -79,7 +79,7 @@ public class PhaseFriendlyShelling : PhaseBase
 			foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 			{
 				AttackDisplays.Add(new PhaseFriendNightBattleAttackViewModel(battleFleets, atk.Attacker, defs.Key, atk.AttackType, defs.ToList()));
-				AddDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
+				AddFriendDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
 			}
 		}
 

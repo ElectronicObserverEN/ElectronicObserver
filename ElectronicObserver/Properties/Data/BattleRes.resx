@@ -271,4 +271,7 @@
   <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
     <value>夜間支援攻撃</value>
   </data>
+  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
+    <value>友軍艦隊援護</value>
+  </data>
 </root>
