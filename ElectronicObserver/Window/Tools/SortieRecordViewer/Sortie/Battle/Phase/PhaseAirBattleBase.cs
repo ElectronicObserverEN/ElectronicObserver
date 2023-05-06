@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
@@ -46,7 +47,7 @@ public class PhaseAirBattleBase : PhaseBase
 		_ => null,
 	};
 
-	private ApiStage3? Stage3Combined => AirBattleData switch
+	private ApiStage3Combined? Stage3Combined => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage3Combined,
 		ApiInjectionKouku jet => jet.ApiStage3Combined,
@@ -162,7 +163,7 @@ public class PhaseAirBattleBase : PhaseBase
 		}
 
 		ApiStage3? stage3 = Stage3;
-		ApiStage3? stage3Combined = Stage3Combined;
+		ApiStage3Combined? stage3Combined = Stage3Combined;
 
 		if (stage3 is not null)
 		{
@@ -173,7 +174,7 @@ public class PhaseAirBattleBase : PhaseBase
 				stage3.ApiFdam));
 		}
 
-		if (stage3Combined is not null)
+		if (stage3Combined is { ApiFraiFlag: not null, ApiFbakFlag: not null, ApiFclFlag: not null, ApiFdam: not null })
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
 				stage3Combined.ApiFraiFlag.Select(i => i ?? 0).ToList(),
@@ -191,7 +192,7 @@ public class PhaseAirBattleBase : PhaseBase
 				stage3.ApiEdam));
 		}
 
-		if (stage3Combined is not null)
+		if (stage3Combined is { ApiEraiFlag: not null, ApiEbakFlag: not null, ApiEclFlag: not null, ApiEdam: not null })
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EnemyEscortFleet,
 				stage3Combined.ApiEraiFlag,
