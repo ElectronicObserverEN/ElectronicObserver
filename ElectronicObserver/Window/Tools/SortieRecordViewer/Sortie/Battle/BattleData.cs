@@ -56,6 +56,7 @@ public abstract class BattleData
 		Initial = battle switch
 		{
 			ICombinedBattleApiResponse c => new(kcDatabase, fleets, c),
+			IEnemyCombinedFleetBattle c => new(kcDatabase, fleets, c),
 			_ => new(kcDatabase, fleets, battle),
 		};
 		Searching = battle switch

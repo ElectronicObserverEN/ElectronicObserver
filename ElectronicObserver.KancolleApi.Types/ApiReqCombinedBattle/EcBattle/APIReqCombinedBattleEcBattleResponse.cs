@@ -4,7 +4,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 
-public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, ISupportApiResponse
+public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, IEnemyCombinedFleetBattle, ISupportApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

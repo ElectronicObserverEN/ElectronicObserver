@@ -187,33 +187,41 @@ public class PhaseInitial : PhaseBase
 			.ToList();
 	}
 
-	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle) : this(kcDatabase, fleets, (IBattleApiResponse)battle)
+	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IEnemyCombinedFleetBattle battle)
+		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
-		// todo
-		EnemyMembersEscortInstance = battle.ApiShipKeCombined
-			.Zip(battle.ApiShipLvCombined, (id, level) => (Id: id, Level: level))
-			.Zip(battle.ApiESlotCombined, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
-			.Zip(battle.ApiENowhpsCombined, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
-			.Select(t => t.Id switch
-			{
-				> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
-				{
-					HPCurrent = t.Hp,
-					Level = t.Level,
-					SlotInstance = t.Equipment
-						.Select(id => id switch
-						{
-							> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
-							_ => null,
-						})
-						.Cast<IEquipmentData?>()
-						.ToList(),
-				},
-				_ => null,
-			})
-			.Cast<IShipData?>()
-			.ToList();
+		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
+
+	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle)
+		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
+	{
+		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
+	}
+
+	private List<IShipData?>? MakeEnemyEscortFleet(IEnemyCombinedFleetBattle battle) => battle.ApiShipKeCombined
+		.Zip(battle.ApiShipLvCombined, (id, level) => (Id: id, Level: level))
+		.Zip(battle.ApiESlotCombined, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
+		.Zip(battle.ApiENowhpsCombined, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
+		.Select(t => t.Id switch
+		{
+			> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
+			{
+				HPCurrent = t.Hp,
+				Level = t.Level,
+				SlotInstance = t.Equipment
+					.Select(id => id switch
+					{
+						> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
+						_ => null,
+					})
+					.Cast<IEquipmentData?>()
+					.ToList(),
+			},
+			_ => null,
+		})
+		.Cast<IShipData?>()
+		.ToList();
 
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
