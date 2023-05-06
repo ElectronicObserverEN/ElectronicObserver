@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
 
@@ -7,14 +8,20 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 public abstract class BattleNight : BattleData
 {
 	protected PhaseNightInitial NightInitial { get; }
-	protected PhaseFriendlyShelling FriendlyShelling { get; }
+	protected PhaseFriendlyShelling? FriendlyShelling { get; }
 	protected PhaseNightBattle NightBattle { get; }
 
 	protected BattleNight(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle) 
 		: base(kcDatabase, fleets, battle)
 	{
 		NightInitial = new(kcDatabase, fleets, battle);
-		FriendlyShelling = new();
+		FriendlyShelling = GetFriendlyShellingPhase(battle.ApiFriendlyBattle);
 		NightBattle = new(battle.ApiHougeki);
 	}
+
+	private PhaseFriendlyShelling? GetFriendlyShellingPhase(ApiFriendlyBattle? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
 }

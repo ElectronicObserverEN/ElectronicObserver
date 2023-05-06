@@ -49,6 +49,19 @@
 			</StackPanel>
 		</DataTemplate>
 
+		<DataTemplate DataType="{x:Type phase:PhaseFriendNightBattleAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
 		<DataTemplate DataType="{x:Type phase:DayAttack}">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="{Binding Damage}" />
@@ -188,7 +201,7 @@
 					<Run Text="==" />
 				</TextBlock>
 
-				<TextBlock Text="{Binding Display}" />
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>
 		</DataTemplate>
 

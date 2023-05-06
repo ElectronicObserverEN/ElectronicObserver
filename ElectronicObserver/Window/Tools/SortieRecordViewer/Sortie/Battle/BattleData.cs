@@ -44,7 +44,7 @@ public abstract class BattleData
 
 	protected PhaseInitial Initial { get; }
 	protected PhaseSearching Searching { get; }
-	protected PhaseFriendlySupportInfo FriendlySupportInfo { get; }
+	protected PhaseFriendlySupportInfo? FriendlySupportInfo { get; }
 	protected PhaseSupport? Support { get; }
 
 	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p?.IsAvailable is true)!;
@@ -64,7 +64,7 @@ public abstract class BattleData
 			IDayBattleApiResponse d => new(d),
 			_ => new(battle),
 		};
-		FriendlySupportInfo = new();
+		FriendlySupportInfo = GetFriendlySupportInfoPhase(battle.ApiFriendlyInfo);
 		Support = battle switch
 		{
 			ISupportApiResponse s => GetSupportPhase(s.ApiSupportFlag, s.ApiSupportInfo, battle is INightBattleApiResponse),
@@ -94,6 +94,12 @@ public abstract class BattleData
 		},
 
 		_ => new(),
+	};
+
+	private static PhaseFriendlySupportInfo? GetFriendlySupportInfoPhase(ApiFriendlyInfo? a) => a switch
+	{
+		null => null,
+		_ => new(a),
 	};
 
 	private static PhaseSupport? GetSupportPhase(SupportType apiSupportFlag, ApiSupportInfo? a,

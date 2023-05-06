@@ -10,6 +10,7 @@ public class BattleFleets
 	public IFleetData? EscortFleet { get; }
 	public List<IFleetData?>? Fleets { get; }
 	public List<IBaseAirCorpsData> AirBases { get; }
+	public IFleetData? FriendFleet { get; set; }
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
@@ -42,6 +43,17 @@ public class BattleFleets
 			true => Fleet.MembersInstance[index.Index],
 			_ => EscortFleet?.MembersInstance[index.Index - Fleet.MembersInstance.Count],
 		},
+
+		_ => (index.Index < EnemyFleet?.MembersInstance.Count) switch
+		{
+			true => EnemyFleet?.MembersInstance[index.Index],
+			_ => EnemyEscortFleet?.MembersInstance[index.Index - EnemyFleet?.MembersInstance.Count ?? 6],
+		},
+	};
+
+	public IShipData? GetFriendShip(BattleIndex index) => index.FleetFlag switch
+	{
+		FleetFlag.Player when FriendFleet is not null => FriendFleet.MembersInstance[index.Index],
 
 		_ => (index.Index < EnemyFleet?.MembersInstance.Count) switch
 		{
