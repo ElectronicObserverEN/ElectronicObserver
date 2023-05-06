@@ -202,7 +202,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_support_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiSupportInfo? ApiSupportInfo { get; set; } = default!;
+	public ApiSupportInfo? ApiSupportInfo { get; set; }
 
 	[JsonPropertyName("api_xal01")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

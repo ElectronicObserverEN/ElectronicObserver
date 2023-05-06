@@ -28,22 +28,19 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 	public int World { get; }
 	public int Map { get; }
-	private IFleetData Fleet { get; }
-	private IFleetData? EscortFleet { get; }
+	private BattleFleets Fleets { get; }
 	private List<IBaseAirCorpsData>? AirBases { get; }
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(int world, int map, IFleetData fleet,
-		IFleetData? escortFleet = null, List<IBaseAirCorpsData>? airBases = null)
+	public SortieDetailViewModel(int world, int map, BattleFleets fleets, List<IBaseAirCorpsData>? airBases = null)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
 		BattleFactory = Ioc.Default.GetRequiredService<BattleFactory>();
 
 		World = world;
 		Map = map;
-		Fleet = fleet;
-		EscortFleet = escortFleet;
+		Fleets = fleets;
 		AirBases = airBases;
 	}
 
@@ -143,12 +140,9 @@ public class SortieDetailViewModel : WindowViewModelBase
 	/// <returns></returns>
 	private BattleData? GetBattle(object api) => api switch
 	{
-		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(a, Fleet),
-		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleet),
-
-		_ when EscortFleet is null => throw new Exception("Missing escort fleet data."),
-
-		ApiReqCombinedBattleEachBattleResponse a => BattleFactory.CreateBattle(a, Fleet, EscortFleet, AirBases),
+		ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiReqCombinedBattleEachBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleResponse a => null,
 
 		_ => null,

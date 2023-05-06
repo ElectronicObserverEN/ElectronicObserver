@@ -17,16 +17,15 @@ public class BattleFactory
 		KcDatabase = kcDatabase;
 	}
 
-	public BattleNormalDay CreateBattle(ApiReqSortieBattleResponse battle, IFleetData fleet)
-		=> new(KcDatabase, new(fleet), battle);
+	public BattleNormalDay CreateBattle(ApiReqSortieBattleResponse battle, BattleFleets fleets)
+		=> new(KcDatabase, fleets, battle);
 
 	public BattleNormalNight CreateBattle(ApiReqBattleMidnightBattleResponse battle, BattleFleets fleets)
 		=> new(KcDatabase, fleets, battle);
 
-	public BattleNightOnly CreateBattle(ApiReqBattleMidnightSpMidnightResponse battle, IFleetData fleet)
-		=> new(KcDatabase, new(fleet), battle);
+	public BattleNightOnly CreateBattle(ApiReqBattleMidnightSpMidnightResponse battle, BattleFleets fleets)
+		=> new(KcDatabase, fleets, battle);
 
-	public BattleCombinedEachDay CreateBattle(ApiReqCombinedBattleEachBattleResponse battle,
-		IFleetData fleet, IFleetData escortFleet, List<IBaseAirCorpsData>? airBases)
-		=> new(KcDatabase, new(fleet, escortFleet, airBases), battle);
+	public BattleCombinedEachDay CreateBattle(ApiReqCombinedBattleEachBattleResponse battle, BattleFleets fleets)
+		=> new(KcDatabase, fleets, battle);
 }

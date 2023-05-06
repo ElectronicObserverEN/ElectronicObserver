@@ -363,7 +363,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				_ => null,
 			};
 
-			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, fleet, escortFleet, airBases);
+			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, new(fleet, escortFleet, fleets, airBases));
 
 			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
 			{

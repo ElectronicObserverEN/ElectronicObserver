@@ -12,7 +12,7 @@ public class EquipmentDataMock : IEquipmentData
 	public UpgradeLevel UpgradeLevel { get; set; }
 	public int AircraftLevel { get; set; }
 	public IEquipmentDataMaster MasterEquipment { get; }
-	public string Name { get; set; }
+	public string Name => MasterEquipment.NameEN;
 	public string NameWithLevel
 	{
 		get

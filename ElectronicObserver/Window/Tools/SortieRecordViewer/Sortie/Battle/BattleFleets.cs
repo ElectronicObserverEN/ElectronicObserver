@@ -8,19 +8,21 @@ public class BattleFleets
 {
 	public IFleetData Fleet { get; }
 	public IFleetData? EscortFleet { get; }
+	public List<IFleetData?>? Fleets { get; }
 	public List<IBaseAirCorpsData> AirBases { get; }
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
-	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null,
+	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null, List<IFleetData?>? fleets = null,
 		List<IBaseAirCorpsData>? airBases = null)
 	{
 		Fleet = fleet;
 		EscortFleet = escortFleet;
+		Fleets = fleets;
 		AirBases = airBases ?? new();
 	}
 
-	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), AirBases)
+	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases)
 	{
 		EnemyFleet = CloneFleet(EnemyFleet),
 		EnemyEscortFleet = CloneFleet(EnemyEscortFleet),

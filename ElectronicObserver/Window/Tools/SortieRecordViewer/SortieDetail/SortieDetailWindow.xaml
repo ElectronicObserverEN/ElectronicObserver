@@ -200,6 +200,7 @@
 					<Run Text="==" />
 				</TextBlock>
 
+				<TextBlock Text="{Binding SupportFleetDisplay}" />
 				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>
 		</DataTemplate>
