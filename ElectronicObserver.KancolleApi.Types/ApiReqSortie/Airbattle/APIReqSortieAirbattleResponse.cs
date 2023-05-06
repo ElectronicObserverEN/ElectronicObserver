@@ -1,10 +1,10 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ApiKouku = ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models.ApiKouku;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 
-public class ApiReqSortieAirbattleResponse : IBattleApiResponse
+public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -99,9 +99,9 @@ public class ApiReqSortieAirbattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_support_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSupportFlag { get; set; } = default!;
+	public SupportType ApiSupportFlag { get; set; }
 
 	[JsonPropertyName("api_support_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiSupportInfo? ApiSupportInfo { get; set; } = default!;
+	public ApiSupportInfo? ApiSupportInfo { get; set; }
 }

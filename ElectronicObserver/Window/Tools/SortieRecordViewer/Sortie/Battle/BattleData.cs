@@ -64,7 +64,7 @@ public abstract class BattleData
 		FriendlySupportInfo = new();
 		Support = battle switch
 		{
-			IDaySupportApiResponse day => GetSupportPhase(day.ApiSupportFlag, day.ApiSupportInfo, false),
+			ISupportApiResponse s => GetSupportPhase(s.ApiSupportFlag, s.ApiSupportInfo, battle is INightBattleApiResponse),
 			_ => null,
 		};
 	}

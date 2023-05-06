@@ -3,7 +3,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public interface IDaySupportApiResponse
+public interface ISupportApiResponse
 {
 	/// <summary>
 	/// 支援艦隊フラグ　0=なし, 1=空撃, 2=砲撃, 3=雷撃, 4=対潜
@@ -11,7 +11,7 @@ public interface IDaySupportApiResponse
 	SupportType ApiSupportFlag { get; set; }
 
 	/// <summary>
-	/// 支援艦隊情報　api_support_flag = 0 なら null
+	/// 支援艦隊情報　<see cref="ApiSupportFlag"/> = <see cref="SupportType.None"/> なら null
 	/// </summary>
-	ApiSupportInfo ApiSupportInfo { get; set; }
+	ApiSupportInfo? ApiSupportInfo { get; set; }
 }

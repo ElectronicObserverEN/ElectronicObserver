@@ -1,14 +1,19 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 
-public class ApiReqCombinedBattleEcBattleResponse : IBattleApiResponse
+public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, ISupportApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<ApiAirBaseAttack> ApiAirBaseAttack { get; set; } = new();
+
+	[JsonPropertyName("api_air_base_injection")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -82,6 +87,10 @@ public class ApiReqCombinedBattleEcBattleResponse : IBattleApiResponse
 	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_flavor_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public List<ApiFlavorInfo>? ApiFlavorInfo { get; set; }
+
 	[JsonPropertyName("api_hougeki1")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -101,6 +110,10 @@ public class ApiReqCombinedBattleEcBattleResponse : IBattleApiResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiHouraiFlag { get; set; } = new();
+
+	[JsonPropertyName("api_injection_kouku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -135,7 +148,7 @@ public class ApiReqCombinedBattleEcBattleResponse : IBattleApiResponse
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSearch { get; set; } = new();
+	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -164,9 +177,9 @@ public class ApiReqCombinedBattleEcBattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_support_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSupportFlag { get; set; } = default!;
+	public SupportType ApiSupportFlag { get; set; }
 
 	[JsonPropertyName("api_support_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiSupportInfo? ApiSupportInfo { get; set; } = default!;
+	public ApiSupportInfo? ApiSupportInfo { get; set; }
 }

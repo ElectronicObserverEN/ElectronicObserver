@@ -1,9 +1,10 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 
-public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse
+public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse, ISupportApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -183,11 +184,11 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_support_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSupportFlag { get; set; } = default!;
+	public SupportType ApiSupportFlag { get; set; }
 
 	[JsonPropertyName("api_support_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiSupportInfo ApiSupportInfo { get; set; } = default!;
+	public ApiSupportInfo? ApiSupportInfo { get; set; }
 
 	[JsonPropertyName("api_xal01")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
