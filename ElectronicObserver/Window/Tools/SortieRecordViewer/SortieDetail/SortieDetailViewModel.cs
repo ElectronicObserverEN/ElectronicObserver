@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -12,6 +11,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
@@ -159,6 +159,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 	private BattleData? GetBattle(object api, BattleFleets fleets) => api switch
 	{
 		ApiReqBattleMidnightBattleResponse a => BattleFactory.CreateBattle(a, fleets),
+		ApiReqCombinedBattleEcMidnightBattleResponse a => BattleFactory.CreateBattle(a, fleets),
 
 		_ => null,
 	};
