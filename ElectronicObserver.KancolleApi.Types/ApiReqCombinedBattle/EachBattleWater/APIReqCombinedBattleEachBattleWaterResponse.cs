@@ -67,6 +67,14 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse, I
 	[Required]
 	public List<List<int>> ApiFParam { get; set; } = new();
 
+	[JsonPropertyName("api_friendly_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiFriendlyInfo? ApiFriendlyInfo { get; set; }
+
+	[JsonPropertyName("api_friendly_battle")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiFriendlyBattle? ApiFriendlyBattle { get; set; }
+
 	[JsonPropertyName("api_fParam_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

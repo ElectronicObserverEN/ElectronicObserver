@@ -107,11 +107,11 @@ public class ApiReqCombinedBattleEcMidnightBattleResponse : ICombinedNightBattle
 
 	[JsonPropertyName("api_friendly_battle")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiFriendlyBattle? ApiFriendlyBattle { get; set; } = default!;
+	public ApiFriendlyBattle? ApiFriendlyBattle { get; set; }
 
 	[JsonPropertyName("api_friendly_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiFriendlyInfo? ApiFriendlyInfo { get; set; } = default!;
+	public ApiFriendlyInfo? ApiFriendlyInfo { get; set; }
 
 	[JsonPropertyName("api_hougeki")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -1,4 +1,5 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
@@ -39,6 +40,16 @@ public interface IBattleApiResponse
 	/// Basic ship stats [number of ships][4] - [0] = firepower, [1] = torpedo, [2] = AA, [3] = armor
 	/// </summary>
 	List<List<int>> ApiFParam { get; set; }
+
+	/// <summary>
+	/// 友軍艦隊攻撃情報　発動時のみ存在
+	/// </summary>
+	ApiFriendlyInfo? ApiFriendlyInfo { get; set; }
+
+	/// <summary>
+	/// 友軍艦隊攻撃　発動時のみ存在？
+	/// </summary>
+	ApiFriendlyBattle? ApiFriendlyBattle { get; set; }
 
 	/// <summary>
 	/// 敵艦船ID [艦船数]
