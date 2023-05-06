@@ -47,7 +47,9 @@ public abstract class BattleData
 	protected PhaseFriendlySupportInfo FriendlySupportInfo { get; }
 	protected PhaseSupport? Support { get; }
 
-	public abstract IEnumerable<PhaseBase> Phases { get; }
+	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p?.IsAvailable is true)!;
+
+	protected abstract IEnumerable<PhaseBase?> AllPhases();
 
 	protected BattleData(IKCDatabase kcDatabase, BattleFleets fleets, IBattleApiResponse battle)
 	{

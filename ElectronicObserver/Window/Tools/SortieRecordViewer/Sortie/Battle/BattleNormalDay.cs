@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
@@ -17,9 +16,7 @@ public sealed class BattleNormalDay : BattleDay
 		}
 	}
 
-	public override IEnumerable<PhaseBase> Phases => GetPhases().Where(p => p?.IsAvailable is true)!;
-
-	private IEnumerable<PhaseBase?> GetPhases()
+	protected override IEnumerable<PhaseBase?> AllPhases()
 	{
 		yield return Initial;
 		yield return Searching;

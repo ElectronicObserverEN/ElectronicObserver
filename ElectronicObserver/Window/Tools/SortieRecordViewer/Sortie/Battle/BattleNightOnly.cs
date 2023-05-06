@@ -7,7 +7,7 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleNightOnly : BattleNight
+public sealed class BattleNightOnly : BattleNight
 {
 	private static double FuelConsumption => 0.1;
 	private static double AmmoConsumption => 0.1;
@@ -15,7 +15,7 @@ public class BattleNightOnly : BattleNight
 	public BattleNightOnly(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqBattleMidnightSpMidnightResponse battle) 
 		: base(kcDatabase, fleets, battle)
 	{
-		foreach (PhaseBase phase in GetPhases())
+		foreach (PhaseBase phase in Phases)
 		{
 			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
 		}
@@ -29,9 +29,7 @@ public class BattleNightOnly : BattleNight
 		}
 	}
 
-	public override IEnumerable<PhaseBase> Phases => GetPhases();
-
-	private IEnumerable<PhaseBase> GetPhases()
+	protected override IEnumerable<PhaseBase?> AllPhases()
 	{
 		yield return Initial;
 		yield return Searching;

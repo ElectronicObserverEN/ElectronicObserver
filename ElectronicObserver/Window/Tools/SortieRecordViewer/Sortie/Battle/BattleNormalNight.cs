@@ -5,20 +5,18 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleNormalNight : BattleNight
+public sealed class BattleNormalNight : BattleNight
 {
 	public BattleNormalNight(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
-		foreach (PhaseBase phase in GetPhases())
+		foreach (PhaseBase phase in Phases)
 		{
 			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
 		}
 	}
 
-	public override IEnumerable<PhaseBase> Phases => GetPhases();
-
-	private IEnumerable<PhaseBase> GetPhases()
+	protected override IEnumerable<PhaseBase?> AllPhases()
 	{
 		yield return Initial;
 		yield return NightInitial;
