@@ -20,6 +20,11 @@ public class BattleAirRaid : BattleData
 		// JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		// BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		AirBattle = GetAirBattlePhase(battle.ApiKouku, AirPhaseType.Raid);
+
+		foreach (PhaseBase phase in Phases)
+		{
+			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
+		}
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()
