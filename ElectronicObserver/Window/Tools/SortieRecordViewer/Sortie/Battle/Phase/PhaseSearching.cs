@@ -29,7 +29,7 @@ public class PhaseSearching : PhaseBase
 		EngagementType = (EngagementType)battle.ApiFormation[2];
 	}
 
-	public PhaseSearching(IDayBattleApiResponse battle) : this((IBattleApiResponse)battle)
+	public PhaseSearching(IDaySearch battle) : this((IBattleApiResponse)battle)
 	{
 		PlayerDetectionType = battle.ApiSearch[0];
 		EnemyDetectionType = battle.ApiSearch[1];

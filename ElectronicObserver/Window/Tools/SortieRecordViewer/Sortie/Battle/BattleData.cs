@@ -61,7 +61,7 @@ public abstract class BattleData
 		};
 		Searching = battle switch
 		{
-			IDayBattleApiResponse d => new(d),
+			IDaySearch d => new(d),
 			_ => new(battle),
 		};
 		FriendlySupportInfo = GetFriendlySupportInfoPhase(battle.ApiFriendlyInfo);

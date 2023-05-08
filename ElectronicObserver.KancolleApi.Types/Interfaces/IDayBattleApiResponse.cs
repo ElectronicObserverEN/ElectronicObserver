@@ -1,9 +1,8 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public interface IDayBattleApiResponse : IBattleApiResponse, IAirBaseBattle
+public interface IDayBattleApiResponse : IBattleApiResponse, IAirBaseBattle, IDaySearch
 {
 	List<ApiFlavorInfo>? ApiFlavorInfo { get; set; }
 
@@ -66,11 +65,6 @@ public interface IDayBattleApiResponse : IBattleApiResponse, IAirBaseBattle
 	/// 雷撃戦　api_hourai_flag[3] = 0 の時 null
 	/// </summary>
 	ApiRaigekiClass? ApiRaigeki { get; set; }
-
-	/// <summary>
-	/// 索敵成否　[0]=味方, [1]=敵　1=成功, 2=成功(未帰還機あり), 3=未帰還, 4=失敗, 5=発見, 6=発見できず
-	/// </summary>
-	List<DetectionType> ApiSearch { get; set; }
 
 	/// <summary>
 	/// 航空戦フラグ　[n]=0 のとき api_stage<n+1>=null になる(航空戦力なし, 艦戦のみなど)
