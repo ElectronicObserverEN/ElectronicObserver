@@ -5,10 +5,17 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseAirBattle : PhaseAirBattleBase
 {
-	public string Title => BattleRes.BattlePhaseAirBattle;
-
-	public PhaseAirBattle(ApiKouku airBattleData) : base(airBattleData)
+	private AirPhaseType Type { get; }
+	public string Title => Type switch
 	{
+		AirPhaseType.First => BattleRes.BattlePhaseAirAttackFirst,
+		AirPhaseType.Second => BattleRes.BattlePhaseAirAttackSecond,
+		AirPhaseType.Raid => BattleRes.BattlePhaseAirRaid,
+		_ => BattleRes.BattlePhaseAirBattle,
+	};
 
+	public PhaseAirBattle(ApiKouku airBattleData, AirPhaseType type) : base(airBattleData)
+	{
+		Type = type;
 	}
 }

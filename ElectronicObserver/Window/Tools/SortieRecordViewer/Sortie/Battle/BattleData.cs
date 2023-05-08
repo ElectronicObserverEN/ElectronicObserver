@@ -108,4 +108,28 @@ public abstract class BattleData
 			null => null,
 			_ => new(apiSupportFlag, a, isNightSupport),
 		};
+
+	protected static PhaseJetAirBattle? GetJetAirBattlePhase(ApiInjectionKouku? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
+	protected static PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
+	protected static PhaseAirBattle? GetAirBattlePhase(ApiKouku? a, AirPhaseType type) => a switch
+	{
+		null => null,
+		_ => new(a, type),
+	};
+
+	protected static PhaseOpeningAsw? GetOpeningAswPhase(ApiHougeki1? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
 }

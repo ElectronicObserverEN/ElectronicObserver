@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using ElectronicObserver.KancolleApi.Types.Interfaces;
-using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
 
@@ -12,7 +10,7 @@ public abstract class BattleDay : BattleData
 	protected PhaseJetAirBattle? JetAirBattle { get; }
 	protected PhaseBaseAirAttack? BaseAirAttack { get; }
 	protected PhaseFriendlyAirBattle FriendlyAirBattle { get; }
-	protected PhaseAirBattle AirBattle { get; }
+	protected PhaseAirBattle? AirBattle { get; }
 	protected PhaseOpeningAsw? OpeningAsw { get; }
 	protected PhaseTorpedo OpeningTorpedo { get; }
 	protected PhaseShelling Shelling1 { get; }
@@ -27,7 +25,7 @@ public abstract class BattleDay : BattleData
 		JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		FriendlyAirBattle = new();
-		AirBattle = new(battle.ApiKouku);
+		AirBattle = GetAirBattlePhase(battle.ApiKouku, AirPhaseType.Battle);
 		OpeningAsw = GetOpeningAswPhase(battle.ApiOpeningTaisen);
 		OpeningTorpedo = new(battle.ApiOpeningAtack, TorpedoPhase.Opening);
 		Shelling1 = new(battle.ApiHougeki1, DayShellingPhase.First);
@@ -35,22 +33,4 @@ public abstract class BattleDay : BattleData
 		Shelling3 = new(battle.ApiHougeki3, DayShellingPhase.Third);
 		Torpedo = new(battle.ApiRaigeki, TorpedoPhase.Closing);
 	}
-
-	private static PhaseJetAirBattle? GetJetAirBattlePhase(ApiInjectionKouku? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	private static PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	private static PhaseOpeningAsw? GetOpeningAswPhase(ApiHougeki1? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
 }

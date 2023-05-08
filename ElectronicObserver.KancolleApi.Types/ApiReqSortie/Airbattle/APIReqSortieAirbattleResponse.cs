@@ -4,7 +4,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 
-public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResponse
+public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResponse, IDaySearch
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -83,7 +83,7 @@ public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResp
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSearch { get; set; } = new();
+	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
