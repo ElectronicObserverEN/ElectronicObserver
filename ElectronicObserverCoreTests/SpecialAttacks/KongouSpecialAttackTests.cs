@@ -120,8 +120,7 @@ public class KongouSpecialAttackTests
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	//[Fact(DisplayName = "Can trigger - Hiei Haruna")]
-	//fixme : enable when test data is updated
+	[Fact(DisplayName = "Can trigger - Hiei Haruna")]
 	public void KongouSpecialAttackTest5()
 	{
 		FleetDataMock fleet = new();
@@ -149,8 +148,7 @@ public class KongouSpecialAttackTests
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	//[Fact(DisplayName = "Can trigger - Kongou Haruna")]
-	//fixme : enable when test data is updated
+	[Fact(DisplayName = "Can trigger - Kongou Haruna")]
 	public void KongouSpecialAttackTest7()
 	{
 		FleetDataMock fleet = new();
@@ -178,8 +176,7 @@ public class KongouSpecialAttackTests
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	//[Fact(DisplayName = "Can trigger - Haruna Kongou")]
-	//fixme : enable when test data is updated
+	[Fact(DisplayName = "Can trigger - Haruna Kongou")]
 	public void KongouSpecialAttackTest8()
 	{
 		FleetDataMock fleet = new();
@@ -197,8 +194,7 @@ public class KongouSpecialAttackTests
 		Assert.True(specialAttack.CanTrigger());
 	}
 
-	//[Fact(DisplayName = "Can trigger - Haruna Hiei")]
-	//fixme : enable when test data is updated
+	[Fact(DisplayName = "Can trigger - Haruna Hiei")]
 	public void KongouSpecialAttackTest9()
 	{
 		FleetDataMock fleet = new();
