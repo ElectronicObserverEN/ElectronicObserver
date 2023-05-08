@@ -284,7 +284,18 @@
 					</TextBlock.Style>
 				</TextBlock>
 
-				<TextBlock Margin="0 0 0 5" Text="{Binding Stage2Display}" />
+				<TextBlock Margin="0 0 0 5" Text="{Binding Stage2Display}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Stage2Display}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
 
 				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>
