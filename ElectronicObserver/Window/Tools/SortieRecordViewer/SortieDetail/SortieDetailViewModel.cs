@@ -10,6 +10,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
@@ -145,6 +146,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleEachBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleEcBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiReqCombinedBattleEachBattleWaterResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleResponse a => null,
 
 		_ => null,

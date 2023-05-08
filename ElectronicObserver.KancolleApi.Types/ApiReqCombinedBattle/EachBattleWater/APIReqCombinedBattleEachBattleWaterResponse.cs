@@ -4,11 +4,15 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 
-public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse, ISupportApiResponse
+public class ApiReqCombinedBattleEachBattleWaterResponse : IDayBattleApiResponse, ICombinedBattleApiResponse, ISupportApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; } = default!;
+
+	[JsonPropertyName("api_air_base_injection")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -100,6 +104,10 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse, I
 	[Required]
 	public List<int> ApiFNowhpsCombined { get; set; } = new();
 
+	[JsonPropertyName("api_escape_idx_combined")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public List<int>? ApiEscapeIdxCombined { get; set; }
+
 	[JsonPropertyName("api_flavor_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -128,6 +136,10 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse, I
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiHouraiFlag { get; set; } = new();
+
+	[JsonPropertyName("api_injection_kouku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -163,7 +175,7 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IBattleApiResponse, I
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSearch { get; set; } = new();
+	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
