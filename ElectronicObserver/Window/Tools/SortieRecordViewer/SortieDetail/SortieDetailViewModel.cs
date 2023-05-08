@@ -18,6 +18,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
@@ -149,6 +150,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 		ApiReqCombinedBattleEcBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleEachBattleWaterResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqSortieAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiReqSortieLdAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleResponse a => null,
 
 		_ => null,
