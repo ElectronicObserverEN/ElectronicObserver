@@ -35,6 +35,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.GobackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqFurniture.Buy;
 using ElectronicObserver.KancolleApi.Types.ApiReqHensei.Change;
 using ElectronicObserver.KancolleApi.Types.ApiReqHensei.Combined;
@@ -215,7 +216,7 @@ public static class Extensions
 		"api_req_sortie/night_to_day" => throw new NotImplementedException(),
 		"api_req_sortie/ld_shooting" => throw new NotSupportedException(),
 		"api_req_combined_battle/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/sp_midnight" => throw new NotImplementedException(),
+		"api_req_combined_battle/sp_midnight" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleSpMidnightResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/airbattle" => throw new NotImplementedException(),
 		"api_req_combined_battle/battle_water" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleWaterResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/ld_airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleLdAirbattleResponse>>(file.Content)?.ApiData,

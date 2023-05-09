@@ -9,17 +9,23 @@ public abstract class BattleNight : BattleData
 {
 	protected PhaseNightInitial NightInitial { get; }
 	protected PhaseFriendlyShelling? FriendlyShelling { get; }
-	protected PhaseNightBattle NightBattle { get; }
+	protected PhaseNightBattle? NightBattle { get; }
 
 	protected BattleNight(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle) 
 		: base(kcDatabase, fleets, battle)
 	{
 		NightInitial = new(kcDatabase, fleets, battle);
 		FriendlyShelling = GetFriendlyShellingPhase(battle.ApiFriendlyBattle);
-		NightBattle = new(battle.ApiHougeki);
+		NightBattle = GetNightBattlePhase(battle.ApiHougeki);
 	}
 
-	private PhaseFriendlyShelling? GetFriendlyShellingPhase(ApiFriendlyBattle? a) => a switch
+	private static PhaseFriendlyShelling? GetFriendlyShellingPhase(ApiFriendlyBattle? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
+	private static PhaseNightBattle? GetNightBattlePhase(ApiHougeki? a) => a switch
 	{
 		null => null,
 		_ => new(a),

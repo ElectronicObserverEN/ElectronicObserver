@@ -16,5 +16,5 @@ public interface INightBattleApiResponse : IBattleApiResponse
 	/// </summary>
 	List<int> ApiFlarePos { get; set; }
 
-	ApiHougeki ApiHougeki { get; set; }
+	ApiHougeki? ApiHougeki { get; set; }
 }
