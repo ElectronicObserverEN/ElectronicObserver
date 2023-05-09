@@ -139,7 +139,11 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	[Required(AllowEmptyStrings = true)]
 	public string ApiWinRank { get; set; } = default!;
 
-	public ApiGetUseitem? ApiGetUseitem { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-	public ApiLandingHp? ApiLandingHp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-	public int ApiMapcellIncentive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+	[JsonPropertyName("api_get_useitem")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiGetUseitem? ApiGetUseitem { get; set; } = default!;
+	
+	public ApiLandingHp? ApiLandingHp { get; set; }
+
+	public int ApiMapcellIncentive { get; set; }
 }

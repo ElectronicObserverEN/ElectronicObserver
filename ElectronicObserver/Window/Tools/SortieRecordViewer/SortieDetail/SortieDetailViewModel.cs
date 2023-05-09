@@ -21,6 +21,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
@@ -120,7 +121,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 				}
 			}
 
-			if (response is ApiReqSortieBattleresultResponse result)
+			if (response is ISortieBattleResultApi result)
 			{
 				if (node is not BattleNode battleNode) continue;
 

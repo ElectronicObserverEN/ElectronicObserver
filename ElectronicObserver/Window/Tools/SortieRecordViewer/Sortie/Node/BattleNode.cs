@@ -1,5 +1,7 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
@@ -27,9 +29,15 @@ public class BattleNode : SortieNode
 		FirstBattle = battle;
 	}
 
-	public void AddResult(ApiReqSortieBattleresultResponse result)
+	public void AddResult(ISortieBattleResultApi result)
 	{
-		BattleResult = new(result);
+		bool isCombinedFleet = result is ApiReqCombinedBattleBattleresultResponse;
+
+		BattleResult = result switch
+		{
+			ApiReqCombinedBattleBattleresultResponse r => new(r),
+			_ => new(result),
+		};
 
 		ResultRank = string.Format(ConstantsRes.BattleDetail_ResultRank, BattleResult.WinRank);
 
@@ -37,7 +45,8 @@ public class BattleNode : SortieNode
 		{
 			int i and >= 0 => FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[i] switch
 			{
-				IShipData ship => string.Format(ConstantsRes.BattleDetail_ResultMVPMain, ship.NameWithLevel),
+				IShipData ship when isCombinedFleet => string.Format(ConstantsRes.BattleDetail_ResultMVPMain, ship.NameWithLevel),
+				IShipData ship => string.Format("MVP: {0}", ship.NameWithLevel),
 				_ => null,
 			},
 			_ => null,

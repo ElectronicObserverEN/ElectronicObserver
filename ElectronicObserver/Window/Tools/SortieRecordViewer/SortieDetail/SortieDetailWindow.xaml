@@ -488,6 +488,7 @@
 						<TextBlock Text="{Binding Result}" />
 						<TextBlock Text="{Binding ResultRank}" />
 						<TextBlock Text="{Binding ResultMvpMain}" />
+						<TextBlock Text="{Binding ResultMvpEscort}" />
 						<TextBlock Text="{Binding AdmiralExp}" />
 						<TextBlock Text="{Binding BaseExp}" />
 						<TextBlock Text="{Binding DropShip}" />
