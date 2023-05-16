@@ -1,6 +1,8 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public class ApiReqPracticeBattleRequest
+namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+
+public class ApiReqPracticeBattleRequest : IBattleApiRequest
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -25,4 +27,7 @@ public class ApiReqPracticeBattleRequest
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
+
+	[JsonPropertyName("api_smoke_flag")]
+	public string? ApiSmokeFlag { get; set; }
 }

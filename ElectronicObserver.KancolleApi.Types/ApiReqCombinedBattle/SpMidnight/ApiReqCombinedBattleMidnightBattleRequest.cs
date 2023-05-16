@@ -1,6 +1,8 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public class ApiReqCombinedBattleSpMidnightRequest
+namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
+
+public class ApiReqCombinedBattleSpMidnightRequest : IBattleApiRequest
 {
 	[JsonPropertyName("api_token")]
 	public string ApiToken { get; set; } = string.Empty;
@@ -13,4 +15,7 @@ public class ApiReqCombinedBattleSpMidnightRequest
 
 	[JsonPropertyName("api_recovery_type")]
 	public string ApiRecoveryType { get; set; } = string.Empty;
+
+	[JsonPropertyName("api_smoke_flag")]
+	public string? ApiSmokeFlag { get; set; }
 }

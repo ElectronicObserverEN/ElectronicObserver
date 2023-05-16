@@ -1,6 +1,8 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public class ApiReqSortieBattleRequest
+namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
+
+public class ApiReqSortieBattleRequest : IBattleApiRequest
 {
 	[JsonPropertyName("api_formation")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -20,4 +22,7 @@ public class ApiReqSortieBattleRequest
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
+
+	[JsonPropertyName("api_smoke_flag")]
+	public string? ApiSmokeFlag { get; set; }
 }
