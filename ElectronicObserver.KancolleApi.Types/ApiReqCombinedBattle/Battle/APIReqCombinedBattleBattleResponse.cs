@@ -19,7 +19,11 @@ public class ApiReqCombinedBattleBattleResponse : IBattleApiResponse, ISupportAp
 	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
 
+	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
+
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

@@ -85,4 +85,10 @@ public interface IBattleApiResponse
 	/// 退避艦インデックス　[退避艦数]　1基点　いなければ存在しない
 	/// </summary>
 	List<int>? ApiEscapeIdx { get; set; }
+
+	/// <summary>
+	/// 0, 1, 2, 3 - number of active smokers <br />
+	/// null - old data only?
+	/// </summary>
+	int? ApiSmokeType { get; set; }
 }

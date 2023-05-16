@@ -15,8 +15,14 @@ public class ApiDestructionBattle : IBattleApiResponse
 	[Required]
 	public List<List<int>> ApiESlot { get; set; } = new();
 
-	public List<List<int>> ApiEParam { get; set; }
+	[JsonPropertyName("api_eParam")]
+	public List<List<int>> ApiEParam { get; set; } = new();
+
+	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
+
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.

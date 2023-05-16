@@ -28,6 +28,9 @@ public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, IEnem
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
+
 	[JsonPropertyName("api_eParam_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

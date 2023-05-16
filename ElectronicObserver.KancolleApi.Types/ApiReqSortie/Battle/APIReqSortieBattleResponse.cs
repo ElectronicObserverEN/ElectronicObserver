@@ -26,6 +26,9 @@ public class ApiReqSortieBattleResponse : IDayBattleApiResponse, ISupportApiResp
 	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
+
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

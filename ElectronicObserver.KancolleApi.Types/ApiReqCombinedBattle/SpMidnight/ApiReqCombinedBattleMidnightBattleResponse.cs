@@ -54,6 +54,9 @@ public class ApiReqCombinedBattleSpMidnightResponse : INightBattleApiResponse
 	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
+
 	[JsonPropertyName("api_n_support_flag")]
 	public SupportType ApiSupportFlag { get; set; }
 

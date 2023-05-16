@@ -69,6 +69,9 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiEscapeIdx { get; set; } = default!;
 
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
+
 	[JsonPropertyName("api_escape_idx_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiEscapeIdxCombined { get; set; } = default!;
