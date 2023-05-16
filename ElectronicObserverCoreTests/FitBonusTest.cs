@@ -172,7 +172,7 @@ public class FitBonusTest
 					Level = 8
 				},
 			},
-			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2]),
+			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKaiNi]),
 		};
 
 		FitBonusValue expectedBonus = new FitBonusValue()

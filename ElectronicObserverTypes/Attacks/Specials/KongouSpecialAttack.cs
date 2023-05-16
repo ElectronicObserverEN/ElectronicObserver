@@ -37,14 +37,14 @@ public record KongouSpecialAttack : SpecialAttack
 			new()
 			{
 				ShipIndex = 0,
-				AccuracyModifier = 1,
-				PowerModifier = 2.2,
+				AccuracyModifier = 1.25,
+				PowerModifier = 2.4,
 			},
 			new()
 			{
 				ShipIndex = 1,
-				AccuracyModifier = 1,
-				PowerModifier = 2.2,
+				AccuracyModifier = 1.25,
+				PowerModifier = 2.4,
 			},
 		};
 
@@ -74,7 +74,9 @@ public record KongouSpecialAttack : SpecialAttack
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
-				ShipId.KongouKaiNiC => 31,
+				ShipId.KongouKaiNiC or
+				ShipId.HarunaKaiNiB or
+				ShipId.HarunaKaiNiC => 31,
 				ShipId.HieiKaiNiC => 10,
 				_ => 0,
 			};
@@ -84,7 +86,9 @@ public record KongouSpecialAttack : SpecialAttack
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
-				ShipId.KongouKaiNiC => 10,
+				ShipId.KongouKaiNiC or
+				ShipId.HarunaKaiNiB or
+				ShipId.HarunaKaiNiC => 10,
 				ShipId.HieiKaiNiC => 31,
 				_ => 0,
 			};
@@ -95,17 +99,28 @@ public record KongouSpecialAttack : SpecialAttack
 
 	private static bool IsKongouClassThirdRemodel(ShipId id) => id is
 		ShipId.KongouKaiNiC or
-		ShipId.HieiKaiNiC;
+		ShipId.HieiKaiNiC or
+		ShipId.HarunaKaiNiB or
+		ShipId.HarunaKaiNiC;
 
 	private static bool IsValidPair(ShipId flagship, ShipId helper) => flagship switch
 	{
 		ShipId.KongouKaiNiC => helper is
 			ShipId.HieiKaiNiC or
 			ShipId.HarunaKaiNi or
+			ShipId.HarunaKaiNiB or
+			ShipId.HarunaKaiNiC or
+			ShipId.Warspite or
 			ShipId.WarspiteKai,
 
 		ShipId.HieiKaiNiC => helper is
 			ShipId.KirishimaKaiNi or
+			ShipId.HarunaKaiNiB or
+			ShipId.HarunaKaiNiC or
+			ShipId.KongouKaiNiC,
+
+		ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC => helper is
+			ShipId.HieiKaiNiC or
 			ShipId.KongouKaiNiC,
 
 		_ => false,

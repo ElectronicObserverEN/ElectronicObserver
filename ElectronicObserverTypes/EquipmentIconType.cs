@@ -158,6 +158,9 @@ public enum EquipmentIconType
 	/// <summary>陸戦部隊</summary>
 	ArmyInfantry = 52,
 
+	/// <summary>艦載発煙装置</summary>
+	SmokeGenerator = 54,
+
 	Locked,
 	Unknown,
 }

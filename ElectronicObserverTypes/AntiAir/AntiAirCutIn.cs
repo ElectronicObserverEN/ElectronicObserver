@@ -616,6 +616,8 @@ public record AntiAirCutIn
 						ShipId.HieiKaiNi,
 						ShipId.HieiKaiNiC,
 						ShipId.HarunaKaiNi,
+						ShipId.HarunaKaiNiB,
+						ShipId.HarunaKaiNiC,
 						ShipId.KirishimaKaiNi,
 						ShipId.Jervis,
 						ShipId.JervisKai,
@@ -640,6 +642,8 @@ public record AntiAirCutIn
 						ShipId.HieiKaiNi,
 						ShipId.HieiKaiNiC,
 						ShipId.HarunaKaiNi,
+						ShipId.HarunaKaiNiB,
+						ShipId.HarunaKaiNiC,
 						ShipId.KirishimaKaiNi,
 						ShipId.Jervis,
 						ShipId.JervisKai,
@@ -664,6 +668,8 @@ public record AntiAirCutIn
 						ShipId.HieiKaiNi,
 						ShipId.HieiKaiNiC,
 						ShipId.HarunaKaiNi,
+						ShipId.HarunaKaiNiB,
+						ShipId.HarunaKaiNiC,
 						ShipId.KirishimaKaiNi,
 						ShipId.Jervis,
 						ShipId.JervisKai,
@@ -705,6 +711,7 @@ public record AntiAirCutIn
 			Id = 42,
 			FixedBonus = 10,
 			VariableBonus = 1.65,
+			Rate = 0.65,
 			Conditions = new()
 			{
 				new()
@@ -726,6 +733,7 @@ public record AntiAirCutIn
 			Id = 43,
 			FixedBonus = 8,
 			VariableBonus = 1.6,
+			Rate = 0.6,
 			Conditions = new()
 			{
 				new()
@@ -746,6 +754,7 @@ public record AntiAirCutIn
 			Id = 44,
 			FixedBonus = 6,
 			VariableBonus = 1.6,
+			Rate = 0.55,
 			Conditions = new()
 			{
 				new()
@@ -767,6 +776,7 @@ public record AntiAirCutIn
 			Id = 45,
 			FixedBonus = 5,
 			VariableBonus = 1.55,
+			Rate = 0.5,
 			Conditions = new()
 			{
 				new()
@@ -779,6 +789,25 @@ public record AntiAirCutIn
 					},
 					HighAngleConcentrated = 1,
 					RadarYamato = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 46,
+			FixedBonus = 8,
+			VariableBonus = 1.55,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.HarunaKaiNiB,
+					},
+					HarunaGun = 1,
+					AaGunConcentrated = 1,
+					AntiAirRadar = 1,
 				},
 			},
 		},
@@ -1021,6 +1050,8 @@ public record AntiAirCutIn
 
 	private static List<int> ApiPriority { get; } = new()
 	{
+		// todo: no idea if 46 is highest priority
+		46,
 		42,
 		43,
 		44,
@@ -1071,13 +1102,18 @@ public record AntiAirCutIn
 	public int Id { get; init; }
 	public int FixedBonus { get; init; }
 	public double VariableBonus { get; init; }
-	private double Rate { get; init; }
+	private double? Rate { get; init; }
+
 	/// <summary>
 	/// Null when unknown
 	/// </summary>
 	public List<AntiAirCutInCondition>? Conditions { get; init; }
 
-	public string ValueDisplay => $"({Rate:P0} - {FixedBonus} - x{VariableBonus})";
+	public string ValueDisplay => Rate switch
+	{
+		double => $"({Rate:P0} - {FixedBonus} - x{VariableBonus})",
+		_ => $"(??? - {FixedBonus} - x{VariableBonus})",
+	};
 
 	private AntiAirCutIn()
 	{

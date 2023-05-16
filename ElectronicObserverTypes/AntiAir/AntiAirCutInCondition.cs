@@ -22,6 +22,10 @@ public class AntiAirCutInCondition
 	public int AaGun4Aa { get; init; }
 	public int AaGun6Aa { get; init; }
 	public int AaGun3To8Aa { get; init; }
+
+	/// <summary>
+	/// AA >= 9
+	/// </summary>
 	public int AaGunConcentrated { get; init; }
 	public int AaGunPompom { get; init; }
 	public int AaRocketBritish { get; init; }
@@ -35,6 +39,12 @@ public class AntiAirCutInCondition
 	public int HighAngleAtlantaGfcs { get; init; }
 	public int HighAngleConcentrated { get; init; }
 	public int RadarYamato { get; init; }
+
+	/// <summary>
+	/// 35.6cm連装砲改三(ダズル迷彩仕様) < br/>
+	/// 35.6cm連装砲改四
+	/// </summary>
+	public int HarunaGun { get; init; }
 
 	public bool CanBeActivatedBy(IShipData ship)
 	{
@@ -68,6 +78,7 @@ public class AntiAirCutInCondition
 		if (!ship.HasHighAngleAtlantaGfcs(HighAngleAtlantaGfcs)) return false;
 		if (!ship.HasHighAngleConcentrated(HighAngleConcentrated)) return false;
 		if (!ship.HasYamatoRadar(RadarYamato)) return false;
+		if (!ship.HasHarunaGun(HarunaGun)) return false;
 
 		return true;
 	}

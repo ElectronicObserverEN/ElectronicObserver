@@ -767,4 +767,11 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>チェックを外すと、新しい艦娘の訓練プランを追加する際に、訓練プランのない艦娘だけが表示されるように艦娘リストがフィルタリングされます。
 チェックした場合、フィルターは適用されません。</value>
   </data>
+  <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
+    <value>敵の候補をすべて表示する</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
+    <value>無効の場合、プレビューに一致する候補のみが表示されます。
+有効の場合、プレビューは無視され、すべての候補が表示されます。</value>
+  </data>
 </root>

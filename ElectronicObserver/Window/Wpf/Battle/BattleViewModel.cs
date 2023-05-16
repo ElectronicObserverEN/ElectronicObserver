@@ -48,6 +48,9 @@ public partial class BattleViewModel : AnchorableViewModel
 	public string? SearchingFriendText { get; set; }
 	public ImageSource? SearchingFriendIcon { get; set; }
 	public string? SearchingFriendToolTip { get; set; }
+	public bool Smoker1Active { get; set; }
+	public bool Smoker2Active { get; set; }
+	public bool Smoker3Active { get; set; }
 
 	public string? SearchingText { get; set; }
 	public ImageSource? SearchingIcon { get; set; }
@@ -620,6 +623,9 @@ public partial class BattleViewModel : AnchorableViewModel
 			_ => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Radar)
 		};
 		SearchingFriendToolTip = null;
+		Smoker1Active = bd.Searching.SmokeCount >= 1;
+		Smoker2Active = bd.Searching.SmokeCount >= 2;
+		Smoker3Active = bd.Searching.SmokeCount >= 3;
 
 		search = bd.Searching.SearchingEnemy;
 
@@ -655,6 +661,9 @@ public partial class BattleViewModel : AnchorableViewModel
 		SearchingFriendText = "-";
 		SearchingFriendIcon = null;
 		SearchingFriendToolTip = null;
+		Smoker1Active = false;
+		Smoker2Active = false;
+		Smoker3Active = false;
 
 		SearchingEnemyText = "-";
 		SearchingEnemyIcon = null;

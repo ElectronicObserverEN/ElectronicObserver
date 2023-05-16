@@ -49,11 +49,11 @@ public class DayAttackTests
 		FirepowerFit = 3 + 3 + 5 + 3,
 		SlotInstance = new List<IEquipmentData?>
 		{
-			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2])
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKaiNi])
 			{
 				Level = 6,
 			},
-			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKai2])
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKaiNi])
 			{
 				Level = 6,
 			},

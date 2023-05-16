@@ -40,7 +40,7 @@ public class WikiShip
 	public JsonElement _luck_mod { get; set; }
 	public string _name { get; set; }
 	public int _range { get; set; }
-	public int _rarity { get; set; }
+	public JsonElement _rarity { get; set; }
 	public JsonElement _reading { get; set; }
 	public JsonElement _remodel_from { get; set; }
 	public JsonElement _remodel_level { get; set; }

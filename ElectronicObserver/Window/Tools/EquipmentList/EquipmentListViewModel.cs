@@ -12,6 +12,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
@@ -34,6 +35,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	// Select an equipment with multiple detail items, sort by something, select a different equipment, sort data is lost.
 	public DataGridViewModel<EquipmentListDetailRow> EquipmentDetailGridViewModel { get; set; }
 	public EquipmentListRow? SelectedRow { get; set; }
+
+	public EquipmentFilterViewModel Filters { get; } = new(true);
 
 	public bool ShowLockedEquipmentOnly { get; set; }
 
@@ -64,6 +67,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 
 			UpdateDetailView(SelectedRow.Id);
 		};
+
+		Filters.PropertyChanged += (_, _) => UpdateView();
 
 		UpdateView();
 	}
@@ -118,7 +123,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		EquipmentGridViewModel.ItemsSource.Clear();
 
 		List<EquipmentListRow> rows = new(allCount.Count);
-		var ids = allCount.Keys;
+		var ids = allCount.Keys
+			.Where(id => Filters.MeetsFilterCondition(masterEquipments[id]));
 
 		foreach (int id in ids)
 		{

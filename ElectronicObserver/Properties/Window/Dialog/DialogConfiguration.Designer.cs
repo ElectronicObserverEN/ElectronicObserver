@@ -161,6 +161,25 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 敵の候補をすべて表示する.
+        /// </summary>
+        public static string Compass_DisplayAllPossibleEnemyComps {
+            get {
+                return ResourceManager.GetString("Compass_DisplayAllPossibleEnemyComps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 無効の場合、プレビューに一致する候補のみが表示されます。
+        ///有効の場合、プレビューは無視され、すべての候補が表示されます。.
+        /// </summary>
+        public static string Compass_DisplayAllPossibleEnemyCompsTooltip {
+            get {
+                return ResourceManager.GetString("Compass_DisplayAllPossibleEnemyCompsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 音量一括設定の確認.
         /// </summary>
         public static string ConfirmSetting {

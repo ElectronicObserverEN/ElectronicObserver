@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;

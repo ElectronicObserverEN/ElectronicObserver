@@ -556,6 +556,15 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 煙幕.
+        /// </summary>
+        public static string SmokeScreen {
+            get {
+                return ResourceManager.GetString("SmokeScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 連合艦隊-水上部隊 昼戦.
         /// </summary>
         public static string SuijouButaiDayBattle {

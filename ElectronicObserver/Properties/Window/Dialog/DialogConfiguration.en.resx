@@ -749,4 +749,11 @@ If you live in Japan or use a Japanese VPN you can keep this option disabled.</v
     <value>If unchecked, when adding a new ship training plan, the ship list will be filtered to only display ships without a training plan.
 If checked, no filter will be applied.</value>
   </data>
+  <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
+    <value>Display all enemy compositions</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
+    <value>When disabled, only the compositions matching the preview from map screen will be shown.
+When enabled, the preview will be ignored and all compositions will be shown.</value>
+  </data>
 </root>

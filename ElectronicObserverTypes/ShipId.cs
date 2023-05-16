@@ -570,6 +570,7 @@ public enum ShipId
 	GGaribaldi = 590,
 	KongouKaiNiC = 591,
 	HieiKaiNiC = 592,
+	HarunaKaiNiB = 593,
 	AkagiKaiNi = 594,
 	Houston = 595,
 	Fletcher = 596,
@@ -737,5 +738,7 @@ public enum ShipId
 	KumanoMaru = 943,
 	No101LandingShip = 945,
 	KumanoMaruKai = 948,
+	HarunaKaiNiC = 954,
+	MiyukiKaiNi = 959,
 	ColoradoKai = 1496,
 }

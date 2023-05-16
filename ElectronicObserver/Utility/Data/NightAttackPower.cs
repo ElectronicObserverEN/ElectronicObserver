@@ -184,8 +184,8 @@ public static class NightAttackPower
 
 	private static double DGunMod(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.EquipmentId is
-			EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai2 or
-			EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3
+			EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiNi or
+			EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiSan
 		) switch
 		{
 			0 => 1,
@@ -194,7 +194,7 @@ public static class NightAttackPower
 		};
 
 	private static double DKai3GunMod(this IShipData ship) => ship.AllSlotInstance
-			.Count(e => e?.EquipmentId == EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3) switch
+			.Count(e => e?.EquipmentId == EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiSan) switch
 	{
 		0 => 1,
 		_ => 1.05,

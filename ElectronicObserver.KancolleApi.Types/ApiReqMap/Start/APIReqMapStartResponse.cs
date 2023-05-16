@@ -32,6 +32,13 @@ public class ApiReqMapStartResponse : IMapProgressApi
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiColorNo { get; set; } = default!;
 
+	/// <summary>
+	/// Enemy fleet preview. Only one element against single fleet. Two elements if fighting combined fleet.
+	/// </summary>
+	[JsonPropertyName("api_e_deck_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public List<EDeckInfo>? ApiEDeckInfo { get; set; } = default!;
+
 	[JsonPropertyName("api_event_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiEventId { get; set; } = default!;

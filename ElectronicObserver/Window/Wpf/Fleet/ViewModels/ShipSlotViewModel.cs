@@ -60,8 +60,6 @@ public class ShipSlotViewModel : ObservableObject
 
 	public EquipmentIconType EquipmentIconType { get; set; } = EquipmentIconType.Nothing;
 
-	public ImageSource? EquipmentIcon => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType);
-
 	private bool NumericProficiency { get; set; }
 	private LevelVisibilityFlag LevelVisibilityFlag { get; set; }
 

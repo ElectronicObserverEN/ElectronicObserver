@@ -226,7 +226,7 @@ public static class ShipDataExtensions
 
 	public static bool HasAaRocketMod(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
-			EquipmentId.AAGun_12cm30tubeRocketLauncherKai2)
+			EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi)
 		>= count;
 
 	public static bool HasHighAngleMusashi(this IShipData ship, int count = 1) => ship.AllSlotInstance
@@ -263,6 +263,12 @@ public static class ShipDataExtensions
 	public static bool HasHighAngleAtlantaGfcs(this IShipData ship, int count = 1) =>
 		ship.HighAngleAtlantaGfcsCount() >= count;
 
+	public static bool HasHarunaGun(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSan_DazzleCamouflageSpecification or
+			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon)
+		>= count;
+
 	public static bool HasHighAngleConcentrated(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
 			EquipmentId.SecondaryGun_10cmTwinHighangleGunMountBatteryConcentratedDeployment)
@@ -270,7 +276,7 @@ public static class ShipDataExtensions
 
 	public static bool HasYamatoRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
-			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2 or
+			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKaiNi or
 			EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC)
 		>= count;
 

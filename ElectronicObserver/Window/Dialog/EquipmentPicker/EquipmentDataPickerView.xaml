@@ -6,6 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.EquipmentPicker"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:p="clr-namespace:ElectronicObserver.Properties.Window.Dialog"
@@ -49,25 +50,8 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" DataContext="{Binding Filters}">
-			<ItemsControl ItemsSource="{Binding TypeFilters}">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<WrapPanel Orientation="Horizontal" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<CheckBox Content="{Binding Display}" IsChecked="{Binding IsChecked}" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-
-			<TextBox
-				Width="300"
-				HorizontalAlignment="Left"
-				Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
-				/>
+		<StackPanel Grid.Row="0">
+			<filter:EquipmentFilterControl DataContext="{Binding Filters}" />
 		</StackPanel>
 
 		<DataGrid

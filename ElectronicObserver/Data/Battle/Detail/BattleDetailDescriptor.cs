@@ -321,6 +321,11 @@ public static class BattleDetailDescriptor
 					sb.Append($"{BattleRes.Contact}: ").Append(Constants.GetSearchingResult(p.SearchingFriend));
 					sb.Append($" / {BattleRes.EnemyContact}: ").AppendLine(Constants.GetSearchingResult(p.SearchingEnemy));
 
+					if (p.SmokeCount > 0)
+					{
+						sb.AppendLine($"{BattleRes.SmokeScreen} x{p.SmokeCount}");
+					}
+
 					sb.AppendLine();
 
 					break;

@@ -6,119 +6,9 @@ namespace ElectronicObserverTypes.Extensions;
 
 public static class EquipmentTypesExtensions
 {
-	public static IEnumerable<EquipmentTypes> ToTypes(this EquipmentTypeGroup group) => group switch
-	{
-		EquipmentTypeGroup.MainGun => new[]
-		{
-			EquipmentTypes.MainGunSmall,
-			EquipmentTypes.MainGunMedium,
-			EquipmentTypes.MainGunLarge,
-			EquipmentTypes.MainGunLarge2,
-		},
-
-		EquipmentTypeGroup.Secondary => new[]
-		{
-			EquipmentTypes.SecondaryGun,
-			EquipmentTypes.AAGun 
-		},
-
-		EquipmentTypeGroup.Torpedo => new[]
-		{
-			EquipmentTypes.Torpedo,
-			EquipmentTypes.MidgetSubmarine,
-			EquipmentTypes.SubmarineTorpedo,
-		},
-
-		EquipmentTypeGroup.Fighter => new[]
-		{
-			EquipmentTypes.CarrierBasedFighter,
-			EquipmentTypes.JetFighter,
-		},
-
-		EquipmentTypeGroup.Bomber => new[]
-		{
-			EquipmentTypes.CarrierBasedBomber,
-			EquipmentTypes.JetBomber,
-		},
-
-		EquipmentTypeGroup.TorpedoBomber => new[]
-		{
-			EquipmentTypes.CarrierBasedTorpedo,
-			EquipmentTypes.JetTorpedo,
-		},
-
-		EquipmentTypeGroup.LandBasedFighters => new[]
-		{
-			EquipmentTypes.Interceptor,
-		},
-
-		EquipmentTypeGroup.LandBasedBombers => new[]
-		{
-			EquipmentTypes.LandBasedAttacker,
-			EquipmentTypes.HeavyBomber,
-		},
-
-		EquipmentTypeGroup.SeaplaneAndRecons => new[]
-		{
-			EquipmentTypes.CarrierBasedRecon,
-			EquipmentTypes.SeaplaneRecon,
-			EquipmentTypes.SeaplaneBomber,
-			EquipmentTypes.Autogyro,
-			EquipmentTypes.ASPatrol,
-			EquipmentTypes.FlyingBoat,
-			EquipmentTypes.SeaplaneFighter,
-			EquipmentTypes.LandBasedRecon,
-			EquipmentTypes.JetRecon,
-			EquipmentTypes.CarrierBasedRecon2,
-		},
-
-		EquipmentTypeGroup.Radar => new[]
-		{
-			EquipmentTypes.RadarSmall,
-			EquipmentTypes.RadarLarge,
-			EquipmentTypes.RadarLarge2,
-		},
-
-		EquipmentTypeGroup.ASW => new[]
-		{
-			EquipmentTypes.Sonar,
-			EquipmentTypes.DepthCharge,
-			EquipmentTypes.SonarLarge,
-		},
-
-		EquipmentTypeGroup.Other => new[]
-		{
-			EquipmentTypes.ExtraArmor,
-			EquipmentTypes.Engine,
-			EquipmentTypes.AAShell,
-			EquipmentTypes.APShell,
-			EquipmentTypes.DamageControl,
-			EquipmentTypes.ExtraArmorMedium,
-			EquipmentTypes.ExtraArmorLarge,
-			EquipmentTypes.Searchlight,
-			EquipmentTypes.RepairFacility,
-			EquipmentTypes.StarShell,
-			EquipmentTypes.CommandFacility,
-			EquipmentTypes.AviationPersonnel,
-			EquipmentTypes.AADirector,
-			EquipmentTypes.Rocket,
-			EquipmentTypes.SurfaceShipPersonnel,
-			EquipmentTypes.SearchlightLarge,
-			EquipmentTypes.Ration,
-			EquipmentTypes.Supplies,
-			EquipmentTypes.TransportMaterial,
-			EquipmentTypes.SubmarineEquipment,
-		},
-
-		EquipmentTypeGroup.Transport => new[]
-		{
-			EquipmentTypes.LandingCraft,
-			EquipmentTypes.TransportContainer,
-			EquipmentTypes.SpecialAmphibiousTank,
-		},
-
-		_ => Enumerable.Empty<EquipmentTypes>()
-	};
+	public static IEnumerable<EquipmentTypes> ToTypes(this EquipmentTypeGroup group)
+		=> Enum.GetValues<EquipmentTypes>()
+			.Where(e => e.ToGroup() == group);
 
 	public static EquipmentTypeGroup ToGroup(this EquipmentTypes type) => type switch
 	{
@@ -186,13 +76,14 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.Ration or
 		EquipmentTypes.Supplies or
 		EquipmentTypes.TransportMaterial or
-		EquipmentTypes.SubmarineEquipment => EquipmentTypeGroup.Other,
+		EquipmentTypes.SubmarineEquipment or
+		EquipmentTypes.ArmyInfantry or
+		EquipmentTypes.SurfaceShipEquipment => EquipmentTypeGroup.Other,
 
 		EquipmentTypes.LandingCraft or
 		EquipmentTypes.TransportContainer or
 		EquipmentTypes.SpecialAmphibiousTank => EquipmentTypeGroup.Transport,
 
-		EquipmentTypes.VTFuse or
-		_ => EquipmentTypeGroup.Unknown,
+		_ => EquipmentTypeGroup.Other,
 	};
 }

@@ -5,6 +5,7 @@
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentList"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
@@ -67,6 +68,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
@@ -85,7 +87,9 @@
 			</MenuItem>
 		</Menu>
 
-		<Grid Grid.Row="1">
+		<filter:EquipmentFilterControl Grid.Row="1" DataContext="{Binding Filters}" />
+
+		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="{Binding EquipmentGridWidth, Mode=TwoWay}" />
 				<ColumnDefinition Width="Auto" />

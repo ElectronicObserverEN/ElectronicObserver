@@ -176,14 +176,5 @@ namespace ElectronicObserverTypes.Properties {
                 return ResourceManager.GetString("Transport", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 不明.
-        /// </summary>
-        public static string Unknown {
-            get {
-                return ResourceManager.GetString("Unknown", resourceCulture);
-            }
-        }
     }
 }

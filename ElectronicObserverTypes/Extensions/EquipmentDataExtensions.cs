@@ -19,7 +19,8 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 副砲系かどうか </summary>
 	public static bool IsSecondaryGun(this IEquipmentDataMaster equip) => equip.CategoryType is
-		EquipmentTypes.SecondaryGun;
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.SecondaryGun2;
 
 	/// <summary> 魚雷系かどうか </summary>
 	public static bool IsTorpedo(this IEquipmentDataMaster equip) => equip.CategoryType is
@@ -179,7 +180,7 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 対空噴進弾幕が発動可能なロケットランチャーかどうか </summary>
 	public static bool IsAARocketLauncher(this IEquipmentDataMaster equip) => equip.EquipmentId is
-		EquipmentId.AAGun_12cm30tubeRocketLauncherKai2;
+		EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi;
 
 	public static bool IsSeaplane(this IEquipmentDataMaster equip) => equip.CategoryType switch
 	{
