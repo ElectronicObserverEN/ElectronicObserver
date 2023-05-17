@@ -16,17 +16,27 @@ public class PhaseSearching : PhaseBase
 	private DetectionType PlayerDetectionType { get; }
 	private DetectionType EnemyDetectionType { get; }
 
+	public int? SmokeCount { get; }
+
 	public string Display => $"""
 		{BattleRes.Formation}: {Constants.GetFormation(PlayerFormationType)} / {BattleRes.EnemyFormation}: {Constants.GetFormation(EnemyFormationType)}
 		{BattleRes.Engagement}: {Constants.GetEngagementForm(EngagementType)}
 		{BattleRes.Contact}: {Constants.GetSearchingResult(PlayerDetectionType)} / {BattleRes.EnemyContact}: {Constants.GetSearchingResult(EnemyDetectionType)}
-		""";
+		""" + SmokeScreenDisplay;
+
+	private string SmokeScreenDisplay => SmokeCount switch
+	{
+		> 0 => $"\r\n{BattleRes.SmokeScreen} x{SmokeCount}",
+		_ => "",
+	};
 
 	public PhaseSearching(IBattleApiResponse battle)
 	{
 		PlayerFormationType = (FormationType)battle.ApiFormation[0];
 		EnemyFormationType = (FormationType)battle.ApiFormation[1];
 		EngagementType = (EngagementType)battle.ApiFormation[2];
+
+		SmokeCount = battle.ApiSmokeType;
 	}
 
 	public PhaseSearching(IDaySearch battle) : this((IBattleApiResponse)battle)
