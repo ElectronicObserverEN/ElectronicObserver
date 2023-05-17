@@ -9,9 +9,9 @@ public class PhaseSearching : PhaseBase
 {
 	public string Title => BattleRes.PhaseSearching;
 
-	private FormationType PlayerFormationType { get; }
-	private FormationType EnemyFormationType { get; }
-	private EngagementType EngagementType { get; }
+	public FormationType PlayerFormationType { get; }
+	public FormationType EnemyFormationType { get; }
+	public EngagementType EngagementType { get; }
 
 	private DetectionType PlayerDetectionType { get; }
 	private DetectionType EnemyDetectionType { get; }

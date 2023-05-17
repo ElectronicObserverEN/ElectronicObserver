@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -33,6 +34,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 	public SortieDetailTranslationViewModel SortieDetail { get; }
 	private BattleFactory BattleFactory { get; }
 
+	public DateTime? StartTime { get; set; }
 	public int World { get; }
 	public int Map { get; }
 	private BattleFleets Fleets { get; }
@@ -53,7 +55,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 	private List<object> ApiResponseCache { get; } = new();
 
-	public void AddApiResponse(object response)
+	public void AddApiFile(object response)
 	{
 		if (response is ApiReqMapStartResponse start)
 		{

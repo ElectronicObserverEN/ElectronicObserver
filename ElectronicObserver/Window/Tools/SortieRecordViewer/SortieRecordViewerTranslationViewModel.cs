@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Properties.Window.Dialog;
+﻿using ElectronicObserver.Properties.Data;
+using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
@@ -15,6 +16,7 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string FleetImage => SortieRecordViewer.FleetImage;
 	public string CopyReplay => SortieRecordViewer.CopyReplay;
 	public string SortieDetail => "出撃詳細";
+	public string SmokeScreenCsv => BattleRes.SmokeScreen + "CSV";
 
 	public string FailedToParseApiData => SortieRecordViewer.FailedToParseApiData;
 }

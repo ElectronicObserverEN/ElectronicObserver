@@ -21,10 +21,15 @@ using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 using Microsoft.EntityFrameworkCore;
+using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -41,8 +46,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public List<object> Worlds { get; }
 	public List<object> Maps { get; }
 
-	public object World { get; set; } = 56;
-	public object Map { get; set; } = 1;
+	public object World { get; set; } = AllRecords;
+	public object Map { get; set; } = AllRecords;
 
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
@@ -59,6 +64,12 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
+
+	public SortieRecordViewModel? SelectedSortie { get; set; }
+
+	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = new();
+
+	public string? StatusBarText { get; set; }
 
 	public SortieRecordViewerViewModel()
 	{
@@ -95,6 +106,11 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			.Cast<object>()
 			.Prepend(AllRecords)
 			.ToList();
+
+		SelectedSorties.CollectionChanged += (sender, args) =>
+		{
+			StatusBarText = string.Format("選択項目の合計: {0} / {1}", SelectedSorties.Count, Sorties.Count);
+		};
 	}
 
 	[RelayCommand]
@@ -163,24 +179,24 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		"api_req_map/next";
 
 	[RelayCommand]
-	private void CopyReplayToClipboard(SortieRecordViewModel? sortie)
+	private void CopyReplayToClipboard()
 	{
-		if (sortie is null) return;
+		if (SelectedSortie is null) return;
 
-		if (!sortie.Model.ApiFiles.Any())
+		if (!SelectedSortie.Model.ApiFiles.Any())
 		{
-			sortie.Model.ApiFiles = Db.ApiFiles
-				.Where(f => f.SortieRecordId == sortie.Model.Id)
+			SelectedSortie.Model.ApiFiles = Db.ApiFiles
+				.Where(f => f.SortieRecordId == SelectedSortie.Model.Id)
 				.ToList();
 		}
 
-		ReplayData replay = sortie.Model.ToReplayData();
+		ReplayData replay = SelectedSortie.Model.ToReplayData();
 
 		replay.Battles = new();
 
 		ReplayBattle battle = new();
 
-		foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+		foreach (ApiFile apiFile in SelectedSortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
 		{
 			if (IsMapProgressApi(apiFile.Name))
 			{
@@ -262,19 +278,19 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand]
-	private void OpenFleetImageGenerator(SortieRecordViewModel? sortie)
+	private void OpenFleetImageGenerator()
 	{
-		if (sortie is null) return;
+		if (SelectedSortie is null) return;
 
 		int hqLevel = KCDatabase.Instance.Admiral.Level;
 
-		if (sortie.Model.ApiFiles.Any())
+		if (SelectedSortie.Model.ApiFiles.Any())
 		{
 			// get the last port response right before the sortie started
 			ApiFile? portFile = Db.ApiFiles
 				.Where(f => f.ApiFileType == ApiFileType.Response)
 				.Where(f => f.Name == "api_port/port")
-				.Where(f => f.TimeStamp < sortie.Model.ApiFiles.First().TimeStamp)
+				.Where(f => f.TimeStamp < SelectedSortie.Model.ApiFiles.First().TimeStamp)
 				.OrderByDescending(f => f.TimeStamp)
 				.FirstOrDefault();
 
@@ -300,13 +316,13 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			hqLevel,
-			sortie.Model.FleetData.Fleets.Skip(0).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.Fleets.Skip(1).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.Fleets.Skip(2).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.Fleets.Skip(3).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault().MakeAirBase(),
-			sortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault().MakeAirBase(),
-			sortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault().MakeAirBase()
+			SelectedSortie.Model.FleetData.Fleets.Skip(0).FirstOrDefault().MakeFleet(),
+			SelectedSortie.Model.FleetData.Fleets.Skip(1).FirstOrDefault().MakeFleet(),
+			SelectedSortie.Model.FleetData.Fleets.Skip(2).FirstOrDefault().MakeFleet(),
+			SelectedSortie.Model.FleetData.Fleets.Skip(3).FirstOrDefault().MakeFleet(),
+			SelectedSortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault().MakeAirBase(),
+			SelectedSortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault().MakeAirBase(),
+			SelectedSortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault().MakeAirBase()
 		);
 
 		FleetImageGeneratorImageDataModel model = new()
@@ -329,10 +345,149 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand]
-	private void ShowSortieDetails(SortieRecordViewModel? sortie)
+	private void ShowSortieDetails()
 	{
-		if (sortie is null) return;
+		if (SelectedSortie is null) return;
 
+		SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(SelectedSortie);
+
+		if (sortieDetail is null) return;
+
+		new SortieDetailWindow(sortieDetail).Show();
+
+	}
+
+	private static string CsvSeparator => ";";
+
+	[RelayCommand]
+	private void CopySmokerDataCsv()
+	{
+		List<(SortieDetailViewModel SortieDetail, BattleData Battle)> data = new();
+
+		foreach (SortieRecordViewModel sortieRecord in SelectedSorties)
+		{
+			SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(sortieRecord);
+
+			if (sortieDetail is null) return;
+
+			BattleData? smokerBattle = null;
+
+			foreach (BattleData battleData in sortieDetail.Nodes.OfType<BattleNode>().Select(n => n.FirstBattle))
+			{
+				bool activatedSmoker = battleData.Phases.OfType<PhaseSearching>().Any(p => p.SmokeCount > 0);
+
+				if (activatedSmoker)
+				{
+					smokerBattle = battleData;
+					break;
+				}
+			}
+
+			if (smokerBattle is null) continue;
+
+			data.Add((sortieDetail, smokerBattle));
+		}
+
+		List<string> csvData = new()
+		{
+			string.Join(CsvSeparator, new List<string>
+			{
+				"開始",
+				"SN",
+				"出撃回数",
+				"煙幕",
+				"自軍陣形",
+				"敵軍陣形",
+				"交戦形態",
+				"フェーズ",
+				"砲撃・雷撃",
+				"攻撃艦",
+				"防御艦",
+				"Lv",
+				"Cond",
+				"回避",
+				"CL",
+				"防御艦_随伴",
+			}),
+		};
+		int sampleNumber = 1;
+		int sortieNumber = 1;
+
+		foreach ((SortieDetailViewModel sortieDetail, BattleData battle) in data)
+		{
+			PhaseSearching searching = battle.Phases.OfType<PhaseSearching>().First();
+
+			foreach (PhaseBase phase in battle.Phases.Where(p => p is PhaseShelling or PhaseTorpedo))
+			{
+				if (phase is PhaseShelling shelling)
+				{
+					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays.Where(a => a.Attacker.MasterShip.IsAbyssalShip))
+					{
+						foreach (DayAttack attack in attackDisplay.Attacks)
+						{
+							string csvLine = GetSmokerCsvLine(sortieDetail, searching, attackDisplay, attack, shelling.Title, sampleNumber, sortieNumber);
+							csvData.Add(csvLine);
+							sampleNumber++;
+						}
+					}
+				}
+
+				if (phase is PhaseTorpedo torpedo)
+				{
+					foreach (PhaseShellingAttackViewModel attackDisplay in torpedo.AttackDisplays.Where(a => a.Attacker.MasterShip.IsAbyssalShip))
+					{
+						foreach (DayAttack attack in attackDisplay.Attacks)
+						{
+							string csvLine = GetSmokerCsvLine(sortieDetail, searching, attackDisplay, attack, torpedo.Title, sampleNumber, sortieNumber);
+							csvData.Add(csvLine);
+							sampleNumber++;
+						}
+					}
+				}
+			}
+
+			sortieNumber++;
+		}
+
+		Clipboard.SetText(string.Join("\n", csvData));
+	}
+
+	private static string GetSmokerCsvLine(SortieDetailViewModel sortieDetail, PhaseSearching searching,
+		PhaseShellingAttackViewModel attackDisplay, DayAttack attack, string phaseTitle, int sampleNumber, int sortieNumber)
+	{
+		return string.Join(CsvSeparator, new List<string>
+		{
+			sortieDetail.StartTime?.ToLocalTime().ToString(),
+			sampleNumber.ToString(),
+			sortieNumber.ToString(),
+			(searching.SmokeCount ?? 0).ToString(),
+			Constants.GetFormation(searching.PlayerFormationType),
+			Constants.GetFormation(searching.EnemyFormationType),
+			Constants.GetEngagementForm(searching.EngagementType),
+			phaseTitle,
+			ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(attack.AttackKind),
+			attack.Attacker.Name,
+			attack.Defender.Name,
+			attack.Defender.Level.ToString(),
+			attack.Defender.Condition.ToString(),
+			attack.Defender.EvasionTotal.ToString(),
+			attack.CriticalFlag switch
+			{
+				HitType.Miss => "CL0",
+				HitType.Hit => "CL1",
+				HitType.Critical => "CL2",
+				_ => throw new NotImplementedException(),
+			},
+			attackDisplay.DefenderIndex.Index switch
+			{
+				0 => "旗艦",
+				_ => "随伴",
+			},
+		});
+	}
+
+	private SortieDetailViewModel? GenerateSortieDetailViewModel(SortieRecordViewModel sortie)
+	{
 		try
 		{
 			if (!sortie.Model.ApiFiles.Any())
@@ -365,20 +520,29 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, new(fleet, escortFleet, fleets, airBases));
 
-			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+			foreach (ApiFile apiFile in sortie.Model.ApiFiles)
 			{
-				object? battleData = apiFile.GetResponseApiData();
+				sortieDetail.StartTime ??= apiFile.TimeStamp;
+
+				object? battleData = apiFile.ApiFileType switch
+				{
+					ApiFileType.Response => apiFile.GetResponseApiData(),
+					ApiFileType.Request => apiFile.GetRequestApiData(),
+					_ => throw new NotImplementedException("Unknown api file type."),
+				};
 
 				if (battleData is null) continue;
 
-				sortieDetail.AddApiResponse(battleData);
+				sortieDetail.AddApiFile(battleData);
 			}
 
-			new SortieDetailWindow(sortieDetail).Show();
+			return sortieDetail;
 		}
 		catch (Exception e)
 		{
 			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
 		}
+
+		return null;
 	}
 }

@@ -16,7 +16,7 @@ public class PhaseShellingAttackViewModel
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
 	private DayAttackKind AttackType { get; }
-	private List<DayAttack> Attacks { get; }
+	public List<DayAttack> Attacks { get; }
 	public string DamageDisplay { get; }
 
 	public PhaseShellingAttackViewModel(BattleFleets fleets, PhaseShellingAttack attack)
