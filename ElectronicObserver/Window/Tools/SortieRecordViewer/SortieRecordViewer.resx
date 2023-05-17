@@ -112,4 +112,13 @@
   <data name="FailedToParseApiData" xml:space="preserve">
     <value>APIデータの解析に失敗しました。</value>
   </data>
+  <data name="World" xml:space="preserve">
+    <value>海域</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>マップ</value>
+  </data>
+  <data name="SortieDetail" xml:space="preserve">
+    <value>出撃詳細</value>
+  </data>
 </root>

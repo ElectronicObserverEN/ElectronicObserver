@@ -132,4 +132,13 @@
   <data name="FailedToParseApiData" xml:space="preserve">
     <value>Failed to parse API data.</value>
   </data>
+  <data name="World" xml:space="preserve">
+    <value>World</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="SortieDetail" xml:space="preserve">
+    <value>Sortie details</value>
+  </data>
 </root>

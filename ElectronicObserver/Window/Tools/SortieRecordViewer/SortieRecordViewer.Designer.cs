@@ -88,6 +88,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to マップ.
+        /// </summary>
+        internal static string Map {
+            get {
+                return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 検索.
         /// </summary>
         internal static string Search {
@@ -97,11 +106,29 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 出撃詳細.
+        /// </summary>
+        internal static string SortieDetail {
+            get {
+                return ResourceManager.GetString("SortieDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出撃記録.
         /// </summary>
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 海域.
+        /// </summary>
+        internal static string World {
+            get {
+                return ResourceManager.GetString("World", resourceCulture);
             }
         }
     }

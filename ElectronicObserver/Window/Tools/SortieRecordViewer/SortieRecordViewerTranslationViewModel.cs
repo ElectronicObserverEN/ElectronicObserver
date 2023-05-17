@@ -13,9 +13,12 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 
 	public string Search => SortieRecordViewer.Search;
 
+	public string World => SortieRecordViewer.World;
+	public string Map => SortieRecordViewer.Map;
+
 	public string FleetImage => SortieRecordViewer.FleetImage;
 	public string CopyReplay => SortieRecordViewer.CopyReplay;
-	public string SortieDetail => "出撃詳細";
+	public string SortieDetail => SortieRecordViewer.SortieDetail;
 	public string SmokeScreenCsv => BattleRes.SmokeScreen + "CSV";
 
 	public string FailedToParseApiData => SortieRecordViewer.FailedToParseApiData;
