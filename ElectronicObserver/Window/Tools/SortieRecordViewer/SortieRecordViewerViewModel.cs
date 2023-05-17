@@ -421,7 +421,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			{
 				if (phase is PhaseShelling shelling)
 				{
-					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays.Where(a => a.Attacker.MasterShip.IsAbyssalShip))
+					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
 						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
@@ -434,7 +434,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 				if (phase is PhaseTorpedo torpedo)
 				{
-					foreach (PhaseShellingAttackViewModel attackDisplay in torpedo.AttackDisplays.Where(a => a.Attacker.MasterShip.IsAbyssalShip))
+					foreach (PhaseShellingAttackViewModel attackDisplay in torpedo.AttackDisplays)
 					{
 						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
