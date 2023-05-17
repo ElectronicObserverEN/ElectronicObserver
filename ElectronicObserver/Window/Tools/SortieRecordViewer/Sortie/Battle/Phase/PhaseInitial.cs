@@ -172,6 +172,7 @@ public class PhaseInitial : PhaseBase
 						_ => throw new NotImplementedException(),
 					},
 					Level = t.Level,
+					Condition = 49,
 					SlotInstance = t.Equipment
 						.Select(id => id switch
 						{
@@ -209,6 +210,7 @@ public class PhaseInitial : PhaseBase
 			{
 				HPCurrent = t.Hp,
 				Level = t.Level,
+				Condition = 49,
 				SlotInstance = t.Equipment
 					.Select(id => id switch
 					{
