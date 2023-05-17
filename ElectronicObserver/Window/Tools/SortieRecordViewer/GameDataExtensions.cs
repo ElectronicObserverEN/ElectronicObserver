@@ -34,6 +34,7 @@ public static class GameDataExtensions
 		{ } => new ShipDataMock(KcDatabase.MasterShips[(int)ship.Id])
 		{
 			Level = ship.Level,
+			Condition = ship.Condition,
 			IsExpansionSlotAvailable = ship.ExpansionSlot is not null,
 			SlotInstance = ship.EquipmentSlots.Select(s => MakeEquipment(s.Equipment)).ToList(),
 			ExpansionSlotInstance = MakeEquipment(ship.ExpansionSlot?.Equipment),
@@ -147,6 +148,7 @@ public static class GameDataExtensions
 		{
 			// todo: rest of the stats and equipment deep clone
 			Level = ship.Level,
+			Condition = ship.Condition,
 			IsExpansionSlotAvailable = ship.IsExpansionSlotAvailable,
 			SlotInstance = ship.SlotInstance,
 			ExpansionSlotInstance = ship.ExpansionSlotInstance,
