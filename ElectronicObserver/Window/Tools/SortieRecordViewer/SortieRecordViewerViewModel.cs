@@ -401,13 +401,14 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				"交戦形態",
 				"フェーズ",
 				"砲撃・雷撃",
+				"攻撃艦_#",
 				"攻撃艦",
+				"防御艦_#",
 				"防御艦",
 				"Lv",
 				"Cond",
 				"回避",
 				"CL",
-				"防御艦_随伴",
 				"自軍・敵軍",
 			}),
 		};
@@ -467,7 +468,9 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			Constants.GetEngagementForm(searching.EngagementType),
 			phaseTitle,
 			ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(attack.AttackKind),
+			(attackDisplay.AttackerIndex.Index + 1).ToString(),
 			attack.Attacker.Name,
+			(attackDisplay.DefenderIndex.Index + 1).ToString(),
 			attack.Defender.Name,
 			attack.Defender.Level.ToString(),
 			attack.Defender.Condition.ToString(),
@@ -478,11 +481,6 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				HitType.Hit => "CL1",
 				HitType.Critical => "CL2",
 				_ => throw new NotImplementedException(),
-			},
-			attackDisplay.DefenderIndex.Index switch
-			{
-				0 => "旗艦",
-				_ => "随伴",
 			},
 			attackDisplay.AttackerIndex.FleetFlag switch
 			{
