@@ -408,6 +408,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				"回避",
 				"CL",
 				"防御艦_随伴",
+				"自軍・敵軍",
 			}),
 		};
 		int sampleNumber = 1;
@@ -482,6 +483,12 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			{
 				0 => "旗艦",
 				_ => "随伴",
+			},
+			attackDisplay.AttackerIndex.FleetFlag switch
+			{
+				FleetFlag.Player => "自軍",
+				FleetFlag.Enemy => "敵軍",
+				_ => throw new NotImplementedException(),
 			},
 		});
 	}
