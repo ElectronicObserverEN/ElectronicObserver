@@ -16,14 +16,14 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseInitial : PhaseBase
 {
+	public override string Title => BattleRes.Participant;
+
 	private IKCDatabase KcDatabase { get; }
 
 	private List<int> FriendInitialHPs { get; }
 
 	private List<IShipData?> EnemyMembersInstance { get; }
 	private List<IShipData?>? EnemyMembersEscortInstance { get; }
-
-	public string Title => BattleRes.Participant;
 
 	private string PlayerMainFleetTitle => FleetsAfterPhase?.EscortFleet switch
 	{

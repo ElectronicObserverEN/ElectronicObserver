@@ -12,9 +12,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseFriendlySupportInfo : PhaseBase
 {
-	public override bool IsAvailable => true;
-
-	public string Title => BattleRes.FriendlyFleet;
+	public override string Title => BattleRes.FriendlyFleet;
 
 	private List<IShipData?> Ships { get; } = new();
 

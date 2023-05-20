@@ -7,9 +7,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseBaseAirAttack : PhaseBase
 {
-	public override bool IsAvailable => true;
-
-	public string Title => BattleRes.BattlePhaseLandBasedAir;
+	public override string Title => BattleRes.BattlePhaseLandBasedAir;
 
 	public List<PhaseBaseAirAttackUnit> Units { get; } = new();
 

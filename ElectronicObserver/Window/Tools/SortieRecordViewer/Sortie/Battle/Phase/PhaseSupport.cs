@@ -11,16 +11,14 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseSupport : PhaseBase
 {
-	public override bool IsAvailable => true;
-
-	private SupportType ApiSupportFlag { get; }
-	private bool IsNightSupport { get; }
-
-	public string Title => IsNightSupport switch
+	public override string Title => IsNightSupport switch
 	{
 		true => BattleRes.BattlePhaseNightSupportExpedition,
 		_ => BattleRes.BattlePhaseSupportExpedition,
 	};
+
+	private SupportType ApiSupportFlag { get; }
+	private bool IsNightSupport { get; }
 
 	private List<double> Damages { get; }
 	private List<HitType> Criticals { get; }

@@ -3,9 +3,9 @@ using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseBase
+public abstract class PhaseBase
 {
-	public virtual bool IsAvailable { get; } = true;
+	public abstract string Title { get; }
 
 	public BattleFleets? FleetsBeforePhase { get; protected set; }
 	public BattleFleets? FleetsAfterPhase { get; protected set; }

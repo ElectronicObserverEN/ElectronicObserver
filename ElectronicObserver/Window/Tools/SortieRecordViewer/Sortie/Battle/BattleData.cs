@@ -132,4 +132,16 @@ public abstract class BattleData
 		null => null,
 		_ => new(a),
 	};
+
+	protected static PhaseTorpedo? GetTorpedoPhase(ApiRaigekiClass? a, TorpedoPhase torpedoPhase) => a switch
+	{
+		null => null,
+		_ => new(a, torpedoPhase),
+	};
+
+	protected static PhaseShelling? GetShellingPhase(ApiHougeki1? a, DayShellingPhase dayShellingPhase) => a switch
+	{
+		null => null,
+		_ => new(a, dayShellingPhase),
+	};
 }

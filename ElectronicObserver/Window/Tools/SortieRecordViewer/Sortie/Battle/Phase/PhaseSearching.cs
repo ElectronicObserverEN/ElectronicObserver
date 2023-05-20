@@ -7,7 +7,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseSearching : PhaseBase
 {
-	public string Title => BattleRes.PhaseSearching;
+	public override string Title => BattleRes.PhaseSearching;
 
 	public FormationType PlayerFormationType { get; }
 	public FormationType EnemyFormationType { get; }

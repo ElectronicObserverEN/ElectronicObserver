@@ -11,10 +11,10 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseNightInitial : PhaseBase
 {
+	public override string Title => "夜戦開始";
+
 	private IKCDatabase KcDatabase { get; }
 	private BattleFleets Fleets { get; }
-
-	public string Title => "夜戦開始";
 
 	private bool IsEscort { get; }
 	private bool IsEnemyEscort { get; }

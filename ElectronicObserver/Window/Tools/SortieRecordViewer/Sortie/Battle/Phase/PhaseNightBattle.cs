@@ -12,11 +12,11 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseNightBattle : PhaseBase
 {
+	public override string Title => BattleRes.BattlePhaseNightBattle;
+
 	private ApiHougeki ShellingData { get; }
 
-	public string Title => BattleRes.BattlePhaseNightBattle;
-
-	public List<PhaseNightBattleAttack> Attacks { get; } = new();
+	private List<PhaseNightBattleAttack> Attacks { get; } = new();
 	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = new();
 
 	public PhaseNightBattle(ApiHougeki shellingData)

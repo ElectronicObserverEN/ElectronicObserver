@@ -2,9 +2,7 @@
 
 public class PhaseJetBaseAirAttack : PhaseBase
 {
-	public override bool IsAvailable => false;
-
-	public string Title => "";
+	public override string Title => "";
 
 	public string Display => "";
 }

@@ -16,13 +16,7 @@ public enum TorpedoPhase
 
 public class PhaseTorpedo : PhaseBase
 {
-	private ApiRaigekiClass? BattleApiOpeningAtack { get; }
-	private TorpedoPhase Phase { get; }
-
-	[MemberNotNullWhen(true, nameof(BattleApiOpeningAtack))]
-	public override bool IsAvailable => BattleApiOpeningAtack is not null;
-
-	public string Title => Phase switch
+	public override string Title => Phase switch
 	{
 		TorpedoPhase.Opening => BattleRes.BattlePhaseOpeningTorpedo,
 		TorpedoPhase.Closing => BattleRes.BattlePhaseClosingTorpedo,
@@ -30,10 +24,13 @@ public class PhaseTorpedo : PhaseBase
 		_ => "???",
 	};
 
+	private ApiRaigekiClass BattleApiOpeningAtack { get; }
+	private TorpedoPhase Phase { get; }
+
 	private List<PhaseShellingAttack> Attacks { get; } = new();
 	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseTorpedo(ApiRaigekiClass? battleApiOpeningAtack, TorpedoPhase phase)
+	public PhaseTorpedo(ApiRaigekiClass battleApiOpeningAtack, TorpedoPhase phase)
 	{
 		BattleApiOpeningAtack = battleApiOpeningAtack;
 		Phase = phase;
@@ -59,8 +56,6 @@ public class PhaseTorpedo : PhaseBase
 
 	private void ProcessPlayerAttacks()
 	{
-		if (!IsAvailable) return;
-
 		for (int i = 0; i < BattleApiOpeningAtack.ApiFrai.Count; i++)
 		{
 			if (BattleApiOpeningAtack.ApiFrai[i] < 0) continue;
@@ -97,8 +92,6 @@ public class PhaseTorpedo : PhaseBase
 
 	private void ProcessEnemyAttacks()
 	{
-		if (!IsAvailable) return;
-
 		for (int i = 0; i < BattleApiOpeningAtack.ApiErai.Count; i++)
 		{
 			if (BattleApiOpeningAtack.ApiErai[i] < 0) continue;

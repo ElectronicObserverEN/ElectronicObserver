@@ -11,9 +11,9 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseFriendlyShelling : PhaseBase
 {
-	private ApiHougeki ShellingData { get; }
+	public override string Title => BattleRes.BattlePhaseFriendlyShelling;
 
-	public string Title => BattleRes.BattlePhaseFriendlyShelling;
+	private ApiHougeki ShellingData { get; }
 
 	private List<PhaseNightBattleAttack> Attacks { get; } = new();
 	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = new();

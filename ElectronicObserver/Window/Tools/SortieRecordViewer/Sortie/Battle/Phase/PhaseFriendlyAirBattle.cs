@@ -1,10 +1,10 @@
-﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+﻿using ElectronicObserver.Properties.Data;
+
+namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 public class PhaseFriendlyAirBattle : PhaseBase
 {
-	public override bool IsAvailable => false;
-
-	public string Title => "";
+	public override string Title => BattleRes.BattlePhaseFriendlyShelling;
 
 	public string Display => "";
 }

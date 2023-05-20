@@ -16,6 +16,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseAirBattleBase : PhaseBase
 {
+	public override string Title => BattleRes.BattlePhaseAirBattle;
+
 	/// <summary>
 	/// <see cref="IApiAirBattle" /> or <see cref="ApiInjectionKouku" />
 	/// </summary>

@@ -18,12 +18,7 @@ public enum DayShellingPhase
 
 public class PhaseShelling : PhaseBase
 {
-	private ApiHougeki1? ShellingData { get; }
-	private DayShellingPhase DayShellingPhase { get; }
-
-	public override bool IsAvailable => ShellingData is not null;
-
-	public virtual string Title => DayShellingPhase switch
+	public override string Title => DayShellingPhase switch
 	{
 		DayShellingPhase.First => BattleRes.BattlePhaseShellingFirst,
 		DayShellingPhase.Second => BattleRes.BattlePhaseShellingSecond,
@@ -31,6 +26,9 @@ public class PhaseShelling : PhaseBase
 
 		_ => "???",
 	};
+
+	private ApiHougeki1? ShellingData { get; }
+	private DayShellingPhase DayShellingPhase { get; }
 
 	private List<PhaseShellingAttack> Attacks { get; } = new();
 	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();
