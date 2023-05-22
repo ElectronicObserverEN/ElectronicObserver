@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -23,7 +24,7 @@ public class BattleFleets
 		AirBases = airBases ?? new();
 	}
 
-	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases)
+	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases.Select(CloneAirBase).ToList())
 	{
 		EnemyFleet = CloneFleet(EnemyFleet),
 		EnemyEscortFleet = CloneFleet(EnemyEscortFleet),
@@ -34,6 +35,13 @@ public class BattleFleets
 	{
 		null => null,
 		_ => fleet.DeepClone(),
+	};
+
+	[return: NotNullIfNotNull(nameof(ab))]
+	private static IBaseAirCorpsData? CloneAirBase(IBaseAirCorpsData? ab) => ab switch
+	{
+		null => null,
+		_ => ab.DeepClone(),
 	};
 
 	public IShipData? GetShip(BattleIndex index) => index.FleetFlag switch
@@ -60,5 +68,10 @@ public class BattleFleets
 			true => EnemyFleet?.MembersInstance[index.Index],
 			_ => EnemyEscortFleet?.MembersInstance[index.Index - EnemyFleet?.MembersInstance.Count ?? 6],
 		},
+	};
+
+	public IBaseAirCorpsData? GetAirBase(BattleIndex index) => index.FleetFlag switch
+	{
+		FleetFlag.Player => AirBases[index.Index],
 	};
 }

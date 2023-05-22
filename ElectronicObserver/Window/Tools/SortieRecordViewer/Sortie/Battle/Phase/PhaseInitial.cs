@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using ElectronicObserver.Data;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
@@ -21,6 +22,7 @@ public class PhaseInitial : PhaseBase
 	private IKCDatabase KcDatabase { get; }
 
 	private List<int> FriendInitialHPs { get; }
+	private List<int> FriendMaxHPs { get; }
 
 	private List<IShipData?> EnemyMembersInstance { get; }
 	private List<IShipData?>? EnemyMembersEscortInstance { get; }
@@ -45,6 +47,12 @@ public class PhaseInitial : PhaseBase
 	public string? AirBaseDisplay => HasAirBaseAttack switch
 	{
 		true => MakeAirBaseString(),
+		_ => null,
+	}; 
+	
+	public string? AirRaidAirBaseDisplay => IsAirBaseRaid switch
+	{
+		true => MakeAirRaidAirBaseString(),
 		_ => null,
 	};
 
@@ -142,6 +150,8 @@ public class PhaseInitial : PhaseBase
 			).Where(str => str != null))}",
 	};
 
+	public bool IsAirBaseRaid { get; }
+
 	public bool HasAirBaseAttack { get; }
 
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IBattleApiResponse battle)
@@ -156,6 +166,7 @@ public class PhaseInitial : PhaseBase
 		};
 
 		FriendInitialHPs = battle.ApiFNowhps;
+		FriendMaxHPs = battle.ApiFMaxhps;
 
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
@@ -200,6 +211,47 @@ public class PhaseInitial : PhaseBase
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
 
+	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ApiDestructionBattle battle)
+	{
+		KcDatabase = kcDatabase;
+		FleetsBeforePhase = fleets;
+		IsAirBaseRaid = true;
+		HasAirBaseAttack = true;
+
+		FriendInitialHPs = battle.ApiFNowhps;
+		FriendMaxHPs = battle.ApiFMaxhps;
+
+		EnemyMembersInstance = battle.ApiShipKe
+			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
+			.Zip(battle.ApiESlot, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
+			.Zip(battle.ApiENowhps, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
+			.Select(t => t.Id switch
+			{
+				> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
+				{
+					HPCurrent = t.Hp switch
+					{
+						JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
+						JsonElement { ValueKind: JsonValueKind.String } s => KcDatabase.MasterShips[t.Id].HPMin,
+						_ => throw new NotImplementedException(),
+					},
+					Level = t.Level,
+					Condition = 49,
+					SlotInstance = t.Equipment
+						.Select(id => id switch
+						{
+							> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
+							_ => null,
+						})
+						.Cast<IEquipmentData?>()
+						.ToList(),
+				},
+				_ => null,
+			})
+			.Cast<IShipData?>()
+			.ToList();
+	}
+
 	private List<IShipData?>? MakeEnemyEscortFleet(IEnemyCombinedFleetBattle battle) => battle.ApiShipKeCombined
 		.Zip(battle.ApiShipLvCombined, (id, level) => (Id: id, Level: level))
 		.Zip(battle.ApiESlotCombined, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
@@ -242,11 +294,30 @@ public class PhaseInitial : PhaseBase
 			};
 		}
 
-		foreach ((IShipData? ship, int hp) in battleFleets.Fleet.MembersInstance.Zip(FriendInitialHPs))
+		if (IsAirBaseRaid)
 		{
-			if (ship is not ShipDataMock s) continue;
+			foreach ((IBaseAirCorpsData? airBase, int hp) in battleFleets.AirBases.Zip(FriendMaxHPs))
+			{
+				if (airBase is not BaseAirCorpsDataMock ab) continue;
 
-			s.HPCurrent = hp;
+				ab.HPMax = hp;
+			}
+
+			foreach ((IBaseAirCorpsData? airBase, int hp) in battleFleets.AirBases.Zip(FriendInitialHPs))
+			{
+				if (airBase is not BaseAirCorpsDataMock ab) continue;
+
+				ab.HPCurrent = hp;
+			}
+		}
+		else
+		{
+			foreach ((IShipData? ship, int hp) in battleFleets.Fleet.MembersInstance.Zip(FriendInitialHPs))
+			{
+				if (ship is not ShipDataMock s) continue;
+
+				s.HPCurrent = hp;
+			}
 		}
 
 		FleetsAfterPhase = battleFleets.Clone();
@@ -279,6 +350,26 @@ public class PhaseInitial : PhaseBase
 				string.Join(", ", corps.Squadrons.Values
 					.Where(sq => sq is { State: 1, EquipmentInstance: not null })
 					.Select(sq => sq.EquipmentInstance!.NameWithLevel)));
+		}
+
+		return sb.ToString();
+	}
+
+	private string MakeAirRaidAirBaseString()
+	{
+		StringBuilder sb = new();
+
+		sb.AppendLine(ConstantsRes.BattleDetail_FriendFleet);
+
+		for (int i = 0; i < FriendInitialHPs.Count; i++)
+		{
+			if (FriendMaxHPs[i] <= 0)
+				continue;
+
+			sb.AppendFormat(BattleRes.OutputFriendBase + "\r\n\r\n",
+				i + 1,
+				i + 1,
+				FriendInitialHPs[i], FriendMaxHPs[i]);
 		}
 
 		return sb.ToString();

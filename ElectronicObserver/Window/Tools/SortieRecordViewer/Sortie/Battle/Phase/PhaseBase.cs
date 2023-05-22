@@ -37,4 +37,14 @@ public abstract class PhaseBase
 			s.HPCurrent -= damage;
 		}
 	}
+
+	protected static void AddAirBaseDamage(BattleFleets fleets, BattleIndex index, int damage)
+	{
+		IBaseAirCorpsData? airBase = fleets.GetAirBase(index);
+
+		if (airBase is BaseAirCorpsDataMock ab)
+		{
+			ab.HPCurrent -= damage;
+		}
+	}
 }

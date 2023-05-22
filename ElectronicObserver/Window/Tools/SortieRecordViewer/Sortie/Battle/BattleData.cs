@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -13,6 +14,10 @@ public abstract class BattleData
 {
 	public BattleFleets FleetsBeforeBattle => Initial.FleetsAfterPhase!;
 	public BattleFleets FleetsAfterBattle { get; protected set; }
+
+	public IEnumerable<AirBaseBeforeAfter> AirBaseBeforeAfter => FleetsBeforeBattle.AirBases
+		.Zip(FleetsAfterBattle.AirBases, (before, after) => (Before: before, After: after))
+		.Select((t, i) => new AirBaseBeforeAfter(i, t.Before, t.After));
 
 	public IEnumerable<ShipBeforeAfter> MainFleetBeforeAfter => FleetsBeforeBattle.Fleet.MembersInstance
 		.Zip(FleetsAfterBattle.Fleet.MembersInstance, (before, after) => (Before: before, After: after))
@@ -42,7 +47,7 @@ public abstract class BattleData
 	public SortieCost TotalSupplyCost => MainFleetSupplyCosts
 		.Aggregate(new SortieCost(), (a, b) => a + b);
 
-	protected PhaseInitial Initial { get; }
+	public PhaseInitial Initial { get; }
 	protected PhaseSearching Searching { get; }
 	protected PhaseFriendlySupportInfo? FriendlySupportInfo { get; }
 	protected PhaseSupport? Support { get; }
@@ -55,6 +60,7 @@ public abstract class BattleData
 	{
 		Initial = battle switch
 		{
+			ApiDestructionBattle c => new(kcDatabase, fleets, c),
 			ICombinedBattleApiResponse c => new(kcDatabase, fleets, c),
 			IEnemyCombinedFleetBattle c => new(kcDatabase, fleets, c),
 			_ => new(kcDatabase, fleets, battle),

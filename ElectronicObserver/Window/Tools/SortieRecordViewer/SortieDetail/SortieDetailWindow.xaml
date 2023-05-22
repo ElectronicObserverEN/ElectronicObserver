@@ -104,56 +104,125 @@
 			</StackPanel>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type phase:PhaseInitial}">
-			<StackPanel Style="{StaticResource PhaseStyle}">
+		<DataTemplate DataType="{x:Type phase:AirBaseRaidAttackViewModel}">
+			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="==" />
-					<Run Text="{Binding Title, Mode=OneWay}" />
-					<Run Text="==" />
+					<Run Text="{Binding AttackerName, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
 				</TextBlock>
-
-				<StackPanel>
-					<TextBlock Text="{Binding PlayerMainFleetDisplay}" />
-				</StackPanel>
-
-				<StackPanel Margin="0 10 0 0">
-					<StackPanel.Style>
-						<Style TargetType="StackPanel">
-							<Setter Property="Visibility" Value="Visible" />
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding PlayerEscortFleetDisplay}" Value="{x:Null}">
-									<Setter Property="Visibility" Value="Collapsed" />
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
-					</StackPanel.Style>
-
-					<TextBlock Text="{Binding PlayerEscortFleetDisplay}" />
-				</StackPanel>
-
-				<StackPanel Margin="0 10 0 0">
-					<TextBlock Text="{Binding EnemyMainFleetDisplay}" />
-				</StackPanel>
-
-				<StackPanel Margin="0 10 0 0">
-					<StackPanel.Style>
-						<Style TargetType="StackPanel">
-							<Setter Property="Visibility" Value="Visible" />
-							<Style.Triggers>
-								<DataTrigger Binding="{Binding EnemyEscortFleetDisplay}" Value="{x:Null}">
-									<Setter Property="Visibility" Value="Collapsed" />
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
-					</StackPanel.Style>
-
-					<TextBlock Text="{Binding EnemyEscortFleetDisplay}" />
-				</StackPanel>
-
-				<StackPanel Margin="0 10 0 0" Visibility="{Binding HasAirBaseAttack, Converter={StaticResource BooleanToVisibilityConverter}}">
-					<TextBlock Text="{Binding AirBaseDisplay}" />
-				</StackPanel>
+				<TextBlock Text="{Binding DamageDisplay}" />
 			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseInitial}">
+			<ContentControl>
+				<ContentControl.Style>
+					<Style TargetType="ContentControl">
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<StackPanel Style="{StaticResource PhaseStyle}">
+										<TextBlock>
+											<Run Text="==" />
+											<Run Text="{Binding Title, Mode=OneWay}" />
+											<Run Text="==" />
+										</TextBlock>
+
+										<StackPanel>
+											<TextBlock Text="{Binding PlayerMainFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0">
+											<StackPanel.Style>
+												<Style TargetType="StackPanel">
+													<Setter Property="Visibility" Value="Visible" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding PlayerEscortFleetDisplay}" Value="{x:Null}">
+															<Setter Property="Visibility" Value="Collapsed" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</StackPanel.Style>
+
+											<TextBlock Text="{Binding PlayerEscortFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0">
+											<TextBlock Text="{Binding EnemyMainFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0">
+											<StackPanel.Style>
+												<Style TargetType="StackPanel">
+													<Setter Property="Visibility" Value="Visible" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding EnemyEscortFleetDisplay}" Value="{x:Null}">
+															<Setter Property="Visibility" Value="Collapsed" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</StackPanel.Style>
+
+											<TextBlock Text="{Binding EnemyEscortFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0" Visibility="{Binding HasAirBaseAttack, Converter={StaticResource BooleanToVisibilityConverter}}">
+											<TextBlock Text="{Binding AirBaseDisplay}" />
+										</StackPanel>
+									</StackPanel>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding IsAirBaseRaid}" Value="True">
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<StackPanel Style="{StaticResource PhaseStyle}">
+												<TextBlock>
+													<Run Text="==" />
+													<Run Text="{Binding Title, Mode=OneWay}" />
+													<Run Text="==" />
+												</TextBlock>
+
+												<StackPanel Margin="0 10 0 0">
+													<TextBlock Text="{Binding AirRaidAirBaseDisplay}" />
+												</StackPanel>
+
+												<StackPanel Margin="0 10 0 0">
+													<TextBlock Text="{Binding EnemyMainFleetDisplay}" />
+												</StackPanel>
+
+												<StackPanel Margin="0 10 0 0">
+													<StackPanel.Style>
+														<Style TargetType="StackPanel">
+															<Setter Property="Visibility" Value="Visible" />
+															<Style.Triggers>
+																<DataTrigger Binding="{Binding EnemyEscortFleetDisplay}" Value="{x:Null}">
+																	<Setter Property="Visibility" Value="Collapsed" />
+																</DataTrigger>
+															</Style.Triggers>
+														</Style>
+													</StackPanel.Style>
+
+													<TextBlock Text="{Binding EnemyEscortFleetDisplay}" />
+												</StackPanel>
+
+												<StackPanel Margin="0 10 0 0" Visibility="{Binding HasAirBaseAttack, Converter={StaticResource BooleanToVisibilityConverter}}">
+													<TextBlock Text="{Binding AirBaseDisplay}" />
+												</StackPanel>
+											</StackPanel>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ContentControl.Style>
+			</ContentControl>
+
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type phase:PhaseSearching}">
@@ -283,7 +352,7 @@
 					</TextBlock.Style>
 				</TextBlock>
 
-				<TextBlock Margin="0 0 0 5" Text="{Binding Stage2Display}">
+				<TextBlock Text="{Binding Stage2Display}">
 					<TextBlock.Style>
 						<Style TargetType="TextBlock">
 							<Setter Property="Visibility" Value="Visible" />
@@ -296,8 +365,51 @@
 					</TextBlock.Style>
 				</TextBlock>
 
-				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+				<ItemsControl Margin="0 5 0 0" ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirRaid}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<TextBlock Text="{Binding Display}" />
+
+				<TextBlock Text="{Binding Stage1Display}" />
+
+				<TextBlock Text="{Binding TouchAircraftFriend}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftFriend}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<TextBlock Text="{Binding TouchAircraftEnemy}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftEnemy}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<ItemsControl Margin="0 5 0 0" ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type phase:PhaseJetBaseAirAttack}">
@@ -388,21 +500,48 @@
 			<StackPanel>
 				<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_BattleEnd, Source={StaticResource Proxy}}" />
 
-				<!--  todo: AB data for air raid battles  -->
-
-				<TextBlock Margin="0 4">
-					<TextBlock.Style>
-						<Style TargetType="TextBlock">
-							<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendMainFleet, Source={StaticResource Proxy}}" />
+				<StackPanel>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Visible" />
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding EscortFleetBeforeAfter}" Value="{x:Null}">
-									<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendFleet, Source={StaticResource Proxy}}" />
+								<DataTrigger Binding="{Binding Initial.IsAirBaseRaid}" Value="False">
+									<Setter Property="Visibility" Value="Collapsed" />
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
-					</TextBlock.Style>
-				</TextBlock>
-				<ItemsControl ItemsSource="{Binding MainFleetBeforeAfter}" />
+					</StackPanel.Style>
+
+					<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_FriendFleet, Source={StaticResource Proxy}}" />
+					<ItemsControl ItemsSource="{Binding AirBaseBeforeAfter}" />
+				</StackPanel>
+
+				<StackPanel>
+					<StackPanel.Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Initial.IsAirBaseRaid}" Value="True">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</StackPanel.Style>
+
+					<TextBlock Margin="0 4">
+						<TextBlock.Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendMainFleet, Source={StaticResource Proxy}}" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding EscortFleetBeforeAfter}" Value="{x:Null}">
+										<Setter Property="Text" Value="{Binding DataContext.SortieDetail.BattleDetail_FriendFleet, Source={StaticResource Proxy}}" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+					</TextBlock>
+					<ItemsControl ItemsSource="{Binding MainFleetBeforeAfter}" />
+				</StackPanel>
 
 				<StackPanel>
 					<StackPanel.Style>
@@ -462,13 +601,32 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 
-					<ItemsControl Grid.Row="0" ItemsSource="{Binding FirstBattle.Phases}" />
+					<ItemsControl Grid.Row="0" ItemsSource="{Binding AirBaseRaid.Phases}">
+						<ItemsControl.Style>
+							<Style TargetType="ItemsControl">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding AirBaseRaid}" Value="{x:Null}">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</ItemsControl.Style>
+					</ItemsControl>
 
-					<ContentControl Grid.Row="1" Content="{Binding FirstBattle}" />
+					<!--
+					-->
+					<ContentControl Grid.Row="1" Content="{Binding AirBaseRaid}" />
 
-					<ItemsControl Grid.Row="2" ItemsSource="{Binding SecondBattle.Phases}">
+					<ItemsControl Grid.Row="2" ItemsSource="{Binding FirstBattle.Phases}" />
+
+					<ContentControl Grid.Row="3" Content="{Binding FirstBattle}" />
+
+					<ItemsControl Grid.Row="4" ItemsSource="{Binding SecondBattle.Phases}">
 						<ItemsControl.Style>
 							<Style TargetType="ItemsControl">
 								<Setter Property="Visibility" Value="Visible" />
@@ -481,9 +639,9 @@
 						</ItemsControl.Style>
 					</ItemsControl>
 
-					<ContentControl Grid.Row="3" Content="{Binding SecondBattle}" />
+					<ContentControl Grid.Row="5" Content="{Binding SecondBattle}" />
 
-					<StackPanel Grid.Row="4" Margin="0 10">
+					<StackPanel Grid.Row="6" Margin="0 10">
 						<TextBlock Text="{Binding Result}" />
 						<TextBlock Text="{Binding ResultRank}" />
 						<TextBlock Text="{Binding ResultMvpMain}" />

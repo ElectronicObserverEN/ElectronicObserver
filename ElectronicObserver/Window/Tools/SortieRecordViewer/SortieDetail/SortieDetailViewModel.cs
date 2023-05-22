@@ -16,6 +16,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
@@ -72,6 +73,11 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 			ApiResponseCache.Add(next);
 
+			if (next.ApiDestructionBattle is not null)
+			{
+				ApiResponseCache.Add(next.ApiDestructionBattle);
+			}
+
 			return;
 		}
 
@@ -98,6 +104,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 		if (!ApiResponseCache.Any()) return;
 
 		SortieNode? node = null;
+		BattleBaseAirRaid? abRaid = null;
 		int cell = 0;
 
 		foreach (object response in ApiResponseCache)
@@ -110,6 +117,12 @@ public class SortieDetailViewModel : WindowViewModelBase
 			};
 
 			BattleData? battle = GetBattle(response, node);
+
+			if (battle is BattleBaseAirRaid raid)
+			{
+				abRaid = raid;
+				continue;
+			}
 
 			if (battle is not null)
 			{
@@ -131,7 +144,14 @@ public class SortieDetailViewModel : WindowViewModelBase
 			}
 		}
 
-		Nodes.Add(node ?? new EmptyNode(KCDatabase.Instance, World, Map, cell));
+		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell);
+
+		if (abRaid is not null)
+		{
+			node.AddAirBaseRaid(abRaid);
+		}
+
+		Nodes.Add(node);
 
 		ApiResponseCache.Clear();
 	}
@@ -158,6 +178,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 		ApiReqSortieLdAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleLdAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiDestructionBattle a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleResponse a => null,
 
 		_ => null,
