@@ -27,7 +27,6 @@
 			TargetType="StackPanel"
 			>
 			<Setter Property="Margin" Value="0 5" />
-			<Setter Property="Visibility" Value="{Binding IsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
 		</Style>
 
 		<DataTemplate DataType="{x:Type phase:NightAttack}">

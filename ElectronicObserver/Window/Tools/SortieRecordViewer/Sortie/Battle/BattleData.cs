@@ -47,7 +47,7 @@ public abstract class BattleData
 	protected PhaseFriendlySupportInfo? FriendlySupportInfo { get; }
 	protected PhaseSupport? Support { get; }
 
-	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p?.IsAvailable is true)!;
+	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p is not null)!;
 
 	protected abstract IEnumerable<PhaseBase?> AllPhases();
 
