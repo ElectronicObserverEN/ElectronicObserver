@@ -8,7 +8,7 @@ public class ApiDestructionBattle : IBattleApiResponse
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiAirBaseAttack ApiAirBaseAttack { get; set; } = new();
+	public ApiAirBaseRaid ApiAirBaseAttack { get; set; } = new();
 
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
