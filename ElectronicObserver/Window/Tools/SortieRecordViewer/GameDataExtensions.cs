@@ -169,4 +169,21 @@ public static class GameDataExtensions
 			// LosFit = ship.LosFit,
 		},
 	};
+
+	public static IBaseAirCorpsData DeepClone(this IBaseAirCorpsData ab) => new BaseAirCorpsDataMock
+	{
+		MapAreaID = ab.MapAreaID,
+		AirCorpsID = ab.AirCorpsID,
+		Name = ab.Name,
+		Distance = ab.Distance,
+		Bonus_Distance = ab.Bonus_Distance,
+		Base_Distance = ab.Base_Distance,
+		ActionKind = ab.ActionKind,
+		StrikePoints = ab.StrikePoints,
+		Squadrons = ab.Squadrons,
+		ID = ab.ID,
+		IsAvailable = ab.IsAvailable,
+		HPCurrent = ab.HPCurrent,
+		HPMax = ab.HPMax,
+	};
 }
