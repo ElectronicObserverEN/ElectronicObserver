@@ -56,4 +56,8 @@ public interface IBaseAirCorpsData
 	/// 現在のデータが有効かを取得します。
 	/// </summary>
 	bool IsAvailable { get; }
+
+	int HPCurrent { get; }
+
+	int HPMax { get; }
 }
