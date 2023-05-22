@@ -525,7 +525,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, new(fleet, escortFleet, fleets, airBases));
 
-			foreach (ApiFile apiFile in sortie.Model.ApiFiles)
+			// todo: battle requests contain a flag if smoke screen was activated
+			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
 			{
 				sortieDetail.StartTime ??= apiFile.TimeStamp;
 
