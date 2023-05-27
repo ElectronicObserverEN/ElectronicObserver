@@ -223,7 +223,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Heavy Bomber).
+        ///   Looks up a localized string similar to 大型陸上機.
         /// </summary>
         public static string HeavyBomber {
             get {
@@ -268,7 +268,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Land Assaulter).
+        ///   Looks up a localized string similar to 陸上襲撃機.
         /// </summary>
         public static string LandAssaulter {
             get {
@@ -313,7 +313,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Locked).
+        ///   Looks up a localized string similar to ロック.
         /// </summary>
         public static string Locked {
             get {
@@ -385,7 +385,7 @@ namespace ElectronicObserverTypes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Nothing).
+        ///   Looks up a localized string similar to なし.
         /// </summary>
         public static string Nothing {
             get {

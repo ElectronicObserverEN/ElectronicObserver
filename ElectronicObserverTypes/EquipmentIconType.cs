@@ -145,8 +145,10 @@ public enum EquipmentIconType
 	/// <summary>陸上対潜哨戒機</summary>
 	LandBasedASPatrol = 47,
 
+	/// <summary>陸上襲撃機</summary>
 	LandAssaulter = 48,
 
+	/// <summary>大型陸上機</summary>
 	HeavyBomber = 49,
 
 	/// <summary>夜間水上機</summary>
