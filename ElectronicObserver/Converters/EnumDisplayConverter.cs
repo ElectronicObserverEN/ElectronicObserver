@@ -14,6 +14,7 @@ public class EnumDisplayConverter : IValueConverter
 		{
 			EquipmentTypes e => KCDatabase.Instance.EquipmentTypes[(int)e].NameEN,
 			FormationType f => Constants.GetFormation(f),
+			EquipmentIconType eqIcon => eqIcon.TranslatedName(),
 			Enum e => e.Display(),
 			_ => "???"
 		};
