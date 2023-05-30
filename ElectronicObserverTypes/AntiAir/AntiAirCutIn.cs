@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace ElectronicObserverTypes.AntiAir;
 
 [DebuggerDisplay("Id = {Id}")]
 public record AntiAirCutIn
 {
-	private static List<AntiAirCutIn> RegularCutIns { get; } = new()
+	private static List<AntiAirCutIn> CutIns { get; } = new()
 	{
 		new()
 		{
@@ -708,115 +706,6 @@ public record AntiAirCutIn
 		},
 		new()
 		{
-			Id = 42,
-			FixedBonus = 10,
-			VariableBonus = 1.65,
-			Rate = 0.65,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 2,
-					RadarYamato = 1,
-					AaGun6Aa = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 43,
-			FixedBonus = 8,
-			VariableBonus = 1.6,
-			Rate = 0.6,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 2,
-					RadarYamato = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 44,
-			FixedBonus = 6,
-			VariableBonus = 1.6,
-			Rate = 0.55,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 1,
-					RadarYamato = 1,
-					AaGun6Aa = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 45,
-			FixedBonus = 5,
-			VariableBonus = 1.55,
-			Rate = 0.5,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 1,
-					RadarYamato = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 46,
-			FixedBonus = 8,
-			VariableBonus = 1.55,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.HarunaKaiNiB,
-					},
-					HarunaGun = 1,
-					AaGunConcentrated = 1,
-					AntiAirRadar = 1,
-				},
-			},
-		},
-	};
-
-	private static List<AntiAirCutIn> FletcherCutIns { get; } = new()
-	{
-		new()
-		{
 			Id = 34,
 			FixedBonus = 7,
 			VariableBonus = 1.6,
@@ -917,10 +806,6 @@ public record AntiAirCutIn
 				},
 			},
 		},
-	};
-
-	private static List<AntiAirCutIn> AtlantaCutIns { get; } = new()
-	{
 		new()
 		{
 			Id = 38,
@@ -1040,14 +925,118 @@ public record AntiAirCutIn
 				},
 			},
 		},
+		new()
+		{
+			Id = 42,
+			FixedBonus = 10,
+			VariableBonus = 1.65,
+			Rate = 0.65,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 2,
+					RadarYamato = 1,
+					AaGun6Aa = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 43,
+			FixedBonus = 8,
+			VariableBonus = 1.6,
+			Rate = 0.6,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 2,
+					RadarYamato = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 44,
+			FixedBonus = 6,
+			VariableBonus = 1.6,
+			Rate = 0.55,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 1,
+					RadarYamato = 1,
+					AaGun6Aa = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 45,
+			FixedBonus = 5,
+			VariableBonus = 1.55,
+			Rate = 0.5,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 1,
+					RadarYamato = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 46,
+			FixedBonus = 8,
+			VariableBonus = 1.55,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.HarunaKaiNiB,
+					},
+					HarunaGun = 1,
+					AaGunConcentrated = 1,
+					AntiAirRadar = 1,
+				},
+			},
+		},
 	};
 
-	public static List<AntiAirCutIn> AllCutIns => RegularCutIns
-		.Concat(FletcherCutIns)
-		.Concat(AtlantaCutIns)
+	public static List<AntiAirCutIn> AllCutIns => CutIns
 		.OrderBy(a => ApiPriority.IndexOf(a.Id))
 		.ToList();
 
+	// todo: needs to be updated
 	private static List<int> ApiPriority { get; } = new()
 	{
 		// todo: no idea if 46 is highest priority
@@ -1135,41 +1124,10 @@ public record AntiAirCutIn
 		return false;
 	}
 
-	public static List<AntiAirCutIn> PossibleCutIns(IShipData ship)
-	{
-		var possibleValues = RegularCutIns
-			.Where(a => a.CanBeActivatedBy(ship))
-			.OrderBy(a => ApiPriority.IndexOf(a.Id))
-			.ToList();
-
-		// remove cut-ins with lower priority and lower activation rate
-		// keep cut-ins with lower priority but higher activation rate
-		var i = 0;
-
-		while (possibleValues.Count > i + 1)
-		{
-			if (possibleValues[i].Rate < possibleValues[i + 1].Rate)
-			{
-				i++;
-			}
-			else
-			{
-				possibleValues.Remove(possibleValues[i + 1]);
-			}
-		}
-
-		possibleValues = ship.MasterShip.BaseShip().ShipClassTyped switch
-		{
-			ShipClass.Fletcher => possibleValues.Concat(FletcherCutIns).ToList(),
-			ShipClass.Atlanta => possibleValues.Concat(AtlantaCutIns).ToList(),
-			_ => possibleValues,
-		};
-
-		return possibleValues
-			.Where(a => a.CanBeActivatedBy(ship))
-			.OrderBy(a => ApiPriority.IndexOf(a.Id))
-			.ToList();
-	}
+	public static List<AntiAirCutIn> PossibleCutIns(IShipData ship) => AllCutIns
+		.Where(a => a.CanBeActivatedBy(ship))
+		.OrderBy(a => ApiPriority.IndexOf(a.Id))
+		.ToList();
 
 	public static List<AntiAirCutIn> PossibleCutIns(IEnumerable<IShipData?> ships) => ships
 		.Where(s => s is not null)
