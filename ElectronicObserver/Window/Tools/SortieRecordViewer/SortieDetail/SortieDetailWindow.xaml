@@ -660,7 +660,18 @@
 						<TextBlock Text="{Binding Result}" />
 						<TextBlock Text="{Binding ResultRank}" />
 						<TextBlock Text="{Binding ResultMvpMain}" />
-						<TextBlock Text="{Binding ResultMvpEscort}" />
+						<TextBlock Text="{Binding ResultMvpEscort}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock">
+									<Setter Property="Visibility" Value="Visible" />
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding ResultMvpEscort}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>
 						<TextBlock Text="{Binding AdmiralExp}" />
 						<TextBlock Text="{Binding BaseExp}" />
 						<TextBlock Text="{Binding DropShip}" />

@@ -30,7 +30,7 @@ public class BattleNode : SortieNode
 
 	public void AddResult(ISortieBattleResultApi result)
 	{
-		bool isCombinedFleet = result is ApiReqCombinedBattleBattleresultResponse;
+		bool isPlayerCombinedFleet = FirstBattle.FleetsBeforeBattle.EscortFleet is not null;
 
 		BattleResult = result switch
 		{
@@ -44,7 +44,7 @@ public class BattleNode : SortieNode
 		{
 			int i and >= 0 => FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[i] switch
 			{
-				IShipData ship when isCombinedFleet => string.Format(ConstantsRes.BattleDetail_ResultMVPMain, ship.NameWithLevel),
+				IShipData ship when isPlayerCombinedFleet => string.Format(ConstantsRes.BattleDetail_ResultMVPMain, ship.NameWithLevel),
 				IShipData ship => string.Format("MVP: {0}", ship.NameWithLevel),
 				_ => null,
 			},

@@ -35,6 +35,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.GobackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqFurniture.Buy;
 using ElectronicObserver.KancolleApi.Types.ApiReqHensei.Change;
@@ -323,7 +324,7 @@ public static class Extensions
 		"api_req_sortie/airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieAirbattleResponse>>(file.Content)?.ApiData,
 		"api_req_sortie/ld_airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieLdAirbattleResponse>>(file.Content)?.ApiData,
 		"api_req_sortie/night_to_day" => throw new NotImplementedException(),
-		"api_req_sortie/ld_shooting" => throw new NotSupportedException(),
+		"api_req_sortie/ld_shooting" => throw new NotImplementedException(),
 		"api_req_combined_battle/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleBattleResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/sp_midnight" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleSpMidnightResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/airbattle" => throw new NotImplementedException(),
@@ -336,7 +337,7 @@ public static class Extensions
 		"api_req_combined_battle/ld_shooting" => throw new NotImplementedException(),
 
 		"api_req_battle_midnight/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqBattleMidnightBattleResponse>>(file.Content)?.ApiData,
-		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content)?.ApiData,
+		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleMidnightBattleResponse>>(file.Content)?.ApiData,
 		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content)?.ApiData,
 
 		_ => throw new NotImplementedException(),
