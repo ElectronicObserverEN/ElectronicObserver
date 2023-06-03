@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
@@ -34,8 +35,12 @@ public class EquipmentUpgradePlanCostViewModel : ObservableObject
 
 	public bool HasEnoughResources => GetHasEnoughResourceValue();
 
+	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; }
+
 	public EquipmentUpgradePlanCostViewModel(EquipmentUpgradePlanCostModel model)
 	{
+		EquipmentUpgradePlanner = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
+
 		Model = model;
 
 		Fuel = new(model.Fuel, UseItemId.Fuel);
