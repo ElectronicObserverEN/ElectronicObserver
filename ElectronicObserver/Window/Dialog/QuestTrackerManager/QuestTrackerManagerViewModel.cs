@@ -111,7 +111,10 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 			}
 		}
 
-		KCDatabase.Instance.Quest.OnQuestUpdated();
+		App.Current?.Dispatcher?.Invoke(() =>
+		{
+			KCDatabase.Instance.Quest.OnQuestUpdated();
+		});
 	}
 
 	[RelayCommand]

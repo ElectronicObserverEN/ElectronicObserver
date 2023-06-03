@@ -49,7 +49,10 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 
 		if (IsInitialized)
 		{
-			KCDatabase.Instance.Quest.OnQuestUpdated();
+			App.Current?.Dispatcher?.Invoke(() =>
+			{
+				KCDatabase.Instance.Quest.OnQuestUpdated();
+			});
 		}
 	}
 

@@ -157,6 +157,7 @@ public class ProgressSpecialBattle : ProgressBattle
 					switch (ship?.MasterShip?.ShipType)
 					{
 						case ShipTypes.Battleship:
+						case ShipTypes.Battlecruiser:
 						case ShipTypes.AviationBattleship:
 							switch (ship?.MasterShip?.ShipClass)
 							{
@@ -170,10 +171,6 @@ public class ProgressSpecialBattle : ProgressBattle
 									battleships = -9999;
 									break;
 							}
-							break;
-
-						case ShipTypes.Battlecruiser:
-							battleships = -9999;
 							break;
 
 						case ShipTypes.LightCruiser:

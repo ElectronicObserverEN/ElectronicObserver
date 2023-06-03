@@ -31,6 +31,16 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>AttackResources.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\EquipmentCardType.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EquipmentCardType.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\EquipmentIconType.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>EquipmentIconType.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\EquipmentTypeGroups.Designer.cs">
 		  <DependentUpon>EquipmentTypeGroups.resx</DependentUpon>
 		  <DesignTime>True</DesignTime>
@@ -61,6 +71,14 @@
 		<EmbeddedResource Update="Attacks\AttackResources.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>AttackResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\EquipmentCardType.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EquipmentCardType.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\EquipmentIconType.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>EquipmentIconType.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\EquipmentTypeGroups.resx">
 		  <LastGenOutput>EquipmentTypeGroups.Designer.cs</LastGenOutput>

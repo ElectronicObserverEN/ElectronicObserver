@@ -6,6 +6,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
@@ -23,7 +24,7 @@ public class EquipmentIconTypeScrapTaskViewModel : ObservableObject, IQuestTaskV
 	};
 	public string ClearCondition => GetClearCondition();
 
-	private string GetClearCondition() => $"{QuestTracking.Icon}[{Model.IconType}]"
+	private string GetClearCondition() => $"{QuestTracking.Icon}[{Model.IconType.TranslatedName()}]"
 		+ QuestTracking.Discard + Model.Count + QuestTracking.NumberOfPieces;
 
 	public EquipmentIconTypeScrapTaskViewModel(EquipmentIconTypeScrapTaskModel model)

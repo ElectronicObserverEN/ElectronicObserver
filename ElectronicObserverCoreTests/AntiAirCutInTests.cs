@@ -54,9 +54,9 @@ public class AntiAirCutInTests
 
 		// todo: this isn't confirmed yet
 		Assert.Equal(4, cutins.Count);
-		Assert.Equal(5, cutins[0].Id);
-		Assert.Equal(8, cutins[1].Id);
-		Assert.Equal(29, cutins[2].Id);
+		Assert.Equal(29, cutins[0].Id);
+		Assert.Equal(5, cutins[1].Id);
+		Assert.Equal(8, cutins[2].Id);
 		Assert.Equal(0, cutins[3].Id);
 	}
 

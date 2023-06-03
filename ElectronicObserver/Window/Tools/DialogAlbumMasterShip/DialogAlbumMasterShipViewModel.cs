@@ -54,7 +54,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		_ => DialogAlbumMasterShip.TitleParameterMax
 	};
 
-	public int Level { get; set; } = 175;
+	public int Level { get; set; }
 	public ShipDataRecord? SelectedShip { get; set; }
 
 	public bool DetailsVisible => SelectedShip is not null;
@@ -69,6 +69,8 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	{
 		DialogAlbumMasterShip = Ioc.Default.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
 		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
+
+		Level = ExpTable.ShipMaximumLevel;
 
 		AllShips = KCDatabase.Instance.MasterShips.Values.Select(s => new ShipDataRecord(s));
 		DataGridViewModel.AddRange(AllShips);

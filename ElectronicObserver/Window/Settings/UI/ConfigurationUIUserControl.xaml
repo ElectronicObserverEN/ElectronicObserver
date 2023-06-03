@@ -48,7 +48,7 @@
 			<controls:NumberBox
 				Grid.Row="0"
 				Grid.Column="2"
-				Minimum="1"
+				Minimum="6"
 				SpinButtonPlacementMode="Inline"
 				Value="{Binding MainFontSize}"
 				/>
@@ -78,7 +78,7 @@
 			<controls:NumberBox
 				Grid.Row="1"
 				Grid.Column="2"
-				Minimum="1"
+				Minimum="6"
 				SpinButtonPlacementMode="Inline"
 				Value="{Binding SubFontSize}"
 				/>
