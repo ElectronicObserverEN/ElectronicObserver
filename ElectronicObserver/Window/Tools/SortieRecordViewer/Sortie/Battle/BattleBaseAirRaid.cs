@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
-using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
 
@@ -8,6 +8,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public sealed class BattleBaseAirRaid : BattleData
 {
+	public override string Title => ConstantsRes.Title_BaseAirRaid;
+
 	private PhaseBaseAirRaid? BaseAirRaid { get; }
 
 	public BattleBaseAirRaid(IKCDatabase kcDatabase, BattleFleets fleets, ApiDestructionBattle battle)

@@ -592,7 +592,16 @@
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type node:BattleNode}">
-			<Expander Header="{Binding DisplayCell}">
+			<Expander>
+				<Expander.Header>
+					<TextBlock>
+						<Run Text="{Binding DisplayCell, Mode=OneTime}" />
+						<Run Text="{Binding AirBaseRaid.Title, Mode=OneTime}" />
+						<Run Text="{Binding FirstBattle.Title, Mode=OneTime}" />
+						<Run Text="{Binding SecondBattle.Title, Mode=OneTime}" />
+					</TextBlock>
+				</Expander.Header>
+
 				<Grid Margin="4">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
@@ -603,9 +612,13 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 
-					<ItemsControl Grid.Row="0" ItemsSource="{Binding AirBaseRaid.Phases}">
+					<TextBlock Grid.Row="0" Text="{Binding AirBaseRaid.Title}" />
+
+					<ItemsControl Grid.Row="1" ItemsSource="{Binding AirBaseRaid.Phases}">
 						<ItemsControl.Style>
 							<Style TargetType="ItemsControl">
 								<Setter Property="Visibility" Value="Visible" />
@@ -618,15 +631,17 @@
 						</ItemsControl.Style>
 					</ItemsControl>
 
-					<!--
-					-->
-					<ContentControl Grid.Row="1" Content="{Binding AirBaseRaid}" />
+					<ContentControl Grid.Row="2" Content="{Binding AirBaseRaid}" />
 
-					<ItemsControl Grid.Row="2" ItemsSource="{Binding FirstBattle.Phases}" />
+					<TextBlock Grid.Row="3" Text="{Binding FirstBattle.Title}" />
 
-					<ContentControl Grid.Row="3" Content="{Binding FirstBattle}" />
+					<ItemsControl Grid.Row="4" ItemsSource="{Binding FirstBattle.Phases}" />
 
-					<ItemsControl Grid.Row="4" ItemsSource="{Binding SecondBattle.Phases}">
+					<ContentControl Grid.Row="5" Content="{Binding FirstBattle}" />
+
+					<TextBlock Grid.Row="6" Text="{Binding SecondBattle.Title}" />
+
+					<ItemsControl Grid.Row="7" ItemsSource="{Binding SecondBattle.Phases}">
 						<ItemsControl.Style>
 							<Style TargetType="ItemsControl">
 								<Setter Property="Visibility" Value="Visible" />
@@ -639,9 +654,9 @@
 						</ItemsControl.Style>
 					</ItemsControl>
 
-					<ContentControl Grid.Row="5" Content="{Binding SecondBattle}" />
+					<ContentControl Grid.Row="8" Content="{Binding SecondBattle}" />
 
-					<StackPanel Grid.Row="6" Margin="0 10">
+					<StackPanel Grid.Row="9" Margin="0 10">
 						<TextBlock Text="{Binding Result}" />
 						<TextBlock Text="{Binding ResultRank}" />
 						<TextBlock Text="{Binding ResultMvpMain}" />

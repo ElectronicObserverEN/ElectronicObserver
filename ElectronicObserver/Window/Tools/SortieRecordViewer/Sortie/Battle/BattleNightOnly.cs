@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes;
@@ -9,6 +10,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public sealed class BattleNightOnly : BattleNight
 {
+	public override string Title => ConstantsRes.Title_NightOnly;
+
 	private static double FuelConsumption => 0.1;
 	private static double AmmoConsumption => 0.1;
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
@@ -7,6 +8,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public sealed class BattleEnemyCombinedDay : BattleDay
 {
+	public override string Title => ConstantsRes.Title_EnemyCombinedDay;
+
 	public BattleEnemyCombinedDay(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqCombinedBattleEcBattleResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{

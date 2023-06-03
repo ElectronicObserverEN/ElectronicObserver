@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
@@ -7,6 +8,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public class BattleAirRaid : BattleData
 {
+	public override string Title => ConstantsRes.Title_NormalFleetAirRaid;
+
 	private PhaseJetBaseAirAttack JetBaseAirAttack { get; }
 	private PhaseJetAirBattle? JetAirBattle { get; }
 	private PhaseBaseAirAttack? BaseAirAttack { get; }

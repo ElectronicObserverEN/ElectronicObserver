@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
@@ -7,6 +8,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public sealed class BattleNormalDay : BattleDay
 {
+	public override string Title => ConstantsRes.Title_NormalDay;
+
 	public BattleNormalDay(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqSortieBattleResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{

@@ -12,6 +12,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public abstract class BattleData
 {
+	public abstract string Title { get; }
+
 	public BattleFleets FleetsBeforeBattle => Initial.FleetsAfterPhase!;
 	public BattleFleets FleetsAfterBattle { get; protected set; }
 

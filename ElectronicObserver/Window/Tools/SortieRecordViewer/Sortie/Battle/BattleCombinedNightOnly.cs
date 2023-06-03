@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes.Data;
@@ -7,6 +8,8 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public sealed class BattleCombinedNightOnly : BattleNight
 {
+	public override string Title => ConstantsRes.Title_CombinedNightOnly;
+
 	public BattleCombinedNightOnly(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqCombinedBattleSpMidnightResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
