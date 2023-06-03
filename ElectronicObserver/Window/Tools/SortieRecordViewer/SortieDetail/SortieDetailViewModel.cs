@@ -175,7 +175,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqSortieAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqSortieLdAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
-		ApiReqCombinedBattleBattleResponse a => null,
+		ApiReqCombinedBattleBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleWaterResponse a => null,
 		ApiReqCombinedBattleLdAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
