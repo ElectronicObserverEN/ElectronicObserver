@@ -48,8 +48,8 @@ public class PhaseInitial : PhaseBase
 	{
 		true => MakeAirBaseString(),
 		_ => null,
-	}; 
-	
+	};
+
 	public string? AirRaidAirBaseDisplay => IsAirBaseRaid switch
 	{
 		true => MakeAirRaidAirBaseString(),
@@ -168,6 +168,13 @@ public class PhaseInitial : PhaseBase
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;
 
+		foreach ((IShipData? ship, int i) in fleets.Fleet.MembersInstance.Select((s, i) => (s, i)))
+		{
+			if (ship is not ShipDataMock s) continue;
+
+			s.HPCurrent = FriendInitialHPs[i];
+		}
+
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
 			.Zip(battle.ApiESlot, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
@@ -199,6 +206,12 @@ public class PhaseInitial : PhaseBase
 			.ToList();
 	}
 
+	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IPlayerCombinedFleetBattle battle)
+		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
+	{
+		SetEscortFleetHp(fleets, battle);
+	}
+
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IEnemyCombinedFleetBattle battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
@@ -208,6 +221,7 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
+		SetEscortFleetHp(fleets, battle);
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
 
@@ -250,6 +264,18 @@ public class PhaseInitial : PhaseBase
 			})
 			.Cast<IShipData?>()
 			.ToList();
+	}
+
+	private static void SetEscortFleetHp(BattleFleets fleets, IPlayerCombinedFleetBattle battle)
+	{
+		if (fleets.EscortFleet is null) return;
+
+		foreach ((IShipData? ship, int i) in fleets.EscortFleet.MembersInstance.Select((s, i) => (s, i)))
+		{
+			if (ship is not ShipDataMock s) continue;
+
+			s.HPCurrent = battle.ApiFNowhpsCombined[i];
+		}
 	}
 
 	private List<IShipData?>? MakeEnemyEscortFleet(IEnemyCombinedFleetBattle battle) => battle.ApiShipKeCombined

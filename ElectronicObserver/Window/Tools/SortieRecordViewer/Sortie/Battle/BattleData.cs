@@ -64,6 +64,7 @@ public abstract class BattleData
 		{
 			ApiDestructionBattle c => new(kcDatabase, fleets, c),
 			ICombinedBattleApiResponse c => new(kcDatabase, fleets, c),
+			IPlayerCombinedFleetBattle c => new(kcDatabase, fleets, c),
 			IEnemyCombinedFleetBattle c => new(kcDatabase, fleets, c),
 			_ => new(kcDatabase, fleets, battle),
 		};
