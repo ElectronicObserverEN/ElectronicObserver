@@ -197,7 +197,7 @@ public class SortieDetailViewModel : WindowViewModelBase
 	private BattleData? GetBattle(object api, BattleFleets fleets) => api switch
 	{
 		ApiReqBattleMidnightBattleResponse a => BattleFactory.CreateBattle(a, fleets),
-		ApiReqCombinedBattleMidnightBattleResponse a => null,
+		ApiReqCombinedBattleMidnightBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleEcMidnightBattleResponse a => BattleFactory.CreateBattle(a, fleets),
 
 		_ => null,

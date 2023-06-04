@@ -7,6 +7,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
@@ -65,5 +66,8 @@ public class BattleFactory
 		=> new(KcDatabase, fleets, battle);
 
 	public BattleCombinedWater CreateBattle(ApiReqCombinedBattleBattleWaterResponse battle, BattleFleets fleets)
+		=> new(KcDatabase, fleets, battle);
+
+	public BattleCombinedNormalNight CreateBattle(ApiReqCombinedBattleMidnightBattleResponse battle, BattleFleets fleets)
 		=> new(KcDatabase, fleets, battle);
 }
