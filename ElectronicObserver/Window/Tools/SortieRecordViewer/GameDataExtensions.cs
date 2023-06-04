@@ -152,6 +152,7 @@ public static class GameDataExtensions
 			IsExpansionSlotAvailable = ship.IsExpansionSlotAvailable,
 			SlotInstance = ship.SlotInstance,
 			ExpansionSlotInstance = ship.ExpansionSlotInstance,
+			Aircraft = ship.Aircraft,
 			HPCurrent = ship.HPCurrent,
 			Fuel = ship.Fuel,
 			Ammo = ship.Ammo,

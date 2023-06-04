@@ -87,14 +87,13 @@ public class SortieDetailViewModel : WindowViewModelBase
 		{
 			ApiResponseCache.Add(response);
 
-			ProcessResponseCache();
-
 			return;
 		}
 
 		if (response is ApiGetMemberShipDeckResponse deck)
 		{
-			// todo: could be used to verify fleet state
+			ApiResponseCache.Add(deck);
+			
 			return;
 		}
 
@@ -144,9 +143,15 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 				battleNode.AddResult(result);
 			}
-		}
 
-		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell);
+			// comes before next, so this should always be the last response
+			if (response is ApiGetMemberShipDeckResponse deck)
+			{
+				node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell);
+
+				Fleets.UpdateState(deck);
+			}
+		}
 
 		if (abRaid is not null)
 		{
@@ -156,6 +161,11 @@ public class SortieDetailViewModel : WindowViewModelBase
 		Nodes.Add(node);
 
 		ApiResponseCache.Clear();
+	}
+
+	public void EnsureApiFilesProcessed()
+	{
+		ProcessResponseCache();
 	}
 
 	private BattleData? GetBattle(object api, SortieNode? node) => node switch

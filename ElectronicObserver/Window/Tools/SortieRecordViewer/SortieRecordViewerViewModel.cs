@@ -542,6 +542,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				sortieDetail.AddApiFile(battleData);
 			}
 
+			sortieDetail.EnsureApiFilesProcessed();
+
 			return sortieDetail;
 		}
 		catch (Exception e)

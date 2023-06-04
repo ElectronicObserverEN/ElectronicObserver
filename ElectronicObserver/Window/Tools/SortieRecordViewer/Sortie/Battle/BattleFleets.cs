@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
@@ -74,4 +77,53 @@ public class BattleFleets
 	{
 		FleetFlag.Player => AirBases[index.Index],
 	};
+
+	/// <summary>
+	/// Main problem here is if there's a dupe ship in combined fleet.
+	/// Right now it matches via equipment too, but there's a chance both dupes have the same equip.
+	/// </summary>
+	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+	private IShipData? GetShip(ApiShipDatum shipData)
+	{
+		IEnumerable<IShipData?> ships = Fleet.MembersInstance;
+
+		if (EscortFleet is not null)
+		{
+			ships = ships.Concat(EscortFleet.MembersInstance);
+		}
+
+		ships = ships.Where(s => s?.MasterShip.ShipId == shipData.ApiShipId);
+
+		if (ships.Count() is 1)
+		{
+			return ships.First();
+		}
+
+		ships = ships.Where(s => s!.ExpansionSlot == shipData.ApiSlotEx);
+
+		if (ships.Count() is 1)
+		{
+			return ships.First();
+		}
+
+		ships = ships.Where(s => s!.Slot.SequenceEqual(shipData.ApiSlot));
+
+		if (ships.Count() is 1)
+		{
+			return ships.First();
+		}
+
+		// might need to do some other checks?
+		return ships.First();
+	}
+
+	public void UpdateState(ApiGetMemberShipDeckResponse deck)
+	{
+		foreach (ApiShipDatum shipData in deck.ApiShipData)
+		{
+			if (GetShip(shipData) is not ShipDataMock ship) continue;
+
+			ship.Aircraft = shipData.ApiOnslot;
+		}
+	}
 }
