@@ -219,7 +219,10 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		{
 			byte[] data = MessagePackSerializer.ConvertFromJson(File.ReadAllText(CustomTrackerPath));
 			List<TrackerModel> trackers = MessagePackSerializer.Deserialize<List<TrackerModel>>(data);
-			MergeTrackers(trackers);
+			App.Current?.Dispatcher?.Invoke(() =>
+			{
+				MergeTrackers(trackers);
+			});
 		}
 		catch
 		{

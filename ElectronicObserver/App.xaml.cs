@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
@@ -157,6 +159,13 @@ public partial class App : Application
 #if !DEBUG
 			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 #endif
+
+			Task.Run(() =>
+			{
+				// pre-load ef model to avoid performance hits later
+				using ElectronicObserverContext db = new();
+				_ = db.Model;
+			});
 
 			try
 			{

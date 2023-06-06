@@ -103,7 +103,7 @@ public static class GameDataExtensions
 		};
 
 		abSlot.AircraftMax = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
-		abSlot.AircraftCurrent = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
+		abSlot.AircraftCurrent = squadron?.AircraftCurrent ?? abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
 
 		return abSlot;
 	}

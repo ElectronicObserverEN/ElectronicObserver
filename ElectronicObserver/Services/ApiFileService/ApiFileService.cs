@@ -255,6 +255,7 @@ public class ApiFileService : ObservableObject
 						Squadrons = a.Squadrons.Values
 							.Select(s => new SortieAirBaseSquadron
 							{
+								AircraftCurrent = s.AircraftCurrent,
 								State = s.State,
 								Condition = s.Condition,
 								EquipmentSlot = new()

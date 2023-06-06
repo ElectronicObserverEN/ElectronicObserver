@@ -49,10 +49,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 
 		if (IsInitialized)
 		{
-			App.Current?.Dispatcher?.Invoke(() =>
-			{
 				KCDatabase.Instance.Quest.OnQuestUpdated();
-			});
 		}
 	}
 
@@ -83,7 +80,10 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		{
 			byte[] data = MessagePackSerializer.ConvertFromJson(File.ReadAllText(CustomTrackerPath));
 			List<TrackerModel> trackers = MessagePackSerializer.Deserialize<List<TrackerModel>>(data);
-			MergeTrackers(trackers);
+			App.Current?.Dispatcher?.Invoke(() =>
+			{
+				MergeTrackers(trackers);
+			});
 		}
 		catch
 		{
