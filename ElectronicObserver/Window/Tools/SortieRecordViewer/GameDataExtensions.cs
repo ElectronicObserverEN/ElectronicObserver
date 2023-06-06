@@ -108,17 +108,6 @@ public static class GameDataExtensions
 		return abSlot;
 	}
 
-	private static int AirBaseAircraftCount(IEquipmentDataMaster? equipment) => equipment?.CategoryType switch
-	{
-		null => 0,
-
-		EquipmentTypes.CarrierBasedRecon => 4,
-		EquipmentTypes.FlyingBoat => 4,
-		EquipmentTypes.HeavyBomber => 9,
-
-		_ => 18,
-	};
-
 	public static IFleetData DeepClone(this IFleetData fleet) => new FleetDataMock
 	{
 		FleetID = fleet.FleetID,
