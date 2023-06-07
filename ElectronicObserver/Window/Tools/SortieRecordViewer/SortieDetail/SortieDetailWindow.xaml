@@ -412,18 +412,6 @@
 
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type phase:PhaseJetBaseAirAttack}">
-			<StackPanel Style="{StaticResource PhaseStyle}">
-				<TextBlock>
-					<Run Text="==" />
-					<Run Text="{Binding Title, Mode=OneWay}" />
-					<Run Text="==" />
-				</TextBlock>
-
-				<TextBlock Text="{Binding Display}" />
-			</StackPanel>
-		</DataTemplate>
-
 		<DataTemplate DataType="{x:Type phase:PhaseJetAirBattle}">
 			<StackPanel Style="{StaticResource PhaseStyle}">
 				<TextBlock>
@@ -441,6 +429,18 @@
 				<TextBlock Text="{Binding Display}" />
 
 				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseJetBaseAirAttack}">
+			<StackPanel Style="{StaticResource PhaseStyle}">
+				<TextBlock>
+					<Run Text="==" />
+					<Run Text="{Binding Title, Mode=OneWay}" />
+					<Run Text="==" />
+				</TextBlock>
+
+				<ItemsControl ItemsSource="{Binding Units}" />
 			</StackPanel>
 		</DataTemplate>
 

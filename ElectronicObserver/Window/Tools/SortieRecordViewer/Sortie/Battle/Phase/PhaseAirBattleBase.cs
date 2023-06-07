@@ -19,14 +19,13 @@ public class PhaseAirBattleBase : PhaseBase
 	public override string Title => BattleRes.BattlePhaseAirBattle;
 
 	/// <summary>
-	/// <see cref="IApiAirBattle" /> or <see cref="ApiInjectionKouku" />
+	/// <see cref="IApiAirBattle" /> or <see cref="ApiInjectionKouku" /> or <see cref="IApiJetAirBattle" />
 	/// </summary>
 	private object AirBattleData { get; }
 
 	private ApiStage1? Stage1 => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage1,
-		ApiInjectionKouku jet => jet.ApiStage1,
 		_ => null,
 	};
 
@@ -36,23 +35,36 @@ public class PhaseAirBattleBase : PhaseBase
 		_ => null,
 	};
 
-	private ApiStage2Jet? Stage2Jet => AirBattleData switch
+	private ApiStage1And2Jet? Stage2Jet => AirBattleData switch
 	{
 		ApiInjectionKouku jet => jet.ApiStage2,
+		IApiJetAirBattle abJet => abJet.ApiStage2,
 		_ => null,
 	};
 
 	private ApiStage3? Stage3 => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage3,
+		_ => null,
+	};
+
+	private ApiStage3Jet? Stage3Jet => AirBattleData switch
+	{
 		ApiInjectionKouku jet => jet.ApiStage3,
+		IApiJetAirBattle abJet => abJet.ApiStage3,
 		_ => null,
 	};
 
 	private ApiStage3Combined? Stage3Combined => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage3Combined,
+		_ => null,
+	};
+
+	private ApiStage3JetCombined? Stage3JetCombined => AirBattleData switch
+	{
 		ApiInjectionKouku jet => jet.ApiStage3Combined,
+		IApiJetAirBattle abJet => abJet.ApiStage3Combined,
 		_ => null,
 	};
 
@@ -101,24 +113,25 @@ public class PhaseAirBattleBase : PhaseBase
 		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 1);
 	}
 
-	protected PhaseAirBattleBase(ApiInjectionKouku apiInjectionKouku)
+	protected PhaseAirBattleBase(IApiJetAirBattle airBattleData, int waveIndex = 0)
 	{
-		AirBattleData = apiInjectionKouku;
+		AirBattleData = airBattleData;
+		WaveIndex = waveIndex;
 
-		if (apiInjectionKouku.ApiStage1 is not null)
+		if (airBattleData.ApiStage1 is not null)
 		{
 			Stage1Display = GetStage1Display
 			(
 				AirState.Unknown,
-				apiInjectionKouku.ApiStage1.ApiFLostcount,
-				apiInjectionKouku.ApiStage1.ApiFCount,
-				apiInjectionKouku.ApiStage1.ApiELostcount,
-				apiInjectionKouku.ApiStage1.ApiECount
+				airBattleData.ApiStage1.ApiFLostcount,
+				airBattleData.ApiStage1.ApiFCount,
+				airBattleData.ApiStage1.ApiELostcount,
+				airBattleData.ApiStage1.ApiECount
 			);
 		}
 
-		LaunchedShipIndexFriend = GetLaunchedShipIndex(apiInjectionKouku.ApiPlaneFrom, 0);
-		LaunchedShipIndexEnemy = GetLaunchedShipIndex(apiInjectionKouku.ApiPlaneFrom, 1);
+		LaunchedShipIndexFriend = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 0);
+		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 1);
 	}
 
 	private static List<int> GetLaunchedShipIndex(List<List<int>?> apiPlaneFrom, int index) =>
@@ -165,7 +178,9 @@ public class PhaseAirBattleBase : PhaseBase
 		}
 
 		ApiStage3? stage3 = Stage3;
+		ApiStage3Jet? stage3Jet = Stage3Jet;
 		ApiStage3Combined? stage3Combined = Stage3Combined;
+		ApiStage3JetCombined? stage3JetCombined = Stage3JetCombined;
 
 		if (stage3 is not null)
 		{
@@ -176,6 +191,15 @@ public class PhaseAirBattleBase : PhaseBase
 				stage3.ApiFdam));
 		}
 
+		if (stage3Jet is not null)
+		{
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.Fleet,
+				stage3Jet.ApiEraiFlag,
+				stage3Jet.ApiEbakFlag,
+				stage3Jet.ApiEclFlag,
+				stage3Jet.ApiEdam));
+		}
+
 		if (stage3Combined is { ApiFraiFlag: not null, ApiFbakFlag: not null, ApiFclFlag: not null, ApiFdam: not null })
 		{
 			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
@@ -183,6 +207,15 @@ public class PhaseAirBattleBase : PhaseBase
 				stage3Combined.ApiFbakFlag.Select(i => i ?? 0).ToList(),
 				stage3Combined.ApiFclFlag,
 				stage3Combined.ApiFdam));
+		}
+
+		if (stage3JetCombined is { ApiEraiFlag: not null, ApiEbakFlag: not null, ApiEclFlag: not null, ApiEdam: not null })
+		{
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EscortFleet,
+				stage3JetCombined.ApiEraiFlag,
+				stage3JetCombined.ApiEbakFlag,
+				stage3JetCombined.ApiEclFlag,
+				stage3JetCombined.ApiEdam));
 		}
 
 		if (stage3 is not null)

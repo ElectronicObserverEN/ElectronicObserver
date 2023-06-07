@@ -10,7 +10,7 @@ public sealed class BattleAirBattle : BattleData
 {
 	public override string Title => ConstantsRes.Title_NormalFleetAirBattle;
 
-	private PhaseJetBaseAirAttack JetBaseAirAttack { get; }
+	private PhaseJetBaseAirAttack? JetBaseAirAttack { get; }
 	private PhaseJetAirBattle? JetAirBattle { get; }
 	private PhaseBaseAirAttack? BaseAirAttack { get; }
 	private PhaseFriendlyAirBattle FriendlyAirBattle { get; }
@@ -20,7 +20,7 @@ public sealed class BattleAirBattle : BattleData
 	public BattleAirBattle(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqSortieAirbattleResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
-		JetBaseAirAttack = new();
+		JetBaseAirAttack = null;
 		// todo: check if these actually exist
 		// JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		// BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);

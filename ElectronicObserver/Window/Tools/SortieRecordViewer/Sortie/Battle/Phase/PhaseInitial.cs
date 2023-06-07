@@ -6,6 +6,7 @@ using System.Text.Json;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
@@ -159,11 +160,28 @@ public class PhaseInitial : PhaseBase
 		KcDatabase = kcDatabase;
 		FleetsBeforePhase = fleets;
 
-		HasAirBaseAttack = battle switch
+		if (battle is IAirBaseBattle { ApiAirBaseAttack: not null } abb)
 		{
-			IAirBaseBattle abb => abb.ApiAirBaseAttack is not null,
-			_ => false,
-		};
+			HasAirBaseAttack = true;
+
+			foreach (ApiAirBaseAttack baseAttack in abb.ApiAirBaseAttack)
+			{
+				IBaseAirCorpsData? ab = FleetsBeforePhase.AirBases
+					.Skip(baseAttack.ApiBaseId - 1)
+					.FirstOrDefault();
+
+				if (ab is null) continue;
+
+				IEnumerable<BaseAirCorpsSquadronMock> squadrons = ab.Squadrons.Values
+					.Where(s => s.EquipmentInstance is not null)
+					.OfType<BaseAirCorpsSquadronMock>();
+
+				foreach ((ApiSquadronPlane apiSquadron, BaseAirCorpsSquadronMock squadron) in baseAttack.ApiSquadronPlane.Zip(squadrons))
+				{
+					squadron.AircraftCurrent = apiSquadron.ApiCount;
+				}
+			}
+		}
 
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;

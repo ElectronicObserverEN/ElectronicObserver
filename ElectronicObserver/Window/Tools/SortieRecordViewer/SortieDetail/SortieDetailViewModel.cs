@@ -153,6 +153,8 @@ public class SortieDetailViewModel : WindowViewModelBase
 			}
 		}
 
+		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell);
+
 		if (abRaid is not null)
 		{
 			node.AddAirBaseRaid(abRaid);

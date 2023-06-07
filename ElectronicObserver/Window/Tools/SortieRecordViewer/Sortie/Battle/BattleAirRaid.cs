@@ -18,7 +18,7 @@ public class BattleAirRaid : BattleData
 	public BattleAirRaid(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqSortieLdAirbattleResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
-		JetBaseAirAttack = new();
+		JetBaseAirAttack = null;
 		// todo: check if these actually exist
 		// JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		// BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);

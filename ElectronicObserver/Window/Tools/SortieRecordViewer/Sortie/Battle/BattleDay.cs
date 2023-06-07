@@ -21,7 +21,7 @@ public abstract class BattleDay : BattleData
 	protected BattleDay(IKCDatabase kcDatabase, BattleFleets fleets, IDayBattleApiResponse battle)
 		: base(kcDatabase, fleets, battle)
 	{
-		JetBaseAirAttack = new();
+		JetBaseAirAttack = GetJetBaseAirAttackPhase(battle.ApiAirBaseInjection);
 		JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
 		FriendlyAirBattle = new();

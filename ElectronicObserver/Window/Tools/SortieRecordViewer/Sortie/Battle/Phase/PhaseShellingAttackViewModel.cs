@@ -44,7 +44,8 @@ public class PhaseShellingAttackViewModel
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
-		if (Defender.HPCurrent != hpAfterAttacks)
+		// torpedoes attack all enemies even if they're sunken already
+		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
 			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
 		}

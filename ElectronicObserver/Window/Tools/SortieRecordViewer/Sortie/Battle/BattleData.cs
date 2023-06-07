@@ -105,6 +105,12 @@ public abstract class BattleData
 		_ => new(),
 	};
 
+	protected static PhaseJetBaseAirAttack? GetJetBaseAirAttackPhase(ApiAirBaseInjection? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
 	private static PhaseFriendlySupportInfo? GetFriendlySupportInfoPhase(ApiFriendlyInfo? a) => a switch
 	{
 		null => null,

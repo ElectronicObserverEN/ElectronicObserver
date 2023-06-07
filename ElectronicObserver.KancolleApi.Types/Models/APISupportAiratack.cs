@@ -30,7 +30,7 @@ public class ApiSupportAiratack
 	[JsonPropertyName("api_stage3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiAirBaseAttackApiStage3 ApiStage3 { get; set; } = new();
+	public ApiStage3Jet ApiStage3 { get; set; } = new();
 
 	[JsonPropertyName("api_stage_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
