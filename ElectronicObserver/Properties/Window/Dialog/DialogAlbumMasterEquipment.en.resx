@@ -240,4 +240,7 @@
   <data name="TitleTorpedo" xml:space="preserve">
     <value>Torp</value>
   </data>
+  <data name="UpgradeCost" xml:space="preserve">
+    <value>Upgrade cost</value>
+  </data>
 </root>

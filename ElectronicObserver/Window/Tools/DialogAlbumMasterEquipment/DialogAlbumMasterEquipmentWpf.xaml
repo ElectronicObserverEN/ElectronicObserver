@@ -557,15 +557,36 @@
 						</Grid>
 					</Grid>
 
-					<StackPanel Grid.Column="1">
-						<StackPanel Orientation="Horizontal">
+					<Grid Grid.Column="1">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<TextBlock
+							Grid.Row="0"
+							Grid.Column="0"
+							Margin="4 0"
+							Text="{Binding DialogAlbumMasterEquipment.TitleDismantling}"
+							/>
+
+						<StackPanel
+							Grid.Row="0"
+							Grid.Column="1"
+							Orientation="Horizontal"
+							>
 							<StackPanel.Resources>
 								<Style TargetType="{x:Type common:ImageTextControl}">
 									<Setter Property="Margin" Value="0 0 4 0" />
 								</Style>
 							</StackPanel.Resources>
-
-							<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterEquipment.TitleDismantling}" />
 
 							<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipment.Equipment.Material[0]}" />
 
@@ -576,11 +597,50 @@
 							<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedEquipment.Equipment.Material[3]}" />
 
 						</StackPanel>
-						<Separator />
-					</StackPanel>
+						<Separator
+							Grid.Row="1"
+							Grid.Column="0"
+							Grid.ColumnSpan="2"
+							/>
+
+						<TextBlock
+							Grid.Row="2"
+							Grid.Column="0"
+							Margin="4 0"
+							Text="{Binding DialogAlbumMasterEquipment.TitleUpgradeCost}"
+							/>
+
+						<StackPanel
+							Grid.Row="2"
+							Grid.Column="1"
+							Orientation="Horizontal"
+							>
+							<StackPanel.Resources>
+								<Style TargetType="{x:Type common:ImageTextControl}">
+									<Setter Property="Margin" Value="0 0 4 0" />
+								</Style>
+							</StackPanel.Resources>
+
+							<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipment.UpgradeViewModel.EquipmentUpgradeCost.Fuel}" />
+
+							<common:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding SelectedEquipment.UpgradeViewModel.EquipmentUpgradeCost.Ammo}" />
+
+							<common:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding SelectedEquipment.UpgradeViewModel.EquipmentUpgradeCost.Steel}" />
+
+							<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedEquipment.UpgradeViewModel.EquipmentUpgradeCost.Bauxite}" />
+
+						</StackPanel>
+						<Separator
+							Grid.Row="3"
+							Grid.Column="0"
+							Grid.ColumnSpan="2"
+							/>
+					</Grid>
 				</Grid>
 
 				<TextBlock Grid.Row="2" Text="{Binding SelectedEquipment.Equipment.Message}" />
+
+				<StackPanel Grid.Row="3" />
 
 			</Grid>
 		</Grid>
