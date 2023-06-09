@@ -4,6 +4,11 @@ namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
 public interface IDayBattleApiResponse : IBattleApiResponse, IAirBaseBattle, IDaySearch
 {
+	/// <summary>
+	/// 友軍艦隊航空攻撃　発動時のみ存在　概ね api_kouku に準じる
+	/// </summary>
+	ApiKouku? ApiFriendlyKouku { get; }
+
 	List<ApiFlavorInfo>? ApiFlavorInfo { get; set; }
 
 	/// <summary>

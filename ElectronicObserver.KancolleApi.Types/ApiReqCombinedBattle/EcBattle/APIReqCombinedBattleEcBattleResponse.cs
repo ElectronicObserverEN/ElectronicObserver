@@ -100,6 +100,9 @@ public class ApiReqCombinedBattleEcBattleResponse : IDayBattleApiResponse, IEnem
 	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_friendly_kouku")]
+	public ApiKouku? ApiFriendlyKouku { get; set; }
+
 	[JsonPropertyName("api_flavor_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

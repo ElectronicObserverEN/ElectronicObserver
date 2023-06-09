@@ -114,6 +114,9 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 	[Required]
 	public List<int> ApiFNowhpsCombined { get; set; } = new();
 
+	[JsonPropertyName("api_friendly_kouku")]
+	public ApiKouku? ApiFriendlyKouku { get; set; }
+
 	[JsonPropertyName("api_flavor_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]

@@ -112,6 +112,9 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : IDayBattleApiResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<int>? ApiEscapeIdxCombined { get; set; }
 
+	[JsonPropertyName("api_friendly_kouku")]
+	public ApiKouku? ApiFriendlyKouku { get; set; }
+
 	[JsonPropertyName("api_flavor_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
