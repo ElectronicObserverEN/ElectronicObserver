@@ -297,4 +297,7 @@
   <data name="SmokeScreen" xml:space="preserve">
     <value>Smoke screen</value>
   </data>
+  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
+    <value>Friendly Fleet Air Battle</value>
+  </data>
 </root>

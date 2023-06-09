@@ -277,4 +277,7 @@
   <data name="SmokeScreen" xml:space="preserve">
     <value>煙幕</value>
   </data>
+  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
+    <value>友軍支援航空攻撃</value>
+  </data>
 </root>

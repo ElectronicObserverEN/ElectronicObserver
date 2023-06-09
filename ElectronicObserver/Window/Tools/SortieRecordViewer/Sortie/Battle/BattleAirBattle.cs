@@ -24,7 +24,7 @@ public sealed class BattleAirBattle : BattleData
 		// todo: check if these actually exist
 		// JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		// BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
-		FriendlyAirBattle = new();
+		// FriendlyAirBattle = GetFriendlyAirBattlePhase();
 		AirBattle = GetAirBattlePhase(battle.ApiKouku, AirPhaseType.First);
 		AirBattle2 = GetAirBattlePhase(battle.ApiKouku2, AirPhaseType.Second);
 

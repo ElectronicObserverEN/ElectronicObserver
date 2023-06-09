@@ -117,6 +117,12 @@ public abstract class BattleData
 		_ => new(a),
 	};
 
+	protected static PhaseFriendlyAirBattle? GetFriendlyAirBattlePhase(ApiKouku? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
 	private static PhaseSupport? GetSupportPhase(SupportType apiSupportFlag, ApiSupportInfo? a,
 		bool isNightSupport) => a switch
 		{

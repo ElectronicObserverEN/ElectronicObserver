@@ -187,6 +187,15 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 友軍支援航空攻撃.
+        /// </summary>
+        public static string BattlePhaseFriendlyAirBattle {
+            get {
+                return ResourceManager.GetString("BattlePhaseFriendlyAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 友軍艦隊援護.
         /// </summary>
         public static string BattlePhaseFriendlyShelling {

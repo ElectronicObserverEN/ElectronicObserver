@@ -24,7 +24,7 @@ public abstract class BattleDay : BattleData
 		JetBaseAirAttack = GetJetBaseAirAttackPhase(battle.ApiAirBaseInjection);
 		JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
 		BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
-		FriendlyAirBattle = new();
+		FriendlyAirBattle = GetFriendlyAirBattlePhase(battle.ApiFriendlyKouku);
 		AirBattle = GetAirBattlePhase(battle.ApiKouku, AirPhaseType.Battle);
 		OpeningAsw = GetOpeningAswPhase(battle.ApiOpeningTaisen);
 		OpeningTorpedo = GetTorpedoPhase(battle.ApiOpeningAtack, TorpedoPhase.Opening);
