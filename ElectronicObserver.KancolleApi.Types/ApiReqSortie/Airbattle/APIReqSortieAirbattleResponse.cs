@@ -4,8 +4,16 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 
-public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResponse, IDaySearch
+public class ApiReqSortieAirbattleResponse : IAirBattleApiResponse
 {
+	[JsonPropertyName("api_air_base_attack")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
+
+	[JsonPropertyName("api_air_base_injection")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
+
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiDeckId { get; set; } = default!;
@@ -70,6 +78,10 @@ public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResp
 	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_injection_kouku")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
+
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -116,4 +128,7 @@ public class ApiReqSortieAirbattleResponse : IBattleApiResponse, ISupportApiResp
 	[JsonPropertyName("api_support_info")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiSupportInfo? ApiSupportInfo { get; set; }
+
+	[JsonPropertyName("api_friendly_kouku")]
+	public ApiKouku? ApiFriendlyKouku { get; set; }
 }

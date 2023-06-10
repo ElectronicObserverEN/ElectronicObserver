@@ -58,6 +58,7 @@ using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
@@ -287,6 +288,7 @@ public partial class App : Application
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
+			.AddSingleton<PhaseFactory>()
 			.AddSingleton<BattleFactory>()
 			// services
 			.AddSingleton<DataSerializationService>()

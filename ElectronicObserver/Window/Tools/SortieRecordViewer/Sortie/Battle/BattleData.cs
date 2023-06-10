@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
-using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public abstract class BattleData
 {
 	public abstract string Title { get; }
+
+	protected PhaseFactory PhaseFactory { get; }
 
 	public BattleFleets FleetsBeforeBattle => Initial.FleetsAfterPhase!;
 	public BattleFleets FleetsAfterBattle { get; protected set; }
@@ -50,35 +49,24 @@ public abstract class BattleData
 		.Aggregate(new SortieCost(), (a, b) => a + b);
 
 	public PhaseInitial Initial { get; }
-	protected PhaseSearching Searching { get; }
-	protected PhaseFriendlySupportInfo? FriendlySupportInfo { get; }
-	protected PhaseSupport? Support { get; }
 
 	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p is not null)!;
 
+	protected BattleData(PhaseFactory phaseFactory, BattleFleets fleets, IBattleApiResponse battle)
+	{
+		PhaseFactory = phaseFactory;
+
+		Initial = PhaseFactory.Initial(fleets, battle);
+	}
+
 	protected abstract IEnumerable<PhaseBase?> AllPhases();
 
-	protected BattleData(IKCDatabase kcDatabase, BattleFleets fleets, IBattleApiResponse battle)
+	protected void EmulateBattle()
 	{
-		Initial = battle switch
+		foreach (PhaseBase phase in Phases)
 		{
-			ApiDestructionBattle c => new(kcDatabase, fleets, c),
-			ICombinedBattleApiResponse c => new(kcDatabase, fleets, c),
-			IPlayerCombinedFleetBattle c => new(kcDatabase, fleets, c),
-			IEnemyCombinedFleetBattle c => new(kcDatabase, fleets, c),
-			_ => new(kcDatabase, fleets, battle),
-		};
-		Searching = battle switch
-		{
-			IDaySearch d => new(d),
-			_ => new(battle),
-		};
-		FriendlySupportInfo = GetFriendlySupportInfoPhase(battle.ApiFriendlyInfo);
-		Support = battle switch
-		{
-			ISupportApiResponse s => GetSupportPhase(s.ApiSupportFlag, s.ApiSupportInfo, battle is INightBattleApiResponse),
-			_ => null,
-		};
+			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
+		}
 	}
 
 	private static SortieCost RepairCost(IShipData? before, IShipData? after) => (before, after) switch
@@ -103,66 +91,5 @@ public abstract class BattleData
 		},
 
 		_ => new(),
-	};
-
-	protected static PhaseJetBaseAirAttack? GetJetBaseAirAttackPhase(ApiAirBaseInjection? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	private static PhaseFriendlySupportInfo? GetFriendlySupportInfoPhase(ApiFriendlyInfo? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	protected static PhaseFriendlyAirBattle? GetFriendlyAirBattlePhase(ApiKouku? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	private static PhaseSupport? GetSupportPhase(SupportType apiSupportFlag, ApiSupportInfo? a,
-		bool isNightSupport) => a switch
-		{
-			null => null,
-			_ => new(apiSupportFlag, a, isNightSupport),
-		};
-
-	protected static PhaseJetAirBattle? GetJetAirBattlePhase(ApiInjectionKouku? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	protected static PhaseBaseAirAttack? GetBaseAirAttackPhase(List<ApiAirBaseAttack>? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	protected static PhaseAirBattle? GetAirBattlePhase(ApiKouku? a, AirPhaseType type) => a switch
-	{
-		null => null,
-		_ => new(a, type),
-	};
-
-	protected static PhaseOpeningAsw? GetOpeningAswPhase(ApiHougeki1? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
-
-	protected static PhaseTorpedo? GetTorpedoPhase(ApiRaigekiClass? a, TorpedoPhase torpedoPhase) => a switch
-	{
-		null => null,
-		_ => new(a, torpedoPhase),
-	};
-
-	protected static PhaseShelling? GetShellingPhase(ApiHougeki1? a, DayShellingPhase dayShellingPhase) => a switch
-	{
-		null => null,
-		_ => new(a, dayShellingPhase),
 	};
 }

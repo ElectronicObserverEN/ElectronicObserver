@@ -3,7 +3,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 
-public class ApiReqBattleMidnightBattleResponse : INightBattleApiResponse
+public class ApiReqBattleMidnightBattleResponse : ISecondNightBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

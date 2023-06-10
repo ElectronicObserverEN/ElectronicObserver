@@ -2,32 +2,21 @@
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleAirRaid : BattleData
+/// <summary>
+/// 通常艦隊 vs 通常艦隊 長距離空襲戦 <br />
+/// api_req_sortie/ld_airbattle
+/// </summary>
+public sealed class BattleAirRaid : AirBattleData
 {
 	public override string Title => ConstantsRes.Title_NormalFleetAirRaid;
 
-	private PhaseJetBaseAirAttack JetBaseAirAttack { get; }
-	private PhaseJetAirBattle? JetAirBattle { get; }
-	private PhaseBaseAirAttack? BaseAirAttack { get; }
-	private PhaseAirBattle? AirBattle { get; }
-
-	public BattleAirRaid(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqSortieLdAirbattleResponse battle)
-		: base(kcDatabase, fleets, battle)
+	public BattleAirRaid(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqSortieLdAirbattleResponse battle)
+		: base(phaseFactory, fleets, battle)
 	{
-		JetBaseAirAttack = null;
-		// todo: check if these actually exist
-		// JetAirBattle = GetJetAirBattlePhase(battle.ApiInjectionKouku);
-		// BaseAirAttack = GetBaseAirAttackPhase(battle.ApiAirBaseAttack);
-		AirBattle = GetAirBattlePhase(battle.ApiKouku, AirPhaseType.Raid);
-
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		EmulateBattle();
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()

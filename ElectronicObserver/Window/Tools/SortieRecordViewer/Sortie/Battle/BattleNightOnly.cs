@@ -4,24 +4,30 @@ using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public sealed class BattleNightOnly : BattleNight
+/// <summary>
+/// 通常/連合艦隊 vs 通常艦隊 開幕夜戦 <br />
+/// api_req_battle_midnight/sp_midnight
+/// </summary>
+public sealed class BattleNightOnly : NightOnlyBattleData
 {
 	public override string Title => ConstantsRes.Title_NightOnly;
 
 	private static double FuelConsumption => 0.1;
 	private static double AmmoConsumption => 0.1;
 
-	public BattleNightOnly(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqBattleMidnightSpMidnightResponse battle) 
-		: base(kcDatabase, fleets, battle)
+	private PhaseSupport? Support { get; }
+	private PhaseNightBattle? NightBattle { get; }
+
+	public BattleNightOnly(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqBattleMidnightSpMidnightResponse battle) 
+		: base(phaseFactory, fleets, battle)
 	{
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		Support = PhaseFactory.Support(battle.ApiNSupportFlag, battle.ApiNSupportInfo, true);
+		NightBattle = PhaseFactory.NightBattle(battle.ApiHougeki);
+
+		EmulateBattle();
 
 		foreach (IShipData? ship in FleetsAfterBattle.Fleet.MembersWithoutEscaped!)
 		{

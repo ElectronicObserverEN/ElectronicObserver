@@ -4,20 +4,19 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 
-public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse, IDayBattleApiResponse, ISupportApiResponse
+public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiResponse, ICombinedBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<ApiAirBaseAttack> ApiAirBaseAttack { get; set; } = new();
+	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
 
 	[JsonPropertyName("api_air_base_injection")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; } = default!;
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -67,14 +66,14 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_escape_idx")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiEscapeIdx { get; set; } = default!;
+	public List<int>? ApiEscapeIdx { get; set; }
 
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_escape_idx_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiEscapeIdxCombined { get; set; } = default!;
+	public List<int>? ApiEscapeIdxCombined { get; set; }
 
 	[JsonPropertyName("api_fParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -134,7 +133,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_hougeki2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki1? ApiHougeki2 { get; set; } = default!;
+	public ApiHougeki1? ApiHougeki2 { get; set; }
 
 	[JsonPropertyName("api_hougeki3")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -148,7 +147,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_injection_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiInjectionKouku? ApiInjectionKouku { get; set; } = default!;
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -157,23 +156,23 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_midnight_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiRaigekiClass? ApiOpeningAtack { get; set; } = default!;
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiOpeningFlag { get; set; } = default!;
+	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_taisen")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki1? ApiOpeningTaisen { get; set; } = default!;
+	public ApiHougeki1? ApiOpeningTaisen { get; set; }
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiOpeningTaisenFlag { get; set; } = default!;
+	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -220,5 +219,5 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedBattleApiResponse
 
 	[JsonPropertyName("api_xal01")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiXal01 { get; set; } = default!;
+	public int? ApiXal01 { get; set; }
 }

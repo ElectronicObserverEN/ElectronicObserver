@@ -3,11 +3,11 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
 
-public class ApiReqPracticeBattleResponse : IBattleApiResponse
+public class ApiReqPracticeBattleResponse : IFirstBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -65,15 +65,11 @@ public class ApiReqPracticeBattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_hougeki1")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki1? ApiHougeki1 { get; set; } = default!;
+	public ApiHougeki1? ApiHougeki1 { get; set; }
 
 	[JsonPropertyName("api_hougeki2")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki1? ApiHougeki2 { get; set; } = default!;
-
-	[JsonPropertyName("api_hougeki3")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object? ApiHougeki3 { get; set; } = default!;
+	public ApiHougeki1? ApiHougeki2 { get; set; }
 
 	[JsonPropertyName("api_hourai_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -82,7 +78,7 @@ public class ApiReqPracticeBattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_injection_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiInjectionKouku? ApiInjectionKouku { get; set; } = default!;
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -91,27 +87,27 @@ public class ApiReqPracticeBattleResponse : IBattleApiResponse
 
 	[JsonPropertyName("api_midnight_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiRaigekiClass ApiOpeningAtack { get; set; } = default!;
+	public ApiRaigekiClass ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiOpeningFlag { get; set; } = default!;
+	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_taisen")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiHougeki1 ApiOpeningTaisen { get; set; } = default!;
+	public ApiHougeki1 ApiOpeningTaisen { get; set; }
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiOpeningTaisenFlag { get; set; } = default!;
+	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiRaigekiClass ApiRaigeki { get; set; } = default!;
+	public ApiRaigekiClass ApiRaigeki { get; set; }
 
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

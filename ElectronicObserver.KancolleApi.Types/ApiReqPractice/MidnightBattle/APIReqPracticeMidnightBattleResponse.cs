@@ -3,7 +3,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.MidnightBattle;
 
-public class ApiReqPracticeMidnightBattleResponse : IBattleApiResponse
+public class ApiReqPracticeMidnightBattleResponse : IBattleApiResponse, INightGearApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -86,5 +86,5 @@ public class ApiReqPracticeMidnightBattleResponse : IBattleApiResponse
 	[JsonPropertyName("api_touch_plane")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiTouchPlane { get; set; } = new();
+	public List<object> ApiTouchPlane { get; set; } = new();
 }

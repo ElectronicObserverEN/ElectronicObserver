@@ -1,17 +1,21 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
 
-public class ApiReqCombinedBattleLdAirbattleResponse : IPlayerCombinedFleetBattle
+public class ApiReqCombinedBattleLdAirbattleResponse : IAirBattleApiResponse, IPlayerCombinedFleetBattle
 {
+	[JsonPropertyName("api_air_base_injection")]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
+
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; } = default!;
+	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -41,14 +45,14 @@ public class ApiReqCombinedBattleLdAirbattleResponse : IPlayerCombinedFleetBattl
 
 	[JsonPropertyName("api_escape_idx")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiEscapeIdx { get; set; } = default!;
+	public List<int>? ApiEscapeIdx { get; set; }
 
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_escape_idx_combined")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiEscapeIdxCombined { get; set; } = default!;
+	public List<int>? ApiEscapeIdxCombined { get; set; }
 
 	[JsonPropertyName("api_fParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -93,6 +97,9 @@ public class ApiReqCombinedBattleLdAirbattleResponse : IPlayerCombinedFleetBattl
 	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_injection_kouku")]
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
+
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
@@ -100,12 +107,12 @@ public class ApiReqCombinedBattleLdAirbattleResponse : IPlayerCombinedFleetBattl
 
 	[JsonPropertyName("api_midnight_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public List<int> ApiSearch { get; set; } = new();
+	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -121,4 +128,7 @@ public class ApiReqCombinedBattleLdAirbattleResponse : IPlayerCombinedFleetBattl
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiStageFlag { get; set; } = new();
+
+	[JsonPropertyName("api_friendly_kouku")]
+	public ApiKouku? ApiFriendlyKouku { get; set; }
 }

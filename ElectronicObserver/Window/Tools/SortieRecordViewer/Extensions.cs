@@ -26,6 +26,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.SetPlane;
 using ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.Supply;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.BattleWater;
@@ -223,7 +224,7 @@ public static class Extensions
 		"api_req_combined_battle/ld_shooting" => throw new NotImplementedException(),
 
 		"api_req_battle_midnight/battle" => JsonSerializer.Deserialize<ApiReqBattleMidnightBattleRequest>(file.Content),
-		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleRequest>(file.Content),
+		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleMidnightBattleRequest>(file.Content),
 		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleRequest>(file.Content),
 
 		_ => throw new NotImplementedException(),

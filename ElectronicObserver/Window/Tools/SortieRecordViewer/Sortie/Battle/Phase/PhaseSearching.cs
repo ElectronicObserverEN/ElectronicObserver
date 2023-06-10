@@ -30,7 +30,7 @@ public class PhaseSearching : PhaseBase
 		_ => "",
 	};
 
-	public PhaseSearching(IBattleApiResponse battle)
+	public PhaseSearching(IFirstBattleApiResponse battle)
 	{
 		PlayerFormationType = (FormationType)battle.ApiFormation[0];
 		EnemyFormationType = (FormationType)battle.ApiFormation[1];
@@ -39,7 +39,7 @@ public class PhaseSearching : PhaseBase
 		SmokeCount = battle.ApiSmokeType;
 	}
 
-	public PhaseSearching(IDaySearch battle) : this((IBattleApiResponse)battle)
+	public PhaseSearching(IDaySearch battle) : this((IFirstBattleApiResponse)battle)
 	{
 		PlayerDetectionType = battle.ApiSearch[0];
 		EnemyDetectionType = battle.ApiSearch[1];

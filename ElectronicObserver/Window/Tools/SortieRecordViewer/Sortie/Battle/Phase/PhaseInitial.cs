@@ -88,9 +88,9 @@ public class PhaseInitial : PhaseBase
 			$"{GeneralRes.Armor}:{ship.ArmorBase}" +
 			$"{EscapedText(fleet.EscapedShipList.Contains(ship.MasterID))}" +
 			$"\n" +
-			$" {string.Join(", ", ship.AllSlotInstance.Zip(ship.ExpansionSlot switch
+			$" {string.Join(", ", ship.AllSlotInstance.Zip(ship.IsExpansionSlotAvailable switch
 			{
-				> 0 => ship.Aircraft.Concat(new[] { 0 }),
+				true => ship.Aircraft.Concat(new[] { 0 }),
 				_ => ship.Aircraft,
 			},
 				(eq, aircraft) => eq switch

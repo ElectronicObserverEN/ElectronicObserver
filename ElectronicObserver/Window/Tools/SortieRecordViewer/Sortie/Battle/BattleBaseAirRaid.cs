@@ -2,25 +2,25 @@
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public sealed class BattleBaseAirRaid : BattleData
+/// <summary>
+/// 基地防空戦 <br />
+/// api_req_map/next
+/// </summary>
+public sealed class BattleBaseAirRaid : FirstBattleData
 {
 	public override string Title => ConstantsRes.Title_BaseAirRaid;
 
 	private PhaseBaseAirRaid? BaseAirRaid { get; }
 
-	public BattleBaseAirRaid(IKCDatabase kcDatabase, BattleFleets fleets, ApiDestructionBattle battle)
-		: base(kcDatabase, fleets, battle)
+	public BattleBaseAirRaid(PhaseFactory phaseFactory, BattleFleets fleets, ApiDestructionBattle battle)
+		: base(phaseFactory, fleets, battle)
 	{
-		BaseAirRaid = GetBaseAirRaidPhase(battle.ApiAirBaseAttack);
+		BaseAirRaid = PhaseFactory.BaseAirRaid(battle.ApiAirBaseAttack);
 
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		EmulateBattle();
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()
@@ -29,10 +29,4 @@ public sealed class BattleBaseAirRaid : BattleData
 		yield return Searching;
 		yield return BaseAirRaid;
 	}
-
-	private static PhaseBaseAirRaid? GetBaseAirRaidPhase(ApiAirBaseRaid? a) => a switch
-	{
-		null => null,
-		_ => new(a),
-	};
 }

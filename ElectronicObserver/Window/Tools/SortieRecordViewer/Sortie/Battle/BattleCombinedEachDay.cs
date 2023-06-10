@@ -2,21 +2,21 @@
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public sealed class BattleCombinedEachDay : BattleDay
+/// <summary>
+/// 機動部隊 vs 連合艦隊 昼戦 <br />
+/// api_req_combined_battle/each_battle
+/// </summary>
+public sealed class BattleCombinedEachDay : CombinedDayBattleData
 {
 	public override string Title => ConstantsRes.Title_CombinedEachDay;
 
-	public BattleCombinedEachDay(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqCombinedBattleEachBattleResponse battle)
-		: base(kcDatabase, fleets, battle)
+	public BattleCombinedEachDay(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleEachBattleResponse battle)
+		: base(phaseFactory, fleets, battle)
 	{
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		EmulateBattle();
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()

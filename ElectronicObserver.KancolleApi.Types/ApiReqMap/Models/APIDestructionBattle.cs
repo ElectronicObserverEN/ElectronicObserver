@@ -3,12 +3,11 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 
-public class ApiDestructionBattle : IBattleApiResponse
+public class ApiDestructionBattle : IFirstBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public ApiAirBaseRaid ApiAirBaseAttack { get; set; } = new();
+	public ApiAirBaseRaid? ApiAirBaseAttack { get; set; }
 
 	[JsonPropertyName("api_eSlot")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]

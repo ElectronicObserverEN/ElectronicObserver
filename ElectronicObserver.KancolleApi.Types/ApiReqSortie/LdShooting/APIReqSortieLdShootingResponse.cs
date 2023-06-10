@@ -3,7 +3,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 
-public class ApiReqSortieLdShootingResponse : IBattleApiResponse
+public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -87,4 +87,10 @@ public class ApiReqSortieLdShootingResponse : IBattleApiResponse
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiShipLv { get; set; } = new();
+
+	[JsonPropertyName("api_air_base_injection")]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
+
+	[JsonPropertyName("api_air_base_attack")]
+	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
 }

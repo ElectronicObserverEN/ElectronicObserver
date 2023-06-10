@@ -2,21 +2,21 @@
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.BattleWater;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleCombinedWater : BattleDay
+/// <summary>
+/// 水上部隊 vs 通常艦隊 昼戦 <br />
+/// api_req_combined_battle/battle_water
+/// </summary>
+public sealed class BattleCombinedWater : CombinedDayBattleData
 {
 	public override string Title => BattleRes.SuijouButaiDayBattle;
 
-	public BattleCombinedWater(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqCombinedBattleBattleWaterResponse battle)
-		: base(kcDatabase, fleets, battle)
+	public BattleCombinedWater(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleBattleWaterResponse battle)
+		: base(phaseFactory, fleets, battle)
 	{
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		EmulateBattle();
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()

@@ -34,7 +34,7 @@ public class PhaseNightInitial : PhaseBase
 
 	public string Display => GetDisplay();
 
-	public PhaseNightInitial(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle)
+	public PhaseNightInitial(IKCDatabase kcDatabase, BattleFleets fleets, INightGearApiResponse battle)
 	{
 		KcDatabase = kcDatabase;
 		Fleets = fleets;

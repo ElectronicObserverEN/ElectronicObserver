@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Data;
-using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public sealed class BattleNormalNight : BattleNight
+/// <summary>
+/// 通常艦隊 vs 通常艦隊 夜戦 <br />
+/// api_req_battle_midnight/battle
+/// </summary>
+public sealed class BattleNormalNight : SecondNightBattleData
 {
 	public override string Title => ConstantsRes.Title_NormalNight;
 
-	public BattleNormalNight(IKCDatabase kcDatabase, BattleFleets fleets, INightBattleApiResponse battle)
-		: base(kcDatabase, fleets, battle)
+	public BattleNormalNight(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqBattleMidnightBattleResponse battle)
+		: base(phaseFactory, fleets, battle)
 	{
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		EmulateBattle();
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()

@@ -4,7 +4,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 
-public class ApiReqCombinedBattleSpMidnightResponse : INightBattleApiResponse
+public class ApiReqCombinedBattleSpMidnightResponse : INightOnlyBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	public int ApiDeckId { get; set; }
@@ -71,4 +71,10 @@ public class ApiReqCombinedBattleSpMidnightResponse : INightBattleApiResponse
 
 	[JsonPropertyName("api_hougeki")]
 	public ApiHougeki? ApiHougeki { get; set; }
+
+	[JsonPropertyName("api_n_support_flag")]
+	public SupportType ApiNSupportFlag { get; set; }
+
+	[JsonPropertyName("api_n_support_info")]
+	public ApiSupportInfo? ApiNSupportInfo { get; set; }
 }

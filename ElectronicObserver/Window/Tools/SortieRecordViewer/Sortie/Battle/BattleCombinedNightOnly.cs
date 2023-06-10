@@ -2,21 +2,27 @@
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public sealed class BattleCombinedNightOnly : BattleNight
+/// <summary>
+/// 連合艦隊 vs 通常艦隊 開幕夜戦 <br />
+/// api_req_combined_battle/sp_midnight
+/// </summary>
+public sealed class BattleCombinedNightOnly : NightOnlyBattleData
 {
 	public override string Title => ConstantsRes.Title_CombinedNightOnly;
 
-	public BattleCombinedNightOnly(IKCDatabase kcDatabase, BattleFleets fleets, ApiReqCombinedBattleSpMidnightResponse battle)
-		: base(kcDatabase, fleets, battle)
+	private PhaseSupport? Support { get; }
+	private PhaseNightBattle? NightBattle { get; }
+
+	public BattleCombinedNightOnly(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleSpMidnightResponse battle)
+		: base(phaseFactory, fleets, battle)
 	{
-		foreach (PhaseBase phase in Phases)
-		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
-		}
+		Support = PhaseFactory.Support(battle.ApiSupportFlag, battle.ApiSupportInfo, true);
+		NightBattle = PhaseFactory.NightBattle(battle.ApiHougeki);
+
+		EmulateBattle();
 	}
 
 	protected override IEnumerable<PhaseBase?> AllPhases()

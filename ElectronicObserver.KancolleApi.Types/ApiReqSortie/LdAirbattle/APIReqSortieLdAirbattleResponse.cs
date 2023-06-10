@@ -4,15 +4,18 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 
-public class ApiReqSortieLdAirbattleResponse : IBattleApiResponse, IDaySearch
+public class ApiReqSortieLdAirbattleResponse : IAirBattleApiResponse
 {
+	[JsonPropertyName("api_air_base_injection")]
+	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
+
 	[JsonPropertyName("api_air_base_attack")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; } = default!;
+	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -74,14 +77,17 @@ public class ApiReqSortieLdAirbattleResponse : IBattleApiResponse, IDaySearch
 	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_injection_kouku")]
+	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
+
 	[JsonPropertyName("api_kouku")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
-	public ApiKouku ApiKouku { get; set; } = new();
+	public ApiKouku? ApiKouku { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_search")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -102,4 +108,7 @@ public class ApiReqSortieLdAirbattleResponse : IBattleApiResponse, IDaySearch
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiStageFlag { get; set; } = new();
+
+	[JsonPropertyName("api_friendly_kouku")]
+	public ApiKouku? ApiFriendlyKouku { get; set; }
 }

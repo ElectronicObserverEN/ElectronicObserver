@@ -1,13 +1,14 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 
-public class ApiReqBattleMidnightSpMidnightResponse : INightBattleApiResponse
+public class ApiReqBattleMidnightSpMidnightResponse : INightOnlyBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
@@ -81,7 +82,10 @@ public class ApiReqBattleMidnightSpMidnightResponse : INightBattleApiResponse
 
 	[JsonPropertyName("api_n_support_flag")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNSupportFlag { get; set; } = default!;
+	public SupportType ApiNSupportFlag { get; set; }
+
+	[JsonPropertyName("api_n_support_info")]
+	public ApiSupportInfo? ApiNSupportInfo { get; set; }
 
 	[JsonPropertyName("api_ship_ke")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
