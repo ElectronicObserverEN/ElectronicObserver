@@ -42,6 +42,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.GobackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqFurniture.Buy;
 using ElectronicObserver.KancolleApi.Types.ApiReqHensei.Change;
 using ElectronicObserver.KancolleApi.Types.ApiReqHensei.Combined;
@@ -189,7 +190,7 @@ public partial class ApiTypeTesterViewModel
 				"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleRequest>(file.Content),
 				"api_req_combined_battle/goback_port" => JsonSerializer.Deserialize<ApiReqCombinedBattleGobackPortRequest>(file.Content),
 				"api_req_combined_battle/ld_airbattle" => JsonSerializer.Deserialize<ApiReqCombinedBattleLdAirbattleRequest>(file.Content),
-				"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleRequest>(file.Content),
+				"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleMidnightBattleRequest>(file.Content),
 				"api_req_furniture/buy" => JsonSerializer.Deserialize<ApiReqFurnitureBuyRequest>(file.Content),
 				"api_req_hensei/change" => JsonSerializer.Deserialize<ApiReqHenseiChangeRequest>(file.Content),
 				"api_req_hensei/combined" => JsonSerializer.Deserialize<ApiReqHenseiCombinedRequest>(file.Content),
@@ -305,7 +306,7 @@ public partial class ApiTypeTesterViewModel
 				"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content),
 				"api_req_combined_battle/goback_port" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleGobackPortResponse>>(file.Content),
 				"api_req_combined_battle/ld_airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleLdAirbattleResponse>>(file.Content),
-				"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content),
+				"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleMidnightBattleResponse>>(file.Content),
 				"api_req_furniture/buy" => JsonSerializer.Deserialize<ApiResponse<ApiReqFurnitureBuyResponse>>(file.Content),
 				"api_req_hensei/change" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiChangeResponse>>(file.Content),
 				"api_req_hensei/combined" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiCombinedResponse>>(file.Content),
