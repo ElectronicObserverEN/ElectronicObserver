@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Data;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
@@ -40,14 +39,13 @@ public class PhaseShellingAttackViewModel
 
 		DamageDisplay =
 			$"[{ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(AttackType)}] " +
-			$"{string.Join(", ", Attacks.Select(AttackDisplay))} ";
+			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
-		// torpedoes attack all enemies even if they're sunken already
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
-			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
+			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
 	}
 

@@ -9,12 +9,12 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class AirBattleAttackViewModel
 {
-	public int WaveIndex { get; }
+	private int WaveIndex { get; }
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; set; }
-	public double Damage { get; }
-	public HitType HitType { get; }
-	public AirAttack AttackType { get; }
+	private double Damage { get; }
+	private HitType HitType { get; }
+	private AirAttack AttackType { get; }
 	public string DamageDisplay { get; }
 
 	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
@@ -36,8 +36,14 @@ public class AirBattleAttackViewModel
 
 		DamageDisplay =
 			$"[{GetAttackKind(AttackType)}] " +
-			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)} " +
-			$"({Defender.HPCurrent} → {Math.Max(0, Defender.HPCurrent - Damage)})";
+			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)}";
+
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
+
+		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
+		{
+			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
+		}
 	}
 
 	private static string GetAttackKind(AirAttack airAttack) => airAttack switch

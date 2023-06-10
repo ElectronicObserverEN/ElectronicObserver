@@ -39,7 +39,6 @@ public class PhaseSupportAttackViewModel
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
-		// support attacks all enemies even if they're sunken already
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
 			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
