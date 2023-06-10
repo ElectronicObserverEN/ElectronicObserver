@@ -79,14 +79,12 @@ public class PhaseNightBattle : PhaseBase
 		{
 			switch (atk.AttackType)
 			{
-				/*
 				case NightAttackKind.SpecialNelson:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
-						BattleIndex comboatk = new(atk.Attacker.Side, i * 2);       // #1, #3, #5
-																					// BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
+						BattleIndex comboAttack = atk.Attacker with { Index = i * 2 };
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack, atk.Defenders.First().Defender, atk.AttackType, atk.Defenders));
 						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
 					}
 					break;
 
@@ -95,13 +93,12 @@ public class PhaseNightBattle : PhaseBase
 				case NightAttackKind.SpecialYamato2Ships:
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i / 2);       // #1, #1, #2
-																						// BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
+						BattleIndex comboAttack = atk.Attacker with { Index = i / 2 };
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack, atk.Defenders.First().Defender, atk.AttackType, atk.Defenders));
 						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
 					}
 					break;
-				*/
+
 				case NightAttackKind.SpecialColorado:
 				case NightAttackKind.SpecialKongou:
 				case NightAttackKind.SpecialYamato3Ships:
@@ -134,11 +131,9 @@ public class PhaseNightBattle : PhaseBase
 				default:
 					foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 					{
-						// BattleDetails.Add(new BattleNightDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[defs.Key]));
 						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, atk.Attacker, defs.Key, atk.AttackType, defs.ToList()));
 						AddDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
 					}
-					// damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
 					break;
 			}
 		}
