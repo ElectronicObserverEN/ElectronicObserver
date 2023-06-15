@@ -6,11 +6,9 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiDeckId { get; set; } = default!;
 
 	[JsonPropertyName("api_eParam")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
 
@@ -21,7 +19,6 @@ public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_eSlot")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<List<int>> ApiESlot { get; set; } = new();
 
@@ -29,7 +26,6 @@ public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_e_maxhps")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<object> ApiEMaxhps { get; set; } = new();
 
@@ -37,54 +33,43 @@ public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_e_nowhps")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_fParam")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<List<int>> ApiFParam { get; set; } = new();
 
 	[JsonPropertyName("api_friendly_info")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiFriendlyInfo? ApiFriendlyInfo { get; set; }
 
 	[JsonPropertyName("api_friendly_battle")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiFriendlyBattle? ApiFriendlyBattle { get; set; }
 
 	[JsonPropertyName("api_f_maxhps")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiFMaxhps { get; set; } = new();
 
 	[JsonPropertyName("api_f_nowhps")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiFNowhps { get; set; } = new();
 
 	[JsonPropertyName("api_formation")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki1")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public ApiHougeki1 ApiHougeki1 { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiMidnightFlag { get; set; } = default!;
 
 	[JsonPropertyName("api_ship_ke")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiShipKe { get; set; } = new();
 
 	[JsonPropertyName("api_ship_lv")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	[Required]
 	public List<int> ApiShipLv { get; set; } = new();
 

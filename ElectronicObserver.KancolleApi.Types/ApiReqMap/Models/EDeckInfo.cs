@@ -11,7 +11,6 @@ public class EDeckInfo
 	/// Not 100% confirmed yet.
 	/// </summary>
 	[JsonPropertyName("api_kind")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiKind { get; set; } = default!;
 
 	/// <summary>
@@ -19,6 +18,5 @@ public class EDeckInfo
 	/// If the enemy fleet has less than 3 ships, ids for all ships will be in the list.
 	/// </summary>
 	[JsonPropertyName("api_ship_ids")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public List<ShipId> ApiShipIds { get; set; } = default!;
 }
