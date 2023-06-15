@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public interface IDayFromNightBattleApiResponse : INightBattleApiResponse, IDayBattleApiResponse, INightSupportApiResponse
+public interface IDayFromNightBattleApiResponse : INightBattleApiResponse, IDayBattleApiResponse
 {
 	/// <summary>
 	/// 夜間砲雷撃戦　1巡目　味方(随伴)?->敵全体 vs 敵随伴->味方?
