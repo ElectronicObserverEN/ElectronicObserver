@@ -83,7 +83,7 @@ public class BattleFleets
 	/// Right now it matches via equipment too, but there's a chance both dupes have the same equip.
 	/// </summary>
 	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-	private IShipData? GetShip(ApiShipDatum shipData)
+	private IShipData? GetShip(ApiShip shipData)
 	{
 		IEnumerable<IShipData?> ships = Fleet.MembersInstance;
 
@@ -119,7 +119,7 @@ public class BattleFleets
 
 	public void UpdateState(ApiGetMemberShipDeckResponse deck)
 	{
-		foreach (ApiShipDatum shipData in deck.ApiShipData)
+		foreach (ApiShip shipData in deck.ApiShipData)
 		{
 			if (GetShip(shipData) is not ShipDataMock ship) continue;
 

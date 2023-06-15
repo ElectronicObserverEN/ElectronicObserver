@@ -1,5 +1,11 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
 
+namespace ElectronicObserver.KancolleApi.Types.Models;
+
+/// <summary>
+/// api_req_kaisou/marriage <br />
+/// api_get_member/ship2
+/// </summary>
 public class ApiShip
 {
 	[JsonPropertyName("api_backs")]
@@ -69,7 +75,7 @@ public class ApiShip
 	public int? ApiSallyArea { get; set; }
 
 	[JsonPropertyName("api_ship_id")]
-	public int ApiShipId { get; set; }
+	public ShipId ApiShipId { get; set; }
 
 	[JsonPropertyName("api_slot")]
 	public List<int> ApiSlot { get; set; } = new();

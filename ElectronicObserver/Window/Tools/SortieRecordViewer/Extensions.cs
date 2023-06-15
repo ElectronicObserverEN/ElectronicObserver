@@ -265,7 +265,7 @@ public static class Extensions
 		"api_req_hokyu/charge" => JsonSerializer.Deserialize<ApiResponse<ApiReqHokyuChargeResponse>>(file.Content)?.ApiData,
 		"api_req_kaisou/can_preset_slot_select" => JsonSerializer.Deserialize<ApiResponseNull<APIReqKaisouCanPresetSlotSelectResponse>>(file.Content)?.ApiData,
 		"api_req_kaisou/lock" => JsonSerializer.Deserialize<ApiResponse<ApiReqKaisouLockResponse>>(file.Content)?.ApiData,
-		"api_req_kaisou/marriage" => JsonSerializer.Deserialize<ApiResponse<ApiReqKaisouMarriageResponse>>(file.Content)?.ApiData,
+		"api_req_kaisou/marriage" => JsonSerializer.Deserialize<ApiResponse<ApiShip>>(file.Content)?.ApiData,
 		"api_req_kaisou/open_exslot" => JsonSerializer.Deserialize<ApiResponse<ApiReqKaisouOpenExslotResponse>>(file.Content)?.ApiData,
 		"api_req_kaisou/powerup" => JsonSerializer.Deserialize<ApiResponse<ApiReqKaisouPowerupResponse>>(file.Content)?.ApiData,
 		"api_req_kaisou/preset_slot_register" => JsonSerializer.Deserialize<ApiResponseNull<ApiReqKaisouPresetSlotRegisterResponse>>(file.Content)?.ApiData,

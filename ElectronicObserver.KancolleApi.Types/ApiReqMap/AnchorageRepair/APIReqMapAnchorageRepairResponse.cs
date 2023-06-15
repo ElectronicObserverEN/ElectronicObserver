@@ -8,7 +8,7 @@ public class ApiReqMapAnchorageRepairResponse
 	public List<int> ApiRepairShips { get; set; } = new();
 
 	[JsonPropertyName("api_ship_data")]
-	public List<ApiShipDatum> ApiShipData { get; set; } = new();
+	public List<ApiShip> ApiShipData { get; set; } = new();
 
 	[JsonPropertyName("api_used_ship")]
 	public int ApiUsedShip { get; set; }

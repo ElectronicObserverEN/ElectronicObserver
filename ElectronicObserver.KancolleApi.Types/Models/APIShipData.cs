@@ -3,8 +3,8 @@
 public class ApiShipData
 {
 	[JsonPropertyName("api_set_ship")]
-	public ApiSetShip ApiSetShip { get; set; } = new();
+	public ApiShip ApiSetShip { get; set; } = new();
 
 	[JsonPropertyName("api_unset_ship")]
-	public ApiSetShip ApiUnsetShip { get; set; } = new();
+	public ApiShip ApiUnsetShip { get; set; } = new();
 }

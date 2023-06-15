@@ -8,7 +8,7 @@ public class ApiGetMemberShip3Response
 	public List<FleetDataDto> ApiDeckData { get; set; } = new();
 
 	[JsonPropertyName("api_ship_data")]
-	public List<ApiShipDatum> ApiShipData { get; set; } = new();
+	public List<ApiShip> ApiShipData { get; set; } = new();
 
 	[JsonPropertyName("api_slot_data")]
 	public IDictionary<string, List<int>> ApiSlotData { get; set; } = new Dictionary<string, List<int>>();
