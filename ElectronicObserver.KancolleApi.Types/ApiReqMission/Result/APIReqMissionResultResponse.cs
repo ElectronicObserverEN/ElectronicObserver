@@ -8,7 +8,7 @@ public class ApiReqMissionResultResponse
 	public int ApiClearResult { get; set; }
 
 	[JsonPropertyName("api_detail")]
-	public string ApiDetail { get; set; }
+	public string ApiDetail { get; set; } = "";
 
 	[JsonPropertyName("api_get_exp")]
 	public int ApiGetExp { get; set; }
@@ -26,13 +26,13 @@ public class ApiReqMissionResultResponse
 	/// Element type is <see cref="int"/> or <see cref="List{T}"/> of <see cref="int"/>s.
 	/// </summary>
 	[JsonPropertyName("api_get_material")]
-	public object ApiGetMaterial { get; set; }
+	public object ApiGetMaterial { get; set; } = -1;
 
 	[JsonPropertyName("api_get_ship_exp")]
 	public List<int> ApiGetShipExp { get; set; } = new();
 
 	[JsonPropertyName("api_maparea_name")]
-	public string ApiMapareaName { get; set; }
+	public string ApiMapareaName { get; set; } = "";
 
 	[JsonPropertyName("api_member_exp")]
 	public int ApiMemberExp { get; set; }
@@ -41,13 +41,13 @@ public class ApiReqMissionResultResponse
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_member_lv")]
-	public object ApiMemberLv { get; set; }
+	public object ApiMemberLv { get; set; } = 0;
 
 	[JsonPropertyName("api_quest_level")]
 	public int ApiQuestLevel { get; set; }
 
 	[JsonPropertyName("api_quest_name")]
-	public string ApiQuestName { get; set; }
+	public string ApiQuestName { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
 	public List<int> ApiShipId { get; set; } = new();

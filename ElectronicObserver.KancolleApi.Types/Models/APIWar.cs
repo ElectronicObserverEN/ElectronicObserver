@@ -3,11 +3,11 @@
 public class ApiWar
 {
 	[JsonPropertyName("api_lose")]
-	public string ApiLose { get; set; }
+	public string ApiLose { get; set; } = "";
 
 	[JsonPropertyName("api_rate")]
-	public string ApiRate { get; set; }
+	public string ApiRate { get; set; } = "";
 
 	[JsonPropertyName("api_win")]
-	public string ApiWin { get; set; }
+	public string ApiWin { get; set; } = "";
 }

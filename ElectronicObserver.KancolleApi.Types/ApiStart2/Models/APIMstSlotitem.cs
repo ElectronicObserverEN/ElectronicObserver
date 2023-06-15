@@ -42,7 +42,7 @@ public class ApiMstSlotitem
 	public int ApiLuck { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_raig")]
 	public int ApiRaig { get; set; }
@@ -84,7 +84,7 @@ public class ApiMstSlotitem
 	public List<int> ApiType { get; set; } = new();
 
 	[JsonPropertyName("api_usebull")]
-	public string ApiUsebull { get; set; }
+	public string ApiUsebull { get; set; } = "";
 
 	[JsonPropertyName("api_version")]
 	public int? ApiVersion { get; set; }

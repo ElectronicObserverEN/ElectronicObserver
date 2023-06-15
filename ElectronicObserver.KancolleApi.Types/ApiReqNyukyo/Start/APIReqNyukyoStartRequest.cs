@@ -3,17 +3,17 @@
 public class ApiReqNyukyoStartRequest
 {
 	[JsonPropertyName("api_token")]
-	public string ApiToken { get; set; }
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_highspeed")]
-	public string ApiHighspeed { get; set; }
+	public string ApiHighspeed { get; set; } = "";
 
 	[JsonPropertyName("api_ndock_id")]
-	public string ApiNdockId { get; set; }
+	public string ApiNdockId { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
-	public string ApiShipId { get; set; }
+	public string ApiShipId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

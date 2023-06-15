@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.Models;
 
@@ -9,7 +8,7 @@ public class ApiBaseItem
 	public int ApiRid { get; set; }
 
 	[JsonPropertyName("api_distance")]
-	public ApiDistance ApiDistance { get; set; }
+	public ApiDistance? ApiDistance { get; set; }
 
 	[JsonPropertyName("api_plane_info")]
 	public List<ApiPlaneInfo> ApiPlaneInfo { get; set; } = new();

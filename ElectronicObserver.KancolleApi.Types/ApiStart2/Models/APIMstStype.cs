@@ -12,7 +12,7 @@ public class ApiMstStype
 	public int ApiKcnt { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_scnt")]
 	public int ApiScnt { get; set; }

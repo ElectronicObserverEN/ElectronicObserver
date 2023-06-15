@@ -3,10 +3,10 @@
 public class ApiReqHenseiPresetRegisterResponse
 {
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_name_id")]
-	public string ApiNameId { get; set; }
+	public string ApiNameId { get; set; } = "";
 
 	[JsonPropertyName("api_preset_no")]
 	public int ApiPresetNo { get; set; }

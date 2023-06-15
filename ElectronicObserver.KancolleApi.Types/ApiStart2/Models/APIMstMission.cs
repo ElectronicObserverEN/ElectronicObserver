@@ -9,13 +9,13 @@ public class ApiMstMission
 	public int ApiDeckNum { get; set; }
 
 	[JsonPropertyName("api_details")]
-	public string ApiDetails { get; set; }
+	public string ApiDetails { get; set; } = "";
 
 	[JsonPropertyName("api_difficulty")]
 	public int ApiDifficulty { get; set; }
 
 	[JsonPropertyName("api_disp_no")]
-	public string ApiDispNo { get; set; }
+	public string ApiDispNo { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }
@@ -24,7 +24,7 @@ public class ApiMstMission
 	public int ApiMapareaId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_reset_type")]
 	public int? ApiResetType { get; set; }

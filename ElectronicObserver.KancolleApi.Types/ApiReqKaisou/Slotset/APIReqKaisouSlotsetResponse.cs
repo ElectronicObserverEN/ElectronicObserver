@@ -6,5 +6,5 @@ public class ApiReqKaisouSlotsetResponse
 	public int ApiResult { get; set; }
 
 	[JsonPropertyName("api_result_msg")]
-	public string ApiResultMsg { get; set; }
+	public string ApiResultMsg { get; set; } = "";
 }

@@ -3,11 +3,11 @@
 public class ApiGetMemberQuestlistRequest
 {
 	[JsonPropertyName("api_page_no")]
-	public string ApiPageNo { get; set; }
+	public string ApiPageNo { get; set; } = "";
 
 	[JsonPropertyName("api_tab_id")]
-	public string ApiTabId { get; set; }
+	public string ApiTabId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

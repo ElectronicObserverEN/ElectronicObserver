@@ -12,5 +12,5 @@ public class ApiReqMapStartAirBaseRequest
 	public string? ApiStrikePoint3 { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

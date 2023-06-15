@@ -5,7 +5,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
 public class ApiReqCombinedBattleAirbattleRequest : IBattleApiRequest
 {
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_smoke_flag")]
 	public string? ApiSmokeFlag { get; set; }

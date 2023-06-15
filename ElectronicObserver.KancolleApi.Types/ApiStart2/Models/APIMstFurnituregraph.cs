@@ -3,7 +3,7 @@
 public class ApiMstFurnituregraph
 {
 	[JsonPropertyName("api_filename")]
-	public string ApiFilename { get; set; }
+	public string ApiFilename { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }
@@ -15,5 +15,5 @@ public class ApiMstFurnituregraph
 	public int ApiType { get; set; }
 
 	[JsonPropertyName("api_version")]
-	public string ApiVersion { get; set; }
+	public string ApiVersion { get; set; } = "";
 }

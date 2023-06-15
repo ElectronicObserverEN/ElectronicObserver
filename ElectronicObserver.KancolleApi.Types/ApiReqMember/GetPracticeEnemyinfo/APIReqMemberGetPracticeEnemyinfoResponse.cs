@@ -7,19 +7,19 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.GetPracticeEnemyinfo
 public class ApiReqMemberGetPracticeEnemyinfoResponse
 {
 	[JsonPropertyName("api_cmt")]
-	public string ApiCmt { get; set; }
+	public string ApiCmt { get; set; } = "";
 
 	[JsonPropertyName("api_cmt_id")]
-	public string ApiCmtId { get; set; }
+	public string ApiCmtId { get; set; } = "";
 
 	[JsonPropertyName("api_deck")]
 	public ApiDeck ApiDeck { get; set; } = new();
 
 	[JsonPropertyName("api_deckname")]
-	public string ApiDeckname { get; set; }
+	public string ApiDeckname { get; set; } = "";
 
 	[JsonPropertyName("api_deckname_id")]
-	public string ApiDecknameId { get; set; }
+	public string ApiDecknameId { get; set; } = "";
 
 	[JsonPropertyName("api_experience")]
 	public List<int> ApiExperience { get; set; } = new();
@@ -37,10 +37,10 @@ public class ApiReqMemberGetPracticeEnemyinfoResponse
 	public int ApiMemberId { get; set; }
 
 	[JsonPropertyName("api_nickname")]
-	public string ApiNickname { get; set; }
+	public string ApiNickname { get; set; } = "";
 
 	[JsonPropertyName("api_nickname_id")]
-	public string ApiNicknameId { get; set; }
+	public string ApiNicknameId { get; set; } = "";
 
 	[JsonPropertyName("api_rank")]
 	public int ApiRank { get; set; }

@@ -8,7 +8,6 @@ public class EDeckInfo
 	/// 0 = 3 ships or less <br />
 	/// 1 = 4 ships <br />
 	/// 2 = 5 ships or more <br />
-	/// Not 100% confirmed yet.
 	/// </summary>
 	[JsonPropertyName("api_kind")]
 	public int ApiKind { get; set; }
@@ -18,5 +17,5 @@ public class EDeckInfo
 	/// If the enemy fleet has less than 3 ships, ids for all ships will be in the list.
 	/// </summary>
 	[JsonPropertyName("api_ship_ids")]
-	public List<ShipId> ApiShipIds { get; set; }
+	public List<ShipId> ApiShipIds { get; set; } = new();
 }

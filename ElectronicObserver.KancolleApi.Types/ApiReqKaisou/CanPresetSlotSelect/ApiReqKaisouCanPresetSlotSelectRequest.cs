@@ -3,8 +3,8 @@
 public class ApiReqKaisouCanPresetSlotSelectRequest
 {
 	[JsonPropertyName("api_token")]
-	public string ApiToken { get; set; }
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

@@ -6,7 +6,7 @@ public class ApiGetMemberKdockResponse
 	public long ApiCompleteTime { get; set; }
 
 	[JsonPropertyName("api_complete_time_str")]
-	public string ApiCompleteTimeStr { get; set; }
+	public string ApiCompleteTimeStr { get; set; } = "";
 
 	[JsonPropertyName("api_created_ship_id")]
 	public int ApiCreatedShipId { get; set; }

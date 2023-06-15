@@ -3,7 +3,7 @@
 public class ApiItem
 {
 	[JsonPropertyName("api_getmes")]
-	public string ApiGetmes { get; set; }
+	public string ApiGetmes { get; set; } = "";
 
 	[JsonPropertyName("api_mode")]
 	public int ApiMode { get; set; }

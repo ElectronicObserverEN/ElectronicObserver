@@ -24,7 +24,7 @@ public class ApiMstShipgraph
 	public List<int>? ApiEnsyufN { get; set; }
 
 	[JsonPropertyName("api_filename")]
-	public string ApiFilename { get; set; }
+	public string ApiFilename { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }

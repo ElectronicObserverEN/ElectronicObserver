@@ -51,7 +51,7 @@ public class ApiMstShip
 	public List<int>? ApiMaxeq { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_powup")]
 	public List<int>? ApiPowup { get; set; }
@@ -90,5 +90,5 @@ public class ApiMstShip
 	public int? ApiVoicef { get; set; }
 
 	[JsonPropertyName("api_yomi")]
-	public string ApiYomi { get; set; }
+	public string ApiYomi { get; set; } = "";
 }

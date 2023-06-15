@@ -3,11 +3,11 @@
 public class ApiReqMemberPayitemuseRequest
 {
 	[JsonPropertyName("api_force_flag")]
-	public string ApiForceFlag { get; set; }
+	public string ApiForceFlag { get; set; } = "";
 
 	[JsonPropertyName("api_payitem_id")]
-	public string ApiPayitemId { get; set; }
+	public string ApiPayitemId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

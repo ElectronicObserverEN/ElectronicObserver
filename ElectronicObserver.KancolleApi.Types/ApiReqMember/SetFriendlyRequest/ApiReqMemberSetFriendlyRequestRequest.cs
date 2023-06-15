@@ -3,14 +3,14 @@
 public class ApiReqMemberSetFriendlyRequestRequest
 {
 	[JsonPropertyName("api_token")]
-	public string ApiToken { get; set; }
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_request_flag")]
-	public string ApiRequestFlag { get; set; }
+	public string ApiRequestFlag { get; set; } = "";
 
 	[JsonPropertyName("api_request_type")]
-	public string ApiRequestType { get; set; }
+	public string ApiRequestType { get; set; } = "";
 }

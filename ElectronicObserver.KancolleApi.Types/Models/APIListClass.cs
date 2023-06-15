@@ -9,7 +9,7 @@ public class ApiListClass
 	public int ApiCategory { get; set; }
 
 	[JsonPropertyName("api_detail")]
-	public string ApiDetail { get; set; }
+	public string ApiDetail { get; set; } = "";
 
 	[JsonPropertyName("api_get_material")]
 	public List<int> ApiGetMaterial { get; set; } = new();
@@ -33,7 +33,7 @@ public class ApiListClass
 	public int ApiState { get; set; }
 
 	[JsonPropertyName("api_title")]
-	public string ApiTitle { get; set; }
+	public string ApiTitle { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
 	public int ApiType { get; set; }

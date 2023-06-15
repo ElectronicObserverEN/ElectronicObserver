@@ -8,7 +8,7 @@ public class ApiPresetItem
 	public int ApiPresetNo { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_selected_mode")]
 	public int ApiSelectedMode { get; set; }
@@ -20,8 +20,8 @@ public class ApiPresetItem
 	public int ApiSlotExFlag { get; set; }
 
 	[JsonPropertyName("api_slot_item")]
-	public List<ApiSlotItem> ApiSlotItem { get; set; }
+	public List<ApiSlotItem> ApiSlotItem { get; set; } = new();
 
 	[JsonPropertyName("api_slot_item_ex")]
-	public ApiSlotItemEx ApiSlotItemEx { get; set; }
+	public ApiSlotItemEx? ApiSlotItemEx { get; set; }
 }

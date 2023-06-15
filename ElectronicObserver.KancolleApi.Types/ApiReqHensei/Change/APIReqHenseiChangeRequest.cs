@@ -3,14 +3,14 @@
 public class ApiReqHenseiChangeRequest
 {
 	[JsonPropertyName("api_id")]
-	public string ApiId { get; set; }
+	public string ApiId { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
-	public string ApiShipId { get; set; }
+	public string ApiShipId { get; set; } = "";
 
 	[JsonPropertyName("api_ship_idx")]
-	public string ApiShipIdx { get; set; }
+	public string ApiShipIdx { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

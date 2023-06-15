@@ -6,5 +6,5 @@ public class ApiReqMissionStartResponse
 	public long ApiComplatetime { get; set; }
 
 	[JsonPropertyName("api_complatetime_str")]
-	public string ApiComplatetimeStr { get; set; }
+	public string ApiComplatetimeStr { get; set; } = "";
 }

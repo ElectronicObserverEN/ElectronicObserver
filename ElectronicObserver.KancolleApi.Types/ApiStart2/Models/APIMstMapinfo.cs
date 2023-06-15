@@ -6,7 +6,7 @@ public class ApiMstMapinfo
 	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_infotext")]
-	public string ApiInfotext { get; set; }
+	public string ApiInfotext { get; set; } = "";
 
 	[JsonPropertyName("api_item")]
 	public List<int> ApiItem { get; set; } = new();
@@ -21,13 +21,13 @@ public class ApiMstMapinfo
 	public int? ApiMaxMaphp { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_no")]
 	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_opetext")]
-	public string ApiOpetext { get; set; }
+	public string ApiOpetext { get; set; } = "";
 
 	[JsonPropertyName("api_required_defeat_count")]
 	public int? ApiRequiredDefeatCount { get; set; }

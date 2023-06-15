@@ -6,7 +6,7 @@ public class ApiGetMemberNdockResponse
 	public long ApiCompleteTime { get; set; }
 
 	[JsonPropertyName("api_complete_time_str")]
-	public string ApiCompleteTimeStr { get; set; }
+	public string ApiCompleteTimeStr { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }

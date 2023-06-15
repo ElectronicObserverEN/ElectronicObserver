@@ -3,7 +3,7 @@
 public class ApiMstPayitem
 {
 	[JsonPropertyName("api_description")]
-	public string ApiDescription { get; set; }
+	public string ApiDescription { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }
@@ -12,13 +12,13 @@ public class ApiMstPayitem
 	public List<int> ApiItem { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_price")]
 	public int ApiPrice { get; set; }
 
 	[JsonPropertyName("api_shop_description")]
-	public string ApiShopDescription { get; set; }
+	public string ApiShopDescription { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
 	public int ApiType { get; set; }

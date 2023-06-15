@@ -12,7 +12,7 @@ public class ApiMstUseitem
 	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_price")]
 	public int ApiPrice { get; set; }

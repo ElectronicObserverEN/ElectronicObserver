@@ -6,7 +6,7 @@ public class ApiMstSlotitemEquiptype
 	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_show_flg")]
 	public int ApiShowFlg { get; set; }

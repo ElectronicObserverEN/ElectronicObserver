@@ -3,5 +3,5 @@
 public class ApiReqPracticeBattleResultRequest
 {
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

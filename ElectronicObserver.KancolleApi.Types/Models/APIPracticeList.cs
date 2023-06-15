@@ -3,10 +3,10 @@
 public class ApiPracticeList
 {
 	[JsonPropertyName("api_enemy_comment")]
-	public string ApiEnemyComment { get; set; }
+	public string ApiEnemyComment { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_comment_id")]
-	public string ApiEnemyCommentId { get; set; }
+	public string ApiEnemyCommentId { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_flag")]
 	public int ApiEnemyFlag { get; set; }
@@ -21,13 +21,13 @@ public class ApiPracticeList
 	public int ApiEnemyLevel { get; set; }
 
 	[JsonPropertyName("api_enemy_name")]
-	public string ApiEnemyName { get; set; }
+	public string ApiEnemyName { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_name_id")]
-	public string ApiEnemyNameId { get; set; }
+	public string ApiEnemyNameId { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_rank")]
-	public string ApiEnemyRank { get; set; }
+	public string ApiEnemyRank { get; set; } = "";
 
 	[JsonPropertyName("api_medals")]
 	public int ApiMedals { get; set; }

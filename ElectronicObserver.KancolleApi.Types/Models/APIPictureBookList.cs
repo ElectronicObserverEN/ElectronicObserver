@@ -36,7 +36,7 @@ public class ApiPictureBookList
 	public int ApiLeng { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_q_voice_info")]
 	public List<ApiqVoiceInfo>? ApiQVoiceInfo { get; set; }

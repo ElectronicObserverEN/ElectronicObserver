@@ -6,7 +6,7 @@ public class ApiMstFurniture
 	public int ApiActiveFlag { get; set; }
 
 	[JsonPropertyName("api_description")]
-	public string ApiDescription { get; set; }
+	public string ApiDescription { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }
@@ -30,7 +30,7 @@ public class ApiMstFurniture
 	public int ApiSeason { get; set; }
 
 	[JsonPropertyName("api_title")]
-	public string ApiTitle { get; set; }
+	public string ApiTitle { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
 	public int ApiType { get; set; }

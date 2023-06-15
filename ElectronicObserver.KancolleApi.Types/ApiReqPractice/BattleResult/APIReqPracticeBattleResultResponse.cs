@@ -31,6 +31,7 @@ public class ApiReqPracticeBattleResultResponse
 	[JsonPropertyName("api_ship_id")]
 	public List<int> ApiShipId { get; set; } = new();
 
+	// todo: should be an enum
 	[JsonPropertyName("api_win_rank")]
-	public string ApiWinRank { get; set; }
+	public string ApiWinRank { get; set; } = "";
 }

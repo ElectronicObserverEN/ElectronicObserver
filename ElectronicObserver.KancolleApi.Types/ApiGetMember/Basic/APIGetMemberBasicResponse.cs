@@ -6,10 +6,10 @@ public class ApiGetMemberBasicResponse
 	public int ApiActiveFlag { get; set; }
 
 	[JsonPropertyName("api_comment")]
-	public string ApiComment { get; set; }
+	public string ApiComment { get; set; } = "";
 
 	[JsonPropertyName("api_comment_id")]
-	public string ApiCommentId { get; set; }
+	public string ApiCommentId { get; set; } = "";
 
 	[JsonPropertyName("api_count_deck")]
 	public int ApiCountDeck { get; set; }
@@ -51,7 +51,7 @@ public class ApiGetMemberBasicResponse
 	public int ApiMedals { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	public string ApiMemberId { get; set; }
+	public string ApiMemberId { get; set; } = "";
 
 	[JsonPropertyName("api_ms_count")]
 	public int ApiMsCount { get; set; }
@@ -60,10 +60,10 @@ public class ApiGetMemberBasicResponse
 	public int ApiMsSuccess { get; set; }
 
 	[JsonPropertyName("api_nickname")]
-	public string ApiNickname { get; set; }
+	public string ApiNickname { get; set; } = "";
 
 	[JsonPropertyName("api_nickname_id")]
-	public string ApiNicknameId { get; set; }
+	public string ApiNicknameId { get; set; } = "";
 
 	[JsonPropertyName("api_playtime")]
 	public int ApiPlaytime { get; set; }

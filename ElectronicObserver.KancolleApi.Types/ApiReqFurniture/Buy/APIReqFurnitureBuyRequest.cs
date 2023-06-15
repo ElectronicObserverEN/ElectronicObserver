@@ -3,11 +3,11 @@
 public class ApiReqFurnitureBuyRequest
 {
 	[JsonPropertyName("api_no")]
-	public string ApiNo { get; set; }
+	public string ApiNo { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
-	public string ApiType { get; set; }
+	public string ApiType { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

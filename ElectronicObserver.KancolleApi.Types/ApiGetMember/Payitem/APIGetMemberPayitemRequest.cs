@@ -3,6 +3,6 @@
 public class ApiGetMemberPayitemRequest
 {
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 
 }

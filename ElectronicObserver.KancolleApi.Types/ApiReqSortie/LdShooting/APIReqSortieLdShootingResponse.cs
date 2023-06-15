@@ -51,7 +51,7 @@ public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 	public List<int> ApiFormation { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki1")]
-	public ApiHougeki1 ApiHougeki1 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki1 { get; set; }
 
 	[JsonPropertyName("api_midnight_flag")]
 	public int ApiMidnightFlag { get; set; }

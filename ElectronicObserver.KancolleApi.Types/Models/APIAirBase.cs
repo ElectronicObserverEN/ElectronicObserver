@@ -12,7 +12,7 @@ public class ApiAirBase
 	public ApiDistance ApiDistance { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; }
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_plane_info")]
 	public List<ApiPlaneInfo> ApiPlaneInfo { get; set; } = new();

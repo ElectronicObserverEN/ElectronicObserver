@@ -3,8 +3,8 @@
 public class ApiReqKaisouLockRequest
 {
 	[JsonPropertyName("api_slotitem_id")]
-	public string ApiSlotitemId { get; set; }
+	public string ApiSlotitemId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

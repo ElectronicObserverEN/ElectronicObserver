@@ -5,10 +5,10 @@ namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Record;
 public class ApiGetMemberRecordResponse
 {
 	[JsonPropertyName("api_cmt")]
-	public string ApiCmt { get; set; }
+	public string ApiCmt { get; set; } = "";
 
 	[JsonPropertyName("api_cmt_id")]
-	public string ApiCmtId { get; set; }
+	public string ApiCmtId { get; set; } = "";
 
 	[JsonPropertyName("api_complate")]
 	public List<string> ApiComplate { get; set; } = new();
@@ -47,13 +47,13 @@ public class ApiGetMemberRecordResponse
 	public int ApiNdoc { get; set; }
 
 	[JsonPropertyName("api_nickname")]
-	public string ApiNickname { get; set; }
+	public string ApiNickname { get; set; } = "";
 
 	[JsonPropertyName("api_nickname_id")]
-	public string ApiNicknameId { get; set; }
+	public string ApiNicknameId { get; set; } = "";
 
 	[JsonPropertyName("api_photo_url")]
-	public string ApiPhotoUrl { get; set; }
+	public string ApiPhotoUrl { get; set; } = "";
 
 	[JsonPropertyName("api_practice")]
 	public ApiWar ApiPractice { get; set; } = new();

@@ -6,7 +6,7 @@ public class ApiList
 	public int ApiMxltvkpyuklh { get; set; }
 
 	[JsonPropertyName("api_mtjmdcwtvhdr")]
-	public string ApiMtjmdcwtvhdr { get; set; }
+	public string ApiMtjmdcwtvhdr { get; set; } = "";
 
 	[JsonPropertyName("api_pbgkfylkbjuy")]
 	public int ApiPbgkfylkbjuy { get; set; }
@@ -15,7 +15,7 @@ public class ApiList
 	public int ApiPcumlrymlujh { get; set; }
 
 	[JsonPropertyName("api_itbrdpdbkynm")]
-	public string ApiItbrdpdbkynm { get; set; }
+	public string ApiItbrdpdbkynm { get; set; } = "";
 
 	[JsonPropertyName("api_itslcqtmrxtf")]
 	public int ApiItslcqtmrxtf { get; set; }

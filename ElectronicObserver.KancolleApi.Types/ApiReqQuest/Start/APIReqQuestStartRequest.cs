@@ -3,8 +3,8 @@
 public class ApiReqQuestStartRequest
 {
 	[JsonPropertyName("api_quest_id")]
-	public string ApiQuestId { get; set; }
+	public string ApiQuestId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 }

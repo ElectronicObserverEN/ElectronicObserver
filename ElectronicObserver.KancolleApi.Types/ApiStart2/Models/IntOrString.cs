@@ -6,5 +6,5 @@ public class IntOrString
 	public int ApiIntValue { get; set; }
 
 	[JsonPropertyName("api_string_value")]
-	public string ApiStringValue { get; set; }
+	public string ApiStringValue { get; set; } = "";
 }

@@ -6,5 +6,5 @@ public class ApiGetUseitem
 	public int ApiUseitemId { get; set; }
 
 	[JsonPropertyName("api_useitem_name")]
-	public string ApiUseitemName { get; set; }
+	public string ApiUseitemName { get; set; } = "";
 }
