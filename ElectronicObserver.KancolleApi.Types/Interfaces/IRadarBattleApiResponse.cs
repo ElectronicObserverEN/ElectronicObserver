@@ -4,5 +4,5 @@ namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 
 public interface IRadarBattleApiResponse : IFirstBattleApiResponse, IAirBaseBattle
 {
-	ApiHougeki1 ApiHougeki1 { get; set; }
+	ApiHougeki1? ApiHougeki1 { get; set; }
 }

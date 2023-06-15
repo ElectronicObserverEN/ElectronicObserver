@@ -76,13 +76,13 @@ public class ApiReqCombinedBattleEcBattleResponse : ICombinedDayBattleApiRespons
 	public List<ApiFlavorInfo>? ApiFlavorInfo { get; set; }
 
 	[JsonPropertyName("api_hougeki1")]
-	public ApiHougeki1 ApiHougeki1 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki1 { get; set; }
 
 	[JsonPropertyName("api_hougeki2")]
-	public ApiHougeki1 ApiHougeki2 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki2 { get; set; }
 
 	[JsonPropertyName("api_hougeki3")]
-	public ApiHougeki1 ApiHougeki3 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki3 { get; set; }
 
 	[JsonPropertyName("api_hourai_flag")]
 	public List<int> ApiHouraiFlag { get; set; } = new();
@@ -91,13 +91,13 @@ public class ApiReqCombinedBattleEcBattleResponse : ICombinedDayBattleApiRespons
 	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
-	public ApiKouku ApiKouku { get; set; } = new();
+	public ApiKouku? ApiKouku { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
 	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiRaigekiClass ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
 	public int ApiOpeningFlag { get; set; }
@@ -109,7 +109,7 @@ public class ApiReqCombinedBattleEcBattleResponse : ICombinedDayBattleApiRespons
 	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
-	public ApiRaigekiClass ApiRaigeki { get; set; } = new();
+	public ApiRaigekiClass? ApiRaigeki { get; set; } = new();
 
 	[JsonPropertyName("api_search")]
 	public List<DetectionType> ApiSearch { get; set; } = new();

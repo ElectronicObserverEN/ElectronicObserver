@@ -16,7 +16,7 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	public ApiEnemyInfo ApiEnemyInfo { get; set; } = new();
 
 	[JsonPropertyName("api_escape")]
-	public ApiEscape ApiEscape { get; set; }
+	public ApiEscape? ApiEscape { get; set; }
 
 	[JsonPropertyName("api_escape_flag")]
 	public int ApiEscapeFlag { get; set; }
@@ -37,13 +37,13 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_get_exmap_rate")]
-	public object ApiGetExmapRate { get; set; }
+	public object ApiGetExmapRate { get; set; } = 0;
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_get_exmap_useitem_id")]
-	public object ApiGetExmapUseitemId { get; set; }
+	public object ApiGetExmapUseitemId { get; set; } = 0;
 
 	[JsonPropertyName("api_get_exp")]
 	public int ApiGetExp { get; set; }
@@ -94,13 +94,13 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	public int ApiQuestLevel { get; set; }
 
 	[JsonPropertyName("api_quest_name")]
-	public string ApiQuestName { get; set; }
+	public string ApiQuestName { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
 	public List<int> ApiShipId { get; set; } = new();
 
 	[JsonPropertyName("api_win_rank")]
-	public string ApiWinRank { get; set; }
+	public string ApiWinRank { get; set; } = "";
 
 	[JsonPropertyName("api_get_useitem")]
 	public ApiGetUseitem? ApiGetUseitem { get; set; }

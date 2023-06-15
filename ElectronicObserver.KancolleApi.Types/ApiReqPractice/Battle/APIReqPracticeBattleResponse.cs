@@ -63,19 +63,19 @@ public class ApiReqPracticeBattleResponse : IFirstBattleApiResponse
 	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiRaigekiClass ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
 	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_taisen")]
-	public ApiHougeki1 ApiOpeningTaisen { get; set; }
+	public ApiHougeki1? ApiOpeningTaisen { get; set; }
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
-	public ApiRaigekiClass ApiRaigeki { get; set; }
+	public ApiRaigekiClass? ApiRaigeki { get; set; }
 
 	[JsonPropertyName("api_search")]
 	public List<int> ApiSearch { get; set; } = new();

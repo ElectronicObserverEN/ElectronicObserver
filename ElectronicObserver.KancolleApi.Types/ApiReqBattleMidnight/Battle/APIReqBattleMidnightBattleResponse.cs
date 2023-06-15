@@ -54,7 +54,7 @@ public class ApiReqBattleMidnightBattleResponse : ISecondNightBattleApiResponse
 	public List<int> ApiFormation { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki")]
-	public ApiHougeki ApiHougeki { get; set; } = new();
+	public ApiHougeki? ApiHougeki { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
 	public List<int> ApiShipKe { get; set; } = new();

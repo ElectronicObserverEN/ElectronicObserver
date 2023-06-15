@@ -79,7 +79,7 @@ public class ApiReqSortieBattleResponse : IDayBattleApiResponse
 	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
-	public ApiKouku ApiKouku { get; set; } = new();
+	public ApiKouku? ApiKouku { get; set; }
 
 	[JsonPropertyName("api_midnight_flag")]
 	public int ApiMidnightFlag { get; set; }
@@ -91,13 +91,13 @@ public class ApiReqSortieBattleResponse : IDayBattleApiResponse
 	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_taisen")]
-	public ApiHougeki1 ApiOpeningTaisen { get; set; }
+	public ApiHougeki1? ApiOpeningTaisen { get; set; }
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
-	public ApiRaigekiClass ApiRaigeki { get; set; }
+	public ApiRaigekiClass? ApiRaigeki { get; set; }
 
 	[JsonPropertyName("api_search")]
 	public List<DetectionType> ApiSearch { get; set; } = new();

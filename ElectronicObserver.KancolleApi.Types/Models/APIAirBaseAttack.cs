@@ -15,13 +15,13 @@ public class ApiAirBaseAttack : IApiAirBattle
 	public List<ApiSquadronPlane> ApiSquadronPlane { get; set; } = new();
 
 	[JsonPropertyName("api_stage1")]
-	public ApiStage1 ApiStage1 { get; set; } = new();
+	public ApiStage1? ApiStage1 { get; set; }
 
 	[JsonPropertyName("api_stage2")]
 	public ApiStage2? ApiStage2 { get; set; }
 
 	[JsonPropertyName("api_stage3")]
-	public ApiStage3 ApiStage3 { get; set; }
+	public ApiStage3? ApiStage3 { get; set; }
 
 	[JsonPropertyName("api_stage3_combined")]
 	public ApiStage3Combined? ApiStage3Combined { get; set; }

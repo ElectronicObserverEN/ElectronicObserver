@@ -91,19 +91,19 @@ public class ApiReqCombinedBattleBattleWaterResponse : ICombinedDayBattleApiResp
 	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
-	public ApiKouku ApiKouku { get; set; } = new();
+	public ApiKouku? ApiKouku { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
 	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiRaigekiClass ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
 	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_taisen")]
-	public ApiHougeki1 ApiOpeningTaisen { get; set; }
+	public ApiHougeki1? ApiOpeningTaisen { get; set; }
 
 	[JsonPropertyName("api_opening_taisen_flag")]
 	public int ApiOpeningTaisenFlag { get; set; }

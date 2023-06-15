@@ -47,5 +47,7 @@ public interface ISortieBattleResultApi
 	int ApiQuestLevel { get; set; }
 	string ApiQuestName { get; set; }
 	List<int> ApiShipId { get; set; }
+
+	// todo: this should be an enum
 	string ApiWinRank { get; set; }
 }

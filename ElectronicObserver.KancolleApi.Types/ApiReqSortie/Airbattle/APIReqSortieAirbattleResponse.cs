@@ -61,7 +61,7 @@ public class ApiReqSortieAirbattleResponse : IAirBattleApiResponse
 	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
-	public ApiKouku ApiKouku { get; set; } = new();
+	public ApiKouku? ApiKouku { get; set; } = new();
 
 	[JsonPropertyName("api_kouku2")]
 	public ApiKouku ApiKouku2 { get; set; } = new();
