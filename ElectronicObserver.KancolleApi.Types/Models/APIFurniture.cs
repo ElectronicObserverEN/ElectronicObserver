@@ -3,14 +3,14 @@
 public class ApiFurniture
 {
 	[JsonPropertyName("api_furniture_id")]
-	public int ApiFurnitureId { get; set; } = default!;
+	public int ApiFurnitureId { get; set; }
 
 	[JsonPropertyName("api_furniture_no")]
-	public int ApiFurnitureNo { get; set; } = default!;
+	public int ApiFurnitureNo { get; set; }
 
 	[JsonPropertyName("api_furniture_type")]
-	public int ApiFurnitureType { get; set; } = default!;
+	public int ApiFurnitureType { get; set; }
 
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 }

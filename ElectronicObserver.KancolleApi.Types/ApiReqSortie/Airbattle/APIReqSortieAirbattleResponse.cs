@@ -13,7 +13,7 @@ public class ApiReqSortieAirbattleResponse : IAirBattleApiResponse
 	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();
@@ -67,7 +67,7 @@ public class ApiReqSortieAirbattleResponse : IAirBattleApiResponse
 	public ApiKouku ApiKouku2 { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_search")]
 	public List<DetectionType> ApiSearch { get; set; } = new();

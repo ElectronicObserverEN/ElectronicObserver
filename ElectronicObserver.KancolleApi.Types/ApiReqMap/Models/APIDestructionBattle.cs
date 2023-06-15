@@ -53,7 +53,7 @@ public class ApiDestructionBattle : IFirstBattleApiResponse
 	public List<int> ApiFormation { get; set; } = new();
 
 	[JsonPropertyName("api_lost_kind")]
-	public int ApiLostKind { get; set; } = default!;
+	public int ApiLostKind { get; set; }
 
 	[JsonPropertyName("api_ship_ke")]
 	public List<int> ApiShipKe { get; set; } = new();

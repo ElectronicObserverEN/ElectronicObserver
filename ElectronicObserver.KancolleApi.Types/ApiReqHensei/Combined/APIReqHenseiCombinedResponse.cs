@@ -3,5 +3,5 @@
 public class ApiReqHenseiCombinedResponse
 {
 	[JsonPropertyName("api_combined")]
-	public int ApiCombined { get; set; } = default!;
+	public int ApiCombined { get; set; }
 }

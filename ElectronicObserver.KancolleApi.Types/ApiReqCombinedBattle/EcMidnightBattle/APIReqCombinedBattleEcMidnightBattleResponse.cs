@@ -9,7 +9,7 @@ public class ApiReqCombinedBattleEcMidnightBattleResponse : ISecondNightBattleAp
 	public List<int> ApiActiveDeck { get; set; } = new();
 
 	[JsonPropertyName("api_deck_id")]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();
@@ -42,31 +42,31 @@ public class ApiReqCombinedBattleEcMidnightBattleResponse : ISecondNightBattleAp
 	public List<int> ApiENowhpsCombined { get; set; } = new();
 
 	[JsonPropertyName("api_escape_idx")]
-	public List<int>? ApiEscapeIdx { get; set; } = default!;
+	public List<int>? ApiEscapeIdx { get; set; }
 
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_escape_idx_combined")]
-	public List<int>? ApiEscapeIdxCombined { get; set; } = default!;
+	public List<int>? ApiEscapeIdxCombined { get; set; }
 
 	[JsonPropertyName("api_fParam")]
 	public List<List<int>> ApiFParam { get; set; } = new();
 
 	[JsonPropertyName("api_fParam_combined")]
-	public List<List<int>>? ApiFParamCombined { get; set; } = default!;
+	public List<List<int>>? ApiFParamCombined { get; set; }
 
 	[JsonPropertyName("api_f_maxhps")]
 	public List<int> ApiFMaxhps { get; set; } = new();
 
 	[JsonPropertyName("api_f_maxhps_combined")]
-	public List<int>? ApiFMaxhpsCombined { get; set; } = default!;
+	public List<int>? ApiFMaxhpsCombined { get; set; }
 
 	[JsonPropertyName("api_f_nowhps")]
 	public List<int> ApiFNowhps { get; set; } = new();
 
 	[JsonPropertyName("api_f_nowhps_combined")]
-	public List<int>? ApiFNowhpsCombined { get; set; } = default!;
+	public List<int>? ApiFNowhpsCombined { get; set; }
 
 	[JsonPropertyName("api_flare_pos")]
 	public List<int> ApiFlarePos { get; set; } = new();

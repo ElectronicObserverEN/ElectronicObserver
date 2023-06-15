@@ -8,5 +8,5 @@ public class ApiReqKaisouSlotDepriveResponse
 	public ApiShipData ApiShipData { get; set; } = new();
 
 	[JsonPropertyName("api_unset_list")]
-	public ApiUnsetList? ApiUnsetList { get; set; } = default!;
+	public ApiUnsetList? ApiUnsetList { get; set; }
 }

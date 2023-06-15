@@ -3,5 +3,5 @@
 public class APIReqKaisouCanPresetSlotSelectResponse
 {
 	[JsonPropertyName("api_flag")]
-	public int ApiFlag { get; set; } = default!;
+	public int ApiFlag { get; set; }
 }

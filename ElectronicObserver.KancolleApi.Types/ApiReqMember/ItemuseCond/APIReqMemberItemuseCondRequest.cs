@@ -3,11 +3,11 @@
 public class ApiReqMemberItemuseCondRequest
 {
 	[JsonPropertyName("api_deck_id")]
-	public string ApiDeckId { get; set; } = default!;
+	public string ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_use_type")]
-	public string ApiUseType { get; set; } = default!;
+	public string ApiUseType { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

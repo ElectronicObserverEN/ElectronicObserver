@@ -3,8 +3,8 @@
 public class ApiGetMemberShipDeckRequest
 {
 	[JsonPropertyName("api_deck_rid")]
-	public string ApiDeckRid { get; set; } = default!;
+	public string ApiDeckRid { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

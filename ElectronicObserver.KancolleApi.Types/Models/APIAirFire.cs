@@ -3,10 +3,10 @@
 public class ApiAirFire
 {
 	[JsonPropertyName("api_idx")]
-	public int ApiIdx { get; set; } = default!;
+	public int ApiIdx { get; set; }
 
 	[JsonPropertyName("api_kind")]
-	public int ApiKind { get; set; } = default!;
+	public int ApiKind { get; set; }
 
 	[JsonPropertyName("api_use_items")]
 	public List<int> ApiUseItems { get; set; } = new();

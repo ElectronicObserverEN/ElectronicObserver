@@ -5,22 +5,22 @@ namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Questlist;
 public class ApiGetMemberQuestlistResponse
 {
 	[JsonPropertyName("api_c_list")]
-	public List<ApicList>? ApiCList { get; set; } = default!;
+	public List<ApicList>? ApiCList { get; set; }
 
 	[JsonPropertyName("api_completed_kind")]
-	public int ApiCompletedKind { get; set; } = default!;
+	public int ApiCompletedKind { get; set; }
 
 	[JsonPropertyName("api_count")]
-	public int ApiCount { get; set; } = default!;
+	public int ApiCount { get; set; }
 
 	[JsonPropertyName("api_disp_page")]
-	public int ApiDispPage { get; set; } = default!;
+	public int ApiDispPage { get; set; }
 
 	[JsonPropertyName("api_exec_count")]
-	public int ApiExecCount { get; set; } = default!;
+	public int ApiExecCount { get; set; }
 
 	[JsonPropertyName("api_exec_type")]
-	public int ApiExecType { get; set; } = default!;
+	public int ApiExecType { get; set; }
 
 	/// <summary>
 	/// Element type is <see cref="ApiListClass"/> or <see cref="int"/>.
@@ -29,5 +29,5 @@ public class ApiGetMemberQuestlistResponse
 	public List<object> ApiList { get; set; } = new();
 
 	[JsonPropertyName("api_page_count")]
-	public int ApiPageCount { get; set; } = default!;
+	public int ApiPageCount { get; set; }
 }

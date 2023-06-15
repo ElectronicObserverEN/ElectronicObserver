@@ -7,7 +7,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.Getship;
 public class ApiReqKousyouGetshipResponse
 {
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_kdock")]
 	public List<ApiGetMemberKdockResponse> ApiKdock { get; set; } = new();
@@ -16,7 +16,7 @@ public class ApiReqKousyouGetshipResponse
 	public ApiShip ApiShip { get; set; } = new();
 
 	[JsonPropertyName("api_ship_id")]
-	public int ApiShipId { get; set; } = default!;
+	public int ApiShipId { get; set; }
 
 	[JsonPropertyName("api_slotitem")]
 	public List<ApiSlotitem> ApiSlotitem { get; set; } = new();

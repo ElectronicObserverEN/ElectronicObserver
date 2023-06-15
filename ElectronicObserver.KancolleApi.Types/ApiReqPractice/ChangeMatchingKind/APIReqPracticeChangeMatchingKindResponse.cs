@@ -3,5 +3,5 @@
 public class ApiReqPracticeChangeMatchingKindResponse
 {
 	[JsonPropertyName("api_update_flag")]
-	public int ApiUpdateFlag { get; set; } = default!;
+	public int ApiUpdateFlag { get; set; }
 }

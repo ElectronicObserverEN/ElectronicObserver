@@ -3,14 +3,14 @@
 public class ApiReqMemberUpdatecommentRequest
 {
 	[JsonPropertyName("api_token")]
-	public string ApiToken { get; set; } = default!;
+	public string ApiToken { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 
 	[JsonPropertyName("api_cmt")]
-	public string ApiCmt { get; set; } = default!;
+	public string ApiCmt { get; set; }
 
 	[JsonPropertyName("api_cmt_id")]
-	public string ApiCmtId { get; set; } = default!;
+	public string ApiCmtId { get; set; }
 }

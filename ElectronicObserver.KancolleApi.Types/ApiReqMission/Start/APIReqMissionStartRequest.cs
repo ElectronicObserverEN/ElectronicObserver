@@ -3,17 +3,17 @@
 public class ApiReqMissionStartRequest
 {
 	[JsonPropertyName("api_deck_id")]
-	public string ApiDeckId { get; set; } = default!;
+	public string ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_mission")]
-	public string ApiMission { get; set; } = default!;
+	public string ApiMission { get; set; }
 
 	[JsonPropertyName("api_mission_id")]
-	public string ApiMissionId { get; set; } = default!;
+	public string ApiMissionId { get; set; }
 
 	[JsonPropertyName("api_serial_cid")]
-	public string ApiSerialCid { get; set; } = default!;
+	public string ApiSerialCid { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

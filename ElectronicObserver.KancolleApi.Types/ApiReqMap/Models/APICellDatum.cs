@@ -3,17 +3,17 @@
 public class ApiCellDatum
 {
 	[JsonPropertyName("api_color_no")]
-	public int ApiColorNo { get; set; } = default!;
+	public int ApiColorNo { get; set; }
 
 	[JsonPropertyName("api_distance")]
-	public int? ApiDistance { get; set; } = default!;
+	public int? ApiDistance { get; set; }
 
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_no")]
-	public int ApiNo { get; set; } = default!;
+	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_passed")]
-	public int ApiPassed { get; set; } = default!;
+	public int ApiPassed { get; set; }
 }

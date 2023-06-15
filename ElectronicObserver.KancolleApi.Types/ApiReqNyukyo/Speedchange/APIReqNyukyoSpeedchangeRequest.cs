@@ -3,8 +3,8 @@
 public class ApiReqNyukyoSpeedchangeRequest
 {
 	[JsonPropertyName("api_ndock_id")]
-	public string ApiNdockId { get; set; } = default!;
+	public string ApiNdockId { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

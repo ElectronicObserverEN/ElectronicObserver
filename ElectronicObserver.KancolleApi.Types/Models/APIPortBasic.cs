@@ -3,104 +3,104 @@
 public class ApiPortBasic
 {
 	[JsonPropertyName("api_active_flag")]
-	public int ApiActiveFlag { get; set; } = default!;
+	public int ApiActiveFlag { get; set; }
 
 	[JsonPropertyName("api_comment")]
-	public string ApiComment { get; set; } = default!;
+	public string ApiComment { get; set; }
 
 	[JsonPropertyName("api_comment_id")]
-	public string ApiCommentId { get; set; } = default!;
+	public string ApiCommentId { get; set; }
 
 	[JsonPropertyName("api_count_deck")]
-	public int ApiCountDeck { get; set; } = default!;
+	public int ApiCountDeck { get; set; }
 
 	[JsonPropertyName("api_count_kdock")]
-	public int ApiCountKdock { get; set; } = default!;
+	public int ApiCountKdock { get; set; }
 
 	[JsonPropertyName("api_count_ndock")]
-	public int ApiCountNdock { get; set; } = default!;
+	public int ApiCountNdock { get; set; }
 
 	[JsonPropertyName("api_experience")]
-	public int ApiExperience { get; set; } = default!;
+	public int ApiExperience { get; set; }
 
 	[JsonPropertyName("api_fcoin")]
-	public int ApiFcoin { get; set; } = default!;
+	public int ApiFcoin { get; set; }
 
 	[JsonPropertyName("api_firstflag")]
-	public int ApiFirstflag { get; set; } = default!;
+	public int ApiFirstflag { get; set; }
 
 	[JsonPropertyName("api_fleetname")]
-	public object? ApiFleetname { get; set; } = default!;
+	public object? ApiFleetname { get; set; }
 
 	[JsonPropertyName("api_furniture")]
 	public List<int> ApiFurniture { get; set; } = new();
 
 	[JsonPropertyName("api_large_dock")]
-	public int ApiLargeDock { get; set; } = default!;
+	public int ApiLargeDock { get; set; }
 
 	[JsonPropertyName("api_level")]
-	public int ApiLevel { get; set; } = default!;
+	public int ApiLevel { get; set; }
 
 	[JsonPropertyName("api_max_chara")]
-	public int ApiMaxChara { get; set; } = default!;
+	public int ApiMaxChara { get; set; }
 
 	[JsonPropertyName("api_max_kagu")]
-	public int ApiMaxKagu { get; set; } = default!;
+	public int ApiMaxKagu { get; set; }
 
 	[JsonPropertyName("api_max_slotitem")]
-	public int ApiMaxSlotitem { get; set; } = default!;
+	public int ApiMaxSlotitem { get; set; }
 
 	[JsonPropertyName("api_medals")]
-	public int ApiMedals { get; set; } = default!;
+	public int ApiMedals { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	public string ApiMemberId { get; set; } = default!;
+	public string ApiMemberId { get; set; }
 
 	[JsonPropertyName("api_ms_count")]
-	public int ApiMsCount { get; set; } = default!;
+	public int ApiMsCount { get; set; }
 
 	[JsonPropertyName("api_ms_success")]
-	public int ApiMsSuccess { get; set; } = default!;
+	public int ApiMsSuccess { get; set; }
 
 	[JsonPropertyName("api_nickname")]
-	public string ApiNickname { get; set; } = default!;
+	public string ApiNickname { get; set; }
 
 	[JsonPropertyName("api_nickname_id")]
-	public string ApiNicknameId { get; set; } = default!;
+	public string ApiNicknameId { get; set; }
 
 	[JsonPropertyName("api_playtime")]
-	public int ApiPlaytime { get; set; } = default!;
+	public int ApiPlaytime { get; set; }
 
 	[JsonPropertyName("api_pt_challenged")]
-	public int ApiPtChallenged { get; set; } = default!;
+	public int ApiPtChallenged { get; set; }
 
 	[JsonPropertyName("api_pt_challenged_win")]
-	public int ApiPtChallengedWin { get; set; } = default!;
+	public int ApiPtChallengedWin { get; set; }
 
 	[JsonPropertyName("api_pt_lose")]
-	public int ApiPtLose { get; set; } = default!;
+	public int ApiPtLose { get; set; }
 
 	[JsonPropertyName("api_pt_win")]
-	public int ApiPtWin { get; set; } = default!;
+	public int ApiPtWin { get; set; }
 
 	[JsonPropertyName("api_pvp")]
 	public List<int> ApiPvp { get; set; } = new();
 
 	[JsonPropertyName("api_rank")]
-	public int ApiRank { get; set; } = default!;
+	public int ApiRank { get; set; }
 
 	[JsonPropertyName("api_st_lose")]
-	public int ApiStLose { get; set; } = default!;
+	public int ApiStLose { get; set; }
 
 	[JsonPropertyName("api_st_win")]
-	public int ApiStWin { get; set; } = default!;
+	public int ApiStWin { get; set; }
 
 	[JsonPropertyName("api_starttime")]
-	public long ApiStarttime { get; set; } = default!;
+	public long ApiStarttime { get; set; }
 
 	[JsonPropertyName("api_tutorial")]
-	public int ApiTutorial { get; set; } = default!;
+	public int ApiTutorial { get; set; }
 
 	[JsonPropertyName("api_tutorial_progress")]
-	public int ApiTutorialProgress { get; set; } = default!;
+	public int ApiTutorialProgress { get; set; }
 }

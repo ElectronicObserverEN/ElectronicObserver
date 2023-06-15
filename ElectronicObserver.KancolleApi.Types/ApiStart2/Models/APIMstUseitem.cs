@@ -3,20 +3,20 @@
 public class ApiMstUseitem
 {
 	[JsonPropertyName("api_category")]
-	public int ApiCategory { get; set; } = default!;
+	public int ApiCategory { get; set; }
 
 	[JsonPropertyName("api_description")]
 	public List<string> ApiDescription { get; set; } = new();
 
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; }
 
 	[JsonPropertyName("api_price")]
-	public int ApiPrice { get; set; } = default!;
+	public int ApiPrice { get; set; }
 
 	[JsonPropertyName("api_usetype")]
-	public int ApiUsetype { get; set; } = default!;
+	public int ApiUsetype { get; set; }
 }

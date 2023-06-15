@@ -5,17 +5,17 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
 public class ApiItem
 {
 	[JsonPropertyName("api_id")]
-	public UseItemId? ApiId { get; set; } = default!;
+	public UseItemId? ApiId { get; set; }
 
 	[JsonPropertyName("api_id_from")]
-	public int? ApiIdFrom { get; set; } = default!;
+	public int? ApiIdFrom { get; set; }
 
 	[JsonPropertyName("api_id_to")]
-	public int? ApiIdTo { get; set; } = default!;
+	public int? ApiIdTo { get; set; }
 
 	[JsonPropertyName("api_message")]
-	public string? ApiMessage { get; set; } = default!;
+	public string? ApiMessage { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string? ApiName { get; set; } = default!;
+	public string? ApiName { get; set; }
 }

@@ -3,17 +3,17 @@
 public class ApiAfterSlot
 {
 	[JsonPropertyName("api_alv")]
-	public int? ApiAlv { get; set; } = default!;
+	public int? ApiAlv { get; set; }
 
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_level")]
-	public int ApiLevel { get; set; } = default!;
+	public int ApiLevel { get; set; }
 
 	[JsonPropertyName("api_locked")]
-	public int ApiLocked { get; set; } = default!;
+	public int ApiLocked { get; set; }
 
 	[JsonPropertyName("api_slotitem_id")]
-	public int ApiSlotitemId { get; set; } = default!;
+	public int ApiSlotitemId { get; set; }
 }

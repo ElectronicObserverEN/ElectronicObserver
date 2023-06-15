@@ -6,5 +6,5 @@ public class ApiMstEquipShip
 	public List<int> ApiEquipType { get; set; } = new();
 
 	[JsonPropertyName("api_ship_id")]
-	public int ApiShipId { get; set; } = default!;
+	public int ApiShipId { get; set; }
 }

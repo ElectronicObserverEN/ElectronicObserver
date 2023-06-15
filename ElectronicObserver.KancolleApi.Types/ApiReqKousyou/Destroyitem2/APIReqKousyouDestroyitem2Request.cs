@@ -3,8 +3,8 @@
 public class ApiReqKousyouDestroyitem2Request
 {
 	[JsonPropertyName("api_slotitem_ids")]
-	public string ApiSlotitemIds { get; set; } = default!;
+	public string ApiSlotitemIds { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

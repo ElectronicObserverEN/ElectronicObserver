@@ -3,8 +3,8 @@
 public class ApiReqKousyouGetshipRequest
 {
 	[JsonPropertyName("api_kdock_id")]
-	public string ApiKdockId { get; set; } = default!;
+	public string ApiKdockId { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

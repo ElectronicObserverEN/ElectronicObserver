@@ -9,19 +9,19 @@ public class ApiPortPortResponse
 	public ApiPortBasic ApiBasic { get; set; } = new();
 
 	[JsonPropertyName("api_c_flag")]
-	public int? ApiCFlag { get; set; } = default!;
+	public int? ApiCFlag { get; set; }
 
 	[JsonPropertyName("api_combined_flag")]
-	public int? ApiCombinedFlag { get; set; } = default!;
+	public int? ApiCombinedFlag { get; set; }
 
 	[JsonPropertyName("api_deck_port")]
 	public List<ApiDeckPort> ApiDeckPort { get; set; } = new();
 
 	[JsonPropertyName("api_dest_ship_slot")]
-	public int ApiDestShipSlot { get; set; } = default!;
+	public int ApiDestShipSlot { get; set; }
 
 	[JsonPropertyName("api_event_object")]
-	public ApiEventObject? ApiEventObject { get; set; } = default!;
+	public ApiEventObject? ApiEventObject { get; set; }
 
 	[JsonPropertyName("api_log")]
 	public List<ApiLog> ApiLog { get; set; } = new();
@@ -33,13 +33,13 @@ public class ApiPortPortResponse
 	public List<ApiGetMemberNdockResponse> ApiNdock { get; set; } = new();
 
 	[JsonPropertyName("api_p_bgm_id")]
-	public int ApiPBgmId { get; set; } = default!;
+	public int ApiPBgmId { get; set; }
 
 	[JsonPropertyName("api_parallel_quest_count")]
-	public int ApiParallelQuestCount { get; set; } = default!;
+	public int ApiParallelQuestCount { get; set; }
 
 	[JsonPropertyName("api_plane_info")]
-	public ApiPortPlaneInfo? ApiPlaneInfo { get; set; } = default!;
+	public ApiPortPlaneInfo? ApiPlaneInfo { get; set; }
 
 	[JsonPropertyName("api_ship")]
 	public List<ApiShip> ApiShip { get; set; } = new();

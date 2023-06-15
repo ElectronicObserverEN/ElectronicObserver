@@ -3,8 +3,8 @@
 public class ApiReqMissionReturnInstructionRequest
 {
 	[JsonPropertyName("api_deck_id")]
-	public string ApiDeckId { get; set; } = default!;
+	public string ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

@@ -3,8 +3,8 @@
 public class IntOrString
 {
 	[JsonPropertyName("api_int_value")]
-	public int ApiIntValue { get; set; } = default!;
+	public int ApiIntValue { get; set; }
 
 	[JsonPropertyName("api_string_value")]
-	public string ApiStringValue { get; set; } = default!;
+	public string ApiStringValue { get; set; }
 }

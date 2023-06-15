@@ -3,11 +3,11 @@
 public class ApiReqKousyouRemodelSlotlistDetailRequest
 {
 	[JsonPropertyName("api_id")]
-	public string ApiId { get; set; } = default!;
+	public string ApiId { get; set; }
 
 	[JsonPropertyName("api_slot_id")]
-	public string ApiSlotId { get; set; } = default!;
+	public string ApiSlotId { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

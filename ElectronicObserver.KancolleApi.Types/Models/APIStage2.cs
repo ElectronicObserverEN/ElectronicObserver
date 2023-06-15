@@ -3,17 +3,17 @@
 public class ApiStage2
 {
 	[JsonPropertyName("api_air_fire")]
-	public ApiAirFire? ApiAirFire { get; set; } = default!;
+	public ApiAirFire? ApiAirFire { get; set; }
 
 	[JsonPropertyName("api_e_count")]
-	public int ApiECount { get; set; } = default!;
+	public int ApiECount { get; set; }
 
 	[JsonPropertyName("api_e_lostcount")]
-	public int ApiELostcount { get; set; } = default!;
+	public int ApiELostcount { get; set; }
 
 	[JsonPropertyName("api_f_count")]
-	public int ApiFCount { get; set; } = default!;
+	public int ApiFCount { get; set; }
 
 	[JsonPropertyName("api_f_lostcount")]
-	public int ApiFLostcount { get; set; } = default!;
+	public int ApiFLostcount { get; set; }
 }

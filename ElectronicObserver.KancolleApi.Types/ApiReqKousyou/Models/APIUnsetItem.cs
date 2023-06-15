@@ -6,5 +6,5 @@ public class ApiUnsetItem
 	public List<int> ApiSlotList { get; set; } = new();
 
 	[JsonPropertyName("api_type3")]
-	public int ApiType3 { get; set; } = default!;
+	public int ApiType3 { get; set; }
 }

@@ -8,10 +8,10 @@ public class ApiReqPracticeBattleResultResponse
 	public ApiEnemyInfo ApiEnemyInfo { get; set; } = new();
 
 	[JsonPropertyName("api_get_base_exp")]
-	public int ApiGetBaseExp { get; set; } = default!;
+	public int ApiGetBaseExp { get; set; }
 
 	[JsonPropertyName("api_get_exp")]
-	public int ApiGetExp { get; set; } = default!;
+	public int ApiGetExp { get; set; }
 
 	[JsonPropertyName("api_get_exp_lvup")]
 	public List<List<int>> ApiGetExpLvup { get; set; } = new();
@@ -20,17 +20,17 @@ public class ApiReqPracticeBattleResultResponse
 	public List<int> ApiGetShipExp { get; set; } = new();
 
 	[JsonPropertyName("api_member_exp")]
-	public int ApiMemberExp { get; set; } = default!;
+	public int ApiMemberExp { get; set; }
 
 	[JsonPropertyName("api_member_lv")]
-	public int ApiMemberLv { get; set; } = default!;
+	public int ApiMemberLv { get; set; }
 
 	[JsonPropertyName("api_mvp")]
-	public int ApiMvp { get; set; } = default!;
+	public int ApiMvp { get; set; }
 
 	[JsonPropertyName("api_ship_id")]
 	public List<int> ApiShipId { get; set; } = new();
 
 	[JsonPropertyName("api_win_rank")]
-	public string ApiWinRank { get; set; } = default!;
+	public string ApiWinRank { get; set; }
 }

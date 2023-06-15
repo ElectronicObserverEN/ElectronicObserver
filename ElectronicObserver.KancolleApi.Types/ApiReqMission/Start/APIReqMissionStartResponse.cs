@@ -3,8 +3,8 @@
 public class ApiReqMissionStartResponse
 {
 	[JsonPropertyName("api_complatetime")]
-	public long ApiComplatetime { get; set; } = default!;
+	public long ApiComplatetime { get; set; }
 
 	[JsonPropertyName("api_complatetime_str")]
-	public string ApiComplatetimeStr { get; set; } = default!;
+	public string ApiComplatetimeStr { get; set; }
 }

@@ -9,7 +9,7 @@ public class ApiBaseItem
 	public int ApiRid { get; set; }
 
 	[JsonPropertyName("api_distance")]
-	public ApiDistance ApiDistance { get; set; } = default!;
+	public ApiDistance ApiDistance { get; set; }
 
 	[JsonPropertyName("api_plane_info")]
 	public List<ApiPlaneInfo> ApiPlaneInfo { get; set; } = new();

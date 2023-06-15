@@ -11,5 +11,5 @@ public class ApiReqHokyuChargeResponse
 	public List<ApiChargeShip> ApiShip { get; set; } = new();
 
 	[JsonPropertyName("api_use_bou")]
-	public int ApiUseBou { get; set; } = default!;
+	public int ApiUseBou { get; set; }
 }

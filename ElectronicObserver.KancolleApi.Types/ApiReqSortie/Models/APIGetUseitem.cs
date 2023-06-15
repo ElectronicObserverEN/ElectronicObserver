@@ -3,8 +3,8 @@
 public class ApiGetUseitem
 {
 	[JsonPropertyName("api_useitem_id")]
-	public int ApiUseitemId { get; set; } = default!;
+	public int ApiUseitemId { get; set; }
 
 	[JsonPropertyName("api_useitem_name")]
-	public string ApiUseitemName { get; set; } = default!;
+	public string ApiUseitemName { get; set; }
 }

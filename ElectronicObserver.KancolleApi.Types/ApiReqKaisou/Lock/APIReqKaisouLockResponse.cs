@@ -3,5 +3,5 @@
 public class ApiReqKaisouLockResponse
 {
 	[JsonPropertyName("api_locked")]
-	public int ApiLocked { get; set; } = default!;
+	public int ApiLocked { get; set; }
 }

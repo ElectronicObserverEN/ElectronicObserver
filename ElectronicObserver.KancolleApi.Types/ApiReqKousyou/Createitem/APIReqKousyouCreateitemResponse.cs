@@ -5,7 +5,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.Createitem;
 public class ApiReqKousyouCreateitemResponse
 {
 	[JsonPropertyName("api_create_flag")]
-	public int ApiCreateFlag { get; set; } = default!;
+	public int ApiCreateFlag { get; set; }
 
 	[JsonPropertyName("api_get_items")]
 	public List<ApiGetItem> ApiGetItems { get; set; } = new();

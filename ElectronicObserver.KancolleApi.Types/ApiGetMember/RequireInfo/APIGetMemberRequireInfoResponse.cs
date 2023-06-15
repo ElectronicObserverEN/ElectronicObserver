@@ -21,10 +21,10 @@ public class ApiGetMemberRequireInfoResponse
 	public ApiossSetting ApiOssSetting { get; set; } = new();
 
 	[JsonPropertyName("api_position_id")]
-	public int? ApiPositionId { get; set; } = default!;
+	public int? ApiPositionId { get; set; }
 
 	[JsonPropertyName("api_skin_id")]
-	public int ApiSkinId { get; set; } = default!;
+	public int ApiSkinId { get; set; }
 
 	[JsonPropertyName("api_slot_item")]
 	public List<ApiSlotItem> ApiSlotItem { get; set; } = new();

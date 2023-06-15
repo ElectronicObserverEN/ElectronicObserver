@@ -3,8 +3,8 @@
 public class ApiBasic
 {
 	[JsonPropertyName("api_firstflag")]
-	public int ApiFirstflag { get; set; } = default!;
+	public int ApiFirstflag { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	public int ApiMemberId { get; set; } = default!;
+	public int ApiMemberId { get; set; }
 }

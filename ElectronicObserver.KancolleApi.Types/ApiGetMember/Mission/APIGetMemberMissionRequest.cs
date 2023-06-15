@@ -3,5 +3,5 @@
 public class ApiGetMemberMissionRequest
 {
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

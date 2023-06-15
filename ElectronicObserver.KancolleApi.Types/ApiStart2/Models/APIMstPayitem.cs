@@ -3,23 +3,23 @@
 public class ApiMstPayitem
 {
 	[JsonPropertyName("api_description")]
-	public string ApiDescription { get; set; } = default!;
+	public string ApiDescription { get; set; }
 
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_item")]
 	public List<int> ApiItem { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; }
 
 	[JsonPropertyName("api_price")]
-	public int ApiPrice { get; set; } = default!;
+	public int ApiPrice { get; set; }
 
 	[JsonPropertyName("api_shop_description")]
-	public string ApiShopDescription { get; set; } = default!;
+	public string ApiShopDescription { get; set; }
 
 	[JsonPropertyName("api_type")]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 }

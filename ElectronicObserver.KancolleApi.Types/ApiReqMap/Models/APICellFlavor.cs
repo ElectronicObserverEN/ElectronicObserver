@@ -3,8 +3,8 @@
 public class ApiCellFlavor
 {
 	[JsonPropertyName("api_message")]
-	public string ApiMessage { get; set; } = default!;
+	public string ApiMessage { get; set; }
 
 	[JsonPropertyName("api_type")]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 }

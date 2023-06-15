@@ -3,14 +3,14 @@
 public class ApiGetEventitem
 {
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_slot_level")]
-	public int? ApiSlotLevel { get; set; } = default!;
+	public int? ApiSlotLevel { get; set; }
 
 	[JsonPropertyName("api_type")]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 
 	[JsonPropertyName("api_value")]
-	public int ApiValue { get; set; } = default!;
+	public int ApiValue { get; set; }
 }

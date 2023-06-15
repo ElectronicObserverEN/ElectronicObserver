@@ -3,11 +3,11 @@
 public class ApiReqKousyouCreateshipSpeedchangeRequest
 {
 	[JsonPropertyName("api_highspeed")]
-	public string ApiHighspeed { get; set; } = default!;
+	public string ApiHighspeed { get; set; }
 
 	[JsonPropertyName("api_kdock_id")]
-	public string ApiKdockId { get; set; } = default!;
+	public string ApiKdockId { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; }
 }

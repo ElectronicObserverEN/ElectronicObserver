@@ -6,7 +6,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 public class ApiReqBattleMidnightBattleResponse : ISecondNightBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();

@@ -3,11 +3,11 @@
 public class ApiMstSlotitemEquiptype
 {
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; }
 
 	[JsonPropertyName("api_show_flg")]
-	public int ApiShowFlg { get; set; } = default!;
+	public int ApiShowFlg { get; set; }
 }

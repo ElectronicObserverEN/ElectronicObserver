@@ -6,7 +6,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();
@@ -54,7 +54,7 @@ public class ApiReqSortieLdShootingResponse : IRadarBattleApiResponse
 	public ApiHougeki1 ApiHougeki1 { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_ship_ke")]
 	public List<int> ApiShipKe { get; set; } = new();

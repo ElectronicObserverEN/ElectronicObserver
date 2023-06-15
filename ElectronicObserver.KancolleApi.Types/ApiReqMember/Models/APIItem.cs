@@ -3,14 +3,14 @@
 public class ApiItem
 {
 	[JsonPropertyName("api_getmes")]
-	public string ApiGetmes { get; set; } = default!;
+	public string ApiGetmes { get; set; }
 
 	[JsonPropertyName("api_mode")]
-	public int ApiMode { get; set; } = default!;
+	public int ApiMode { get; set; }
 
 	[JsonPropertyName("api_mst_id")]
-	public int ApiMstId { get; set; } = default!;
+	public int ApiMstId { get; set; }
 
 	[JsonPropertyName("api_type")]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 }

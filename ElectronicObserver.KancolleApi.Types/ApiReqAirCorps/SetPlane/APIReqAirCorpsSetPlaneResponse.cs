@@ -5,7 +5,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.SetPlane;
 public class ApiReqAirCorpsSetPlaneResponse
 {
 	[JsonPropertyName("api_after_bauxite")]
-	public int? ApiAfterBauxite { get; set; } = default!;
+	public int? ApiAfterBauxite { get; set; }
 
 	[JsonPropertyName("api_distance")]
 	public ApiDistance ApiDistance { get; set; } = new();

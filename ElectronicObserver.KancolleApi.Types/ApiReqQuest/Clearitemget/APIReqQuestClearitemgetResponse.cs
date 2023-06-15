@@ -8,7 +8,7 @@ public class ApiReqQuestClearitemgetResponse
 	public List<ApiBounus> ApiBounus { get; set; } = new();
 
 	[JsonPropertyName("api_bounus_count")]
-	public int ApiBounusCount { get; set; } = default!;
+	public int ApiBounusCount { get; set; }
 
 	[JsonPropertyName("api_material")]
 	public List<int> ApiMaterial { get; set; } = new();

@@ -13,7 +13,7 @@ public class ApiReqCombinedBattleEcBattleResponse : ICombinedDayBattleApiRespons
 	public ApiAirBaseInjection? ApiAirBaseInjection { get; set; }
 
 	[JsonPropertyName("api_deck_id")]
-	public int ApiDeckId { get; set; } = default!;
+	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();
@@ -94,19 +94,19 @@ public class ApiReqCombinedBattleEcBattleResponse : ICombinedDayBattleApiRespons
 	public ApiKouku ApiKouku { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
-	public int ApiMidnightFlag { get; set; } = default!;
+	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiRaigekiClass ApiOpeningAtack { get; set; } = default!;
+	public ApiRaigekiClass ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
-	public int ApiOpeningFlag { get; set; } = default!;
+	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_taisen")]
-	public ApiHougeki1? ApiOpeningTaisen { get; set; } = default!;
+	public ApiHougeki1? ApiOpeningTaisen { get; set; }
 
 	[JsonPropertyName("api_opening_taisen_flag")]
-	public int ApiOpeningTaisenFlag { get; set; } = default!;
+	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
 	public ApiRaigekiClass ApiRaigeki { get; set; } = new();

@@ -8,7 +8,7 @@ public class ApiReqKaisouPowerupResponse
 	public List<ApiDeck> ApiDeck { get; set; } = new();
 
 	[JsonPropertyName("api_powerup_flag")]
-	public int ApiPowerupFlag { get; set; } = default!;
+	public int ApiPowerupFlag { get; set; }
 
 	[JsonPropertyName("api_ship")]
 	public ApiShip ApiShip { get; set; } = new();

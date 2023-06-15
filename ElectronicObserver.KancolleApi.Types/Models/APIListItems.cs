@@ -3,8 +3,8 @@
 public class ApiListItems
 {
 	[JsonPropertyName("api_mission_id")]
-	public int ApiMissionId { get; set; } = default!;
+	public int ApiMissionId { get; set; }
 
 	[JsonPropertyName("api_state")]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 }

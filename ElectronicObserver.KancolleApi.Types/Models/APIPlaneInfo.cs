@@ -3,20 +3,20 @@
 public class ApiPlaneInfo
 {
 	[JsonPropertyName("api_cond")]
-	public int? ApiCond { get; set; } = default!;
+	public int? ApiCond { get; set; }
 
 	[JsonPropertyName("api_count")]
-	public int? ApiCount { get; set; } = default!;
+	public int? ApiCount { get; set; }
 
 	[JsonPropertyName("api_max_count")]
-	public int? ApiMaxCount { get; set; } = default!;
+	public int? ApiMaxCount { get; set; }
 
 	[JsonPropertyName("api_slotid")]
-	public int ApiSlotid { get; set; } = default!;
+	public int ApiSlotid { get; set; }
 
 	[JsonPropertyName("api_squadron_id")]
-	public int ApiSquadronId { get; set; } = default!;
+	public int ApiSquadronId { get; set; }
 
 	[JsonPropertyName("api_state")]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 }

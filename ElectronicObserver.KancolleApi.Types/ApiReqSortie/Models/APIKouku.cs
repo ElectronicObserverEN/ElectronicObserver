@@ -11,8 +11,8 @@ public class ApiKouku
 	public ApiStage1? ApiStage1 { get; set; } = new();
 
 	[JsonPropertyName("api_stage2")]
-	public ApiStage2? ApiStage2 { get; set; } = default!;
+	public ApiStage2? ApiStage2 { get; set; }
 
 	[JsonPropertyName("api_stage3")]
-	public ApiStage3? ApiStage3 { get; set; } = default!;
+	public ApiStage3? ApiStage3 { get; set; }
 }

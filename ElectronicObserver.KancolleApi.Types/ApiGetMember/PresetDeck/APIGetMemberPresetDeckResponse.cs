@@ -8,5 +8,5 @@ public class ApiGetMemberPresetDeckResponse
 	public IDictionary<string, ApiDeck> ApiDeck { get; set; } = new Dictionary<string, ApiDeck>();
 
 	[JsonPropertyName("api_max_num")]
-	public int ApiMaxNum { get; set; } = default!;
+	public int ApiMaxNum { get; set; }
 }
