@@ -11,7 +11,6 @@ public class ApiGetMemberPracticeResponse
 	public int? ApiEntryLimit { get; set; } = default!;
 
 	[JsonPropertyName("api_list")]
-	[Required]
 	public List<ApiPracticeList> ApiList { get; set; } = new();
 
 	[JsonPropertyName("api_selected_kind")]

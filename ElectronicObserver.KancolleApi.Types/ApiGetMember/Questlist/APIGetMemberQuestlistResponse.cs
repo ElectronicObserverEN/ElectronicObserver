@@ -26,7 +26,6 @@ public class ApiGetMemberQuestlistResponse
 	/// Element type is <see cref="ApiListClass"/> or <see cref="int"/>.
 	/// </summary>
 	[JsonPropertyName("api_list")]
-	[Required]
 	public List<object> ApiList { get; set; } = new();
 
 	[JsonPropertyName("api_page_count")]

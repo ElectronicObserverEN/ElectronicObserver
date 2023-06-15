@@ -3,7 +3,6 @@
 public class ApiCellFlavor
 {
 	[JsonPropertyName("api_message")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiMessage { get; set; } = default!;
 
 	[JsonPropertyName("api_type")]

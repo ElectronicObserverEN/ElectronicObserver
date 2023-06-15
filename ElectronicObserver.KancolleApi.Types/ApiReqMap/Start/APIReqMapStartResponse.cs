@@ -7,7 +7,6 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 public class ApiReqMapStartResponse : IMapProgressApi
 {
 	[JsonPropertyName("api_airsearch")]
-	[Required]
 	public ApiAirsearch ApiAirsearch { get; set; } = new();
 
 	[JsonPropertyName("api_bosscell_no")]
@@ -17,7 +16,6 @@ public class ApiReqMapStartResponse : IMapProgressApi
 	public int ApiBosscomp { get; set; } = default!;
 
 	[JsonPropertyName("api_cell_data")]
-	[Required]
 	public List<ApiCellDatum> ApiCellData { get; set; } = new();
 
 	[JsonPropertyName("api_cell_flavor")]

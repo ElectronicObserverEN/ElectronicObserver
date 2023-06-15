@@ -14,7 +14,6 @@ public class ApiShipDatum
 	public int ApiCond { get; set; } = default!;
 
 	[JsonPropertyName("api_exp")]
-	[Required]
 	public List<int> ApiExp { get; set; } = new();
 
 	[JsonPropertyName("api_fuel")]
@@ -24,15 +23,12 @@ public class ApiShipDatum
 	public int ApiId { get; set; } = default!;
 
 	[JsonPropertyName("api_kaihi")]
-	[Required]
 	public List<int> ApiKaihi { get; set; } = new();
 
 	[JsonPropertyName("api_karyoku")]
-	[Required]
 	public List<int> ApiKaryoku { get; set; } = new();
 
 	[JsonPropertyName("api_kyouka")]
-	[Required]
 	public List<int> ApiKyouka { get; set; } = new();
 
 	[JsonPropertyName("api_leng")]
@@ -45,7 +41,6 @@ public class ApiShipDatum
 	public int ApiLockedEquip { get; set; } = default!;
 
 	[JsonPropertyName("api_lucky")]
-	[Required]
 	public List<int> ApiLucky { get; set; } = new();
 
 	[JsonPropertyName("api_lv")]
@@ -55,7 +50,6 @@ public class ApiShipDatum
 	public int ApiMaxhp { get; set; } = default!;
 
 	[JsonPropertyName("api_ndock_item")]
-	[Required]
 	public List<int> ApiNdockItem { get; set; } = new();
 
 	[JsonPropertyName("api_ndock_time")]
@@ -65,15 +59,12 @@ public class ApiShipDatum
 	public int ApiNowhp { get; set; } = default!;
 
 	[JsonPropertyName("api_onslot")]
-	[Required]
 	public List<int> ApiOnslot { get; set; } = new();
 
 	[JsonPropertyName("api_raisou")]
-	[Required]
 	public List<int> ApiRaisou { get; set; } = new();
 
 	[JsonPropertyName("api_sakuteki")]
-	[Required]
 	public List<int> ApiSakuteki { get; set; } = new();
 
 	[JsonPropertyName("api_sally_area")]
@@ -83,7 +74,6 @@ public class ApiShipDatum
 	public ShipId ApiShipId { get; set; } = default!;
 
 	[JsonPropertyName("api_slot")]
-	[Required]
 	public List<int> ApiSlot { get; set; } = new();
 
 	[JsonPropertyName("api_slot_ex")]
@@ -99,17 +89,14 @@ public class ApiShipDatum
 	public int ApiSortno { get; set; } = default!;
 
 	[JsonPropertyName("api_soukou")]
-	[Required]
 	public List<int> ApiSoukou { get; set; } = new();
 
 	[JsonPropertyName("api_srate")]
 	public int ApiSrate { get; set; } = default!;
 
 	[JsonPropertyName("api_taiku")]
-	[Required]
 	public List<int> ApiTaiku { get; set; } = new();
 
 	[JsonPropertyName("api_taisen")]
-	[Required]
 	public List<int> ApiTaisen { get; set; } = new();
 }

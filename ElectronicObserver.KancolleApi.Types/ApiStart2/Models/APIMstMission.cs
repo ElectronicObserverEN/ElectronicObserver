@@ -9,14 +9,12 @@ public class ApiMstMission
 	public int ApiDeckNum { get; set; } = default!;
 
 	[JsonPropertyName("api_details")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiDetails { get; set; } = default!;
 
 	[JsonPropertyName("api_difficulty")]
 	public int ApiDifficulty { get; set; } = default!;
 
 	[JsonPropertyName("api_disp_no")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiDispNo { get; set; } = default!;
 
 	[JsonPropertyName("api_id")]
@@ -26,7 +24,6 @@ public class ApiMstMission
 	public int ApiMapareaId { get; set; } = default!;
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_reset_type")]
@@ -48,11 +45,9 @@ public class ApiMstMission
 	public int ApiUseFuel { get; set; } = default!;
 
 	[JsonPropertyName("api_win_item1")]
-	[Required]
 	public List<int> ApiWinItem1 { get; set; } = new();
 
 	[JsonPropertyName("api_win_item2")]
-	[Required]
 	public List<int> ApiWinItem2 { get; set; } = new();
 
 	[JsonPropertyName("api_win_mat_level")]

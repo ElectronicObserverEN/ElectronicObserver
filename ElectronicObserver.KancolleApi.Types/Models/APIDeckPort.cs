@@ -3,7 +3,6 @@
 public class ApiDeckPort
 {
 	[JsonPropertyName("api_flagship")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiFlagship { get; set; } = default!;
 
 	[JsonPropertyName("api_id")]
@@ -13,18 +12,14 @@ public class ApiDeckPort
 	public int ApiMemberId { get; set; } = default!;
 
 	[JsonPropertyName("api_mission")]
-	[Required]
 	public List<long> ApiMission { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_name_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiNameId { get; set; } = default!;
 
 	[JsonPropertyName("api_ship")]
-	[Required]
 	public List<int> ApiShip { get; set; } = new();
 }

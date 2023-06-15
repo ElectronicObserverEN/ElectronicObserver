@@ -24,7 +24,6 @@ public class ApiMstShipgraph
 	public List<int>? ApiEnsyufN { get; set; } = default!;
 
 	[JsonPropertyName("api_filename")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiFilename { get; set; } = default!;
 
 	[JsonPropertyName("api_id")]
@@ -55,7 +54,6 @@ public class ApiMstShipgraph
 	public int? ApiSortno { get; set; } = default!;
 
 	[JsonPropertyName("api_version")]
-	[Required]
 	public List<string> ApiVersion { get; set; } = new();
 
 	[JsonPropertyName("api_weda")]

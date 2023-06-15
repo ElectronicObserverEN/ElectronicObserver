@@ -11,7 +11,6 @@ public class ApiReqMemberItemuseResponse
 	public int ApiFlag { get; set; } = default!;
 
 	[JsonPropertyName("api_getitem")]
-	[Required]
 	public List<ApiGetitem?> ApiGetitem { get; set; } = new();
 
 	[JsonPropertyName("api_material")]

@@ -7,7 +7,6 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 public class ApiReqMapNextResponse : IMapProgressApi
 {
 	[JsonPropertyName("api_airsearch")]
-	[Required]
 	public ApiAirsearch ApiAirsearch { get; set; } = new();
 
 	[JsonPropertyName("api_bosscell_no")]

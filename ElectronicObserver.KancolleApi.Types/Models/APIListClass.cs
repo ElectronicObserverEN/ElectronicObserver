@@ -9,11 +9,9 @@ public class ApiListClass
 	public int ApiCategory { get; set; } = default!;
 
 	[JsonPropertyName("api_detail")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiDetail { get; set; } = default!;
 
 	[JsonPropertyName("api_get_material")]
-	[Required]
 	public List<int> ApiGetMaterial { get; set; } = new();
 
 	[JsonPropertyName("api_invalid_flag")]
@@ -35,7 +33,6 @@ public class ApiListClass
 	public int ApiState { get; set; } = default!;
 
 	[JsonPropertyName("api_title")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiTitle { get; set; } = default!;
 
 	[JsonPropertyName("api_type")]

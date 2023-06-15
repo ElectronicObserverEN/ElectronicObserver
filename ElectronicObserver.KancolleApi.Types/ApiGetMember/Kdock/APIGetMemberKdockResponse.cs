@@ -6,7 +6,6 @@ public class ApiGetMemberKdockResponse
 	public long ApiCompleteTime { get; set; } = default!;
 
 	[JsonPropertyName("api_complete_time_str")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiCompleteTimeStr { get; set; } = default!;
 
 	[JsonPropertyName("api_created_ship_id")]

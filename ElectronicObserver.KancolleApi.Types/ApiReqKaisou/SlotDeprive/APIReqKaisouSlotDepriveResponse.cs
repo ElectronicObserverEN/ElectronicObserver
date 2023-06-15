@@ -5,7 +5,6 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqKaisou.SlotDeprive;
 public class ApiReqKaisouSlotDepriveResponse
 {
 	[JsonPropertyName("api_ship_data")]
-	[Required]
 	public ApiShipData ApiShipData { get; set; } = new();
 
 	[JsonPropertyName("api_unset_list")]

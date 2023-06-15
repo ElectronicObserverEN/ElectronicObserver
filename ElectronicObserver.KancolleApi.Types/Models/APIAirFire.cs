@@ -9,6 +9,5 @@ public class ApiAirFire
 	public int ApiKind { get; set; } = default!;
 
 	[JsonPropertyName("api_use_items")]
-	[Required]
 	public List<int> ApiUseItems { get; set; } = new();
 }

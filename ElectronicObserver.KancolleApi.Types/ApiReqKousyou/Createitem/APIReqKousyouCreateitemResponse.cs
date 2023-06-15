@@ -8,11 +8,9 @@ public class ApiReqKousyouCreateitemResponse
 	public int ApiCreateFlag { get; set; } = default!;
 
 	[JsonPropertyName("api_get_items")]
-	[Required]
 	public List<ApiGetItem> ApiGetItems { get; set; } = new();
 
 	[JsonPropertyName("api_material")]
-	[Required]
 	public List<int> ApiMaterial { get; set; } = new();
 
 	[JsonPropertyName("api_unset_items")]

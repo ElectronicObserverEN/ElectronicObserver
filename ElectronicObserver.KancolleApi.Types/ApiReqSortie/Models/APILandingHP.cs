@@ -3,11 +3,9 @@
 public class ApiLandingHp
 {
 	[JsonPropertyName("api_max_hp")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiMaxHp { get; set; } = default!;
 
 	[JsonPropertyName("api_now_hp")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiNowHp { get; set; } = default!;
 
 	/// <summary>

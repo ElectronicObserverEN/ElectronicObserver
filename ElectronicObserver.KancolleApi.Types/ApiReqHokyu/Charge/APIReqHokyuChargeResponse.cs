@@ -5,11 +5,9 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqHokyu.Charge;
 public class ApiReqHokyuChargeResponse
 {
 	[JsonPropertyName("api_material")]
-	[Required]
 	public List<int> ApiMaterial { get; set; } = new();
 
 	[JsonPropertyName("api_ship")]
-	[Required]
 	public List<ApiChargeShip> ApiShip { get; set; } = new();
 
 	[JsonPropertyName("api_use_bou")]

@@ -12,6 +12,5 @@ public class ApiChargeShip
 	public int ApiId { get; set; } = default!;
 
 	[JsonPropertyName("api_onslot")]
-	[Required]
 	public List<int> ApiOnslot { get; set; } = new();
 }

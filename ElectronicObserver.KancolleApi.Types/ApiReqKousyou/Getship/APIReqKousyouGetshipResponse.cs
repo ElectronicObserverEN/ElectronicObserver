@@ -10,17 +10,14 @@ public class ApiReqKousyouGetshipResponse
 	public int ApiId { get; set; } = default!;
 
 	[JsonPropertyName("api_kdock")]
-	[Required]
 	public List<ApiGetMemberKdockResponse> ApiKdock { get; set; } = new();
 
 	[JsonPropertyName("api_ship")]
-	[Required]
 	public ApiShip ApiShip { get; set; } = new();
 
 	[JsonPropertyName("api_ship_id")]
 	public int ApiShipId { get; set; } = default!;
 
 	[JsonPropertyName("api_slotitem")]
-	[Required]
 	public List<ApiSlotitem> ApiSlotitem { get; set; } = new();
 }

@@ -6,14 +6,12 @@ public class ApiMstUseitem
 	public int ApiCategory { get; set; } = default!;
 
 	[JsonPropertyName("api_description")]
-	[Required]
 	public List<string> ApiDescription { get; set; } = new();
 
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; } = default!;
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_price")]

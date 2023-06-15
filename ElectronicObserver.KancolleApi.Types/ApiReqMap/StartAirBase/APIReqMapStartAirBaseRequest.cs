@@ -12,6 +12,5 @@ public class ApiReqMapStartAirBaseRequest
 	public string? ApiStrikePoint3 { get; set; } = default!;
 
 	[JsonPropertyName("api_verno")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

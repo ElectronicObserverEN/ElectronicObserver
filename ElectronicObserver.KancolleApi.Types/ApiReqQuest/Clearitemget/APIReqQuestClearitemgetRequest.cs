@@ -3,7 +3,6 @@
 public class ApiReqQuestClearitemgetRequest
 {
 	[JsonPropertyName("api_quest_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiQuestId { get; set; } = default!;
 
 	[JsonPropertyName("api_select_no")]
@@ -13,6 +12,5 @@ public class ApiReqQuestClearitemgetRequest
 	public string? ApiSelectNo2 { get; set; } = default!;
 
 	[JsonPropertyName("api_verno")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiVerno { get; set; } = default!;
 }

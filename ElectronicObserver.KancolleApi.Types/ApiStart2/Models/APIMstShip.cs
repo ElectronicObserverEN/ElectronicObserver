@@ -51,7 +51,6 @@ public class ApiMstShip
 	public List<int>? ApiMaxeq { get; set; } = default!;
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_powup")]
@@ -91,6 +90,5 @@ public class ApiMstShip
 	public int? ApiVoicef { get; set; } = default!;
 
 	[JsonPropertyName("api_yomi")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiYomi { get; set; } = default!;
 }

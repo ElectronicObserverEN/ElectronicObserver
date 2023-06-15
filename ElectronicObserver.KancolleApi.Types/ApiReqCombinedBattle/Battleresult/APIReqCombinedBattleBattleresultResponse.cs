@@ -13,7 +13,6 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	public int ApiDestsf { get; set; } = default!;
 
 	[JsonPropertyName("api_enemy_info")]
-	[Required]
 	public ApiEnemyInfo ApiEnemyInfo { get; set; } = new();
 
 	[JsonPropertyName("api_escape")]
@@ -50,21 +49,18 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	public int ApiGetExp { get; set; } = default!;
 
 	[JsonPropertyName("api_get_exp_lvup")]
-	[Required]
 	public List<List<int>> ApiGetExpLvup { get; set; } = new();
 
 	[JsonPropertyName("api_get_exp_lvup_combined")]
 	public List<List<int>>? ApiGetExpLvupCombined { get; set; }
 
 	[JsonPropertyName("api_get_flag")]
-	[Required]
 	public List<int> ApiGetFlag { get; set; } = new();
 
 	[JsonPropertyName("api_get_ship")]
 	public ApiGetShip? ApiGetShip { get; set; } = default!;
 
 	[JsonPropertyName("api_get_ship_exp")]
-	[Required]
 	public List<int> ApiGetShipExp { get; set; } = new();
 
 	[JsonPropertyName("api_get_ship_exp_combined")]
@@ -98,15 +94,12 @@ public class ApiReqCombinedBattleBattleresultResponse : ISortieBattleResultApi
 	public int ApiQuestLevel { get; set; } = default!;
 
 	[JsonPropertyName("api_quest_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiQuestName { get; set; } = default!;
 
 	[JsonPropertyName("api_ship_id")]
-	[Required]
 	public List<int> ApiShipId { get; set; } = new();
 
 	[JsonPropertyName("api_win_rank")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiWinRank { get; set; } = default!;
 
 	[JsonPropertyName("api_get_useitem")]

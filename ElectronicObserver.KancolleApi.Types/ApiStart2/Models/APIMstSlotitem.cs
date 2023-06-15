@@ -12,7 +12,6 @@ public class ApiMstSlotitem
 	public int ApiBaku { get; set; } = default!;
 
 	[JsonPropertyName("api_broken")]
-	[Required]
 	public List<int> ApiBroken { get; set; } = new();
 
 	[JsonPropertyName("api_cost")]
@@ -43,7 +42,6 @@ public class ApiMstSlotitem
 	public int ApiLuck { get; set; } = default!;
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_raig")]
@@ -83,11 +81,9 @@ public class ApiMstSlotitem
 	public int ApiTyku { get; set; } = default!;
 
 	[JsonPropertyName("api_type")]
-	[Required]
 	public List<int> ApiType { get; set; } = new();
 
 	[JsonPropertyName("api_usebull")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiUsebull { get; set; } = default!;
 
 	[JsonPropertyName("api_version")]

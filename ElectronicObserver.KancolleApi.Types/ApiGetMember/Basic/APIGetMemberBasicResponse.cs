@@ -6,11 +6,9 @@ public class ApiGetMemberBasicResponse
 	public int ApiActiveFlag { get; set; } = default!;
 
 	[JsonPropertyName("api_comment")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiComment { get; set; } = default!;
 
 	[JsonPropertyName("api_comment_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiCommentId { get; set; } = default!;
 
 	[JsonPropertyName("api_count_deck")]
@@ -35,7 +33,6 @@ public class ApiGetMemberBasicResponse
 	public object? ApiFleetname { get; set; } = default!;
 
 	[JsonPropertyName("api_furniture")]
-	[Required]
 	public List<int> ApiFurniture { get; set; } = new();
 
 	[JsonPropertyName("api_level")]
@@ -54,7 +51,6 @@ public class ApiGetMemberBasicResponse
 	public int ApiMedals { get; set; } = default!;
 
 	[JsonPropertyName("api_member_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiMemberId { get; set; } = default!;
 
 	[JsonPropertyName("api_ms_count")]
@@ -64,11 +60,9 @@ public class ApiGetMemberBasicResponse
 	public int ApiMsSuccess { get; set; } = default!;
 
 	[JsonPropertyName("api_nickname")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiNickname { get; set; } = default!;
 
 	[JsonPropertyName("api_nickname_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiNicknameId { get; set; } = default!;
 
 	[JsonPropertyName("api_playtime")]
@@ -87,7 +81,6 @@ public class ApiGetMemberBasicResponse
 	public int ApiPtWin { get; set; } = default!;
 
 	[JsonPropertyName("api_pvp")]
-	[Required]
 	public List<int> ApiPvp { get; set; } = new();
 
 	[JsonPropertyName("api_rank")]

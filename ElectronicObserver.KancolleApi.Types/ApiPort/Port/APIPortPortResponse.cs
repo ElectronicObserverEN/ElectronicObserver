@@ -6,7 +6,6 @@ namespace ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 public class ApiPortPortResponse
 {
 	[JsonPropertyName("api_basic")]
-	[Required]
 	public ApiPortBasic ApiBasic { get; set; } = new();
 
 	[JsonPropertyName("api_c_flag")]
@@ -16,7 +15,6 @@ public class ApiPortPortResponse
 	public int? ApiCombinedFlag { get; set; } = default!;
 
 	[JsonPropertyName("api_deck_port")]
-	[Required]
 	public List<ApiDeckPort> ApiDeckPort { get; set; } = new();
 
 	[JsonPropertyName("api_dest_ship_slot")]
@@ -26,15 +24,12 @@ public class ApiPortPortResponse
 	public ApiEventObject? ApiEventObject { get; set; } = default!;
 
 	[JsonPropertyName("api_log")]
-	[Required]
 	public List<ApiLog> ApiLog { get; set; } = new();
 
 	[JsonPropertyName("api_material")]
-	[Required]
 	public List<ApiMaterial> ApiMaterial { get; set; } = new();
 
 	[JsonPropertyName("api_ndock")]
-	[Required]
 	public List<ApiGetMemberNdockResponse> ApiNdock { get; set; } = new();
 
 	[JsonPropertyName("api_p_bgm_id")]
@@ -47,6 +42,5 @@ public class ApiPortPortResponse
 	public ApiPortPlaneInfo? ApiPlaneInfo { get; set; } = default!;
 
 	[JsonPropertyName("api_ship")]
-	[Required]
 	public List<ApiShip> ApiShip { get; set; } = new();
 }

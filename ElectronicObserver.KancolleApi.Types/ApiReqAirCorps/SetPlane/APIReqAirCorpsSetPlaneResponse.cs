@@ -8,10 +8,8 @@ public class ApiReqAirCorpsSetPlaneResponse
 	public int? ApiAfterBauxite { get; set; } = default!;
 
 	[JsonPropertyName("api_distance")]
-	[Required]
 	public ApiDistance ApiDistance { get; set; } = new();
 
 	[JsonPropertyName("api_plane_info")]
-	[Required]
 	public List<ApiPlaneInfo> ApiPlaneInfo { get; set; } = new();
 }

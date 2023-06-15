@@ -16,7 +16,6 @@ public class ApiReqSortieLdAirbattleResponse : IAirBattleApiResponse
 	public int ApiDeckId { get; set; }
 
 	[JsonPropertyName("api_eParam")]
-	[Required]
 	public List<List<int>> ApiEParam { get; set; } = new();
 
 	[JsonPropertyName("api_escape_idx")]
@@ -26,25 +25,21 @@ public class ApiReqSortieLdAirbattleResponse : IAirBattleApiResponse
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_eSlot")]
-	[Required]
 	public List<List<int>> ApiESlot { get; set; } = new();
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_e_maxhps")]
-	[Required]
 	public List<object> ApiEMaxhps { get; set; } = new();
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_e_nowhps")]
-	[Required]
 	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_fParam")]
-	[Required]
 	public List<List<int>> ApiFParam { get; set; } = new();
 
 	[JsonPropertyName("api_friendly_info")]
@@ -54,41 +49,33 @@ public class ApiReqSortieLdAirbattleResponse : IAirBattleApiResponse
 	public ApiFriendlyBattle? ApiFriendlyBattle { get; set; }
 
 	[JsonPropertyName("api_f_maxhps")]
-	[Required]
 	public List<int> ApiFMaxhps { get; set; } = new();
 
 	[JsonPropertyName("api_f_nowhps")]
-	[Required]
 	public List<int> ApiFNowhps { get; set; } = new();
 
 	[JsonPropertyName("api_formation")]
-	[Required]
 	public List<int> ApiFormation { get; set; } = new();
 
 	[JsonPropertyName("api_injection_kouku")]
 	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 
 	[JsonPropertyName("api_kouku")]
-	[Required]
 	public ApiKouku? ApiKouku { get; set; } = new();
 
 	[JsonPropertyName("api_midnight_flag")]
 	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_search")]
-	[Required]
 	public List<DetectionType> ApiSearch { get; set; } = new();
 
 	[JsonPropertyName("api_ship_ke")]
-	[Required]
 	public List<int> ApiShipKe { get; set; } = new();
 
 	[JsonPropertyName("api_ship_lv")]
-	[Required]
 	public List<int> ApiShipLv { get; set; } = new();
 
 	[JsonPropertyName("api_stage_flag")]
-	[Required]
 	public List<int> ApiStageFlag { get; set; } = new();
 
 	[JsonPropertyName("api_friendly_kouku")]

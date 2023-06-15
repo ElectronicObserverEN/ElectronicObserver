@@ -5,11 +5,9 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 public class ApiKouku
 {
 	[JsonPropertyName("api_plane_from")]
-	[Required]
 	public List<List<int>?> ApiPlaneFrom { get; set; } = new();
 
 	[JsonPropertyName("api_stage1")]
-	[Required]
 	public ApiStage1? ApiStage1 { get; set; } = new();
 
 	[JsonPropertyName("api_stage2")]

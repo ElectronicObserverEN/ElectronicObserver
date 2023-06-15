@@ -3,7 +3,6 @@
 public class ApiMstEquipExslotShip
 {
 	[JsonPropertyName("api_ship_ids")]
-	[Required]
 	public List<int> ApiShipIds { get; set; } = new();
 
 	[JsonPropertyName("api_slotitem_id")]

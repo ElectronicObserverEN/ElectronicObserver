@@ -5,7 +5,6 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.SelectEventmapRank;
 public class ApiReqMapSelectEventmapRankResponse
 {
 	[JsonPropertyName("api_maphp")]
-	[Required]
 	public ApiMaphp ApiMaphp { get; set; } = new();
 
 	[JsonPropertyName("api_sally_flag")]

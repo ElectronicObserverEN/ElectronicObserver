@@ -20,6 +20,5 @@ public class ApiStage1
 	public int ApiFLostcount { get; set; } = default!;
 
 	[JsonPropertyName("api_touch_plane")]
-	[Required]
 	public List<EquipmentId> ApiTouchPlane { get; set; } = new();
 }

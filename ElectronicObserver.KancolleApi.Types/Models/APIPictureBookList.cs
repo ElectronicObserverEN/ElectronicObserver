@@ -36,7 +36,6 @@ public class ApiPictureBookList
 	public int ApiLeng { get; set; } = default!;
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_q_voice_info")]
@@ -58,14 +57,12 @@ public class ApiPictureBookList
 	public int ApiSouk { get; set; } = default!;
 
 	[JsonPropertyName("api_state")]
-	[Required]
 	public List<List<int>> ApiState { get; set; } = new();
 
 	[JsonPropertyName("api_stype")]
 	public int? ApiStype { get; set; } = default!;
 
 	[JsonPropertyName("api_table_id")]
-	[Required]
 	public List<int> ApiTableId { get; set; } = new();
 
 	[JsonPropertyName("api_taik")]

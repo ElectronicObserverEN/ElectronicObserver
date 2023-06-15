@@ -9,15 +9,12 @@ public class ApiAirBaseAttack : IApiAirBattle
 	public int ApiBaseId { get; set; } = default!;
 
 	[JsonPropertyName("api_plane_from")]
-	[Required]
 	public List<List<int>?> ApiPlaneFrom { get; set; } = new();
 
 	[JsonPropertyName("api_squadron_plane")]
-	[Required]
 	public List<ApiSquadronPlane> ApiSquadronPlane { get; set; } = new();
 
 	[JsonPropertyName("api_stage1")]
-	[Required]
 	public ApiStage1 ApiStage1 { get; set; } = new();
 
 	[JsonPropertyName("api_stage2")]
@@ -30,6 +27,5 @@ public class ApiAirBaseAttack : IApiAirBattle
 	public ApiStage3Combined? ApiStage3Combined { get; set; }
 
 	[JsonPropertyName("api_stage_flag")]
-	[Required]
 	public List<int> ApiStageFlag { get; set; } = new();
 }

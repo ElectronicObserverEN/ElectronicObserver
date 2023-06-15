@@ -6,6 +6,5 @@ public class ApiGetUseitem
 	public int ApiUseitemId { get; set; } = default!;
 
 	[JsonPropertyName("api_useitem_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiUseitemName { get; set; } = default!;
 }

@@ -6,6 +6,5 @@ public class IntOrString
 	public int ApiIntValue { get; set; } = default!;
 
 	[JsonPropertyName("api_string_value")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiStringValue { get; set; } = default!;
 }

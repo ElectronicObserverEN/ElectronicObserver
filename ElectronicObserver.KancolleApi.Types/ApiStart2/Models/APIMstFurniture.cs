@@ -6,7 +6,6 @@ public class ApiMstFurniture
 	public int ApiActiveFlag { get; set; } = default!;
 
 	[JsonPropertyName("api_description")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiDescription { get; set; } = default!;
 
 	[JsonPropertyName("api_id")]
@@ -31,7 +30,6 @@ public class ApiMstFurniture
 	public int ApiSeason { get; set; } = default!;
 
 	[JsonPropertyName("api_title")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiTitle { get; set; } = default!;
 
 	[JsonPropertyName("api_type")]

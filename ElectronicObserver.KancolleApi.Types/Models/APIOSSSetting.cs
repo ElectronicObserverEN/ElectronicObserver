@@ -6,6 +6,5 @@ public class ApiossSetting
 	public int ApiLanguageType { get; set; } = default!;
 
 	[JsonPropertyName("api_oss_items")]
-	[Required]
 	public List<int> ApiOssItems { get; set; } = new();
 }

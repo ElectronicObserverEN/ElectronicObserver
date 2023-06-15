@@ -3,7 +3,6 @@
 public class ApiItem
 {
 	[JsonPropertyName("api_getmes")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiGetmes { get; set; } = default!;
 
 	[JsonPropertyName("api_mode")]

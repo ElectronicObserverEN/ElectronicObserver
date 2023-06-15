@@ -6,7 +6,6 @@ public class ApiMstMaparea
 	public int ApiId { get; set; } = default!;
 
 	[JsonPropertyName("api_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiName { get; set; } = default!;
 
 	[JsonPropertyName("api_type")]

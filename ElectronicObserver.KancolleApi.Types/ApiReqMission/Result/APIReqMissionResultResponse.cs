@@ -8,14 +8,12 @@ public class ApiReqMissionResultResponse
 	public int ApiClearResult { get; set; } = default!;
 
 	[JsonPropertyName("api_detail")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiDetail { get; set; } = default!;
 
 	[JsonPropertyName("api_get_exp")]
 	public int ApiGetExp { get; set; } = default!;
 
 	[JsonPropertyName("api_get_exp_lvup")]
-	[Required]
 	public List<List<int>> ApiGetExpLvup { get; set; } = new();
 
 	[JsonPropertyName("api_get_item1")]
@@ -31,11 +29,9 @@ public class ApiReqMissionResultResponse
 	public object ApiGetMaterial { get; set; } = default!;
 
 	[JsonPropertyName("api_get_ship_exp")]
-	[Required]
 	public List<int> ApiGetShipExp { get; set; } = new();
 
 	[JsonPropertyName("api_maparea_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiMapareaName { get; set; } = default!;
 
 	[JsonPropertyName("api_member_exp")]
@@ -51,14 +47,11 @@ public class ApiReqMissionResultResponse
 	public int ApiQuestLevel { get; set; } = default!;
 
 	[JsonPropertyName("api_quest_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiQuestName { get; set; } = default!;
 
 	[JsonPropertyName("api_ship_id")]
-	[Required]
 	public List<int> ApiShipId { get; set; } = new();
 
 	[JsonPropertyName("api_useitem_flag")]
-	[Required]
 	public List<int> ApiUseitemFlag { get; set; } = new();
 }

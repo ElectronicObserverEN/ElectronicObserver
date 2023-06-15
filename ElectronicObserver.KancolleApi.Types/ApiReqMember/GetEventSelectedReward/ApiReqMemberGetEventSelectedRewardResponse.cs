@@ -6,6 +6,5 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.GetEventSelectedRewa
 public class ApiReqMemberGetEventSelectedRewardResponse
 {
 	[JsonPropertyName("api_get_item_list")]
-	[Required]
 	public List<ApiGetItemList> ApiGetItemList { get; set; } = new();
 }

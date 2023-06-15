@@ -3,11 +3,9 @@
 public class ApiPracticeList
 {
 	[JsonPropertyName("api_enemy_comment")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiEnemyComment { get; set; } = default!;
 
 	[JsonPropertyName("api_enemy_comment_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiEnemyCommentId { get; set; } = default!;
 
 	[JsonPropertyName("api_enemy_flag")]
@@ -23,15 +21,12 @@ public class ApiPracticeList
 	public int ApiEnemyLevel { get; set; } = default!;
 
 	[JsonPropertyName("api_enemy_name")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiEnemyName { get; set; } = default!;
 
 	[JsonPropertyName("api_enemy_name_id")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiEnemyNameId { get; set; } = default!;
 
 	[JsonPropertyName("api_enemy_rank")]
-	[Required(AllowEmptyStrings = true)]
 	public string ApiEnemyRank { get; set; } = default!;
 
 	[JsonPropertyName("api_medals")]
