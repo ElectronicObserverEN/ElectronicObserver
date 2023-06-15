@@ -26,7 +26,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.SetPlane;
 using ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.Supply;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
-using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.BattleWater;
@@ -100,6 +99,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.GoBackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -234,7 +234,7 @@ public static class Extensions
 	{
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiResponse<ApiDmmPaymentPaycheckResponse>>(file.Content)?.ApiData,
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberBasicResponse>>(file.Content)?.ApiData,
-		"api_get_member/deck" => JsonSerializer.Deserialize<ApiResponseList<ApiGetMemberDeckResponse>>(file.Content)?.ApiData,
+		"api_get_member/deck" => JsonSerializer.Deserialize<ApiResponseList<FleetDataDto>>(file.Content)?.ApiData,
 		"api_get_member/kdock" => JsonSerializer.Deserialize<ApiResponseList<ApiGetMemberKdockResponse>>(file.Content)?.ApiData,
 		"api_get_member/mapinfo" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberMapinfoResponse>>(file.Content)?.ApiData,
 		"api_get_member/material" => JsonSerializer.Deserialize<ApiResponseList<ApiGetMemberMaterialResponse>>(file.Content)?.ApiData,
@@ -261,7 +261,7 @@ public static class Extensions
 		"api_req_hensei/combined" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiCombinedResponse>>(file.Content)?.ApiData,
 		"api_req_hensei/lock" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiLockResponse>>(file.Content)?.ApiData,
 		"api_req_hensei/preset_register" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiPresetRegisterResponse>>(file.Content)?.ApiData,
-		"api_req_hensei/preset_select" => JsonSerializer.Deserialize<ApiResponse<ApiReqHenseiPresetSelectResponse>>(file.Content)?.ApiData,
+		"api_req_hensei/preset_select" => JsonSerializer.Deserialize<ApiResponse<FleetDataDto>>(file.Content)?.ApiData,
 		"api_req_hokyu/charge" => JsonSerializer.Deserialize<ApiResponse<ApiReqHokyuChargeResponse>>(file.Content)?.ApiData,
 		"api_req_kaisou/can_preset_slot_select" => JsonSerializer.Deserialize<ApiResponseNull<APIReqKaisouCanPresetSlotSelectResponse>>(file.Content)?.ApiData,
 		"api_req_kaisou/lock" => JsonSerializer.Deserialize<ApiResponse<ApiReqKaisouLockResponse>>(file.Content)?.ApiData,

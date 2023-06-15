@@ -5,7 +5,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Ship3;
 public class ApiGetMemberShip3Response
 {
 	[JsonPropertyName("api_deck_data")]
-	public List<ApiDeckDatum> ApiDeckData { get; set; } = new();
+	public List<FleetDataDto> ApiDeckData { get; set; } = new();
 
 	[JsonPropertyName("api_ship_data")]
 	public List<ApiShipDatum> ApiShipData { get; set; } = new();

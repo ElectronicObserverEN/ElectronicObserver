@@ -15,7 +15,7 @@ public class ApiPortPortResponse
 	public int? ApiCombinedFlag { get; set; }
 
 	[JsonPropertyName("api_deck_port")]
-	public List<ApiDeckPort> ApiDeckPort { get; set; } = new();
+	public List<FleetDataDto> ApiDeckPort { get; set; } = new();
 
 	[JsonPropertyName("api_dest_ship_slot")]
 	public int ApiDestShipSlot { get; set; }
