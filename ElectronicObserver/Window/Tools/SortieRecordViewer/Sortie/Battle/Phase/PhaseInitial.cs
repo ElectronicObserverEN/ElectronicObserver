@@ -204,7 +204,7 @@ public class PhaseInitial : PhaseBase
 					HPCurrent = t.Hp switch
 					{
 						JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
-						JsonElement { ValueKind: JsonValueKind.String } s => KcDatabase.MasterShips[t.Id].HPMin,
+						JsonElement { ValueKind: JsonValueKind.String } => KcDatabase.MasterShips[t.Id].HPMin,
 						_ => throw new NotImplementedException(),
 					},
 					Level = t.Level,
@@ -296,7 +296,7 @@ public class PhaseInitial : PhaseBase
 		}
 	}
 
-	private List<IShipData?>? MakeEnemyEscortFleet(IEnemyCombinedFleetBattle battle) => battle.ApiShipKeCombined
+	private List<IShipData?> MakeEnemyEscortFleet(IEnemyCombinedFleetBattle battle) => battle.ApiShipKeCombined
 		.Zip(battle.ApiShipLvCombined, (id, level) => (Id: id, Level: level))
 		.Zip(battle.ApiESlotCombined, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
 		.Zip(battle.ApiENowhpsCombined, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
