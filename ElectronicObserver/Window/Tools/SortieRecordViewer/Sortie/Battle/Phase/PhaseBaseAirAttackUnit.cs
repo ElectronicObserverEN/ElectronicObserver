@@ -26,7 +26,7 @@ public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
 		sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", WaveIndex + 1);
 
 		sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-		sb.Append("　").Append(string.Join(", ", Squadrons
+		sb.Append('　').Append(string.Join(", ", Squadrons
 			.Where(sq => sq.Equipment is not null)
 			.Select(sq => sq.ToString())));
 
@@ -48,7 +48,7 @@ public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
 		sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", WaveIndex + 1);
 
 		sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-		sb.Append("　").Append(string.Join(", ", Squadrons
+		sb.Append('　').Append(string.Join(", ", Squadrons
 			.Where(sq => sq.Equipment is not null)
 			.Select(sq => sq.ToString())));
 
