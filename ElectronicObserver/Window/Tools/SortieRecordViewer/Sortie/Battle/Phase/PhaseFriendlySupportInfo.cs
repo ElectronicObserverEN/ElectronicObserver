@@ -99,10 +99,10 @@ public class PhaseFriendlySupportInfo : PhaseBase
 				ship.HPCurrent, ship.HPMax,
 				ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
 
-			sb.Append("　");
+			sb.Append('　');
 			sb.AppendLine(string.Join(", ", ship.AllSlotInstance
 				.Where(eq => eq != null)
-				.Select(eq => eq.Name)));
+				.Select(eq => eq!.Name)));
 		}
 
 		return sb.ToString();
