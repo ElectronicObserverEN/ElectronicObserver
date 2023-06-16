@@ -22,6 +22,7 @@ public class AirBattleAttackViewModel
 		(> 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
 		(_, FleetFlag.Player) => BattleRes.EnemyAirSquadron,
 		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
+		_ => "???",
 	};
 
 	public AirBattleAttackViewModel(BattleFleets fleets, int waveIndex, AirBattleAttack attack)
