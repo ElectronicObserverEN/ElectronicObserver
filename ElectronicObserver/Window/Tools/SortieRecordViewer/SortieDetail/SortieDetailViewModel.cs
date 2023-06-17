@@ -41,11 +41,10 @@ public class SortieDetailViewModel : WindowViewModelBase
 	public int World { get; }
 	public int Map { get; }
 	private BattleFleets Fleets { get; }
-	private List<IBaseAirCorpsData>? AirBases { get; }
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(int world, int map, BattleFleets fleets, List<IBaseAirCorpsData>? airBases = null)
+	public SortieDetailViewModel(int world, int map, BattleFleets fleets)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
 		BattleFactory = Ioc.Default.GetRequiredService<BattleFactory>();
@@ -53,7 +52,6 @@ public class SortieDetailViewModel : WindowViewModelBase
 		World = world;
 		Map = map;
 		Fleets = fleets;
-		AirBases = airBases;
 	}
 
 	private List<object> ApiResponseCache { get; } = new();
