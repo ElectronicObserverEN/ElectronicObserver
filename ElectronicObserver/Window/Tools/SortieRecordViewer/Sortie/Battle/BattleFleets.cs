@@ -83,7 +83,9 @@ public class BattleFleets
 	/// Main problem here is if there's a dupe ship in combined fleet.
 	/// Right now it matches via equipment too, but there's a chance both dupes have the same equip.
 	/// </summary>
+#pragma warning disable IDE0079
 	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+#pragma warning restore IDE0079
 	private IShipData? GetShip(ApiShip shipData)
 	{
 		IEnumerable<IShipData?> ships = Fleet.MembersInstance;
