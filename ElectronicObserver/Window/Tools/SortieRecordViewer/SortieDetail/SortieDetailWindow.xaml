@@ -760,7 +760,7 @@
 		</DataTemplate>
 	</Window.Resources>
 
-	<ScrollViewer VerticalScrollBarVisibility="Visible">
+	<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
 		<StackPanel Margin="4">
 			<TextBlock>
 				<Run Text="{Binding World, Mode=OneTime}" />
