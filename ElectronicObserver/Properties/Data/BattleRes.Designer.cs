@@ -529,6 +529,15 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 夜戦開始.
+        /// </summary>
+        public static string NightBattleBegins {
+            get {
+                return ResourceManager.GetString("NightBattleBegins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #{0}: 陸上施設 第{1}基地 HP: {2} / {3}.
         /// </summary>
         public static string OutputFriendBase {

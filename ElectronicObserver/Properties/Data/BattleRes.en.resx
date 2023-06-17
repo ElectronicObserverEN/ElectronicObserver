@@ -300,4 +300,7 @@
   <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
     <value>Friendly Fleet Air Battle</value>
   </data>
+  <data name="NightBattleBegins" xml:space="preserve">
+    <value>Night battle begins</value>
+  </data>
 </root>

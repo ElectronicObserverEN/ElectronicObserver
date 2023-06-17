@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
@@ -11,7 +12,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public class PhaseNightInitial : PhaseBase
 {
-	public override string Title => "夜戦開始";
+	public override string Title => BattleRes.NightBattleBegins;
 
 	private IKCDatabase KcDatabase { get; }
 	private BattleFleets Fleets { get; }
