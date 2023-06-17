@@ -141,4 +141,7 @@
   <data name="SortieDetail" xml:space="preserve">
     <value>Sortie details</value>
   </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Selected items: {0} / {1}</value>
+  </data>
 </root>

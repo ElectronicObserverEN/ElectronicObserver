@@ -106,6 +106,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 選択項目の合計: {0} / {1}.
+        /// </summary>
+        internal static string SelectedItems {
+            get {
+                return ResourceManager.GetString("SelectedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出撃詳細.
         /// </summary>
         internal static string SortieDetail {

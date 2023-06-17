@@ -22,4 +22,6 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string SmokeScreenCsv => BattleRes.SmokeScreen + "CSV";
 
 	public string FailedToParseApiData => SortieRecordViewer.FailedToParseApiData;
+
+	public string SelectedItems => SortieRecordViewer.SelectedItems;
 }

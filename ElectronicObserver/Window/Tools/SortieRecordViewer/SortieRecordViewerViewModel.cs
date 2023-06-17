@@ -109,7 +109,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		SelectedSorties.CollectionChanged += (sender, args) =>
 		{
-			StatusBarText = string.Format("選択項目の合計: {0} / {1}", SelectedSorties.Count, Sorties.Count);
+			StatusBarText = string.Format(SortieRecordViewer.SelectedItems, SelectedSorties.Count, Sorties.Count);
 		};
 	}
 

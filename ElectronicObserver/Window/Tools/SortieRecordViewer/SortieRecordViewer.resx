@@ -121,4 +121,7 @@
   <data name="SortieDetail" xml:space="preserve">
     <value>出撃詳細</value>
   </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>選択項目の合計: {0} / {1}</value>
+  </data>
 </root>
