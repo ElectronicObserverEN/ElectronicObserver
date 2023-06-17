@@ -76,6 +76,7 @@ public class BattleFleets
 	public IBaseAirCorpsData? GetAirBase(BattleIndex index) => index.FleetFlag switch
 	{
 		FleetFlag.Player => AirBases[index.Index],
+		_ => null,
 	};
 
 	/// <summary>
