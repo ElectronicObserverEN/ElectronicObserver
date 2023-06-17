@@ -44,11 +44,11 @@ public class PhaseNightInitial : PhaseBase
 
 		FlareIndexFriend = battle.ApiFlarePos[0];
 		FlareIndexEnemy = battle.ApiFlarePos[1];
-		FlareFriend = GetFlareFriend(false, battle.ApiFlarePos[0]);
-		FlareEnemy = GetFlareEnemy(false, battle.ApiFlarePos[1]);
+		FlareFriend = GetFlareFriend(fleets.EscortFleet is not null, battle.ApiFlarePos[0]);
+		FlareEnemy = GetFlareEnemy(fleets.EnemyEscortFleet is not null, battle.ApiFlarePos[1]);
 
-		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(fleets.Fleet);
-		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(fleets.EnemyFleet);
+		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(fleets.EscortFleet ?? fleets.Fleet);
+		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(fleets.EnemyEscortFleet ?? fleets.EnemyFleet);
 	}
 
 	public PhaseNightInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedNightBattleApiResponse battle)
@@ -106,7 +106,7 @@ public class PhaseNightInitial : PhaseBase
 
 	private IShipData? GetFlareEnemy(bool isEscort, int index) => (isEscort, index) switch
 	{
-		(false, > 0) => Fleets.EnemyFleet.MembersInstance[index],
+		(false, > 0) => Fleets.EnemyFleet?.MembersInstance[index],
 		(true, > 0) => Fleets.EnemyEscortFleet?.MembersInstance[index - 6],
 		_ => null,
 	};
