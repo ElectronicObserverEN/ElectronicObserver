@@ -125,12 +125,17 @@
 			<ItemsControl ItemsSource="{Binding Sorties}" />
 		</ScrollViewer>
 
+		<!--
+			images will stretch row height anyway
+			so might as well set min height to avoid extra rendering
+		-->
 		<DataGrid
 			Grid.Row="1"
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
 			ItemsSource="{Binding Sorties}"
+			MinRowHeight="26"
 			SelectedItem="{Binding SelectedSortie}"
 			>
 			<b:Interaction.Behaviors>
