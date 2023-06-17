@@ -46,8 +46,11 @@ public class AntiAirCutInCondition
 	/// </summary>
 	public int HarunaGun { get; init; }
 
-	public bool CanBeActivatedBy(IShipData ship)
+	public bool CanBeActivatedBy(IShipData ship, AntiAirCutIn antiAirCutIn)
 	{
+		if (ship.MasterShip.ShipClassTyped is ShipClass.Akizuki && antiAirCutIn.Id is 5 or 7 or 8) return false;
+		if (ship.MasterShip.ShipId is ShipId.MayaKaiNi && antiAirCutIn.Id is 13) return false;
+
 		if (Ships is not null && !Ships.Contains(ship.MasterShip.ShipId)) return false;
 		if (ShipClasses is not null && !ShipClasses.Contains(ship.MasterShip.ShipClassTyped)) return false;
 

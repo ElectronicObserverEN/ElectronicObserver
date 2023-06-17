@@ -30,6 +30,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Layout_TopMost => Properties.Window.FormMain.File_Layout_TopMost.Replace("_", "__").Replace("&", "_");
 	public string LayoutLoadFailed => Properties.Window.FormMain.LayoutLoadFailed.Replace("_", "__").Replace("&", "_");
 	public string LayoutLoadFailedTitle => Properties.Window.FormMain.LayoutLoadFailedTitle.Replace("_", "__").Replace("&", "_");
+	public string WindowCaptureLoadFailed => Properties.Window.FormMain.WindowCaptureLoadFailed;
 
 	public string StripMenu_File_Notification => Properties.Window.FormMain.File_Notification.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Notification_MuteAll => Properties.Window.FormMain.File_Notification_MuteAll.Replace("_", "__").Replace("&", "_");

@@ -1028,5 +1028,14 @@ namespace ElectronicObserver.Properties.Window {
                 return ResourceManager.GetString("WindowCapture_SubWindow", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウキャプチャデータの読み込みに失敗しました.
+        /// </summary>
+        public static string WindowCaptureLoadFailed {
+            get {
+                return ResourceManager.GetString("WindowCaptureLoadFailed", resourceCulture);
+            }
+        }
     }
 }

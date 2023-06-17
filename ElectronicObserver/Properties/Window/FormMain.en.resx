@@ -444,4 +444,7 @@ Do you want to open this github issue?</value>
   <data name="Update_DownloadingUpdater" xml:space="preserve">
     <value>Downloading updater... ({0:##0.00}%)</value>
   </data>
+  <data name="WindowCaptureLoadFailed" xml:space="preserve">
+    <value>Failed to load window capture data</value>
+  </data>
 </root>

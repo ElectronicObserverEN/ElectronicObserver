@@ -19,7 +19,7 @@ using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 {
-	public EquipmentUpgradeData EquipmentUpgradeData { get; set; } = new();
+	public EquipmentUpgradeData EquipmentUpgradeData { get; set; }
 
 	public int? EquipmentId { get; set; }
 
@@ -102,6 +102,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
+		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 		Plan = plan;
 
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
