@@ -49,6 +49,16 @@ public class PhaseNightInitial : PhaseBase
 
 		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(fleets.EscortFleet ?? fleets.Fleet);
 		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(fleets.EnemyEscortFleet ?? fleets.EnemyFleet);
+
+		if (SearchlightIndexFriend >= 0 && fleets.EscortFleet is not null)
+		{
+			SearchlightIndexFriend += 6;
+		}
+
+		if (SearchlightIndexEnemy >= 0 && fleets.EnemyEscortFleet is not null)
+		{
+			SearchlightIndexEnemy += 6;
+		}
 	}
 
 	public PhaseNightInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedNightBattleApiResponse battle)
@@ -69,6 +79,16 @@ public class PhaseNightInitial : PhaseBase
 
 		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(fleets.EscortFleet);
 		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(fleets.EnemyEscortFleet);
+
+		if (SearchlightIndexFriend >= 0)
+		{
+			SearchlightIndexFriend += 6;
+		}
+
+		if (SearchlightIndexEnemy >= 0)
+		{
+			SearchlightIndexEnemy += 6;
+		}
 	}
 
 	private IEquipmentDataMaster? GetTouchAircraft(object value)
