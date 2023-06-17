@@ -38,10 +38,10 @@
 		<DataTemplate DataType="{x:Type phase:PhaseNightBattleAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="{Binding Attacker.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Attacker.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
 					<Run Text="→" />
-					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Defender.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
 				</TextBlock>
 				<TextBlock Text="{Binding DamageDisplay}" />
@@ -51,10 +51,10 @@
 		<DataTemplate DataType="{x:Type phase:PhaseFriendNightBattleAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="{Binding Attacker.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Attacker.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
 					<Run Text="→" />
-					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Defender.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
 				</TextBlock>
 				<TextBlock Text="{Binding DamageDisplay}" />
@@ -70,10 +70,10 @@
 		<DataTemplate DataType="{x:Type phase:PhaseShellingAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="{Binding Attacker.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Attacker.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
 					<Run Text="→" />
-					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Defender.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
 				</TextBlock>
 				<TextBlock Text="{Binding DamageDisplay}" />
@@ -85,7 +85,7 @@
 				<TextBlock>
 					<Run Text="{Binding Attacker, Mode=OneTime}" />
 					<Run Text="→" />
-					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Defender.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
 				</TextBlock>
 				<TextBlock Text="{Binding DamageDisplay}" />
@@ -97,7 +97,7 @@
 				<TextBlock>
 					<Run Text="{Binding AttackerName, Mode=OneTime}" />
 					<Run Text="→" />
-					<Run Text="{Binding Defender.MasterShip.Name, Mode=OneTime}" />
+					<Run Text="{Binding Defender.MasterShip.NameEN, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
 				</TextBlock>
 				<TextBlock Text="{Binding DamageDisplay}" />
