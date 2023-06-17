@@ -594,12 +594,59 @@
 		<DataTemplate DataType="{x:Type node:BattleNode}">
 			<Expander>
 				<Expander.Header>
-					<TextBlock>
-						<Run Text="{Binding DisplayCell, Mode=OneTime}" />
-						<Run Text="{Binding AirBaseRaid.Title, Mode=OneTime}" />
-						<Run Text="{Binding FirstBattle.Title, Mode=OneTime}" />
-						<Run Text="{Binding SecondBattle.Title, Mode=OneTime}" />
-					</TextBlock>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition SharedSizeGroup="DisplayCellColumn" />
+							<ColumnDefinition />
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<TextBlock
+							Grid.Column="0"
+							Margin="4 0"
+							Text="{Binding DisplayCell, Mode=OneTime}"
+							/>
+
+						<StackPanel Grid.Column="1" Orientation="Horizontal">
+							<StackPanel.Style>
+								<Style TargetType="StackPanel">
+									<Setter Property="Visibility" Value="Visible" />
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding AirBaseRaid}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</StackPanel.Style>
+
+							<TextBlock Margin="4 0" Text="{Binding AirBaseRaid.Title, Mode=OneTime}" />
+							<TextBlock Margin="4 0" Text="→" />
+						</StackPanel>
+
+						<TextBlock
+							Grid.Column="2"
+							Margin="4 0"
+							Text="{Binding FirstBattle.Title, Mode=OneTime}"
+							/>
+
+						<StackPanel Grid.Column="3" Orientation="Horizontal">
+							<StackPanel.Style>
+								<Style TargetType="StackPanel">
+									<Setter Property="Visibility" Value="Visible" />
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding SecondBattle}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</StackPanel.Style>
+
+							<TextBlock Margin="4 0" Text="→" />
+							<TextBlock Margin="4 0" Text="{Binding SecondBattle.Title, Mode=OneTime}" />
+						</StackPanel>
+					</Grid>
+
 				</Expander.Header>
 
 				<Grid Margin="4">
@@ -616,7 +663,18 @@
 						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 
-					<TextBlock Grid.Row="0" Text="{Binding AirBaseRaid.Title}" />
+					<TextBlock Grid.Row="0" Text="{Binding AirBaseRaid.Title, FallbackValue={x:Null}}">
+						<TextBlock.Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding AirBaseRaid}" Value="{x:Null}">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+					</TextBlock>
 
 					<ItemsControl Grid.Row="1" ItemsSource="{Binding AirBaseRaid.Phases}">
 						<ItemsControl.Style>
@@ -707,7 +765,7 @@
 				<Run Text="{Binding Map, Mode=OneTime}" />
 			</TextBlock>
 
-			<ItemsControl ItemsSource="{Binding Nodes}" />
+			<ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Nodes}" />
 		</StackPanel>
 	</ScrollViewer>
 </common:WindowBase>
