@@ -9,11 +9,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+		<AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
