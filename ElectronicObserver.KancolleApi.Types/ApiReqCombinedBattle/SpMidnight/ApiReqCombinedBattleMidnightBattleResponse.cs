@@ -57,12 +57,6 @@ public class ApiReqCombinedBattleSpMidnightResponse : INightOnlyBattleApiRespons
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 
-	[JsonPropertyName("api_n_support_flag")]
-	public SupportType ApiSupportFlag { get; set; }
-
-	[JsonPropertyName("api_n_support_info")]
-	public ApiSupportInfo? ApiSupportInfo { get; set; }
-
 	[JsonPropertyName("api_touch_plane")]
 	public List<object> ApiTouchPlane { get; set; } = new();
 

@@ -19,7 +19,7 @@ public sealed class BattleCombinedNightOnly : NightOnlyBattleData
 	public BattleCombinedNightOnly(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleSpMidnightResponse battle)
 		: base(phaseFactory, fleets, battle)
 	{
-		Support = PhaseFactory.Support(battle.ApiSupportFlag, battle.ApiSupportInfo, true);
+		Support = PhaseFactory.Support(battle.ApiNSupportFlag, battle.ApiNSupportInfo, true);
 		NightBattle = PhaseFactory.NightBattle(battle.ApiHougeki);
 
 		EmulateBattle();
