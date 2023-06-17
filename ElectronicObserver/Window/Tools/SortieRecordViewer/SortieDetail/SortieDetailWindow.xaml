@@ -551,6 +551,9 @@
 								<DataTrigger Binding="{Binding EscortFleetBeforeAfter}" Value="{x:Null}">
 									<Setter Property="Visibility" Value="Collapsed" />
 								</DataTrigger>
+								<DataTrigger Binding="{Binding Initial.IsAirBaseRaid}" Value="True">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
 							</Style.Triggers>
 						</Style>
 					</StackPanel.Style>
