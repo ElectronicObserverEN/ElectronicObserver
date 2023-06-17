@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Properties.Data;
@@ -7,12 +6,6 @@ using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-
-public enum TorpedoPhase
-{
-	Opening,
-	Closing,
-}
 
 public class PhaseTorpedo : PhaseBase
 {
