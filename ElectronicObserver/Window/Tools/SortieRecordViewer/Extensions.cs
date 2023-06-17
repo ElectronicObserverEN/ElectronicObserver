@@ -343,4 +343,43 @@ public static class Extensions
 
 		_ => throw new NotImplementedException(),
 	};
+
+	// normal battle - day
+	// night node - battle
+	// night to day - night
+	// etc...
+	public static bool IsFirstBattleApi(this ApiFile apiFile) => apiFile.Name is
+		"api_req_sortie/battle" or // normal day
+		"api_req_battle_midnight/sp_midnight" or // night node
+		"api_req_sortie/airbattle" or // single air raid
+		"api_req_sortie/ld_airbattle" or // single air raid
+		"api_req_sortie/night_to_day" or // single night to day
+		"api_req_sortie/ld_shooting" or // single fleet radar ambush
+		"api_req_combined_battle/battle" or // combined normal
+		"api_req_combined_battle/sp_midnight" or // combined night battle
+		"api_req_combined_battle/airbattle" or // combined air exchange ?
+		"api_req_combined_battle/battle_water" or // CTF TCF combined battle
+		"api_req_combined_battle/ld_airbattle" or // air raid
+		"api_req_combined_battle/ec_battle" or // CTF enemy combined battle
+		"api_req_combined_battle/ec_night_to_day" or // enemy combined night to day
+		"api_req_combined_battle/each_battle" or // STF combined vs combined
+		"api_req_combined_battle/each_battle_water" or // STF combined
+		"api_req_combined_battle/ld_shooting"; // combined radar ambush
+
+	// normal battle - night
+	// night to day - day
+	// etc...
+	public static bool IsSecondBattleApi(this ApiFile apiFile) => apiFile.Name is
+		"api_req_battle_midnight/battle" or // normal night
+		"api_req_combined_battle/midnight_battle" or // combined day to night
+		"api_req_combined_battle/ec_midnight_battle"; // combined normal night battle
+
+	public static bool IsBattleEndApi(this ApiFile apiFile) => apiFile.Name is
+		"api_req_sortie/battleresult" or
+		"api_req_combined_battle/battleresult" or
+		"api_req_practice/battle_result";
+
+	public static bool IsMapProgressApi(this ApiFile apiFile) => apiFile.Name is
+		"api_req_map/start" or
+		"api_req_map/next";
 }
