@@ -5,7 +5,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
 public class SortieDetailTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => "出撃詳細";
+	public string Title => SortieRecordViewer.SortieDetail;
 
 	public string BattleDetail_FriendFleet => ConstantsRes.BattleDetail_FriendFleet;
 	public string BattleDetail_FriendMainFleet => ConstantsRes.BattleDetail_FriendMainFleet;
