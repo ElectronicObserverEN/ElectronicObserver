@@ -11,6 +11,9 @@ public class SortieDetailTranslationViewModel : TranslationBaseViewModel
 	public string File => FormMain.File;
 	public string CopySortieData => SortieRecordViewer.CopySortieData;
 	public string LoadSortieData => SortieRecordViewer.LoadSortieData;
+	public string AirControlSimulator => Tools.AirControlSimulator.AirControlSimulator.Title;
+	public string CopyLink => SortieRecordViewer.CopyLink;
+	public string Open => SortieRecordViewer.Open;
 
 	public string BattleDetail_FriendFleet => ConstantsRes.BattleDetail_FriendFleet;
 	public string BattleDetail_FriendMainFleet => ConstantsRes.BattleDetail_FriendMainFleet;

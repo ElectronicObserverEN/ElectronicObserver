@@ -92,6 +92,13 @@ public class ToolService
 		}
 	}
 
+	public void AirControlSimulator(SortieRecordViewModel sortie)
+	{
+		string url = GetAirControlSimulatorLink(sortie);
+
+		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
+	}
+
 	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null, DeckBuilderData? data = null)
 	{
 		if (!KCDatabase.Instance.Ships.Any())
@@ -505,5 +512,37 @@ public class ToolService
 		}
 
 		Clipboard.SetText(JsonSerializer.Serialize(replay));
+	}
+
+	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie)
+	{
+		string url = GetAirControlSimulatorLink(sortie);
+
+		Clipboard.SetText(url);
+	}
+
+	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie)
+	{
+		List<IFleetData?> fleets = sortie.Model.FleetData.Fleets
+			.Select(f => f.MakeFleet())
+			.ToList();
+
+		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
+			.Select(f => f.MakeAirBase())
+			.ToList();
+
+		string airControlSimulatorData = DataSerializationService.AirControlSimulator
+		(
+			KCDatabase.Instance.Admiral.Level,
+			fleets.Skip(0).FirstOrDefault(),
+			fleets.Skip(1).FirstOrDefault(),
+			fleets.Skip(2).FirstOrDefault(),
+			fleets.Skip(3).FirstOrDefault(),
+			airBases.Skip(0).FirstOrDefault(),
+			airBases.Skip(1).FirstOrDefault(),
+			airBases.Skip(2).FirstOrDefault()
+		);
+
+		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
 	}
 }

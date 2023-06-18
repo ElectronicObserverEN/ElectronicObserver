@@ -259,4 +259,16 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
 		}
 	}
+
+	[RelayCommand]
+	private void CopyAirControlSimulatorLink()
+	{
+		ToolService.CopyAirControlSimulatorLink(Sortie);
+	}
+
+	[RelayCommand]
+	private void OpenAirControlSimulator()
+	{
+		ToolService.AirControlSimulator(Sortie);
+	}
 }

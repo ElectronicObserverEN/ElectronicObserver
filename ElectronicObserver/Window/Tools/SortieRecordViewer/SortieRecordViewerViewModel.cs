@@ -243,6 +243,22 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		}
 	}
 
+	[RelayCommand]
+	private void CopyAirControlSimulatorLink()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.CopyAirControlSimulatorLink(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void OpenAirControlSimulator()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.AirControlSimulator(SelectedSortie);
+	}
+
 	private void EnsureApiFilesLoaded(SortieRecordViewModel sortie)
 	{
 		if (sortie.Model.ApiFiles.Any()) return;

@@ -770,6 +770,10 @@
 			<MenuItem Header="{Binding SortieDetail.File}">
 				<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieDetail.CopySortieData}" />
 				<MenuItem Command="{Binding LoadSortieDataCommand}" Header="{Binding SortieDetail.LoadSortieData}" />
+				<MenuItem Header="{Binding SortieDetail.AirControlSimulator}">
+					<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieDetail.CopyLink}" />
+					<MenuItem Command="{Binding OpenAirControlSimulatorCommand}" Header="{Binding SortieDetail.Open}" />
+				</MenuItem>
 			</MenuItem>
 		</Menu>
 

@@ -130,4 +130,10 @@
   <data name="LoadSortieData" xml:space="preserve">
     <value>出撃データをロード</value>
   </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>リンクをコピー</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>開く</value>
+  </data>
 </root>

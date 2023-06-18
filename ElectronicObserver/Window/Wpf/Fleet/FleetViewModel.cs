@@ -21,6 +21,7 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using System.Drawing;
+using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserverTypes.Attacks.Specials;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
@@ -872,7 +873,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void OpenAirControlSimulator()
 	{
-		ToolService.AirControlSimulator(new()
+		ToolService.AirControlSimulator(new AirControlSimulatorViewModel
 		{
 			Fleet1 = FleetId is 1,
 			Fleet2 = FleetId is 2 || (FleetId is 1 && KCDatabase.Instance.Fleet.CombinedFlag > 0),

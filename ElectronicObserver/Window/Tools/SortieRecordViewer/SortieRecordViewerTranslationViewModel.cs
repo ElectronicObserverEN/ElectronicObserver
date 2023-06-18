@@ -12,6 +12,9 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string File => FormMain.File;
 	public string CopySortieData => SortieRecordViewer.CopySortieData;
 	public string LoadSortieData => SortieRecordViewer.LoadSortieData;
+	public string AirControlSimulator => Tools.AirControlSimulator.AirControlSimulator.Title;
+	public string CopyLink => SortieRecordViewer.CopyLink;
+	public string Open => SortieRecordViewer.Open;
 
 	public string Start => DialogDropRecordViewer.Start;
 	public string End => DialogDropRecordViewer.End;
