@@ -49,6 +49,7 @@
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
 			<TextBlock
@@ -121,6 +122,15 @@
 				Margin="2"
 				Command="{Binding SearchCommand}"
 				Content="{Binding SortieRecordViewer.Search}"
+				/>
+
+			<Button
+				Grid.Row="1"
+				Grid.Column="6"
+				Margin="2"
+				Command="{Binding SearchCancelCommand}"
+				Content="{Binding SortieRecordViewer.Cancel}"
+				IsEnabled="{Binding SearchCommand.CanBeCanceled}"
 				/>
 		</Grid>
 

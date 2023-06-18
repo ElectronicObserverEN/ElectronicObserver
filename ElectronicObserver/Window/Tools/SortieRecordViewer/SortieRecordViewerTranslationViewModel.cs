@@ -20,6 +20,7 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string End => DialogDropRecordViewer.End;
 
 	public string Search => SortieRecordViewer.Search;
+	public string Cancel => GeneralRes.Cancel;
 
 	public string World => SortieRecordViewer.World;
 	public string Map => SortieRecordViewer.Map;

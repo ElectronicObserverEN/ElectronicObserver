@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -14,10 +16,11 @@ using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Dialog;
 using Microsoft.EntityFrameworkCore;
+using DialogDropRecordViewer = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -56,6 +59,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = new();
 
+	private DateTime SearchStartTime { get; set; }
 	public string? StatusBarText { get; private set; }
 
 	public SortieRecordViewerViewModel()
@@ -99,30 +103,43 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		};
 	}
 
-	[RelayCommand]
-	private void Search()
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task Search(CancellationToken ct)
 	{
-		Sorties.Clear();
+		SearchStartTime = DateTime.UtcNow;
+		StatusBarText = EncycloRes.SearchingNow;
 
-		List<SortieRecordViewModel> sorties = Db.Sorties
+		try
+		{
+			List<SortieRecordViewModel> sorties = await Task.Run(async () => await Db.Sorties
 			.Where(s => World as string == AllRecords || s.World == World as int?)
 			.Where(s => Map as string == AllRecords || s.Map == Map as int?)
-			.Select(s => new
-			{
-				SortieRecord = s,
-				s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp,
-			})
+				.OrderByDescending(s => s.Id)
+				.Select(s => new { SortieRecord = s, s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp, })
 			.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
 			.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
-			.AsEnumerable()
 			.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp))
-			.OrderByDescending(s => s.Id)
-			.ToList();
+				.ToListAsync(ct), ct);
+
+			Sorties.Clear();
 
 		foreach (SortieRecordViewModel sortie in sorties)
 		{
 			Sorties.Add(sortie);
 		}
+
+			int searchTime = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
+
+			StatusBarText = $"{EncycloRes.SearchComplete} ({searchTime} ms)";
+		}
+		catch (OperationCanceledException)
+		{
+			StatusBarText = EncycloRes.SearchCancelled;
+		}
+		catch (Exception e)
+		{
+			Logger.Add(2, $"Unknown error while loading data: {e.Message}{e.StackTrace}");
+	}
 	}
 
 	[RelayCommand]
@@ -239,7 +256,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		}
 		catch (Exception e)
 		{
-			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
+			Logger.Add(2, $"Failed to load sortie details: {e.Message}{e.StackTrace}");
 		}
 	}
 
