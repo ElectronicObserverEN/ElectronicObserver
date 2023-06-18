@@ -112,21 +112,21 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		try
 		{
 			List<SortieRecordViewModel> sorties = await Task.Run(async () => await Db.Sorties
-			.Where(s => World as string == AllRecords || s.World == World as int?)
-			.Where(s => Map as string == AllRecords || s.Map == Map as int?)
+				.Where(s => World as string == AllRecords || s.World == World as int?)
+				.Where(s => Map as string == AllRecords || s.Map == Map as int?)
 				.OrderByDescending(s => s.Id)
 				.Select(s => new { SortieRecord = s, s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp, })
-			.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
-			.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
-			.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp))
+				.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
+				.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
+				.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp))
 				.ToListAsync(ct), ct);
 
 			Sorties.Clear();
 
-		foreach (SortieRecordViewModel sortie in sorties)
-		{
-			Sorties.Add(sortie);
-		}
+			foreach (SortieRecordViewModel sortie in sorties)
+			{
+				Sorties.Add(sortie);
+			}
 
 			int searchTime = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
 
@@ -139,7 +139,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		catch (Exception e)
 		{
 			Logger.Add(2, $"Unknown error while loading data: {e.Message}{e.StackTrace}");
-	}
+		}
 	}
 
 	[RelayCommand]
