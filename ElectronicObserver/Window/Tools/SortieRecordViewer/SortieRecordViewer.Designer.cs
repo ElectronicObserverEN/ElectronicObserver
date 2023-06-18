@@ -70,6 +70,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 出撃データをコピー.
+        /// </summary>
+        internal static string CopySortieData {
+            get {
+                return ResourceManager.GetString("CopySortieData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APIデータの解析に失敗しました。.
         /// </summary>
         internal static string FailedToParseApiData {
@@ -84,6 +93,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         internal static string FleetImage {
             get {
                 return ResourceManager.GetString("FleetImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出撃データをロード.
+        /// </summary>
+        internal static string LoadSortieData {
+            get {
+                return ResourceManager.GetString("LoadSortieData", resourceCulture);
             }
         }
         

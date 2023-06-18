@@ -760,15 +760,33 @@
 		</DataTemplate>
 	</Window.Resources>
 
-	<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-		<StackPanel Margin="4">
-			<TextBlock>
-				<Run Text="{Binding World, Mode=OneTime}" />
-				<Run Text="-" />
-				<Run Text="{Binding Map, Mode=OneTime}" />
-			</TextBlock>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
 
-			<ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Nodes}" />
-		</StackPanel>
-	</ScrollViewer>
+		<Menu Grid.Row="0">
+			<MenuItem Header="{Binding SortieDetail.File}">
+				<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieDetail.CopySortieData}" />
+				<MenuItem Command="{Binding LoadSortieDataCommand}" Header="{Binding SortieDetail.LoadSortieData}" />
+			</MenuItem>
+		</Menu>
+
+		<ScrollViewer
+			Grid.Row="1"
+			HorizontalScrollBarVisibility="Visible"
+			VerticalScrollBarVisibility="Visible"
+			>
+			<StackPanel Margin="4">
+				<TextBlock>
+					<Run Text="{Binding World, Mode=OneTime}" />
+					<Run Text="-" />
+					<Run Text="{Binding Map, Mode=OneTime}" />
+				</TextBlock>
+
+				<ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Nodes}" />
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
 </common:WindowBase>

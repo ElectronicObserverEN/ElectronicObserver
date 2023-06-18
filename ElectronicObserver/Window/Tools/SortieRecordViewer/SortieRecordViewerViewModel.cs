@@ -11,25 +11,13 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
-using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
-using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
-using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Tools.FleetImageGenerator;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
 using Microsoft.EntityFrameworkCore;
-using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -213,6 +201,46 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		}
 
 		ToolService.CopySmokerDataCsv(SelectedSorties);
+	}
+
+	[RelayCommand]
+	private void CopySortieData()
+	{
+		if (SelectedSortie is null) return;
+
+		EnsureApiFilesLoaded(SelectedSortie);
+
+		SortieRecord sortie = new()
+		{
+			Id = SelectedSortie.Id,
+			World = SelectedSortie.World,
+			Map = SelectedSortie.Map,
+			ApiFiles = SelectedSortie.Model.ApiFiles
+				.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
+				.ToList(),
+			FleetData = SelectedSortie.Model.FleetData,
+			MapData = SelectedSortie.Model.MapData,
+		};
+
+		Clipboard.SetText(JsonSerializer.Serialize(sortie));
+	}
+
+	[RelayCommand]
+	private void LoadSortieData()
+	{
+		try
+		{
+			SortieRecord? sortie = JsonSerializer
+				.Deserialize<SortieRecord>(Clipboard.GetText());
+
+			if (sortie is null) return;
+
+			ToolService.OpenSortieDetail(new SortieRecordViewModel(sortie, DateTime.UtcNow));
+		}
+		catch (Exception e)
+		{
+			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
+		}
 	}
 
 	private void EnsureApiFilesLoaded(SortieRecordViewModel sortie)

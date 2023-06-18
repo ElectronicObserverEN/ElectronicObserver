@@ -25,11 +25,18 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Grid Grid.Row="0">
+		<Menu Grid.Row="0">
+			<MenuItem Header="{Binding SortieRecordViewer.File}">
+				<MenuItem Command="{Binding LoadSortieDataCommand}" Header="{Binding SortieRecordViewer.LoadSortieData}" />
+			</MenuItem>
+		</Menu>
+
+		<Grid Grid.Row="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
@@ -117,20 +124,12 @@
 				/>
 		</Grid>
 
-		<ScrollViewer
-			Grid.Row="1"
-			VerticalScrollBarVisibility="Auto"
-			Visibility="Collapsed"
-			>
-			<ItemsControl ItemsSource="{Binding Sorties}" />
-		</ScrollViewer>
-
 		<!--
 			images will stretch row height anyway
 			so might as well set min height to avoid extra rendering
 		-->
 		<DataGrid
-			Grid.Row="1"
+			Grid.Row="2"
 			AutoGenerateColumns="False"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
@@ -148,6 +147,7 @@
 					<MenuItem Command="{Binding CopyReplayToClipboardCommand}" Header="{Binding SortieRecordViewer.CopyReplay}" />
 					<MenuItem Command="{Binding ShowSortieDetailsCommand}" Header="{Binding SortieRecordViewer.SortieDetail}" />
 					<MenuItem Command="{Binding CopySmokerDataCsvCommand}" Header="{Binding SortieRecordViewer.SmokeScreenCsv}" />
+					<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieRecordViewer.CopySortieData}" />
 				</ContextMenu>
 			</DataGrid.ContextMenu>
 
@@ -181,7 +181,7 @@
 			</DataGrid.Columns>
 		</DataGrid>
 
-		<StatusBar Grid.Row="2">
+		<StatusBar Grid.Row="3">
 			<StatusBarItem>
 				<TextBlock Text="{Binding StatusBarText}" />
 			</StatusBarItem>

@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
+using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
@@ -26,15 +31,20 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
-public class SortieDetailViewModel : WindowViewModelBase
+public partial class SortieDetailViewModel : WindowViewModelBase
 {
 	public SortieDetailTranslationViewModel SortieDetail { get; }
 	private BattleFactory BattleFactory { get; }
+	private ToolService ToolService { get; }
+
+	private SortieRecordViewModel Sortie { get; }
 
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
@@ -43,13 +53,15 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(int world, int map, BattleFleets fleets)
+	public SortieDetailViewModel(SortieRecordViewModel sortie, BattleFleets fleets)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
 		BattleFactory = Ioc.Default.GetRequiredService<BattleFactory>();
+		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 
-		World = world;
-		Map = map;
+		Sortie = sortie;
+		World = sortie.World;
+		Map = sortie.Map;
 		Fleets = fleets;
 	}
 
@@ -211,4 +223,40 @@ public class SortieDetailViewModel : WindowViewModelBase
 
 		_ => null,
 	};
+
+	[RelayCommand]
+	private void CopySortieData()
+	{
+		SortieRecord sortie = new()
+		{
+			Id = Sortie.Id,
+			World = Sortie.World,
+			Map = Sortie.Map,
+			ApiFiles = Sortie.Model.ApiFiles
+				.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
+				.ToList(),
+			FleetData = Sortie.Model.FleetData,
+			MapData = Sortie.Model.MapData,
+		};
+
+		Clipboard.SetText(JsonSerializer.Serialize(sortie));
+	}
+
+	[RelayCommand]
+	private void LoadSortieData()
+	{
+		try
+		{
+			SortieRecord? sortie = JsonSerializer
+				.Deserialize<SortieRecord>(Clipboard.GetText());
+
+			if (sortie is null) return;
+
+			ToolService.OpenSortieDetail(new SortieRecordViewModel(sortie, DateTime.UtcNow));
+		}
+		catch (Exception e)
+		{
+			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
+		}
+	}
 }

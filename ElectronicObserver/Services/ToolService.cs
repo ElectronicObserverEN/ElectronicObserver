@@ -387,7 +387,7 @@ public class ToolService
 				_ => null,
 			};
 
-			SortieDetailViewModel sortieDetail = new(sortie.World, sortie.Map, new(fleet, escortFleet, fleets, airBases));
+			SortieDetailViewModel sortieDetail = new(sortie, new(fleet, escortFleet, fleets, airBases));
 
 			// todo: battle requests contain a flag if smoke screen was activated
 			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))

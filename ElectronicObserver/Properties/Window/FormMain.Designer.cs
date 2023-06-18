@@ -241,7 +241,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイル(&amp;F).
+        ///   Looks up a localized string similar to ファイル(_F).
         /// </summary>
         public static string File {
             get {

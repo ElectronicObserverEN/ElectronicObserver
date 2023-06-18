@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Properties.Window;
 using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
@@ -6,6 +7,10 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 public class SortieDetailTranslationViewModel : TranslationBaseViewModel
 {
 	public string Title => SortieRecordViewer.SortieDetail;
+
+	public string File => FormMain.File;
+	public string CopySortieData => SortieRecordViewer.CopySortieData;
+	public string LoadSortieData => SortieRecordViewer.LoadSortieData;
 
 	public string BattleDetail_FriendFleet => ConstantsRes.BattleDetail_FriendFleet;
 	public string BattleDetail_FriendMainFleet => ConstantsRes.BattleDetail_FriendMainFleet;

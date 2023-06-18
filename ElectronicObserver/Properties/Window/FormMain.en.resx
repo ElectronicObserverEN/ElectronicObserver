@@ -121,7 +121,7 @@
     <value>Electronic Observer</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>&amp;File</value>
+    <value>_File</value>
   </data>
   <data name="ExitConfirmation" xml:space="preserve">
     <value>Are you sure you want to exit?</value>
