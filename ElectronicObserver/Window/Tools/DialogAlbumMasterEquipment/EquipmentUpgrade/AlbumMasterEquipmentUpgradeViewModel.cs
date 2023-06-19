@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
@@ -16,7 +17,13 @@ public class AlbumMasterEquipmentUpgradeViewModel
 	public EquipmentUpgradeDataModel? UpgradeData { get; private set; }
 	private IEquipmentDataMaster Equipment { get; }
 
-	public EquipmentUpgradeImprovementCost EquipmentUpgradeCost { get; } = new();
+	/// <summary>
+	/// Equipment upgrade cost, its the first cost found for this equipment so it's accurate for fuel, ammo, ... and devmats/screws for 0 -> 9 upgrades
+	/// </summary>
+	public EquipmentUpgradeImprovementCost EquipmentUpgradeCost { get; private set; } = new();
+	
+	public EquipmentUpgradeItemCostViewModel? RequiredItems0To5 { get; set; }
+	public EquipmentUpgradeItemCostViewModel? RequiredItems6To9 { get; set; }
 
 	public List<EquipmentUpgradeHelpersViewModel> Helpers { get; private set; } = new();
 
@@ -37,15 +44,15 @@ public class AlbumMasterEquipmentUpgradeViewModel
 
 		if (firstImprovement is null) return;
 
-		EquipmentUpgradeCost.Fuel = firstImprovement.Costs.Fuel;
-		EquipmentUpgradeCost.Ammo = firstImprovement.Costs.Ammo;
-		EquipmentUpgradeCost.Steel = firstImprovement.Costs.Steel;
-		EquipmentUpgradeCost.Bauxite = firstImprovement.Costs.Bauxite;
+		EquipmentUpgradeCost = firstImprovement.Costs;
 
 		Helpers = UpgradeData.Improvement
 			.SelectMany(improvement => improvement.Helpers)
 			.Select(helperGroup => new EquipmentUpgradeHelpersViewModel(helperGroup))
 			.ToList();
+
+		RequiredItems0To5 = new(EquipmentUpgradeCost.Cost0To5);
+		RequiredItems6To9 = new(EquipmentUpgradeCost.Cost6To9);
 
 		// ... 
 	}
