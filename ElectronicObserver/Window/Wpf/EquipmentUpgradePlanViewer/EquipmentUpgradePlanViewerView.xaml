@@ -6,6 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:costs="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:helpers="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
@@ -232,57 +233,7 @@
 								</Style>
 							</StackPanel.Style>
 
-							<ItemsControl
-								Margin="0 5"
-								HorizontalAlignment="Center"
-								ItemsSource="{Binding Helpers}"
-								>
-
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<DataTemplate.Resources>
-											<Style TargetType="TextBlock">
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
-														<Setter Property="Foreground" Value="Red" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</DataTemplate.Resources>
-
-										<TextBlock Text="{Binding Helper.NameEN}" />
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-
-							</ItemsControl>
-
-							<ItemsControl
-								Margin="0 5"
-								HorizontalAlignment="Center"
-								ItemsSource="{Binding Days}"
-								>
-
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<StackPanel Orientation="Horizontal" />
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border
-											Background="{Binding Background}"
-											BorderBrush="Gray"
-											BorderThickness="1"
-											>
-											<StackPanel Margin="5 3">
-												<TextBlock Text="{Binding DisplayValue}" />
-											</StackPanel>
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-
-							</ItemsControl>
+							<helpers:DetailedUpgradeHelperPerDayControl DataContext="{Binding}" />
 						</StackPanel>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
