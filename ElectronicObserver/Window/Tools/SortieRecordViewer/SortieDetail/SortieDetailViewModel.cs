@@ -35,6 +35,9 @@ using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
+using ElectronicObserver.Window.Wpf;
+using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
@@ -49,7 +52,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
 	public int Map { get; }
-	private BattleFleets Fleets { get; }
+	private BattleFleets Fleets { get; set; }
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
@@ -102,7 +105,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		if (response is ApiGetMemberShipDeckResponse deck)
 		{
 			ApiResponseCache.Add(deck);
-			
+
 			return;
 		}
 
@@ -171,7 +174,26 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 		Nodes.Add(node);
 
+		if (node is BattleNode b)
+		{
+			Fleets = b.SecondBattle?.FleetsAfterBattle.Clone() ?? b.FirstBattle.FleetsAfterBattle.Clone();
+
+			CleanFleet(Fleets.Fleet);
+			CleanFleet(Fleets.EscortFleet);
+		}
+
 		ApiResponseCache.Clear();
+	}
+
+	private static void CleanFleet(IFleetData? fleetData)
+	{
+		if (fleetData is not FleetDataMock fleet) return;
+		if (fleet.MembersInstance is null) return;
+
+		fleet.MembersInstance = fleet.MembersInstance
+			.Where(s => s?.HPCurrent > 0)
+			.ToList()
+			.ToReadOnlyCollection();
 	}
 
 	public void EnsureApiFilesProcessed()

@@ -260,4 +260,7 @@ public static class Extensions
 
 	public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable)
 		=> new(enumerable);
+
+	public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IList<T> enumerable)
+		=> new(enumerable);
 }
