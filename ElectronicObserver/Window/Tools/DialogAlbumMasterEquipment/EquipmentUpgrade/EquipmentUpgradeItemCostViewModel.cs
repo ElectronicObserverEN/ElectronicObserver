@@ -8,8 +8,8 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUp
 
 public class EquipmentUpgradeItemCostViewModel
 {
-	public List<EquipmentUpgradePlanCostEquipmentViewModel> RequiredEquipments { get; set; } = new();
-	public List<EquipmentUpgradePlanCostConsumableViewModel> RequiredConsumables { get; set; } = new();
+	public List<EquipmentUpgradePlanCostEquipmentViewModel> RequiredEquipments { get; }
+	public List<EquipmentUpgradePlanCostConsumableViewModel> RequiredConsumables { get; }
 
 	public EquipmentUpgradeItemCostViewModel(EquipmentUpgradeImprovementCostDetail model)
 	{
