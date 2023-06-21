@@ -61,7 +61,7 @@ public class AlbumMasterEquipmentUpgradeViewModel
 			.Improvement
 			.Where(improvement => improvement.ConversionData is not null)
 			.Where(improvement => improvement.Costs.CostMax is not null)
-			.Select(improvement=> new EquipmentUpgradeConversionViewModel(improvement))
+			.Select(improvement => new EquipmentUpgradeConversionViewModel(improvement))
 			.ToList();
 	}
 }

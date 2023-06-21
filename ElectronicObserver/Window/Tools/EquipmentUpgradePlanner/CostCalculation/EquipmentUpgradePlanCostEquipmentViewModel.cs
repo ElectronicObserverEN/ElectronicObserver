@@ -15,7 +15,6 @@ public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCo
 		SubscribeToApis();
 		Update();
 	}
-	
 	public void Update()
 	{
 		KCDatabase db = KCDatabase.Instance;
