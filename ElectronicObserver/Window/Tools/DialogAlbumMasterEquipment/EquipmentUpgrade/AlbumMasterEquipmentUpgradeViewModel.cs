@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
@@ -22,8 +18,10 @@ public class AlbumMasterEquipmentUpgradeViewModel
 	/// </summary>
 	public EquipmentUpgradeImprovementCost EquipmentUpgradeCost { get; private set; } = new();
 	
-	public EquipmentUpgradeItemCostViewModel? RequiredItems0To5 { get; set; }
-	public EquipmentUpgradeItemCostViewModel? RequiredItems6To9 { get; set; }
+	public EquipmentUpgradeItemCostViewModel? RequiredItems0To5 { get; private set; }
+	public EquipmentUpgradeItemCostViewModel? RequiredItems6To9 { get; private set; }
+
+	public List<EquipmentUpgradeConversionViewModel> ConversionViewModel { get; private set; } = new();
 
 	public List<EquipmentUpgradeHelpersViewModel> Helpers { get; private set; } = new();
 
@@ -54,6 +52,10 @@ public class AlbumMasterEquipmentUpgradeViewModel
 		RequiredItems0To5 = new(EquipmentUpgradeCost.Cost0To5);
 		RequiredItems6To9 = new(EquipmentUpgradeCost.Cost6To9);
 
-		// ... 
+		ConversionViewModel = UpgradeData
+			.Improvement
+			.Where(improvement => improvement.ConversionData is not null)
+			.Select(improvement=> new EquipmentUpgradeConversionViewModel(improvement))
+			.ToList();
 	}
 }

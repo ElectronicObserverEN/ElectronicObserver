@@ -268,6 +268,147 @@
 							<ContentControl Content="{Binding RequiredItems6To9}" ContentTemplate="{StaticResource ItemCostTemplate}" />
 						</Border>
 					</Grid>
+
+					<ItemsControl ItemsSource="{Binding ConversionViewModel}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Grid Margin="0 5 0 0">
+
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="*" />
+										<RowDefinition Height="*" />
+									</Grid.RowDefinitions>
+
+									<Border
+										Grid.Row="0"
+										Padding="2"
+										BorderBrush="Gray"
+										BorderThickness="1 1 1 0"
+										>
+										<TextBlock>
+											<Run Text="Can be converted into" />
+											<Run Text="{Binding EquipmentAfterConversion.NameEN, Mode=OneWay}" />
+										</TextBlock>
+									</Border>
+
+									<Grid Grid.Row="1">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition SharedSizeGroup="header" />
+											<ColumnDefinition SharedSizeGroup="devmatcost" />
+											<ColumnDefinition SharedSizeGroup="screwcost" />
+											<ColumnDefinition SharedSizeGroup="itemcost" />
+										</Grid.ColumnDefinitions>
+
+										<Border
+											Grid.Column="0"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<TextBlock Text="Helpers" />
+										</Border>
+
+										<Border
+											Grid.Column="1"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<common:UseItemIcon Type="DevelopmentMaterial" />
+										</Border>
+
+										<Border
+											Grid.Column="2"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<common:UseItemIcon Type="ImproveMaterial" />
+										</Border>
+
+										<Border
+											Grid.Column="3"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<TextBlock>Items</TextBlock>
+										</Border>
+									</Grid>
+
+									<Grid Grid.Row="2">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition SharedSizeGroup="header" />
+											<ColumnDefinition SharedSizeGroup="devmatcost" />
+											<ColumnDefinition SharedSizeGroup="screwcost" />
+											<ColumnDefinition SharedSizeGroup="itemcost" />
+										</Grid.ColumnDefinitions>
+
+										<Border
+											Grid.Column="0"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<ItemsControl ItemsSource="{Binding Helpers}">
+												<ItemsControl.ItemTemplate>
+													<DataTemplate>
+														<DataTemplate.Resources>
+															<Style TargetType="TextBlock">
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
+																		<Setter Property="Foreground" Value="Red" />
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</DataTemplate.Resources>
+														<TextBlock Text="{Binding Helper.NameEN, Mode=OneWay}" />
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</Border>
+										<Border
+											Grid.Column="1"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<TextBlock>
+												<Run Text="{Binding ImprovementModel.Costs.CostMax.DevmatCost}" />
+												<Run Text="/" />
+												<Run Text="{Binding ImprovementModel.Costs.CostMax.SliderDevmatCost}" />
+											</TextBlock>
+										</Border>
+										<Border
+											Grid.Column="2"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<TextBlock>
+												<Run Text="{Binding ImprovementModel.Costs.CostMax.ImproveMatCost}" />
+												<Run Text="/" />
+												<Run Text="{Binding ImprovementModel.Costs.CostMax.SliderImproveMatCost}" />
+											</TextBlock>
+										</Border>
+										<Border
+											Grid.Column="3"
+											Padding="2"
+											BorderBrush="Gray"
+											BorderThickness="1"
+											>
+											<ContentControl Content="{Binding ConversionCost}" ContentTemplate="{StaticResource ItemCostTemplate}" />
+										</Border>
+									</Grid>
+								</Grid>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
 				</StackPanel>
 
 				<Grid Column="1">
