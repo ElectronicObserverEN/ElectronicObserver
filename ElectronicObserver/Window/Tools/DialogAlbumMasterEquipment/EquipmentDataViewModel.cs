@@ -61,7 +61,7 @@ public class EquipmentDataViewModel : ObservableObject
 		Equipment = equipment;
 
 		UpgradeViewModel = new(equipment);
-}
+	}
 
 	private string GetEquippableShips(IEquipmentDataMaster eq)
 	{
