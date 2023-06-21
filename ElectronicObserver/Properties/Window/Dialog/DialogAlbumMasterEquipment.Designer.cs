@@ -70,15 +70,6 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ??? (Can be converted into).
-        /// </summary>
-        public static string CanBeConvertedInto {
-            get {
-                return ResourceManager.GetString("CanBeConvertedInto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to [5inch連装砲]
         ///かの国において最も広く使われた駆逐艦主砲、その連装砲版です。
         ///大型艦の対空砲としても搭載されました。

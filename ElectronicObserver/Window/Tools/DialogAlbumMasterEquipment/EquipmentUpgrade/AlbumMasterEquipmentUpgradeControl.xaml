@@ -289,7 +289,8 @@
 										BorderThickness="1 1 1 0"
 										>
 										<TextBlock>
-											<Run Text="{Binding DataContext.EquipmentUpgradeTranslation.CanBeConvertedInto, Source={StaticResource Proxy}, Mode=OneWay}" />
+											<Run Text="{Binding DataContext.Equipment.NameEN, Source={StaticResource Proxy}, Mode=OneWay}" />
+											<Run Text="→" />
 											<Run Text="{Binding EquipmentAfterConversion.NameEN, Mode=OneWay}" />
 										</TextBlock>
 									</Border>

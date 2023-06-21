@@ -11,7 +11,6 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUp
 		public string EquipmentUpgrades => Properties.Window.Dialog.DialogAlbumMasterEquipment.EquipmentUpgrades;
 		public string UpgradeLevel => Properties.Window.Dialog.DialogAlbumMasterEquipment.UpgradeLevel;
 		public string RequiredItems => Properties.Window.Dialog.DialogAlbumMasterEquipment.RequiredItems;
-		public string CanBeConvertedInto => Properties.Window.Dialog.DialogAlbumMasterEquipment.CanBeConvertedInto;
 		public string Helpers => Properties.Window.Dialog.DialogAlbumMasterEquipment.Helpers;
     }
 }

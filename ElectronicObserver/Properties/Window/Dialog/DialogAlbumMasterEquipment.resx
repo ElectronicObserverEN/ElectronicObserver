@@ -261,9 +261,6 @@
   <data name="Owned" xml:space="preserve">
     <value>所持</value>
   </data>
-  <data name="CanBeConvertedInto" xml:space="preserve">
-    <value>??? (Can be converted into)</value>
-  </data>
   <data name="Helpers" xml:space="preserve">
     <value>二番艦</value>
   </data>

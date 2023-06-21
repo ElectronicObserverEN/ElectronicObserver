@@ -243,9 +243,6 @@
   <data name="UpgradeCost" xml:space="preserve">
     <value>Upgrade cost</value>
   </data>
-  <data name="CanBeConvertedInto" xml:space="preserve">
-    <value>Can be converted into</value>
-  </data>
   <data name="EquipmentUpgrades" xml:space="preserve">
     <value>Equipment upgrades</value>
   </data>
