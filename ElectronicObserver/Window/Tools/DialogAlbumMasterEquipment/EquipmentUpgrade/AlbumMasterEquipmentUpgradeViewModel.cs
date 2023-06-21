@@ -60,6 +60,7 @@ public class AlbumMasterEquipmentUpgradeViewModel
 		ConversionViewModel = UpgradeData
 			.Improvement
 			.Where(improvement => improvement.ConversionData is not null)
+			.Where(improvement => improvement.Costs.CostMax is not null)
 			.Select(improvement=> new EquipmentUpgradeConversionViewModel(improvement))
 			.ToList();
 	}
