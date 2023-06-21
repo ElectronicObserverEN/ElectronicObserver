@@ -4,8 +4,8 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUp
 
 public class AlbumMasterEquipmentUpgradeTranslationViewModel : TranslationBaseViewModel
 {
-	public string ZeroToFive => "0 \uff5e 5";
-	public string SixToNine => "6 \uff5e 9";
+	public string ZeroToFive => "0 ～ 5";
+	public string SixToNine => "6 ～ 9";
 
 	public string Owned => Properties.Window.Dialog.DialogAlbumMasterEquipment.Owned;
 	public string EquipmentUpgrades => Properties.Window.Dialog.DialogAlbumMasterEquipment.EquipmentUpgrades;
