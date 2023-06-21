@@ -255,4 +255,22 @@
   <data name="UpgradeCost" xml:space="preserve">
     <value>改修必要資材</value>
   </data>
+  <data name="EquipmentUpgrades" xml:space="preserve">
+    <value>改修必要資材</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>所持</value>
+  </data>
+  <data name="CanBeConvertedInto" xml:space="preserve">
+    <value>??? (Can be converted into)</value>
+  </data>
+  <data name="Helpers" xml:space="preserve">
+    <value>二番艦</value>
+  </data>
+  <data name="RequiredItems" xml:space="preserve">
+    <value>消費装備</value>
+  </data>
+  <data name="UpgradeLevel" xml:space="preserve">
+    <value>★</value>
+  </data>
 </root>

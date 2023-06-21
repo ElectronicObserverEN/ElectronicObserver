@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
@@ -25,8 +26,12 @@ public class AlbumMasterEquipmentUpgradeViewModel
 
 	public List<EquipmentUpgradeHelpersViewModel> Helpers { get; private set; } = new();
 
+	public AlbumMasterEquipmentUpgradeTranslationViewModel EquipmentUpgradeTranslation { get; }
+
 	public AlbumMasterEquipmentUpgradeViewModel(IEquipmentDataMaster equipment)
 	{
+		EquipmentUpgradeTranslation = Ioc.Default.GetRequiredService<AlbumMasterEquipmentUpgradeTranslationViewModel>();
+
 		Equipment = equipment;
 		LoadUpgradeData();
 	}
