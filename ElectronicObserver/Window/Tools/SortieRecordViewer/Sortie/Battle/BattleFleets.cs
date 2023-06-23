@@ -18,6 +18,8 @@ public class BattleFleets
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
+	private int CombinedFleetMainFleetShipCount => 6;
+
 	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null, List<IFleetData?>? fleets = null,
 		List<IBaseAirCorpsData>? airBases = null)
 	{
@@ -49,16 +51,16 @@ public class BattleFleets
 
 	public IShipData? GetShip(BattleIndex index) => index.FleetFlag switch
 	{
-		FleetFlag.Player => (index.Index < Fleet.MembersInstance.Count) switch
+		FleetFlag.Player => (index.Index < CombinedFleetMainFleetShipCount) switch
 		{
 			true => Fleet.MembersInstance[index.Index],
-			_ => EscortFleet?.MembersInstance[index.Index - Fleet.MembersInstance.Count],
+			_ => EscortFleet?.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
 		},
 
-		_ => (index.Index < EnemyFleet?.MembersInstance.Count) switch
+		_ => (index.Index < CombinedFleetMainFleetShipCount) switch
 		{
 			true => EnemyFleet?.MembersInstance[index.Index],
-			_ => EnemyEscortFleet?.MembersInstance[index.Index - EnemyFleet?.MembersInstance.Count ?? 6],
+			_ => EnemyEscortFleet?.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
 		},
 	};
 
