@@ -29,7 +29,7 @@ public class DataAndTranslationManager
 	{
 		Initialize();
 
-		DataAndTranslationIssueReporter = new DataAndTranslationIssueReporter();
+		DataAndTranslationIssueReporter = new();
 	}
 
 	public void Initialize()
