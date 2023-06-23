@@ -41,6 +41,7 @@ public class DialogAlbumMasterEquipmentTranslationViewModel : TranslationBaseVie
 	public string TitleASW => DialogAlbumMasterEquipment.TitleASW.Replace("_", "__").Replace("&", "_");
 	public string TitleEvasion => DialogAlbumMasterEquipment.TitleEvasion.Replace("_", "__").Replace("&", "_");
 	public string TitleDismantling => EncycloRes.Dismantling;
+	public string TitleUpgradeCost => DialogAlbumMasterEquipment.UpgradeCost;
 	public string Interception => DialogAlbumMasterEquipment.Interception.Replace("_", "__").Replace("&", "_");
 	public string TitleAccuracy => DialogAlbumMasterEquipment.TitleAccuracy.Replace("_", "__").Replace("&", "_");
 	public string AntiBomber => DialogAlbumMasterEquipment.AntiBomber.Replace("_", "__").Replace("&", "_");

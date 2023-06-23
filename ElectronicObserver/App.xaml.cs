@@ -48,6 +48,7 @@ using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
@@ -283,6 +284,8 @@ public partial class App : Application
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
 			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
+			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
+			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()

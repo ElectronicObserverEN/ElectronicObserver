@@ -930,6 +930,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to てるてる坊主.
+        /// </summary>
+        public static string TeruTeruBozu {
+            get {
+                return ResourceManager.GetString("TeruTeruBozu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 司令部.
         /// </summary>
         public static string Title {

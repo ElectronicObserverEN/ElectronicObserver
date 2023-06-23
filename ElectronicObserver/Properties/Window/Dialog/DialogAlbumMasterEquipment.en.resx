@@ -240,4 +240,22 @@
   <data name="TitleTorpedo" xml:space="preserve">
     <value>Torp</value>
   </data>
+  <data name="UpgradeCost" xml:space="preserve">
+    <value>Upgrade cost</value>
+  </data>
+  <data name="EquipmentUpgrades" xml:space="preserve">
+    <value>Equipment upgrades</value>
+  </data>
+  <data name="Helpers" xml:space="preserve">
+    <value>Helpers</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>Owned</value>
+  </data>
+  <data name="RequiredItems" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="UpgradeLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
 </root>
