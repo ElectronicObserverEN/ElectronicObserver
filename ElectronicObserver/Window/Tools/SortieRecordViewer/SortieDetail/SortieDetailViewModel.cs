@@ -118,6 +118,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 		SortieNode? node = null;
 		BattleBaseAirRaid? abRaid = null;
+		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
 
 		foreach (object response in ApiResponseCache)
@@ -159,9 +160,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			// comes before next, so this should always be the last response
 			if (response is ApiGetMemberShipDeckResponse deck)
 			{
-				node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell);
-
-				Fleets.UpdateState(deck);
+				deckResponse = deck;
 			}
 		}
 
@@ -172,8 +171,6 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			node.AddAirBaseRaid(abRaid);
 		}
 
-		Nodes.Add(node);
-
 		if (node is BattleNode b)
 		{
 			Fleets = b.SecondBattle?.FleetsAfterBattle.Clone() ?? b.FirstBattle.FleetsAfterBattle.Clone();
@@ -181,6 +178,13 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			CleanFleet(Fleets.Fleet);
 			CleanFleet(Fleets.EscortFleet);
 		}
+
+		if (deckResponse is not null)
+		{
+			Fleets.UpdateState(deckResponse);
+		}
+
+		Nodes.Add(node);
 
 		ApiResponseCache.Clear();
 	}
