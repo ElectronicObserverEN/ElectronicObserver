@@ -13,7 +13,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	// if you want to use _ in wpf you need to write it as __
 	public string Title => Properties.Window.FormMain.Title.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_File => Properties.Window.FormMain.File.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File => Properties.Window.FormMain.File;
 
 	public string StripMenu_File_Record => Properties.Window.FormMain.File_Record.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Record_Save => Properties.Window.FormMain.File_Record_Save.Replace("_", "__").Replace("&", "_");
