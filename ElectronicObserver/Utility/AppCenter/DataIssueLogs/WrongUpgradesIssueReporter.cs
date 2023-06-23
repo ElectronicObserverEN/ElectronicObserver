@@ -40,23 +40,12 @@ public class WrongUpgradesIssueReporter
 	private bool CheckForIssue(List<APIReqKousyouRemodelSlotlistResponse> actualUpgrades, List<EquipmentUpgradeDataModel> expectedUpgrades)
 	{
 		// Check data
-		foreach (APIReqKousyouRemodelSlotlistResponse actualUpgrade in actualUpgrades)
+		if (actualUpgrades.Any(actualUpgrade => expectedUpgrades.All(upgSaved => upgSaved.EquipmentId != actualUpgrade.ApiSlotId) && !IsBaseUpgradeEquipment((EquipmentId)actualUpgrade.ApiSlotId)))
 		{
-			if (expectedUpgrades.All(upgSaved => upgSaved.EquipmentId != actualUpgrade.ApiSlotId) && !IsBaseUpgradeEquipment((EquipmentId)actualUpgrade.ApiSlotId))
-			{
-				return true;
-			}
+			return true;
 		}
 
-		foreach (EquipmentUpgradeDataModel expectedUpgrade in expectedUpgrades)
-		{
-			if (actualUpgrades.All(upgApi => expectedUpgrade.EquipmentId != upgApi.ApiSlotId))
-			{
-				return true;
-			}
-		}
-
-		return false;
+		return expectedUpgrades.Any(expectedUpgrade => actualUpgrades.All(upgApi => expectedUpgrade.EquipmentId != upgApi.ApiSlotId));
 	}
 
 	private List<APIReqKousyouRemodelSlotlistResponse>? ParseResponse(dynamic data)
