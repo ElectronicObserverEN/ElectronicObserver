@@ -5,8 +5,6 @@ using System.Text.Json;
 using System.Windows;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.KancolleApi.Types;
-using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
