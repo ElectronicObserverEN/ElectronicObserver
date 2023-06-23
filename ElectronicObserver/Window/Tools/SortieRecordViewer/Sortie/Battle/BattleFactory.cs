@@ -7,12 +7,14 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -69,5 +71,11 @@ public class BattleFactory
 		=> new(PhaseFactory, fleets, battle);
 
 	public BattleCombinedNormalNight CreateBattle(ApiReqCombinedBattleMidnightBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleNormalRadar CreateBattle(ApiReqSortieLdShootingResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleCombinedRadar CreateBattle(ApiReqCombinedBattleLdShootingResponse battle, BattleFleets fleets)
 		=> new(PhaseFactory, fleets, battle);
 }

@@ -21,6 +21,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
@@ -30,6 +31,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
@@ -222,6 +224,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		ApiReqBattleMidnightSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqSortieAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqSortieLdAirbattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiReqSortieLdShootingResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleSpMidnightResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleBattleWaterResponse a => BattleFactory.CreateBattle(a, Fleets),
@@ -229,6 +232,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		ApiReqCombinedBattleEcBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleEachBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
 		ApiReqCombinedBattleEachBattleWaterResponse a => BattleFactory.CreateBattle(a, Fleets),
+		ApiReqCombinedBattleLdShootingResponse a => BattleFactory.CreateBattle(a, Fleets),
 
 		ApiDestructionBattle a => BattleFactory.CreateBattle(a, Fleets),
 
