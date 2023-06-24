@@ -497,7 +497,7 @@
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type battle:BattleData}">
-			<StackPanel>
+			<StackPanel Margin="0 10">
 				<TextBlock Margin="0 4" Text="{Binding DataContext.SortieDetail.BattleDetail_BattleEnd, Source={StaticResource Proxy}}" />
 
 				<StackPanel>
