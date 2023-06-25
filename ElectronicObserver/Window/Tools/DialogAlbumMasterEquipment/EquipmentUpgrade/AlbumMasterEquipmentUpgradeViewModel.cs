@@ -53,7 +53,7 @@ public class AlbumMasterEquipmentUpgradeViewModel
 
 		Helpers = UpgradeData.Improvement
 			.SelectMany(improvement => improvement.Helpers)
-			.Select(helperGroup => new EquipmentUpgradeHelpersViewModel(helperGroup))
+			.Select(helperGroup => new EquipmentUpgradeHelpersViewModel(helperGroup, false))
 			.ToList();
 
 		RequiredItems0To5 = new(EquipmentUpgradeCost.Cost0To5);

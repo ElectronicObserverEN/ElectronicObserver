@@ -4,11 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Common;
 using ElectronicObserver.Services;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
-public class EquipmentUpgradeDayViewModel
+public class EquipmentUpgradeDayViewModel : CanBeUpdatedByApiViewModel
 {
 	public string DisplayValue { get; set; }
 
@@ -21,10 +22,10 @@ public class EquipmentUpgradeDayViewModel
 
 	private TimeChangeService TimeService { get; } = Ioc.Default.GetService<TimeChangeService>()!;
 
-	public EquipmentUpgradeDayViewModel(DayOfWeek day, List<int> helpers)
+	public EquipmentUpgradeDayViewModel(DayOfWeek day, List<int> helpers, bool shouldUpdate) : base(shouldUpdate)
 	{
 		DayValue = day;
-		Helpers = helpers.Select(id => new EquipmentUpgradeHelperViewModel(id)).ToList();
+		Helpers = helpers.Select(id => new EquipmentUpgradeHelperViewModel(id, shouldUpdate)).ToList();
 
 		DisplayValue = CultureInfo.CurrentCulture.Name switch
 		{
@@ -32,12 +33,12 @@ public class EquipmentUpgradeDayViewModel
 			_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..3]
 		};
 
-		Update();
+		OnDayChange();
 
-		TimeService.DayChanged += () => Update();
+		TimeService.DayChanged += OnDayChange;
 	}
-
-	private void Update()
+	
+	private void OnDayChange()
 	{
 		BackgroundColor = Helpers.Any() switch
 		{
