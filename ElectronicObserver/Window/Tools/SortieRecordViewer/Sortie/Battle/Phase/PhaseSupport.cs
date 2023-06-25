@@ -149,6 +149,8 @@ public class PhaseSupport : PhaseBase
 
 		StringBuilder sb = new();
 
+		sb.AppendLine($"〈{BattleRes.SupportFleet}〉");
+
 		for (int i = 0; i < SupportFleet.MembersInstance.Count; i++)
 		{
 			IShipData? ship = SupportFleet.MembersInstance[i];
