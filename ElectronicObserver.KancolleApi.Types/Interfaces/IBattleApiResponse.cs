@@ -62,6 +62,11 @@ public interface IBattleApiResponse
 	List<int>? ApiEscapeIdx { get; set; }
 
 	/// <summary>
+	/// 1=装甲破壊状態 そうでなければ存在しない
+	/// </summary>
+	int? ApiXal01 { get; set; }
+
+	/// <summary>
 	/// 0, 1, 2, 3 - number of active smokers <br />
 	/// null - old data only?
 	/// </summary>

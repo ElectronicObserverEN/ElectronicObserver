@@ -62,6 +62,9 @@ public class ApiReqCombinedBattleLdShootingResponse : IRadarBattleApiResponse, I
 	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	[JsonPropertyName("api_xal01")]
+	public int? ApiXal01 { get; set; }
+
 	[JsonPropertyName("api_escape_idx_combined")]
 	public List<int>? ApiEscapeIdxCombined { get; set; }
 

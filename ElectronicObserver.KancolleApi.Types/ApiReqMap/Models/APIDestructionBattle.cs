@@ -17,6 +17,9 @@ public class ApiDestructionBattle : IFirstBattleApiResponse
 	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	[JsonPropertyName("api_xal01")]
+	public int? ApiXal01 { get; set; }
+
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 

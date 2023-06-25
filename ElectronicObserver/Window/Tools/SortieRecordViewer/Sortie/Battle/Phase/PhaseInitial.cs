@@ -22,6 +22,7 @@ public class PhaseInitial : PhaseBase
 
 	private IKCDatabase KcDatabase { get; }
 
+	public bool IsBossDamaged { get; set; }
 	private List<int> FriendInitialHPs { get; }
 	private List<int> FriendMaxHPs { get; }
 
@@ -42,8 +43,8 @@ public class PhaseInitial : PhaseBase
 
 	public string? PlayerMainFleetDisplay => FleetDisplay(FleetsAfterPhase?.Fleet, false, PlayerMainFleetTitle);
 	public string? PlayerEscortFleetDisplay => FleetDisplay(FleetsAfterPhase?.EscortFleet, true, ConstantsRes.BattleDetail_FriendEscortFleet);
-	public string? EnemyMainFleetDisplay => EnemyFleetDisplay(FleetsAfterPhase?.EnemyFleet, false, EnemyMainFleetTitle);
-	public string? EnemyEscortFleetDisplay => EnemyFleetDisplay(FleetsAfterPhase?.EnemyEscortFleet, true, ConstantsRes.BattleDetail_EnemyEscortFleet);
+	public string? EnemyMainFleetDisplay => EnemyFleetDisplay(FleetsAfterPhase?.EnemyFleet, false, EnemyMainFleetTitle, IsBossDamaged);
+	public string? EnemyEscortFleetDisplay => EnemyFleetDisplay(FleetsAfterPhase?.EnemyEscortFleet, true, ConstantsRes.BattleDetail_EnemyEscortFleet, IsBossDamaged);
 
 	public string? AirBaseDisplay => HasAirBaseAttack switch
 	{
@@ -108,13 +109,20 @@ public class PhaseInitial : PhaseBase
 		_ => "",
 	};
 
-	private static string? EnemyFleetDisplay(IFleetData? fleet, bool isEscort, string title) => fleet switch
+	private static string? EnemyFleetDisplay(IFleetData? fleet, bool isEscort, string title, bool isBossDamaged) => fleet switch
 	{
 		null => null,
-		_ => $"{EnemyFleetHeader(fleet, title)}\n" +
+		_ => $"{EnemyFleetHeader(fleet, title, isBossDamaged)}\n" +
 			string.Join("\n", fleet.MembersInstance.Select((ship, i) =>
 				EnemyShipDisplay(ship, GetFleetIndex(i, isEscort)))),
 	};
+
+	private static string EnemyFleetHeader(IFleetData fleet, string fleetTitle, bool isBossDamaged)
+		=> isBossDamaged switch
+		{
+			true => $"{EnemyFleetHeader(fleet, fleetTitle)}{BattleRes.BossDebuffed}",
+			_ => EnemyFleetHeader(fleet, fleetTitle),
+		};
 
 	private static string EnemyFleetHeader(IFleetData fleet, string fleetTitle) =>
 		$"{fleetTitle} " +
@@ -183,6 +191,7 @@ public class PhaseInitial : PhaseBase
 			}
 		}
 
+		IsBossDamaged = battle.ApiXal01 > 0;
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;
 
