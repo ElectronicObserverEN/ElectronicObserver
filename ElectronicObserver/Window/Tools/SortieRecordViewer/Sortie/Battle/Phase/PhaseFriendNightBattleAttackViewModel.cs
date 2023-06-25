@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseFriendNightBattleAttackViewModel
+public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 {
 	public BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
@@ -47,19 +46,6 @@ public class PhaseFriendNightBattleAttackViewModel
 		}
 	}
 
-	private static string AttackDisplay(NightAttack nightAttack) => nightAttack.CriticalFlag switch
-	{
-		HitType.Hit => $"{HitDisplay(nightAttack)} Dmg",
-		HitType.Critical => $"{HitDisplay(nightAttack)} Critical!",
-		HitType.Miss => "Miss",
-		_ => "",
-	};
-
-	private static string HitDisplay(NightAttack nightAttack) => $"{ProtectedDisplay(nightAttack)}{nightAttack.Damage}";
-
-	private static string ProtectedDisplay(NightAttack nightAttack) => nightAttack.GuardsFlagship switch
-	{
-		true => $"<{BattleRes.Protected}> ",
-		_ => "",
-	};
+	private static string AttackDisplay(NightAttack nightAttack)
+		=> AttackDisplay(nightAttack.GuardsFlagship, nightAttack.Damage, nightAttack.CriticalFlag);
 }

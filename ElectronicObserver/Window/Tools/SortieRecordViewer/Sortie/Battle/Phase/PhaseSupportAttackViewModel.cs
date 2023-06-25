@@ -4,11 +4,10 @@ using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseSupportAttackViewModel
+public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 {
 	public string Attacker => BattleRes.SupportFleet;
 	public BattleIndex DefenderIndex { get; }
@@ -45,21 +44,8 @@ public class PhaseSupportAttackViewModel
 		}
 	}
 
-	private static string AttackDisplay(SupportAttack dayAttack) => dayAttack.CriticalFlag switch
-	{
-		HitType.Hit => $"{HitDisplay(dayAttack)} Dmg",
-		HitType.Critical => $"{HitDisplay(dayAttack)} Critical!",
-		HitType.Miss => "Miss",
-		_ => "",
-	};
-
-	private static string HitDisplay(SupportAttack dayAttack) => $"{ProtectedDisplay(dayAttack)}{dayAttack.Damage}";
-
-	private static string ProtectedDisplay(SupportAttack dayAttack) => dayAttack.GuardsFlagship switch
-	{
-		true => $"<{BattleRes.Protected}> ",
-		_ => "",
-	};
+	private static string AttackDisplay(SupportAttack dayAttack)
+		=> AttackDisplay(dayAttack.GuardsFlagship, dayAttack.Damage, dayAttack.CriticalFlag);
 
 	private static string GetAttackKind(SupportType supportType) => supportType switch
 	{

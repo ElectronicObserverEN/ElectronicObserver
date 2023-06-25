@@ -7,11 +7,11 @@ using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class AirBaseRaidAttackViewModel
+public sealed class AirBaseRaidAttackViewModel : AttackViewModelBase
 {
 	private int WaveIndex { get; }
 	public BattleIndex DefenderIndex { get; }
-	public IBaseAirCorpsData Defender { get; set; }
+	public IBaseAirCorpsData Defender { get; }
 	private double Damage { get; }
 	private HitType HitType { get; }
 	private AirAttack AttackType { get; }
@@ -53,22 +53,5 @@ public class AirBaseRaidAttackViewModel
 		AirAttack.Bombing => ConstantsRes.BombingAttack,
 		AirAttack.TorpedoBombing => ConstantsRes.TorpBombingAttack,
 		_ => ConstantsRes.Unknown,
-	};
-
-	private static string AttackDisplay(bool guardsFlagship, double damage, HitType hitType) => hitType switch
-	{
-		HitType.Hit => $"{HitDisplay(guardsFlagship, damage)} Dmg",
-		HitType.Critical => $"{HitDisplay(guardsFlagship, damage)} Critical!",
-		HitType.Miss => "Miss",
-		_ => "",
-	};
-
-	private static string HitDisplay(bool guardsFlagship, double damage)
-		=> $"{ProtectedDisplay(guardsFlagship)}{damage}";
-
-	private static string ProtectedDisplay(bool guardsFlagship) => guardsFlagship switch
-	{
-		true => $"<{BattleRes.Protected}> ",
-		_ => "",
 	};
 }

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseShellingAttackViewModel
+public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 {
 	public BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
@@ -49,22 +48,9 @@ public class PhaseShellingAttackViewModel
 		}
 	}
 
-	private static string AttackDisplay(DayAttack dayAttack) => dayAttack.CriticalFlag switch
-	{
-		HitType.Hit => $"{HitDisplay(dayAttack)} Dmg",
-		HitType.Critical => $"{HitDisplay(dayAttack)} Critical!",
-		HitType.Miss => "Miss",
-		_ => "",
-	};
-
-	private static string HitDisplay(DayAttack dayAttack) => $"{ProtectedDisplay(dayAttack)}{dayAttack.Damage}";
-
-	private static string ProtectedDisplay(DayAttack dayAttack) => dayAttack.GuardsFlagship switch
-	{
-		true => $"<{BattleRes.Protected}> ",
-		_ => "",
-	};
-
+	private static string AttackDisplay(DayAttack dayAttack)
+		=> AttackDisplay(dayAttack.GuardsFlagship, dayAttack.Damage, dayAttack.CriticalFlag);
+	
 	private static DayAttackKind ProcessAttack(IShipData attacker, IShipData defender, DayAttackKind attack)
 	{
 		if (attack is not DayAttackKind.NormalAttack) return attack;
