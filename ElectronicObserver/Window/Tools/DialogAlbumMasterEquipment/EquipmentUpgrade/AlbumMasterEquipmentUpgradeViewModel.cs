@@ -56,8 +56,8 @@ public class AlbumMasterEquipmentUpgradeViewModel
 			.Select(helperGroup => new EquipmentUpgradeHelpersViewModel(helperGroup, false))
 			.ToList();
 
-		RequiredItems0To5 = new(EquipmentUpgradeCost.Cost0To5);
-		RequiredItems6To9 = new(EquipmentUpgradeCost.Cost6To9);
+		RequiredItems0To5 = new(EquipmentUpgradeCost.Cost0To5, false);
+		RequiredItems6To9 = new(EquipmentUpgradeCost.Cost6To9, false);
 
 		ConversionViewModel = UpgradeData
 			.Improvement

@@ -17,7 +17,6 @@ public abstract class CanBeUpdatedByApiViewModel : ObservableObject
 	private void Initialize(bool shouldUpdate)
 	{
 		if (shouldUpdate) SubscribeToApis();
-		Update();
 	}
 	
 	public virtual void SubscribeToApis()

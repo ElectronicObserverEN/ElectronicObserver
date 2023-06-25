@@ -21,7 +21,7 @@ public class EquipmentUpgradeConversionViewModel
 	{
 		ImprovementModel = improvementModel;
 		
-		ConversionCost = new(improvementModel.Costs.CostMax!);
+		ConversionCost = new(improvementModel.Costs.CostMax!, false);
 
 	    EquipmentAfterConversion =
 		    KCDatabase.Instance.MasterEquipments[improvementModel.ConversionData!.IdEquipmentAfter];

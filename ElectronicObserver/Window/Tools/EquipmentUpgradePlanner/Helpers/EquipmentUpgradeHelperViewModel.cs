@@ -6,7 +6,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
-public class EquipmentUpgradeHelperViewModel : CanBeUpdatedByApiViewModel
+public sealed class EquipmentUpgradeHelperViewModel : CanBeUpdatedByApiViewModel
 {
 	public IShipDataMaster Helper { get; set; }
 
@@ -17,6 +17,8 @@ public class EquipmentUpgradeHelperViewModel : CanBeUpdatedByApiViewModel
 		KCDatabase db = KCDatabase.Instance;
 
 		Helper = db.MasterShips[helperId];
+
+		Update();
 	}
 
 	protected override void Update()

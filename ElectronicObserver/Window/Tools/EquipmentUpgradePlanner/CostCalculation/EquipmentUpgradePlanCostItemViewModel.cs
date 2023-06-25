@@ -2,7 +2,7 @@
 
 public abstract class EquipmentUpgradePlanCostItemViewModel : EquipmentUpgradePlanResourceDisplayViewModel
 {
-	protected EquipmentUpgradePlanCostItemViewModel(EquipmentUpgradePlanCostItemModel model)
+	protected EquipmentUpgradePlanCostItemViewModel(EquipmentUpgradePlanCostItemModel model, bool shouldUpdate) : base(shouldUpdate)
 	{
 		Required = model.Required;
 	}
