@@ -396,7 +396,7 @@ public class PhaseInitial : PhaseBase
 					.Select(sq => sq.EquipmentInstance!.NameWithLevel)));
 		}
 
-		return sb.ToString();
+		return sb.ToString().TrimEnd();
 	}
 
 	private string MakeAirRaidAirBaseString()
@@ -416,6 +416,6 @@ public class PhaseInitial : PhaseBase
 				FriendInitialHPs[i], FriendMaxHPs[i]);
 		}
 
-		return sb.ToString();
+		return sb.ToString().TrimEnd();
 	}
 }
