@@ -19,13 +19,13 @@ public partial class DialogAlbumMasterEquipmentWpf
 
 	public DialogAlbumMasterEquipmentWpf(int equipId) : this()
 	{
-		ViewModel.SelectedEquipment = ViewModel.DataGridViewModel.ItemsSource
-			.FirstOrDefault(e => e.Equipment.ID == equipId);
+		ViewModel.SelectedEquipmentModel = ViewModel.DataGridViewModel.ItemsSource
+			.FirstOrDefault(e => e.ID == equipId);
 	}
 
 	private void SelectedEquipmentChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is not nameof(ViewModel.SelectedEquipment)) return;
+		if (e.PropertyName is not nameof(ViewModel.SelectedEquipmentViewModel)) return;
 
 		ScrollIntoView();
 	}
@@ -37,9 +37,9 @@ public partial class DialogAlbumMasterEquipmentWpf
 
 	private void ScrollIntoView()
 	{
-		if (ViewModel.SelectedEquipment is null) return;
+		if (ViewModel.SelectedEquipmentViewModel is null) return;
 
-		DataGrid.ScrollIntoView(ViewModel.SelectedEquipment);
+		DataGrid.ScrollIntoView(ViewModel.SelectedEquipmentViewModel);
 	}
 
 	private void EventSetter_OnHandler(object sender, MouseButtonEventArgs e)
