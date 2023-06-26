@@ -43,16 +43,16 @@ public class EquipmentUpgradePlanCostViewModel : ObservableObject
 
 		Model = model;
 
-		Fuel = new(model.Fuel, UseItemId.Fuel, true);
-		Ammo = new(model.Ammo, UseItemId.Ammo, true);
-		Steel = new(model.Steel, UseItemId.Steel, true);
-		Bauxite = new(model.Bauxite, UseItemId.Bauxite, true);
+		Fuel = new(model.Fuel, UseItemId.Fuel);
+		Ammo = new(model.Ammo, UseItemId.Ammo);
+		Steel = new(model.Steel, UseItemId.Steel);
+		Bauxite = new(model.Bauxite, UseItemId.Bauxite);
 
-		DevelopmentMaterial = new(model.DevelopmentMaterial, UseItemId.DevelopmentMaterial, true);
-		ImprovementMaterial = new(model.ImprovementMaterial, UseItemId.ImproveMaterial, true);
+		DevelopmentMaterial = new(model.DevelopmentMaterial, UseItemId.DevelopmentMaterial);
+		ImprovementMaterial = new(model.ImprovementMaterial, UseItemId.ImproveMaterial);
 
-		RequiredEquipments = model.RequiredEquipments.Select(item => new EquipmentUpgradePlanCostEquipmentViewModel(item, true)).ToList();
-		RequiredConsumables = model.RequiredConsumables.Select(item => new EquipmentUpgradePlanCostConsumableViewModel(item, true)).ToList();
+		RequiredEquipments = model.RequiredEquipments.Select(item => new EquipmentUpgradePlanCostEquipmentViewModel(item)).ToList();
+		RequiredConsumables = model.RequiredConsumables.Select(item => new EquipmentUpgradePlanCostConsumableViewModel(item)).ToList();
 
 		Fuel.PropertyChanged += ResourcePropertyUpdated;
 		Ammo.PropertyChanged += ResourcePropertyUpdated;

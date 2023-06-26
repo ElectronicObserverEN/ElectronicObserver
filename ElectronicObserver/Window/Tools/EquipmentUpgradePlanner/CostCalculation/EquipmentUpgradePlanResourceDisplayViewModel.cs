@@ -1,16 +1,12 @@
-﻿using ElectronicObserver.Common;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
-public abstract class EquipmentUpgradePlanResourceDisplayViewModel : CanBeUpdatedByApiViewModel
+public abstract class EquipmentUpgradePlanResourceDisplayViewModel : ObservableObject
 {
 	public int Required { get; set; }
 
 	public int Owned { get; set; }
 
 	public bool EnoughOwned => Owned >= Required;
-
-	protected EquipmentUpgradePlanResourceDisplayViewModel(bool shouldUpdate) : base(shouldUpdate)
-	{
-	}
 }

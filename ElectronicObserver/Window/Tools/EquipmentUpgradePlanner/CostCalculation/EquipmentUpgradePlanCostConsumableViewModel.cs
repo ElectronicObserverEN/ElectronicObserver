@@ -6,7 +6,7 @@ public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanC
 {
 	public UseItemMaster Consumable { get; set; }
 
-	public EquipmentUpgradePlanCostConsumableViewModel(EquipmentUpgradePlanCostItemModel model, bool shouldUpdate) : base(model, shouldUpdate)
+	public EquipmentUpgradePlanCostConsumableViewModel(EquipmentUpgradePlanCostItemModel model) : base(model)
 	{
 		Consumable = KCDatabase.Instance.MasterUseItems[model.Id];
 
