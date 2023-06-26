@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Common;
+using ElectronicObserver.Data;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
-public class EquipmentUpgradeDaysViewModel : CanBeUpdatedByApiViewModel
+public class EquipmentUpgradeDaysViewModel
 {
 	public static DayOfWeek[] DaysOfWeek { get; } = new DayOfWeek[]
 	{
@@ -21,10 +21,12 @@ public class EquipmentUpgradeDaysViewModel : CanBeUpdatedByApiViewModel
 
 	public List<EquipmentUpgradeDayViewModel> Days { get; set; } = new();
 
-	public EquipmentUpgradeDaysViewModel(List<EquipmentUpgradeHelpersModel> models, bool shouldUpdate) : base(shouldUpdate)
+	public EquipmentUpgradeDaysViewModel(List<EquipmentUpgradeHelpersModel> models)
 	{
+		KCDatabase db = KCDatabase.Instance;
+
 		Days = DaysOfWeek
-			.Select(day => new EquipmentUpgradeDayViewModel(day, models.Where(helpers => helpers.CanHelpOnDays.Contains(day)).SelectMany(helpers => helpers.ShipIds).ToList(), shouldUpdate))
+			.Select(day => new EquipmentUpgradeDayViewModel(day, models.Where(helpers => helpers.CanHelpOnDays.Contains(day)).SelectMany(helpers => helpers.ShipIds).ToList()))
 			.ToList();
 	}
 }

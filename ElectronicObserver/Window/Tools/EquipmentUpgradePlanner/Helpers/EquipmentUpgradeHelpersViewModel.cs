@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Common;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
-public class EquipmentUpgradeHelpersViewModel : CanBeUpdatedByApiViewModel
+public class EquipmentUpgradeHelpersViewModel : ObservableObject
 {
 	public static DayOfWeek[] DaysOfWeek { get; } = new DayOfWeek[]
 	{
@@ -29,9 +29,9 @@ public class EquipmentUpgradeHelpersViewModel : CanBeUpdatedByApiViewModel
 
 	public bool CanHelpToday => Days.First(day => day.DayValue == TimeService.CurrentDayOfWeekJST).IsHelperDay;
 
-	public EquipmentUpgradeHelpersViewModel(EquipmentUpgradeHelpersModel model, bool shouldUpdate) : base(shouldUpdate)
+	public EquipmentUpgradeHelpersViewModel(EquipmentUpgradeHelpersModel model)
 	{
-		Helpers = model.ShipIds.Select(ship => new EquipmentUpgradeHelperViewModel(ship, shouldUpdate)).ToList();
+		Helpers = model.ShipIds.Select(ship => new EquipmentUpgradeHelperViewModel(ship)).ToList();
 
 		Days = DaysOfWeek.Select(day => new EquipmentUpgradeHelpersDayViewModel(day, model.CanHelpOnDays.Contains(day))).ToList();
 

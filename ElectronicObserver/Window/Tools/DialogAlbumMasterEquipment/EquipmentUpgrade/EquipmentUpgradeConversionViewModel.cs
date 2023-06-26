@@ -29,7 +29,7 @@ public class EquipmentUpgradeConversionViewModel
 	    Helpers = improvementModel.Helpers
 		    .SelectMany(helpers => helpers.ShipIds)
 		    .Distinct()
-		    .Select(shipId => new EquipmentUpgradeHelperViewModel(shipId, false))
+		    .Select(shipId => new EquipmentUpgradeHelperViewModel(shipId))
 		    .ToList();
 	}
 }

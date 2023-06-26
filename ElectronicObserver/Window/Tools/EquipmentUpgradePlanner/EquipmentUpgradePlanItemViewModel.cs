@@ -67,7 +67,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; set; } = new();
 
-	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new(), true);
+	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new());
 
 	public Dictionary<DayOfWeek, List<EquipmentUpgradeHelperViewModel>> HelpersPerDay => HelperViewModelCompact
 		.Days
@@ -153,7 +153,7 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 				.Where(data => data.EquipmentId == equipment.EquipmentID)
 				.SelectMany(data => data.Improvement)
 				.SelectMany(data => data.Helpers)
-				.Select(helpers => new EquipmentUpgradeHelpersViewModel(helpers, true))
+				.Select(helpers => new EquipmentUpgradeHelpersViewModel(helpers))
 				.ToList(),
 			_ => new()
 		};
@@ -164,8 +164,8 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 				.Where(data => data.EquipmentId == equipment.EquipmentID)
 				.SelectMany(data => data.Improvement)
 				.SelectMany(data => data.Helpers)
-				.ToList(), true),
-			_ => new(new(), true)
+				.ToList()),
+			_ => new(new())
 		};
 
 		foreach (EquipmentUpgradeHelperViewModel helpers in HelpersPerDay.SelectMany(day => day.Value))
