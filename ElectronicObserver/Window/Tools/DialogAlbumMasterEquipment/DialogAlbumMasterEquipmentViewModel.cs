@@ -60,16 +60,19 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(SelectedEquipmentModel)) return;
-			
+
+			if (SelectedEquipmentModel is null)
+			{
+				SelectedEquipmentViewModel?.UpgradeViewModel?.UnsubscribeFromApis();
+				SelectedEquipmentViewModel = null;
+				return;
+			}
+
 			if (SelectedEquipmentViewModel is null)
 			{
-				SelectedEquipmentViewModel = SelectedEquipmentModel switch
-				{
-					not null => new(SelectedEquipmentModel),
-					_ => null
-				};
+				SelectedEquipmentViewModel = new(SelectedEquipmentModel);
 			}
-			else if (SelectedEquipmentModel is not null)
+			else
 			{
 				SelectedEquipmentViewModel.ChangeEquipment(SelectedEquipmentModel);
 			}
