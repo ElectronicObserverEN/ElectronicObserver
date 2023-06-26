@@ -60,7 +60,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(SelectedEquipmentModel)) return;
-
+			
 			if (SelectedEquipmentViewModel is null)
 			{
 				SelectedEquipmentViewModel = SelectedEquipmentModel switch
@@ -69,7 +69,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 					_ => null
 				};
 			}
-			else
+			else if (SelectedEquipmentModel is not null)
 			{
 				SelectedEquipmentViewModel.ChangeEquipment(SelectedEquipmentModel);
 			}
