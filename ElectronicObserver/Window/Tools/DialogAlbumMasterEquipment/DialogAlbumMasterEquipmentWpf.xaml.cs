@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
@@ -39,14 +40,14 @@ public partial class DialogAlbumMasterEquipmentWpf
 
 	private void ScrollIntoView()
 	{
-		if (ViewModel.SelectedEquipmentViewModel is null) return;
+		if (ViewModel.SelectedEquipmentModel is null) return;
 
-		DataGrid.ScrollIntoView(ViewModel.SelectedEquipmentViewModel);
+		DataGrid.ScrollIntoView(ViewModel.SelectedEquipmentModel);
 	}
 
 	private void EventSetter_OnHandler(object sender, MouseButtonEventArgs e)
 	{
-		if (sender is not DataGridRow { DataContext: EquipmentDataViewModel { Equipment: { } equip } }) return;
+		if (sender is not DataGridRow { DataContext: IEquipmentDataMaster equip }) return;
 
 		ViewModel.OpenEquipmentEncyclopedia(equip);
 	}
