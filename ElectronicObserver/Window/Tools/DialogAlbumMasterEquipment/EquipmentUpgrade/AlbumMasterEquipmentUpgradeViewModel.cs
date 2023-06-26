@@ -66,4 +66,13 @@ public class AlbumMasterEquipmentUpgradeViewModel
 			.Select(improvement => new EquipmentUpgradeConversionViewModel(improvement))
 			.ToList();
 	}
+
+	public void UnsubscribeFromApis()
+	{
+		ConversionViewModel.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+		Helpers.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+
+		RequiredItems0To5?.UnsubscribeFromApis();
+		RequiredItems6To9?.UnsubscribeFromApis();
+	}
 }

@@ -23,14 +23,30 @@ public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanC
 		Owned = item?.Count ?? 0;
 	}
 
+	private void UpdateOnResponseReceived(string apiname, dynamic data)
+	{
+		Update();
+	}
+
 	public void SubscribeToApis()
 	{
-		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiPort_Port.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += UpdateOnResponseReceived;
+	}
+
+	public void UnsubscribeFromApis()
+	{
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived -= UpdateOnResponseReceived;
 	}
 }

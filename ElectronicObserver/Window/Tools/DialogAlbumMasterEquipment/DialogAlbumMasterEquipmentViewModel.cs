@@ -12,12 +12,11 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Control.EquipmentFilter;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 
@@ -57,16 +56,23 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 			Ioc.Default.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
 
 		Filters.PropertyChanged += (_, _) => RefreshGrid();
-
+		
 		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(SelectedEquipmentModel)) return;
 
-			SelectedEquipmentViewModel = SelectedEquipmentModel switch
+			if (SelectedEquipmentViewModel is null)
 			{
-				not null => new EquipmentDataViewModel(SelectedEquipmentModel),
-				_ => null
-			};
+				SelectedEquipmentViewModel = SelectedEquipmentModel switch
+				{
+					not null => new(SelectedEquipmentModel),
+					_ => null
+				};
+			}
+			else
+			{
+				SelectedEquipmentViewModel.ChangeEquipment(SelectedEquipmentModel);
+			}
 		};
 
 		RefreshGrid();

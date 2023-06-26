@@ -15,6 +15,8 @@ public partial class DialogAlbumMasterEquipmentWpf
 		InitializeComponent();
 
 		ViewModel.PropertyChanged += SelectedEquipmentChanged;
+
+		Closed += (_, _) => ViewModel.SelectedEquipmentViewModel?.UpgradeViewModel?.UnsubscribeFromApis();
 	}
 
 	public DialogAlbumMasterEquipmentWpf(int equipId) : this()

@@ -22,19 +22,40 @@ public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCo
 		Owned = db.Equipments.Count(eq => eq.Value?.EquipmentID == Equipment.EquipmentID && eq.Value.UpgradeLevel == UpgradeLevel.Zero);
 	}
 
+	private void UpdateOnResponseReceived(string apiname, dynamic data)
+	{
+		Update();
+	}
+
 	public void SubscribeToApis()
 	{
-		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiPort_Port.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += UpdateOnResponseReceived;
+	}
+	
+	public void UnsubscribeFromApis()
+	{
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived -= UpdateOnResponseReceived;
 	}
 }
