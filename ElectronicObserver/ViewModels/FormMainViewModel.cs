@@ -1099,7 +1099,7 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Load some API files if they are saved
 	/// </summary>
