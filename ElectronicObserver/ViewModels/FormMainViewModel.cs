@@ -1108,7 +1108,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (string.IsNullOrEmpty(Config.Connection.SaveDataPath)) return;
 		if (!Directory.Exists(Config.Connection.SaveDataPath)) return;
-		
+
 		try
 		{
 			await LoadAPIResponse("api_start2/getData");
