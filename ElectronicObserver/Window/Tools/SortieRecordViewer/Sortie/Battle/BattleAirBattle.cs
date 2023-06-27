@@ -17,7 +17,7 @@ public sealed class BattleAirBattle : AirBattleData
 	private PhaseAirBattle? AirBattle2 { get; }
 
 	public BattleAirBattle(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqSortieAirbattleResponse battle)
-		: base(phaseFactory, fleets, battle)
+		: base(phaseFactory, fleets, battle, true)
 	{
 		Support = PhaseFactory.Support(battle.ApiSupportFlag, battle.ApiSupportInfo, false);
 		AirBattle2 = PhaseFactory.AirBattle(battle.ApiKouku2, AirPhaseType.Second);
