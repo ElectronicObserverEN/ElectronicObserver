@@ -22,7 +22,21 @@
 		<local:SortieDetailBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
 		<DataTemplate DataType="{x:Type node:EmptyNode}">
-			<Expander Header="{Binding DisplayCell}" />
+			<Expander>
+				<Expander.Header>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition SharedSizeGroup="DisplayCellColumn" />
+						</Grid.ColumnDefinitions>
+
+						<TextBlock
+							Grid.Column="0"
+							Margin="4 0"
+							Text="{Binding DisplayCell, Mode=OneTime}"
+							/>
+					</Grid>
+				</Expander.Header>
+			</Expander>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type phase:PhaseBase}">
