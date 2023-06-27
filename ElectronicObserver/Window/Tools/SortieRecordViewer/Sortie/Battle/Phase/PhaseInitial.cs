@@ -22,7 +22,7 @@ public class PhaseInitial : PhaseBase
 
 	private IKCDatabase KcDatabase { get; }
 
-	public bool IsBossDamaged { get; set; }
+	private bool IsBossDamaged { get; }
 	private List<int> FriendInitialHPs { get; }
 	private List<int> FriendMaxHPs { get; }
 
@@ -273,7 +273,7 @@ public class PhaseInitial : PhaseBase
 					HPCurrent = t.Hp switch
 					{
 						JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
-						JsonElement { ValueKind: JsonValueKind.String } s => KcDatabase.MasterShips[t.Id].HPMin,
+						JsonElement { ValueKind: JsonValueKind.String } => KcDatabase.MasterShips[t.Id].HPMin,
 						_ => throw new NotImplementedException(),
 					},
 					Level = t.Level,
