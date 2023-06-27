@@ -215,7 +215,7 @@
 						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 
-					<TextBlock Grid.Row="0" Text="{Binding AirBaseRaid.Title, FallbackValue={x:Null}}">
+					<TextBlock Grid.Row="0">
 						<TextBlock.Style>
 							<Style TargetType="TextBlock">
 								<Setter Property="Visibility" Value="Visible" />
@@ -226,9 +226,13 @@
 								</Style.Triggers>
 							</Style>
 						</TextBlock.Style>
+
+						<Run Text="◆" />
+						<Run Text="{Binding AirBaseRaid.Title, FallbackValue={x:Null}, Mode=OneTime}" />
+						<Run Text="◆" />
 					</TextBlock>
 
-					<ItemsControl Grid.Row="1" ItemsSource="{Binding AirBaseRaid.Phases}">
+					<ItemsControl Grid.Row="1" ItemsSource="{Binding AirBaseRaid.Phases, FallbackValue={x:Null}}">
 						<ItemsControl.Style>
 							<Style TargetType="ItemsControl">
 								<Setter Property="Visibility" Value="Visible" />
@@ -243,15 +247,34 @@
 
 					<ContentControl Grid.Row="2" Content="{Binding AirBaseRaid}" />
 
-					<TextBlock Grid.Row="3" Text="{Binding FirstBattle.Title}" />
+					<TextBlock Grid.Row="3">
+						<Run Text="◆" />
+						<Run Text="{Binding FirstBattle.Title, Mode=OneTime}" />
+						<Run Text="◆" />
+					</TextBlock>
 
 					<ItemsControl Grid.Row="4" ItemsSource="{Binding FirstBattle.Phases}" />
 
 					<ContentControl Grid.Row="5" Content="{Binding FirstBattle}" />
 
-					<TextBlock Grid.Row="6" Text="{Binding SecondBattle.Title}" />
+					<TextBlock Grid.Row="6">
+						<TextBlock.Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding SecondBattle}" Value="{x:Null}">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
 
-					<ItemsControl Grid.Row="7" ItemsSource="{Binding SecondBattle.Phases}">
+						<Run Text="◆" />
+						<Run Text="{Binding SecondBattle.Title, FallbackValue={x:Null}, Mode=OneTime}" />
+						<Run Text="◆" />
+					</TextBlock>
+
+					<ItemsControl Grid.Row="7" ItemsSource="{Binding SecondBattle.Phases, FallbackValue={x:Null}}">
 						<ItemsControl.Style>
 							<Style TargetType="ItemsControl">
 								<Setter Property="Visibility" Value="Visible" />
@@ -267,7 +290,9 @@
 					<ContentControl Grid.Row="8" Content="{Binding SecondBattle}" />
 
 					<StackPanel Grid.Row="9" Margin="0 10">
-						<TextBlock Text="{Binding Result}" />
+						<TextBlock>
+							<Run Text="{Binding Result, Mode=OneTime}" />
+						</TextBlock>
 						<TextBlock Text="{Binding ResultRank}" />
 						<TextBlock Text="{Binding ResultMvpMain}" />
 						<TextBlock Text="{Binding ResultMvpEscort}">
