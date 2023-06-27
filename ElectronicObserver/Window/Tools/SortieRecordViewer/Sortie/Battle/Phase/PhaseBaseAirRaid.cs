@@ -9,7 +9,6 @@ using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -71,11 +70,6 @@ public class PhaseBaseAirRaid : PhaseBase
 		LaunchedShipIndexFriend = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 0);
 		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 1);
 
-		if (airBattleData.ApiMapSquadronPlane is null)
-		{
-
-		}
-
 		Squadrons = airBattleData.ApiMapSquadronPlane?.Values
 			.SelectMany(b => b)
 			.Select(b => new BattleBaseAirCorpsSquadron
@@ -92,7 +86,6 @@ public class PhaseBaseAirRaid : PhaseBase
 			.Where(sq => sq.Equipment is not null)
 			.Select(sq => sq.ToString())
 			.DefaultIfEmpty(BattleRes.Empty)));
-
 
 		Display = sb.ToString();
 	}
@@ -150,58 +143,4 @@ public class PhaseBaseAirRaid : PhaseBase
 
 		return battleFleets;
 	}
-
-	private string GetStage1Display(AirState airState, int friendlyLost, int friendlyTotal,
-		int enemyLost, int enemyTotal) =>
-		$"""
-		Stage 1: {Constants.GetAirSuperiority(airState)}
-		　{BattleRes.Friendly}: -{friendlyLost}/{friendlyTotal}
-		　{BattleRes.Enemy}: -{enemyLost}/{enemyTotal}
-		""";
-
-	private List<AirBattleAttack> GetAttacks(FleetFlag fleetFlag, int indexOffset, IFleetData? fleet,
-		List<int> torpedoFlags, List<int> bomberFlags, List<AirHitType> criticalFlags, List<double> damages)
-		=> fleet?.MembersInstance
-			.Select((s, i) => (Ship: s, Index: i + indexOffset))
-			.Zip(torpedoFlags, (t, f) => (t.Ship, t.Index, TorpedoFlag: f))
-			.Zip(bomberFlags, (t, b) => (t.Ship, t.Index, t.TorpedoFlag, BomberFlag: b))
-			.Zip(criticalFlags, (t, c) => (t.Ship, t.Index, t.TorpedoFlag, t.BomberFlag, CriticalFlag: c))
-			.Zip(damages, (t, d) => (t.Ship, t.Index, t.TorpedoFlag, t.BomberFlag, t.CriticalFlag, Damage: d))
-			.Select(t => new AirBattleAttack
-			{
-				AttackType = (t.TorpedoFlag, t.BomberFlag) switch
-				{
-					( > 0, > 0) => AirAttack.TorpedoBombing,
-					( > 0, _) => AirAttack.Torpedo,
-					(_, > 0) => AirAttack.Bombing,
-
-					_ => AirAttack.None,
-				},
-				Defenders = new List<AirBattleDefender>
-				{
-					new()
-					{
-						Defender = new BattleIndex(t.Index, fleetFlag),
-						CriticalFlag = (t.CriticalFlag, t.Damage) switch
-						{
-							(AirHitType.Critical, _) => HitType.Critical,
-							(AirHitType.HitOrMiss, > 0) => HitType.Hit,
-							(AirHitType.HitOrMiss, _) => HitType.Miss,
-
-							_ => HitType.Invalid,
-						},
-						RawDamage = t.Damage,
-					},
-				},
-			}).ToList()
-		?? new();
-
-	private static List<int> GetLaunchedShipIndex(List<List<int>?> apiPlaneFrom, int index) =>
-		apiPlaneFrom
-			.Skip(index)
-			.FirstOrDefault()
-			?.Where(i => i > 0)
-			.Select(i => i - 1)
-			.ToList()
-		?? new();
 }

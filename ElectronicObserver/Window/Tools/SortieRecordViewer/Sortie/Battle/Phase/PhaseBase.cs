@@ -1,4 +1,9 @@
-﻿using ElectronicObserverTypes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ElectronicObserver.Data;
+using ElectronicObserver.Properties.Data;
+using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -47,4 +52,59 @@ public abstract class PhaseBase
 			ab.HPCurrent -= damage;
 		}
 	}
+
+	protected static string GetStage1Display(AirState airState, int friendlyLost, int friendlyTotal,
+		int enemyLost, int enemyTotal) =>
+		$"""
+		Stage 1: {Constants.GetAirSuperiority(airState)}
+		　{BattleRes.Friendly}: -{friendlyLost}/{friendlyTotal}
+		　{BattleRes.Enemy}: -{enemyLost}/{enemyTotal}
+		""";
+
+	protected static List<AirBattleAttack> GetAttacks(FleetFlag fleetFlag, int indexOffset, IFleetData? fleet,
+		List<int> torpedoFlags, List<int> bomberFlags, List<AirHitType> criticalFlags, List<double> damages)
+		=> fleet?.MembersInstance
+			.Select((s, i) => (Ship: s, Index: i + indexOffset))
+			.Zip(torpedoFlags, (t, f) => (t.Ship, t.Index, TorpedoFlag: f))
+			.Zip(bomberFlags, (t, b) => (t.Ship, t.Index, t.TorpedoFlag, BomberFlag: b))
+			.Zip(criticalFlags, (t, c) => (t.Ship, t.Index, t.TorpedoFlag, t.BomberFlag, CriticalFlag: c))
+			.Zip(damages, (t, d) => (t.Ship, t.Index, t.TorpedoFlag, t.BomberFlag, t.CriticalFlag, Damage: d))
+			.Select(t => new AirBattleAttack
+			{
+				AttackType = (t.TorpedoFlag, t.BomberFlag) switch
+				{
+					( > 0, > 0) => AirAttack.TorpedoBombing,
+					( > 0, _) => AirAttack.Torpedo,
+					(_, > 0) => AirAttack.Bombing,
+
+					_ => AirAttack.None,
+				},
+				Defenders = new List<AirBattleDefender>
+				{
+					new()
+					{
+						Defender = new BattleIndex(t.Index, fleetFlag),
+						CriticalFlag = (t.CriticalFlag, t.Damage) switch
+						{
+							(AirHitType.Critical, _) => HitType.Critical,
+							// 0.1 is used for flag protect miss
+							(AirHitType.HitOrMiss, < 1) => HitType.Miss,
+							(AirHitType.HitOrMiss, _) => HitType.Hit,
+
+							_ => HitType.Invalid,
+						},
+						RawDamage = t.Damage,
+					},
+				},
+			}).ToList()
+			?? new();
+
+	protected static List<int> GetLaunchedShipIndex(List<List<int>?> apiPlaneFrom, int index)
+		=> apiPlaneFrom
+			.Skip(index)
+			.FirstOrDefault()
+			?.Where(i => i > 0)
+			.Select(i => i - 1)
+			.ToList()
+			?? new();
 }
