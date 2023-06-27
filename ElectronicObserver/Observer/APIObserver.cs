@@ -739,7 +739,7 @@ public sealed class APIObserver
 		Task.Run(ProcessApiDataAsync);
 	}
 
-	private async void ProcessApiDataAsync()
+	private async Task ProcessApiDataAsync()
 	{
 		// basically while (true)
 		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
