@@ -516,8 +516,10 @@ public record AntiAirCutIn
 				{
 					Ships = new()
 					{
+						ShipId.YamatoKai,
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKai,
 						ShipId.MusashiKaiNi,
 					},
 					HighAngleMusashi = 1,

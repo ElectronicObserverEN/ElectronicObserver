@@ -745,7 +745,7 @@ public sealed class APIObserver
 		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
 		{
 			Action apiAction = await ApiProcessingChannel.Reader.ReadAsync();
-			UIControl.Dispatcher.Invoke(apiAction);
+			await UIControl.Dispatcher.BeginInvoke(apiAction);
 		}
 	}
 

@@ -5,18 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Control.EquipmentFilter;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 
@@ -24,20 +24,22 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
 public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 {
-	private IEnumerable<EquipmentDataViewModel> AllEquipment { get; }
+	private IEnumerable<IEquipmentDataMaster> AllEquipment { get; }
 	public DialogAlbumMasterEquipmentTranslationViewModel DialogAlbumMasterEquipment { get; }
 
-	public DataGridViewModel<EquipmentDataViewModel> DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<IEquipmentDataMaster> DataGridViewModel { get; set; } = new();
 
-	public EquipmentDataViewModel? SelectedEquipment { get; set; }
-	public bool DetailsVisible => SelectedEquipment is not null;
+	[ObservableProperty]
+	private IEquipmentDataMaster? selectedEquipmentModel;
+	public EquipmentDataViewModel? SelectedEquipmentViewModel { get; set; }
+	public bool DetailsVisible => SelectedEquipmentViewModel is not null;
 
 	public EquipmentFilterViewModel Filters { get; } = new(true);
 
-	public string Title => SelectedEquipment switch
+	public string Title => SelectedEquipmentViewModel switch
 	{
 		null => DialogAlbumMasterEquipment.Title,
-		{ } => $"{DialogAlbumMasterEquipment.Title} - {SelectedEquipment.Equipment.NameEN}"
+		{ } => $"{DialogAlbumMasterEquipment.Title} - {SelectedEquipmentViewModel.Equipment.NameEN}"
 	};
 
 	private System.Windows.Forms.SaveFileDialog SaveCSVDialog = new()
@@ -48,13 +50,33 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 	public DialogAlbumMasterEquipmentViewModel()
 	{
-		AllEquipment = KCDatabase.Instance.MasterEquipments.Values
-			.Select(e => new EquipmentDataViewModel(e));
+		AllEquipment = KCDatabase.Instance.MasterEquipments.Values;
 
 		DialogAlbumMasterEquipment =
 			Ioc.Default.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
 
 		Filters.PropertyChanged += (_, _) => RefreshGrid();
+		
+		PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(SelectedEquipmentModel)) return;
+
+			if (SelectedEquipmentModel is null)
+			{
+				SelectedEquipmentViewModel?.UpgradeViewModel?.UnsubscribeFromApis();
+				SelectedEquipmentViewModel = null;
+				return;
+			}
+
+			if (SelectedEquipmentViewModel is null)
+			{
+				SelectedEquipmentViewModel = new(SelectedEquipmentModel);
+			}
+			else
+			{
+				SelectedEquipmentViewModel.ChangeEquipment(SelectedEquipmentModel);
+			}
+		};
 
 		RefreshGrid();
 	}
@@ -62,7 +84,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	private void RefreshGrid()
 	{
 		DataGridViewModel.ItemsSource.Clear();
-		DataGridViewModel.AddRange(AllEquipment.Where(e => Filters.MeetsFilterCondition(e.Equipment)));
+		DataGridViewModel.AddRange(AllEquipment.Where(e => Filters.MeetsFilterCondition(e)));
 	}
 
 	[RelayCommand]
@@ -204,7 +226,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_CopyEquipmentName_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 		if (eq != null)
 			Clipboard.SetDataObject(eq.NameEN);
 		else
@@ -214,7 +236,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_CopyEquipmentData_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 		if (eq is null)
 		{
 			System.Media.SystemSounds.Exclamation.Play();
@@ -269,7 +291,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_GoogleEquipmentName_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 		if (eq == null)
 		{
 			System.Media.SystemSounds.Exclamation.Play();
@@ -297,7 +319,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_View_ShowAppearingArea_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 
 		if (eq is null)
 		{
