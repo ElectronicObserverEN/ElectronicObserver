@@ -103,9 +103,6 @@
   <data name="FleetImage" xml:space="preserve">
     <value>編成画像出力</value>
   </data>
-  <data name="CopyReplay" xml:space="preserve">
-    <value>リプレイをコピ</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>検索</value>
   </data>
@@ -135,5 +132,11 @@
   </data>
   <data name="Open" xml:space="preserve">
     <value>開く</value>
+  </data>
+  <data name="Replay" xml:space="preserve">
+    <value>リプレイ</value>
+  </data>
+  <data name="CopyData" xml:space="preserve">
+    <value>データをコピー</value>
   </data>
 </root>

@@ -143,13 +143,23 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand]
-	private void CopyReplayToClipboard()
+	private void CopyReplayLinkToClipboard()
 	{
 		if (SelectedSortie is null) return;
 
 		EnsureApiFilesLoaded(SelectedSortie);
 
-		ToolService.CopyReplayToClipboard(SelectedSortie);
+		ToolService.CopyReplayLinkToClipboard(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void CopyReplayDataToClipboard()
+	{
+		if (SelectedSortie is null) return;
+
+		EnsureApiFilesLoaded(SelectedSortie);
+
+		ToolService.CopyReplayDataToClipboard(SelectedSortie);
 	}
 
 	[RelayCommand]

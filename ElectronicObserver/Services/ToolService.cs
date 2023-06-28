@@ -423,7 +423,22 @@ public class ToolService
 		return null;
 	}
 
-	public void CopyReplayToClipboard(SortieRecordViewModel sortie)
+	public void CopyReplayLinkToClipboard(SortieRecordViewModel sortie)
+	{
+		string replayData = GenerateReplayData(sortie);
+		string link = $"https://kc3kai.github.io/kancolle-replay/battleplayer.html#{replayData}";
+
+		Clipboard.SetText(link);
+	}
+
+	public void CopyReplayDataToClipboard(SortieRecordViewModel sortie)
+	{
+		string replayData = GenerateReplayData(sortie);
+
+		Clipboard.SetText(replayData);
+	}
+
+	private static string GenerateReplayData(SortieRecordViewModel sortie)
 	{
 		ReplayData replay = sortie.Model.ToReplayData();
 
@@ -507,9 +522,11 @@ public class ToolService
 			battle.SecondBattle ??= new();
 
 			replay.Battles.Add(battle);
+
+
 		}
 
-		Clipboard.SetText(JsonSerializer.Serialize(replay));
+		return JsonSerializer.Serialize(replay);
 	}
 
 	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie)

@@ -61,20 +61,20 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to データをコピー.
+        /// </summary>
+        internal static string CopyData {
+            get {
+                return ResourceManager.GetString("CopyData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to リンクをコピー.
         /// </summary>
         internal static string CopyLink {
             get {
                 return ResourceManager.GetString("CopyLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to リプレイをコピ.
-        /// </summary>
-        internal static string CopyReplay {
-            get {
-                return ResourceManager.GetString("CopyReplay", resourceCulture);
             }
         }
         
@@ -129,6 +129,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         internal static string Open {
             get {
                 return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to リプレイ.
+        /// </summary>
+        internal static string Replay {
+            get {
+                return ResourceManager.GetString("Replay", resourceCulture);
             }
         }
         

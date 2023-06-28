@@ -26,7 +26,8 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string Map => SortieRecordViewer.Map;
 
 	public string FleetImage => SortieRecordViewer.FleetImage;
-	public string CopyReplay => SortieRecordViewer.CopyReplay;
+	public string Replay => SortieRecordViewer.Replay;
+	public string CopyData => SortieRecordViewer.CopyData;
 	public string SortieDetail => SortieRecordViewer.SortieDetail;
 	public string SmokeScreenCsv => $"{BattleRes.SmokeScreen} CSV";
 
