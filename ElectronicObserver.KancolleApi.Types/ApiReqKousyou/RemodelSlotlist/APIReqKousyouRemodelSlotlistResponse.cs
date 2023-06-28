@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 
 public class APIReqKousyouRemodelSlotlistResponse
 {

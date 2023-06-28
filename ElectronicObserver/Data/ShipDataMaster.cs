@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 

@@ -522,8 +522,6 @@ public class ToolService
 			battle.SecondBattle ??= new();
 
 			replay.Battles.Add(battle);
-
-
 		}
 
 		return JsonSerializer.Serialize(replay);

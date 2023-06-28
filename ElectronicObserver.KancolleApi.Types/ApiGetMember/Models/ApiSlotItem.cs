@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Models;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Models;
 
 public class ApiSlotItem
 {

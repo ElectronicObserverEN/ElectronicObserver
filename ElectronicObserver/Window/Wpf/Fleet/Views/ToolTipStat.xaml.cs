@@ -1,23 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.Views;
+
 /// <summary>
 /// Interaction logic for ToolTipStat.xaml
 /// </summary>
-public partial class ToolTipStat : UserControl
+public partial class ToolTipStat
 {
 	public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
 		nameof(Icon), typeof(ImageSource), typeof(ToolTipStat), new PropertyMetadata(default(ImageSource)));

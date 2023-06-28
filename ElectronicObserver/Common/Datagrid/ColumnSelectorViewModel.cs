@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows;
 
 namespace ElectronicObserver.Common.Datagrid;
 
 public class ColumnSelectorViewModel : WindowViewModelBase
 {
-	public ColumnSelectorTranslationViewModel ColumnSelector { get; set; } = new();
-	public List<ColumnViewModel> Columns { get; set; }
+	public ColumnSelectorTranslationViewModel ColumnSelector { get; } = new();
+	public List<ColumnViewModel> Columns { get; }
 
 	public ColumnSelectorViewModel(List<ColumnViewModel> columns)
 	{

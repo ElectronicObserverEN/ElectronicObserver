@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
 using DynaJson;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Utility.Mathematics;

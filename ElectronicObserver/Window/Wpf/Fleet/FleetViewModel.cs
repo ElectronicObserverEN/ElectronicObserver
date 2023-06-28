@@ -13,7 +13,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;

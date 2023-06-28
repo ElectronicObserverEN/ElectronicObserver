@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Forms;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;

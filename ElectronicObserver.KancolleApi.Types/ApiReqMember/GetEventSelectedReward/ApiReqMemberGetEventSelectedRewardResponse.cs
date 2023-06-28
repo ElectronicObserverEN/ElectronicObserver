@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.ApiReqMember.Models;
+﻿using ElectronicObserver.KancolleApi.Types.ApiReqMember.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.GetEventSelectedReward;
 

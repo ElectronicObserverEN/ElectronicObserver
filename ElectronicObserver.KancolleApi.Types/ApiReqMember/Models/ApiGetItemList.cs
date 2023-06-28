@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.Models;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.Models;
 
 public class ApiGetItemList
 {

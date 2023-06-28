@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.ApiGetMember.Models;
+﻿using ElectronicObserver.KancolleApi.Types.ApiGetMember.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.PresetSlot;
 

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Utility;

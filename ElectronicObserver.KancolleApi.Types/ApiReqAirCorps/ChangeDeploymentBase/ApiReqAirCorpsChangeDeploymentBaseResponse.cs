@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.Models;
+﻿using ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqAirCorps.ChangeDeploymentBase;
 
