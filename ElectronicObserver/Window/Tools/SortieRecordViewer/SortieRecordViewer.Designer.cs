@@ -88,6 +88,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to サブ艦娘エラー：正しい艦娘を特定できませんでした。.
+        /// </summary>
+        internal static string DuplicateShipError {
+            get {
+                return ResourceManager.GetString("DuplicateShipError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APIデータの解析に失敗しました。.
         /// </summary>
         internal static string FailedToParseApiData {

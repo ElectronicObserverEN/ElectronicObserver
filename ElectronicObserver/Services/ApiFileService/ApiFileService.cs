@@ -348,6 +348,7 @@ public class ApiFileService : ObservableObject
 	private static SortieShip MakeSortieShip(IShipData s) => new()
 	{
 		Id = s.MasterShip.ShipId,
+		DropId = s.MasterID,
 		Level = s.Level,
 		Condition = s.Condition,
 		Kyouka = s.Kyouka.ToList(),

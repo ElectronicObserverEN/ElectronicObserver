@@ -9,6 +9,12 @@ public class SortieShip
 	[JsonPropertyName("Id")]
 	public ShipId Id { get; set; }
 
+	/// <summary>
+	/// null for some older data
+	/// </summary>
+	[JsonPropertyName("DropId")]
+	public int? DropId { get; set; }
+
 	[JsonPropertyName("Level")]
 	public int Level { get; set; }
 

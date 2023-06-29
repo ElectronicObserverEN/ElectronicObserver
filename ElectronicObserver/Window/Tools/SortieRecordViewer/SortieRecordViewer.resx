@@ -139,4 +139,7 @@
   <data name="CopyData" xml:space="preserve">
     <value>データをコピー</value>
   </data>
+  <data name="DuplicateShipError" xml:space="preserve">
+    <value>サブ艦娘エラー：正しい艦娘を特定できませんでした。</value>
+  </data>
 </root>

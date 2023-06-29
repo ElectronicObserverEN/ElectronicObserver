@@ -159,4 +159,7 @@
   <data name="CopyData" xml:space="preserve">
     <value>Copy data</value>
   </data>
+  <data name="DuplicateShipError" xml:space="preserve">
+    <value>Duplicate ship error: couldn't determine the correct ship.</value>
+  </data>
 </root>

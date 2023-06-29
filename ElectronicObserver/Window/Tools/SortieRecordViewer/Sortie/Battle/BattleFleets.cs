@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
@@ -88,38 +89,47 @@ public class BattleFleets
 #pragma warning disable IDE0079
 	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 #pragma warning restore IDE0079
-	private IShipData? GetShip(ApiShip shipData)
+	private IShipData GetShip(ApiShip shipData)
 	{
-		IEnumerable<IShipData?> ships = Fleet.MembersInstance;
+		IEnumerable<IShipData> ships = Fleet.MembersInstance.Where(s => s is not null)!;
 
 		if (EscortFleet is not null)
 		{
-			ships = ships.Concat(EscortFleet.MembersInstance);
+			ships = ships.Concat(EscortFleet.MembersInstance.Where(s => s is not null))!;
 		}
 
-		ships = ships.Where(s => s?.MasterShip.ShipId == shipData.ApiShipId);
+		ships = ships.Where(s => s.MasterID is 0 || s.MasterID == shipData.ApiId);
 
 		if (ships.Count() is 1)
 		{
 			return ships.First();
 		}
 
-		ships = ships.Where(s => s!.ExpansionSlot == shipData.ApiSlotEx);
+		ships = ships.Where(s => s.MasterShip.ShipId == shipData.ApiShipId);
 
 		if (ships.Count() is 1)
 		{
 			return ships.First();
 		}
 
-		ships = ships.Where(s => s!.Slot.SequenceEqual(shipData.ApiSlot));
+		ships = ships.Where(s => s.HPCurrent == shipData.ApiNowhp);
 
 		if (ships.Count() is 1)
 		{
 			return ships.First();
 		}
 
-		// might need to do some other checks?
-		return ships.First();
+		/*
+		 need to fix this first: https://github.com/ElectronicObserverEN/ElectronicObserver/issues/369
+		ships = ships.Where(s => s.Level == shipData.ApiLv);
+
+		if (ships.Count() is 1)
+		{
+			return ships.First();
+		}
+		*/
+
+		throw new Exception(SortieRecordViewer.DuplicateShipError);
 	}
 
 	public void UpdateState(ApiGetMemberShipDeckResponse deck)
