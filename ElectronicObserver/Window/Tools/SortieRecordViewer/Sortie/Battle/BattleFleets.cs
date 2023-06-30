@@ -52,16 +52,16 @@ public class BattleFleets
 
 	public IShipData? GetShip(BattleIndex index) => index.FleetFlag switch
 	{
-		FleetFlag.Player => (index.Index < CombinedFleetMainFleetShipCount) switch
+		FleetFlag.Player => (EscortFleet is not null && index.Index >= CombinedFleetMainFleetShipCount) switch
 		{
-			true => Fleet.MembersInstance[index.Index],
-			_ => EscortFleet?.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
+			true => EscortFleet!.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
+			_ => Fleet.MembersInstance[index.Index],
 		},
 
-		_ => (index.Index < CombinedFleetMainFleetShipCount) switch
+		_ => (EnemyEscortFleet is not null && index.Index >= CombinedFleetMainFleetShipCount) switch
 		{
-			true => EnemyFleet?.MembersInstance[index.Index],
-			_ => EnemyEscortFleet?.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
+			true => EnemyEscortFleet!.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
+			_ => EnemyFleet?.MembersInstance[index.Index],
 		},
 	};
 
@@ -69,10 +69,10 @@ public class BattleFleets
 	{
 		FleetFlag.Player when FriendFleet is not null => FriendFleet.MembersInstance[index.Index],
 
-		_ => (index.Index < EnemyFleet?.MembersInstance.Count) switch
+		_ => (EnemyEscortFleet is not null && index.Index >= CombinedFleetMainFleetShipCount) switch
 		{
-			true => EnemyFleet?.MembersInstance[index.Index],
-			_ => EnemyEscortFleet?.MembersInstance[index.Index - EnemyFleet?.MembersInstance.Count ?? 6],
+			true => EnemyEscortFleet!.MembersInstance[index.Index - CombinedFleetMainFleetShipCount],
+			_ => EnemyFleet?.MembersInstance[index.Index],
 		},
 	};
 
