@@ -23,6 +23,7 @@ public sealed class PhaseFactory
 		ApiDestructionBattle c => new(KcDatabase, fleets, c),
 		ICombinedBattleApiResponse c => new(KcDatabase, fleets, c),
 		IPlayerCombinedFleetBattle c => new(KcDatabase, fleets, c),
+		ICombinedNightBattleApiResponse c => new(KcDatabase, fleets, c),
 		IEnemyCombinedFleetBattle c => new(KcDatabase, fleets, c),
 		_ => new(KcDatabase, fleets, battle),
 	};

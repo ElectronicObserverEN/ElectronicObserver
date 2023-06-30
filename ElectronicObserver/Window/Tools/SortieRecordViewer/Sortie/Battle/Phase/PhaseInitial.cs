@@ -252,6 +252,13 @@ public class PhaseInitial : PhaseBase
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
 
+	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedNightBattleApiResponse battle)
+		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
+	{
+		SetEscortFleetHp(fleets, battle);
+		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
+	}
+
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ApiDestructionBattle battle)
 	{
 		KcDatabase = kcDatabase;
@@ -297,11 +304,26 @@ public class PhaseInitial : PhaseBase
 	{
 		if (fleets.EscortFleet is null) return;
 
+		SetEscortFleetHp(fleets, battle.ApiFNowhpsCombined);
+	}
+
+	private static void SetEscortFleetHp(BattleFleets fleets, ICombinedNightBattleApiResponse battle)
+	{
+		if (fleets.EscortFleet is null) return;
+		if (battle.ApiFNowhpsCombined is null) return;
+
+		SetEscortFleetHp(fleets, battle.ApiFNowhpsCombined);
+	}
+
+	private static void SetEscortFleetHp(BattleFleets fleets, List<int> hpNowList)
+	{
+		if (fleets.EscortFleet is null) return;
+
 		foreach ((IShipData? ship, int i) in fleets.EscortFleet.MembersInstance.Select((s, i) => (s, i)))
 		{
 			if (ship is not ShipDataMock s) continue;
 
-			s.HPCurrent = battle.ApiFNowhpsCombined[i];
+			s.HPCurrent = hpNowList[i];
 		}
 	}
 
