@@ -1089,4 +1089,10 @@
   <data name="CutinZuiun" xml:space="preserve">
     <value>CI (Zuiun)</value>
   </data>
+  <data name="Title_NormalRadar" xml:space="preserve">
+    <value>Normal Fleet Radar Ambush</value>
+  </data>
+  <data name="Title_NormalDayFromNight" xml:space="preserve">
+    <value>Night→Day Battle</value>
+  </data>
 </root>

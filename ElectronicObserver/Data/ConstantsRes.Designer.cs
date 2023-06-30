@@ -583,15 +583,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to   : 装甲破壊.
-        /// </summary>
-        public static string BattleDetail_IsBossDamaged {
-            get {
-                return ResourceManager.GetString("BattleDetail_IsBossDamaged", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to  セル: .
         /// </summary>
         public static string BattleDetail_Node {
@@ -2761,6 +2752,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 対通常艦隊　夜昼戦.
+        /// </summary>
+        public static string Title_NormalDayFromNight {
+            get {
+                return ResourceManager.GetString("Title_NormalDayFromNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 通常艦隊 航空戦.
         /// </summary>
         public static string Title_NormalFleetAirBattle {
@@ -2784,6 +2784,15 @@ namespace ElectronicObserver.Data {
         public static string Title_NormalNight {
             get {
                 return ResourceManager.GetString("Title_NormalNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 レーダー射撃.
+        /// </summary>
+        public static string Title_NormalRadar {
+            get {
+                return ResourceManager.GetString("Title_NormalRadar", resourceCulture);
             }
         }
         

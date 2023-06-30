@@ -1089,4 +1089,10 @@
   <data name="CutinZuiun" xml:space="preserve">
     <value>夜間瑞雲カットイン</value>
   </data>
+  <data name="Title_NormalRadar" xml:space="preserve">
+    <value>通常艦隊 レーダー射撃</value>
+  </data>
+  <data name="Title_NormalDayFromNight" xml:space="preserve">
+    <value>対通常艦隊　夜昼戦</value>
+  </data>
 </root>

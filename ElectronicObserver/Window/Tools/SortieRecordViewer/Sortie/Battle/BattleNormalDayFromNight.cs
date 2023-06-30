@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.NightToDay;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -10,7 +11,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 /// </summary>
 public sealed class BattleNormalDayFromNight : DayFromNightBattleData
 {
-	public override string Title => "対通常艦隊　夜昼戦";
+	public override string Title => ConstantsRes.Title_NormalDayFromNight;
 
 	public BattleNormalDayFromNight(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqSortieNightToDayResponse battle)
 		: base(phaseFactory, fleets, battle)
