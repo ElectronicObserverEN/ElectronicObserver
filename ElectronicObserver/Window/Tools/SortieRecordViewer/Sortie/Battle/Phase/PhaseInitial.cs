@@ -77,17 +77,17 @@ public class PhaseInitial : PhaseBase
 		$"{BattleRes.AirSuperiority} {Calculator.GetAirSuperiorityRangeString(fleet)} " +
 		$"{GetLosString(fleet)}";
 
-	private static string? ShipDisplay(IFleetData fleet, IShipData? ship, int index) => ship switch
+	private static string? ShipDisplay(IFleetData fleet, IShipData? ship, int displayIndex) => ship switch
 	{
 		null => null,
 
-		_ => $"#{index}: {ship.MasterShip.ShipTypeName} {ship.NameWithLevel} " +
+		_ => $"#{displayIndex}: {ship.MasterShip.ShipTypeName} {ship.NameWithLevel} " +
 			$"HP: {ship.HPCurrent}/{ship.HPMax} - " +
 			$"{GeneralRes.Firepower}:{ship.FirepowerBase}, " +
 			$"{GeneralRes.Torpedo}:{ship.TorpedoBase}, " +
 			$"{GeneralRes.AntiAir}:{ship.AABase}, " +
 			$"{GeneralRes.Armor}:{ship.ArmorBase}" +
-			$"{EscapedText(fleet.EscapedShipList.Contains(ship.MasterID))}" +
+			$"{EscapedText(fleet.EscapedShipList.Contains(fleet.MembersInstance.IndexOf(ship)))}" +
 			$"\n" +
 			$" {string.Join(", ", ship.AllSlotInstance.Zip(ship.IsExpansionSlotAvailable switch
 			{
@@ -202,6 +202,8 @@ public class PhaseInitial : PhaseBase
 			s.HPCurrent = FriendInitialHPs[i];
 		}
 
+		Escape(fleets.Fleet, battle.ApiEscapeIdx);
+
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
 			.Zip(battle.ApiESlot, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
@@ -237,6 +239,7 @@ public class PhaseInitial : PhaseBase
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
 		SetEscortFleetHp(fleets, battle);
+		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
 	}
 
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IEnemyCombinedFleetBattle battle)
@@ -249,6 +252,8 @@ public class PhaseInitial : PhaseBase
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
 		SetEscortFleetHp(fleets, battle);
+		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
+
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
 
@@ -324,6 +329,17 @@ public class PhaseInitial : PhaseBase
 			if (ship is not ShipDataMock s) continue;
 
 			s.HPCurrent = hpNowList[i];
+		}
+	}
+
+	private static void Escape(IFleetData? fleet, List<int>? escapeIndexes)
+	{
+		if (fleet is null) return;
+		if (escapeIndexes is null) return;
+
+		foreach (int index in escapeIndexes)
+		{
+			fleet.Escape(index);
 		}
 	}
 
