@@ -33,15 +33,27 @@ public abstract class PhaseBase
 
 		if (s.HPCurrent > 0) return;
 
-		IEquipmentData? damageControl = s.AllSlotInstance
+		IEquipmentData? damecon = s.AllSlotInstance
 			.FirstOrDefault(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl);
 
-		s.HPCurrent = damageControl switch
+		if (damecon is null) return;
+
+		s.HPCurrent = damecon switch
 		{
 			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairGoddess } => s.HPMax,
 			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairPersonnel } => (int)(ship.HPMax * 0.2),
 			_ => s.HPCurrent,
 		};
+
+		if (s.ExpansionSlotInstance == damecon)
+		{
+			s.ExpansionSlotInstance = null;
+		}
+
+		if (s.SlotInstance.IndexOf(damecon) is int i and >= 0)
+		{
+			s.SlotInstance[i] = null;
+		}
 	}
 
 	protected static void AddFriendDamage(BattleFleets fleets, BattleIndex index, int damage)
