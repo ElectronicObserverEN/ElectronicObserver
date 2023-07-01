@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
@@ -13,6 +14,7 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
 	private List<NightAttack> Attacks { get; }
+	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
 
 	public PhaseFriendNightBattleAttackViewModel(BattleFleets fleets, BattleIndex attacker,
@@ -34,16 +36,28 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 			})
 			.ToList();
 
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+
+		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
+		{
+			UsedDamecon = damecon;
+		}
+
 		DamageDisplay =
 			$"[{ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(attackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
-
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
 			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
+
+		DamageDisplay += UsedDamecon switch
+		{
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairGoddess } => $"　{BattleRes.GoddessActivated} HP{Defender.HPMax}",
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairPersonnel } => $"　{BattleRes.DameconActivated} HP{(int)(Defender.HPMax * 0.2)}",
+			_ => null,
+		};
 	}
 
 	private static string AttackDisplay(NightAttack nightAttack)

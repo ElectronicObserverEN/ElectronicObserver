@@ -14,6 +14,7 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 	public IShipData Defender { get; }
 	private SupportType AttackType { get; }
 	private List<SupportAttack> Attacks { get; }
+	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
 
 	public PhaseSupportAttackViewModel(BattleFleets fleets, PhaseSupportAttack attack)
@@ -32,16 +33,28 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 			})
 			.ToList();
 
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+
+		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
+		{
+			UsedDamecon = damecon;
+		}
+
 		DamageDisplay =
 			$"[{GetAttackKind(AttackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))} ";
-
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
 			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
+
+		DamageDisplay += UsedDamecon switch
+		{
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairGoddess } => $"　{BattleRes.GoddessActivated} HP{Defender.HPMax}",
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairPersonnel } => $"　{BattleRes.DameconActivated} HP{(int)(Defender.HPMax * 0.2)}",
+			_ => null,
+		};
 	}
 
 	private static string AttackDisplay(SupportAttack dayAttack)

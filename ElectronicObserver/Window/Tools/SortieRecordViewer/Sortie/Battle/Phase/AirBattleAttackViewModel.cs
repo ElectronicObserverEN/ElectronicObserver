@@ -15,6 +15,7 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 	private double Damage { get; }
 	private HitType HitType { get; }
 	private AirAttack AttackType { get; }
+	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
 
 	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
@@ -35,16 +36,28 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 		Defender = fleets.GetShip(DefenderIndex)!;
 		AttackType = attack.AttackType;
 
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
+
+		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
+		{
+			UsedDamecon = damecon;
+		}
+
 		DamageDisplay =
 			$"[{GetAttackKind(AttackType)}] " +
 			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)}";
-
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
 			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
+
+		DamageDisplay += UsedDamecon switch
+		{
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairGoddess } => $"　{BattleRes.GoddessActivated} HP{Defender.HPMax}",
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairPersonnel } => $"　{BattleRes.DameconActivated} HP{(int)(Defender.HPMax * 0.2)}",
+			_ => null,
+		};
 	}
 
 	private static string GetAttackKind(AirAttack airAttack) => airAttack switch

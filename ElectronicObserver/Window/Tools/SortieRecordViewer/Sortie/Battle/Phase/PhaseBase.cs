@@ -27,10 +27,21 @@ public abstract class PhaseBase
 	{
 		IShipData? ship = fleets.GetShip(index);
 
-		if (ship is ShipDataMock s)
+		if (ship is not ShipDataMock s) return;
+
+		s.HPCurrent -= damage;
+
+		if (s.HPCurrent > 0) return;
+
+		IEquipmentData? damageControl = s.AllSlotInstance
+			.FirstOrDefault(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl);
+
+		s.HPCurrent = damageControl switch
 		{
-			s.HPCurrent -= damage;
-		}
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairGoddess } => s.HPMax,
+			{ EquipmentId: EquipmentId.DamageControl_EmergencyRepairPersonnel } => (int)(ship.HPMax * 0.2),
+			_ => s.HPCurrent,
+		};
 	}
 
 	protected static void AddFriendDamage(BattleFleets fleets, BattleIndex index, int damage)
