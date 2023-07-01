@@ -218,6 +218,8 @@
 
 		<DataTemplate DataType="{x:Type phase:PhaseFriendlyShelling}">
 			<StackPanel>
+				<TextBlock Text="{Binding InitialDisplay}" />
+
 				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>
 		</DataTemplate>
