@@ -32,7 +32,7 @@ public class PhaseNightBattle : PhaseBase
 		List<int> nightAirAttackFlags = apiNMotherList;
 		List<NightAttackKind> attackTypes = apiSpList;
 		List<List<int>> defenders = apiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
-		List<List<int>> attackEquipments = apiSiList.Select(elem => elem.Select(ch => ParseInt(ch)).ToList()).ToList();
+		List<List<int>> attackEquipments = apiSiList.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticals = apiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
 		List<List<double>> rawDamages = apiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 

@@ -44,7 +44,7 @@ public class PhaseShelling : PhaseBase
 		List<int> attackers = ShellingData.ApiAtList;
 		List<DayAttackKind> attackTypes = ShellingData.ApiAtType;
 		List<List<int>> defenders = ShellingData.ApiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
-		List<List<int>> attackEquipments = ShellingData.ApiSiList.Select(elem => elem.Select(ch => ParseInt(ch)).ToList()).ToList();
+		List<List<int>> attackEquipments = ShellingData.ApiSiList.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticalFlags = ShellingData.ApiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
 		List<List<double>> rawDamages = ShellingData.ApiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 

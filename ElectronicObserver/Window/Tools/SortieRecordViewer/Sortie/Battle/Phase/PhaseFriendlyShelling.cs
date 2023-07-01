@@ -50,7 +50,7 @@ public class PhaseFriendlyShelling : PhaseBase
 		List<int> nightAirAttackFlags = ShellingData.ApiNMotherList!;
 		List<NightAttackKind> attackTypes = ShellingData.ApiSpList!;
 		List<List<int>> defenders = ShellingData.ApiDfList!.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
-		List<List<int>> attackEquipments = ShellingData.ApiSiList!.Select(elem => elem.Select(ch => ParseInt(ch)).ToList()).ToList();
+		List<List<int>> attackEquipments = ShellingData.ApiSiList!.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticals = ShellingData.ApiClList!.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
 		List<List<double>> rawDamages = ShellingData.ApiDamage!.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 
