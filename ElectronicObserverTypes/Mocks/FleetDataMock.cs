@@ -24,7 +24,7 @@ public class FleetDataMock : IFleetData
 	public ReadOnlyCollection<IShipData?>? MembersWithoutEscaped => MembersInstance switch
 	{
 		{ } ships => Array.AsReadOnly(ships
-			.Select(s => EscapedShipList.Contains(s?.MasterID ?? -1) switch
+			.Select((s, i) => EscapedShipList.Contains(i) switch
 			{
 				true => null,
 				false => s,
@@ -61,9 +61,13 @@ public class FleetDataMock : IFleetData
 		throw new NotImplementedException();
 	}
 
+	/// <summary>
+	/// The index in the api data is 1-based.
+	/// </summary>
+	/// <param name="index">1-based ship index</param>
 	public void Escape(int index)
 	{
-		throw new NotImplementedException();
+		EscapedShipList = new(EscapedShipList.Append(index - 1).ToList());
 	}
 
 	public int GetAirSuperiority()
