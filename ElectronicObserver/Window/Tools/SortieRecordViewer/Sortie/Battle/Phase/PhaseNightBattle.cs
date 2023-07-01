@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using ElectronicObserver.Data;
-using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -14,12 +13,12 @@ public class PhaseNightBattle : PhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseNightBattle;
 
-	private ApiHougeki ShellingData { get; }
-
 	private List<PhaseNightBattleAttack> Attacks { get; } = new();
 	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseNightBattle(ApiHougeki shellingData)
+	public PhaseNightBattle(List<FleetFlag> apiAtEflag, List<int> apiAtList,
+		List<List<HitType>> apiClList, List<List<double>> apiDamage, List<List<int>> apiDfList,
+		List<int> apiNMotherList, List<List<object>> apiSiList, List<NightAttackKind> apiSpList)
 	{
 		static int ParseInt(object e) => e switch
 		{
@@ -28,16 +27,14 @@ public class PhaseNightBattle : PhaseBase
 			_ => throw new NotImplementedException(),
 		};
 
-		ShellingData = shellingData;
-
-		List<FleetFlag> fleetflag = ShellingData.ApiAtEflag;
-		List<int> attackers = ShellingData.ApiAtList;
-		List<int> nightAirAttackFlags = ShellingData.ApiNMotherList;
-		List<NightAttackKind> attackTypes = ShellingData.ApiSpList;
-		List<List<int>> defenders = ShellingData.ApiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
-		List<List<int>> attackEquipments = ShellingData.ApiSiList.Select(elem => elem.Select(ch => ParseInt(ch)).ToList()).ToList();
-		List<List<HitType>> criticals = ShellingData.ApiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
-		List<List<double>> rawDamages = ShellingData.ApiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<FleetFlag> fleetflag = apiAtEflag;
+		List<int> attackers = apiAtList;
+		List<int> nightAirAttackFlags = apiNMotherList;
+		List<NightAttackKind> attackTypes = apiSpList;
+		List<List<int>> defenders = apiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<List<int>> attackEquipments = apiSiList.Select(elem => elem.Select(ch => ParseInt(ch)).ToList()).ToList();
+		List<List<HitType>> criticals = apiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
+		List<List<double>> rawDamages = apiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 
 		for (int i = 0; i < attackers.Count; i++)
 		{
@@ -122,7 +119,7 @@ public class PhaseNightBattle : PhaseBase
 						};
 
 						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets,
-							comboAttack.Attacker, comboAttack.Defenders.First().Defender, 
+							comboAttack.Attacker, comboAttack.Defenders.First().Defender,
 							comboAttack.AttackType, comboAttack.Defenders));
 						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}

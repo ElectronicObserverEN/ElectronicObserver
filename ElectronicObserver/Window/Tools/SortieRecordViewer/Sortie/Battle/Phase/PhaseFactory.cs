@@ -120,8 +120,18 @@ public sealed class PhaseFactory
 	[return: NotNullIfNotNull(nameof(a))]
 	public PhaseNightBattle? NightBattle(ApiHougeki? a) => a switch
 	{
-		null => null,
-		_ => new(a),
+		{
+			ApiAtEflag: { } apiAtEflag,
+			ApiAtList: { } apiAtList,
+			ApiClList: { } apiClList,
+			ApiDamage: { } apiDamage,
+			ApiDfList: { } apiDfList,
+			ApiNMotherList: { } apiNMotherList,
+			ApiSiList: { } apiSiList,
+			ApiSpList: { } apiSpList,
+		} => new(apiAtEflag, apiAtList, apiClList, apiDamage, apiDfList, apiNMotherList, apiSiList, apiSpList),
+
+		_ => null,
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
