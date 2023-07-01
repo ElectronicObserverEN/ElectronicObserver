@@ -58,7 +58,7 @@ public class ApiReqBattleMidnightSpMidnightResponse : INightOnlyBattleApiRespons
 	public List<int> ApiFormation { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki")]
-	public ApiHougeki? ApiHougeki { get; set; } = new();
+	public ApiHougeki? ApiHougeki { get; set; }
 
 	[JsonPropertyName("api_n_support_flag")]
 	public SupportType ApiNSupportFlag { get; set; }

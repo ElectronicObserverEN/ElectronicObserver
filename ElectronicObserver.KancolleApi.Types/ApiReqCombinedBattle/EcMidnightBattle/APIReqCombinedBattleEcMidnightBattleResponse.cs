@@ -84,7 +84,7 @@ public class ApiReqCombinedBattleEcMidnightBattleResponse : ISecondNightBattleAp
 	public ApiFriendlyInfo? ApiFriendlyInfo { get; set; }
 
 	[JsonPropertyName("api_hougeki")]
-	public ApiHougeki? ApiHougeki { get; set; } = new();
+	public ApiHougeki? ApiHougeki { get; set; }
 
 	[JsonPropertyName("api_ship_ke")]
 	public List<int> ApiShipKe { get; set; } = new();
