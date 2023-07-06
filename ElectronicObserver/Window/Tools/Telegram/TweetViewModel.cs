@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Tools.Telegram;
 
-public partial class TweetViewModel : ObservableObject
+public class TweetViewModel : ObservableObject
 {
 	public BitmapImage? Image { get; set; }
 
