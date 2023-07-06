@@ -144,6 +144,7 @@ public partial class TelegramViewModel : WindowViewModelBase
 		Author = item.Author,
 		Description = ParseDescription(item.Description),
 		PubDate = DateTime.Parse(item.PubDate).ToLocalTime(),
+		Link = item.Link
 	};
 
 	private static string ParseDescription(string description)

@@ -17,6 +17,10 @@
 		<DataTemplate DataType="{x:Type local:TweetViewModel}">
 			<Border BorderBrush="Gray" BorderThickness="0 1">
 				<Grid>
+					<Grid.InputBindings>
+						<MouseBinding Command="{Binding OpenTweetCommand}" MouseAction="LeftDoubleClick" />
+					</Grid.InputBindings>
+
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="*" />
