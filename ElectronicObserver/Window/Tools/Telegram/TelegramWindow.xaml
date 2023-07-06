@@ -17,10 +17,6 @@
 		<DataTemplate DataType="{x:Type local:TweetViewModel}">
 			<Border BorderBrush="Gray" BorderThickness="0 1">
 				<Grid>
-					<Grid.InputBindings>
-						<MouseBinding Command="{Binding OpenTweetCommand}" MouseAction="LeftDoubleClick" />
-					</Grid.InputBindings>
-
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="*" />
@@ -40,7 +36,21 @@
 							Text="{Binding Description}"
 							TextWrapping="Wrap"
 							/>
-						<TextBlock Text="{Binding PubDate, StringFormat={}{0:yyyy/MM/dd HH:mm}}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Grid.Column="0" Text="{Binding PubDate, StringFormat={}{0:yyyy/MM/dd HH:mm}}" />
+							<ui:HyperlinkButton
+								Grid.Column="1"
+								Padding="0"
+								HorizontalAlignment="Left"
+								Content="{Binding DisplayLink}"
+								NavigateUri="{Binding Link}"
+								/>
+						</Grid>
 					</StackPanel>
 				</Grid>
 			</Border>

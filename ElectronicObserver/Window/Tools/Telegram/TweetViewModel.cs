@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window.Tools.Telegram;
 
@@ -21,23 +18,7 @@ public partial class TweetViewModel : ObservableObject
 
 	public string? Link { get; set; }
 
-	public string? Author { get; set; }
+	public string? DisplayLink => Link?.Replace("_", "__");
 
-	[RelayCommand]
-	private void OpenTweet()
-	{
-		try
-		{
-			ProcessStartInfo psi = new ProcessStartInfo
-			{
-				FileName = Link,
-				UseShellExecute = true
-			};
-			Process.Start(psi);
-		}
-		catch (Exception ex)
-		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
-		}
-	}
+	public string? Author { get; set; }
 }
