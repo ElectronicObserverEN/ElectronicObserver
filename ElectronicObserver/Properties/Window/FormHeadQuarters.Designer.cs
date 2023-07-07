@@ -905,9 +905,9 @@ namespace ElectronicObserver.Properties.Window {
         /// <summary>
         ///   Looks up a localized string similar to 海色リボン.
         /// </summary>
-        public static string SeaColoredRibon {
+        public static string SeaColoredRibbon {
             get {
-                return ResourceManager.GetString("SeaColoredRibon", resourceCulture);
+                return ResourceManager.GetString("SeaColoredRibbon", resourceCulture);
             }
         }
         

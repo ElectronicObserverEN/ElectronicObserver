@@ -374,8 +374,8 @@ Monthly: {2:+##;-##;±0}</value>
   <data name="TeruTeruBozu" xml:space="preserve">
     <value>Teru Teru Bōzu</value>
   </data>
-  <data name="SeaColoredRibon" xml:space="preserve">
-    <value>Sea Colored Ribon</value>
+  <data name="SeaColoredRibbon" xml:space="preserve">
+    <value>Sea Colored Ribbon</value>
   </data>
   <data name="WhiteSash" xml:space="preserve">
     <value>White Sash</value>
