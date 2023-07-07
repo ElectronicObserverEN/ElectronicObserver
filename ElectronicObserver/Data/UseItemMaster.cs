@@ -91,6 +91,8 @@ public class UseItemMaster : ResponseWrapper, IIdentifiable
 		UseItemId.SubmarineSupplyMaterials => Properties.Window.FormHeadQuarters.ItemNameSubmarineSupplyMaterials,
 		UseItemId.Pumpkin => Properties.Window.FormHeadQuarters.Pumpkin,
 		UseItemId.TeruTeruBozu => Properties.Window.FormHeadQuarters.TeruTeruBozu,
+		UseItemId.SeaColoredRibon => Properties.Window.FormHeadQuarters.SeaColoredRibon,
+		UseItemId.WhiteSash => Properties.Window.FormHeadQuarters.WhiteSash,
 		_ => Name,
 	};
 

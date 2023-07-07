@@ -903,6 +903,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 海色リボン.
+        /// </summary>
+        public static string SeaColoredRibon {
+            get {
+                return ResourceManager.GetString("SeaColoredRibon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (艦船数).
         /// </summary>
         public static string ShipCount {
@@ -962,6 +971,15 @@ namespace ElectronicObserver.Properties.Window {
         public static string UnknownItem {
             get {
                 return ResourceManager.GetString("UnknownItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 白たすき.
+        /// </summary>
+        public static string WhiteSash {
+            get {
+                return ResourceManager.GetString("WhiteSash", resourceCulture);
             }
         }
         
