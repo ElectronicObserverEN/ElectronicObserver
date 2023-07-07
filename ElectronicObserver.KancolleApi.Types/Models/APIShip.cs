@@ -103,4 +103,7 @@ public class ApiShip
 
 	[JsonPropertyName("api_taisen")]
 	public List<int> ApiTaisen { get; set; } = new();
+
+	[JsonPropertyName("api_sp_effect_items")]
+	public List<ApiSpEffectItem> ApiSpEffectItems { get; set; } = new();
 }
