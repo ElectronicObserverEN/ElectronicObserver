@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Data;
