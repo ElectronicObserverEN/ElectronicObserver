@@ -20,12 +20,23 @@
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
+
+			<Style x:Key="HideIfBonusNullOrZero" TargetType="TextBlock">
+				<Setter Property="Visibility" Value="Visible" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding Bonus}" Value="{x:Null}">
+						<Setter Property="Visibility" Value="Collapsed" />
+					</DataTrigger>
+					<DataTrigger Binding="{Binding Bonus}" Value="0">
+						<Setter Property="Visibility" Value="Collapsed" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
 		</Grid.Resources>
 
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="Auto" SharedSizeGroup="ParameterName" />
-			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="Auto" />
@@ -41,32 +52,32 @@
 			Grid.Column="1"
 			HorizontalAlignment="Right"
 			VerticalAlignment="Center"
-			Text="{Binding ParameterName}"
-			/>
-		<TextBlock
-			Grid.Column="2"
-			VerticalAlignment="Center"
-			Text=": "
-			/>
+			>
+			<Run Text="{Binding ParameterName}" /><Run Text=": " />
+		</TextBlock>
+
 
 		<TextBlock
-			Grid.Column="3"
+			Grid.Column="2"
 			VerticalAlignment="Center"
 			Text="{Binding Base}"
 			/>
 
 		<TextBlock
-			Grid.Column="4"
+			Grid.Column="3"
 			VerticalAlignment="Center"
 			Style="{StaticResource HideIfTotalNull}"
-			Text="/"
-			/>
+			>
+			<Run Text="/" /><Run Text="{Binding Total}" />
+		</TextBlock>
 
 		<TextBlock
-			Grid.Column="5"
+			Grid.Column="4"
 			VerticalAlignment="Center"
-			Style="{StaticResource HideIfTotalNull}"
-			Text="{Binding Total}"
-			/>
+			FontSize="{Binding SubFontSize}"
+			Style="{StaticResource HideIfBonusNullOrZero}"
+			>
+			<Run Text="(+" /><Run Text="{Binding Bonus}" /><Run Text=")" />
+		</TextBlock>
 	</Grid>
 </UserControl>

@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Data;
@@ -426,6 +431,31 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// 索敵最大値
 	/// </summary>
 	public int LOSMax => (int)RawData.api_sakuteki[1];
+
+	/// <summary>
+	/// Bonus items applied to that ship
+	/// </summary>
+	public List<ApiSpEffectItem> SpecialEffectItems { get; private set; } = new();
+	
+	/// <summary>
+	/// Bonus firepower from special items
+	/// </summary>
+	public int SpecialEffectItemFirepower => SpecialEffectItems.Sum(item => item.ApiHoug);
+
+	/// <summary>
+	/// Bonus torpedo from special items
+	/// </summary>
+	public int SpecialEffectItemTorpedo => SpecialEffectItems.Sum(item => item.ApiRaig);
+
+	/// <summary>
+	/// Bonus armor from special items
+	/// </summary>
+	public int SpecialEffectItemArmor => SpecialEffectItems.Sum(item => item.ApiSouk);
+
+	/// <summary>
+	/// Bonus evasion from special items
+	/// </summary>
+	public int SpecialEffectItemEvasion => SpecialEffectItems.Sum(item => item.ApiKaih);
 
 	#endregion
 
@@ -1556,6 +1586,11 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 				ExpansionSlot = (int)RawData.api_slot_ex;
 				_aircraft = (int[])RawData.api_onslot;
 				_modernized = (int[])RawData.api_kyouka;
+
+				if (data.api_sp_effect_items())
+				{
+					SpecialEffectItems = JsonSerializer.Deserialize<List<ApiSpEffectItem>>(data.api_sp_effect_items.ToString());
+				}
 				break;
 
 			case "api_req_hokyu/charge":

@@ -261,6 +261,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.FirepowerBase}"
+													Bonus="{Binding Ship.SpecialEffectItemFirepower}"
 													Icon="{StaticResource Firepower}"
 													ParameterName="{Binding FormFleet.Firepower}"
 													Total="{Binding Ship.FirepowerTotal}"
@@ -268,6 +269,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.TorpedoBase}"
+													Bonus="{Binding Ship.SpecialEffectItemTorpedo}"
 													Icon="{StaticResource Torpedo}"
 													ParameterName="{Binding FormFleet.Torpedo}"
 													Total="{Binding Ship.TorpedoTotal}"
@@ -282,6 +284,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.ArmorBase}"
+													Bonus="{Binding Ship.SpecialEffectItemArmor}"
 													Icon="{StaticResource Armor}"
 													ParameterName="{Binding FormFleet.Armor}"
 													Total="{Binding Ship.ArmorTotal}"
@@ -296,6 +299,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.EvasionBase}"
+													Bonus="{Binding Ship.SpecialEffectItemEvasion}"
 													Icon="{StaticResource Evasion}"
 													ParameterName="{Binding FormFleet.Evasion}"
 													Total="{Binding Ship.EvasionTotal}"

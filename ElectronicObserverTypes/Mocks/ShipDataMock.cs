@@ -140,6 +140,10 @@ public class ShipDataMock : IShipData
 	public int EvasionMax { get; set; }
 	public int ASWMax { get; set; }
 	public int LOSMax { get; set; }
+	public int SpecialEffectItemFirepower { get; set; }
+	public int SpecialEffectItemTorpedo { get; set; }
+	public int SpecialEffectItemArmor { get; set; }
+	public int SpecialEffectItemEvasion { get; set; }
 	public bool IsLocked { get; set; }
 	public bool IsLockedByEquipment { get; set; }
 

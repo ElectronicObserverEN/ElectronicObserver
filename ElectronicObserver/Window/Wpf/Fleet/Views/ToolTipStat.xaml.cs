@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.Views;
 
@@ -43,6 +44,18 @@ public partial class ToolTipStat
 		get => (string?)GetValue(TotalProperty);
 		set => SetValue(TotalProperty, value);
 	}
+
+	public static readonly DependencyProperty BonusProperty = DependencyProperty.Register(
+		nameof(Bonus), typeof(string), typeof(ToolTipStat), new PropertyMetadata(default(string)));
+	
+	public string? Bonus
+	{
+		get => (string?)GetValue(BonusProperty);
+		set => SetValue(BonusProperty, value);
+	}
+
+	public SerializableFont SubFont { get; set; } = Utility.Configuration.Config.UI.SubFont;
+	public double? SubFontSize => SubFont.FontData?.ToSize();
 
 	public ToolTipStat()
 	{

@@ -346,6 +346,26 @@ public interface IShipData
 	int LOSMax { get; }
 
 	/// <summary>
+	/// Bonus firepower from special items
+	/// </summary>
+	int SpecialEffectItemFirepower { get; }
+
+	/// <summary>
+	/// Bonus torpedo from special items
+	/// </summary>
+	int SpecialEffectItemTorpedo { get; }
+
+	/// <summary>
+	/// Bonus armor from special items
+	/// </summary>
+	int SpecialEffectItemArmor { get; }
+
+	/// <summary>
+	/// Bonus evasion from special items
+	/// </summary>
+	int SpecialEffectItemEvasion { get; }
+
+	/// <summary>
 	/// 保護ロックの有無
 	/// </summary>
 	bool IsLocked { get; }
