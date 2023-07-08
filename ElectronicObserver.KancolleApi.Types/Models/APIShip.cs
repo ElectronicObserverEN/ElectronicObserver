@@ -105,5 +105,5 @@ public class ApiShip
 	public List<int> ApiTaisen { get; set; } = new();
 
 	[JsonPropertyName("api_sp_effect_items")]
-	public List<ApiSpEffectItem> ApiSpEffectItems { get; set; } = new();
+	public List<ApiSpEffectItem>? ApiSpEffectItems { get; set; }
 }
