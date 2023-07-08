@@ -346,6 +346,11 @@ public interface IShipData
 	int LOSMax { get; }
 
 	/// <summary>
+	/// Bonus items applied to that ship
+	/// </summary>
+	public List<SpecialEffectItem> SpecialEffectItems { get; }
+
+	/// <summary>
 	/// Bonus firepower from special items
 	/// </summary>
 	int SpecialEffectItemFirepower { get; }

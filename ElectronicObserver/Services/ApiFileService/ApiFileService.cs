@@ -392,5 +392,6 @@ public class ApiFileService : ObservableObject
 			},
 			_ => null,
 		},
+		SpecialEffectItems = s.SpecialEffectItems,
 	};
 }

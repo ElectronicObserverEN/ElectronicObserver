@@ -432,27 +432,27 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// Bonus items applied to that ship
 	/// </summary>
-	public List<ApiSpEffectItem> SpecialEffectItems { get; private set; } = new();
+	public List<SpecialEffectItem> SpecialEffectItems { get; private set; } = new();
 	
 	/// <summary>
 	/// Bonus firepower from special items
 	/// </summary>
-	public int SpecialEffectItemFirepower => SpecialEffectItems.Sum(item => item.ApiHoug);
+	public int SpecialEffectItemFirepower => SpecialEffectItems.Sum(item => item.Firepower);
 
 	/// <summary>
 	/// Bonus torpedo from special items
 	/// </summary>
-	public int SpecialEffectItemTorpedo => SpecialEffectItems.Sum(item => item.ApiRaig);
+	public int SpecialEffectItemTorpedo => SpecialEffectItems.Sum(item => item.Torpedo);
 
 	/// <summary>
 	/// Bonus armor from special items
 	/// </summary>
-	public int SpecialEffectItemArmor => SpecialEffectItems.Sum(item => item.ApiSouk);
+	public int SpecialEffectItemArmor => SpecialEffectItems.Sum(item => item.Armor);
 
 	/// <summary>
 	/// Bonus evasion from special items
 	/// </summary>
-	public int SpecialEffectItemEvasion => SpecialEffectItems.Sum(item => item.ApiKaih);
+	public int SpecialEffectItemEvasion => SpecialEffectItems.Sum(item => item.Evasion);
 
 	#endregion
 
@@ -1586,7 +1586,18 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 				if (data.api_sp_effect_items())
 				{
-					SpecialEffectItems = JsonSerializer.Deserialize<List<ApiSpEffectItem>>(data.api_sp_effect_items.ToString());
+					string json = data.api_sp_effect_items.ToString();
+
+					SpecialEffectItems = JsonSerializer
+						.Deserialize<List<ApiSpEffectItem>>(json)
+						?.Select(i => new SpecialEffectItem
+						{
+							ApiKind = i.ApiKind,
+							Firepower = i.ApiHoug,
+							Torpedo = i.ApiRaig,
+							Armor = i.ApiSouk,
+							Evasion = i.ApiKaih,
+						}).ToList() ?? new();
 				}
 				break;
 
