@@ -4,8 +4,8 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 
 public enum Operator
 {
-	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "Operator_And")]
+	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "Operator_And")]
 	And,
-	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "Operator_Or")]
+	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "Operator_Or")]
 	Or
 }

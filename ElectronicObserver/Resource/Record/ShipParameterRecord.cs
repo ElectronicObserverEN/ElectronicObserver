@@ -721,15 +721,15 @@ public class ShipParameterRecord : RecordBase
 
 
 		if (e.ASW.SetEstParameter(level, aswMin, aswMax))
-			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.ShipParameterRecord_AswOutOfPredictedRange,
+			Utility.Logger.Add(1, string.Format(ResourceRecordResources.ShipParameterRecord_AswOutOfPredictedRange,
 				KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.ASW.MinimumEstMin, e.ASW.MinimumEstMax, e.ASW.Maximum));
 
 		if (e.Evasion.SetEstParameter(level, evasionMin, evasionMax))
-			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.ShipParameterRecord_EvasionOutOfPredictedRange,
+			Utility.Logger.Add(1, string.Format(ResourceRecordResources.ShipParameterRecord_EvasionOutOfPredictedRange,
 				KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.Evasion.MinimumEstMin, e.Evasion.MinimumEstMax, e.Evasion.Maximum));
 
 		if (e.LOS.SetEstParameter(level, losMin, losMax))
-			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.ShipParameterRecord_LosOutOfPredictedRange,
+			Utility.Logger.Add(1, string.Format(ResourceRecordResources.ShipParameterRecord_LosOutOfPredictedRange,
 				KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.LOS.MinimumEstMin, e.LOS.MinimumEstMax, e.LOS.Maximum));
 
 
@@ -780,7 +780,7 @@ public class ShipParameterRecord : RecordBase
 		}
 
 		if (e.DefaultSlot == null || !e.DefaultSlot.SequenceEqual(slot))
-			Utility.Logger.Add(2, string.Format(Properties.ResourceRecord.ShipParameterRecord_StockEquipmentUpdated,
+			Utility.Logger.Add(2, string.Format(ResourceRecordResources.ShipParameterRecord_StockEquipmentUpdated,
 					KCDatabase.Instance.MasterShips[shipID].NameWithClass));
 
 		e.DefaultSlot = slot;

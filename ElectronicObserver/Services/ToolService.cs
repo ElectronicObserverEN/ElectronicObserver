@@ -80,8 +80,8 @@ public class ToolService
 		{
 			MessageBox.Show
 			(
-				Properties.Window.Dialog.DialogExpChecker.NoShipsAvailable,
-				Properties.Window.Dialog.DialogExpChecker.ShipsUnavailable,
+				ExpCheckerResources.NoShipsAvailable,
+				ExpCheckerResources.ShipsUnavailable,
 				MessageBoxButton.OK,
 				MessageBoxImage.Error
 			);
@@ -173,8 +173,8 @@ public class ToolService
 		{
 			MessageBox.Show
 			(
-				Properties.Window.Dialog.DialogExpChecker.NoShipsAvailable,
-				Properties.Window.Dialog.DialogExpChecker.ShipsUnavailable,
+				ExpCheckerResources.NoShipsAvailable,
+				ExpCheckerResources.ShipsUnavailable,
 				MessageBoxButton.OK,
 				MessageBoxImage.Error
 			);
@@ -191,7 +191,7 @@ public class ToolService
 	{
 		if (!KCDatabase.Instance.Equipments.Any())
 		{
-			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.EquipmentDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 
 			return;
@@ -446,7 +446,7 @@ public class ToolService
 				}
 				catch (Exception e)
 				{
-					Logger.Add(2, SortieRecordViewer.FailedToParseApiData + e.StackTrace);
+					Logger.Add(2, SortieRecordViewerResources.FailedToParseApiData + e.StackTrace);
 				}
 			}
 
@@ -458,7 +458,7 @@ public class ToolService
 				}
 				catch (Exception e)
 				{
-					Logger.Add(2, SortieRecordViewer.FailedToParseApiData + e.StackTrace);
+					Logger.Add(2, SortieRecordViewerResources.FailedToParseApiData + e.StackTrace);
 				}
 			}
 

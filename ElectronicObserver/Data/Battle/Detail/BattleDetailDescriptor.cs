@@ -2,10 +2,8 @@
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;

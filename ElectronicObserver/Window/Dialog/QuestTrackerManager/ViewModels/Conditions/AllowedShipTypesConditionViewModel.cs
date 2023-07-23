@@ -16,7 +16,7 @@ public partial class AllowedShipTypesConditionViewModel : ObservableObject, ICon
 	public ShipTypes SelectedType { get; set; } = ShipTypes.Destroyer;
 	public IEnumerable<ShipTypes> AllTypes { get; }
 
-	public string Display => $"({Properties.Window.Dialog.QuestTrackerManager.ConditionType_AllowedShipTypes}：{CountConditionDisplay})";
+	public string Display => $"({QuestTrackerManagerResources.ConditionType_AllowedShipTypes}：{CountConditionDisplay})";
 
 	private string CountConditionDisplay => string.Join("・", Model.Types.Select(s => s.Display()));
 

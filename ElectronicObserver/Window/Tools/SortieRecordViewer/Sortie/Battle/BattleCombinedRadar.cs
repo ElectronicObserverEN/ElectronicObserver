@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;

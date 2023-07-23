@@ -99,7 +99,7 @@ public class ExpressionData : ICloneable
 		{ ".SlotSize", ExpressionDataRes.SlotSize},
 		{ ".RepairingDockID", ExpressionDataRes.RepairingDockID},
 		{ ".RepairTime", ExpressionDataRes.RepairTime },
-		{ ".RepairTimeUnit", Properties.Window.FormShipGroup.RepairTimeUnit },
+		{ ".RepairTimeUnit", ShipGroupResources.RepairTimeUnit },
 		{ ".RepairSteel", ExpressionDataRes.RepairSteel },
 		{ ".RepairFuel", ExpressionDataRes.RepairFuel },
 		//強化値シリーズは省略
@@ -146,7 +146,7 @@ public class ExpressionData : ICloneable
 		{ ".MasterShip.RemodelAfterShipID", ExpressionDataRes.RemodelAfterShipID },
 		//マスターのパラメータ系もおそらく意味がないので省略		
 		{ ".MasterShip.EquippableCategories", ExpressionDataRes.EquippableCategories },
-		{ ".MasterShip.SortID", Properties.Window.FormShipGroup.SortId },
+		{ ".MasterShip.SortID", ShipGroupResources.SortId },
 	};
 
 	private static Dictionary<string, Type> ExpressionTypeTable = new Dictionary<string, Type>();

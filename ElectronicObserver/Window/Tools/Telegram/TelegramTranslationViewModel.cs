@@ -6,5 +6,5 @@ public class TelegramTranslationViewModel : TranslationBaseViewModel
 {
 	public string Title => TelegramResources.Title;
 
-	public string Search => SortieRecordViewer.SortieRecordViewer.Search;
+	public string Search => SortieRecordViewerResources.Search;
 }

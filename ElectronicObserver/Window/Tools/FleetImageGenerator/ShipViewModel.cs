@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
@@ -121,7 +120,7 @@ public class ShipViewModel : ObservableObject
 					.GetRequiredService<GameAssetDownloaderService>()
 					.DownloadImage(id, resourceType);
 
-				Logger.Add(2, string.Format(DialogFleetImageGenerator.SuccessfullyDownloadedImage, resourceType, Name));
+				Logger.Add(2, string.Format(FleetImageGeneratorResources.SuccessfullyDownloadedImage, resourceType, Name));
 
 				// in xaml the image source binding is set to Id
 				// so after the image has been downloaded, this will force the image to reload
@@ -129,7 +128,7 @@ public class ShipViewModel : ObservableObject
 			}
 			catch
 			{
-				Logger.Add(2, string.Format(DialogFleetImageGenerator.FailedToDownloadImage, resourceType, Name));
+				Logger.Add(2, string.Format(FleetImageGeneratorResources.FailedToDownloadImage, resourceType, Name));
 			}
 		}
 	}

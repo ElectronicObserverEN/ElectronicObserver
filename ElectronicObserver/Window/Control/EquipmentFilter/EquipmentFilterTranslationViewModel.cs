@@ -4,5 +4,5 @@ namespace ElectronicObserver.Window.Control.EquipmentFilter;
 
 public class EquipmentFilterTranslationViewModel : TranslationBaseViewModel
 {
-	public string TypeToggle => EquipmentFilter.TypeToggle;
+	public string TypeToggle => EquipmentFilterResources.TypeToggle;
 }

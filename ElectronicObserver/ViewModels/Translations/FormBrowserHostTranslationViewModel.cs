@@ -2,5 +2,5 @@
 
 public class FormBrowserHostTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.FormBrowserHost.Title;
+	public string Title => BrowserHostResources.Title;
 }

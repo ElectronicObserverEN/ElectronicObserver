@@ -290,7 +290,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	{
 		MessageBoxResult messageBoxResult = MessageBox.Show
 		(
-			Properties.Resources.AutoRefreshNotification,
+			Resources.AutoRefreshNotification,
 			FormBrowser.Confirmation,
 			MessageBoxButton.OKCancel,
 			MessageBoxImage.Exclamation,

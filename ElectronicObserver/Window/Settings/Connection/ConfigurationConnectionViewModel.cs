@@ -4,7 +4,6 @@ using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
@@ -106,7 +105,7 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 
 		return (viewModel.Port == viewModel.UpstreamProxyPort) switch
 		{
-			true => new(DialogConfiguration.PortAndUpstreamPortMustBeDifferent),
+			true => new(ConfigurationResources.PortAndUpstreamPortMustBeDifferent),
 			_ => ValidationResult.Success!,
 		};
 	}

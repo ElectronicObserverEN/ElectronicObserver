@@ -18,9 +18,7 @@ using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog;
 using Microsoft.EntityFrameworkCore;
-using DialogDropRecordViewer = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -51,7 +49,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
 
-	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
 

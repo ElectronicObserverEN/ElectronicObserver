@@ -251,13 +251,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				gameframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
 			}
 			else
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(string.Format(Resources.PageScript, StyleClassId));
+				gameframe.EvaluateScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
 			}
 		}
 		catch (Exception ex)
@@ -310,7 +310,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 		try
 		{
-			GetMainFrame()?.EvaluateScriptAsync(Properties.Resources.DMMScript);
+			GetMainFrame()?.EvaluateScriptAsync(Resources.DMMScript);
 		}
 		catch (Exception ex)
 		{

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 

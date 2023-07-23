@@ -1,25 +1,22 @@
-﻿using ElectronicObserver.Properties.Window.Dialog;
-using ElectronicObserver.Window.Dialog;
-
-namespace ElectronicObserver.ViewModels.Translations;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 
 public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewModel
 {
-	public string StripMenu_File => DialogAlbumMasterEquipment.StripMenu_File.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_OutputCSVUser => DialogAlbumMasterEquipment.StripMenu_File_OutputCSVUser.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_OutputCSVData => DialogAlbumMasterEquipment.StripMenu_File_OutputCSVData.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_MergeDefaultRecord => DialogAlbumMasterShip.StripMenu_File_MergeDefaultRecord.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File => AlbumMasterEquipmentResources.StripMenu_File.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_OutputCSVUser => AlbumMasterEquipmentResources.StripMenu_File_OutputCSVUser.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_OutputCSVData => AlbumMasterEquipmentResources.StripMenu_File_OutputCSVData.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_MergeDefaultRecord => AlbumMasterShipResources.StripMenu_File_MergeDefaultRecord.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_Edit => DialogAlbumMasterEquipment.StripMenu_Edit.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Edit_EditParameter => DialogAlbumMasterShip.StripMenu_Edit_EditParameter.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Edit_CopyShipName => DialogAlbumMasterShip.StripMenu_Edit_CopyShipName.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Edit_CopyShipData => DialogAlbumMasterShip.StripMenu_Edit_CopyShipData.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Edit_GoogleShipName => DialogAlbumMasterShip.StripMenu_Edit_GoogleShipName.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Edit_CopySpecialEquipmentTable => DialogAlbumMasterShip.StripMenu_Edit_CopySpecialEquipmentTable.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Edit => AlbumMasterEquipmentResources.StripMenu_Edit.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Edit_EditParameter => AlbumMasterShipResources.StripMenu_Edit_EditParameter.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Edit_CopyShipName => AlbumMasterShipResources.StripMenu_Edit_CopyShipName.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Edit_CopyShipData => AlbumMasterShipResources.StripMenu_Edit_CopyShipData.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Edit_GoogleShipName => AlbumMasterShipResources.StripMenu_Edit_GoogleShipName.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Edit_CopySpecialEquipmentTable => AlbumMasterShipResources.StripMenu_Edit_CopySpecialEquipmentTable.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_View => DialogAlbumMasterEquipment.StripMenu_View.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_ShowAppearingArea => DialogAlbumMasterEquipment.StripMenu_View_ShowAppearingArea.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_ShowShipGraphicViewer => DialogAlbumMasterShip.StripMenu_View_ShowShipGraphicViewer.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View => AlbumMasterEquipmentResources.StripMenu_View.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_ShowAppearingArea => AlbumMasterEquipmentResources.StripMenu_View_ShowAppearingArea.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_ShowShipGraphicViewer => AlbumMasterShipResources.StripMenu_View_ShowShipGraphicViewer.Replace("_", "__").Replace("&", "_");
 
 	public string ShipView_ShipType => EncycloRes.ShipType;
 	public string ShipView_Name => EncycloRes.ShipName;
@@ -28,22 +25,22 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string TitleNightAttack => EncycloRes.NightAttack;
 	public string TitleAirSuperiority => EncycloRes.AirPower;
 
-	public string ShipId => DialogAlbumMasterShip.ShipId;
-	public string LibraryId => DialogAlbumMasterEquipment.LibraryId;
+	public string ShipId => AlbumMasterShipResources.ShipId;
+	public string LibraryId => AlbumMasterEquipmentResources.LibraryId;
 
-	public string TitleHP => DialogAlbumMasterShip.TitleHP;
-	public string Firepower => DialogAlbumMasterShip.Firepower;
-	public string Torpedo => DialogAlbumMasterShip.Torpedo;
-	public string AA => DialogAlbumMasterShip.AA;
-	public string Armor => DialogAlbumMasterShip.Armor;
-	public string ASW => DialogAlbumMasterShip.ASW;
-	public string Evasion => DialogAlbumMasterShip.Evasion;
-	public string Interception => DialogAlbumMasterShip.Interception;
-	public string LOS => DialogAlbumMasterShip.LOS;
-	public string AntiBomb => DialogAlbumMasterShip.AntiBomb;
-	public string Luck => DialogAlbumMasterShip.Luck;
-	public string Bombing => DialogAlbumMasterShip.Bombing;
-	public string Accuracy => DialogAlbumMasterShip.Accuracy;
+	public string TitleHP => AlbumMasterShipResources.TitleHP;
+	public string Firepower => AlbumMasterShipResources.Firepower;
+	public string Torpedo => AlbumMasterShipResources.Torpedo;
+	public string AA => AlbumMasterShipResources.AA;
+	public string Armor => AlbumMasterShipResources.Armor;
+	public string ASW => AlbumMasterShipResources.ASW;
+	public string Evasion => AlbumMasterShipResources.Evasion;
+	public string Interception => AlbumMasterShipResources.Interception;
+	public string LOS => AlbumMasterShipResources.LOS;
+	public string AntiBomb => AlbumMasterShipResources.AntiBomb;
+	public string Luck => AlbumMasterShipResources.Luck;
+	public string Bombing => AlbumMasterShipResources.Bombing;
+	public string Accuracy => AlbumMasterShipResources.Accuracy;
 	public string TitleSpeed => EncycloRes.Speed;
 	public string TitleRarity => EncycloRes.Rarity;
 	public string TitleConsumption => EncycloRes.Consumption;
@@ -53,14 +50,14 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string BaseValue => EncycloRes.BaseValue;
 	public string WithEquipValue => EncycloRes.WithEquipValue;
 
-	public string ShipClassId => DialogAlbumMasterShip.ShipClassId;
-	public string ShipClassUnknown => DialogAlbumMasterShip.ShipClassUnknown;
-	public string Installation => DialogAlbumMasterShip.Installation;
-	public string Equippable => DialogAlbumMasterEquipment.Equippable;
+	public string ShipClassId => AlbumMasterShipResources.ShipClassId;
+	public string ShipClassUnknown => AlbumMasterShipResources.ShipClassUnknown;
+	public string Installation => AlbumMasterShipResources.Installation;
+	public string Equippable => AlbumMasterEquipmentResources.Equippable;
 
-	public string DefaultRange => DialogAlbumMasterShip.DefaultRange;
-	public string Empty => DialogAlbumMasterShip.Empty;
-	public string ReinforcementSlot => DialogAlbumMasterShip.ReinforcementSlot;
+	public string DefaultRange => AlbumMasterShipResources.DefaultRange;
+	public string Empty => AlbumMasterShipResources.Empty;
+	public string ReinforcementSlot => AlbumMasterShipResources.ReinforcementSlot;
 
 	public string TitleConstructionTime => EncycloRes.ConstructionTime;
 	public string TitleDismantling => EncycloRes.Dismantling;
@@ -69,26 +66,26 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string TitleBeforeRemodel => EncycloRes.BeforeRemodel;
 	public string TitleAfterRemodel => EncycloRes.AfterRemodel;
 
-	public string ParameterLevelToolTip => DialogAlbumMasterShip.ParameterLevelToolTip;
-	public string ShipBannerToolTip => DialogAlbumMasterShip.ShipBannerToolTip;
-	public string ResourceNameToolTip => DialogAlbumMasterShip.ResourceNameToolTip;
-	public string HpMinToolTip => DialogAlbumMasterShip.HpMinToolTip;
-	public string HpMaxToolTip => DialogAlbumMasterShip.HpMaxToolTip;
+	public string ParameterLevelToolTip => AlbumMasterShipResources.ParameterLevelToolTip;
+	public string ShipBannerToolTip => AlbumMasterShipResources.ShipBannerToolTip;
+	public string ResourceNameToolTip => AlbumMasterShipResources.ResourceNameToolTip;
+	public string HpMinToolTip => AlbumMasterShipResources.HpMinToolTip;
+	public string HpMaxToolTip => AlbumMasterShipResources.HpMaxToolTip;
 	public string RepairTooltip => EncycloRes.RepairTooltip;
 
-	public string RightClickToCopy => DialogAlbumMasterEquipment.RightClickToCopy;
-	public string RightClickToOpenInNewWindow => DialogAlbumMasterShip.RightClickToOpenInNewWindow;
-	public string RemodelBeforeShipNameToolTip => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip;
-	public string ActionReport => DialogAlbumMasterShip.ActionReport;
-	public string AviationMaterial => DialogAlbumMasterShip.AviationMaterial;
-	public string CsvExportFailed => DialogAlbumMasterShip.CsvExportFailed;
-	public string SelectAShip => DialogAlbumMasterShip.SelectAShip;
-	public string Unknown => DialogAlbumMasterShip.Unknown;
-	public string Recipe => DialogAlbumMasterShip.Recipe;
-	public string FailedToFindMapOrRecipe => DialogAlbumMasterShip.FailedToFindMapOrRecipe;
-	public string MapOrRecipeSearchCaption => DialogAlbumMasterShip.MapOrRecipeSearchCaption;
-	public string SpecifyTargetShip => DialogAlbumMasterShip.SpecifyTargetShip;
-	public string NoShipSelectedCaption => DialogAlbumMasterShip.NoShipSelectedCaption;
+	public string RightClickToCopy => AlbumMasterEquipmentResources.RightClickToCopy;
+	public string RightClickToOpenInNewWindow => AlbumMasterShipResources.RightClickToOpenInNewWindow;
+	public string RemodelBeforeShipNameToolTip => AlbumMasterShipResources.RemodelBeforeShipNameToolTip;
+	public string ActionReport => AlbumMasterShipResources.ActionReport;
+	public string AviationMaterial => AlbumMasterShipResources.AviationMaterial;
+	public string CsvExportFailed => AlbumMasterShipResources.CsvExportFailed;
+	public string SelectAShip => AlbumMasterShipResources.SelectAShip;
+	public string Unknown => AlbumMasterShipResources.Unknown;
+	public string Recipe => AlbumMasterShipResources.Recipe;
+	public string FailedToFindMapOrRecipe => AlbumMasterShipResources.FailedToFindMapOrRecipe;
+	public string MapOrRecipeSearchCaption => AlbumMasterShipResources.MapOrRecipeSearchCaption;
+	public string SpecifyTargetShip => AlbumMasterShipResources.SpecifyTargetShip;
+	public string NoShipSelectedCaption => AlbumMasterShipResources.NoShipSelectedCaption;
 
 	public string Title => EncycloRes.ShipEncyclopedia;
 }

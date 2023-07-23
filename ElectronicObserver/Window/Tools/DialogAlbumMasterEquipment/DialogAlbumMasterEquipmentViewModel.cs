@@ -156,7 +156,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 			Utility.ErrorReporter.SendErrorReport(ex, EncycloRes.FailedOutputEquipCSV);
 			MessageBox.Show(EncycloRes.FailedOutputEquipCSV + "\r\n" + ex.Message,
-				Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK,
+				AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 		}
 
@@ -211,12 +211,11 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex,
-				Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToExportCsv);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterEquipmentResources.FailedToExportCsv);
 
 			MessageBox.Show(
-				$"{Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToExportCsv}\r\n" + ex.Message,
-				Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError,
+				$"{AlbumMasterEquipmentResources.FailedToExportCsv}\r\n" + ex.Message,
+				AlbumMasterEquipmentResources.DialogTitleError,
 				MessageBoxButton.OK,
 				MessageBoxImage.Error);
 		}
@@ -303,7 +302,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 			ProcessStartInfo psi = new()
 			{
 				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(eq.NameEN) +
-						   Properties.Window.Dialog.DialogAlbumMasterEquipment.KancolleSpecifier,
+				           AlbumMasterEquipmentResources.KancolleSpecifier,
 				UseShellExecute = true
 			};
 			// google <装備名> 艦これ
@@ -312,7 +311,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToSearchOnWeb);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterEquipmentResources.FailedToSearchOnWeb);
 		}
 	}
 
@@ -331,11 +330,11 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 		if (string.IsNullOrWhiteSpace(result))
 		{
-			result = string.Format(Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToFindShipOrRecipe, eq.NameEN);
+			result = string.Format(AlbumMasterEquipmentResources.FailedToFindShipOrRecipe, eq.NameEN);
 		}
 
 		MessageBox.Show(result,
-			Properties.Window.Dialog.DialogAlbumMasterEquipment.ShipOrRecipeCaption,
+			AlbumMasterEquipmentResources.ShipOrRecipeCaption,
 			MessageBoxButton.OK,
 			MessageBoxImage.Information);
 	}
@@ -366,7 +365,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 			.ThenBy(r => r.Bauxite)
 		)
 		{
-			sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterEquipment.Recipe + " {0} / {1} / {2} / {3}\r\n",
+			sb.AppendFormat(AlbumMasterEquipmentResources.Recipe + " {0} / {1} / {2} / {3}\r\n",
 				record.Fuel, record.Ammo, record.Steel, record.Bauxite);
 		}
 

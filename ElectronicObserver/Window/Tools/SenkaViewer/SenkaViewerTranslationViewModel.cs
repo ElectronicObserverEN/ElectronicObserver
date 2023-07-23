@@ -1,21 +1,20 @@
-﻿using ElectronicObserver.Properties.Window.Dialog;
-using ElectronicObserver.ViewModels.Translations;
+﻿using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Tools.SenkaViewer;
 
 public class SenkaViewerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => SenkaViewer.Title;
+	public string Title => SenkaViewerResources.Title;
 
-	public string Start => DialogDropRecordViewer.Start;
-	public string End => DialogDropRecordViewer.End;
-	public string ButtonRun => DialogDropRecordViewer.ButtonRun;
+	public string Start => DropRecordViewerResources.Start;
+	public string End => DropRecordViewerResources.End;
+	public string ButtonRun => DropRecordViewerResources.ButtonRun;
 
-	public string Senka => SenkaViewer.Senka;
-	public string NormalSenka => SenkaViewer.NormalSenka;
-	public string ExtraOperationSenka => SenkaViewer.ExtraOperationSenka;
-	public string QuestSenka => SenkaViewer.QuestSenka;
+	public string Senka => SenkaViewerResources.Senka;
+	public string NormalSenka => SenkaViewerResources.NormalSenka;
+	public string ExtraOperationSenka => SenkaViewerResources.ExtraOperationSenka;
+	public string QuestSenka => SenkaViewerResources.QuestSenka;
 
-	public string RecordedSenka => SenkaViewer.RecordedSenka;
-	public string EstimatedExtraGains => SenkaViewer.EstimatedExtraGains;
+	public string RecordedSenka => SenkaViewerResources.RecordedSenka;
+	public string EstimatedExtraGains => SenkaViewerResources.EstimatedExtraGains;
 }

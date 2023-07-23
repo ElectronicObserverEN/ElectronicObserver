@@ -5,7 +5,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;

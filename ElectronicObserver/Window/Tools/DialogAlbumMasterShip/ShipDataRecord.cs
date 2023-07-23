@@ -35,7 +35,7 @@ public partial class ShipDataRecord : ObservableObject
 	}).ToBrush();
 
 	public string ResourceNameText => $"{Ship.ResourceName} {Ship.ResourceGraphicVersion}/{Ship.ResourceVoiceVersion}/{Ship.ResourcePortVoiceVersion}";
-	public string ResourceNameToolTip => string.Format(Properties.Window.Dialog.DialogAlbumMasterShip.ResourceNameToolTip,
+	public string ResourceNameToolTip => string.Format(AlbumMasterShipResources.ResourceNameToolTip,
 		Ship.ResourceName, Ship.ResourceGraphicVersion, Ship.ResourceVoiceVersion, Ship.ResourcePortVoiceVersion, Constants.GetVoiceFlag(Ship.VoiceFlag));
 
 	public string ShipBannerToolTip => DialogAlbumMasterShip.ShipBannerToolTip;

@@ -1,6 +1,5 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;

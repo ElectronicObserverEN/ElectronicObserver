@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Data;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;

@@ -2,18 +2,18 @@
 
 public class ConfigurationCombatTranslationViewModel
 {
-	public string FormBattle_IsScrollable => Properties.Window.Dialog.DialogConfiguration.FormFleet_IsScrollable;
-	public string FormFleet_IsScrollableToolTip => Properties.Window.Dialog.DialogConfiguration.FormFleet_IsScrollableToolTip;
+	public string FormBattle_IsScrollable => ConfigurationResources.FormFleet_IsScrollable;
+	public string FormFleet_IsScrollableToolTip => ConfigurationResources.FormFleet_IsScrollableToolTip;
 	
-	public string FormBattle_HideDuringBattle => Properties.Window.Dialog.DialogConfiguration.FormBattle_HideDuringBattle;
-	public string FormBattle_HideDuringBattleToolTip => Properties.Window.Dialog.DialogConfiguration.FormBattle_HideDuringBattleToolTip;
+	public string FormBattle_HideDuringBattle => ConfigurationResources.FormBattle_HideDuringBattle;
+	public string FormBattle_HideDuringBattleToolTip => ConfigurationResources.FormBattle_HideDuringBattleToolTip;
 	
-	public string FormBattle_ShowHPBar => Properties.Window.Dialog.DialogConfiguration.FormBattle_ShowHPBar;
-	public string FormBattle_ShowHPBarToolTip => Properties.Window.Dialog.DialogConfiguration.FormBattle_ShowHPBarToolTip;
+	public string FormBattle_ShowHPBar => ConfigurationResources.FormBattle_ShowHPBar;
+	public string FormBattle_ShowHPBarToolTip => ConfigurationResources.FormBattle_ShowHPBarToolTip;
 	
-	public string FormBattle_ShowShipTypeInHPBar => Properties.Window.Dialog.DialogConfiguration.FormBattle_ShowShipTypeInHPBar;
-	public string FormBattle_ShowShipTypeInHPBarToolTip => Properties.Window.Dialog.DialogConfiguration.FormBattle_ShowShipTypeInHPBarToolTip;
+	public string FormBattle_ShowShipTypeInHPBar => ConfigurationResources.FormBattle_ShowShipTypeInHPBar;
+	public string FormBattle_ShowShipTypeInHPBarToolTip => ConfigurationResources.FormBattle_ShowShipTypeInHPBarToolTip;
 	
-	public string FormBattle_Display7thAsSingleLine => Properties.Window.Dialog.DialogConfiguration.FormBattle_Display7thAsSingleLine;
-	public string FormBattle_Display7thAsSingleLineToolTip => Properties.Window.Dialog.DialogConfiguration.FormBattle_Display7thAsSingleLineToolTip;
+	public string FormBattle_Display7thAsSingleLine => ConfigurationResources.FormBattle_Display7thAsSingleLine;
+	public string FormBattle_Display7thAsSingleLineToolTip => ConfigurationResources.FormBattle_Display7thAsSingleLineToolTip;
 }

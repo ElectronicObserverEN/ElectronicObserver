@@ -4,7 +4,6 @@ using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
@@ -17,7 +16,7 @@ public class EquipmentDataViewModel : ObservableObject
 
 	public string EquipmentIdToolTip => string.Format("Type: [ {0} ]", string.Join(", ", Equipment.EquipmentType));
 
-	public string EquipmentNameToolTip => Properties.Window.Dialog.DialogAlbumMasterEquipment.RightClickToCopy;
+	public string EquipmentNameToolTip => AlbumMasterEquipmentResources.RightClickToCopy;
 
 	public string EquipmentTypeToolTip => GetEquippableShips(Equipment);
 
@@ -77,7 +76,7 @@ public class EquipmentDataViewModel : ObservableObject
 		KCDatabase db = KCDatabase.Instance;
 
 		StringBuilder sb = new();
-		sb.AppendLine($"{Properties.Window.Dialog.DialogAlbumMasterEquipment.Equippable}:");
+		sb.AppendLine($"{AlbumMasterEquipmentResources.Equippable}:");
 
 		int eqCategory = (int)eq.CategoryType;
 
@@ -106,7 +105,7 @@ public class EquipmentDataViewModel : ObservableObject
 				if (specialShips.TryGetValue(shiptype.Type, out List<string>? ship))
 				{
 					sb.Append(" (").Append(string.Join(", ", ship))
-						.Append($"{Properties.Window.Dialog.DialogAlbumMasterEquipment.Excluding})");
+						.Append($"{AlbumMasterEquipmentResources.Excluding})");
 				}
 
 				sb.AppendLine();
@@ -147,7 +146,7 @@ public class EquipmentDataViewModel : ObservableObject
 
 		if (ships is not null || shipsTypes is not null || shipsClasses is not null)
 		{
-			sb.AppendLine($"[{Properties.Window.Dialog.DialogAlbumMasterEquipment.ExpansionSlot}]");
+			sb.AppendLine($"[{AlbumMasterEquipmentResources.ExpansionSlot}]");
 		}
 
 		if (ships is not null)

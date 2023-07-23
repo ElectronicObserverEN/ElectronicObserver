@@ -7,7 +7,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 [MessagePackObject]
 public record QuestModel([property: Key(0)] int Id)
 {
-	[IgnoreMember] public string Name => TryGetQuest()?.Name ?? Properties.Window.Dialog.QuestTrackerManager.UnknownQuest;
+	[IgnoreMember] public string Name => TryGetQuest()?.Name ?? QuestTrackerManagerResources.UnknownQuest;
 	[IgnoreMember] public string? Description => TryGetQuest()?.Description;
 	[IgnoreMember] public string? Code => TryGetQuest()?.Code;
 	[IgnoreMember] public QuestCategory Category => (QuestCategory)(TryGetQuest()?.Category ?? 0);

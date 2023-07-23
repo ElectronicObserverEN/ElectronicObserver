@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using KancolleProgress.Translations;
+
 namespace KancolleProgress.ViewModels;
 
 public enum AswGroup

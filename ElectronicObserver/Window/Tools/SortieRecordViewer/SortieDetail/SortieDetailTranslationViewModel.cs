@@ -1,19 +1,17 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Properties.Window;
-using ElectronicObserver.ViewModels.Translations;
+﻿using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
 public class SortieDetailTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => SortieRecordViewer.SortieDetail;
+	public string Title => SortieRecordViewerResources.SortieDetail;
 
-	public string File => FormMain.File;
-	public string CopySortieData => SortieRecordViewer.CopySortieData;
-	public string LoadSortieData => SortieRecordViewer.LoadSortieData;
-	public string AirControlSimulator => Tools.AirControlSimulator.AirControlSimulator.Title;
-	public string CopyLink => SortieRecordViewer.CopyLink;
-	public string Open => SortieRecordViewer.Open;
+	public string File => MainResources.File;
+	public string CopySortieData => SortieRecordViewerResources.CopySortieData;
+	public string LoadSortieData => SortieRecordViewerResources.LoadSortieData;
+	public string AirControlSimulator => AirControlSimulatorResources.Title;
+	public string CopyLink => SortieRecordViewerResources.CopyLink;
+	public string Open => SortieRecordViewerResources.Open;
 
 	public string BattleDetail_FriendFleet => ConstantsRes.BattleDetail_FriendFleet;
 	public string BattleDetail_FriendMainFleet => ConstantsRes.BattleDetail_FriendMainFleet;

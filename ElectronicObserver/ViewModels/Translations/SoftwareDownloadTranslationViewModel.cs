@@ -1,9 +1,7 @@
-﻿using ElectronicObserver.Properties.Window;
-
-namespace ElectronicObserver.ViewModels.Translations;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 
 public class SoftwareDownloadTranslationViewModel : TranslationBaseViewModel
 {
-	public string Update_DownloadingUpdater => FormMain.Update_DownloadingUpdater;
-	public string Update_DownloadingUpdate => FormMain.Update_DownloadingUpdate;
+	public string Update_DownloadingUpdater => MainResources.Update_DownloadingUpdater;
+	public string Update_DownloadingUpdate => MainResources.Update_DownloadingUpdate;
 }

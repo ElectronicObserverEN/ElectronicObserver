@@ -12,6 +12,7 @@ using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 using KancolleProgress.Models;
+using KancolleProgress.Translations;
 using Microsoft.Win32;
 using ShipTypeGroup = KancolleProgress.Models.ShipTypeGroup;
 using ShipTypes = ElectronicObserverTypes.ShipTypes;

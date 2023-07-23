@@ -1,5 +1,4 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
@@ -11,7 +10,7 @@ public class ConfigurationNotificationBaseTranslationViewModel : TranslationBase
 	public string PlaysSound => NotifyRes.Enable;
 	public string LoopsSound => ConfigRes.Loop;
 	public string Volume => ConfigRes.Volume;
-	public string SoundVolumeToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.SoundVolumeToolTip;
+	public string SoundVolumeToolTip => ConfigurationNotifierResources.SoundVolumeToolTip;
 	public string Dir => "Dir";
 	public string SoundPathDirectorizeToolTip => NotifyRes.SoundPathDirectorizeToolTip;
 
@@ -49,9 +48,9 @@ public class ConfigurationNotificationBaseTranslationViewModel : TranslationBase
 	public string ButtonCancel => ConfigRes.Cancel;
 	public string ButtonTest => NotifyRes.Test;
 	public string ShowWithActivation => NotifyRes.ShowWithActivation;
-	public string ShowWithActivationToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.ShowWithActivationToolTip;
+	public string ShowWithActivationToolTip => ConfigurationNotifierResources.ShowWithActivationToolTip;
 
-	public string TestNotification => Properties.Window.Dialog.DialogConfigurationNotifier.TestNotification;
+	public string TestNotification => ConfigurationNotifierResources.TestNotification;
 
 	public string GroupDamage => NotifyRes.DamageOptions;
 	public string NotifiesBefore => NotifyRes.NotifyBefore;
@@ -67,41 +66,41 @@ public class ConfigurationNotificationBaseTranslationViewModel : TranslationBase
 	public string NotifyAfterHint => NotifyRes.NotifyAfterHint;
 	public string ContainsFlagship => NotifyRes.IncludeFlagship;
 
-	public string GroupAnchorageRepair => Properties.Window.Dialog.DialogConfigurationNotifier.GroupAnchorageRepair;
-	public string TriggerWhen => Properties.Window.Dialog.DialogConfigurationNotifier.TriggerWhen;
-	public string AnchorageRepairNotificationLevelToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.AnchorageRepairNotificationLevelToolTip;
+	public string GroupAnchorageRepair => ConfigurationNotifierResources.GroupAnchorageRepair;
+	public string TriggerWhen => ConfigurationNotifierResources.TriggerWhen;
+	public string AnchorageRepairNotificationLevelToolTip => ConfigurationNotifierResources.AnchorageRepairNotificationLevelToolTip;
 
-	public string GroupBaseAirCorps => Properties.Window.Dialog.DialogConfigurationNotifier.GroupBaseAirCorps;
-	public string BaseAirCorps_NotSupplied => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_NotSupplied;
-	public string BaseAirCorps_NotSuppliedToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_NotSuppliedToolTip;
-	public string BaseAirCorps_Standby => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_Standby;
-	public string BaseAirCorps_StandbyToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_StandbyToolTip;
-	public string BaseAirCorps_NormalMap => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_NormalMap;
-	public string BaseAirCorps_NormalMapToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_NormalMapToolTip;
-	public string BaseAirCorps_SquadronRelocation => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_SquadronRelocation;
-	public string BaseAirCorps_SquadronRelocationToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_SquadronRelocationToolTip;
-	public string BaseAirCorps_Tired => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_Tired;
-	public string BaseAirCorps_TiredToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_TiredToolTip;
-	public string BaseAirCorps_Retreat => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_Retreat;
-	public string BaseAirCorps_RetreatToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_RetreatToolTip;
-	public string BaseAirCorps_EventMap => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_EventMap;
-	public string BaseAirCorps_EventMapToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_EventMapToolTip;
-	public string BaseAirCorps_EquipmentRelocation => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_EquipmentRelocation;
-	public string BaseAirCorps_EquipmentRelocationToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_EquipmentRelocationToolTip;
-	public string BaseAirCorps_NotOrganized => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_NotOrganized;
-	public string BaseAirCorps_NotOrganizedToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_NotOrganizedToolTip;
-	public string BaseAirCorps_Rest => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_Rest;
-	public string BaseAirCorps_RestToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BaseAirCorps_RestToolTip;
+	public string GroupBaseAirCorps => ConfigurationNotifierResources.GroupBaseAirCorps;
+	public string BaseAirCorps_NotSupplied => ConfigurationNotifierResources.BaseAirCorps_NotSupplied;
+	public string BaseAirCorps_NotSuppliedToolTip => ConfigurationNotifierResources.BaseAirCorps_NotSuppliedToolTip;
+	public string BaseAirCorps_Standby => ConfigurationNotifierResources.BaseAirCorps_Standby;
+	public string BaseAirCorps_StandbyToolTip => ConfigurationNotifierResources.BaseAirCorps_StandbyToolTip;
+	public string BaseAirCorps_NormalMap => ConfigurationNotifierResources.BaseAirCorps_NormalMap;
+	public string BaseAirCorps_NormalMapToolTip => ConfigurationNotifierResources.BaseAirCorps_NormalMapToolTip;
+	public string BaseAirCorps_SquadronRelocation => ConfigurationNotifierResources.BaseAirCorps_SquadronRelocation;
+	public string BaseAirCorps_SquadronRelocationToolTip => ConfigurationNotifierResources.BaseAirCorps_SquadronRelocationToolTip;
+	public string BaseAirCorps_Tired => ConfigurationNotifierResources.BaseAirCorps_Tired;
+	public string BaseAirCorps_TiredToolTip => ConfigurationNotifierResources.BaseAirCorps_TiredToolTip;
+	public string BaseAirCorps_Retreat => ConfigurationNotifierResources.BaseAirCorps_Retreat;
+	public string BaseAirCorps_RetreatToolTip => ConfigurationNotifierResources.BaseAirCorps_RetreatToolTip;
+	public string BaseAirCorps_EventMap => ConfigurationNotifierResources.BaseAirCorps_EventMap;
+	public string BaseAirCorps_EventMapToolTip => ConfigurationNotifierResources.BaseAirCorps_EventMapToolTip;
+	public string BaseAirCorps_EquipmentRelocation => ConfigurationNotifierResources.BaseAirCorps_EquipmentRelocation;
+	public string BaseAirCorps_EquipmentRelocationToolTip => ConfigurationNotifierResources.BaseAirCorps_EquipmentRelocationToolTip;
+	public string BaseAirCorps_NotOrganized => ConfigurationNotifierResources.BaseAirCorps_NotOrganized;
+	public string BaseAirCorps_NotOrganizedToolTip => ConfigurationNotifierResources.BaseAirCorps_NotOrganizedToolTip;
+	public string BaseAirCorps_Rest => ConfigurationNotifierResources.BaseAirCorps_Rest;
+	public string BaseAirCorps_RestToolTip => ConfigurationNotifierResources.BaseAirCorps_RestToolTip;
 	
-	public string GroupBattleEnd => Properties.Window.Dialog.DialogConfigurationNotifier.GroupBattleEnd;
-	public string BattleEnd_IdleTimerEnabled => Properties.Window.Dialog.DialogConfigurationNotifier.BattleEnd_IdleTimerEnabled;
-	public string BattleEnd_IdleTimerEnabledToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BattleEnd_IdleTimerEnabledToolTip;
-	public string BattleEnd_IdleTime => Properties.Window.Dialog.DialogConfigurationNotifier.BattleEnd_IdleTime;
-	public string BattleEnd_IdleTimeToolTip => Properties.Window.Dialog.DialogConfigurationNotifier.BattleEnd_IdleTimeToolTip;
+	public string GroupBattleEnd => ConfigurationNotifierResources.GroupBattleEnd;
+	public string BattleEnd_IdleTimerEnabled => ConfigurationNotifierResources.BattleEnd_IdleTimerEnabled;
+	public string BattleEnd_IdleTimerEnabledToolTip => ConfigurationNotifierResources.BattleEnd_IdleTimerEnabledToolTip;
+	public string BattleEnd_IdleTime => ConfigurationNotifierResources.BattleEnd_IdleTime;
+	public string BattleEnd_IdleTimeToolTip => ConfigurationNotifierResources.BattleEnd_IdleTimeToolTip;
 
-	public string SettingsWillBeAppliedForTest => Properties.Window.Dialog.DialogConfigurationNotifier.SettingsWillBeAppliedForTest;
+	public string SettingsWillBeAppliedForTest => ConfigurationNotifierResources.SettingsWillBeAppliedForTest;
 
-	public string Error => Properties.Window.Dialog.DialogConfiguration.DialogCaptionErrorTitle;
+	public string Error => ConfigurationResources.DialogCaptionErrorTitle;
 
 	public string Title => NotifyRes.Title;
 }

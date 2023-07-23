@@ -61,7 +61,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 			if (string.IsNullOrWhiteSpace(map.NameEN) || map.NameEN == "※")
 			{
-				name = Properties.Window.Dialog.DialogBaseAirCorpsSimulation.EventMap;
+				name = BaseAirCorpsSimulationResources.EventMap;
 			}
 
 			AirBaseAreas.Add(new(mapAreaID, name));

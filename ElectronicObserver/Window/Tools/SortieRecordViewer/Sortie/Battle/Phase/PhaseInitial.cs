@@ -7,7 +7,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserverTypes;

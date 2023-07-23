@@ -3,7 +3,6 @@ using System.Text;
 using System.Windows.Forms;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumShipParameter;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -96,7 +95,7 @@ public partial class DialogAlbumShipParameter : Form
 		catch (Exception ex)
 		{
 
-			MessageBox.Show(Translation.FailedToSetParameter + "\r\n" + ex.Message, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(AlbumShipParameterResources.FailedToSetParameter + "\r\n" + ex.Message, AlbumShipParameterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 

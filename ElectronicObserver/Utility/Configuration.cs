@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;

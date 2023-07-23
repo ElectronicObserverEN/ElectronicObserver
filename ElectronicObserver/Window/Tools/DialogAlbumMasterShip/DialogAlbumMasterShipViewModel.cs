@@ -261,8 +261,8 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogAlbumMasterShip.CsvExportFailed);
-			MessageBox.Show(Properties.Window.Dialog.DialogAlbumMasterShip.CsvExportFailed + "\r\n" + ex.Message, Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterShipResources.CsvExportFailed);
+			MessageBox.Show(AlbumMasterShipResources.CsvExportFailed + "\r\n" + ex.Message, AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
 	}
@@ -359,7 +359,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		{
 
 			Utility.ErrorReporter.SendErrorReport(ex, DialogAlbumMasterShip.CsvExportFailed);
-			MessageBox.Show(DialogAlbumMasterShip.CsvExportFailed + "\r\n" + ex.Message, Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(DialogAlbumMasterShip.CsvExportFailed + "\r\n" + ex.Message, AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
 	}
@@ -415,7 +415,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 		if (SelectedShip is null)
 		{
-			MessageBox.Show(DialogAlbumMasterShip.SelectAShip, Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+			MessageBox.Show(DialogAlbumMasterShip.SelectAShip, AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Asterisk);
 			return;
 		}
 
@@ -596,7 +596,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		{
 			ProcessStartInfo psi = new()
 			{
-				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(ship.NameWithClass) + Properties.Window.Dialog.DialogAlbumMasterEquipment.KancolleSpecifier,
+				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(ship.NameWithClass) + AlbumMasterEquipmentResources.KancolleSpecifier,
 				UseShellExecute = true
 			};
 			// google <艦船名> 艦これ
@@ -604,7 +604,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToSearchOnWeb);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterEquipmentResources.FailedToSearchOnWeb);
 		}
 	}
 

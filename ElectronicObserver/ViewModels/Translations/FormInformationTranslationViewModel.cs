@@ -2,5 +2,5 @@
 
 public class FormInformationTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.FormInformation.Title;
+	public string Title => InformationResources.Title;
 }

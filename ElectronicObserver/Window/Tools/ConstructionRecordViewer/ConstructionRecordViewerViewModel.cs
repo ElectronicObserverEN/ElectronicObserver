@@ -12,7 +12,6 @@ using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.ConstructionRecordViewer;
@@ -448,7 +447,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		if (!MergeRows)
 		{
 			int allcount = RecordRows.Count;
-			StatusInfoText = string.Format(Properties.Window.Dialog.DialogDropRecordViewer.SelectedItems,
+			StatusInfoText = string.Format(DropRecordViewerResources.SelectedItems,
 				selectedCount, allcount, (double)selectedCount / allcount);
 		}
 	}

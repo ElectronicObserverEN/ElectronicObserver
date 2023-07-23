@@ -45,7 +45,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 		_ => $"{Ship.NameEN}({RemodelComparisonType.Display()})({PositionText})"
 	};
 
-	private string PositionText => $"{Properties.Window.Dialog.QuestTrackerManager.Position}：{Position}";
+	private string PositionText => $"{QuestTrackerManagerResources.Position}：{Position}";
 
 	public ShipPositionConditionViewModel(ShipPositionConditionModel model)
 	{

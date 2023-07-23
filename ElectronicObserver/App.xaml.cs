@@ -101,7 +101,7 @@ public partial class App : Application
 
 			if (args.Exception is not COMException { ErrorCode: CLIPBRD_E_CANT_OPEN }) return;
 
-			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
+			Logger.Add(3, MainResources.CopyingToClipboardFailed);
 			args.Handled = true;
 		};
 	}
@@ -142,7 +142,7 @@ public partial class App : Application
 				// 多重起動禁止
 				MessageBox.Show
 				(
-					ElectronicObserver.Properties.Resources.MultiInstanceNotification,
+					ElectronicObserver.Translations.Resources.MultiInstanceNotification,
 					caption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation
@@ -176,8 +176,8 @@ public partial class App : Application
 			}
 			catch (UnauthorizedAccessException)
 			{
-				MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
-					ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show(MainResources.MissingPermissions,
+					MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 				throw;
 			}

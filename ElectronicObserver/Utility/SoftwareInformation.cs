@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using DynaJson;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
@@ -67,13 +66,13 @@ public static class SoftwareInformation
 	{
 		if (e.Error != null)
 		{
-			ErrorReporter.SendErrorReport(e.Error, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData);
+			ErrorReporter.SendErrorReport(e.Error, SoftwareInformationResources.FailedToObtainUpdateData);
 			return;
 		}
 
 		if (e.Result.StartsWith("<!DOCTYPE html>"))
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.InvalidUpdateUrl);
+			Logger.Add(3, SoftwareInformationResources.InvalidUpdateUrl);
 			return;
 		}
 
@@ -89,7 +88,7 @@ public static class SoftwareInformation
 			}
 			else
 			{
-				Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion,
+				Logger.Add(3, string.Format(SoftwareInformationResources.YouAreUsingTheLatestVersion,
 					date.ToString("yyyy/MM/dd")));
 			}
 		}

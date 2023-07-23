@@ -2,9 +2,9 @@
 
 public class FormFleetOverviewTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.FormFleetOverview.Title;
+	public string Title => FleetOverviewResources.Title;
 
-	public string CombinedFleetToolTip => Properties.Window.FormFleetOverview.CombinedFleetToolTip;
-	public string AnchorageRepairToolTip => Properties.Window.FormFleetOverview.AnchorageRepairToolTip;
-	public string Recovery => Properties.Window.FormFleetOverview.Recovery;
+	public string CombinedFleetToolTip => FleetOverviewResources.CombinedFleetToolTip;
+	public string AnchorageRepairToolTip => FleetOverviewResources.AnchorageRepairToolTip;
+	public string Recovery => FleetOverviewResources.Recovery;
 }

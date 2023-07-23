@@ -174,7 +174,7 @@ public class EnemyFleetRecord : RecordBase
 		{
 
 			var battle = KCDatabase.Instance.Battle;
-			string fleetName = battle.IsBaseAirRaid ? Properties.ResourceRecord.EnemyFleetRecord_EnemyAirRaid : battle.Result?.EnemyFleetName ?? "";
+			string fleetName = battle.IsBaseAirRaid ? ResourceRecordResources.EnemyFleetRecord_EnemyAirRaid : battle.Result?.EnemyFleetName ?? "";
 			int baseExp = battle.Result?.BaseExp ?? 0;
 			var initial = battle.FirstBattle.Initial;
 

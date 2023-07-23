@@ -8,6 +8,7 @@
 	xmlns:models="clr-namespace:KancolleProgress.Models"
 	xmlns:viewModels="clr-namespace:KancolleProgress.ViewModels"
 	xmlns:views="clr-namespace:KancolleProgress.Views"
+	xmlns:translations="clr-namespace:KancolleProgress.Translations"
 	Name="KancolleProgressControl"
 	d:DataContext="{Binding ViewModel, ElementName=KancolleProgressControl}"
 	d:DesignHeight="450"
@@ -29,16 +30,16 @@
 		</Grid.RowDefinitions>
 
 		<Menu Grid.Row="0">
-			<MenuItem Header="{x:Static kancolleProgress:KancolleProgressResources.File}">
-				<MenuItem Command="{Binding ExportAsCsvCommand}" Header="{x:Static kancolleProgress:KancolleProgressResources.ExportAsCsv}" />
+			<MenuItem Header="{x:Static translations:KancolleProgressResources.File}">
+				<MenuItem Command="{Binding ExportAsCsvCommand}" Header="{x:Static translations:KancolleProgressResources.ExportAsCsv}" />
 			</MenuItem>
-			<MenuItem Header="{x:Static kancolleProgress:KancolleProgressResources.View}">
-				<MenuItem Command="{Binding SetDisplayCommand}" Header="{x:Static kancolleProgress:KancolleProgressResources.Ships}">
+			<MenuItem Header="{x:Static translations:KancolleProgressResources.View}">
+				<MenuItem Command="{Binding SetDisplayCommand}" Header="{x:Static translations:KancolleProgressResources.Ships}">
 					<MenuItem.CommandParameter>
 						<viewModels:Display>Ships</viewModels:Display>
 					</MenuItem.CommandParameter>
 				</MenuItem>
-				<MenuItem Command="{Binding SetDisplayCommand}" Header="{x:Static kancolleProgress:KancolleProgressResources.Event}">
+				<MenuItem Command="{Binding SetDisplayCommand}" Header="{x:Static translations:KancolleProgressResources.Event}">
 					<MenuItem.CommandParameter>
 						<viewModels:Display>Event</viewModels:Display>
 					</MenuItem.CommandParameter>
@@ -80,7 +81,7 @@
 
 						<TextBlock
 							Grid.Row="0"
-							Text="{x:Static kancolleProgress:KancolleProgressResources.ColorFilters}"
+							Text="{x:Static translations:KancolleProgressResources.ColorFilters}"
 							TextAlignment="Center"
 							/>
 						<ItemsControl

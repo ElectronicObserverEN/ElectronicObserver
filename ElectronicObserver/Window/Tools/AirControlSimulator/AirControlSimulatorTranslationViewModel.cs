@@ -4,22 +4,22 @@ namespace ElectronicObserver.Window.Tools.AirControlSimulator;
 
 public class AirControlSimulatorTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => AirControlSimulator.DataSelection;
+	public string Title => AirControlSimulatorResources.DataSelection;
 
-	public string Fleet => AirControlSimulator.Fleet;
-	public string AirBase => AirControlSimulator.AirBase;
-	public string Data => AirControlSimulator.Data;
-	public string Browser => AirControlSimulator.Browser;
+	public string Fleet => AirControlSimulatorResources.Fleet;
+	public string AirBase => AirControlSimulatorResources.AirBase;
+	public string Data => AirControlSimulatorResources.Data;
+	public string Browser => AirControlSimulatorResources.Browser;
 
-	public string None => AirControlSimulator.None;
-	public string MaxProficiency => AirControlSimulator.MaxProficiency;
+	public string None => AirControlSimulatorResources.None;
+	public string MaxProficiency => AirControlSimulatorResources.MaxProficiency;
 
-	public string Ships => AirControlSimulator.Ships;
-	public string Equipment => AirControlSimulator.Equipment;
-	public string AllEquipment => AirControlSimulator.AllEquipment;
-	public string LockedEquipment => AirControlSimulator.LockedEquipment;
+	public string Ships => AirControlSimulatorResources.Ships;
+	public string Equipment => AirControlSimulatorResources.Equipment;
+	public string AllEquipment => AirControlSimulatorResources.AllEquipment;
+	public string LockedEquipment => AirControlSimulatorResources.LockedEquipment;
 
-	public string CopyLink => SortieRecordViewer.SortieRecordViewer.CopyLink;
-	public string Ok => AirControlSimulator.Ok;
-	public string Cancel => AirControlSimulator.Cancel;
+	public string CopyLink => SortieRecordViewerResources.CopyLink;
+	public string Ok => AirControlSimulatorResources.Ok;
+	public string Cancel => AirControlSimulatorResources.Cancel;
 }

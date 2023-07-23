@@ -130,8 +130,8 @@ public partial class ExtraBrowserWindow : Window
 		{
 			if (gameframe != null)
 			{
-				Browser.ExecuteScriptAsync(String.Format(Properties.Resources.PageScript, StyleClassID));
-				gameframe.ExecuteScriptAsync(String.Format(Properties.Resources.FrameScript, StyleClassID));
+				Browser.ExecuteScriptAsync(String.Format(Translations.Resources.PageScript, StyleClassID));
+				gameframe.ExecuteScriptAsync(String.Format(Translations.Resources.FrameScript, StyleClassID));
 				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 				Browser.HorizontalAlignment = HorizontalAlignment.Center;
 				Browser.VerticalAlignment = VerticalAlignment.Center;

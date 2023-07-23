@@ -1,78 +1,77 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
 public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.Dialog.DialogFleetImageGenerator.Title;
+	public string Title => FleetImageGeneratorResources.Title;
 
-	public string CopyToClipboard => Properties.Window.Dialog.DialogFleetImageGenerator.CopyToClipboard;
-	public string LoadFromClipboard => Properties.Window.Dialog.DialogFleetImageGenerator.LoadFromClipboard;
-	public string SaveImageToFile => Properties.Window.Dialog.DialogFleetImageGenerator.SaveImageToFile;
+	public string CopyToClipboard => FleetImageGeneratorResources.CopyToClipboard;
+	public string LoadFromClipboard => FleetImageGeneratorResources.LoadFromClipboard;
+	public string SaveImageToFile => FleetImageGeneratorResources.SaveImageToFile;
 
-	public string AirBase => Properties.Window.FormBaseAirCorps.Title;
-	public string Settings => Window.Dialog.ConfigRes.Settings;
+	public string AirBase => BaseAirCorpsResources.Title;
+	public string Settings => ConfigRes.Settings;
 
-	public string HighAltitudeShort => Properties.Window.Dialog.DialogFleetImageGenerator.HighAltitudeShort;
+	public string HighAltitudeShort => FleetImageGeneratorResources.HighAltitudeShort;
 
-	public string Basic => Properties.Window.Dialog.DialogFleetImageGenerator.Basic;
-	public string SearchOutputPath => Properties.Window.Dialog.DialogFleetImageGenerator.SearchOutputPath;
-	public string SearchOutputPathToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.SearchOutputPathToolTip;
-	public string OutputPathToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OutputPathToolTip;
-	public string CustomText => Properties.Window.Dialog.DialogFleetImageGenerator.CustomText;
-	public string FleetTitle => Properties.Window.Dialog.DialogFleetImageGenerator.FleetTitle;
-	public string Comment => Properties.Window.Dialog.DialogFleetImageGenerator.Comment;
-	public string Mode => Properties.Window.Dialog.DialogFleetImageGenerator.Mode;
-	public string ImageTypeBanner => Properties.Window.Dialog.DialogFleetImageGenerator.ImageTypeBanner;
-	public string ImageTypeCutin => Properties.Window.Dialog.DialogFleetImageGenerator.ImageTypeCutin;
-	public string ImageTypeCard => Properties.Window.Dialog.DialogFleetImageGenerator.ImageTypeCard;
-	public string Fleet => Properties.Window.Dialog.DialogFleetImageGenerator.Fleet;
+	public string Basic => FleetImageGeneratorResources.Basic;
+	public string SearchOutputPath => FleetImageGeneratorResources.SearchOutputPath;
+	public string SearchOutputPathToolTip => FleetImageGeneratorResources.SearchOutputPathToolTip;
+	public string OutputPathToolTip => FleetImageGeneratorResources.OutputPathToolTip;
+	public string CustomText => FleetImageGeneratorResources.CustomText;
+	public string FleetTitle => FleetImageGeneratorResources.FleetTitle;
+	public string Comment => FleetImageGeneratorResources.Comment;
+	public string Mode => FleetImageGeneratorResources.Mode;
+	public string ImageTypeBanner => FleetImageGeneratorResources.ImageTypeBanner;
+	public string ImageTypeCutin => FleetImageGeneratorResources.ImageTypeCutin;
+	public string ImageTypeCard => FleetImageGeneratorResources.ImageTypeCard;
+	public string Fleet => FleetImageGeneratorResources.Fleet;
 
-	public string Details => Properties.Window.Dialog.DialogFleetImageGenerator.Details;
-	public string GroupOutputPath => Properties.Window.Dialog.DialogFleetImageGenerator.GroupOutputPath;
-	public string SynchronizeTitleAndFileName => Properties.Window.Dialog.DialogFleetImageGenerator.SynchronizeTitleAndFileName;
-	public string SynchronizeTitleAndFileNameToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.SynchronizeTitleAndFileNameToolTip;
-	public string AutoSetFileNameToDateToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.AutoSetFileNameToDateToolTip;
-	public string OutputToClipboardToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OutputToClipboardToolTip;
-	public string DisableOverwritePrompt => Properties.Window.Dialog.DialogFleetImageGenerator.DisableOverwritePrompt;
-	public string DisableOverwritePromptToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.DisableOverwritePromptToolTip;
-	public string OpenImageAfterOutput => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageAfterOutput;
-	public string OpenImageAfterOutputToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageAfterOutputToolTip;
-	public string BackgroundImage => Properties.Window.Dialog.DialogFleetImageGenerator.BackgroundImage;
-	public string ClearBackgroundPathToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.ClearBackgroundPathToolTip;
-	public string SearchBackgroundImagePathToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.SearchBackgroundImagePathToolTip;
-	public string BackgroundImagePathToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.BackgroundImagePathToolTip;
-	public string Layout => Properties.Window.Dialog.DialogFleetImageGenerator.Layout;
-	public string AvoidTwitterDeterioration => Properties.Window.Dialog.DialogFleetImageGenerator.AvoidTwitterDeterioration;
-	public string AvoidTwitterDeteriorationToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.AvoidTwitterDeteriorationToolTip;
-	public string ReflectDamageGraphicToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.ReflectDamageGraphicToolTip;
-	public string ShipColumn => Properties.Window.Dialog.DialogFleetImageGenerator.ShipColumn;
-	public string HorizontalShipCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalShipCountToolTip;
-	public string FleetColumn => Properties.Window.Dialog.DialogFleetImageGenerator.FleetColumn;
-	public string HorizontalFleetCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalFleetCountToolTip;
-	public string QuickConfigurationAccess => Properties.Window.Dialog.DialogFleetImageGenerator.QuickConfigurationAccess;
-	public string QuickConfigurationAccessToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.QuickConfigurationAccessToolTip;
+	public string Details => FleetImageGeneratorResources.Details;
+	public string GroupOutputPath => FleetImageGeneratorResources.GroupOutputPath;
+	public string SynchronizeTitleAndFileName => FleetImageGeneratorResources.SynchronizeTitleAndFileName;
+	public string SynchronizeTitleAndFileNameToolTip => FleetImageGeneratorResources.SynchronizeTitleAndFileNameToolTip;
+	public string AutoSetFileNameToDateToolTip => FleetImageGeneratorResources.AutoSetFileNameToDateToolTip;
+	public string OutputToClipboardToolTip => FleetImageGeneratorResources.OutputToClipboardToolTip;
+	public string DisableOverwritePrompt => FleetImageGeneratorResources.DisableOverwritePrompt;
+	public string DisableOverwritePromptToolTip => FleetImageGeneratorResources.DisableOverwritePromptToolTip;
+	public string OpenImageAfterOutput => FleetImageGeneratorResources.OpenImageAfterOutput;
+	public string OpenImageAfterOutputToolTip => FleetImageGeneratorResources.OpenImageAfterOutputToolTip;
+	public string BackgroundImage => FleetImageGeneratorResources.BackgroundImage;
+	public string ClearBackgroundPathToolTip => FleetImageGeneratorResources.ClearBackgroundPathToolTip;
+	public string SearchBackgroundImagePathToolTip => FleetImageGeneratorResources.SearchBackgroundImagePathToolTip;
+	public string BackgroundImagePathToolTip => FleetImageGeneratorResources.BackgroundImagePathToolTip;
+	public string Layout => FleetImageGeneratorResources.Layout;
+	public string AvoidTwitterDeterioration => FleetImageGeneratorResources.AvoidTwitterDeterioration;
+	public string AvoidTwitterDeteriorationToolTip => FleetImageGeneratorResources.AvoidTwitterDeteriorationToolTip;
+	public string ReflectDamageGraphicToolTip => FleetImageGeneratorResources.ReflectDamageGraphicToolTip;
+	public string ShipColumn => FleetImageGeneratorResources.ShipColumn;
+	public string HorizontalShipCountToolTip => FleetImageGeneratorResources.HorizontalShipCountToolTip;
+	public string FleetColumn => FleetImageGeneratorResources.FleetColumn;
+	public string HorizontalFleetCountToolTip => FleetImageGeneratorResources.HorizontalFleetCountToolTip;
+	public string QuickConfigurationAccess => FleetImageGeneratorResources.QuickConfigurationAccess;
+	public string QuickConfigurationAccessToolTip => FleetImageGeneratorResources.QuickConfigurationAccessToolTip;
 
-	public string Font => Properties.Window.Dialog.DialogFleetImageGenerator.Font;
-	public string ButtonClearFont => Properties.Window.Dialog.DialogFleetImageGenerator.ButtonClearFont;
-	public string ApplyGeneralFontToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.ApplyGeneralFontToolTip;
-	public string DigitSmall => Properties.Window.Dialog.DialogFleetImageGenerator.DigitSmall;
-	public string DigitMedium => Properties.Window.Dialog.DialogFleetImageGenerator.DigitMedium;
-	public string FontSmall => Properties.Window.Dialog.DialogFleetImageGenerator.FontSmall;
-	public string FontMedium => Properties.Window.Dialog.DialogFleetImageGenerator.FontMedium;
-	public string FontLarge => Properties.Window.Dialog.DialogFleetImageGenerator.FontLarge;
-	public string FontTitle => Properties.Window.Dialog.DialogFleetImageGenerator.FleetTitle;
-	public string ChangeAll => Properties.Window.Dialog.DialogFleetImageGenerator.ChangeAll;
-	public string OpenImageDialog => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageDialog;
-	public string SaveImageDialog => Properties.Window.Dialog.DialogFleetImageGenerator.SaveImageDialog;
+	public string Font => FleetImageGeneratorResources.Font;
+	public string ButtonClearFont => FleetImageGeneratorResources.ButtonClearFont;
+	public string ApplyGeneralFontToolTip => FleetImageGeneratorResources.ApplyGeneralFontToolTip;
+	public string DigitSmall => FleetImageGeneratorResources.DigitSmall;
+	public string DigitMedium => FleetImageGeneratorResources.DigitMedium;
+	public string FontSmall => FleetImageGeneratorResources.FontSmall;
+	public string FontMedium => FleetImageGeneratorResources.FontMedium;
+	public string FontLarge => FleetImageGeneratorResources.FontLarge;
+	public string FontTitle => FleetImageGeneratorResources.FleetTitle;
+	public string ChangeAll => FleetImageGeneratorResources.ChangeAll;
+	public string OpenImageDialog => FleetImageGeneratorResources.OpenImageDialog;
+	public string SaveImageDialog => FleetImageGeneratorResources.SaveImageDialog;
 	
-	public string Theme => Properties.Window.Dialog.DialogFleetImageGenerator.Theme;
-	public string CustomTheme => Properties.Window.Dialog.DialogFleetImageGenerator.CustomTheme;
+	public string Theme => FleetImageGeneratorResources.Theme;
+	public string CustomTheme => FleetImageGeneratorResources.CustomTheme;
 	public string ForeColorDisplay => NotifyRes.ForeColorDisplay;
 	public string BackColorDisplay => NotifyRes.BackColorDisplay;
 
-	public string UseAlbumStatusName => Properties.Window.Dialog.DialogFleetImageGenerator.UseAlbumStatusName;
-	public string MaxEquipmentNameWidth => Properties.Window.Dialog.DialogFleetImageGenerator.MaxEquipmentNameWidth;
-	public string DownloadMissingShipImage => Properties.Window.Dialog.DialogFleetImageGenerator.DownloadMissingShipImage;
+	public string UseAlbumStatusName => FleetImageGeneratorResources.UseAlbumStatusName;
+	public string MaxEquipmentNameWidth => FleetImageGeneratorResources.MaxEquipmentNameWidth;
+	public string DownloadMissingShipImage => FleetImageGeneratorResources.DownloadMissingShipImage;
 }

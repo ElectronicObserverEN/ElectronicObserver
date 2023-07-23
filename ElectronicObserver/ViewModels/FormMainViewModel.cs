@@ -24,7 +24,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
@@ -264,7 +263,7 @@ public partial class FormMainViewModel : ObservableObject
 			_ => SoftwareInformation.SoftwareNameJapanese
 		};
 
-		Utility.Logger.Add(2, softwareName + Properties.Window.FormMain.Starting);
+		Utility.Logger.Add(2, softwareName + MainResources.Starting);
 
 		ResourceManager.Instance.Load();
 		RecordManager.Instance.Load();
@@ -493,7 +492,7 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void LoadData()
 	{
-		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
+		if (MessageBox.Show(Resources.AskLoad, MainResources.ConfirmatonCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
@@ -762,7 +761,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -782,7 +781,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Development.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -802,7 +801,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Construction.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoBuildData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -828,7 +827,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -844,7 +843,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterEquipments.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.EquipmentDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -861,8 +860,8 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			MessageBox.Show
 			(
-				Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
-				Properties.Window.Dialog.DialogAntiAirDefense.Error,
+				AntiAirDefenseResources.DataNotLoaded,
+				AntiAirDefenseResources.Error,
 				MessageBoxButton.OK, MessageBoxImage.Error
 			);
 
@@ -907,7 +906,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (!KCDatabase.Instance.Quest.IsLoaded)
 		{
-			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.QuestDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -926,7 +925,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -1027,7 +1026,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 
 			}
@@ -1157,7 +1156,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1195,7 +1194,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
@@ -1207,7 +1206,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1249,7 +1248,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
@@ -1271,7 +1270,7 @@ public partial class FormMainViewModel : ObservableObject
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to delete.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 			}
@@ -1321,7 +1320,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show("Ship data is not loaded.", MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -1362,7 +1361,7 @@ public partial class FormMainViewModel : ObservableObject
 			{
 
 				Utility.ErrorReporter.SendErrorReport(ex, "艦船リソースのリネームに失敗しました。");
-				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 
@@ -1674,7 +1673,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ViewHelp()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
+		if (MessageBox.Show(MainResources.OpenEOWiki, MainResources.HelpCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
@@ -1687,7 +1686,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ReportIssue()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
+		if (MessageBox.Show(MainResources.ReportIssue, MainResources.ReportIssueCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
@@ -2024,7 +2023,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
+			ErrorReporter.SendErrorReport(ex, MainResources.FailedToOpenBrowser);
 		}
 	}
 
@@ -2040,8 +2039,8 @@ public partial class FormMainViewModel : ObservableObject
 		if (Configuration.Config.Life.ConfirmOnClosing)
 		{
 			if (MessageBox.Show(
-					string.Format(Properties.Window.FormMain.ExitConfirmation, name),
-					Properties.Window.FormMain.ConfirmatonCaption,
+					string.Format(MainResources.ExitConfirmation, name),
+					MainResources.ConfirmatonCaption,
 					MessageBoxButton.YesNo,
 					MessageBoxImage.Question,
 					MessageBoxResult.No)

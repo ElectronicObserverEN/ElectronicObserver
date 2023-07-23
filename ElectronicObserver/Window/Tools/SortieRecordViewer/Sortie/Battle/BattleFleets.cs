@@ -129,7 +129,7 @@ public class BattleFleets
 		}
 		*/
 
-		throw new Exception(SortieRecordViewer.DuplicateShipError);
+		throw new Exception(SortieRecordViewerResources.DuplicateShipError);
 	}
 
 	public void UpdateState(ApiGetMemberShipDeckResponse deck)

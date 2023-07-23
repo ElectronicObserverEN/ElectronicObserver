@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 

@@ -14,7 +14,6 @@ using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AutoRefresh;
@@ -22,7 +21,6 @@ using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
 using ModernWpf;
-using Translation = ElectronicObserver.Properties.Window.FormBrowserHost;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window;
@@ -128,7 +126,7 @@ public partial class FormBrowserHost : Form
 
 	public void Translate()
 	{
-		Text = Translation.Title;
+		Text = BrowserHostResources.Title;
 	}
 
 	public void SubscribeToApis()
@@ -225,7 +223,7 @@ public partial class FormBrowserHost : Form
 		{
 			Utility.ErrorReporter.SendErrorReport(ex, Resources.FailedBrowserStart);
 			MessageBox.Show(Resources.FailedBrowserStart + ex.Message,
-				Translation.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				BrowserHostResources.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 	}
 
