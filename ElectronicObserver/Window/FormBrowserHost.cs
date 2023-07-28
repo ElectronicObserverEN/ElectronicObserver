@@ -14,7 +14,6 @@ using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AutoRefresh;
@@ -22,7 +21,7 @@ using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
 using ModernWpf;
-using Translation = ElectronicObserver.Properties.Window.FormBrowserHost;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window;
 
@@ -127,7 +126,7 @@ public partial class FormBrowserHost : Form
 
 	public void Translate()
 	{
-		Text = Translation.Title;
+		Text = BrowserHostResources.Title;
 	}
 
 	public void SubscribeToApis()
@@ -224,7 +223,7 @@ public partial class FormBrowserHost : Form
 		{
 			Utility.ErrorReporter.SendErrorReport(ex, Resources.FailedBrowserStart);
 			MessageBox.Show(Resources.FailedBrowserStart + ex.Message,
-				Translation.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				BrowserHostResources.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 	}
 
@@ -277,7 +276,7 @@ public partial class FormBrowserHost : Form
 	{
 		get
 		{
-			var c = Utility.Configuration.Config.FormBrowser;
+			Configuration.ConfigurationData.ConfigFormBrowser c = Configuration.Config.FormBrowser;
 
 			return new BrowserConfiguration
 			{
@@ -306,7 +305,11 @@ public partial class FormBrowserHost : Form
 				UseVulkanWorkaround = c.UseVulkanWorkaround,
 				Volume = c.Volume,
 				IsMute = c.IsMute,
-				IsBrowserContextMenuEnabled = c.IsBrowserContextMenuEnabled,
+				IsBrowserContextMenuEnabled = c.IsBrowserContextMenuEnabled, 
+				MainFont = Utility.Configuration.Config.UI.MainFont.FontData!.Name,
+				UseCustomBrowserFont = Utility.Configuration.Config.UI.UseCustomBrowserFont,
+				BrowserFont = Utility.Configuration.Config.UI.BrowserFontName,
+				MatchMainFont = Utility.Configuration.Config.UI.MatchMainFont,
 			};
 		}
 	}

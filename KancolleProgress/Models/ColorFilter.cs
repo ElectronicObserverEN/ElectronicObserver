@@ -6,12 +6,6 @@ using KancolleProgress.ViewModels;
 
 namespace KancolleProgress.Models;
 
-public enum Comparator
-{
-	Equal,
-	GreaterOrEqual
-}
-
 public class ColorFilter : ObservableObject
 {
 	private KancolleProgressViewModel ViewModel { get; }
@@ -28,7 +22,7 @@ public class ColorFilter : ObservableObject
 	{
 		Comparator.Equal => level == filter.Level,
 		Comparator.GreaterOrEqual => level >= filter.Level,
-		_ => true
+		_ => true,
 	};
 
 	public ColorFilter(KancolleProgressViewModel vm, Comparator comparator, int level, Color color, string? label = null)
@@ -40,7 +34,7 @@ public class ColorFilter : ObservableObject
 		Label = label ?? level + comparator switch
 		{
 			Comparator.GreaterOrEqual => "+",
-			_ => ""
+			_ => "",
 		};
 
 		// todo: might not be needed with Fody

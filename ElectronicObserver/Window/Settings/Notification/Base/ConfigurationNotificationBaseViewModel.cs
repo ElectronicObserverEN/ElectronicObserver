@@ -15,7 +15,7 @@ using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
-public partial class ConfigurationNotificationBaseViewModel : ObservableValidator, IDisposable
+public partial class ConfigurationNotificationBaseViewModel : ObservableValidator
 {
 	public ConfigurationNotificationBaseTranslationViewModel Translation { get; }
 	private FileService FileService { get; }
@@ -76,9 +76,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public Color BackColor { get; set; }
 
-	private bool SoundChanged { get; set; }
+	private bool SoundChanged => SoundPath != Config.SoundPath;
 
-	private bool ImageChanged { get; set; }
+	private bool ImageChanged => ImagePath != Config.ImagePath;
 
 	public ConfigurationNotificationBaseViewModel(
 		Configuration.ConfigurationData.ConfigNotifierBase config,
@@ -107,20 +107,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 				ClickFlag ^= clickFlagValue;
 			};
 		}
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(SoundPath)) return;
-
-			SoundChanged = true;
-		};
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(ImagePath)) return;
-
-			ImageChanged = true;
-		};
 	}
 
 	public virtual void Load()
@@ -206,7 +192,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			throw new NotImplementedException();
 		}
 
-		return (viewModel.ImageChanged && viewModel.DrawsImage && !viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath)) switch
+		return (viewModel.ImageChanged && !viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath) && viewModel.DrawsImage) switch
 		{
 			true => new(NotifyRes.FailedLoadSound),
 			_ => ValidationResult.Success!,
@@ -220,7 +206,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			throw new NotImplementedException();
 		}
 
-		return (viewModel.SoundChanged && viewModel.PlaysSound && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath)) switch
+		return (viewModel.SoundChanged && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath) && viewModel.PlaysSound) switch
 		{
 			true => new(NotifyRes.FailedLoadSound),
 			_ => ValidationResult.Success!,
@@ -271,9 +257,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		NotifierBase.Notify();
 	}
 
-	public void Dispose()
+	public void StopSound()
 	{
-		NotifierBase.Sound.Close();
+		NotifierBase.Sound.Stop();
 	}
 }
 

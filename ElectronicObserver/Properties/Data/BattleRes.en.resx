@@ -291,4 +291,16 @@
   <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
     <value>Night Support Expedition</value>
   </data>
+  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
+    <value>Friendly Fleet Shelling</value>
+  </data>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>Smoke screen</value>
+  </data>
+  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
+    <value>Friendly Fleet Air Battle</value>
+  </data>
+  <data name="NightBattleBegins" xml:space="preserve">
+    <value>Night battle begins</value>
+  </data>
 </root>

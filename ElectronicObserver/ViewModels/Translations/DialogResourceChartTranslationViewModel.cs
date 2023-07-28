@@ -1,29 +1,26 @@
-﻿using ElectronicObserver.Window;
-using ElectronicObserver.Properties.Window.Dialog;
-
-namespace ElectronicObserver.ViewModels.Translations;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 public class DialogResourceChartTranslationViewModel : TranslationBaseViewModel
 {
 	public string Title => GeneralRes.ResourceChart.Replace("_", "__").Replace("&", "_");
 	
-	public string Start => DialogDropRecordViewer.Start;
-	public string End => DialogDropRecordViewer.End;
+	public string Start => DropRecordViewerResources.Start;
+	public string End => DropRecordViewerResources.End;
 
-	public string Menu_File => Properties.Window.Dialog.DialogResourceChart.Menu_File.Replace("_", "__").Replace("&", "_");
-	public string Menu_File_SaveImage => Properties.Window.Dialog.DialogResourceChart.Menu_File_SaveImage.Replace("_", "__").Replace("&", "_");
+	public string Menu_File => ResourceChartResources.Menu_File.Replace("_", "__").Replace("&", "_");
+	public string Menu_File_SaveImage => ResourceChartResources.Menu_File_SaveImage.Replace("_", "__").Replace("&", "_");
 	
-	public string Menu_Graph => Properties.Window.Dialog.DialogResourceChart.Menu_Graph.Replace("_", "__").Replace("&", "_");
-	public string Menu_Graph_Resource => Properties.Window.Dialog.DialogResourceChart.Menu_Graph_Resource.Replace("_", "__").Replace("&", "_");
-	public string Menu_Graph_ResourceDiff => Properties.Window.Dialog.DialogResourceChart.Menu_Graph_ResourceDiff.Replace("_", "__").Replace("&", "_");
-	public string Menu_Graph_Material => Properties.Window.Dialog.DialogResourceChart.Menu_Graph_Material.Replace("_", "__").Replace("&", "_");
-	public string Menu_Graph_MaterialDiff => Properties.Window.Dialog.DialogResourceChart.Menu_Graph_MaterialDiff.Replace("_", "__").Replace("&", "_");
-	public string Menu_Graph_Experience => Properties.Window.Dialog.DialogResourceChart.Menu_Graph_Experience.Replace("_", "__").Replace("&", "_");
-	public string Menu_Graph_ExperienceDiff => Properties.Window.Dialog.DialogResourceChart.Menu_Graph_ExperienceDiff.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph => ResourceChartResources.Menu_Graph.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph_Resource => ResourceChartResources.Menu_Graph_Resource.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph_ResourceDiff => ResourceChartResources.Menu_Graph_ResourceDiff.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph_Material => ResourceChartResources.Menu_Graph_Material.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph_MaterialDiff => ResourceChartResources.Menu_Graph_MaterialDiff.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph_Experience => ResourceChartResources.Menu_Graph_Experience.Replace("_", "__").Replace("&", "_");
+	public string Menu_Graph_ExperienceDiff => ResourceChartResources.Menu_Graph_ExperienceDiff.Replace("_", "__").Replace("&", "_");
 	
-	public string Menu_Option_DivideByDay => Properties.Window.Dialog.DialogResourceChart.Menu_Option_DivideByDay.Replace("_", "__").Replace("&", "_");
-	public string Menu_Option_ShowAllData => Properties.Window.Dialog.DialogResourceChart.Menu_Option_ShowAllData.Replace("_", "__").Replace("&", "_");
+	public string Menu_Option_DivideByDay => ResourceChartResources.Menu_Option_DivideByDay.Replace("_", "__").Replace("&", "_");
+	public string Menu_Option_ShowAllData => ResourceChartResources.Menu_Option_ShowAllData.Replace("_", "__").Replace("&", "_");
 	
-	public string Menu_Span => Properties.Window.Dialog.DialogResourceChart.Menu_Span.Replace("_", "__").Replace("&", "_");
+	public string Menu_Span => ResourceChartResources.Menu_Span.Replace("_", "__").Replace("&", "_");
 	public string Menu_Span_Day => GeneralRes.Day.Replace("_", "__").Replace("&", "_");
 	public string Menu_Span_Month => GeneralRes.Month.Replace("_", "__").Replace("&", "_");
 	public string Menu_Span_Year => GeneralRes.Year.Replace("_", "__").Replace("&", "_");
@@ -31,10 +28,10 @@ public class DialogResourceChartTranslationViewModel : TranslationBaseViewModel
 	public string Menu_Span_Season => GeneralRes.ThreeMonths.Replace("_", "__").Replace("&", "_");
 	public string Menu_Span_All => GeneralRes.AllData.Replace("_", "__").Replace("&", "_");
 
-	public string Menu_Span_WeekFirst => DialogResourceChart.WeekFirst;
-	public string Menu_Span_MonthFirst => DialogResourceChart.MonthFirst;
-	public string Menu_Span_SeasonFirst => DialogResourceChart.SeasonFirst;
-	public string Menu_Span_YearFirst => DialogResourceChart.YearFirst;
+	public string Menu_Span_WeekFirst => ResourceChartResources.WeekFirst;
+	public string Menu_Span_MonthFirst => ResourceChartResources.MonthFirst;
+	public string Menu_Span_SeasonFirst => ResourceChartResources.SeasonFirst;
+	public string Menu_Span_YearFirst => ResourceChartResources.YearFirst;
 
 	public string OptionsMenu => GeneralRes.Option.Replace("_", "__").Replace("&", "_");
 	
@@ -50,5 +47,5 @@ public class DialogResourceChartTranslationViewModel : TranslationBaseViewModel
 	
 	public string Experience => GeneralRes.Experience.Replace("_", "__").Replace("&", "_");
 	
-	public string Today => DialogDropRecordViewer.Today;
+	public string Today => DropRecordViewerResources.Today;
 }

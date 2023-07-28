@@ -409,4 +409,7 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="SearchingNow" xml:space="preserve">
     <value>検索中です...</value>
   </data>
+  <data name="Performance" xml:space="preserve">
+    <value>性能</value>
+  </data>
 </root>

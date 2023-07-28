@@ -9,6 +9,12 @@ public class SortieShip
 	[JsonPropertyName("Id")]
 	public ShipId Id { get; set; }
 
+	/// <summary>
+	/// null for some older data
+	/// </summary>
+	[JsonPropertyName("DropId")]
+	public int? DropId { get; set; }
+
 	[JsonPropertyName("Level")]
 	public int Level { get; set; }
 
@@ -38,4 +44,10 @@ public class SortieShip
 	/// </summary>
 	[JsonPropertyName("ExpansionSlot")]
 	public SortieEquipmentSlot? ExpansionSlot { get; set; } = new();
+
+	/// <summary>
+	/// null for old data
+	/// </summary>
+	[JsonPropertyName("SpecialEffectItems")]
+	public List<SpecialEffectItem>? SpecialEffectItems { get; set; }
 }

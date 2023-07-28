@@ -8,13 +8,21 @@ namespace ElectronicObserverTypes.Mocks;
 public class ShipDataMock : IShipData
 {
 	public int ExpNextRemodel { get; set; }
-	public string Name { get; set; }
-	public string NameWithLevel { get; set; }
+	public string Name => MasterShip.IsAbyssalShip switch
+	{
+		false => MasterShip.NameEN,
+		_ => MasterShip.NameWithClass,
+	};
+	public string NameWithLevel => MasterShip.IsAbyssalShip switch
+	{
+		false => $"{MasterShip.NameEN} Lv. {Level}",
+		_ => $"{MasterShip.NameWithClass} Lv. {Level}",
+	};
 	public double HPRate => (double)HPCurrent / HPMax;
 	public int FuelMax { get; set; }
 	public int AmmoMax { get; set; }
-	public double FuelRate { get; set; }
-	public double AmmoRate { get; set; }
+	public double FuelRate => (double)Fuel / FuelMax;
+	public double AmmoRate => (double)Ammo / AmmoMax;
 	public int SupplyFuel { get; set; }
 	public int SupplyAmmo { get; set; }
 	public IList<double> AircraftRate { get; set; }
@@ -104,7 +112,7 @@ public class ShipDataMock : IShipData
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
 	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
 	public int EvasionBase => MasterShip.Evasion.GetParameter(Level);
-	public int ShipID { get; set; }
+	public int ShipID => (int)MasterShip.ShipId;
 	public int MasterID { get; set; }
 	public int SortID { get; set; }
 	public int SallyArea { get; set; }
@@ -132,6 +140,11 @@ public class ShipDataMock : IShipData
 	public int EvasionMax { get; set; }
 	public int ASWMax { get; set; }
 	public int LOSMax { get; set; }
+	public List<SpecialEffectItem> SpecialEffectItems { get; set; } = new();
+	public int SpecialEffectItemFirepower { get; set; }
+	public int SpecialEffectItemTorpedo { get; set; }
+	public int SpecialEffectItemArmor { get; set; }
+	public int SpecialEffectItemEvasion { get; set; }
 	public bool IsLocked { get; set; }
 	public bool IsLockedByEquipment { get; set; }
 
@@ -139,9 +152,14 @@ public class ShipDataMock : IShipData
 	{
 		MasterShip = ship;
 
-		HPCurrent = MasterShip.HPMax;
+		HPCurrent = MasterShip.HPMin;
 
 		Aircraft = MasterShip.Aircraft;
+
+		Fuel = ship.Fuel;
+		FuelMax = ship.Fuel;
+		Ammo = ship.Ammo;
+		AmmoMax = ship.Ammo;
 
 		FirepowerModernized = MasterShip.FirepowerMax - MasterShip.FirepowerMin;
 		TorpedoModernized = MasterShip.TorpedoMax - MasterShip.TorpedoMin;

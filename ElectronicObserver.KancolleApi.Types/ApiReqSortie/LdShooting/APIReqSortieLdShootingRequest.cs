@@ -1,19 +1,18 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public class ApiReqSortieLdShootingRequest
+namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
+
+public class ApiReqSortieLdShootingRequest : IBattleApiRequest
 {
 	[JsonPropertyName("api_formation")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiFormation { get; set; } = default!;
+	public string ApiFormation { get; set; } = "";
 
 	[JsonPropertyName("api_recovery_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiRecoveryType { get; set; } = default!;
+	public string ApiRecoveryType { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
+
+	[JsonPropertyName("api_smoke_flag")]
+	public string? ApiSmokeFlag { get; set; }
 }

@@ -11,7 +11,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Microsoft.Win32;
 using ScottPlot.Plottable;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogResourceChart;
 
 namespace ElectronicObserver.Window.Dialog.ResourceChartWPF;
 
@@ -364,7 +363,7 @@ public partial class ResourceChartWPF
 	{
 		if (!RecordManager.Instance.Resource.Record.Any())
 		{
-			System.Windows.Forms.MessageBox.Show(Translation.RecordDataDoesNotExist, Translation.Error, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+			System.Windows.Forms.MessageBox.Show(ResourceChartResources.RecordDataDoesNotExist, ResourceChartResources.Error, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
 			Close();
 			return;
 		}

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
@@ -367,7 +370,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	{
 		get
 		{
-			if (MasterShip.Evasion.IsDetermined)
+			if (MasterShip.Evasion?.IsDetermined ?? false)
 				return MasterShip.Evasion.GetParameter(Level);
 
 			// パラメータ上限下限が分かっていれば上ので確実に取れる
@@ -383,7 +386,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	{
 		get
 		{
-			if (MasterShip.ASW.IsDetermined)
+			if (MasterShip.ASW?.IsDetermined ?? false)
 				return MasterShip.ASW.GetParameter(Level) + ASWModernized;
 
 			return ASWTotal - AllSlotInstance.Sum(eq => eq?.MasterEquipment?.ASW ?? 0);
@@ -397,7 +400,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	{
 		get
 		{
-			if (MasterShip.LOS.IsDetermined)
+			if (MasterShip.LOS?.IsDetermined ?? false)
 				return MasterShip.LOS.GetParameter(Level);
 
 			return LOSTotal - AllSlotInstance.Sum(eq => eq?.MasterEquipment?.LOS ?? 0);
@@ -425,6 +428,31 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// 索敵最大値
 	/// </summary>
 	public int LOSMax => (int)RawData.api_sakuteki[1];
+
+	/// <summary>
+	/// Bonus items applied to that ship
+	/// </summary>
+	public List<SpecialEffectItem> SpecialEffectItems { get; private set; } = new();
+	
+	/// <summary>
+	/// Bonus firepower from special items
+	/// </summary>
+	public int SpecialEffectItemFirepower => SpecialEffectItems.Sum(item => item.Firepower);
+
+	/// <summary>
+	/// Bonus torpedo from special items
+	/// </summary>
+	public int SpecialEffectItemTorpedo => SpecialEffectItems.Sum(item => item.Torpedo);
+
+	/// <summary>
+	/// Bonus armor from special items
+	/// </summary>
+	public int SpecialEffectItemArmor => SpecialEffectItems.Sum(item => item.Armor);
+
+	/// <summary>
+	/// Bonus evasion from special items
+	/// </summary>
+	public int SpecialEffectItemEvasion => SpecialEffectItems.Sum(item => item.Evasion);
 
 	#endregion
 
@@ -1555,6 +1583,22 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 				ExpansionSlot = (int)RawData.api_slot_ex;
 				_aircraft = (int[])RawData.api_onslot;
 				_modernized = (int[])RawData.api_kyouka;
+
+				if (data.api_sp_effect_items())
+				{
+					string json = data.api_sp_effect_items.ToString();
+
+					SpecialEffectItems = JsonSerializer
+						.Deserialize<List<ApiSpEffectItem>>(json)
+						?.Select(i => new SpecialEffectItem
+						{
+							ApiKind = i.ApiKind,
+							Firepower = i.ApiHoug,
+							Torpedo = i.ApiRaig,
+							Armor = i.ApiSouk,
+							Evasion = i.ApiKaih,
+						}).ToList() ?? new();
+				}
 				break;
 
 			case "api_req_hokyu/charge":

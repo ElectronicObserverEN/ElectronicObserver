@@ -48,6 +48,9 @@ public partial class BattleViewModel : AnchorableViewModel
 	public string? SearchingFriendText { get; set; }
 	public ImageSource? SearchingFriendIcon { get; set; }
 	public string? SearchingFriendToolTip { get; set; }
+	public bool Smoker1Active { get; set; }
+	public bool Smoker2Active { get; set; }
+	public bool Smoker3Active { get; set; }
 
 	public string? SearchingText { get; set; }
 	public ImageSource? SearchingIcon { get; set; }
@@ -620,6 +623,9 @@ public partial class BattleViewModel : AnchorableViewModel
 			_ => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Radar)
 		};
 		SearchingFriendToolTip = null;
+		Smoker1Active = bd.Searching.SmokeCount >= 1;
+		Smoker2Active = bd.Searching.SmokeCount >= 2;
+		Smoker3Active = bd.Searching.SmokeCount >= 3;
 
 		search = bd.Searching.SearchingEnemy;
 
@@ -655,6 +661,9 @@ public partial class BattleViewModel : AnchorableViewModel
 		SearchingFriendText = "-";
 		SearchingFriendIcon = null;
 		SearchingFriendToolTip = null;
+		Smoker1Active = false;
+		Smoker2Active = false;
+		Smoker3Active = false;
 
 		SearchingEnemyText = "-";
 		SearchingEnemyIcon = null;
@@ -1043,13 +1052,14 @@ public partial class BattleViewModel : AnchorableViewModel
 			bar.SuspendUpdate();
 		*/
 
-		void EnableHPBar(int index, int initialHP, int resultHP, int maxHP)
+		void EnableHPBar(int index, int initialHP, int resultHP, int maxHP, bool isTargetable)
 		{
 			HPBars[index].Value = resultHP;
 			HPBars[index].PrevValue = initialHP;
 			HPBars[index].MaximumValue = maxHP;
 			HPBars[index].BackColor = Color.Transparent;
 			HPBars[index].Visible = true;
+			HPBars[index].IsTargetable = isTargetable;
 		}
 
 		void DisableHPBar(int index)
@@ -1059,10 +1069,10 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		void SetEnemyBackground(int index)
 		{
-			HPBars[index].BackColor = HPBars[index].Value switch
+			HPBars[index].BackColor = HPBars[index] switch
 			{
-				< 1 => Color.FromArgb(0x40, 0x4D, 0xA6, 0xDF),
-				_ => Color.Transparent
+				{ Value: < 1, IsTargetable: true } => Color.FromArgb(0x40, 0x4D, 0xA6, 0xDF),
+				_ => Color.Transparent,
 			};
 		}
 
@@ -1073,7 +1083,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			if (initial.FriendInitialHPs[i] != -1)
 			{
-				EnableHPBar(refindex, initial.FriendInitialHPs[i], resultHPs[refindex], initial.FriendMaxHPs[i]);
+				EnableHPBar(refindex, initial.FriendInitialHPs[i], resultHPs[refindex], initial.FriendMaxHPs[i], true);
 
 				string name;
 				bool isEscaped;
@@ -1132,7 +1142,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			if (initial.EnemyInitialHPs[i] != -1)
 			{
-				EnableHPBar(refindex, initial.EnemyInitialHPs[i], resultHPs[refindex], initial.EnemyMaxHPs[i]);
+				EnableHPBar(refindex, initial.EnemyInitialHPs[i], resultHPs[refindex], initial.EnemyMaxHPs[i], initial.IsEnemyTargetable[i]);
 				IShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
 
 				var bar = HPBars[refindex];
@@ -1161,17 +1171,15 @@ public partial class BattleViewModel : AnchorableViewModel
 		// friend escort
 		if (isFriendCombined)
 		{
-			// FleetFriendEscort.Visible = true;
-
-			for (int i = 0; i < initial.FriendInitialHPsEscort.Length; i++)
+			for (int i = 0; i < initial.FriendInitialHPsEscort!.Length; i++)
 			{
 				int refindex = BattleIndex.Get(BattleSides.FriendEscort, i);
 
 				if (initial.FriendInitialHPsEscort[i] != -1)
 				{
-					EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort[i]);
+					EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort![i], true);
 
-					IShipData ship = bd.Initial.FriendFleetEscort.MembersInstance[i];
+					IShipData? ship = bd.Initial.FriendFleetEscort.MembersInstance![i];
 					bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
 
 					var bar = HPBars[refindex];
@@ -1226,11 +1234,11 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				int refindex = BattleIndex.Get(BattleSides.EnemyEscort, i);
 
-				if (initial.EnemyInitialHPsEscort[i] != -1)
+				if (initial.EnemyInitialHPsEscort![i] != -1)
 				{
-					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort[i]);
+					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort![i], initial.IsEnemyTargetableEscort[i]);
 
-					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
+					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance![i];
 
 					var bar = HPBars[refindex];
 					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
@@ -1239,7 +1247,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					bar.ToolTip =
 						string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
 							ship.NameWithClass,
-							bd.Initial.EnemyLevelsEscort[i],
+							bd.Initial.EnemyLevelsEscort![i],
 							Math.Max(bar.PrevValue, 0),
 							Math.Max(bar.Value, 0),
 							bar.MaximumValue,

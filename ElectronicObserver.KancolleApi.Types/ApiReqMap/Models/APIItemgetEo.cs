@@ -3,14 +3,11 @@
 public class ApiItemgetEo
 {
 	[JsonPropertyName("api_getcount")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiGetcount { get; set; } = default!;
+	public int ApiGetcount { get; set; }
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_usemst")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiUsemst { get; set; } = default!;
+	public int ApiUsemst { get; set; }
 }

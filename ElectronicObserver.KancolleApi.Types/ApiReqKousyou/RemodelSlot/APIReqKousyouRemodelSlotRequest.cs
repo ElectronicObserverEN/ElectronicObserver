@@ -3,22 +3,14 @@
 public class ApiReqKousyouRemodelSlotRequest
 {
 	[JsonPropertyName("api_certain_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiCertainFlag { get; set; } = default!;
+	public string ApiCertainFlag { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiId { get; set; } = default!;
+	public string ApiId { get; set; } = "";
 
 	[JsonPropertyName("api_slot_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSlotId { get; set; } = default!;
+	public string ApiSlotId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

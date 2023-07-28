@@ -1,9 +1,4 @@
-﻿using ElectronicObserver.Properties.Window.Dialog;
-using ElectronicObserver.Window.Tools.AutoRefresh;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-using ElectronicObserver.Window.Tools.EventLockPlanner;
-using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
-using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+﻿using KancolleProgress.Translations;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -11,112 +6,119 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 {
 	// winforms uses & for keyboard navigation, wpf uses _
 	// if you want to use _ in wpf you need to write it as __
-	public string Title => Properties.Window.FormMain.Title.Replace("_", "__").Replace("&", "_");
+	public string Title => MainResources.Title.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_File => Properties.Window.FormMain.File.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File => MainResources.File;
 
-	public string StripMenu_File_Record => Properties.Window.FormMain.File_Record.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Record_Save => Properties.Window.FormMain.File_Record_Save.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Record_Load => Properties.Window.FormMain.File_Record_Load.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Record => MainResources.File_Record.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Record_Save => MainResources.File_Record_Save.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Record_Load => MainResources.File_Record_Load.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_File_Layout => Properties.Window.FormMain.File_Layout.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Layout_Load => Properties.Window.FormMain.File_Layout_Load.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Layout_Save => Properties.Window.FormMain.File_Layout_Save.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Layout_Open => Properties.Window.FormMain.File_Layout_Open.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Layout_Change => Properties.Window.FormMain.File_Layout_Change.Replace("_", "__").Replace("&", "_");
-	public string Adjustment => Properties.Window.FormMain.Adjustment.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Layout_LockLayout => Properties.Window.FormMain.File_Layout_LockLayout.Replace("_", "__").Replace("&", "_");
-	public string GridSplitterSize => Properties.Window.FormMain.GridSplitterSize.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Layout_TopMost => Properties.Window.FormMain.File_Layout_TopMost.Replace("_", "__").Replace("&", "_");
-	public string LayoutLoadFailed => Properties.Window.FormMain.LayoutLoadFailed.Replace("_", "__").Replace("&", "_");
-	public string LayoutLoadFailedTitle => Properties.Window.FormMain.LayoutLoadFailedTitle.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout => MainResources.File_Layout.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout_Load => MainResources.File_Layout_Load.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout_Save => MainResources.File_Layout_Save.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout_Open => MainResources.File_Layout_Open.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout_Change => MainResources.File_Layout_Change.Replace("_", "__").Replace("&", "_");
+	public string Adjustment => MainResources.Adjustment.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout_LockLayout => MainResources.File_Layout_LockLayout.Replace("_", "__").Replace("&", "_");
+	public string GridSplitterSize => MainResources.GridSplitterSize.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Layout_TopMost => MainResources.File_Layout_TopMost.Replace("_", "__").Replace("&", "_");
+	public string LayoutLoadFailed => MainResources.LayoutLoadFailed.Replace("_", "__").Replace("&", "_");
+	public string LayoutLoadFailedTitle => MainResources.LayoutLoadFailedTitle.Replace("_", "__").Replace("&", "_");
+	public string WindowCaptureLoadFailed => MainResources.WindowCaptureLoadFailed;
 
-	public string StripMenu_File_Notification => Properties.Window.FormMain.File_Notification.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Notification_MuteAll => Properties.Window.FormMain.File_Notification_MuteAll.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Notification => MainResources.File_Notification.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Notification_MuteAll => MainResources.File_Notification_MuteAll.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_File_Configuration => Properties.Window.FormMain.File_Configuration.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_File_Close => Properties.Window.FormMain.File_Close.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Configuration => MainResources.File_Configuration.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_File_Close => MainResources.File_Close.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_View => Properties.Window.FormMain.View.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Fleet => Properties.Window.FormMain.View_Fleet.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Fleet_1 => Properties.Window.FormMain.View_Fleet_1.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Fleet_2 => Properties.Window.FormMain.View_Fleet_2.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Fleet_3 => Properties.Window.FormMain.View_Fleet_3.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Fleet_4 => Properties.Window.FormMain.View_Fleet_4.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_FleetOverview => Properties.Window.FormMain.View_FleetOverview.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_ShipGroup => Properties.Window.FormMain.View_ShipGroup.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Dock => Properties.Window.FormMain.View_Dock.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Arsenal => Properties.Window.FormMain.View_Arsenal.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View => MainResources.View.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Fleet => MainResources.View_Fleet.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Fleet_1 => MainResources.View_Fleet_1.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Fleet_2 => MainResources.View_Fleet_2.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Fleet_3 => MainResources.View_Fleet_3.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Fleet_4 => MainResources.View_Fleet_4.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_FleetOverview => MainResources.View_FleetOverview.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_ShipGroup => MainResources.View_ShipGroup.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Dock => MainResources.View_Dock.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Arsenal => MainResources.View_Arsenal.Replace("_", "__").Replace("&", "_");
 	public string EquipmentUpgradePlanViewerTitle => EquipmentUpgradePlanViewer.Title;
-	public string StripMenu_View_BaseAirCorps => Properties.Window.FormMain.View_BaseAirCorps.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Headquarters => Properties.Window.FormMain.View_Headquarters.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Quest => Properties.Window.FormMain.View_Quest.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Information => Properties.Window.FormMain.View_Information.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Compass => Properties.Window.FormMain.View_Compass.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Battle => Properties.Window.FormMain.View_Battle.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Browser => Properties.Window.FormMain.View_Browser.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Log => Properties.Window.FormMain.View_Log.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_Json => Properties.Window.FormMain.View_Json.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_FleetPreset => Properties.Window.FormMain.View_FleetPreset.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_ShipTrainingPlanViewer => ShipTrainingPlanner.ViewerTitle;
+	public string StripMenu_View_BaseAirCorps => MainResources.View_BaseAirCorps.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Headquarters => MainResources.View_Headquarters.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Quest => MainResources.View_Quest.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Information => MainResources.View_Information.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Compass => MainResources.View_Compass.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Battle => MainResources.View_Battle.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Browser => MainResources.View_Browser.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Log => MainResources.View_Log.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_Json => MainResources.View_Json.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_FleetPreset => MainResources.View_FleetPreset.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View_ShipTrainingPlanViewer => ShipTrainingPlannerResources.ViewerTitle;
 
-	public string StripMenu_WindowCapture => Properties.Window.FormMain.WindowCapture.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_WindowCapture_SubWindow => Properties.Window.FormMain.WindowCapture_SubWindow.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_WindowCapture_AttachAll => Properties.Window.FormMain.WindowCapture_AttachAll.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_WindowCapture_DetachAll => Properties.Window.FormMain.WindowCapture_DetachAll.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_WindowCapture => MainResources.WindowCapture.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_WindowCapture_SubWindow => MainResources.WindowCapture_SubWindow.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_WindowCapture_AttachAll => MainResources.WindowCapture_AttachAll.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_WindowCapture_DetachAll => MainResources.WindowCapture_DetachAll.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_Tool => Properties.Window.FormMain.Tool.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_EquipmentList => Properties.Window.FormMain.Tool_EquipmentList.Replace("_", "__").Replace("&", "_");
-	public string SortieRecordViewer => Window.Tools.SortieRecordViewer.SortieRecordViewer.Title;
-	public string StripMenu_Tool_DropRecord => Properties.Window.FormMain.Tool_DropRecord.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_DevelopmentRecord => Properties.Window.FormMain.Tool_DevelopmentRecord.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_ConstructionRecord => Properties.Window.FormMain.Tool_ConstructionRecord.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_ResourceChart => Properties.Window.FormMain.Tool_ResourceChart.Replace("_", "__").Replace("&", "_");
-	public string SenkaViewer => Window.Tools.SenkaViewer.SenkaViewer.Title;
-	public string StripMenu_Tool_AlbumMasterShip => Properties.Window.FormMain.Tool_AlbumMasterShip.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_AlbumMasterEquipment => Properties.Window.FormMain.Tool_AlbumMasterEquipment.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_AntiAirDefense => Properties.Window.FormMain.Tool_AntiAirDefense.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_FleetImageGenerator => Properties.Window.FormMain.Tool_FleetImageGenerator.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_BaseAirCorpsSimulation => Properties.Window.FormMain.Tool_BaseAirCorpsSimulation.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_ExpChecker => Properties.Window.FormMain.Tool_ExpChecker.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_ExpeditionCheck => Properties.Window.FormMain.Tool_ExpeditionCheck.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_KancolleProgress => Properties.Window.FormMain.Tool_KancolleProgress.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_ExtraBrowser => Properties.Window.FormMain.Tool_ExtraBrowser.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_QuestTrackerManager => QuestTrackerManager.Title;
-	public string EventLockPlannerTitle => EventLockPlanner.Title;
-	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlanner.Title; 
-	public string AutoRefreshTitle => AutoRefresh.Title;
+	public string StripMenu_Tool => MainResources.Tool.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_EquipmentList => MainResources.Tool_EquipmentList.Replace("_", "__").Replace("&", "_");
+	public string SortieRecordViewer => SortieRecordViewerResources.Title;
+	public string StripMenu_Tool_DropRecord => MainResources.Tool_DropRecord.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_DevelopmentRecord => MainResources.Tool_DevelopmentRecord.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_ConstructionRecord => MainResources.Tool_ConstructionRecord.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_ResourceChart => MainResources.Tool_ResourceChart.Replace("_", "__").Replace("&", "_");
+	public string SenkaViewer => SenkaViewerResources.Title;
+	public string StripMenu_Tool_AlbumMasterShip => MainResources.Tool_AlbumMasterShip.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_AlbumMasterEquipment => MainResources.Tool_AlbumMasterEquipment.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_AntiAirDefense => MainResources.Tool_AntiAirDefense.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_FleetImageGenerator => MainResources.Tool_FleetImageGenerator.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_BaseAirCorpsSimulation => MainResources.Tool_BaseAirCorpsSimulation.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_ExpChecker => MainResources.Tool_ExpChecker.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_ExpeditionCheck => MainResources.Tool_ExpeditionCheck.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_KancolleProgress => KancolleProgressResources.Title;
+	public string StripMenu_Tool_ExtraBrowser => MainResources.Tool_ExtraBrowser.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_QuestTrackerManager => QuestTrackerManagerResources.Title;
+	public string EventLockPlannerTitle => EventLockPlannerResources.Title;
+	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title; 
+	public string AutoRefreshTitle => AutoRefreshResources.Title;
+	public string Telegram => TelegramResources.Title;
 
-	public string StripMenu_Debug => Properties.Window.FormMain.Debug.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Debug_LoadAPIFromFile => Properties.Window.FormMain.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Debug_LoadInitialAPI => Properties.Window.FormMain.Debug_LoadInitialAPI.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Debug_LoadRecordFromOld => Properties.Window.FormMain.Debug_LoadRecordFromOld.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Debug_DeleteOldAPI => Properties.Window.FormMain.Debug_DeleteOldAPI.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Debug_RenameShipResource => Properties.Window.FormMain.Debug_RenameShipResource.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Debug_LoadDataFromOld => Properties.Window.FormMain.Debug_LoadDataFromOld.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug => MainResources.Debug.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_LoadAPIFromFile => MainResources.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_LoadInitialAPI => MainResources.Debug_LoadInitialAPI.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_LoadRecordFromOld => MainResources.Debug_LoadRecordFromOld.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_DeleteOldAPI => MainResources.Debug_DeleteOldAPI.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_LoadBaseAPI => MainResources.Debug_LoadBaseAPI;
+	public string StripMenu_Debug_RenameShipResource => MainResources.Debug_RenameShipResource.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Debug_LoadDataFromOld => MainResources.Debug_LoadDataFromOld.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_Help => Properties.Window.FormMain.Help.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Help_Help => Properties.Window.FormMain.Help_Help.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Help_Issue => Properties.Window.FormMain.Help_Issue.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Help_Discord => Properties.Window.FormMain.Help_Discord.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Help_Update => Properties.Window.FormMain.Help_Update.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Help_Version => Properties.Window.FormMain.Help_Version.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Help => MainResources.Help.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Help_Help => MainResources.Help_Help.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Help_Issue => MainResources.Help_Issue.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Help_Discord => MainResources.Help_Discord.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Help_Update => MainResources.Help_Update.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Help_Version => MainResources.Help_Version.Replace("_", "__").Replace("&", "_");
 
-	public string StripStatus_Information => Properties.Window.FormMain.Information.Replace("_", "__").Replace("&", "_");
-	public string StripStatus_Clock => Properties.Window.FormMain.Clock.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Update_UpdateAvailable => MainResources.Update_UpdateAvailable;
+	public string StripMenu_Update_DownloadUpdate => MainResources.Update_DownloadUpdate;
+	public string StripMenu_Update_OpenReleaseNotes => MainResources.Update_OpenReleaseNotes;
 
-	public string EventStartsIn => Properties.Window.FormMain.EventStartsIn.Replace("_", "__").Replace("&", "_");
-	public string EventHasStarted => Properties.Window.FormMain.EventHasStarted.Replace("_", "__").Replace("&", "_");
+	public string StripStatus_Information => MainResources.Information.Replace("_", "__").Replace("&", "_");
+	public string StripStatus_Clock => MainResources.Clock.Replace("_", "__").Replace("&", "_");
 
-	public string EventEndsIn => Properties.Window.FormMain.EventEndsIn.Replace("_", "__").Replace("&", "_");
-	public string EventHasEnded => Properties.Window.FormMain.EventHasEnded.Replace("_", "__").Replace("&", "_");
+	public string EventStartsIn => MainResources.EventStartsIn.Replace("_", "__").Replace("&", "_");
+	public string EventHasStarted => MainResources.EventHasStarted.Replace("_", "__").Replace("&", "_");
 
-	public string MaintenanceStartsIn => Properties.Window.FormMain.MaintenanceStartsIn.Replace("_", "__").Replace("&", "_");
-	public string MaintenanceHasStarted => Properties.Window.FormMain.MaintenanceHasStarted.Replace("_", "__").Replace("&", "_");
+	public string EventEndsIn => MainResources.EventEndsIn.Replace("_", "__").Replace("&", "_");
+	public string EventHasEnded => MainResources.EventHasEnded.Replace("_", "__").Replace("&", "_");
 
-	public string NextExerciseReset => Properties.Window.FormMain.NextExerciseReset.Replace("_", "__").Replace("&", "_");
-	public string NextQuestReset => Properties.Window.FormMain.NextQuestReset.Replace("_", "__").Replace("&", "_");
+	public string MaintenanceStartsIn => MainResources.MaintenanceStartsIn.Replace("_", "__").Replace("&", "_");
+	public string MaintenanceHasStarted => MainResources.MaintenanceHasStarted.Replace("_", "__").Replace("&", "_");
 
-	public string Old => Properties.Window.FormMain.Old;
-	public string New => Properties.Window.FormMain.New;
+	public string NextExerciseReset => MainResources.NextExerciseReset.Replace("_", "__").Replace("&", "_");
+	public string NextQuestReset => MainResources.NextQuestReset.Replace("_", "__").Replace("&", "_");
+
+	public string Old => MainResources.Old;
+	public string New => MainResources.New;
 }

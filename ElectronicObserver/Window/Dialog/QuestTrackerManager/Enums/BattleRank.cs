@@ -4,7 +4,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 
 public enum BattleRank
 {
-	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "BattleRank_Any")]
+	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "BattleRank_Any")]
 	Any = 0,
 	E = 1,
 	D = 2,

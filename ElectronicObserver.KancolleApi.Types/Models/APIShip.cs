@@ -1,145 +1,109 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
 
+namespace ElectronicObserver.KancolleApi.Types.Models;
+
+/// <summary>
+/// api_req_kaisou/marriage <br />
+/// api_get_member/ship2
+/// </summary>
 public class ApiShip
 {
 	[JsonPropertyName("api_backs")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiBacks { get; set; } = default!;
+	public int ApiBacks { get; set; }
 
 	[JsonPropertyName("api_bull")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiBull { get; set; } = default!;
+	public int ApiBull { get; set; }
 
 	[JsonPropertyName("api_cond")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCond { get; set; } = default!;
+	public int ApiCond { get; set; }
 
 	[JsonPropertyName("api_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiExp { get; set; } = new();
 
 	[JsonPropertyName("api_fuel")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFuel { get; set; } = default!;
+	public int ApiFuel { get; set; }
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_kaihi")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiKaihi { get; set; } = new();
 
 	[JsonPropertyName("api_karyoku")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiKaryoku { get; set; } = new();
 
 	[JsonPropertyName("api_kyouka")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiKyouka { get; set; } = new();
 
 	[JsonPropertyName("api_leng")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLeng { get; set; } = default!;
+	public int ApiLeng { get; set; }
 
 	[JsonPropertyName("api_locked")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLocked { get; set; } = default!;
+	public int ApiLocked { get; set; }
 
 	[JsonPropertyName("api_locked_equip")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLockedEquip { get; set; } = default!;
+	public int ApiLockedEquip { get; set; }
 
 	[JsonPropertyName("api_lucky")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiLucky { get; set; } = new();
 
 	[JsonPropertyName("api_lv")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLv { get; set; } = default!;
+	public int ApiLv { get; set; }
 
 	[JsonPropertyName("api_maxhp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMaxhp { get; set; } = default!;
+	public int ApiMaxhp { get; set; }
 
 	[JsonPropertyName("api_ndock_item")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiNdockItem { get; set; } = new();
 
 	[JsonPropertyName("api_ndock_time")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNdockTime { get; set; } = default!;
+	public int ApiNdockTime { get; set; }
 
 	[JsonPropertyName("api_nowhp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNowhp { get; set; } = default!;
+	public int ApiNowhp { get; set; }
 
 	[JsonPropertyName("api_onslot")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiOnslot { get; set; } = new();
 
 	[JsonPropertyName("api_raisou")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiRaisou { get; set; } = new();
 
 	[JsonPropertyName("api_sakuteki")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiSakuteki { get; set; } = new();
 
 	[JsonPropertyName("api_sally_area")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiSallyArea { get; set; } = default!;
+	public int? ApiSallyArea { get; set; }
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiShipId { get; set; } = default!;
+	public ShipId ApiShipId { get; set; }
 
 	[JsonPropertyName("api_slot")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiSlot { get; set; } = new();
 
 	[JsonPropertyName("api_slot_ex")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSlotEx { get; set; } = default!;
+	public int ApiSlotEx { get; set; }
 
 	[JsonPropertyName("api_slotnum")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSlotnum { get; set; } = default!;
+	public int ApiSlotnum { get; set; }
 
 	[JsonPropertyName("api_soku")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSoku { get; set; } = default!;
+	public int ApiSoku { get; set; }
 
 	[JsonPropertyName("api_sortno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSortno { get; set; } = default!;
+	public int ApiSortno { get; set; }
 
 	[JsonPropertyName("api_soukou")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiSoukou { get; set; } = new();
 
 	[JsonPropertyName("api_srate")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSrate { get; set; } = default!;
+	public int ApiSrate { get; set; }
 
 	[JsonPropertyName("api_taiku")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiTaiku { get; set; } = new();
 
 	[JsonPropertyName("api_taisen")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiTaisen { get; set; } = new();
+
+	[JsonPropertyName("api_sp_effect_items")]
+	public List<ApiSpEffectItem>? ApiSpEffectItems { get; set; }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
+using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -34,18 +36,24 @@ public static class Calculator
 	/// <summary>
 	/// 各装備カテゴリにおける制空値の熟練度ボーナス
 	/// </summary>
-	private static readonly Dictionary<EquipmentTypes, int[]> AircraftLevelBonus = new Dictionary<EquipmentTypes, int[]>() {
-		{ EquipmentTypes.CarrierBasedFighter,    new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.CarrierBasedBomber,     new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.CarrierBasedTorpedo,    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.SeaplaneBomber,         new int[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 } },
-		{ EquipmentTypes.SeaplaneFighter,        new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.LandBasedAttacker,      new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.Interceptor,            new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.HeavyBomber,            new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.JetFighter,             new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.JetBomber,              new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.JetTorpedo,             new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+	private static int[]? AircraftLevelBonus(IEquipmentDataMaster equip) => equip switch
+	{
+		{ CategoryType: EquipmentTypes.CarrierBasedFighter } or
+		{ CategoryType: EquipmentTypes.SeaplaneFighter, } or
+		{ CategoryType: EquipmentTypes.Interceptor, } or
+		{ CategoryType: EquipmentTypes.JetFighter, } or
+		{ CategoryType: EquipmentTypes.ASPatrol, AA: > 0 } => new[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 },
+
+		{ CategoryType: EquipmentTypes.SeaplaneBomber, } => new[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 },
+
+		{ CategoryType: EquipmentTypes.CarrierBasedBomber, } or
+		{ CategoryType: EquipmentTypes.CarrierBasedTorpedo, } or
+		{ CategoryType: EquipmentTypes.LandBasedAttacker, } or
+		{ CategoryType: EquipmentTypes.HeavyBomber, } or
+		{ CategoryType: EquipmentTypes.JetBomber, } or
+		{ CategoryType: EquipmentTypes.JetTorpedo, } => new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+
+		_ => null,
 	};
 
 	/// <summary>
@@ -69,58 +77,57 @@ public static class Calculator
 	/// <returns></returns>
 	public static int GetAirSuperiority(int equipmentID, int count, int aircraftLevel = 0, int level = 0, AirBaseActionKind baseAirCorpsActionKind = AirBaseActionKind.None, bool isAircraftExpMaximum = false)
 	{
+		IEquipmentDataMaster? eq = Ioc.Default.GetRequiredService<IKCDatabase>().MasterEquipments[equipmentID];
 
-		if (count <= 0)
-			return 0;
-
-		var eq = KCDatabase.Instance.MasterEquipments[equipmentID];
-		if (eq == null)
-			return 0;
-
-		var category = eq.CategoryType;
-
+		if (count <= 0) return 0;
+		if (eq is null) return 0;
 
 		// 通常の艦隊の場合、偵察機等の制空値は計算しない
-		if (baseAirCorpsActionKind is AirBaseActionKind.None)
-		{
-			if (!AircraftLevelBonus.ContainsKey(category))
-				return 0;
-		}
-
+		if (baseAirCorpsActionKind is AirBaseActionKind.None && AircraftLevelBonus(eq) is null) return 0;
+		if (eq is { CategoryType: EquipmentTypes.ASPatrol, AA: 0 }) return 0;
+		if (eq is { CategoryType: EquipmentTypes.Autogyro, AA: 0 }) return 0;
 
 		double levelBonus = eq.AircraftAaLevelCoefficient();
 
-		if (category == EquipmentTypes.LandBasedAttacker || category == EquipmentTypes.HeavyBomber)
-			levelBonus *= Math.Sqrt(level);
-		else
-			levelBonus *= level;
-
+		levelBonus *= eq.CategoryType switch
+		{
+			EquipmentTypes.LandBasedAttacker or EquipmentTypes.HeavyBomber => Math.Sqrt(level),
+			_ => level,
+		};
 
 		double interceptorBonus = 0;    // 局地戦闘機の迎撃補正
-		if (category == EquipmentTypes.Interceptor)
+		if (eq.CategoryType is EquipmentTypes.Interceptor)
 		{
-			if (baseAirCorpsActionKind == AirBaseActionKind.AirDefense)
-				interceptorBonus = eq.Accuracy * 2 + eq.Evasion;
-			else
-				interceptorBonus = eq.Evasion * 1.5;
+			interceptorBonus = baseAirCorpsActionKind switch
+			{
+				AirBaseActionKind.AirDefense => eq.Accuracy * 2 + eq.Evasion,
+				_ => eq.Evasion * 1.5,
+			};
 		}
 
 		int aircraftExp;
 		if (isAircraftExpMaximum)
 		{
-			if (aircraftLevel < 7)
-				aircraftExp = AircraftExpTable[aircraftLevel + 1] - 1;
-			else
-				aircraftExp = AircraftExpTable.Last();
+			aircraftExp = aircraftLevel switch
+			{
+				< 7 => AircraftExpTable[aircraftLevel + 1] - 1,
+				_ => AircraftExpTable.Last(),
+			};
 		}
 		else
 		{
 			aircraftExp = AircraftExpTable[aircraftLevel];
 		}
 
+		int aircraftLevelBonus = AircraftLevelBonus(eq) switch
+		{
+			int[] a => a[aircraftLevel],
+			_ => 0,
+		};
+
 		return (int)((eq.AA + levelBonus + interceptorBonus) * Math.Sqrt(count)
 					 + Math.Sqrt(aircraftExp / 10.0)
-					 + (AircraftLevelBonus.ContainsKey(category) ? AircraftLevelBonus[category][aircraftLevel] : 0));
+					 + aircraftLevelBonus);
 	}
 
 
@@ -252,6 +259,33 @@ public static class Calculator
 		return (int)(air * reconBonus * highAltitudeBonus);
 	}
 
+	/// <summary>
+	/// Air power value if min and max are the same, min ～ max otherwise.
+	/// </summary>
+	/// <param name="fleet">対象の艦隊。</param>
+	public static string GetAirSuperiorityRangeString(IFleetData fleet)
+	{
+		int min = GetAirSuperiority(fleet);
+		int max = GetAirSuperiority(fleet, true);
+
+		if (min == max) return min.ToString();
+
+		return $"{min} ～ {max}";
+	}
+
+	/// <summary>
+	/// Air power value if min and max are the same, min ～ max otherwise.
+	/// </summary>
+	/// <param name="aircorps">対象の艦隊。</param>
+	public static string GetAirSuperiorityRangeString(IBaseAirCorpsData aircorps)
+	{
+		int min = GetAirSuperiority(aircorps);
+		int max = GetAirSuperiority(aircorps, true);
+
+		if (min == max) return min.ToString();
+
+		return $"{min} ～ {max}";
+	}
 
 	/// <summary>
 	/// 基地航空隊での出撃時における、偵察機による制空値ボーナス係数を求めます。
@@ -307,16 +341,17 @@ public static class Calculator
 	/// 基地航空中隊の制空戦力を求めます。
 	/// </summary>
 	/// <param name="squadron">対象の基地航空中隊。</param>
-	public static int GetAirSuperiority(IBaseAirCorpsSquadron squadron, AirBaseActionKind actionKind, bool isAircraftLevelMaximum = false)
+	public static int GetAirSuperiority(IBaseAirCorpsSquadron? squadron, AirBaseActionKind actionKind, bool isAircraftLevelMaximum = false)
 	{
-		if (squadron == null || squadron.State != 1)
-			return 0;
+		if (squadron is not { State: 1 }) return 0;
 
-		var eq = squadron.EquipmentInstance;
-		if (eq == null)
-			return 0;
+		IEquipmentData? eq = squadron.EquipmentInstance;
 
-		return GetAirSuperiority(eq.EquipmentID, squadron.AircraftCurrent, eq.AircraftLevel, eq.Level, actionKind, isAircraftLevelMaximum);
+		return eq switch
+		{
+			null => 0,
+			_ => GetAirSuperiority(eq.EquipmentID, squadron.AircraftCurrent, eq.AircraftLevel, eq.Level, actionKind, isAircraftLevelMaximum),
+		};
 	}
 
 
@@ -1987,258 +2022,4 @@ public static class Calculator
 	}
 
 
-}
-
-
-/// <summary>
-/// 昼戦攻撃種別を表します。
-/// </summary>
-public enum DayAttackKind
-{
-	/// <summary> 不明 </summary>
-	Unknown = -1,
-
-
-	/// <summary> 通常攻撃 (API上でのみ使用されます) </summary>
-	NormalAttack,
-
-	/// <summary> レーザー攻撃 </summary>
-	Laser,
-
-	/// <summary> 連続射撃 </summary>
-	DoubleShelling,
-
-	/// <summary> カットイン(主砲/副砲) </summary>
-	CutinMainSub,
-
-	/// <summary> カットイン(主砲/電探) </summary>
-	CutinMainRadar,
-
-	/// <summary> カットイン(主砲/徹甲弾) </summary>
-	CutinMainAP,
-
-	/// <summary> カットイン(主砲/主砲) </summary>
-	CutinMainMain,
-
-	/// <summary> 空母カットイン </summary>
-	CutinAirAttack,
-
-	/// <summary> Nelson Touch </summary>
-	SpecialNelson = 100,
-
-	/// <summary> 一斉射かッ…胸が熱いな！ </summary>
-	SpecialNagato = 101,
-
-	/// <summary> 長門、いい？ いくわよ！ 主砲一斉射ッ！ </summary>
-	SpecialMutsu = 102,
-
-	/// <summary> Colorado Touch </summary>
-	SpecialColorado = 103,
-
-	/// <summary> 僚艦夜戦突撃 </summary>
-	SpecialKongo = 104,
-
-	/// <summary> 瑞雲立体攻撃 </summary>
-	ZuiunMultiAngle = 200,
-
-	/// <summary> 海空立体攻撃 </summary>
-	SeaAirMultiAngle = 201,
-
-
-	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・3) </summary>
-	SpecialSubmarineTender23 = 300,
-
-	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション3・4) </summary>
-	SpecialSubmarineTender34 = 301,
-
-	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・4) </summary>
-	SpecialSubmarineTender24 = 302,
-
-
-	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
-	SpecialYamato3Ships = 400,
-
-	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
-	SpecialYamato2Ships = 401,
-
-
-	/// <summary> 砲撃 </summary>
-	Shelling = 1000,
-
-	/// <summary> 空撃 </summary>
-	AirAttack,
-
-	/// <summary> 爆雷攻撃 </summary>
-	DepthCharge,
-
-	/// <summary> 雷撃 </summary>
-	Torpedo,
-
-
-	/// <summary> ロケット攻撃 </summary>
-	Rocket = 2000,
-
-
-	/// <summary> 揚陸攻撃(大発動艇) </summary>
-	LandingDaihatsu = 3000,
-
-	/// <summary> 揚陸攻撃(特大発動艇) </summary>
-	LandingTokuDaihatsu,
-
-	/// <summary> 揚陸攻撃(大発動艇(八九式中戦車&陸戦隊)) </summary>
-	LandingDaihatsuTank,
-
-	/// <summary> 揚陸攻撃(特二式内火艇) </summary>
-	LandingAmphibious,
-
-	/// <summary> 揚陸攻撃(特大発動艇+戦車第11連隊) </summary>
-	LandingTokuDaihatsuTank,
-
-}
-
-
-/// <summary>
-/// 夜戦攻撃種別を表します。
-/// </summary>
-public enum NightAttackKind
-{
-	/// <summary> 不明 </summary>
-	Unknown = -1,
-
-
-	/// <summary> 通常攻撃 (API上でのみ使用されます) </summary>
-	NormalAttack,
-
-	/// <summary> 連続攻撃 </summary>
-	DoubleShelling,
-
-	/// <summary> カットイン(主砲/魚雷) </summary>
-	CutinMainTorpedo,
-
-	/// <summary> カットイン(魚雷/魚雷) </summary>
-	CutinTorpedoTorpedo,
-
-	/// <summary> カットイン(主砲/主砲/副砲) </summary>
-	CutinMainSub,
-
-	/// <summary> カットイン(主砲/主砲/主砲) </summary>
-	CutinMainMain,
-
-	/// <summary> 空母カットイン </summary>
-	CutinAirAttack,
-
-	/// <summary> 駆逐カットイン(主砲/魚雷/電探) 1Hit</summary>
-	CutinTorpedoRadar,
-
-	/// <summary> 駆逐カットイン(魚雷/見張員/電探) 1Hit</summary>
-	CutinTorpedoPicket,
-
-	/// <summary> 駆逐カットイン(魚雷/魚雷/水雷見張員) 1Hit</summary>
-	CutinTorpedoDestroyerPicket,
-
-	/// <summary> 駆逐カットイン(魚雷/ドラム/水雷見張員) 1Hit</summary>
-	CutinTorpedoDrum,
-
-	/// <summary> 駆逐カットイン(主砲/魚雷/電探) 2Hit</summary>
-	CutinTorpedoRadar2,
-
-	/// <summary> 駆逐カットイン(魚雷/見張員/電探) 2Hit</summary>
-	CutinTorpedoPicket2,
-
-	/// <summary> 駆逐カットイン(魚雷/魚雷/水雷見張員) 2Hit</summary>
-	CutinTorpedoDestroyerPicket2,
-
-	/// <summary> 駆逐カットイン(魚雷/ドラム/水雷見張員) 2Hit</summary>
-	CutinTorpedoDrum2,
-
-	/// <summary> Nelson Touch </summary>
-	SpecialNelson = 100,
-
-	/// <summary> 一斉射かッ…胸が熱いな！ </summary>
-	SpecialNagato = 101,
-
-	/// <summary> 長門、いい？ いくわよ！ 主砲一斉射ッ！ </summary>
-	SpecialMutsu = 102,
-
-	/// <summary> Colorado Touch </summary>
-	SpecialColorado = 103,
-
-	/// <summary> 僚艦夜戦突撃 </summary>
-	SpecialKongo = 104,
-
-
-	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・3) </summary>
-	SpecialSubmarineTender23 = 300,
-
-	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション3・4) </summary>
-	SpecialSubmarineTender34 = 301,
-
-	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・4) </summary>
-	SpecialSubmarineTender24 = 302,
-
-
-	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
-	SpecialYamato3Ships = 400,
-
-	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
-	SpecialYamato2Ships = 401,
-
-
-	/// <summary> 砲撃 </summary>
-	Shelling = 1000,
-
-	/// <summary> 空撃 </summary>
-	AirAttack,
-
-	/// <summary> 爆雷攻撃 </summary>
-	DepthCharge,
-
-	/// <summary> 雷撃 </summary>
-	Torpedo,
-
-
-	/// <summary> ロケット攻撃 </summary>
-	Rocket = 2000,
-
-
-	/// <summary> 揚陸攻撃(大発動艇) </summary>
-	LandingDaihatsu = 3000,
-
-	/// <summary> 揚陸攻撃(特大発動艇) </summary>
-	LandingTokuDaihatsu,
-
-	/// <summary> 揚陸攻撃(大発動艇(八九式中戦車&陸戦隊)) </summary>
-	LandingDaihatsuTank,
-
-	/// <summary> 揚陸攻撃(特二式内火艇) </summary>
-	LandingAmphibious,
-
-	/// <summary> 揚陸攻撃(特大発動艇+戦車第11連隊) </summary>
-	LandingTokuDaihatsuTank,
-
-}
-
-
-/// <summary>
-/// 昼戦空母カットインの種別を表します。
-/// </summary>
-public enum DayAirAttackCutinKind
-{
-	None = 0,
-
-	FighterBomberAttacker,
-	BomberBomberAttacker,
-	BomberAttacker,
-}
-
-
-/// <summary>
-/// 夜戦魚雷カットインの種別を表します。
-/// </summary>
-public enum NightTorpedoCutinKind
-{
-	None = 0,
-
-	LateModelTorpedoSubmarineEquipment,
-	LateModelTorpedo2,
 }

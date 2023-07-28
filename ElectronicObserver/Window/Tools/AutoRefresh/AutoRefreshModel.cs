@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Database.MapData;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 
 namespace ElectronicObserver.Window.Tools.AutoRefresh;
 

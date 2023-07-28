@@ -6,7 +6,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
-using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -21,8 +20,8 @@ public partial class FleetItemControlViewModel : ObservableObject
 	public bool Visible { get; set; }
 	public Enum? ImageIndex { get; set; }
 
-	public SolidColorBrush Foreground => ForeColor.ToBrush();
-	public SolidColorBrush Background => BackColor.ToBrush();
+	public SolidColorBrush Foreground => new(ForeColor);
+	public SolidColorBrush Background => new(BackColor);
 	public ImageSource? Icon => ImageIndex switch
 	{
 		IconContent i => ImageSourceIcons.GetIcon(i),
@@ -45,7 +44,7 @@ public partial class FleetItemControlViewModel : ObservableObject
 
 	private void ConfigurationChanged()
 	{
-		ForeColor = Utility.Configuration.Config.UI.ForeColor;
-		BackColor = Color.Transparent;
+		ForeColor = Utility.Configuration.Config.UI.ForeColor.ToWpfColor();
+		BackColor = Colors.Transparent;
 	}
 }

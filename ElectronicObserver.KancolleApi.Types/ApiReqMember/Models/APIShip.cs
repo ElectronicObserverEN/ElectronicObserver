@@ -3,18 +3,14 @@
 public class ApiShip
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiLevel { get; set; } = default!;
+	public int? ApiLevel { get; set; }
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiShipId { get; set; } = default!;
+	public int? ApiShipId { get; set; }
 
 	[JsonPropertyName("api_star")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiStar { get; set; } = default!;
+	public int? ApiStar { get; set; }
 }

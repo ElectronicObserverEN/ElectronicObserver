@@ -226,7 +226,7 @@ public static class ShipDataExtensions
 
 	public static bool HasAaRocketMod(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
-			EquipmentId.AAGun_12cm30tubeRocketLauncherKai2)
+			EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi)
 		>= count;
 
 	public static bool HasHighAngleMusashi(this IShipData ship, int count = 1) => ship.AllSlotInstance
@@ -263,6 +263,12 @@ public static class ShipDataExtensions
 	public static bool HasHighAngleAtlantaGfcs(this IShipData ship, int count = 1) =>
 		ship.HighAngleAtlantaGfcsCount() >= count;
 
+	public static bool HasHarunaGun(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSan_DazzleCamouflageSpecification or
+			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon)
+		>= count;
+
 	public static bool HasHighAngleConcentrated(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
 			EquipmentId.SecondaryGun_10cmTwinHighangleGunMountBatteryConcentratedDeployment)
@@ -270,7 +276,7 @@ public static class ShipDataExtensions
 
 	public static bool HasYamatoRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
-			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2 or
+			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKaiNi or
 			EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC)
 		>= count;
 
@@ -290,6 +296,10 @@ public static class ShipDataExtensions
 			EquipmentTypes.FlyingBoat or
 			EquipmentTypes.ASPatrol or
 			EquipmentTypes.Autogyro)
+		>= count;
+
+	public static bool HasNightZuiun(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment)
 		>= count;
 
 	public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
@@ -328,6 +338,12 @@ public static class ShipDataExtensions
 		_ => false
 	};
 
+	public static bool IsNightZuiunCutInShip(this IShipData ship) => ship.MasterShip.ShipType is
+		ShipTypes.LightCruiser or
+		ShipTypes.AviationCruiser or
+		ShipTypes.AviationBattleship or
+		ShipTypes.SeaplaneTender;
+
 	public static bool IsSpecialNightCarrier(this IShipData ship) => ship.MasterShip.ShipId is
 		ShipId.GrafZeppelin or
 		ShipId.GrafZeppelinKai or
@@ -342,6 +358,21 @@ public static class ShipDataExtensions
 		ShipId.ArkRoyalKai => true,
 
 		_ => false
+	};
+
+	public static bool IsBigSeven(this IShipData ship) => ship.MasterShip.ShipClassTyped is
+		ShipClass.Nelson or
+		ShipClass.Nagato or
+		ShipClass.Colorado;
+
+	public static bool IsFlagship(this IShipData ship, IFleetData fleet) => ship.Fleet switch
+	{
+		-1 => false,
+		_ => fleet.MembersInstance[0] switch
+		{
+			IShipData flagship => ship.MasterID == flagship.MasterID,
+			_ => false,
+		}
 	};
 
 	public static double GetHPDamageBonus(this IShipData ship) => ship.HPRate switch
@@ -449,7 +480,7 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.IsuzuKaiNi } or
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
-	{ ShipClassTyped: ShipClass.Fletcher };
+	{ ShipClassTyped: ShipClass.Fletcher, ShipId: not ShipId.HeywoodLE };
 
 	public static bool CanDoOpeningAsw(this IShipData ship) => ship switch
 	{
@@ -483,7 +514,8 @@ public static class ShipDataExtensions
 		{ MasterShip.ShipId: ShipId.ShinshuuMaruKai } or
 		{ MasterShip.ShipId: ShipId.FusouKaiNi } or
 		{ MasterShip.ShipId: ShipId.YamashiroKaiNi } or
-		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu }
+		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu } or
+		{ MasterShip.ShipClassTyped: ShipClass.KumanoMaru }
 			=> ship.HasSonar() && ship.HasAntiSubmarineAircraft() && ship.ASWTotal >= 100,
 
 		{ MasterShip.ShipType: ShipTypes.Destroyer } or

@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace ElectronicObserverTypes.AntiAir;
 
+/// <summary>
+/// <see href="https://docs.google.com/spreadsheets/d/1agGoLv57g5eOXLXtNIKHRoBYy61OQYxibWP6Vi_DMuY" />
+/// </summary>
 [DebuggerDisplay("Id = {Id}")]
 public record AntiAirCutIn
 {
-	private static List<AntiAirCutIn> RegularCutIns { get; } = new()
+	private static List<AntiAirCutIn> CutIns { get; } = new()
 	{
 		new()
 		{
@@ -17,6 +18,7 @@ public record AntiAirCutIn
 			FixedBonus = 0,
 			VariableBonus = 1,
 			Rate = 1,
+			Priority = 9999,
 			Conditions = new(),
 		},
 		new()
@@ -24,7 +26,8 @@ public record AntiAirCutIn
 			Id = 1,
 			FixedBonus = 7,
 			VariableBonus = 1.7,
-			Rate = 0.65,
+			Rate = 0.643,
+			Priority = 11,
 			Conditions = new()
 			{
 				new()
@@ -43,7 +46,8 @@ public record AntiAirCutIn
 			Id = 2,
 			FixedBonus = 6,
 			VariableBonus = 1.7,
-			Rate = 0.58,
+			Rate = 0.574,
+			Priority = 16,
 			Conditions = new()
 			{
 				new()
@@ -62,7 +66,8 @@ public record AntiAirCutIn
 			Id = 3,
 			FixedBonus = 4,
 			VariableBonus = 1.6,
-			Rate = 0.5,
+			Rate = 0.495,
+			Priority = 26,
 			Conditions = new()
 			{
 				new()
@@ -80,7 +85,8 @@ public record AntiAirCutIn
 			Id = 4,
 			FixedBonus = 6,
 			VariableBonus = 1.5,
-			Rate = 0.52,
+			Rate = 0.514,
+			Priority = 15,
 			Conditions = new()
 			{
 				new()
@@ -97,7 +103,8 @@ public record AntiAirCutIn
 			Id = 5,
 			FixedBonus = 4,
 			VariableBonus = 1.5,
-			Rate = 0.55,
+			Rate = 0.544,
+			Priority = 27,
 			Conditions = new()
 			{
 				new()
@@ -112,7 +119,8 @@ public record AntiAirCutIn
 			Id = 6,
 			FixedBonus = 4,
 			VariableBonus = 1.45,
-			Rate = 0.4,
+			Rate = 0.396,
+			Priority = 28,
 			Conditions = new()
 			{
 				new()
@@ -128,7 +136,8 @@ public record AntiAirCutIn
 			Id = 7,
 			FixedBonus = 3,
 			VariableBonus = 1.35,
-			Rate = 0.45,
+			Rate = 0.445,
+			Priority = 36,
 			Conditions = new()
 			{
 				new()
@@ -144,7 +153,8 @@ public record AntiAirCutIn
 			Id = 8,
 			FixedBonus = 4,
 			VariableBonus = 1.4,
-			Rate = 0.5,
+			Rate = 0.495,
+			Priority = 33,
 			Conditions = new()
 			{
 				new()
@@ -159,7 +169,8 @@ public record AntiAirCutIn
 			Id = 9,
 			FixedBonus = 2,
 			VariableBonus = 1.3,
-			Rate = 0.4,
+			Rate = 0.396,
+			Priority = 45,
 			Conditions = new()
 			{
 				new()
@@ -174,7 +185,8 @@ public record AntiAirCutIn
 			Id = 10,
 			FixedBonus = 8,
 			VariableBonus = 1.65,
-			Rate = 0.6,
+			Rate = 0.594,
+			Priority = 6,
 			Conditions = new()
 			{
 				new()
@@ -194,7 +206,8 @@ public record AntiAirCutIn
 			Id = 11,
 			FixedBonus = 6,
 			VariableBonus = 1.5,
-			Rate = 0.55,
+			Rate = 0.544,
+			Priority = 9,
 			Conditions = new()
 			{
 				new()
@@ -213,7 +226,8 @@ public record AntiAirCutIn
 			Id = 12,
 			FixedBonus = 3,
 			VariableBonus = 1.25,
-			Rate = 0.45,
+			Rate = 0.445,
+			Priority = 40,
 			Conditions = new()
 			{
 				new()
@@ -231,7 +245,8 @@ public record AntiAirCutIn
 			Id = 13,
 			FixedBonus = 4,
 			VariableBonus = 1.35,
-			Rate = 0.35,
+			Rate = 0.346,
+			Priority = 34,
 			Conditions = new()
 			{
 				new()
@@ -247,7 +262,8 @@ public record AntiAirCutIn
 			Id = 14,
 			FixedBonus = 4,
 			VariableBonus = 1.45,
-			Rate = 0.62,
+			Rate = 0.623,
+			Priority = 25,
 			Conditions = new()
 			{
 				new()
@@ -267,7 +283,8 @@ public record AntiAirCutIn
 			Id = 15,
 			FixedBonus = 3,
 			VariableBonus = 1.3,
-			Rate = 0.55,
+			Rate = 0.534,
+			Priority = 35,
 			Conditions = new()
 			{
 				new()
@@ -286,7 +303,8 @@ public record AntiAirCutIn
 			Id = 16,
 			FixedBonus = 4,
 			VariableBonus = 1.4,
-			Rate = 0.62,
+			Rate = 0.613,
+			Priority = 24,
 			Conditions = new()
 			{
 				new()
@@ -307,7 +325,8 @@ public record AntiAirCutIn
 			Id = 17,
 			FixedBonus = 2,
 			VariableBonus = 1.25,
-			Rate = 0.55,
+			Rate = 0.564,
+			Priority = 42,
 			Conditions = new()
 			{
 				new()
@@ -327,7 +346,8 @@ public record AntiAirCutIn
 			Id = 18,
 			FixedBonus = 2,
 			VariableBonus = 1.2,
-			Rate = 0.6,
+			Rate = 0.584,
+			Priority = 43,
 			Conditions = new()
 			{
 				new()
@@ -345,7 +365,8 @@ public record AntiAirCutIn
 			Id = 19,
 			FixedBonus = 5,
 			VariableBonus = 1.45,
-			Rate = 0.58,
+			Rate = 0.564,
+			Priority = 21,
 			Conditions = new()
 			{
 				new()
@@ -364,7 +385,8 @@ public record AntiAirCutIn
 			Id = 20,
 			FixedBonus = 3,
 			VariableBonus = 1.25,
-			Rate = 0.65,
+			Rate = 0.643,
+			Priority = 37,
 			Conditions = new()
 			{
 				new()
@@ -382,7 +404,8 @@ public record AntiAirCutIn
 			Id = 21,
 			FixedBonus = 5,
 			VariableBonus = 1.45,
-			Rate = 0.6,
+			Rate = 0.594,
+			Priority = 22,
 			Conditions = new()
 			{
 				new()
@@ -401,7 +424,8 @@ public record AntiAirCutIn
 			Id = 22,
 			FixedBonus = 2,
 			VariableBonus = 1.2,
-			Rate = 0.6,
+			Rate = 0.643,
+			Priority = 44,
 			Conditions = new()
 			{
 				new()
@@ -419,7 +443,8 @@ public record AntiAirCutIn
 			Id = 23,
 			FixedBonus = 1,
 			VariableBonus = 1.05,
-			Rate = 0.8,
+			Rate = 0.792,
+			Priority = 46,
 			Conditions = new()
 			{
 				new()
@@ -438,7 +463,8 @@ public record AntiAirCutIn
 			Id = 24,
 			FixedBonus = 3,
 			VariableBonus = 1.25,
-			Rate = 0.4,
+			Rate = 0.613,
+			Priority = 38,
 			Conditions = new()
 			{
 				new()
@@ -458,7 +484,8 @@ public record AntiAirCutIn
 			Id = 25,
 			FixedBonus = 7,
 			VariableBonus = 1.55,
-			Rate = 0.6,
+			Rate = 0.594,
+			Priority = 10,
 			Conditions = new()
 			{
 				new()
@@ -481,15 +508,18 @@ public record AntiAirCutIn
 			Id = 26,
 			FixedBonus = 6,
 			VariableBonus = 1.4,
-			Rate = 0.55,
+			Rate = 0.554,
+			Priority = 14,
 			Conditions = new()
 			{
 				new()
 				{
 					Ships = new()
 					{
+						ShipId.YamatoKai,
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKai,
 						ShipId.MusashiKaiNi,
 					},
 					HighAngleMusashi = 1,
@@ -502,7 +532,8 @@ public record AntiAirCutIn
 			Id = 27,
 			FixedBonus = 5,
 			VariableBonus = 1.55,
-			Rate = 0.60,
+			Rate = 0.519,
+			Priority = 19,
 			Conditions = new()
 			{
 				new()
@@ -522,7 +553,8 @@ public record AntiAirCutIn
 			Id = 28,
 			FixedBonus = 4,
 			VariableBonus = 1.4,
-			Rate = 0.55,
+			Rate = 0.554,
+			Priority = 29,
 			Conditions = new()
 			{
 				new()
@@ -546,7 +578,8 @@ public record AntiAirCutIn
 			Id = 29,
 			FixedBonus = 5,
 			VariableBonus = 1.55,
-			Rate = 0.6,
+			Rate = 0.594,
+			Priority = 23,
 			Conditions = new()
 			{
 				new()
@@ -566,7 +599,8 @@ public record AntiAirCutIn
 			Id = 30,
 			FixedBonus = 3,
 			VariableBonus = 1.3,
-			Rate = 0.45,
+			Rate = 0.495,
+			Priority = 32,
 			Conditions = new()
 			{
 				new()
@@ -586,7 +620,8 @@ public record AntiAirCutIn
 			Id = 31,
 			FixedBonus = 2,
 			VariableBonus = 1.25,
-			Rate = 0.52,
+			Rate = 0.495,
+			Priority = 41,
 			Conditions = new()
 			{
 				new()
@@ -604,7 +639,8 @@ public record AntiAirCutIn
 			Id = 32,
 			FixedBonus = 3,
 			VariableBonus = 1.2,
-			Rate = 0.5,
+			Rate = 0.594,
+			Priority = 39,
 			Conditions = new()
 			{
 				new()
@@ -616,6 +652,8 @@ public record AntiAirCutIn
 						ShipId.HieiKaiNi,
 						ShipId.HieiKaiNiC,
 						ShipId.HarunaKaiNi,
+						ShipId.HarunaKaiNiB,
+						ShipId.HarunaKaiNiC,
 						ShipId.KirishimaKaiNi,
 						ShipId.Jervis,
 						ShipId.JervisKai,
@@ -640,6 +678,8 @@ public record AntiAirCutIn
 						ShipId.HieiKaiNi,
 						ShipId.HieiKaiNiC,
 						ShipId.HarunaKaiNi,
+						ShipId.HarunaKaiNiB,
+						ShipId.HarunaKaiNiC,
 						ShipId.KirishimaKaiNi,
 						ShipId.Jervis,
 						ShipId.JervisKai,
@@ -664,6 +704,8 @@ public record AntiAirCutIn
 						ShipId.HieiKaiNi,
 						ShipId.HieiKaiNiC,
 						ShipId.HarunaKaiNi,
+						ShipId.HarunaKaiNiB,
+						ShipId.HarunaKaiNiC,
 						ShipId.KirishimaKaiNi,
 						ShipId.Jervis,
 						ShipId.JervisKai,
@@ -685,7 +727,8 @@ public record AntiAirCutIn
 			Id = 33,
 			FixedBonus = 3,
 			VariableBonus = 1.35,
-			Rate = 0.45,
+			Rate = 0.415,
+			Priority = 31,
 			Conditions = new()
 			{
 				new()
@@ -702,96 +745,11 @@ public record AntiAirCutIn
 		},
 		new()
 		{
-			Id = 42,
-			FixedBonus = 10,
-			VariableBonus = 1.65,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 2,
-					RadarYamato = 1,
-					AaGun6Aa = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 43,
-			FixedBonus = 8,
-			VariableBonus = 1.6,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 2,
-					RadarYamato = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 44,
-			FixedBonus = 6,
-			VariableBonus = 1.6,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 1,
-					RadarYamato = 1,
-					AaGun6Aa = 1,
-				},
-			},
-		},
-		new()
-		{
-			Id = 45,
-			FixedBonus = 5,
-			VariableBonus = 1.55,
-			Conditions = new()
-			{
-				new()
-				{
-					Ships = new()
-					{
-						ShipId.YamatoKaiNi,
-						ShipId.YamatoKaiNiJuu,
-						ShipId.MusashiKaiNi,
-					},
-					HighAngleConcentrated = 1,
-					RadarYamato = 1,
-				},
-			},
-		},
-	};
-
-	private static List<AntiAirCutIn> FletcherCutIns { get; } = new()
-	{
-		new()
-		{
 			Id = 34,
 			FixedBonus = 7,
 			VariableBonus = 1.6,
-			Rate = 0.55,
+			Rate = 0.594,
+			Priority = 12,
 			Conditions = new()
 			{
 				new()
@@ -809,7 +767,8 @@ public record AntiAirCutIn
 			Id = 35,
 			FixedBonus = 6,
 			VariableBonus = 1.55,
-			Rate = 0.55,
+			Rate = 0.544,
+			Priority = 17,
 			Conditions = new()
 			{
 				new()
@@ -837,7 +796,8 @@ public record AntiAirCutIn
 			Id = 36,
 			FixedBonus = 6,
 			VariableBonus = 1.55,
-			Rate = 0.5,
+			Rate = 0.495,
+			Priority = 18,
 			Conditions = new()
 			{
 				new()
@@ -875,7 +835,8 @@ public record AntiAirCutIn
 			Id = 37,
 			FixedBonus = 4,
 			VariableBonus = 1.45,
-			Rate = 0.4,
+			Rate = 0.396,
+			Priority = 30,
 			Conditions = new()
 			{
 				new()
@@ -888,16 +849,13 @@ public record AntiAirCutIn
 				},
 			},
 		},
-	};
-
-	private static List<AntiAirCutIn> AtlantaCutIns { get; } = new()
-	{
 		new()
 		{
 			Id = 38,
 			FixedBonus = 10,
 			VariableBonus = 1.85,
-			Rate = 0.6,
+			Rate = 0.594,
+			Priority = 1,
 			Conditions = new()
 			{
 				new()
@@ -916,7 +874,8 @@ public record AntiAirCutIn
 			Id = 39,
 			FixedBonus = 10,
 			VariableBonus = 1.7,
-			Rate = 0.57,
+			Rate = 0.55,
+			Priority = 2,
 			Conditions = new()
 			{
 				new()
@@ -936,7 +895,8 @@ public record AntiAirCutIn
 			Id = 40,
 			FixedBonus = 10,
 			VariableBonus = 1.7,
-			Rate = 0.56,
+			Rate = 0.55,
+			Priority = 3,
 			Conditions = new()
 			{
 				new()
@@ -977,7 +937,8 @@ public record AntiAirCutIn
 			Id = 41,
 			FixedBonus = 9,
 			VariableBonus = 1.65,
-			Rate = 0.55,
+			Rate = 0.594,
+			Priority = 5,
 			Conditions = new()
 			{
 				new()
@@ -1011,73 +972,139 @@ public record AntiAirCutIn
 				},
 			},
 		},
+		new()
+		{
+			Id = 42,
+			FixedBonus = 10,
+			VariableBonus = 1.65,
+			Rate = 0.643,
+			Priority = 4,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 2,
+					RadarYamato = 1,
+					AaGun6Aa = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 43,
+			FixedBonus = 8,
+			VariableBonus = 1.6,
+			Rate = 0.594,
+			Priority = 7,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 2,
+					RadarYamato = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 44,
+			FixedBonus = 6,
+			VariableBonus = 1.6,
+			Rate = 0.544,
+			Priority = 13,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 1,
+					RadarYamato = 1,
+					AaGun6Aa = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 45,
+			FixedBonus = 5,
+			VariableBonus = 1.55,
+			Rate = 0.495,
+			Priority = 20,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.YamatoKaiNi,
+						ShipId.YamatoKaiNiJuu,
+						ShipId.MusashiKaiNi,
+					},
+					HighAngleConcentrated = 1,
+					RadarYamato = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 46,
+			FixedBonus = 8,
+			VariableBonus = 1.55,
+			Rate = 0.495,
+			Priority = 8,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.HarunaKaiNiB,
+					},
+					HarunaGun = 1,
+					AaGunConcentrated = 1,
+					AntiAirRadar = 1,
+				},
+			},
+		},
 	};
 
-	public static List<AntiAirCutIn> AllCutIns => RegularCutIns
-		.Concat(FletcherCutIns)
-		.Concat(AtlantaCutIns)
-		.OrderBy(a => ApiPriority.IndexOf(a.Id))
+	public static List<AntiAirCutIn> AllCutIns => CutIns
+		.OrderBy(a => a.Priority)
 		.ToList();
-
-	private static List<int> ApiPriority { get; } = new()
-	{
-		42,
-		43,
-		44,
-		45,
-		34,
-		35,
-		37,
-		36,
-		38,
-		39,
-		40,
-		41,
-		1,
-		2,
-		3,
-		10,
-		11,
-		14,
-		15,
-		16,
-		17,
-		19,
-		21,
-		25,
-		4,
-		5,
-		6,
-		8,
-		7,
-		26,
-		28,
-		29,
-		9,
-		33,
-		12,
-		13,
-		18,
-		20,
-		22,
-		23,
-		30,
-		31,
-		24,
-		32,
-		0,
-	};
 
 	public int Id { get; init; }
 	public int FixedBonus { get; init; }
 	public double VariableBonus { get; init; }
-	private double Rate { get; init; }
+	private double? Rate { get; init; }
+	private int Priority { get; init; }
+
 	/// <summary>
 	/// Null when unknown
 	/// </summary>
 	public List<AntiAirCutInCondition>? Conditions { get; init; }
 
-	public string ValueDisplay => $"({Rate:P0} - {FixedBonus} - x{VariableBonus})";
+	public string ValueDisplay => Rate switch
+	{
+		double => $"({Rate:P0} - {FixedBonus} - x{VariableBonus})",
+		_ => $"(??? - {FixedBonus} - x{VariableBonus})",
+	};
 
 	private AntiAirCutIn()
 	{
@@ -1094,51 +1121,20 @@ public record AntiAirCutIn
 	private bool CanBeActivatedBy(IShipData ship)
 	{
 		if (!Conditions.Any()) return true;
-		if (Conditions.Any(c => c.CanBeActivatedBy(ship))) return true;
+		if (Conditions.Any(c => c.CanBeActivatedBy(ship, this))) return true;
 
 		return false;
 	}
 
-	public static List<AntiAirCutIn> PossibleCutIns(IShipData ship)
-	{
-		var possibleValues = RegularCutIns
-			.Where(a => a.CanBeActivatedBy(ship))
-			.OrderBy(a => ApiPriority.IndexOf(a.Id))
-			.ToList();
-
-		// remove cut-ins with lower priority and lower activation rate
-		// keep cut-ins with lower priority but higher activation rate
-		var i = 0;
-
-		while (possibleValues.Count > i + 1)
-		{
-			if (possibleValues[i].Rate < possibleValues[i + 1].Rate)
-			{
-				i++;
-			}
-			else
-			{
-				possibleValues.Remove(possibleValues[i + 1]);
-			}
-		}
-
-		possibleValues = ship.MasterShip.BaseShip().ShipClassTyped switch
-		{
-			ShipClass.Fletcher => possibleValues.Concat(FletcherCutIns).ToList(),
-			ShipClass.Atlanta => possibleValues.Concat(AtlantaCutIns).ToList(),
-			_ => possibleValues,
-		};
-
-		return possibleValues
-			.Where(a => a.CanBeActivatedBy(ship))
-			.OrderBy(a => ApiPriority.IndexOf(a.Id))
-			.ToList();
-	}
+	public static List<AntiAirCutIn> PossibleCutIns(IShipData ship) => AllCutIns
+		.Where(a => a.CanBeActivatedBy(ship))
+		.OrderBy(a => a.Priority)
+		.ToList();
 
 	public static List<AntiAirCutIn> PossibleCutIns(IEnumerable<IShipData?> ships) => ships
 		.Where(s => s is not null)
 		.SelectMany(PossibleCutIns!)
 		.DistinctBy(a => a.Id)
-		.OrderBy(a => ApiPriority.IndexOf(a.Id))
+		.OrderBy(a => a.Priority)
 		.ToList();
 }

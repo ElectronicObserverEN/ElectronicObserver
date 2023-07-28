@@ -39,7 +39,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 
 	private string ConditionDisplay(IConditionViewModel? condition) => condition switch
 	{
-		null => Properties.Window.Dialog.QuestTrackerManager.UnknownCondition,
+		null => QuestTrackerManagerResources.UnknownCondition,
 		GroupConditionViewModel => $"({condition.Display})",
 		_ => condition.Display
 	};

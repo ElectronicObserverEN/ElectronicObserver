@@ -9,29 +9,13 @@ namespace ElectronicObserver.Notifier;
 /// </summary>
 public class NotifierRepair : NotifierBase
 {
-
-	private Dictionary<int, bool> processedFlags;
-
-
-	public NotifierRepair()
-		: base()
-	{
-		Initialize();
-	}
+	private Dictionary<int, bool> ProcessedFlags { get; } = new();
 
 	public NotifierRepair(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
 		: base(config)
 	{
-		Initialize();
-	}
-
-
-	private void Initialize()
-	{
 		DialogData.Title = NotifierRes.RepairTitle;
-		processedFlags = new Dictionary<int, bool>();
 	}
-
 
 	protected override void UpdateTimerTick()
 	{
@@ -39,15 +23,15 @@ public class NotifierRepair : NotifierBase
 		foreach (var dock in KCDatabase.Instance.Docks.Values)
 		{
 
-			if (!processedFlags.ContainsKey(dock.DockID))
-				processedFlags.Add(dock.DockID, false);
+			if (!ProcessedFlags.ContainsKey(dock.DockID))
+				ProcessedFlags.Add(dock.DockID, false);
 
 			if (dock.State > 0)
 			{
-				if (!processedFlags[dock.DockID] && (int)(dock.CompletionTime - DateTime.Now).TotalMilliseconds <= AccelInterval)
+				if (!ProcessedFlags[dock.DockID] && (int)(dock.CompletionTime - DateTime.Now).TotalMilliseconds <= AccelInterval)
 				{
 
-					processedFlags[dock.DockID] = true;
+					ProcessedFlags[dock.DockID] = true;
 					Notify(dock.DockID, dock.ShipID);
 
 				}
@@ -55,14 +39,14 @@ public class NotifierRepair : NotifierBase
 			}
 			else
 			{
-				processedFlags[dock.DockID] = false;
+				ProcessedFlags[dock.DockID] = false;
 			}
 
 		}
 
 	}
 
-	public void Notify(int dockID, int shipID)
+	private void Notify(int dockID, int shipID)
 	{
 
 		DialogData.Message = string.Format(NotifierRes.RepairText,

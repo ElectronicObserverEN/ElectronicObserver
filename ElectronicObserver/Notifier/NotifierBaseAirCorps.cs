@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
 
@@ -15,6 +14,7 @@ namespace ElectronicObserver.Notifier;
 /// </summary>
 public class NotifierBaseAirCorps : NotifierBase
 {
+	// todo: this isn't true anymore, upgraded AB has shorter relocation time
 	private static TimeSpan RelocationSpan => TimeSpan.FromMinutes(12);
 
 	/// <summary>
@@ -75,20 +75,16 @@ public class NotifierBaseAirCorps : NotifierBase
 
 	private bool IsAlreadyNotified { get; set; }
 	private bool IsInSortie { get; set; }
-	private HashSet<int> NotifiedEquipments { get; set; } = new HashSet<int>();
+	private HashSet<int> NotifiedEquipments { get; } = new();
 
 
 
-	public NotifierBaseAirCorps()
-		: base()
-	{
-		Initalize();
-	}
-
-	public NotifierBaseAirCorps(Utility.Configuration.ConfigurationData.ConfigNotifierBaseAirCorps config)
+	public NotifierBaseAirCorps(Configuration.ConfigurationData.ConfigNotifierBaseAirCorps config)
 		: base(config)
 	{
-		Initalize();
+		DialogData.Title = NotifierBaseAirCorpsResources.Title;
+
+		SubscribeToApis();
 
 		NotifiesNotSupplied = config.NotifiesNotSupplied;
 		NotifiesTired = config.NotifiesTired;
@@ -105,10 +101,8 @@ public class NotifierBaseAirCorps : NotifierBase
 		NotifiesEquipmentRelocation = config.NotifiesEquipmentRelocation;
 	}
 
-	private void Initalize()
+	private void SubscribeToApis()
 	{
-		DialogData.Title = NotifierBaseAirCorpsResources.Title;
-
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiPort_Port.ResponseReceived += Port;
@@ -167,13 +161,13 @@ public class NotifierBaseAirCorps : NotifierBase
 				if (corps.Squadrons.Values.Any(sq => sq.State == 0))
 					messages.AddLast(NotifierBaseAirCorpsResources.Unorganized);
 				if (corps.Squadrons.Values.Any(sq => sq.State == 2))
-					messages.AddLast(Window.GeneralRes.BaseRedeployment);
+					messages.AddLast(GeneralRes.BaseRedeployment);
 			}
 
 			if (NotifiesStandby && corps.ActionKind == AirBaseActionKind.Standby)
 				messages.AddLast(NotifierBaseAirCorpsResources.Standby);
 			if (NotifiesRetreat && corps.ActionKind == AirBaseActionKind.TakeCover)
-				messages.AddLast(Window.GeneralRes.Retreating);
+				messages.AddLast(GeneralRes.Retreating);
 			if (NotifiesRest && corps.ActionKind == AirBaseActionKind.Rest)
 				messages.AddLast(NotifierBaseAirCorpsResources.Resting);
 

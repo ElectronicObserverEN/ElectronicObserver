@@ -3,11 +3,8 @@
 public class ApiossSetting
 {
 	[JsonPropertyName("api_language_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLanguageType { get; set; } = default!;
+	public int ApiLanguageType { get; set; }
 
 	[JsonPropertyName("api_oss_items")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiOssItems { get; set; } = new();
 }

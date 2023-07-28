@@ -12,7 +12,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
-using Translation = ElectronicObserver.Properties.Window.FormInformation;
 
 namespace ElectronicObserver.Window.Wpf.InformationView;
 
@@ -81,8 +80,8 @@ public class InformationViewModel : AnchorableViewModel
 				// '16 summer event
 				if (data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0)
 				{
-					Text += $"\r\n{Translation.GimmickRelease}\r\n";
-					Utility.Logger.Add(2, Translation.EnemyWasWeakened);
+					Text += $"\r\n{InformationResources.GimmickRelease}\r\n";
+					Utility.Logger.Add(2, InformationResources.EnemyWasWeakened);
 				}
 				break;
 
@@ -120,11 +119,17 @@ public class InformationViewModel : AnchorableViewModel
 
 			case "api_req_mission/start":
 				if (Utility.Configuration.Config.Control.ShowExpeditionAlertDialog)
-					CheckExpedition(int.Parse(data["api_mission_id"]), int.Parse(data["api_deck_id"]));
+				{
+					int missionId = int.Parse(data["api_mission_id"]);
+					int fleetId = int.Parse(data["api_deck_id"]);
+
+					App.Current!.Dispatcher.BeginInvoke(() => CheckExpedition(missionId, fleetId));
+				}
+
 				break;
 
 			case "api_get_member/sortie_conditions":
-				CheckSallyArea();
+				App.Current!.Dispatcher.BeginInvoke(CheckSallyArea);
 				break;
 
 			case "api_req_map/start":
@@ -178,7 +183,7 @@ public class InformationViewModel : AnchorableViewModel
 
 			expbase = (int)expbase;
 
-			sb.AppendFormat(GeneralRes.BaseExp + ": {0} / " + Translation.SRank + ": {1}\r\n", expbase, (int)(expbase * 1.2));
+			sb.AppendFormat(GeneralRes.BaseExp + ": {0} / " + InformationResources.SRank + ": {1}\r\n", expbase, (int)(expbase * 1.2));
 
 
 			// 練巡ボーナス計算 - きたない
@@ -243,7 +248,7 @@ public class InformationViewModel : AnchorableViewModel
 					}
 				}
 
-				sb.AppendFormat(Translation.CTBonus, (int)(expbase * bonus), (int)((int)(expbase * 1.2) * bonus));
+				sb.AppendFormat(InformationResources.CTBonus, (int)(expbase * bonus), (int)((int)(expbase * 1.2) * bonus));
 
 
 			}
@@ -390,9 +395,9 @@ public class InformationViewModel : AnchorableViewModel
 					map.MapAreaID, map.MapInfoID,
 					map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
 					map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-					gaugeType == 1 ? Translation.Defeated : gaugeType == 2 ? "HP" : "TP",
+					gaugeType == 1 ? InformationResources.Defeated : gaugeType == 2 ? "HP" : "TP",
 					current, max,
-					gaugeType == 1 ? Translation.Times : ""));
+					gaugeType == 1 ? InformationResources.Times : ""));
 
 				if (map.MapAreaID > 10)
 				{
@@ -400,9 +405,9 @@ public class InformationViewModel : AnchorableViewModel
 						map.MapInfoID,
 						map.EventDifficulty > 0 ? $"{Constants.GetDifficulty(map.EventDifficulty)}" : "",
 						map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-						gaugeType == 1 ? Translation.Defeated : gaugeType == 2 ? "HP" : "TP",
+						gaugeType == 1 ? InformationResources.Defeated : gaugeType == 2 ? "HP" : "TP",
 						current, max,
-						gaugeType == 1 ? Translation.Times : "");
+						gaugeType == 1 ? InformationResources.Times : "");
 				}
 			}
 		}
@@ -435,7 +440,7 @@ public class InformationViewModel : AnchorableViewModel
 			where missionState.State != MissionState.Completed
 			select mission.DisplayID;
 
-		return $"{Translation.UnfinishedMonthlyExpeditions}: {string.Join(", ", unfinishedMonthlyIds)}";
+		return $"{InformationResources.UnfinishedMonthlyExpeditions}: {string.Join(", ", unfinishedMonthlyIds)}";
 	}
 
 	private string GetExpeditionResult(dynamic data)
@@ -458,7 +463,7 @@ public class InformationViewModel : AnchorableViewModel
 
 		sb.AppendLine(GeneralRes.BattleComplete);
 		sb.AppendFormat(GeneralRes.EnemyName + "\r\n", KCDatabase.Instance.Translation.Operation.FleetName(data.api_enemy_info.api_deck_name));
-		sb.AppendFormat(Translation.BattleResultRank + "\r\n", KCDatabase.Instance.Battle.PredictedBattleRank);
+		sb.AppendFormat(InformationResources.BattleResultRank + "\r\n", KCDatabase.Instance.Battle.PredictedBattleRank);
 		sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 
 		sb.Append(CheckGimmickUpdated(data));
@@ -470,8 +475,8 @@ public class InformationViewModel : AnchorableViewModel
 	{
 		if (data.api_m1() && data.api_m1 != 0)
 		{
-			Utility.Logger.Add(2, Translation.ChangesInEventMapDetected);
-			return "\r\n" + Translation.GimmickRelease + "\r\n";
+			Utility.Logger.Add(2, InformationResources.ChangesInEventMapDetected);
+			return "\r\n" + InformationResources.GimmickRelease + "\r\n";
 		}
 
 		return "";
@@ -551,10 +556,10 @@ public class InformationViewModel : AnchorableViewModel
 		{
 			var freeShips = group.SelectMany(f => f).Where(s => s.SallyArea == 0);
 
-			Text = Translation.FleetTagWarning + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
+			Text = InformationResources.FleetTagWarning + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
 
 			if (Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog)
-				MessageBox.Show(Translation.FleetTagAlertDialogText, Translation.FleetTagAlertDialogCaption,
+				MessageBox.Show(InformationResources.FleetTagAlertDialogText, InformationResources.FleetTagAlertDialogCaption,
 					MessageBoxButton.OK, MessageBoxImage.Warning);
 		}
 	}
@@ -574,7 +579,7 @@ public class InformationViewModel : AnchorableViewModel
 		if (fleet.MembersInstance.Any(s => s?.FuelRate < 1 || s?.AmmoRate < 1))
 		{
 			MessageBox.Show(
-				string.Format(Translation.ExpeditionFailureFuelAmmo, fleet.FleetID, fleet.Name, mission.DisplayID, mission.Name),
+				string.Format(InformationResources.ExpeditionFailureFuelAmmo, fleet.FleetID, fleet.Name, mission.DisplayID, mission.Name),
 				GeneralRes.ExpeditionFailureWarningTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
 		}
 	}

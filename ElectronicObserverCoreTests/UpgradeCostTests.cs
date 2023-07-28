@@ -13,11 +13,12 @@ public class UpgradeCostTests
 {
 	private DatabaseFixture Db { get; }
 
-	private static ElectronicObserver.Data.Translation.EquipmentUpgradeData UpgradeData { get; } = new();
+	private ElectronicObserver.Data.Translation.EquipmentUpgradeData UpgradeData { get; }
 
 	public UpgradeCostTests(DatabaseFixture db)
 	{
 		Db = db;
+		UpgradeData = new();
 	}
 
 	[Fact]

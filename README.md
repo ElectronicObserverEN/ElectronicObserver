@@ -58,3 +58,8 @@ Thank you for using Electronic Observer.
 * Translator: [silfumus](https://github.com/silfumus)
 * Japanese Distribution Website: [ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/)
 * Developer: [Andante](https://twitter.com/andanteyk)
+* <a rel="me" href="https://fosstodon.org/@ElectronicObserver">Mastodon</a>
+
+## Sponsors
+
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo" width="200" />

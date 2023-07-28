@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
 using DynaJson;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
@@ -69,13 +66,13 @@ public static class SoftwareInformation
 	{
 		if (e.Error != null)
 		{
-			ErrorReporter.SendErrorReport(e.Error, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData);
+			ErrorReporter.SendErrorReport(e.Error, SoftwareInformationResources.FailedToObtainUpdateData);
 			return;
 		}
 
 		if (e.Result.StartsWith("<!DOCTYPE html>"))
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.InvalidUpdateUrl);
+			Logger.Add(3, SoftwareInformationResources.InvalidUpdateUrl);
 			return;
 		}
 
@@ -84,37 +81,14 @@ public static class SoftwareInformation
 			var json = JsonObject.Parse(e.Result);
 			DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
 			string version = json.ver;
-			string description = json.note.Replace("<br>", "\r\n");
 
 			if (UpdateTime < date)
 			{
 				Logger.Add(3, Resources.NewVersionFound + version);
-				Task.Run(() => SoftwareUpdater.UpdateSoftware());
-
-				var result = System.Windows.Forms.MessageBox.Show(
-					string.Format(Resources.AskForUpdate, version, description),
-					Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel,
-					System.Windows.Forms.MessageBoxIcon.Information,
-					System.Windows.Forms.MessageBoxDefaultButton.Button1);
-
-
-				if (result == System.Windows.Forms.DialogResult.Yes)
-				{
-					ProcessStartInfo psi = new ProcessStartInfo
-					{
-						FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest",
-						UseShellExecute = true
-					};
-					Process.Start(psi);
-				}
-				else if (result == System.Windows.Forms.DialogResult.Cancel)
-				{
-					Configuration.Config.Life.CheckUpdateInformation = false;
-				}
 			}
 			else
 			{
-				Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion,
+				Logger.Add(3, string.Format(SoftwareInformationResources.YouAreUsingTheLatestVersion,
 					date.ToString("yyyy/MM/dd")));
 			}
 		}

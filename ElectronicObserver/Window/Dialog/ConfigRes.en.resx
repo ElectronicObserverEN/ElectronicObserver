@@ -640,4 +640,13 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Instead of searching for fonts from a drop-down menu, you can now search by name.
 If this feature is enabled, localisation may not function correctly.</value>
   </data>
+  <data name="ShipTraining" xml:space="preserve">
+    <value>Ship Training</value>
+  </data>
+  <data name="BrowserFont" xml:space="preserve">
+    <value>Browser font</value>
+  </data>
+  <data name="MatchMainFont" xml:space="preserve">
+    <value>Match main font</value>
+  </data>
 </root>

@@ -3,10 +3,8 @@
 public class ApiPortPlaneInfo
 {
 	[JsonPropertyName("api_base_convert_slot")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiBaseConvertSlot { get; set; } = default!;
+	public List<int>? ApiBaseConvertSlot { get; set; }
 
 	[JsonPropertyName("api_unset_slot")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<ApiUnsetSlot>? ApiUnsetSlot { get; set; } = default!;
+	public List<ApiUnsetSlot>? ApiUnsetSlot { get; set; }
 }

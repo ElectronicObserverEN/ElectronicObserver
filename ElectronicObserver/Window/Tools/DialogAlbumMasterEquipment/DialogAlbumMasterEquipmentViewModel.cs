@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
@@ -24,33 +24,22 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
 public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 {
-	private IEnumerable<EquipmentDataViewModel> AllEquipment { get; }
+	private IEnumerable<IEquipmentDataMaster> AllEquipment { get; }
 	public DialogAlbumMasterEquipmentTranslationViewModel DialogAlbumMasterEquipment { get; }
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel<IEquipmentDataMaster> DataGridViewModel { get; set; } = new();
 
-	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
-	// probably due to multiple enumeration
-	public List<EquipmentDataViewModel> Equipment { get; set; }
+	[ObservableProperty]
+	private IEquipmentDataMaster? selectedEquipmentModel;
+	public EquipmentDataViewModel? SelectedEquipmentViewModel { get; set; }
+	public bool DetailsVisible => SelectedEquipmentViewModel is not null;
 
-	private bool Matches(IEquipmentDataMaster equip, string filter)
-	{
-		bool Search(string searchWord) => Calculator.ToHiragana(equip.NameEN.ToLower()).Contains(searchWord);
+	public EquipmentFilterViewModel Filters { get; } = new(true);
 
-		return Search(Calculator.ToHiragana(filter.ToLower())) ||
-			   Search(Calculator.RomaToHira(filter));
-	}
-
-	public EquipmentDataViewModel? SelectedEquipment { get; set; }
-	public bool DetailsVisible => SelectedEquipment is not null;
-
-	public string SearchFilter { get; set; } = "";
-
-	public string Title => SelectedEquipment switch
+	public string Title => SelectedEquipmentViewModel switch
 	{
 		null => DialogAlbumMasterEquipment.Title,
-		{ } => $"{DialogAlbumMasterEquipment.Title} - {SelectedEquipment.Equipment.NameEN}"
+		{ } => $"{DialogAlbumMasterEquipment.Title} - {SelectedEquipmentViewModel.Equipment.NameEN}"
 	};
 
 	private System.Windows.Forms.SaveFileDialog SaveCSVDialog = new()
@@ -61,23 +50,41 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 	public DialogAlbumMasterEquipmentViewModel()
 	{
-		AllEquipment = KCDatabase.Instance.MasterEquipments.Values
-			.Select(e => new EquipmentDataViewModel(e));
-		Equipment = AllEquipment.ToList();
+		AllEquipment = KCDatabase.Instance.MasterEquipments.Values;
 
 		DialogAlbumMasterEquipment =
 			Ioc.Default.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
 
-		PropertyChanged += (sender, args) =>
+		Filters.PropertyChanged += (_, _) => RefreshGrid();
+		
+		PropertyChanged += (_, args) =>
 		{
-			if (args.PropertyName is not nameof(SearchFilter)) return;
+			if (args.PropertyName is not nameof(SelectedEquipmentModel)) return;
 
-			Equipment = AllEquipment.Where(e => SearchFilter switch
+			if (SelectedEquipmentModel is null)
 			{
-				null or "" => true,
-				string f => Matches(e.Equipment, f),
-			}).ToList();
+				SelectedEquipmentViewModel?.UpgradeViewModel?.UnsubscribeFromApis();
+				SelectedEquipmentViewModel = null;
+				return;
+			}
+
+			if (SelectedEquipmentViewModel is null)
+			{
+				SelectedEquipmentViewModel = new(SelectedEquipmentModel);
+			}
+			else
+			{
+				SelectedEquipmentViewModel.ChangeEquipment(SelectedEquipmentModel);
+			}
 		};
+
+		RefreshGrid();
+	}
+
+	private void RefreshGrid()
+	{
+		DataGridViewModel.ItemsSource.Clear();
+		DataGridViewModel.AddRange(AllEquipment.Where(e => Filters.MeetsFilterCondition(e)));
 	}
 
 	[RelayCommand]
@@ -149,7 +156,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 			Utility.ErrorReporter.SendErrorReport(ex, EncycloRes.FailedOutputEquipCSV);
 			MessageBox.Show(EncycloRes.FailedOutputEquipCSV + "\r\n" + ex.Message,
-				Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK,
+				AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 		}
 
@@ -204,12 +211,11 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex,
-				Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToExportCsv);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterEquipmentResources.FailedToExportCsv);
 
 			MessageBox.Show(
-				$"{Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToExportCsv}\r\n" + ex.Message,
-				Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError,
+				$"{AlbumMasterEquipmentResources.FailedToExportCsv}\r\n" + ex.Message,
+				AlbumMasterEquipmentResources.DialogTitleError,
 				MessageBoxButton.OK,
 				MessageBoxImage.Error);
 		}
@@ -219,7 +225,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_CopyEquipmentName_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 		if (eq != null)
 			Clipboard.SetDataObject(eq.NameEN);
 		else
@@ -229,7 +235,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_CopyEquipmentData_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 		if (eq is null)
 		{
 			System.Media.SystemSounds.Exclamation.Play();
@@ -284,7 +290,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_GoogleEquipmentName_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 		if (eq == null)
 		{
 			System.Media.SystemSounds.Exclamation.Play();
@@ -296,7 +302,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 			ProcessStartInfo psi = new()
 			{
 				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(eq.NameEN) +
-						   Properties.Window.Dialog.DialogAlbumMasterEquipment.KancolleSpecifier,
+				           AlbumMasterEquipmentResources.KancolleSpecifier,
 				UseShellExecute = true
 			};
 			// google <装備名> 艦これ
@@ -305,14 +311,14 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToSearchOnWeb);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterEquipmentResources.FailedToSearchOnWeb);
 		}
 	}
 
 	[RelayCommand]
 	private void StripMenu_View_ShowAppearingArea_Click()
 	{
-		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
+		IEquipmentDataMaster? eq = SelectedEquipmentViewModel?.Equipment;
 
 		if (eq is null)
 		{
@@ -324,11 +330,11 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 
 		if (string.IsNullOrWhiteSpace(result))
 		{
-			result = string.Format(Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToFindShipOrRecipe, eq.NameEN);
+			result = string.Format(AlbumMasterEquipmentResources.FailedToFindShipOrRecipe, eq.NameEN);
 		}
 
 		MessageBox.Show(result,
-			Properties.Window.Dialog.DialogAlbumMasterEquipment.ShipOrRecipeCaption,
+			AlbumMasterEquipmentResources.ShipOrRecipeCaption,
 			MessageBoxButton.OK,
 			MessageBoxImage.Information);
 	}
@@ -359,7 +365,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 			.ThenBy(r => r.Bauxite)
 		)
 		{
-			sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterEquipment.Recipe + " {0} / {1} / {2} / {3}\r\n",
+			sb.AppendFormat(AlbumMasterEquipmentResources.Recipe + " {0} / {1} / {2} / {3}\r\n",
 				record.Fuel, record.Ammo, record.Steel, record.Bauxite);
 		}
 

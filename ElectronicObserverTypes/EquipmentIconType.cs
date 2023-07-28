@@ -145,12 +145,23 @@ public enum EquipmentIconType
 	/// <summary>陸上対潜哨戒機</summary>
 	LandBasedASPatrol = 47,
 
-	LandAssaulter,
+	/// <summary>陸上襲撃機</summary>
+	LandAssaulter = 48,
 
-	HeavyBomber,
+	/// <summary>大型陸上機</summary>
+	HeavyBomber = 49,
 
 	/// <summary>夜間水上機</summary>
-	NightSeaplane,
+	NightSeaplane = 50,
+
+	/// <summary>夜間水上爆撃機</summary>
+	NightSeaplaneBomber = 51,
+
+	/// <summary>陸戦部隊</summary>
+	ArmyInfantry = 52,
+
+	/// <summary>艦載発煙装置</summary>
+	SmokeGenerator = 54,
 
 	Locked,
 	Unknown,

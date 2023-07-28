@@ -5,14 +5,11 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
 public class ApiBounus
 {
 	[JsonPropertyName("api_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCount { get; set; } = default!;
+	public int ApiCount { get; set; }
 
 	[JsonPropertyName("api_item")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiItem? ApiItem { get; set; } = default!;
+	public ApiItem? ApiItem { get; set; }
 
 	[JsonPropertyName("api_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public UseItemId ApiType { get; set; } = default!;
+	public UseItemId ApiType { get; set; }
 }

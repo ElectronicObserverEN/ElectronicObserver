@@ -3,37 +3,23 @@
 public class ApiReqKaisouSlotDepriveRequest
 {
 	[JsonPropertyName("api_set_idx")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSetIdx { get; set; } = default!;
+	public string ApiSetIdx { get; set; } = "";
 
 	[JsonPropertyName("api_set_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSetShip { get; set; } = default!;
+	public string ApiSetShip { get; set; } = "";
 
 	[JsonPropertyName("api_set_slot_kind")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSetSlotKind { get; set; } = default!;
+	public string ApiSetSlotKind { get; set; } = "";
 
 	[JsonPropertyName("api_unset_idx")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiUnsetIdx { get; set; } = default!;
+	public string ApiUnsetIdx { get; set; } = "";
 
 	[JsonPropertyName("api_unset_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiUnsetShip { get; set; } = default!;
+	public string ApiUnsetShip { get; set; } = "";
 
 	[JsonPropertyName("api_unset_slot_kind")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiUnsetSlotKind { get; set; } = default!;
+	public string ApiUnsetSlotKind { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

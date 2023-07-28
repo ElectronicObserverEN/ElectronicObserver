@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Behaviors.PersistentColumns;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
@@ -16,8 +14,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 {
 	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFiltered { get; set; } = new();
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel<EquipmentUpgradePlanItemViewModel> DataGridViewModel { get; set; }
 
 	public EquipmentUpgradePlanViewerTranslationViewModel Translation { get; }
 
@@ -34,6 +31,8 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
+
+		DataGridViewModel = new(PlannedUpgradesFiltered);
 
 		Title = Translation.Title;
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;

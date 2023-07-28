@@ -234,7 +234,7 @@
     <value>Obtained item {0} (Total: {1}).</value>
   </data>
   <data name="JustMarried" xml:space="preserve">
-    <value>You are now married to {0}. Congratulations! </value>
+    <value>You are now married to {0}. Congratulations! (Luck+{1}→{2}/{3})</value>
   </data>
   <data name="LoadedRecords" xml:space="preserve">
     <value>Records loaded.</value>

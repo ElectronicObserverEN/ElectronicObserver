@@ -3,27 +3,17 @@
 public class ApiReqKaisouPresetSlotSelectRequest
 {
 	[JsonPropertyName("api_token")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiToken { get; set; } = default!;
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_preset_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiPresetId { get; set; } = default!;
+	public string ApiPresetId { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiShipId { get; set; } = default!;
+	public string ApiShipId { get; set; } = "";
 
 	[JsonPropertyName("api_equip_mode")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEquipMode { get; set; } = default!;
+	public string ApiEquipMode { get; set; } = "";
 }

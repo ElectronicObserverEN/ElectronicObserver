@@ -94,6 +94,8 @@ public static class WikiDataParser
 					})
 					.Select(n => n switch
 					{
+						// Kinu kai
+						"12.7cm Twin High-angle Gun Mount" when ship._api_id is 289 => 229,
 						string s => equipment.First(e => e.NameEN == s).EquipmentID,
 						_ => -1
 					})
@@ -162,11 +164,12 @@ public static class WikiDataParser
 				})
 				.Concat(Enumerable.Repeat(-1, 5))
 				.Take(5)
-				// wiki didn't update abyssal equipment ids from 501~ to 1501~ yet
+				// wiki made a fucking mess only updating some equipment ids
 				.Select(i => i switch
 				{
 					-1 => -1,
-					_ => i + 1000,
+					< 1500 => i + 1000,
+					_ => i,
 				})
 				.ToList();
 		}

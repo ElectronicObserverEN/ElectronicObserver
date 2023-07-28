@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
@@ -472,6 +471,15 @@ public sealed class Configuration
 			/// When text search is enabled, the combobox input can't be localized.
 			/// </summary>
 			public bool FontFamilyTextSearch { get; set; }
+
+			public bool UseCustomBrowserFont { get; set; }
+
+			public string? BrowserFontName { get; set; }
+
+			/// <summary>
+			/// When enabled, the browser font will be the same as the main font.
+			/// </summary>
+			public bool MatchMainFont { get; set; }
 
 			public ConfigUI()
 			{
@@ -1393,12 +1401,18 @@ public sealed class Configuration
 			/// </summary>
 			public int MaxShipNameWidth { get; set; }
 
+			/// <summary>
+			/// By default, only the compositions matching the preview from map screen will be shown. <br></br>
+			/// If you enable this setting, the preview will be ignored and all compositions will be shown.
+			/// </summary>
+			public bool DisplayAllEnemyCompositions { get; set; }
 
 			public ConfigFormCompass()
 			{
 				CandidateDisplayCount = 4;
 				IsScrollable = false;
 				MaxShipNameWidth = 60;
+				DisplayAllEnemyCompositions = false;
 			}
 		}
 		/// <summary>[羅針盤]ウィンドウ</summary>
@@ -1518,7 +1532,29 @@ public sealed class Configuration
 		[DataMember]
 		public ConfigFormBaseAirCorps FormBaseAirCorps { get; private set; }
 
+		/// <summary>
+		/// Ship training configuration
+		/// </summary>
+		public class ConfigFormShipTraining : ConfigPartBase
+		{
 
+			/// <summary>
+			/// Allow multiple plan for the same ship ?
+			/// </summary>
+			public bool AllowMultiplePlanPerShip { get; set; }
+
+
+			public ConfigFormShipTraining()
+			{
+				AllowMultiplePlanPerShip = false;
+			}
+		}
+
+		/// <summary>
+		/// Ship training configuration
+		/// </summary>
+		[DataMember]
+		public ConfigFormShipTraining FormShipTraining { get; private set; }
 
 		/// <summary>
 		/// 各[通知]ウィンドウの設定を扱います。
@@ -1908,6 +1944,7 @@ public sealed class Configuration
 			FormCompass = new ConfigFormCompass();
 			FormJson = new ConfigFormJson();
 			FormBaseAirCorps = new ConfigFormBaseAirCorps();
+			FormShipTraining = new();
 
 			NotifierExpedition = new ConfigNotifierBase();
 			NotifierConstruction = new ConfigNotifierBase();

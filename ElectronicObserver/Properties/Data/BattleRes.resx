@@ -271,4 +271,16 @@
   <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
     <value>夜間支援攻撃</value>
   </data>
+  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
+    <value>友軍艦隊援護</value>
+  </data>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>煙幕</value>
+  </data>
+  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
+    <value>友軍支援航空攻撃</value>
+  </data>
+  <data name="NightBattleBegins" xml:space="preserve">
+    <value>夜戦開始</value>
+  </data>
 </root>

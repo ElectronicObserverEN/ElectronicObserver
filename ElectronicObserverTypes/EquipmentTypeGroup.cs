@@ -4,9 +4,6 @@ namespace ElectronicObserverTypes;
 
 public enum EquipmentTypeGroup
 {
-	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Unknown")]
-	Unknown,
-
 	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "MainGun")]
 	MainGun,
 

@@ -3,27 +3,17 @@
 public class ApiReqAirCorpsSetPlaneRequest
 {
 	[JsonPropertyName("api_area_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiAreaId { get; set; } = default!;
+	public string ApiAreaId { get; set; } = "";
 
 	[JsonPropertyName("api_base_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiBaseId { get; set; } = default!;
+	public string ApiBaseId { get; set; } = "";
 
 	[JsonPropertyName("api_item_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiItemId { get; set; } = default!;
+	public string ApiItemId { get; set; } = "";
 
 	[JsonPropertyName("api_squadron_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSquadronId { get; set; } = default!;
+	public string ApiSquadronId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

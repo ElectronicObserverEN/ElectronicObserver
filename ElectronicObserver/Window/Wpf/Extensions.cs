@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,34 +18,37 @@ public static class Extensions
 	public static Visibility ToVisibility(this bool visible) => visible switch
 	{
 		true => Visibility.Visible,
-		_ => Visibility.Collapsed
+		_ => Visibility.Collapsed,
 	};
 
 	public static SolidColorBrush ToBrush(this System.Drawing.Color color) =>
-		new(Color.FromArgb(color.A, color.R, color.G, color.B));
+		new(color.ToWpfColor());
+
+	public static Color ToWpfColor(this System.Drawing.Color color) =>
+		Color.FromArgb(color.A, color.R, color.G, color.B);
 
 	public static float ToSize(this System.Drawing.Font font) => font.Size * font.Unit switch
 	{
 		System.Drawing.GraphicsUnit.Point => 4 / 3f,
-		_ => 1
+		_ => 1,
 	};
 
 	public static Uri ToAbsolute(this Uri uri) => uri switch
 	{
 		{ IsAbsoluteUri: true } => uri,
-		_ => new(new Uri(Process.GetCurrentProcess().MainModule.FileName), uri)
+		_ => new(new Uri(Environment.ProcessPath!), uri),
 	};
 
 	public static int ToSerializableValue(this ListSortDirection? sortDirection) => sortDirection switch
 	{
 		null => -1,
-		{ } => (int)sortDirection
+		{ } => (int)sortDirection,
 	};
 
 	public static ListSortDirection? ToSortDirection(this int sortDirection) => sortDirection switch
 	{
 		0 or 1 => (ListSortDirection)sortDirection,
-		_ => null
+		_ => null,
 	};
 
 	// todo: move to EOTypes.AA, not possible right now cause of ship class names
@@ -62,7 +64,7 @@ public static class Extensions
 		}
 
 		// ships/classes should be the same for all possible conditions so only write them once
-		if (aaci.Conditions.FirstOrDefault()?.ShipClasses is { } shipClasses)
+		if (aaci.Conditions?.FirstOrDefault()?.ShipClasses is { } shipClasses)
 		{
 			foreach (ShipClass shipClass in shipClasses)
 			{
@@ -72,7 +74,7 @@ public static class Extensions
 			sb.AppendLine();
 		}
 
-		if (aaci.Conditions.FirstOrDefault()?.Ships is { } ships)
+		if (aaci.Conditions?.FirstOrDefault()?.Ships is { } ships)
 		{
 			foreach (ShipId shipId in ships)
 			{
@@ -96,7 +98,7 @@ public static class Extensions
 			null => $"{ConstantsRes.Unknown}({cutIn.Id})",
 
 			{ } conditions => string.Join(" OR ", conditions
-				.Select(c => string.Join(", ", c.EquipmentConditions())))
+				.Select(c => string.Join(", ", c.EquipmentConditions()))),
 		};
 
 	public static string EquipmentConditionsMultiLineDisplay(this AntiAirCutIn cutIn) =>
@@ -105,7 +107,7 @@ public static class Extensions
 			null => $"{ConstantsRes.Unknown}({cutIn.Id})",
 
 			{ } conditions => string.Join("\nOR\n", conditions
-				.Select(c => string.Join("\n", c.EquipmentConditions())))
+				.Select(c => string.Join("\n", c.EquipmentConditions()))),
 		};
 
 	private static List<string> EquipmentConditions(this AntiAirCutInCondition condition)
@@ -247,9 +249,17 @@ public static class Extensions
 			conditions.Add($"{AaciStrings.RadarYamato} >= {condition.RadarYamato}");
 		}
 
+		if (condition.HarunaGun > 0)
+		{
+			conditions.Add($"{AaciStrings.HarunaGun} >= {condition.HarunaGun}");
+		}
+
 		return conditions;
 	}
 
 	public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable)
+		=> new(enumerable);
+
+	public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IList<T> enumerable)
 		=> new(enumerable);
 }

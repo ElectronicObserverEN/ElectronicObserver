@@ -3,57 +3,41 @@
 public class ApiListClass
 {
 	[JsonPropertyName("api_bonus_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiBonusFlag { get; set; } = default!;
+	public int ApiBonusFlag { get; set; }
 
 	[JsonPropertyName("api_category")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCategory { get; set; } = default!;
+	public int ApiCategory { get; set; }
 
 	[JsonPropertyName("api_detail")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDetail { get; set; } = default!;
+	public string ApiDetail { get; set; } = "";
 
 	[JsonPropertyName("api_get_material")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiGetMaterial { get; set; } = new();
 
 	[JsonPropertyName("api_invalid_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiInvalidFlag { get; set; } = default!;
+	public int ApiInvalidFlag { get; set; }
 
 	[JsonPropertyName("api_lost_badges")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiLostBadges { get; set; } = default!;
+	public int? ApiLostBadges { get; set; }
 
 	[JsonPropertyName("api_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNo { get; set; } = default!;
+	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_progress_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiProgressFlag { get; set; } = default!;
+	public int ApiProgressFlag { get; set; }
 
 	[JsonPropertyName("api_select_rewards")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<List<ApiSelectReward>>? ApiSelectRewards { get; set; } = default!;
+	public List<List<ApiSelectReward>>? ApiSelectRewards { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 
 	[JsonPropertyName("api_title")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiTitle { get; set; } = default!;
+	public string ApiTitle { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 
 	[JsonPropertyName("api_voice_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiVoiceId { get; set; } = default!;
+	public int ApiVoiceId { get; set; }
 }

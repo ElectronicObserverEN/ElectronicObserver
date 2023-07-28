@@ -37,7 +37,7 @@ public interface IFleetData
 	/// <summary>
 	/// 艦隊メンバー(艦船ID)
 	/// </summary>
-	ReadOnlyCollection<int> Members { get; }
+	ReadOnlyCollection<int>? Members { get; }
 
 	/// <summary>
 	/// 艦隊メンバー(艦船データ)

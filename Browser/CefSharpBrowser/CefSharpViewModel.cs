@@ -15,6 +15,7 @@ using CefSharp;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using Cef = CefSharp.Cef;
+using DownloadHandler = CefSharp.Fluent.DownloadHandler;
 using IBrowser = CefSharp.IBrowser;
 
 namespace Browser.CefSharpBrowser;
@@ -134,7 +135,8 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
 
-		var requestHandler = new CustomRequestHandler(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
+		CustomRequestHandler requestHandler = new(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
+
 		requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 
 		CefSharp = new ChromiumWebBrowser(KanColleUrl)
@@ -143,6 +145,11 @@ public class CefSharpViewModel : BrowserViewModel
 			KeyboardHandler = new CefKeyboardHandler(this),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
+			DownloadHandler = DownloadHandler
+				.AskUser((chromiumBrowser, browser, downloadItem, callback) =>
+				{
+					// don't need any extra code here
+				}),
 		};
 
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
@@ -153,6 +160,8 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
+		SetCookie();
+
 		// DocumentCompleted に相当?
 		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
 
@@ -161,7 +170,6 @@ public class CefSharpViewModel : BrowserViewModel
 		App.Current.Dispatcher.BeginInvoke(() =>
 		{
 			ApplyStyleSheet();
-			SetCookie();
 			ApplyZoom();
 			DestroyDMMreloadDialog();
 		});
@@ -174,7 +182,19 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		CefSharp.ExecuteScriptAsync(Properties.Resources.RegionCookie);
+		ICookieManager cookieManager = CefSharp.GetCookieManager();
+
+		Cookie dmmCookie = new()
+		{
+			Domain = ".www.dmm.com",
+			Expires = DateTime.Now.AddYears(6),
+			Name = "ckcy",
+			Path = "/netgame/",
+			Value = "1",
+			Secure = false,
+		};
+
+		cookieManager.SetCookie("http://www.dmm.com", dmmCookie);
 	}
 
 	protected override void ApplyZoom()
@@ -231,15 +251,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+				mainframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				gameframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
 			}
 			else
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassId));
-				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+				mainframe.EvaluateScriptAsync(string.Format(Resources.PageScript, StyleClassId));
+				gameframe.EvaluateScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
 			}
 		}
 		catch (Exception ex)
@@ -292,7 +310,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 		try
 		{
-			GetMainFrame()?.EvaluateScriptAsync(Properties.Resources.DMMScript);
+			GetMainFrame()?.EvaluateScriptAsync(Resources.DMMScript);
 		}
 		catch (Exception ex)
 		{
@@ -600,5 +618,83 @@ public class CefSharpViewModel : BrowserViewModel
 		{
 			Owner = App.Current.MainWindow,
 		}.Show();
+	}
+
+	protected override async Task ApplyCustomBrowserFont(BrowserConfiguration configuration)
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		try
+		{
+			await RemoveCustomBrowserFont();
+
+			if (!configuration.UseCustomBrowserFont) return;
+
+			await AddCustomBrowserFont(configuration);
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToApplyBrowserFont);
+		}
+	}
+
+	protected override async Task RemoveCustomBrowserFont()
+	{
+		if (GetKanColleFrame() is not IFrame kancolleFrame) return;
+
+		string removeStyleScript = $$"""
+			try
+			{
+				const style = document.getElementById("{{BrowserFontStyleId}}");
+
+				if (style != null)
+				{
+					style.parentElement.removeChild(style);
+				}
+			}
+			catch
+			{
+			}
+			""";
+
+		_ = await kancolleFrame.EvaluateScriptAsync(removeStyleScript);
+	}
+
+	protected override async Task AddCustomBrowserFont(BrowserConfiguration configuration)
+	{
+		if (GetKanColleFrame() is not IFrame kancolleFrame) return;
+
+		string font = configuration.MatchMainFont switch
+		{
+			true => configuration.MainFont,
+			_ => configuration.BrowserFont ?? configuration.MainFont,
+		};
+
+		string fontData =
+			$$"""@font-face { font-family: "font_j"; src: local("{{font}}"); font-weight: normal; }""" +
+			"""\n""" +
+			$$"""@font-face { font-family: "font_j"; src: local("{{font}}"); font-weight: bold; }""";
+
+		string addStyleScript = $$"""
+			try
+			{
+				const style = document.createElement("style");
+				style.type = "text/css";
+				style.id = "{{BrowserFontStyleId}}";
+				style.innerHTML = '{{fontData}}';
+
+				document.getElementsByTagName("head")[0].appendChild(style);
+			}
+			catch
+			{
+			}
+			""";
+
+		JavascriptResponse? response = await kancolleFrame.EvaluateScriptAsync(addStyleScript);
+
+		if (!response.Success)
+		{
+			AddLog(2, FormBrowser.FailedToApplyBrowserFont);
+		}
 	}
 }

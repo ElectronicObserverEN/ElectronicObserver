@@ -2,10 +2,12 @@
 	x:Class="ElectronicObserver.Window.Tools.ConstructionRecordViewer.ConstructionRecordViewerWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.ConstructionRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding DialogConstructionRecordViewer.Title}"
 	Width="600"
@@ -278,14 +280,41 @@
 			ColumnWidth="*"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding Rows}"
+			ItemsSource="{Binding DataGridRawRowsViewModel.Items}"
 			SelectionChanged="Selector_OnSelectionChanged"
+			Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 			>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding DataGridRawRowsViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridRawRowsViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridRawRowsViewModel.ClearSortingCommand}" Header="{Binding DataGridRawRowsViewModel.DataGrid.ClearSorting}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridRawRowsViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridRawRowsViewModel.SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
 			<DataGrid.ColumnHeaderStyle>
 				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
 					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridRawRowsViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridRawRowsViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridRawRowsViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridRawRowsViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridRawRowsViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridRawRowsViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
 
@@ -296,7 +325,6 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -305,7 +333,6 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.RecordView_Name, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -314,7 +341,6 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.RecordView_Date, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -323,7 +349,6 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.RecordView_Recipe, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -332,9 +357,55 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.Flagship, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
+			</DataGrid.Columns>
+		</DataGrid>
 
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			ColumnWidth="*"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding DataGridMergedRowsAllViewModel.Items}"
+			SelectionChanged="Selector_OnSelectionChanged"
+			Visibility="{Binding DataContext.MergedShipNameVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+			>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding DataGridMergedRowsAllViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridMergedRowsAllViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridMergedRowsAllViewModel.ClearSortingCommand}" Header="{Binding DataGridMergedRowsAllViewModel.DataGrid.ClearSorting}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridMergedRowsAllViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridMergedRowsAllViewModel.SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridMergedRowsAllViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridMergedRowsAllViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridMergedRowsAllViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridMergedRowsAllViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridMergedRowsAllViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridMergedRowsAllViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.Columns>
 				<DataGridTextColumn
 					Width="Auto"
 					Binding="{Binding ShipName}"
@@ -342,16 +413,6 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.ShipName, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.MergedShipNameVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Width="Auto"
-					Binding="{Binding Recipe}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.DialogConstructionRecordViewer.Recipe, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.MergedRecipeVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -361,7 +422,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.Tries, Source={StaticResource Proxy}}"
 					SortMemberPath="Count"
-					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -371,7 +431,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.DevMat100, Source={StaticResource Proxy}}"
 					SortMemberPath="DevMats100Count"
-					Visibility="{Binding DataContext.DevMatsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -381,7 +440,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.DevMat20, Source={StaticResource Proxy}}"
 					SortMemberPath="DevMats20Count"
-					Visibility="{Binding DataContext.DevMatsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -391,7 +449,98 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogConstructionRecordViewer.DevMat1, Source={StaticResource Proxy}}"
 					SortMemberPath="DevMats1Count"
-					Visibility="{Binding DataContext.DevMatsVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			ColumnWidth="*"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding DataGridMergedRowsFilteredByShipViewModel.Items}"
+			SelectionChanged="Selector_OnSelectionChanged"
+			Visibility="{Binding DataContext.MergedRecipeVisible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+			>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding DataGridMergedRowsFilteredByShipViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridMergedRowsFilteredByShipViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridMergedRowsFilteredByShipViewModel.ClearSortingCommand}" Header="{Binding DataGridMergedRowsFilteredByShipViewModel.DataGrid.ClearSorting}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridMergedRowsFilteredByShipViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridMergedRowsFilteredByShipViewModel.SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridMergedRowsFilteredByShipViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridMergedRowsFilteredByShipViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridMergedRowsFilteredByShipViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridMergedRowsFilteredByShipViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridMergedRowsFilteredByShipViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridMergedRowsFilteredByShipViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Recipe}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogConstructionRecordViewer.Recipe, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding CountDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogConstructionRecordViewer.Tries, Source={StaticResource Proxy}}"
+					SortMemberPath="Count"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding DevMats100CountDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogConstructionRecordViewer.DevMat100, Source={StaticResource Proxy}}"
+					SortMemberPath="DevMats100Count"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding DevMats20CountDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogConstructionRecordViewer.DevMat20, Source={StaticResource Proxy}}"
+					SortMemberPath="DevMats20Count"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding DevMats1CountDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogConstructionRecordViewer.DevMat1, Source={StaticResource Proxy}}"
+					SortMemberPath="DevMats1Count"
 					/>
 			</DataGrid.Columns>
 		</DataGrid>

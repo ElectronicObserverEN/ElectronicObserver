@@ -3,26 +3,20 @@
 public class ApiPlaneInfo
 {
 	[JsonPropertyName("api_cond")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiCond { get; set; } = default!;
+	public int? ApiCond { get; set; }
 
 	[JsonPropertyName("api_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiCount { get; set; } = default!;
+	public int? ApiCount { get; set; }
 
 	[JsonPropertyName("api_max_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiMaxCount { get; set; } = default!;
+	public int? ApiMaxCount { get; set; }
 
 	[JsonPropertyName("api_slotid")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSlotid { get; set; } = default!;
+	public int ApiSlotid { get; set; }
 
 	[JsonPropertyName("api_squadron_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSquadronId { get; set; } = default!;
+	public int ApiSquadronId { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 }

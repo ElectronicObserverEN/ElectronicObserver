@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Behaviors.PersistentColumns;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserverTypes;
@@ -21,12 +22,10 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private ShipDataPickerViewModel PickerViewModel { get; } = new();
 
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = new();
-	public List<ShipTrainingPlanViewModel> PlansFiltered { get; set; } = new();
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel<ShipTrainingPlanViewModel> DataGridViewModel { get; set; }
 
 	public bool DisplayFinished { get; set; } = false;
 
@@ -40,6 +39,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
+
+		DataGridViewModel = new(Plans)
+		{
+			FilterValue = plan => DisplayFinished || !plan.PlanFinished
+		};
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
@@ -97,10 +101,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		if (e.PropertyName is nameof(ShipTrainingPlanViewModel.PlanFinished)) UpdatePlanList();
 	}
 
-	private void UpdatePlanList()
-	{
-		PlansFiltered = Plans.Where(plan => DisplayFinished || !plan.PlanFinished).ToList();
-	}
+	private void UpdatePlanList() => DataGridViewModel.Items.Refresh();
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
 	{
@@ -176,10 +177,13 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		List<int> alreadyAddedIds = Plans.Select(s => s.Ship.ID).ToList();
 
-		PickerViewModel.LoadWithShips(KCDatabase.Instance.Ships
-			.Values
-			.Cast<IShipData>()
-			.Where(s => !alreadyAddedIds.Contains(s.ID)));
+		IEnumerable<IShipData> pickableShips = Configuration.Config.FormShipTraining.AllowMultiplePlanPerShip switch
+		{
+			true => KCDatabase.Instance.Ships.Values,
+			_ => KCDatabase.Instance.Ships.Values.Where(s => !alreadyAddedIds.Contains(s.ID))
+		};
+
+		PickerViewModel.LoadWithShips(pickableShips);
 
 		ShipDataPickerView pickerView = new(PickerViewModel);
 

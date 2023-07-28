@@ -12,11 +12,12 @@ public class FitBonusTest
 {
 	private DatabaseFixture Db { get; }
 
-	private static ElectronicObserver.Data.Translation.FitBonusData BonusData { get; } = new ();
+	private ElectronicObserver.Data.Translation.FitBonusData BonusData { get; }
 
 	public FitBonusTest(DatabaseFixture db)
 	{
 		Db = db;
+		BonusData = new();
 	}
 
 	[Fact]
@@ -171,7 +172,7 @@ public class FitBonusTest
 					Level = 8
 				},
 			},
-			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2]),
+			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKaiNi]),
 		};
 
 		FitBonusValue expectedBonus = new FitBonusValue()

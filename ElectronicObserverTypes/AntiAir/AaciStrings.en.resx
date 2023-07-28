@@ -201,4 +201,7 @@
   <data name="FailedAntiAirCutIn" xml:space="preserve">
     <value>Failed</value>
   </data>
+  <data name="HarunaGun" xml:space="preserve">
+    <value>35.6k3/4</value>
+  </data>
 </root>

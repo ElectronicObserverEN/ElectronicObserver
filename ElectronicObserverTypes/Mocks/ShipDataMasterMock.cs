@@ -83,7 +83,7 @@ public class ShipDataMasterMock : IShipDataMaster
 	public int RemodelTier { get; set; }
 	public RemodelTier RemodelTierTyped { get; set; }
 	public string ShipTypeName { get; set; }
-	public bool IsSubmarine { get; set; }
+	public bool IsSubmarine => ShipType is ShipTypes.Submarine or ShipTypes.SubmarineAircraftCarrier;
 	public bool IsAircraftCarrier => this.IsAircraftCarrier();
 	public bool IsRegularCarrier { get; set; }
 	public bool IsEscortAircraftCarrier { get; set; }

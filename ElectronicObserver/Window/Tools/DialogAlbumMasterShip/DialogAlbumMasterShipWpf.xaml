@@ -97,7 +97,7 @@
 					EnableRowVirtualization="True"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding Ships, IsAsync=True, NotifyOnTargetUpdated=True}"
+					ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True, NotifyOnTargetUpdated=True}"
 					SelectedItem="{Binding SelectedShip}"
 					SelectionMode="Single"
 					SelectionUnit="FullRow"
@@ -105,8 +105,15 @@
 					VirtualizingStackPanel.IsVirtualizing="True"
 					VirtualizingStackPanel.VirtualizationMode="Recycling"
 					>
+					<DataGrid.ContextMenu>
+						<ContextMenu>
+							<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
+							<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="{Binding DataGridViewModel.DataGrid.ClearSorting}" />
+						</ContextMenu>
+					</DataGrid.ContextMenu>
+
 					<b:Interaction.Behaviors>
-						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
 					</b:Interaction.Behaviors>
 
 					<DataGrid.ColumnHeaderStyle>
@@ -114,6 +121,20 @@
 							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 							<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 							<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+							<Setter Property="ContextMenu">
+								<Setter.Value>
+									<ContextMenu>
+										<MenuItem
+											Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+											CommandParameter="{Binding}"
+											Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+											/>
+										<Separator />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+									</ContextMenu>
+								</Setter.Value>
+							</Setter>
 						</Style>
 					</DataGrid.ColumnHeaderStyle>
 					<!--
@@ -381,7 +402,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="速力"
+									Text="{Binding DialogAlbumMasterShip.TitleSpeed}"
 									/>
 
 								<TextBlock
@@ -403,7 +424,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="レア"
+									Text="{Binding DialogAlbumMasterShip.TitleRarity}"
 									/>
 
 								<common:ImageTextControl
@@ -432,7 +453,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="射程"
+									Text="{Binding DialogAlbumMasterShip.DefaultRange}"
 									/>
 
 								<TextBlock
@@ -455,7 +476,7 @@
 									Grid.Column="1"
 									Margin="2 0"
 									HorizontalAlignment="Right"
-									Text="消費"
+									Text="{Binding DialogAlbumMasterShip.TitleConsumption}"
 									/>
 
 								<common:ImageTextControl
@@ -557,7 +578,7 @@
 							Orientation="Horizontal"
 							>
 							<Image Source="{Binding Source={x:Static resource:IconContent.FormArsenal}, Converter={StaticResource ImageSourceConverter}}" />
-							<TextBlock Text="建造時間" />
+							<TextBlock Text="{Binding DialogAlbumMasterShip.TitleConstructionTime}"/>
 							<TextBlock Margin="4 0" Text="{Binding SelectedShip.BuildingTime}" />
 						</StackPanel>
 
@@ -569,7 +590,7 @@
 									</Style>
 								</StackPanel.Resources>
 
-								<TextBlock Margin="4 0" Text="解体" />
+								<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterShip.TitleDismantling}" />
 
 								<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedShip.Ship.Material[0]}" />
 
@@ -589,7 +610,7 @@
 									</Style>
 								</StackPanel.Resources>
 
-								<TextBlock Margin="4 0" Text="改修" />
+								<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterShip.TitleModernization}" />
 
 								<common:ImageTextControl Image="{StaticResource Firepower}" Text="{Binding SelectedShip.Ship.PowerUp[0]}" />
 
@@ -616,7 +637,7 @@
 								</StackPanel.Resources>
 
 								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="改装前" />
+									<TextBlock Text="{Binding DialogAlbumMasterShip.TitleBeforeRemodel}" />
 									<TextBlock Text="{Binding SelectedShip.RemodelBeforeShipName}" ToolTip="{Binding SelectedShip.RemodelBeforeShipNameToolTip}">
 										<TextBlock.InputBindings>
 											<MouseBinding
@@ -681,7 +702,7 @@
 								</StackPanel.Resources>
 
 								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="改装後" />
+									<TextBlock Text="{Binding DialogAlbumMasterShip.TitleAfterRemodel}" />
 									<TextBlock Text="{Binding SelectedShip.RemodelAfterShipName}" ToolTip="{Binding SelectedShip.RemodelAfterShipNameToolTip}">
 										<TextBlock.InputBindings>
 											<MouseBinding

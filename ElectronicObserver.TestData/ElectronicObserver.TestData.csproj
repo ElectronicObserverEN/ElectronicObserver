@@ -22,10 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Generated\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Update="Generated\TestData.sqlite">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

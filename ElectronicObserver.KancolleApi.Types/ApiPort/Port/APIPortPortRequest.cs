@@ -3,22 +3,14 @@
 public class ApiPortPortRequest
 {
 	[JsonPropertyName("api_port")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiPort { get; set; } = default!;
+	public string ApiPort { get; set; } = "";
 
 	[JsonPropertyName("api_sort_key")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSortKey { get; set; } = default!;
+	public string ApiSortKey { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("spi_sort_order")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string SpiSortOrder { get; set; } = default!;
+	public string SpiSortOrder { get; set; } = "";
 }

@@ -19,7 +19,8 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 副砲系かどうか </summary>
 	public static bool IsSecondaryGun(this IEquipmentDataMaster equip) => equip.CategoryType is
-		EquipmentTypes.SecondaryGun;
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.SecondaryGun2;
 
 	/// <summary> 魚雷系かどうか </summary>
 	public static bool IsTorpedo(this IEquipmentDataMaster equip) => equip.CategoryType is
@@ -179,7 +180,7 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 対空噴進弾幕が発動可能なロケットランチャーかどうか </summary>
 	public static bool IsAARocketLauncher(this IEquipmentDataMaster equip) => equip.EquipmentId is
-		EquipmentId.AAGun_12cm30tubeRocketLauncherKai2;
+		EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi;
 
 	public static bool IsSeaplane(this IEquipmentDataMaster equip) => equip.CategoryType switch
 	{
@@ -199,18 +200,16 @@ public static class EquipmentDataExtensions
 		_ => false
 	};
 
-	public static bool IsZuiun(this IEquipmentData? equip) => equip?.EquipmentId switch
-	{
-		EquipmentId.SeaplaneBomber_Zuiun => true,
-		EquipmentId.SeaplaneBomber_Zuiun_634AirGroup => true,
-		EquipmentId.SeaplaneBomber_ZuiunModel12 => true,
-		EquipmentId.SeaplaneBomber_ZuiunModel12_634AirGroup => true,
-		EquipmentId.SeaplaneBomber_Zuiun_631AirGroup => true,
-		EquipmentId.SeaplaneBomber_Zuiun_634AirGroupSkilled => true,
-		EquipmentId.SeaplaneBomber_ZuiunKaiNi_634AirGroup => true,
-		EquipmentId.SeaplaneBomber_ZuiunKaiNi_634AirGroupSkilled => true,
-		_ => false
-	};
+	public static bool IsZuiun(this IEquipmentData? equip) => equip?.EquipmentId is
+		EquipmentId.SeaplaneBomber_Zuiun or
+		EquipmentId.SeaplaneBomber_Zuiun_634AirGroup or
+		EquipmentId.SeaplaneBomber_ZuiunModel12 or
+		EquipmentId.SeaplaneBomber_ZuiunModel12_634AirGroup or
+		EquipmentId.SeaplaneBomber_Zuiun_631AirGroup or
+		EquipmentId.SeaplaneBomber_Zuiun_634AirGroupSkilled or
+		EquipmentId.SeaplaneBomber_ZuiunKaiNi_634AirGroup or
+		EquipmentId.SeaplaneBomber_ZuiunKaiNi_634AirGroupSkilled or
+		EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment;
 
 	/// <summary>
 	/// Aircraft that aren't night aircraft but can still participate in cvnci
@@ -223,4 +222,18 @@ public static class EquipmentDataExtensions
 	public static bool UsesSlotSpace(this IEquipmentDataMaster equip) => equip.CategoryType
 		is not (EquipmentTypes.Ration or EquipmentTypes.DamageControl or EquipmentTypes.Supplies);
 
+	public static int AirBaseAircraftCount(this IEquipmentDataMaster? equipment) => equipment?.CategoryType switch
+	{
+		null => 0,
+
+		EquipmentTypes.CarrierBasedRecon or
+		EquipmentTypes.CarrierBasedRecon2 or
+		EquipmentTypes.LandBasedRecon or
+		EquipmentTypes.SeaplaneRecon or
+		EquipmentTypes.FlyingBoat => 4,
+
+		EquipmentTypes.HeavyBomber => 9,
+
+		_ => 18,
+	};
 }

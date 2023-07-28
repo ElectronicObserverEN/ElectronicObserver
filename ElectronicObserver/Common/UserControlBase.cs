@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 

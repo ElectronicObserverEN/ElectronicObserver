@@ -5,6 +5,7 @@
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentList"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
@@ -67,6 +68,7 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
@@ -85,7 +87,9 @@
 			</MenuItem>
 		</Menu>
 
-		<Grid Grid.Row="1">
+		<filter:EquipmentFilterControl Grid.Row="1" DataContext="{Binding Filters}" />
+
+		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="{Binding EquipmentGridWidth, Mode=TwoWay}" />
 				<ColumnDefinition Width="Auto" />
@@ -98,12 +102,19 @@
 				ColumnWidth="*"
 				HeadersVisibility="Column"
 				IsReadOnly="True"
-				ItemsSource="{Binding Rows}"
+				ItemsSource="{Binding EquipmentGridViewModel.Items}"
 				SelectedItem="{Binding SelectedRow}"
 				SelectionMode="Single"
 				>
+				<DataGrid.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding EquipmentGridViewModel.OpenColumnSelectorCommand}" Header="{Binding EquipmentGridViewModel.DataGrid.OpenColumnSelector}" />
+						<MenuItem Command="{Binding EquipmentGridViewModel.ClearSortingCommand}" Header="{Binding EquipmentGridViewModel.DataGrid.ClearSorting}" />
+					</ContextMenu>
+				</DataGrid.ContextMenu>
+
 				<b:Interaction.Behaviors>
-					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding EquipmentGridColumnProperties}" SortDescriptions="{Binding EquipmentGridSortDescriptions}" />
+					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding EquipmentGridViewModel.ColumnProperties}" SortDescriptions="{Binding EquipmentGridViewModel.SortDescriptions}" />
 				</b:Interaction.Behaviors>
 
 				<DataGrid.ColumnHeaderStyle>
@@ -111,6 +122,20 @@
 						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						<Setter Property="ContextMenu">
+							<Setter.Value>
+								<ContextMenu>
+									<MenuItem
+										Command="{Binding DataContext.EquipmentGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Header="{Binding DataContext.EquipmentGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+										/>
+									<Separator />
+									<MenuItem Command="{Binding DataContext.EquipmentGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+									<MenuItem Command="{Binding DataContext.EquipmentGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+								</ContextMenu>
+							</Setter.Value>
+						</Setter>
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<DataGrid.RowStyle>
@@ -204,10 +229,17 @@
 				ColumnWidth="*"
 				HeadersVisibility="Column"
 				IsReadOnly="True"
-				ItemsSource="{Binding DetailRows}"
+				ItemsSource="{Binding EquipmentDetailGridViewModel.Items}"
 				>
+				<DataGrid.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding EquipmentDetailGridViewModel.OpenColumnSelectorCommand}" Header="{Binding EquipmentDetailGridViewModel.DataGrid.OpenColumnSelector}" />
+						<MenuItem Command="{Binding EquipmentDetailGridViewModel.ClearSortingCommand}" Header="{Binding EquipmentDetailGridViewModel.DataGrid.ClearSorting}" />
+					</ContextMenu>
+				</DataGrid.ContextMenu>
+
 				<b:Interaction.Behaviors>
-					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DetailGridColumnProperties}" SortDescriptions="{Binding DetailGridSortDescriptions}" />
+					<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding EquipmentDetailGridViewModel.ColumnProperties}" SortDescriptions="{Binding EquipmentDetailGridViewModel.SortDescriptions}" />
 				</b:Interaction.Behaviors>
 
 				<DataGrid.ColumnHeaderStyle>
@@ -215,6 +247,20 @@
 						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						<Setter Property="ContextMenu">
+							<Setter.Value>
+								<ContextMenu>
+									<MenuItem
+										Command="{Binding DataContext.EquipmentDetailGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Header="{Binding DataContext.EquipmentDetailGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+										/>
+									<Separator />
+									<MenuItem Command="{Binding DataContext.EquipmentDetailGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentDetailGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+									<MenuItem Command="{Binding DataContext.EquipmentDetailGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.EquipmentDetailGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+								</ContextMenu>
+							</Setter.Value>
+						</Setter>
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<DataGrid.Columns>

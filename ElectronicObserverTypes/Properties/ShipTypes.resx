@@ -183,4 +183,7 @@
   <data name="Transport" xml:space="preserve">
     <value>輸送艦</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>全て</value>
+  </data>
 </root>

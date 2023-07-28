@@ -11,45 +11,36 @@ namespace ElectronicObserver.Notifier;
 /// </summary>
 public class NotifierCondition : NotifierBase
 {
-
-	private Dictionary<int, bool> _processedFlags;
-
-
-	public NotifierCondition()
-		: base()
-	{
-		Initialize();
-	}
+	private Dictionary<int, bool> ProcessedFlags { get; } = new();
 
 	public NotifierCondition(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
 		: base(config)
 	{
-		Initialize();
+		DialogData.Title = NotifierRes.ConditionTitle;
+
+		for (int i = 1; i <= 4; i++)
+		{
+			ProcessedFlags.Add(i, false);
+		}
+
+		SubscribeToApis();
 	}
 
 
-	private void Initialize()
+	private void SubscribeToApis()
 	{
-		DialogData.Title = NotifierRes.ConditionTitle;
-		_processedFlags = new Dictionary<int, bool>();
-
-		for (int i = 1; i <= 4; i++)
-			_processedFlags.Add(i, false);
-
-
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiPort_Port.ResponseReceived += ClearFlags;
-
 	}
 
 
 	private void ClearFlags(string apiname, dynamic data)
 	{
 
-		foreach (int key in _processedFlags.Keys.ToArray())
+		foreach (int key in ProcessedFlags.Keys.ToArray())
 		{       //列挙中の変更によるエラーを防ぐため
-			_processedFlags[key] = false;
+			ProcessedFlags[key] = false;
 		}
 	}
 
@@ -62,7 +53,7 @@ public class NotifierCondition : NotifierBase
 
 			if (fleet.ExpeditionState > 0 || fleet.IsInSortie) continue;
 
-			if (_processedFlags[fleet.FleetID])
+			if (ProcessedFlags[fleet.FleetID])
 				continue;
 
 
@@ -73,14 +64,14 @@ public class NotifierCondition : NotifierBase
 				{
 
 					Notify(fleet.FleetID);
-					_processedFlags[fleet.FleetID] = true;
+					ProcessedFlags[fleet.FleetID] = true;
 				}
 			}
 		}
 
 	}
 
-	public void Notify(int fleetID)
+	private void Notify(int fleetID)
 	{
 
 		DialogData.Message = string.Format(NotifierRes.ConditionText,

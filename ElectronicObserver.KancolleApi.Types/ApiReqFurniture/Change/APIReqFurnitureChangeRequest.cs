@@ -3,41 +3,26 @@
 public class ApiReqFurnitureChangeRequest
 {
 	[JsonPropertyName("api_desk")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDesk { get; set; } = default!;
+	public string ApiDesk { get; set; } = "";
 
 	[JsonPropertyName("api_floor")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiFloor { get; set; } = default!;
+	public string ApiFloor { get; set; } = "";
 
 	[JsonPropertyName("api_season")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public string? ApiSeason { get; set; } = default!;
+	public string? ApiSeason { get; set; }
 
 	[JsonPropertyName("api_shelf")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiShelf { get; set; } = default!;
+	public string ApiShelf { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_wallhanging")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiWallhanging { get; set; } = default!;
+	public string ApiWallhanging { get; set; } = "";
 
 	[JsonPropertyName("api_wallpaper")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiWallpaper { get; set; } = default!;
+	public string ApiWallpaper { get; set; } = "";
 
 	[JsonPropertyName("api_window")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiWindow { get; set; } = default!;
+	public string ApiWindow { get; set; } = "";
 }

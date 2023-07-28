@@ -2,6 +2,7 @@
 using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Notifier;
 
@@ -17,36 +18,28 @@ public class NotifierAnchorageRepair : NotifierBase
 
 
 	// いったん母港に行くまでは通知しない
-	private bool processedFlag = true;
-
-	public NotifierAnchorageRepair()
-		: base()
-	{
-		Initialize();
-	}
+	private bool ProcessedFlag { get; set; } = true;
 
 	public NotifierAnchorageRepair(Utility.Configuration.ConfigurationData.ConfigNotifierAnchorageRepair config)
 		: base(config)
 	{
-		Initialize();
+		DialogData.Title = NotifierRes.AnchorageRepair;
+
+		SubscribeToApis();
 
 		NotificationLevel = config.NotificationLevel;
 	}
 
-	private void Initialize()
+	private void SubscribeToApis()
 	{
-		DialogData.Title = NotifierRes.AnchorageRepair;
-
-
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiPort_Port.ResponseReceived += ClearFlag;
 	}
 
-	void ClearFlag(string apiname, dynamic data)
+	private void ClearFlag(string apiname, dynamic data)
 	{
-
-		processedFlag = false;
+		ProcessedFlag = false;
 	}
 
 
@@ -55,40 +48,35 @@ public class NotifierAnchorageRepair : NotifierBase
 
 		var fleets = KCDatabase.Instance.Fleet;
 
-		if (!processedFlag)
+		if (!ProcessedFlag)
 		{
 
 			if ((DateTime.Now - fleets.AnchorageRepairingTimer).TotalMilliseconds + AccelInterval >= 20 * 60 * 1000)
 			{
-
-				bool clear;
-				switch (NotificationLevel)
+				bool clear = NotificationLevel switch
 				{
+					//いつでも
+					0 => true,
 
-					case 0:     //いつでも
-					default:
-						clear = true;
-						break;
+					//明石旗艦の時
+					1 => fleets.Fleets.Values.Any(f => f.IsFlagshipRepairShip),
 
-					case 1:     //明石旗艦の時
-						clear = fleets.Fleets.Values.Any(f => f.IsFlagshipRepairShip);
-						break;
+					//修理艦もいる時
+					2 => fleets.Fleets.Values.Any(f => f.CanAnchorageRepair),
 
-					case 2:     //修理艦もいる時
-						clear = fleets.Fleets.Values.Any(f => f.CanAnchorageRepair);
-						break;
+					// プリセット込み
+					3 => fleets.Fleets.Values.Any(f => f.CanAnchorageRepair) ||
+						KCDatabase.Instance.FleetPreset.Presets.Values.Any(p =>
+						FleetData.CanAnchorageRepairWithMember(p.MembersInstance)),
 
-					case 3:     // プリセット込み
-						clear = fleets.Fleets.Values.Any(f => f.CanAnchorageRepair) ||
-								KCDatabase.Instance.FleetPreset.Presets.Values.Any(p => FleetData.CanAnchorageRepairWithMember(p.MembersInstance));
-						break;
-				}
+					_ => true,
+				};
 
 				if (clear)
 				{
 
 					Notify();
-					processedFlag = true;
+					ProcessedFlag = true;
 				}
 			}
 		}
@@ -109,9 +97,7 @@ public class NotifierAnchorageRepair : NotifierBase
 	{
 		base.ApplyToConfiguration(config);
 
-		var c = config as Utility.Configuration.ConfigurationData.ConfigNotifierAnchorageRepair;
-
-		if (c != null)
+		if (config is Configuration.ConfigurationData.ConfigNotifierAnchorageRepair c)
 		{
 			c.NotificationLevel = NotificationLevel;
 		}

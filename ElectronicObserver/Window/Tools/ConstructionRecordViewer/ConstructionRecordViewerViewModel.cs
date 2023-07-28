@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -7,10 +8,10 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.ConstructionRecordViewer;
@@ -30,7 +31,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 	public List<object> DevelopmentMaterials { get; set; }
 	public List<object> EmptyDockCounts { get; set; }
 
-	public List<ConstructionRecordRow> Rows { get; set; } = new();
 	public List<ConstructionRecordRow> SelectedRows { get; set; } = new();
 
 	public object SelectedShipType { get; set; } = ConstructionRecordOption.All;
@@ -56,7 +56,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 
 	public bool MergeRows { get; set; }
 	public bool RawRows => !MergeRows;
-	public bool DevMatsVisible => MergeRows && IsLargeConstruction is not false;
 	public bool MergedShipNameVisible => MergeRows && SelectedShip is ConstructionRecordOption.All;
 	public bool MergedRecipeVisible => MergeRows && SelectedShip is IShipDataMaster;
 	public string StatusInfoText { get; set; }
@@ -64,8 +63,17 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogConstructionRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
+	private ObservableCollection<ConstructionRecordRow> RecordRows { get; set; } = new();
+	public DataGridViewModel<ConstructionRecordRow> DataGridRawRowsViewModel { get; set; }
+	public DataGridViewModel<ConstructionRecordRow> DataGridMergedRowsAllViewModel { get; set; }
+	public DataGridViewModel<ConstructionRecordRow> DataGridMergedRowsFilteredByShipViewModel { get; set; }
+
 	public ConstructionRecordViewerViewModel()
 	{
+		DataGridRawRowsViewModel = new(RecordRows);
+		DataGridMergedRowsAllViewModel = new(RecordRows);
+		DataGridMergedRowsFilteredByShipViewModel = new(RecordRows);
+
 		DialogConstructionRecordViewer = Ioc.Default.GetService<DialogConstructionRecordViewerTranslationViewModel>()!;
 		Record = RecordManager.Instance.Construction;
 
@@ -84,7 +92,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not (nameof(MergeRows) or nameof(IsLargeConstruction) or nameof(SelectedShip))) return;
 
-			Rows = new();
+			RecordRows.Clear();
 		};
 
 		PropertyChanged += (sender, args) =>
@@ -124,19 +132,8 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => ship.NameWithClass == name))
 			.Where(s => s != null);
 
-		var removedShipNames = includedShipNames.Except(includedShipObjects.Select(s => s.NameWithClass));
-
-		var includedSecretaryNames = Record.Record
-			.Select(r => r.FlagshipName).Distinct();
-
-		IEnumerable<IShipDataMaster> includedSecretaryObjects = includedSecretaryNames
-			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => ship.NameWithClass == name))
-			.Where(s => s != null)!;
-
-		var removedSecretaryNames = includedSecretaryNames.Except(includedSecretaryObjects.Select(s => s.NameWithClass));
-
 		var categories = includedShipObjects
-			.Select(s => s.ShipType)
+			.Select(s => s?.ShipType)
 			.Distinct();
 
 		Categories = categories
@@ -146,7 +143,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			.ToList();
 
 		Ships = includedShipObjects
-			.OrderBy(s => s.ShipId)
+			.OrderBy(s => s?.ShipId)
 			.Cast<object>()
 			.Prepend(ConstructionRecordOption.All)
 			.ToList();
@@ -201,16 +198,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		return string.Join("/", resources);
 	}
 
-	private string GetRecipeString(int fuel, int ammo, int steel, int bauxite)
-	{
-		return GetRecipeString(new[] { fuel, ammo, steel, bauxite });
-	}
-
-	private string GetRecipeString(int fuel, int ammo, int steel, int bauxite, int devmat)
-	{
-		return GetRecipeString(new[] { fuel, ammo, steel, bauxite, devmat });
-	}
-
 	private string GetRecipeString(ConstructionRecord.ConstructionElement record, bool containsDevmat = false)
 	{
 		if (containsDevmat)
@@ -224,16 +211,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		return string.Join("/", resources.Select(r => r.ToString("D4")));
 	}
 
-	private string GetRecipeStringForSorting(int fuel, int ammo, int steel, int bauxite)
-	{
-		return GetRecipeStringForSorting(new[] { fuel, ammo, steel, bauxite });
-	}
-
-	private string GetRecipeStringForSorting(int fuel, int ammo, int steel, int bauxite, int devmat)
-	{
-		return GetRecipeStringForSorting(new[] { fuel, ammo, steel, bauxite, devmat });
-	}
-
 	private string GetRecipeStringForSorting(ConstructionRecord.ConstructionElement record, bool containsDevmat = false)
 	{
 		if (containsDevmat)
@@ -241,69 +218,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		else
 			return GetRecipeStringForSorting(new[] { record.Fuel, record.Ammo, record.Steel, record.Bauxite });
 	}
-
-	/*
-	private void ShipCategory_SelectedIndexChanged(object sender, EventArgs e)
-	{
-
-		string name = (string)ShipName.SelectedItem;
-		var category = (ShipTypes)ShipCategory.SelectedValue;
-
-		if (name != NameAny && (int)category != -1)
-		{
-			var ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.NameWithClass == name);
-
-			if (ship == null || ship.ShipType != category)
-				ShipName.SelectedIndex = 0;
-		}
-	}
-
-	private void ShipName_SelectedIndexChanged(object sender, EventArgs e)
-	{
-
-		string name = (string)ShipName.SelectedItem;
-		var category = (ShipTypes)ShipCategory.SelectedValue;
-
-		if (name != NameAny && (int)category != -1)
-		{
-			var ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.NameWithClass == name);
-
-			if (ship == null || ship.ShipType != category)
-				ShipCategory.SelectedIndex = 0;
-		}
-	}
-
-	private void SecretaryCategory_SelectedIndexChanged(object sender, EventArgs e)
-	{
-
-		string name = (string)SecretaryName.SelectedItem;
-		var category = (ShipTypes)SecretaryCategory.SelectedValue;
-
-		if (name != NameAny && (int)category != -1)
-		{
-			var ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.NameWithClass == name);
-
-			if (ship == null || ship.ShipType != category)
-				SecretaryName.SelectedIndex = 0;
-		}
-	}
-
-	private void SecretaryName_SelectedIndexChanged(object sender, EventArgs e)
-	{
-
-		string name = (string)SecretaryName.SelectedItem;
-		var category = (ShipTypes)SecretaryCategory.SelectedValue;
-
-		if (name != NameAny && (int)category != -1)
-		{
-			var ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.NameWithClass == name);
-
-			if (ship == null || ship.ShipType != category)
-				SecretaryCategory.SelectedIndex = 0;
-		}
-	}
-
-	*/
 
 	private void Searcher_DoWork(object sender, DoWorkEventArgs e)
 	{
@@ -511,11 +425,11 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		{
 			if (e.Result is not List<ConstructionRecordRow> rows) return;
 
-			Rows = rows;
-			/*
-			RecordView.Sort(RecordView.SortedColumn ?? RecordView_Header,
-				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
-			*/
+			RecordRows = new(rows);
+			DataGridRawRowsViewModel.ItemsSource = RecordRows;
+			DataGridMergedRowsAllViewModel.ItemsSource = RecordRows;
+			DataGridMergedRowsFilteredByShipViewModel.ItemsSource = RecordRows;
+
 			StatusInfoText = EncycloRes.SearchComplete + "(" + (int)(DateTime.Now - StatusInfoTag).TotalMilliseconds + " ms)";
 		}
 		else
@@ -524,105 +438,16 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 		}
 	}
 
-	/*
-	private void RecordView_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-	{
-
-		object tag1 = RecordView[e.Column.Index, e.RowIndex1].Tag;
-		object tag2 = RecordView[e.Column.Index, e.RowIndex2].Tag;
-
-		if (tag1 != null && (tag1 is double || tag1 is int) && e.CellValue1 is int)
-		{
-			double c1 = 0, c2 = 0;
-
-			if (tag1 is double)
-			{
-				c1 = (double)tag1;
-				c2 = (double)tag2;
-			}
-			else if (tag1 is int)
-			{
-				c1 = (double)(int)e.CellValue1 / Math.Max((int)tag1, 1);
-				c2 = (double)(int)e.CellValue2 / Math.Max((int)tag2, 1);
-			}
-
-
-			if (Math.Abs(c1 - c2) < 0.000001)
-				e.SortResult = (int)e.CellValue1 - (int)e.CellValue2;
-			else if (c1 < c2)
-				e.SortResult = -1;
-			else
-				e.SortResult = 1;
-			e.Handled = true;
-
-		}
-		else if (tag1 is string)
-		{
-			e.SortResult = ((IComparable)tag1).CompareTo(tag2);
-			e.Handled = true;
-		}
-
-		if (!e.Handled)
-		{
-			e.SortResult = ((IComparable)e.CellValue1 ?? 0).CompareTo(e.CellValue2 ?? 0);
-			e.Handled = true;
-		}
-
-		if (e.SortResult == 0)
-		{
-			e.SortResult = (int)(RecordView.Rows[e.RowIndex1].Tag ?? 0) - (int)(RecordView.Rows[e.RowIndex2].Tag ?? 0);
-		}
-
-	}
-
-	private void RecordView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-	{
-
-		object tag = RecordView[e.ColumnIndex, e.RowIndex].Tag;
-
-		if (tag != null)
-		{
-			if (tag is double)
-			{
-				e.Value = string.Format("{0} ({1:p1})", e.Value, (double)tag);
-				e.FormattingApplied = true;
-			}
-			else if (tag is int)
-			{
-				e.Value = string.Format("{0}/{1} ({2:p1})", e.Value, (int)tag, (double)(int)e.Value / Math.Max((int)tag, 1));
-				e.FormattingApplied = true;
-			}
-		}
-
-		if (e.Value is DateTime)
-		{
-			e.Value = DateTimeHelper.TimeToCSVString((DateTime)e.Value);
-			e.FormattingApplied = true;
-		}
-
-	}
-	*/
-
 	private void RecordView_SelectionChanged()
 	{
 		int selectedCount = SelectedRows.Count;
 
 		if (selectedCount == 0) return;
 
-		if (MergeRows)
+		if (!MergeRows)
 		{
-			/*
-			int count = SelectedRows.Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
-			int allcount = Rows.Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
-
-			StatusInfoText = string.Format(Properties.Window.Dialog.DialogDropRecordViewer.SelectedItems,
-				count, allcount, (double)count / allcount);
-			*/
-		}
-		else
-		{
-			int allcount = Rows.Count;
-			StatusInfoText = string.Format(Properties.Window.Dialog.DialogDropRecordViewer.SelectedItems,
+			int allcount = RecordRows.Count;
+			StatusInfoText = string.Format(DropRecordViewerResources.SelectedItems,
 				selectedCount, allcount, (double)selectedCount / allcount);
 		}
 	}
@@ -640,86 +465,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			return;
 		}
 
-		Rows.Clear();
-
-		/*
-		// column initialize
-		if (!args.MergeRows)
-		{
-			RecordView_Header.DisplayIndex = 0;
-			RecordView_Header.Width = 50;
-			RecordView_Header.HeaderText = "";
-			RecordView_Name.DisplayIndex = 1;
-			RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-			RecordView_Name.HeaderText = Translation.RecordView_Name;
-			RecordView_Name.Visible = true;
-			RecordView_Date.DisplayIndex = 2;
-			RecordView_Date.Width = 140;
-			RecordView_Date.HeaderText = EncycloRes.Date;
-			RecordView_Date.Visible = true;
-			RecordView_Recipe.DisplayIndex = 3;
-			RecordView_Recipe.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-			RecordView_Recipe.Width = 100;
-			RecordView_Recipe.HeaderText = EncycloRes.Recipe;
-			RecordView_Recipe.Visible = true;
-			RecordView_SecretaryShip.DisplayIndex = 4;
-			RecordView_SecretaryShip.Width = 110;
-			RecordView_SecretaryShip.HeaderText = EncycloRes.Flagship;
-			RecordView_SecretaryShip.Visible = true;
-			RecordView_Material100.Visible = false;
-			RecordView_Material20.Visible = false;
-			RecordView_Material1.Visible = false;
-
-		}
-		else
-		{
-			if (args.ShipName != NameAny)
-			{
-				RecordView_Recipe.DisplayIndex = 0;
-				RecordView_Recipe.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Recipe.HeaderText = EncycloRes.Recipe;
-				RecordView_Recipe.Visible = true;
-				RecordView_Name.Visible = false;
-			}
-			else
-			{
-				RecordView_Name.DisplayIndex = 0;
-				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Name.HeaderText = EncycloRes.ShipName;
-				RecordView_Name.Visible = true;
-				RecordView_Recipe.Visible = false;
-			}
-			RecordView_Header.DisplayIndex = 1;
-			RecordView_Header.Width = 120;
-			RecordView_Header.HeaderText = Translation.Tries;
-			RecordView_Material100.DisplayIndex = 2;
-			RecordView_Material100.Width = 120;
-			RecordView_Material100.HeaderText = $"{Translation.DevMat}×100";
-			RecordView_Material20.DisplayIndex = 3;
-			RecordView_Material20.Width = 120;
-			RecordView_Material20.HeaderText = $"{Translation.DevMat}×20";
-			RecordView_Material1.DisplayIndex = 4;
-			RecordView_Material1.Width = 120;
-			RecordView_Material1.HeaderText = $"{Translation.DevMat}×1";
-			if (args.IsLargeConstruction == CheckState.Unchecked ||
-				 (args.Recipe != NameAny && args.Recipe.IndexOf("/") < 4) ||
-				 args.DevelopmentMaterial != -1)
-			{
-				RecordView_Material100.Visible = false;
-				RecordView_Material20.Visible = false;
-				RecordView_Material1.Visible = false;
-			}
-			else
-			{
-				RecordView_Material100.Visible = true;
-				RecordView_Material20.Visible = true;
-				RecordView_Material1.Visible = true;
-			}
-			RecordView_Date.Visible = false;
-			RecordView_SecretaryShip.Visible = false;
-		}
-		RecordView.ColumnHeadersVisible = true;
-		*/
+		RecordRows.Clear();
 
 		StatusInfoText = EncycloRes.Searching + "...";
 		StatusInfoTag = DateTime.Now;

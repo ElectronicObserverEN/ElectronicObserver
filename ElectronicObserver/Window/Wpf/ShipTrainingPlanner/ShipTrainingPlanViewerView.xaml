@@ -52,14 +52,23 @@
 					ColumnWidth="90"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding PlansFiltered}"
+					ItemsSource="{Binding DataGridViewModel.Items}"
 					SelectedItem="{Binding SelectedPlan}"
 					SelectionMode="Single"
 					SelectionUnit="FullRow"
 					>
 
+					<DataGrid.ContextMenu>
+						<ContextMenu>
+							<MenuItem Command="{Binding DataContext.OpenShipPickerToAddNewPlanCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.ShipTrainingPlanner.AddShip, Source={StaticResource Proxy}, Mode=OneWay}" />
+							<Separator />
+							<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
+							<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="{Binding DataGridViewModel.DataGrid.ClearSorting}" />
+						</ContextMenu>
+					</DataGrid.ContextMenu>
+
 					<b:Interaction.Behaviors>
-						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
 					</b:Interaction.Behaviors>
 
 					<DataGrid.ColumnHeaderStyle>
@@ -67,6 +76,20 @@
 							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 							<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 							<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+							<Setter Property="ContextMenu">
+								<Setter.Value>
+									<ContextMenu>
+										<MenuItem
+											Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+											CommandParameter="{Binding}"
+											Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+											/>
+										<Separator />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+									</ContextMenu>
+								</Setter.Value>
+							</Setter>
 						</Style>
 					</DataGrid.ColumnHeaderStyle>
 
@@ -87,6 +110,9 @@
 										/>
 									<Separator />
 									<MenuItem Command="{Binding DataContext.RemoveAllFinishedPlansCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.ShipTrainingPlanner.RemoveFinishedPlans, Source={StaticResource Proxy}, Mode=OneWay}" />
+									<Separator />
+									<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+									<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
 								</ContextMenu>
 							</Style.Resources>
 
@@ -195,6 +221,90 @@
 
 						<DataGridTextColumn Binding="{Binding Priority}" Header="{Binding DataContext.ShipTrainingPlanner.Priority, Source={StaticResource Proxy}}" />
 
+						<!--  Hidden columns (available for sorting)  -->
+						<DataGridTextColumn
+							Binding="{Binding Ship.Level, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LevelCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetLevel, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LevelTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingExpToTarget, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.RemainingExp, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+
+						<DataGridTextColumn
+							Binding="{Binding Ship.HPMaxModernized, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPBonusCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetHPBonus, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPBonusTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding Ship.HPMax, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetHP, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingHP, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.HPRemaining, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+
+						<DataGridTextColumn
+							Binding="{Binding Ship.ASWModernized, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWBonusCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetASWBonus, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWBonusTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding Ship.ASWBase, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetASW, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingASW, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.ASWRemaining, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+
+						<DataGridTextColumn
+							Binding="{Binding Ship.LuckBase, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LuckCurrent, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding TargetLuck, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LuckTarget, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
+						<DataGridTextColumn
+							Binding="{Binding RemainingLuck, Mode=OneWay}"
+							Header="{Binding DataContext.ShipTrainingPlanner.LuckRemaining, Source={StaticResource Proxy}}"
+							Visibility="Collapsed"
+							/>
 					</DataGrid.Columns>
 
 				</DataGrid>

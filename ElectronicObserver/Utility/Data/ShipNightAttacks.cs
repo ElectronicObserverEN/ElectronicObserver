@@ -1,155 +1,169 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
 public static class ShipNightAttacks
 {
-	public static IEnumerable<Enum> GetNightAttacks(this IShipData ship)
+	public static IEnumerable<NightAttack> GetNightAttacks(this IShipData ship)
 	{
-		IEnumerable<Enum> nightAttacks = new List<Enum>();
+		IEnumerable<NightAttack> nightAttacks = new List<NightAttack>();
 
 		if (ship.MasterShip.IsSubmarine)
 		{
 			// sub TCI or normal TCI
-			IEnumerable<Enum> specialAttack = SubmarineNightSpecialAttacks.Cast<Enum>()
-					.Concat(SurfaceShipNightSpecialAttacks.Cast<Enum>())
-					.FirstOrDefault(ship.CanDo!) switch
-			{
-				Enum attack => new List<Enum> { attack },
-				_ => Enumerable.Empty<Enum>()
-			};
-
-			nightAttacks = nightAttacks
-				.Concat(specialAttack)
-				.Concat(NightTorpedoAttacks.Cast<Enum>());
-		}
-
-		if (ship.IsSurfaceShip())
-		{
-			if (ship.IsDestroyer())
-			{
-				nightAttacks = nightAttacks.Concat(DestroyerSpecialAttacks.Cast<Enum>());
-			}
-
-			IEnumerable<Enum> specialAttack =
-				SurfaceShipNightSpecialAttacks.Cast<Enum>().FirstOrDefault(ship.CanDo!) switch
+			IEnumerable<NightAttack> specialAttack = SubmarineNightSpecialAttacks()
+				.Concat(SurfaceShipNightSpecialAttacks())
+				.FirstOrDefault(ship.CanDo) switch
 				{
-					NightAttackKind attack => new List<Enum> { attack },
-					_ => Enumerable.Empty<Enum>()
+					NightAttack attack => new List<NightAttack> { attack },
+					_ => Enumerable.Empty<NightAttack>(),
 				};
 
 			nightAttacks = nightAttacks
 				.Concat(specialAttack)
-				.Concat(SurfaceShipNightNormalAttacks.Cast<Enum>());
+				.Concat(NightTorpedoAttacks());
+		}
+
+		if (ship.IsSurfaceShip())
+		{
+			if (ship.IsNightZuiunCutInShip())
+			{
+				nightAttacks = nightAttacks.Concat(ZuiunSpecialAttacks());
+			}
+
+			if (ship.IsDestroyer())
+			{
+				nightAttacks = nightAttacks.Concat(DestroyerSpecialAttacks());
+			}
+
+			IEnumerable<NightAttack> specialAttack =
+				SurfaceShipNightSpecialAttacks().FirstOrDefault(ship.CanDo) switch
+				{
+					NightAttack attack => new List<NightAttack> { attack },
+					_ => Enumerable.Empty<NightAttack>(),
+				};
+
+			nightAttacks = nightAttacks
+				.Concat(specialAttack)
+				.Concat(SurfaceShipNightNormalAttacks());
 		}
 
 		if (ship.IsNightCarrier())
 		{
 			nightAttacks = nightAttacks
-				.Concat(CarrierNightSpecialAttacks.Cast<Enum>())
-				.Concat(CarrierNightNormalAttacks.Cast<Enum>());
+				.Concat(CarrierNightSpecialAttacks())
+				.Concat(CarrierNightNormalAttacks());
 		}
 		else if (ship.IsSpecialNightCarrier() || ship.IsArkRoyal() && ship.HasSwordfish())
 		{
 			nightAttacks = nightAttacks
-				.Concat(new List<Enum> { NightAttackKind.DoubleShelling })
-				.Concat(new List<Enum> { NightAttackKind.Shelling });
+				.Concat(new List<NightAttack> { NightAttack.DoubleShelling })
+				.Concat(new List<NightAttack> { NightAttack.Shelling });
 		}
 
-		return nightAttacks.Where(ship.CanDo!);
+		return nightAttacks.Where(ship.CanDo);
 	}
 
-	private static List<NightAttackKind> DestroyerSpecialAttacks => new()
+	private static IEnumerable<NightAttack> ZuiunSpecialAttacks()
 	{
-		NightAttackKind.CutinTorpedoRadar,
-		//NightAttackKind.CutinTorpedoRadar2,
-		NightAttackKind.CutinTorpedoPicket,
-		//NightAttackKind.CutinTorpedoPicket2,
-		NightAttackKind.CutinTorpedoDestroyerPicket,
-		//NightAttackKind.CutinTorpedoDestroyerPicket2,
-		NightAttackKind.CutinTorpedoDrum,
-		//NightAttackKind.CutinTorpedoDrum2,
-	};
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiunZuiunRadar;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiunZuiun;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiunRadar;
+		yield return NightZuiunCutinAttack.NightZuiunCutinZuiun;
+	}
 
-	private static List<NightAttackKind> SurfaceShipNightSpecialAttacks => new()
+	private static IEnumerable<NightAttack> DestroyerSpecialAttacks()
 	{
-		NightAttackKind.CutinTorpedoTorpedo,
-		NightAttackKind.CutinMainMain,
-		NightAttackKind.CutinMainSub,
-		NightAttackKind.CutinMainTorpedo,
-		NightAttackKind.DoubleShelling,
-	};
+		yield return NightAttack.CutinTorpedoRadar;
+		// yield return NightAttack.CutinTorpedoRadar2;
+		yield return NightAttack.CutinTorpedoPicket;
+		// yield return NightAttack.CutinTorpedoPicket2;
+		yield return NightAttack.CutinTorpedoDestroyerPicket;
+		// yield return NightAttack.CutinTorpedoDestroyerPicket2;
+		yield return NightAttack.CutinTorpedoDrum;
+		// yield return NightAttack.CutinTorpedoDrum2;
+	}
 
-	private static List<CvnciKind> CarrierNightSpecialAttacks => new()
+	private static IEnumerable<NightAttack> SurfaceShipNightSpecialAttacks()
 	{
-		CvnciKind.FighterFighterAttacker,
-		CvnciKind.FighterAttacker,
-		CvnciKind.Phototube,
-		CvnciKind.FighterOtherOther
-	};
+		yield return NightAttack.CutinTorpedoTorpedo;
+		yield return NightAttack.CutinMainMain;
+		yield return NightAttack.CutinMainSub;
+		yield return NightAttack.CutinMainTorpedo;
+		yield return NightAttack.DoubleShelling;
+	}
 
-	private static List<NightAttackKind> SurfaceShipNightNormalAttacks => new()
+	private static IEnumerable<NightAttack> CarrierNightSpecialAttacks()
 	{
-		NightAttackKind.Shelling
-	};
+		yield return CvnciAttack.CutinAirAttackFighterFighterAttacker;
+		yield return CvnciAttack.CutinAirAttackFighterAttacker;
+		yield return CvnciAttack.CutinAirAttackPhototube;
+		yield return CvnciAttack.CutinAirAttackFighterOtherOther;
+	}
 
-	private static List<NightAttackKind> NightTorpedoAttacks => new()
+	private static IEnumerable<NightAttack> SurfaceShipNightNormalAttacks()
 	{
-		NightAttackKind.Torpedo
-	};
+		yield return NightAttack.Shelling;
+	}
 
-	private static List<NightAttackKind> CarrierNightNormalAttacks => new()
+	private static IEnumerable<NightAttack> NightTorpedoAttacks()
 	{
-		NightAttackKind.AirAttack
-	};
+		yield return NightAttack.Torpedo;
+	}
 
-	private static List<NightTorpedoCutinKind> SubmarineNightSpecialAttacks = new()
+	private static IEnumerable<NightAttack> CarrierNightNormalAttacks()
 	{
-		NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment,
-		NightTorpedoCutinKind.LateModelTorpedo2,
-	};
+		yield return NightAttack.AirAttack;
+	}
 
-	private static bool CanDo(this IShipData ship, Enum attack) => attack switch
+	private static IEnumerable<NightAttack> SubmarineNightSpecialAttacks()
 	{
-		NightAttackKind.CutinTorpedoTorpedo => ship.HasTorpedo(2),
-		NightAttackKind.CutinMainMain => ship.HasMainGun(3),
-		NightAttackKind.CutinMainSub => ship.HasMainGun(2) && ship.HasSecondaryGun(),
-		NightAttackKind.CutinMainTorpedo => ship.HasMainGun() && ship.HasTorpedo(),
-		NightAttackKind.DoubleShelling => ship.MainGunCount() + ship.SecondaryGunCount() >= 2,
+		yield return SubmarineTorpedoCutinAttack.CutinTorpedoTorpedoLateModelTorpedoSubmarineEquipment;
+		yield return SubmarineTorpedoCutinAttack.CutinTorpedoTorpedoLateModelTorpedo2;
+	}
 
-		NightAttackKind.CutinTorpedoRadar => ship.HasMainGun() && ship.HasTorpedo() && ship.HasRadar(),
-		NightAttackKind.CutinTorpedoRadar2 => ship.CanDo(NightAttackKind.CutinTorpedoRadar) &&
-											  ship.DestroyerCutinTwoHitAvailable(),
-		NightAttackKind.CutinTorpedoPicket => ship.HasTorpedo() && ship.HasSkilledLookouts() && ship.HasRadar(),
-		NightAttackKind.CutinTorpedoPicket2 => ship.CanDo(NightAttackKind.CutinTorpedoPicket) &&
-											   ship.DestroyerCutinTwoHitAvailable(),
-		NightAttackKind.CutinTorpedoDestroyerPicket => ship.HasTorpedo(2) && ship.HasDestroyerSkilledLookouts(),
-		NightAttackKind.CutinTorpedoDestroyerPicket2 => ship.CanDo(NightAttackKind.CutinTorpedoDestroyerPicket) &&
-														ship.DestroyerCutinTwoHitAvailable(),
-		NightAttackKind.CutinTorpedoDrum => ship.HasTorpedo() && ship.HasDestroyerSkilledLookouts() &&
-											ship.HasDrum(),
-		NightAttackKind.CutinTorpedoDrum2 => ship.CanDo(NightAttackKind.CutinTorpedoDrum) &&
-											 ship.DestroyerCutinTwoHitAvailable(),
+	private static bool CanDo(this IShipData ship, NightAttack attack) => attack switch
+	{
+		CvnciAttack { CvnciKind: CvnciKind.FighterFighterAttacker } => ship.HasNightFighter(2) && ship.HasNightAttacker(),
+		CvnciAttack { CvnciKind: CvnciKind.FighterAttacker } => ship.IsNightCarrier() && ship.HasNightFighter() && ship.HasNightAttacker(),
+		CvnciAttack { CvnciKind: CvnciKind.Phototube } => ship.HasNightPhototoubePlane() && (ship.HasNightFighter() || ship.HasNightAttacker()),
+		CvnciAttack { CvnciKind: CvnciKind.FighterOtherOther } => ship.HasNightFighter() && ship.HasNightAircraft(3),
 
-		CvnciKind.FighterFighterAttacker => ship.HasNightFighter(2) && ship.HasNightAttacker(),
-		CvnciKind.FighterAttacker => ship.IsNightCarrier() && ship.HasNightFighter() && ship.HasNightAttacker(),
-		CvnciKind.Phototube => ship.HasNightPhototoubePlane() &&
-							   (ship.HasNightFighter() || ship.HasNightAttacker()),
-		CvnciKind.FighterOtherOther => ship.HasNightFighter() && ship.HasNightAircraft(3),
+		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment } => ship.HasLateModelTorp() && ship.HasSubmarineEquipment(),
+		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedo2 } => ship.HasLateModelTorp(2),
+		
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunZuiunRadar } => ship.HasMainGun(2) && ship.HasNightZuiun(2) && ship.HasSurfaceRadar(),
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunZuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(2),
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunRadar } => ship.HasMainGun(2) && ship.HasNightZuiun() && ship.HasSurfaceRadar(),
+		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.Zuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(),
+		
+		{ NightAttackKind: NightAttackKind.CutinTorpedoTorpedo } => ship.HasTorpedo(2),
+		{ NightAttackKind: NightAttackKind.CutinMainMain } => ship.HasMainGun(3),
+		{ NightAttackKind: NightAttackKind.CutinMainSub } => ship.HasMainGun(2) && ship.HasSecondaryGun(),
+		{ NightAttackKind: NightAttackKind.CutinMainTorpedo } => ship.HasMainGun() && ship.HasTorpedo(),
+		{ NightAttackKind: NightAttackKind.DoubleShelling } => ship.MainGunCount() + ship.SecondaryGunCount() >= 2,
 
-		NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => ship.HasLateModelTorp() &&
-																	ship.HasSubmarineEquipment(),
-		NightTorpedoCutinKind.LateModelTorpedo2 => ship.HasLateModelTorp(2),
+		{ NightAttackKind: NightAttackKind.CutinTorpedoRadar } => ship.HasMainGun() && ship.HasTorpedo() && ship.HasRadar(),
+		{ NightAttackKind: NightAttackKind.CutinTorpedoRadar2 } => ship.CanDo(NightAttack.CutinTorpedoRadar) && ship.DestroyerCutinTwoHitAvailable(),
 
-		NightAttackKind.Shelling => true,
-		NightAttackKind.Torpedo => true,
-		NightAttackKind.AirAttack => ship.HasNightAircraft(),
+		{ NightAttackKind: NightAttackKind.CutinTorpedoPicket } => ship.HasTorpedo() && ship.HasSkilledLookouts() && ship.HasRadar(),
+		{ NightAttackKind: NightAttackKind.CutinTorpedoPicket2 } => ship.CanDo(NightAttack.CutinTorpedoPicket) && ship.DestroyerCutinTwoHitAvailable(),
 
-		_ => false
+		{ NightAttackKind: NightAttackKind.CutinTorpedoDestroyerPicket } => ship.HasTorpedo(2) && ship.HasDestroyerSkilledLookouts(),
+		{ NightAttackKind: NightAttackKind.CutinTorpedoDestroyerPicket2 } => ship.CanDo(NightAttack.CutinTorpedoDestroyerPicket) && ship.DestroyerCutinTwoHitAvailable(),
+
+		{ NightAttackKind: NightAttackKind.CutinTorpedoDrum } => ship.HasTorpedo() && ship.HasDestroyerSkilledLookouts() && ship.HasDrum(),
+		{ NightAttackKind: NightAttackKind.CutinTorpedoDrum2 } => ship.CanDo(NightAttack.CutinTorpedoDrum) && ship.DestroyerCutinTwoHitAvailable(),
+
+		{ NightAttackKind: NightAttackKind.Shelling } => true,
+		{ NightAttackKind: NightAttackKind.Torpedo } => true,
+		{ NightAttackKind:NightAttackKind.AirAttack } => ship.HasNightAircraft(),
+
+		_ => false,
 	};
 
 	public static bool DestroyerCutinTwoHitAvailable(this IShipData ship) => ship.Level >= 80;

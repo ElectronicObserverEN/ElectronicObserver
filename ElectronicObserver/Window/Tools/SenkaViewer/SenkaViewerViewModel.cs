@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
@@ -16,7 +17,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 using ElectronicObserver.KancolleApi.Types.ApiReqQuest.Clearitemget;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
@@ -29,13 +29,12 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	private ResourceRecord ResourceRecord { get; }
 	public SenkaViewerTranslationViewModel SenkaViewer { get; }
 
-	public List<SenkaRecord> SenkaRecords { get; set; } = new();
 	public List<SenkaRecord> SelectedSenkaRecords { get; set; } = new();
 
 	private List<SenkaRecord> TotalCalculationList => SelectedSenkaRecords switch
 	{
 		{ Count: > 0 } => SelectedSenkaRecords,
-		_ => SenkaRecords,
+		_ => DataGridViewModel.ItemsSource.ToList(),
 	};
 
 	public string TotalSenka => $"{SenkaViewer.Senka}：{TotalCalculationList.Sum(s => s.TotalSenkaGains):0.##}";
@@ -53,7 +52,9 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
 
-	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
+
+	public DataGridViewModel<SenkaRecord> DataGridViewModel { get; set; } = new();
 
 	public SenkaViewerViewModel()
 	{
@@ -137,7 +138,8 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 				.Sum(GetQuestSenka);
 		}
 
-		SenkaRecords = senkaRecords;
+		DataGridViewModel.ItemsSource.Clear();
+		DataGridViewModel.AddRange(senkaRecords);
 	}
 
 	public static DateTime GetSessionStart(DateTime time)

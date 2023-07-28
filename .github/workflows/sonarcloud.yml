@@ -45,3 +45,4 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"ElectronicObserverEN_ElectronicObserver" /o:"electronicobserveren" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /v:2
           dotnet build
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          dotnet test

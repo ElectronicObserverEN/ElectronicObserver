@@ -23,14 +23,6 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public bool PlanFinished { get; set; }
 	public int Priority { get; set; }
 
-	public int TargetLevel { get; set; }
-	public int MaximumLevel => ExpTable.ShipMaximumLevel;
-	public int RemainingExpToTarget => Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, TargetLevel), 0);
-
-	public int TargetHP => Ship.HPMax + TargetHPBonus - Ship.HPMaxModernized;
-
-	public int TargetASW => Ship.ASWBase + TargetASWBonus - Ship.ASWModernized;
-
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
 	public bool ShipRemodelLevelReached =>
@@ -39,7 +31,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
 		&& Ship.Level >= shipBefore.RemodelAfterLevel;
 
-	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel;
+	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel && Ship.MasterShip.RemodelAfterLevel > 0;
 
 	public bool ShouldNotifyRemodelReady => NotifyOnAnyRemodelReady switch
 	{
@@ -47,23 +39,33 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		_ => ShipRemodelLevelReached
 	};
 
+	public int TargetLevel { get; set; }
+	public int MaximumLevel => ExpTable.ShipMaximumLevel;
+	public int RemainingExpToTarget => Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, TargetLevel), 0);
+
 	/// <summary>
 	/// From 0 to 2
 	/// </summary>
 	public int TargetHPBonus { get; set; }
+	public int TargetHP => Ship.HPMax + TargetHPBonus - Ship.HPMaxModernized;
+	public int RemainingHP => TargetHP - Ship.HPMax;
+
+	public int MaximumHPMod => Ship.HpMaxModernizable();
 
 	/// <summary>
 	/// From 0 to 9
 	/// </summary>
 	public int TargetASWBonus { get; set; }
+	public int TargetASW => Ship.ASWBase + TargetASWBonus - Ship.ASWModernized;
+	public int RemainingASW => TargetASW - Ship.ASWBase;
 
-	public int MaximumHPMod => Ship.HpMaxModernizable();
 
 	/// <summary>
 	/// Targetted amount of luck 
 	/// eg Yukikaze k2 max luck is 120, then i set this value to 120 to target max
 	/// </summary>
 	public int TargetLuck { get; set; }
+	public int RemainingLuck => TargetLuck - Ship.LuckBase;
 
 	public ComboBoxShip? TargetRemodel { get; set; }
 
@@ -101,8 +103,11 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		OnPropertyChanged(nameof(Ship));
 		OnPropertyChanged(nameof(RemainingExpToTarget));
 		OnPropertyChanged(nameof(TargetASW));
+		OnPropertyChanged(nameof(RemainingASW));
 		OnPropertyChanged(nameof(TargetHP));
+		OnPropertyChanged(nameof(RemainingHP));
 		OnPropertyChanged(nameof(MaximumHPMod));
+		OnPropertyChanged(nameof(RemainingLuck));
 
 		UpdatePlanFinished();
 	}

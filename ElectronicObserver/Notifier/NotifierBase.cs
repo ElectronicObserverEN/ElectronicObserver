@@ -11,11 +11,12 @@ namespace ElectronicObserver.Notifier;
 /// </summary>
 public abstract class NotifierBase
 {
+	private Configuration.ConfigurationData.ConfigNotifierBase Config { get; }
 
 	/// <summary>
 	/// 通知ダイアログに渡す設定データ
 	/// </summary>
-	public NotifierDialogData DialogData { get; protected set; }
+	public NotifierDialogData DialogData { get; }
 
 	/// <summary>
 	/// 有効かどうか
@@ -31,12 +32,12 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 通知音
 	/// </summary>
-	public EOMediaPlayer Sound { get; protected set; } = default!;
+	public EOMediaPlayer Sound { get; }
 
 	/// <summary>
 	/// 通知音のパス
 	/// </summary>
-	public string SoundPath { get; set; } = "";
+	public string SoundPath => Config.SoundPath;
 
 	/// <summary>
 	/// 通知音を再生するか
@@ -50,7 +51,7 @@ public abstract class NotifierBase
 	/// </summary>
 	public bool LoopsSound
 	{
-		get { return _loopsSound; }
+		get => _loopsSound;
 		set
 		{
 			_loopsSound = value;
@@ -64,7 +65,7 @@ public abstract class NotifierBase
 	/// </summary>
 	public int SoundVolume
 	{
-		get { return _soundVolume; }
+		get => _soundVolume;
 		set
 		{
 			_soundVolume = value;
@@ -99,23 +100,24 @@ public abstract class NotifierBase
 	public int AccelInterval { get; set; }
 
 
-
-
-	protected NotifierBase()
+	protected NotifierBase(Configuration.ConfigurationData.ConfigNotifierBase config)
 	{
+		Config = config;
 
-		Initialize();
-		DialogData = new NotifierDialogData();
+		SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
-	}
+		Sound = new EOMediaPlayer
+		{
+			IsShuffle = true,
+		};
+		Sound.MediaEnded += Sound_MediaEnded;
 
-	protected NotifierBase(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
-	{
-
-		Initialize();
 		DialogData = new NotifierDialogData(config);
+
 		if (config.PlaysSound && !string.IsNullOrEmpty(config.SoundPath))
+		{
 			LoadSound(config.SoundPath);
+		}
 
 		IsEnabled = config.IsEnabled;
 		IsSilenced = config.IsSilenced;
@@ -124,26 +126,6 @@ public abstract class NotifierBase
 		LoopsSound = config.LoopsSound;
 		ShowsDialog = config.ShowsDialog;
 		AccelInterval = config.AccelInterval;
-
-	}
-
-	private void Initialize()
-	{
-
-		SystemEvents.UpdateTimerTick += UpdateTimerTick;
-		Sound = new EOMediaPlayer
-		{
-			IsShuffle = true
-		};
-		Sound.MediaEnded += Sound_MediaEnded;
-		SoundPath = "";
-
-	}
-
-
-	public void SetInitialVolume(int volume)
-	{
-		Sound.Volume = volume;
 	}
 
 
@@ -180,7 +162,7 @@ public abstract class NotifierBase
 				throw new FileNotFoundException("指定されたファイルまたはディレクトリが見つかりませんでした。");
 			}
 
-			SoundPath = path;
+			Config.SoundPath = path;
 
 			return true;
 
@@ -230,10 +212,9 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 通知音を破棄します。
 	/// </summary>
-	public void DisposeSound()
+	private void DisposeSound()
 	{
 		Sound.Close();
-		Sound.SourcePath = SoundPath = "";
 	}
 
 
@@ -251,7 +232,7 @@ public abstract class NotifierBase
 	/// <summary>
 	/// 通知ダイアログを表示します。
 	/// </summary>
-	public void ShowDialog(System.Windows.Forms.FormClosingEventHandler? customClosingHandler = null)
+	private void ShowDialog(System.Windows.Forms.FormClosingEventHandler? customClosingHandler = null)
 	{
 
 		if (ShowsDialog)

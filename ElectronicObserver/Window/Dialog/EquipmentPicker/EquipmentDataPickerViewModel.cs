@@ -11,5 +11,7 @@ public class EquipmentDataPickerViewModel : EquipmentPickerViewModel
 		KCDatabase.Instance.Equipments
 		.Values
 		.Cast<IEquipmentData>()
+		.OrderBy(s => s.MasterEquipment.CategoryType)
+		.ThenBy(s => s.MasterID)
 		.ToList();
 }

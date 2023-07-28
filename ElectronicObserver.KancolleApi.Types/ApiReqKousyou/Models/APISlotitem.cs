@@ -3,11 +3,9 @@
 public class ApiSlotitem
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_slotitem_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSlotitemId { get; set; } = default!;
+	public int ApiSlotitemId { get; set; }
 
 }

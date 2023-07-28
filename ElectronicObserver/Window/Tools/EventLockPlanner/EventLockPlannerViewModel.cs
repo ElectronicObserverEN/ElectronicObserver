@@ -8,6 +8,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
@@ -36,11 +37,15 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	public delegate void TagChangedEventHandler();
 	public static event TagChangedEventHandler TagChanged = delegate { };
 
+	public DataGridViewModel<ShipLockViewModel> DataGridViewModel { get; set; }
+
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips, LockTranslationData lockTranslator)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
 		DataSerializationService = Ioc.Default.GetService<DataSerializationService>()!;
 		LockTranslator = lockTranslator;
+
+		DataGridViewModel = new(NoLockGroup.Ships);
 
 		AllShipLocks = allShips.Select(s => new ShipLockViewModel(s)).ToList();
 	}

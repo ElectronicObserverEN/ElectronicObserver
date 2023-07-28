@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Forms;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
@@ -50,6 +50,8 @@ public class AirDefenseViewModel : WindowViewModelBase
 		FormationType.ThirdPatrolFormation,
 		FormationType.FourthPatrolFormation,
 	};
+
+	public DataGridViewModel<AirDefenseRowViewModel> DataGridViewModel { get; set; } = new();
 
 	public AirDefenseViewModel()
 	{
@@ -149,13 +151,13 @@ public class AirDefenseViewModel : WindowViewModelBase
 		double[] aaRocketBarrageProbability = ships.Select(ship => Calculator.GetAARocketBarrageProbability(ship)).ToArray();
 
 
-		Rows.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 		for (int i = 0; i < ships.Length; i++)
 		{
 			if (ships[i] == null) continue;
 
-			Rows.Add(new
+			DataGridViewModel.ItemsSource.Add(new
 			(
 				this,
 				ships[i].Name,

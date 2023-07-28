@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Empty" xml:space="preserve">
+    <value>(empty)</value>
+  </data>
+  <data name="SearchOutputPathToolTip" xml:space="preserve">
+    <value>Select the destination path and file name for the fleet image.</value>
+  </data>
+  <data name="Basic" xml:space="preserve">
+    <value>Basic</value>
+  </data>
+  <data name="GroupOutputPath" xml:space="preserve">
+    <value>Output path</value>
+  </data>
+  <data name="SearchOutputPath" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="OutputPathToolTip" xml:space="preserve">
+    <value>Specify the destination path and file name for the fleet image.</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Custom text</value>
+  </data>
+  <data name="FleetTitle" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment:</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="ImageTypeBanner" xml:space="preserve">
+    <value>Banner (S)</value>
+  </data>
+  <data name="ImageTypeCutin" xml:space="preserve">
+    <value>Cut-in (M)</value>
+  </data>
+  <data name="ImageTypeCard" xml:space="preserve">
+    <value>Card (L)</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Fleet</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SynchronizeTitleAndFileName" xml:space="preserve">
+    <value>Syncronize image title and file name</value>
+  </data>
+  <data name="SynchronizeTitleAndFileNameToolTip" xml:space="preserve">
+    <value>Automatically use the image title as file name and vice versa.</value>
+  </data>
+  <data name="AutoSetFileNameToDate" xml:space="preserve">
+    <value>Use current date and time as file name</value>
+  </data>
+  <data name="AutoSetFileNameToDateToolTip" xml:space="preserve">
+    <value>Automatically set the image file name using the current date and time.</value>
+  </data>
+  <data name="OutputToClipboard" xml:space="preserve">
+    <value>Copy to Clipboard</value>
+  </data>
+  <data name="OutputToClipboardToolTip" xml:space="preserve">
+    <value>Export the image to clipboard.</value>
+  </data>
+  <data name="DisableOverwritePrompt" xml:space="preserve">
+    <value>Always overwrite</value>
+  </data>
+  <data name="DisableOverwritePromptToolTip" xml:space="preserve">
+    <value>Disable the file overwrite check and always overwrite the existing image.</value>
+  </data>
+  <data name="OpenImageAfterOutput" xml:space="preserve">
+    <value>Open after saving</value>
+  </data>
+  <data name="OpenImageAfterOutputToolTip" xml:space="preserve">
+    <value>Specify whether to open the fleet image after it is successfully exported.</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>Background image</value>
+  </data>
+  <data name="ClearBackgroundPath" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ClearBackgroundPathToolTip" xml:space="preserve">
+    <value>Clear current background image path.</value>
+  </data>
+  <data name="SearchBackgroundImagePathToolTip" xml:space="preserve">
+    <value>Select the destination path and file name of the background image.</value>
+  </data>
+  <data name="BackgroundImagePathToolTip" xml:space="preserve">
+    <value>Specify the destination path and file name of the background image.</value>
+  </data>
+  <data name="Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="AvoidTwitterDeterioration" xml:space="preserve">
+    <value>Avoid image compression on Twitter</value>
+  </data>
+  <data name="AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>Specify whether to embed additional data to prevent Twitter from converting the image to JPEG.</value>
+  </data>
+  <data name="ReflectDamageGraphic" xml:space="preserve">
+    <value>Use damaged CG</value>
+  </data>
+  <data name="ReflectDamageGraphicToolTip" xml:space="preserve">
+    <value>Specify whether to use the ship's damaged CG for the fleet image
+when the ship is moderately damaged or more.</value>
+  </data>
+  <data name="ShipColumn" xml:space="preserve">
+    <value>Ship column:</value>
+  </data>
+  <data name="HorizontalShipCountToolTip" xml:space="preserve">
+    <value>Specify the number of ships in a single row.</value>
+  </data>
+  <data name="HorizontalFleetCountToolTip" xml:space="preserve">
+    <value>Specify the number of fleets in a single row.</value>
+  </data>
+  <data name="FleetColumn" xml:space="preserve">
+    <value>Fleet column:</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="ButtonClearFont" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="ButtonClearFontToolTip" xml:space="preserve">
+    <value>Reset the font settings to the default values.</value>
+  </data>
+  <data name="ApplyGeneralFontToolTip" xml:space="preserve">
+    <value>Apply the following setting to individual font seting below.</value>
+  </data>
+  <data name="DigitSmall" xml:space="preserve">
+    <value>S (digit):</value>
+  </data>
+  <data name="DigitMedium" xml:space="preserve">
+    <value>M (digit):</value>
+  </data>
+  <data name="OpenDialogToSpecifyFontSetting" xml:space="preserve">
+    <value>Open a dialog to specify font setting.</value>
+  </data>
+  <data name="FontSmall" xml:space="preserve">
+    <value>S (text):</value>
+  </data>
+  <data name="FontMedium" xml:space="preserve">
+    <value>M (text):</value>
+  </data>
+  <data name="FontLarge" xml:space="preserve">
+    <value>L (text):</value>
+  </data>
+  <data name="ChangeAll" xml:space="preserve">
+    <value>Change all:</value>
+  </data>
+  <data name="OpenImageDialog" xml:space="preserve">
+    <value>Select Background Image</value>
+  </data>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Export Fleet Image</value>
+  </data>
+  <data name="SpecifiedFontDoesNotExist" xml:space="preserve">
+    <value>The specified font does not exists.</value>
+  </data>
+  <data name="FontConversionFailed" xml:space="preserve">
+    <value>Font Conversion Failed</value>
+  </data>
+  <data name="SelectFleetToExport" xml:space="preserve">
+    <value>Please select a fleet to export.</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>Input Error</value>
+  </data>
+  <data name="FleetMustContainShip" xml:space="preserve">
+    <value>The fleet must contain at least 1 ship.</value>
+  </data>
+  <data name="EnterDestinationPath" xml:space="preserve">
+    <value>Please enter the destination path.</value>
+  </data>
+  <data name="PathContainsInvalidCharacters" xml:space="preserve">
+    <value>The destination path contains invalid characters.</value>
+  </data>
+  <data name="OverwriteExistingFile" xml:space="preserve">
+    <value>{0} already exists.
+Do you want to replace it?</value>
+  </data>
+  <data name="OverwriteConfirmation" xml:space="preserve">
+    <value>Overwrite Confirmation</value>
+  </data>
+  <data name="FleetImageExportedSuccessfully" xml:space="preserve">
+    <value>Fleet image exported successfully.</value>
+  </data>
+  <data name="FailedToExportFleetImage" xml:space="preserve">
+    <value>Failed to export fleet image.</value>
+  </data>
+  <data name="ExportFailure" xml:space="preserve">
+    <value>Export Failure</value>
+  </data>
+  <data name="InvalidSettings" xml:space="preserve">
+    <value>Invalid settings (details...)</value>
+  </data>
+  <data name="ShipImageNotFound" xml:space="preserve">
+    <value>Ship image not found (details...)</value>
+  </data>
+  <data name="EnableShipImageSaving" xml:space="preserve">
+    <value>It is necessary to enable save ship image option in order
+to export fleet image. Would you like to enable it?</value>
+  </data>
+  <data name="InvalidSettingsTitle" xml:space="preserve">
+    <value>Invalid Settings</value>
+  </data>
+  <data name="OpenOrganizeAndViewDetails" xml:space="preserve">
+    <value>Open 'Organize' menu and view details of each ship</value>
+  </data>
+  <data name="SortieFleet" xml:space="preserve">
+    <value>Sortie with the fleet</value>
+  </data>
+  <data name="OpenOrganize" xml:space="preserve">
+    <value>Open 'Organize' menu</value>
+  </data>
+  <data name="OpenOrganize2" xml:space="preserve">
+    <value>Open 'Organize' menu</value>
+  </data>
+  <data name="MissingImages" xml:space="preserve">
+    <value>One or more ship image of the current fleet are missing.
+
+Delete cache and reload the game.
+{0}
+to save the ship images.</value>
+  </data>
+  <data name="ShipImageMissing" xml:space="preserve">
+    <value>Ship Image Missing</value>
+  </data>
+  <data name="ResetFontSettings" xml:space="preserve">
+    <value>Are you sure you want to reset font
+settings to the default values?</value>
+  </data>
+  <data name="ClearConfirmation" xml:space="preserve">
+    <value>Clear Confirmation</value>
+  </data>
+  <data name="ImageWillBeExportedToClipboard" xml:space="preserve">
+    <value>The fleet image will be exported to the clipboard.
+Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.</value>
+  </data>
+  <data name="UseAlbumStatusName" xml:space="preserve">
+    <value>Use album status name</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>HA</value>
+  </data>
+  <data name="MaxEquipmentNameWidth" xml:space="preserve">
+    <value>Max equipment name width</value>
+  </data>
+  <data name="SuccessfullyDownloadedImage" xml:space="preserve">
+    <value>Successfully downloaded image type {0} for {1}.</value>
+  </data>
+  <data name="FailedToDownloadImage" xml:space="preserve">
+    <value>Failed to downloaded image type {0} for {1}.</value>
+  </data>
+  <data name="DownloadMissingShipImage" xml:space="preserve">
+    <value>Download missing ship image</value>
+  </data>
+  <data name="SaveImageToFile" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="QuickConfigurationAccess" xml:space="preserve">
+    <value>Quick configuration access</value>
+  </data>
+  <data name="QuickConfigurationAccessToolTip" xml:space="preserve">
+    <value>When enabled, configuration will be displayed in the fleet output window, above the fleet preview.</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>Custom theme</value>
+  </data>
+</root>

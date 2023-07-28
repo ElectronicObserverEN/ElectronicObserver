@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.RightsManagement;
-using System.Windows;
-using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Window.Settings.Notification.Base;
@@ -14,11 +9,11 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 {
 	public ConfigurationNotificationBaseTranslationViewModel Translation { get; }
 
-	public Base.ConfigurationNotificationBaseViewModel Config { get; }
+	public ConfigurationNotificationBaseViewModel Config { get; }
 
 	public bool? DialogResult { get; set; }
 
-	public ConfigurationNotificationDialogViewModel(Base.ConfigurationNotificationBaseViewModel config)
+	public ConfigurationNotificationDialogViewModel(ConfigurationNotificationBaseViewModel config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationNotificationBaseTranslationViewModel>();
 
@@ -31,7 +26,7 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 	{
 		if (!Config.TrySaveConfiguration()) return;
 
-		Config.Dispose();
+		Config.StopSound();
 
 		DialogResult = true;
 	}
@@ -39,7 +34,7 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 	[RelayCommand]
 	private void Cancel()
 	{
-		Config.Dispose();
+		Config.StopSound();
 
 		DialogResult = false;
 	}

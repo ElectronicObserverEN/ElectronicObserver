@@ -3,22 +3,14 @@
 public class ApiReqAirCorpsSetActionRequest
 {
 	[JsonPropertyName("api_action_kind")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiActionKind { get; set; } = default!;
+	public string ApiActionKind { get; set; } = "";
 
 	[JsonPropertyName("api_area_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiAreaId { get; set; } = default!;
+	public string ApiAreaId { get; set; } = "";
 
 	[JsonPropertyName("api_base_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiBaseId { get; set; } = default!;
+	public string ApiBaseId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

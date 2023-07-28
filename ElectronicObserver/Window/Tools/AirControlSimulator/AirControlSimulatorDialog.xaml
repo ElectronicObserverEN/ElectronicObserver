@@ -18,30 +18,6 @@
 	TextElement.Foreground="{Binding FontBrush}"
 	mc:Ignorable="d"
 	>
-	<Window.Resources>
-		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-			<Setter Property="FontFamily" Value="{Binding Font}" />
-			<Setter Property="FontSize" Value="{Binding FontSize}" />
-			<Setter Property="Foreground" Value="{Binding FontBrush}" />
-		</Style>
-		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
-			<Setter Property="FontFamily" Value="{Binding Font}" />
-			<Setter Property="FontSize" Value="{Binding FontSize}" />
-			<Setter Property="Foreground" Value="{Binding FontBrush}" />
-		</Style>
-		<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
-			<Setter Property="FontFamily" Value="{Binding Font}" />
-			<Setter Property="FontSize" Value="{Binding FontSize}" />
-			<Setter Property="Foreground" Value="{Binding FontBrush}" />
-			<Setter Property="Margin" Value="4 0" />
-		</Style>
-		<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
-			<Setter Property="FontFamily" Value="{Binding Font}" />
-			<Setter Property="FontSize" Value="{Binding FontSize}" />
-			<Setter Property="Foreground" Value="{Binding FontBrush}" />
-		</Style>
-	</Window.Resources>
-
 	<Grid Margin="10">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -132,6 +108,11 @@
 			HorizontalAlignment="Right"
 			Orientation="Horizontal"
 			>
+			<Button
+				Margin="4"
+				Command="{Binding CopyLinkCommand}"
+				Content="{Binding AirControlSimulator.CopyLink}"
+				/>
 			<Button
 				Margin="4"
 				Command="{Binding ConfirmCommand}"

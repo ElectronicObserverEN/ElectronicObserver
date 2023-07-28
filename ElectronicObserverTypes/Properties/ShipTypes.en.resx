@@ -183,4 +183,7 @@
   <data name="Transport" xml:space="preserve">
     <value>AP</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

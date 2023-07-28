@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
@@ -20,8 +19,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 {
 	public ExpCheckerTranslationViewModel ExpChecker { get; }
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel<DataGridItem> DataGridViewModel { get; set; }
 
 	private string DefaultTitle => ExpChecker.Title;
 	public string Title { get; set; }
@@ -47,6 +45,8 @@ public class ExpCheckerViewModel : WindowViewModelBase
 
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
+
+		DataGridViewModel = new(DataGridItems);
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -140,7 +140,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			return;
 		}
 
-		DataGridItems.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 
 		// 空母系は面倒なので省略
@@ -334,14 +334,19 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			rows[lv - minlv] = row;
 		}
 
-		DataGridItems = rows.ToObservableCollection();
-
+		SetResults(rows);
 
 		Title = DefaultTitle + " - " + selectedShip.NameWithLevel;
 		GroupExpText =
 			$"{selectedShip.NameWithLevel}: " +
 			$"Exp. {selectedShip.ExpTotal}, {ExpChecker.ASW} {selectedShip.ASWBase} " +
 			$"({ExpChecker.Modernization}+{selectedShip.ASWModernized})";
+	}
+
+	private void SetResults(DataGridItem[] rows)
+	{
+		DataGridViewModel.ItemsSource.Clear();
+		DataGridViewModel.AddRange(rows);
 	}
 
 	/*
@@ -391,7 +396,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			ASWModernized = selectedShip.ASWModernized,
 		};
 
-		DataGridItems.Clear();
+		DataGridViewModel.ItemsSource.Clear();
 
 		Dictionary<int, List<ASWEquipmentData[]>> allPossibleSetups = new();
 		if (ShowAllASWEquipments)
@@ -608,7 +613,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			rows[lv - minlv] = row;
 		}
 
-		DataGridItems = rows.ToObservableCollection();
+		SetResults(rows);
 
 		Title = DefaultTitle + " - " + selectedShip.NameWithLevel;
 		GroupExpText = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, {ExpChecker.ASW} {selectedShip.ASWBase} ({ExpChecker.Modernization}+{selectedShip.ASWModernized})";

@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
+﻿using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 
@@ -434,6 +433,9 @@ public static class Constants
 			case 116: return "Independence級";
 			case 117: return "鵜来型";
 			case 118: return "Ranger級";
+			case 119: return "特種船M丙型";
+			case 120: return "第百一号型";
+			case 121: return "New Orleans級";
 			default: return "不明";
 		}
 	}
@@ -721,22 +723,19 @@ public static class Constants
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
 	/// </summary>
-	public static string GetEngagementForm(int id)
+	public static string GetEngagementForm(int id) => GetEngagementForm((EngagementType)id);
+
+	/// <summary>
+	/// 交戦形態を表す文字列を取得します。
+	/// </summary>
+	public static string GetEngagementForm(EngagementType id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Parallel;
-			case 2:
-				return ConstantsRes.HeadOn;
-			case 3:
-				return ConstantsRes.GreenT;
-			case 4:
-				return ConstantsRes.RedT;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		EngagementType.Parallel => ConstantsRes.Parallel,
+		EngagementType.HeadOn => ConstantsRes.HeadOn,
+		EngagementType.TAdvantage => ConstantsRes.GreenT,
+		EngagementType.TDisadvantage => ConstantsRes.RedT,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
@@ -761,26 +760,21 @@ public static class Constants
 	/// <summary>
 	/// 索敵結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetSearchingResult(int id)
+	public static string GetSearchingResult(int id) => GetSearchingResult((DetectionType)id);
+
+	/// <summary>
+	/// 索敵結果を表す文字列を取得します。
+	/// </summary>
+	public static string GetSearchingResult(DetectionType id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Success;
-			case 2:
-				return ConstantsRes.SuccessNoReturn;
-			case 3:
-				return ConstantsRes.NoReturn;
-			case 4:
-				return ConstantsRes.Failure;
-			case 5:
-				return ConstantsRes.SuccessNoPlane;
-			case 6:
-				return ConstantsRes.FailureNoPlane;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		DetectionType.Success => ConstantsRes.Success,
+		DetectionType.SuccessNoReturn => ConstantsRes.SuccessNoReturn,
+		DetectionType.NoReturn => ConstantsRes.NoReturn,
+		DetectionType.Failure => ConstantsRes.Failure,
+		DetectionType.SuccessNoPlane => ConstantsRes.SuccessNoPlane,
+		DetectionType.FailureNoPlane => ConstantsRes.FailureNoPlane,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 索敵結果を表す文字列(短縮版)を取得します。
@@ -809,107 +803,19 @@ public static class Constants
 	/// <summary>
 	/// 制空戦の結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetAirSuperiority(int id)
-	{
-		switch (id)
-		{
-			case 0:
-				return ConstantsRes.AirParity;
-			case 1:
-				return ConstantsRes.AirSupremacy;
-			case 2:
-				return ConstantsRes.AirSuperiority;
-			case 3:
-				return ConstantsRes.AirDenialNew;
-			case 4:
-				return ConstantsRes.AirIncapability;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
-
-
+	public static string GetAirSuperiority(int id) => GetAirSuperiority((AirState)id);
 
 	/// <summary>
-	/// 昼戦攻撃種別を表す文字列を取得します。
+	/// 制空戦の結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetDayAttackKind(DayAttackKind id) => id switch
+	public static string GetAirSuperiority(AirState id) => id switch
 	{
-		DayAttackKind.NormalAttack => ConstantsRes.NormalAttack,
-		DayAttackKind.Laser => ConstantsRes.LaserAttack,
-		DayAttackKind.DoubleShelling => ConstantsRes.DoubleAttack,
-		DayAttackKind.CutinMainSub => ConstantsRes.CutinMainSub,
-		DayAttackKind.CutinMainRadar => ConstantsRes.CutinMainRadar,
-		DayAttackKind.CutinMainAP => ConstantsRes.CutinMainAP,
-		DayAttackKind.CutinMainMain => ConstantsRes.CutinMainMain,
-		DayAttackKind.CutinAirAttack => ConstantsRes.CutinAirAttack,
-		DayAttackKind.SpecialNelson => ConstantsRes.SpecialNelson,
-		DayAttackKind.SpecialNagato => ConstantsRes.SpecialNagato,
-		DayAttackKind.SpecialMutsu => ConstantsRes.SpecialMutsu,
-		DayAttackKind.SpecialColorado => ConstantsRes.SpecialColorado,
-		DayAttackKind.SpecialKongo => ConstantsRes.SpecialKongou,
-		DayAttackKind.ZuiunMultiAngle => ConstantsRes.ZuiunMultiAngle,
-		DayAttackKind.SeaAirMultiAngle => ConstantsRes.SeaAirMultiAngle,
-		DayAttackKind.SpecialSubmarineTender23 => ConstantsRes.SpecialSubmarineTender23,
-		DayAttackKind.SpecialSubmarineTender34 => ConstantsRes.SpecialSubmarineTender34,
-		DayAttackKind.SpecialSubmarineTender24 => ConstantsRes.SpecialSubmarineTender24,
-		DayAttackKind.SpecialYamato3Ships => ConstantsRes.SpecialYamato123,
-		DayAttackKind.SpecialYamato2Ships => ConstantsRes.SpecialYamato12,
-		DayAttackKind.Shelling => ConstantsRes.Shelling,
-		DayAttackKind.AirAttack => ConstantsRes.AirAttack,
-		DayAttackKind.DepthCharge => ConstantsRes.DepthChargeAttack,
-		DayAttackKind.Torpedo => ConstantsRes.TorpedoAttack,
-		DayAttackKind.Rocket => ConstantsRes.RocketAttack,
-		DayAttackKind.LandingDaihatsu => ConstantsRes.LandingDaihatsu,
-		DayAttackKind.LandingTokuDaihatsu => ConstantsRes.LandingTokuDaihatsu,
-		DayAttackKind.LandingDaihatsuTank => ConstantsRes.LandingDaihatsuTank,
-		DayAttackKind.LandingAmphibious => ConstantsRes.TankAttack,
-		DayAttackKind.LandingTokuDaihatsuTank => ConstantsRes.LandingTokuDaihatsuTank,
-		_ => $"{ConstantsRes.Unknown}({(int)id})"
-	};
-
-
-	/// <summary>
-	/// 夜戦攻撃種別を表す文字列を取得します。
-	/// </summary>
-	public static string GetNightAttackKind(NightAttackKind id) => id switch
-	{
-		NightAttackKind.NormalAttack => ConstantsRes.NormalAttack,
-		NightAttackKind.DoubleShelling => ConstantsRes.DoubleShelling,
-		NightAttackKind.CutinMainTorpedo => ConstantsRes.CutinMainTorpedo,
-		NightAttackKind.CutinTorpedoTorpedo => ConstantsRes.CutinTorpedoTorpedo,
-		NightAttackKind.CutinMainSub => ConstantsRes.CutinNightMainSub,
-		NightAttackKind.CutinMainMain => ConstantsRes.CutinNightMainMain,
-		NightAttackKind.CutinAirAttack => ConstantsRes.CutinAirAttack,
-		NightAttackKind.CutinTorpedoRadar => ConstantsRes.CutinTorpedoRadar,
-		NightAttackKind.CutinTorpedoRadar2 => ConstantsRes.CutinTorpedoRadar,
-		NightAttackKind.CutinTorpedoPicket => ConstantsRes.CutinTorpedoPicket,
-		NightAttackKind.CutinTorpedoPicket2 => ConstantsRes.CutinTorpedoPicket,
-		NightAttackKind.CutinTorpedoDestroyerPicket => ConstantsRes.CutinTorpedoDestroyerPicket,
-		NightAttackKind.CutinTorpedoDestroyerPicket2 => ConstantsRes.CutinTorpedoDestroyerPicket,
-		NightAttackKind.CutinTorpedoDrum => ConstantsRes.CutinTorpedoDrum,
-		NightAttackKind.CutinTorpedoDrum2 => ConstantsRes.CutinTorpedoDrum,
-		NightAttackKind.SpecialNelson => ConstantsRes.SpecialNelson,
-		NightAttackKind.SpecialNagato => ConstantsRes.SpecialNagato,
-		NightAttackKind.SpecialMutsu => ConstantsRes.SpecialMutsu,
-		NightAttackKind.SpecialColorado => ConstantsRes.SpecialColorado,
-		NightAttackKind.SpecialKongo => ConstantsRes.SpecialKongou,
-		NightAttackKind.SpecialSubmarineTender23 => ConstantsRes.SpecialSubmarineTender23,
-		NightAttackKind.SpecialSubmarineTender34 => ConstantsRes.SpecialSubmarineTender34,
-		NightAttackKind.SpecialSubmarineTender24 => ConstantsRes.SpecialSubmarineTender24,
-		NightAttackKind.SpecialYamato3Ships => ConstantsRes.SpecialYamato123,
-		NightAttackKind.SpecialYamato2Ships => ConstantsRes.SpecialYamato12,
-		NightAttackKind.Shelling => ConstantsRes.Shelling,
-		NightAttackKind.AirAttack => ConstantsRes.AirAttack,
-		NightAttackKind.DepthCharge => ConstantsRes.DepthChargeAttack,
-		NightAttackKind.Torpedo => ConstantsRes.TorpedoAttack,
-		NightAttackKind.Rocket => ConstantsRes.RocketAttack,
-		NightAttackKind.LandingDaihatsu => ConstantsRes.DaihatsuAttack,
-		NightAttackKind.LandingTokuDaihatsu => ConstantsRes.LandingTokuDaihatsu,
-		NightAttackKind.LandingDaihatsuTank => ConstantsRes.LandingDaihatsuTank,
-		NightAttackKind.LandingAmphibious => ConstantsRes.TankAttack,
-		NightAttackKind.LandingTokuDaihatsuTank => ConstantsRes.LandingTokuDaihatsuTank,
-		_ => $"{ConstantsRes.Unknown}({(int)id})"
+		AirState.Parity => ConstantsRes.AirParity,
+		AirState.Supremacy => ConstantsRes.AirSupremacy,
+		AirState.Superiority => ConstantsRes.AirSuperiority,
+		AirState.Denial => ConstantsRes.AirDenialNew,
+		AirState.Incapability => ConstantsRes.AirIncapability,
+		_ => ConstantsRes.Unknown,
 	};
 
 	/// <summary>

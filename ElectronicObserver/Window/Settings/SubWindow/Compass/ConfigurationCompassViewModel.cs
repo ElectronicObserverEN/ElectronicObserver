@@ -8,11 +8,8 @@ public class ConfigurationCompassViewModel : ConfigurationViewModelBase
 	public ConfigurationCompassTranslationViewModel Translation { get; }
 	private Configuration.ConfigurationData.ConfigFormCompass Config { get; }
 
-	public int CandidateDisplayCount { get; set; }
-
-	public bool IsScrollable { get; set; }
-
 	public int MaxShipNameWidth { get; set; }
+	public bool DisplayAllEnemyCompositions { get; set; }
 
 	public ConfigurationCompassViewModel(Configuration.ConfigurationData.ConfigFormCompass config)
 	{
@@ -24,15 +21,13 @@ public class ConfigurationCompassViewModel : ConfigurationViewModelBase
 
 	private void Load()
 	{
-		CandidateDisplayCount = Config.CandidateDisplayCount;
-		IsScrollable = Config.IsScrollable;
 		MaxShipNameWidth = Config.MaxShipNameWidth;
+		DisplayAllEnemyCompositions = Config.DisplayAllEnemyCompositions;
 	}
 
 	public override void Save()
 	{
-		Config.CandidateDisplayCount = CandidateDisplayCount;
-		Config.IsScrollable = IsScrollable;
 		Config.MaxShipNameWidth = MaxShipNameWidth;
+		Config.DisplayAllEnemyCompositions = DisplayAllEnemyCompositions;
 	}
 }

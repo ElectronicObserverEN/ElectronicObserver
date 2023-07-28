@@ -1,4 +1,5 @@
-﻿using BrowserLibCore;
+﻿using System.Threading.Tasks;
+using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
@@ -40,7 +41,7 @@ public partial class AirControlSimulatorWindow
 		Tracker.Track(this);
 	}
 
-	private async void InitializeAsync()
+	private async Task InitializeAsync()
 	{
 		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 

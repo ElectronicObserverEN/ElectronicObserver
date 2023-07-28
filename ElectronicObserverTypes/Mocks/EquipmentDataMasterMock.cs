@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
@@ -12,7 +13,7 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public bool IsNightAviationPersonnel => this.IsNightAviationPersonnel();
 	public bool IsHightAltitudeFighter => this.IsHightAltitudeFighter();
 	public bool IsAARocketLauncher => this.IsAARocketLauncher();
-	public int ID { get; set; }
+	public int ID => EquipmentID;
 	public EquipmentId EquipmentId => (EquipmentId)EquipmentID;
 	public dynamic RawData { get; set; }
 	public bool IsAvailable { get; set; }
@@ -50,7 +51,9 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public IEquipmentType CategoryTypeInstance { get; set; }
 	public int IconType { get; set; }
 	public EquipmentIconType IconTypeTyped => (EquipmentIconType)IconType;
-	public IEnumerable<int> EquippableShipsAtExpansion { get; set; }
+	public IEnumerable<ShipId> EquippableShipsAtExpansion { get; set; } = Array.Empty<ShipId>();
+	public IEnumerable<ShipTypes> EquippableShipTypesAtExpansion { get; set; } = Array.Empty<ShipTypes>();
+	public IEnumerable<ShipClass> EquippableShipClassesAtExpansion { get; set; } = Array.Empty<ShipClass>();
 	public bool IsGun => this.IsGun();
 	public bool IsMainGun => this.IsMainGun();
 	public bool IsSecondaryGun => this.IsSecondaryGun();

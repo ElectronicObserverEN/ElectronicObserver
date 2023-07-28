@@ -4,6 +4,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ElectronicObserver.Data;
+using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.AirControlSimulator;
@@ -75,6 +76,47 @@ public class DataSerializationService
 	{
 		return FleetAnalysisEquipment(KCDatabase.Instance.Equipments.Values
 			.Where(eq => allEquipment || eq.IsLocked));
+	}
+
+	public string AirControlSimulatorLink(AirControlSimulatorViewModel airControlSimulator)
+	{
+		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
+			.ToList();
+
+		static FleetData? FleetOrDefault(bool include, int index) => include switch
+		{
+			false => null,
+			_ => KCDatabase.Instance.Fleet.Fleets.Values.Skip(index).FirstOrDefault(),
+		};
+
+		string airControlSimulatorData = AirControlSimulator
+		(
+			KCDatabase.Instance.Admiral.Level,
+			FleetOrDefault(airControlSimulator.Fleet1, 0),
+			FleetOrDefault(airControlSimulator.Fleet2, 1),
+			FleetOrDefault(airControlSimulator.Fleet3, 2),
+			FleetOrDefault(airControlSimulator.Fleet4, 3),
+			bases.Skip(0).FirstOrDefault(),
+			bases.Skip(1).FirstOrDefault(),
+			bases.Skip(2).FirstOrDefault(),
+			airControlSimulator.ShipData switch
+			{
+				true => KCDatabase.Instance.Ships.Values,
+				_ => null,
+			},
+			airControlSimulator.EquipmentData switch
+			{
+				true => KCDatabase.Instance.Equipments.Values
+					.Where(e => airControlSimulator.AllEquipment || e!.IsLocked)
+					.Cast<EquipmentData>(),
+				_ => null,
+			},
+			airControlSimulator.MaxAircraftLevelFleet,
+			airControlSimulator.MaxAircraftLevelAirBase
+		);
+
+		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
 	}
 
 	public string AirControlSimulator

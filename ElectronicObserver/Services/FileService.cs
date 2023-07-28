@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog;
 using Microsoft.Win32;
 using Ookii.Dialogs.Wpf;
 
@@ -26,7 +25,7 @@ public class FileService
 		OpenFileDialog dialog = new()
 		{
 			Filter = LayoutFilter,
-			Title = Properties.Window.FormMain.OpenLayoutCaption,
+			Title = MainResources.OpenLayoutCaption,
 		};
 
 		PathHelper.InitOpenFileDialog(path, dialog);
@@ -48,7 +47,7 @@ public class FileService
 		SaveFileDialog dialog = new()
 		{
 			Filter = LayoutFilter,
-			Title = Properties.Window.FormMain.OpenLayoutCaption,
+			Title = MainResources.OpenLayoutCaption,
 		};
 
 		PathHelper.InitSaveFileDialog(path, dialog);
@@ -89,7 +88,7 @@ public class FileService
 
 		if (serverAddress is null)
 		{
-			MessageBox.Show(Properties.Window.Dialog.DialogConfiguration.PleaseStartKancolle, Properties.Window.Dialog.DialogConfiguration.DialogCaptionErrorTitle,
+			MessageBox.Show(ConfigurationResources.PleaseStartKancolle, ConfigurationResources.DialogCaptionErrorTitle,
 				MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			return;
 		}
@@ -97,7 +96,7 @@ public class FileService
 		SaveFileDialog dialog = new()
 		{
 			Filter = "Proxy Script|*.pac|File|*",
-			Title = Properties.Window.Dialog.DialogConfiguration.SavePacFileAs,
+			Title = ConfigurationResources.SavePacFileAs,
 			InitialDirectory = Directory.GetCurrentDirectory(),
 			FileName = Directory.GetCurrentDirectory() + "\\proxy.pac",
 		};
@@ -118,15 +117,15 @@ public class FileService
 
 			Clipboard.SetData(DataFormats.StringFormat, "file:///" + dialog.FileName.Replace('\\', '/'));
 
-			MessageBox.Show(Properties.Window.Dialog.DialogConfiguration.ProxyAutoConfigSaved,
-				Properties.Window.Dialog.DialogConfiguration.PacSavedTitle,
+			MessageBox.Show(ConfigurationResources.ProxyAutoConfigSaved,
+				ConfigurationResources.PacSavedTitle,
 				MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogConfiguration.FailedToSavePac);
-			MessageBox.Show(Properties.Window.Dialog.DialogConfiguration.FailedToSavePac + "\r\n" + ex.Message,
-				Properties.Window.Dialog.DialogConfiguration.DialogCaptionErrorTitle,
+			ErrorReporter.SendErrorReport(ex, ConfigurationResources.FailedToSavePac);
+			MessageBox.Show(ConfigurationResources.FailedToSavePac + "\r\n" + ex.Message,
+				ConfigurationResources.DialogCaptionErrorTitle,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 	}

@@ -3,10 +3,8 @@
 public class ApiListItems
 {
 	[JsonPropertyName("api_mission_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMissionId { get; set; } = default!;
+	public int ApiMissionId { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 }

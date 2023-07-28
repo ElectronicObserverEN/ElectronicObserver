@@ -1,47 +1,38 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 
+namespace ElectronicObserver.KancolleApi.Types.Models;
+
+/// <summary>
+/// All values will be null when there's a no attack night battle.
+/// eg. sub vs sub
+/// </summary>
 public class ApiHougeki
 {
 	[JsonPropertyName("api_at_eflag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<int> ApiAtEflag { get; set; } = new();
+	public List<FleetFlag>? ApiAtEflag { get; set; }
 
 	[JsonPropertyName("api_at_list")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<int> ApiAtList { get; set; } = new();
+	public List<int>? ApiAtList { get; set; }
 
 	[JsonPropertyName("api_cl_list")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<List<int>> ApiClList { get; set; } = new();
+	public List<List<HitType>>? ApiClList { get; set; }
 
 	[JsonPropertyName("api_damage")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<List<double>> ApiDamage { get; set; } = new();
+	public List<List<double>>? ApiDamage { get; set; }
 
 	[JsonPropertyName("api_df_list")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<List<int>> ApiDfList { get; set; } = new();
+	public List<List<int>>? ApiDfList { get; set; }
 
 	[JsonPropertyName("api_n_mother_list")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<int> ApiNMotherList { get; set; } = new();
+	public List<int>? ApiNMotherList { get; set; }
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_si_list")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<List<object>> ApiSiList { get; set; } = new();
+	public List<List<object>>? ApiSiList { get; set; }
 
 	[JsonPropertyName("api_sp_list")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<int> ApiSpList { get; set; } = new();
+	public List<NightAttackKind>? ApiSpList { get; set; }
 }

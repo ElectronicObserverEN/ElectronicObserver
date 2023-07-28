@@ -6,6 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:costs="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:helpers="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
@@ -232,57 +233,7 @@
 								</Style>
 							</StackPanel.Style>
 
-							<ItemsControl
-								Margin="0 5"
-								HorizontalAlignment="Center"
-								ItemsSource="{Binding Helpers}"
-								>
-
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<DataTemplate.Resources>
-											<Style TargetType="TextBlock">
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
-														<Setter Property="Foreground" Value="Red" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</DataTemplate.Resources>
-
-										<TextBlock Text="{Binding Helper.NameEN}" />
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-
-							</ItemsControl>
-
-							<ItemsControl
-								Margin="0 5"
-								HorizontalAlignment="Center"
-								ItemsSource="{Binding Days}"
-								>
-
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<StackPanel Orientation="Horizontal" />
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border
-											Background="{Binding Background}"
-											BorderBrush="Gray"
-											BorderThickness="1"
-											>
-											<StackPanel Margin="5 3">
-												<TextBlock Text="{Binding DisplayValue}" />
-											</StackPanel>
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-
-							</ItemsControl>
+							<helpers:DetailedUpgradeHelperPerDayControl DataContext="{Binding}" />
 						</StackPanel>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
@@ -350,11 +301,18 @@
 					ColumnWidth="90"
 					HeadersVisibility="Column"
 					IsReadOnly="True"
-					ItemsSource="{Binding PlannedUpgradesFiltered, IsAsync=True}"
+					ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True}"
 					>
 
+					<DataGrid.ContextMenu>
+						<ContextMenu>
+							<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
+							<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="{Binding DataGridViewModel.DataGrid.ClearSorting}" />
+						</ContextMenu>
+					</DataGrid.ContextMenu>
+
 					<b:Interaction.Behaviors>
-						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" SortDescriptions="{Binding SortDescriptions}" />
+						<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
 					</b:Interaction.Behaviors>
 
 					<DataGrid.ColumnHeaderStyle>
@@ -362,6 +320,20 @@
 							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 							<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 							<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+							<Setter Property="ContextMenu">
+								<Setter.Value>
+									<ContextMenu>
+										<MenuItem
+											Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+											CommandParameter="{Binding}"
+											Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+											/>
+										<Separator />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+										<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+									</ContextMenu>
+								</Setter.Value>
+							</Setter>
 						</Style>
 					</DataGrid.ColumnHeaderStyle>
 

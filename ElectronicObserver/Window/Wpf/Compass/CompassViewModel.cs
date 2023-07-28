@@ -6,6 +6,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
@@ -14,6 +15,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Compass.ViewModels;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass;
 
@@ -45,11 +47,7 @@ public class CompassViewModel : AnchorableViewModel
 
 	private List<EnemyFleetRecord.EnemyFleetElement>? _enemyFleetCandidate { get; set; }
 
-	public IEnumerable<EnemyFleetElementViewModel> EnemyFleetCandidate => _enemyFleetCandidate?
-		.Select(f => new EnemyFleetElementViewModel
-		{
-			EnemyFleetCandidate = f
-		}) ?? Enumerable.Empty<EnemyFleetElementViewModel>();
+	public IEnumerable<EnemyFleetElementViewModel> EnemyFleetCandidate => GetFilteredCandidateFleetViewModels();
 
 	public IEnumerable<MasterShipViewModel>? EnemyFleet { get; set; }
 
@@ -199,7 +197,7 @@ public class CompassViewModel : AnchorableViewModel
 
 				foreach (var pair in KCDatabase.Instance.Battle.SpecialAttackCount)
 				{
-					sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind)pair.Key)} : {FormCompass.SpecialAttackActivated}");
+					sb.AppendLine($"{DayAttack.AttackDisplay((DayAttackKind)pair.Key)} : {FormCompass.SpecialAttackActivated}");
 				}
 				/*
 				ToolTipInfo.SetToolTip(TextMapArea, sb.Length > 0 ? sb.ToString() : null);
@@ -299,6 +297,7 @@ public class CompassViewModel : AnchorableViewModel
 							compass.WhirlpoolItemAmount,
 							(double)compass.WhirlpoolItemAmount / Math.Max(materialmax, 1));
 
+						Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.DestinationID} {eventkind} {TextEventDetailText}");
 					}
 					break;
 
@@ -546,6 +545,77 @@ public class CompassViewModel : AnchorableViewModel
 
 		PanelEnemyCandidate.Visible = true;
 		*/
+	}
+
+	private List<EnemyFleetElementViewModel>? GetAllRecordCandidateFleetViewModels()
+		=> _enemyFleetCandidate?
+				.GroupBy(f => f, new EnemyFleetElementComparer())
+				.Select(f => new EnemyFleetElementViewModel
+				{
+					EnemyFleetCandidate = f.First(),
+					Formations = f.Select(fleet => fleet.Formation).ToList()
+				})
+				.ToList();
+
+	private List<EnemyFleetElementViewModel> GetFilteredCandidateFleetViewModels()
+	{
+		List<EnemyFleetElementViewModel> allCandidates = GetAllRecordCandidateFleetViewModels() ?? new();
+
+		if (!allCandidates.Any(vm => vm.IsPreviewed) && MakeEnemyFleetFromPreview() is EnemyFleetElementViewModel previewFleet)
+		{
+			allCandidates.Add(previewFleet);
+		}
+
+		if (Utility.Configuration.Config.FormCompass.DisplayAllEnemyCompositions) return allCandidates;
+
+		List<EnemyFleetElementViewModel> filteredCandidates = allCandidates.Where(vm => vm.IsPreviewed).ToList();
+
+		return filteredCandidates.Count switch
+		{
+			0 => allCandidates,
+			_ => filteredCandidates
+		};
+	}
+
+	private EnemyFleetElementViewModel? MakeEnemyFleetFromPreview()
+	{
+		if (Db.Battle.Compass is null) return null;
+		if (!Db.Battle.Compass.EnemyFleetPreview.Any()) return null;
+
+		List<EDeckInfo> previewFleet = Db.Battle.Compass.EnemyFleetPreview;
+
+		List<int> fleetIds = MakeEnemyFleetPartFromPreview(previewFleet.First());
+		fleetIds.AddRange(MakeEnemyFleetPartFromPreview(previewFleet.Count > 1 ? previewFleet[1] : null));
+
+		EnemyFleetElementViewModel vm = new EnemyFleetElementViewModel
+		{
+			EnemyFleetCandidate = new EnemyFleetRecord.EnemyFleetElement("", 0, 0, 0, 0, 0, fleetIds.ToArray(), new int[12], 0),
+			Formations = new() { 0 }
+		};
+
+		return vm;
+	}
+
+	private List<int> MakeEnemyFleetPartFromPreview(EDeckInfo? fleetPart)
+	{
+		if (fleetPart is null) return Enumerable.Repeat(-1, 6).ToList();
+
+		List<int> previewShipIds = fleetPart
+			.ApiShipIds
+			.Cast<int>()
+			.ToList();
+
+		List<int> padIds = fleetPart.ApiKind switch
+		{
+			1 => new List<int>() { 0 },
+			2 => new List<int>() { 0, 0, 0 },
+			_ => new()
+		};
+
+		previewShipIds.AddRange(padIds);
+		previewShipIds.AddRange(Enumerable.Repeat(-1, 6));
+
+		return previewShipIds.Take(6).ToList();
 	}
 
 	private string GetMaterialInfo(CompassData compass)

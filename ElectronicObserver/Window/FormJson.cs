@@ -12,8 +12,6 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 
-using Translation = ElectronicObserver.Properties.Window.FormJson;
-
 namespace ElectronicObserver.Window;
 
 public partial class FormJson : Form
@@ -22,7 +20,7 @@ public partial class FormJson : Form
 
 	// yyyyMMdd_hhmmssff[S|Q]@api_path.json
 	private static readonly Regex FileNamePattern = new Regex(@"\d{8}_\d{8}([SQ])@(.*)\.json$", RegexOptions.Compiled);
-	private string AutoUpdateDisabledMessage => Translation.AutoUpdateDisabledMessage;
+	private string AutoUpdateDisabledMessage => JsonResources.AutoUpdateDisabledMessage;
 
 	private Regex _apiPattern;
 
@@ -43,18 +41,18 @@ public partial class FormJson : Form
 
 	public void Translate()
 	{
-		TreeContextMenu_Expand.Text = Translation.TreeContextMenu_Expand;
-		TreeContextMenu_Shrink.Text = Translation.TreeContextMenu_Shrink;
-		TreeContextMenu_ShrinkParent.Text = Translation.TreeContextMenu_ShrinkParent;
-		TreeContextMenu_OutputCSV.Text = Translation.TreeContextMenu_OutputCSV;
-		TreeContextMenu_CopyToClipboard.Text = Translation.TreeContextMenu_CopyToClipboard;
-		label3.Text = Translation.LoadSavedJsonByDragging;
-		label2.Text = Translation.EnablingAutoUpdateCanBeHeavy;
-		UpdatesTree.Text = Translation.UpdatesTree;
-		label1.Text = Translation.Filter;
-		AutoUpdate.Text = Translation.AutoUpdate;
-		CSVSaver.Title = Translation.CSVSaver;
-		TreeContextMenu_CopyAsDocument.Text = Translation.TreeContextMenu_CopyAsDocument;
+		TreeContextMenu_Expand.Text = JsonResources.TreeContextMenu_Expand;
+		TreeContextMenu_Shrink.Text = JsonResources.TreeContextMenu_Shrink;
+		TreeContextMenu_ShrinkParent.Text = JsonResources.TreeContextMenu_ShrinkParent;
+		TreeContextMenu_OutputCSV.Text = JsonResources.TreeContextMenu_OutputCSV;
+		TreeContextMenu_CopyToClipboard.Text = JsonResources.TreeContextMenu_CopyToClipboard;
+		label3.Text = JsonResources.LoadSavedJsonByDragging;
+		label2.Text = JsonResources.EnablingAutoUpdateCanBeHeavy;
+		UpdatesTree.Text = JsonResources.UpdatesTree;
+		label1.Text = JsonResources.Filter;
+		AutoUpdate.Text = JsonResources.AutoUpdate;
+		CSVSaver.Title = JsonResources.CSVSaver;
+		TreeContextMenu_CopyAsDocument.Text = JsonResources.TreeContextMenu_CopyAsDocument;
 	}
 
 	private void FormJson_Load(object sender, EventArgs e)

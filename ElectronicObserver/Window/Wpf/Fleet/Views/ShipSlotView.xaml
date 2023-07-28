@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Window.Wpf.Fleet.Views.ShipSlotView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	x:Name="ShipSlotControl"
@@ -26,11 +27,11 @@
 				<ColumnDefinition Width="*" SharedSizeGroup="EquipmentColumn2" />
 			</Grid.ColumnDefinitions>
 
-			<Image
+			<common:EquipmentIcon
 				Grid.Row="0"
 				Grid.RowSpan="2"
 				Grid.Column="0"
-				Source="{Binding EquipmentIcon}"
+				Type="{Binding EquipmentIconType}"
 				/>
 
 			<TextBlock

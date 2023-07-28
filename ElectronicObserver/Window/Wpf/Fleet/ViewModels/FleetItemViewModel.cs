@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
@@ -15,12 +16,15 @@ using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
+using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Attacks.Specials;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
 public class FleetItemViewModel : ObservableObject
 {
+	private ColorService ColorService { get; }
 	public FormFleetTranslationViewModel FormFleet { get; }
 	private FleetViewModel Parent { get; }
 	private bool Visible { get; set; }
@@ -34,9 +38,12 @@ public class FleetItemViewModel : ObservableObject
 	public ShipResourceViewModel ShipResource { get; }
 	public EquipmentItemViewModel Equipments { get; }
 
+	public Dictionary<SpecialAttack, List<SpecialAttackHit>> SpecialAttackHitList { get; set; } = new();
+
 	public FleetItemViewModel(FleetViewModel parent)
 	{
-		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
+		ColorService = Ioc.Default.GetRequiredService<ColorService>();
+		FormFleet = Ioc.Default.GetRequiredService<FormFleetTranslationViewModel>();
 
 		Parent = parent;
 
@@ -245,7 +252,7 @@ public class FleetItemViewModel : ObservableObject
 		HP.BackColor = isEscaped switch
 		{
 			true => Utility.Configuration.Config.UI.SubBackColor,
-			_ => Color.Transparent
+			_ => System.Drawing.Color.Transparent
 		};
 
 
@@ -312,18 +319,15 @@ public class FleetItemViewModel : ObservableObject
 			tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
 		}
 
-		string? planTip = null;
-		int? planLevel = null;
+		IEnumerable<int> remodelLevels = remodels.Select((remodel) => remodel.Level);
+		List<ShipTrainingPlanViewModel> plans = Level.TrainingPlans
+			.Where(p => !remodelLevels.Contains(p.TargetLevel))
+			.DistinctBy(p => p.TargetLevel)
+			.ToList();
 
-		if (Level.TrainingPlan is not null && !remodels.Select((remodel) => remodel.Level).Contains(Level.TrainingPlan.TargetLevel))
+		foreach(ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
 		{
-			planTip = Level.TrainingPlan.RemainingExpToTarget.ToString("N0");
-			planLevel = Level.TrainingPlan.TargetLevel;
-		}
-
-		if (planLevel is not null && planLevel < 99)
-		{
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
 		}
 
 		if (Ship.Level < 99)
@@ -332,9 +336,9 @@ public class FleetItemViewModel : ObservableObject
 			tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
 		}
 
-		if (planLevel is not null && planLevel > 99 && planLevel != ExpTable.ShipMaximumLevel)
+		foreach (ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel > 99 && p.TargetLevel != ExpTable.ShipMaximumLevel))
 		{
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", planLevel, planTip);
+			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
 		}
 
 		if (Ship.Level < ExpTable.ShipMaximumLevel)
@@ -373,37 +377,38 @@ public class FleetItemViewModel : ObservableObject
 		);
 
 		Name.BackColor = GetShipBackColor();
-		Name.ForeColor = GetShipForeColor();
+		Name.ForeColor = GetShipForeColor(Name.BackColor);
 	}
 
 	private Color GetShipBackColor()
 	{
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-							Parent.ShipTagColors.Count > 0 &&
-							Ship?.SallyArea > 0)
+			Parent.ShipTagColors.Count > 0 &&
+			Ship?.SallyArea > 0)
 		{
-			return Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)];
+			return Parent.ShipTagColors[Math.Min(Ship.SallyArea, Parent.ShipTagColors.Count - 1)].ToWpfColor();
 		}
 
-		return Color.Transparent;
+		return Colors.Transparent;
 	}
 
-	private Color GetShipForeColor()
+	private Color GetShipForeColor(Color backColor)
 	{
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-							Parent.ShipTagColors.Count > 0 &&
-							Ship?.SallyArea > 0)
+		    Parent.ShipTagColors.Count > 0 &&
+		    Ship?.SallyArea > 0)
 		{
-			if (Configuration.Config.UI.ThemeMode != 0)
-				return Configuration.Config.UI.BackColor;
-		}
-		else
-		{
-			return Configuration.Config.UI.ForeColor;
+			return ColorService.GetForegroundColor(backColor);
 		}
 
-		return Color.Transparent;
+		return Configuration.Config.UI.ForeColor.ToWpfColor();
 	}
+
+	private string AttackRateDisplay(double rate) => rate switch
+	{
+		0 => "???",
+		_ => $"{rate:P1}",
+	};
 
 	private string GetEquipmentString(IShipData ship)
 	{
@@ -426,9 +431,13 @@ public class FleetItemViewModel : ObservableObject
 
 		int[] slotmaster = ship.AllSlotMaster.ToArray();
 
-
 		EngagementType engagement = (EngagementType)Utility.Configuration.Config.Control.PowerEngagementForm;
 		IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetId];
+
+		if (SpecialAttackHitList.Any())
+		{
+			AddDaySpecialAttacksToTooltip(ship, sb, engagement, fleet);
+		}
 
 		List<Enum> dayAttacks = ship.GetDayAttacks().ToList();
 
@@ -448,7 +457,7 @@ public class FleetItemViewModel : ObservableObject
 				double accuracy = ship.GetDayAttackAccuracy(attack, fleet);
 				string attackDisplay = attack switch
 				{
-					DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
+					DayAttackKind dayAttack => DayAttack.AttackDisplay(dayAttack),
 					DayAirAttackCutinKind cvci => cvci switch
 					{
 						DayAirAttackCutinKind.FighterBomberAttacker => FormFleet.CvciFba,
@@ -465,7 +474,12 @@ public class FleetItemViewModel : ObservableObject
 			}
 		}
 
-		List<Enum> nightAttacks = ship.GetNightAttacks().ToList();
+		if (SpecialAttackHitList.Any())
+		{
+			AddNightSpecialAttacksToTooltip(ship, sb, engagement, fleet);
+		}
+
+		List<NightAttack> nightAttacks = ship.GetNightAttacks().ToList();
 		List<double> nightAttackRates = nightAttacks.Select(a => ship.GetNightAttackRate(a, fleet))
 			.ToList().TotalRates();
 
@@ -473,31 +487,13 @@ public class FleetItemViewModel : ObservableObject
 		{
 			sb.AppendFormat($"\r\n{GeneralRes.NightBattle}:");
 
-			foreach ((Enum attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
+			foreach ((NightAttack attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
 			{
 				double power = ship.GetNightAttackPower(attack, fleet);
 				double accuracy = ship.GetNightAttackAccuracy(attack, fleet);
-				string attackDisplay = attack switch
-				{
-					NightAttackKind nightAttack => Constants.GetNightAttackKind(nightAttack),
-					CvnciKind cvnci => cvnci switch
-					{
-						CvnciKind.FighterFighterAttacker => FormFleet.CvnciFfa,
-						CvnciKind.FighterAttacker => FormFleet.CvnciFa,
-						CvnciKind.Phototube => FormFleet.CvnciPhoto,
-						CvnciKind.FighterOtherOther => FormFleet.CvnciFoo,
-						_ => "?"
-					},
-					NightTorpedoCutinKind torpedoCutin => torpedoCutin switch
-					{
-						NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => FormFleet.LateModelTorpedoSubmarineEquipment,
-						NightTorpedoCutinKind.LateModelTorpedo2 => FormFleet.LateModelTorpedo2,
-						_ => "?"
-					},
-					_ => $"{attack}"
-				};
+				string attackDisplay = attack.Display;
 
-				sb.AppendFormat($"\r\n・[{rate:P1}] - " +
+				sb.AppendFormat($"\r\n・[{AttackRateDisplay(rate)}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
@@ -507,7 +503,7 @@ public class FleetItemViewModel : ObservableObject
 		sb.AppendLine();
 
 		sb.AppendLine($"{ConstantsRes.ShellingSupport}: " +
-					  $"{FormFleet.Power}: {ship.GetShellingSupportDamage()} - " +
+					  $"{FormFleet.Power}: {ship.GetShellingSupportDamage(engagement)} - " +
 					  $"{FormFleet.Accuracy}: {ship.GetShellingSupportAccuracy():0.##}");
 
 		{
@@ -628,4 +624,60 @@ public class FleetItemViewModel : ObservableObject
 		return sb.ToString();
 	}
 
+	private void AddDaySpecialAttacksToTooltip(IShipData ship, StringBuilder sb, EngagementType engagement, IFleetData fleet)
+	{
+		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnDay)) return;
+
+		sb.Append($"\r\n{FormFleet.SpecialAttacksDay}");
+
+		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnDay))
+		{
+			foreach (SpecialAttackHit hit in hits.Distinct())
+			{
+				double power = ship.GetDayAttackPower(attack, hit, fleet, engagement);
+				double accuracy = ship.GetDayAttackAccuracy(hit, fleet);
+
+				AddSpecialAttackToTooltip(sb, attack, hit, power, accuracy);
+			}
+		}
+	}
+
+	private void AddNightSpecialAttacksToTooltip(IShipData ship, StringBuilder sb, EngagementType engagement, IFleetData fleet)
+	{
+		if (!SpecialAttackHitList.Any(specialAttack => specialAttack.Key.CanTriggerOnNight)) return;
+
+		sb.Append($"\r\n{FormFleet.SpecialAttacksNight}");
+
+		foreach ((SpecialAttack attack, List<SpecialAttackHit> hits) in SpecialAttackHitList.Where(specialAttack => specialAttack.Key.CanTriggerOnNight))
+		{
+			foreach (SpecialAttackHit hit in hits.Distinct())
+			{
+				double power = ship.GetNightAttackPower(attack, hit, fleet, engagement);
+				double accuracy = ship.GetNightAttackAccuracy(hit, fleet);
+
+				AddSpecialAttackToTooltip(sb, attack, hit, power, accuracy);
+			}
+		}
+	}
+
+	private void AddSpecialAttackToTooltip(StringBuilder sb, SpecialAttack attack, SpecialAttackHit hit, double power, double accuracy)
+	{
+		string attackDisplay = attack.GetDisplay();
+
+		sb.Append("\r\n");
+
+		if (hit.ShipIndex == 0)
+		{
+			sb.Append($"・[{AttackRateDisplay(attack.GetTriggerRate())}] - {attackDisplay}");
+		}
+		else
+		{
+			sb.Append($"・{attackDisplay}");
+		}
+
+		if (hit.PowerModifier > 0)
+		{
+			sb.Append($" - {FormFleet.Power}: {power} - {FormFleet.Accuracy}: {accuracy:0.##}");
+		}
+	}
 }

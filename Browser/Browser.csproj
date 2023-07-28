@@ -30,9 +30,9 @@
 		<Copyright>Copyright ©  2015 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.2.0</AssemblyVersion>
-		<FileVersion>5.2.2.0</FileVersion>
-		<Version>5.2.2.0</Version>
+		<AssemblyVersion>5.2.9.0</AssemblyVersion>
+		<FileVersion>5.2.9.0</FileVersion>
+		<Version>5.2.9.0</Version>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
@@ -42,6 +42,10 @@
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.1.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="CefSharp.WinForms.NETCore" Version="109.1.110" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Grpc" Version="2.46.5" />
@@ -66,28 +70,21 @@
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<Compile Update="WebView2Browser\AirControlSimulator\AirControlSimulator.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>AirControlSimulator.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Properties\Resources.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Update="WebView2Browser\AirControlSimulator\AirControlSimulator.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\Resources.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		<EmbeddedResource Update="**\*.resx">
+			<CustomToolNamespace>Browser.Translations</CustomToolNamespace>
 		</EmbeddedResource>
 	</ItemGroup>
+
+	<PropertyGroup>
+		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
+		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>
+		<ResXGenerator_NullForgivingOperators>true</ResXGenerator_NullForgivingOperators>
+		<ResXGenerator_StaticClass>true</ResXGenerator_StaticClass>
+		<ResXGenerator_StaticMembers>true</ResXGenerator_StaticMembers>
+	</PropertyGroup>
+
 	<!--
 		cd $(MSBuildProjectDirectory)
 		cd ..\ElectronicObserver\bin\x64\publish\

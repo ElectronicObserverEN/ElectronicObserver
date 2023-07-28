@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Behaviors.PersistentColumns;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
@@ -28,18 +28,15 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		Filter = "CSV|*.csv|File|*",
 	};
 
-	public List<ColumnProperties> EquipmentGridColumnProperties { get; set; } = new();
-	public List<SortDescription> EquipmentGridSortDescriptions { get; set; } = new();
+	public DataGridViewModel<EquipmentListRow> EquipmentGridViewModel { get; set; }
 	public GridLength EquipmentGridWidth { get; set; } = GridLength.Auto;
 
 	// todo: doesn't seem to work in the current implementation
-	public List<ColumnProperties> DetailGridColumnProperties { get; set; } = new();
-	public List<SortDescription> DetailGridSortDescriptions { get; set; } = new();
-
-	public List<EquipmentListRow> Rows { get; set; } = new();
+	// Select an equipment with multiple detail items, sort by something, select a different equipment, sort data is lost.
+	public DataGridViewModel<EquipmentListDetailRow> EquipmentDetailGridViewModel { get; set; }
 	public EquipmentListRow? SelectedRow { get; set; }
 
-	public List<EquipmentListDetailRow> DetailRows { get; set; } = new();
+	public EquipmentFilterViewModel Filters { get; } = new(true);
 
 	public bool ShowLockedEquipmentOnly { get; set; }
 
@@ -52,6 +49,9 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public EquipmentListViewModel()
 	{
 		DialogEquipmentList = Ioc.Default.GetService<DialogEquipmentListTranslationViewModel>()!;
+
+		EquipmentGridViewModel = new();
+		EquipmentDetailGridViewModel = new();
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -67,6 +67,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 
 			UpdateDetailView(SelectedRow.Id);
 		};
+
+		Filters.PropertyChanged += (_, _) => UpdateView();
 
 		UpdateView();
 	}
@@ -118,10 +120,11 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 			remainCount[eq.EquipmentInstance.EquipmentID]--;
 		}
 
-		Rows.Clear();
+		EquipmentGridViewModel.ItemsSource.Clear();
 
 		List<EquipmentListRow> rows = new(allCount.Count);
-		var ids = allCount.Keys;
+		var ids = allCount.Keys
+			.Where(id => Filters.MeetsFilterCondition(masterEquipments[id]));
 
 		foreach (int id in ids)
 		{
@@ -133,16 +136,16 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 				var eq = masterEquipments[id];
 
 				sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN, eq.EquipmentID);
-				if (eq.Firepower != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.Firepower + " {0:+0;-0}\r\n", eq.Firepower);
-				if (eq.Torpedo != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.Torpedo + " {0:+0;-0}\r\n", eq.Torpedo);
-				if (eq.AA != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.AA + " {0:+0;-0}\r\n", eq.AA);
-				if (eq.Armor != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.Armor + " {0:+0;-0}\r\n", eq.Armor);
-				if (eq.ASW != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.ASW + " {0:+0;-0}\r\n", eq.ASW);
-				if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? Properties.Window.Dialog.DialogAlbumMasterShip.Interception : Properties.Window.Dialog.DialogAlbumMasterShip.Evasion, eq.Evasion);
-				if (eq.LOS != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.LOS + " {0:+0;-0}\r\n", eq.LOS);
-				if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? Properties.Window.Dialog.DialogAlbumMasterShip.AntiBomb : Properties.Window.Dialog.DialogAlbumMasterShip.Accuracy, eq.Accuracy);
-				if (eq.Bomber != 0) sb.AppendFormat(Properties.Window.Dialog.DialogAlbumMasterShip.Bombing + " {0:+0;-0}\r\n", eq.Bomber);
-				sb.AppendLine(Properties.Window.Dialog.DialogAlbumMasterShip.RightClickToOpenInNewWindow);
+				if (eq.Firepower != 0) sb.AppendFormat(AlbumMasterShipResources.Firepower + " {0:+0;-0}\r\n", eq.Firepower);
+				if (eq.Torpedo != 0) sb.AppendFormat(AlbumMasterShipResources.Torpedo + " {0:+0;-0}\r\n", eq.Torpedo);
+				if (eq.AA != 0) sb.AppendFormat(AlbumMasterShipResources.AA + " {0:+0;-0}\r\n", eq.AA);
+				if (eq.Armor != 0) sb.AppendFormat(AlbumMasterShipResources.Armor + " {0:+0;-0}\r\n", eq.Armor);
+				if (eq.ASW != 0) sb.AppendFormat(AlbumMasterShipResources.ASW + " {0:+0;-0}\r\n", eq.ASW);
+				if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? AlbumMasterShipResources.Interception : AlbumMasterShipResources.Evasion, eq.Evasion);
+				if (eq.LOS != 0) sb.AppendFormat(AlbumMasterShipResources.LOS + " {0:+0;-0}\r\n", eq.LOS);
+				if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? AlbumMasterShipResources.AntiBomb : AlbumMasterShipResources.Accuracy, eq.Accuracy);
+				if (eq.Bomber != 0) sb.AppendFormat(AlbumMasterShipResources.Bombing + " {0:+0;-0}\r\n", eq.Bomber);
+				sb.AppendLine(AlbumMasterShipResources.RightClickToOpenInNewWindow);
 
 				row.ToolTipText = sb.ToString();
 			}
@@ -152,11 +155,11 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		for (int i = 0; i < rows.Count; i++)
 			rows[i].Tag = i;
 
-		Rows = rows
+		EquipmentGridViewModel.ItemsSource.Clear();
+		EquipmentGridViewModel.AddRange(rows
 			.OrderBy(r => masterEquipments[r.Id].CategoryType)
 			.ThenBy(r => r.Id)
-			.ThenBy(r => r.Name)
-			.ToList();
+			.ThenBy(r => r.Name));
 	}
 
 	private void UpdateDetailView(int equipmentID)
@@ -272,7 +275,12 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 			}
 		}
 
-		DetailRows = GroupRows(rows).ToList();
+		EquipmentDetailGridViewModel.ItemsSource.Clear();
+
+		foreach (EquipmentListDetailRow detailRow in GroupRows(rows))
+		{
+			EquipmentDetailGridViewModel.ItemsSource.Add(detailRow);
+		}
 	}
 
 	private static IEnumerable<EquipmentListDetailRow> GroupRows(IEnumerable<EquipmentListDetailRow> rows) =>

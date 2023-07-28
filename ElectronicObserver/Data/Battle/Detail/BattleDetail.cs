@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Data.Battle.Detail;
 
@@ -275,7 +275,7 @@ public class BattleDayDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetDayAttackKind((DayAttackKind)AttackType);
+		return DayAttack.AttackDisplay((DayAttackKind)AttackType);
 	}
 }
 
@@ -351,7 +351,7 @@ public class BattleNightDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetNightAttackKind((NightAttackKind)AttackType);
+		return NightAttack.AttackDisplay((NightAttackKind)AttackType);
 	}
 }
 
@@ -458,7 +458,7 @@ public class BattleFriendlyShellingDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetNightAttackKind((NightAttackKind)AttackType);
+		return NightAttack.AttackDisplay((NightAttackKind)AttackType);
 	}
 }
 

@@ -478,6 +478,33 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplane}" />
 					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								NightSeaplaneBomber
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplaneBomber}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								ArmyInfantry
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.ArmyInfantry}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								SmokeGenerator
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
+					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>

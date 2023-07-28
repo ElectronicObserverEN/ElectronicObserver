@@ -3,12 +3,8 @@
 public class ApiGetMemberShipDeckRequest
 {
 	[JsonPropertyName("api_deck_rid")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDeckRid { get; set; } = default!;
+	public string ApiDeckRid { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

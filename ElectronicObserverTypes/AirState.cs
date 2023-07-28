@@ -2,14 +2,15 @@
 
 public enum AirState
 {
-	/// <summary> AS+ </summary>
-	Supremacy,
-	/// <summary> AS </summary>
-	Superiority,
+	Unknown = -1,
 	/// <summary> AP </summary>
-	Parity,
+	Parity = 0,
+	/// <summary> AS+ </summary>
+	Supremacy = 1,
+	/// <summary> AS </summary>
+	Superiority = 2,
 	/// <summary> AI </summary>
-	Denial,
+	Denial = 3,
 	/// <summary> AI- </summary>
-	Incapability
+	Incapability = 4,
 }

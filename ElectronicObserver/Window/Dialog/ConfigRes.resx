@@ -640,4 +640,13 @@ direct にするとパフォーマンスが向上する可能性があります�
     <value>ドロップダウンメニューからフォントを探す代わりに、名前を書いて検索できるようにしました。
 この機能を有効にすると、ローカライゼーションが正しく機能しない場合があります。</value>
   </data>
+  <data name="ShipTraining" xml:space="preserve">
+    <value>艦娘訓練</value>
+  </data>
+  <data name="BrowserFont" xml:space="preserve">
+    <value>ブラウザフォント</value>
+  </data>
+  <data name="MatchMainFont" xml:space="preserve">
+    <value>メインフォントに合わせる</value>
+  </data>
 </root>

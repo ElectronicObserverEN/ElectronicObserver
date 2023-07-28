@@ -4,12 +4,12 @@ namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
 public enum DropRecordOption
 {
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDropRecordViewer), Name = "NameAny")]
+	[Display(ResourceType = typeof(DropRecordViewerResources), Name = "NameAny")]
 	All,
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDropRecordViewer), Name = "NameExist")]
+	[Display(ResourceType = typeof(DropRecordViewerResources), Name = "NameExist")]
 	Drop,
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDropRecordViewer), Name = "NameNotExist")]
+	[Display(ResourceType = typeof(DropRecordViewerResources), Name = "NameNotExist")]
 	NoDrop,
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDropRecordViewer), Name = "NameFullPort")]
+	[Display(ResourceType = typeof(DropRecordViewerResources), Name = "NameFullPort")]
 	FullPort,
 }

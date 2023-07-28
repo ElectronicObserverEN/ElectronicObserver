@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserverTypes;
@@ -11,10 +11,6 @@ namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
 
 public partial class ShipDataPickerViewModel : WindowViewModelBase
 {
-	private List<ShipDataViewModel> AllShips { get; set; }
-
-	public ObservableCollection<ShipDataViewModel> ShipsFiltered { get; } = new();
-
 	public ShipFilterViewModel Filters { get; } = new();
 
 	public IShipData? PickedShip { get; private set; }
@@ -22,10 +18,15 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 
 	public ShipDataPickerTranslationViewModel ShipDataPicker { get; } = new();
 
+	public DataGridViewModel<ShipDataViewModel> DataGridViewModel { get; set; }
 
 	public ShipDataPickerViewModel()
 	{
-		AllShips = KCDatabase.Instance.Ships.Values.Cast<IShipData>().Select(s => new ShipDataViewModel(s)).ToList();
+		List<ShipDataViewModel> allShips = KCDatabase.Instance.Ships.Values.Cast<IShipData>().Select(s => new ShipDataViewModel(s)).ToList();
+		DataGridViewModel = new(new(allShips))
+		{
+			FilterValue = s => Filters.MeetsFilterCondition(s.Ship)
+		};
 
 		Filters.PropertyChanged += (_, _) => ReloadShips();
 
@@ -37,23 +38,13 @@ public partial class ShipDataPickerViewModel : WindowViewModelBase
 		PickedShip = null;
 		SelectedShip = null;
 
-		AllShips = ships.Select(s => new ShipDataViewModel(s)).ToList();
+		DataGridViewModel.ItemsSource.Clear();
+		DataGridViewModel.AddRange(ships.Select(s => new ShipDataViewModel(s)).ToList());
 		ReloadShips();
 	}
 
 	private void ReloadShips()
-	{
-		ShipsFiltered.Clear();
-
-		List<ShipDataViewModel> filteredShips = AllShips
-			.Where(s => Filters.MeetsFilterCondition(s.Ship))
-			.ToList();
-
-		foreach (ShipDataViewModel ship in filteredShips)
-		{
-			ShipsFiltered.Add(ship);
-		}
-	}
+		=> DataGridViewModel.Items.Refresh();
 
 	[RelayCommand]
 	public void SelectShip()

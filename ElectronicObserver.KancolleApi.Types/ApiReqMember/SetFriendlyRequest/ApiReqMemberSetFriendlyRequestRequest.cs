@@ -3,22 +3,14 @@
 public class ApiReqMemberSetFriendlyRequestRequest
 {
 	[JsonPropertyName("api_token")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiToken { get; set; } = default!;
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_request_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiRequestFlag { get; set; } = default!;
+	public string ApiRequestFlag { get; set; } = "";
 
 	[JsonPropertyName("api_request_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiRequestType { get; set; } = default!;
+	public string ApiRequestType { get; set; } = "";
 }

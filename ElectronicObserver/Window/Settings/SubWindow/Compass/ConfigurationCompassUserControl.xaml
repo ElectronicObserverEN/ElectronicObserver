@@ -13,22 +13,6 @@
 	>
 	<StackPanel>
 		<StackPanel Orientation="Horizontal">
-			<TextBlock Text="{Binding Translation.CandidateDisplayCount}" />
-
-			<controls:NumberBox
-				Minimum="1"
-				SpinButtonPlacementMode="Inline"
-				Value="{Binding CandidateDisplayCount}"
-				/>
-		</StackPanel>
-
-		<CheckBox
-			Content="{Binding Translation.FormFleet_IsScrollable}"
-			IsChecked="{Binding IsScrollable}"
-			ToolTip="{Binding Translation.FormFleet_IsScrollableToolTip}"
-			/>
-
-		<StackPanel Orientation="Horizontal">
 			<TextBlock Text="{Binding Translation.NameWidth}" />
 
 			<controls:NumberBox
@@ -38,5 +22,11 @@
 				Value="{Binding MaxShipNameWidth}"
 				/>
 		</StackPanel>
+
+		<CheckBox
+			Content="{Binding Translation.Compass_DisplayAllPossibleEnemyComps}"
+			IsChecked="{Binding DisplayAllEnemyCompositions}"
+			ToolTip="{Binding Translation.Compass_DisplayAllPossibleEnemyCompsToolTip}"
+			/>
 	</StackPanel>
 </UserControl>

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Behaviors.PersistentColumns;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -18,13 +17,14 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 
 	public ObservableCollection<ExpeditionCheckRow> Rows { get; } = new();
 
-	public List<ColumnProperties> ColumnProperties { get; set; } = new();
-	public List<SortDescription> SortDescriptions { get; set; } = new();
+	public DataGridViewModel<ExpeditionCheckRow> DataGridViewModel { get; set; }
 
 	public ExpeditionCheckViewModel() : base(Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!.Title, "ExpeditionCheck",
 		ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck))
 	{
 		ExpeditionCheckTranslation = Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!;
+
+		DataGridViewModel = new(Rows);
 
 		Title = ExpeditionCheckTranslation.Title;
 		ExpeditionCheckTranslation.PropertyChanged += (_, _) => Title = ExpeditionCheckTranslation.Title;

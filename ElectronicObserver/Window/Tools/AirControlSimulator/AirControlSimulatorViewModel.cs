@@ -1,15 +1,20 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Services;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.AirControlSimulator;
 
 // todo: rename to FleetDataExportViewModel (rename will probably break jot, so need to handle that too)
 public partial class AirControlSimulatorViewModel : WindowViewModelBase
 {
+	private DataSerializationService DataSerializationService { get; }
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }
 
 	public bool FleetSelectionVisible { get; set; } = true;
@@ -37,11 +42,12 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 	public AirControlSimulatorViewModel()
 	{
-		AirControlSimulator = Ioc.Default.GetService<AirControlSimulatorTranslationViewModel>()!;
-		
+		AirControlSimulator = Ioc.Default.GetRequiredService<AirControlSimulatorTranslationViewModel>();
+		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
+
 		AirBaseAreas.Add(new(0, AirControlSimulator.None));
 
-		var maps = KCDatabase.Instance.BaseAirCorps.Values
+		IEnumerable<MapAreaData> maps = KCDatabase.Instance.BaseAirCorps.Values
 			.Select(b => b.MapAreaID)
 			.Distinct()
 			.OrderBy(i => i)
@@ -55,7 +61,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 			if (string.IsNullOrWhiteSpace(map.NameEN) || map.NameEN == "※")
 			{
-				name = Properties.Window.Dialog.DialogBaseAirCorpsSimulation.EventMap;
+				name = BaseAirCorpsSimulationResources.EventMap;
 			}
 
 			AirBaseAreas.Add(new(mapAreaID, name));
@@ -69,4 +75,12 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 	[RelayCommand]
 	private void Cancel() => DialogResult = false;
+
+	[RelayCommand]
+	private void CopyLink()
+	{
+		string link = DataSerializationService.AirControlSimulatorLink(this);
+
+		Clipboard.SetText(link);
+	}
 }

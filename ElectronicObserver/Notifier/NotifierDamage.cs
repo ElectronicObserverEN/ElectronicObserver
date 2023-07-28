@@ -55,16 +55,12 @@ public class NotifierDamage : NotifierBase
 	public bool NotifiesAtEndpoint { get; set; }
 
 
-	public NotifierDamage()
-		: base()
-	{
-		Initialize();
-	}
-
 	public NotifierDamage(Utility.Configuration.ConfigurationData.ConfigNotifierDamage config)
 		: base(config)
 	{
-		Initialize();
+		DialogData.Title = NotifierRes.DamagedTitle;
+
+		SubscribeToApis();
 
 		NotifiesBefore = config.NotifiesBefore;
 		NotifiesNow = config.NotifiesNow;
@@ -77,10 +73,8 @@ public class NotifierDamage : NotifierBase
 	}
 
 
-	private void Initialize()
+	private void SubscribeToApis()
 	{
-		DialogData.Title = NotifierRes.DamagedTitle;
-
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiPort_Port.ResponseReceived += CloseAll;
@@ -237,7 +231,7 @@ public class NotifierDamage : NotifierBase
 		return list.ToArray();
 	}
 
-	public void Notify(string[] messages)
+	private void Notify(string[] messages)
 	{
 
 		DialogData.Message = string.Format(NotifierRes.DamagedText,

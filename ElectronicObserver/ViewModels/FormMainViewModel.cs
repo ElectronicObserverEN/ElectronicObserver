@@ -24,7 +24,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
@@ -47,7 +46,6 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
-using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -70,12 +68,13 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using ElectronicObserverTypes;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -114,6 +113,11 @@ public partial class FormMainViewModel : ObservableObject
 	public SolidColorBrush SubFontBrush { get; set; }
 
 	public string MaintenanceText { get; set; } = "";
+	public Visibility MaintenanceTextVisibility => string.IsNullOrEmpty(MaintenanceText) ? Visibility.Collapsed : Visibility.Visible;
+	public bool UpdateAvailable { get; set; } = false;
+
+	public string DownloadProgressString { get; private set; } = "";
+	public Visibility DownloadProgressVisibility { get; private set; } = Visibility.Collapsed;
 
 	public List<Theme> Themes { get; } = new()
 	{
@@ -137,7 +141,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? FleetOverviewImageSource { get; }
 	public ImageSource? ShipGroupImageSource { get; }
 	public ImageSource? FleetPresetImageSource { get; }
-	public ImageSource? ShipTrainingPlanImageSource { get; }	
+	public ImageSource? ShipTrainingPlanImageSource { get; }
 	public ImageSource? DockImageSource { get; }
 	public ImageSource? ArsenalImageSource { get; }
 	public ImageSource? EquipmentUpgradePlanImageSource { get; }
@@ -259,7 +263,7 @@ public partial class FormMainViewModel : ObservableObject
 			_ => SoftwareInformation.SoftwareNameJapanese
 		};
 
-		Utility.Logger.Add(2, softwareName + Properties.Window.FormMain.Starting);
+		Utility.Logger.Add(2, softwareName + MainResources.Starting);
 
 		ResourceManager.Instance.Load();
 		RecordManager.Instance.Load();
@@ -380,8 +384,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(ShipTrainingPlanViewer);
 
 		Views.Add(Dock = new DockViewModel());
-		Views.Add(Arsenal = new ArsenalViewModel()); 
-		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel()); 
+		Views.Add(Arsenal = new ArsenalViewModel());
+		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel());
 		Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
@@ -406,23 +410,10 @@ public partial class FormMainViewModel : ObservableObject
 		CancellationTokenSource cts = new();
 		Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 
-		/*
-		// デバッグ: 開始時にAPIリストを読み込む
-		if (Configuration.Config.Debug.LoadAPIListOnLoad)
-		{
-			try
-			{
-				await Task.Factory.StartNew(() => LoadAPIList(Configuration.Config.Debug.APIListPath));
-
-				Activate();     // 上記ロードに時間がかかるとウィンドウが表示されなくなることがあるので
-			}
-			catch (Exception ex)
-			{
-
-				Utility.Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
-			}
-		}
-		*/
+#if DEBUG
+		// Run only on debug for now (kinda worried it breaks stuff like equipment upgrade planner with the Initialize member that is only called once)
+		Task.Run(LoadBaseAPI);
+#endif
 
 		APIObserver.Instance.ResponseReceived += (a, b) => UpdatePlayTime();
 
@@ -467,6 +458,13 @@ public partial class FormMainViewModel : ObservableObject
 			ConfigurationChanged();
 		};
 
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(DownloadProgressString)) return;
+
+			DownloadProgressVisibility = string.IsNullOrEmpty(DownloadProgressString) ? Visibility.Collapsed : Visibility.Visible;
+		};
+
 		Logger.Add(3, Resources.StartupComplete);
 	}
 
@@ -494,7 +492,7 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void LoadData()
 	{
-		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
+		if (MessageBox.Show(Resources.AskLoad, MainResources.ConfirmatonCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
@@ -549,22 +547,29 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (File.Exists(IntegratePath) && WindowCapture.WinformsControl is FormWindowCapture capture)
 		{
-			capture.CloseAll();
-
-			string integrateString = File.ReadAllText(IntegratePath);
-			byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
-
-			IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
-				.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
-
-			foreach (FormIntegrate.WindowInfo info in integrateWindows)
+			try
 			{
-				// the constructor captures it so no need to call AddCapturedWindow
-				FormIntegrate integrate = new(this, info);
-				// capture.AddCapturedWindow(integrate);
-			}
+				capture.CloseAll();
 
-			capture.AttachAll();
+				string integrateString = File.ReadAllText(IntegratePath);
+				byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
+
+				IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
+					.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
+
+				foreach (FormIntegrate.WindowInfo info in integrateWindows)
+				{
+					// the constructor captures it so no need to call AddCapturedWindow
+					FormIntegrate integrate = new(this, info);
+					// capture.AddCapturedWindow(integrate);
+				}
+
+				capture.AttachAll();
+			}
+			catch
+			{
+				Logger.Add(3, FormMain.WindowCaptureLoadFailed);
+			}
 		}
 
 		try
@@ -578,12 +583,7 @@ public partial class FormMainViewModel : ObservableObject
 					MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
 				== MessageBoxResult.Yes)
 			{
-				ProcessStartInfo psi = new()
-				{
-					FileName = @"https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71",
-					UseShellExecute = true
-				};
-				Process.Start(psi);
+				OpenLink(@"https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71");
 			}
 		}
 
@@ -761,7 +761,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -781,7 +781,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Development.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -801,7 +801,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Construction.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoBuildData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -827,7 +827,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -843,7 +843,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterEquipments.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.EquipmentDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -860,8 +860,8 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			MessageBox.Show
 			(
-				Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
-				Properties.Window.Dialog.DialogAntiAirDefense.Error,
+				AntiAirDefenseResources.DataNotLoaded,
+				AntiAirDefenseResources.Error,
 				MessageBoxButton.OK, MessageBoxImage.Error
 			);
 
@@ -906,14 +906,14 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (!KCDatabase.Instance.Quest.IsLoaded)
 		{
-			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.QuestDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
 
 		new QuestTrackerManagerWindow().Show(Window);
 	}
-	
+
 	[RelayCommand]
 	private void OpenEquipmentUpgradePlanner()
 	{
@@ -925,7 +925,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -960,6 +960,12 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		AutoRefreshWindow.Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenTelegram()
+	{
+		new TelegramWindow().Show(Window);
 	}
 
 	[RelayCommand]
@@ -998,7 +1004,7 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void LoadInitialAPI()
+	private async Task LoadInitialAPI()
 	{
 		using OpenFileDialog ofd = new();
 
@@ -1020,7 +1026,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 
 			}
@@ -1099,13 +1105,58 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
+	/// <summary>
+	/// Load some API files if they are saved
+	/// </summary>
+	[RelayCommand]
+	private async Task LoadBaseAPI()
+	{
+		if (string.IsNullOrEmpty(Config.Connection.SaveDataPath)) return;
+		if (!Directory.Exists(Config.Connection.SaveDataPath)) return;
+
+		try
+		{
+			await LoadAPIResponse("api_start2/getData");
+			await LoadAPIResponse("api_get_member/require_info");
+			await LoadAPIResponse("api_port/port");
+			await LoadAPIResponse("api_get_member/questlist");
+		}
+		catch (Exception ex)
+		{
+			Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
+		}
+	}
+
+	private async Task LoadAPIResponse(string apiName)
+	{
+		if (string.IsNullOrEmpty(Config.Connection.SaveDataPath)) return;
+		if (!Directory.Exists(Config.Connection.SaveDataPath)) return;
+
+		if (!APIObserver.Instance.APIList.ContainsKey(apiName)) return;
+
+		APIBase api = APIObserver.Instance.APIList[apiName];
+
+		if (!api.IsResponseSupported) return;
+
+		string filePath = Path.Combine(Config.Connection.SaveDataPath, "kcsapi", apiName);
+
+		if (!File.Exists(filePath)) return;
+
+		string data = await File.ReadAllTextAsync(filePath);
+
+		Window.Dispatcher.Invoke((() =>
+		{
+			APIObserver.Instance.LoadResponse($"/kcsapi/{apiName}", data);
+		}));
+	}
+
 	[RelayCommand]
 	private void LoadRecordFromOld()
 	{
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1143,7 +1194,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
@@ -1155,7 +1206,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1181,10 +1232,9 @@ public partial class FormMainViewModel : ObservableObject
 
 					foreach (dynamic elem in json.api_data.api_mst_ship)
 					{
+						IShipDataMaster ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
 
-						var ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
-
-						if (elem.api_name != "なし" && ship != null && ship.IsAbyssalShip)
+						if (elem.api_name != "なし" && ship is { IsAbyssalShip: true })
 						{
 
 							KCDatabase.Instance.MasterShips[(int)elem.api_id].LoadFromResponse("api_start2", elem);
@@ -1198,63 +1248,51 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}
 
 	[RelayCommand]
-	private async void DeleteOldAPI()
+	private async Task DeleteOldAPI()
 	{
-
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
-
 			try
 			{
-
-				int count = await Task.Factory.StartNew(() => DeleteOldAPIInternal());
+				int count = await Task.Factory.StartNew(DeleteOldAPIInternal);
 
 				MessageBox.Show("Delete successful.\r\n" + count + " files deleted.", "Delete Successful",
 					MessageBoxButton.OK, MessageBoxImage.Information);
-
 			}
 			catch (Exception ex)
 			{
-
-				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to delete.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 			}
-
-
 		}
-
 	}
 
 	private int DeleteOldAPIInternal()
 	{
-
-
 		//適当極まりない
 		int count = 0;
 
-		var apilist = new Dictionary<string, List<KeyValuePair<string, string>>>();
+		Dictionary<string, List<KeyValuePair<string, string>>> apilist = new();
 
 		foreach (string s in Directory.EnumerateFiles(Utility.Configuration.Config.Connection.SaveDataPath,
 			"*.json", SearchOption.TopDirectoryOnly))
 		{
-
 			int start = s.IndexOf('@');
 			int end = s.LastIndexOf('.');
 
 			start--;
 			string key = s.Substring(start, end - start + 1);
 			string date = s.Substring(0, start);
-
 
 			if (!apilist.ContainsKey(key))
 			{
@@ -1278,12 +1316,11 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void RenameShipResource()
+	private async Task RenameShipResource()
 	{
-
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show("Ship data is not loaded.", MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -1324,7 +1361,7 @@ public partial class FormMainViewModel : ObservableObject
 			{
 
 				Utility.ErrorReporter.SendErrorReport(ex, "艦船リソースのリネームに失敗しました。");
-				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 
@@ -1416,7 +1453,7 @@ public partial class FormMainViewModel : ObservableObject
 #if DEBUG
 		void GetMissingDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiShips)
 		{
-			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
+			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster? wikiShip)) return;
 
 			if (wikiShip.ASW.Minimum >= 0)
 			{
@@ -1457,9 +1494,9 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}
 
-		void GetMissingAbyssalDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips)
+		void GetMissingAbyssalDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips, List<int> abyssalAicraft)
 		{
-			if (!wikiAbyssalShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
+			if (!wikiAbyssalShips.TryGetValue(ship.ShipId, out IShipDataMaster? wikiShip)) return;
 
 			if (!ship.ASW.IsDetermined)
 			{
@@ -1507,7 +1544,8 @@ public partial class FormMainViewModel : ObservableObject
 			{
 				RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
 			}
-			RecordManager.Instance.ShipParameter.UpdateAircraft(ship.ShipID, wikiShip.Aircraft.ToArray());
+
+			RecordManager.Instance.ShipParameter.UpdateAircraft(ship.ShipID, abyssalAicraft.ToArray());
 
 			ShipParameterRecord.ShipParameterElement e = RecordManager.Instance.ShipParameter[ship.ShipID] ?? new();
 
@@ -1540,12 +1578,13 @@ public partial class FormMainViewModel : ObservableObject
 
 		Dictionary<ShipId, IShipDataMaster> wikiShips = TestData.Wiki.WikiDataParser.Ships(wikiEquipment);
 		Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips = TestData.Wiki.WikiDataParser.AbyssalShips(wikiAbyssalEquipment);
+		Dictionary<ShipId, List<int>> abyssalAircraft = await TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
 
-		foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
+		foreach (IShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 		{
 			if (ship.IsAbyssalShip)
 			{
-				GetMissingAbyssalDataFromWiki(ship, wikiAbyssalShips);
+				GetMissingAbyssalDataFromWiki(ship, wikiAbyssalShips, abyssalAircraft[ship.ShipId]);
 			}
 			else
 			{
@@ -1561,8 +1600,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		await db.SaveChangesAsync();
 
-		var masterShips = db.MasterShips.ToList();
-		var masterEquipment = db.MasterEquipment.ToList();
+		List<TestData.Models.ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
+		List<TestData.Models.EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
 
 		JsonSerializerOptions options = new()
 		{
@@ -1634,16 +1673,11 @@ public partial class FormMainViewModel : ObservableObject
 	private void ViewHelp()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
+		if (MessageBox.Show(MainResources.OpenEOWiki, MainResources.HelpCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
-			ProcessStartInfo psi = new()
-			{
-				FileName = "https://github.com/silfumus/ElectronicObserver/wiki",
-				UseShellExecute = true
-			};
-			Process.Start(psi);
+			OpenLink("https://github.com/silfumus/ElectronicObserver/wiki");
 		}
 
 	}
@@ -1652,40 +1686,20 @@ public partial class FormMainViewModel : ObservableObject
 	private void ReportIssue()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
+		if (MessageBox.Show(MainResources.ReportIssue, MainResources.ReportIssueCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
-			ProcessStartInfo psi = new()
-			{
-				FileName = "https://github.com/ElectronicObserverEN/ElectronicObserver/issues",
-				UseShellExecute = true
-			};
-			Process.Start(psi);
+			OpenLink("https://github.com/ElectronicObserverEN/ElectronicObserver/issues");
 		}
 
 	}
 
 	[RelayCommand]
-	private void JoinDiscord()
-	{
-		try
-		{
-			ProcessStartInfo psi = new()
-			{
-				FileName = @"https://discord.gg/6ZvX8DG",
-				UseShellExecute = true
-			};
-			Process.Start(psi);
-		}
-		catch (Exception ex)
-		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
-		}
-	}
+	private void JoinDiscord() => OpenLink("https://discord.gg/6ZvX8DG");
 
 	[RelayCommand]
-	private async void CheckForUpdate()
+	private async Task CheckForUpdate()
 	{
 		// translations and maintenance state
 		await SoftwareUpdater.CheckUpdateAsync();
@@ -1700,6 +1714,22 @@ public partial class FormMainViewModel : ObservableObject
 		window.ShowDialog(Window);
 	}
 
+	#endregion
+
+	#region Updates
+	[RelayCommand]
+	private void StartSoftwareUpdate()
+		=> Task.Run(SoftwareUpdater.UpdateSoftware);
+
+	[RelayCommand]
+	private void OpenReleaseNotes()
+		=> OpenLink("https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest");
+	#endregion
+
+	#region Maintenance timer
+	[RelayCommand]
+	private void OpenMaintenanceInformationLink()
+		=> OpenLink(SoftwareUpdater.LatestVersion.MaintenanceInformationLink);
 	#endregion
 
 	private void CallPumpkinHead(string apiname, dynamic data)
@@ -1843,6 +1873,11 @@ public partial class FormMainViewModel : ObservableObject
 		// 東京標準時
 		DateTime now = Utility.Mathematics.DateTimeHelper.GetJapanStandardTimeNow();
 
+		MaintenanceText = GetMaintenanceText(FormMain, now);
+		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
+
+		DownloadProgressString = SoftwareUpdater.DownloadProgressString;
+
 		switch (ClockFormat)
 		{
 			case 0: //時計表示
@@ -1856,45 +1891,10 @@ public partial class FormMainViewModel : ObservableObject
 					questReset = questReset.AddHours(24);
 				var questTimer = questReset - now;
 
-				TimeSpan maintTimer = new(0);
-				MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
-				DateTime maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
-
-				if (eventState != MaintenanceState.None)
-				{
-					if (maintDate < now)
-						maintDate = now;
-					maintTimer = maintDate - now;
-				}
-
-				bool eventOrMaintenanceStarted = maintDate <= now;
-
-				string message = (eventState, eventOrMaintenanceStarted) switch
-				{
-					(MaintenanceState.EventStart, false) => FormMain.EventStartsIn,
-					(MaintenanceState.EventStart, _) => FormMain.EventHasStarted,
-
-					(MaintenanceState.EventEnd, false) => FormMain.EventEndsIn,
-					(MaintenanceState.EventEnd, _) => FormMain.EventHasEnded,
-
-					(MaintenanceState.Regular, false) => FormMain.MaintenanceStartsIn,
-					(MaintenanceState.Regular, _) => FormMain.MaintenanceHasStarted,
-
-					_ => string.Empty,
-				};
-
-				string maintState = eventOrMaintenanceStarted switch
-				{
-					false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
-					_ => message
-				};
-
-				MaintenanceText = maintState;
-
 				var resetMsg =
 					$"{FormMain.NextExerciseReset} {pvpTimer:hh\\:mm\\:ss}\r\n" +
 					$"{FormMain.NextQuestReset} {questTimer:hh\\:mm\\:ss}\r\n" +
-					$"{maintState}";
+					$"{MaintenanceText}";
 
 				StripStatus.Clock = now.ToString("HH\\:mm\\:ss");
 				StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd)\r\n") + resetMsg;
@@ -1960,6 +1960,42 @@ public partial class FormMainViewModel : ObservableObject
 		*/
 	}
 
+	private static string GetMaintenanceText(FormMainTranslationViewModel formMain, DateTime now)
+	{
+		TimeSpan maintTimer = new(0);
+		MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
+		DateTime maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
+
+		if (eventState != MaintenanceState.None)
+		{
+			if (maintDate < now)
+				maintDate = now;
+			maintTimer = maintDate - now;
+		}
+
+		bool eventOrMaintenanceStarted = maintDate <= now;
+
+		string message = (eventState, eventOrMaintenanceStarted) switch
+		{
+			(MaintenanceState.EventStart, false) => formMain.EventStartsIn,
+			(MaintenanceState.EventStart, _) => formMain.EventHasStarted,
+
+			(MaintenanceState.EventEnd, false) => formMain.EventEndsIn,
+			(MaintenanceState.EventEnd, _) => formMain.EventHasEnded,
+
+			(MaintenanceState.Regular, false) => formMain.MaintenanceStartsIn,
+			(MaintenanceState.Regular, _) => formMain.MaintenanceHasStarted,
+
+			_ => string.Empty,
+		};
+
+		return eventOrMaintenanceStarted switch
+		{
+			false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
+			_ => message,
+		};
+	}
+
 	private void UpdatePlayTime()
 	{
 		var c = Configuration.Config.Log;
@@ -1974,6 +2010,23 @@ public partial class FormMainViewModel : ObservableObject
 		PrevPlayTimeRecorded = now;
 	}
 
+	private void OpenLink(string link)
+	{
+		try
+		{
+			ProcessStartInfo psi = new ProcessStartInfo
+			{
+				FileName = link,
+				UseShellExecute = true
+			};
+			Process.Start(psi);
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, MainResources.FailedToOpenBrowser);
+		}
+	}
+
 	[RelayCommand]
 	private void Closing(CancelEventArgs e)
 	{
@@ -1986,8 +2039,8 @@ public partial class FormMainViewModel : ObservableObject
 		if (Configuration.Config.Life.ConfirmOnClosing)
 		{
 			if (MessageBox.Show(
-					string.Format(Properties.Window.FormMain.ExitConfirmation, name),
-					Properties.Window.FormMain.ConfirmatonCaption,
+					string.Format(MainResources.ExitConfirmation, name),
+					MainResources.ConfirmatonCaption,
 					MessageBoxButton.YesNo,
 					MessageBoxImage.Question,
 					MessageBoxResult.No)

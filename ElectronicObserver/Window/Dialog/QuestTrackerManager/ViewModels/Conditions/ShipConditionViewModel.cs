@@ -50,7 +50,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 
 	private string FlagshipConditionDisplay => MustBeFlagship switch
 	{
-		true => $"({Properties.Window.Dialog.QuestTrackerManager.Flagship})",
+		true => $"({QuestTrackerManagerResources.Flagship})",
 		_ => ""
 	};
 

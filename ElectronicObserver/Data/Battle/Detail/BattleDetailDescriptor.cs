@@ -2,10 +2,8 @@
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
@@ -320,6 +318,11 @@ public static class BattleDetailDescriptor
 					sb.Append($"{BattleRes.Engagement}: ").AppendLine(Constants.GetEngagementForm(p.EngagementForm));
 					sb.Append($"{BattleRes.Contact}: ").Append(Constants.GetSearchingResult(p.SearchingFriend));
 					sb.Append($" / {BattleRes.EnemyContact}: ").AppendLine(Constants.GetSearchingResult(p.SearchingEnemy));
+
+					if (p.SmokeCount > 0)
+					{
+						sb.AppendLine($"{BattleRes.SmokeScreen} x{p.SmokeCount}");
+					}
 
 					sb.AppendLine();
 
@@ -707,9 +710,8 @@ public static class BattleDetailDescriptor
 				result.MVPIndex == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleet.MembersInstance[result.MVPIndex - 1].NameWithLevel);
 		}
 
-		sb.AppendFormat(ConstantsRes.BattleDetail_AdmiralExp + "\r\n" + ConstantsRes.BattleDetail_ShipExp + "\r\n",
-			result.AdmiralExp, result.BaseExp);
-
+		sb.AppendFormat(ConstantsRes.BattleDetail_AdmiralExp + "\r\n", result.AdmiralExp);
+		sb.AppendFormat(ConstantsRes.BattleDetail_ShipExp + "\r\n", result.BaseExp);
 
 		if (!bm.IsPractice)
 		{

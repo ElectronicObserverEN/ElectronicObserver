@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -10,7 +11,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 {
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }
 
-	public IBrowserHost BrowserHost { get; }
+	private IBrowserHost BrowserHost { get; }
 
 	public string Uri { get; set; }
 	public Action<string>? ExecuteScriptAsync { get; set; }
@@ -22,7 +23,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void UpdateFleet()
+	private async Task UpdateFleet()
 	{
 		string? data = await BrowserHost.GetFleetData();
 
@@ -32,7 +33,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void UpdateShips()
+	private async Task UpdateShips()
 	{
 		string data = await BrowserHost.GetShipData();
 
@@ -40,7 +41,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void UpdateEquipment(bool? allEquipment)
+	private async Task UpdateEquipment(bool? allEquipment)
 	{
 		if (allEquipment is not bool all) return;
 

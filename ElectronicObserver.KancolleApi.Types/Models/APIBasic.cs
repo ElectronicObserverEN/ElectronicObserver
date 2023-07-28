@@ -3,10 +3,8 @@
 public class ApiBasic
 {
 	[JsonPropertyName("api_firstflag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFirstflag { get; set; } = default!;
+	public int ApiFirstflag { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberId { get; set; } = default!;
+	public int ApiMemberId { get; set; }
 }

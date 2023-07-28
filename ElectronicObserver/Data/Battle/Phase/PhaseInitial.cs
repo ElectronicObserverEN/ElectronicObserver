@@ -41,12 +41,12 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
 	/// </summary>
-	public int[] EnemyMembersEscort { get; private set; }
+	public int[]? EnemyMembersEscort { get; private set; }
 
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
 	/// </summary>
-	public IShipDataMaster[] EnemyMembersEscortInstance { get; private set; }
+	public IShipDataMaster[]? EnemyMembersEscortInstance { get; private set; }
 
 
 	/// <summary>
@@ -57,19 +57,21 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦のレベル(随伴艦隊)
 	/// </summary>
-	public int[] EnemyLevelsEscort { get; private set; }
+	public int[]? EnemyLevelsEscort { get; private set; }
 
 
 	public int[] FriendInitialHPs { get; private set; }
-	public int[] FriendInitialHPsEscort { get; private set; }
+	public int[]? FriendInitialHPsEscort { get; private set; }
 	public int[] EnemyInitialHPs { get; private set; }
-	public int[] EnemyInitialHPsEscort { get; private set; }
+	public int[]? EnemyInitialHPsEscort { get; private set; }
 
 	public int[] FriendMaxHPs { get; private set; }
-	public int[] FriendMaxHPsEscort { get; private set; }
+	public int[]? FriendMaxHPsEscort { get; private set; }
 	public int[] EnemyMaxHPs { get; private set; }
-	public int[] EnemyMaxHPsEscort { get; private set; }
+	public int[]? EnemyMaxHPsEscort { get; private set; }
 
+	public bool[] IsEnemyTargetable { get; }
+	public bool[] IsEnemyTargetableEscort { get; }
 
 
 	/// <summary>
@@ -91,7 +93,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦のスロット(随伴艦隊)
 	/// </summary>
-	public IEquipmentDataMaster[][] EnemySlotsEscortInstance { get; private set; }
+	public IEquipmentDataMaster[][]? EnemySlotsEscortInstance { get; private set; }
 
 
 	/// <summary>
@@ -134,7 +136,33 @@ public class PhaseInitial : PhaseBase
 			FriendFleetID = 1;
 
 
-		int[] GetArrayOrDefault(string objectName, int length) => !RawData.IsDefined(objectName) ? null : FixedArray((int[])RawData[objectName], length);
+		int[]? GetArrayOrDefault(string objectName, int length)
+		{
+			object[]? values = RawData.IsDefined(objectName) switch
+			{
+				true => RawData[objectName].Deserialize<object[]>(),
+				_ => null,
+			};
+
+			if (values is null) return null;
+
+			int[] cleanedValues = values
+				.Select(v => v switch
+				{
+					double d => (int?)d,
+					int i => i,
+					// enemy HP and max HP can have "N/A" as a value for untargetable enemies
+					// this value then gets updated to the real HP value in HandleTargetability
+					string => -2,
+					_ => null,
+				})
+				.Where(v => v is not null)
+				.Select(v => v!.Value)
+				.ToArray();
+
+			return FixedArray(cleanedValues, length);
+		}
+
 		int[][] GetArraysOrDefault(string objectName, int topLength, int bottomLength)
 		{
 			if (!RawData.IsDefined(objectName))
@@ -152,27 +180,46 @@ public class PhaseInitial : PhaseBase
 			return ret;
 		}
 
+		int[]? HandleTargetability(int[]? hps, IShipDataMaster[]? ships, bool[] isTargetable)
+		{
+			if (hps is null) return null;
+			if (ships is null) return null;
+
+			for (int i = 0; i < hps.Length; i++)
+			{
+				if (hps[i] is not -2) continue;
+
+				isTargetable[i] = false;
+				hps[i] = ships[i].HPMax;
+			}
+
+			return hps;
+		}
+
 		int mainMemberCount = 7;
 		int escortMemberCount = 6;
 
-		EnemyMembers = GetArrayOrDefault("api_ship_ke", mainMemberCount);
+		IsEnemyTargetable = new[] { true, true, true, true, true, true, true };
+		IsEnemyTargetableEscort = new[] { true, true, true, true, true, true };
+
+		EnemyMembers = GetArrayOrDefault("api_ship_ke", mainMemberCount)!;
 		EnemyMembersInstance = EnemyMembers.Select(id => KCDatabase.Instance.MasterShips[id]).ToArray();
 
 		EnemyMembersEscort = GetArrayOrDefault("api_ship_ke_combined", escortMemberCount);
 		EnemyMembersEscortInstance = EnemyMembersEscort?.Select(id => KCDatabase.Instance.MasterShips[id]).ToArray();
 
-		EnemyLevels = GetArrayOrDefault("api_ship_lv", mainMemberCount);
+		EnemyLevels = GetArrayOrDefault("api_ship_lv", mainMemberCount)!;
 		EnemyLevelsEscort = GetArrayOrDefault("api_ship_lv_combined", escortMemberCount);
 
-		FriendInitialHPs = GetArrayOrDefault("api_f_nowhps", mainMemberCount);
+		FriendInitialHPs = GetArrayOrDefault("api_f_nowhps", mainMemberCount)!;
 		FriendInitialHPsEscort = GetArrayOrDefault("api_f_nowhps_combined", escortMemberCount);
-		EnemyInitialHPs = GetArrayOrDefault("api_e_nowhps", mainMemberCount);
-		EnemyInitialHPsEscort = GetArrayOrDefault("api_e_nowhps_combined", escortMemberCount);
+		EnemyInitialHPs = HandleTargetability(GetArrayOrDefault("api_e_nowhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable)!;
+		EnemyInitialHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_nowhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort);
 
-		FriendMaxHPs = GetArrayOrDefault("api_f_maxhps", mainMemberCount);
+		FriendMaxHPs = GetArrayOrDefault("api_f_maxhps", mainMemberCount)!;
 		FriendMaxHPsEscort = GetArrayOrDefault("api_f_maxhps_combined", escortMemberCount);
-		EnemyMaxHPs = GetArrayOrDefault("api_e_maxhps", mainMemberCount);
-		EnemyMaxHPsEscort = GetArrayOrDefault("api_e_maxhps_combined", escortMemberCount);
+		EnemyMaxHPs = HandleTargetability(GetArrayOrDefault("api_e_maxhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable)!;
+		EnemyMaxHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_maxhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort);
 
 
 		EnemySlots = GetArraysOrDefault("api_eSlot", mainMemberCount, 5);

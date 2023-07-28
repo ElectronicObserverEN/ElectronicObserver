@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Services;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Control.Paging;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -18,7 +17,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public PagingControlViewModel PlannedUpgradesPager { get; }
 
-	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; set; } = new();
+	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; }
 
 	private EquipmentPickerService EquipmentPicker { get; }
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
@@ -35,6 +34,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		PlannedUpgradesPager = new();
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
+		EquipmentUpgradePlanner = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		PlannedUpgrades = EquipmentUpgradePlanManager.PlannedUpgrades;
 	}
 

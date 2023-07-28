@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using ElectronicObserver.Utility;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogVersion;
 
 namespace ElectronicObserver.Window.Dialog.VersionInformation;
 /// <summary>
@@ -24,7 +23,7 @@ public partial class VersionInformationWindow
 			_ => SoftwareInformation.SoftwareNameEnglish
 		};
 
-		TextVersion.Text = string.Format(Translation.TextVersionFormat, versionText, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("yyyy/MM/dd"));
+		TextVersion.Text = string.Format(VersionResources.TextVersionFormat, versionText, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("yyyy/MM/dd"));
 		RuntimeVersion.Text = RuntimeInformation.FrameworkDescription;
 
 		// https://github.com/Kinnara/ModernWpf/issues/378
@@ -36,14 +35,14 @@ public partial class VersionInformationWindow
 
 	private void Translate()
 	{
-		TextVersion.Text = Translation.TextVersion;
-		TextAuthor.Text = Translation.Developer;
-		TextAuthorLink.Inlines.Add(Translation.TextAuthor);
-		ButtonClose.Content = Translation.ButtonClose;
-		TextProjectSite.Text = Translation.ProjectSite;
-		TextModifiedBy.Text = Translation.ModifiedBy;
-		TextMaintainers.Text = Translation.Maintainers;
-		Title = Translation.Title;
+		TextVersion.Text = VersionResources.TextVersion;
+		TextAuthor.Text = VersionResources.Developer;
+		TextAuthorLink.Inlines.Add(VersionResources.TextAuthor);
+		ButtonClose.Content = VersionResources.ButtonClose;
+		TextProjectSite.Text = VersionResources.ProjectSite;
+		TextModifiedBy.Text = VersionResources.ModifiedBy;
+		TextMaintainers.Text = VersionResources.Maintainers;
+		Title = VersionResources.Title;
 	}
 
 	private void OpenHyperlink(object sender, RequestNavigateEventArgs e)

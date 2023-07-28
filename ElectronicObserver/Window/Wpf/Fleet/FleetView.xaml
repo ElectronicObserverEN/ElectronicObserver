@@ -261,6 +261,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.FirepowerBase}"
+													Bonus="{Binding Ship.SpecialEffectItemFirepower}"
 													Icon="{StaticResource Firepower}"
 													ParameterName="{Binding FormFleet.Firepower}"
 													Total="{Binding Ship.FirepowerTotal}"
@@ -268,6 +269,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.TorpedoBase}"
+													Bonus="{Binding Ship.SpecialEffectItemTorpedo}"
 													Icon="{StaticResource Torpedo}"
 													ParameterName="{Binding FormFleet.Torpedo}"
 													Total="{Binding Ship.TorpedoTotal}"
@@ -282,6 +284,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.ArmorBase}"
+													Bonus="{Binding Ship.SpecialEffectItemArmor}"
 													Icon="{StaticResource Armor}"
 													ParameterName="{Binding FormFleet.Armor}"
 													Total="{Binding Ship.ArmorTotal}"
@@ -296,6 +299,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.EvasionBase}"
+													Bonus="{Binding Ship.SpecialEffectItemEvasion}"
 													Icon="{StaticResource Evasion}"
 													ParameterName="{Binding FormFleet.Evasion}"
 													Total="{Binding Ship.EvasionTotal}"
@@ -372,7 +376,7 @@
 														<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}">
 															<Setter Property="Visibility" Value="Collapsed" />
 															<Style.Triggers>
-																<DataTrigger Binding="{Binding TrainingPlan}" Value="{x:Null}">
+																<DataTrigger Binding="{Binding CanAddPlan}" Value="True">
 																	<Setter Property="Visibility" Value="Visible" />
 																</DataTrigger>
 															</Style.Triggers>
@@ -382,15 +386,15 @@
 
 												<MenuItem
 													Command="{Binding ShipTrainingPlanViewerViewModel.OpenEditPopupCommand}"
-													CommandParameter="{Binding TrainingPlan}"
+													CommandParameter="{Binding FirstTrainingPlan}"
 													Header="{Binding DataContext.FormFleet.ContextMenuFleetShipLevel_EditTrainingPlan, Source={StaticResource Proxy}}"
 													>
 													<MenuItem.Style>
 														<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}">
-															<Setter Property="Visibility" Value="Visible" />
+															<Setter Property="Visibility" Value="Collapsed" />
 															<Style.Triggers>
-																<DataTrigger Binding="{Binding TrainingPlan}" Value="{x:Null}">
-																	<Setter Property="Visibility" Value="Collapsed" />
+																<DataTrigger Binding="{Binding CanEditOrRemovePlan}" Value="True">
+																	<Setter Property="Visibility" Value="Visible" />
 																</DataTrigger>
 															</Style.Triggers>
 														</Style>
@@ -399,16 +403,16 @@
 
 												<MenuItem
 													Command="{Binding ShipTrainingPlanViewerViewModel.RemovePlanCommand}"
-													CommandParameter="{Binding TrainingPlan}"
+													CommandParameter="{Binding FirstTrainingPlan}"
 													Header="{Binding DataContext.FormFleet.ContextMenuFleetShipLevel_RemoveTrainingPlan, Source={StaticResource Proxy}}"
 													>
 
 													<MenuItem.Style>
 														<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="{x:Type MenuItem}">
-															<Setter Property="Visibility" Value="Visible" />
+															<Setter Property="Visibility" Value="Collapsed" />
 															<Style.Triggers>
-																<DataTrigger Binding="{Binding TrainingPlan}" Value="{x:Null}">
-																	<Setter Property="Visibility" Value="Collapsed" />
+																<DataTrigger Binding="{Binding CanEditOrRemovePlan}" Value="True">
+																	<Setter Property="Visibility" Value="Visible" />
 																</DataTrigger>
 															</Style.Triggers>
 														</Style>

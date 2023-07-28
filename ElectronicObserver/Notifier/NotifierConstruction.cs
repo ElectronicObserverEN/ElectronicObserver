@@ -9,27 +9,12 @@ namespace ElectronicObserver.Notifier;
 /// </summary>
 public class NotifierConstruction : NotifierBase
 {
-
-	private Dictionary<int, bool> processedFlags;
-
-
-	public NotifierConstruction()
-		: base()
-	{
-		Initialize();
-	}
+	private Dictionary<int, bool> ProcessedFlags { get; } = new();
 
 	public NotifierConstruction(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
 		: base(config)
 	{
-		Initialize();
-	}
-
-
-	private void Initialize()
-	{
 		DialogData.Title = NotifierRes.ConstructionTitle;
-		processedFlags = new Dictionary<int, bool>();
 	}
 
 
@@ -39,31 +24,31 @@ public class NotifierConstruction : NotifierBase
 		foreach (var arsenal in KCDatabase.Instance.Arsenals.Values)
 		{
 
-			if (!processedFlags.ContainsKey(arsenal.ArsenalID))
-				processedFlags.Add(arsenal.ArsenalID, false);
+			if (!ProcessedFlags.ContainsKey(arsenal.ArsenalID))
+				ProcessedFlags.Add(arsenal.ArsenalID, false);
 
 			if (arsenal.State > 0)
 			{
-				if (!processedFlags[arsenal.ArsenalID] && (
+				if (!ProcessedFlags[arsenal.ArsenalID] && (
 					(int)(arsenal.CompletionTime - DateTime.Now).TotalMilliseconds <= AccelInterval ||
 					arsenal.State == 3))
 				{
 
-					processedFlags[arsenal.ArsenalID] = true;
+					ProcessedFlags[arsenal.ArsenalID] = true;
 					Notify(arsenal.ArsenalID, arsenal.ShipID);
 				}
 
 			}
 			else
 			{
-				processedFlags[arsenal.ArsenalID] = false;
+				ProcessedFlags[arsenal.ArsenalID] = false;
 			}
 
 		}
 
 	}
 
-	public void Notify(int arsenalID, int shipID)
+	private void Notify(int arsenalID, int shipID)
 	{
 
 		DialogData.Message = string.Format(NotifierRes.ConstructionText,

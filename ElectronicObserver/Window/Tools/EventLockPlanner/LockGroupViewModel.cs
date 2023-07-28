@@ -5,8 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Services;
 using ElectronicObserver.Window.Control.ShipFilter;
 using GongSolutions.Wpf.DragDrop;
 
@@ -14,8 +17,11 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
 public class LockGroupViewModel : ObservableObject, IDropTarget
 {
+	private ColorService ColorService { get; }
+
 	public int Id { get; }
 	public Color Color { get; set; }
+	public SolidColorBrush Foreground => new(ColorService.GetForegroundColor(Color));
 	public SolidColorBrush Background => new(Color);
 	public string Name { get; set; } = "";
 
@@ -25,6 +31,8 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 
 	public LockGroupViewModel(int id)
 	{
+		ColorService = Ioc.Default.GetRequiredService<ColorService>();
+
 		Id = id;
 		Color = Color.FromRgb((byte)Random.Shared.Next(256), (byte)Random.Shared.Next(256), (byte)Random.Shared.Next(256));
 
@@ -129,7 +137,15 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 	public void Drop(IDropInfo dropInfo)
 	{
 		if (dropInfo.Data is not ShipLockViewModel shipLock) return;
-		if (dropInfo.DragInfo.SourceCollection is not ObservableCollection<ShipLockViewModel> source) return;
+
+		bool isValidSource = dropInfo.DragInfo.SourceCollection switch
+		{
+			ListCollectionView source => source.SourceCollection is ObservableCollection<ShipLockViewModel>,
+			ObservableCollection<ShipLockViewModel> => true,
+			_ => false
+		};
+
+		if (!isValidSource) return;
 
 		if (dropInfo.DragInfo.VisualSource is not ItemsControl { DataContext: LockGroupViewModel lockGroup }) return;
 

@@ -4,107 +4,65 @@
 public class ApiReqCombinedBattleBattleresultRequest
 {
 	[JsonPropertyName("api_token")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiToken { get; set; }
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; }
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_btime")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiBtime { get; set; }
+	public string ApiBtime { get; set; } = "";
 
 	[JsonPropertyName("api_l_value[0]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue0 { get; set; }
+	public string ApiLValue0 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value[1]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue1 { get; set; }
+	public string ApiLValue1 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value[2]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue2 { get; set; }
+	public string ApiLValue2 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value[3]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue3 { get; set; }
+	public string ApiLValue3 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value[4]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue4 { get; set; }
+	public string ApiLValue4 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value[5]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue5 { get; set; }
+	public string ApiLValue5 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value3[0]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue30 { get; set; }
+	public string ApiLValue30 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value3[1]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue31 { get; set; }
+	public string ApiLValue31 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value3[2]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue32 { get; set; }
+	public string ApiLValue32 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value3[3]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue33 { get; set; }
+	public string ApiLValue33 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value3[4]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue34 { get; set; }
+	public string ApiLValue34 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value3[5]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue35 { get; set; }
+	public string ApiLValue35 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value4[0]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue40 { get; set; }
+	public string ApiLValue40 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value4[1]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue41 { get; set; }
+	public string ApiLValue41 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value4[2]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue42 { get; set; }
+	public string ApiLValue42 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value4[3]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue43 { get; set; }
+	public string ApiLValue43 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value4[4]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue44 { get; set; }
+	public string ApiLValue44 { get; set; } = "";
 
 	[JsonPropertyName("api_l_value4[5]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLValue45 { get; set; }
+	public string ApiLValue45 { get; set; } = "";
 }

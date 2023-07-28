@@ -7,134 +7,99 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 public class ApiReqSortieBattleresultResponse : ISortieBattleResultApi
 {
 	[JsonPropertyName("api_dests")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDests { get; set; } = default!;
+	public int ApiDests { get; set; }
 
 	[JsonPropertyName("api_destsf")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDestsf { get; set; } = default!;
+	public int ApiDestsf { get; set; }
 
 	[JsonPropertyName("api_enemy_info")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public ApiEnemyInfo ApiEnemyInfo { get; set; } = new();
 
 	[JsonPropertyName("api_escape")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object? ApiEscape { get; set; } = default!;
+	public ApiEscape? ApiEscape { get; set; }
 
 	[JsonPropertyName("api_escape_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiEscapeFlag { get; set; } = default!;
+	public int ApiEscapeFlag { get; set; }
 
 	[JsonPropertyName("api_first_clear")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFirstClear { get; set; } = default!;
+	public int ApiFirstClear { get; set; }
 
 	[JsonPropertyName("api_get_base_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiGetBaseExp { get; set; } = default!;
+	public int ApiGetBaseExp { get; set; }
 
 	[JsonPropertyName("api_get_eventflag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiGetEventflag { get; set; } = default!;
+	public int? ApiGetEventflag { get; set; }
 
 	[JsonPropertyName("api_get_eventitem")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<ApiGetEventitem>? ApiGetEventitem { get; set; } = default!;
+	public List<ApiGetEventitem>? ApiGetEventitem { get; set; }
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_get_exmap_rate")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object ApiGetExmapRate { get; set; } = default!;
+	public object ApiGetExmapRate { get; set; } = 0;
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_get_exmap_useitem_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public object ApiGetExmapUseitemId { get; set; } = default!;
+	public object ApiGetExmapUseitemId { get; set; } = 0;
 
 	[JsonPropertyName("api_get_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiGetExp { get; set; } = default!;
+	public int ApiGetExp { get; set; }
 
 	[JsonPropertyName("api_get_exp_lvup")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<List<int>> ApiGetExpLvup { get; set; } = new();
 
 	[JsonPropertyName("api_get_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiGetFlag { get; set; } = new();
 
 	[JsonPropertyName("api_get_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiGetShip? ApiGetShip { get; set; } = default!;
+	public ApiGetShip? ApiGetShip { get; set; }
 
 	[JsonPropertyName("api_get_ship_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiGetShipExp { get; set; } = new();
 
 	[JsonPropertyName("api_get_useitem")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiGetUseitem? ApiGetUseitem { get; set; } = default!;
+	public ApiGetUseitem? ApiGetUseitem { get; set; }
 
 	[JsonPropertyName("api_landing_hp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiLandingHp? ApiLandingHp { get; set; } = default!;
+	public ApiLandingHp? ApiLandingHp { get; set; }
 
 	[JsonPropertyName("api_m1")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiM1 { get; set; } = default!;
+	public int? ApiM1 { get; set; }
 
 	[JsonPropertyName("api_m_suffix")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public string? ApiMSuffix { get; set; } = default!;
+	public string? ApiMSuffix { get; set; }
 
 	[JsonPropertyName("api_mapcell_incentive")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMapcellIncentive { get; set; } = default!;
+	public int ApiMapcellIncentive { get; set; }
 
 	[JsonPropertyName("api_member_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberExp { get; set; } = default!;
+	public int ApiMemberExp { get; set; }
 
 	[JsonPropertyName("api_member_lv")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberLv { get; set; } = default!;
+	public int ApiMemberLv { get; set; }
 
 	[JsonPropertyName("api_mvp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMvp { get; set; } = default!;
+	public int ApiMvp { get; set; }
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_next_map_ids")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<object>? ApiNextMapIds { get; set; } = default!;
+	public List<object>? ApiNextMapIds { get; set; }
 
 	[JsonPropertyName("api_quest_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiQuestLevel { get; set; } = default!;
+	public int ApiQuestLevel { get; set; }
 
 	[JsonPropertyName("api_quest_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiQuestName { get; set; } = default!;
+	public string ApiQuestName { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiShipId { get; set; } = new();
 
+	// todo: this should be an enum
 	[JsonPropertyName("api_win_rank")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiWinRank { get; set; } = default!;
+	public string ApiWinRank { get; set; } = "";
 }

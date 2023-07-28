@@ -2,10 +2,12 @@
 	x:Class="ElectronicObserver.Window.Tools.DropRecordViewer.DropRecordViewerWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DropRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding DialogDropRecordViewer.Title}"
 	Width="730"
@@ -301,14 +303,41 @@
 			ColumnWidth="*"
 			HeadersVisibility="Column"
 			IsReadOnly="True"
-			ItemsSource="{Binding Rows}"
+			ItemsSource="{Binding DataGridRawRowsViewModel.Items}"
 			SelectionChanged="Selector_OnSelectionChanged"
+			Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 			>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding DataGridRawRowsViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridRawRowsViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridRawRowsViewModel.ClearSortingCommand}" Header="{Binding DataGridRawRowsViewModel.DataGrid.ClearSorting}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridRawRowsViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridRawRowsViewModel.SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
 			<DataGrid.ColumnHeaderStyle>
 				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
 					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridRawRowsViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridRawRowsViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridRawRowsViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridRawRowsViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridRawRowsViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridRawRowsViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
 			<!--
@@ -326,7 +355,6 @@
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -343,7 +371,6 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Date, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="*"
@@ -352,7 +379,6 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Map, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Width="Auto"
@@ -361,13 +387,70 @@
 					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Rank, Source={StaticResource Proxy}}"
-					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
+			</DataGrid.Columns>
+		</DataGrid>
 
-				<!--
-					regular and merged row displays are basically 2 different data grids
-					the name column gets used for both displays
-				-->
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			ColumnWidth="*"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding DataGridMergedRowsViewModel.Items}"
+			SelectionChanged="Selector_OnSelectionChanged"
+			Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+			>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding DataGridMergedRowsViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridMergedRowsViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridMergedRowsViewModel.ClearSortingCommand}" Header="{Binding DataGridMergedRowsViewModel.DataGrid.ClearSorting}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<b:Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridMergedRowsViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridMergedRowsViewModel.SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridMergedRowsViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridMergedRowsViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridMergedRowsViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridMergedRowsViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridMergedRowsViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridMergedRowsViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+			<!--
+				no idea how to do right click the mvvm way
+			-->
+			<DataGrid.RowStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
+					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
+				</Style>
+			</DataGrid.RowStyle>
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Name}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Name, Source={StaticResource Proxy}}"
+					/>
 				<DataGridTextColumn
 					Binding="{Binding CountDisplay}"
 					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
@@ -375,7 +458,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.Tries, Source={StaticResource Proxy}}"
 					SortMemberPath="RateOrMaxCountTotal"
-					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Binding="{Binding RankDisplayS}"
@@ -384,7 +466,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_RankS, Source={StaticResource Proxy}}"
 					SortMemberPath="CountS"
-					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Binding="{Binding RankDisplayA}"
@@ -393,7 +474,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_RankA, Source={StaticResource Proxy}}"
 					SortMemberPath="CountA"
-					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 				<DataGridTextColumn
 					Binding="{Binding RankDisplayB}"
@@ -402,7 +482,6 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_RankB, Source={StaticResource Proxy}}"
 					SortMemberPath="CountB"
-					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					/>
 			</DataGrid.Columns>
 		</DataGrid>

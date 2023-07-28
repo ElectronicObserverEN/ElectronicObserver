@@ -9,27 +9,12 @@ namespace ElectronicObserver.Notifier;
 /// </summary>
 public class NotifierExpedition : NotifierBase
 {
-
-	private Dictionary<int, bool> processedFlags;
-
-
-	public NotifierExpedition()
-		: base()
-	{
-		Initialize();
-	}
+	private Dictionary<int, bool> ProcessedFlags { get; } = new();
 
 	public NotifierExpedition(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
 		: base(config)
 	{
-		Initialize();
-	}
-
-
-	private void Initialize()
-	{
 		DialogData.Title = NotifierRes.ExpeditionTitle;
-		processedFlags = new Dictionary<int, bool>();
 	}
 
 
@@ -39,15 +24,15 @@ public class NotifierExpedition : NotifierBase
 		foreach (var fleet in KCDatabase.Instance.Fleet.Fleets.Values)
 		{
 
-			if (!processedFlags.ContainsKey(fleet.FleetID))
-				processedFlags.Add(fleet.FleetID, false);
+			if (!ProcessedFlags.ContainsKey(fleet.FleetID))
+				ProcessedFlags.Add(fleet.FleetID, false);
 
 			if (fleet.ExpeditionState != 0)
 			{
-				if (!processedFlags[fleet.FleetID] && (int)(fleet.ExpeditionTime - DateTime.Now).TotalMilliseconds <= AccelInterval)
+				if (!ProcessedFlags[fleet.FleetID] && (int)(fleet.ExpeditionTime - DateTime.Now).TotalMilliseconds <= AccelInterval)
 				{
 
-					processedFlags[fleet.FleetID] = true;
+					ProcessedFlags[fleet.FleetID] = true;
 					Notify(fleet.FleetID, fleet.ExpeditionDestination);
 
 				}
@@ -55,14 +40,14 @@ public class NotifierExpedition : NotifierBase
 			}
 			else
 			{
-				processedFlags[fleet.FleetID] = false;
+				ProcessedFlags[fleet.FleetID] = false;
 			}
 
 		}
 
 	}
 
-	public void Notify(int fleetID, int destination)
+	private void Notify(int fleetID, int destination)
 	{
 
 		DialogData.Message = string.Format(NotifierRes.ExpeditionText,

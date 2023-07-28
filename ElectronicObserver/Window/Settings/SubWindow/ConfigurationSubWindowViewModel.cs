@@ -12,6 +12,7 @@ using ElectronicObserver.Window.Settings.SubWindow.Group;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 using ElectronicObserver.Window.Settings.SubWindow.Json;
 using ElectronicObserver.Window.Settings.SubWindow.Quest;
+using ElectronicObserver.Window.Settings.SubWindow.ShipTraining;
 
 namespace ElectronicObserver.Window.Settings.SubWindow;
 
@@ -32,6 +33,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 	public ConfigurationBrowserViewModel Browser { get; }
 	public ConfigurationAirBaseViewModel AirBase { get; }
 	public ConfigurationJsonViewModel Json { get; }
+	public ConfigurationShipTrainingViewModel ShipTraining { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -46,6 +48,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		yield return Browser;
 		yield return AirBase;
 		yield return Json;
+		yield return ShipTraining;
 	}
 
 	public ConfigurationSubWindowViewModel(Configuration.ConfigurationData config)
@@ -65,6 +68,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		Browser = new(Config.FormBrowser);
 		AirBase = new(Config.FormBaseAirCorps);
 		Json = new(Config.FormJson);
+		ShipTraining = new(config.FormShipTraining);
 	}
 
 	public override void Save()

@@ -3,21 +3,14 @@
 public class ApiLog
 {
 	[JsonPropertyName("api_message")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiMessage { get; set; } = default!;
+	public string ApiMessage { get; set; } = "";
 
 	[JsonPropertyName("api_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNo { get; set; } = default!;
+	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiState { get; set; } = default!;
+	public string ApiState { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiType { get; set; } = default!;
+	public string ApiType { get; set; } = "";
 }

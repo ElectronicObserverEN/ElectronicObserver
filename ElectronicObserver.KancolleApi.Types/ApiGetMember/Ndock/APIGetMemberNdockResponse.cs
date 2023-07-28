@@ -3,43 +3,32 @@
 public class ApiGetMemberNdockResponse
 {
 	[JsonPropertyName("api_complete_time")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public long ApiCompleteTime { get; set; } = default!;
+	public long ApiCompleteTime { get; set; }
 
 	[JsonPropertyName("api_complete_time_str")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiCompleteTimeStr { get; set; } = default!;
+	public string ApiCompleteTimeStr { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_item1")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiItem1 { get; set; } = default!;
+	public int ApiItem1 { get; set; }
 
 	[JsonPropertyName("api_item2")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiItem2 { get; set; } = default!;
+	public int ApiItem2 { get; set; }
 
 	[JsonPropertyName("api_item3")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiItem3 { get; set; } = default!;
+	public int ApiItem3 { get; set; }
 
 	[JsonPropertyName("api_item4")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiItem4 { get; set; } = default!;
+	public int ApiItem4 { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberId { get; set; } = default!;
+	public int ApiMemberId { get; set; }
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiShipId { get; set; } = default!;
+	public int ApiShipId { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 }

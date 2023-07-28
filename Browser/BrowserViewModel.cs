@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -70,6 +71,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected string? LastScreenShotPath { get; set; }
 	public BitmapSource? LastScreenshot { get; set; }
+	
+	protected string BrowserFontStyleId { get; } = Guid.NewGuid().ToString()[..8];
 
 	protected BrowserViewModel(string host, int port, string culture)
 	{
@@ -128,7 +131,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	public abstract void OnLoaded(object sender, RoutedEventArgs e);
 
-	protected async void SetIconResource()
+	protected async Task SetIconResource()
 	{
 		byte[][] canvas = await BrowserHost.GetIconResource();
 
@@ -166,6 +169,23 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		});
 
 		IsMuted = Configuration.IsMute;
+
+		await ApplyCustomBrowserFont(Configuration);
+	}
+
+	protected virtual Task ApplyCustomBrowserFont(BrowserConfiguration configuration)
+	{
+		return Task.CompletedTask;
+	}
+
+	protected virtual Task RemoveCustomBrowserFont()
+	{
+		return Task.CompletedTask;
+	}
+
+	protected virtual Task AddCustomBrowserFont(BrowserConfiguration configuration)
+	{
+		return Task.CompletedTask;
 	}
 
 	protected void ConfigurationUpdated()
@@ -235,6 +255,10 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 		//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
 		SetVolumeState();
+
+		if (Configuration is null) return;
+
+		ApplyCustomBrowserFont(Configuration);
 	}
 
 	public abstract void Navigate(string url);
@@ -266,7 +290,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	{
 		MessageBoxResult messageBoxResult = MessageBox.Show
 		(
-			Properties.Resources.AutoRefreshNotification,
+			Resources.AutoRefreshNotification,
 			FormBrowser.Confirmation,
 			MessageBoxButton.OKCancel,
 			MessageBoxImage.Exclamation,

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Microsoft.Xaml.Behaviors;
 
 namespace ElectronicObserver.Behaviors.PersistentColumns;
@@ -16,10 +17,12 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	private DependencyPropertyDescriptor? SortDirectionPropertyDescriptor => DependencyPropertyDescriptor.FromProperty(DataGridColumn.SortDirectionProperty, typeof(DataGridColumn));
 	private DependencyPropertyDescriptor? DisplayIndexPropertyDescriptor => DependencyPropertyDescriptor.FromProperty(DataGridColumn.DisplayIndexProperty, typeof(DataGridColumn));
 	private DependencyPropertyDescriptor? WidthPropertyDescriptor => DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, typeof(DataGridColumn));
+	private DependencyPropertyDescriptor? VisibilityPropertyDescriptor => DependencyPropertyDescriptor.FromProperty(DataGridColumn.VisibilityProperty, typeof(DataGridColumn));
 
 	private void SortDirectionChangedHandler(object? sender, EventArgs x) => UpdateColumnInfo();
 	private void DisplayIndexChangedHandler(object? sender, EventArgs x) => UpdateColumnInfo();
 	private void WidthPropertyChangedHandler(object? sender, EventArgs x) => InWidthChange = true;
+	private void VisibilityPropertyChangedHandler(object? sender, EventArgs x) => UpdateColumnInfo();
 
 	#region ColumnProperties
 
@@ -90,13 +93,36 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		AssociatedObject.PreviewMouseLeftButtonUp += DataGridPreviewMouseLeftButtonUp;
 	}
 
+	/// <summary>
+	/// If the grid was never initialized before, DisplayIndex values can be -1
+	/// causing an exception.
+	/// </summary>
+	/// <returns></returns>
+	private bool WasGridInitialized()
+	{
+		return ColumnProperties.All(c => c.DisplayIndex >= 0);
+	}
+
 	private void DataGridLoaded(object sender, RoutedEventArgs e)
 	{
-		foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
+		if(WasGridInitialized())
 		{
-			dataGridColumn.Width = columnProperties.Width;
-			dataGridColumn.DisplayIndex = columnProperties.DisplayIndex;
-			dataGridColumn.SortDirection = columnProperties.SortDirection;
+			foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
+			{
+				dataGridColumn.Width = columnProperties.Width;
+				dataGridColumn.DisplayIndex = columnProperties.DisplayIndex;
+				dataGridColumn.SortDirection = columnProperties.SortDirection;
+				dataGridColumn.Visibility = columnProperties.Visibility;
+
+				columnProperties.Header = dataGridColumn.Header switch
+				{
+					string stringHeader => stringHeader,
+					DataGridColumnHeader header => header.Content?.ToString() ?? "",
+					_ => "",
+				};
+
+				columnProperties.SortMemberPath = dataGridColumn.SortMemberPath?.ToString() ?? "";
+			}
 		}
 
 		foreach (DataGridColumn? column in AssociatedObject.Columns)
@@ -104,7 +130,10 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			SortDirectionPropertyDescriptor?.AddValueChanged(column, SortDirectionChangedHandler);
 			DisplayIndexPropertyDescriptor?.AddValueChanged(column, DisplayIndexChangedHandler);
 			WidthPropertyDescriptor?.AddValueChanged(column, WidthPropertyChangedHandler);
+			VisibilityPropertyDescriptor?.AddValueChanged(column, VisibilityPropertyChangedHandler);
 		}
+
+		UpdateColumnInfo();
 	}
 
 	private void DataGridUnloaded(object sender, RoutedEventArgs e)
@@ -114,6 +143,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			SortDirectionPropertyDescriptor?.RemoveValueChanged(column, SortDirectionChangedHandler);
 			DisplayIndexPropertyDescriptor?.RemoveValueChanged(column, DisplayIndexChangedHandler);
 			WidthPropertyDescriptor?.RemoveValueChanged(column, WidthPropertyChangedHandler);
+			VisibilityPropertyDescriptor?.RemoveValueChanged(column, VisibilityPropertyChangedHandler);
 		}
 	}
 
@@ -132,8 +162,20 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		ColumnProperties = AssociatedObject.Columns.Select(c => new ColumnProperties
 		{
 			Width = c.Width,
-			DisplayIndex = c.DisplayIndex,
+			DisplayIndex = c.DisplayIndex switch
+			{
+				-1 => AssociatedObject.Columns.IndexOf(c),
+				int i => i,
+			},
 			SortDirection = c.SortDirection,
+			Visibility = c.Visibility,
+			Header = c.Header switch
+			{
+				string stringHeader => stringHeader,
+				DataGridColumnHeader header => header.Content?.ToString() ?? "",
+				_ => "",
+			},
+			SortMemberPath = c.SortMemberPath?.ToString() ?? ""
 		}).ToList();
 
 		SortDescriptions = AssociatedObject.Items.SortDescriptions.ToList();
@@ -144,18 +186,21 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	private void ColumnPropertiesChanged()
 	{
 		if (AssociatedObject is null) return;
+		if (!WasGridInitialized()) return;
 
 		foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
 		{
 			dataGridColumn.Width = columnProperties.Width;
 			dataGridColumn.DisplayIndex = columnProperties.DisplayIndex;
 			dataGridColumn.SortDirection = columnProperties.SortDirection;
+			dataGridColumn.Visibility = columnProperties.Visibility;
 		}
 	}
 
 	private void SortDescriptionsChanged()
 	{
-		if (AssociatedObject is null) return;
+		// Do nothing if source is ICollectionView, sorting is already correct in that case
+		if (AssociatedObject is null or ICollectionView) return;
 
 		// need to save the new value cause SortDescriptions.Clear() will wipe it
 		List<SortDescription> sortDescriptions = SortDescriptions;

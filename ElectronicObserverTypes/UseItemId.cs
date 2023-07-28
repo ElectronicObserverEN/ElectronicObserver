@@ -69,4 +69,7 @@ public enum UseItemId
 	NewModelArmamentMaterials = 94,
 	SubmarineSupplyMaterials = 95,
 	Pumpkin = 96,
+	TeruTeruBozu = 97,
+	SeaColoredRibbon = 98,
+	WhiteSash = 99,
 }

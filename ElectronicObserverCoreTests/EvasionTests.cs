@@ -23,7 +23,6 @@ public class EvasionTests
 		{
 			Level = 1,
 			LuckBase = 30,
-			FuelRate = 1,
 			EvasionFit = 3,
 			SlotInstance = new List<IEquipmentData?>
 			{

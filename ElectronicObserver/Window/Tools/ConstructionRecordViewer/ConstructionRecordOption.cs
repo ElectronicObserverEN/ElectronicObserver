@@ -4,6 +4,6 @@ namespace ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 
 public enum ConstructionRecordOption
 {
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogConstructionRecordViewer), Name = "NameAny")]
+	[Display(ResourceType = typeof(ConstructionRecordViewerResources), Name = "NameAny")]
 	All,
 }

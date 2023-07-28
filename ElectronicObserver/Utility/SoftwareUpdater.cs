@@ -11,10 +11,11 @@ using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Utility;
 
-internal class SoftwareUpdater
+public class SoftwareUpdater
 {
 	internal static string AppDataFolder =>
 		Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ElectronicObserver");
@@ -31,10 +32,14 @@ internal class SoftwareUpdater
 
 	private static string TranslationUpdateFile => Path.Combine(DataAndTranslationManager.TranslationFolder, "update.json");
 
+	public static string DownloadProgressString { get; private set; } = "";
+
+	public static SoftwareDownloadTranslationViewModel SoftwareDownload { get; } = new();
+
 	/// <summary>
 	/// Perform software update in background 
 	/// </summary>
-	public static void UpdateSoftware()
+	public static async Task UpdateSoftware()
 	{
 		if (WaitForRestart) return;
 
@@ -46,9 +51,9 @@ internal class SoftwareUpdater
 		{
 			try
 			{
-				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.StartedDownloadingUpdate, url));
-				DownloadUpdate(url);
-				Logger.Add(1, Properties.Utility.SoftwareInformation.DownloadFinished);
+				Logger.Add(1, string.Format(SoftwareInformationResources.StartedDownloadingUpdate, url));
+				await DownloadUpdate(url);
+				Logger.Add(1, SoftwareInformationResources.DownloadFinished);
 			}
 			catch
 			{
@@ -58,7 +63,7 @@ internal class SoftwareUpdater
 
 		try
 		{
-			DownloadUpdater();
+			await DownloadUpdater();
 		}
 		catch
 		{
@@ -78,7 +83,7 @@ internal class SoftwareUpdater
 			}
 		};
 		updater.Start();
-		Logger.Add(2, Properties.Utility.SoftwareInformation.CloseElectronicObserverToCompleteTheUpdate);
+		Logger.Add(2, SoftwareInformationResources.CloseElectronicObserverToCompleteTheUpdate);
 		WaitForRestart = true;
 	}
 
@@ -93,7 +98,7 @@ internal class SoftwareUpdater
 	}
 
 	/// <summary>
-	/// Check for update data, but only update translation data.
+	/// Check for update data, but only update translation data and game related data (Fit bonuses, equipment upgrades, ...)
 	/// </summary>
 	public static async Task CheckUpdateAsync()
 	{
@@ -176,7 +181,7 @@ internal class SoftwareUpdater
 			{
 				KCDatabase.Instance.Translation.Initialize();
 				KCDatabase.Instance.SystemQuestTrackerManager.Load();
-				Logger.Add(2, Properties.Utility.SoftwareInformation.TranslationFilesUpdated);
+				Logger.Add(2, SoftwareInformationResources.TranslationFilesUpdated);
 			}
 
 			CurrentVersion = LatestVersion;
@@ -191,7 +196,7 @@ internal class SoftwareUpdater
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData + e);
+			Logger.Add(3, SoftwareInformationResources.FailedToObtainUpdateData + e);
 		}
 	}
 
@@ -235,39 +240,57 @@ internal class SoftwareUpdater
 		}
 	}
 
-	private static void DownloadUpdater()
+	private static async Task DownloadUpdater()
 	{
 		try
 		{
-			using var client = new WebClient();
+			using HttpClient client = new();
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 			var url = @"https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/Data/EOUpdater.exe";
 			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
-			client.DownloadFile(url, updaterFile);
-			Logger.Add(1, Properties.Utility.SoftwareInformation.UpdaterDownloadFinished);
+			Progress<float> progress = new();
+			progress.ProgressChanged += (_, progress) => DownloadProgressString = string.Format(SoftwareDownload.Update_DownloadingUpdater, progress);
+
+			using FileStream file = new(updaterFile, FileMode.Create);
+			await client.DownloadDataAsync(url, file, progress);
+
+			Logger.Add(1, SoftwareInformationResources.UpdaterDownloadFinished);
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadUpdater + e);
+			Logger.Add(3, SoftwareInformationResources.FailedToDownloadUpdater + e);
 			throw;
+		}
+		finally
+		{
+			DownloadProgressString = "";
 		}
 	}
 
-	private static void DownloadUpdate(string url)
+	private static async Task DownloadUpdate(string url)
 	{
 		try
 		{
-			using var client = new WebClient();
+			using HttpClient client = new();
 			string tempFile = AppDataFolder + @"\latest.zip"; ;
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-			Console.WriteLine(Properties.Utility.SoftwareInformation.DownloadingUpdate);
-			client.DownloadFile(url, tempFile);
+			Console.WriteLine(SoftwareInformationResources.DownloadingUpdate);
+
+			Progress<float> progress = new();
+			progress.ProgressChanged += (_, progress) => DownloadProgressString = string.Format(SoftwareDownload.Update_DownloadingUpdate, progress);
+
+			using FileStream file = new(tempFile, FileMode.Create);
+			await client.DownloadDataAsync(url, file, progress);
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadElectronicObserver + e.Message);
+			Logger.Add(3, SoftwareInformationResources.FailedToDownloadElectronicObserver + e.Message);
 			throw;
+		}
+		finally
+		{
+			DownloadProgressString = "";
 		}
 	}
 
@@ -278,7 +301,6 @@ internal class SoftwareUpdater
 		{
 			DateTime buildDate = DateTimeHelper.CSVStringToTime(dataJson.bld_date);
 			var appVersion = (string)dataJson.ver;
-			var note = (string)dataJson.note;
 			var downloadUrl = (string)dataJson.url;
 
 			var eqVersion = (string)translationJson.equipment;
@@ -310,12 +332,12 @@ internal class SoftwareUpdater
 
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
 			var eventState = (MaintenanceState)(int)dataJson.event_state;
+			string maintenanceInformationLink = (string)dataJson.MaintInfoLink;
 
 			data = new UpdateData
 			{
 				BuildDate = buildDate,
 				AppVersion = appVersion,
-				Note = note,
 				AppDownloadUrl = downloadUrl,
 				Equipment = eqVersion,
 				Expedition = expedVersion,
@@ -330,11 +352,12 @@ internal class SoftwareUpdater
 				EventState = eventState,
 				FitBonuses = fitBonusesVersion,
 				EquipmentUpgrades = equipmentUpgradesVersion,
+				MaintenanceInformationLink = maintenanceInformationLink
 			};
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToParseUpdateData + e.ToString());
+			Logger.Add(3, SoftwareInformationResources.FailedToParseUpdateData + e.ToString());
 		}
 		return data;
 	}
@@ -364,12 +387,12 @@ internal class SoftwareUpdater
 
 			if (filename.Contains("update.json") == false)
 			{
-				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.FileUpdated, filename));
+				Logger.Add(1, string.Format(SoftwareInformationResources.FileUpdated, filename));
 			}
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.FailedToUpdateFile, filename, e.Message));
+			Logger.Add(3, string.Format(SoftwareInformationResources.FailedToUpdateFile, filename, e.Message));
 			throw;
 		}
 	}
@@ -379,7 +402,6 @@ public class UpdateData
 {
 	public DateTime BuildDate { get; set; }
 	public string AppVersion { get; set; } = "0.0.0.0";
-	public string Note { get; set; } = "";
 	public string AppDownloadUrl { get; set; } = "";
 	public string Equipment { get; set; } = "";
 	public string Expedition { get; set; } = "";
@@ -393,6 +415,7 @@ public class UpdateData
 	public int FitBonuses { get; set; }
 	public int EquipmentUpgrades { get; set; }
 	public DateTime MaintenanceDate { get; set; }
+	public string MaintenanceInformationLink { get; set; } = "";
 
 	/// <summary>
 	/// 1=event start, 2=event end, 3=regular maintenance

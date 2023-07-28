@@ -1,0 +1,9 @@
+﻿using ElectronicObserver.ViewModels.Translations;
+
+namespace ElectronicObserver.Window.Settings.SubWindow.ShipTraining;
+
+public class ConfigurationShipTrainingTranslationViewModel : TranslationBaseViewModel
+{
+	public string FormShipTraining_AllowMultiplePlanPerShipToolTip => ConfigurationResources.FormShipTraining_AllowMultiplePlanPerShipToolTip;
+	public string FormShipTraining_AllowMultiplePlanPerShip => ConfigurationResources.FormShipTraining_AllowMultiplePlanPerShip;
+}

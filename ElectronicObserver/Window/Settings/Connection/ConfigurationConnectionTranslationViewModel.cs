@@ -1,5 +1,4 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.Connection;
 
@@ -7,18 +6,18 @@ public class ConfigurationConnectionTranslationViewModel : TranslationBaseViewMo
 {
 	public string Port => ConfigRes.Port;
 	public string ConnectionPort => ConfigRes.ConnectionPort;
-	public string Connection_UseSystemProxy => Properties.Window.Dialog.DialogConfiguration.Connection_UseSystemProxy;
+	public string Connection_UseSystemProxy => ConfigurationResources.Connection_UseSystemProxy;
 	public string UseSystemProxyTooltip => ConfigRes.UseSystemProxyTooltip;
 
-	public string Connection_UseUpstreamProxy => Properties.Window.Dialog.DialogConfiguration.Connection_UseUpstreamProxy;
-	public string Connection_UseUpstreamProxyToolTip => Properties.Window.Dialog.DialogConfiguration.Connection_UseUpstreamProxyToolTip;
-	public string Connection_UpstreamProxyPortToolTip => Properties.Window.Dialog.DialogConfiguration.Connection_UpstreamProxyPortToolTip;
-	public string UpstreamProxyToolTip => Properties.Window.Dialog.DialogConfiguration.UpstreamProxyToolTip;
+	public string Connection_UseUpstreamProxy => ConfigurationResources.Connection_UseUpstreamProxy;
+	public string Connection_UseUpstreamProxyToolTip => ConfigurationResources.Connection_UseUpstreamProxyToolTip;
+	public string Connection_UpstreamProxyPortToolTip => ConfigurationResources.Connection_UpstreamProxyPortToolTip;
+	public string UpstreamProxyToolTip => ConfigurationResources.UpstreamProxyToolTip;
 
-	public string Connection_DownstreamProxyLabel => Properties.Window.Dialog.DialogConfiguration.Connection_DownstreamProxyLabel;
-	public string Connection_DownstreamProxyToolTip => Properties.Window.Dialog.DialogConfiguration.Connection_DownstreamProxyToolTip;
+	public string Connection_DownstreamProxyLabel => ConfigurationResources.Connection_DownstreamProxyLabel;
+	public string Connection_DownstreamProxyToolTip => ConfigurationResources.Connection_DownstreamProxyToolTip;
 
-	public string Connection_SaveReceivedData => Properties.Window.Dialog.DialogConfiguration.Connection_SaveReceivedData;
+	public string Connection_SaveReceivedData => ConfigurationResources.Connection_SaveReceivedData;
 	public string MayIncreaseSize => ConfigRes.MayIncreaseSize;
 
 	public string SaveLocation => ConfigRes.SaveLocation;
@@ -30,9 +29,9 @@ public class ConfigurationConnectionTranslationViewModel : TranslationBaseViewMo
 
 	public string OutputProxyScript => ConfigRes.OutputProxyScript;
 
-	public string NetworkSettingsNote => Properties.Window.Dialog.DialogConfiguration.NetworkSettingsNote;
+	public string NetworkSettingsNote => ConfigurationResources.NetworkSettingsNote;
 
-	public string Connection_RegisterAsSystemProxy => Properties.Window.Dialog.DialogConfiguration.Connection_RegisterAsSystemProxy;
+	public string Connection_RegisterAsSystemProxy => ConfigurationResources.Connection_RegisterAsSystemProxy;
 	public string RegSystemProxyHint => ConfigRes.RegSystemProxyHint;
-	public string Connection_SaveDataPathSearch => Properties.Window.Dialog.DialogConfiguration.Connection_SaveDataPathSearch;
+	public string Connection_SaveDataPathSearch => ConfigurationResources.Connection_SaveDataPathSearch;
 }

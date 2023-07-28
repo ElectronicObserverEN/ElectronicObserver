@@ -4,16 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
+using ElectronicObserver.Window.Dialog.EquipmentPicker;
+using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
@@ -35,13 +39,18 @@ using ElectronicObserver.Window.Settings.SubWindow.Group;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 using ElectronicObserver.Window.Settings.SubWindow.Json;
 using ElectronicObserver.Window.Settings.SubWindow.Quest;
+using ElectronicObserver.Window.Settings.SubWindow.ShipTraining;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
+using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
+using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
@@ -49,6 +58,10 @@ using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
@@ -88,7 +101,7 @@ public partial class App : Application
 
 			if (args.Exception is not COMException { ErrorCode: CLIPBRD_E_CANT_OPEN }) return;
 
-			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
+			Logger.Add(3, MainResources.CopyingToClipboardFailed);
 			args.Handled = true;
 		};
 	}
@@ -129,7 +142,7 @@ public partial class App : Application
 				// 多重起動禁止
 				MessageBox.Show
 				(
-					ElectronicObserver.Properties.Resources.MultiInstanceNotification,
+					ElectronicObserver.Translations.Resources.MultiInstanceNotification,
 					caption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation
@@ -150,14 +163,21 @@ public partial class App : Application
 			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 #endif
 
+			Task.Run(() =>
+			{
+				// pre-load ef model to avoid performance hits later
+				using ElectronicObserverContext db = new();
+				_ = db.Model;
+			});
+
 			try
 			{
 				Directory.CreateDirectory(@"Settings\Layout");
 			}
 			catch (UnauthorizedAccessException)
 			{
-				MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
-					ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show(MainResources.MissingPermissions,
+					MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 				throw;
 			}
@@ -225,6 +245,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationBrowserTranslationViewModel>()
 			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
 			.AddSingleton<ConfigurationJsonTranslationViewModel>()
+			.AddSingleton<ConfigurationShipTrainingTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
@@ -264,10 +285,16 @@ public partial class App : Application
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
 			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
+			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
+			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
+			.AddSingleton<SortieDetailTranslationViewModel>()
+			.AddSingleton<TelegramTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
+			.AddSingleton<PhaseFactory>()
+			.AddSingleton<BattleFactory>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
@@ -277,6 +304,7 @@ public partial class App : Application
 			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
+			.AddSingleton<ColorService>()
 			// external
 			.AddSingleton(JotTracker())
 
@@ -307,39 +335,39 @@ public partial class App : Application
 
 		tracker
 			.Configure<DialogAlbumMasterShipWpf>()
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<DialogAlbumMasterEquipmentWpf>()
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentListWindow>()
-			.Property(w => w.ViewModel.EquipmentGridColumnProperties)
-			.Property(w => w.ViewModel.EquipmentGridSortDescriptions)
+			.Property(w => w.ViewModel.EquipmentGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.EquipmentGridViewModel.SortDescriptions)
 			.Property(w => w.ViewModel.EquipmentGridWidth)
-			.Property(w => w.ViewModel.DetailGridColumnProperties)
-			.Property(w => w.ViewModel.DetailGridSortDescriptions);
+			.Property(w => w.ViewModel.EquipmentDetailGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.EquipmentDetailGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<ExpeditionCheckView>()
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentUpgradePlanViewerViewModel>()
 			.Property(w => w.Filters.DisplayFinished)
 			.Property(w => w.Filters.SelectAllDay)
 			.Property(w => w.Filters.SelectToday)
-			.Property(w => w.ColumnProperties)
-			.Property(w => w.SortDescriptions);
+			.Property(w => w.DataGridViewModel.ColumnProperties)
+			.Property(w => w.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<ShipTrainingPlanViewerViewModel>()
-			.Property(w => w.ColumnProperties)
-			.Property(w => w.SortDescriptions)
+			.Property(w => w.DataGridViewModel.ColumnProperties)
+			.Property(w => w.DataGridViewModel.SortDescriptions)
 			.Property(w => w.DisplayFinished);
 
 		tracker
@@ -353,8 +381,8 @@ public partial class App : Application
 
 		tracker
 			.Configure<ExpCheckerWindow>()
-			.Property(w => w.ViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		tracker
 			.Configure<BaseAirCorpsSimulationContentDialog>()
@@ -362,9 +390,47 @@ public partial class App : Application
 			.Property(w => w.ViewModel.MaxAircraftLevelAirBase);
 
 		tracker
+			.Configure<AirDefenseWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
 			.Configure<ConfigurationWindow>()
 			.Property(w => w.ViewModel.BGM.ColumnProperties)
 			.Property(w => w.ViewModel.BGM.SortDescriptions);
+
+		tracker
+			.Configure<ConstructionRecordViewerWindow>()
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsAllViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsAllViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsFilteredByShipViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsFilteredByShipViewModel.SortDescriptions);
+
+		tracker
+			.Configure<DevelopmentRecordViewerWindow>()
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.SortDescriptions);
+
+		tracker
+			.Configure<DropRecordViewerWindow>()
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.SortDescriptions);
+
+		tracker
+			.Configure<EventLockPlannerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<SenkaViewerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
 		return tracker;
 	}

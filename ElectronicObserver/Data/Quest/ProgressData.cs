@@ -136,44 +136,53 @@ public abstract class ProgressData : IIdentifiable
 	{
 		ApplyTemporaryProgress(q);
 
-
-		if (QuestType == 0)     // ver. 1.6.6 以前のデータとの互換性維持
-			QuestType = q.Type;
-
-		switch (q.Progress)
+		// ver. 1.6.6 以前のデータとの互換性維持
+		if (QuestType == 0)
 		{
-			case 1:     //50%
-				switch (q.QuestID)
-				{
-					case 337: // rounds to 2/3
-						Progress = 1;
-						break;
-
-					default:
-						Progress = (int)Math.Max(Progress, Math.Ceiling((ProgressMax + SharedCounterShift) * 0.5) - SharedCounterShift);
-						break;
-				}
-				break;
-			case 2:     //80%
-				switch (q.QuestID)
-				{
-					case 330: // rounds to 4/4
-						Progress = 3;
-						break;
-
-					default:
-						Progress = ProgressMax switch
-						{
-							3 => 2,
-							_ => Progress = (int)Math.Max(Progress,
-								Math.Ceiling((ProgressMax + SharedCounterShift) * 0.8) - SharedCounterShift)
-						};
-						break;
-				}
-				break;
-
+			QuestType = q.Type;
 		}
 
+		// quests where 50% still means 2/3 progress
+		static bool IsOldQuest(int questId) => questId is
+			211 or // Bd4
+			218 or // Bd5
+			256 or // Bm2
+			261 or // Bw10
+			303 or // C2
+			307 or // C5
+			324 or // C22
+			331 or // C31
+			333 or // C33
+			335 or // C35
+			337 or // C38
+			402 or // D2
+			416 or // D15
+			607 or // F7
+			608 or // F8
+			612 or // F11
+			810 or // B63
+			886; // B119
+
+		Progress = q.Progress switch
+		{
+			// 50%
+			1 => ProgressMax switch
+			{
+				3 when !IsOldQuest(QuestID) => 1,
+
+				_ => (int)Math.Max(Progress, Math.Ceiling((ProgressMax + SharedCounterShift) * 0.5) - SharedCounterShift),
+			},
+
+			// 80%
+			2 => ProgressMax switch
+			{
+				3 => 2,
+				4 => 3,
+				_ => (int)Math.Max(Progress, Math.Ceiling((ProgressMax + SharedCounterShift) * 0.8) - SharedCounterShift),
+			},
+
+			_ => Progress,
+		};
 	}
 
 	public virtual void ApplyTemporaryProgress(QuestData q)

@@ -150,7 +150,11 @@ public interface IEquipmentDataMaster : IIdentifiable
 	/// <summary>
 	/// 拡張スロットに装備可能な艦船IDのリスト
 	/// </summary>
-	IEnumerable<int> EquippableShipsAtExpansion { get; set; }
+	IEnumerable<ShipId> EquippableShipsAtExpansion { get; set; }
+
+	IEnumerable<ShipTypes> EquippableShipTypesAtExpansion { get; set; }
+
+	IEnumerable<ShipClass> EquippableShipClassesAtExpansion { get; set; }
 
 	/// <summary> 砲系かどうか </summary>
 	bool IsGun { get; }

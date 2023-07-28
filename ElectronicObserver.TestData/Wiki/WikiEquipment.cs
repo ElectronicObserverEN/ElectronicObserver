@@ -13,7 +13,7 @@ public class WikiEquipment
 	public JsonElement _firepower { get; set; }
 	public int _icon { get; set; }
 	public int _id { get; set; }
-	public string _info { get; set; }
+	public JsonElement _info { get; set; }
 	public string _japanese_name { get; set; }
 	public JsonElement _los { get; set; }
 	public JsonElement _luck { get; set; }

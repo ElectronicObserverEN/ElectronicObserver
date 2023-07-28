@@ -3,17 +3,11 @@
 public class ApiGetMemberQuestlistRequest
 {
 	[JsonPropertyName("api_page_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiPageNo { get; set; } = default!;
+	public string ApiPageNo { get; set; } = "";
 
 	[JsonPropertyName("api_tab_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiTabId { get; set; } = default!;
+	public string ApiTabId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

@@ -3,51 +3,35 @@
 public class ApiMstMapinfo
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_infotext")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiInfotext { get; set; } = default!;
+	public string ApiInfotext { get; set; } = "";
 
 	[JsonPropertyName("api_item")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiItem { get; set; } = new();
 
 	[JsonPropertyName("api_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLevel { get; set; } = default!;
+	public int ApiLevel { get; set; }
 
 	[JsonPropertyName("api_maparea_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMapareaId { get; set; } = default!;
+	public int ApiMapareaId { get; set; }
 
 	[JsonPropertyName("api_max_maphp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiMaxMaphp { get; set; } = default!;
+	public int? ApiMaxMaphp { get; set; }
 
 	[JsonPropertyName("api_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNo { get; set; } = default!;
+	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_opetext")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiOpetext { get; set; } = default!;
+	public string ApiOpetext { get; set; } = "";
 
 	[JsonPropertyName("api_required_defeat_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiRequiredDefeatCount { get; set; } = default!;
+	public int? ApiRequiredDefeatCount { get; set; }
 
 	[JsonPropertyName("api_sally_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiSallyFlag { get; set; } = new();
 }

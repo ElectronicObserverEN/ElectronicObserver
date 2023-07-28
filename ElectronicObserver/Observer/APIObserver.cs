@@ -5,9 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
-using System.Windows.Forms;
+using System.Windows.Controls;
 using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services.ApiFileService;
@@ -22,7 +23,7 @@ namespace ElectronicObserver.Observer;
 
 public sealed class APIObserver
 {
-
+	private object LockObject { get; } = new();
 
 	#region Singleton
 
@@ -603,7 +604,7 @@ public sealed class APIObserver
 	public delegate void ProxyStartedEventHandler();
 	public event ProxyStartedEventHandler ProxyStarted = delegate { };
 
-	private object UIControl;
+	private Control UIControl { get; set; }
 
 
 	public event APIReceivedEventHandler RequestReceived = delegate { };
@@ -613,6 +614,13 @@ public sealed class APIObserver
 	private ExplicitProxyEndPoint Endpoint { get; set; }
 
 	private Lazy<ApiFileService> ApiFileService { get; } = new(() => new(KCDatabase.Instance));
+
+	private Channel<Action> ApiProcessingChannel { get; } = Channel.CreateUnbounded<Action>(new UnboundedChannelOptions
+	{
+		SingleReader = true,
+		SingleWriter = true,
+		AllowSynchronousContinuations = true,
+	});
 
 	private APIObserver()
 	{
@@ -727,19 +735,31 @@ public sealed class APIObserver
 		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
+
+		Task.Run(ProcessApiDataAsync);
+	}
+
+	private async Task ProcessApiDataAsync()
+	{
+		// basically while (true)
+		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
+		{
+			Action apiAction = await ApiProcessingChannel.Reader.ReadAsync();
+			await UIControl.Dispatcher.BeginInvoke(apiAction);
+		}
 	}
 
 	/// <summary>
 	/// 通信の受信を開始します。
 	/// </summary>
 	/// <param name="portID">受信に使用するポート番号。</param>
-	/// <param name="UIControl">GUI スレッドで実行するためのオブジェクト。中身は何でもいい</param>
+	/// <param name="uiControl">GUI スレッドで実行するためのオブジェクト。中身は何でもいい</param>
 	/// <returns>実際に使用されるポート番号。</returns>
-	public int Start(int portID, object UIControl)
+	public int Start(int portID, Control uiControl)
 	{
 		Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
-		this.UIControl = UIControl;
+		UIControl = uiControl;
 
 		if (Proxy.ProxyRunning) Proxy.Stop();
 
@@ -750,7 +770,7 @@ public sealed class APIObserver
 
 			Proxy.UpStreamHttpProxy = c switch
 			{
-				{UseUpstreamProxy: true} => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
+				{ UseUpstreamProxy: true } => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
 				_ => null,
 			};
 
@@ -819,15 +839,7 @@ public sealed class APIObserver
 				Task.Run((Action)(() => { SaveRequest(url, body); }));
 			}
 
-			switch (UIControl)
-			{
-				case Control control:
-					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
-					break;
-				case System.Windows.Controls.Control control:
-					control.Dispatcher.Invoke(() => LoadRequest(url, body));
-					break;
-			}
+			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
 		//debug
@@ -906,11 +918,11 @@ public sealed class APIObserver
 					byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
 					Array.Copy(await e.GetResponseBody(), responseCopy, (await e.GetResponseBody()).Length);
 
-					Task.Run((Action)(() =>
+					Task.Run((() =>
 					{
 						try
 						{
-							lock (this)
+							lock (LockObject)
 							{
 								// 同時に書き込みが走るとアレなのでロックしておく
 
@@ -948,15 +960,7 @@ public sealed class APIObserver
 			string url = baseurl;
 			string body = await e.GetResponseBodyAsString();
 
-			switch (UIControl)
-			{
-				case Control control:
-					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
-					break;
-				case System.Windows.Controls.Control control:
-					control.Dispatcher.Invoke(() => LoadResponse(url, body));
-					break;
-			}
+			await ApiProcessingChannel.Writer.WriteAsync(() => LoadResponse(url, body));
 		}
 
 
@@ -1033,7 +1037,7 @@ public sealed class APIObserver
 				}
 				else
 				{
-					throw new InvalidOperationException(string.Format(ObserverRes.ErrorFromServer,result));
+					throw new InvalidOperationException(string.Format(ObserverRes.ErrorFromServer, result));
 				}
 			}
 
