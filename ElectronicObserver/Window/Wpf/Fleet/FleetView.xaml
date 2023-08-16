@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
 	xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
 	x:Name="FleetControl"
@@ -177,9 +178,50 @@
 						/>
 				</ContextMenu>
 			</Border.ContextMenu>
-			<StackPanel DataContext="{Binding ControlFleet}" Orientation="Horizontal">
-				<Border DataContext="{Binding Name}" ToolTip="{Binding ToolTip}">
-					<TextBlock Margin="4 2" Text="{Binding Text}" />
+			<StackPanel
+				DataContext="{Binding ControlFleet}"
+				Grid.IsSharedSizeScope="True"
+				Orientation="Horizontal"
+				>
+				<Border>
+					<Border.ToolTip>
+						<StackPanel>
+							<StackPanel.Resources>
+								<DataTemplate DataType="{x:Type viewModels:TotalRate}">
+									<Grid HorizontalAlignment="Left">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition SharedSizeGroup="ItemMarker" />
+											<ColumnDefinition SharedSizeGroup="Rate" />
+											<ColumnDefinition SharedSizeGroup="Equipment" />
+										</Grid.ColumnDefinitions>
+
+										<!--  KATAKANA MIDDLE DOT  -->
+										<TextBlock Grid.Column="0" Text="&#x30FB;" />
+										<TextBlock Grid.Column="1" Margin="4 0">
+											<Run Text="[" /><Run Text="{Binding Rate, StringFormat={}{0:P1}, Mode=OneWay}" /><Run Text="]" />
+										</TextBlock>
+										<ContentControl Grid.Column="2" Content="{Binding Equipment}" />
+									</Grid>
+								</DataTemplate>
+							</StackPanel.Resources>
+
+							<TextBlock Text="{Binding Name.ToolTip}" />
+
+							<TextBlock>
+								<Run Text="{x:Static translations:FleetResources.NightRecon}" />
+								<Run Text=":" />
+							</TextBlock>
+							<ItemsControl ItemsSource="{Binding NightRecons}" />
+
+							<TextBlock>
+								<Run Text="{x:Static translations:FleetResources.Flare}" />
+								<Run Text=":" />
+							</TextBlock>
+							<ItemsControl ItemsSource="{Binding Flares}" />
+						</StackPanel>
+					</Border.ToolTip>
+
+					<TextBlock Margin="4 2" Text="{Binding Name.Text}" />
 				</Border>
 
 				<views:FleetStateView ViewModel="{Binding State}" />

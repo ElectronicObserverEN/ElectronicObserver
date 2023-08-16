@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -25,66 +26,31 @@ public partial class FleetStatusViewModel : ObservableObject
 	private int FleetId { get; }
 	public int BranchWeight { get; private set; } = 1;
 
+	public List<TotalRate> NightRecons { get; private set; } = new();
+	public List<TotalRate> Flares { get; private set; } = new();
+
 	public FleetStatusViewModel(int fleetId)
 	{
 		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		FleetId = fleetId;
 
-		Name = new()
-		{
-			// Text = "[" + parent.FleetID.ToString() + "]",
-			// Anchor = AnchorStyles.Left,
-			// ForeColor = parent.MainFontColor,
-			// UseMnemonic = false,
-			// Padding = new Padding(0, 1, 0, 1),
-			// Margin = new Padding(2, 0, 2, 0),
-			// AutoSize = true,
-			// //Name.Visible = false;
-			// Cursor = Cursors.Help
-		};
-
-		State = new()
-		{
-			// Anchor = AnchorStyles.Left,
-			// ForeColor = parent.MainFontColor,
-			// Padding = new Padding(),
-			// Margin = new Padding(),
-			// AutoSize = true
-		};
+		Name = new();
+		State = new();
 
 		AirSuperiority = new()
 		{
-			// Anchor = AnchorStyles.Left,
-			// ForeColor = parent.MainFontColor,
-			// ImageList = ResourceManager.Instance.Equipments,
 			ImageIndex = ResourceManager.EquipmentContent.CarrierBasedFighter,
-			// Padding = new Padding(2, 2, 2, 2),
-			// Margin = new Padding(2, 0, 2, 0),
-			// AutoSize = true
 		};
 
 		SearchingAbility = new()
 		{
-			// Anchor = AnchorStyles.Left,
-			// ForeColor = parent.MainFontColor,
-			// ImageList = ResourceManager.Instance.Equipments,
 			ImageIndex = ResourceManager.EquipmentContent.CarrierBasedRecon,
-			// Padding = new Padding(2, 2, 2, 2),
-			// Margin = new Padding(2, 0, 2, 0),
-			// AutoSize = true
 		};
-		// SearchingAbility.Click += (sender, e) => SearchingAbility_Click(sender, e, parent.FleetID);
 
 		AntiAirPower = new()
 		{
-			// Anchor = AnchorStyles.Left,
-			// ForeColor = parent.MainFontColor,
-			// ImageList = ResourceManager.Instance.Equipments,
 			ImageIndex = ResourceManager.EquipmentContent.HighAngleGun,
-			// Padding = new Padding(2, 2, 2, 2),
-			// Margin = new Padding(2, 0, 2, 0),
-			// AutoSize = true
 		};
 
 		ConfigurationChanged();
@@ -95,7 +61,9 @@ public partial class FleetStatusViewModel : ObservableObject
 	{
 		BranchWeight--;
 		if (BranchWeight <= 0)
+		{
 			BranchWeight = 4;
+		}
 
 		Update(KCDatabase.Instance.Fleet[FleetId]);
 	}
@@ -108,7 +76,7 @@ public partial class FleetStatusViewModel : ObservableObject
 
 		Name.Text = fleet.Name;
 		{
-			var members = fleet.MembersInstance.Where(s => s != null);
+			IEnumerable<IShipData> members = fleet.MembersInstance.Where(s => s != null);
 
 			int levelSum = members.Sum(s => s.Level);
 
@@ -120,27 +88,22 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			int speed = members.Select(s => s.Speed).DefaultIfEmpty(20).Min();
 
-			string supporttype;
-			switch (fleet.SupportType)
+			string supporttype = fleet.SupportType switch
 			{
-				case 0:
-				default:
-					supporttype = FormFleet.SupportTypeNone; break;
-				case 1:
-					supporttype = FormFleet.SupportTypeAerial; break;
-				case 2:
-					supporttype = FormFleet.SupportTypeShelling; break;
-				case 3:
-					supporttype = FormFleet.SupportTypeTorpedo; break;
-			}
+				0 => FormFleet.SupportTypeNone,
+				1 => FormFleet.SupportTypeAerial,
+				2 => FormFleet.SupportTypeShelling,
+				3 => FormFleet.SupportTypeTorpedo,
+				_ => FormFleet.SupportTypeNone,
+			};
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 			int tp = Calculator.GetTPDamage(fleet);
 
 			// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
-			var transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
-			var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
-			var radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
+			IEnumerable<int> transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
+			IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType is EquipmentTypes.LandingCraft or EquipmentTypes.SpecialAmphibiousTank));
+			IEnumerable<int> radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
 
 			Name.ToolTip = string.Format(FormFleet.FleetNameToolTip,
 				levelSum,
@@ -171,6 +134,8 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Count(i => i > 0)
 			);
 
+			NightRecons = fleet.NightRecons().TotalRate();
+			Flares = fleet.Flares().TotalRate();
 		}
 
 		State.UpdateFleetState(fleet);
@@ -194,9 +159,9 @@ public partial class FleetStatusViewModel : ObservableObject
 		//索敵能力計算
 		SearchingAbility.Text = fleet.GetSearchingAbilityString(BranchWeight);
 		{
-			StringBuilder sb = new StringBuilder();
+			StringBuilder sb = new();
 			double probStart = fleet.GetContactProbability();
-			var probSelect = fleet.GetContactSelectionProbability();
+			Dictionary<int, double> probSelect = fleet.GetContactSelectionProbability();
 
 			sb.AppendFormat(FormFleet.FleetLosToolTip,
 				BranchWeight,
@@ -218,7 +183,7 @@ public partial class FleetStatusViewModel : ObservableObject
 
 		// 対空能力計算
 		{
-			var sb = new StringBuilder();
+			StringBuilder sb = new();
 			double lineahead = Calculator.GetAdjustedFleetAAValue(fleet, 1);
 
 			AntiAirPower.Text = lineahead.ToString("0.0");
@@ -232,7 +197,6 @@ public partial class FleetStatusViewModel : ObservableObject
 		}
 	}
 
-
 	public void Refresh()
 	{
 		State.RefreshFleetState();
@@ -240,14 +204,6 @@ public partial class FleetStatusViewModel : ObservableObject
 
 	public void ConfigurationChanged()
 	{
-		// Name.Font = parent.MainFont;
-		// State.Font = parent.MainFont;
-		//State.BackColor = Color.Transparent;
 		State.RefreshFleetState();
-		// AirSuperiority.Font = parent.MainFont;
-		// SearchingAbility.Font = parent.MainFont;
-		// AntiAirPower.Font = parent.MainFont;
-
-		// ControlHelper.SetTableRowStyles(parent.TableFleet, ControlHelper.GetDefaultRowStyle());
 	}
 }

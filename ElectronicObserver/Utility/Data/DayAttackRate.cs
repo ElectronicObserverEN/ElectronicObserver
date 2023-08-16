@@ -17,13 +17,15 @@ public static class DayAttackRate
 	{
 		if (rates.Count == 0) return rates;
 
-		List<double> totalRates = rates.ToList();
+		List<double> totalRates = rates
+			.Select(r => Math.Min(r, 1))
+			.ToList();
 
 		totalRates[^1] = 1;
 
 		for (int i = 1; i < totalRates.Count - 1; i++)
 		{
-			totalRates[i] = (1 - totalRates.ToArray()[..i].Sum()) * totalRates[i];
+			totalRates[i] = (1 - totalRates.GetRange(0, i).Sum()) * totalRates[i];
 		}
 
 		totalRates = totalRates.Select(d => Math.Round(d * 1000) / 1000).ToList();

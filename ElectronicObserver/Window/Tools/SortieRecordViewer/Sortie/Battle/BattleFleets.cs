@@ -139,6 +139,18 @@ public class BattleFleets
 			if (GetShip(shipData) is not ShipDataMock ship) continue;
 
 			ship.Aircraft = shipData.ApiOnslot;
+			ship.Condition = shipData.ApiCond;
+			ship.Fuel = shipData.ApiFuel;
+			ship.Ammo = shipData.ApiBull;
 		}
 	}
+
+	public IFleetData? GetFleet(BattleIndex index) => index.FleetFlag switch
+	{
+		FleetFlag.Player when index.Index < Fleet.MembersWithoutEscaped?.Count => Fleet,
+		FleetFlag.Player => EscortFleet,
+
+		_ when index.Index < EnemyFleet?.MembersWithoutEscaped?.Count => EnemyFleet,
+		_ => EnemyEscortFleet,
+	};
 }

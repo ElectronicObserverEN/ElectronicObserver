@@ -17,10 +17,10 @@ public class PhaseTorpedo : PhaseBase
 	};
 
 	private ApiRaigekiClass BattleApiOpeningAtack { get; }
-	private TorpedoPhase Phase { get; }
+	public TorpedoPhase Phase { get; }
 
-	private List<PhaseShellingAttack> Attacks { get; } = new();
-	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseTorpedoAttack> Attacks { get; } = new();
+	public List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = new();
 
 	public PhaseTorpedo(ApiRaigekiClass battleApiOpeningAtack, TorpedoPhase phase)
 	{
@@ -35,7 +35,7 @@ public class PhaseTorpedo : PhaseBase
 		ProcessPlayerAttacks();
 		ProcessEnemyAttacks();
 
-		foreach (PhaseShellingAttack attack in Attacks)
+		foreach (PhaseTorpedoAttack attack in Attacks)
 		{
 			AttackDisplays.Add(new(battleFleets, attack));
 			AddDamage(battleFleets, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
@@ -58,7 +58,7 @@ public class PhaseTorpedo : PhaseBase
 			BattleIndex attacker = new(i, FleetFlag.Player);
 			BattleIndex defender = new(BattleApiOpeningAtack.ApiFrai[i], FleetFlag.Enemy);
 
-			PhaseShellingAttack attack = new()
+			PhaseTorpedoAttack attack = new()
 			{
 				Attacker = attacker,
 				AttackType = DayAttackKind.Torpedo,
@@ -94,7 +94,7 @@ public class PhaseTorpedo : PhaseBase
 			BattleIndex attacker = new(i, FleetFlag.Enemy);
 			BattleIndex defender = new(BattleApiOpeningAtack.ApiErai[i], FleetFlag.Player);
 
-			PhaseShellingAttack attack = new()
+			PhaseTorpedoAttack attack = new()
 			{
 				Attacker = attacker,
 				AttackType = DayAttackKind.Torpedo,

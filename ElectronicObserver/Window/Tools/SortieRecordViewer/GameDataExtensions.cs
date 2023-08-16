@@ -19,16 +19,30 @@ public static class GameDataExtensions
 	private static IKCDatabase KcDatabase => Ioc.Default.GetRequiredService<IKCDatabase>();
 	private static List<FitBonusPerEquipment> FitBonusList => KCDatabase.Instance.Translation.FitBonus.FitBonusList;
 
-	public static IFleetData? MakeFleet(this SortieFleet? fleet) => fleet switch
+	[return: NotNullIfNotNull(nameof(fleetData))]
+	public static List<IFleetData?>? MakeFleets(this SortieFleetData? fleetData) => fleetData switch
+	{
+		{ } => fleetData.Fleets.Select((f, i) => MakeFleet(f, i switch
+		{
+			0 or 1 => fleetData.CombinedFlag,
+			_ => 0,
+		})).ToList(),
+		_ => null,
+	};
+
+	[return: NotNullIfNotNull(nameof(fleet))]
+	public static IFleetData? MakeFleet(this SortieFleet? fleet, int combinedFlag) => fleet switch
 	{
 		{ } => new FleetDataMock
 		{
 			Name = fleet.Name,
+			FleetType = (FleetType)combinedFlag,
 			MembersInstance = new ReadOnlyCollection<IShipData?>(fleet.Ships.Select(MakeShip).Select(ApplyFitBonus).ToList()),
 		},
 		_ => null,
 	};
 
+	[return: NotNullIfNotNull(nameof(ship))]
 	private static ShipDataMock? MakeShip(SortieShip? ship) => ship switch
 	{
 		{ } => new ShipDataMock(KcDatabase.MasterShips[(int)ship.Id])
@@ -50,6 +64,7 @@ public static class GameDataExtensions
 		_ => null,
 	};
 
+	[return: NotNullIfNotNull(nameof(ship))]
 	private static IShipData? ApplyFitBonus(ShipDataMock? ship)
 	{
 		if (ship is null) return ship;
@@ -67,6 +82,7 @@ public static class GameDataExtensions
 		return ship;
 	}
 
+	[return: NotNullIfNotNull(nameof(equipment))]
 	private static IEquipmentData? MakeEquipment(SortieEquipment? equipment) => equipment switch
 	{
 		{ } => new EquipmentDataMock(KcDatabase.MasterEquipments[(int)equipment.Id])
@@ -131,6 +147,7 @@ public static class GameDataExtensions
 		IsAvailable = fleet.IsAvailable,
 	};
 
+	[return: NotNullIfNotNull(nameof(ship))]
 	private static IShipData? DeepClone(this IShipData? ship) => ship switch
 	{
 		null => null,

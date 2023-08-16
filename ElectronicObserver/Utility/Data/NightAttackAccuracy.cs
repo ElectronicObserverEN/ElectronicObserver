@@ -14,7 +14,7 @@ public static class NightAttackAccuracy
 		double shipAccuracy = ship.Accuracy();
 		double equipAccuracy = ship.AllSlotInstance
 			.Where(e => e != null)
-			.Sum(e => e.MasterEquipment.Accuracy);
+			.Sum(e => e!.MasterEquipment.Accuracy + e.NightAccuracyBonus());
 
 		// if night equip is present assume it activates
 		return Math.Floor(fleet.NightScoutMod()
@@ -28,6 +28,43 @@ public static class NightAttackAccuracy
 	}
 
 	private static int BaseAccuracy(this IFleetData fleet) => 69;
+
+	private static double NightAccuracyBonus(this IEquipmentData? equip) => equip?.MasterEquipment.CategoryType switch
+	{
+		EquipmentTypes.RadarSmall or
+		EquipmentTypes.RadarLarge or
+		EquipmentTypes.RadarLarge2 when equip.MasterEquipment.Accuracy >= 3
+			=> 1.6 * Math.Sqrt(equip.Level),
+
+		EquipmentTypes.MainGunSmall or
+		EquipmentTypes.MainGunMedium or
+		EquipmentTypes.MainGunLarge or
+		EquipmentTypes.MainGunLarge2 or
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.Torpedo or
+		EquipmentTypes.MidgetSubmarine or
+		EquipmentTypes.RadarSmall or
+		EquipmentTypes.RadarLarge or
+		EquipmentTypes.RadarLarge2 or
+		EquipmentTypes.APShell or
+		EquipmentTypes.AAShell or
+		EquipmentTypes.LandingCraft or
+		EquipmentTypes.SpecialAmphibiousTank or
+		EquipmentTypes.ArmyInfantry or
+		EquipmentTypes.CommandFacility or
+		EquipmentTypes.AADirector or
+		EquipmentTypes.Searchlight or
+		EquipmentTypes.SearchlightLarge or
+		EquipmentTypes.SurfaceShipPersonnel or
+		EquipmentTypes.SurfaceShipEquipment or
+		EquipmentTypes.ASPatrol or
+		EquipmentTypes.Autogyro or
+		EquipmentTypes.AviationPersonnel or
+		EquipmentTypes.Rocket
+			=> 1.3 * Math.Sqrt(equip.Level),
+
+		_ => 0,
+	};
 
 	/// <summary>
 	/// <see href="https://twitter.com/yukicacoon/status/1542443860109819904"/>
@@ -49,13 +86,13 @@ public static class NightAttackAccuracy
 
 	private static int StarShellBonus(this IFleetData fleet) => fleet switch
 	{
-		{ } when fleet.HasStarShell() => 5,
+		_ when fleet.HasStarShell() => 5,
 		_ => 0,
 	};
 
 	private static int SearchlightBonus(this IFleetData fleet) => fleet switch
 	{
-		{ } when fleet.HasSearchlight() => 7,
+		_ when fleet.HasSearchlight() => 7,
 		_ => 0,
 	};
 

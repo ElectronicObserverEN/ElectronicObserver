@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -11,21 +12,25 @@ public class BattleNode : SortieNode
 {
 	public BattleData FirstBattle { get; }
 	public BattleData? SecondBattle { get; set; }
-	public BattleResult? BattleResult { get; set; }
+	public BattleResult? BattleResult { get; private set; }
+
+	public bool IsBoss { get; set; }
 
 	public string Result => ConstantsRes.BattleDetail_Result;
 
 	public string? ResultRank { get; private set; }
+	public string? RealWinRank => GetRealWinRank();
 	public string? ResultMvpMain { get; private set; }
 	public string? ResultMvpEscort { get; private set; }
 	public string? AdmiralExp { get; private set; }
 	public string? BaseExp { get; private set; }
 	public string? DropShip { get; private set; }
 
-	public BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle)
+	public BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, bool isBoss)
 		: base(kcDatabase, world, map, cell)
 	{
 		FirstBattle = battle;
+		IsBoss = isBoss;
 	}
 
 	public void AddResult(ISortieBattleResultApi result)
@@ -72,6 +77,34 @@ public class BattleNode : SortieNode
 				_ => ConstantsRes.BattleDetail_Drop + ConstantsRes.NoNode,
 			},
 			_ => null,
+		};
+	}
+
+	private string? GetRealWinRank()
+	{
+		IEnumerable<IShipData?> shipsBeforeBattle = FirstBattle.FleetsBeforeBattle.Fleet.MembersWithoutEscaped!;
+		BattleData lastBattle = SecondBattle switch
+		{
+			null => FirstBattle,
+			_ => SecondBattle,
+		};
+		IEnumerable<IShipData?> shipsAfterBattle = lastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped!;
+
+		if (FirstBattle.FleetsBeforeBattle.EscortFleet is IFleetData escort)
+		{
+			shipsBeforeBattle = shipsBeforeBattle.Concat(escort.MembersWithoutEscaped!);
+			shipsAfterBattle = shipsAfterBattle.Concat(lastBattle.FleetsAfterBattle.EscortFleet.MembersWithoutEscaped!);
+		}
+
+		int hpBeforeBattle = shipsBeforeBattle.Sum(s => s?.HPCurrent ?? 0);
+		int hpAfterBattle = shipsAfterBattle.Sum(s => s?.HPCurrent ?? 0);
+
+		bool damageTaken = hpBeforeBattle > hpAfterBattle;
+
+		return (BattleResult?.WinRank, damageTaken) switch
+		{
+			("S", false) => "SS",
+			_ => BattleResult?.WinRank,
 		};
 	}
 }

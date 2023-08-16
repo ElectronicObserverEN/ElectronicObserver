@@ -20,7 +20,7 @@ public class PhaseShelling : PhaseBase
 	};
 
 	private ApiHougeki1? ShellingData { get; }
-	private DayShellingPhase DayShellingPhase { get; }
+	public DayShellingPhase DayShellingPhase { get; }
 
 	private List<PhaseShellingAttack> Attacks { get; } = new();
 	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();

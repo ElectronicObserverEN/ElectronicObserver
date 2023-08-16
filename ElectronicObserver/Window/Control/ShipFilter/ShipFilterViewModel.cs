@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
@@ -19,7 +20,7 @@ public partial class ShipFilterViewModel : ObservableObject
 	public List<Filter> TypeFilters { get; }
 
 	public int LevelMin { get; set; } = 0;
-	public int LevelMax { get; set; } = 175;
+	public int LevelMax => ExpTable.ShipMaximumLevel;
 
 	public int AswMin { get; set; } = 0;
 	public int AswMax { get; set; } = 200;

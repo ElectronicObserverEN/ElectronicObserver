@@ -111,7 +111,11 @@ public class ShipDataMock : IShipData
 	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
 	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
-	public int EvasionBase => MasterShip.Evasion.GetParameter(Level);
+	public int EvasionBase => MasterShip.Evasion.IsDetermined switch
+	{
+		true => MasterShip.Evasion.GetParameter(Level),
+		_ => 0,
+	};
 	public int ShipID => (int)MasterShip.ShipId;
 	public int MasterID { get; set; }
 	public int SortID { get; set; }
@@ -129,8 +133,16 @@ public class ShipDataMock : IShipData
 	public Dictionary<string, string> RequestData { get; set; }
 	public dynamic RawData { get; set; }
 	public bool IsAvailable { get; set; }
-	public int ASWBase => MasterShip.ASW.GetParameter(Level) + ASWModernized;
-	public int LOSBase => MasterShip.LOS.GetParameter(Level);
+	public int ASWBase => MasterShip.ASW.IsDetermined switch
+	{
+		true => MasterShip.ASW.GetParameter(Level),
+		_ => 0,
+	} + ASWModernized;
+	public int LOSBase => MasterShip.LOS.IsDetermined switch
+	{
+		true => MasterShip.LOS.GetParameter(Level),
+		_ => 0,
+	};
 	public int LuckBase
 	{
 		get => Math.Min(MasterShip.LuckMin + LuckModernized, MasterShip.LuckMax);
@@ -168,6 +180,8 @@ public class ShipDataMock : IShipData
 		LuckModernized = 0;
 		HPMaxModernized = 0;
 		ASWModernized = 0;
+
+		Speed = ship.Speed;
 	}
 
 	public void LoadFromResponse(string apiname, dynamic data)

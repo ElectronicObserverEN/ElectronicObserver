@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
@@ -64,8 +65,13 @@ public class FileService
 	/// </summary>
 	/// <param name="path">Current folder path.</param>
 	/// <returns>Selected folder path or null if no path was selected.</returns>
-	public static string? SelectFolder(string path)
+	public static string? SelectFolder(string? path = null)
 	{
+		if (string.IsNullOrEmpty(path))
+		{
+			path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+		}
+
 		if (string.IsNullOrEmpty(path)) return null;
 
 		string fullPath = Path.GetFullPath(path);
@@ -195,6 +201,22 @@ public class FileService
 				// do not throw to avoid issues
 			}
 		}
+
+		return dialog.ShowDialog(MainWindow) switch
+		{
+			true => dialog.FileName,
+			_ => null,
+		};
+	}
+
+	public string? ExportCsv()
+	{
+		SaveFileDialog dialog = new()
+		{
+			Filter = "CSV|*.csv|File|*",
+			Title = EquipmentListResources.SaveCSVDialog,
+			InitialDirectory = Directory.GetCurrentDirectory(),
+		};
 
 		return dialog.ShowDialog(MainWindow) switch
 		{

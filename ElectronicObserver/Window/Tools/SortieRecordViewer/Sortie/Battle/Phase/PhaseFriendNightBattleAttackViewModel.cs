@@ -10,8 +10,12 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 {
 	public BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
+	public int AttackerHpBeforeAttack { get; }
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
+
 	private List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
@@ -34,6 +38,14 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+
+		AttackerHpBeforeAttack = Attacker.HPCurrent;
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
+
+		foreach (NightAttack nightAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - nightAttack.Damage);
+		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 

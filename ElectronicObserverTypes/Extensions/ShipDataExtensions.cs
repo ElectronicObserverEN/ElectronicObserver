@@ -119,6 +119,9 @@ public static class ShipDataExtensions
 	public static bool HasSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SurfaceShipPersonnel);
 
+	public static bool HasRegularSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.EquipmentId == EquipmentId.SurfaceShipPersonnel_SkilledLookouts);
+
 	public static bool HasDestroyerSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.EquipmentId == EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts);
 

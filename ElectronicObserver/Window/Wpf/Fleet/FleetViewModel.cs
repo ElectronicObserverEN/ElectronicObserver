@@ -65,7 +65,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		SubscribeToApis();
 
-		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 		// Update tag colours 
 		EventLockPlannerViewModel.TagChanged += UpdateShipTagColorList;
@@ -136,28 +136,21 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	void UpdateTimerTick()
 	{
-
 		FleetData fleet = KCDatabase.Instance.Fleet.Fleets[FleetId];
 
-		// TableFleet.SuspendLayout();
+		if (fleet != null)
 		{
-			if (fleet != null)
-				ControlFleet.Refresh();
-
+			ControlFleet.Refresh();
 		}
-		// TableFleet.ResumeLayout();
 
-		// TableMember.SuspendLayout();
 		for (int i = 0; i < ControlMember.Count; i++)
 		{
-			// ControlMember[i].HP.Refresh();
 			// this is for updating the repair timer when a ship is docked
 			ControlMember[i].HP.ResumeUpdate();
 		}
-		// TableMember.ResumeLayout();
 
 		// anchorage repairing
-		if (fleet != null && Utility.Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
+		if (fleet != null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
 		{
 			TimeSpan elapsed = DateTime.Now - KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
 
@@ -197,24 +190,16 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	void ConfigurationChanged()
 	{
-		var c = Utility.Configuration.Config;
+		Configuration.ConfigurationData c = Configuration.Config;
 
-		// MainFont = Font = c.UI.MainFont;
-		// SubFont = c.UI.SubFont;
+		FleetData? fleet = KCDatabase.Instance.Fleet[FleetId];
 
-		// AutoScroll = c.FormFleet.IsScrollable;
-
-		var fleet = KCDatabase.Instance.Fleet[FleetId];
-
-		// TableFleet.SuspendLayout();
 		if (ControlFleet != null && fleet != null)
 		{
 			ControlFleet.ConfigurationChanged();
 			ControlFleet.Update(fleet);
 		}
-		// TableFleet.ResumeLayout();
 
-		// TableMember.SuspendLayout();
 		if (ControlMember != null)
 		{
 			bool showAircraft = c.FormFleet.ShowAircraft;
@@ -267,14 +252,6 @@ public partial class FleetViewModel : AnchorableViewModel
 					member.Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
 			}
 		}
-
-		// ControlHelper.SetTableRowStyles(TableMember, ControlHelper.GetDefaultRowStyle());
-		// TableMember.ResumeLayout();
-
-		// TableMember.Location = new Point(TableMember.Location.X, TableFleet.Bottom /*+ Math.Max( TableFleet.Margin.Bottom, TableMember.Margin.Top )*/ );
-
-		// TableMember.PerformLayout();        //fixme:サイズ変更に親パネルが追随しない
-
 	}
 
 	private void UpdateShipTagColorList()
@@ -298,7 +275,6 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		if (model.ShipLocks.Any())
 		{
-
 			List<Color> colorsFromLockPlanner = model.Locks
 				.Select(eventLock => Color.FromArgb(eventLock.A, eventLock.R, eventLock.G, eventLock.B))
 				.ToList();
@@ -323,135 +299,6 @@ public partial class FleetViewModel : AnchorableViewModel
 		}
 
 		return defaultColors;
-
-	}
-
-	private string GetNameString(IFleetData? fleet)
-	{
-		if (fleet == null) return "";
-
-		var members = fleet.MembersInstance.Where(s => s != null);
-
-		int levelSum = members.Sum(s => s.Level);
-
-		int fueltotal = members.Sum(s => Math.Max((int)Math.Floor(s.FuelMax * (s.IsMarried ? 0.85 : 1.00)), 1));
-		int ammototal = members.Sum(s => Math.Max((int)Math.Floor(s.AmmoMax * (s.IsMarried ? 0.85 : 1.00)), 1));
-
-		int fuelunit = members.Sum(s => Math.Max((int)Math.Floor(s.FuelMax * 0.2 * (s.IsMarried ? 0.85 : 1.00)), 1));
-		int ammounit = members.Sum(s => Math.Max((int)Math.Floor(s.AmmoMax * 0.2 * (s.IsMarried ? 0.85 : 1.00)), 1));
-
-		int speed = members.Select(s => s.Speed).DefaultIfEmpty(20).Min();
-
-		string supporttype;
-		switch (fleet.SupportType)
-		{
-			case 0:
-			default:
-				supporttype = "n/a"; break;
-			case 1:
-				supporttype = "Aerial Support"; break;
-			case 2:
-				supporttype = "Support Shelling"; break;
-			case 3:
-				supporttype = "Long-range Torpedo Attack"; break;
-		}
-
-		double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
-		int tp = Calculator.GetTPDamage(fleet);
-
-		// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
-		var transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
-		var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
-
-
-		return string.Format(
-			"Lv sum: {0} / avg: {1:0.00}\r\n" +
-			"{2} fleet\r\n" +
-			"Support Expedition: {3}\r\n" +
-			"Total FP {4} / Torp {5} / AA {6} / ASW {7} / LOS {8}\r\n" +
-			"Drum: {9} ({10} ships)\r\n" +
-			"Daihatsu: {11} ({12} ships, +{13:p1})\r\n" +
-			"TP: S {14} / A {15}\r\n" +
-			"Consumption: {16} fuel / {17} ammo\r\n" +
-			"({18} fuel / {19} ammo per battle)",
-			levelSum,
-			(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
-			Constants.GetSpeed(speed),
-			supporttype,
-			members.Sum(s => s.FirepowerTotal),
-			members.Sum(s => s.TorpedoTotal),
-			members.Sum(s => s.AATotal),
-			members.Sum(s => s.ASWTotal),
-			members.Sum(s => s.LOSTotal),
-			transport.Sum(),
-			transport.Count(i => i > 0),
-			landing.Sum(),
-			landing.Count(i => i > 0),
-			expeditionBonus,
-			tp,
-			(int)(tp * 0.7),
-			fueltotal,
-			ammototal,
-			fuelunit,
-			ammounit
-		);
-	}
-
-	private string GetFleetAirString(IFleetData? fleet)
-	{
-		if (fleet == null) return "";
-
-		int airSuperiority = fleet.GetAirSuperiority();
-		bool includeLevel = Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1;
-
-		return string.Format(GeneralRes.ASTooltip,
-			(int)(airSuperiority / 3.0),
-			(int)(airSuperiority / 1.5),
-			Math.Max((int)(airSuperiority * 1.5 - 1), 0),
-			Math.Max((int)(airSuperiority * 3.0 - 1), 0),
-			includeLevel ? "w/o Proficiency" : "w/ Proficiency",
-			includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel(fleet) : Calculator.GetAirSuperiority(fleet));
-	}
-
-	private string GetFleetLosString(IFleetData? fleet, int branchWeight)
-	{
-		if (fleet == null) return "";
-
-		StringBuilder sb = new StringBuilder();
-		double probStart = fleet.GetContactProbability();
-		var probSelect = fleet.GetContactSelectionProbability();
-
-		sb.AppendFormat("Formula 33 (n={0})\r\n　(Click to switch between weighting)\r\n\r\nContact:\r\n　AS+ {1:p1} / AS {2:p1}\r\n",
-			branchWeight,
-			probStart,
-			probStart * 0.6);
-
-		if (probSelect.Count > 0)
-		{
-			sb.AppendLine("Selection:");
-
-			foreach (var p in probSelect.OrderBy(p => p.Key))
-			{
-				sb.AppendFormat("　Acc+{0}: {1:p1}\r\n", p.Key, p.Value);
-			}
-		}
-
-		return sb.ToString();
-	}
-
-	private string GetFleetAaString(IFleetData? fleet)
-	{
-		if (fleet == null) return "";
-
-		var sb = new StringBuilder();
-		double lineahead = Calculator.GetAdjustedFleetAAValue(fleet, 1);
-
-		sb.AppendFormat(GeneralRes.AntiAirPower,
-			lineahead,
-			Calculator.GetAdjustedFleetAAValue(fleet, 2),
-			Calculator.GetAdjustedFleetAAValue(fleet, 3));
-
-		return sb.ToString();
 	}
 
 	#region Commands
@@ -517,15 +364,6 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		Clipboard.SetDataObject(sb.ToString());
 	}
-
-	/*
-	private void ContextMenuFleet_Opening(object sender, CancelEventArgs e)
-	{
-
-		ContextMenuFleet_Capture.Visible = Utility.Configuration.Config.Debug.EnableDebugMenu;
-
-	}
-	*/
 
 	/// <summary>
 	/// 「艦隊デッキビルダー」用編成コピー
@@ -843,19 +681,6 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		new AirDefenseWindow(viewModel).Show(App.Current.MainWindow);
 	}
-
-	/*
-	private void ContextMenuFleet_Capture_Click(object sender, EventArgs e)
-	{
-
-		using (Bitmap bitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height))
-		{
-			this.DrawToBitmap(bitmap, this.ClientRectangle);
-
-			Clipboard.SetData(DataFormats.Bitmap, bitmap);
-		}
-	}
-	*/
 
 	[RelayCommand]
 	private void OutputFleetImage()

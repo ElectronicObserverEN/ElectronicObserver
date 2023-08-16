@@ -14,7 +14,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
@@ -178,8 +177,8 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 				sw.WriteLine(string.Join(",",
 					ship.ShipID,
 					ship.AlbumNo,
-					CsvHelper.EscapeCsvCell(ship.NameEN),
-					CsvHelper.EscapeCsvCell(ship.NameReading),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameReading),
 					(int)ship.ShipType,
 					ship.ShipClass,
 					ship.SortID,
@@ -245,12 +244,12 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 					ship.PowerUp[1],
 					ship.PowerUp[2],
 					ship.PowerUp[3],
-					CsvHelper.EscapeCsvCell(ship.MessageGet),
-					CsvHelper.EscapeCsvCell(ship.MessageAlbum),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageGet),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageAlbum),
 					ship.Fuel,
 					ship.Ammo,
 					ship.VoiceFlag,
-					CsvHelper.EscapeCsvCell(ship.ResourceName),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ResourceName),
 					ship.ResourceGraphicVersion,
 					ship.ResourceVoiceVersion,
 					ship.ResourcePortVoiceVersion
@@ -286,12 +285,12 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 					ship.ShipID,
 					ship.AlbumNo,
 					ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass, ship.ShipId),
-					CsvHelper.EscapeCsvCell(ship.ShipTypeName),
-					CsvHelper.EscapeCsvCell(ship.NameEN),
-					CsvHelper.EscapeCsvCell(ship.NameReading),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ShipTypeName),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameReading),
 					ship.SortID,
-					CsvHelper.EscapeCsvCell(ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.NameEN : "-"),
-					CsvHelper.EscapeCsvCell(ship.RemodelAfterShipID > 0 ? ship.RemodelAfterShip.NameEN : "-"),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.NameEN : "-"),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.RemodelAfterShipID > 0 ? ship.RemodelAfterShip.NameEN : "-"),
 					ship.RemodelAfterLevel,
 					ship.RemodelAmmo,
 					ship.RemodelSteel,
@@ -342,12 +341,12 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 					ship.PowerUp[1],
 					ship.PowerUp[2],
 					ship.PowerUp[3],
-					CsvHelper.EscapeCsvCell(ship.MessageGet),
-					CsvHelper.EscapeCsvCell(ship.MessageAlbum),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageGet),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageAlbum),
 					ship.Fuel,
 					ship.Ammo,
 					Constants.GetVoiceFlag(ship.VoiceFlag),
-					CsvHelper.EscapeCsvCell(ship.ResourceName),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ResourceName),
 					ship.ResourceGraphicVersion,
 					ship.ResourceVoiceVersion,
 					ship.ResourcePortVoiceVersion

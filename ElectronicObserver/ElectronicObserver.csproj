@@ -10,10 +10,13 @@
 		<Nullable>enable</Nullable>
 		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
 		<LangVersion>preview</LangVersion>
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
+
 	<PropertyGroup>
 		<ApplicationIcon>74eo.ico</ApplicationIcon>
 	</PropertyGroup>
+
 	<PropertyGroup>
 		<NoWin32Manifest>true</NoWin32Manifest>
 		<StartupObject>ElectronicObserver.App</StartupObject>
@@ -25,29 +28,31 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.9.0</AssemblyVersion>
-		<FileVersion>5.2.9.0</FileVersion>
-		<Version>5.2.9.0</Version>
+		<AssemblyVersion>5.2.9.2</AssemblyVersion>
+		<FileVersion>5.2.9.2</FileVersion>
+		<Version>5.2.9.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
 		<OutputPath>bin\x64\Debug\</OutputPath>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
-		<DebugType>embedded</DebugType>
 	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
 		<OutputPath>bin\x64\Release\</OutputPath>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
-		<DebugType>embedded</DebugType>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="AvalonDockTesting\**" />
 		<EmbeddedResource Remove="AvalonDockTesting\**" />
 		<None Remove="AvalonDockTesting\**" />
 		<Page Remove="AvalonDockTesting\**" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<Reference Include="DiscordRPC, Version=1.0.121.0, Culture=neutral, processorArchitecture=MSIL">
 			<HintPath>..\packages\DiscordRichPresence.1.0.121\lib\net35\DiscordRPC.dll</HintPath>
@@ -81,9 +86,11 @@
 		<Content Include="Other\Information\apilist.txt" />
 		<Content Include="Other\Information\todo.txt" />
 	</ItemGroup>
+
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 		<ProjectReference Include="..\ElectronicObserver.TestData\ElectronicObserver.TestData.csproj" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj" />
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
@@ -92,12 +99,14 @@
 		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
 	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Aigamo.ResXGenerator" Version="4.1.2">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="CsvHelper" Version="30.0.1" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.70.3" />
 		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
 		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.3.1">
@@ -146,19 +155,24 @@
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 		<PackageReference Include="WanaKana-net" Version="1.0.0" />
 	</ItemGroup>
+	
 	<ItemGroup>
 		<Compile Remove="Observer\kcsapi\api_start2.cs" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<None Remove="Assets\**\*.png" />
 		<None Remove="Splashscreen.png" />
 	</ItemGroup>
+
 	<ItemGroup>
 	  <Page Remove="Properties\DesignTimeResources.xaml" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<Resource Include="Assets\**\*.png" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<SplashScreen Include="SplashScreen.png" />
 	</ItemGroup>

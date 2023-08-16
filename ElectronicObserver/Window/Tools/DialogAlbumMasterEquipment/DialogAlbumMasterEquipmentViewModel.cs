@@ -12,11 +12,9 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.EquipmentFilter;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 
@@ -121,8 +119,8 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 				sw.WriteLine(string.Join(",",
 					eq.EquipmentID,
 					eq.AlbumNo,
-					CsvHelper.EscapeCsvCell(eq.CategoryTypeInstance.NameEN),
-					CsvHelper.EscapeCsvCell(eq.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(eq.CategoryTypeInstance.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(eq.NameEN),
 					eq.EquipmentType[0],
 					eq.EquipmentType[1],
 					eq.EquipmentType[2],
@@ -144,7 +142,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 					eq.Material[1],
 					eq.Material[2],
 					eq.Material[3],
-					CsvHelper.EscapeCsvCell(eq.Message),
+					Utility.Storage.CsvHelper.EscapeCsvCell(eq.Message),
 					eq.AircraftDistance,
 					eq.AircraftCost
 				));
@@ -179,7 +177,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 				sw.WriteLine(string.Join(",",
 					eq.EquipmentID,
 					eq.AlbumNo,
-					CsvHelper.EscapeCsvCell(eq.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(eq.NameEN),
 					eq.EquipmentType[0],
 					eq.EquipmentType[1],
 					eq.EquipmentType[2],
@@ -201,7 +199,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 					eq.Material[1],
 					eq.Material[2],
 					eq.Material[3],
-					CsvHelper.EscapeCsvCell(eq.Message),
+					Utility.Storage.CsvHelper.EscapeCsvCell(eq.Message),
 					eq.AircraftDistance,
 					eq.AircraftCost
 				));

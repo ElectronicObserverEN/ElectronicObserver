@@ -16,7 +16,7 @@ public class FleetDataDto
 	public int ApiMemberId { get; set; }
 
 	[JsonPropertyName("api_mission")]
-	public List<int> ApiMission { get; set; } = new();
+	public List<long> ApiMission { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
 	public string ApiName { get; set; } = "";

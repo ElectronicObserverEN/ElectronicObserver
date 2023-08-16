@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -8,17 +9,21 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 public sealed class AirBattleAttackViewModel : AttackViewModelBase
 {
 	private int WaveIndex { get; }
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; set; }
-	private double Damage { get; }
-	private HitType HitType { get; }
-	private AirAttack AttackType { get; }
+	public int DefenderHpBeforeAttack { get; }
+
+	public int Damage { get; }
+	public HitType HitType { get; }
+	public AirAttack AttackType { get; }
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
+	public bool GuardsFlagship { get; }
 
 	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
 	{
-		(> 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
+		( > 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
 		(_, FleetFlag.Player) => BattleRes.EnemyAirSquadron,
 		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
 		_ => "???",
@@ -33,8 +38,11 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
 		AttackType = attack.AttackType;
+		GuardsFlagship = attack.Defenders.First().GuardsFlagship;
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
+		DefenderHpBeforeAttack = Defender.HPCurrent;
+
+		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -43,11 +51,11 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 
 		DamageDisplay =
 			$"[{GetAttackKind(AttackType)}] " +
-			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)}";
+			$"{AttackDisplay(GuardsFlagship, Damage, HitType)}";
 
-		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
+		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
 		{
-			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
+			DamageDisplay += $" ({DefenderHpBeforeAttack} → {hpAfterAttacks})";
 		}
 
 		DamageDisplay += UsedDamecon switch

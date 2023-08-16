@@ -161,7 +161,7 @@ public enum EquipmentTypes
 	/// <summary>大型陸上機</summary>
 	HeavyBomber = 53,
 
-	/// <summary>水上艦装備</summary>
+	/// <summary>水上艦装備 (smoker)</summary>
 	SurfaceShipEquipment = 54,
 
 	/// <summary>噴式戦闘機</summary>

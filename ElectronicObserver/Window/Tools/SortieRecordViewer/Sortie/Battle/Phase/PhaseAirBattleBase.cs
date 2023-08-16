@@ -20,6 +20,23 @@ public class PhaseAirBattleBase : PhaseBase
 	/// </summary>
 	private object AirBattleData { get; }
 
+	public AirState AirState { get; }
+
+	public int Stage1FLostcount { get; }
+	public int Stage1FCount { get; }
+	public int Stage1ELostcount { get; }
+	public int Stage1ECount { get; }
+
+	public int Stage2FLostcount { get; private set; }
+	public int Stage2FCount { get; private set; }
+	public int Stage2ELostcount { get; private set; }
+	public int Stage2ECount { get; private set; }
+
+	/// <summary>
+	/// AACI
+	/// </summary>
+	public ApiAirFire? ApiAirFire { get; private set; }
+
 	private ApiStage1? Stage1 => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage1,
@@ -74,13 +91,23 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-		[EquipmentId id and > 0, ..] => $"　{BattleRes.Contact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
+		[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		_ => null,
+	};
+	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
+	{
+		string aircraft => $"　{BattleRes.Contact}: {aircraft}",
 		_ => null,
 	};
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-		[_, EquipmentId id and > 0, ..] => $"　{BattleRes.EnemyContact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
+		[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		_ => null,
+	};
+	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
+	{
+		string aircraft => $"　{BattleRes.EnemyContact}: {aircraft}",
 		_ => null,
 	};
 
@@ -93,13 +120,19 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (airBattleData.ApiStage1 is not null)
 		{
+			AirState = airBattleData.ApiStage1.ApiDispSeiku;
+			Stage1FLostcount = airBattleData.ApiStage1.ApiFLostcount;
+			Stage1FCount = airBattleData.ApiStage1.ApiFCount;
+			Stage1ELostcount = airBattleData.ApiStage1.ApiELostcount;
+			Stage1ECount = airBattleData.ApiStage1.ApiECount;
+
 			Stage1Display = GetStage1Display
 			(
-				airBattleData.ApiStage1.ApiDispSeiku,
-				airBattleData.ApiStage1.ApiFLostcount,
-				airBattleData.ApiStage1.ApiFCount,
-				airBattleData.ApiStage1.ApiELostcount,
-				airBattleData.ApiStage1.ApiECount
+				AirState,
+				Stage1FLostcount,
+				Stage1FCount,
+				Stage1ELostcount,
+				Stage1ECount
 			);
 		}
 
@@ -114,13 +147,19 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (airBattleData.ApiStage1 is not null)
 		{
+			AirState = AirState.Unknown;
+			Stage1FLostcount = airBattleData.ApiStage1.ApiFLostcount;
+			Stage1FCount = airBattleData.ApiStage1.ApiFCount;
+			Stage1ELostcount = airBattleData.ApiStage1.ApiELostcount;
+			Stage1ECount = airBattleData.ApiStage1.ApiECount;
+
 			Stage1Display = GetStage1Display
 			(
-				AirState.Unknown,
-				airBattleData.ApiStage1.ApiFLostcount,
-				airBattleData.ApiStage1.ApiFCount,
-				airBattleData.ApiStage1.ApiELostcount,
-				airBattleData.ApiStage1.ApiECount
+				AirState,
+				Stage1FLostcount,
+				Stage1FCount,
+				Stage1ELostcount,
+				Stage1ECount
 			);
 		}
 
@@ -134,33 +173,36 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (Stage2 is { } stage2)
 		{
-			StringBuilder sb = new();
-
-			sb.Append("Stage 2:");
-			if (stage2.ApiAirFire is not null)
-			{
-				sb.AppendFormat(BattleRes.AaciType,
-					battleFleets.GetShip(new(stage2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
-					AntiAirCutIn.FromId(stage2.ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
-					stage2.ApiAirFire.ApiKind);
-			}
-			sb.AppendLine();
-			sb.AppendLine($"　{BattleRes.Friendly}: -{stage2.ApiFLostcount}/{stage2.ApiFCount}");
-			sb.Append($"　{BattleRes.Enemy}: -{stage2.ApiELostcount}/{stage2.ApiECount}");
-
-			Stage2Display = sb.ToString();
+			Stage2FLostcount = stage2.ApiFLostcount;
+			Stage2FCount = stage2.ApiFCount;
+			Stage2ELostcount = stage2.ApiELostcount;
+			Stage2ECount = stage2.ApiECount;
+			ApiAirFire = stage2.ApiAirFire;
 		}
 		else if (Stage2Jet is { } stage2Jet)
 		{
-			StringBuilder sb = new();
-
-			sb.Append("Stage 2:");
-			sb.AppendLine();
-			sb.AppendLine($"　{BattleRes.Friendly}: -{stage2Jet.ApiFLostcount}/{stage2Jet.ApiFCount}");
-			sb.Append($"　{BattleRes.Enemy}: -{stage2Jet.ApiELostcount}/{stage2Jet.ApiECount}");
-
-			Stage2Display = sb.ToString();
+			Stage2FLostcount = stage2Jet.ApiFLostcount;
+			Stage2FCount = stage2Jet.ApiFCount;
+			Stage2ELostcount = stage2Jet.ApiELostcount;
+			Stage2ECount = stage2Jet.ApiECount;
 		}
+
+		StringBuilder sb = new();
+		sb.Append("Stage 2:");
+
+		if (ApiAirFire is not null)
+		{
+			sb.AppendFormat(BattleRes.AaciType,
+				battleFleets.GetShip(new(ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
+				AntiAirCutIn.FromId(ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
+				ApiAirFire.ApiKind);
+		}
+
+		sb.AppendLine();
+		sb.AppendLine($"　{BattleRes.Friendly}: -{Stage2FLostcount}/{Stage2FCount}");
+		sb.Append($"　{BattleRes.Enemy}: -{Stage2ELostcount}/{Stage2ECount}");
+
+		Stage2Display = sb.ToString();
 
 		ApiStage3? stage3 = Stage3;
 		ApiStage3Jet? stage3Jet = Stage3Jet;

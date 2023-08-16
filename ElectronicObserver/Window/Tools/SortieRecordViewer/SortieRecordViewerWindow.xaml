@@ -6,9 +6,12 @@
 	xmlns:behaviors="clr-namespace:ElectronicObserver.Behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:exportProgress="clr-namespace:ElectronicObserver.Common.ContentDialogs.ExportProgress"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:mocks="clr-namespace:ElectronicObserverTypes.Mocks;assembly=ElectronicObserverTypes"
+	xmlns:notification="clr-namespace:ElectronicObserver.Common.ContentDialogs.Notification"
+	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding SortieRecordViewer.Title}"
 	Width="800"
@@ -23,185 +26,196 @@
 	</Window.Resources>
 
 	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-
-		<Menu Grid.Row="0">
-			<MenuItem Header="{Binding SortieRecordViewer.File}">
-				<MenuItem Command="{Binding LoadSortieDataCommand}" Header="{Binding SortieRecordViewer.LoadSortieData}" />
-			</MenuItem>
-		</Menu>
-
-		<Grid Grid.Row="1">
+		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
+			<Menu Grid.Row="0">
+				<MenuItem Header="{Binding SortieRecordViewer.File}">
+					<MenuItem Command="{Binding LoadSortieDataCommand}" Header="{Binding SortieRecordViewer.LoadSortieData}" />
+				</MenuItem>
+			</Menu>
 
-			<TextBlock
-				Grid.Row="0"
-				Grid.Column="0"
-				Margin="4"
-				VerticalAlignment="Center"
-				Text="{Binding SortieRecordViewer.Start}"
-				/>
+			<Grid Grid.Row="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
 
-			<StackPanel
-				Grid.Row="0"
-				Grid.Column="1"
-				Orientation="Horizontal"
-				>
-				<DatePicker
-					HorizontalAlignment="Stretch"
-					DisplayDateEnd="{Binding MaxDate}"
-					DisplayDateStart="{Binding MinDate}"
-					FirstDayOfWeek="Monday"
-					SelectedDate="{Binding DateBegin}"
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="0"
+					Margin="4"
+					VerticalAlignment="Center"
+					Text="{Binding SortieRecordViewer.Start}"
 					/>
 
-				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeBegin}" />
-			</StackPanel>
+				<StackPanel
+					Grid.Row="0"
+					Grid.Column="1"
+					Orientation="Horizontal"
+					>
+					<DatePicker
+						HorizontalAlignment="Stretch"
+						DisplayDateEnd="{Binding MaxDate}"
+						DisplayDateStart="{Binding MinDate}"
+						FirstDayOfWeek="Monday"
+						SelectedDate="{Binding DateBegin}"
+						/>
 
-			<TextBlock
-				Grid.Row="1"
-				Grid.Column="0"
-				Margin="4"
-				VerticalAlignment="Center"
-				Text="{Binding SortieRecordViewer.End}"
-				/>
+					<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeBegin}" />
+				</StackPanel>
 
-			<StackPanel
-				Grid.Row="1"
-				Grid.Column="1"
-				Orientation="Horizontal"
-				>
-				<DatePicker
-					HorizontalAlignment="Stretch"
-					DisplayDateEnd="{Binding MaxDate}"
-					DisplayDateStart="{Binding MinDate}"
-					FirstDayOfWeek="Monday"
-					SelectedDate="{Binding DateEnd}"
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Margin="4"
+					VerticalAlignment="Center"
+					Text="{Binding SortieRecordViewer.End}"
 					/>
 
-				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeEnd}" />
-			</StackPanel>
+				<StackPanel
+					Grid.Row="1"
+					Grid.Column="1"
+					Orientation="Horizontal"
+					>
+					<DatePicker
+						HorizontalAlignment="Stretch"
+						DisplayDateEnd="{Binding MaxDate}"
+						DisplayDateStart="{Binding MinDate}"
+						FirstDayOfWeek="Monday"
+						SelectedDate="{Binding DateEnd}"
+						/>
 
-			<ComboBox
-				Grid.Row="1"
-				Grid.Column="3"
-				Margin="2"
-				ItemsSource="{Binding Worlds}"
-				SelectedItem="{Binding World}"
-				/>
+					<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeEnd}" />
+				</StackPanel>
 
-			<ComboBox
-				Grid.Row="1"
-				Grid.Column="4"
-				Margin="2"
-				ItemsSource="{Binding Maps}"
-				SelectedItem="{Binding Map}"
-				/>
+				<ComboBox
+					Grid.Row="1"
+					Grid.Column="3"
+					Margin="2"
+					ItemsSource="{Binding Worlds}"
+					SelectedItem="{Binding World}"
+					/>
 
-			<Button
-				Grid.Row="1"
-				Grid.Column="5"
-				Margin="2"
-				Command="{Binding SearchCommand}"
-				Content="{Binding SortieRecordViewer.Search}"
-				/>
+				<ComboBox
+					Grid.Row="1"
+					Grid.Column="4"
+					Margin="2"
+					ItemsSource="{Binding Maps}"
+					SelectedItem="{Binding Map}"
+					/>
 
-			<Button
-				Grid.Row="1"
-				Grid.Column="6"
-				Margin="2"
-				Command="{Binding SearchCancelCommand}"
-				Content="{Binding SortieRecordViewer.Cancel}"
-				IsEnabled="{Binding SearchCommand.CanBeCanceled}"
-				/>
+				<Button
+					Grid.Row="1"
+					Grid.Column="5"
+					Margin="2"
+					Command="{Binding SearchCommand}"
+					Content="{Binding SortieRecordViewer.Search}"
+					/>
+
+				<Button
+					Grid.Row="1"
+					Grid.Column="6"
+					Margin="2"
+					Command="{Binding SearchCancelCommand}"
+					Content="{Binding SortieRecordViewer.Cancel}"
+					IsEnabled="{Binding SearchCommand.CanBeCanceled}"
+					/>
+			</Grid>
+
+			<!--
+				images will stretch row height anyway
+				so might as well set min height to avoid extra rendering
+			-->
+			<DataGrid
+				Grid.Row="2"
+				AutoGenerateColumns="False"
+				HeadersVisibility="Column"
+				IsReadOnly="True"
+				ItemsSource="{Binding Sorties}"
+				MinRowHeight="26"
+				SelectedItem="{Binding SelectedSortie}"
+				>
+				<b:Interaction.Behaviors>
+					<behaviors:MultiSelectionBehavior SelectedItems="{Binding SelectedSorties}" />
+				</b:Interaction.Behaviors>
+
+				<DataGrid.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding SortieRecordViewer.FleetImage}" />
+						<MenuItem Header="{Binding SortieRecordViewer.Replay}">
+							<MenuItem Command="{Binding CopyReplayLinkToClipboardCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
+							<MenuItem Command="{Binding CopyReplayDataToClipboardCommand}" Header="{Binding SortieRecordViewer.CopyData}" />
+						</MenuItem>
+						<MenuItem Command="{Binding ShowSortieDetailsCommand}" Header="{Binding SortieRecordViewer.SortieDetail}" />
+						<MenuItem Command="{Binding CopySmokerDataCsvCommand}" Header="{Binding SortieRecordViewer.SmokeScreenCsv}" />
+						<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieRecordViewer.CopySortieData}" />
+						<MenuItem Header="{Binding SortieRecordViewer.AirControlSimulator}">
+							<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
+							<MenuItem Command="{Binding OpenAirControlSimulatorCommand}" Header="{Binding SortieRecordViewer.Open}" />
+						</MenuItem>
+						<MenuItem Header="{x:Static translations:CsvExportResources.LogbookRedCsvExport}">
+							<MenuItem Command="{Binding ExportDayShellingCommand}" Header="{x:Static translations:CsvExportResources.ShellingBattle}" />
+							<MenuItem Command="{Binding ExportNightShellingCommand}" Header="{x:Static translations:CsvExportResources.NightBattle}" />
+							<MenuItem Command="{Binding ExportTorpedoCommand}" Header="{x:Static translations:CsvExportResources.Torpedo}" />
+							<MenuItem Command="{Binding ExportAirBattleCommand}" Header="{x:Static translations:CsvExportResources.AirBattle}" />
+						</MenuItem>
+					</ContextMenu>
+				</DataGrid.ContextMenu>
+
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding World}" Header="{Binding DataContext.SortieRecordViewer.World, Source={StaticResource Proxy}}" />
+					<DataGridTextColumn Binding="{Binding Map}" Header="{Binding DataContext.SortieRecordViewer.Map, Source={StaticResource Proxy}}" />
+					<DataGridTextColumn Binding="{Binding SortieStart, Converter={StaticResource DateTimeDisplayConverter}}" Header="{Binding DataContext.SortieRecordViewer.Start, Source={StaticResource Proxy}}" />
+					<DataGridTemplateColumn>
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<ItemsControl ItemsSource="{Binding Fleet.MembersInstance}">
+									<ItemsControl.ItemsPanel>
+										<ItemsPanelTemplate>
+											<StackPanel Orientation="Horizontal" />
+										</ItemsPanelTemplate>
+									</ItemsControl.ItemsPanel>
+									<ItemsControl.ItemTemplate>
+										<DataTemplate DataType="{x:Type mocks:ShipDataMock}">
+											<Image
+												Width="100"
+												Margin="2 0"
+												Source="{Binding MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+												Stretch="Uniform"
+												/>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+
+			<StatusBar Grid.Row="3">
+				<StatusBarItem>
+					<TextBlock Text="{Binding StatusBarText}" />
+				</StatusBarItem>
+			</StatusBar>
 		</Grid>
 
-		<!--
-			images will stretch row height anyway
-			so might as well set min height to avoid extra rendering
-		-->
-		<DataGrid
-			Grid.Row="2"
-			AutoGenerateColumns="False"
-			HeadersVisibility="Column"
-			IsReadOnly="True"
-			ItemsSource="{Binding Sorties}"
-			MinRowHeight="26"
-			SelectedItem="{Binding SelectedSortie}"
-			>
-			<b:Interaction.Behaviors>
-				<behaviors:MultiSelectionBehavior SelectedItems="{Binding SelectedSorties}" />
-			</b:Interaction.Behaviors>
-
-			<DataGrid.ContextMenu>
-				<ContextMenu>
-					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding SortieRecordViewer.FleetImage}" />
-					<MenuItem Header="{Binding SortieRecordViewer.Replay}">
-						<MenuItem Command="{Binding CopyReplayLinkToClipboardCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
-						<MenuItem Command="{Binding CopyReplayDataToClipboardCommand}" Header="{Binding SortieRecordViewer.CopyData}" />
-					</MenuItem>
-					<MenuItem Command="{Binding ShowSortieDetailsCommand}" Header="{Binding SortieRecordViewer.SortieDetail}" />
-					<MenuItem Command="{Binding CopySmokerDataCsvCommand}" Header="{Binding SortieRecordViewer.SmokeScreenCsv}" />
-					<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieRecordViewer.CopySortieData}" />
-					<MenuItem Header="{Binding SortieRecordViewer.AirControlSimulator}">
-						<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
-						<MenuItem Command="{Binding OpenAirControlSimulatorCommand}" Header="{Binding SortieRecordViewer.Open}" />
-					</MenuItem>
-				</ContextMenu>
-			</DataGrid.ContextMenu>
-
-			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding World}" Header="{Binding DataContext.SortieRecordViewer.World, Source={StaticResource Proxy}}" />
-				<DataGridTextColumn Binding="{Binding Map}" Header="{Binding DataContext.SortieRecordViewer.Map, Source={StaticResource Proxy}}" />
-				<DataGridTextColumn Binding="{Binding SortieStart, Converter={StaticResource DateTimeDisplayConverter}}" Header="{Binding DataContext.SortieRecordViewer.Start, Source={StaticResource Proxy}}" />
-				<DataGridTemplateColumn>
-					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-							<ItemsControl ItemsSource="{Binding Fleet.MembersInstance}">
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<StackPanel Orientation="Horizontal" />
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-								<ItemsControl.ItemTemplate>
-									<DataTemplate DataType="{x:Type mocks:ShipDataMock}">
-										<Image
-											Width="100"
-											Margin="2 0"
-											Source="{Binding MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
-											Stretch="Uniform"
-											/>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
-						</DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				</DataGridTemplateColumn>
-			</DataGrid.Columns>
-		</DataGrid>
-
-		<StatusBar Grid.Row="3">
-			<StatusBarItem>
-				<TextBlock Text="{Binding StatusBarText}" />
-			</StatusBarItem>
-		</StatusBar>
+		<exportProgress:ExportProgressContentDialog x:Name="ExportProgressContentDialog" />
+		<notification:NotificationContentDialog x:Name="NotificationContentDialog" />
 	</Grid>
 </common:WindowBase>

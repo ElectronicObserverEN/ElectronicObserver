@@ -18,11 +18,11 @@ public class PhaseNightInitial : PhaseBase
 	private bool IsEscort { get; }
 	private bool IsEnemyEscort { get; }
 
-	private IEquipmentDataMaster? TouchAircraftFriend { get; }
-	private IEquipmentDataMaster? TouchAircraftEnemy { get; }
+	public IEquipmentDataMaster? TouchAircraftFriend { get; }
+	public IEquipmentDataMaster? TouchAircraftEnemy { get; }
 
-	private int FlareIndexFriend { get; }
-	private int FlareIndexEnemy { get; }
+	public int FlareIndexFriend { get; }
+	public int FlareIndexEnemy { get; }
 	private IShipData? FlareFriend { get; }
 	private IShipData? FlareEnemy { get; }
 

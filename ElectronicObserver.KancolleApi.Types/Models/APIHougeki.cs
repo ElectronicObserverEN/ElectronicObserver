@@ -28,6 +28,7 @@ public class ApiHougeki
 	public List<int>? ApiNMotherList { get; set; }
 
 	/// <summary>
+	/// Equipments that get displayed on the screen when the attack happens.
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	[JsonPropertyName("api_si_list")]

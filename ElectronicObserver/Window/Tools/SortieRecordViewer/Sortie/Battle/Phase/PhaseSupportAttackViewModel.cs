@@ -8,8 +8,11 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 {
 	public string Attacker => BattleRes.SupportFleet;
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
+
 	private SupportType AttackType { get; }
 	private List<SupportAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
@@ -30,6 +33,13 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
+
+		foreach (SupportAttack supportAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - supportAttack.Damage);
+		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 

@@ -22,6 +22,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
@@ -111,13 +112,15 @@ public class ToolService
 
 	public void FleetImageGenerator(SortieRecordViewModel selectedSortie, int hqLevel)
 	{
+		List<IFleetData?> fleets = selectedSortie.Model.FleetData.MakeFleets();
+
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			hqLevel,
-			selectedSortie.Model.FleetData.Fleets.Skip(0).FirstOrDefault().MakeFleet(),
-			selectedSortie.Model.FleetData.Fleets.Skip(1).FirstOrDefault().MakeFleet(),
-			selectedSortie.Model.FleetData.Fleets.Skip(2).FirstOrDefault().MakeFleet(),
-			selectedSortie.Model.FleetData.Fleets.Skip(3).FirstOrDefault().MakeFleet(),
+			fleets.Skip(0).FirstOrDefault(),
+			fleets.Skip(1).FirstOrDefault(),
+			fleets.Skip(2).FirstOrDefault(),
+			fleets.Skip(3).FirstOrDefault(),
 			selectedSortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault().MakeAirBase(),
 			selectedSortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault().MakeAirBase(),
 			selectedSortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault().MakeAirBase()
@@ -289,7 +292,7 @@ public class ToolService
 
 				if (phase is PhaseTorpedo torpedo)
 				{
-					foreach (PhaseShellingAttackViewModel attackDisplay in torpedo.AttackDisplays)
+					foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
 					{
 						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
@@ -308,8 +311,22 @@ public class ToolService
 	}
 
 	private static string GetSmokerCsvLine(SortieDetailViewModel sortieDetail, PhaseSearching searching,
-		PhaseShellingAttackViewModel attackDisplay, DayAttack attack, string phaseTitle, int sampleNumber, int sortieNumber)
+		AttackViewModelBase attackDisplay, DayAttack attack, string phaseTitle, int sampleNumber, int sortieNumber)
 	{
+		static BattleIndex AttackerIndex(AttackViewModelBase attack) => attack switch
+		{
+			PhaseShellingAttackViewModel s => s.AttackerIndex,
+			PhaseTorpedoAttackViewModel t => t.AttackerIndex,
+			_ => throw new NotImplementedException(),
+		};
+
+		static BattleIndex DefenderIndex(AttackViewModelBase attack) => attack switch
+		{
+			PhaseShellingAttackViewModel s => s.DefenderIndex,
+			PhaseTorpedoAttackViewModel t => t.DefenderIndex,
+			_ => throw new NotImplementedException(),
+		};
+
 		return string.Join(CsvSeparator, new List<string>
 		{
 			sortieDetail.StartTime?.ToLocalTime().ToString(),
@@ -321,9 +338,9 @@ public class ToolService
 			Constants.GetEngagementForm(searching.EngagementType),
 			phaseTitle,
 			ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(attack.AttackKind),
-			(attackDisplay.AttackerIndex.Index + 1).ToString(),
+			(AttackerIndex(attackDisplay).Index + 1).ToString(),
 			attack.Attacker.Name,
-			(attackDisplay.DefenderIndex.Index + 1).ToString(),
+			(DefenderIndex(attackDisplay).Index + 1).ToString(),
 			attack.Defender.Name,
 			attack.Defender.Level.ToString(),
 			attack.Defender.Condition.ToString(),
@@ -335,7 +352,7 @@ public class ToolService
 				HitType.Critical => "CL2",
 				_ => throw new NotImplementedException(),
 			},
-			attackDisplay.AttackerIndex.FleetFlag switch
+			AttackerIndex(attackDisplay).FleetFlag switch
 			{
 				FleetFlag.Player => "自軍",
 				FleetFlag.Enemy => "敵軍",
@@ -344,11 +361,11 @@ public class ToolService
 		});
 	}
 
-	private SortieDetailViewModel? GenerateSortieDetailViewModel(SortieRecordViewModel sortie)
+	public SortieDetailViewModel? GenerateSortieDetailViewModel(SortieRecordViewModel sortie)
 	{
 		try
 		{
-			List<IFleetData?> fleets = sortie.Model.FleetData.Fleets.Select(f => f.MakeFleet()).ToList();
+			List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
 			bool isCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
 			List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases.Select(f => f.MakeAirBase()).ToList();
 
@@ -385,7 +402,7 @@ public class ToolService
 
 				if (battleData is null) continue;
 
-				sortieDetail.AddApiFile(battleData);
+				sortieDetail.AddApiFile(battleData, apiFile.TimeStamp);
 			}
 
 			sortieDetail.EnsureApiFilesProcessed();
@@ -513,9 +530,7 @@ public class ToolService
 
 	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie)
 	{
-		List<IFleetData?> fleets = sortie.Model.FleetData.Fleets
-			.Select(f => f.MakeFleet())
-			.ToList();
+		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
 
 		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
 			.Select(f => f.MakeAirBase())

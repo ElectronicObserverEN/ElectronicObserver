@@ -12,8 +12,8 @@ public class PhaseSearching : PhaseBase
 	public FormationType EnemyFormationType { get; }
 	public EngagementType EngagementType { get; }
 
-	private DetectionType PlayerDetectionType { get; }
-	private DetectionType EnemyDetectionType { get; }
+	public DetectionType PlayerDetectionType { get; }
+	public DetectionType EnemyDetectionType { get; }
 
 	public int? SmokeCount { get; }
 

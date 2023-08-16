@@ -578,7 +578,7 @@
 							Orientation="Horizontal"
 							>
 							<Image Source="{Binding Source={x:Static resource:IconContent.FormArsenal}, Converter={StaticResource ImageSourceConverter}}" />
-							<TextBlock Text="{Binding DialogAlbumMasterShip.TitleConstructionTime}"/>
+							<TextBlock Text="{Binding DialogAlbumMasterShip.TitleConstructionTime}" />
 							<TextBlock Margin="4 0" Text="{Binding SelectedShip.BuildingTime}" />
 						</StackPanel>
 

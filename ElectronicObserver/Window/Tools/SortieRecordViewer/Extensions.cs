@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiDmmPayment.Paycheck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Basic;
@@ -102,6 +107,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -405,4 +411,45 @@ public static class Extensions
 	public static bool IsMapProgressApi(this ApiFile apiFile) => apiFile.Name is
 		"api_req_map/start" or
 		"api_req_map/next";
+
+	public static async Task EnsureApiFilesLoaded(this SortieRecord sortie, ElectronicObserverContext db, CancellationToken cancellationToken = default)
+	{
+		if (sortie.ApiFiles.Count is not 0) return;
+
+		sortie.ApiFiles = await db.ApiFiles
+			.Where(f => f.SortieRecordId == sortie.Id)
+			.ToListAsync(cancellationToken);
+	}
+
+	public static async Task<int?> GetAdmiralLevel(this SortieRecord sortieRecord, ElectronicObserverContext db, CancellationToken cancellationToken = default)
+	{
+		if (sortieRecord.ApiFiles.Count is 0) return null;
+
+		// get the last port response right before the sortie started
+		ApiFile? portFile = await db.ApiFiles
+			.Where(f => f.ApiFileType == ApiFileType.Response)
+			.Where(f => f.Name == "api_port/port")
+			.Where(f => f.TimeStamp < sortieRecord.ApiFiles.First().TimeStamp)
+			.OrderByDescending(f => f.TimeStamp)
+			.FirstOrDefaultAsync(cancellationToken);
+
+		if (portFile is null) return null;
+
+		try
+		{
+			ApiPortPortResponse? port = JsonSerializer
+				.Deserialize<ApiResponse<ApiPortPortResponse>>(portFile.Content)?.ApiData;
+
+			if (port != null)
+			{
+				return port.ApiBasic.ApiLevel;
+			}
+		}
+		catch
+		{
+			return null;
+		}
+
+		return null;
+	}
 }

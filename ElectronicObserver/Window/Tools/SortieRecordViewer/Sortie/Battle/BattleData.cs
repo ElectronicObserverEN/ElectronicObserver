@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -10,6 +11,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 public abstract class BattleData
 {
 	public abstract string Title { get; }
+	public DateTime? TimeStamp { get; set; }
 
 	protected PhaseFactory PhaseFactory { get; }
 

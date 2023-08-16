@@ -270,4 +270,10 @@
   <data name="SpecialAttacksNight" xml:space="preserve">
     <value>特殊砲撃(夜戦)：</value>
   </data>
+  <data name="NightRecon" xml:space="preserve">
+    <value>夜偵</value>
+  </data>
+  <data name="Flare" xml:space="preserve">
+    <value>照明弾</value>
+  </data>
 </root>

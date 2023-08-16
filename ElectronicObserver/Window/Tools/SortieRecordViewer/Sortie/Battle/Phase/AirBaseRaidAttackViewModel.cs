@@ -8,8 +8,11 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 public sealed class AirBaseRaidAttackViewModel : AttackViewModelBase
 {
 	private int WaveIndex { get; }
+
 	public BattleIndex DefenderIndex { get; }
 	public IBaseAirCorpsData Defender { get; }
+	public int DefenderHpBeforeAttack { get; }
+
 	private double Damage { get; }
 	private HitType HitType { get; }
 	private AirAttack AttackType { get; }
@@ -37,11 +40,13 @@ public sealed class AirBaseRaidAttackViewModel : AttackViewModelBase
 			$"[{GetAttackKind(AttackType)}] " +
 			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)}";
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
+		DefenderHpBeforeAttack = Defender.HPCurrent;
 
-		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
+		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - (int)Damage);
+
+		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
 		{
-			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
+			DamageDisplay += $" ({DefenderHpBeforeAttack} → {hpAfterAttacks})";
 		}
 	}
 

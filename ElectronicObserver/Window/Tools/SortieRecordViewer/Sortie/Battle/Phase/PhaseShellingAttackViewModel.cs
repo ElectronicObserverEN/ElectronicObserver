@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -11,9 +12,14 @@ public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 {
 	public BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
+	public int AttackerHpBeforeAttack { get; }
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
+
 	private DayAttackKind AttackType { get; }
+	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	public List<DayAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
@@ -36,6 +42,17 @@ public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+		DisplayEquipment = attack.EquipmentIDs
+			.Select(i => KCDatabase.Instance.MasterEquipments[i])
+			.ToList();
+
+		AttackerHpBeforeAttack = Attacker.HPCurrent;
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
+
+		foreach (DayAttack dayAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - dayAttack.Damage);
+		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 

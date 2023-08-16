@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
@@ -10,30 +11,45 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 {
 	public BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
+	public int AttackerHpBeforeAttack { get; }
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	private List<NightAttack> Attacks { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
+
+	public List<IEquipmentDataMaster> DisplayEquipment { get; }
+	public List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
 
-	public PhaseNightBattleAttackViewModel(BattleFleets fleets, BattleIndex attacker,
-		BattleIndex defender, NightAttackKind attackType, List<PhaseNightBattleDefender> defenders)
+	public PhaseNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack)
 	{
-		AttackerIndex = attacker;
+		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
-		DefenderIndex = defender;
+		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
-		Attacks = defenders
+		Attacks = attack.Defenders
 			.Select(d => new NightAttack
 			{
 				Attacker = Attacker,
 				Defender = fleets.GetShip(d.Defender)!,
-				AttackKind = attackType,
+				AttackKind = attack.AttackType,
 				Damage = d.Damage,
 				GuardsFlagship = d.GuardsFlagship,
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+		DisplayEquipment = attack.EquipmentIDs
+			.Select(i => KCDatabase.Instance.MasterEquipments[i])
+			.ToList();
+
+		AttackerHpBeforeAttack = Attacker.HPCurrent;
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
+
+		foreach (NightAttack nightAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - nightAttack.Damage);
+		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
@@ -43,7 +59,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 		}
 
 		DamageDisplay =
-			$"[{ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(attackType)}] " +
+			$"[{ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(attack.AttackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)

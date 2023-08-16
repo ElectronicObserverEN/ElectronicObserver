@@ -70,15 +70,15 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		Fleets = fleets;
 	}
 
-	private List<object> ApiResponseCache { get; } = new();
+	private List<(object Response, DateTime Time)> ApiResponseCache { get; } = new();
 
-	public void AddApiFile(object response)
+	public void AddApiFile(object response, DateTime time)
 	{
 		if (response is ApiReqMapStartResponse start)
 		{
 			ProcessResponseCache();
 
-			ApiResponseCache.Add(start);
+			ApiResponseCache.Add((start, time));
 
 			return;
 		}
@@ -87,11 +87,11 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		{
 			ProcessResponseCache();
 
-			ApiResponseCache.Add(next);
+			ApiResponseCache.Add((next, time));
 
 			if (next.ApiDestructionBattle is not null)
 			{
-				ApiResponseCache.Add(next.ApiDestructionBattle);
+				ApiResponseCache.Add((next.ApiDestructionBattle, time));
 			}
 
 			return;
@@ -99,19 +99,19 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 		if (response is ApiReqSortieBattleresultResponse or ApiReqCombinedBattleBattleresultResponse)
 		{
-			ApiResponseCache.Add(response);
+			ApiResponseCache.Add((response, time));
 
 			return;
 		}
 
 		if (response is ApiGetMemberShipDeckResponse deck)
 		{
-			ApiResponseCache.Add(deck);
+			ApiResponseCache.Add((deck, time));
 
 			return;
 		}
 
-		ApiResponseCache.Add(response);
+		ApiResponseCache.Add((response, time));
 	}
 
 	private void ProcessResponseCache()
@@ -122,8 +122,9 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		BattleBaseAirRaid? abRaid = null;
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
+		bool isBoss = false;
 
-		foreach (object response in ApiResponseCache)
+		foreach ((object response, DateTime time) in ApiResponseCache)
 		{
 			cell = response switch
 			{
@@ -132,7 +133,19 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				_ => cell,
 			};
 
+			isBoss = response switch
+			{
+				ApiReqMapStartResponse s => s.ApiEventId == 5,
+				ApiReqMapNextResponse n => n.ApiEventId == 5,
+				_ => isBoss,
+			};
+
 			BattleData? battle = GetBattle(response, node);
+
+			if (battle is not null)
+			{
+				battle.TimeStamp = time;
+			}
 
 			if (battle is BattleBaseAirRaid raid)
 			{
@@ -148,7 +161,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				}
 				else
 				{
-					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle);
+					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, isBoss);
 				}
 			}
 

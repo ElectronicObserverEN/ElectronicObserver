@@ -270,4 +270,10 @@ Range: {20} / Speed: {21}
   <data name="SpecialAttacksNight" xml:space="preserve">
     <value>Special attacks (Night) :</value>
   </data>
+  <data name="NightRecon" xml:space="preserve">
+    <value>Night recon</value>
+  </data>
+  <data name="Flare" xml:space="preserve">
+    <value>Flare</value>
+  </data>
 </root>
