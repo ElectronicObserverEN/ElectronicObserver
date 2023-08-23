@@ -131,7 +131,7 @@ public class FleetStateViewModel : ObservableObject
 			}
 
 			//大破艦あり
-			if (!fleet.IsInSortie && fleet.MembersWithoutEscaped.Any(s => s != null && s.CanSink(fleet)))
+			if (!fleet.IsInSortie && fleet.MembersWithoutEscaped!.Any(s => s != null && s.CanSink(fleet)))
 			{
 				var state = GetStateLabel(index);
 
