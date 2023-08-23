@@ -121,7 +121,7 @@ public class ShipDataMock : IShipData
 	public int SortID { get; set; }
 	public int SallyArea { get; set; }
 	public IShipDataMaster MasterShip { get; set; }
-	public int RepairingDockID { get; set; }
+	public int RepairingDockID { get; set; } = -1;
 	public int Fleet { get; set; }
 	public string FleetWithIndex { get; set; }
 	public bool IsMarried => Level > 99;

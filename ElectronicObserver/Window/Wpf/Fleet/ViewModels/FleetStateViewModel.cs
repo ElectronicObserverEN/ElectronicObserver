@@ -11,6 +11,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -130,7 +131,7 @@ public class FleetStateViewModel : ObservableObject
 			}
 
 			//大破艦あり
-			if (!fleet.IsInSortie && fleet.MembersWithoutEscaped.Any(s => s != null && s.HPRate <= 0.25 && s.RepairingDockID == -1))
+			if (!fleet.IsInSortie && fleet.MembersWithoutEscaped.Any(s => s != null && s.CanSink(fleet)))
 			{
 				var state = GetStateLabel(index);
 

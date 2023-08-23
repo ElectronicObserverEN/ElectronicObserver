@@ -562,4 +562,17 @@ public static class ShipDataExtensions
 			EquipmentId.Autogyro_S51J or
 			EquipmentId.Autogyro_S51JKai);
 	}
+
+	public static bool CanSink(this IShipData ship, IFleetData fleet)
+	{
+		if (ship.HPRate > 0.25) return false;
+		if (fleet.MembersInstance.FirstOrDefault() == ship) return false;
+		if (ship.HasDamecon()) return false;
+		if (ship.RepairingDockID > -1) return false;
+
+		return fleet.MembersWithoutEscaped!.Contains(ship);
+	}
+
+	private static bool HasDamecon(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl);
 }
