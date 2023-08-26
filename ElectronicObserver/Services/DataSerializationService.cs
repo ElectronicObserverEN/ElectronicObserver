@@ -313,6 +313,7 @@ public class DataSerializationService
 
 	private static FleetAnalysisShip MakeFleetAnalysisShip(IShipData ship) => new()
 	{
+		DropId = ship.MasterID,
 		ShipId = ship.MasterShip.ShipId,
 		Level = ship.Level,
 		Modernization = new List<int>

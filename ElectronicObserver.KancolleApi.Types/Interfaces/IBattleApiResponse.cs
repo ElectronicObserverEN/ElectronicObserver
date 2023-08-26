@@ -67,6 +67,11 @@ public interface IBattleApiResponse
 	int? ApiXal01 { get; set; }
 
 	/// <summary>
+	/// 本体の戦闘糧食補給　[発動艦数]　艦船の固有ID　発動しなければ存在しない
+	/// </summary>
+	List<int>? ApiCombatRation { get; }
+
+	/// <summary>
 	/// 0, 1, 2, 3 - number of active smokers <br />
 	/// null - old data only?
 	/// </summary>

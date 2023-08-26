@@ -418,4 +418,46 @@
   <data name="BomberFlag" xml:space="preserve">
     <value>爆撃</value>
   </data>
+  <data name="SquadronId" xml:space="preserve">
+    <value>航空隊</value>
+  </data>
+  <data name="SquadronAttackIndex" xml:space="preserve">
+    <value>攻撃順</value>
+  </data>
+  <data name="AirBasePlayerContact" xml:space="preserve">
+    <value>基地自触接</value>
+  </data>
+  <data name="AirBaseEnemyContact" xml:space="preserve">
+    <value>基地敵触接</value>
+  </data>
+  <data name="AirBaseSquadron1EquipmentName" xml:space="preserve">
+    <value>第1中隊</value>
+  </data>
+  <data name="AirBaseSquadron1Aircraft" xml:space="preserve">
+    <value>第1機数</value>
+  </data>
+  <data name="AirBaseSquadron2EquipmentName" xml:space="preserve">
+    <value>第2中隊</value>
+  </data>
+  <data name="AirBaseSquadron2Aircraft" xml:space="preserve">
+    <value>第2機数</value>
+  </data>
+  <data name="AirBaseSquadron3EquipmentName" xml:space="preserve">
+    <value>第3中隊</value>
+  </data>
+  <data name="AirBaseSquadron3Aircraft" xml:space="preserve">
+    <value>第3機数</value>
+  </data>
+  <data name="AirBaseSquadron4EquipmentName" xml:space="preserve">
+    <value>第4中隊</value>
+  </data>
+  <data name="AirBaseSquadron4Aircraft" xml:space="preserve">
+    <value>第4機数</value>
+  </data>
+  <data name="TotalTorpedoFlags" xml:space="preserve">
+    <value>雷撃合計</value>
+  </data>
+  <data name="TotalBomberFlags" xml:space="preserve">
+    <value>爆撃合計</value>
+  </data>
 </root>

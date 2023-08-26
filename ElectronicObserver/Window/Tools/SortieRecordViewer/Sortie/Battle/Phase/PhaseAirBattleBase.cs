@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 public class PhaseAirBattleBase : PhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseAirBattle;
+
+	protected IKCDatabase KcDatabase { get; }
 
 	/// <summary>
 	/// <see cref="IApiAirBattle" /> or <see cref="IApiJetAirBattle" />
@@ -79,7 +81,7 @@ public class PhaseAirBattleBase : PhaseBase
 		_ => null,
 	};
 
-	protected int WaveIndex { get; }
+	public int WaveIndex { get; }
 
 	public List<int> LaunchedShipIndexFriend { get; }
 	public List<int> LaunchedShipIndexEnemy { get; }
@@ -91,7 +93,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-		[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		[EquipmentId id and > 0, ..] => KcDatabase.MasterEquipments[(int)id].NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
@@ -102,7 +104,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-		[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		[_, EquipmentId id and > 0, ..] => KcDatabase.MasterEquipments[(int)id].NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
@@ -113,8 +115,9 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? Stage2Display { get; private set; }
 
-	protected PhaseAirBattleBase(IApiAirBattle airBattleData, int waveIndex = 0)
+	protected PhaseAirBattleBase(IKCDatabase kcDatabase, IApiAirBattle airBattleData, int waveIndex = 0)
 	{
+		KcDatabase = kcDatabase;
 		AirBattleData = airBattleData;
 		WaveIndex = waveIndex;
 

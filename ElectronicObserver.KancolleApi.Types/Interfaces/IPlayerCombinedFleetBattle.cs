@@ -9,4 +9,9 @@ public interface IPlayerCombinedFleetBattle : IBattleApiResponse
 	List<int> ApiFNowhpsCombined { get; set; }
 
 	List<int>? ApiEscapeIdxCombined { get; set; }
+
+	/// <summary>
+	/// 随伴艦隊戦闘糧食補給　発動時のみ存在　艦船IDの数値配列
+	/// </summary>
+	List<int>? ApiCombatRationCombined { get; }
 }

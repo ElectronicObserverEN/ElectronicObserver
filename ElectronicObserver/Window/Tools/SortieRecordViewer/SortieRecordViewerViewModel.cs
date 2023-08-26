@@ -214,23 +214,27 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private async Task CopySortieData()
 	{
-		if (SelectedSortie is null) return;
-
-		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
-
-		SortieRecord sortie = new()
+		foreach (SortieRecordViewModel sortieRecord in SelectedSorties)
 		{
-			Id = SelectedSortie.Id,
-			World = SelectedSortie.World,
-			Map = SelectedSortie.Map,
-			ApiFiles = SelectedSortie.Model.ApiFiles
-				.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
-				.ToList(),
-			FleetData = SelectedSortie.Model.FleetData,
-			MapData = SelectedSortie.Model.MapData,
-		};
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
+			sortieRecord.Model.CleanRequests();
+		}
 
-		Clipboard.SetText(JsonSerializer.Serialize(sortie));
+		List<SortieRecord> sorties = SelectedSorties
+			.OrderBy(s => s.SortieStart)
+			.Select(s => new SortieRecord
+			{
+				Id = s.Id,
+				World = s.World,
+				Map = s.Map,
+				ApiFiles = s.Model.ApiFiles
+					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
+					.ToList(),
+				FleetData = s.Model.FleetData,
+				MapData = s.Model.MapData,
+			}).ToList();
+
+		Clipboard.SetText(JsonSerializer.Serialize(sorties));
 	}
 
 	[RelayCommand]
@@ -238,12 +242,12 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		try
 		{
-			SortieRecord? sortie = JsonSerializer
-				.Deserialize<SortieRecord>(Clipboard.GetText());
+			List<SortieRecord>? sorties = JsonSerializer
+				.Deserialize<List<SortieRecord>>(Clipboard.GetText());
 
-			if (sortie is null) return;
+			if (sorties is null) return;
 
-			ToolService.OpenSortieDetail(new SortieRecordViewModel(sortie, DateTime.UtcNow));
+			ToolService.OpenSortieDetail(new SortieRecordViewModel(sorties.First(), DateTime.UtcNow));
 		}
 		catch (Exception e)
 		{
@@ -291,6 +295,12 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		await ExportCsv<AirBattleExportMap, AirBattleExportModel>(DataExportHelper.AirBattle, cancellationToken);
 	}
 
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportAirBaseBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(DataExportHelper.AirBaseBattle, cancellationToken);
+	}
+
 	private async Task ExportCsv<TMap, TElement>(
 		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
 		CancellationToken cancellationToken = default
@@ -304,7 +314,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			ExportProgress = new();
 
-			Task<List<TElement>> processDataTask = Task.Run(async () => await 
+			Task<List<TElement>> processDataTask = Task.Run(async () => await
 				processData(SelectedSorties, ExportProgress, cancellationToken), cancellationToken);
 
 			List<Task> tasks = new() { processDataTask };

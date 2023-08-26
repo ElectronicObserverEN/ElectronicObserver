@@ -5,6 +5,7 @@ using System.Text.Json;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -12,10 +13,11 @@ public class PhaseNightBattle : PhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseNightBattle;
 
+	private IKCDatabase KcDatabase { get; }
 	private List<PhaseNightBattleAttack> Attacks { get; } = new();
 	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseNightBattle(List<FleetFlag> apiAtEflag, List<int> apiAtList,
+	public PhaseNightBattle(IKCDatabase kcDatabase, List<FleetFlag> apiAtEflag, List<int> apiAtList,
 		List<List<HitType>> apiClList, List<List<double>> apiDamage, List<List<int>> apiDfList,
 		List<int> apiNMotherList, List<List<object>> apiSiList, List<NightAttackKind> apiSpList)
 	{
@@ -25,6 +27,8 @@ public class PhaseNightBattle : PhaseBase
 			JsonElement { ValueKind: JsonValueKind.String } s => int.Parse(s.GetString()!),
 			_ => throw new NotImplementedException(),
 		};
+
+		KcDatabase = kcDatabase;
 
 		List<FleetFlag> fleetflag = apiAtEflag;
 		List<int> attackers = apiAtList;
@@ -42,7 +46,9 @@ public class PhaseNightBattle : PhaseBase
 				Attacker = new BattleIndex(attackers[i], fleetflag[i]),
 				NightAirAttackFlag = nightAirAttackFlags[i] == -1,
 				AttackType = attackTypes[i],
-				EquipmentIDs = attackEquipments[i],
+				DisplayEquipments = attackEquipments[i]
+					.Select(i => KcDatabase.MasterEquipments[i])
+					.ToList(),
 			};
 
 			static FleetFlag DefenderFlag(FleetFlag flag) => flag switch

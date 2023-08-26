@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -39,16 +38,14 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
-		DisplayEquipment = attack.EquipmentIDs
-			.Select(i => KCDatabase.Instance.MasterEquipments[i])
-			.ToList();
+		DisplayEquipment = attack.DisplayEquipments;
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
 
 		foreach (NightAttack nightAttack in Attacks)
 		{
-			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - nightAttack.Damage);
+			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - nightAttack.Damage));
 		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));

@@ -41,6 +41,7 @@ public class FleetItemViewModel : ObservableObject
 	public Dictionary<SpecialAttack, List<SpecialAttackHit>> SpecialAttackHitList { get; set; } = new();
 
 	public ShipData? Ship { get; private set; }
+	public bool CanSink { get; private set; }
 
 	public string? ShipName => Ship switch
 	{
@@ -111,8 +112,12 @@ public class FleetItemViewModel : ObservableObject
 
 		KCDatabase db = KCDatabase.Instance;
 
+		IFleetData fleet = db.Fleet[Parent.FleetId];
 		bool isEscaped = db.Fleet[Parent.FleetId].EscapedShipList.Contains(shipMasterID);
-		var equipments = Ship.AllSlotInstance.Where(eq => eq != null);
+		IEnumerable<IEquipmentData> equipments = Ship.AllSlotInstance
+			.Where(eq => eq != null);
+
+		CanSink = Ship.CanSink(fleet);
 
 		UpdateShipName(equipments);
 
@@ -132,7 +137,7 @@ public class FleetItemViewModel : ObservableObject
 	private void UpdateCondition()
 	{
 		if (Ship is null) return;
-			
+
 		Condition.Text = Ship.Condition.ToString();
 		Condition.Tag = Ship.Condition;
 		Condition.SetDesign(Ship.Condition);
@@ -247,7 +252,7 @@ public class FleetItemViewModel : ObservableObject
 			.DistinctBy(p => p.TargetLevel)
 			.ToList();
 
-		foreach(ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
+		foreach (ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
 		{
 			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
 		}
@@ -317,8 +322,8 @@ public class FleetItemViewModel : ObservableObject
 	private Color GetShipForeColor(Color backColor)
 	{
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-		    Parent.ShipTagColors.Count > 0 &&
-		    Ship?.SallyArea > 0)
+			Parent.ShipTagColors.Count > 0 &&
+			Ship?.SallyArea > 0)
 		{
 			return ColorService.GetForegroundColor(backColor);
 		}

@@ -10,6 +10,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -99,13 +100,21 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 			int tp = Calculator.GetTPDamage(fleet);
+			bool hasZeroSlotAircraft = fleet.MembersInstance
+				.Where(s => s is not null)
+				.Any(s => s.HasZeroSlotAircraft());
+			string? zeroSlotWarning = hasZeroSlotAircraft switch
+			{
+				true => $"\n{DataRes.ZeroSlotAircraftWarning}",
+				_ => null,
+			};
 
 			// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
 			IEnumerable<int> transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
 			IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType is EquipmentTypes.LandingCraft or EquipmentTypes.SpecialAmphibiousTank));
 			IEnumerable<int> radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
 
-			Name.ToolTip = string.Format(FormFleet.FleetNameToolTip,
+			Name.ToolTip = string.Format(FleetResources.FleetNameToolTip,
 				levelSum,
 				(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 				Constants.GetSpeed(speed),
@@ -131,7 +140,8 @@ public partial class FleetStatusViewModel : ObservableObject
 				members.Sum(s => s.ExpeditionASWTotal),
 				members.Sum(s => s.ExpeditionLOSTotal),
 				radar.Sum(),
-				radar.Count(i => i > 0)
+				radar.Count(i => i > 0),
+				zeroSlotWarning
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();

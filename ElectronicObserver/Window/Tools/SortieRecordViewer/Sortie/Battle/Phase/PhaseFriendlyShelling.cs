@@ -5,6 +5,7 @@ using System.Text.Json;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -13,6 +14,7 @@ public class PhaseFriendlyShelling : PhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseFriendlyShelling;
 
+	private IKCDatabase KcDatabase { get; }
 	private ApiFriendlyBattle ApiFriendlyBattle { get; }
 	private ApiHougeki ShellingData => ApiFriendlyBattle.ApiHougeki;
 
@@ -31,7 +33,7 @@ public class PhaseFriendlyShelling : PhaseBase
 	private List<PhaseNightBattleAttack> Attacks { get; } = new();
 	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseFriendlyShelling(ApiFriendlyBattle apiFriendlyBattle)
+	public PhaseFriendlyShelling(IKCDatabase kcDatabase, ApiFriendlyBattle apiFriendlyBattle)
 	{
 		static int ParseInt(object e) => e switch
 		{
@@ -40,6 +42,7 @@ public class PhaseFriendlyShelling : PhaseBase
 			_ => throw new NotImplementedException(),
 		};
 
+		KcDatabase = kcDatabase;
 		ApiFriendlyBattle = apiFriendlyBattle;
 
 		// assumption here that friend night battle can never be like sub vs sub night battle
@@ -59,7 +62,9 @@ public class PhaseFriendlyShelling : PhaseBase
 				Attacker = new BattleIndex(attackers[i], fleetflag[i]),
 				NightAirAttackFlag = nightAirAttackFlags[i] == -1,
 				AttackType = attackTypes[i],
-				EquipmentIDs = attackEquipments[i],
+				DisplayEquipments = attackEquipments[i]
+					.Select(i => KcDatabase.MasterEquipments[i])
+					.ToList(),
 			};
 
 			static FleetFlag DefenderFlag(FleetFlag flag) => flag switch

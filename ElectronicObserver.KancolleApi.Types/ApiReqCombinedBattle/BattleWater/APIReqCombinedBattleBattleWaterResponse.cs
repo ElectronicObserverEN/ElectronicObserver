@@ -39,11 +39,17 @@ public class ApiReqCombinedBattleBattleWaterResponse : ICombinedDayBattleApiResp
 	[JsonPropertyName("api_xal01")]
 	public int? ApiXal01 { get; set; }
 
+	[JsonPropertyName("api_combat_ration")]
+	public List<int>? ApiCombatRation { get; set; }
+
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_escape_idx_combined")]
 	public List<int>? ApiEscapeIdxCombined { get; set; }
+
+	[JsonPropertyName("api_combat_ration_combined")]
+	public List<int>? ApiCombatRationCombined { get; set; }
 
 	[JsonPropertyName("api_fParam")]
 	public List<List<int>> ApiFParam { get; set; } = new();

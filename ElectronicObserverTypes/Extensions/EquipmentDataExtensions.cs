@@ -236,4 +236,31 @@ public static class EquipmentDataExtensions
 
 		_ => 18,
 	};
+
+	public static bool IsAircraft(this IEquipmentData? equipment) => equipment?.MasterEquipment.CategoryType is
+		EquipmentTypes.CarrierBasedFighter or
+		EquipmentTypes.CarrierBasedBomber or
+		EquipmentTypes.CarrierBasedTorpedo or
+		EquipmentTypes.CarrierBasedRecon or
+		EquipmentTypes.CarrierBasedRecon2 or
+
+		EquipmentTypes.SeaplaneRecon or
+		EquipmentTypes.SeaplaneBomber or
+		EquipmentTypes.SeaplaneFighter or
+
+		EquipmentTypes.Autogyro or
+		EquipmentTypes.ASPatrol or
+
+		EquipmentTypes.FlyingBoat or
+
+		EquipmentTypes.LandBasedAttacker or
+		EquipmentTypes.Interceptor or
+		EquipmentTypes.LandBasedRecon or
+
+		EquipmentTypes.HeavyBomber or
+
+		EquipmentTypes.JetFighter or
+		EquipmentTypes.JetBomber or
+		EquipmentTypes.JetTorpedo or
+		EquipmentTypes.JetRecon;
 }

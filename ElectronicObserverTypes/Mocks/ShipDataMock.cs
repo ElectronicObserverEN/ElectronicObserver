@@ -103,10 +103,10 @@ public class ShipDataMock : IShipData
 	public int LuckTotal => this.LuckTotal();
 	public int BomberTotal => this.BomberTotal();
 	public int AccuracyTotal => this.AccuracyTotal();
-	public int ExpeditionFirepowerTotal { get; }
-	public int ExpeditionASWTotal { get; }
-	public int ExpeditionLOSTotal { get; }
-	public int ExpeditionAATotal { get; }
+	public int ExpeditionFirepowerTotal => this.ExpeditionFirepowerTotal();
+	public int ExpeditionASWTotal => this.ExpeditionAswTotal();
+	public int ExpeditionLOSTotal => this.ExpeditionLosTotal();
+	public int ExpeditionAATotal => this.ExpeditionAaTotal();
 	public int FirepowerBase => Math.Min(MasterShip.FirepowerMin + FirepowerModernized, MasterShip.FirepowerMax);
 	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
@@ -121,7 +121,7 @@ public class ShipDataMock : IShipData
 	public int SortID { get; set; }
 	public int SallyArea { get; set; }
 	public IShipDataMaster MasterShip { get; set; }
-	public int RepairingDockID { get; set; }
+	public int RepairingDockID { get; set; } = -1;
 	public int Fleet { get; set; }
 	public string FleetWithIndex { get; set; }
 	public bool IsMarried => Level > 99;
@@ -166,6 +166,7 @@ public class ShipDataMock : IShipData
 
 		HPCurrent = MasterShip.HPMin;
 
+		SlotSize = MasterShip.SlotSize;
 		Aircraft = MasterShip.Aircraft;
 
 		Fuel = ship.Fuel;

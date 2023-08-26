@@ -871,10 +871,10 @@
     <value>第四警戒</value>
   </data>
   <data name="GreenT" xml:space="preserve">
-    <value>T字有利</value>
+    <value>Ｔ字有利</value>
   </data>
   <data name="RedT" xml:space="preserve">
-    <value>T字不利</value>
+    <value>Ｔ字不利</value>
   </data>
   <data name="NormalAttack" xml:space="preserve">
     <value>通常攻撃</value>

@@ -11,7 +11,7 @@ public class ShipDataMasterMock : IShipDataMaster
 	public int AlbumNo { get; set; }
 	public int SortID { get; set; }
 	public string Name { get; set; }
-	public string NameEN { get; set; }
+	public string NameEN => Name;
 	public string NameReading { get; set; }
 	public string NameReadingEN { get; set; }
 	public ShipTypes ShipType { get; set; }
@@ -76,7 +76,11 @@ public class ShipDataMasterMock : IShipDataMaster
 	public int ASWModernizable => this.AswModernizable();
 
 	public bool IsAbyssalShip => this.IsAbyssalShip();
-	public string NameWithClass { get; set; }
+	public string NameWithClass => (!IsAbyssalShip || NameReading == "" || NameReading == "-") switch
+	{
+		true => NameEN,
+		_ => $"{NameEN} {NameReading}",
+	};
 	public IShipType ShipTypeInstance { get; set; }
 	public bool IsLandBase { get; set; }
 	public bool IsListedInAlbum { get; set; }

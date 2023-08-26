@@ -21,6 +21,9 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : ICombinedDayBattleApi
 	[JsonPropertyName("api_escape_idx")]
 	public List<int>? ApiEscapeIdx { get; set; }
 
+	[JsonPropertyName("api_combat_ration")]
+	public List<int>? ApiCombatRation { get; set; }
+
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 
@@ -77,6 +80,9 @@ public class ApiReqCombinedBattleEachBattleWaterResponse : ICombinedDayBattleApi
 
 	[JsonPropertyName("api_escape_idx_combined")]
 	public List<int>? ApiEscapeIdxCombined { get; set; }
+
+	[JsonPropertyName("api_combat_ration_combined")]
+	public List<int>? ApiCombatRationCombined { get; set; }
 
 	[JsonPropertyName("api_friendly_kouku")]
 	public ApiKouku? ApiFriendlyKouku { get; set; }

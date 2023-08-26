@@ -52,8 +52,6 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			bool isFirstNode = true;
-
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
 				List<PhaseBase> phases = node.FirstBattle.Phases
@@ -75,6 +73,9 @@ public class DataExportHelper
 
 				foreach (PhaseShelling shelling in phases.OfType<PhaseShelling>())
 				{
+					DayAttackKind previousSpecial = DayAttackKind.Unknown;
+					int specialIndex = 0;
+
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
@@ -83,9 +84,26 @@ public class DataExportHelper
 
 						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
+							int actualAttackIndex = attackIndex;
+
+							if (IsSpecialAttack(attack.AttackKind))
+							{
+								if (previousSpecial != attack.AttackKind)
+								{
+									previousSpecial = attack.AttackKind;
+									specialIndex = 0;
+								}
+								else
+								{
+									specialIndex++;
+								}
+
+								actualAttackIndex = specialIndex;
+							}
+
 							dayShellingData.Add(new()
 							{
-								CommonData = MakeCommonData(dayShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
+								CommonData = MakeCommonData(dayShellingData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.ShellingBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -101,7 +119,7 @@ public class DataExportHelper
 									_ => CsvExportResources.Enemy,
 								},
 								AttackType = CsvDayAttackKind(attack.AttackKind),
-								AttackIndex = attackIndex,
+								AttackIndex = actualAttackIndex,
 								DisplayedEquipment1 = attackDisplay.DisplayEquipment.Skip(0).FirstOrDefault()?.NameEN,
 								DisplayedEquipment2 = attackDisplay.DisplayEquipment.Skip(1).FirstOrDefault()?.NameEN,
 								DisplayedEquipment3 = attackDisplay.DisplayEquipment.Skip(2).FirstOrDefault()?.NameEN,
@@ -120,8 +138,6 @@ public class DataExportHelper
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -151,8 +167,6 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			bool isFirstNode = true;
-
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
 				List<PhaseBase> phases = node.FirstBattle.Phases
@@ -172,6 +186,9 @@ public class DataExportHelper
 
 				foreach (PhaseNightBattle nightBattle in phases.OfType<PhaseNightBattle>())
 				{
+					NightAttackKind previousSpecial = NightAttackKind.Unknown;
+					int specialIndex = 0;
+
 					foreach (PhaseNightBattleAttackViewModel attackDisplay in nightBattle.AttackDisplays)
 					{
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
@@ -180,9 +197,26 @@ public class DataExportHelper
 
 						foreach ((NightAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
+							int actualAttackIndex = attackIndex;
+
+							if (IsSpecialAttack(attack.AttackKind))
+							{
+								if (previousSpecial != attack.AttackKind)
+								{
+									previousSpecial = attack.AttackKind;
+									specialIndex = 0;
+								}
+								else
+								{
+									specialIndex++;
+								}
+
+								actualAttackIndex = specialIndex;
+							}
+
 							nightShellingData.Add(new()
 							{
-								CommonData = MakeCommonData(nightShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, initial, searching),
+								CommonData = MakeCommonData(nightShellingData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, initial, searching),
 								BattleType = CsvExportResources.NightBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -198,7 +232,7 @@ public class DataExportHelper
 									_ => CsvExportResources.Enemy,
 								},
 								AttackType = CsvNightAttackKind(attack.AttackKind),
-								AttackIndex = attackIndex,
+								AttackIndex = actualAttackIndex,
 								DisplayedEquipment1 = attackDisplay.DisplayEquipment.Skip(0).FirstOrDefault()?.NameEN,
 								DisplayedEquipment2 = attackDisplay.DisplayEquipment.Skip(1).FirstOrDefault()?.NameEN,
 								DisplayedEquipment3 = attackDisplay.DisplayEquipment.Skip(2).FirstOrDefault()?.NameEN,
@@ -217,8 +251,6 @@ public class DataExportHelper
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -228,9 +260,9 @@ public class DataExportHelper
 	}
 
 	public async Task<List<TorpedoExportModel>> Torpedo(
-	ObservableCollection<SortieRecordViewModel> sorties,
-	ExportProgressViewModel exportProgress,
-	CancellationToken cancellationToken = default)
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
 	{
 		exportProgress.Total = sorties.Count;
 
@@ -247,8 +279,6 @@ public class DataExportHelper
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
-
-			bool isFirstNode = true;
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
@@ -273,16 +303,24 @@ public class DataExportHelper
 				{
 					foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
 					{
+						int attackerHpBeforeAttack = torpedo.FleetsBeforePhase!
+							.GetShip(attackDisplay.AttackerIndex)!
+							.HPCurrent;
+
+						int defenderHpBeforeAttacks = torpedo.FleetsBeforePhase!
+							.GetShip(attackDisplay.DefenderIndex)!
+							.HPCurrent;
+
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
 
 						if (attackerFleet is null) continue;
 
-						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
+						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
 							torpedoData.Add(new()
 							{
-								CommonData = MakeCommonData(torpedoData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
-								BattleType = CsvExportResources.NightBattle,
+								CommonData = MakeCommonData(torpedoData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
+								BattleType = CsvExportResources.TorpedoBattle,
 								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
 								BattlePhase = torpedo.Phase switch
 								{
@@ -305,16 +343,14 @@ public class DataExportHelper
 									true => 1,
 									_ => 0,
 								},
-								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack),
-								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex]),
+								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack),
+								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks),
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(false),
 							});
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -344,7 +380,83 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			bool isFirstNode = true;
+			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			{
+				List<PhaseBase> phases = node.FirstBattle.Phases
+					.Concat(node.SecondBattle switch
+					{
+						null => Enumerable.Empty<PhaseBase>(),
+						_ => node.SecondBattle.Phases,
+					}).ToList();
+
+				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+				BattleFleets? fleets = initial?.FleetsAfterPhase;
+
+				if (initial is null) continue;
+				if (searching is null) continue;
+				if (fleets is null) continue;
+
+				foreach (PhaseAirBattle airBattle in phases.OfType<PhaseAirBattle>())
+				{
+					void ProcessData(IFleetData fleet, IFleetData attackerFleet, FleetFlag fleetFlag, int indexOffset)
+					{
+						foreach ((IShipData? ship, int index) in fleet.MembersWithoutEscaped!.Select((s, i) => (s, i)))
+						{
+							if (ship is null) continue;
+
+							BattleIndex defenderIndex = new(index + indexOffset, fleetFlag);
+							AirBattleAttackViewModel? attackDisplay = airBattle.AttackDisplays
+								.FirstOrDefault(a => a.DefenderIndex == defenderIndex);
+
+							airBattleData.Add(MakeAirBattleExport(airBattleData.Count + 1, node,
+								sortieDetail, admiralLevel, airBattle, searching, attackerFleet,
+								attackDisplay, ship, defenderIndex, ship.HPCurrent));
+						}
+					}
+
+					ProcessData(fleets.EnemyFleet!, fleets.Fleet, FleetFlag.Enemy, 0);
+
+					if (fleets.EnemyEscortFleet is not null)
+					{
+						ProcessData(fleets.EnemyEscortFleet, fleets.Fleet, FleetFlag.Enemy, 6);
+					}
+
+					ProcessData(fleets.Fleet, fleets.EnemyFleet!, FleetFlag.Player, 0);
+
+					if (fleets.EscortFleet is not null)
+					{
+						ProcessData(fleets.EscortFleet, fleets.EnemyFleet!, FleetFlag.Player, 6);
+					}
+				}
+			}
+
+			exportProgress.Progress++;
+		}
+
+		return airBattleData;
+	}
+
+	public async Task<List<AirBaseBattleExportModel>> AirBaseBattle(
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
+	{
+		exportProgress.Total = sorties.Count;
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+		}
+
+		List<AirBaseBattleExportModel> airBattleData = new();
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+
+			if (sortieDetail is null) continue;
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
@@ -363,74 +475,104 @@ public class DataExportHelper
 				if (searching is null) continue;
 				if (playerFleet is null) continue;
 
-				foreach (PhaseAirBattle airBattle in phases.OfType<PhaseAirBattle>())
+				foreach (PhaseBaseAirAttack airBaseBattle in phases.OfType<PhaseBaseAirAttack>())
 				{
-					foreach (AirBattleAttackViewModel attackDisplay in airBattle.AttackDisplays)
+					foreach (PhaseBaseAirAttackUnit airAttackUnit in airBaseBattle.Units)
 					{
-						IFleetData? attackerFleet = searching.FleetsBeforePhase?
-							.GetFleet(attackDisplay.DefenderIndex.FleetFlag switch
-							{
-								FleetFlag.Player => new BattleIndex(0, FleetFlag.Enemy),
-								FleetFlag.Enemy => new BattleIndex(0, FleetFlag.Player),
-							});
+						BattleFleets? fleets = airAttackUnit.FleetsBeforePhase;
 
-						if (attackerFleet is null) continue;
+						if (fleets is null) continue;
 
-						airBattleData.Add(new()
+						void ProcessData(IFleetData fleet, IFleetData attackerFleet, FleetFlag fleetFlag, int indexOffset)
 						{
-							CommonData = MakeCommonData(airBattleData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
-							Stage1 = new()
+							foreach ((IShipData? ship, int index) in fleet.MembersWithoutEscaped!.Select((s, i) => (s, i)))
 							{
-								PlayerAircraftTotal = airBattle.Stage1FCount,
-								PlayerAircraftLost = airBattle.Stage1FLostcount,
-								EnemyAircraftTotal = airBattle.Stage1ECount,
-								EnemyAircraftLost = airBattle.Stage1ELostcount,
-							},
-							Stage2 = new()
-							{
-								PlayerAircraftTotal = airBattle.Stage2FCount,
-								PlayerAircraftLost = airBattle.Stage2FLostcount,
-								EnemyAircraftTotal = airBattle.Stage2ECount,
-								EnemyAircraftLost = airBattle.Stage2ELostcount,
-							},
-							AntiAirCutIn = new()
-							{
-								Ship = airBattle.ApiAirFire?.ApiIdx,
-								Id = airBattle.ApiAirFire?.ApiKind,
-								DisplayedEquipment1 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(0).FirstOrDefault())?.NameEN,
-								DisplayedEquipment2 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(1).FirstOrDefault())?.NameEN,
-								DisplayedEquipment3 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(2).FirstOrDefault())?.NameEN,
-							},
-							Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
-							Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
-							Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
-							Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
-							Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
-							Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
-							Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
-							TorpedoFlag = attackDisplay.AttackType switch
-							{
-								AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
-								_ => 0,
-							},
-							BomberFlag = attackDisplay.AttackType switch
-							{
-								AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
-								_ => 0,
-							},
-							HitType = (int)attackDisplay.HitType,
-							Damage = attackDisplay.Damage,
-							Protected = attackDisplay.GuardsFlagship switch
-							{
-								true => 1,
-								_ => 0,
-							},
-							Defender = MakeShip(attackDisplay.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttack),
-						});
+								if (ship is null) continue;
+
+								BattleIndex defenderIndex = new(index + indexOffset, fleetFlag);
+								AirBattleAttackViewModel? attackDisplay = airAttackUnit.AttackDisplays
+									.FirstOrDefault(a => a.DefenderIndex == defenderIndex);
+
+								airBattleData.Add(new()
+								{
+									CommonData = MakeCommonData(airBattleData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airAttackUnit, searching),
+									SquadronId = airAttackUnit.AirBaseId,
+									SquadronAttackIndex = airAttackUnit.WaveIndex + 1,
+									AirBasePlayerContact = airAttackUnit.TouchAircraftFriend,
+									AirBaseEnemyContact = airAttackUnit.TouchAircraftEnemy,
+									AirBaseSquadron1EquipmentName = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron1Aircraft = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.AircraftCount,
+									AirBaseSquadron2EquipmentName = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron2Aircraft = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.AircraftCount,
+									AirBaseSquadron3EquipmentName = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron3Aircraft = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.AircraftCount,
+									AirBaseSquadron4EquipmentName = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron4Aircraft = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.AircraftCount,
+									Stage1 = new()
+									{
+										PlayerAircraftTotal = airAttackUnit.Stage1FCount,
+										PlayerAircraftLost = airAttackUnit.Stage1FLostcount,
+										EnemyAircraftTotal = airAttackUnit.Stage1ECount,
+										EnemyAircraftLost = airAttackUnit.Stage1ELostcount,
+									},
+									Stage2 = new()
+									{
+										PlayerAircraftTotal = airAttackUnit.Stage2FCount,
+										PlayerAircraftLost = airAttackUnit.Stage2FLostcount,
+										EnemyAircraftTotal = airAttackUnit.Stage2ECount,
+										EnemyAircraftLost = airAttackUnit.Stage2ELostcount,
+									},
+									Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
+									Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
+									Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
+									Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
+									Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
+									Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
+									Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
+									TotalTorpedoFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
+									{
+										AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									}),
+									TotalBomberFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
+									{
+										AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									}),
+									TorpedoFlag = attackDisplay?.AttackType switch
+									{
+										AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									},
+									BomberFlag = attackDisplay?.AttackType switch
+									{
+										AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									},
+									HitType = attackDisplay?.HitType switch
+									{
+										HitType.Critical => 1,
+										_ => 0,
+									},
+									Damage = attackDisplay?.Damage ?? 0,
+									Protected = attackDisplay?.GuardsFlagship switch
+									{
+										true => 1,
+										_ => 0,
+									},
+									Defender = MakeShip(ship, defenderIndex, Math.Max(0, ship.HPCurrent)),
+								});
+							}
+						}
+
+						ProcessData(fleets.EnemyFleet!, fleets.Fleet, FleetFlag.Enemy, 0);
+
+						if (fleets.EnemyEscortFleet is not null)
+						{
+							ProcessData(fleets.EnemyEscortFleet, fleets.Fleet, FleetFlag.Enemy, 6);
+						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -438,6 +580,67 @@ public class DataExportHelper
 
 		return airBattleData;
 	}
+
+	private static AirBattleExportModel MakeAirBattleExport(int no, BattleNode node,
+		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseAirBattle airBattle,
+		PhaseSearching searching, IFleetData attackerFleet, AirBattleAttackViewModel? attackDisplay,
+		IShipData defender, BattleIndex defenderIndex, int defenderHpBeforeAttack)
+		=> new()
+		{
+			CommonData = MakeCommonData(no, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
+			Stage1 = new()
+			{
+				PlayerAircraftTotal = airBattle.Stage1FCount,
+				PlayerAircraftLost = airBattle.Stage1FLostcount,
+				EnemyAircraftTotal = airBattle.Stage1ECount,
+				EnemyAircraftLost = airBattle.Stage1ELostcount,
+			},
+			Stage2 = new()
+			{
+				PlayerAircraftTotal = airBattle.Stage2FCount,
+				PlayerAircraftLost = airBattle.Stage2FLostcount,
+				EnemyAircraftTotal = airBattle.Stage2ECount,
+				EnemyAircraftLost = airBattle.Stage2ELostcount,
+			},
+			AntiAirCutIn = new()
+			{
+				Ship = airBattle.ApiAirFire?.ApiIdx,
+				Id = airBattle.ApiAirFire?.ApiKind,
+				DisplayedEquipment1 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(0).FirstOrDefault())?.NameEN,
+				DisplayedEquipment2 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(1).FirstOrDefault())?.NameEN,
+				DisplayedEquipment3 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(2).FirstOrDefault())?.NameEN,
+			},
+			Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
+			Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
+			Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
+			Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
+			Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
+			Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
+			Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
+			TorpedoFlag = attackDisplay?.AttackType switch
+			{
+				AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+				_ => 0,
+			},
+			BomberFlag = attackDisplay?.AttackType switch
+			{
+				AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+				_ => 0,
+			},
+			HitType = attackDisplay?.HitType switch
+			{
+				HitType.Critical => 1,
+				_ => 0,
+			},
+			Damage = attackDisplay?.Damage ?? 0,
+			Protected = attackDisplay?.GuardsFlagship switch
+			{
+				true => 1,
+				_ => 0,
+			},
+			Defender = MakeShip(attackDisplay?.Defender ?? defender, attackDisplay?.DefenderIndex ?? defenderIndex, attackDisplay?.DefenderHpBeforeAttack ?? defenderHpBeforeAttack),
+		};
+
 
 	/// <summary>
 	/// Makes data that's common between all csv exports.
@@ -471,13 +674,18 @@ public class DataExportHelper
 			AdmiralLevel = admiralLevel,
 			PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
 			EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
-			PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
-			EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
-			AirState = Constants.GetAirSuperiority(contactPhase switch
+			PlayerSearch = contactPhase switch
 			{
-				PhaseAirBattle airBattle => airBattle.AirState,
-				_ => AirState.Unknown,
-			}),
+				// day search result should be ignored for night battles
+				PhaseNightInitial => null,
+				_ => GetSearchingResult(searching.PlayerDetectionType),
+			},
+			EnemySearch = contactPhase switch
+			{
+				PhaseNightInitial => null,
+				_ => GetSearchingResult(searching.EnemyDetectionType),
+			},
+			AirState = GetAirState(contactPhase),
 			Engagement = Constants.GetEngagementForm(searching.EngagementType),
 			PlayerContact = contactPhase switch
 			{
@@ -508,15 +716,19 @@ public class DataExportHelper
 		Index = index.Index + 1,
 		Id = ship.ShipID,
 		Name = ship.Name,
-		ShipType = ship.MasterShip.ShipType.Display(),
+		ShipType = ship.MasterShip.ShipType switch
+		{
+			ShipTypes.Transport => "補給艦",
+			ShipTypes type => type.Display(),
+		},
 		Condition = NullForAbyssals(ship.Condition, ship),
 		HpCurrent = hpBeforeAttack,
 		HpMax = ship.HPMax,
 		DamageState = GetDamageState(hpBeforeAttack, ship.HPMax),
 		FuelCurrent = NullForAbyssals(ship.Fuel, ship),
-		FuelMax = NullForAbyssals(ship.FuelMax, ship),
+		FuelMax = ship.FuelMax,
 		AmmoCurrent = NullForAbyssals(ship.Ammo, ship),
-		AmmoMax = NullForAbyssals(ship.AmmoMax, ship),
+		AmmoMax = ship.AmmoMax,
 		Level = ship.Level,
 		Speed = Constants.GetSpeed(ship.Speed),
 		Firepower = ship.FirepowerTotal,
@@ -546,10 +758,13 @@ public class DataExportHelper
 	private static EquipmentExportModel MakeEquipment(IShipData ship, int index) => new()
 	{
 		Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
-		Level = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level,
-		AircraftLevel = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel,
-		Aircraft = ship.Aircraft.Skip(index).FirstOrDefault(),
+		Level = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level, ship),
+		AircraftLevel = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel, ship),
+		Aircraft = NullForAbyssals(ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), ship),
 	};
+
+	private static bool IsFirstNode(IEnumerable<SortieNode> nodes, SortieNode node)
+		=> nodes.OfType<BattleNode>().FirstOrDefault() == node;
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell}";
@@ -567,7 +782,7 @@ public class DataExportHelper
 		_ => "",
 	};
 
-	private static string GetSearchingResult(DetectionType id) => id switch
+	private static string? GetSearchingResult(DetectionType id) => id switch
 	{
 		DetectionType.Success => "発見!",
 		DetectionType.SuccessNoReturn => "発見!索敵機未帰還機あり",
@@ -575,13 +790,30 @@ public class DataExportHelper
 		DetectionType.Failure => "発見できず…",
 		DetectionType.SuccessNoPlane => "発見!(索敵機なし)",
 		DetectionType.FailureNoPlane => "なし",
+		DetectionType.Unknown => null,
 		_ => $"不明({id})",
 	};
+
+	private static string? GetAirState(PhaseBase contactPhase)
+	{
+		AirState airState = contactPhase switch
+		{
+			PhaseAirBattleBase airBattle => airBattle.AirState,
+			_ => AirState.Unknown,
+		};
+
+		return airState switch
+		{
+			AirState.Parity => "航空互角",
+			AirState.Unknown => null,
+			_ => Constants.GetAirSuperiority(airState),
+		};
+	}
 
 	private static int? FlareIndex(int index) => index switch
 	{
 		-1 => null,
-		_ => index,
+		_ => index + 1,
 	};
 
 	private static string GetPlayerFleet(BattleFleets fleets, BattleIndex attackerIndex, BattleIndex defenderIndex)
@@ -655,4 +887,28 @@ public class DataExportHelper
 		int i => KCDatabase.Instance.MasterEquipments[i],
 		_ => null,
 	};
+
+	private static bool IsSpecialAttack(DayAttackKind dayAttack) => dayAttack is
+		DayAttackKind.SpecialNelson or
+		DayAttackKind.SpecialNagato or
+		DayAttackKind.SpecialMutsu or
+		DayAttackKind.SpecialColorado or
+		DayAttackKind.SpecialKongo or
+		DayAttackKind.SpecialSubmarineTender23 or
+		DayAttackKind.SpecialSubmarineTender34 or
+		DayAttackKind.SpecialSubmarineTender24 or
+		DayAttackKind.SpecialYamato2Ships or
+		DayAttackKind.SpecialYamato3Ships;
+
+	private static bool IsSpecialAttack(NightAttackKind nightAttack) => nightAttack is
+		NightAttackKind.SpecialNelson or
+		NightAttackKind.SpecialNagato or
+		NightAttackKind.SpecialMutsu or
+		NightAttackKind.SpecialColorado or
+		NightAttackKind.SpecialKongou or
+		NightAttackKind.SpecialSubmarineTender23 or
+		NightAttackKind.SpecialSubmarineTender34 or
+		NightAttackKind.SpecialSubmarineTender24 or
+		NightAttackKind.SpecialYamato2Ships or
+		NightAttackKind.SpecialYamato3Ships;
 }

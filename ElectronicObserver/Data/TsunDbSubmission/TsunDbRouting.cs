@@ -217,9 +217,9 @@ public class TsunDbRouting : TsunDbEntity
 	{
 		List<TsunDbShipData> shipsData = new List<TsunDbShipData>();
 
-		var members = fleetData.MembersInstance.Where(s => s != null);
+		IEnumerable<IShipData> members = fleetData.MembersWithoutEscaped?.Where(s => s != null).Cast<IShipData>().ToList() ?? new List<IShipData>();
 
-		this.FleetSpeed = Math.Min(this.FleetSpeed, members.Select(s => s.Speed).Min());
+		FleetSpeed = Math.Min(FleetSpeed, members.Select(s => s.Speed).Min());
 
 		foreach (int weight in new int[4] { 1, 2, 3, 4 })
 		{

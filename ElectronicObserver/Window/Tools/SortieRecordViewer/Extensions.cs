@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
@@ -417,8 +419,29 @@ public static class Extensions
 		if (sortie.ApiFiles.Count is not 0) return;
 
 		sortie.ApiFiles = await db.ApiFiles
+			.AsNoTracking()
 			.Where(f => f.SortieRecordId == sortie.Id)
 			.ToListAsync(cancellationToken);
+	}
+
+	/// <summary>
+	/// Removes api_token values.
+	/// </summary>
+	public static void CleanRequests(this SortieRecord sortie)
+	{
+		foreach (ApiFile apiFile in sortie.ApiFiles)
+		{
+			if (apiFile.ApiFileType is not ApiFileType.Request) continue;
+
+			Dictionary<string, string>? requestData = JsonSerializer
+				.Deserialize<Dictionary<string, string>>(apiFile.Content);
+
+			if(requestData is null) continue;
+
+			requestData.Remove("api_token");
+
+			apiFile.Content = JsonSerializer.Serialize(requestData);
+		}
 	}
 
 	public static async Task<int?> GetAdmiralLevel(this SortieRecord sortieRecord, ElectronicObserverContext db, CancellationToken cancellationToken = default)

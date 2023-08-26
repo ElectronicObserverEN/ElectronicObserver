@@ -42,16 +42,14 @@ public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
-		DisplayEquipment = attack.EquipmentIDs
-			.Select(i => KCDatabase.Instance.MasterEquipments[i])
-			.ToList();
+		DisplayEquipment = attack.DisplayEquipments;
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
 
 		foreach (DayAttack dayAttack in Attacks)
 		{
-			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - dayAttack.Damage);
+			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - dayAttack.Damage));
 		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));

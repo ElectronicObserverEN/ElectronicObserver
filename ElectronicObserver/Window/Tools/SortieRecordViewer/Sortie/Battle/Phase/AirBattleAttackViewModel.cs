@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -11,7 +10,7 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 	private int WaveIndex { get; }
 
 	public BattleIndex DefenderIndex { get; }
-	public IShipData Defender { get; set; }
+	public IShipData Defender { get; }
 	public int DefenderHpBeforeAttack { get; }
 
 	public int Damage { get; }

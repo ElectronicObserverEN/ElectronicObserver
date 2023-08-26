@@ -53,6 +53,9 @@ public class ApiReqCombinedBattleAirbattleResponse : IAirBattleApiResponse, ISup
 	[JsonPropertyName("api_escape_idx_combined")]
 	public List<int>? ApiEscapeIdxCombined { get; set; } = new();
 
+	[JsonPropertyName("api_combat_ration_combined")]
+	public List<int>? ApiCombatRationCombined { get; set; }
+
 	[JsonPropertyName("api_search")]
 	public List<DetectionType> ApiSearch { get; set; } = new();
 
@@ -80,6 +83,10 @@ public class ApiReqCombinedBattleAirbattleResponse : IAirBattleApiResponse, ISup
 	// unused?
 	public List<object> ApiENowhps { get; set; } = new();
 	public List<object> ApiEMaxhps { get; set; } = new();
+
+	[JsonPropertyName("api_combat_ration")]
+	public List<int>? ApiCombatRation { get; set; }
+
 	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_air_base_injection")]

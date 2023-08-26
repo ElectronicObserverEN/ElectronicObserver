@@ -23,6 +23,8 @@ public class PhaseInitial : PhaseBase
 
 	public bool IsEnemyCombinedFleet { get; }
 	private bool IsBossDamaged { get; }
+	private List<int>? ApiCombatRation { get; }
+	private List<int>? ApiCombatRationCombined { get; }
 	private List<int> FriendInitialHPs { get; }
 	private List<int> FriendMaxHPs { get; }
 
@@ -192,6 +194,7 @@ public class PhaseInitial : PhaseBase
 		}
 
 		IsBossDamaged = battle.ApiXal01 > 0;
+		ApiCombatRation = battle.ApiCombatRation;
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;
 
@@ -240,6 +243,7 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IPlayerCombinedFleetBattle battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
+		ApiCombatRationCombined = battle.ApiCombatRationCombined;
 		SetEscortFleetHp(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
 	}
@@ -255,6 +259,7 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
+		ApiCombatRationCombined = battle.ApiCombatRationCombined;
 		SetEscortFleetHp(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
 

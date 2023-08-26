@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+		<TargetFramework>net6.0-windows7</TargetFramework>
 
 		<IsPackable>false</IsPackable>
 		<Nullable>enable</Nullable>
@@ -25,6 +25,15 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ElectronicObserver.TestData\ElectronicObserver.TestData.csproj" />
 		<ProjectReference Include="..\ElectronicObserver\ElectronicObserver.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="CsvExport\*.csv">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="CsvExport\*.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

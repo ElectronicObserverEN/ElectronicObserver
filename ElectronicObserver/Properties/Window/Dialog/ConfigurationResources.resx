@@ -774,4 +774,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>無効の場合、プレビューに一致する候補のみが表示されます。
 有効の場合、プレビューは無視され、すべての候補が表示されます。</value>
   </data>
+  <data name="Language_Korean" xml:space="preserve">
+    <value>韓国語</value>
+  </data>
 </root>

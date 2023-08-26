@@ -37,47 +37,70 @@ public static class GameDataExtensions
 		{
 			Name = fleet.Name,
 			FleetType = (FleetType)combinedFlag,
-			MembersInstance = new ReadOnlyCollection<IShipData?>(fleet.Ships.Select(MakeShip).Select(ApplyFitBonus).ToList()),
+			MembersInstance = new ReadOnlyCollection<IShipData?>(fleet.Ships.Select(MakeShip).ToList()),
 		},
 		_ => null,
 	};
 
-	[return: NotNullIfNotNull(nameof(ship))]
-	private static ShipDataMock? MakeShip(SortieShip? ship) => ship switch
+	[return: NotNullIfNotNull(nameof(shipData))]
+	private static IShipData? MakeShip(SortieShip? shipData)
 	{
-		{ } => new ShipDataMock(KcDatabase.MasterShips[(int)ship.Id])
+		if (shipData is null) return null;
+
+		ShipDataMock ship = new(KcDatabase.MasterShips[(int)shipData.Id])
 		{
-			MasterID = ship.DropId ?? 0,
-			Level = ship.Level,
-			Condition = ship.Condition,
-			IsExpansionSlotAvailable = ship.ExpansionSlot is not null,
-			SlotInstance = ship.EquipmentSlots.Select(s => MakeEquipment(s.Equipment)).ToList(),
-			ExpansionSlotInstance = MakeEquipment(ship.ExpansionSlot?.Equipment),
-			Fuel = ship.Fuel,
-			Ammo = ship.Ammo,
-			Range = ship.Range,
-			Speed = ship.Speed,
-			LuckModernized = ship.Kyouka.Skip(4).FirstOrDefault(),
-			HPMaxModernized = ship.Kyouka.Skip(5).FirstOrDefault(),
-			ASWModernized = ship.Kyouka.Skip(6).FirstOrDefault(),
-		},
-		_ => null,
-	};
+			MasterID = shipData.DropId ?? 0,
+			Level = shipData.Level,
+			Condition = shipData.Condition,
+			IsExpansionSlotAvailable = shipData.ExpansionSlot is not null,
+			SlotInstance = shipData.EquipmentSlots.Select(s => MakeEquipment(s.Equipment)).ToList(),
+			ExpansionSlotInstance = MakeEquipment(shipData.ExpansionSlot?.Equipment),
+			Fuel = shipData.Fuel,
+			Ammo = shipData.Ammo,
+			Range = shipData.Range,
+			Speed = shipData.Speed,
+			LuckModernized = shipData.Kyouka.Skip(4).FirstOrDefault(),
+			HPMaxModernized = shipData.Kyouka.Skip(5).FirstOrDefault(),
+			ASWModernized = shipData.Kyouka.Skip(6).FirstOrDefault(),
+		};
+
+		if (shipData.Aircraft is not null)
+		{
+			ship.Aircraft = shipData.Aircraft;
+		}
+
+		return ApplyFitBonus(ship, shipData);
+	}
 
 	[return: NotNullIfNotNull(nameof(ship))]
-	private static IShipData? ApplyFitBonus(ShipDataMock? ship)
+	private static ShipDataMock? ApplyFitBonus(ShipDataMock? ship, SortieShip shipData)
 	{
 		if (ship is null) return ship;
 
-		FitBonusValue fit = ship.GetFitBonus(FitBonusList);
+		if (shipData.Firepower is null)
+		{
+			// old data, need to calculate fits
+			FitBonusValue fit = ship.GetFitBonus(FitBonusList);
 
-		ship.FirepowerFit = fit.Firepower;
-		ship.TorpedoFit = fit.Torpedo;
-		ship.AaFit = fit.AntiAir;
-		ship.ArmorFit = fit.Armor;
-		ship.EvasionFit = fit.Evasion;
-		ship.AswFit = fit.ASW;
-		ship.LosFit = fit.LOS;
+			ship.FirepowerFit = fit.Firepower;
+			ship.TorpedoFit = fit.Torpedo;
+			ship.AaFit = fit.AntiAir;
+			ship.ArmorFit = fit.Armor;
+			ship.EvasionFit = fit.Evasion;
+			ship.AswFit = fit.ASW;
+			ship.LosFit = fit.LOS;
+		}
+		else
+		{
+			// none of them should be null for new data
+			ship.FirepowerFit = shipData.Firepower.Value - ship.FirepowerTotal;
+			ship.TorpedoFit = shipData.Torpedo!.Value - ship.TorpedoTotal;
+			ship.AaFit = shipData.Aa!.Value - ship.AATotal;
+			ship.ArmorFit = shipData.Armor!.Value - ship.ArmorTotal;
+			ship.EvasionFit = shipData.Evasion!.Value - ship.EvasionTotal;
+			ship.AswFit = shipData.Asw!.Value - ship.ASWTotal;
+			ship.LosFit = shipData.Search!.Value - ship.LOSTotal;
+		}
 
 		return ship;
 	}

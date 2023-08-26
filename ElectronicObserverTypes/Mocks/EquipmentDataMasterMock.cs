@@ -6,6 +6,8 @@ namespace ElectronicObserverTypes.Mocks;
 
 public class EquipmentDataMasterMock : IEquipmentDataMaster
 {
+	private string? _nameEn;
+
 	public bool IsSurfaceRadar => this.IsSurfaceRadar();
 	public bool IsSonar => this.IsSonar();
 	public bool IsDepthCharge => this.IsDepthCharge();
@@ -25,7 +27,11 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public int EquipmentID { get; set; }
 	public int AlbumNo { get; set; }
 	public string Name { get; set; }
-	public string NameEN { get; set; }
+	public string NameEN
+	{
+		get => _nameEn ?? Name;
+		set => _nameEn = value;
+	}
 	public bool IsTranslated { get; set; }
 	public IList<int> EquipmentType { get; set; }
 	public int Armor { get; set; }

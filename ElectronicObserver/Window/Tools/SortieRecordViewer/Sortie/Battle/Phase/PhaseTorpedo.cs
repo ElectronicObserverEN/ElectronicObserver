@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
@@ -58,6 +59,8 @@ public class PhaseTorpedo : PhaseBase
 			BattleIndex attacker = new(i, FleetFlag.Player);
 			BattleIndex defender = new(BattleApiOpeningAtack.ApiFrai[i], FleetFlag.Enemy);
 
+			double protectedFlag = BattleApiOpeningAtack.ApiEdam[defender.Index] - Math.Floor(BattleApiOpeningAtack.ApiEdam[defender.Index]);
+
 			PhaseTorpedoAttack attack = new()
 			{
 				Attacker = attacker,
@@ -66,7 +69,7 @@ public class PhaseTorpedo : PhaseBase
 				{
 					new()
 					{
-						RawDamage = BattleApiOpeningAtack.ApiFydam[i],
+						RawDamage = BattleApiOpeningAtack.ApiFydam[i] + protectedFlag,
 						Defender = defender,
 						CriticalFlag = BattleApiOpeningAtack.ApiFcl[i] switch
 						{
@@ -94,6 +97,8 @@ public class PhaseTorpedo : PhaseBase
 			BattleIndex attacker = new(i, FleetFlag.Enemy);
 			BattleIndex defender = new(BattleApiOpeningAtack.ApiErai[i], FleetFlag.Player);
 
+			double protectedFlag = BattleApiOpeningAtack.ApiFdam[defender.Index] - Math.Floor(BattleApiOpeningAtack.ApiFdam[defender.Index]);
+
 			PhaseTorpedoAttack attack = new()
 			{
 				Attacker = attacker,
@@ -102,7 +107,7 @@ public class PhaseTorpedo : PhaseBase
 				{
 					new()
 					{
-						RawDamage = BattleApiOpeningAtack.ApiEydam[i],
+						RawDamage = BattleApiOpeningAtack.ApiEydam[i] + protectedFlag,
 						Defender = defender,
 						CriticalFlag = BattleApiOpeningAtack.ApiEcl[i] switch
 						{

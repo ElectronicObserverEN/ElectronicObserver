@@ -5,6 +5,7 @@ using System.Text.Json;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -19,14 +20,16 @@ public class PhaseShelling : PhaseBase
 		_ => "???",
 	};
 
+	private IKCDatabase KcDatabase { get; }
 	private ApiHougeki1? ShellingData { get; }
 	public DayShellingPhase DayShellingPhase { get; }
 
 	private List<PhaseShellingAttack> Attacks { get; } = new();
 	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseShelling(ApiHougeki1? shellingData, DayShellingPhase dayShellingPhase)
+	public PhaseShelling(IKCDatabase kcDatabase, ApiHougeki1? shellingData, DayShellingPhase dayShellingPhase)
 	{
+		KcDatabase = kcDatabase;
 		ShellingData = shellingData;
 		DayShellingPhase = dayShellingPhase;
 
@@ -53,7 +56,9 @@ public class PhaseShelling : PhaseBase
 			{
 				Attacker = new BattleIndex(attackers[i], fleetflag[i]),
 				AttackType = attackTypes[i],
-				EquipmentIDs = attackEquipments[i],
+				DisplayEquipments = attackEquipments[i]
+					.Select(id => KcDatabase.MasterEquipments[id])
+					.ToList(),
 			};
 
 			static FleetFlag DefenderFlag(FleetFlag flag) => flag switch

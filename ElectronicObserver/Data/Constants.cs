@@ -370,6 +370,7 @@ public static class Constants
 		120 => "第百一号型",
 		121 => "New Orleans級",
 		122 => "Salmon級",
+		123 => "改敷島型",
 		_ => "不明",
 	};
 

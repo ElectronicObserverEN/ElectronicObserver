@@ -10,7 +10,12 @@ public class DataAndTranslationManager
 	public static string DataFolder => Path.Combine(WorkingFolder, "Data");
 	public static string TranslationFolder => Path.Combine(WorkingFolder, "Translations", CurrentTranslationLanguage);
 
-	public static string CurrentTranslationLanguage => "en-US";
+	public static string CurrentTranslationLanguage => Configuration.Config.UI.Culture switch
+	{
+		// Japanese translations don't exist, so fall back to English
+		"ja-JP" => "en-US",
+		string culture => culture,
+	};
 
 	public DestinationData Destination { get; private set; }
 	public QuestTranslationData Quest { get; private set; }

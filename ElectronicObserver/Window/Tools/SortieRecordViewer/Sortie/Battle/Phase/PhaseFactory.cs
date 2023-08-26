@@ -52,7 +52,7 @@ public sealed class PhaseFactory
 	public PhaseBaseAirAttack? BaseAirAttack(List<ApiAirBaseAttack>? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
@@ -66,14 +66,14 @@ public sealed class PhaseFactory
 	public PhaseFriendlyAirBattle? FriendlyAirBattle(ApiKouku? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
 	public PhaseAirBattle? AirBattle(ApiKouku? a, AirPhaseType airPhaseType) => a switch
 	{
 		null => null,
-		_ => new(a, airPhaseType),
+		_ => new(KcDatabase, a, airPhaseType),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
@@ -87,7 +87,7 @@ public sealed class PhaseFactory
 	public PhaseOpeningAsw? OpeningAsw(ApiHougeki1? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
@@ -101,7 +101,7 @@ public sealed class PhaseFactory
 	public PhaseShelling? Shelling(ApiHougeki1? a, DayShellingPhase shellingPhase) => a switch
 	{
 		null => null,
-		_ => new(a, shellingPhase),
+		_ => new(KcDatabase, a, shellingPhase),
 	};
 
 	public PhaseNightInitial NightInitial(BattleFleets fleets, INightGearApiResponse battle) => battle switch
@@ -114,7 +114,7 @@ public sealed class PhaseFactory
 	public PhaseFriendlyShelling? FriendlyShelling(ApiFriendlyBattle? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
@@ -129,7 +129,7 @@ public sealed class PhaseFactory
 			ApiNMotherList: { } apiNMotherList,
 			ApiSiList: { } apiSiList,
 			ApiSpList: { } apiSpList,
-		} => new(apiAtEflag, apiAtList, apiClList, apiDamage, apiDfList, apiNMotherList, apiSiList, apiSpList),
+		} => new(KcDatabase, apiAtEflag, apiAtList, apiClList, apiDamage, apiDfList, apiNMotherList, apiSiList, apiSpList),
 
 		_ => null,
 	};
@@ -138,7 +138,7 @@ public sealed class PhaseFactory
 	public PhaseRadar? Radar(ApiHougeki1? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]

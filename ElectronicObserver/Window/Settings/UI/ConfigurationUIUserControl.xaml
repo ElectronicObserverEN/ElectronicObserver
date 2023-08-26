@@ -290,6 +290,23 @@
 					</Style>
 				</RadioButton.Style>
 			</RadioButton>
+
+			<RadioButton
+				Command="{Binding SetLanguageCommand}"
+				CommandParameter="ko-KR"
+				Content="{Binding Translation.Language_Korean}"
+				>
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Culture}" Value="ko-KR">
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
 		</StackPanel>
 
 		<TextBlock Text="{Binding Translation.UI_RestartHint}" />

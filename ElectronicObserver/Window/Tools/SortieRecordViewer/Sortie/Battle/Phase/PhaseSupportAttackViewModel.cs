@@ -38,7 +38,7 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 
 		foreach (SupportAttack supportAttack in Attacks)
 		{
-			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - supportAttack.Damage);
+			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - supportAttack.Damage));
 		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));

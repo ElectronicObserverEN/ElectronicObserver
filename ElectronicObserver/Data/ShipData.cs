@@ -1099,88 +1099,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 		return (int)(basepower * GetAmmoDamageRate());
 	}
-	/// <summary>
-	/// Method to calculate expedition Firepower with Levels
-	/// </summary>
-	private int CalculateExpeditionFirepowerTotal()
-	{
-		double basepower = FirepowerTotal;
-		foreach (var slot in AllSlotInstance)
-		{
-			if (slot == null)
-				continue;
-
-			basepower += slot.MasterEquipment.CategoryType switch
-			{
-				EquipmentTypes.MainGunSmall => 0.5 * Math.Sqrt(slot.Level),
-				EquipmentTypes.MainGunMedium => Math.Sqrt(slot.Level),
-				EquipmentTypes.SecondaryGun => 0.15 * Math.Sqrt(slot.Level),
-				EquipmentTypes.MainGunLarge or EquipmentTypes.MainGunLarge2 => 0.9 * Math.Sqrt(slot.Level),
-				EquipmentTypes.APShell or EquipmentTypes.AAGun => 0.5 * Math.Sqrt(slot.Level),
-				_ => 0,
-			};
-		}
-		return (int)basepower;
-	}
-	/// <summary>
-	/// Method to calculate expedition ASW with Levels
-	/// </summary>
-	private int CalculateExpeditionASWTotal()
-	{
-		double baseasw = ASWTotal;
-		foreach (var slot in AllSlotInstance)
-		{
-			if (slot == null)
-				continue;
-
-			baseasw += slot.MasterEquipment.CategoryType switch
-			{
-				EquipmentTypes.DepthCharge or EquipmentTypes.Sonar => Math.Sqrt(slot.Level),
-				_ => 0,
-			};
-		}
-		return (int)baseasw;
-	}
-	/// <summary>
-	/// Method to calculate expedition LOS with Levels
-	/// </summary>
-	private int CalculateExpeditionLOSTotal()
-	{
-		double baselos = LOSTotal;
-		foreach (var slot in AllSlotInstance)
-		{
-			if (slot == null)
-				continue;
-
-			baselos += slot.MasterEquipment.CategoryType switch
-			{
-				EquipmentTypes.RadarLarge or EquipmentTypes.RadarLarge2 or EquipmentTypes.RadarSmall => Math.Sqrt(slot.Level),
-				_ => 0,
-			};
-		}
-		return (int)baselos;
-	}
-	/// <summary>
-	/// Method to calculate expedition AA with Levels
-	/// </summary>
-	private int CalculateExpeditionAATotal()
-	{
-		double baseaa = AATotal;
-		foreach (var slot in AllSlotInstance)
-		{
-			if (slot == null)
-				continue;
-
-			baseaa += slot.MasterEquipment.CategoryType switch
-			{
-				EquipmentTypes.AAGun => 0.9 * slot.Level,
-				_ when slot.MasterEquipment.IsHighAngleGun => 0.3 * slot.Level,
-				_ => 0,
-			};
-
-		}
-		return (int)baseaa;
-	}
+	
 	/// <summary>
 	/// 砲撃戦での空撃威力を求めます。
 	/// </summary>
@@ -1478,10 +1397,10 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 		AntiSubmarinePower = CalculateAntiSubmarinePower(form);
 		TorpedoPower = CalculateTorpedoPower(form);
 		NightBattlePower = CalculateNightBattlePower();
-		ExpeditionFirepowerTotal = CalculateExpeditionFirepowerTotal();
-		ExpeditionASWTotal = CalculateExpeditionASWTotal();
-		ExpeditionLOSTotal = CalculateExpeditionLOSTotal();
-		ExpeditionAATotal = CalculateExpeditionAATotal();
+		ExpeditionFirepowerTotal = this.ExpeditionFirepowerTotal();
+		ExpeditionASWTotal = this.ExpeditionAswTotal();
+		ExpeditionLOSTotal = this.ExpeditionLosTotal();
+		ExpeditionAATotal = this.ExpeditionAaTotal();
 	}
 
 	#endregion

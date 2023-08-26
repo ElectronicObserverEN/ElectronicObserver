@@ -756,4 +756,7 @@ If checked, no filter will be applied.</value>
     <value>When disabled, only the compositions matching the preview from map screen will be shown.
 When enabled, the preview will be ignored and all compositions will be shown.</value>
   </data>
+  <data name="Language_Korean" xml:space="preserve">
+    <value>Korean</value>
+  </data>
 </root>

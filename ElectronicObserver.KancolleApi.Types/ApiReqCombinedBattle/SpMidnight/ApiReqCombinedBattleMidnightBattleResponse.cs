@@ -57,6 +57,9 @@ public class ApiReqCombinedBattleSpMidnightResponse : INightOnlyBattleApiRespons
 	[JsonPropertyName("api_xal01")]
 	public int? ApiXal01 { get; set; }
 
+	[JsonPropertyName("api_combat_ration")]
+	public List<int>? ApiCombatRation { get; set; }
+
 	[JsonPropertyName("api_smoke_type")]
 	public int? ApiSmokeType { get; set; }
 

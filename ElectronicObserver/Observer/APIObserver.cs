@@ -968,6 +968,12 @@ public sealed class APIObserver
 		{
 			ServerAddress = e.HttpClient.Request.Host;
 		}
+
+		if (baseurl.Contains("/kcsapi/"))
+		{
+			string apiName = baseurl.Split("/kcsapi/").Last();
+			Task.Run(() => ApiFileService.Value.ProcessedApi(apiName));
+		}
 	}
 
 	public void LoadRequest(string path, string data)

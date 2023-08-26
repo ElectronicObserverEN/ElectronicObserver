@@ -16,9 +16,9 @@ public record CommonDataExportModel
 	public int? AdmiralLevel { get; init; }
 	public string PlayerFormation { get; init; }
 	public string EnemyFormation { get; init; }
-	public string PlayerSearch { get; init; }
-	public string EnemySearch { get; init; }
-	public string AirState { get; init; }
+	public string? PlayerSearch { get; init; }
+	public string? EnemySearch { get; init; }
+	public string? AirState { get; init; }
 	public string Engagement { get; init; }
 	public string? PlayerContact { get; init; }
 	public string? EnemyContact { get; init; }
