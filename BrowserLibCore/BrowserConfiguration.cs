@@ -161,4 +161,10 @@ public class BrowserConfiguration
 
 	[Key(29)]
 	public bool MatchMainFont { get; set; }
+
+	[Key(30)]
+	public GadgetServerOptions GadgetBypassServer { get; set; }
+
+	[Key(31)]
+	public string GadgetBypassServerCustom { get; set; }
 }

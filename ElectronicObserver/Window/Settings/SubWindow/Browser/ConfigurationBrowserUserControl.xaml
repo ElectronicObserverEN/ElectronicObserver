@@ -31,6 +31,8 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -262,8 +264,52 @@
 				/>
 		</WrapPanel>
 
+		<WrapPanel Grid.Row="6">
+			<ItemsControl ItemsSource="{Binding GadgetServers}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="{x:Type common:CheckBoxEnumViewModel}">
+						<RadioButton
+							MinWidth="0"
+							Margin="4 0"
+							Padding="2 0"
+							VerticalContentAlignment="Center"
+							Content="{Binding Value}"
+							IsChecked="{Binding IsChecked}"
+							ToolTip="{Binding Tooltip}"
+							/>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<TextBlock Text="*" />
+		</WrapPanel>
+		<Grid Grid.Row="7">
+			<Grid.Style>
+				<Style TargetType="Grid">
+					<Setter Property="Visibility" Value="Hidden" />
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding Path=GadgetBypassServer}" Value="Custom">
+							<Setter Property="Visibility" Value="Visible" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Grid.Style>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="Custom Gadget Cache URL" />
+			<TextBox Grid.Column="1" Text="{Binding GadgetBypassServerCustom}" />
+		</Grid>
+
 		<TextBlock
-			Grid.Row="6"
+			Grid.Row="8"
 			Foreground="Red"
 			Text="{Binding Translation.RestartNotice}"
 			/>

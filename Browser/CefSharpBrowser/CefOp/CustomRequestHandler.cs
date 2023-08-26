@@ -1,7 +1,9 @@
 ﻿using Browser.Properties;
+using BrowserLibCore;
 using CefSharp;
 using CefSharp.DevTools;
 using CefSharp.Handler;
+using IBrowser = CefSharp.IBrowser;
 
 namespace Browser.CefSharpBrowser.CefOp;
 
@@ -12,12 +14,15 @@ public class CustomRequestHandler : RequestHandler
 
 	private bool PixiSettingEnabled { get; }
 	private bool UseGadgetRedirect { get; }
+	private GadgetServerOptions GadgetBypassServer { get; }
+	private string GadgetBypassServerCustom {get; }
 
-
-	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect)
+	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect,GadgetServerOptions gadgetBypassServer, string gadgetBypassServerCustom)
 	{
 		PixiSettingEnabled = pixiSettingEnabled;
 		UseGadgetRedirect = useGadgetRedirect;
+		GadgetBypassServer = gadgetBypassServer;
+		GadgetBypassServerCustom = gadgetBypassServerCustom;
 	}
 
 	/// <summary>
@@ -62,7 +67,7 @@ public class CustomRequestHandler : RequestHandler
 
 		if (UseGadgetRedirect && request.Url.Contains("gadget_html5"))
 		{
-			return new GadgetUrlHandler();
+			return new GadgetUrlHandler(GadgetBypassServer, GadgetBypassServerCustom);
 		}
 
 		if (request.Url.Contains(@"accounts.google.com"))

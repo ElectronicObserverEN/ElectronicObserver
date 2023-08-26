@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -17,11 +19,14 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	private Configuration.ConfigurationData.ConfigFormBrowser Config { get; }
 
 	public List<CheckBoxEnumViewModel> EmbeddedBrowsers { get; }
+	public List<CheckBoxEnumViewModel> GadgetServers { get; }
 	public List<DockStyle> DockStyles { get; }
 	public List<CheckBoxEnumViewModel> ScreenshotFormats { get; }
 	public List<ScreenshotSaveMode> ScreenshotSaveModes { get; }
 
 	public BrowserOption Browser { get; set; }
+	public GadgetServerOptions GadgetBypassServer { get; set; }
+	public string GadgetBypassServerCustom { get; set; }
 
 	public double ZoomRate { get; set; }
 
@@ -77,7 +82,9 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		EmbeddedBrowsers = Enum.GetValues<BrowserOption>()
 			.Select(b => new CheckBoxEnumViewModel(b))
 			.ToList();
-
+		GadgetServers = Enum.GetValues<GadgetServerOptions>()
+			.Select(b => new CheckBoxEnumViewModel(b))
+			.ToList();
 		DockStyles = Enum.GetValues<DockStyle>().ToList();
 		ScreenshotSaveModes = Enum.GetValues<ScreenshotSaveMode>().ToList();
 
@@ -96,7 +103,18 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 				Browser = b;
 			};
 		}
+		foreach (CheckBoxEnumViewModel gadgetserver in GadgetServers)
+		{
+			gadgetserver.IsChecked = gadgetserver.Value is GadgetServerOptions bo && bo == GadgetBypassServer;
+			gadgetserver.PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName is not nameof(gadgetserver.IsChecked)) return;
+				if (sender is not CheckBoxEnumViewModel { IsChecked: true, Value: GadgetServerOptions b }) return;
 
+				GadgetBypassServer = b;
+			};
+			gadgetserver.Tooltip = gadgetserver.Value.GetDescription();
+		}
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(Browser)) return;
@@ -108,7 +126,17 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 				browser.IsChecked = b == Browser;
 			}
 		};
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(GadgetBypassServer)) return;
 
+			foreach (CheckBoxEnumViewModel gadgetserver in GadgetServers)
+			{
+				if (gadgetserver.Value is not GadgetServerOptions b) return;
+
+				gadgetserver.IsChecked = b == GadgetBypassServer;
+			}
+		};
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
 		{
 			format.IsChecked = format.Value is ScreenshotFormat sf && sf == ScreenShotFormat;
@@ -171,6 +199,8 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		ForceColorProfile = Config.ForceColorProfile;
 		SavesBrowserLog = Config.SavesBrowserLog;
 		UseGadgetRedirect = Config.UseGadgetRedirect;
+		GadgetBypassServer = Config.GadgetBypassServer;
+		GadgetBypassServerCustom = Config.GadgetBypassServerCustom;
 		UseVulkanWorkaround = Config.UseVulkanWorkaround;
 		Volume = Config.Volume;
 		IsMute = Config.IsMute;
@@ -207,6 +237,8 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.ForceColorProfile = ForceColorProfile;
 		Config.SavesBrowserLog = SavesBrowserLog;
 		Config.UseGadgetRedirect = UseGadgetRedirect;
+		Config.GadgetBypassServer = GadgetBypassServer;
+		Config.GadgetBypassServerCustom = GadgetBypassServerCustom;
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
 		Config.Volume = Volume;
 		Config.IsMute = IsMute;

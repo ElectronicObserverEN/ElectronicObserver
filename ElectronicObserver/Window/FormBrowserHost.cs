@@ -302,6 +302,8 @@ public partial class FormBrowserHost : Form
 				SavesBrowserLog = c.SavesBrowserLog,
 				EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu,
 				UseGadgetRedirect = c.UseGadgetRedirect,
+				GadgetBypassServer = c.GadgetBypassServer,
+				GadgetBypassServerCustom = c.GadgetBypassServerCustom,
 				UseVulkanWorkaround = c.UseVulkanWorkaround,
 				Volume = c.Volume,
 				IsMute = c.IsMute,
