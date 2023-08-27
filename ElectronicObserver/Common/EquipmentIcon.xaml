@@ -505,6 +505,24 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
 					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								BarrageBalloon
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.BarrageBalloon}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:EquipmentIconType>
+								LandBasedFighterJet
+							</electronicObserverTypes:EquipmentIconType>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource EquipmentIconType.LandBasedFighterJet}" />
+					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>

@@ -141,6 +141,9 @@
   <data name="AviationPersonnel" xml:space="preserve">
     <value>Aviation Personnel</value>
   </data>
+  <data name="BarrageBalloon" xml:space="preserve">
+    <value>Barrage Balloon</value>
+  </data>
   <data name="CarrierBasedBomber" xml:space="preserve">
     <value>Carrier Based Bomber</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="LandBasedFighter" xml:space="preserve">
     <value>Land Based Fighter</value>
+  </data>
+  <data name="LandBasedFighterJet" xml:space="preserve">
+    <value>Land Based Fighter Jet</value>
   </data>
   <data name="LandingCraft" xml:space="preserve">
     <value>Landing Craft</value>
