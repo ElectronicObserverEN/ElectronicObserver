@@ -118,6 +118,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 			{
 				GadgetServerOptions.EO => Translation.FormBrowser_EO_URL,
 				GadgetServerOptions.Wiki => Translation.FormBrowser_Wiki_URL,
+				_ => null
 			};
 		}
 
