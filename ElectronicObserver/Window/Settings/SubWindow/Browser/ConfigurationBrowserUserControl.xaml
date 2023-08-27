@@ -122,14 +122,6 @@
 				/>
 
 			<CheckBox
-				Grid.Row="0"
-				Grid.Column="3"
-				Content="{Binding Translation.FormBrowser_UseGadgetRedirect}"
-				IsChecked="{Binding UseGadgetRedirect}"
-				ToolTip="{Binding Translation.FormBrowser_UseGadgetRedirectToolTip}"
-				/>
-
-			<CheckBox
 				Grid.Row="1"
 				Grid.Column="3"
 				Content="{Binding Translation.FormBrowser_IsContextMenuEnabled}"
@@ -265,6 +257,12 @@
 		</WrapPanel>
 
 		<WrapPanel Grid.Row="6">
+			<CheckBox
+				Content="{Binding Translation.FormBrowser_UseGadgetRedirect}"
+				IsChecked="{Binding UseGadgetRedirect}"
+				ToolTip="{Binding Translation.FormBrowser_UseGadgetRedirectToolTip}"
+				/>
+
 			<ItemsControl ItemsSource="{Binding GadgetServers}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
@@ -292,7 +290,7 @@
 		<Grid Grid.Row="7">
 			<Grid.Style>
 				<Style TargetType="Grid">
-					<Setter Property="Visibility" Value="Hidden" />
+					<Setter Property="Visibility" Value="Collapsed" />
 					<Style.Triggers>
 						<DataTrigger Binding="{Binding Path=GadgetBypassServer}" Value="Custom">
 							<Setter Property="Visibility" Value="Visible" />

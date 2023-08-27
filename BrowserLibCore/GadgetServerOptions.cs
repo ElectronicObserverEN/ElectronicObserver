@@ -2,7 +2,7 @@
 
 public enum GadgetServerOptions
 {
-	Wiki,
 	EO,
+	Wiki,
 	Custom
 }
