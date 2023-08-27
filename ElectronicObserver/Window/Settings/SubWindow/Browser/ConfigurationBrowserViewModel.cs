@@ -114,15 +114,11 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 				GadgetBypassServer = b;
 			};
-			switch (gadgetserver.Value)
+			gadgetserver.Tooltip = gadgetserver.Value switch
 			{
-				case GadgetServerOptions.EO:
-					gadgetserver.Tooltip = Translation.FormBrowser_EO_URL;
-					break;
-				case GadgetServerOptions.Wiki:
-					gadgetserver.Tooltip = Translation.FormBrowser_Wiki_URL;
-					break;
-			}
+				GadgetServerOptions.EO => Translation.FormBrowser_EO_URL,
+				GadgetServerOptions.Wiki => Translation.FormBrowser_Wiki_URL,
+			};
 		}
 
 		PropertyChanged += (sender, args) =>

@@ -1,6 +1,5 @@
-﻿using System.ComponentModel;
+﻿namespace BrowserLibCore;
 
-namespace BrowserLibCore;
 public enum GadgetServerOptions
 {
 	Wiki,
