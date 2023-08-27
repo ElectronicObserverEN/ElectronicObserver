@@ -8,7 +8,8 @@ namespace Browser.CefSharpBrowser.CefOp;
 internal class GadgetUrlHandler : ResourceRequestHandler
 {
 	private GadgetServerOptions GadgetBypassServer { get; }
-	private string GadgetBypassServerCustom {get; }
+	private string GadgetBypassServerCustom { get; }
+
 	public GadgetUrlHandler(GadgetServerOptions gadgetBypassServer, string gadgetBypassServerCustom)
 	{
 		GadgetBypassServer = gadgetBypassServer;
@@ -20,10 +21,10 @@ internal class GadgetUrlHandler : ResourceRequestHandler
 		{
 			return GadgetBypassServer switch
 			{
-				GadgetServerOptions.Wiki => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/"),
-				GadgetServerOptions.EO => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", "https://electronicobserveren.github.io/cache/gadget_html5/"),
-				GadgetServerOptions.Custom => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServerCustom + "/gadget_html5/"),
-				_ => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", "https://electronicobserveren.github.io/cache/gadget_html5/")
+				GadgetServerOptions.Wiki => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL()),
+				GadgetServerOptions.EO => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL()),
+				GadgetServerOptions.Custom => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL(GadgetBypassServerCustom)),
+				_ => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL())
 			};
 		}
 

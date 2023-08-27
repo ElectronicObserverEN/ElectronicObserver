@@ -777,4 +777,16 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Language_Korean" xml:space="preserve">
     <value>韓国語</value>
   </data>
+  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FormBrowser_EO_URL" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FormBrowser_Wiki_URL" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

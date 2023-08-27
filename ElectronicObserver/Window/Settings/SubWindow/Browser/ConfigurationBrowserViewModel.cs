@@ -103,6 +103,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 				Browser = b;
 			};
 		}
+
 		foreach (CheckBoxEnumViewModel gadgetserver in GadgetServers)
 		{
 			gadgetserver.IsChecked = gadgetserver.Value is GadgetServerOptions bo && bo == GadgetBypassServer;
@@ -113,8 +114,17 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 				GadgetBypassServer = b;
 			};
-			gadgetserver.Tooltip = gadgetserver.Value.GetDescription();
+			switch (gadgetserver.Value)
+			{
+				case GadgetServerOptions.EO:
+					gadgetserver.Tooltip = Translation.FormBrowser_EO_URL;
+					break;
+				case GadgetServerOptions.Wiki:
+					gadgetserver.Tooltip = Translation.FormBrowser_Wiki_URL;
+					break;
+			}
 		}
+
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(Browser)) return;
@@ -126,6 +136,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 				browser.IsChecked = b == Browser;
 			}
 		};
+
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(GadgetBypassServer)) return;
@@ -137,6 +148,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 				gadgetserver.IsChecked = b == GadgetBypassServer;
 			}
 		};
+
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
 		{
 			format.IsChecked = format.Value is ScreenshotFormat sf && sf == ScreenShotFormat;

@@ -374,10 +374,9 @@ public class WebView2ViewModel : BrowserViewModel
 		{
 			e.Request.Uri = Configuration.GadgetBypassServer switch
 			{
-				GadgetServerOptions.Wiki => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache//gadget_html5/"),
-				GadgetServerOptions.EO => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://electronicobserveren.github.io/cache/gadget_html5/"),
-				GadgetServerOptions.Custom => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServerCustom + "/gadget_html5/"),
-				_ => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://electronicobserveren.github.io/cache/gadget_html5/"),
+				GadgetServerOptions.Wiki => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceURL()),
+				GadgetServerOptions.Custom => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceURL(Configuration.GadgetBypassServerCustom)),
+				_ => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceURL()),
 			};
 		}
 		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))

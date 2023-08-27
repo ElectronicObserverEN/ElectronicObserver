@@ -15,9 +15,9 @@ public class CustomRequestHandler : RequestHandler
 	private bool PixiSettingEnabled { get; }
 	private bool UseGadgetRedirect { get; }
 	private GadgetServerOptions GadgetBypassServer { get; }
-	private string GadgetBypassServerCustom {get; }
+	private string GadgetBypassServerCustom { get; }
 
-	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect,GadgetServerOptions gadgetBypassServer, string gadgetBypassServerCustom)
+	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect, GadgetServerOptions gadgetBypassServer, string gadgetBypassServerCustom)
 	{
 		PixiSettingEnabled = pixiSettingEnabled;
 		UseGadgetRedirect = useGadgetRedirect;
