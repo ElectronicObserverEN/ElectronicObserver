@@ -19,7 +19,7 @@ public record NelsonSpecialAttack : SpecialAttack
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
-		if (flagship.MasterShip.ShipId is not (ShipId.Nelson or ShipId.NelsonKai or ShipId.Rodney or ShipId.RodneyKai)) return false;
+		if (flagship.MasterShip.ShipClassTyped is not ShipClass.Nelson) return false;
 
 		if (flagship.HPRate <= 0.5) return false;
 
