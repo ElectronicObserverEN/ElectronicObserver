@@ -26,6 +26,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	public BrowserOption Browser { get; set; }
 	public GadgetServerOptions GadgetBypassServer { get; set; }
+
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationBrowserViewModel), nameof(ValidateURL))]
@@ -273,9 +274,10 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		{
 			throw new NotImplementedException();
 		}
-		if (!Uri.IsWellFormedUriString(url, UriKind.Absolute) && !string.IsNullOrEmpty(url) && (Configuration.Config.FormBrowser.GadgetBypassServer == GadgetServerOptions.Custom))
+
+		if (!Uri.IsWellFormedUriString(url, UriKind.Absolute) && (Configuration.Config.FormBrowser.GadgetBypassServer == GadgetServerOptions.Custom))
 		{
-			return new(ConfigurationResources.FormBrowser_GadgetBypassCustom);
+			return new(ConfigurationResources.FormBrowser_GadgetBypassCustomURLInvalidURL);
 		}
 		else
 		{
