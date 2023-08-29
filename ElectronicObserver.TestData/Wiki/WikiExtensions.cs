@@ -91,7 +91,7 @@ public static class WikiExtensions
 		},
 		LuckMin = wikiShip._luck ?? 0,
 		LuckMax = wikiShip._luck ?? 0,
-		Speed = wikiShip._speed,
+		Speed = wikiShip._speed ?? 0,
 		Range = wikiShip._range ?? -1,
 		Aircraft = wikiShip._equipment.Select(s => s.size.ToIntValueAircraft())
 			.Concat(Enumerable.Repeat<int>(default, 5)).Take(5).ToArray(),

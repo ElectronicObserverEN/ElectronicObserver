@@ -163,7 +163,29 @@ public class NelsonSpecialAttackTests
 		Assert.Empty(fleet.GetSpecialAttacks());
 		Assert.False(specialAttack.CanTrigger());
 	}
+	
+	[Fact(DisplayName = "Can trigger - Rodney as flagship")]
+	public void NelsonSpecialAttackTest6()
+	{
+		FleetDataMock fleet = new();
 
+		NelsonSpecialAttack specialAttack = new(fleet);
+
+		fleet.MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			new ShipDataMock(Db.MasterShips[ShipId.RodneyKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.ShimushuKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.KunashiriKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.IshigakiKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.ZuihouKaiNiB]),
+		});
+
+		Assert.Single(fleet.GetSpecialAttacks());
+		Assert.IsType<NelsonSpecialAttack>(fleet.GetSpecialAttacks().First());
+		Assert.True(specialAttack.CanTrigger());
+	}
+	
 	[Fact(DisplayName = "Damage - Nelson touch")]
 	public void NelsonAttackDamage1()
 	{
