@@ -789,4 +789,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
     <value></value>
   </data>
+  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

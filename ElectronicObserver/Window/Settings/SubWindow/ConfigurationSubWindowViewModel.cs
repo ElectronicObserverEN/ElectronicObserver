@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.SubWindow.AirBase;
@@ -69,6 +71,11 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		AirBase = new(Config.FormBaseAirCorps);
 		Json = new(Config.FormJson);
 		ShipTraining = new(config.FormShipTraining);
+	}
+
+	public IEnumerable<ValidationResult> GetErrorsSubwindow(string? propertyName = null)
+	{
+		return Configurations().SelectMany(c => c.GetErrors());
 	}
 
 	public override void Save()

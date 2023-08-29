@@ -10,8 +10,12 @@ public static class UriExtensions
 		Uri newUri;
 
 		if (Uri.TryCreate(baseUri.Uri, relativeUrl, out newUri))
+		{
 			return newUri.ToString();
+		}
 		else
+		{
 			throw new ArgumentException("Unable to combine specified url values");
+		}
 	}
 }

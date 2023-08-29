@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -90,7 +91,11 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	private bool TrySaveConfigurations()
 	{
 		List<ValidationResult> errors = Configurations()
-			.SelectMany(c => c.GetErrors())
+			.SelectMany(c => c switch
+			{
+				ConfigurationSubWindowViewModel sub => sub.GetErrorsSubwindow(),
+				_ => c.GetErrors(),
+			})
 			.DistinctBy(v => v.ErrorMessage)
 			.ToList();
 

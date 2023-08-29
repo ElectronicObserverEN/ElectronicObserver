@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using BrowserLibCore;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -26,7 +26,10 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	public BrowserOption Browser { get; set; }
 	public GadgetServerOptions GadgetBypassServer { get; set; }
-	public string GadgetBypassServerCustom { get; set; }
+	[ObservableProperty]
+	[NotifyDataErrorInfo]
+	[CustomValidation(typeof(ConfigurationBrowserViewModel), nameof(ValidateURL))]
+	private string _gadgetBypassServerCustom;
 
 	public double ZoomRate { get; set; }
 
@@ -262,5 +265,21 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		if (newSaveDataPath is null) return;
 
 		ScreenShotPath = newSaveDataPath;
+	}
+
+	public static ValidationResult ValidateURL(string url, ValidationContext context)
+	{
+		if (context.ObjectInstance is not ConfigurationBrowserViewModel viewModel)
+		{
+			throw new NotImplementedException();
+		}
+		if (!Uri.IsWellFormedUriString(url, UriKind.Absolute) && !string.IsNullOrEmpty(url) && (Configuration.Config.FormBrowser.GadgetBypassServer == GadgetServerOptions.Custom))
+		{
+			return new(ConfigurationResources.FormBrowser_GadgetBypassCustom);
+		}
+		else
+		{
+			return ValidationResult.Success!;
+		}
 	}
 }

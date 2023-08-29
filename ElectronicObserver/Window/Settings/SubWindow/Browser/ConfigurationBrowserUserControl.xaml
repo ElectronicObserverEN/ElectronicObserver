@@ -305,7 +305,7 @@
 			<TextBlock Grid.Column="0" Text="{Binding Translation.FormBrowser_GadgetBypassCustom}" />
 			<TextBox
 				Grid.Column="1"
-				Text="{Binding GadgetBypassServerCustom}"
+				Text="{Binding GadgetBypassServerCustom, UpdateSourceTrigger=PropertyChanged}"
 				ToolTip="{Binding Translation.FormBrowser_GadgetBypassCustomURLTooltip}"
 				/>
 		</Grid>
