@@ -2,7 +2,8 @@
 
 public enum ShipId
 {
-	Unknown = 0, Mutsuki = 1,
+	Unknown = 0, 
+	Mutsuki = 1,
 	Kisaragi = 2,
 	Nagatsuki = 6,
 	Mikazuki = 7,
