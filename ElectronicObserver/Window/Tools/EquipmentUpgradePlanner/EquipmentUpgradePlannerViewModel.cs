@@ -86,7 +86,13 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
 		}
 	}
-	
+
+	[RelayCommand]
+	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
+	{
+		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
+	}
+
 	private void UpdateTotalCost() 
 		=> TotalCost = new(PlannedUpgrades
 			.Where(plan => !plan.Finished)

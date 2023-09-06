@@ -134,11 +134,37 @@
 
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<local:EquipmentUpgradePlanItemControl
-							CompactMode="{Binding DataContext.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
-							DataContext="{Binding}"
-							ReadOnly="True"
-							/>
+						<Border
+							Margin="2"
+							BorderBrush="Gray"
+							BorderThickness="2"
+							>
+							<StackPanel>
+								<StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+
+									<Button
+										Margin="4 0"
+										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Content="Edit"
+										/>
+
+									<Button
+										Margin="4 0"
+										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Content="{Binding DataContext.EquipmentUpgradePlanner.Remove, Source={StaticResource Proxy}}"
+										/>
+
+								</StackPanel>
+
+								<local:EquipmentUpgradePlanItemControl
+									CompactMode="{Binding DataContext.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
+									DataContext="{Binding}"
+									ReadOnly="True"
+									/>
+							</StackPanel>
+						</Border>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>

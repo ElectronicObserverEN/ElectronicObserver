@@ -24,6 +24,8 @@ public partial class EquipmentUpgradePlanItemControl
 		set => SetValue(ReadOnlyroperty, value);
 	}
 
+	public bool EditorsVisible => !ReadOnly;
+
 	public EquipmentUpgradePlanItemControl()
 	{
 		InitializeComponent();

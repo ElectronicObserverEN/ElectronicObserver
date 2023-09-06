@@ -102,8 +102,6 @@ public partial class EquipmentUpgradePlanItemViewModel : UserControlViewModelBas
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanItem { get; }
 
-	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
-
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
@@ -112,7 +110,6 @@ public partial class EquipmentUpgradePlanItemViewModel : UserControlViewModelBas
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
 		TimeChangeService = Ioc.Default.GetService<TimeChangeService>()!;
 		EquipmentUpgradePlanItem = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
-		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 
 		LoadModel();
 
@@ -258,11 +255,4 @@ public partial class EquipmentUpgradePlanItemViewModel : UserControlViewModelBas
 			EquipmentId = newEquip.MasterID;
 		}
 	}
-	
-	[RelayCommand]
-	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
-	{
-		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
-	}
-
 }
