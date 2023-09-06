@@ -23,7 +23,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 	public EquipmentUpgradePlanCostViewModel TotalCost { get; set; } = new(new());
 
-	public GridLength PlanListWidth { get; set; } = new GridLength(350, GridUnitType.Pixel);
+	public GridLength PlanListWidth { get; set; } = new(350, GridUnitType.Pixel);
 
 	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
 
@@ -80,20 +80,13 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		if (equipment != null)
 		{
 			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.AddPlan();
-
+			
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
 		}
 	}
-
-	[RelayCommand]
-	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
-	{
-		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
-	}
-
-
+	
 	private void UpdateTotalCost() 
 		=> TotalCost = new(PlannedUpgrades
 			.Where(plan => !plan.Finished)

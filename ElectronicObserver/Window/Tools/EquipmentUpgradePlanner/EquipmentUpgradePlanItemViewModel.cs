@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Services;
@@ -17,7 +17,7 @@ using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
+public partial class EquipmentUpgradePlanItemViewModel : UserControlViewModelBase
 {
 	public EquipmentUpgradeData EquipmentUpgradeData { get; set; }
 
@@ -100,6 +100,10 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		.SelectMany(day => day.Value)
 		.Any(helper => helper.PlayerHasAtleastOne);
 
+	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanItem { get; }
+
+	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
+
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
@@ -107,6 +111,8 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 
 		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
 		TimeChangeService = Ioc.Default.GetService<TimeChangeService>()!;
+		EquipmentUpgradePlanItem = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
+		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 
 		LoadModel();
 
@@ -251,6 +257,12 @@ public partial class EquipmentUpgradePlanItemViewModel : ObservableObject
 		{
 			EquipmentId = newEquip.MasterID;
 		}
+	}
+	
+	[RelayCommand]
+	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
+	{
+		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
 	}
 
 }
