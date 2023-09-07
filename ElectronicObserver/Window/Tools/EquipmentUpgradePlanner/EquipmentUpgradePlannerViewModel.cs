@@ -60,11 +60,17 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 		if (equipment != null)
 		{
-			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.AddPlan();
+			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentId = equipment.MasterID;
+
+			if (OpenPlanDialog(newPlan))
+			{
+				EquipmentUpgradePlanManager.AddPlan(newPlan);
+				EquipmentUpgradePlanManager.Save();
+			}
 		}
 	}
 
@@ -75,23 +81,21 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 		if (equipment != null)
 		{
-			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.AddPlan();
+			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 			
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
+
+			if (OpenPlanDialog(newPlan))
+			{
+				EquipmentUpgradePlanManager.AddPlan(newPlan);
+				EquipmentUpgradePlanManager.Save();
+			}
 		}
 	}
 
-	[RelayCommand]
-	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
-	{
-		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
-		EquipmentUpgradePlanManager.Save();
-	}
-
-	[RelayCommand]
-	private void OpenEditDialog(EquipmentUpgradePlanItemViewModel plan)
+	private bool OpenPlanDialog(EquipmentUpgradePlanItemViewModel plan)
 	{
 		EquipmentUpgradePlanItemViewModel editVm = new(plan.Plan);
 		EquipmentUpgradePlanItemWindow editView = new(editVm);
@@ -107,6 +111,25 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			plan.EquipmentId = editVm.EquipmentId;
 
 			plan.Save();
+
+			return true;
+		}
+
+		return false;
+	}
+
+	[RelayCommand]
+	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
+	{
+		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
+		EquipmentUpgradePlanManager.Save();
+	}
+
+	[RelayCommand]
+	private void OpenEditDialog(EquipmentUpgradePlanItemViewModel plan)
+	{
+		if (OpenPlanDialog(plan))
+		{
 			EquipmentUpgradePlanManager.Save();
 		}
 	}
