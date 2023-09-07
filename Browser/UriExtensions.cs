@@ -1,21 +1,22 @@
-﻿using System;
-
-namespace Browser;
+﻿namespace Browser;
 
 public static class UriExtensions
 {
 	public static string CombineUrl(this string baseUrl, string relativeUrl)
 	{
-		UriBuilder baseUri = new UriBuilder(baseUrl);
-		Uri newUri;
+		if (baseUrl.Length == 0)
+		{
+			return relativeUrl;
+		}
 
-		if (Uri.TryCreate(baseUri.Uri, relativeUrl, out newUri))
+		if (relativeUrl.Length == 0)
 		{
-			return newUri.ToString();
+			return baseUrl;
 		}
-		else
-		{
-			throw new ArgumentException("Unable to combine specified url values");
-		}
+
+		baseUrl = baseUrl.TrimEnd('/').Trim();
+		relativeUrl = relativeUrl.TrimStart('/');
+
+		return $"{baseUrl}/{relativeUrl}";
 	}
 }

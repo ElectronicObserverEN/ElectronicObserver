@@ -270,7 +270,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	public static ValidationResult ValidateURL(string url, ValidationContext context)
 	{
-		if (context.ObjectInstance is not ConfigurationBrowserViewModel viewModel)
+		if (context.ObjectInstance is not ConfigurationBrowserViewModel)
 		{
 			throw new NotImplementedException();
 		}
