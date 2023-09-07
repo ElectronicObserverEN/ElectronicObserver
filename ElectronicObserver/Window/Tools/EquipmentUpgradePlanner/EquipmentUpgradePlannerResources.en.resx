@@ -180,4 +180,7 @@
   <data name="Today" xml:space="preserve">
     <value>Today ({0})</value>
   </data>
+  <data name="EquipmentUpgradePlan" xml:space="preserve">
+    <value>Equipment Upgrade Plan</value>
+  </data>
 </root>

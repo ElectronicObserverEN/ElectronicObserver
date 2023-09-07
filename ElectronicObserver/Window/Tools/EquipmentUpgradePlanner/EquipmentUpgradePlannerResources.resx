@@ -180,4 +180,7 @@
   <data name="Today" xml:space="preserve">
     <value>本日 ({0})</value>
   </data>
+  <data name="EquipmentUpgradePlan" xml:space="preserve">
+    <value>改修計画</value>
+  </data>
 </root>

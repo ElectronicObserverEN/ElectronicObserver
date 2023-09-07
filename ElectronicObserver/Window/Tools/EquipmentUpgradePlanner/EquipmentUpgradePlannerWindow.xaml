@@ -133,7 +133,7 @@
 				</ItemsControl.ItemsPanel>
 
 				<ItemsControl.ItemTemplate>
-					<DataTemplate>
+					<DataTemplate DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
 						<Border
 							Margin="2"
 							BorderBrush="Gray"
@@ -144,9 +144,9 @@
 
 									<Button
 										Margin="4 0"
-										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
+										Command="{Binding DataContext.OpenEditDialogCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
-										Content="Edit"
+										Content="{Binding DataContext.EquipmentUpgradePlanner.Edit, Source={StaticResource Proxy}}"
 										/>
 
 									<Button

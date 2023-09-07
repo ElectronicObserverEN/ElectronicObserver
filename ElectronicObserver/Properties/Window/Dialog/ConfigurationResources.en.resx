@@ -739,9 +739,6 @@ If you live in Japan or use a Japanese VPN you can keep this option disabled.</v
   <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
     <value>Port and upstream proxy port values must be different.</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
     <value>Allow to add multiple plans for the same ship</value>
   </data>

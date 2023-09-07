@@ -184,6 +184,12 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Window\Tools\EquipmentUpgradePlanner\EquipmentUpgradePlanItemWindow.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
 	<PropertyGroup>
 		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
 		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>

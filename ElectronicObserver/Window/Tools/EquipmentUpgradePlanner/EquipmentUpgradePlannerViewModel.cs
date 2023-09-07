@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Numerics;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
@@ -50,13 +52,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		Update();
 		UpdateTotalCost();
 	}
-
-	public override void Closed()
-	{
-		base.Closed();
-		EquipmentUpgradePlanManager.Save();
-	}
-
+	
 	[RelayCommand]
 	private void AddEquipmentPlan()
 	{
@@ -91,6 +87,28 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
 	{
 		EquipmentUpgradePlanManager.RemovePlan(planToRemove);
+		EquipmentUpgradePlanManager.Save();
+	}
+
+	[RelayCommand]
+	private void OpenEditDialog(EquipmentUpgradePlanItemViewModel plan)
+	{
+		EquipmentUpgradePlanItemViewModel editVm = new(plan.Plan);
+		EquipmentUpgradePlanItemWindow editView = new(editVm);
+
+		if (editView.ShowDialog() is true)
+		{
+			plan.DesiredUpgradeLevel = editVm.DesiredUpgradeLevel;
+			plan.Finished = editVm.Finished;
+			plan.SliderLevel = editVm.SliderLevel;
+			plan.SelectedHelper = editVm.SelectedHelper;
+			plan.Priority = editVm.Priority;
+			plan.EquipmentMasterDataId = editVm.EquipmentMasterDataId;
+			plan.EquipmentId = editVm.EquipmentId;
+
+			plan.Save();
+			EquipmentUpgradePlanManager.Save();
+		}
 	}
 
 	private void UpdateTotalCost() 

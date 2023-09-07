@@ -170,6 +170,7 @@
 			Grid.Row="0"
 			Grid.Column="0"
 			Grid.ColumnSpan="2"
+			MaxWidth="240"
 			Margin="2 8"
 			HorizontalAlignment="Left"
 			Text="{Binding EquipmentName}"
@@ -286,12 +287,14 @@
 				Grid.Column="0"
 				Margin="2 8"
 				Text="{Binding DataContext.EquipmentUpgradePlanItem.UseSliderFromLevel, Source={StaticResource Proxy}}"
+				Visibility="{Binding EditorsVisible, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlanItemControl}, Converter={StaticResource BooleanToVisibilityConverter}}"
 				/>
 			<ComboBox
 				Grid.Row="1"
 				Grid.Column="1"
 				ItemsSource="{Binding PossibleSliderLevels}"
 				SelectedItem="{Binding SliderLevel}"
+				Visibility="{Binding EditorsVisible, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlanItemControl}, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<ComboBox.ItemTemplate>
 					<DataTemplate DataType="{x:Type types:UpgradeLevel}">
@@ -300,23 +303,13 @@
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 
-			<TextBlock
-				Grid.Row="1"
-				Grid.Column="1"
-				Margin="2 8"
-				HorizontalAlignment="Left"
-				Text="{Binding SliderLevel, Converter={StaticResource EnumDisplayConverter}}"
-				TextTrimming="CharacterEllipsis"
-				Visibility="{Binding ReadOnly, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlanItemControl}, Converter={StaticResource BooleanToVisibilityConverter}}"
-				/>
-
 			<StackPanel
 				Grid.Row="2"
 				Grid.Column="0"
 				Grid.ColumnSpan="2"
 				Margin="0 0 0 8"
 				>
-				<StackPanel Orientation="Horizontal">
+				<StackPanel Orientation="Horizontal" Visibility="{Binding EditorsVisible, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlanItemControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
 					<TextBlock Margin="2 8" Text="{Binding DataContext.EquipmentUpgradePlanItem.Helper, Source={StaticResource Proxy}}" />
 					<ComboBox ItemsSource="{Binding PossibleHelpers}" SelectedItem="{Binding SelectedHelper}">
 						<ComboBox.ItemTemplate>
@@ -325,14 +318,6 @@
 							</DataTemplate>
 						</ComboBox.ItemTemplate>
 					</ComboBox>
-
-					<TextBlock
-						Margin="2 8"
-						HorizontalAlignment="Left"
-						Text="{Binding SelectedHelper.NameEN}"
-						TextTrimming="CharacterEllipsis"
-						Visibility="{Binding ReadOnly, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlanItemControl}, Converter={StaticResource BooleanToVisibilityConverter}}"
-						/>
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal" Visibility="{Binding EquipmentAfterConversionVisible}">
