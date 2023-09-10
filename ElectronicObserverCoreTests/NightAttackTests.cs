@@ -592,32 +592,24 @@ public class NightAttackTests
 		Assert.All(totalRates, rate => Assert.True(rate is >= 0 and <= 1));
 	}
 
-	[Fact(DisplayName = "Souya 645 and 650 can't attack at night")]
+	[Fact(DisplayName = "Some ships can't attack at night")]
 	public void NightAttackTest13()
 	{
 		ShipDataMock souya645 = new(Db.MasterShips[ShipId.Souya645]);
 		ShipDataMock souya650 = new(Db.MasterShips[ShipId.Souya650]);
+		
+		Assert.Empty(souya645.GetNightAttacks());
+		Assert.Empty(souya650.GetNightAttacks());
 
-		List<NightAttack> expected = new();
-
-		Assert.Equal(expected, souya645.GetNightAttacks().ToList());
-		Assert.Equal(expected, souya650.GetNightAttacks().ToList());
-	}
-
-	[Fact(DisplayName = "Luigi Kai and Cappellini Kai can't attack at night")]
-	public void NightAttackTest14()
-	{
 		ShipDataMock luigi = new(Db.MasterShips[ShipId.LuigiTorelli]);
 		ShipDataMock luigiKai = new(Db.MasterShips[ShipId.LuigiTorelliKai]);
-		ShipDataMock capellinni = new(Db.MasterShips[ShipId.CCappellini]);
-		ShipDataMock capellinniKai = new(Db.MasterShips[ShipId.CCappelliniKai]);
-
-		List<NightAttack> expected = new();
-
-		Assert.NotEmpty(luigi.GetNightAttacks());
-		Assert.NotEmpty(capellinni.GetNightAttacks());
+		ShipDataMock cappellini = new(Db.MasterShips[ShipId.CCappellini]);
+		ShipDataMock cappelliniKai = new(Db.MasterShips[ShipId.CCappelliniKai]);
 		
-		Assert.Equal(expected, luigiKai.GetNightAttacks().ToList());
-		Assert.Equal(expected, capellinniKai.GetNightAttacks().ToList());
+		Assert.NotEmpty(luigi.GetNightAttacks());
+		Assert.NotEmpty(cappellini.GetNightAttacks());
+		
+		Assert.Empty(luigiKai.GetNightAttacks());
+		Assert.Empty(cappelliniKai.GetNightAttacks());
 	}
 }
