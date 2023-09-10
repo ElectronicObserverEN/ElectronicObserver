@@ -14,6 +14,8 @@ public static class ShipNightAttacks
 
 		// those Souya forms can't attack at night, there might be others
 		if (ship.MasterShip.ShipId is ShipId.Souya645 or ShipId.Souya650) return nightAttacks;
+		// Kai version of Luigi and Cappellini can't attack at night (cause base FP and torp is 0 ?)
+		if (ship.MasterShip.ShipId is ShipId.LuigiTorelliKai or ShipId.CCappelliniKai) return nightAttacks;
 
 		if (ship.MasterShip.IsSubmarine)
 		{

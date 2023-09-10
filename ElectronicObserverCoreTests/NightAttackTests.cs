@@ -603,4 +603,21 @@ public class NightAttackTests
 		Assert.Equal(expected, souya645.GetNightAttacks().ToList());
 		Assert.Equal(expected, souya650.GetNightAttacks().ToList());
 	}
+
+	[Fact(DisplayName = "Luigi Kai and Cappellini Kai can't attack at night")]
+	public void NightAttackTest14()
+	{
+		ShipDataMock luigi = new(Db.MasterShips[ShipId.LuigiTorelli]);
+		ShipDataMock luigiKai = new(Db.MasterShips[ShipId.LuigiTorelliKai]);
+		ShipDataMock capellinni = new(Db.MasterShips[ShipId.CCappellini]);
+		ShipDataMock capellinniKai = new(Db.MasterShips[ShipId.CCappelliniKai]);
+
+		List<NightAttack> expected = new();
+
+		Assert.NotEmpty(luigi.GetNightAttacks());
+		Assert.NotEmpty(capellinni.GetNightAttacks());
+		
+		Assert.Equal(expected, luigiKai.GetNightAttacks().ToList());
+		Assert.Equal(expected, capellinniKai.GetNightAttacks().ToList());
+	}
 }
