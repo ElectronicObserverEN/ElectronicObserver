@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Numerics;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
-using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -132,6 +131,13 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		{
 			EquipmentUpgradePlanManager.Save();
 		}
+	}
+
+	[RelayCommand]
+	private void OpenTreeDialog(EquipmentUpgradePlanItemViewModel plan)
+	{
+		UpgradeTreeView view = new(new(plan));
+		view.ShowDialog();
 	}
 
 	private void UpdateTotalCost() 

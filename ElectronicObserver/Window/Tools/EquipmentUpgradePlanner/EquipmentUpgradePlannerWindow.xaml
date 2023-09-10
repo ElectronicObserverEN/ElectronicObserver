@@ -156,6 +156,13 @@
 										Content="{Binding DataContext.EquipmentUpgradePlanner.Remove, Source={StaticResource Proxy}}"
 										/>
 
+									<Button
+										Margin="4 0"
+										Command="{Binding DataContext.OpenTreeDialogCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Content="Tree"
+										/>
+
 								</StackPanel>
 
 								<local:EquipmentUpgradePlanItemControl
