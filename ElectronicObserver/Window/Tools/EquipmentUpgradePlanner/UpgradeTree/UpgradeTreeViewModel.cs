@@ -14,6 +14,6 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 
 	public UpgradeTreeViewModel(EquipmentUpgradePlanItemViewModel plan)
 	{
-		Items.Add(new UpgradeTreePlanViewModel(1, plan));
+		Items.Add(new UpgradeTreeUpgradePlanViewModel(1, plan, true));
 	}
 }

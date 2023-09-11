@@ -13,6 +13,7 @@ public abstract class UpgradeTreeNodeViewModel
 {
 	public abstract string DisplayName { get; }
 	public abstract string DisplayIcon { get; }
+	public abstract UpgradeTreeViewNodeState State { get; }
 	
 	public abstract EquipmentUpgradePlanCostViewModel? Cost { get; }
 
