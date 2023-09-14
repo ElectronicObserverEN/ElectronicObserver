@@ -478,6 +478,7 @@ public static class ShipDataExtensions
 	public static bool CanNoSonarOpeningAsw(this IShipData ship) => ship.MasterShip is
 	{ ShipId: ShipId.JervisKai } or
 	{ ShipId: ShipId.JanusKai } or
+	{ ShipId: ShipId.JavelinKai } or
 	{ ShipId: ShipId.SamuelBRobertsKai } or
 	{ ShipId: ShipId.SamuelBRobertsMkII } or
 	{ ShipId: ShipId.IsuzuKaiNi } or
