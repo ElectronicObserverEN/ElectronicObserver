@@ -10,6 +10,7 @@ public class ShipFilterTranslationViewModel : TranslationBaseViewModel
 	public string Tank => ShipFilterResources.Tank;
 	public string Fcf => ShipFilterResources.Fcf;
 	public string Bulge => ShipFilterResources.Bulge;
+	public string SeaplaneFighter => ShipFilterResources.SeaplaneFighter;
 	public string ShipTypeToggle => ShipFilterResources.ShipTypeToggle;
 	public string Expansion => GeneralRes.Expansion;
 	public string NameFilter => GeneralRes.ShipName;
