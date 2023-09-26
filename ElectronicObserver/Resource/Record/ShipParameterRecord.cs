@@ -147,6 +147,17 @@ public class ShipParameterRecord : RecordBase
 			return CalculateParameter(level, Minimum, Maximum);
 		}
 
+		public int? GetNextLevel(int level, int? current = null)
+		{
+			if (!IsAvailable) return null;
+			if (!IsDetermined) return null;
+			if (Maximum <= Minimum) return null;
+
+			int target = (current ?? GetParameter(level)) + 1;
+
+			return (int)Math.Ceiling(((target - Minimum) * 99.0) / (Maximum - Minimum));
+		}
+
 		private int CalculateParameter(int level, int min, int max)
 		{
 			return min + (int)((max - min) * level / 99.0);
