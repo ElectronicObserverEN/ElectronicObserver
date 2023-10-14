@@ -732,7 +732,7 @@ public sealed class APIObserver
 			EnableConnectionPool = false,
 			ForwardToUpstreamGateway = true
 		};
-		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
+		Proxy.CertificateManager.EnsureRootCertificate(true,false);
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
 
