@@ -36,7 +36,17 @@
 
 			<Button Command="{Binding UpdateFleetCommand}" Content="{Binding AirControlSimulator.Fleet}" />
 
-			<Button Command="{Binding UpdateShipsCommand}" Content="{Binding AirControlSimulator.Ships}" />
+			<Button Command="{Binding UpdateShipsCommand}" Content="{Binding AirControlSimulator.LockedShips}">
+				<Button.CommandParameter>
+					<system:Boolean>False</system:Boolean>
+				</Button.CommandParameter>
+			</Button>
+
+			<Button Command="{Binding UpdateShipsCommand}" Content="{Binding AirControlSimulator.AllShips}">
+				<Button.CommandParameter>
+					<system:Boolean>True</system:Boolean>
+				</Button.CommandParameter>
+			</Button>
 
 			<Button Command="{Binding UpdateEquipmentCommand}" Content="{Binding AirControlSimulator.LockedEquipment}">
 				<Button.CommandParameter>

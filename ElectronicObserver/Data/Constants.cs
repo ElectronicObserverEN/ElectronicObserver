@@ -952,33 +952,17 @@ public static class Constants
 	/// <summary>
 	/// 任務のカテゴリを表す文字列を取得します。
 	/// </summary>
-	public static string GetQuestCategory(int id)
+	public static string GetQuestCategory(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Formation;
-			case 2:
-			case 8:
-			case 9:
-				return ConstantsRes.Sortie;
-			case 3:
-				return ConstantsRes.Practice;
-			case 4:
-				return ConstantsRes.Expedition;
-			case 5:
-				return ConstantsRes.Supply;        //入渠も含むが、文字数の関係
-			case 6:
-			case 11:
-				return ConstantsRes.Construction;
-			case 7:
-				return ConstantsRes.Modernization;
-			case 10:
-				return ConstantsRes.Other;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.Formation,
+		2 or 8 or 9 or 10 => ConstantsRes.Sortie,
+		3 => ConstantsRes.Practice,
+		4 => ConstantsRes.Expedition,
+		5 => ConstantsRes.Supply, //入渠も含むが、文字数の関係
+		6 or 11 => ConstantsRes.Construction,
+		7 => ConstantsRes.Modernization,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 遠征の結果を表す文字列を取得します。

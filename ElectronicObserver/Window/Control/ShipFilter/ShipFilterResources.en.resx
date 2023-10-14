@@ -132,4 +132,7 @@
   <data name="Bulge" xml:space="preserve">
     <value>Bulge</value>
   </data>
+  <data name="SeaplaneFighter" xml:space="preserve">
+    <value>SPF</value>
+  </data>
 </root>

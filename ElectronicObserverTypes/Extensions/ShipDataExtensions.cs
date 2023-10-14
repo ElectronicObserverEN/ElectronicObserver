@@ -27,6 +27,14 @@ public static class ShipDataExtensions
 	public static double Accuracy(this IShipData ship) =>
 		2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
 
+	public static int NextAccuracyLevel(this IShipData ship, int? currentAccuracy = null)
+	{
+		int targetAccuracy = (currentAccuracy ?? (int)ship.Accuracy()) + 1;
+		double luckPart = 1.5 * Math.Sqrt(ship.LuckTotal);
+
+		return (int)Math.Ceiling(Math.Pow((targetAccuracy - luckPart) / 2, 2));
+	}
+
 	public static double ShellingEvasion(this IShipData ship) =>
 		new ShellingEvasion(ship).PostcapValue;
 
@@ -478,6 +486,7 @@ public static class ShipDataExtensions
 	public static bool CanNoSonarOpeningAsw(this IShipData ship) => ship.MasterShip is
 	{ ShipId: ShipId.JervisKai } or
 	{ ShipId: ShipId.JanusKai } or
+	{ ShipId: ShipId.JavelinKai } or
 	{ ShipId: ShipId.SamuelBRobertsKai } or
 	{ ShipId: ShipId.SamuelBRobertsMkII } or
 	{ ShipId: ShipId.IsuzuKaiNi } or

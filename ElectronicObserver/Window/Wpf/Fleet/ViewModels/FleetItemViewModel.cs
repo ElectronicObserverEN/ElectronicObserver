@@ -232,11 +232,29 @@ public class FleetItemViewModel : ObservableObject
 
 		Level.UpdateColors();
 
+		List<(int Level, string Display)> expToolTipItems = new();
+
 		StringBuilder tip = new();
 		tip.AppendFormat("Total: {0:N0} exp.\r\n", Ship.ExpTotal);
 
 		if (!Configuration.Config.FormFleet.ShowNextExp)
+		{
 			tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", Ship.ExpNext.ToString("N0"));
+		}
+
+		if (Ship.Level < 99)
+		{
+			string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
+			expToolTipItems.Add((99, string.Format(GeneralRes.To99 + " exp.", lv99Exp)));
+		}
+
+		if (Ship.Level < ExpTable.ShipMaximumLevel)
+		{
+			string maxLevelExp = Math
+				.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
+				.ToString("N0");
+			expToolTipItems.Add((ExpTable.ShipMaximumLevel, string.Format(GeneralRes.ToX + " exp.", ExpTable.ShipMaximumLevel, maxLevelExp)));
+		}
 
 		List<(string Name, int Level)> remodels = db.MasterShips.Values
 			.Where(s => s.BaseShip() == Ship.MasterShip.BaseShip())
@@ -248,7 +266,7 @@ public class FleetItemViewModel : ObservableObject
 		foreach ((string name, int remodelLevel) in remodels)
 		{
 			int neededExp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, remodelLevel), 0);
-			tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
+			expToolTipItems.Add((remodelLevel, $"{name}({remodelLevel}): {neededExp:N0} exp."));
 		}
 
 		IEnumerable<int> remodelLevels = remodels.Select((remodel) => remodel.Level);
@@ -257,31 +275,73 @@ public class FleetItemViewModel : ObservableObject
 			.DistinctBy(p => p.TargetLevel)
 			.ToList();
 
-		foreach (ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
+		foreach (ShipTrainingPlanViewModel plan in plans)
 		{
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
+			string toLevelDisplay = string.Format(GeneralRes.ToX + " exp.", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
+			expToolTipItems.Add((plan.TargetLevel, toLevelDisplay));
 		}
 
-		if (Ship.Level < 99)
+		// plans shouldn't display for remodel levels, 99 and max level
+		expToolTipItems = expToolTipItems.DistinctBy(i => i.Level).ToList();
+
+		tip.AppendJoin("\n", expToolTipItems.OrderBy(i => i.Level).Select(i => i.Display));
+
+		if (expToolTipItems.Count > 0)
 		{
-			string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, 99), 0).ToString("N0");
-			tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
+			tip.AppendLine();
+
+			expToolTipItems.Clear();
 		}
 
-		foreach (ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel > 99 && p.TargetLevel != ExpTable.ShipMaximumLevel))
-		{
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", plan.TargetLevel, plan.RemainingExpToTarget.ToString("N0"));
-		}
+		expToolTipItems.AddRange(GetNextAccuracyDisplay(Ship));
+		expToolTipItems.AddRange(GetNextEvasionDisplay(Ship));
+		expToolTipItems.AddRange(GetNextAswDisplay(Ship));
 
-		if (Ship.Level < ExpTable.ShipMaximumLevel)
-		{
-			string lv175Exp = Math
-				.Max(ExpTable.GetExpToLevelShip(Ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
-				.ToString("N0");
-			tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
-		}
+		tip.AppendJoin("\n", expToolTipItems.Select(i => i.Display));
 
 		Level.ToolTip = tip.ToString();
+	}
+
+	private static List<(int Level, string Display)> GetNextAccuracyDisplay(IShipData ship)
+	{
+		int accuracy = (int)ship.Accuracy();
+		int nextAccuracyLevel = ship.NextAccuracyLevel();
+
+		return GetNextParameterDisplay(ship, GeneralRes.NextAccuracy, nextAccuracyLevel, accuracy);
+	}
+
+	private static List<(int Level, string Display)> GetNextEvasionDisplay(IShipData ship)
+	{
+		int? nextEvasionLevel = ship.MasterShip.Evasion.GetNextLevel(ship.Level);
+
+		return nextEvasionLevel switch
+		{
+			int nextLevel => GetNextParameterDisplay(ship, GeneralRes.NextEvasion, nextLevel, ship.EvasionBase),
+			_ => new(),
+		};
+	}
+
+	private static List<(int Level, string Display)> GetNextAswDisplay(IShipData ship)
+	{
+		int? nextAswLevel = ship.MasterShip.ASW.GetNextLevel(ship.Level);
+
+		return nextAswLevel switch
+		{
+			int nextLevel => GetNextParameterDisplay(ship, GeneralRes.NextAsw, nextLevel, ship.ASWBase),
+			_ => new(),
+		};
+	}
+
+	private static List<(int Level, string Display)> GetNextParameterDisplay(IShipData ship,
+		string parameterText, int nextLevel, int current)
+	{
+		int nextExp = ExpTable.GetExpToLevelShip(ship.ExpTotal, nextLevel);
+		string nextAswDisplay = $"{parameterText}({nextLevel}, {current}→{current + 1}): {nextExp} exp.";
+
+		return new()
+		{
+			(nextLevel, nextAswDisplay),
+		};
 	}
 
 	private void UpdateShipName(IEnumerable<IEquipmentData> equipments)

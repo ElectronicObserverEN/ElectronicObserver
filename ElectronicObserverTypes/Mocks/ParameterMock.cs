@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserverTypes.Mocks;
+﻿using System;
+
+namespace ElectronicObserverTypes.Mocks;
 
 public class ParameterMock : IParameter
 {
@@ -13,7 +15,7 @@ public class ParameterMock : IParameter
 
 	public ParameterMock()
 	{
-		
+
 	}
 
 	public ParameterMock(int minimum, int maximum)
@@ -40,6 +42,17 @@ public class ParameterMock : IParameter
 	}
 
 	public int GetParameter(int level) => CalculateParameter(level, Minimum, Maximum);
+
+	public int? GetNextLevel(int level, int? current = null)
+	{
+		if (!IsAvailable) return null;
+		if (!IsDetermined) return null;
+		if (Maximum <= Minimum) return null;
+
+		int target = (current ?? GetParameter(level)) + 1;
+
+		return (int)Math.Ceiling(((target - Minimum) * 99.0) / (Maximum - Minimum));
+	}
 
 	private static int CalculateParameter(int level, int min, int max) =>
 		min + (int)((max - min) * level / 99.0);

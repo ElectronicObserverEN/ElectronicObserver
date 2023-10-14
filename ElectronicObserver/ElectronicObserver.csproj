@@ -28,9 +28,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.10.1</AssemblyVersion>
-		<FileVersion>5.2.10.1</FileVersion>
-		<Version>5.2.10.1</Version>
+		<AssemblyVersion>5.2.10.2</AssemblyVersion>
+		<FileVersion>5.2.10.2</FileVersion>
+		<Version>5.2.10.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>

@@ -9,9 +9,9 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
+using ElectronicObserver.Services;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Wpf.Fleet;
@@ -22,6 +22,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentList;
 
 public partial class EquipmentListViewModel : WindowViewModelBase
 {
+	private DataSerializationService DataSerializationService { get; }
 	public DialogEquipmentListTranslationViewModel DialogEquipmentList { get; }
 	private Microsoft.Win32.SaveFileDialog SaveCsvDialog { get; } = new()
 	{
@@ -48,7 +49,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 
 	public EquipmentListViewModel()
 	{
-		DialogEquipmentList = Ioc.Default.GetService<DialogEquipmentListTranslationViewModel>()!;
+		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
+		DialogEquipmentList = Ioc.Default.GetRequiredService<DialogEquipmentListTranslationViewModel>()!;
 
 		EquipmentGridViewModel = new();
 		EquipmentDetailGridViewModel = new();
@@ -350,6 +352,8 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void CopyToFleetAnalysis()
 	{
-		Clipboard.SetDataObject(FleetViewModel.GenerateEquipList(!ShowLockedEquipmentOnly));
+		string json = DataSerializationService.FleetAnalysisEquipment(!ShowLockedEquipmentOnly);
+
+		Clipboard.SetDataObject(json);
 	}
 }

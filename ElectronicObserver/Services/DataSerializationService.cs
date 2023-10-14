@@ -68,9 +68,10 @@ public class DataSerializationService
 		);
 	}
 
-	public string FleetAnalysisShips()
+	public string FleetAnalysisShips(bool allShips)
 	{
-		return FleetAnalysisShips(KCDatabase.Instance.Ships.Values);
+		return FleetAnalysisShips(KCDatabase.Instance.Ships.Values
+			.Where(s => allShips || s.IsLocked));
 	}
 
 	public string FleetAnalysisEquipment(bool allEquipment)
@@ -103,13 +104,14 @@ public class DataSerializationService
 			bases.Skip(2).FirstOrDefault(),
 			airControlSimulator.ShipData switch
 			{
-				true => KCDatabase.Instance.Ships.Values,
+				true => KCDatabase.Instance.Ships.Values
+					.Where(s => airControlSimulator.IncludeUnlockedShips || s.IsLocked),
 				_ => null,
 			},
 			airControlSimulator.EquipmentData switch
 			{
 				true => KCDatabase.Instance.Equipments.Values
-					.Where(e => airControlSimulator.AllEquipment || e!.IsLocked)
+					.Where(e => airControlSimulator.IncludeUnlockedEquipment || e!.IsLocked)
 					.Cast<EquipmentData>(),
 				_ => null,
 			},

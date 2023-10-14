@@ -31,9 +31,9 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 	public bool DataSelectionVisible { get; set; } = true;
 	public bool ShipData { get; set; } = true;
+	public bool IncludeUnlockedShips { get; set; } = true;
 	public bool EquipmentData { get; set; } = true;
-	public bool LockedEquipment { get; set; } = true;
-	public bool AllEquipment { get; set; }
+	public bool IncludeUnlockedEquipment { get; set; } = true;
 
 	public bool ElectronicObserverBrowser { get; set; } = true;
 	public bool SystemBrowser { get; set; }
@@ -61,7 +61,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 		foreach (MapAreaData map in maps)
 		{
 			int mapAreaID = map.MapAreaID;
-			string? name = map.NameEN;
+			string name = map.NameEN;
 
 			if (string.IsNullOrWhiteSpace(map.NameEN) || map.NameEN == "※")
 			{

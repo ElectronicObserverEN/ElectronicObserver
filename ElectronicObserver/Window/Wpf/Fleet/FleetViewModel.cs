@@ -508,44 +508,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void CopyFleetAnalysis()
 	{
-		KCDatabase db = KCDatabase.Instance;
-		List<string> ships = new List<string>();
-
-		foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
-		{
-			int[] apiKyouka =
-			{
-				ship.FirepowerModernized,
-				ship.TorpedoModernized,
-				ship.AAModernized,
-				ship.ArmorModernized,
-				ship.LuckModernized,
-				ship.HPMaxModernized,
-				ship.ASWModernized
-			};
-
-			int expProgress = 0;
-			if (ExpTable.ShipExp.ContainsKey(ship.Level + 1) && ship.Level != 99)
-			{
-				expProgress = (ExpTable.ShipExp[ship.Level].Next - ship.ExpNext)
-							  / ExpTable.ShipExp[ship.Level].Next;
-			}
-
-			int[] apiExp = { ship.ExpTotal, ship.ExpNext, expProgress };
-
-			string shipId = $"\"api_ship_id\":{ship.ShipID}";
-			string level = $"\"api_lv\":{ship.Level}";
-			string kyouka = $"\"api_kyouka\":[{string.Join(",", apiKyouka)}]";
-			string exp = $"\"api_exp\":[{string.Join(",", apiExp)}]";
-			string slotEx = $"\"api_slot_ex\":{ship.ExpansionSlot}";
-			string sallyArea = $"\"api_sally_area\":{(ship.SallyArea)}";
-
-			string[] analysisData = { shipId, level, kyouka, exp, slotEx, sallyArea };
-
-			ships.Add($"{{{string.Join(",", analysisData)}}}");
-		}
-
-		string json = $"[{string.Join(",", ships)}]";
+		string json = DataSerializationService.FleetAnalysisShips(true);
 
 		Clipboard.SetDataObject(json);
 	}
@@ -556,34 +519,17 @@ public partial class FleetViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void CopyFleetAnalysisEquip()
 	{
-		Clipboard.SetDataObject(GenerateEquipList(false));
+		string json = DataSerializationService.FleetAnalysisEquipment(false);
+
+		Clipboard.SetDataObject(json);
 	}
 
 	[RelayCommand]
 	private void CopyFleetAnalysisAllEquip()
 	{
-		Clipboard.SetDataObject(GenerateEquipList(true));
-	}
+		string json = DataSerializationService.FleetAnalysisEquipment(true);
 
-	public static string GenerateEquipList(bool allEquipment)
-	{
-		StringBuilder sb = new StringBuilder();
-		KCDatabase db = KCDatabase.Instance;
-
-		// 手書き json の悲しみ
-		// pain and suffering
-
-		sb.Append("[");
-
-		foreach (EquipmentData equip in db.Equipments.Values.Where(eq => allEquipment || eq.IsLocked))
-		{
-			sb.Append($"{{\"api_slotitem_id\":{equip.EquipmentID},\"api_level\":{equip.Level}}},");
-		}
-
-		sb.Remove(sb.Length - 1, 1);        // remove ","
-		sb.Append("]");
-
-		return sb.ToString();
+		Clipboard.SetDataObject(json);
 	}
 
 	/// <summary>

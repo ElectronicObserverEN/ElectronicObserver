@@ -67,6 +67,8 @@
 
 			<CheckBox Content="{Binding ShipFilter.Bulge}" IsChecked="{Binding CanEquipBulge}" />
 
+			<CheckBox Content="{Binding ShipFilter.SeaplaneFighter}" IsChecked="{Binding CanEquipSeaplaneFighter}" />
+
 			<CheckBox Content="{Binding ShipFilter.Expansion}" IsChecked="{Binding HasExpansionSlot}" />
 		</WrapPanel>
 	</Grid>

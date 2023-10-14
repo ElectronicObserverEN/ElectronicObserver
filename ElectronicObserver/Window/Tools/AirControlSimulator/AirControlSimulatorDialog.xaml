@@ -76,19 +76,24 @@
 			Header="{Binding AirControlSimulator.Data}"
 			Visibility="{Binding DataSelectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
 			>
-			<StackPanel Orientation="Horizontal">
-				<CheckBox Content="{Binding AirControlSimulator.Ships}" IsChecked="{Binding ShipData}" />
-				<CheckBox Content="{Binding AirControlSimulator.Equipment}" IsChecked="{Binding EquipmentData}" />
-				<RadioButton
-					Content="{Binding AirControlSimulator.LockedEquipment}"
-					IsChecked="{Binding LockedEquipment}"
-					IsEnabled="{Binding EquipmentData}"
-					/>
-				<RadioButton
-					Content="{Binding AirControlSimulator.AllEquipment}"
-					IsChecked="{Binding AllEquipment}"
-					IsEnabled="{Binding EquipmentData}"
-					/>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<CheckBox Content="{Binding AirControlSimulator.Ships}" IsChecked="{Binding ShipData}" />
+					<CheckBox
+						Content="{Binding AirControlSimulator.IncludeUnlocked}"
+						IsChecked="{Binding IncludeUnlockedShips}"
+						IsEnabled="{Binding ShipData}"
+						/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<CheckBox Content="{Binding AirControlSimulator.Equipment}" IsChecked="{Binding EquipmentData}" />
+					<CheckBox
+						Content="{Binding AirControlSimulator.IncludeUnlocked}"
+						IsChecked="{Binding IncludeUnlockedEquipment}"
+						IsEnabled="{Binding EquipmentData}"
+						/>
+				</StackPanel>
 			</StackPanel>
 		</GroupBox>
 
