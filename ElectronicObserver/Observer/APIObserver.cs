@@ -765,7 +765,7 @@ public sealed class APIObserver
 
 		try
 		{
-			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, false);
+			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, true);
 			Proxy.AddEndPoint(Endpoint);
 
 			Proxy.UpStreamHttpProxy = c switch
