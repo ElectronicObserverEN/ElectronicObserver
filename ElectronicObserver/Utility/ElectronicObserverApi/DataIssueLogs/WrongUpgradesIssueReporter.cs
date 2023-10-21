@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;

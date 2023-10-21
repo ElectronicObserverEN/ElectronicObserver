@@ -40,10 +40,10 @@
 				/>
 		</Grid>
 
-		<Grid Visibility="{Binding EnableDebugMenu, Converter={StaticResource BooleanToVisibilityConverter}}">
+		<Grid Margin="0 5" Visibility="{Binding EnableDebugMenu, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
 			<TextBlock Text="{Binding Translation.Debug_ElectronicObserverApiUrl}" />
