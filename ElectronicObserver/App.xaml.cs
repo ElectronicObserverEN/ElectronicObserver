@@ -14,6 +14,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.ElectronicObserverApi;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Dialog.EquipmentPicker;
@@ -297,6 +298,7 @@ public partial class App : Application
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
+			.AddSingleton<ElectronicObserverApiService>()
 			// external
 			.AddSingleton(JotTracker())
 

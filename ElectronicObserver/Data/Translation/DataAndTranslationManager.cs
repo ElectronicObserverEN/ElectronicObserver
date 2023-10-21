@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.AppCenter.DataIssueLogs;
+using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 namespace ElectronicObserver.Data.Translation;
 

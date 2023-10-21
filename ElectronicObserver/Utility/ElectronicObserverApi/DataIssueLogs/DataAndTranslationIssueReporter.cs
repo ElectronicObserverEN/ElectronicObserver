@@ -1,6 +1,6 @@
 ﻿using ElectronicObserver.Observer;
 
-namespace ElectronicObserver.Utility.AppCenter.DataIssueLogs;
+namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 public class DataAndTranslationIssueReporter
 {

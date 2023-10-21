@@ -23,6 +23,8 @@ public partial class ConfigurationDebugViewModel : ConfigurationViewModelBase
 
 	public string APIListPath { get; set; }
 
+	public string ElectronicObserverApiUrl { get; set; }
+
 	public bool AlertOnError { get; set; }
 
 	public ConfigurationDebugViewModel(Configuration.ConfigurationData.ConfigDebug config)
@@ -40,6 +42,7 @@ public partial class ConfigurationDebugViewModel : ConfigurationViewModelBase
 		LoadAPIListOnLoad = config.LoadAPIListOnLoad;
 		APIListPath = config.APIListPath;
 		AlertOnError = config.AlertOnError;
+		ElectronicObserverApiUrl = config.ElectronicObserverApiUrl;
 	}
 
 	public override void Save()
@@ -48,6 +51,7 @@ public partial class ConfigurationDebugViewModel : ConfigurationViewModelBase
 		Config.LoadAPIListOnLoad = LoadAPIListOnLoad;
 		Config.APIListPath = APIListPath;
 		Config.AlertOnError = AlertOnError;
+		Config.ElectronicObserverApiUrl = ElectronicObserverApiUrl;
 	}
 
 	[RelayCommand]

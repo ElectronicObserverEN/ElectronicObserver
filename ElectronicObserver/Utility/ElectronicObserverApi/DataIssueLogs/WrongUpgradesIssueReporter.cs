@@ -8,7 +8,7 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
-namespace ElectronicObserver.Utility.AppCenter.DataIssueLogs;
+namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 public class WrongUpgradesIssueReporter
 {
@@ -25,11 +25,15 @@ public class WrongUpgradesIssueReporter
 
 		if (CheckForIssue(parsedResponse, expectedUpgrades))
 		{
-			WrongUpgradesAnalytic report = new(SoftwareUpdater.CurrentVersion.EquipmentUpgrades, (int)helper.MasterShip.ShipId, (byte)DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek,
-				expectedUpgrades.Select(upgrade => upgrade.EquipmentId).ToList(),
-				parsedResponse.Select(apiData => apiData.ApiSlotId).ToList());
-
-			report.ReportIssue();
+			EquipmentUpgradeIssueModel report = new()
+			{
+				DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
+				ActualUpgrades = parsedResponse.Select(apiData => apiData.ApiSlotId).ToList(),
+				ExpectedUpgrades = expectedUpgrades.Select(upgrade => upgrade.EquipmentId).ToList(),
+				Day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek,
+				SoftwareVersion = SoftwareInformation.VersionEnglish,
+				HelperId = (int)helper.MasterShip.ShipId
+			};
 		}
 	}
 

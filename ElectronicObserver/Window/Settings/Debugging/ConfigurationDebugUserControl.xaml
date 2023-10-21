@@ -39,5 +39,15 @@
 				Content="..."
 				/>
 		</Grid>
+
+		<Grid Visibility="{Binding EnableDebugMenu, Converter={StaticResource BooleanToVisibilityConverter}}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Text="{Binding Translation.Debug_ElectronicObserverApiUrl}" />
+			<TextBox Grid.Column="1" Text="{Binding ElectronicObserverApiUrl}" />
+		</Grid>
 	</StackPanel>
 </UserControl>
