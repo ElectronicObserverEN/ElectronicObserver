@@ -207,6 +207,10 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 
 	public int ID => GetID(RawData);
 
+	// the api doesn't contain this data, so these are never used from this class
+	public int HPCurrent { get; set; }
+	public int HPMax { get; set; }
+
 
 	public static int GetID(int mapAreaID, int airCorpsID) => mapAreaID * 10 + airCorpsID;
 

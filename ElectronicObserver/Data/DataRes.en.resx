@@ -189,4 +189,8 @@
   <data name="MissionClearExcludingSeaplaneTender" xml:space="preserve">
     <value>(Excluding AV)</value>
   </data>
+  <data name="ZeroSlotAircraftWarning" xml:space="preserve">
+    <value>Aircraft stats in a 0 aircraft slot won't count towards expedition requirements
+There is no guarantee you will meet expedition requirements</value>
+  </data>
 </root>

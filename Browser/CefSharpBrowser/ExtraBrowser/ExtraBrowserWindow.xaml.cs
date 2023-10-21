@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using CefSharp;
+using CefSharp.Fluent;
 using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace Browser.CefSharpBrowser.ExtraBrowser;
@@ -17,6 +18,11 @@ public partial class ExtraBrowserWindow
 		Address.Text = "www.duckduckgo.com";
 		Browser.Load(Address.Text);
 		Address.PreviewKeyDown += Address_PreviewKeyDown;
+		Browser.DownloadHandler = DownloadHandler
+			.AskUser((chromiumBrowser, browser, downloadItem, callback) =>
+			{
+				// don't need any extra code here
+			});
 	}
 
 	private void Address_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

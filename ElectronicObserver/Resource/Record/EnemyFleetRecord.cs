@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -110,7 +109,7 @@ public class EnemyFleetRecord : RecordBase
 		public override void LoadLine(string line)
 		{
 
-			string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
+			string[] elem = Utility.Storage.CsvHelper.ParseCsvLine(line).ToArray();
 			if (elem.Length < 44)
 				throw new ArgumentException("要素数が少なすぎます。");
 
@@ -142,7 +141,7 @@ public class EnemyFleetRecord : RecordBase
 		{
 			return string.Join(",",
 				FleetID.ToString("x16"),
-				CsvHelper.EscapeCsvCell(FleetName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(FleetName),
 				MapAreaID,
 				MapInfoID,
 				CellID,
@@ -150,7 +149,7 @@ public class EnemyFleetRecord : RecordBase
 				Constants.GetFormation(Formation),
 				ExpShip,
 				string.Join(",", FleetMember),
-				string.Join(",", FleetMember.Select(id => CsvHelper.EscapeCsvCell(KCDatabase.Instance.MasterShips[id]?.NameWithClass ?? "-"))),
+				string.Join(",", FleetMember.Select(id => Utility.Storage.CsvHelper.EscapeCsvCell(KCDatabase.Instance.MasterShips[id]?.NameWithClass ?? "-"))),
 				string.Join(",", FleetMemberLevel)
 			);
 		}
@@ -174,7 +173,7 @@ public class EnemyFleetRecord : RecordBase
 		{
 
 			var battle = KCDatabase.Instance.Battle;
-			string fleetName = battle.IsBaseAirRaid ? Properties.ResourceRecord.EnemyFleetRecord_EnemyAirRaid : battle.Result?.EnemyFleetName ?? "";
+			string fleetName = battle.IsBaseAirRaid ? ResourceRecordResources.EnemyFleetRecord_EnemyAirRaid : battle.Result?.EnemyFleetName ?? "";
 			int baseExp = battle.Result?.BaseExp ?? 0;
 			var initial = battle.FirstBattle.Initial;
 

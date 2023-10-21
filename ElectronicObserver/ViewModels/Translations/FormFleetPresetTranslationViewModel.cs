@@ -2,7 +2,7 @@
 
 public class FormFleetPresetTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.FormFleetPreset.Title;
+	public string Title => FleetPresetResources.Title;
 
-	public string LowestCondition => Properties.Window.FormFleetPreset.LowestCondition;
+	public string LowestCondition => FleetPresetResources.LowestCondition;
 }

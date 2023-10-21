@@ -10,5 +10,6 @@ public class SortieRecord
 	public int Map { get; set; }
 	public List<ApiFile> ApiFiles { get; set; } = new();
 	public SortieFleetData FleetData { get; set; } = new();
+	public SortieFleetData? FleetAfterSortieData { get; set; }
 	public SortieMapData MapData { get; set; } = new();
 }

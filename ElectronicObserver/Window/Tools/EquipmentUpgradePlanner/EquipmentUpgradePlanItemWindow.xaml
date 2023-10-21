@@ -1,0 +1,53 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentUpgradePlanItemWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding EquipmentUpgradePlanItem.EquipmentUpgradePlan}"
+	d:DataContext="{d:DesignInstance local:EquipmentUpgradePlanItemViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:EquipmentUpgradePlanItemViewModel"
+	SizeToContent="WidthAndHeight"
+	mc:Ignorable="d"
+	>
+
+	<Grid Margin="5">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<local:EquipmentUpgradePlanItemControl
+			Grid.ColumnSpan="2"
+			CompactMode="False"
+			ReadOnly="False"
+			/>
+
+		<StackPanel
+			Grid.Row="1"
+			Grid.Column="1"
+			Orientation="Horizontal"
+			>
+			<Button
+				Margin="5"
+				Click="OnConfirmClick"
+				Content="{Binding EquipmentUpgradePlanItem.Ok}"
+				/>
+			<Button
+				Margin="5"
+				Click="OnCancelClick"
+				Content="{Binding EquipmentUpgradePlanItem.Cancel}"
+				/>
+		</StackPanel>
+	</Grid>
+
+</common:WindowBase>

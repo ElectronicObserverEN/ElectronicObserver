@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Support;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupColumnFilter;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -50,16 +49,16 @@ public partial class DialogShipGroupColumnFilter : Form
 	public void Translate()
 	{
 		ButtonCancel.Text = GeneralRes.Cancel;
-		ColumnView_Name.HeaderText = Translation.ColumnView_Name;
-		ColumnView_Visible.HeaderText = Translation.ColumnView_Visible;
+		ColumnView_Name.HeaderText = ShipGroupColumnFilterResources.ColumnView_Name;
+		ColumnView_Visible.HeaderText = ShipGroupColumnFilterResources.ColumnView_Visible;
 		// todo: tooltips don't exist in the Japanese version
 		// ColumnView_Visible.ToolTipText = Translation.ColumnView_VisibleToolTip;
-		ColumnView_AutoSize.HeaderText = Translation.ColumnView_AutoSize;
+		ColumnView_AutoSize.HeaderText = ShipGroupColumnFilterResources.ColumnView_AutoSize;
 		// ColumnView_AutoSize.ToolTipText = Translation.ColumnView_AutoSizeToolTip;
-		ColumnView_Width.HeaderText = Translation.ColumnView_Width;
-		label1.Text = Translation.ColumnFreezeNumber;
+		ColumnView_Width.HeaderText = ShipGroupColumnFilterResources.ColumnView_Width;
+		label1.Text = ShipGroupColumnFilterResources.ColumnFreezeNumber;
 
-		Text = Translation.Title;
+		Text = ShipGroupColumnFilterResources.Title;
 	}
 
 	private void DialogShipGroupColumnFilter_Load(object sender, EventArgs e)

@@ -2,9 +2,9 @@
 	x:Class="ElectronicObserver.Window.Wpf.Headquarters.HeadquartersView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	x:Name="HeadquartersControl"
 	d:DesignHeight="250"
@@ -242,14 +242,21 @@
 						ToolTip="{Binding Fuel.ToolTip}"
 						Visibility="{Binding Fuel.Visible}"
 						>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="{Binding Fuel.Icon}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<common:UseItemIcon Grid.Column="0" Type="Fuel" />
 							<TextBlock
+								Grid.Column="1"
+								HorizontalAlignment="Right"
 								d:Text="298344"
 								Foreground="{Binding Fuel.Foreground}"
 								Text="{Binding Fuel.Text}"
 								/>
-						</StackPanel>
+						</Grid>
 					</Border>
 
 					<Border
@@ -258,14 +265,21 @@
 						ToolTip="{Binding Ammo.ToolTip}"
 						Visibility="{Binding Ammo.Visible}"
 						>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="{Binding Ammo.Icon}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<common:UseItemIcon Grid.Column="0" Type="Ammo" />
 							<TextBlock
+								Grid.Column="1"
+								HorizontalAlignment="Right"
 								d:Text="341227"
 								Foreground="{Binding Ammo.Foreground}"
 								Text="{Binding Ammo.Text}"
 								/>
-						</StackPanel>
+						</Grid>
 					</Border>
 				</WrapPanel>
 
@@ -275,14 +289,21 @@
 						ToolTip="{Binding Steel.ToolTip}"
 						Visibility="{Binding Steel.Visible}"
 						>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="{Binding Steel.Icon}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<common:UseItemIcon Grid.Column="0" Type="Steel" />
 							<TextBlock
+								Grid.Column="1"
+								HorizontalAlignment="Right"
 								d:Text="338637"
 								Foreground="{Binding Steel.Foreground}"
 								Text="{Binding Steel.Text}"
 								/>
-						</StackPanel>
+						</Grid>
 					</Border>
 
 					<Border
@@ -291,14 +312,21 @@
 						ToolTip="{Binding Bauxite.ToolTip}"
 						Visibility="{Binding Bauxite.Visible}"
 						>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="{Binding Bauxite.Icon}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<common:UseItemIcon Grid.Column="0" Type="Bauxite" />
 							<TextBlock
+								Grid.Column="1"
+								HorizontalAlignment="Right"
 								d:Text="341398"
 								Foreground="{Binding Bauxite.Foreground}"
 								Text="{Binding Bauxite.Text}"
 								/>
-						</StackPanel>
+						</Grid>
 					</Border>
 				</WrapPanel>
 			</WrapPanel>

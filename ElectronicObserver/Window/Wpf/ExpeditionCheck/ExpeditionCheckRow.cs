@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Media;
 using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using static ElectronicObserver.Data.MissionClearCondition;
 

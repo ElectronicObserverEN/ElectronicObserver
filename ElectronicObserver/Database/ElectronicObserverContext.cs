@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
@@ -34,14 +33,25 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<ShipTrainingPlanModel> ShipTrainingPlans { get; set; } = null!;
 
 	private string DbPath { get; }
+	private bool InMemory { get; }
 
-	public ElectronicObserverContext()
+	public ElectronicObserverContext(bool inMemory = false)
 	{
 		DbPath = Path.Join("Record", "ElectronicObserver.sqlite");
+		InMemory = inMemory;
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder options)
-		=> options.UseSqlite($"Data Source={DbPath}");
+	{
+		if (InMemory)
+		{
+			options.UseInMemoryDatabase("ElectronicObserver");
+		}
+		else
+		{
+			options.UseSqlite($"Data Source={DbPath}");
+		}
+	}
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
@@ -94,6 +104,10 @@ public class ElectronicObserverContext : DbContext
 		builder.Entity<SortieRecord>()
 			.Property(s => s.FleetData)
 			.HasConversion(JsonConverter<SortieFleetData>());
+
+		builder.Entity<SortieRecord>()
+			.Property(s => s.FleetAfterSortieData)
+			.HasConversion(JsonConverter<SortieFleetData?>());
 
 		builder.Entity<SortieRecord>()
 			.Property(s => s.MapData)

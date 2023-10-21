@@ -163,6 +163,12 @@ public enum EquipmentIconType
 	/// <summary>艦載発煙装置</summary>
 	SmokeGenerator = 54,
 
+	/// <summary>阻塞気球</summary>
+	BarrageBalloon = 55,
+
+	/// <summary></summary>
+	LandBasedFighterJet = 56,
+
 	Locked,
 	Unknown,
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -259,5 +258,8 @@ public static class Extensions
 	}
 
 	public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable)
+		=> new(enumerable);
+
+	public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IList<T> enumerable)
 		=> new(enumerable);
 }

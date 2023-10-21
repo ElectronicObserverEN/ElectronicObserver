@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -160,7 +159,7 @@ public class ShipDropRecord : RecordBase
 		public override void LoadLine(string line)
 		{
 
-			string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
+			string[] elem = Utility.Storage.CsvHelper.ParseCsvLine(line).ToArray();
 			if (elem.Length < 15) throw new ArgumentException("要素数が少なすぎます。");
 
 			ShipID = int.Parse(elem[0]);
@@ -186,11 +185,11 @@ public class ShipDropRecord : RecordBase
 
 			return string.Join(",",
 				ShipID,
-				CsvHelper.EscapeCsvCell(ShipName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(ShipName),
 				ItemID,
-				CsvHelper.EscapeCsvCell(ItemName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(ItemName),
 				EquipmentID,
-				CsvHelper.EscapeCsvCell(EquipmentName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(EquipmentName),
 				DateTimeHelper.TimeToCSVString(Date),
 				MapAreaID,
 				MapInfoID,

@@ -20,7 +20,7 @@ namespace ElectronicObserver.Window;
 public partial class FormWindowCapture: Form
 {
 
-	public static string WarningMessage => Properties.Window.FormWindowCapture.WarningMessage;
+	public static string WarningMessage => WindowCaptureResources.WarningMessage;
 
 	private object parent;
 
@@ -116,7 +116,7 @@ public partial class FormWindowCapture: Form
 		WinAPI.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
 
 		if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + WarningMessage,
-				Properties.Window.FormWindowCapture.WindowCaptureConfirmation,
+				WindowCaptureResources.WindowCaptureConfirmation,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 			== System.Windows.Forms.DialogResult.Yes)
 		{

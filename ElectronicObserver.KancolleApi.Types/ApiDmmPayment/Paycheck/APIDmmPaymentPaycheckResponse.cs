@@ -3,6 +3,5 @@
 public class ApiDmmPaymentPaycheckResponse
 {
 	[JsonPropertyName("api_check_value")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCheckValue { get; set; } = default!;
+	public int ApiCheckValue { get; set; }
 }

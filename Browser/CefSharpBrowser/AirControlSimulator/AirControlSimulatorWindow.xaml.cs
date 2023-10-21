@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CefSharp;
+using CefSharp.Fluent;
 using CefSharp.WinForms;
 using Jot;
 
@@ -28,12 +30,22 @@ public partial class AirControlSimulatorWindow
 
 		InitializeComponent();
 
-		Browser = new();
+		Browser = new ChromiumWebBrowser
+		{
+			DownloadHandler = DownloadHandler
+				.AskUser((chromiumBrowser, browser, downloadItem, callback) =>
+				{
+					// don't need any extra code here
+				}),
+		};
+
 		BrowserHost.Child = Browser;
 
 		ViewModel.ExecuteScriptAsync = Browser.ExecuteScriptAsync;
 
+#pragma warning disable CS4014
 		InitializeAsync();
+#pragma warning restore CS4014
 
 		Loaded += (_, _) =>
 		{
@@ -46,8 +58,8 @@ public partial class AirControlSimulatorWindow
 		Tracker.Track(this);
 	}
 
-	private async void InitializeAsync()
+	private async Task InitializeAsync()
 	{
-		Browser.Load(ViewModel.Uri);
+		await Browser.LoadUrlAsync(ViewModel.Uri);
 	}
 }

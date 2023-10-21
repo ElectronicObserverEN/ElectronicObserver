@@ -2,16 +2,16 @@
 
 public class FormJsonTranslationViewModel : TranslationBaseViewModel
 {
-	public string TreeContextMenu_Expand => Properties.Window.FormJson.TreeContextMenu_Expand;
-	public string TreeContextMenu_Shrink => Properties.Window.FormJson.TreeContextMenu_Shrink;
-	public string TreeContextMenu_ShrinkParent => Properties.Window.FormJson.TreeContextMenu_ShrinkParent;
-	public string TreeContextMenu_OutputCSV => Properties.Window.FormJson.TreeContextMenu_OutputCSV;
-	public string TreeContextMenu_CopyToClipboard => Properties.Window.FormJson.TreeContextMenu_CopyToClipboard;
-	public string label3 => Properties.Window.FormJson.LoadSavedJsonByDragging;
-	public string label2 => Properties.Window.FormJson.EnablingAutoUpdateCanBeHeavy;
-	public string UpdatesTree => Properties.Window.FormJson.UpdatesTree;
-	public string label1 => Properties.Window.FormJson.Filter;
-	public string AutoUpdate => Properties.Window.FormJson.AutoUpdate;
-	public string CSVSaver => Properties.Window.FormJson.CSVSaver;
-	public string TreeContextMenu_CopyAsDocument => Properties.Window.FormJson.TreeContextMenu_CopyAsDocument;
+	public string TreeContextMenu_Expand => JsonResources.TreeContextMenu_Expand;
+	public string TreeContextMenu_Shrink => JsonResources.TreeContextMenu_Shrink;
+	public string TreeContextMenu_ShrinkParent => JsonResources.TreeContextMenu_ShrinkParent;
+	public string TreeContextMenu_OutputCSV => JsonResources.TreeContextMenu_OutputCSV;
+	public string TreeContextMenu_CopyToClipboard => JsonResources.TreeContextMenu_CopyToClipboard;
+	public string label3 => JsonResources.LoadSavedJsonByDragging;
+	public string label2 => JsonResources.EnablingAutoUpdateCanBeHeavy;
+	public string UpdatesTree => JsonResources.UpdatesTree;
+	public string label1 => JsonResources.Filter;
+	public string AutoUpdate => JsonResources.AutoUpdate;
+	public string CSVSaver => JsonResources.CSVSaver;
+	public string TreeContextMenu_CopyAsDocument => JsonResources.TreeContextMenu_CopyAsDocument;
 }

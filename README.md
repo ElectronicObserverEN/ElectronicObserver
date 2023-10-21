@@ -58,6 +58,7 @@ Thank you for using Electronic Observer.
 * Translator: [silfumus](https://github.com/silfumus)
 * Japanese Distribution Website: [ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/)
 * Developer: [Andante](https://twitter.com/andanteyk)
+* <a rel="me" href="https://fosstodon.org/@ElectronicObserver">Mastodon</a>
 
 ## Sponsors
 

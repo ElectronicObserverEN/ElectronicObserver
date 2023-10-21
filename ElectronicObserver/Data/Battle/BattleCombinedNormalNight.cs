@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserver.Properties.Data;
 
 namespace ElectronicObserver.Data.Battle;
 

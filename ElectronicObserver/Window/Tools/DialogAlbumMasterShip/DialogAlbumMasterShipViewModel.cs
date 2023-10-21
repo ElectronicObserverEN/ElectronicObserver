@@ -14,7 +14,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
@@ -178,8 +177,8 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 				sw.WriteLine(string.Join(",",
 					ship.ShipID,
 					ship.AlbumNo,
-					CsvHelper.EscapeCsvCell(ship.NameEN),
-					CsvHelper.EscapeCsvCell(ship.NameReading),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameReading),
 					(int)ship.ShipType,
 					ship.ShipClass,
 					ship.SortID,
@@ -245,12 +244,12 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 					ship.PowerUp[1],
 					ship.PowerUp[2],
 					ship.PowerUp[3],
-					CsvHelper.EscapeCsvCell(ship.MessageGet),
-					CsvHelper.EscapeCsvCell(ship.MessageAlbum),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageGet),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageAlbum),
 					ship.Fuel,
 					ship.Ammo,
 					ship.VoiceFlag,
-					CsvHelper.EscapeCsvCell(ship.ResourceName),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ResourceName),
 					ship.ResourceGraphicVersion,
 					ship.ResourceVoiceVersion,
 					ship.ResourcePortVoiceVersion
@@ -261,8 +260,8 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogAlbumMasterShip.CsvExportFailed);
-			MessageBox.Show(Properties.Window.Dialog.DialogAlbumMasterShip.CsvExportFailed + "\r\n" + ex.Message, Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterShipResources.CsvExportFailed);
+			MessageBox.Show(AlbumMasterShipResources.CsvExportFailed + "\r\n" + ex.Message, AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
 	}
@@ -286,12 +285,12 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 					ship.ShipID,
 					ship.AlbumNo,
 					ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass, ship.ShipId),
-					CsvHelper.EscapeCsvCell(ship.ShipTypeName),
-					CsvHelper.EscapeCsvCell(ship.NameEN),
-					CsvHelper.EscapeCsvCell(ship.NameReading),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ShipTypeName),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameEN),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameReading),
 					ship.SortID,
-					CsvHelper.EscapeCsvCell(ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.NameEN : "-"),
-					CsvHelper.EscapeCsvCell(ship.RemodelAfterShipID > 0 ? ship.RemodelAfterShip.NameEN : "-"),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.NameEN : "-"),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.RemodelAfterShipID > 0 ? ship.RemodelAfterShip.NameEN : "-"),
 					ship.RemodelAfterLevel,
 					ship.RemodelAmmo,
 					ship.RemodelSteel,
@@ -342,12 +341,12 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 					ship.PowerUp[1],
 					ship.PowerUp[2],
 					ship.PowerUp[3],
-					CsvHelper.EscapeCsvCell(ship.MessageGet),
-					CsvHelper.EscapeCsvCell(ship.MessageAlbum),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageGet),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.MessageAlbum),
 					ship.Fuel,
 					ship.Ammo,
 					Constants.GetVoiceFlag(ship.VoiceFlag),
-					CsvHelper.EscapeCsvCell(ship.ResourceName),
+					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ResourceName),
 					ship.ResourceGraphicVersion,
 					ship.ResourceVoiceVersion,
 					ship.ResourcePortVoiceVersion
@@ -359,7 +358,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		{
 
 			Utility.ErrorReporter.SendErrorReport(ex, DialogAlbumMasterShip.CsvExportFailed);
-			MessageBox.Show(DialogAlbumMasterShip.CsvExportFailed + "\r\n" + ex.Message, Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(DialogAlbumMasterShip.CsvExportFailed + "\r\n" + ex.Message, AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
 	}
@@ -415,7 +414,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 		if (SelectedShip is null)
 		{
-			MessageBox.Show(DialogAlbumMasterShip.SelectAShip, Properties.Window.Dialog.DialogAlbumMasterEquipment.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+			MessageBox.Show(DialogAlbumMasterShip.SelectAShip, AlbumMasterEquipmentResources.DialogTitleError, MessageBoxButton.OK, MessageBoxImage.Asterisk);
 			return;
 		}
 
@@ -596,7 +595,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		{
 			ProcessStartInfo psi = new()
 			{
-				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(ship.NameWithClass) + Properties.Window.Dialog.DialogAlbumMasterEquipment.KancolleSpecifier,
+				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(ship.NameWithClass) + AlbumMasterEquipmentResources.KancolleSpecifier,
 				UseShellExecute = true
 			};
 			// google <艦船名> 艦これ
@@ -604,7 +603,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogAlbumMasterEquipment.FailedToSearchOnWeb);
+			Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterEquipmentResources.FailedToSearchOnWeb);
 		}
 	}
 
@@ -630,19 +629,19 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		sb.AppendLine();
 
 		{
-			var nyan = new Dictionary<int, List<int>>();
+			Dictionary<ShipId, List<int>> nyan = new();
 
-			foreach (var eq in KCDatabase.Instance.MasterEquipments.Values)
+			foreach (IEquipmentDataMaster eq in KCDatabase.Instance.MasterEquipments.Values)
 			{
 				if (!(eq.EquippableShipsAtExpansion?.Any() ?? false))
 					continue;
 
-				foreach (var shipid in eq.EquippableShipsAtExpansion)
+				foreach (ShipId shipid in eq.EquippableShipsAtExpansion)
 				{
-					if (nyan.ContainsKey(shipid))
-						nyan[shipid].Add(eq.EquipmentID);
+					if (nyan.TryGetValue(shipid, out List<int>? value))
+						value.Add(eq.EquipmentID);
 					else
-						nyan.Add(shipid, new List<int>() { eq.EquipmentID });
+						nyan.Add(shipid, new List<int> { eq.EquipmentID });
 				}
 			}
 
@@ -651,7 +650,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 			foreach (var pair in nyan.OrderBy(p => p.Key))
 			{
-				sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
+				sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[(int)pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
 			}
 
 		}

@@ -13,7 +13,7 @@ public class AirBaseViewModel : ObservableObject
 	public IBaseAirCorpsData? Model { get; set; }
 
 	public string Name { get; set; } = "";
-	public AirBaseActionKind ActionKind { get; set; }
+	private AirBaseActionKind ActionKind { get; set; }
 	public string ActionKindDisplay => Constants.GetBaseAirCorpsActionKind(ActionKind);
 
 	public int AirPower { get; set; }
@@ -21,7 +21,7 @@ public class AirBaseViewModel : ObservableObject
 	public bool ShowHighAltitude => ActionKind == AirBaseActionKind.AirDefense;
 	public int Range { get; set; }
 
-	public ObservableCollection<EquipmentSlotViewModel> Squadrons { get; set; } = new();
+	public ObservableCollection<EquipmentSlotViewModel> Squadrons { get; private set; } = new();
 
 	public AirBaseViewModel Initialize(IBaseAirCorpsData? ab)
 	{
@@ -40,7 +40,7 @@ public class AirBaseViewModel : ObservableObject
 		Range = ab.Distance;
 
 		Squadrons = ab.Squadrons.Values
-			.Select(s => new EquipmentSlotViewModel(s?.EquipmentInstance, s.AircraftMax))
+			.Select(s => new EquipmentSlotViewModel(s?.EquipmentInstance, s?.AircraftMax ?? 0))
 			.ToObservableCollection();
 
 		return this;

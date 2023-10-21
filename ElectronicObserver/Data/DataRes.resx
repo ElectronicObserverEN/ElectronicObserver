@@ -189,4 +189,8 @@
   <data name="MissionClearExcludingSeaplaneTender" xml:space="preserve">
     <value>(水母除く)</value>
   </data>
+  <data name="ZeroSlotAircraftWarning" xml:space="preserve">
+    <value>搭載数0の機体があります
+遠征成功条件を満たしていない可能性があります</value>
+  </data>
 </root>

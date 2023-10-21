@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
@@ -472,6 +471,15 @@ public sealed class Configuration
 			/// When text search is enabled, the combobox input can't be localized.
 			/// </summary>
 			public bool FontFamilyTextSearch { get; set; }
+
+			public bool UseCustomBrowserFont { get; set; }
+
+			public string? BrowserFontName { get; set; }
+
+			/// <summary>
+			/// When enabled, the browser font will be the same as the main font.
+			/// </summary>
+			public bool MatchMainFont { get; set; }
 
 			public ConfigUI()
 			{

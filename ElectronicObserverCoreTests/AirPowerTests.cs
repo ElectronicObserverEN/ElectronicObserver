@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Mocks;
 using Xunit;
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace ElectronicObserver.Window.Settings.Notification;
+﻿namespace ElectronicObserver.Window.Settings.Notification;
 
 /// <summary>
 /// Interaction logic for ConfigurationNotificationUserControl.xaml

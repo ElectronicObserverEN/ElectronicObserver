@@ -22,6 +22,7 @@
 			<Grid.RowDefinitions>
 				<RowDefinition />
 				<RowDefinition />
+				<RowDefinition />
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
@@ -81,6 +82,31 @@
 				Minimum="6"
 				SpinButtonPlacementMode="Inline"
 				Value="{Binding SubFontSize}"
+				/>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="0"
+				Content="{Binding Translation.BrowserFont}"
+				IsChecked="{Binding UseCustomBrowserFont}"
+				Visibility="{Binding ShowCustomBrowserFont, Converter={StaticResource BooleanToVisibilityConverter}}"
+				/>
+
+			<ComboBox
+				Grid.Row="2"
+				Grid.Column="1"
+				IsEditable="{Binding FontFamilyTextSearch}"
+				ItemsSource="{Binding AllFontFamilies}"
+				SelectedItem="{Binding BrowserFontFamily}"
+				Visibility="{Binding ShowCustomBrowserFont, Converter={StaticResource BooleanToVisibilityConverter}}"
+				/>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="2"
+				Content="{Binding Translation.MatchMainFont}"
+				IsChecked="{Binding MatchMainFont}"
+				Visibility="{Binding ShowCustomBrowserFont, Converter={StaticResource BooleanToVisibilityConverter}}"
 				/>
 		</Grid>
 
@@ -258,6 +284,23 @@
 						<Setter Property="IsChecked" Value="False" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding Culture}" Value="en-US">
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+
+			<RadioButton
+				Command="{Binding SetLanguageCommand}"
+				CommandParameter="ko-KR"
+				Content="{Binding Translation.Language_Korean}"
+				>
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Culture}" Value="ko-KR">
 								<Setter Property="IsChecked" Value="True" />
 							</DataTrigger>
 						</Style.Triggers>

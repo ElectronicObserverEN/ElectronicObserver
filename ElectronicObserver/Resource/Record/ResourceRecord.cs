@@ -5,8 +5,8 @@ using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Tools.SenkaViewer;
+
 namespace ElectronicObserver.Resource.Record;
 
 /// <summary>
@@ -104,7 +104,7 @@ public class ResourceRecord : RecordBase
 		public override void LoadLine(string line)
 		{
 
-			string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
+			string[] elem = Utility.Storage.CsvHelper.ParseCsvLine(line).ToArray();
 			if (elem.Length < 11) throw new ArgumentException("要素数が少なすぎます。");
 
 			Date = DateTimeHelper.CSVStringToTime(elem[0]);

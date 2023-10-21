@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
-using ElectronicObserver.Window.Tools.DropRecordViewer;
 
 namespace ElectronicObserver.Window.Tools.SenkaViewer;
 

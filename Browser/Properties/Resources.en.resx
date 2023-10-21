@@ -361,4 +361,7 @@ Open the download page?
     <value>You are about to advance to a cell forbidden by a rule in the auto refresh tool.
 Would you like to refresh?</value>
   </data>
+  <data name="FailedToApplyBrowserFont" xml:space="preserve">
+    <value>Failed to apply browser font.</value>
+  </data>
 </root>

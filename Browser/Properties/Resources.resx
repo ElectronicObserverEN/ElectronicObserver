@@ -388,4 +388,7 @@ Microsoft Visual C++ 2019 Redistributableが必要です。
     <value>進撃を断る設定のセルに進もうとしています。
 再読み込みしますか？</value>
   </data>
+  <data name="FailedToApplyBrowserFont" xml:space="preserve">
+    <value>ブラウザフォントの適用に失敗しました。</value>
+  </data>
 </root>

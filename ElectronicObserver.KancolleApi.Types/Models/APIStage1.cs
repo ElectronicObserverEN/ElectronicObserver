@@ -1,29 +1,24 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiStage1
 {
 	[JsonPropertyName("api_disp_seiku")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDispSeiku { get; set; } = default!;
+	public AirState ApiDispSeiku { get; set; }
 
 	[JsonPropertyName("api_e_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiECount { get; set; } = default!;
+	public int ApiECount { get; set; }
 
 	[JsonPropertyName("api_e_lostcount")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiELostcount { get; set; } = default!;
+	public int ApiELostcount { get; set; }
 
 	[JsonPropertyName("api_f_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFCount { get; set; } = default!;
+	public int ApiFCount { get; set; }
 
 	[JsonPropertyName("api_f_lostcount")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFLostcount { get; set; } = default!;
+	public int ApiFLostcount { get; set; }
 
 	[JsonPropertyName("api_touch_plane")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<int> ApiTouchPlane { get; set; } = new();
+	public List<EquipmentId> ApiTouchPlane { get; set; } = new();
 }

@@ -32,4 +32,10 @@ public class EquipmentUpgradeConversionViewModel
 		    .Select(shipId => new EquipmentUpgradeHelperViewModel(shipId))
 		    .ToList();
 	}
+
+    public void UnsubscribeFromApis()
+    {
+	    ConversionCost.UnsubscribeFromApis();
+	    Helpers.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+	}
 }

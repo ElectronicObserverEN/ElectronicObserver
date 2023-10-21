@@ -3,75 +3,53 @@
 public class ApiMstMission
 {
 	[JsonPropertyName("api_damage_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiDamageType { get; set; } = default!;
+	public int? ApiDamageType { get; set; }
 
 	[JsonPropertyName("api_deck_num")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeckNum { get; set; } = default!;
+	public int ApiDeckNum { get; set; }
 
 	[JsonPropertyName("api_details")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDetails { get; set; } = default!;
+	public string ApiDetails { get; set; } = "";
 
 	[JsonPropertyName("api_difficulty")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDifficulty { get; set; } = default!;
+	public int ApiDifficulty { get; set; }
 
 	[JsonPropertyName("api_disp_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDispNo { get; set; } = default!;
+	public string ApiDispNo { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_maparea_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMapareaId { get; set; } = default!;
+	public int ApiMapareaId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_reset_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiResetType { get; set; } = default!;
+	public int? ApiResetType { get; set; }
 
 	[JsonPropertyName("api_return_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiReturnFlag { get; set; } = default!;
+	public int ApiReturnFlag { get; set; }
 
 	[JsonPropertyName("api_sample_fleet")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiSampleFleet { get; set; } = default!;
+	public List<int>? ApiSampleFleet { get; set; }
 
 	[JsonPropertyName("api_time")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiTime { get; set; } = default!;
+	public int ApiTime { get; set; }
 
 	[JsonPropertyName("api_use_bull")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiUseBull { get; set; } = default!;
+	public int ApiUseBull { get; set; }
 
 	[JsonPropertyName("api_use_fuel")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiUseFuel { get; set; } = default!;
+	public int ApiUseFuel { get; set; }
 
 	[JsonPropertyName("api_win_item1")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiWinItem1 { get; set; } = new();
 
 	[JsonPropertyName("api_win_item2")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiWinItem2 { get; set; } = new();
 
 	[JsonPropertyName("api_win_mat_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiWinMatLevel { get; set; } = default!;
+	public List<int>? ApiWinMatLevel { get; set; }
 }

@@ -5,102 +5,68 @@ namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Record;
 public class ApiGetMemberRecordResponse
 {
 	[JsonPropertyName("api_cmt")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiCmt { get; set; } = default!;
+	public string ApiCmt { get; set; } = "";
 
 	[JsonPropertyName("api_cmt_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiCmtId { get; set; } = default!;
+	public string ApiCmtId { get; set; } = "";
 
 	[JsonPropertyName("api_complate")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<string> ApiComplate { get; set; } = new();
 
 	[JsonPropertyName("api_deck")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiDeck { get; set; } = default!;
+	public int ApiDeck { get; set; }
 
 	[JsonPropertyName("api_experience")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiExperience { get; set; } = new();
 
 	[JsonPropertyName("api_friend")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFriend { get; set; } = default!;
+	public int ApiFriend { get; set; }
 
 	[JsonPropertyName("api_furniture")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFurniture { get; set; } = default!;
+	public int ApiFurniture { get; set; }
 
 	[JsonPropertyName("api_kdoc")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiKdoc { get; set; } = default!;
+	public int ApiKdoc { get; set; }
 
 	[JsonPropertyName("api_large_dock")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLargeDock { get; set; } = default!;
+	public int ApiLargeDock { get; set; }
 
 	[JsonPropertyName("api_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLevel { get; set; } = default!;
+	public int ApiLevel { get; set; }
 
 	[JsonPropertyName("api_material_max")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMaterialMax { get; set; } = default!;
+	public int ApiMaterialMax { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberId { get; set; } = default!;
+	public int ApiMemberId { get; set; }
 
 	[JsonPropertyName("api_mission")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public ApiMission ApiMission { get; set; } = new();
 
 	[JsonPropertyName("api_ndoc")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNdoc { get; set; } = default!;
+	public int ApiNdoc { get; set; }
 
 	[JsonPropertyName("api_nickname")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiNickname { get; set; } = default!;
+	public string ApiNickname { get; set; } = "";
 
 	[JsonPropertyName("api_nickname_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiNicknameId { get; set; } = default!;
+	public string ApiNicknameId { get; set; } = "";
 
 	[JsonPropertyName("api_photo_url")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiPhotoUrl { get; set; } = default!;
+	public string ApiPhotoUrl { get; set; } = "";
 
 	[JsonPropertyName("api_practice")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public ApiWar ApiPractice { get; set; } = new();
 
 	[JsonPropertyName("api_rank")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiRank { get; set; } = default!;
+	public int ApiRank { get; set; }
 
 	[JsonPropertyName("api_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiShip { get; set; } = new();
 
 	[JsonPropertyName("api_slotitem")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiSlotitem { get; set; } = new();
 
 	[JsonPropertyName("api_war")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public ApiWar ApiWar { get; set; } = new();
 }

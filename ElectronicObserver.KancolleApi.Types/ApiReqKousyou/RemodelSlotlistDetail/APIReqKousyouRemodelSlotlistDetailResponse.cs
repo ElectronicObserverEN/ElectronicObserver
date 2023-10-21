@@ -3,30 +3,23 @@
 public class ApiReqKousyouRemodelSlotlistDetailResponse
 {
 	[JsonPropertyName("api_certain_buildkit")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCertainBuildkit { get; set; } = default!;
+	public int ApiCertainBuildkit { get; set; }
 
 	[JsonPropertyName("api_certain_remodelkit")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCertainRemodelkit { get; set; } = default!;
+	public int ApiCertainRemodelkit { get; set; }
 
 	[JsonPropertyName("api_change_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiChangeFlag { get; set; } = default!;
+	public int ApiChangeFlag { get; set; }
 
 	[JsonPropertyName("api_req_buildkit")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiReqBuildkit { get; set; } = default!;
+	public int ApiReqBuildkit { get; set; }
 
 	[JsonPropertyName("api_req_remodelkit")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiReqRemodelkit { get; set; } = default!;
+	public int ApiReqRemodelkit { get; set; }
 
 	[JsonPropertyName("api_req_slot_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiReqSlotId { get; set; } = default!;
+	public int ApiReqSlotId { get; set; }
 
 	[JsonPropertyName("api_req_slot_num")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiReqSlotNum { get; set; } = default!;
+	public int ApiReqSlotNum { get; set; }
 }

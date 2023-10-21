@@ -3,11 +3,8 @@
 public class ApiReqNyukyoSpeedchangeResponse
 {
 	[JsonPropertyName("api_result")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiResult { get; set; } = default!;
+	public int ApiResult { get; set; }
 
 	[JsonPropertyName("api_result_msg")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiResultMsg { get; set; } = default!;
+	public string ApiResultMsg { get; set; } = "";
 }

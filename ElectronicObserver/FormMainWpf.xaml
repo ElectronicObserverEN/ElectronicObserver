@@ -641,6 +641,15 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
+					d:Header="Operation room"
+					Command="{Binding OpenOperationRoomCommand}"
+					Header="{Binding FormMain.OperationRoom}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="Exp Calculator"
 					Command="{Binding OpenExpCheckerCommand}"
 					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
@@ -687,6 +696,7 @@
 						<Image Source="{Binding AutoRefreshImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Command="{Binding OpenTelegramCommand}" Header="{Binding FormMain.Telegram}" />
 				<MenuItem
 					Command="{Binding OpenDatabaseExplorerCommand}"
 					Header="Db explorer"
@@ -710,10 +720,7 @@
 					Command="{Binding LoadInitialAPICommand}"
 					Header="{Binding FormMain.StripMenu_Debug_LoadInitialAPI}"
 					/>
-				<MenuItem
-					Command="{Binding LoadBaseAPICommand}"
-					Header="{Binding FormMain.StripMenu_Debug_LoadBaseAPI}"
-					/>
+				<MenuItem Command="{Binding LoadBaseAPICommand}" Header="{Binding FormMain.StripMenu_Debug_LoadBaseAPI}" />
 				<Separator />
 				<MenuItem
 					d:Header="Load from _Old api__start2..."
@@ -818,8 +825,7 @@
 				HorizontalAlignment="Right"
 				Header="{Binding DownloadProgressString}"
 				Visibility="{Binding DownloadProgressVisibility}"
-				>
-			</MenuItem>
+				/>
 		</Menu>
 		<DockingManager
 			x:Name="DockingManager"

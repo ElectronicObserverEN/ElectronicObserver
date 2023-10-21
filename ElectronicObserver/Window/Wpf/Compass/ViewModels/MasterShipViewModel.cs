@@ -232,7 +232,7 @@ public partial class MasterShipViewModel : ObservableObject
 		}
 
 		sb.AppendFormat("\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
-			Constants.GetDayAttackKind(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
+			DayAttack.AttackDisplay(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
 			NightAttack.AttackDisplay(Calculator.GetNightAttackKind(slot, ship.ShipID, -1)));
 
 		/*

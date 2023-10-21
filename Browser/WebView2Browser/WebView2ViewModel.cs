@@ -174,7 +174,7 @@ public class WebView2ViewModel : BrowserViewModel
 				}
 				catch (UnauthorizedAccessException)
 				{
-					AddLog(2, Properties.Resources.MissingPermissionsToRenameVulkanFiles);
+					AddLog(2, Resources.MissingPermissionsToRenameVulkanFiles);
 				}
 			}
 		}
@@ -417,15 +417,13 @@ public class WebView2ViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				WebView2.ExecuteScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.ExecuteScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+				WebView2.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				gameframe.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
 			}
 			else
 			{
-				WebView2.ExecuteScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassId));
-				gameframe.ExecuteScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassId));
-				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+				WebView2.ExecuteScriptAsync(string.Format(Resources.PageScript, StyleClassId));
+				gameframe.ExecuteScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
 			}
 		}
 		catch (Exception ex)
@@ -444,7 +442,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 		try
 		{
-			WebView2?.CoreWebView2.ExecuteScriptAsync(Properties.Resources.DMMScript);
+			WebView2?.CoreWebView2.ExecuteScriptAsync(Resources.DMMScript);
 		}
 		catch (Exception ex)
 		{

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 

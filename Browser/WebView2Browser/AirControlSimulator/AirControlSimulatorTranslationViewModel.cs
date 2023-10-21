@@ -2,13 +2,13 @@
 
 public class AirControlSimulatorTranslationViewModel
 {
-	public string Title => AirControlSimulator.Title;
+	public string Title => AirControlSimulatorResources.Title;
 
-	public string Fleet => AirControlSimulator.Fleet;
-	public string Ships => AirControlSimulator.Ships;
-	public string Equipment => AirControlSimulator.Equipment;
-	public string LockedEquipment => AirControlSimulator.LockedEquipment;
-	public string AllEquipment => AirControlSimulator.AllEquipment;
+	public string Fleet => AirControlSimulatorResources.Fleet;
+	public string LockedShips => AirControlSimulatorResources.LockedShips;
+	public string AllShips => AirControlSimulatorResources.AllShips;
+	public string LockedEquipment => AirControlSimulatorResources.LockedEquipment;
+	public string AllEquipment => AirControlSimulatorResources.AllEquipment;
 
-	public string DataRefresh => AirControlSimulator.DataRefresh;
+	public string DataRefresh => AirControlSimulatorResources.DataRefresh;
 }

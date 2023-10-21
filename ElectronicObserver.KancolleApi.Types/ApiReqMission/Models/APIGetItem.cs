@@ -3,14 +3,11 @@
 public class ApiGetItem
 {
 	[JsonPropertyName("api_useitem_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiUseitemCount { get; set; } = default!;
+	public int ApiUseitemCount { get; set; }
 
 	[JsonPropertyName("api_useitem_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiUseitemId { get; set; } = default!;
+	public int ApiUseitemId { get; set; }
 
 	[JsonPropertyName("api_useitem_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public string? ApiUseitemName { get; set; } = default!;
+	public string? ApiUseitemName { get; set; }
 }

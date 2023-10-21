@@ -21,7 +21,7 @@ public class WikiAbyssalShip
 	public int? _range { get; set; }
 	public double? _rarity { get; set; }
 	public string _reading { get; set; }
-	public int _speed { get; set; }
+	public int? _speed { get; set; }
 	public int? _torpedo { get; set; }
 	public int _type { get; set; }
 	public string _full_name { get; set; }

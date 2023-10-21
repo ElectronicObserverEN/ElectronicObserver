@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -22,6 +23,10 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 
 	public FontFamily SubFontFamily { get; set; }
 	public int SubFontSize { get; set; }
+
+	public bool UseCustomBrowserFont { get; set; }
+	public FontFamily? BrowserFontFamily { get; set; }
+	public bool MatchMainFont { get; set; }
 
 	public bool FontFamilyTextSearch { get; set; }
 
@@ -67,6 +72,14 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 
 	public bool IsLayoutFixed { get; set; }
 
+	// todo: enable/remove this property when we figure out a way to avoid the visual glitches
+	public bool ShowCustomBrowserFont =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
+
 	public ConfigurationUIViewModel(Configuration.ConfigurationData.ConfigUI config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationUITranslationViewModel>();
@@ -76,8 +89,11 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Load(config);
 	}
 
-	private FontFamily FindFont(string name)
+	[return: NotNullIfNotNull(nameof(name))]
+	private FontFamily? FindFont(string? name)
 	{
+		if (name is null) return null;
+
 		FontFamily? exactMatch = AllFontFamilies
 			.FirstOrDefault(f => f.FamilyNames.Values?.Contains(name) == true);
 
@@ -90,8 +106,10 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 			?.Any(name.StartsWith) == true) ?? new FontFamily("Meiryo UI");
 	}
 
-	private System.Drawing.Font? FindWinformsFont(FontFamily font, int size)
+	private System.Drawing.Font? FindWinformsFont(FontFamily? font, int size)
 	{
+		if (font is null) return null;
+
 		System.Drawing.Font NewFont(System.Drawing.FontFamily fontFamily, int size)
 			=> new(fontFamily, size, System.Drawing.GraphicsUnit.Pixel);
 
@@ -122,10 +140,13 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 
 	private void Load(Configuration.ConfigurationData.ConfigUI config)
 	{
-		MainFontFamily = FindFont(config.MainFont.FontData.FontFamily.Name);
+		MainFontFamily = FindFont(config.MainFont.FontData!.FontFamily.Name);
 		MainFontSize = (int)config.MainFont.FontData.ToSize();
-		SubFontFamily = FindFont(config.SubFont.FontData.FontFamily.Name);
+		SubFontFamily = FindFont(config.SubFont.FontData!.FontFamily.Name);
 		SubFontSize = (int)config.SubFont.FontData.ToSize();
+		UseCustomBrowserFont = config.UseCustomBrowserFont;
+		BrowserFontFamily = FindFont(config.BrowserFontName);
+		MatchMainFont = config.MatchMainFont;
 		Culture = config.Culture;
 		JapaneseShipName = config.JapaneseShipName;
 		JapaneseShipType = config.JapaneseShipType;
@@ -156,7 +177,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 	{
 		Config.MainFont = FindWinformsFont(MainFontFamily, MainFontSize) switch
 		{
-			{} font => font,
+			{ } font => font,
 			_ => Config.MainFont,
 		};
 		Config.SubFont = FindWinformsFont(SubFontFamily, SubFontSize) switch
@@ -164,6 +185,13 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 			{ } font => font,
 			_ => Config.SubFont,
 		};
+		Config.BrowserFontName = FindWinformsFont(BrowserFontFamily, 0) switch
+		{
+			{ } font => font.Name,
+			_ => null,
+		};
+		Config.UseCustomBrowserFont = UseCustomBrowserFont;
+		Config.MatchMainFont = MatchMainFont;
 		Config.Culture = Culture;
 		Config.JapaneseShipName = JapaneseShipName;
 		Config.JapaneseShipType = JapaneseShipType;

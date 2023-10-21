@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Utility;
@@ -115,7 +116,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	}
 
 	[RelayCommand]
-	private async void ForceUpdate()
+	private async Task ForceUpdate()
 	{
 		await SoftwareUpdater.CheckUpdateAsync();
 	}

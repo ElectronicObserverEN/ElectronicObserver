@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
@@ -49,8 +48,12 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 読み
 	/// </summary>
-	public string NameReading => RawData.api_yomi;
-	public string NameReadingEN => Utility.Configuration.Config.UI.JapaneseShipName ? RawData.api_yomi : NameEN;
+	public string NameReading => RawData.api_yomi() switch
+	{
+		true => RawData.api_yomi,
+		_ => "",
+	};
+	public string NameReadingEN => Utility.Configuration.Config.UI.JapaneseShipName ? NameReading : NameEN;
 
 	/// <summary>
 	/// 艦種
@@ -320,17 +323,17 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 対潜
 	/// </summary>
-	public IParameter ASW => GetParameterElement()?.ASW;
+	public IParameter? ASW => GetParameterElement()?.ASW;
 
 	/// <summary>
 	/// 回避
 	/// </summary>
-	public IParameter Evasion => GetParameterElement()?.Evasion;
+	public IParameter? Evasion => GetParameterElement()?.Evasion;
 
 	/// <summary>
 	/// 索敵
 	/// </summary>
-	public IParameter LOS => GetParameterElement()?.LOS;
+	public IParameter? LOS => GetParameterElement()?.LOS;
 
 
 	/// <summary>
@@ -696,7 +699,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 自身のパラメータレコードを取得します。
 	/// </summary>
 	/// <returns></returns>
-	private ShipParameterRecord.ShipParameterElement GetParameterElement()
+	private ShipParameterRecord.ShipParameterElement? GetParameterElement()
 	{
 		return RecordManager.Instance.ShipParameter[ShipID];
 	}

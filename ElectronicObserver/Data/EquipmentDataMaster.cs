@@ -11,7 +11,6 @@ namespace ElectronicObserver.Data;
 /// </summary>
 public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDataMaster
 {
-
 	/// <summary>
 	/// 装備ID
 	/// </summary>
@@ -166,11 +165,14 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	/// <inheritdoc />
 	public EquipmentIconType IconTypeTyped => (EquipmentIconType)RawData.api_type[3];
 
-
 	/// <summary>
 	/// 拡張スロットに装備可能な艦船IDのリスト
 	/// </summary>
-	public IEnumerable<int> EquippableShipsAtExpansion { get; set; } = Array.Empty<int>();
+	public IEnumerable<ShipId> EquippableShipsAtExpansion { get; set; } = Array.Empty<ShipId>();
+
+	public IEnumerable<ShipTypes> EquippableShipTypesAtExpansion { get; set; } = Array.Empty<ShipTypes>();
+
+	public IEnumerable<ShipClass> EquippableShipClassesAtExpansion { get; set; } = Array.Empty<ShipClass>();
 
 
 

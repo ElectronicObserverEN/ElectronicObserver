@@ -27,16 +27,34 @@ public class EquipmentUpgradeHelperViewModel : ObservableObject
 		OnPropertyChanged(nameof(PlayerHasAtleastOne));
 	}
 
+	private void UpdateOnResponseReceived(string apiname, dynamic data)
+	{
+		Update();
+	}
+
 	public void SubscribeToApis()
 	{
-		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiPort_Port.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqKaisou_Remodeling.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKaisou_Remodeling.ResponseReceived += UpdateOnResponseReceived;
+	}
+
+	public void UnsubscribeFromApis()
+	{
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqQuest_ClearItemGet.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqKaisou_Remodeling.ResponseReceived -= UpdateOnResponseReceived;
 	}
 }

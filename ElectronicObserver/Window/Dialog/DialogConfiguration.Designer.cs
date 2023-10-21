@@ -358,7 +358,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(696, 372);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Communication;
+            this.tabPage1.Text = global::ElectronicObserver.Translations.ConfigRes.Communication;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label19
@@ -972,7 +972,7 @@
             this.Log_FileEncodingID.Name = "Log_FileEncodingID";
             this.Log_FileEncodingID.Size = new System.Drawing.Size(112, 23);
             this.Log_FileEncodingID.TabIndex = 6;
-            this.ToolTipInfo.SetToolTip(this.Log_FileEncodingID, global::ElectronicObserver.Window.Dialog.ConfigRes.EncodingHint);
+            this.ToolTipInfo.SetToolTip(this.Log_FileEncodingID, global::ElectronicObserver.Translations.ConfigRes.EncodingHint);
             // 
             // Log_SaveErrorReport
             // 
@@ -1374,7 +1374,7 @@
             this.Life_CanCloseFloatWindowInLock.Name = "Life_CanCloseFloatWindowInLock";
             this.Life_CanCloseFloatWindowInLock.Size = new System.Drawing.Size(197, 19);
             this.Life_CanCloseFloatWindowInLock.TabIndex = 10;
-            this.Life_CanCloseFloatWindowInLock.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Life_CanCloseFloatWindowInLock;
+            this.Life_CanCloseFloatWindowInLock.Text = global::ElectronicObserver.Translations.ConfigRes.Life_CanCloseFloatWindowInLock;
             this.ToolTipInfo.SetToolTip(this.Life_CanCloseFloatWindowInLock, "上記「レイアウトをロックする」が有効な時でも、\r\nフロートウィンドウ(本体とは分離したウィンドウ)を閉じられるようにするかを指定します。\r\nよくウィンドウを一時的" +
         "に開く方は有効にすると便利です。");
             this.Life_CanCloseFloatWindowInLock.UseVisualStyleBackColor = true;
@@ -2698,7 +2698,7 @@
             this.FormBrowser_IsEnabled.Name = "FormBrowser_IsEnabled";
             this.FormBrowser_IsEnabled.Size = new System.Drawing.Size(116, 19);
             this.FormBrowser_IsEnabled.TabIndex = 0;
-            this.FormBrowser_IsEnabled.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.EnableBrowser;
+            this.FormBrowser_IsEnabled.Text = global::ElectronicObserver.Translations.ConfigRes.EnableBrowser;
             this.FormBrowser_IsEnabled.UseVisualStyleBackColor = true;
             // 
             // FormBrowser_LogInPageURL
@@ -3053,7 +3053,7 @@
             this.BGMPlayer_Enabled.Size = new System.Drawing.Size(161, 19);
             this.BGMPlayer_Enabled.TabIndex = 1;
             this.BGMPlayer_Enabled.Text = "BGMプレイヤーを有効にする";
-            this.ToolTipInfo.SetToolTip(this.BGMPlayer_Enabled, global::ElectronicObserver.Window.Dialog.ConfigRes.BGMPlayer_Enabled_Tooltip);
+            this.ToolTipInfo.SetToolTip(this.BGMPlayer_Enabled, global::ElectronicObserver.Translations.ConfigRes.BGMPlayer_Enabled_Tooltip);
             this.BGMPlayer_Enabled.UseVisualStyleBackColor = true;
             // 
             // BGMPlayer_ControlGrid

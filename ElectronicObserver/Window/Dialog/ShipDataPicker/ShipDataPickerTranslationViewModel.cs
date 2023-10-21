@@ -4,42 +4,42 @@ namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
 
 public class ShipDataPickerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => ShipDataPicker.Title;
+	public string Title => ShipDataPickerResources.Title;
 
-	public string File => ShipDataPicker.File;
-	public string CopyToClipboard => ShipDataPicker.CopyToClipboard;
-	public string LoadFromClipboard => ShipDataPicker.LoadFromClipboard;
-	public string LoadEventLocks => ShipDataPicker.LoadEventLocks;
+	public string File => ShipDataPickerResources.File;
+	public string CopyToClipboard => ShipDataPickerResources.CopyToClipboard;
+	public string LoadFromClipboard => ShipDataPickerResources.LoadFromClipboard;
+	public string LoadEventLocks => ShipDataPickerResources.LoadEventLocks;
 
-	public string View => ShipDataPicker.View;
-	public string ShowFinishedPhases => ShipDataPicker.ShowFinishedPhases;
+	public string View => ShipDataPickerResources.View;
+	public string ShowFinishedPhases => ShipDataPickerResources.ShowFinishedPhases;
 
-	public string LockLoadWarningText => ShipDataPicker.LockLoadWarningText;
-	public string Warning => ShipDataPicker.Warning;
-	public string FailedToLoadLockData => ShipDataPicker.FailedToLoadLockData;
+	public string LockLoadWarningText => ShipDataPickerResources.LockLoadWarningText;
+	public string Warning => ShipDataPickerResources.Warning;
+	public string FailedToLoadLockData => ShipDataPickerResources.FailedToLoadLockData;
 
-	public string AddLock => ShipDataPicker.AddLock;
-	public string RemoveLock => ShipDataPicker.RemoveLock;
+	public string AddLock => ShipDataPickerResources.AddLock;
+	public string RemoveLock => ShipDataPickerResources.RemoveLock;
 
-	public string AddPhase => ShipDataPicker.AddPhase;
-	public string RemovePhase => ShipDataPicker.RemovePhase;
-	public string AssignLock => ShipDataPicker.AssignLock;
-	public string IsFinished => ShipDataPicker.IsFinished;
+	public string AddPhase => ShipDataPickerResources.AddPhase;
+	public string RemovePhase => ShipDataPickerResources.RemovePhase;
+	public string AssignLock => ShipDataPickerResources.AssignLock;
+	public string IsFinished => ShipDataPickerResources.IsFinished;
 
-	public string Remove => ShipDataPicker.Remove;
+	public string Remove => ShipDataPickerResources.Remove;
 
-	public string ShipTypeToggle => ShipDataPicker.ShipTypeToggle;
+	public string ShipTypeToggle => ShipDataPickerResources.ShipTypeToggle;
 
-	public string ShipType => Properties.Window.FormShipGroup.ShipView_ShipType;
-	public string Name => Properties.Window.FormShipGroup.ShipView_Name;
+	public string ShipType => ShipGroupResources.ShipView_ShipType;
+	public string Name => ShipGroupResources.ShipView_Name;
 	public string Firepower => GeneralRes.Firepower;
-	public string NightBattlePower => Properties.Window.FormShipGroup.ShipView_NightBattlePower;
+	public string NightBattlePower => ShipGroupResources.ShipView_NightBattlePower;
 	public string ASW => GeneralRes.ASW;
 	public string Luck => GeneralRes.Luck;
-	public string Daihatsu => ShipDataPicker.Daihatsu;
-	public string Tank => ShipDataPicker.Tank;
-	public string Fcf => ShipDataPicker.Fcf;
+	public string Daihatsu => ShipDataPickerResources.Daihatsu;
+	public string Tank => ShipDataPickerResources.Tank;
+	public string Fcf => ShipDataPickerResources.Fcf;
 	public string Expansion => GeneralRes.Expansion;
 
-	public string InvalidModelState => ShipDataPicker.InvalidModelState;
+	public string InvalidModelState => ShipDataPickerResources.InvalidModelState;
 }

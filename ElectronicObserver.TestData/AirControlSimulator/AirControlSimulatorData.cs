@@ -4,9 +4,6 @@ namespace ElectronicObserver.TestData.AirControlSimulator;
 
 public class AirControlSimulatorData
 {
-	[JsonPropertyName("api_mst_equip_exslot_ship")]
-	public List<AirControlSimulatorApiMstEquipExslotShip> ApiMstEquipExslotShip { get; set; } = new();
-
 	[JsonPropertyName("api_mst_equip_ship")]
 	public List<AirControlSimulatorApiMstEquipShip> ApiMstEquipShip { get; set; } = new();
 

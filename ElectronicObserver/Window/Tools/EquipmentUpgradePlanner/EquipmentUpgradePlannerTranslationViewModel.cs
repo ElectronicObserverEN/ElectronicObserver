@@ -3,24 +3,28 @@
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Goal => EquipmentUpgradePlanner.Goal;
-	public string IsFinished => EquipmentUpgradePlanner.IsFinished;
-	public string NotOwned => EquipmentUpgradePlanner.NotOwned;
-	public string Priority => EquipmentUpgradePlanner.Priority;
-	public string Remove => EquipmentUpgradePlanner.Remove;
-	public string Title => EquipmentUpgradePlanner.Title;
-	public string UpgradeLevel => EquipmentUpgradePlanner.UpgradeLevel;
-	public string AddEquipmentFromLibrary => EquipmentUpgradePlanner.AddEquipmentFromLibrary;
-	public string AddOwnedEquipment => EquipmentUpgradePlanner.AddOwnedEquipment;
-	public string DisplayFinished => EquipmentUpgradePlanner.DisplayFinished;
-	public string All => EquipmentUpgradePlanner.All;
-	public string Cost => EquipmentUpgradePlanner.Cost;
-	public string UseSliderFromLevel => EquipmentUpgradePlanner.UseSliderFromLevel;
-	public string Helper => EquipmentUpgradePlanner.Helper;
-	public string ConvertTo => EquipmentUpgradePlanner.ConvertTo;
-	public string Owned => EquipmentUpgradePlanner.Owned;
-	public string Required => EquipmentUpgradePlanner.Required;
-	public string TotalCost => EquipmentUpgradePlanner.TotalCost;
-	public string CompactMode => EquipmentUpgradePlanner.CompactMode;
-	public string Today => EquipmentUpgradePlanner.Today;
+	public string Goal => EquipmentUpgradePlannerResources.Goal;
+	public string IsFinished => EquipmentUpgradePlannerResources.IsFinished;
+	public string NotOwned => EquipmentUpgradePlannerResources.NotOwned;
+	public string Priority => EquipmentUpgradePlannerResources.Priority;
+	public string Remove => EquipmentUpgradePlannerResources.Remove;
+	public string Title => EquipmentUpgradePlannerResources.Title;
+	public string EquipmentUpgradePlan => EquipmentUpgradePlannerResources.EquipmentUpgradePlan;
+	public string UpgradeLevel => EquipmentUpgradePlannerResources.UpgradeLevel;
+	public string AddEquipmentFromLibrary => EquipmentUpgradePlannerResources.AddEquipmentFromLibrary;
+	public string AddOwnedEquipment => EquipmentUpgradePlannerResources.AddOwnedEquipment;
+	public string DisplayFinished => EquipmentUpgradePlannerResources.DisplayFinished;
+	public string All => EquipmentUpgradePlannerResources.All;
+	public string Cost => EquipmentUpgradePlannerResources.Cost;
+	public string UseSliderFromLevel => EquipmentUpgradePlannerResources.UseSliderFromLevel;
+	public string Helper => EquipmentUpgradePlannerResources.Helper;
+	public string ConvertTo => EquipmentUpgradePlannerResources.ConvertTo;
+	public string Owned => EquipmentUpgradePlannerResources.Owned;
+	public string Required => EquipmentUpgradePlannerResources.Required;
+	public string TotalCost => EquipmentUpgradePlannerResources.TotalCost;
+	public string CompactMode => EquipmentUpgradePlannerResources.CompactMode;
+	public string Today => EquipmentUpgradePlannerResources.Today;
+	public string Cancel => GeneralRes.Cancel;
+	public string Edit => GeneralRes.Edit;
+	public string Ok => "OK";
 }

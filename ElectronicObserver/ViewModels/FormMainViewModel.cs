@@ -24,7 +24,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
@@ -47,7 +46,6 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
-using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -70,12 +68,13 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using ElectronicObserverTypes;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -142,7 +141,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? FleetOverviewImageSource { get; }
 	public ImageSource? ShipGroupImageSource { get; }
 	public ImageSource? FleetPresetImageSource { get; }
-	public ImageSource? ShipTrainingPlanImageSource { get; }	
+	public ImageSource? ShipTrainingPlanImageSource { get; }
 	public ImageSource? DockImageSource { get; }
 	public ImageSource? ArsenalImageSource { get; }
 	public ImageSource? EquipmentUpgradePlanImageSource { get; }
@@ -264,7 +263,7 @@ public partial class FormMainViewModel : ObservableObject
 			_ => SoftwareInformation.SoftwareNameJapanese
 		};
 
-		Utility.Logger.Add(2, softwareName + Properties.Window.FormMain.Starting);
+		Utility.Logger.Add(2, softwareName + MainResources.Starting);
 
 		ResourceManager.Instance.Load();
 		RecordManager.Instance.Load();
@@ -385,8 +384,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(ShipTrainingPlanViewer);
 
 		Views.Add(Dock = new DockViewModel());
-		Views.Add(Arsenal = new ArsenalViewModel()); 
-		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel()); 
+		Views.Add(Arsenal = new ArsenalViewModel());
+		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel());
 		Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
@@ -493,7 +492,7 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void LoadData()
 	{
-		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
+		if (MessageBox.Show(Resources.AskLoad, MainResources.ConfirmatonCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
@@ -762,7 +761,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -782,7 +781,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Development.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -802,7 +801,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Construction.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoBuildData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -828,7 +827,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -844,7 +843,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterEquipments.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.EquipmentDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -861,8 +860,8 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			MessageBox.Show
 			(
-				Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
-				Properties.Window.Dialog.DialogAntiAirDefense.Error,
+				AntiAirDefenseResources.DataNotLoaded,
+				AntiAirDefenseResources.Error,
 				MessageBoxButton.OK, MessageBoxImage.Error
 			);
 
@@ -882,6 +881,12 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenBaseAirCorpsSimulation()
 	{
 		ToolService.AirControlSimulator();
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		ToolService.OperationRoom();
 	}
 
 	[RelayCommand]
@@ -907,14 +912,14 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (!KCDatabase.Instance.Quest.IsLoaded)
 		{
-			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.QuestDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
 
 		new QuestTrackerManagerWindow().Show(Window);
 	}
-	
+
 	[RelayCommand]
 	private void OpenEquipmentUpgradePlanner()
 	{
@@ -926,7 +931,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -961,6 +966,12 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		AutoRefreshWindow.Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenTelegram()
+	{
+		new TelegramWindow().Show(Window);
 	}
 
 	[RelayCommand]
@@ -999,7 +1010,7 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void LoadInitialAPI()
+	private async Task LoadInitialAPI()
 	{
 		using OpenFileDialog ofd = new();
 
@@ -1021,7 +1032,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 
 			}
@@ -1142,7 +1153,7 @@ public partial class FormMainViewModel : ObservableObject
 		Window.Dispatcher.Invoke((() =>
 		{
 			APIObserver.Instance.LoadResponse($"/kcsapi/{apiName}", data);
-		})); 
+		}));
 	}
 
 	[RelayCommand]
@@ -1151,7 +1162,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1189,7 +1200,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
@@ -1201,7 +1212,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1227,10 +1238,9 @@ public partial class FormMainViewModel : ObservableObject
 
 					foreach (dynamic elem in json.api_data.api_mst_ship)
 					{
+						IShipDataMaster ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
 
-						var ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
-
-						if (elem.api_name != "なし" && ship != null && ship.IsAbyssalShip)
+						if (elem.api_name != "なし" && ship is { IsAbyssalShip: true })
 						{
 
 							KCDatabase.Instance.MasterShips[(int)elem.api_id].LoadFromResponse("api_start2", elem);
@@ -1244,63 +1254,51 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}
 
 	[RelayCommand]
-	private async void DeleteOldAPI()
+	private async Task DeleteOldAPI()
 	{
-
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
-
 			try
 			{
-
-				int count = await Task.Factory.StartNew(() => DeleteOldAPIInternal());
+				int count = await Task.Factory.StartNew(DeleteOldAPIInternal);
 
 				MessageBox.Show("Delete successful.\r\n" + count + " files deleted.", "Delete Successful",
 					MessageBoxButton.OK, MessageBoxImage.Information);
-
 			}
 			catch (Exception ex)
 			{
-
-				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to delete.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 			}
-
-
 		}
-
 	}
 
 	private int DeleteOldAPIInternal()
 	{
-
-
 		//適当極まりない
 		int count = 0;
 
-		var apilist = new Dictionary<string, List<KeyValuePair<string, string>>>();
+		Dictionary<string, List<KeyValuePair<string, string>>> apilist = new();
 
 		foreach (string s in Directory.EnumerateFiles(Utility.Configuration.Config.Connection.SaveDataPath,
 			"*.json", SearchOption.TopDirectoryOnly))
 		{
-
 			int start = s.IndexOf('@');
 			int end = s.LastIndexOf('.');
 
 			start--;
 			string key = s.Substring(start, end - start + 1);
 			string date = s.Substring(0, start);
-
 
 			if (!apilist.ContainsKey(key))
 			{
@@ -1324,12 +1322,11 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void RenameShipResource()
+	private async Task RenameShipResource()
 	{
-
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show("Ship data is not loaded.", MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -1370,7 +1367,7 @@ public partial class FormMainViewModel : ObservableObject
 			{
 
 				Utility.ErrorReporter.SendErrorReport(ex, "艦船リソースのリネームに失敗しました。");
-				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 
@@ -1587,7 +1584,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		Dictionary<ShipId, IShipDataMaster> wikiShips = TestData.Wiki.WikiDataParser.Ships(wikiEquipment);
 		Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips = TestData.Wiki.WikiDataParser.AbyssalShips(wikiAbyssalEquipment);
-		Dictionary<ShipId, List<int>> abyssalAircraft = await  TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
+		Dictionary<ShipId, List<int>> abyssalAircraft = await TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
 
 		foreach (IShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 		{
@@ -1682,7 +1679,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ViewHelp()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
+		if (MessageBox.Show(MainResources.OpenEOWiki, MainResources.HelpCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
@@ -1695,7 +1692,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ReportIssue()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
+		if (MessageBox.Show(MainResources.ReportIssue, MainResources.ReportIssueCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
@@ -1705,11 +1702,10 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void JoinDiscord()
-		=> OpenLink("https://discord.gg/6ZvX8DG");
+	private void JoinDiscord() => OpenLink("https://discord.gg/6ZvX8DG");
 
 	[RelayCommand]
-	private async void CheckForUpdate()
+	private async Task CheckForUpdate()
 	{
 		// translations and maintenance state
 		await SoftwareUpdater.CheckUpdateAsync();
@@ -2033,7 +2029,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
+			ErrorReporter.SendErrorReport(ex, MainResources.FailedToOpenBrowser);
 		}
 	}
 
@@ -2049,8 +2045,8 @@ public partial class FormMainViewModel : ObservableObject
 		if (Configuration.Config.Life.ConfirmOnClosing)
 		{
 			if (MessageBox.Show(
-					string.Format(Properties.Window.FormMain.ExitConfirmation, name),
-					Properties.Window.FormMain.ConfirmatonCaption,
+					string.Format(MainResources.ExitConfirmation, name),
+					MainResources.ConfirmatonCaption,
 					MessageBoxButton.YesNo,
 					MessageBoxImage.Question,
 					MessageBoxResult.No)

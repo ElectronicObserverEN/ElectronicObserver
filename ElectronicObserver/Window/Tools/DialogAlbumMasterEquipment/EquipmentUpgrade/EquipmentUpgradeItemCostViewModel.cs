@@ -24,4 +24,10 @@ public class EquipmentUpgradeItemCostViewModel
 			Required = item.Count
 		})).ToList();
 	}
+	
+	public void UnsubscribeFromApis()
+	{
+		RequiredEquipments.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+		RequiredConsumables.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+	}
 }

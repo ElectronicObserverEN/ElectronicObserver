@@ -3,10 +3,8 @@
 public class ApiUseitem
 {
 	[JsonPropertyName("api_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCount { get; set; } = default!;
+	public int ApiCount { get; set; }
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 }

@@ -3,15 +3,14 @@
 public class ApiAirFire
 {
 	[JsonPropertyName("api_idx")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiIdx { get; set; } = default!;
+	public int ApiIdx { get; set; }
 
 	[JsonPropertyName("api_kind")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiKind { get; set; } = default!;
+	public int ApiKind { get; set; }
 
+	/// <summary>
+	/// AACI displayed equipment ids.
+	/// </summary>
 	[JsonPropertyName("api_use_items")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiUseItems { get; set; } = new();
 }

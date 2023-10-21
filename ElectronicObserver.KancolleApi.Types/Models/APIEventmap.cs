@@ -3,19 +3,15 @@
 public class ApiEventmap
 {
 	[JsonPropertyName("api_max_maphp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiMaxMaphp { get; set; } = default!;
+	public int? ApiMaxMaphp { get; set; }
 
 	[JsonPropertyName("api_now_maphp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiNowMaphp { get; set; } = default!;
+	public int? ApiNowMaphp { get; set; }
 
 	[JsonPropertyName("api_selected_rank")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSelectedRank { get; set; } = default!;
+	public int ApiSelectedRank { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 
 }

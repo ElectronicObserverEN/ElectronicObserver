@@ -16,7 +16,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
-using Translation = ElectronicObserver.Properties.Window.FormShipGroup;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
@@ -153,17 +152,17 @@ public partial class FormShipGroup: Form
 
 	public void Translate()
 	{
-		ShipView_ShipType.HeaderText = Translation.ShipView_ShipType;
-		ShipView_Name.HeaderText = Translation.ShipView_Name;
-		ShipView_NextRemodel.HeaderText = Translation.ShipView_NextRemodel;
+		ShipView_ShipType.HeaderText = ShipGroupResources.ShipView_ShipType;
+		ShipView_Name.HeaderText = ShipGroupResources.ShipView_Name;
+		ShipView_NextRemodel.HeaderText = ShipGroupResources.ShipView_NextRemodel;
 
 		ShipView_Fuel.HeaderText = GeneralRes.Fuel;
 		ShipView_Ammo.HeaderText = GeneralRes.Ammo;
-		ShipView_Slot1.HeaderText = Translation.ShipView_Slot1;
-		ShipView_Slot2.HeaderText = Translation.ShipView_Slot2;
-		ShipView_Slot3.HeaderText = Translation.ShipView_Slot3;
-		ShipView_Slot4.HeaderText = Translation.ShipView_Slot4;
-		ShipView_Slot5.HeaderText = Translation.ShipView_Slot5;
+		ShipView_Slot1.HeaderText = ShipGroupResources.ShipView_Slot1;
+		ShipView_Slot2.HeaderText = ShipGroupResources.ShipView_Slot2;
+		ShipView_Slot3.HeaderText = ShipGroupResources.ShipView_Slot3;
+		ShipView_Slot4.HeaderText = ShipGroupResources.ShipView_Slot4;
+		ShipView_Slot5.HeaderText = ShipGroupResources.ShipView_Slot5;
 		ShipView_ExpansionSlot.HeaderText = GeneralRes.Expansion;
 
 		ShipView_Aircraft1.HeaderText = GeneralRes.Planes + " 1";
@@ -173,10 +172,10 @@ public partial class FormShipGroup: Form
 		ShipView_Aircraft5.HeaderText = GeneralRes.Planes + " 5";
 		ShipView_AircraftTotal.HeaderText = GeneralRes.Planes + GeneralRes.Total;
 
-		ShipView_Fleet.HeaderText = Translation.ShipView_Fleet;
-		ShipView_RepairTime.HeaderText = Translation.ShipView_RepairTime;
-		ShipView_RepairSteel.HeaderText = Translation.ShipView_RepairSteel;
-		ShipView_RepairFuel.HeaderText = Translation.ShipView_RepairFuel;
+		ShipView_Fleet.HeaderText = ShipGroupResources.ShipView_Fleet;
+		ShipView_RepairTime.HeaderText = ShipGroupResources.ShipView_RepairTime;
+		ShipView_RepairSteel.HeaderText = ShipGroupResources.ShipView_RepairSteel;
+		ShipView_RepairFuel.HeaderText = ShipGroupResources.ShipView_RepairFuel;
 
 		ShipView_Firepower.HeaderText = GeneralRes.Firepower;
 		ShipView_FirepowerRemain.HeaderText = GeneralRes.Firepower + GeneralRes.ModRemaining;
@@ -216,23 +215,23 @@ public partial class FormShipGroup: Form
 		ShipView_AircraftPower.HeaderText = GeneralRes.Bombing + GeneralRes.Power;
 		ShipView_AntiSubmarinePower.HeaderText = GeneralRes.ASW + GeneralRes.Power;
 		ShipView_TorpedoPower.HeaderText = GeneralRes.Torpedo + GeneralRes.Power;
-		ShipView_NightBattlePower.HeaderText = Translation.ShipView_NightBattlePower;
+		ShipView_NightBattlePower.HeaderText = ShipGroupResources.ShipView_NightBattlePower;
 
 		ShipView_Locked.HeaderText = GeneralRes.Lock;
-		ShipView_SallyArea.HeaderText = Translation.ShipView_SallyArea;
+		ShipView_SallyArea.HeaderText = ShipGroupResources.ShipView_SallyArea;
 
-		SortId.HeaderText = Translation.SortId;
-		RepairTimeUnit.HeaderText = Translation.RepairTimeUnit;
+		SortId.HeaderText = ShipGroupResources.SortId;
+		RepairTimeUnit.HeaderText = ShipGroupResources.RepairTimeUnit;
 
-		MenuMember_AddToGroup.Text = Translation.MenuMember_AddToGroup;
-		MenuMember_CreateGroup.Text = Translation.MenuMember_CreateGroup;
-		MenuMember_Exclude.Text = Translation.MenuMember_Exclude;
-		MenuMember_Filter.Text = Translation.MenuMember_Filter;
-		MenuMember_ColumnFilter.Text = Translation.MenuMember_ColumnFilter;
-		MenuMember_SortOrder.Text = Translation.MenuMember_SortOrder;
-		MenuMember_CSVOutput.Text = Translation.MenuMember_CSVOutput;
+		MenuMember_AddToGroup.Text = ShipGroupResources.MenuMember_AddToGroup;
+		MenuMember_CreateGroup.Text = ShipGroupResources.MenuMember_CreateGroup;
+		MenuMember_Exclude.Text = ShipGroupResources.MenuMember_Exclude;
+		MenuMember_Filter.Text = ShipGroupResources.MenuMember_Filter;
+		MenuMember_ColumnFilter.Text = ShipGroupResources.MenuMember_ColumnFilter;
+		MenuMember_SortOrder.Text = ShipGroupResources.MenuMember_SortOrder;
+		MenuMember_CSVOutput.Text = ShipGroupResources.MenuMember_CSVOutput;
 
-		Text = Translation.Title;
+		Text = ShipGroupResources.Title;
 	}
 
 	private void FormShipGroup_Load(object sender, EventArgs e)
@@ -245,7 +244,7 @@ public partial class FormShipGroup: Form
 		if (groups.ShipGroups.Count == 0)
 		{
 
-			Utility.Logger.Add(3, string.Format(Translation.GroupNotFound, ShipGroupManager.DefaultFilePath));
+			Utility.Logger.Add(3, string.Format(ShipGroupResources.GroupNotFound, ShipGroupManager.DefaultFilePath));
 
 			var group = KCDatabase.Instance.ShipGroup.Add();
 			group.Name = GeneralRes.AllAssignedShips;
@@ -605,9 +604,9 @@ public partial class FormShipGroup: Form
 			int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
 			double expAverage = expsum / Math.Max(membersCount, 1.0);
 
-			ViewModel.ShipCountText = string.Format(Translation.ShipCount, group.Members.Count);
-			ViewModel.LevelTotalText = string.Format(Translation.TotalAndAverageLevel, levelsum, levelAverage);
-			ViewModel.LevelAverageText = string.Format(Translation.TotalAndAverageExp, expsum, expAverage);
+			ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
+			ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
+			ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
 		}
 	}
 
@@ -627,7 +626,7 @@ public partial class FormShipGroup: Form
 
 		if (group == null)
 		{
-			Utility.Logger.Add(3, Translation.GroupDoesNotExist);
+			Utility.Logger.Add(3, ShipGroupResources.GroupDoesNotExist);
 			return;
 		}
 
@@ -685,12 +684,12 @@ public partial class FormShipGroup: Form
 		if (index < 5)
 		{
 			return (index >= ship.SlotSize && ship.Slot[index] == -1) ? "" :
-				ship.SlotInstance[index]?.NameWithLevel ?? Translation.None;
+				ship.SlotInstance[index]?.NameWithLevel ?? ShipGroupResources.None;
 		}
 		else
 		{
 			return ship.ExpansionSlot == 0 ? "" :
-				ship.ExpansionSlotInstance?.NameWithLevel ?? Translation.None;
+				ship.ExpansionSlotInstance?.NameWithLevel ?? ShipGroupResources.None;
 		}
 
 	}
@@ -727,9 +726,9 @@ public partial class FormShipGroup: Form
 				var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Level.Index].Value);
 				var exp = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Exp.Index].Value);
 
-				ViewModel.ShipCountText = string.Format(Translation.SelectedShips, selectedShipCount, totalShipCount);
-				ViewModel.LevelTotalText = string.Format(Translation.TotalAndAverageLevel, levels.Sum(), levels.Average());
-				ViewModel.LevelAverageText = string.Format(Translation.TotalAndAverageExp, exp.Sum(), exp.Average());
+				ViewModel.ShipCountText = string.Format(ShipGroupResources.SelectedShips, selectedShipCount, totalShipCount);
+				ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levels.Sum(), levels.Average());
+				ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, exp.Sum(), exp.Average());
 
 			}
 			else
@@ -740,9 +739,9 @@ public partial class FormShipGroup: Form
 				int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
 				double expAverage = expsum / Math.Max(membersCount, 1.0);
 
-				ViewModel.ShipCountText = string.Format(Translation.ShipCount, group.Members.Count);
-				ViewModel.LevelTotalText = string.Format(Translation.TotalAndAverageLevel, levelsum, levelAverage);
-				ViewModel.LevelAverageText = string.Format(Translation.TotalAndAverageExp, expsum, expAverage);
+				ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
+				ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
+				ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
 			}
 
 		}
@@ -776,7 +775,7 @@ public partial class FormShipGroup: Form
 
 			if ((int)e.Value < 0)
 			{
-				e.Value = $"{Translation.Dock} #" + ((int)e.Value + 1000);
+				e.Value = $"{ShipGroupResources.Dock} #" + ((int)e.Value + 1000);
 			}
 			else
 			{
@@ -1041,7 +1040,7 @@ public partial class FormShipGroup: Form
 
 		if (group == null)
 		{
-			MessageBox.Show(Translation.DialogGroupCanNotBeModifiedDescription, Translation.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupResources.DialogGroupCanNotBeModifiedDescription, ShipGroupResources.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
@@ -1067,7 +1066,7 @@ public partial class FormShipGroup: Form
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex, Translation.ColumnSettingError);
+			Utility.ErrorReporter.SendErrorReport(ex, ShipGroupResources.ColumnSettingError);
 		}
 	}
 
@@ -1114,7 +1113,7 @@ public partial class FormShipGroup: Form
 			catch (Exception ex)
 			{
 
-				Utility.ErrorReporter.SendErrorReport(ex, Translation.FilterDialogError);
+				Utility.ErrorReporter.SendErrorReport(ex, ShipGroupResources.FilterDialogError);
 			}
 
 		}
@@ -1179,7 +1178,7 @@ public partial class FormShipGroup: Form
 			catch (Exception ex)
 			{
 
-				Utility.ErrorReporter.SendErrorReport(ex, Translation.AutoSortDialogError);
+				Utility.ErrorReporter.SendErrorReport(ex, ShipGroupResources.AutoSortDialogError);
 			}
 		}
 
@@ -1213,7 +1212,7 @@ public partial class FormShipGroup: Form
 	private void MenuMember_AddToGroup_Click(object sender, EventArgs e)
 	{
 
-		using (var dialog = new DialogTextSelect(Translation.DialogGroupAddToGroupTitle, Translation.DialogGroupAddToGroupDescription,
+		using (var dialog = new DialogTextSelect(ShipGroupResources.DialogGroupAddToGroupTitle, ShipGroupResources.DialogGroupAddToGroupDescription,
 			KCDatabase.Instance.ShipGroup.ShipGroups.Values.ToArray()))
 		{
 
@@ -1243,7 +1242,7 @@ public partial class FormShipGroup: Form
 		if (ships.Count() == 0)
 			return;
 
-		using (var dialog = new DialogTextInput(Translation.DialogGroupAddTitle, Translation.DialogGroupAddDescription))
+		using (var dialog = new DialogTextInput(ShipGroupResources.DialogGroupAddTitle, ShipGroupResources.DialogGroupAddDescription))
 		{
 
 			if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
@@ -1477,13 +1476,13 @@ public partial class FormShipGroup: Form
 
 					}
 
-					Utility.Logger.Add(2, string.Format(Translation.ExportToCsvSuccess, dialog.OutputPath));
+					Utility.Logger.Add(2, string.Format(ShipGroupResources.ExportToCsvSuccess, dialog.OutputPath));
 
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, Translation.ExportToCsvFail);
-					MessageBox.Show(Translation.ExportToCsvFail + "\r\n" + ex.Message, Translation.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Utility.ErrorReporter.SendErrorReport(ex, ShipGroupResources.ExportToCsvFail);
+					MessageBox.Show(ShipGroupResources.ExportToCsvFail + "\r\n" + ex.Message, ShipGroupResources.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
 			}

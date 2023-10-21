@@ -10,7 +10,6 @@ using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Support;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupFilter;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -258,54 +257,54 @@ public partial class DialogShipGroupFilter : Form
 	{
 		ButtonCancel.Text = GeneralRes.Cancel;
 
-		tabPage1.Text = Translation.tabPage1;
-		tabPage2.Text = Translation.tabPage2;
+		tabPage1.Text = ShipGroupFilterResources.tabPage1;
+		tabPage2.Text = ShipGroupFilterResources.tabPage2;
 
-		label1.Text = Translation.label1;
+		label1.Text = ShipGroupFilterResources.label1;
 
-		OptimizeConstFilter.Text = Translation.OptimizeConstFilter;
-		ConvertToExpression.Text = Translation.ConvertToExpression;
-		ClearConstFilter.Text = Translation.ClearConstFilter;
+		OptimizeConstFilter.Text = ShipGroupFilterResources.OptimizeConstFilter;
+		ConvertToExpression.Text = ShipGroupFilterResources.ConvertToExpression;
+		ClearConstFilter.Text = ShipGroupFilterResources.ClearConstFilter;
 
-		ExpressionView_Expression.HeaderText = Translation.ExpressionView_Expression;
-		ExpressionView_ExternalAndOr.HeaderText = Translation.ExpressionView_ExternalAndOr;
-		ExpressionView_InternalAndOr.HeaderText = Translation.ExpressionView_InternalAndOr;
-		ExpressionView_Inverse.HeaderText = Translation.ExpressionView_Inverse;
+		ExpressionView_Expression.HeaderText = ShipGroupFilterResources.ExpressionView_Expression;
+		ExpressionView_ExternalAndOr.HeaderText = ShipGroupFilterResources.ExpressionView_ExternalAndOr;
+		ExpressionView_InternalAndOr.HeaderText = ShipGroupFilterResources.ExpressionView_InternalAndOr;
+		ExpressionView_Inverse.HeaderText = ShipGroupFilterResources.ExpressionView_Inverse;
 
-		ExpressionDetailView_LeftOperand.HeaderText = Translation.ExpressionDetailView_LeftOperand;
-		ExpressionDetailView_Operator.HeaderText = Translation.ExpressionDetailView_Operator;
-		ExpressionDetailView_RightOperand.HeaderText = Translation.ExpressionDetailView_RightOperand;
+		ExpressionDetailView_LeftOperand.HeaderText = ShipGroupFilterResources.ExpressionDetailView_LeftOperand;
+		ExpressionDetailView_Operator.HeaderText = ShipGroupFilterResources.ExpressionDetailView_Operator;
+		ExpressionDetailView_RightOperand.HeaderText = ShipGroupFilterResources.ExpressionDetailView_RightOperand;
 
-		Description.Text = Translation.Description;
+		Description.Text = ShipGroupFilterResources.Description;
 
-		Expression_Add.Text = Translation.Expression_Add;
-		Expression_Delete.Text = Translation.Expression_Delete;
+		Expression_Add.Text = ShipGroupFilterResources.Expression_Add;
+		Expression_Delete.Text = ShipGroupFilterResources.Expression_Delete;
 
-		ExpressionDetail_Add.Text = Translation.ExpressionDetail_Add;
-		ExpressionDetail_Edit.Text = Translation.ExpressionDetail_Edit;
-		ExpressionDetail_Delete.Text = Translation.ExpressionDetail_Delete;
+		ExpressionDetail_Add.Text = ShipGroupFilterResources.ExpressionDetail_Add;
+		ExpressionDetail_Edit.Text = ShipGroupFilterResources.ExpressionDetail_Edit;
+		ExpressionDetail_Delete.Text = ShipGroupFilterResources.ExpressionDetail_Delete;
 
-		toolTip1.SetToolTip(ClearConstFilter, Translation.ClearConstFilter_ToolTip);
-		toolTip1.SetToolTip(ConvertToExpression, Translation.ConvertToExpression_ToolTip);
-		toolTip1.SetToolTip(OptimizeConstFilter, Translation.OptimizeConstFilter_ToolTip);
+		toolTip1.SetToolTip(ClearConstFilter, ShipGroupFilterResources.ClearConstFilter_ToolTip);
+		toolTip1.SetToolTip(ConvertToExpression, ShipGroupFilterResources.ConvertToExpression_ToolTip);
+		toolTip1.SetToolTip(OptimizeConstFilter, ShipGroupFilterResources.OptimizeConstFilter_ToolTip);
 
-		ExpressionDetailView_Enabled.ToolTipText = Translation.ExpressionDetailView_Enabled_ToolTip;
-		ExpressionView_Down.ToolTipText = Translation.ExpressionView_Down_ToolTip;
-		ExpressionView_Up.ToolTipText = Translation.ExpressionView_Up_ToolTip;
-		ExpressionView_Inverse.ToolTipText = Translation.ExpressionView_Inverse_ToolTip;
+		ExpressionDetailView_Enabled.ToolTipText = ShipGroupFilterResources.ExpressionDetailView_Enabled_ToolTip;
+		ExpressionView_Down.ToolTipText = ShipGroupFilterResources.ExpressionView_Down_ToolTip;
+		ExpressionView_Up.ToolTipText = ShipGroupFilterResources.ExpressionView_Up_ToolTip;
+		ExpressionView_Inverse.ToolTipText = ShipGroupFilterResources.ExpressionView_Inverse_ToolTip;
 
-		ConstFilterView_Name.HeaderText = Translation.ConstFilterView_Name;
+		ConstFilterView_Name.HeaderText = ShipGroupFilterResources.ConstFilterView_Name;
 		ConstFilterSelector.Items.Clear();
 		ConstFilterSelector.Items.AddRange(new object[]
 		{
-			Translation.ConstFilterSelector_InclusionList,
-			Translation.ConstFilterSelector_ExclusionList
+			ShipGroupFilterResources.ConstFilterSelector_InclusionList,
+			ShipGroupFilterResources.ConstFilterSelector_ExclusionList
 		});
-		ButtonMenu.Text = Translation.ButtonMenu;
-		SubMenu_ImportFilter.Text = Translation.SubMenu_ImportFilter;
-		SubMenu_ExportFilter.Text = Translation.SubMenu_ExportFilter;
+		ButtonMenu.Text = ShipGroupFilterResources.ButtonMenu;
+		SubMenu_ImportFilter.Text = ShipGroupFilterResources.SubMenu_ImportFilter;
+		SubMenu_ExportFilter.Text = ShipGroupFilterResources.SubMenu_ExportFilter;
 
-		Text = Translation.Title;
+		Text = ShipGroupFilterResources.Title;
 	}
 
 	private void DialogShipGroupFilter_Load(object sender, EventArgs e)
@@ -843,7 +842,7 @@ public partial class DialogShipGroupFilter : Form
 
 		if (selectedrow == -1)
 		{
-			MessageBox.Show(Translation.SelectARow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupFilterResources.SelectARow, ShipGroupFilterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
@@ -925,7 +924,7 @@ public partial class DialogShipGroupFilter : Form
 		int procrow = GetSelectedRow(ExpressionView);
 		if (procrow == -1)
 		{
-			MessageBox.Show(Translation.SelectExpressionRow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupFilterResources.SelectExpressionRow, ShipGroupFilterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
@@ -944,14 +943,14 @@ public partial class DialogShipGroupFilter : Form
 		int procrow = GetSelectedRow(ExpressionView);
 		if (procrow == -1)
 		{
-			MessageBox.Show(Translation.SelectSequence, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupFilterResources.SelectSequence, ShipGroupFilterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
 		int selectedrow = GetSelectedRow(ExpressionDetailView);
 		if (selectedrow == -1)
 		{
-			MessageBox.Show(Translation.SelectTargetRow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupFilterResources.SelectTargetRow, ShipGroupFilterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
@@ -971,14 +970,14 @@ public partial class DialogShipGroupFilter : Form
 		int procrow = GetSelectedRow(ExpressionView);
 		if (procrow == -1)
 		{
-			MessageBox.Show(Translation.SelectSequence, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupFilterResources.SelectSequence, ShipGroupFilterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
 		int selectedrow = GetSelectedRow(ExpressionDetailView);
 		if (selectedrow == -1)
 		{
-			MessageBox.Show(Translation.SelectTargetRow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			MessageBox.Show(ShipGroupFilterResources.SelectTargetRow, ShipGroupFilterResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			return;
 		}
 
@@ -1367,8 +1366,8 @@ public partial class DialogShipGroupFilter : Form
 	private void ClearConstFilter_Click(object sender, EventArgs e)
 	{
 
-		if (MessageBox.Show(string.Format(Translation.ClearFilterWarning, ConstFilterSelector.Text),
-				Translation.ClearFilterWarningTitle,
+		if (MessageBox.Show(string.Format(ShipGroupFilterResources.ClearFilterWarning, ConstFilterSelector.Text),
+				ShipGroupFilterResources.ClearFilterWarningTitle,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
 			== DialogResult.Yes)
 		{
@@ -1390,7 +1389,7 @@ public partial class DialogShipGroupFilter : Form
 	private void ConvertToExpression_Click(object sender, EventArgs e)
 	{
 
-		if (MessageBox.Show(Translation.ConvertToExpressionWarning, "Confirmation",
+		if (MessageBox.Show(ShipGroupFilterResources.ConvertToExpressionWarning, "Confirmation",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 			== DialogResult.Yes)
 		{
@@ -1434,8 +1433,8 @@ public partial class DialogShipGroupFilter : Form
 	{
 
 
-		if (MessageBox.Show(Translation.ImportFilterFromClipboard,
-				Translation.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+		if (MessageBox.Show(ShipGroupFilterResources.ImportFilterFromClipboard,
+				ShipGroupFilterResources.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 			== DialogResult.No)
 			return;
 
@@ -1443,8 +1442,8 @@ public partial class DialogShipGroupFilter : Form
 
 		if (string.IsNullOrEmpty(data))
 		{
-			MessageBox.Show(Translation.ClipboardIsEmpty,
-				Translation.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(ShipGroupFilterResources.ClipboardIsEmpty,
+				ShipGroupFilterResources.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			return;
 		}
 
@@ -1455,7 +1454,7 @@ public partial class DialogShipGroupFilter : Form
 			{
 				var exp = (ExpressionManager)_group.Expressions.Load(str);
 				if (exp == null)
-					throw new ArgumentException(Translation.FormatCanNotBeImported);
+					throw new ArgumentException(ShipGroupFilterResources.FormatCanNotBeImported);
 				else
 					_group.Expressions = exp;
 			}
@@ -1466,7 +1465,7 @@ public partial class DialogShipGroupFilter : Form
 		catch (Exception ex)
 		{
 
-			MessageBox.Show(Translation.FilterImportFailed + ex.Message, Translation.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(ShipGroupFilterResources.FilterImportFailed + ex.Message, ShipGroupFilterResources.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 	}
@@ -1482,14 +1481,14 @@ public partial class DialogShipGroupFilter : Form
 
 			Clipboard.SetText(str.ToString());
 
-			MessageBox.Show(Translation.FilterWasExported,
-				Translation.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(ShipGroupFilterResources.FilterWasExported,
+				ShipGroupFilterResources.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 		}
 		catch (Exception ex)
 		{
 
-			MessageBox.Show(Translation.FilterExportFailed + ex.Message, Translation.CanNotExport, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(ShipGroupFilterResources.FilterExportFailed + ex.Message, ShipGroupFilterResources.CanNotExport, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 	}

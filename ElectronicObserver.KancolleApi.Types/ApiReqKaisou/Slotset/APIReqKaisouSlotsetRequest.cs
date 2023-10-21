@@ -3,22 +3,14 @@
 public class ApiReqKaisouSlotsetRequest
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiId { get; set; } = default!;
+	public string ApiId { get; set; } = "";
 
 	[JsonPropertyName("api_item_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiItemId { get; set; } = default!;
+	public string ApiItemId { get; set; } = "";
 
 	[JsonPropertyName("api_slot_idx")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSlotIdx { get; set; } = default!;
+	public string ApiSlotIdx { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

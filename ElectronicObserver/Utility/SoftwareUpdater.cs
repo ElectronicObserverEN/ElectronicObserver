@@ -51,9 +51,9 @@ public class SoftwareUpdater
 		{
 			try
 			{
-				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.StartedDownloadingUpdate, url));
+				Logger.Add(1, string.Format(SoftwareInformationResources.StartedDownloadingUpdate, url));
 				await DownloadUpdate(url);
-				Logger.Add(1, Properties.Utility.SoftwareInformation.DownloadFinished);
+				Logger.Add(1, SoftwareInformationResources.DownloadFinished);
 			}
 			catch
 			{
@@ -83,7 +83,7 @@ public class SoftwareUpdater
 			}
 		};
 		updater.Start();
-		Logger.Add(2, Properties.Utility.SoftwareInformation.CloseElectronicObserverToCompleteTheUpdate);
+		Logger.Add(2, SoftwareInformationResources.CloseElectronicObserverToCompleteTheUpdate);
 		WaitForRestart = true;
 	}
 
@@ -181,7 +181,7 @@ public class SoftwareUpdater
 			{
 				KCDatabase.Instance.Translation.Initialize();
 				KCDatabase.Instance.SystemQuestTrackerManager.Load();
-				Logger.Add(2, Properties.Utility.SoftwareInformation.TranslationFilesUpdated);
+				Logger.Add(2, SoftwareInformationResources.TranslationFilesUpdated);
 			}
 
 			CurrentVersion = LatestVersion;
@@ -196,7 +196,7 @@ public class SoftwareUpdater
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData + e);
+			Logger.Add(3, SoftwareInformationResources.FailedToObtainUpdateData + e);
 		}
 	}
 
@@ -255,11 +255,11 @@ public class SoftwareUpdater
 			using FileStream file = new(updaterFile, FileMode.Create);
 			await client.DownloadDataAsync(url, file, progress);
 
-			Logger.Add(1, Properties.Utility.SoftwareInformation.UpdaterDownloadFinished);
+			Logger.Add(1, SoftwareInformationResources.UpdaterDownloadFinished);
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadUpdater + e);
+			Logger.Add(3, SoftwareInformationResources.FailedToDownloadUpdater + e);
 			throw;
 		}
 		finally
@@ -275,7 +275,7 @@ public class SoftwareUpdater
 			using HttpClient client = new();
 			string tempFile = AppDataFolder + @"\latest.zip"; ;
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-			Console.WriteLine(Properties.Utility.SoftwareInformation.DownloadingUpdate);
+			Console.WriteLine(SoftwareInformationResources.DownloadingUpdate);
 
 			Progress<float> progress = new();
 			progress.ProgressChanged += (_, progress) => DownloadProgressString = string.Format(SoftwareDownload.Update_DownloadingUpdate, progress);
@@ -285,7 +285,7 @@ public class SoftwareUpdater
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadElectronicObserver + e.Message);
+			Logger.Add(3, SoftwareInformationResources.FailedToDownloadElectronicObserver + e.Message);
 			throw;
 		}
 		finally
@@ -357,7 +357,7 @@ public class SoftwareUpdater
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToParseUpdateData + e.ToString());
+			Logger.Add(3, SoftwareInformationResources.FailedToParseUpdateData + e.ToString());
 		}
 		return data;
 	}
@@ -387,12 +387,12 @@ public class SoftwareUpdater
 
 			if (filename.Contains("update.json") == false)
 			{
-				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.FileUpdated, filename));
+				Logger.Add(1, string.Format(SoftwareInformationResources.FileUpdated, filename));
 			}
 		}
 		catch (Exception e)
 		{
-			Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.FailedToUpdateFile, filename, e.Message));
+			Logger.Add(3, string.Format(SoftwareInformationResources.FailedToUpdateFile, filename, e.Message));
 			throw;
 		}
 	}

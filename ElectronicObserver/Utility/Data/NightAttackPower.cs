@@ -142,27 +142,28 @@ public static class NightAttackPower
 	private static double NightShellingBonus(this IEquipmentData? equip) =>
 		equip?.MasterEquipment.CategoryType switch
 		{
-			EquipmentTypes.MainGunSmall => Math.Sqrt(equip.Level),
-			EquipmentTypes.MainGunMedium => Math.Sqrt(equip.Level),
-			EquipmentTypes.MainGunLarge => Math.Sqrt(equip.Level),
-			EquipmentTypes.Torpedo => Math.Sqrt(equip.Level),
-			EquipmentTypes.APShell => Math.Sqrt(equip.Level),
-			EquipmentTypes.LandingCraft => Math.Sqrt(equip.Level),
-			EquipmentTypes.Searchlight => Math.Sqrt(equip.Level),
-			EquipmentTypes.SubmarineTorpedo => Math.Sqrt(equip.Level),
-			EquipmentTypes.AADirector => Math.Sqrt(equip.Level),
-			EquipmentTypes.MainGunLarge2 => Math.Sqrt(equip.Level),
-			EquipmentTypes.SearchlightLarge => Math.Sqrt(equip.Level),
-			EquipmentTypes.SpecialAmphibiousTank => Math.Sqrt(equip.Level),
+			EquipmentTypes.MainGunSmall or
+			EquipmentTypes.MainGunMedium or
+			EquipmentTypes.MainGunLarge or
+			EquipmentTypes.Torpedo or
+			EquipmentTypes.APShell or
+			EquipmentTypes.LandingCraft or
+			EquipmentTypes.Searchlight or
+			EquipmentTypes.SubmarineTorpedo or
+			EquipmentTypes.AADirector or
+			EquipmentTypes.MainGunLarge2 or
+			EquipmentTypes.SearchlightLarge or
+			EquipmentTypes.SpecialAmphibiousTank or
+			EquipmentTypes.SurfaceShipPersonnel => Math.Sqrt(equip.Level),
 
 			EquipmentTypes.SecondaryGun => equip.EquipmentId switch
 			{
-				EquipmentId.SecondaryGun_12_7cmTwinHighangleGun => 0.2 * equip.Level,
-				EquipmentId.SecondaryGun_8cmHighangleGun => 0.2 * equip.Level,
-				EquipmentId.SecondaryGun_8cmHighangleGunKai_MachineGun => 0.2 * equip.Level,
+				EquipmentId.SecondaryGun_12_7cmTwinHighangleGun or
+				EquipmentId.SecondaryGun_8cmHighangleGun or
+				EquipmentId.SecondaryGun_8cmHighangleGunKai_MachineGun or
 				EquipmentId.SecondaryGun_10cmTwinHighangleGunKai_AdditionalMachineGuns => 0.2 * equip.Level,
 
-				EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun => 0.3 * equip.Level,
+				EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun or
 				EquipmentId.SecondaryGun_15_5cmTripleSecondaryGunKai => 0.3 * equip.Level,
 
 				_ => Math.Sqrt(equip.Level),

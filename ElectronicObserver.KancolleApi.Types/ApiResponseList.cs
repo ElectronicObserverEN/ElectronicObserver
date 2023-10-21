@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ElectronicObserver.KancolleApi.Types;
+﻿namespace ElectronicObserver.KancolleApi.Types;
 
 public class ApiResponseList<T> where T : class, new()
 {

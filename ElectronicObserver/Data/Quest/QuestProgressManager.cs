@@ -1364,7 +1364,9 @@ public sealed class QuestProgressManager : DataStorage
 		if ((int)data.api_clear_result == 0)
 			return;     //遠征失敗
 
-		FleetData fleet = KCDatabase.Instance.Fleet.Fleets.Values.FirstOrDefault(f => f.Members.Contains((int)data.api_ship_id[1]));
+		FleetData? fleet = KCDatabase.Instance.Fleet.Fleets.Values.FirstOrDefault(f => f.Members.Contains((int)data.api_ship_id[1]));
+
+		if (fleet is null) return;
 
 		int areaID = fleet.ExpeditionDestination;
 

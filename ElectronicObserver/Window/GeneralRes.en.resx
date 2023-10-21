@@ -833,4 +833,16 @@ Please click here to restart.</value>
 
    (This check can be disabled in Settings &gt; Behavior)</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="NextAccuracy" xml:space="preserve">
+    <value>Next accuracy</value>
+  </data>
+  <data name="NextEvasion" xml:space="preserve">
+    <value>Next evasion</value>
+  </data>
+  <data name="NextAsw" xml:space="preserve">
+    <value>Next ASW</value>
+  </data>
 </root>

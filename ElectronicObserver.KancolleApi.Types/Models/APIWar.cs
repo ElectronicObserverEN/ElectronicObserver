@@ -3,17 +3,11 @@
 public class ApiWar
 {
 	[JsonPropertyName("api_lose")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiLose { get; set; } = default!;
+	public string ApiLose { get; set; } = "";
 
 	[JsonPropertyName("api_rate")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiRate { get; set; } = default!;
+	public string ApiRate { get; set; } = "";
 
 	[JsonPropertyName("api_win")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiWin { get; set; } = default!;
+	public string ApiWin { get; set; } = "";
 }

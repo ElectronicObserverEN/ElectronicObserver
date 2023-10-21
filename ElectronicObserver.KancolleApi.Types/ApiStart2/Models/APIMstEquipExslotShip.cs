@@ -1,13 +1,24 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
 
 public class ApiMstEquipExslotShip
 {
+	/// <summary>
+	/// Key is <see cref="ShipId"/>.
+	/// </summary>
 	[JsonPropertyName("api_ship_ids")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public List<int> ApiShipIds { get; set; } = new();
+	public Dictionary<string, int>? ApiShipIds { get; set; }
 
-	[JsonPropertyName("api_slotitem_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiSlotitemId { get; set; } = default!;
+	/// <summary>
+	/// Key is <see cref="ShipTypes"/>.
+	/// </summary>
+	[JsonPropertyName("api_stypes")]
+	public Dictionary<string, int>? ApiStypes { get; set; }
+
+	/// <summary>
+	/// Key is <see cref="ShipClass"/>.
+	/// </summary>
+	[JsonPropertyName("api_ctypes")]
+	public Dictionary<string, int>? ApiCtypes { get; set; }
 }

@@ -123,15 +123,15 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 			IEnumerable<int> levels = selectedShips.Select(s => s.Level);
 			IEnumerable<int> exp = selectedShips.Select(s => s.ExpTotal);
 
-			statusBarText += string.Format(Properties.Window.FormShipGroup.SelectedShips, selectedShipCount, totalShipCount);
-			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageLevel, levels.Sum(), levels.Average());
-			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageExp, exp.Sum(), exp.Average());
+			statusBarText += string.Format(ShipGroupResources.SelectedShips, selectedShipCount, totalShipCount);
+			statusBarText += string.Format(ShipGroupResources.TotalAndAverageLevel, levels.Sum(), levels.Average());
+			statusBarText += string.Format(ShipGroupResources.TotalAndAverageExp, exp.Sum(), exp.Average());
 		}
 		else
 		{
-			statusBarText += string.Format(Properties.Window.FormShipGroup.ShipCount, group.Members.Count);
-			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageLevel, levelsum, levelAverage);
-			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageExp, expsum, expAverage);
+			statusBarText += string.Format(ShipGroupResources.ShipCount, group.Members.Count);
+			statusBarText += string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
+			statusBarText += string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
 		}
 
 		return statusBarText;

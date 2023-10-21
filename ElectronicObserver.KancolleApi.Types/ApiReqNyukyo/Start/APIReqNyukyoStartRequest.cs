@@ -3,27 +3,17 @@
 public class ApiReqNyukyoStartRequest
 {
 	[JsonPropertyName("api_token")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiToken { get; set; } = default!;
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_highspeed")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiHighspeed { get; set; } = default!;
+	public string ApiHighspeed { get; set; } = "";
 
 	[JsonPropertyName("api_ndock_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiNdockId { get; set; } = default!;
+	public string ApiNdockId { get; set; } = "";
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiShipId { get; set; } = default!;
+	public string ApiShipId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

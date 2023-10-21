@@ -197,7 +197,7 @@ public class CompassViewModel : AnchorableViewModel
 
 				foreach (var pair in KCDatabase.Instance.Battle.SpecialAttackCount)
 				{
-					sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind)pair.Key)} : {FormCompass.SpecialAttackActivated}");
+					sb.AppendLine($"{DayAttack.AttackDisplay((DayAttackKind)pair.Key)} : {FormCompass.SpecialAttackActivated}");
 				}
 				/*
 				ToolTipInfo.SetToolTip(TextMapArea, sb.Length > 0 ? sb.ToString() : null);

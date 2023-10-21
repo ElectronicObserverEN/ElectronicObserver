@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ElectronicObserver.Window.Dialog;
-using DialogConfiguration = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
 
 namespace ElectronicObserver.Window.Control;
 
@@ -35,6 +33,6 @@ public enum LevelVisibilityFlag
 	Both,
 
 	/// <summary> 両方表示(艦載機熟練度はアイコンにオーバーレイする) </summary>
-	[Display(ResourceType = typeof(DialogConfiguration), Name = "EquipmentLevelVisibility_OverlayProficiency")]
+	[Display(ResourceType = typeof(ConfigurationResources), Name = "EquipmentLevelVisibility_OverlayProficiency")]
 	AircraftLevelOverlay,
 }

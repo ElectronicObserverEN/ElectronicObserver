@@ -1,12 +1,12 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiSquadronPlane
 {
 	[JsonPropertyName("api_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCount { get; set; } = default!;
+	public int ApiCount { get; set; }
 
 	[JsonPropertyName("api_mst_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMstId { get; set; } = default!;
+	public EquipmentId ApiMstId { get; set; }
 }

@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
 	xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
 	x:Name="FleetControl"
@@ -17,72 +18,22 @@
 	>
 	<UserControl.Resources>
 		<ResourceDictionary>
-			<!--
-			
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../Resources.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-			
 			<Storyboard
-				x:Key="Taiha"
+				x:Key="TaihaStoryboard"
+				RepeatBehavior="Forever"
 				Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
-				Duration="0:0:2"
-				RepeatBehavior="Forever"
-			>
-				<ColorAnimationUsingKeyFrames>
-					<DiscreteColorKeyFrame KeyTime="0:0:0" Value="Transparent"/>
-				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames>
-					<DiscreteColorKeyFrame KeyTime="0:0:1" Value="Red"/>
-				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames>
-					<DiscreteColorKeyFrame KeyTime="0:0:2" Value="Transparent"/>
-				</ColorAnimationUsingKeyFrames>
-			</Storyboard>
-			
-			storyboards get frozen for optimization purposes
-			which is why you can't use binding in them, but need hardcoded values instead
-			
-			<Storyboard
-				x:Key="EmptyResources"
-				RepeatBehavior="Forever"
-				Storyboard.TargetProperty="Background.Color"
 				Duration="0:0:2"
 				>
 				<ColorAnimationUsingKeyFrames>
-					<DiscreteColorKeyFrame KeyTime="0:0:0" Value="{Binding ResourceBackgroundBrush}" />
+					<DiscreteColorKeyFrame KeyTime="0:0:0" Value="Transparent" />
 				</ColorAnimationUsingKeyFrames>
 				<ColorAnimationUsingKeyFrames>
-					<DiscreteColorKeyFrame KeyTime="0:0:1" Value="Maroon" />
+					<DiscreteColorKeyFrame KeyTime="0:0:1" Value="Red" />
 				</ColorAnimationUsingKeyFrames>
 				<ColorAnimationUsingKeyFrames>
-					<DiscreteColorKeyFrame KeyTime="0:0:2" Value="{Binding ResourceBackgroundBrush}" />
+					<DiscreteColorKeyFrame KeyTime="0:0:2" Value="Transparent" />
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
-
-			<ProgressBar Background="Transparent">
-				<ProgressBar.Style>
-					<Style BasedOn="{StaticResource DefaultProgressBarStyle}" TargetType="ProgressBar">
-						<Style.Triggers>
-							<DataTrigger Binding="{Binding ShouldNotifyEmptyFuel}" Value="True">
-								<DataTrigger.EnterActions>
-									<BeginStoryboard Name="StartEmptyResourcesStoryboard" Storyboard="{StaticResource EmptyResources}" />
-								</DataTrigger.EnterActions>
-								<DataTrigger.ExitActions>
-									<SeekStoryboard
-										BeginStoryboardName="StartEmptyResourcesStoryboard"
-										Origin="BeginTime"
-										Offset="0:0:0"
-										/>
-									<StopStoryboard BeginStoryboardName="StartEmptyResourcesStoryboard" />
-								</DataTrigger.ExitActions>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</ProgressBar.Style>
-			</ProgressBar>
-			
-			-->
 
 			<Style TargetType="Border">
 				<Setter Property="Background" Value="Transparent" />
@@ -175,11 +126,57 @@
 						Command="{Binding OpenAirControlSimulatorCommand}"
 						Header="{Binding FormFleet.AirControlSimulator}"
 						/>
+					<MenuItem
+						d:Header="Operation room"
+						Command="{Binding OpenOperationRoomCommand}"
+						Header="{Binding FormFleet.OperationRoom}"
+						/>
 				</ContextMenu>
 			</Border.ContextMenu>
-			<StackPanel DataContext="{Binding ControlFleet}" Orientation="Horizontal">
-				<Border DataContext="{Binding Name}" ToolTip="{Binding ToolTip}">
-					<TextBlock Margin="4 2" Text="{Binding Text}" />
+			<StackPanel
+				DataContext="{Binding ControlFleet}"
+				Grid.IsSharedSizeScope="True"
+				Orientation="Horizontal"
+				>
+				<Border>
+					<Border.ToolTip>
+						<StackPanel>
+							<StackPanel.Resources>
+								<DataTemplate DataType="{x:Type viewModels:TotalRate}">
+									<Grid HorizontalAlignment="Left">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition SharedSizeGroup="ItemMarker" />
+											<ColumnDefinition SharedSizeGroup="Rate" />
+											<ColumnDefinition SharedSizeGroup="Equipment" />
+										</Grid.ColumnDefinitions>
+
+										<!--  KATAKANA MIDDLE DOT  -->
+										<TextBlock Grid.Column="0" Text="&#x30FB;" />
+										<TextBlock Grid.Column="1" Margin="4 0">
+											<Run Text="[" /><Run Text="{Binding Rate, StringFormat={}{0:P1}, Mode=OneWay}" /><Run Text="]" />
+										</TextBlock>
+										<ContentControl Grid.Column="2" Content="{Binding Equipment}" />
+									</Grid>
+								</DataTemplate>
+							</StackPanel.Resources>
+
+							<TextBlock Text="{Binding Name.ToolTip}" />
+
+							<TextBlock>
+								<Run Text="{x:Static translations:FleetResources.NightRecon}" />
+								<Run Text=":" />
+							</TextBlock>
+							<ItemsControl ItemsSource="{Binding NightRecons}" />
+
+							<TextBlock>
+								<Run Text="{x:Static translations:FleetResources.Flare}" />
+								<Run Text=":" />
+							</TextBlock>
+							<ItemsControl ItemsSource="{Binding Flares}" />
+						</StackPanel>
+					</Border.ToolTip>
+
+					<TextBlock Margin="4 2" Text="{Binding Name.Text}" />
 				</Border>
 
 				<views:FleetStateView ViewModel="{Binding State}" />
@@ -230,9 +227,28 @@
 						<StackPanel Orientation="Vertical" />
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
+
 				<ItemsControl.ItemTemplate>
 					<DataTemplate DataType="viewModels:FleetItemViewModel">
 						<Border Visibility="{Binding Visibility}">
+							<Border.Style>
+								<Style TargetType="Border">
+									<Setter Property="Background" Value="Transparent" />
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding ShowSinkWarning}" Value="True">
+											<DataTrigger.EnterActions>
+												<BeginStoryboard x:Name="BeginTaihaStoryboard" Storyboard="{StaticResource TaihaStoryboard}" />
+											</DataTrigger.EnterActions>
+										</DataTrigger>
+										<DataTrigger Binding="{Binding ShowSinkWarning}" Value="False">
+											<DataTrigger.EnterActions>
+												<StopStoryboard BeginStoryboardName="BeginTaihaStoryboard" />
+											</DataTrigger.EnterActions>
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Border.Style>
+
 							<Border.Resources>
 								<Style TargetType="Border">
 									<Setter Property="Margin" Value="2 0" />
@@ -261,6 +277,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.FirepowerBase}"
+													Bonus="{Binding Ship.SpecialEffectItemFirepower}"
 													Icon="{StaticResource Firepower}"
 													ParameterName="{Binding FormFleet.Firepower}"
 													Total="{Binding Ship.FirepowerTotal}"
@@ -268,6 +285,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.TorpedoBase}"
+													Bonus="{Binding Ship.SpecialEffectItemTorpedo}"
 													Icon="{StaticResource Torpedo}"
 													ParameterName="{Binding FormFleet.Torpedo}"
 													Total="{Binding Ship.TorpedoTotal}"
@@ -282,6 +300,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.ArmorBase}"
+													Bonus="{Binding Ship.SpecialEffectItemArmor}"
 													Icon="{StaticResource Armor}"
 													ParameterName="{Binding FormFleet.Armor}"
 													Total="{Binding Ship.ArmorTotal}"
@@ -296,6 +315,7 @@
 
 												<views:ToolTipStat
 													Base="{Binding Ship.EvasionBase}"
+													Bonus="{Binding Ship.SpecialEffectItemEvasion}"
 													Icon="{StaticResource Evasion}"
 													ParameterName="{Binding FormFleet.Evasion}"
 													Total="{Binding Ship.EvasionTotal}"

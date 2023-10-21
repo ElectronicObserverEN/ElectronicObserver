@@ -5,99 +5,26 @@
 		<Nullable>Enable</Nullable>
 		<LangVersion>preview</LangVersion>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DebugType>embedded</DebugType>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <DebugType>embedded</DebugType>
-	</PropertyGroup>
+
 	<ItemGroup>
 	  <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.1.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Compile Update="AntiAir\AaciStrings.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>AaciStrings.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Attacks\AttackResources.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>AttackResources.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Properties\EquipmentCardType.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>EquipmentCardType.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Properties\EquipmentIconType.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>EquipmentIconType.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Properties\EquipmentTypeGroups.Designer.cs">
-		  <DependentUpon>EquipmentTypeGroups.resx</DependentUpon>
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		</Compile>
-		<Compile Update="Properties\ExpeditionType.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ExpeditionType.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Properties\UpgradeLevel.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>UpgradeLevel.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Properties\ShipNationality.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ShipNationality.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="AntiAir\AaciStrings.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>AaciStrings.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Attacks\AttackResources.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>AttackResources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\EquipmentCardType.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>EquipmentCardType.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\EquipmentIconType.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>EquipmentIconType.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\EquipmentTypeGroups.resx">
-		  <LastGenOutput>EquipmentTypeGroups.Designer.cs</LastGenOutput>
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\ExpeditionType.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>ExpeditionType.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\EquipmentTypeGroups.en.resx">
-		  <Generator></Generator>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\UpgradeLevel.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>UpgradeLevel.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Properties\ShipNationality.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>ShipNationality.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
+	<PropertyGroup>
+		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
+		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>
+		<ResXGenerator_NullForgivingOperators>true</ResXGenerator_NullForgivingOperators>
+		<ResXGenerator_StaticClass>true</ResXGenerator_StaticClass>
+		<ResXGenerator_StaticMembers>true</ResXGenerator_StaticMembers>
+	</PropertyGroup>
 </Project>

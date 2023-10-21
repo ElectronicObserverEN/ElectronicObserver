@@ -3,21 +3,14 @@
 public class ApiEnemyInfo
 {
 	[JsonPropertyName("api_deck_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDeckName { get; set; } = default!;
+	public string ApiDeckName { get; set; } = "";
 
 	[JsonPropertyName("api_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiLevel { get; set; } = default!;
+	public int ApiLevel { get; set; }
 
 	[JsonPropertyName("api_rank")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiRank { get; set; } = default!;
+	public string ApiRank { get; set; } = "";
 
 	[JsonPropertyName("api_user_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiUserName { get; set; } = default!;
+	public string ApiUserName { get; set; } = "";
 }

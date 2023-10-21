@@ -1,5 +1,4 @@
 ﻿using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Data;
 
@@ -11,164 +10,95 @@ public static class Constants
 	/// <summary>
 	/// 艦船の速力を表す文字列を取得します。
 	/// </summary>
-	public static string GetSpeed(int value)
+	public static string GetSpeed(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Land;
-			case 5:
-				return ConstantsRes.Slow;
-			case 10:
-				return ConstantsRes.Fast;
-			case 15:
-				return ConstantsRes.FastPlus;
-			case 20:
-				return ConstantsRes.Fastest;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Land,
+		5 => ConstantsRes.Slow,
+		10 => ConstantsRes.Fast,
+		15 => ConstantsRes.FastPlus,
+		20 => ConstantsRes.Fastest,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 射程を表す文字列を取得します。
 	/// </summary>
-	public static string GetRange(int value)
+	public static string GetRange(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.None;
-			case 1:
-				return ConstantsRes.Short;
-			case 2:
-				return ConstantsRes.Medium;
-			case 3:
-				return ConstantsRes.Long;
-			case 4:
-				return ConstantsRes.VeryLong;
-			case 5:
-				return ConstantsRes.VeryLong + "+";
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.None,
+		1 => ConstantsRes.Short,
+		2 => ConstantsRes.Medium,
+		3 => ConstantsRes.Long,
+		4 => ConstantsRes.VeryLong,
+		5 => ConstantsRes.VeryLong + "+",
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 艦船のレアリティを表す文字列を取得します。
 	/// </summary>
-	public static string GetShipRarity(int value)
+	public static string GetShipRarity(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Red;
-			case 1:
-				return ConstantsRes.Indigo;
-			case 2:
-				return ConstantsRes.Blue;
-			case 3:
-				return ConstantsRes.Aqua;
-			case 4:
-				return ConstantsRes.Silver;
-			case 5:
-				return ConstantsRes.Gold;
-			case 6:
-				return ConstantsRes.Rainbow;
-			case 7:
-				return ConstantsRes.SRainbow;
-			case 8:
-				return ConstantsRes.Sakura;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Red,
+		1 => ConstantsRes.Indigo,
+		2 => ConstantsRes.Blue,
+		3 => ConstantsRes.Aqua,
+		4 => ConstantsRes.Silver,
+		5 => ConstantsRes.Gold,
+		6 => ConstantsRes.Rainbow,
+		7 => ConstantsRes.SRainbow,
+		8 => ConstantsRes.Sakura,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 装備のレアリティを表す文字列を取得します。
 	/// </summary>
-	public static string GetEquipmentRarity(int value)
+	public static string GetEquipmentRarity(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Common;
-			case 1:
-				return ConstantsRes.Rare;
-			case 2:
-				return ConstantsRes.Holo;
-			case 3:
-				return ConstantsRes.SHolo;
-			case 4:
-				return ConstantsRes.SSHolo;
-			case 5:
-				return ConstantsRes.EXHolo;
-			case 6:
-				return ConstantsRes.SSHoloPlus;
-			case 7:
-				return ConstantsRes.SSPlusPlus;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Common,
+		1 => ConstantsRes.Rare,
+		2 => ConstantsRes.Holo,
+		3 => ConstantsRes.SHolo,
+		4 => ConstantsRes.SSHolo,
+		5 => ConstantsRes.EXHolo,
+		6 => ConstantsRes.SSHoloPlus,
+		7 => ConstantsRes.SSPlusPlus,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 装備のレアリティの画像インデックスを取得します。
 	/// </summary>
-	public static int GetEquipmentRarityID(int value)
+	public static int GetEquipmentRarityID(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return 1;
-			case 1:
-				return 2;
-			case 2:
-				return 3;
-			case 3:
-				return 4;
-			case 4:
-				return 5;
-			case 5:
-				return 6;
-			case 6:
-				return 7;
-			case 7:
-				return 8;
-			default:
-				return 0;
-		}
-	}
+		0 => 1,
+		1 => 2,
+		2 => 3,
+		3 => 4,
+		4 => 5,
+		5 => 6,
+		6 => 7,
+		7 => 8,
+		_ => 0,
+	};
 
 
 	/// <summary>
 	/// 艦船のボイス設定フラグを表す文字列を取得します。
 	/// </summary>
-	public static string GetVoiceFlag(int value)
+	public static string GetVoiceFlag(int value) => value switch
 	{
-
-		switch (value)
-		{
-			case 0:
-				return "-";
-			case 1:
-				return ConstantsRes.Hourly;
-			case 2:
-				return ConstantsRes.Idle;
-			case 3:
-				return ConstantsRes.Idle + " + " + ConstantsRes.Hourly;
-			case 4:
-				return ConstantsRes.SpecialIdle;
-			case 5:
-				return ConstantsRes.Idle + " + " + ConstantsRes.SpecialIdle;
-			case 6:
-				return ConstantsRes.Hourly + " + " + ConstantsRes.SpecialIdle;
-			case 7:
-				return ConstantsRes.Idle + " + " + ConstantsRes.Hourly + " + " + ConstantsRes.SpecialIdle;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => "-",
+		1 => ConstantsRes.Hourly,
+		2 => ConstantsRes.Idle,
+		3 => $"{ConstantsRes.Idle} + {ConstantsRes.Hourly}",
+		4 => ConstantsRes.SpecialIdle,
+		5 => $"{ConstantsRes.Idle} + {ConstantsRes.SpecialIdle}",
+		6 => $"{ConstantsRes.Hourly} + {ConstantsRes.SpecialIdle}",
+		7 => $"{ConstantsRes.Idle} + {ConstantsRes.Hourly} + {ConstantsRes.SpecialIdle}",
+		_ => ConstantsRes.Unknown,
+	};
 
 
 	/// <summary>
@@ -176,28 +106,31 @@ public static class Constants
 	/// </summary>
 	/// <param name="hprate">現在HP/最大HPで表される割合。</param>
 	/// <param name="isPractice">演習かどうか。</param>
-	/// <param name="isLandBase">陸上基地かどうか。</param>
+	/// <param name="isInstallation">陸上基地かどうか。</param>
 	/// <param name="isEscaped">退避中かどうか。</param>
 	/// <returns></returns>
-	public static string GetDamageState(double hprate, bool isPractice = false, bool isLandBase = false, bool isEscaped = false)
-	{
+	public static string GetDamageState(double hprate, bool isPractice = false, bool isInstallation = false, bool isEscaped = false)
+		=> hprate switch
+		{
+			_ when isEscaped => ConstantsRes.Retreated,
 
-		if (isEscaped)
-			return ConstantsRes.Retreated;
-		else if (hprate <= 0.0)
-			return isPractice ? ConstantsRes.Withdrawn : (!isLandBase ? ConstantsRes.Sunk : ConstantsRes.Destroyed);
-		else if (hprate <= 0.25)
-			return !isLandBase ? ConstantsRes.CriticalDamage : ConstantsRes.Damaged;
-		else if (hprate <= 0.5)
-			return !isLandBase ? ConstantsRes.ModerateDamage : ConstantsRes.Injured;
-		else if (hprate <= 0.75)
-			return !isLandBase ? ConstantsRes.LightDamage : ConstantsRes.Disorder;
-		else if (hprate < 1.0)
-			return ConstantsRes.Healthy;
-		else
-			return ConstantsRes.Unhurt;
+			<= 0.0 when isPractice => ConstantsRes.Withdrawn,
+			<= 0.0 when isInstallation => ConstantsRes.Destroyed,
+			<= 0.0 => ConstantsRes.Sunk,
 
-	}
+			<= 0.25 when isInstallation => ConstantsRes.Damaged,
+			<= 0.25 => ConstantsRes.CriticalDamage,
+
+			<= 0.5 when isInstallation => ConstantsRes.Injured,
+			<= 0.5 => ConstantsRes.ModerateDamage,
+
+			<= 0.75 when isInstallation => ConstantsRes.Disorder,
+			<= 0.75 => ConstantsRes.LightDamage,
+
+			< 1.0 => ConstantsRes.Healthy,
+
+			_ => ConstantsRes.Unhurt,
+		};
 
 
 	/// <summary>
@@ -305,141 +238,143 @@ public static class Constants
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
 	/// </summary>
-	public static string GetShipClass(int id, ShipId shipId = ShipId.Unknown) => KCDatabase.Instance.Translation.Ship.Class(GetShipClassUntranslated(id, shipId));
+	public static string GetShipClass(int id, ShipId shipId = ShipId.Unknown) =>
+		KCDatabase.Instance.Translation.Ship.Class(GetShipClassUntranslated(id, shipId));
 
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
 	/// </summary>
-	private static string GetShipClassUntranslated(int id, ShipId shipId = ShipId.Unknown)
+	private static string GetShipClassUntranslated(int id, ShipId shipId = ShipId.Unknown) => id switch
 	{
-		switch (id)
-		{
-			case 1: return "綾波型";
-			case 2: return "伊勢型";
-			case 3: return "加賀型";
-			case 4: return "球磨型";
-			case 5: return "暁型";
-			case 6: return "金剛型";
-			case 7: return "古鷹型";
-			case 8: return "高雄型";
-			case 9: return "最上型";
-			case 10: return "初春型";
-			case 11: return "祥鳳型";
-			case 12: return "吹雪型";
-			case 13: return "青葉型";
-			case 14: return "赤城型";
-			case 15: return "千歳型";
-			case 16: return "川内型";
-			case 17: return "蒼龍型";
-			case 18: return "朝潮型";
-			case 19: return "長門型";
-			case 20: return "長良型";
-			case 21: return "天龍型";
-			case 22: return "島風型";
-			case 23: return "白露型";
-			case 24: return "飛鷹型";
-			case 25: return "飛龍型";
-			case 26: return "扶桑型";
-			case 27: return "鳳翔型";
-			case 28: return "睦月型";
-			case 29: return "妙高型";
-			case 30: return "陽炎型";
-			case 31: return "利根型";
-			case 32: return "龍驤型";
-			case 33: return "翔鶴型";
-			case 34: return "夕張型";
-			case 35: return "海大VI型";
-			case 36: return "巡潜乙型改二";
-			case 37: return "大和型";
-			case 38: return "夕雲型";
-			case 39: return "巡潜乙型";
-			case 40: return "巡潜3型";
-			case 41: return "阿賀野型";
-			case 42: return "「霧」";
-			case 43: return "大鳳型";
-			case 44: return "潜特型(伊400型潜水艦)";
-			case 45: return "特種船丙型";
-			case 46: return "三式潜航輸送艇";
-			case 47: return "Bismarck級";
-			case 48: return "Z1型";
-			case 49: return "工作艦";
-			case 50: return "大鯨型";
-			case 51: return "龍鳳型";
-			case 52: return "大淀型";
-			case 53: return "雲龍型";
-			case 54: return "秋月型";
-			case 55: return "Admiral Hipper級";
-			case 56: return "香取型";
-			case 57: return "UボートIXC型";
-			case 58: return "V.Veneto級";
-			case 59: return "秋津洲型";
-			case 60: return "改風早型";
-			case 61: return "Maestrale級";
-			case 62: return "瑞穂型";
-			case 63: return "Graf Zeppelin級";
-			case 64: return "Zara級";
-			case 65: return "Iowa級";
-			case 66: return "神風型";
-			case 67: return "Queen Elizabeth級";
-			case 68: return "Aquila級";
-			case 69: return "Lexington級";
-			case 70: return "C.Teste級";
-			case 71: return "巡潜甲型改二";
-			case 72: return "神威型";
-			case 73: return "Гангут級";
-			case 74: return "占守型";
-			case 75: return "春日丸級";
-			case 76: return "大鷹型";
-			case 77: return "択捉型";
-			case 78: return "Ark Royal級";
-			case 79: return "Richelieu級";
-			case 80: return "Guglielmo Marconi級";
-			case 81: return "Ташкент級";
-			case 82: return "J級";
-			case 83: return "Casablanca級";
-			case 84: return "Essex級";
-			case 85: return "日振型";
-			case 86: return "呂号潜水艦";            // "潜水艦" が艦種と被るので省くべき?
-			case 87: return "John C.Butler級";
-			case 88: return "Nelson級";
-			case 89: return "Gotland級";
-			case 90: return "日進型";
-			case 91: return "Fletcher級";
-			case 92: return "L.d.S.D.d.Abruzzi級";
-			case 93: return "Colorado級";
-			case 94: return "御蔵型";
-			case 95: return "Northampton級";
-			case 96: return "Perth級";
-			case 97: return "陸軍特種船(R1)";
-			case 98: return "De Ruyter級";
-			case 99: return "Atlanta級";
-			case 100: return "迅鯨型";
-			case 101: return "松型";
-			case 102: return "South Dakota級";
-			case 103: return "巡潜丙型";
-			case 104: return "丁型海防艦";       // 86 に同じ
-			case 105: return "Yorktown級";
-			case 106: return "St. Louis級";
-			case 107: return "North Carolina級";
-			case 108: return "Town級";
-			case 109: return "潜高型";
-			case 110: return "Brooklyn級";
-			case 111 when shipId is ShipId.Souya699: return "耐氷型雑用運送艦";
-			case 111 when shipId is ShipId.Souya645: return "LL01";
-			case 111 when shipId is ShipId.Souya650: return "PL107";
-			case 112: return "Illustrious級";
-			case 113: return "Conte di Cavour級";
-			case 114: return "Gato級";
-			case 115: return "特2TL型";
-			case 116: return "Independence級";
-			case 117: return "鵜来型";
-			case 118: return "Ranger級";
-			case 119: return "特種船M丙型";
-			case 120: return "第百一号型";
-			case 121: return "New Orleans級";
-			default: return "不明";
-		}
-	}
+		1 => "綾波型",
+		2 => "伊勢型",
+		3 => "加賀型",
+		4 => "球磨型",
+		5 => "暁型",
+		6 => "金剛型",
+		7 => "古鷹型",
+		8 => "高雄型",
+		9 => "最上型",
+		10 => "初春型",
+		11 => "祥鳳型",
+		12 => "吹雪型",
+		13 => "青葉型",
+		14 => "赤城型",
+		15 => "千歳型",
+		16 => "川内型",
+		17 => "蒼龍型",
+		18 => "朝潮型",
+		19 => "長門型",
+		20 => "長良型",
+		21 => "天龍型",
+		22 => "島風型",
+		23 => "白露型",
+		24 => "飛鷹型",
+		25 => "飛龍型",
+		26 => "扶桑型",
+		27 => "鳳翔型",
+		28 => "睦月型",
+		29 => "妙高型",
+		30 => "陽炎型",
+		31 => "利根型",
+		32 => "龍驤型",
+		33 => "翔鶴型",
+		34 => "夕張型",
+		35 => "海大VI型",
+		36 => "巡潜乙型改二",
+		37 => "大和型",
+		38 => "夕雲型",
+		39 => "巡潜乙型",
+		40 => "巡潜3型",
+		41 => "阿賀野型",
+		42 => "「霧」",
+		43 => "大鳳型",
+		44 => "潜特型(伊400型潜水艦)",
+		45 => "特種船丙型",
+		46 => "三式潜航輸送艇",
+		47 => "Bismarck級",
+		48 => "Z1型",
+		49 => "工作艦",
+		50 => "大鯨型",
+		51 => "龍鳳型",
+		52 => "大淀型",
+		53 => "雲龍型",
+		54 => "秋月型",
+		55 => "Admiral Hipper級",
+		56 => "香取型",
+		57 => "UボートIXC型",
+		58 => "V.Veneto級",
+		59 => "秋津洲型",
+		60 => "改風早型",
+		61 => "Maestrale級",
+		62 => "瑞穂型",
+		63 => "Graf Zeppelin級",
+		64 => "Zara級",
+		65 => "Iowa級",
+		66 => "神風型",
+		67 => "Queen Elizabeth級",
+		68 => "Aquila級",
+		69 => "Lexington級",
+		70 => "C.Teste級",
+		71 => "巡潜甲型改二",
+		72 => "神威型",
+		73 => "Гангут級",
+		74 => "占守型",
+		75 => "春日丸級",
+		76 => "大鷹型",
+		77 => "択捉型",
+		78 => "Ark Royal級",
+		79 => "Richelieu級",
+		80 => "Guglielmo Marconi級",
+		81 => "Ташкент級",
+		82 => "J級",
+		83 => "Casablanca級",
+		84 => "Essex級",
+		85 => "日振型",
+		86 => "呂号潜水艦",
+		87 => "John C.Butler級",
+		88 => "Nelson級",
+		89 => "Gotland級",
+		90 => "日進型",
+		91 => "Fletcher級",
+		92 => "L.d.S.D.d.Abruzzi級",
+		93 => "Colorado級",
+		94 => "御蔵型",
+		95 => "Northampton級",
+		96 => "Perth級",
+		97 => "陸軍特種船(R1)",
+		98 => "De Ruyter級",
+		99 => "Atlanta級",
+		100 => "迅鯨型",
+		101 => "松型",
+		102 => "South Dakota級",
+		103 => "巡潜丙型",
+		104 => "丁型海防艦",
+		105 => "Yorktown級",
+		106 => "St. Louis級",
+		107 => "North Carolina級",
+		108 => "Town級",
+		109 => "潜高型",
+		110 => "Brooklyn級",
+		111 when shipId is ShipId.Souya699 => "耐氷型雑用運送艦",
+		111 when shipId is ShipId.Souya645 => "LL01",
+		111 when shipId is ShipId.Souya650 => "PL107",
+		112 => "Illustrious級",
+		113 => "Conte di Cavour級",
+		114 => "Gato級",
+		115 => "特2TL型",
+		116 => "Independence級",
+		117 => "鵜来型",
+		118 => "Ranger級",
+		119 => "特種船M丙型",
+		120 => "第百一号型",
+		121 => "New Orleans級",
+		122 => "Salmon級",
+		123 => "改敷島型",
+		124 => "Marcello級",
+		125 => "Nevada級",
+		_ => "不明",
+	};
 
 	#endregion
 
@@ -804,63 +739,19 @@ public static class Constants
 	/// <summary>
 	/// 制空戦の結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetAirSuperiority(int id)
-	{
-		switch (id)
-		{
-			case 0:
-				return ConstantsRes.AirParity;
-			case 1:
-				return ConstantsRes.AirSupremacy;
-			case 2:
-				return ConstantsRes.AirSuperiority;
-			case 3:
-				return ConstantsRes.AirDenialNew;
-			case 4:
-				return ConstantsRes.AirIncapability;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
-
-
+	public static string GetAirSuperiority(int id) => GetAirSuperiority((AirState)id);
 
 	/// <summary>
-	/// 昼戦攻撃種別を表す文字列を取得します。
+	/// 制空戦の結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetDayAttackKind(DayAttackKind id) => id switch
+	public static string GetAirSuperiority(AirState id) => id switch
 	{
-		DayAttackKind.NormalAttack => AttackResources.NormalAttack,
-		DayAttackKind.Laser => AttackResources.LaserAttack,
-		DayAttackKind.DoubleShelling => AttackResources.DoubleShelling,
-		DayAttackKind.CutinMainSub => AttackResources.CutinMainSub,
-		DayAttackKind.CutinMainRadar => AttackResources.CutinMainRadar,
-		DayAttackKind.CutinMainAP => AttackResources.CutinMainAp,
-		DayAttackKind.CutinMainMain => AttackResources.CutinMainMain,
-		DayAttackKind.CutinAirAttack => AttackResources.CutinAirAttack,
-		DayAttackKind.SpecialNelson => AttackResources.SpecialNelson,
-		DayAttackKind.SpecialNagato => AttackResources.SpecialNagato,
-		DayAttackKind.SpecialMutsu => AttackResources.SpecialMutsu,
-		DayAttackKind.SpecialColorado => AttackResources.SpecialColorado,
-		DayAttackKind.SpecialKongo => AttackResources.SpecialKongou,
-		DayAttackKind.ZuiunMultiAngle => AttackResources.ZuiunMultiAngle,
-		DayAttackKind.SeaAirMultiAngle => AttackResources.SeaAirMultiAngle,
-		DayAttackKind.SpecialSubmarineTender23 => AttackResources.SpecialSubmarineTender23,
-		DayAttackKind.SpecialSubmarineTender34 => AttackResources.SpecialSubmarineTender34,
-		DayAttackKind.SpecialSubmarineTender24 => AttackResources.SpecialSubmarineTender24,
-		DayAttackKind.SpecialYamato3Ships => AttackResources.SpecialYamato123,
-		DayAttackKind.SpecialYamato2Ships => AttackResources.SpecialYamato12,
-		DayAttackKind.Shelling => AttackResources.Shelling,
-		DayAttackKind.AirAttack => AttackResources.AirAttack,
-		DayAttackKind.DepthCharge => AttackResources.DepthChargeAttack,
-		DayAttackKind.Torpedo => AttackResources.TorpedoAttack,
-		DayAttackKind.Rocket => AttackResources.RocketAttack,
-		DayAttackKind.LandingDaihatsu => AttackResources.LandingDaihatsu,
-		DayAttackKind.LandingTokuDaihatsu => AttackResources.LandingTokuDaihatsu,
-		DayAttackKind.LandingDaihatsuTank => AttackResources.LandingDaihatsuTank,
-		DayAttackKind.LandingAmphibious => AttackResources.TankAttack,
-		DayAttackKind.LandingTokuDaihatsuTank => AttackResources.LandingTokuDaihatsuTank,
-		_ => $"{AttackResources.Unknown}({(int)id})",
+		AirState.Parity => ConstantsRes.AirParity,
+		AirState.Supremacy => ConstantsRes.AirSupremacy,
+		AirState.Superiority => ConstantsRes.AirSuperiority,
+		AirState.Denial => ConstantsRes.AirDenialNew,
+		AirState.Incapability => ConstantsRes.AirIncapability,
+		_ => ConstantsRes.Unknown,
 	};
 
 	/// <summary>
@@ -1061,33 +952,17 @@ public static class Constants
 	/// <summary>
 	/// 任務のカテゴリを表す文字列を取得します。
 	/// </summary>
-	public static string GetQuestCategory(int id)
+	public static string GetQuestCategory(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Formation;
-			case 2:
-			case 8:
-			case 9:
-				return ConstantsRes.Sortie;
-			case 3:
-				return ConstantsRes.Practice;
-			case 4:
-				return ConstantsRes.Expedition;
-			case 5:
-				return ConstantsRes.Supply;        //入渠も含むが、文字数の関係
-			case 6:
-			case 11:
-				return ConstantsRes.Construction;
-			case 7:
-				return ConstantsRes.Modernization;
-			case 10:
-				return ConstantsRes.Other;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.Formation,
+		2 or 8 or 9 or 10 => ConstantsRes.Sortie,
+		3 => ConstantsRes.Practice,
+		4 => ConstantsRes.Expedition,
+		5 => ConstantsRes.Supply, //入渠も含むが、文字数の関係
+		6 or 11 => ConstantsRes.Construction,
+		7 => ConstantsRes.Modernization,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 遠征の結果を表す文字列を取得します。
@@ -1107,26 +982,19 @@ public static class Constants
 		}
 	}
 
+	public static string GetCombinedFleet(int value) => GetCombinedFleet((FleetType)value);
 
 	/// <summary>
 	/// 連合艦隊の編成名を表す文字列を取得します。
 	/// </summary>
-	public static string GetCombinedFleet(int value)
+	public static string GetCombinedFleet(FleetType value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.NormalFleet;
-			case 1:
-				return ConstantsRes.CarrierTF;
-			case 2:
-				return ConstantsRes.SurfaceTF;
-			case 3:
-				return ConstantsRes.TransportFleet;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		FleetType.Single => ConstantsRes.NormalFleet,
+		FleetType.Carrier => ConstantsRes.CarrierTF,
+		FleetType.Surface => ConstantsRes.SurfaceTF,
+		FleetType.Transport => ConstantsRes.TransportFleet,
+		_ => ConstantsRes.Unknown,
+	};
 
 	#endregion
 

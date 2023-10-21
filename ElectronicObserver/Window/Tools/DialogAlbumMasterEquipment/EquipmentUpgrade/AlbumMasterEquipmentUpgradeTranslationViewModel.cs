@@ -7,9 +7,9 @@ public class AlbumMasterEquipmentUpgradeTranslationViewModel : TranslationBaseVi
 	public string ZeroToFive => "0 ～ 5";
 	public string SixToNine => "6 ～ 9";
 
-	public string Owned => Properties.Window.Dialog.DialogAlbumMasterEquipment.Owned;
-	public string EquipmentUpgrades => Properties.Window.Dialog.DialogAlbumMasterEquipment.EquipmentUpgrades;
-	public string UpgradeLevel => Properties.Window.Dialog.DialogAlbumMasterEquipment.UpgradeLevel;
-	public string RequiredItems => Properties.Window.Dialog.DialogAlbumMasterEquipment.RequiredItems;
-	public string Helpers => Properties.Window.Dialog.DialogAlbumMasterEquipment.Helpers;
+	public string Owned => AlbumMasterEquipmentResources.Owned;
+	public string EquipmentUpgrades => AlbumMasterEquipmentResources.EquipmentUpgrades;
+	public string UpgradeLevel => AlbumMasterEquipmentResources.UpgradeLevel;
+	public string RequiredItems => AlbumMasterEquipmentResources.RequiredItems;
+	public string Helpers => AlbumMasterEquipmentResources.Helpers;
 }

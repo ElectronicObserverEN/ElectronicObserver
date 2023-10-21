@@ -55,19 +55,14 @@ public class EquipmentUpgradePlanManager
 			PlannedUpgrades.Add(plan);
 		}
 	}
-
-	public EquipmentUpgradePlanItemViewModel AddPlan()
+	
+	public void AddPlan(EquipmentUpgradePlanItemViewModel plan)
 	{
-		EquipmentUpgradePlanItemModel plan = new();
-		DatabaseContext.EquipmentUpgradePlanItems.Add(plan);
-
-		EquipmentUpgradePlanItemViewModel planViewModel = MakePlanViewModel(plan);
-		PlannedUpgrades.Add(planViewModel);
-
-		return planViewModel;
+		DatabaseContext.EquipmentUpgradePlanItems.Add(plan.Plan);
+		PlannedUpgrades.Add(plan);
 	}
 
-	private EquipmentUpgradePlanItemViewModel MakePlanViewModel(EquipmentUpgradePlanItemModel model)
+	public EquipmentUpgradePlanItemViewModel MakePlanViewModel(EquipmentUpgradePlanItemModel model)
 	{
 		EquipmentUpgradePlanItemViewModel plan = new(model);
 

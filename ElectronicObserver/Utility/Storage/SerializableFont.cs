@@ -13,7 +13,7 @@ public class SerializableFont
 
 
 	[IgnoreDataMember]
-	public Font FontData { get; set; }
+	public Font? FontData { get; set; }
 
 
 	public SerializableFont()
@@ -21,7 +21,7 @@ public class SerializableFont
 		FontData = null;
 	}
 
-	public SerializableFont(Font font)
+	public SerializableFont(Font? font)
 	{
 		FontData = font;
 	}
@@ -33,41 +33,41 @@ public class SerializableFont
 
 
 	[DataMember]
-	public string SerializeFontAttribute
+	public string? SerializeFontAttribute
 	{
 		get { return FontToString(FontData); }
 		set { FontData = StringToFont(value); }
 	}
 
 
-	public static implicit operator Font(SerializableFont value)
+	public static implicit operator Font?(SerializableFont? value)
 	{
 		if (value == null) return null;
 		return value.FontData;
 	}
 
-	public static implicit operator SerializableFont(Font value)
+	public static implicit operator SerializableFont(Font? value)
 	{
 		return new SerializableFont(value);
 	}
 
 
-	public static Font StringToFont(string value, bool suppressError = false)
+	public static Font? StringToFont(string value, bool suppressError = false)
 	{
 		try
 		{
-			return (Font)TypeDescriptor.GetConverter(typeof(Font)).ConvertFromString(value);
+			return (Font?)TypeDescriptor.GetConverter(typeof(Font)).ConvertFromString(value);
 
 		}
 		catch (Exception ex)
 		{
 			if (!suppressError)
-				Utility.ErrorReporter.SendErrorReport(ex, "SerializableFont.StringToFont failed");
+				ErrorReporter.SendErrorReport(ex, "SerializableFont.StringToFont failed");
 			return null;
 		}
 	}
 
-	public static string FontToString(Font value, bool suppressError = false)
+	public static string? FontToString(Font? value, bool suppressError = false)
 	{
 		try
 		{
@@ -79,7 +79,7 @@ public class SerializableFont
 		catch (Exception ex)
 		{
 			if (!suppressError)
-				Utility.ErrorReporter.SendErrorReport(ex, "SerializableFont.FontToString failed");
+				ErrorReporter.SendErrorReport(ex, "SerializableFont.FontToString failed");
 		}
 
 		return null;

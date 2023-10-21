@@ -141,6 +141,9 @@
   <data name="AviationPersonnel" xml:space="preserve">
     <value>航空要員</value>
   </data>
+  <data name="BarrageBalloon" xml:space="preserve">
+    <value>阻塞気球</value>
+  </data>
   <data name="CarrierBasedBomber" xml:space="preserve">
     <value>艦上爆撃機</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="LandBasedFighter" xml:space="preserve">
     <value>陸軍戦闘機</value>
+  </data>
+  <data name="LandBasedFighterJet" xml:space="preserve">
+    <value>陸上噴式戦闘機</value>
   </data>
   <data name="LandingCraft" xml:space="preserve">
     <value>上陸用舟艇</value>

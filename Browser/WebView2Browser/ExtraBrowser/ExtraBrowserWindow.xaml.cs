@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -35,7 +36,7 @@ public partial class ExtraBrowserWindow : Window
 		Tracker.Track(this);
 	}
 
-	private async void InitializeAsync()
+	private async Task InitializeAsync()
 	{
 		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 		
@@ -129,8 +130,8 @@ public partial class ExtraBrowserWindow : Window
 		{
 			if (gameframe != null)
 			{
-				Browser.ExecuteScriptAsync(String.Format(Properties.Resources.PageScript, StyleClassID));
-				gameframe.ExecuteScriptAsync(String.Format(Properties.Resources.FrameScript, StyleClassID));
+				Browser.ExecuteScriptAsync(String.Format(Translations.Resources.PageScript, StyleClassID));
+				gameframe.ExecuteScriptAsync(String.Format(Translations.Resources.FrameScript, StyleClassID));
 				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 				Browser.HorizontalAlignment = HorizontalAlignment.Center;
 				Browser.VerticalAlignment = VerticalAlignment.Center;

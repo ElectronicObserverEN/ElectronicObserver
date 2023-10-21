@@ -6,7 +6,6 @@ using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Resource.Record;
@@ -123,7 +122,7 @@ public class ConstructionRecord : RecordBase
 		public override void LoadLine(string line)
 		{
 
-			string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
+			string[] elem = Utility.Storage.CsvHelper.ParseCsvLine(line).ToArray();
 			if (elem.Length < 13)
 				throw new ArgumentException("要素数が少なすぎます。");
 
@@ -147,7 +146,7 @@ public class ConstructionRecord : RecordBase
 		{
 			return string.Join(",",
 				ShipID,
-				CsvHelper.EscapeCsvCell(ShipName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(ShipName),
 				DateTimeHelper.TimeToCSVString(Date),
 				Fuel,
 				Ammo,
@@ -157,7 +156,7 @@ public class ConstructionRecord : RecordBase
 				IsLargeDock ? 1 : 0,
 				EmptyDockAmount,
 				FlagshipID,
-				CsvHelper.EscapeCsvCell(FlagshipName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(FlagshipName),
 				HQLevel);
 		}
 	}

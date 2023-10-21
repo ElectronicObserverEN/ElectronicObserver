@@ -12,7 +12,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGraphicViewer;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -79,24 +78,24 @@ public partial class DialogShipGraphicViewer : Form
 
 	public void Translate()
 	{
-		TopMenu_File.Text = Translation.TopMenu_File;
-		TopMenu_File_Open.Text = Translation.TopMenu_File_Open;
-		TopMenu_File_CopyToClipboard.Text = Translation.TopMenu_File_CopyToClipboard;
+		TopMenu_File.Text = ShipGraphicViewerResources.TopMenu_File;
+		TopMenu_File_Open.Text = ShipGraphicViewerResources.TopMenu_File_Open;
+		TopMenu_File_CopyToClipboard.Text = ShipGraphicViewerResources.TopMenu_File_CopyToClipboard;
 
-		TopMenu_View.Text = Translation.TopMenu_View;
-		TopMenu_View_InterpolationMode.Text = Translation.TopMenu_View_InterpolationMode;
-		TopMenu_View_InterpolationMode_Sharp.Text = Translation.TopMenu_View_InterpolationMode_Sharp;
-		TopMenu_View_InterpolationMode_Smooth.Text = Translation.TopMenu_View_InterpolationMode_Smooth;
-		TopMenu_View_Zoom.Text = Translation.TopMenu_View_Zoom;
-		TopMenu_View_Zoom_In.Text = Translation.TopMenu_View_Zoom_In;
-		TopMenu_View_Zoom_Out.Text = Translation.TopMenu_View_Zoom_Out;
-		TopMenu_View_Zoom_100.Text = Translation.TopMenu_View_Zoom_100;
-		TopMenu_View_Zoom_Fit.Text = Translation.TopMenu_View_Zoom_Fit;
+		TopMenu_View.Text = ShipGraphicViewerResources.TopMenu_View;
+		TopMenu_View_InterpolationMode.Text = ShipGraphicViewerResources.TopMenu_View_InterpolationMode;
+		TopMenu_View_InterpolationMode_Sharp.Text = ShipGraphicViewerResources.TopMenu_View_InterpolationMode_Sharp;
+		TopMenu_View_InterpolationMode_Smooth.Text = ShipGraphicViewerResources.TopMenu_View_InterpolationMode_Smooth;
+		TopMenu_View_Zoom.Text = ShipGraphicViewerResources.TopMenu_View_Zoom;
+		TopMenu_View_Zoom_In.Text = ShipGraphicViewerResources.TopMenu_View_Zoom_In;
+		TopMenu_View_Zoom_Out.Text = ShipGraphicViewerResources.TopMenu_View_Zoom_Out;
+		TopMenu_View_Zoom_100.Text = ShipGraphicViewerResources.TopMenu_View_Zoom_100;
+		TopMenu_View_Zoom_Fit.Text = ShipGraphicViewerResources.TopMenu_View_Zoom_Fit;
 
-		OpenSwfDialog.Title = Translation.OpenSwfDialog;
-		SaveImageDialog.Title = Translation.SaveImageDialog;
+		OpenSwfDialog.Title = ShipGraphicViewerResources.OpenSwfDialog;
+		SaveImageDialog.Title = ShipGraphicViewerResources.SaveImageDialog;
 
-		Text = Translation.Title;
+		Text = ShipGraphicViewerResources.Title;
 	}
 
 	private void DialogShipGraphicViewer_Load(object sender, EventArgs e)
@@ -171,7 +170,7 @@ public partial class DialogShipGraphicViewer : Form
 			}
 			catch (Exception ex)
 			{
-				Utility.Logger.Add(3, $"{Translation.ErrorLoadingImage} {ex.Message}");
+				Utility.Logger.Add(3, $"{ShipGraphicViewerResources.ErrorLoadingImage} {ex.Message}");
 			}
 			ImageOffset = new Point();
 			ZoomRate = 1;
@@ -278,7 +277,7 @@ public partial class DialogShipGraphicViewer : Form
 
 			if (ImagePathList.Count == 0)
 			{
-				MessageBox.Show(Translation.ImageNotFound, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show(ShipGraphicViewerResources.ImageNotFound, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 			}
 
@@ -292,7 +291,7 @@ public partial class DialogShipGraphicViewer : Form
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(string.Format(Translation.ImageCanNotBeOpened, string.Join("\r\n", pathlist), ex.GetType().Name, ex.Message));
+			MessageBox.Show(string.Format(ShipGraphicViewerResources.ImageCanNotBeOpened, string.Join("\r\n", pathlist), ex.GetType().Name, ex.Message));
 			ImagePathList.Clear();
 			CurrentImage?.Dispose();
 			CurrentImage = null;
@@ -419,7 +418,7 @@ public partial class DialogShipGraphicViewer : Form
 			var ship = GetShipFromPath(ImagePathList[CurrentIndex]);
 
 			e.Graphics.DrawString(
-				string.Format(Translation.KeyboardShortcutInstructions,
+				string.Format(ShipGraphicViewerResources.KeyboardShortcutInstructions,
 					CurrentIndex + 1, ImagePathList.Count, Path.GetFileName(ImagePathList[CurrentIndex]), ship?.NameWithClass ?? "???", zoomRate),
 				Font, Brushes.DimGray, new PointF(0, 0));
 		}

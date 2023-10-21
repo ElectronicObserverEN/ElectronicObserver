@@ -59,6 +59,10 @@ using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
@@ -98,7 +102,7 @@ public partial class App : Application
 
 			if (args.Exception is not COMException { ErrorCode: CLIPBRD_E_CANT_OPEN }) return;
 
-			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
+			Logger.Add(3, MainResources.CopyingToClipboardFailed);
 			args.Handled = true;
 		};
 	}
@@ -139,7 +143,7 @@ public partial class App : Application
 				// 多重起動禁止
 				MessageBox.Show
 				(
-					ElectronicObserver.Properties.Resources.MultiInstanceNotification,
+					ElectronicObserver.Translations.Resources.MultiInstanceNotification,
 					caption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation
@@ -173,8 +177,8 @@ public partial class App : Application
 			}
 			catch (UnauthorizedAccessException)
 			{
-				MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
-					ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show(MainResources.MissingPermissions,
+					MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 				throw;
 			}
@@ -284,10 +288,14 @@ public partial class App : Application
 			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
 			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
+			.AddSingleton<SortieDetailTranslationViewModel>()
+			.AddSingleton<TelegramTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
+			.AddSingleton<PhaseFactory>()
+			.AddSingleton<BattleFactory>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()

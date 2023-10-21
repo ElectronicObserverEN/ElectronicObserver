@@ -3,38 +3,29 @@
 public class ApiMapInfo
 {
 	[JsonPropertyName("api_air_base_decks")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiAirBaseDecks { get; set; } = default!;
+	public int? ApiAirBaseDecks { get; set; }
 
 	[JsonPropertyName("api_cleared")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCleared { get; set; } = default!;
+	public int ApiCleared { get; set; }
 
 	[JsonPropertyName("api_defeat_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiDefeatCount { get; set; } = default!;
+	public int? ApiDefeatCount { get; set; }
 
 	[JsonPropertyName("api_eventmap")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiEventmap? ApiEventmap { get; set; } = default!;
+	public ApiEventmap? ApiEventmap { get; set; }
 
 	[JsonPropertyName("api_gauge_num")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiGaugeNum { get; set; } = default!;
+	public int? ApiGaugeNum { get; set; }
 
 	[JsonPropertyName("api_gauge_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiGaugeType { get; set; } = default!;
+	public int? ApiGaugeType { get; set; }
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_required_defeat_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int? ApiRequiredDefeatCount { get; set; } = default!;
+	public int? ApiRequiredDefeatCount { get; set; }
 
 	[JsonPropertyName("api_sally_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiSallyFlag { get; set; } = default!;
+	public List<int>? ApiSallyFlag { get; set; }
 }

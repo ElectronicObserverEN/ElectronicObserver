@@ -6,7 +6,6 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ElectronicObserver.Properties.Window.Dialog;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
@@ -72,7 +71,7 @@ public partial class FleetImageGeneratorWindow
 	{
 		Clipboard.SetImage(GenerateFleetImage(ImageContent));
 
-		Utility.Logger.Add(2, DialogFleetImageGenerator.FleetImageExportedSuccessfully);
+		Utility.Logger.Add(2, FleetImageGeneratorResources.FleetImageExportedSuccessfully);
 	}
 
 	private void LoadImageFromClipboard(object sender, RoutedEventArgs e)
@@ -124,19 +123,19 @@ public partial class FleetImageGeneratorWindow
 
 		if (string.IsNullOrWhiteSpace(filePath))
 		{
-			MessageBox.Show(DialogFleetImageGenerator.EnterDestinationPath, DialogFleetImageGenerator.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			MessageBox.Show(FleetImageGeneratorResources.EnterDestinationPath, FleetImageGeneratorResources.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			return;
 		}
 
 		if (filePath.ToCharArray().Intersect(Path.GetInvalidPathChars()).Any())
 		{
-			MessageBox.Show(DialogFleetImageGenerator.PathContainsInvalidCharacters, DialogFleetImageGenerator.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			MessageBox.Show(FleetImageGeneratorResources.PathContainsInvalidCharacters, FleetImageGeneratorResources.InputError, MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			return;
 		}
 
 		if (!ViewModel.DisableOverwritePrompt && File.Exists(filePath))
 		{
-			if (MessageBox.Show(string.Format(DialogFleetImageGenerator.OverwriteExistingFile, Path.GetFileName(ViewModel.ImageSaveLocation)), DialogFleetImageGenerator.OverwriteConfirmation,
+			if (MessageBox.Show(string.Format(FleetImageGeneratorResources.OverwriteExistingFile, Path.GetFileName(ViewModel.ImageSaveLocation)), FleetImageGeneratorResources.OverwriteConfirmation,
 					MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No)
 				== MessageBoxResult.No)
 			{
@@ -154,7 +153,7 @@ public partial class FleetImageGeneratorWindow
 		encoder.Frames.Add(BitmapFrame.Create(image));
 		encoder.Save(file);
 
-		Utility.Logger.Add(2, DialogFleetImageGenerator.FleetImageExportedSuccessfully);
+		Utility.Logger.Add(2, FleetImageGeneratorResources.FleetImageExportedSuccessfully);
 
 		if (!ViewModel.OpenImageAfterOutput) return;
 

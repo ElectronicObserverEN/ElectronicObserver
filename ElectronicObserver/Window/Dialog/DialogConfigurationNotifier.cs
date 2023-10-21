@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfigurationNotifier;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -136,7 +135,7 @@ public partial class DialogConfigurationNotifier : Form
 		GroupSound.Text = NotifyRes.Sound;
 		LoopsSound.Text = ConfigRes.Loop;
 		label9.Text = ConfigRes.Volume;
-		ToolTipText.SetToolTip(SoundVolume, Translation.SoundVolumeToolTip);
+		ToolTipText.SetToolTip(SoundVolume, ConfigurationNotifierResources.SoundVolumeToolTip);
 		PlaysSound.Text = NotifyRes.Enable;
 		ButtonTest.Text = NotifyRes.Test;
 		IsEnabled.Text = NotifyRes.EnableNotify;
@@ -156,7 +155,7 @@ public partial class DialogConfigurationNotifier : Form
 			NotifyRes.MouseOver
 		});
 		ShowWithActivation.Text = NotifyRes.ShowWithActivation;
-		ToolTipText.SetToolTip(ShowWithActivation, Translation.ShowWithActivationToolTip);
+		ToolTipText.SetToolTip(ShowWithActivation, ConfigurationNotifierResources.ShowWithActivationToolTip);
 		label4.Text = NotifyRes.Location + ":";
 		DrawsMessage.Text = NotifyRes.DisplayMessage;
 		ToolTipText.SetToolTip(DrawsMessage, NotifyRes.DisplayMessageHint);
@@ -211,42 +210,42 @@ public partial class DialogConfigurationNotifier : Form
 		ToolTipText.SetToolTip(NotifiesBefore, NotifyRes.NotifyBeforeHint);
 		DialogOpenSound.Title = NotifyRes.OpenSound;
 		DialogOpenImage.Title = NotifyRes.OpenImage;
-		label10.Text = Translation.SettingsWillBeAppliedForTest;
-		GroupAnchorageRepair.Text = Translation.GroupAnchorageRepair;
-		label11.Text = Translation.TriggerWhen;
-		GroupBaseAirCorps.Text = Translation.GroupBaseAirCorps;
-		BaseAirCorps_NotSupplied.Text = Translation.BaseAirCorps_NotSupplied;
-		ToolTipText.SetToolTip(BaseAirCorps_NotSupplied, Translation.BaseAirCorps_NotSuppliedToolTip);
-		BaseAirCorps_Tired.Text = Translation.BaseAirCorps_Tired;
-		ToolTipText.SetToolTip(BaseAirCorps_Tired, Translation.BaseAirCorps_TiredToolTip);
-		BaseAirCorps_Rest.Text = Translation.BaseAirCorps_Rest;
-		ToolTipText.SetToolTip(BaseAirCorps_Rest, Translation.BaseAirCorps_RestToolTip);
-		BaseAirCorps_Retreat.Text = Translation.BaseAirCorps_Retreat;
-		ToolTipText.SetToolTip(BaseAirCorps_Retreat, Translation.BaseAirCorps_RetreatToolTip);
-		BaseAirCorps_Standby.Text = Translation.BaseAirCorps_Standby;
-		ToolTipText.SetToolTip(BaseAirCorps_Standby, Translation.BaseAirCorps_StandbyToolTip);
-		BaseAirCorps_NormalMap.Text = Translation.BaseAirCorps_NormalMap;
-		ToolTipText.SetToolTip(BaseAirCorps_NormalMap, Translation.BaseAirCorps_NormalMapToolTip);
-		BaseAirCorps_EventMap.Text = Translation.BaseAirCorps_EventMap;
-		ToolTipText.SetToolTip(BaseAirCorps_EventMap, Translation.BaseAirCorps_EventMapToolTip);
-		BaseAirCorps_EquipmentRelocation.Text = Translation.BaseAirCorps_EquipmentRelocation;
-		ToolTipText.SetToolTip(BaseAirCorps_EquipmentRelocation, Translation.BaseAirCorps_EquipmentRelocationToolTip);
-		BaseAirCorps_SquadronRelocation.Text = Translation.BaseAirCorps_SquadronRelocation;
-		ToolTipText.SetToolTip(BaseAirCorps_SquadronRelocation, Translation.BaseAirCorps_SquadronRelocationToolTip);
-		GroupBattleEnd.Text = Translation.GroupBattleEnd;
-		BattleEnd_IdleTimerEnabled.Text = Translation.BattleEnd_IdleTimerEnabled;
-		ToolTipText.SetToolTip(BattleEnd_IdleTimerEnabled, Translation.BattleEnd_IdleTimerEnabledToolTip);
-		BattleEnd_IdleTime.Text = Translation.BattleEnd_IdleTime;
-		ToolTipText.SetToolTip(BattleEnd_IdleTime, Translation.BattleEnd_IdleTimeToolTip);
+		label10.Text = ConfigurationNotifierResources.SettingsWillBeAppliedForTest;
+		GroupAnchorageRepair.Text = ConfigurationNotifierResources.GroupAnchorageRepair;
+		label11.Text = ConfigurationNotifierResources.TriggerWhen;
+		GroupBaseAirCorps.Text = ConfigurationNotifierResources.GroupBaseAirCorps;
+		BaseAirCorps_NotSupplied.Text = ConfigurationNotifierResources.BaseAirCorps_NotSupplied;
+		ToolTipText.SetToolTip(BaseAirCorps_NotSupplied, ConfigurationNotifierResources.BaseAirCorps_NotSuppliedToolTip);
+		BaseAirCorps_Tired.Text = ConfigurationNotifierResources.BaseAirCorps_Tired;
+		ToolTipText.SetToolTip(BaseAirCorps_Tired, ConfigurationNotifierResources.BaseAirCorps_TiredToolTip);
+		BaseAirCorps_Rest.Text = ConfigurationNotifierResources.BaseAirCorps_Rest;
+		ToolTipText.SetToolTip(BaseAirCorps_Rest, ConfigurationNotifierResources.BaseAirCorps_RestToolTip);
+		BaseAirCorps_Retreat.Text = ConfigurationNotifierResources.BaseAirCorps_Retreat;
+		ToolTipText.SetToolTip(BaseAirCorps_Retreat, ConfigurationNotifierResources.BaseAirCorps_RetreatToolTip);
+		BaseAirCorps_Standby.Text = ConfigurationNotifierResources.BaseAirCorps_Standby;
+		ToolTipText.SetToolTip(BaseAirCorps_Standby, ConfigurationNotifierResources.BaseAirCorps_StandbyToolTip);
+		BaseAirCorps_NormalMap.Text = ConfigurationNotifierResources.BaseAirCorps_NormalMap;
+		ToolTipText.SetToolTip(BaseAirCorps_NormalMap, ConfigurationNotifierResources.BaseAirCorps_NormalMapToolTip);
+		BaseAirCorps_EventMap.Text = ConfigurationNotifierResources.BaseAirCorps_EventMap;
+		ToolTipText.SetToolTip(BaseAirCorps_EventMap, ConfigurationNotifierResources.BaseAirCorps_EventMapToolTip);
+		BaseAirCorps_EquipmentRelocation.Text = ConfigurationNotifierResources.BaseAirCorps_EquipmentRelocation;
+		ToolTipText.SetToolTip(BaseAirCorps_EquipmentRelocation, ConfigurationNotifierResources.BaseAirCorps_EquipmentRelocationToolTip);
+		BaseAirCorps_SquadronRelocation.Text = ConfigurationNotifierResources.BaseAirCorps_SquadronRelocation;
+		ToolTipText.SetToolTip(BaseAirCorps_SquadronRelocation, ConfigurationNotifierResources.BaseAirCorps_SquadronRelocationToolTip);
+		GroupBattleEnd.Text = ConfigurationNotifierResources.GroupBattleEnd;
+		BattleEnd_IdleTimerEnabled.Text = ConfigurationNotifierResources.BattleEnd_IdleTimerEnabled;
+		ToolTipText.SetToolTip(BattleEnd_IdleTimerEnabled, ConfigurationNotifierResources.BattleEnd_IdleTimerEnabledToolTip);
+		BattleEnd_IdleTime.Text = ConfigurationNotifierResources.BattleEnd_IdleTime;
+		ToolTipText.SetToolTip(BattleEnd_IdleTime, ConfigurationNotifierResources.BattleEnd_IdleTimeToolTip);
 		AnchorageRepairNotificationLevel.Items.Clear();
 		AnchorageRepairNotificationLevel.Items.AddRange(new object[]
 		{
-			Translation.AnchorageRepairNotificationLevel_Always,
-			Translation.AnchorageRepairNotificationLevel_AkashiFlagship,
-			Translation.AnchorageRepairNotificationLevel_ShipNeededRepair,
-			Translation.AnchorageRepairNotificationLevel_Preset
+			ConfigurationNotifierResources.AnchorageRepairNotificationLevel_Always,
+			ConfigurationNotifierResources.AnchorageRepairNotificationLevel_AkashiFlagship,
+			ConfigurationNotifierResources.AnchorageRepairNotificationLevel_ShipNeededRepair,
+			ConfigurationNotifierResources.AnchorageRepairNotificationLevel_Preset
 		});
-		ToolTipText.SetToolTip(AnchorageRepairNotificationLevel, Translation.AnchorageRepairNotificationLevelToolTip);
+		ToolTipText.SetToolTip(AnchorageRepairNotificationLevel, ConfigurationNotifierResources.AnchorageRepairNotificationLevelToolTip);
 
 		Text = NotifyRes.Title;
 	}
@@ -419,12 +418,12 @@ public partial class DialogConfigurationNotifier : Form
 	{
 		if (SoundChanged && !Notifier.LoadSound(SoundPath.Text) && PlaysSound.Checked)
 		{
-			MessageBox.Show(NotifyRes.FailedLoadSound, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(NotifyRes.FailedLoadSound, ConfigurationNotifierResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return false;
 		}
 		if (ImageChanged && !Notifier.DialogData.LoadImage(ImagePath.Text) && DrawsImage.Checked)
 		{
-			MessageBox.Show(NotifyRes.FailedLoadImage, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(NotifyRes.FailedLoadImage, ConfigurationNotifierResources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return false;
 		}
 
@@ -504,7 +503,7 @@ public partial class DialogConfigurationNotifier : Form
 
 		if (Notifier.DialogData.Alignment == NotifierDialogAlignment.Custom)
 		{
-			Notifier.DialogData.Message = Translation.TestNotificationCustomPositioning;
+			Notifier.DialogData.Message = ConfigurationNotifierResources.TestNotificationCustomPositioning;
 			Notifier.Notify((_sender, _e) =>
 			{
 				if (_sender is DialogNotifier dialog)
@@ -517,7 +516,7 @@ public partial class DialogConfigurationNotifier : Form
 		}
 		else
 		{
-			Notifier.DialogData.Message = Translation.TestNotification;
+			Notifier.DialogData.Message = ConfigurationNotifierResources.TestNotification;
 			Notifier.Notify();
 		}
 	}

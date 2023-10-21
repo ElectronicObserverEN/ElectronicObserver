@@ -1,6 +1,9 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public class ApiReqCombinedBattleMidnightBattleRequest
+namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
+
+public class ApiReqCombinedBattleMidnightBattleRequest : IBattleApiRequest
 {
-	
+	[JsonPropertyName("api_smoke_flag")]
+	public string? ApiSmokeFlag { get; set; }
 }
