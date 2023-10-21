@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.Utility.Data;
@@ -12,8 +14,16 @@ namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 public class WrongUpgradesIssueReporter
 {
+	private ElectronicObserverApiService? Api { get; set; }
+
+	public WrongUpgradesIssueReporter()
+	{
+	}
+
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
+		ElectronicObserverApiService api = Ioc.Default.GetRequiredService<ElectronicObserverApiService>();
+
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[2];
 		if (helperId <= 0) return;
@@ -34,6 +44,8 @@ public class WrongUpgradesIssueReporter
 				SoftwareVersion = SoftwareInformation.VersionEnglish,
 				HelperId = (int)helper.MasterShip.ShipId
 			};
+
+			api.PostJson("EquipmentUpgradeIssues", report);
 		}
 	}
 
