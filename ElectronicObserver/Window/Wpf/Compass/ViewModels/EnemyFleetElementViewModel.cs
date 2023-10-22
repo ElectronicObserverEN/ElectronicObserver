@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
@@ -35,10 +34,9 @@ public class EnemyFleetElementViewModel : ObservableObject
 
 	public string FormationString => string.Join('/', Formations.Select(Constants.GetFormationShort));
 
-	public ImageSource? AirIcon { get; } = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedFighter);
+	public EquipmentIconType AirIcon => EquipmentIconType.CarrierBasedFighter;
 	public string Air => Calculator.GetAirSuperiority(EnemyFleetCandidate.FleetMember).ToString();
-	public string? AirToolTip =>
-		GetAirSuperiorityString(Calculator.GetAirSuperiority(EnemyFleetCandidate.FleetMember));
+	public string? AirToolTip => GetAirSuperiorityString(Calculator.GetAirSuperiority(EnemyFleetCandidate.FleetMember));
 
 	public bool IsPreviewed => IsPreviewedFleet();
 

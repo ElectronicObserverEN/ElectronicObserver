@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
@@ -18,11 +17,11 @@ public partial class FleetStatusViewModel : ObservableObject
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
 
-	public FleetItemControlViewModel Name { get; }
-	public FleetStateViewModel State { get; }
-	public FleetItemControlViewModel AirSuperiority { get; }
-	public FleetItemControlViewModel SearchingAbility { get; }
-	public FleetItemControlViewModel AntiAirPower { get; }
+	public FleetItemControlViewModel Name { get; } = new();
+	public FleetStateViewModel State { get; } = new();
+	public FleetItemControlViewModel AirSuperiority { get; } = new();
+	public FleetItemControlViewModel SearchingAbility { get; } = new();
+	public FleetItemControlViewModel AntiAirPower { get; } = new();
 
 	private int FleetId { get; }
 	public int BranchWeight { get; private set; } = 1;
@@ -35,24 +34,6 @@ public partial class FleetStatusViewModel : ObservableObject
 		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		FleetId = fleetId;
-
-		Name = new();
-		State = new();
-
-		AirSuperiority = new()
-		{
-			ImageIndex = ResourceManager.EquipmentContent.CarrierBasedFighter,
-		};
-
-		SearchingAbility = new()
-		{
-			ImageIndex = ResourceManager.EquipmentContent.CarrierBasedRecon,
-		};
-
-		AntiAirPower = new()
-		{
-			ImageIndex = ResourceManager.EquipmentContent.HighAngleGun,
-		};
 
 		ConfigurationChanged();
 	}
@@ -69,15 +50,15 @@ public partial class FleetStatusViewModel : ObservableObject
 		Update(KCDatabase.Instance.Fleet[FleetId]);
 	}
 
-	public void Update(FleetData fleet)
+	public void Update(FleetData? fleet)
 	{
-		KCDatabase db = KCDatabase.Instance;
-
-		if (fleet == null) return;
+		if (fleet is null) return;
 
 		Name.Text = fleet.Name;
 		{
-			IEnumerable<IShipData> members = fleet.MembersInstance.Where(s => s != null);
+			List<IShipData> members = fleet.MembersInstance!
+				.Where(s => s is not null)
+				.ToList();
 
 			int levelSum = members.Sum(s => s.Level);
 
@@ -100,9 +81,10 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 			int tp = Calculator.GetTPDamage(fleet);
-			bool hasZeroSlotAircraft = fleet.MembersInstance
+			bool hasZeroSlotAircraft = fleet.MembersInstance!
 				.Where(s => s is not null)
 				.Any(s => s.HasZeroSlotAircraft());
+
 			string? zeroSlotWarning = hasZeroSlotAircraft switch
 			{
 				true => $"\n{DataRes.ZeroSlotAircraftWarning}",

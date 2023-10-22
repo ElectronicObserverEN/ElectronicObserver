@@ -28,22 +28,22 @@ public class CompassViewModel : AnchorableViewModel
 
 	public string? TextDestination { get; set; }
 	public string? TextDestinationToolTip { get; set; }
-	public ImageSource? TextDestinationIcon { get; set; }
+	public EquipmentIconType? TextDestinationIcon { get; set; }
 
 	public string? TextEventKindText { get; set; }
 	public string? TextEventKindToolTip { get; set; }
-	public ImageSource? TextEventKindIcon { get; set; }
+	public EquipmentIconType? TextEventKindIcon { get; set; }
 	public SolidColorBrush TextEventKindForeColor { get; set; } = new(Colors.White);
 
 	public string? TextEventDetailText { get; set; }
 	public string? TextEventDetailToolTip { get; set; }
-	public ImageSource? TextEventDetailIcon { get; set; }
+	public EquipmentIconType? TextEventDetailIcon { get; set; }
 
 	public string? TextEnemyFleetNameText { get; set; }
 	public string? TextFormationText { get; set; }
 	public string? TextAirSuperiorityText { get; set; }
 	public string? TextAirSuperiorityToolTip { get; set; }
-	public ImageSource? AirIcon { get; } = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedFighter);
+	public EquipmentIconType? AirIcon { get; } = EquipmentIconType.CarrierBasedFighter;
 
 	private List<EnemyFleetRecord.EnemyFleetElement>? _enemyFleetCandidate { get; set; }
 
@@ -58,8 +58,7 @@ public class CompassViewModel : AnchorableViewModel
 	private EnemyListViewModel EnemyListViewModel { get; } = new();
 	private BattleViewModel BattleViewModel { get; } = new();
 
-	public CompassViewModel() : base("Compass", "Compass",
-		ImageSourceIcons.GetIcon(IconContent.FormCompass))
+	public CompassViewModel() : base("Compass", "Compass", IconContent.FormCompass)
 	{
 		Db = KCDatabase.Instance;
 		FormCompass = Ioc.Default.GetService<FormCompassTranslationViewModel>()!;
@@ -98,7 +97,7 @@ public class CompassViewModel : AnchorableViewModel
 
 	private void Updated(string apiname, dynamic data)
 	{
-		System.Drawing.Color getColorFromEventKind(int kind)
+		System.Drawing.Color GetColorFromEventKind(int kind)
 		{
 			switch (kind)
 			{
@@ -124,25 +123,18 @@ public class CompassViewModel : AnchorableViewModel
 		if (apiname == "api_port/port")
 		{
 			CurrentViewModel = EmptyViewModel;
-			// BasePanel.Visible = false;
 		}
 		else if (apiname == "api_req_member/get_practice_enemyinfo")
 		{
 			TextMapArea = GeneralRes.Practice;
 			TextDestination = string.Format("{0} {1}", data.api_nickname, Constants.GetAdmiralRank((int)data.api_rank));
-			// TextDestination.ImageAlign = ContentAlignment.MiddleCenter;
-			// TextDestination.ImageIndex = -1;
 			TextDestinationIcon = null;
 			TextDestinationToolTip = null;
 			TextEventKindText = data.api_cmt;
-			TextEventKindForeColor = getColorFromEventKind(0).ToBrush();
-			// TextEventKind.ImageAlign = ContentAlignment.MiddleCenter;
-			// TextEventKind.ImageIndex = -1;
+			TextEventKindForeColor = GetColorFromEventKind(0).ToBrush();
 			TextEventKindIcon = null;
 			TextEventKindToolTip = null;
 			TextEventDetailText = string.Format("Lv. {0} / {1} exp.", data.api_level, data.api_experience[0]);
-			// TextEventDetail.ImageAlign = ContentAlignment.MiddleCenter;
-			// TextEventDetail.ImageIndex = -1;
 			TextEventDetailIcon = null;
 			TextEventDetailToolTip = null;
 			TextEnemyFleetNameText = data.api_deckname;
@@ -150,20 +142,6 @@ public class CompassViewModel : AnchorableViewModel
 		else
 		{
 			CompassData compass = Db.Battle.Compass;
-			/*
-
-
-			BasePanel.SuspendLayout();
-			PanelEnemyFleet.Visible = false;
-			PanelEnemyCandidate.Visible = false;
-
-			_enemyFleetCandidate = null;
-			_enemyFleetCandidateIndex = -1;
-			*/
-			/*
-			TextMapArea.Text = string.Format(GeneralRes.Map + ": {0}-{1}{2}", compass.MapAreaID, compass.MapInfoID,
-				compass.MapInfo.EventDifficulty > 0 ? " [" + Constants.GetDifficulty(compass.MapInfo.EventDifficulty) + "]" : "");
-			*/
 
 			// ex: world 5-5
 			TextMapArea = string.Format(GeneralRes.Map + ": {0}-{1}{2}", compass.MapAreaID, compass.MapInfoID,
@@ -173,8 +151,8 @@ public class CompassViewModel : AnchorableViewModel
 
 			// map HP, touch trigger tooltip
 			{
-				var mapinfo = compass.MapInfo;
-				var sb = new StringBuilder();
+				MapInfoData mapinfo = compass.MapInfo;
+				StringBuilder sb = new();
 
 				if (mapinfo.RequiredDefeatedCount != -1 &&
 					mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
@@ -199,14 +177,11 @@ public class CompassViewModel : AnchorableViewModel
 				{
 					sb.AppendLine($"{DayAttack.AttackDisplay((DayAttackKind)pair.Key)} : {FormCompass.SpecialAttackActivated}");
 				}
-				/*
-				ToolTipInfo.SetToolTip(TextMapArea, sb.Length > 0 ? sb.ToString() : null);
-				*/
 
 				TextMapAreaToolTip = sb.Length switch
 				{
 					> 0 => sb.ToString(),
-					_ => null
+					_ => null,
 				};
 			}
 
@@ -215,52 +190,32 @@ public class CompassViewModel : AnchorableViewModel
 
 			if (compass.LaunchedRecon != 0)
 			{
-				/*
-				TextDestination.ImageAlign = ContentAlignment.MiddleRight;
-				TextDestination.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
-				*/
-
-				TextDestinationIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
+				TextDestinationIcon = EquipmentIconType.Seaplane;
 				TextDestinationToolTip = compass.CommentID switch
 				{
 					1 => FormCompass.EnemySighted,
 					2 => FormCompass.TargetSighted,
 					3 => FormCompass.CoursePatrol,
-					_ => FormCompass.EnemyPlaneSighted
+					_ => FormCompass.EnemyPlaneSighted,
 				};
-
-
 			}
 			else
 			{
-				/*
-				TextDestination.ImageAlign = ContentAlignment.MiddleCenter;
-				TextDestination.ImageIndex = -1;
-				*/
 				TextDestinationIcon = null;
 				TextDestinationToolTip = null;
-				// ToolTipInfo.SetToolTip(TextDestination, null);
 			}
-			/*
-			//とりあえずリセット
-			TextEventDetail.ImageAlign = ContentAlignment.MiddleCenter;
-			TextEventDetail.ImageIndex = -1;
-			ToolTipInfo.SetToolTip(TextEventDetail, null);
-
-			*/
 
 			TextEventDetailIcon = null;
 			TextEventDetailToolTip = null;
 
 			CurrentViewModel = TextViewModel;
 
-			TextEventKindForeColor = getColorFromEventKind(0).ToBrush();
+			TextEventKindForeColor = GetColorFromEventKind(0).ToBrush();
 			{
 				string eventkind = Constants.GetMapEventID(compass.EventID);
 
 				switch (compass.EventID)
 				{
-
 					case 0:     //初期位置
 						TextEventDetailText = GeneralRes.WhyDidThisHappen;
 						break;
@@ -281,15 +236,13 @@ public class CompassViewModel : AnchorableViewModel
 							.Max(s =>
 							{
 								if (s == null) return 0;
-								switch (compass.WhirlpoolItemID)
+
+								return compass.WhirlpoolItemID switch
 								{
-									case 1:
-										return s.Fuel;
-									case 2:
-										return s.Ammo;
-									default:
-										return 0;
-								}
+									1 => s.Fuel,
+									2 => s.Ammo,
+									_ => 0,
+								};
 							});
 
 						TextEventDetailText = string.Format("{0} x {1} ({2:p0})",
@@ -306,7 +259,7 @@ public class CompassViewModel : AnchorableViewModel
 						{
 							eventkind += "/" + Constants.GetMapEventKind(compass.EventKind);
 
-							TextEventKindForeColor = getColorFromEventKind(compass.EventKind).ToBrush();
+							TextEventKindForeColor = GetColorFromEventKind(compass.EventKind).ToBrush();
 						}
 						UpdateEnemyFleet();
 						break;
@@ -366,7 +319,7 @@ public class CompassViewModel : AnchorableViewModel
 						break;
 
 					case 7:     //航空戦or航空偵察
-						TextEventKindForeColor = getColorFromEventKind(compass.EventKind).ToBrush();
+						TextEventKindForeColor = GetColorFromEventKind(compass.EventKind).ToBrush();
 
 						switch (compass.EventKind)
 						{
@@ -378,15 +331,15 @@ public class CompassViewModel : AnchorableViewModel
 									0 => GeneralRes.Failure,
 									1 => GeneralRes.Success,
 									2 => GeneralRes.GreatSuccess,
-									_ => GeneralRes.Failure
+									_ => GeneralRes.Failure,
 								};
 
 								TextEventDetailIcon = compass.AirReconnaissancePlane switch
 								{
 									0 => null,
-									1 => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.FlyingBoat),
-									2 => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane),
-									_ => null
+									1 => EquipmentIconType.FlyingBoat,
+									2 => EquipmentIconType.Seaplane,
+									_ => null,
 								};
 
 								if (compass.GetItems.Any())
@@ -419,36 +372,23 @@ public class CompassViewModel : AnchorableViewModel
 				TextEventKindText = eventkind;
 			}
 
-
 			if (compass.HasAirRaid)
 			{
-				// TextEventKind.ImageAlign = ContentAlignment.MiddleRight;
-				// TextEventKind.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedBomber;
-				// ToolTipInfo.SetToolTip(TextEventKind, "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
-				TextEventKindIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedBomber);
+				TextEventKindIcon = EquipmentIconType.CarrierBasedBomber;
 				TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(compass.AirRaidDamageKind);
 			}
 			else if (Db.Battle.HeavyBaseAirRaids.Any())
 			{
 				int apiLostKind = (int)Db.Battle.HeavyBaseAirRaids.Last().RawData.api_lost_kind;
 
-				TextEventKindIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedBomber);
+				TextEventKindIcon = EquipmentIconType.CarrierBasedBomber;
 				TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(apiLostKind);
 			}
 			else
 			{
-				// TextEventKind.ImageAlign = ContentAlignment.MiddleCenter;
-				// TextEventKind.ImageIndex = -1;
-				// ToolTipInfo.SetToolTip(TextEventKind, null);
 				TextEventKindIcon = null;
 				TextEventKindToolTip = null;
 			}
-
-			/*
-			BasePanel.ResumeLayout();
-
-			BasePanel.Visible = true;
-			*/
 		}
 	}
 
@@ -458,24 +398,17 @@ public class CompassViewModel : AnchorableViewModel
 
 		CurrentViewModel = EnemyListViewModel;
 
-		_enemyFleetCandidate = RecordManager.Instance.EnemyFleet.Record.Values.Where(
-			r =>
+		_enemyFleetCandidate = RecordManager.Instance.EnemyFleet.Record.Values
+			.Where(r =>
 				r.MapAreaID == compass.MapAreaID &&
 				r.MapInfoID == compass.MapInfoID &&
 				r.CellID == compass.Destination &&
-				r.Difficulty == compass.MapInfo.EventDifficulty
-		).ToList();
-		// _enemyFleetCandidateIndex = 0;
-
+				r.Difficulty == compass.MapInfo.EventDifficulty)
+			.ToList();
 
 		if (_enemyFleetCandidate.Count == 0)
 		{
 			TextEventDetailText = GeneralRes.NoFleetCandidates;
-			// TextEnemyFleetName.Text = GeneralRes.EnemyUnknown;
-
-
-			// TableEnemyCandidate.Visible = false;
-
 		}
 		else
 		{
@@ -484,78 +417,37 @@ public class CompassViewModel : AnchorableViewModel
 				for (int i = 0; i < a.FleetMember.Length; i++)
 				{
 					int diff = a.FleetMember[i] - b.FleetMember[i];
+
 					if (diff != 0)
+					{
 						return diff;
+					}
 				}
+
 				return a.Formation - b.Formation;
 			});
 
 			NextEnemyFleetCandidate(0);
 		}
-
-
-		// PanelEnemyFleet.Visible = false;
-
 	}
 
 	private void NextEnemyFleetCandidate(int offset)
 	{
 		if (_enemyFleetCandidate == null || _enemyFleetCandidate.Count == 0) return;
 
-		/*
-			_enemyFleetCandidateIndex += offset;
-		if (_enemyFleetCandidateIndex < 0)
-			_enemyFleetCandidateIndex = (_enemyFleetCandidate.Count - 1) - (_enemyFleetCandidate.Count - 1) % _candidatesDisplayCount;
-		else if (_enemyFleetCandidateIndex >= _enemyFleetCandidate.Count)
-			_enemyFleetCandidateIndex = 0;
-		*/
+		TextEventDetailText = KCDatabase.Instance.Translation.Operation.FleetName(_enemyFleetCandidate.First().FleetName);
 
-		/*
-
-		var candidate = _enemyFleetCandidate[_enemyFleetCandidateIndex];
-
-		*/
-		TextEventDetailText = /*TextEnemyFleetName.Text =*/ KCDatabase.Instance.Translation.Operation.FleetName(_enemyFleetCandidate.First().FleetName);
-		/*
-		if (_enemyFleetCandidate.Count > _candidatesDisplayCount)
-		{
-			TextEventDetail.Text += " ▼";
-			ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0} / {1}\r\n(left or right click to change pages)\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
-		}
-		else
-		{
-			ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0}\r\n", _enemyFleetCandidate.Count));
-		}
-		*/
 		TextEventDetailToolTip = string.Format(FormCompass.FleetCount + "\r\n", _enemyFleetCandidate.Count);
-		/*
-		TableEnemyCandidate.SuspendLayout();
-		for (int i = 0; i < ControlCandidates.Length; i++)
-		{
-			if (i + _enemyFleetCandidateIndex >= _enemyFleetCandidate.Count || i >= _candidatesDisplayCount)
-			{
-				ControlCandidates[i].Update(null);
-				continue;
-			}
-
-			ControlCandidates[i].Update(_enemyFleetCandidate[i + _enemyFleetCandidateIndex]);
-		}
-		TableEnemyCandidate.ResumeLayout();
-		TableEnemyCandidate.Visible = true;
-
-		PanelEnemyCandidate.Visible = true;
-		*/
 	}
 
-	private List<EnemyFleetElementViewModel>? GetAllRecordCandidateFleetViewModels()
-		=> _enemyFleetCandidate?
-				.GroupBy(f => f, new EnemyFleetElementComparer())
-				.Select(f => new EnemyFleetElementViewModel
-				{
-					EnemyFleetCandidate = f.First(),
-					Formations = f.Select(fleet => fleet.Formation).ToList()
-				})
-				.ToList();
+	private List<EnemyFleetElementViewModel>? GetAllRecordCandidateFleetViewModels() => _enemyFleetCandidate?
+		.GroupBy(f => f, new EnemyFleetElementComparer())
+		.Select(f => new EnemyFleetElementViewModel
+		{
+			EnemyFleetCandidate = f.First(),
+			Formations = f.Select(fleet => fleet.Formation).ToList()
+		})
+		.ToList();
 
 	private List<EnemyFleetElementViewModel> GetFilteredCandidateFleetViewModels()
 	{
@@ -607,9 +499,9 @@ public class CompassViewModel : AnchorableViewModel
 
 		List<int> padIds = fleetPart.ApiKind switch
 		{
-			1 => new List<int>() { 0 },
-			2 => new List<int>() { 0, 0, 0 },
-			_ => new()
+			1 => new List<int> { 0 },
+			2 => new List<int> { 0, 0, 0 },
+			_ => new(),
 		};
 
 		previewShipIds.AddRange(padIds);
@@ -620,12 +512,10 @@ public class CompassViewModel : AnchorableViewModel
 
 	private string GetMaterialInfo(CompassData compass)
 	{
+		LinkedList<string> strs = new();
 
-		var strs = new LinkedList<string>();
-
-		foreach (var item in compass.GetItems)
+		foreach (CompassData.GetItemData item in compass.GetItems)
 		{
-
 			string itemName;
 
 			if (item.ItemID == 4)
@@ -635,11 +525,13 @@ public class CompassViewModel : AnchorableViewModel
 			}
 			else
 			{
-				var itemMaster = KCDatabase.Instance.MasterUseItems[item.Metadata];
-				if (itemMaster != null)
-					itemName = itemMaster.NameTranslated;
-				else
-					itemName = FormCompass.UnknownItem;
+				UseItemMaster? itemMaster = KCDatabase.Instance.MasterUseItems[item.Metadata];
+
+				itemName = itemMaster switch
+				{
+					{ } => itemMaster.NameTranslated,
+					_ => FormCompass.UnknownItem,
+				};
 			}
 
 			strs.AddLast(itemName + " x " + item.Amount);
@@ -672,17 +564,12 @@ public class CompassViewModel : AnchorableViewModel
 		int[][] parameters = bd.Initial.EnemyParameters;
 		int[] hps = bd.Initial.EnemyMaxHPs;
 
-
 		_enemyFleetCandidate = null;
-		/*
-		_enemyFleetCandidateIndex = -1;
-		*/
-
 
 		if (!bm.IsPractice)
 		{
-			var efcurrent = EnemyFleetRecord.EnemyFleetElement.CreateFromCurrentState();
-			var efrecord = RecordManager.Instance.EnemyFleet[efcurrent.FleetID];
+			EnemyFleetRecord.EnemyFleetElement efcurrent = EnemyFleetRecord.EnemyFleetElement.CreateFromCurrentState();
+			EnemyFleetRecord.EnemyFleetElement efrecord = RecordManager.Instance.EnemyFleet[efcurrent.FleetID];
 			if (efrecord != null)
 			{
 				TextEnemyFleetNameText = KCDatabase.Instance.Translation.Operation.FleetName(efrecord.FleetName);
@@ -690,11 +577,9 @@ public class CompassViewModel : AnchorableViewModel
 			}
 			TextEventDetailToolTip = GeneralRes.EnemyFleetID + ": " + efcurrent.FleetID.ToString("x16");
 		}
+
 		TextFormationText = Constants.GetFormationShort(bd.Searching.FormationEnemy);
-		//TextFormation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + bd.Searching.FormationEnemy - 1;
-		/*
-		TextFormation.Visible = true;
-		*/
+
 		{
 			int air = Calculator.GetAirSuperiority(enemies, slots);
 			TextAirSuperiorityText = isPractice ?
@@ -707,101 +592,38 @@ public class CompassViewModel : AnchorableViewModel
 
 			TextAirSuperiorityToolTip = GetAirSuperiorityString(isPractice ? 0 : air);
 		}
-		/*
-		TableEnemyMember.SuspendLayout();
-		
-		for (int i = 0; i < ControlMembers.Length; i++)
-		{
-			int shipID = enemies[i];
-			ControlMembers[i].Update(shipID, shipID != -1 ? slots[i] : null);
 
-			if (shipID != -1)
-				ControlMembers[i].UpdateEquipmentToolTip(shipID, slots[i], levels[i], hps[i], parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3]);
-		}
-		
-		TableEnemyMember.ResumeLayout();
-		TableEnemyMember.Visible = true;
-
-		PanelEnemyFleet.Visible = true;
-
-		PanelEnemyCandidate.Visible = false;
-
-		BasePanel.Visible = true;           //checkme
-		*/
-
-		// int hp, int firepower, int torpedo, int aa, int armor
-		// hps[i], parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3]
-		EnemyFleet = enemies.Select((shipId, i) => new MasterShipViewModel
-		{
-			Ship = shipId switch
+		EnemyFleet = enemies
+			.Select((shipId, i) => new MasterShipViewModel
 			{
-				> 0 => Db.MasterShips[shipId],
-				_ => null
-			},
-			Slot = slots[i],
-			Level = levels[i],
-			Hp = hps[i],
-			Firepower = parameters[i][0],
-			Torpedo = parameters[i][1],
-			Aa = parameters[i][2],
-			Armor = parameters[i][3],
-		})
-			.Take(6);
+				Ship = shipId switch
+				{
+					> 0 => Db.MasterShips[shipId],
+					_ => null,
+				},
+				Slot = slots[i],
+				Level = levels[i],
+				Hp = hps[i],
+				Firepower = parameters[i][0],
+				Torpedo = parameters[i][1],
+				Aa = parameters[i][2],
+				Armor = parameters[i][3],
+			}).Take(6);
 	}
 
-	private string? GetAirSuperiorityString(int air)
+	private string? GetAirSuperiorityString(int air) => air switch
 	{
-		if (air > 0)
-		{
-			return string.Format(FormCompass.AirValues,
-				(int)(air * 3.0),
-				(int)Math.Ceiling(air * 1.5),
-				(int)(air / 1.5 + 1),
-				(int)(air / 3.0 + 1));
-		}
-		return null;
-	}
+		> 0 => string.Format(FormCompass.AirValues,
+			(int)(air * 3.0),
+			(int)Math.Ceiling(air * 1.5),
+			(int)(air / 1.5 + 1),
+			(int)(air / 3.0 + 1)),
 
-	void ConfigurationChanged()
+		_ => null,
+	};
+
+	private void ConfigurationChanged()
 	{
-
-		/*
-		BasePanel.AutoScroll = Utility.Configuration.Config.FormCompass.IsScrollable;
-
-		_candidatesDisplayCount = Utility.Configuration.Config.FormCompass.CandidateDisplayCount;
-		_enemyFleetCandidateIndex = 0;
-		if (PanelEnemyCandidate.Visible)
-			NextEnemyFleetCandidate(0);
-
-		if (ControlMembers != null)
-		{
-			TableEnemyMember.SuspendLayout();
-
-			TableEnemyMember.Location = new Point(TableEnemyMember.Location.X, TableEnemyFleet.Bottom + 6);
-
-			bool flag = Utility.Configuration.Config.FormFleet.ShowAircraft;
-			for (int i = 0; i < ControlMembers.Length; i++)
-			{
-				ControlMembers[i].Equipments.ShowAircraft = flag;
-				ControlMembers[i].ConfigurationChanged();
-			}
-
-			ControlHelper.SetTableRowStyles(TableEnemyMember, ControlHelper.GetDefaultRowStyle());
-			TableEnemyMember.ResumeLayout();
-		}
-
-
-		if (ControlCandidates != null)
-		{
-			TableEnemyCandidate.SuspendLayout();
-
-			for (int i = 0; i < ControlCandidates.Length; i++)
-				ControlCandidates[i].ConfigurationChanged();
-
-			ControlHelper.SetTableRowStyles(TableEnemyCandidate, new RowStyle(SizeType.AutoSize));
-			ControlHelper.SetTableColumnStyles(TableEnemyCandidate, ControlHelper.GetDefaultColumnStyle());
-			TableEnemyCandidate.ResumeLayout();
-		}
-		*/
+		// no idea
 	}
 }

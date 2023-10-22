@@ -41,8 +41,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
 
-	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
-		ImageSourceIcons.GetIcon(IconContent.FormFleet))
+	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}", IconContent.FormFleet)
 	{
 		FormFleet = Ioc.Default.GetRequiredService<FormFleetTranslationViewModel>();
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
@@ -53,7 +52,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		FleetId = fleetId;
 
-		Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
+		SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 		AnchorageRepairBound = 0;
 
@@ -131,44 +130,39 @@ public partial class FleetViewModel : AnchorableViewModel
 
 			ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
 		}
-
-		int iconIndex = ControlFleet.State.GetIconIndex();
-		IconSource = ImageSourceIcons.GetIcon((IconContent)iconIndex);
+		
+		Icon = ControlFleet.State.GetIconIndex();
 	}
 
-	void UpdateTimerTick()
+	private void UpdateTimerTick()
 	{
-		FleetData fleet = KCDatabase.Instance.Fleet.Fleets[FleetId];
+		FleetData? fleet = KCDatabase.Instance.Fleet.Fleets[FleetId];
 
-		if (fleet != null)
+		if (fleet is not null)
 		{
 			ControlFleet.Refresh();
 		}
 
-		for (int i = 0; i < ControlMember.Count; i++)
+		foreach (FleetItemViewModel fleetItem in ControlMember)
 		{
 			// this is for updating the repair timer when a ship is docked
-			ControlMember[i].HP.ResumeUpdate();
+			fleetItem.HP.ResumeUpdate();
 		}
 
 		// anchorage repairing
-		if (fleet != null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
+		if (fleet is not null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
 		{
 			TimeSpan elapsed = DateTime.Now - KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
 
 			if (elapsed.TotalMinutes >= 20 && AnchorageRepairBound > 0)
 			{
-
 				for (int i = 0; i < AnchorageRepairBound; i++)
 				{
-					var hpbar = ControlMember[i].HP;
+					FleetHpViewModel hpbar = ControlMember[i].HP;
 
 					double dockingSeconds = hpbar.Tag as double? ?? 0.0;
 
-					if (dockingSeconds <= 0.0)
-						continue;
-
-					// hpbar.SuspendUpdate();
+					if (dockingSeconds <= 0.0) continue;
 
 					if (!hpbar.UsePrevValue)
 					{
@@ -190,7 +184,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		}
 	}
 
-	void ConfigurationChanged()
+	private void ConfigurationChanged()
 	{
 		Configuration.ConfigurationData c = Configuration.Config;
 
@@ -218,34 +212,31 @@ public partial class FleetViewModel : AnchorableViewModel
 
 			for (int i = 0; i < ControlMember.Count; i++)
 			{
-				var member = ControlMember[i];
+				FleetItemViewModel member = ControlMember[i];
 
 				member.Equipments.ShowAircraft = showAircraft;
-				if (fixShipNameWidth)
+				member.Name.MaxWidth = fixShipNameWidth switch
 				{
-					member.Name.MaxWidth = fixedShipNameWidth;
-				}
-				else
-				{
-					member.Name.MaxWidth = int.MaxValue;
-				}
+					true => fixedShipNameWidth,
+					_ => int.MaxValue,
+				};
 
-				// member.HP.SuspendUpdate();
 				member.HP.Text = shortHPBar ? "" : "HP:";
 				member.HP.HPBar.ColorMorphing = colorMorphing;
 				member.HP.HPBar.SetBarColorScheme(colorScheme);
-				// member.HP.MaximumSize = isLayoutFixed ? new Size(int.MaxValue, (int)ControlHelper.GetDefaultRowStyle().Height - member.HP.Margin.Vertical) : Size.Empty;
-				// member.HP.ResumeUpdate();
 
 				member.Level.NextVisible = showNext;
 				member.Level.TextNext = showNext ? "next:" : null;
 
-				member.Condition.ImageAlign = showConditionIcon ? System.Drawing.ContentAlignment.MiddleLeft : System.Drawing.ContentAlignment.MiddleCenter;
+				member.Condition.ImageAlign = showConditionIcon switch
+				{
+					true => System.Drawing.ContentAlignment.MiddleLeft,
+					_ => System.Drawing.ContentAlignment.MiddleCenter,
+				};
+
 				member.Equipments.LevelVisibility = levelVisibility;
 				member.Equipments.ShowAircraftLevelByNumber = showAircraftLevelByNumber;
-				// member.Equipments.MaximumSize = isLayoutFixed ? new Size(int.MaxValue, (int)ControlHelper.GetDefaultRowStyle().Height - member.Equipments.Margin.Vertical) : Size.Empty;
-				member.ShipResource.BarFuel.ColorMorphing =
-					member.ShipResource.BarAmmo.ColorMorphing = colorMorphing;
+				member.ShipResource.BarFuel.ColorMorphing = member.ShipResource.BarAmmo.ColorMorphing = colorMorphing;
 				member.ShipResource.BarFuel.SetBarColorScheme(colorScheme);
 				member.ShipResource.BarAmmo.SetBarColorScheme(colorScheme);
 

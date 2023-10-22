@@ -42,9 +42,6 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public List<DropRecordRow> SelectedRows { get; set; } = new();
 
-	public ImageSource? ShipIcon { get; }
-	public ImageSource? ItemIcon { get; }
-
 	// DropRecordOption or IShipDataMaster
 	public object ShipSearchOption { get; set; } = DropRecordOption.All;
 	// DropRecordOption or UseItemMaster
@@ -92,9 +89,6 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		DataGridRawRowsViewModel = new(RecordRows);
 		DataGridMergedRowsViewModel = new(RecordRows);
-
-		ShipIcon = ImageSourceIcons.GetIcon(IconContent.FormFleet);
-		ItemIcon = ImageSourceIcons.GetIcon(IconContent.ItemPresentBox);
 
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;

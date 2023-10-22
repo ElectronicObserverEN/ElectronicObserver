@@ -12,20 +12,19 @@ namespace ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 
 public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 {
-	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFiltered { get; set; } = new();
+	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgradesFiltered { get; } = new();
 
-	public DataGridViewModel<EquipmentUpgradePlanItemViewModel> DataGridViewModel { get; set; }
+	public DataGridViewModel<EquipmentUpgradePlanItemViewModel> DataGridViewModel { get; }
 
 	public EquipmentUpgradePlanViewerTranslationViewModel Translation { get; }
 
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 
-	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
+	public EquipmentUpgradeFilterViewModel Filters { get; } = new();
 
 	private Tracker Tracker { get; }
 
-
-	public EquipmentUpgradePlanViewerViewModel() : base("EquipmentUpgradePlanViewer", "EquipmentUpgradePlanViewer", ImageSourceIcons.GetIcon(IconContent.ItemModdingMaterial))
+	public EquipmentUpgradePlanViewerViewModel() : base("EquipmentUpgradePlanViewer", "EquipmentUpgradePlanViewer", IconContent.ItemModdingMaterial)
 	{
 		Translation = Ioc.Default.GetService<EquipmentUpgradePlanViewerTranslationViewModel>()!;
 		Tracker = Ioc.Default.GetService<Tracker>()!;
@@ -38,7 +37,7 @@ public class EquipmentUpgradePlanViewerViewModel : AnchorableViewModel
 		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		EquipmentUpgradePlanManager.PlanEquipmentMasterUpdated += (_, _) => Update();
-		Filters.PropertyChanged += (_, _) => Update(); 
+		Filters.PropertyChanged += (_, _) => Update();
 
 		EquipmentUpgradePlanManager.PlannedUpgrades.CollectionChanged += (_, _) => Update();
 

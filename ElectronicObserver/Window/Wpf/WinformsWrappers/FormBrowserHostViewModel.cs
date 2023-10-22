@@ -10,8 +10,7 @@ public class FormBrowserHostViewModel : WinformsHostViewModel
 {
 	public FormBrowserHostTranslationViewModel FormBrowserHost { get; }
 
-	public FormBrowserHostViewModel() : base("Browser", "Browser",
-		ImageSourceIcons.GetIcon(IconContent.FormBrowser))
+	public FormBrowserHostViewModel() : base("Browser", "Browser", IconContent.FormBrowser)
 	{
 		FormBrowserHost = Ioc.Default.GetService<FormBrowserHostTranslationViewModel>()!;
 

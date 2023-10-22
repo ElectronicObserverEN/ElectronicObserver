@@ -137,8 +137,7 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 		return statusBarText;
 	}
 
-	public ShipGroupViewModel() : base("Group", "Group",
-		ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
+	public ShipGroupViewModel() : base("Group", "Group", IconContent.FormShipGroup)
 	{
 		Db = KCDatabase.Instance;
 

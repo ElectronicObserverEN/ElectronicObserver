@@ -1,24 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+	<BitmapImage x:Key="AppIcon" UriSource="pack://application:,,,/Assets/AppIcon_16.png" />
+	<BitmapImage x:Key="Nothing" UriSource="pack://application:,,,/Assets/Nothing.png" />
+
 	<!--  ship/equipment stat icons  -->
-	<BitmapImage x:Key="Hp" UriSource="pack://application:,,,/Assets/Parameter/HP.png" />
-	<BitmapImage x:Key="Firepower" UriSource="pack://application:,,,/Assets/Parameter/Firepower.png" />
-	<BitmapImage x:Key="Torpedo" UriSource="pack://application:,,,/Assets/Parameter/Torpedo.png" />
-	<BitmapImage x:Key="AntiAir" UriSource="pack://application:,,,/Assets/Parameter/AA.png" />
-	<BitmapImage x:Key="Armor" UriSource="pack://application:,,,/Assets/Parameter/Armor.png" />
-	<BitmapImage x:Key="AntiSubmarine" UriSource="pack://application:,,,/Assets/Parameter/ASW.png" />
-	<BitmapImage x:Key="Evasion" UriSource="pack://application:,,,/Assets/Parameter/Evasion.png" />
-	<BitmapImage x:Key="Los" UriSource="pack://application:,,,/Assets/Parameter/LOS.png" />
-	<BitmapImage x:Key="Luck" UriSource="pack://application:,,,/Assets/Parameter/Luck.png" />
-	<BitmapImage x:Key="Bomber" UriSource="pack://application:,,,/Assets/Parameter/Bomber.png" />
-	<BitmapImage x:Key="Accuracy" UriSource="pack://application:,,,/Assets/Parameter/Accuracy.png" />
-	<BitmapImage x:Key="Aircraft" UriSource="pack://application:,,,/Assets/Parameter/Aircraft.png" />
-	<BitmapImage x:Key="Speed" UriSource="pack://application:,,,/Assets/Parameter/Speed.png" />
-	<BitmapImage x:Key="Range" UriSource="pack://application:,,,/Assets/Parameter/Range.png" />
-	<BitmapImage x:Key="Interception" UriSource="pack://application:,,,/Assets/Parameter/Interception.png" />
-	<BitmapImage x:Key="AntiBomber" UriSource="pack://application:,,,/Assets/Parameter/AntiBomber.png" />
-	<BitmapImage x:Key="AircraftCost" UriSource="pack://application:,,,/Assets/Parameter/AircraftCost.png" />
-	<BitmapImage x:Key="AircraftDistance" UriSource="pack://application:,,,/Assets/Parameter/AircraftDistance.png" />
+	<BitmapImage x:Key="Parameter.Hp" UriSource="pack://application:,,,/Assets/Parameter/HP.png" />
+	<BitmapImage x:Key="Parameter.Firepower" UriSource="pack://application:,,,/Assets/Parameter/Firepower.png" />
+	<BitmapImage x:Key="Parameter.Torpedo" UriSource="pack://application:,,,/Assets/Parameter/Torpedo.png" />
+	<BitmapImage x:Key="Parameter.AntiAir" UriSource="pack://application:,,,/Assets/Parameter/AA.png" />
+	<BitmapImage x:Key="Parameter.Armor" UriSource="pack://application:,,,/Assets/Parameter/Armor.png" />
+	<BitmapImage x:Key="Parameter.AntiSubmarine" UriSource="pack://application:,,,/Assets/Parameter/ASW.png" />
+	<BitmapImage x:Key="Parameter.Evasion" UriSource="pack://application:,,,/Assets/Parameter/Evasion.png" />
+	<BitmapImage x:Key="Parameter.Los" UriSource="pack://application:,,,/Assets/Parameter/LOS.png" />
+	<BitmapImage x:Key="Parameter.Luck" UriSource="pack://application:,,,/Assets/Parameter/Luck.png" />
+	<BitmapImage x:Key="Parameter.Bomber" UriSource="pack://application:,,,/Assets/Parameter/Bomber.png" />
+	<BitmapImage x:Key="Parameter.Accuracy" UriSource="pack://application:,,,/Assets/Parameter/Accuracy.png" />
+	<BitmapImage x:Key="Parameter.Aircraft" UriSource="pack://application:,,,/Assets/Parameter/Aircraft.png" />
+	<BitmapImage x:Key="Parameter.Speed" UriSource="pack://application:,,,/Assets/Parameter/Speed.png" />
+	<BitmapImage x:Key="Parameter.Range" UriSource="pack://application:,,,/Assets/Parameter/Range.png" />
+	<BitmapImage x:Key="Parameter.Interception" UriSource="pack://application:,,,/Assets/Parameter/Interception.png" />
+	<BitmapImage x:Key="Parameter.AntiBomber" UriSource="pack://application:,,,/Assets/Parameter/AntiBomber.png" />
+	<BitmapImage x:Key="Parameter.AircraftCost" UriSource="pack://application:,,,/Assets/Parameter/AircraftCost.png" />
+	<BitmapImage x:Key="Parameter.AircraftDistance" UriSource="pack://application:,,,/Assets/Parameter/AircraftDistance.png" />
 
 	<!--  equipment type icons  -->
 	<BitmapImage x:Key="EquipmentIconType.Unknown" UriSource="pack://application:,,,/Assets/Equipment/Unknown.png" />
@@ -94,4 +97,74 @@
 	<BitmapImage x:Key="Item.Catapult" UriSource="pack://application:,,,/Assets/Item/Catapult.png" />
 	<BitmapImage x:Key="Item.AviationMaterial" UriSource="pack://application:,,,/Assets/Item/AviationMaterial.png" />
 	<BitmapImage x:Key="Item.ActionReport" UriSource="pack://application:,,,/Assets/Item/ActionReport.png" />
+
+	<BitmapImage x:Key="Form.AlbumEquipment" UriSource="pack://application:,,,/Assets/Form/AlbumEquipment.png" />
+	<BitmapImage x:Key="Form.AlbumShip" UriSource="pack://application:,,,/Assets/Form/AlbumShip.png" />
+	<BitmapImage x:Key="Form.AntiAirDefense" UriSource="pack://application:,,,/Assets/Form/AntiAirDefense.png" />
+	<BitmapImage x:Key="Form.Arsenal" UriSource="pack://application:,,,/Assets/Form/Arsenal.png" />
+	<BitmapImage x:Key="Form.BaseAirCorps" UriSource="pack://application:,,,/Assets/Form/BaseAirCorps.png" />
+	<BitmapImage x:Key="Form.Battle" UriSource="pack://application:,,,/Assets/Form/Battle.png" />
+	<BitmapImage x:Key="Form.Browser" UriSource="pack://application:,,,/Assets/Form/Browser.png" />
+	<BitmapImage x:Key="Form.Compass" UriSource="pack://application:,,,/Assets/Form/Compass.png" />
+	<BitmapImage x:Key="Form.Configuration" UriSource="pack://application:,,,/Assets/Form/Configuration.png" />
+	<BitmapImage x:Key="Form.ConstructionRecord" UriSource="pack://application:,,,/Assets/Form/ConstructionRecord.png" />
+	<BitmapImage x:Key="Form.DevelopmentRecord" UriSource="pack://application:,,,/Assets/Form/DevelopmentRecord.png" />
+	<BitmapImage x:Key="Form.Dock" UriSource="pack://application:,,,/Assets/Form/Dock.png" />
+	<BitmapImage x:Key="Form.DropRecord" UriSource="pack://application:,,,/Assets/Form/DropRecord.png" />
+	<BitmapImage x:Key="Form.EquipmentList" UriSource="pack://application:,,,/Assets/Form/EquipmentList.png" />
+	<BitmapImage x:Key="Form.ExpChecker" UriSource="pack://application:,,,/Assets/Form/ExpChecker.png" />
+	<BitmapImage x:Key="Form.ExpeditionCheck" UriSource="pack://application:,,,/Assets/Form/ExpeditionCheck.png" />
+	<BitmapImage x:Key="Form.Fleet" UriSource="pack://application:,,,/Assets/Form/Fleet.png" />
+	<BitmapImage x:Key="Form.FleetImageGenerator" UriSource="pack://application:,,,/Assets/Form/FleetImageGenerator.png" />
+	<BitmapImage x:Key="Form.FleetPreset" UriSource="pack://application:,,,/Assets/Form/FleetPreset.png" />
+	<BitmapImage x:Key="Form.Headquarters" UriSource="pack://application:,,,/Assets/Form/Headquarters.png" />
+	<BitmapImage x:Key="Form.Information" UriSource="pack://application:,,,/Assets/Form/Information.png" />
+	<BitmapImage x:Key="Form.Json" UriSource="pack://application:,,,/Assets/Form/Json.png" />
+	<BitmapImage x:Key="Form.Log" UriSource="pack://application:,,,/Assets/Form/Log.png" />
+	<BitmapImage x:Key="Form.Main" UriSource="pack://application:,,,/Assets/Form/Main.png" />
+	<BitmapImage x:Key="Form.Quest" UriSource="pack://application:,,,/Assets/Form/Quest.png" />
+	<BitmapImage x:Key="Form.ResourceChart" UriSource="pack://application:,,,/Assets/Form/ResourceChart.png" />
+	<BitmapImage x:Key="Form.ShipGroup" UriSource="pack://application:,,,/Assets/Form/ShipGroup.png" />
+	<BitmapImage x:Key="Form.WindowCapture" UriSource="pack://application:,,,/Assets/Form/WindowCapture.png" />
+
+	<BitmapImage x:Key="Fleet.AnchorageRepairing" UriSource="pack://application:,,,/Assets/Fleet/AnchorageRepairing.png" />
+	<BitmapImage x:Key="Fleet.Combined" UriSource="pack://application:,,,/Assets/Fleet/Combined.png" />
+	<BitmapImage x:Key="Fleet.Damaged" UriSource="pack://application:,,,/Assets/Fleet/Damaged.png" />
+	<BitmapImage x:Key="Fleet.Docking" UriSource="pack://application:,,,/Assets/Fleet/Docking.png" />
+	<BitmapImage x:Key="Fleet.Expedition" UriSource="pack://application:,,,/Assets/Fleet/Expedition.png" />
+	<BitmapImage x:Key="Fleet.NoShip" UriSource="pack://application:,,,/Assets/Fleet/NoShip.png" />
+	<BitmapImage x:Key="Fleet.NotReplenished" UriSource="pack://application:,,,/Assets/Fleet/NotReplenished.png" />
+	<BitmapImage x:Key="Fleet.Ready" UriSource="pack://application:,,,/Assets/Fleet/Ready.png" />
+	<BitmapImage x:Key="Fleet.Sortie" UriSource="pack://application:,,,/Assets/Fleet/Sortie.png" />
+	<BitmapImage x:Key="Fleet.SortieDamaged" UriSource="pack://application:,,,/Assets/Fleet/SortieDamaged.png" />
+
+	<BitmapImage x:Key="Condition.LittleTired" UriSource="pack://application:,,,/Assets/Condition/LittleTired.png" />
+	<BitmapImage x:Key="Condition.Normal" UriSource="pack://application:,,,/Assets/Condition/Normal.png" />
+	<BitmapImage x:Key="Condition.Sparkle" UriSource="pack://application:,,,/Assets/Condition/Sparkle.png" />
+	<BitmapImage x:Key="Condition.Tired" UriSource="pack://application:,,,/Assets/Condition/Tired.png" />
+	<BitmapImage x:Key="Condition.VeryTired" UriSource="pack://application:,,,/Assets/Condition/VeryTired.png" />
+
+	<BitmapImage x:Key="Headquarters.Ship" UriSource="pack://application:,,,/Assets/Headquarters/Ship.png" />
+	<BitmapImage x:Key="Headquarters.Equipment" UriSource="pack://application:,,,/Assets/Headquarters/Equipment.png" />
+
+	<BitmapImage x:Key="Browser.ScreenShot" UriSource="pack://application:,,,/Assets/Browser/ScreenShot.png" />
+	<BitmapImage x:Key="Browser.Zoom" UriSource="pack://application:,,,/Assets/Browser/Zoom.png" />
+	<BitmapImage x:Key="Browser.ZoomIn" UriSource="pack://application:,,,/Assets/Browser/ZoomIn.png" />
+	<BitmapImage x:Key="Browser.ZoomOut" UriSource="pack://application:,,,/Assets/Browser/ZoomOut.png" />
+	<BitmapImage x:Key="Browser.Unmute" UriSource="pack://application:,,,/Assets/Browser/Unmute.png" />
+	<BitmapImage x:Key="Browser.Mute" UriSource="pack://application:,,,/Assets/Browser/Mute.png" />
+	<BitmapImage x:Key="Browser.Refresh" UriSource="pack://application:,,,/Assets/Browser/Refresh.png" />
+	<BitmapImage x:Key="Browser.Navigate" UriSource="pack://application:,,,/Assets/Browser/Navigate.png" />
+	<BitmapImage x:Key="Browser.Other" UriSource="pack://application:,,,/Assets/Browser/Other.png" />
+
+	<BitmapImage x:Key="Rarity.Black" UriSource="pack://application:,,,/Assets/Rarity/Black.png" />
+	<BitmapImage x:Key="Rarity.Red" UriSource="pack://application:,,,/Assets/Rarity/Red.png" />
+	<BitmapImage x:Key="Rarity.BlueC" UriSource="pack://application:,,,/Assets/Rarity/BlueC.png" />
+	<BitmapImage x:Key="Rarity.BlueB" UriSource="pack://application:,,,/Assets/Rarity/BlueB.png" />
+	<BitmapImage x:Key="Rarity.BlueA" UriSource="pack://application:,,,/Assets/Rarity/BlueA.png" />
+	<BitmapImage x:Key="Rarity.Silver" UriSource="pack://application:,,,/Assets/Rarity/Silver.png" />
+	<BitmapImage x:Key="Rarity.Gold" UriSource="pack://application:,,,/Assets/Rarity/Gold.png" />
+	<BitmapImage x:Key="Rarity.HoloB" UriSource="pack://application:,,,/Assets/Rarity/HoloB.png" />
+	<BitmapImage x:Key="Rarity.HoloA" UriSource="pack://application:,,,/Assets/Rarity/HoloA.png" />
+	<BitmapImage x:Key="Rarity.Cherry" UriSource="pack://application:,,,/Assets/Rarity/Cherry.png" />
 </ResourceDictionary>

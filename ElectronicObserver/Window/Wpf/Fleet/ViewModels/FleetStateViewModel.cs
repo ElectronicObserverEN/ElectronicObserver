@@ -11,6 +11,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
@@ -74,7 +75,7 @@ public class FleetStateViewModel : ObservableObject
 		{
 			var state = GetStateLabel(index);
 
-			state.SetInformation(FleetStates.NoShip, FormFleet.NoShips, "", (int)IconContent.FleetNoShip);
+			state.SetInformation(FleetStates.NoShip, FormFleet.NoShips, "", IconContent.FleetNoShip);
 			state.Label.ToolTip = null;
 
 			emphasizesSubFleetInPort = false;
@@ -92,7 +93,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, (int)IconContent.FleetSortieDamaged, colorDangerBG, colorDangerFG);
+					state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, IconContent.FleetSortieDamaged, colorDangerBG, colorDangerFG);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -102,7 +103,7 @@ public class FleetStateViewModel : ObservableObject
 				{   //出撃中
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Sortie, FormFleet.OnSortie, "", (int)IconContent.FleetSortie);
+					state.SetInformation(FleetStates.Sortie, FormFleet.OnSortie, "", IconContent.FleetSortie);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -121,7 +122,7 @@ public class FleetStateViewModel : ObservableObject
 				state.SetInformation(FleetStates.Expedition,
 					$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 					DateTimeHelper.ToTimeRemainString(state.Timer),
-					(int)IconContent.FleetExpedition, colorInExpeditionBG, colorInExpeditionFG);
+					IconContent.FleetExpedition, colorInExpeditionBG, colorInExpeditionFG);
 
 				state.Label.ToolTip = string.Format(FormFleet.ExpeditionToolTip,
 					dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer));
@@ -135,7 +136,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, (int)IconContent.FleetDamaged, colorDangerBG, colorDangerFG);
+				state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, IconContent.FleetDamaged, colorDangerBG, colorDangerFG);
 				state.Label.ToolTip = null;
 
 				emphasizesSubFleetInPort = false;
@@ -151,7 +152,7 @@ public class FleetStateViewModel : ObservableObject
 				state.SetInformation(FleetStates.AnchorageRepairing,
 					FormFleet.Repairing + DateTimeHelper.ToTimeElapsedString(state.Timer),
 					DateTimeHelper.ToTimeElapsedString(state.Timer),
-					(int)IconContent.FleetAnchorageRepairing);
+					IconContent.FleetAnchorageRepairing);
 
 
 				StringBuilder sb = new StringBuilder();
@@ -196,7 +197,7 @@ public class FleetStateViewModel : ObservableObject
 					state.SetInformation(FleetStates.Docking,
 						FormFleet.OnDock + DateTimeHelper.ToTimeRemainString(state.Timer),
 						DateTimeHelper.ToTimeRemainString(state.Timer),
-						(int)IconContent.FleetDocking);
+						IconContent.FleetDocking);
 
 					state.Label.ToolTip = FormFleet.DockCompletionTime + DateTimeHelper.TimeToCSVString(state.Timer);
 
@@ -219,7 +220,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPortBG, colorInPortFG);
+					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", IconContent.FleetNotReplenished, colorInPortBG, colorInPortFG);
 					state.Label.ToolTip = string.Format(FormFleet.ResupplyTooltip, fuel, ammo, bauxite, aircraft);
 
 					index++;
@@ -228,19 +229,18 @@ public class FleetStateViewModel : ObservableObject
 
 			//疲労
 			{
-				int cond = fleet.MembersInstance.Min(s => s == null ? 100 : s.Condition);
+				int cond = fleet.MembersInstance.Min(s => s?.Condition ?? 100);
 
 				if (cond < Utility.Configuration.Config.Control.ConditionBorder && fleet.ConditionTime != null && fleet.ExpeditionState == 0)
 				{
-					var state = GetStateLabel(index);
+					StateLabel state = GetStateLabel(index);
 
-					int iconIndex;
-					if (cond < 20)
-						iconIndex = (int)IconContent.ConditionVeryTired;
-					else if (cond < 30)
-						iconIndex = (int)IconContent.ConditionTired;
-					else
-						iconIndex = (int)IconContent.ConditionLittleTired;
+					IconContent iconIndex = cond switch
+					{
+						< 20 => IconContent.ConditionVeryTired,
+						< 30 => IconContent.ConditionTired,
+						_ => IconContent.ConditionLittleTired,
+					};
 
 					state.Timer = (DateTime)fleet.ConditionTime;
 					state.SetInformation(FleetStates.Tired,
@@ -256,15 +256,15 @@ public class FleetStateViewModel : ObservableObject
 
 				}
 				else if (cond >= 50)
-				{       //戦意高揚
-					var state = GetStateLabel(index);
+				{
+					//戦意高揚
+					StateLabel state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", (int)IconContent.ConditionSparkle, colorInPortBG);
+					state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", IconContent.ConditionSparkle, colorInPortBG);
 					state.Label.ToolTip = string.Format(FormFleet.SparkledTooltip, cond, Math.Ceiling((cond - 49) / 3.0));
 
 					index++;
 				}
-
 			}
 
 			//出撃可能！
@@ -272,7 +272,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", (int)IconContent.FleetReady, colorInPortBG);
+				state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", IconContent.FleetReady, colorInPortBG);
 				state.Label.ToolTip = null;
 
 				index++;
@@ -407,14 +407,12 @@ public class FleetStateViewModel : ObservableObject
 
 		}
 	}
-	public int GetIconIndex()
+	public IconContent GetIconIndex()
 	{
-		var first = StateLabels.Where(s => s.Enabled).OrderBy(s => s.State).FirstOrDefault();
-		return first == null ? (int)IconContent.FormFleet : first.Label.ImageIndex switch
-		{
-			IconContent i => (int)i,
-			ResourceManager.EquipmentContent e => (int)e,
-			_ => -1
-		};
+		StateLabel? first = StateLabels
+			.Where(s => s.Enabled)
+			.MinBy(s => s.State);
+
+		return first?.Label.Icon ?? IconContent.FormFleet;
 	}
 }

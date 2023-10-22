@@ -1,5 +1,4 @@
-﻿using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
@@ -12,8 +11,8 @@ public class MasterShipSlotViewModel : ObservableObject
 	public string SizeString => Size switch
 	{
 		> 0 => $"{Size}",
-		_ => ""
+		_ => "",
 	};
-	public ImageSource? EquipmentIcon =>
-		ImageSourceIcons.GetEquipmentIcon(Equipment?.IconTypeTyped ?? EquipmentIconType.Nothing);
+
+	public EquipmentIconType EquipmentIcon => Equipment?.IconTypeTyped ?? EquipmentIconType.Nothing;
 }

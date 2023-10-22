@@ -106,10 +106,10 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-			<Image
+			<common:IconContentIcon
 				Grid.Row="0"
 				Grid.Column="0"
-				Source="{Binding ShipIcon}"
+				Type="FormFleet"
 				/>
 			<TextBlock
 				Grid.Row="0"
@@ -125,11 +125,10 @@
 				ToolTip="{Binding DialogDropRecordViewer.ShipNameToolTip}"
 				/>
 
-
-			<Image
+			<common:UseItemIcon
 				Grid.Row="1"
 				Grid.Column="0"
-				Source="{Binding ItemIcon}"
+				Type="PresentBox"
 				/>
 			<TextBlock
 				Grid.Row="1"

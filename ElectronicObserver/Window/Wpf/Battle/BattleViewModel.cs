@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
@@ -12,6 +13,7 @@ using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
@@ -46,18 +48,18 @@ public partial class BattleViewModel : AnchorableViewModel
 	#region Row 1
 
 	public string? SearchingFriendText { get; set; }
-	public ImageSource? SearchingFriendIcon { get; set; }
+	public EquipmentIconType? SearchingFriendIcon { get; set; }
 	public string? SearchingFriendToolTip { get; set; }
 	public bool Smoker1Active { get; set; }
 	public bool Smoker2Active { get; set; }
 	public bool Smoker3Active { get; set; }
 
 	public string? SearchingText { get; set; }
-	public ImageSource? SearchingIcon { get; set; }
+	public EquipmentIconType? SearchingIcon { get; set; }
 	public string? SearchingToolTip { get; set; }
 
 	public string? SearchingEnemyText { get; set; }
-	public ImageSource? SearchingEnemyIcon { get; set; }
+	public EquipmentIconType? SearchingEnemyIcon { get; set; }
 	public string? SearchingEnemyToolTip { get; set; }
 
 	#endregion
@@ -67,7 +69,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	public string? AirStage1FriendText { get; set; }
 	public string? AirStage1FriendToolTip { get; set; }
 	public SolidColorBrush? AirStage1FriendForeColor { get; set; }
-	public ImageSource? AirStage1FriendIcon { get; set; }
+	public EquipmentIconType? AirStage1FriendIcon { get; set; }
 
 	public string? AirSuperiorityText { get; set; }
 	public SolidColorBrush? AirSuperiorityForeColor { get; set; }
@@ -76,7 +78,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	public string? AirStage1EnemyText { get; set; }
 	public string? AirStage1EnemyToolTip { get; set; }
 	public SolidColorBrush? AirStage1EnemyForeColor { get; set; }
-	public ImageSource? AirStage1EnemyIcon { get; set; }
+	public EquipmentIconType? AirStage1EnemyIcon { get; set; }
 
 	#endregion
 
@@ -84,16 +86,16 @@ public partial class BattleViewModel : AnchorableViewModel
 
 	public string? AirStage2FriendText { get; set; }
 	public SolidColorBrush? AirStage2FriendForeColor { get; set; }
-	public ImageSource? AirStage2FriendIcon { get; set; }
+	public EquipmentIconType? AirStage2FriendIcon { get; set; }
 	public string? AirStage2FriendToolTip { get; set; }
 
 	public string? AACutinText { get; set; }
-	public ImageSource? AACutinIcon { get; set; }
+	public EquipmentIconType? AACutinIcon { get; set; }
 	public string? AACutinToolTip { get; set; }
 
 	public string? AirStage2EnemyText { get; set; }
 	public SolidColorBrush? AirStage2EnemyForeColor { get; set; }
-	public ImageSource? AirStage2EnemyIcon { get; set; }
+	public EquipmentIconType? AirStage2EnemyIcon { get; set; }
 	public string? AirStage2EnemyToolTip { get; set; }
 
 	#endregion
@@ -102,7 +104,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 	public string? FleetFriendText { get; set; }
 	public string? FleetFriendToolTip { get; set; }
-	public ImageSource? FleetFriendIcon { get; set; }
+	public EquipmentIconType? FleetFriendIcon { get; set; }
 
 	public bool PlayerFleetVisible { get; set; }
 
@@ -139,8 +141,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 	public bool CompactMode { get; set; }
 
-	public BattleViewModel() : base("Battle", "Battle",
-		ImageSourceIcons.GetIcon(IconContent.FormBattle))
+	public BattleViewModel() : base("Battle", "Battle", IconContent.FormBattle)
 	{
 		FormBattle = Ioc.Default.GetService<FormBattleTranslationViewModel>()!;
 
@@ -151,36 +152,21 @@ public partial class BattleViewModel : AnchorableViewModel
 		{
 			HealthBarViewModel vm = new();
 			HPBars.Add(vm);
-			// HPBars.Add(new ShipStatusHP());
-			// HPBars[i].Size = DefaultBarSize;
-			// HPBars[i].AutoSize = false;
-			// HPBars[i].AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			// HPBars[i].Margin = new Padding(2, 0, 2, 0);
-			// HPBars[i].Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			// HPBars[i].MainFont = MainFont;
-			// HPBars[i].SubFont = SubFont;
-			// HPBars[i].UsePrevValue = true;
-			// HPBars[i].ShowDifference = true;
-			// HPBars[i].MaximumDigit = 9999;
 
 			if (i < 6)
 			{
-				// TableBottom.Controls.Add(HPBars[i], 0, i + 1);
 				PlayerMainHPBars.Add(vm);
 			}
 			else if (i < 12)
 			{
-				// TableBottom.Controls.Add(HPBars[i], 1, i - 5);
 				PlayerEscortHPBars.Add(vm);
 			}
 			else if (i < 18)
 			{
-				// TableBottom.Controls.Add(HPBars[i], 3, i - 11);
 				EnemyMainHPBars.Add(vm);
 			}
 			else
 			{
-				// TableBottom.Controls.Add(HPBars[i], 2, i - 17);
 				EnemyEscortHPBars.Add(vm);
 			}
 		}
@@ -600,27 +586,14 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetSearchingResult(BattleData bd)
 	{
-		/*
-		void SetResult(ImageLabel label, int search)
-		{
-			label.Text = Constants.GetSearchingResultShort(search);
-			label.ImageAlign = search > 0 ? ContentAlignment.MiddleLeft : ContentAlignment.MiddleCenter;
-			label.ImageIndex = search > 0 ? (int)(search < 4 ? ResourceManager.EquipmentContent.Seaplane : ResourceManager.EquipmentContent.Radar) : -1;
-			ToolTipInfo.SetToolTip(label, null);
-		}
-
-		SetResult(SearchingFriend, bd.Searching.SearchingFriend);
-		SetResult(SearchingEnemy, bd.Searching.SearchingEnemy);
-		*/
-
 		int search = bd.Searching.SearchingFriend;
 
 		SearchingFriendText = Constants.GetSearchingResultShort(search);
 		SearchingFriendIcon = search switch
 		{
 			<= 0 => null,
-			< 4 => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane),
-			_ => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Radar)
+			< 4 => EquipmentIconType.Seaplane,
+			_ => EquipmentIconType.Radar,
 		};
 		SearchingFriendToolTip = null;
 		Smoker1Active = bd.Searching.SmokeCount >= 1;
@@ -633,8 +606,8 @@ public partial class BattleViewModel : AnchorableViewModel
 		SearchingEnemyIcon = search switch
 		{
 			<= 0 => null,
-			< 4 => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane),
-			_ => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Radar)
+			< 4 => EquipmentIconType.Seaplane,
+			_ => EquipmentIconType.Radar,
 		};
 		SearchingEnemyToolTip = null;
 	}
@@ -645,19 +618,6 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void ClearSearchingResult()
 	{
-		/*
-		void ClearResult(ImageLabel label)
-		{
-			label.Text = "-";
-			label.ImageAlign = ContentAlignment.MiddleCenter;
-			label.ImageIndex = -1;
-			ToolTipInfo.SetToolTip(label, null);
-		}
-
-		ClearResult(SearchingFriend);
-		ClearResult(SearchingEnemy);
-		*/
-
 		SearchingFriendText = "-";
 		SearchingFriendIcon = null;
 		SearchingFriendToolTip = null;
@@ -675,46 +635,45 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetBaseAirAttack(PhaseBaseAirAttack pd)
 	{
-		if (pd?.IsAvailable == true)
-		{
-
-			SearchingText = FormBattle.ABText;
-			// Searching.ImageAlign = ContentAlignment.MiddleLeft;
-			// Searching.ImageIndex = (int)ResourceManager.EquipmentContent.LandAttacker;
-			SearchingIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.LandBasedAttacker);
-
-			var sb = new StringBuilder();
-			int index = 1;
-
-			foreach (var phase in pd.AirAttackUnits)
-			{
-
-				sb.AppendFormat(GeneralRes.BaseWave + " - " + GeneralRes.BaseAirCorps + " :\r\n",
-					index, phase.AirUnitID);
-
-				if (phase.IsStage1Available)
-				{
-					sb.AppendFormat("　St1: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3} | {4}\r\n",
-						phase.AircraftLostStage1Friend, phase.AircraftTotalStage1Friend,
-						phase.AircraftLostStage1Enemy, phase.AircraftTotalStage1Enemy,
-						Constants.GetAirSuperiority(phase.AirSuperiority));
-				}
-				if (phase.IsStage2Available)
-				{
-					sb.AppendFormat("　St2: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3}\r\n",
-						phase.AircraftLostStage2Friend, phase.AircraftTotalStage2Friend,
-						phase.AircraftLostStage2Enemy, phase.AircraftTotalStage2Enemy);
-				}
-
-				index++;
-			}
-
-			SearchingToolTip = sb.ToString();
-		}
-		else
+		if (pd?.IsAvailable != true)
 		{
 			ClearBaseAirAttack();
+			return;
 		}
+
+		SearchingText = FormBattle.ABText;
+		SearchingIcon = EquipmentIconType.LandBasedAttacker;
+
+		StringBuilder sb = new();
+		int index = 1;
+
+		foreach (PhaseBaseAirAttack.PhaseBaseAirAttackUnit phase in pd.AirAttackUnits)
+		{
+			sb.AppendFormat(GeneralRes.BaseWave + " - " + GeneralRes.BaseAirCorps + " :\r\n",
+				index, phase.AirUnitID);
+
+			if (phase.IsStage1Available)
+			{
+				sb.AppendFormat(
+					"　St1: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir +
+					" -{2}/{3} | {4}\r\n",
+					phase.AircraftLostStage1Friend, phase.AircraftTotalStage1Friend,
+					phase.AircraftLostStage1Enemy, phase.AircraftTotalStage1Enemy,
+					Constants.GetAirSuperiority(phase.AirSuperiority));
+			}
+
+			if (phase.IsStage2Available)
+			{
+				sb.AppendFormat(
+					"　St2: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3}\r\n",
+					phase.AircraftLostStage2Friend, phase.AircraftTotalStage2Friend,
+					phase.AircraftLostStage2Enemy, phase.AircraftTotalStage2Enemy);
+			}
+
+			index++;
+		}
+
+		SearchingToolTip = sb.ToString();
 	}
 
 	/// <summary>
@@ -722,85 +681,68 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void ClearBaseAirAttack()
 	{
-		/*
-		Searching.Text = GeneralRes.ClearBaseAirAttack;
-		Searching.ImageAlign = ContentAlignment.MiddleCenter;
-		Searching.ImageIndex = -1;
-		ToolTipInfo.SetToolTip(Searching, null);
-		*/
-
 		SearchingText = GeneralRes.ClearBaseAirAttack;
 		SearchingIcon = null;
 		SearchingToolTip = null;
 	}
 
-
 	/// <summary>
 	/// 航空戦表示用ヘルパー
 	/// </summary>
-	private class AerialWarfareFormatter
+	private sealed class AerialWarfareFormatter
 	{
-		public readonly PhaseAirBattleBase Air;
-		public string PhaseName;
+		public PhaseAirBattleBase? Air { get; }
+		public string PhaseName { get; set; }
 
-		public AerialWarfareFormatter(PhaseAirBattleBase air, string phaseName)
+		public AerialWarfareFormatter(PhaseAirBattleBase? air, string phaseName)
 		{
 			Air = air;
 			PhaseName = phaseName;
 		}
 
-		public bool Enabled => Air != null && Air.IsAvailable;
+		[MemberNotNullWhen(true, nameof(Air))]
+		public bool Enabled => Air is { IsAvailable: true };
 		public bool Stage1Enabled => Enabled && Air.IsStage1Available;
 		public bool Stage2Enabled => Enabled && Air.IsStage2Available;
 
-		public bool GetEnabled(int stage)
+		public bool GetEnabled(int stage) => stage switch
 		{
-			if (stage == 1)
-				return Stage1Enabled;
-			else if (stage == 2)
-				return Stage2Enabled;
-			else
-				throw new ArgumentOutOfRangeException();
-		}
+			1 => Stage1Enabled,
+			2 => Stage2Enabled,
+			_ => throw new ArgumentOutOfRangeException(),
+		};
 
-		public int GetAircraftLost(int stage, bool isFriend)
+		public int GetAircraftLost(int stage, bool isFriend) => stage switch
 		{
-			if (stage == 1)
-				return isFriend ? Air.AircraftLostStage1Friend : Air.AircraftLostStage1Enemy;
-			else if (stage == 2)
-				return isFriend ? Air.AircraftLostStage2Friend : Air.AircraftLostStage2Enemy;
-			else
-				throw new ArgumentOutOfRangeException();
-		}
+			1 when isFriend => Air.AircraftLostStage1Friend,
+			1 => Air.AircraftLostStage1Enemy,
 
-		public int GetAircraftTotal(int stage, bool isFriend)
+			2 when isFriend => Air.AircraftLostStage2Friend,
+			2 => Air.AircraftLostStage2Enemy,
+
+			_ => throw new ArgumentOutOfRangeException(),
+		};
+
+		public int GetAircraftTotal(int stage, bool isFriend) => stage switch
 		{
-			if (stage == 1)
-				return isFriend ? Air.AircraftTotalStage1Friend : Air.AircraftTotalStage1Enemy;
-			else if (stage == 2)
-				return isFriend ? Air.AircraftTotalStage2Friend : Air.AircraftTotalStage2Enemy;
-			else
-				throw new ArgumentOutOfRangeException();
-		}
+			1 when isFriend => Air.AircraftTotalStage1Friend,
+			1 => Air.AircraftTotalStage1Enemy,
 
-		public int GetTouchAircraft(bool isFriend) => isFriend ? Air.TouchAircraftFriend : Air.TouchAircraftEnemy;
+			2 when isFriend => Air.AircraftTotalStage2Friend,
+			2 => Air.AircraftTotalStage2Enemy,
 
+			_ => throw new ArgumentOutOfRangeException(),
+		};
+
+		public int GetTouchAircraft(bool isFriend) => isFriend switch
+		{
+			true => Air.TouchAircraftFriend,
+			_ => Air.TouchAircraftEnemy,
+		};
 	}
 
-	void ClearAircraftLabel(ImageLabel label)
-	{
-		/*
-		label.Text = "-";
-		label.ForeColor = SystemColors.ControlText;
-		label.ImageAlign = ContentAlignment.MiddleCenter;
-		label.ImageIndex = -1;
-		ToolTipInfo.SetToolTip(label, null);
-		*/
-	}
-
-
-
-	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1) => SetAerialWarfare(phaseJet, phase1, null);
+	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1)
+		=> SetAerialWarfare(phaseJet, phase1, null);
 
 	/// <summary>
 	/// 航空戦情報を設定します。
@@ -808,26 +750,30 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <param name="phaseJet">噴式航空戦のデータ。発生していなければ null</param>
 	/// <param name="phase1">第一次航空戦（通常航空戦）のデータ。</param>
 	/// <param name="phase2">第二次航空戦のデータ。発生していなければ null</param>
-	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase phase2)
+	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase? phase2)
 	{
-		var phases = new[]
+		List<AerialWarfareFormatter> phases = new()
 		{
-			new AerialWarfareFormatter(phaseJet, FormBattle.AerialPhaseJet),
-			new AerialWarfareFormatter(phase1, FormBattle.AerialPhase1),
-			new AerialWarfareFormatter(phase2, FormBattle.AerialPhase2),
+			new(phaseJet, FormBattle.AerialPhaseJet),
+			new(phase1, FormBattle.AerialPhase1),
+			new(phase2, FormBattle.AerialPhase2),
 		};
 
 		if (!phases[0].Enabled && !phases[2].Enabled)
+		{
 			phases[1].PhaseName = "";
+		}
 
-		(string?, string?, SolidColorBrush?, ImageSource?) SetShootdown(int stage, bool isFriend, bool needAppendInfo)
+		(string?, string?, SolidColorBrush?, EquipmentIconType?) SetShootdown(int stage, bool isFriend, bool needAppendInfo)
 		{
 			string? labelText;
 			string? labelToolTip;
 			SolidColorBrush? labelForeColor;
-			ImageSource? labelIcon;
+			EquipmentIconType? labelIcon;
 
-			var phasesEnabled = phases.Where(p => p.GetEnabled(stage));
+			List<AerialWarfareFormatter> phasesEnabled = phases
+				.Where(p => p.GetEnabled(stage))
+				.ToList();
 
 			if (needAppendInfo)
 			{
@@ -847,8 +793,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			else
 				labelForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 
-			// label.ImageAlign = ContentAlignment.MiddleCenter;
-			// label.ImageIndex = -1;
 			labelIcon = null;
 
 			return (labelText, labelToolTip, labelForeColor, labelIcon);
@@ -864,7 +808,9 @@ public partial class BattleViewModel : AnchorableViewModel
 		if (phases[1].Stage1Enabled)
 		{
 			bool needAppendInfo = phases[0].Stage1Enabled || phases[2].Stage1Enabled;
-			var phases1 = phases.Where(p => p.Stage1Enabled);
+			List<AerialWarfareFormatter> phases1 = phases
+				.Where(p => p.Stage1Enabled)
+				.ToList();
 
 			AirSuperiorityText = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
 			AirSuperiorityForeColor = (phases[1].Air.AirSuperiority switch
@@ -874,16 +820,14 @@ public partial class BattleViewModel : AnchorableViewModel
 				// AI or AI-
 				3 or 4 => Utility.Configuration.Config.UI.Color_Red,
 
-				_ => Utility.Configuration.Config.UI.ForeColor
+				_ => Utility.Configuration.Config.UI.ForeColor,
 			}).ToBrush();
 
-			AirSuperiorityToolTip = needAppendInfo ?
-				string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n"))
-				: null;
-
-			// SetShootdown(AirStage1Friend, 1, true, needAppendInfo);
-			// SetShootdown(AirStage1Enemy, 1, false, needAppendInfo);
-
+			AirSuperiorityToolTip = needAppendInfo switch
+			{
+				true => string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n")),
+				_ => null,
+			};
 
 			(AirStage1FriendText, AirStage1FriendToolTip, AirStage1FriendForeColor, AirStage1FriendIcon) =
 				SetShootdown(1, true, needAppendInfo);
@@ -891,24 +835,18 @@ public partial class BattleViewModel : AnchorableViewModel
 			(AirStage1EnemyText, AirStage1EnemyToolTip, AirStage1EnemyForeColor, AirStage1EnemyIcon) =
 				SetShootdown(1, false, needAppendInfo);
 
-			(string?, ImageSource?) SetTouch(bool isFriend, string? currentToolTip)
+			(string?, EquipmentIconType?) SetTouch(bool isFriend, string? currentToolTip)
 			{
 				string? toolTip = currentToolTip;
-				ImageSource? icon;
+				EquipmentIconType? icon;
 
 				if (phases1.Any(p => p.GetTouchAircraft(isFriend) > 0))
 				{
-					// label.ImageAlign = ContentAlignment.MiddleLeft;
-					// label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
-
-					icon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
-					toolTip += FormBattle.Contact + "\r\n" +
-							   string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? FormBattle.None)}"));
+					icon = EquipmentIconType.Seaplane;
+					toolTip += FormBattle.Contact + "\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? FormBattle.None)}"));
 				}
 				else
 				{
-					// label.ImageAlign = ContentAlignment.MiddleCenter;
-					// label.ImageIndex = -1;
 					icon = null;
 				}
 
@@ -944,11 +882,9 @@ public partial class BattleViewModel : AnchorableViewModel
 		if (phases[1].Stage2Enabled)
 		{
 			bool needAppendInfo = phases[0].Stage2Enabled || phases[2].Stage2Enabled;
-			var phases2 = phases.Where(p => p.Stage2Enabled);
-
-
-			// SetShootdown(AirStage2Friend, 2, true, needAppendInfo);
-			// SetShootdown(AirStage2Enemy, 2, false, needAppendInfo);
+			List<AerialWarfareFormatter> phases2 = phases
+				.Where(p => p.Stage2Enabled)
+				.ToList();
 
 			(AirStage2FriendText, AirStage2FriendToolTip, AirStage2FriendForeColor, AirStage2FriendIcon) =
 				SetShootdown(2, true, needAppendInfo);
@@ -959,12 +895,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			if (phases2.Any(p => p.Air.IsAACutinAvailable))
 			{
 				AACutinText = "#" + string.Join("/", phases2.Select(p => p.Air.IsAACutinAvailable ? (p.Air.AACutInIndex + 1).ToString() : "-"));
-				// AACutin.ImageAlign = ContentAlignment.MiddleLeft;
-				// AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
-				AACutinIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.HighAngleGun);
+				AACutinIcon = EquipmentIconType.HighAngleGun;
 
 				string ConditionDisplay(int id) => AntiAirCutIn.FromId(id).EquipmentConditionsMultiLineDisplay();
-				
+
 				AACutinToolTip = FormBattle.AACI + "\r\n" + string.Join("\r\n", phases2
 					.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ?
 						$"{p.Air.AACutInShipName}\r\n{FormBattle.AACIType}{p.Air.AACutInKind}\n{ConditionDisplay(p.Air.AACutInKind)}"
@@ -1273,42 +1207,39 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 
 		{   // support
-			PhaseSupport support = null;
+			PhaseSupport? support = null;
 
-			if (bd is BattleDayFromNight bddn)
+			if (bd is BattleDayFromNight bddn && (bddn.NightSupport?.IsAvailable ?? false))
 			{
-				if (bddn.NightSupport?.IsAvailable ?? false)
-					support = bddn.NightSupport;
+				support = bddn.NightSupport;
 			}
-			if (support == null)
-				support = bd.Support;
+
+			support ??= bd.Support;
 
 			if (support?.IsAvailable ?? false)
 			{
-				FleetFriendIcon = ImageSourceIcons.GetEquipmentIcon(support.SupportFlag switch
+				FleetFriendIcon = support.SupportFlag switch
 				{
 					1 => EquipmentIconType.CarrierBasedTorpedo,
 					2 => EquipmentIconType.MainGunLarge,
 					3 => EquipmentIconType.Torpedo,
 					4 => EquipmentIconType.DepthCharge,
-					_ => EquipmentIconType.Unknown
-				});
+					_ => EquipmentIconType.Unknown,
+				};
 
-				// FleetFriend.ImageAlign = ContentAlignment.MiddleLeft;
 				FleetFriendToolTip = FormBattle.SupportExpedition + "\r\n" + support.GetBattleDetail();
 
-				if ((isFriendCombined || hasFriend7thShip) && isEnemyCombined)
-					FleetFriendText = FormBattle.FleetFriendShort;
-				else
-					FleetFriendText = FormBattle.FleetFriend;
-
+				FleetFriendText = ((isFriendCombined || hasFriend7thShip) && isEnemyCombined) switch
+				{
+					true => FormBattle.FleetFriendShort,
+					_ => FormBattle.FleetFriend,
+				};
 			}
 			else
 			{
 				FleetFriendIcon = null;
 				FleetFriendText = FormBattle.FleetFriend;
 				FleetFriendToolTip = null;
-
 			}
 		}
 
@@ -1327,7 +1258,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			foreach (int i in bd.MVPShipIndexes)
 			{
 				HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-				// HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].RepaintHPtext();
 			}
 
 			if (isFriendCombined)
@@ -1335,14 +1265,9 @@ public partial class BattleViewModel : AnchorableViewModel
 				foreach (int i in bd.MVPShipCombinedIndexes)
 				{
 					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					// HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].RepaintHPtext();
 				}
 			}
 		}
-		/*
-		foreach (var bar in HPBars)
-			bar.ResumeUpdate();
-		*/
 	}
 
 	private bool _hpBarMoved = false;
@@ -1359,10 +1284,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			PlayerMainHPBars.Add(PlayerEscortHPBars[0]);
 			PlayerEscortHPBars.RemoveAt(0);
 
-			// TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(0, 7));
-			// bool fixSize = Utility.Configuration.Config.UI.IsLayoutFixed;
-			// bool showHPBar = Utility.Configuration.Config.FormBattle.ShowHPBar;
-			// ControlHelper.SetTableRowStyle(TableBottom, 7, fixSize ? new RowStyle(SizeType.Absolute, showHPBar ? 21 : 16) : new RowStyle(SizeType.AutoSize));
 			_hpBarMoved = true;
 		}
 		else
@@ -1424,7 +1345,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 				AirStage1FriendText = "#" + (index + (pd.IsFriendEscort ? 6 : 0) + 1);
 				AirStage1FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
-				AirStage1FriendIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Searchlight);
+				AirStage1FriendIcon = EquipmentIconType.Searchlight;
 				AirStage1FriendToolTip = GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel;
 			}
 			else
@@ -1440,7 +1361,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				AirStage1EnemyText = "#" + (index + (pd.IsEnemyEscort ? 6 : 0) + 1);
 				AirStage1EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
-				AirStage1EnemyIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Searchlight);
+				AirStage1EnemyIcon = EquipmentIconType.Searchlight;
 				AirStage1EnemyToolTip = GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass;
 			}
 			else
@@ -1449,12 +1370,11 @@ public partial class BattleViewModel : AnchorableViewModel
 			}
 		}
 
-
 		//夜間触接判定
 		if (pd.TouchAircraftFriend != -1)
 		{
 			SearchingFriendText = GeneralRes.NightContact;
-			SearchingFriendIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
+			SearchingFriendIcon = EquipmentIconType.Seaplane;
 			SearchingFriendToolTip = GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].NameEN;
 		}
 		else
@@ -1465,7 +1385,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		if (pd.TouchAircraftEnemy != -1)
 		{
 			SearchingEnemyText = GeneralRes.NightContact;
-			SearchingEnemyIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
+			SearchingEnemyIcon = EquipmentIconType.Seaplane;
 			SearchingEnemyToolTip = GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftEnemy].NameEN;
 		}
 		else
@@ -1481,7 +1401,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				AirStage2FriendText = "#" + (index + 1);
 				AirStage2FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
-				AirStage2FriendIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.StarShell);
+				AirStage2FriendIcon = EquipmentIconType.StarShell;
 				AirStage2FriendToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareFriendInstance.NameWithLevel;
 
 			}
@@ -1498,7 +1418,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				AirStage2EnemyText = "#" + (index + 1);
 				AirStage2EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
-				AirStage2EnemyIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.StarShell);
+				AirStage2EnemyIcon = EquipmentIconType.StarShell;
 				AirStage2EnemyToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass;
 			}
 			else
@@ -1515,28 +1435,22 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <param name="bm">戦闘データ。</param>
 	private void SetMVPShip(BattleManager bm)
 	{
-
 		bool isCombined = bm.IsCombinedBattle;
 
-		var bd = bm.StartsFromDayBattle ? (BattleData)bm.BattleDay : (BattleData)bm.BattleNight;
-		var br = bm.Result;
-
-		var friend = bd.Initial.FriendFleet;
-		var escort = !isCombined ? null : bd.Initial.FriendFleetEscort;
-
-
-		/*// DEBUG
+		BattleData bd = bm.StartsFromDayBattle switch
 		{
-			BattleData lastbattle = bm.StartsFromDayBattle ? (BattleData)bm.BattleNight ?? bm.BattleDay : (BattleData)bm.BattleDay ?? bm.BattleNight;
-			if ( lastbattle.MVPShipIndexes.Count() > 1 || !lastbattle.MVPShipIndexes.Contains( br.MVPIndex - 1 ) ) {
-				Utility.Logger.Add( 1, "MVP is wrong : [" + string.Join( ",", lastbattle.MVPShipIndexes ) + "] => " + ( br.MVPIndex - 1 ) );
-			}
-			if ( isCombined && ( lastbattle.MVPShipCombinedIndexes.Count() > 1 || !lastbattle.MVPShipCombinedIndexes.Contains( br.MVPIndexCombined - 1 ) ) ) {
-				Utility.Logger.Add( 1, "MVP is wrong (escort) : [" + string.Join( ",", lastbattle.MVPShipCombinedIndexes ) + "] => " + ( br.MVPIndexCombined - 1 ) );
-			}
-		}
-		//*/
+			true => bm.BattleDay,
+			_ => bm.BattleNight,
+		};
 
+		BattleResultData br = bm.Result;
+
+		FleetData friend = bd.Initial.FriendFleet;
+		FleetData? escort = isCombined switch
+		{
+			false => null,
+			_ => bd.Initial.FriendFleetEscort,
+		};
 
 		for (int i = 0; i < friend.Members.Count; i++)
 		{
@@ -1552,8 +1466,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				HPBars[i].BackColor = Color.Transparent;
 			}
-
-			// HPBars[i].RepaintHPtext();
 		}
 
 		if (escort != null)
@@ -1572,25 +1484,18 @@ public partial class BattleViewModel : AnchorableViewModel
 				{
 					HPBars[i + 6].BackColor = Color.Transparent;
 				}
-
-				// HPBars[i + 6].RepaintHPtext();
 			}
 		}
-
-		/*// debug
-		if ( WinRank.Text.First().ToString() != bm.Result.Rank ) {
-			Utility.Logger.Add( 1, string.Format( "戦闘評価予測が誤っています。(予測: {0}, 実際: {1})", WinRank.Text.First().ToString(), bm.Result.Rank ) );
-		}
-		//*/
-
 	}
 
 
-	void ConfigurationChanged()
+	private void ConfigurationChanged()
 	{
-		var config = Utility.Configuration.Config;
+		Configuration.ConfigurationData config = Configuration.Config;
 
-		System.Drawing.Color[] colorScheme = config.UI.BarColorScheme.Select(col => col.ColorData).ToArray();
+		System.Drawing.Color[] colorScheme = config.UI.BarColorScheme
+			.Select(col => col.ColorData)
+			.ToArray();
 
 		foreach (HealthBarViewModel hpBar in HPBars)
 		{
@@ -1598,75 +1503,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			hpBar.ColorMorphing = config.UI.BarColorMorphing;
 		}
 
-		CompactMode = Utility.Configuration.Config.FormBattle.CompactMode;
-
-		/*
-		MainFont = TableTop.Font = TableBottom.Font = Font = config.UI.MainFont;
-		SubFont = config.UI.SubFont;
-
-		BaseLayoutPanel.AutoScroll = config.FormBattle.IsScrollable;
-
-
-		bool fixSize = config.UI.IsLayoutFixed;
-		bool showHPBar = config.FormBattle.ShowHPBar;
-
-		TableBottom.SuspendLayout();
-		if (fixSize)
-		{
-			ControlHelper.SetTableColumnStyles(TableBottom, new ColumnStyle(SizeType.AutoSize));
-			ControlHelper.SetTableRowStyle(TableBottom, 0, new RowStyle(SizeType.Absolute, 21));
-			for (int i = 1; i <= 6; i++)
-				ControlHelper.SetTableRowStyle(TableBottom, i, new RowStyle(SizeType.Absolute, showHPBar ? 21 : 16));
-			ControlHelper.SetTableRowStyle(TableBottom, 8, new RowStyle(SizeType.Absolute, 21));
-		}
-		else
-		{
-			ControlHelper.SetTableColumnStyles(TableBottom, new ColumnStyle(SizeType.AutoSize));
-			ControlHelper.SetTableRowStyles(TableBottom, new RowStyle(SizeType.AutoSize));
-		}
-		if (HPBars != null)
-		{
-			foreach (var b in HPBars)
-			{
-				b.MainFont = MainFont;
-				b.SubFont = SubFont;
-				b.AutoSize = !fixSize;
-				if (!b.AutoSize)
-				{
-					b.Size = (HPBars[12].Visible && HPBars[18].Visible) ? SmallBarSize : DefaultBarSize;
-				}
-				b.HPBar.ColorMorphing = config.UI.BarColorMorphing;
-				b.HPBar.SetBarColorScheme(config.UI.BarColorScheme.Select(col => col.ColorData).ToArray());
-				b.ShowHPBar = showHPBar;
-			}
-		}
-		FleetFriend.MaximumSize =
-		FleetFriendEscort.MaximumSize =
-		FleetEnemy.MaximumSize =
-		FleetEnemyEscort.MaximumSize =
-		DamageFriend.MaximumSize =
-		DamageEnemy.MaximumSize =
-			fixSize ? DefaultBarSize : Size.Empty;
-
-		WinRank.MinimumSize = fixSize ? new Size(80, 0) : new Size(HPBars[0].Width, 0);
-
-		TableBottom.ResumeLayout();
-
-		TableTop.SuspendLayout();
-		if (fixSize)
-		{
-			ControlHelper.SetTableColumnStyles(TableTop, new ColumnStyle(SizeType.Absolute, 21 * 4));
-			ControlHelper.SetTableRowStyles(TableTop, new RowStyle(SizeType.Absolute, 21));
-			TableTop.Width = TableTop.GetPreferredSize(BaseLayoutPanel.Size).Width;
-		}
-		else
-		{
-			ControlHelper.SetTableColumnStyles(TableTop, new ColumnStyle(SizeType.Percent, 100));
-			ControlHelper.SetTableRowStyles(TableTop, new RowStyle(SizeType.AutoSize));
-			TableTop.Width = TableBottom.ClientSize.Width;
-		}
-		TableTop.Height = TableTop.GetPreferredSize(BaseLayoutPanel.Size).Height;
-		TableTop.ResumeLayout();
-		*/
+		CompactMode = Configuration.Config.FormBattle.CompactMode;
 	}
 }

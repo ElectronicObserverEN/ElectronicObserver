@@ -64,43 +64,35 @@ public partial class StateLabel : ObservableObject
 	public StateLabel()
 	{
 		Label = GetDefaultLabel();
-		// Label.MouseEnter += Label_MouseEnter;
-		// Label.MouseLeave += Label_MouseLeave;
 		Enabled = false;
 	}
 
-	public static FleetItemControlViewModel GetDefaultLabel() => new()
-	{
-		// Anchor = AnchorStyles.Left,
-		// ImageList = ResourceManager.Instance.Icons,
-		// Padding = new Padding(2, 2, 2, 2),
-		// Margin = new Padding(2, 0, 2, 0),
-		// AutoSize = true
-	};
+	private static FleetItemControlViewModel GetDefaultLabel() => new();
 
-	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, Color backColor)
+	public void SetInformation(FleetStates state, string text, string shortenedText, IconContent imageIndex, Color backColor)
 	{
 		SetInformation(state, text, shortenedText, imageIndex, backColor, Utility.Configuration.Config.UI.ForeColor.ToWpfColor());
 	}
-	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, Color backColor, Color forecolor)
+
+	public void SetInformation(FleetStates state, string text, string shortenedText, IconContent imageIndex, Color backColor, Color forecolor)
 	{
 		State = state;
 		Text = text;
 		ShortenedText = shortenedText;
 		UpdateText();
-		Label.ImageIndex = (IconContent)imageIndex;
+		Label.Icon = imageIndex;
 		Label.BackColor = backColor;
 		Label.ForeColor = forecolor;
 	}
 
-	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex)
+	public void SetInformation(FleetStates state, string text, string shortenedText, IconContent imageIndex)
 	{
 		SetInformation(state, text, shortenedText, imageIndex, Colors.Transparent);
 	}
 
 	public void UpdateText()
 	{
-		// Label.Text = (!AutoShorten || _onmouse) ? Text : ShortenedText;
+		// no idea
 	}
 
 	[RelayCommand]

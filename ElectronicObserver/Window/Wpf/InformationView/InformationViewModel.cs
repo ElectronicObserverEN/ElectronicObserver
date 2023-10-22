@@ -23,8 +23,7 @@ public class InformationViewModel : AnchorableViewModel
 	private int[] _prevResource;
 
 	public string? Text { get; set; }
-	public InformationViewModel() : base("Info", "Information",
-		ImageSourceIcons.GetIcon(IconContent.FormInformation))
+	public InformationViewModel() : base("Info", "Information", IconContent.FormInformation)
 	{
 		FormInformation = Ioc.Default.GetService<FormInformationTranslationViewModel>()!;
 		Title = FormInformation.Title;
