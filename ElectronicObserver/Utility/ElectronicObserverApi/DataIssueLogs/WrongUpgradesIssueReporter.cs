@@ -12,14 +12,7 @@ using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 public class WrongUpgradesIssueReporter
-{
-	private ElectronicObserverApiService? Api { get; set; }
-
-	public WrongUpgradesIssueReporter()
-	{
-	}
-
-	public void ProcessUpgradeList(string _, dynamic data)
+{ public void ProcessUpgradeList(string _, dynamic data)
 	{
 		ElectronicObserverApiService api = Ioc.Default.GetRequiredService<ElectronicObserverApiService>();
 
@@ -44,6 +37,7 @@ public class WrongUpgradesIssueReporter
 				HelperId = (int)helper.MasterShip.ShipId
 			};
 
+			Logger.Add(2, "Reported equipment upgrade issue");
 			api.PostJson("EquipmentUpgradeIssues", report);
 		}
 	}
