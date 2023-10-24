@@ -37,7 +37,9 @@ public class WrongUpgradesIssueReporter
 				HelperId = (int)helper.MasterShip.ShipId
 			};
 
+#pragma warning disable CS4014
 			api.PostJson("EquipmentUpgradeIssues", report);
+#pragma warning restore CS4014
 		}
 	}
 
