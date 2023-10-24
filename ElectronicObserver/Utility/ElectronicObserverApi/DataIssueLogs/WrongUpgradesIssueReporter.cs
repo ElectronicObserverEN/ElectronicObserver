@@ -73,13 +73,9 @@ public class WrongUpgradesIssueReporter
 			.ToList();
 	}
 	
-	private bool IsBaseUpgradeEquipment(EquipmentId equipmentId) => equipmentId switch
-	{
-		EquipmentId.MainGunSmall_12_7cmTwinGun
-			or EquipmentId.MainGunMedium_14cmSingleGun
-			or EquipmentId.Torpedo_61cmQuadrupleTorpedo
-			or EquipmentId.DepthCharge_Type94DepthChargeProjector
-			=> true,
-		_ => false
-	};
+	private bool IsBaseUpgradeEquipment(EquipmentId equipmentId) => equipmentId is
+		EquipmentId.MainGunSmall_12_7cmTwinGun or 
+		EquipmentId.MainGunMedium_14cmSingleGun or 
+		EquipmentId.Torpedo_61cmQuadrupleTorpedo or 
+		EquipmentId.DepthCharge_Type94DepthChargeProjector;
 }

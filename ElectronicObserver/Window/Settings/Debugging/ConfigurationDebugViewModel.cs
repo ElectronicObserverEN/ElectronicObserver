@@ -23,7 +23,7 @@ public partial class ConfigurationDebugViewModel : ConfigurationViewModelBase
 
 	public string APIListPath { get; set; }
 
-	public string ElectronicObserverApiUrl { get; set; }
+	public string ElectronicObserverApiUrl { get; set; } = "";
 
 	public bool AlertOnError { get; set; }
 
