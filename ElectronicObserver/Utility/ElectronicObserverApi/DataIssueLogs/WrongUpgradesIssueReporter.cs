@@ -18,7 +18,7 @@ public class WrongUpgradesIssueReporter
 		ElectronicObserverApiService api = Ioc.Default.GetRequiredService<ElectronicObserverApiService>();
 
 		// if no helper => ignore
-		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[2];
+		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
 		if (helperId <= 0) return;
 		IShipData helper = KCDatabase.Instance.Ships[helperId];
 
