@@ -37,7 +37,6 @@ public class WrongUpgradesIssueReporter
 				HelperId = (int)helper.MasterShip.ShipId
 			};
 
-			Logger.Add(2, "Reported equipment upgrade issue");
 			api.PostJson("EquipmentUpgradeIssues", report);
 		}
 	}
