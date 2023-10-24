@@ -12,7 +12,8 @@ using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 public class WrongUpgradesIssueReporter
-{ public void ProcessUpgradeList(string _, dynamic data)
+{ 
+	public void ProcessUpgradeList(string _, dynamic data)
 	{
 		ElectronicObserverApiService api = Ioc.Default.GetRequiredService<ElectronicObserverApiService>();
 
