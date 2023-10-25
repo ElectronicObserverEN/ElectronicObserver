@@ -184,12 +184,6 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <EmbeddedResource Update="Utility\ElectronicObserverApi\ElectronicObserverApiResources.en.resx">
-	    <SubType>Designer</SubType>
-	  </EmbeddedResource>
-	</ItemGroup>
-
 	<PropertyGroup>
 		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
 		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>
