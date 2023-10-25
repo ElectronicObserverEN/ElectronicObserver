@@ -756,11 +756,11 @@ public sealed class Configuration
 			/// APIリストのパス
 			/// </summary>
 			public string APIListPath { get; set; }
-			
+
 			/// <summary>
 			/// Electronic Observer API URL
 			/// </summary>
-			public string ElectronicObserverApiUrl { get; set; }
+			public string ElectronicObserverApiUrl { get; set; } = "";
 
 			/// <summary>
 			/// エラー発生時に警告音を鳴らすか
