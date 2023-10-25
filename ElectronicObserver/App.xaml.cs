@@ -290,6 +290,7 @@ public partial class App : Application
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<TelegramTranslationViewModel>()
+			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
