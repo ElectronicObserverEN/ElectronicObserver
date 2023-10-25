@@ -775,6 +775,9 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>韓国語</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>七四式EN API URL</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
     <value>???</value>
   </data>
 </root>

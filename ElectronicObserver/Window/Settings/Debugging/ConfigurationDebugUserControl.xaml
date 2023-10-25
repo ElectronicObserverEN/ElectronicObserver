@@ -47,7 +47,11 @@
 			</Grid.ColumnDefinitions>
 
 			<TextBlock Text="{Binding Translation.Debug_ElectronicObserverApiUrl}" />
-			<TextBox Grid.Column="1" Text="{Binding ElectronicObserverApiUrl}" />
+			<TextBox
+				Grid.Column="1"
+				Text="{Binding ElectronicObserverApiUrl}"
+				ToolTip="{Binding Translation.Debug_ElectronicObserverApiUrlToolTip}"
+				/>
 		</Grid>
 	</StackPanel>
 </UserControl>
