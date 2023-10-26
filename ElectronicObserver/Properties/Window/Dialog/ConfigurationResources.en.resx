@@ -760,7 +760,6 @@ When enabled, the preview will be ignored and all compositions will be shown.</v
     <value>Electronic Observer API URL</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
-    <value>URL for the Electronic Observer API used to repport data issues.
-For more information : https://github.com/ElectronicObserverEN/ElectronicObserverDataAPI</value>
+    <value>URL for the Electronic Observer API used to repport data issues.</value>
   </data>
 </root>

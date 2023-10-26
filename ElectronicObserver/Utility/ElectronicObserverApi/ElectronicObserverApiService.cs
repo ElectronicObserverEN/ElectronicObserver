@@ -27,10 +27,7 @@ public class ElectronicObserverApiService
 		{
 			HttpResponseMessage response = await Client.PostAsJsonAsync(Path.Combine(Url, route), data);
 
-			if (!response.IsSuccessStatusCode)
-			{
-				throw new Exception($"Error {(int)response.StatusCode} {response.StatusCode}: {response}");
-			}
+			response.EnsureSuccessStatusCode();
 		}
 		catch (Exception ex)
 		{
