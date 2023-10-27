@@ -131,7 +131,7 @@ public partial class FleetViewModel : AnchorableViewModel
 			ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
 		}
 		
-		Icon = ControlFleet.State.GetIconIndex();
+		Icon = ControlFleet.State.GetIcon();
 	}
 
 	private void UpdateTimerTick()

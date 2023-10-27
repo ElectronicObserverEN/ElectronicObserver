@@ -235,7 +235,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					StateLabel state = GetStateLabel(index);
 
-					IconContent iconIndex = cond switch
+					IconContent icon = cond switch
 					{
 						< 20 => IconContent.ConditionVeryTired,
 						< 30 => IconContent.ConditionTired,
@@ -246,7 +246,7 @@ public class FleetStateViewModel : ObservableObject
 					state.SetInformation(FleetStates.Tired,
 						FormFleet.Fatigued + DateTimeHelper.ToTimeRemainString(state.Timer),
 						DateTimeHelper.ToTimeRemainString(state.Timer),
-						iconIndex,
+						icon,
 						colorInPortBG);
 
 					state.Label.ToolTip = string.Format(FormFleet.RecoveryTimeToolTip,
@@ -407,7 +407,7 @@ public class FleetStateViewModel : ObservableObject
 
 		}
 	}
-	public IconContent GetIconIndex()
+	public IconContent GetIcon()
 	{
 		StateLabel? first = StateLabels
 			.Where(s => s.Enabled)
