@@ -807,8 +807,8 @@ public partial class BattleViewModel : AnchorableViewModel
 				.Where(p => p.Stage1Enabled)
 				.ToList();
 
-			AirSuperiorityText = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
-			AirSuperiorityForeColor = (phases[1].Air.AirSuperiority switch
+			AirSuperiorityText = Constants.GetAirSuperiority(((AirState?)phases[1].Air?.AirSuperiority) ?? AirState.Unknown);
+			AirSuperiorityForeColor = (phases[1].Air?.AirSuperiority switch
 			{
 				// AS+ or AS
 				1 or 2 => Configuration.Config.UI.Color_Green,
