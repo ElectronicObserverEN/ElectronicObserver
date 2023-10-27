@@ -30,8 +30,6 @@ public class FleetPresetViewModel : AnchorableViewModel
 
 	private void ConfigurationChanged()
 	{
-		Configuration.ConfigurationData config = Configuration.Config;
-
 		foreach (FleetPresetItemViewModel item in TableControls)
 		{
 			item.ConfigurationChanged();

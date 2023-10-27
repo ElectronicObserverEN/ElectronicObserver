@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
@@ -19,26 +18,6 @@ using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Headquarters;
 
-public class HeadquarterItemViewModel : ObservableObject
-{
-	public string? Text { get; set; }
-	public string? ToolTip { get; set; }
-	public bool Visible { get; set; } = true;
-	public System.Drawing.Color BackColor { get; set; }
-	public System.Drawing.Color ForeColor { get; set; }
-	public bool Tag { get; set; }
-
-	public SolidColorBrush Foreground => ForeColor.ToBrush();
-	public SolidColorBrush Background => BackColor.ToBrush();
-}
-
-public class HQLevelViewModel : HeadquarterItemViewModel
-{
-	public int Value { get; set; }
-	public string? TextNext { get; set; }
-	public int ValueNext { get; set; }
-}
-
 public partial class HeadquartersViewModel : AnchorableViewModel
 {
 	public FormHeadquartersTranslationViewModel FormHeadquarters { get; }
@@ -49,12 +28,9 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	public Thickness WorkaroundOffset => new(0, 0, 0, WorkaroundOffsetBottom);
 	public int WorkaroundOffsetBottom { get; set; }
 
-	public FontFamily MainFont { get; set; }
-	public float MainFontSize { get; set; }
-	public SolidColorBrush MainFontColor { get; set; }
-	public FontFamily SubFont { get; set; }
+	public FontFamily? SubFont { get; set; }
 	public float SubFontSize { get; set; }
-	public SolidColorBrush SubFontColor { get; set; }
+	public SolidColorBrush? SubFontColor { get; set; }
 
 	public HeadquarterItemViewModel AdmiralName { get; } = new();
 	public HeadquarterItemViewModel AdmiralComment { get; } = new();
@@ -142,11 +118,8 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 	private void ConfigurationChanged()
 	{
-		MainFont = new(Utility.Configuration.Config.UI.MainFont.FontData.FontFamily.Name);
-		MainFontSize = Utility.Configuration.Config.UI.MainFont.FontData.ToSize();
 		SubFont = new(Utility.Configuration.Config.UI.SubFont.FontData.FontFamily.Name);
 		SubFontSize = Utility.Configuration.Config.UI.SubFont.FontData.ToSize();
-		MainFontColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 		SubFontColor = Utility.Configuration.Config.UI.SubForeColor.ToBrush();
 
 		WorkaroundOffsetBottom = Utility.Configuration.Config.FormHeadquarters.WrappingOffset;
