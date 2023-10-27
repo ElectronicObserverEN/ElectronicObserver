@@ -16,7 +16,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog.BattleDetail;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
@@ -29,8 +28,8 @@ public partial class BattleViewModel : AnchorableViewModel
 {
 	public FormBattleTranslationViewModel FormBattle { get; }
 
-	private SolidColorBrush WinRankColor_Win { get; } = Utility.Configuration.Config.UI.ForeColor.ToBrush();
-	private SolidColorBrush WinRankColor_Lose { get; } = Utility.Configuration.Config.UI.Color_Red.ToBrush();
+	private SolidColorBrush WinRankColor_Win { get; } = Configuration.Config.UI.ForeColor.ToBrush();
+	private SolidColorBrush WinRankColor_Lose { get; } = Configuration.Config.UI.Color_Red.ToBrush();
 
 	public bool ViewVisible { get; set; }
 
@@ -206,7 +205,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		{
 			if (args.PropertyName is not nameof(CompactMode)) return;
 
-			Utility.Configuration.Config.FormBattle.CompactMode = CompactMode;
+			Configuration.Config.FormBattle.CompactMode = CompactMode;
 
 			foreach (HealthBarViewModel hpBar in HPBars)
 			{
@@ -214,23 +213,23 @@ public partial class BattleViewModel : AnchorableViewModel
 			}
 		};
 
-		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
 	}
 
 	[RelayCommand]
 	private void ShowBattleDetail()
 	{
-		var bm = KCDatabase.Instance.Battle;
+		BattleManager? bm = KCDatabase.Instance.Battle;
 
 		if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined) return;
 
-		var dialog = new BattleDetailView(new BattleDetailViewModel()
+		BattleDetailView dialog = new(new BattleDetailViewModel
 		{
-			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm)
+			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm),
 		});
 
-		dialog.Show(App.Current.MainWindow);
+		dialog.Show(App.Current!.MainWindow!);
 	}
 
 	[RelayCommand]
@@ -244,20 +243,12 @@ public partial class BattleViewModel : AnchorableViewModel
 	{
 		KCDatabase db = KCDatabase.Instance;
 		BattleManager bm = db.Battle;
-		bool hideDuringBattle = Utility.Configuration.Config.FormBattle.HideDuringBattle;
-
-		/*
-		BaseLayoutPanel.SuspendLayout();
-		TableTop.SuspendLayout();
-		TableBottom.SuspendLayout();
-		*/
+		bool hideDuringBattle = Configuration.Config.FormBattle.HideDuringBattle;
 
 		switch (apiname)
 		{
 
 			case "api_port/port":
-				// BaseLayoutPanel.Visible = false;
-				// ToolTipInfo.RemoveAll();
 				ViewVisible = false;
 				PlayerFleetVisible = false;
 				break;
@@ -277,7 +268,6 @@ public partial class BattleViewModel : AnchorableViewModel
 				SetHPBar(bm.BattleDay);
 				SetDamageRate(bm);
 
-				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisible = !hideDuringBattle;
 				PlayerFleetVisible = true;
 				break;
@@ -539,45 +529,45 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			FleetEnemyForeColor = bm.Compass?.EventID switch
 			{
-				5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
+				5 => Configuration.Config.UI.Color_Red.ToBrush(),
 				_ when willMain => highlightForeColor.ToBrush(),
-				_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
+				_ => Configuration.Config.UI.ForeColor.ToBrush(),
 			};
 
 			FleetEnemyBackColor = willMain switch
 			{
 				true => highlightBackColor.ToBrush(),
-				_ => Color.Transparent.ToBrush()
+				_ => Color.Transparent.ToBrush(),
 			};
 
 			FleetEnemyEscortForeColor = willMain switch
 			{
-				true => Utility.Configuration.Config.UI.ForeColor.ToBrush(),
-				_ => highlightForeColor.ToBrush()
+				true => Configuration.Config.UI.ForeColor.ToBrush(),
+				_ => highlightForeColor.ToBrush(),
 			};
 
 			FleetEnemyEscortBackColor = willMain switch
 			{
 				true => Color.Transparent.ToBrush(),
-				_ => highlightBackColor.ToBrush()
+				_ => highlightBackColor.ToBrush(),
 			};
 		}
 		else
 		{
 			FleetEnemyForeColor = bm.Compass?.EventID switch
 			{
-				5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
-				_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
+				5 => Configuration.Config.UI.Color_Red.ToBrush(),
+				_ => Configuration.Config.UI.ForeColor.ToBrush(),
 			};
-			FleetEnemyEscortForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			FleetEnemyEscortForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 			FleetEnemyBackColor = FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
 		}
 
 		FormationForeColor = (bm.FirstBattle.Searching.EngagementForm switch
 		{
-			3 => Utility.Configuration.Config.UI.Color_Green,
-			4 => Utility.Configuration.Config.UI.Color_Red,
-			_ => Utility.Configuration.Config.UI.ForeColor
+			3 => Configuration.Config.UI.Color_Green,
+			4 => Configuration.Config.UI.Color_Red,
+			_ => Configuration.Config.UI.ForeColor,
 		}).ToBrush();
 	}
 
@@ -705,11 +695,15 @@ public partial class BattleViewModel : AnchorableViewModel
 		public bool Stage1Enabled => Enabled && Air.IsStage1Available;
 		public bool Stage2Enabled => Enabled && Air.IsStage2Available;
 
+		// this should never happen
+		private static ArgumentOutOfRangeException InvalidStage(int phase) =>
+			new($"Invalid stage {phase}.");
+
 		public bool GetEnabled(int stage) => stage switch
 		{
 			1 => Stage1Enabled,
 			2 => Stage2Enabled,
-			_ => throw new ArgumentOutOfRangeException(),
+			_ => throw InvalidStage(stage),
 		};
 
 		public int GetAircraftLost(int stage, bool isFriend) => stage switch
@@ -720,7 +714,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			2 when isFriend => Air.AircraftLostStage2Friend,
 			2 => Air.AircraftLostStage2Enemy,
 
-			_ => throw new ArgumentOutOfRangeException(),
+			_ => throw InvalidStage(stage),
 		};
 
 		public int GetAircraftTotal(int stage, bool isFriend) => stage switch
@@ -731,7 +725,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			2 when isFriend => Air.AircraftTotalStage2Friend,
 			2 => Air.AircraftTotalStage2Enemy,
 
-			_ => throw new ArgumentOutOfRangeException(),
+			_ => throw InvalidStage(stage),
 		};
 
 		public int GetTouchAircraft(bool isFriend) => isFriend switch
@@ -741,7 +735,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		};
 	}
 
-	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1)
+	private void SetAerialWarfare(PhaseAirBattleBase? phaseJet, PhaseAirBattleBase phase1)
 		=> SetAerialWarfare(phaseJet, phase1, null);
 
 	/// <summary>
@@ -750,7 +744,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <param name="phaseJet">噴式航空戦のデータ。発生していなければ null</param>
 	/// <param name="phase1">第一次航空戦（通常航空戦）のデータ。</param>
 	/// <param name="phase2">第二次航空戦のデータ。発生していなければ null</param>
-	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase? phase2)
+	private void SetAerialWarfare(PhaseAirBattleBase? phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase? phase2)
 	{
 		List<AerialWarfareFormatter> phases = new()
 		{
@@ -789,9 +783,9 @@ public partial class BattleViewModel : AnchorableViewModel
 			if (phasesEnabled.Any(p =>
 				p.GetAircraftTotal(stage, isFriend) > 0 &&
 				p.GetAircraftLost(stage, isFriend) == p.GetAircraftTotal(stage, isFriend)))
-				labelForeColor = Utility.Configuration.Config.UI.Color_Red.ToBrush();
+				labelForeColor = Configuration.Config.UI.Color_Red.ToBrush();
 			else
-				labelForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+				labelForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 
 			labelIcon = null;
 
@@ -816,11 +810,11 @@ public partial class BattleViewModel : AnchorableViewModel
 			AirSuperiorityForeColor = (phases[1].Air.AirSuperiority switch
 			{
 				// AS+ or AS
-				1 or 2 => Utility.Configuration.Config.UI.Color_Green,
+				1 or 2 => Configuration.Config.UI.Color_Green,
 				// AI or AI-
-				3 or 4 => Utility.Configuration.Config.UI.Color_Red,
+				3 or 4 => Configuration.Config.UI.Color_Red,
 
-				_ => Utility.Configuration.Config.UI.ForeColor,
+				_ => Configuration.Config.UI.ForeColor,
 			}).ToBrush();
 
 			AirSuperiorityToolTip = needAppendInfo switch
@@ -853,28 +847,21 @@ public partial class BattleViewModel : AnchorableViewModel
 				return (toolTip, icon);
 			}
 
-			// SetTouch(AirStage1Friend, true);
-			// SetTouch(AirStage1Enemy, false);
-
 			(AirStage1FriendToolTip, AirStage1FriendIcon) = SetTouch(true, AirStage1FriendToolTip);
 			(AirStage1EnemyToolTip, AirStage1EnemyIcon) = SetTouch(false, AirStage1EnemyToolTip);
 		}
 		else
 		{
-
 			AirSuperiorityText = Constants.GetAirSuperiority(-1);
 			AirSuperiorityToolTip = null;
 
-			// ClearAircraftLabel(AirStage1Friend);
-			// ClearAircraftLabel(AirStage1Enemy);
-
 			AirStage1FriendText = "-";
-			AirStage1FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			AirStage1FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage1FriendIcon = null;
 			AirStage1FriendToolTip = null;
 
 			AirStage1EnemyText = "-";
-			AirStage1EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			AirStage1EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage1EnemyIcon = null;
 			AirStage1EnemyToolTip = null;
 		}
@@ -914,12 +901,12 @@ public partial class BattleViewModel : AnchorableViewModel
 			// ClearAircraftLabel(AirStage2Friend);
 			// ClearAircraftLabel(AirStage2Enemy);
 			AirStage2FriendText = "-";
-			AirStage2FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			AirStage2FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage2FriendIcon = null;
 			AirStage2FriendToolTip = null;
 
 			AirStage2EnemyText = "-";
-			AirStage2EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			AirStage2EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage2EnemyIcon = null;
 			AirStage2EnemyToolTip = null;
 
@@ -938,22 +925,22 @@ public partial class BattleViewModel : AnchorableViewModel
 		// ClearAircraftLabel(AirStage2Enemy);
 
 		AirStage1FriendText = "-";
-		AirStage1FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+		AirStage1FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 		AirStage1FriendIcon = null;
 		AirStage1FriendToolTip = null;
 
 		AirStage1EnemyText = "-";
-		AirStage1EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+		AirStage1EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 		AirStage1EnemyIcon = null;
 		AirStage1EnemyToolTip = null;
 
 		AirStage2FriendText = "-";
-		AirStage2FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+		AirStage2FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 		AirStage2FriendIcon = null;
 		AirStage2FriendToolTip = null;
 
 		AirStage2EnemyText = "-";
-		AirStage2EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+		AirStage2EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 		AirStage2EnemyIcon = null;
 		AirStage2EnemyToolTip = null;
 
@@ -1057,8 +1044,8 @@ public partial class BattleViewModel : AnchorableViewModel
 
 				bar.BackColor = isEscaped switch
 				{
-					true => Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped,
-					_ => Color.Transparent
+					true => Configuration.Config.UI.Battle_ColorHPBarsEscaped,
+					_ => Color.Transparent,
 				};
 				// bar.RepaintHPtext();
 			}
@@ -1134,8 +1121,8 @@ public partial class BattleViewModel : AnchorableViewModel
 
 					bar.BackColor = isEscaped switch
 					{
-						true => Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped,
-						_ => Color.Transparent
+						true => Configuration.Config.UI.Battle_ColorHPBarsEscaped,
+						_ => Color.Transparent,
 					};
 					// bar.RepaintHPtext();
 				}
@@ -1248,8 +1235,8 @@ public partial class BattleViewModel : AnchorableViewModel
 		{
 			HPBars[BattleIndex.EnemyMain1].BackColor = bd.Initial.IsBossDamaged switch
 			{
-				true => Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged,
-				_ => Color.Transparent
+				true => Configuration.Config.UI.Battle_ColorHPBarsBossDamaged,
+				_ => Color.Transparent,
 			};
 		}
 
@@ -1257,14 +1244,14 @@ public partial class BattleViewModel : AnchorableViewModel
 		{
 			foreach (int i in bd.MVPShipIndexes)
 			{
-				HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+				HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 			}
 
 			if (isFriendCombined)
 			{
 				foreach (int i in bd.MVPShipCombinedIndexes)
 				{
-					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 				}
 			}
 		}
@@ -1277,7 +1264,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	private void MoveHPBar(bool hasFriend7thShip)
 	{
 
-		if (Utility.Configuration.Config.FormBattle.Display7thAsSingleLine && hasFriend7thShip)
+		if (Configuration.Config.FormBattle.Display7thAsSingleLine && hasFriend7thShip)
 		{
 			if (_hpBarMoved) return;
 
@@ -1323,9 +1310,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			WinRankText = Constants.GetWinRank(rank);
 			WinRankForeColor = rank >= 4 ? WinRankColor_Win : WinRankColor_Lose;
 		}
-
-		// WinRank.MinimumSize = Utility.Configuration.Config.UI.IsLayoutFixed ? new Size(DefaultBarSize.Width, 0) : new Size(HPBars[0].Width, 0);
-
 	}
 
 	/// <summary>
@@ -1344,7 +1328,7 @@ public partial class BattleViewModel : AnchorableViewModel
 				IShipData ship = fleet.MembersInstance[index];
 
 				AirStage1FriendText = "#" + (index + (pd.IsFriendEscort ? 6 : 0) + 1);
-				AirStage1FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+				AirStage1FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage1FriendIcon = EquipmentIconType.Searchlight;
 				AirStage1FriendToolTip = GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel;
 			}
@@ -1360,7 +1344,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			if (index != -1)
 			{
 				AirStage1EnemyText = "#" + (index + (pd.IsEnemyEscort ? 6 : 0) + 1);
-				AirStage1EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+				AirStage1EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage1EnemyIcon = EquipmentIconType.Searchlight;
 				AirStage1EnemyToolTip = GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass;
 			}
@@ -1400,7 +1384,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			if (index != -1)
 			{
 				AirStage2FriendText = "#" + (index + 1);
-				AirStage2FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+				AirStage2FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage2FriendIcon = EquipmentIconType.StarShell;
 				AirStage2FriendToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareFriendInstance.NameWithLevel;
 
@@ -1417,7 +1401,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			if (index != -1)
 			{
 				AirStage2EnemyText = "#" + (index + 1);
-				AirStage2EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+				AirStage2EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage2EnemyIcon = EquipmentIconType.StarShell;
 				AirStage2EnemyToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass;
 			}
@@ -1456,11 +1440,11 @@ public partial class BattleViewModel : AnchorableViewModel
 		{
 			if (friend.EscapedShipList.Contains(friend.Members[i]))
 			{
-				HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
+				HPBars[i].BackColor = Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 			}
 			else if (br.MVPIndex == i + 1)
 			{
-				HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+				HPBars[i].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 			}
 			else
 			{
@@ -1474,11 +1458,11 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				if (escort.EscapedShipList.Contains(escort.Members[i]))
 				{
-					HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
+					HPBars[i + 6].BackColor = Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 				}
 				else if (br.MVPIndexCombined == i + 1)
 				{
-					HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+					HPBars[i + 6].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 				}
 				else
 				{
@@ -1493,7 +1477,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	{
 		Configuration.ConfigurationData config = Configuration.Config;
 
-		System.Drawing.Color[] colorScheme = config.UI.BarColorScheme
+		Color[] colorScheme = config.UI.BarColorScheme
 			.Select(col => col.ColorData)
 			.ToArray();
 
