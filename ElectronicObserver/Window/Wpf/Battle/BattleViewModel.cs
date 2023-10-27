@@ -708,30 +708,31 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		public int GetAircraftLost(int stage, bool isFriend) => stage switch
 		{
-			1 when isFriend => Air.AircraftLostStage1Friend,
-			1 => Air.AircraftLostStage1Enemy,
+			1 when isFriend && Enabled => Air.AircraftLostStage1Friend,
+			1 when Enabled => Air.AircraftLostStage1Enemy,
 
-			2 when isFriend => Air.AircraftLostStage2Friend,
-			2 => Air.AircraftLostStage2Enemy,
+			2 when isFriend && Enabled => Air.AircraftLostStage2Friend,
+			2 when Enabled => Air.AircraftLostStage2Enemy,
 
 			_ => throw InvalidStage(stage),
 		};
 
 		public int GetAircraftTotal(int stage, bool isFriend) => stage switch
 		{
-			1 when isFriend => Air.AircraftTotalStage1Friend,
-			1 => Air.AircraftTotalStage1Enemy,
+			1 when isFriend && Enabled => Air.AircraftTotalStage1Friend,
+			1 when Enabled => Air.AircraftTotalStage1Enemy,
 
-			2 when isFriend => Air.AircraftTotalStage2Friend,
-			2 => Air.AircraftTotalStage2Enemy,
+			2 when isFriend && Enabled => Air.AircraftTotalStage2Friend,
+			2 when Enabled => Air.AircraftTotalStage2Enemy,
 
 			_ => throw InvalidStage(stage),
 		};
 
 		public int GetTouchAircraft(bool isFriend) => isFriend switch
 		{
-			true => Air.TouchAircraftFriend,
-			_ => Air.TouchAircraftEnemy,
+			true when Enabled => Air.TouchAircraftFriend,
+			_ when Enabled => Air.TouchAircraftEnemy,
+			_ => throw new NotImplementedException(),
 		};
 	}
 
