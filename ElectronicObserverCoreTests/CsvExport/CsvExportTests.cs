@@ -101,7 +101,7 @@ public class CsvExportTests
 		IShipDataMaster? defender = null;
 		int attackType = 0;
 
-		for (int i = 0; i < eoHeaders.Length; i++)
+		for (int i = 0; i < logbookHeaders.Length; i++)
 		{
 			Assert.Equal(logbookHeaders[i], eoHeaders[i]);
 

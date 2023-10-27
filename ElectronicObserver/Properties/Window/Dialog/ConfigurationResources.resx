@@ -774,4 +774,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Language_Korean" xml:space="preserve">
     <value>韓国語</value>
   </data>
+  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>七四式EN API URL</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
+    <value>データ問題を報告するために使用される七四式EN APIのURL</value>
+  </data>
 </root>

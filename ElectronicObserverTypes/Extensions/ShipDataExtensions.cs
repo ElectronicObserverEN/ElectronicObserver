@@ -193,12 +193,12 @@ public static class ShipDataExtensions
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.StarShell);
 
 	public static bool HasSearchlight(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.MasterEquipment.CategoryType switch
-		{
-			EquipmentTypes.Searchlight => true,
-			EquipmentTypes.SearchlightLarge => true,
-			_ => false
-		});
+		.Any(e => e?.MasterEquipment.CategoryType is
+			EquipmentTypes.Searchlight or
+			EquipmentTypes.SearchlightLarge);
+
+	public static bool HasLargeSearchlight(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.SearchlightLarge);
 
 	public static int HighAngleGunCount(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsHighAngleGun is true);

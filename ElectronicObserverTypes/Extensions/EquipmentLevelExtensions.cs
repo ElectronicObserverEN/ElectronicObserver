@@ -16,11 +16,12 @@ public static class EquipmentLevelExtensions
 			EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron or
 			EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62 or
 			EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel63 or
-			EquipmentId.CarrierBasedBomber_Type0FighterModel64_TwoseatwKMX => 0.25,
+			EquipmentId.CarrierBasedBomber_Type0FighterModel64_TwoseatwKMX or
+			EquipmentId.CarrierBasedBomber_Type0FighterModel64_SkilledFighterBomber => 0.25,
 
-			_ => 0
+			_ => 0,
 		},
 
-		_ => 0
+		_ => 0,
 	};
 }

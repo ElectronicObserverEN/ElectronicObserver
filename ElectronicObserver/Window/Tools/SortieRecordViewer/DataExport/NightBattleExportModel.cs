@@ -27,5 +27,9 @@ public record NightBattleExportModel
 	public ShipExportModel Defender { get; init; }
 	public string FleetType { get; init; }
 	public string EnemyFleetType { get; init; }
+	public int? PlayerSearchlightShipIndex { get; init; }
+	public int? PlayerSearchlightEquipmentId { get; init; }
+	public int? EnemySearchlightShipIndex { get; init; }
+	public int? EnemySearchlightEquipmentId { get; init; }
 }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
