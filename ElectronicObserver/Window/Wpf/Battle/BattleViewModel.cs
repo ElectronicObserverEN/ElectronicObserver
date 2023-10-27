@@ -692,7 +692,11 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		[MemberNotNullWhen(true, nameof(Air))]
 		public bool Enabled => Air is { IsAvailable: true };
+
+		[MemberNotNullWhen(true, nameof(Air))]
 		public bool Stage1Enabled => Enabled && Air.IsStage1Available;
+
+		[MemberNotNullWhen(true, nameof(Air))]
 		public bool Stage2Enabled => Enabled && Air.IsStage2Available;
 
 		// this should never happen
@@ -820,7 +824,8 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			AirSuperiorityToolTip = needAppendInfo switch
 			{
-				true => string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n")),
+				true => string.Join("", phases1.Select(p =>
+					$"{p.PhaseName}{Constants.GetAirSuperiority(((AirState?)p.Air?.AirSuperiority) ?? AirState.Unknown)}\r\n")),
 				_ => null,
 			};
 
@@ -880,17 +885,28 @@ public partial class BattleViewModel : AnchorableViewModel
 			(AirStage2EnemyText, AirStage2EnemyToolTip, AirStage2EnemyForeColor, AirStage2EnemyIcon) =
 				SetShootdown(2, false, needAppendInfo);
 
-			if (phases2.Any(p => p.Air.IsAACutinAvailable))
+			if (phases2.Any(p => p.Air?.IsAACutinAvailable ?? false))
 			{
-				AACutinText = "#" + string.Join("/", phases2.Select(p => p.Air.IsAACutinAvailable ? (p.Air.AACutInIndex + 1).ToString() : "-"));
+				AACutinText = "#" + string.Join("/", phases2.Select(p => p.Air?.IsAACutinAvailable switch
+				{
+					true => (p.Air.AACutInIndex + 1).ToString(),
+					_ => "-",
+				}));
 				AACutinIcon = EquipmentIconType.HighAngleGun;
 
 				string ConditionDisplay(int id) => AntiAirCutIn.FromId(id).EquipmentConditionsMultiLineDisplay();
 
 				AACutinToolTip = FormBattle.AACI + "\r\n" + string.Join("\r\n", phases2
-					.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ?
-						$"{p.Air.AACutInShipName}\r\n{FormBattle.AACIType}{p.Air.AACutInKind}\n{ConditionDisplay(p.Air.AACutInKind)}"
-						: FormBattle.DidNotActivate)));
+					.Select(p => p.PhaseName + (p.Air?.IsAACutinAvailable switch
+					{
+						true => $"""
+							{p.Air.AACutInShipName}
+							{FormBattle.AACIType}{p.Air.AACutInKind}
+							{ConditionDisplay(p.Air.AACutInKind)}
+							""",
+
+						_ => FormBattle.DidNotActivate,
+					})));
 			}
 			else
 			{
@@ -899,8 +915,6 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 		else
 		{
-			// ClearAircraftLabel(AirStage2Friend);
-			// ClearAircraftLabel(AirStage2Enemy);
 			AirStage2FriendText = "-";
 			AirStage2FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage2FriendIcon = null;
