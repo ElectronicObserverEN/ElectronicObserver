@@ -879,6 +879,19 @@
 				</DataTemplate>
 			</DockingManager.DocumentHeaderTemplate>
 
+			<DockingManager.IconContentTemplate>
+				<DataTemplate DataType="LayoutAnchorable">
+					<StackPanel Orientation="Horizontal">
+						<Image
+							Width="16"
+							Height="16"
+							Margin="0 0 4 0"
+							Source="{Binding IconSource}"
+							/>
+					</StackPanel>
+				</DataTemplate>
+			</DockingManager.IconContentTemplate>
+
 			<DockingManager.LayoutItemContainerStyleSelector>
 				<local:ViewStyleSelector>
 					<local:ViewStyleSelector.AnchorableStyle>
