@@ -881,14 +881,12 @@
 
 			<DockingManager.IconContentTemplate>
 				<DataTemplate DataType="LayoutAnchorable">
-					<StackPanel Orientation="Horizontal">
-						<Image
-							Width="16"
-							Height="16"
-							Margin="0 0 4 0"
-							Source="{Binding IconSource}"
-							/>
-					</StackPanel>
+					<Image
+						Width="16"
+						Height="16"
+						Margin="0 0 4 0"
+						Source="{Binding IconSource}"
+						/>
 				</DataTemplate>
 			</DockingManager.IconContentTemplate>
 
