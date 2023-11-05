@@ -20,13 +20,7 @@ internal class GadgetUrlHandler : ResourceRequestHandler
 	{
 		if (request.Url.Contains(@"gadget_html5"))
 		{
-			return GadgetBypassServer switch
-			{
-				GadgetServerOptions.Wiki => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl()),
-				GadgetServerOptions.EO => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl()),
-				GadgetServerOptions.Custom => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl(GadgetBypassServerCustom)),
-				_ => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl()),
-			};
+			return new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl(GadgetBypassServerCustom));
 		}
 
 		return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
