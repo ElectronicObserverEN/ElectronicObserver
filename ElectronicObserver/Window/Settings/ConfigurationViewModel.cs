@@ -7,7 +7,6 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
@@ -97,7 +96,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 
 		if (errors.Any())
 		{
-			string caption = DialogConfiguration.DialogCaptionErrorTitle;
+			string caption = ConfigurationResources.DialogCaptionErrorTitle;
 			string errorMessage = string.Join("\n", errors);
 
 			MessageBox.Show(App.Current!.MainWindow!, errorMessage, caption, MessageBoxButton.OK, MessageBoxImage.Error);

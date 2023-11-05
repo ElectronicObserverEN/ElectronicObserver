@@ -4,18 +4,19 @@ using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
 public class EquipmentDataViewModel : ObservableObject
 {
-	public IEquipmentDataMaster Equipment { get; }
+	public IEquipmentDataMaster Equipment { get; private set; }
 
 	public string EquipmentIdToolTip => string.Format("Type: [ {0} ]", string.Join(", ", Equipment.EquipmentType));
 
-	public string EquipmentNameToolTip => Properties.Window.Dialog.DialogAlbumMasterEquipment.RightClickToCopy;
+	public string EquipmentNameToolTip => AlbumMasterEquipmentResources.RightClickToCopy;
 
 	public string EquipmentTypeToolTip => GetEquippableShips(Equipment);
 
@@ -53,9 +54,21 @@ public class EquipmentDataViewModel : ObservableObject
 		_ => 4
 	};
 
+	public AlbumMasterEquipmentUpgradeViewModel UpgradeViewModel { get; private set; }
+
 	public EquipmentDataViewModel(IEquipmentDataMaster equipment)
 	{
 		Equipment = equipment;
+
+		UpgradeViewModel = new(equipment);
+	}
+
+	public void ChangeEquipment(IEquipmentDataMaster equipment)
+	{
+		Equipment = equipment;
+
+		UpgradeViewModel.UnsubscribeFromApis();
+		UpgradeViewModel = new(equipment);
 	}
 
 	private string GetEquippableShips(IEquipmentDataMaster eq)
@@ -63,11 +76,11 @@ public class EquipmentDataViewModel : ObservableObject
 		KCDatabase db = KCDatabase.Instance;
 
 		StringBuilder sb = new();
-		sb.AppendLine($"{Properties.Window.Dialog.DialogAlbumMasterEquipment.Equippable}:");
+		sb.AppendLine($"{AlbumMasterEquipmentResources.Equippable}:");
 
 		int eqCategory = (int)eq.CategoryType;
 
-		var specialShips = new Dictionary<ShipTypes, List<string>>();
+		Dictionary<ShipTypes, List<string>> specialShips = new();
 
 		foreach (ShipDataMaster ship in db.MasterShips.Values.Where(s => s.SpecialEquippableCategories != null))
 		{
@@ -89,26 +102,67 @@ public class EquipmentDataViewModel : ObservableObject
 			{
 				sb.Append(shiptype.NameEN);
 
-				if (specialShips.ContainsKey(shiptype.Type))
+				if (specialShips.TryGetValue(shiptype.Type, out List<string>? ship))
 				{
-					sb.Append(" (").Append(string.Join(", ", specialShips[shiptype.Type]))
-						.Append($"{Properties.Window.Dialog.DialogAlbumMasterEquipment.Excluding})");
+					sb.Append(" (").Append(string.Join(", ", ship))
+						.Append($"{AlbumMasterEquipmentResources.Excluding})");
 				}
 
 				sb.AppendLine();
 			}
 			else
 			{
-				if (specialShips.ContainsKey(shiptype.Type))
+				if (specialShips.TryGetValue(shiptype.Type, out List<string>? ship))
 				{
-					sb.Append("○ ").AppendLine(string.Join(", ", specialShips[shiptype.Type]));
+					sb.Append("○ ").AppendLine(string.Join(", ", ship));
 				}
 			}
 		}
 
-		if (eq.EquippableShipsAtExpansion.Any())
-			sb.Append($"[{Properties.Window.Dialog.DialogAlbumMasterEquipment.ExpansionSlot}] ").AppendLine(
-				string.Join(", ", eq.EquippableShipsAtExpansion.Select(id => db.MasterShips[id].NameWithClass)));
+		string? ships = eq.EquippableShipsAtExpansion.Any() switch
+		{
+			true => string.Join(", ", eq.EquippableShipsAtExpansion
+				.Select(id => db.MasterShips[(int)id].NameWithClass)),
+			_ => null,
+		};
+
+		string? shipsTypes = eq.EquippableShipTypesAtExpansion.Any() switch
+		{
+			true => string.Join(", ", eq.EquippableShipTypesAtExpansion
+				.Select(id => id switch
+				{
+					ShipTypes.All => id.Display(),
+					_ => db.ShipTypes[(int)id].NameEN,
+				})),
+			_ => null,
+		};
+
+		string? shipsClasses = eq.EquippableShipClassesAtExpansion.Any() switch
+		{
+			true => string.Join(", ", eq.EquippableShipClassesAtExpansion
+				.Select(c => Constants.GetShipClass(c))),
+			_ => null,
+		};
+
+		if (ships is not null || shipsTypes is not null || shipsClasses is not null)
+		{
+			sb.AppendLine($"[{AlbumMasterEquipmentResources.ExpansionSlot}]");
+		}
+
+		if (ships is not null)
+		{
+			sb.AppendLine(ships);
+		}
+
+		if (shipsTypes is not null)
+		{
+			sb.AppendLine(shipsTypes);
+		}
+
+		if (shipsClasses is not null)
+		{
+			sb.AppendLine(shipsClasses);
+		}
 
 		return sb.ToString();
 	}

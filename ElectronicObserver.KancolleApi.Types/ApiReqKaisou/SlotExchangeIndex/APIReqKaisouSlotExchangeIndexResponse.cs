@@ -5,10 +5,8 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqKaisou.SlotExchangeIndex;
 public class ApiReqKaisouSlotExchangeIndexResponse
 {
 	[JsonPropertyName("api_ship_data")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public ApiShipData? ApiShipData { get; set; } = default!;
+	public ApiShipData? ApiShipData { get; set; }
 
 	[JsonPropertyName("api_slot")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiSlot { get; set; } = default!;
+	public List<int>? ApiSlot { get; set; }
 }

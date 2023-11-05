@@ -1,52 +1,51 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ElectronicObserver.Properties.Window;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 
 public enum HeadquartersItem
 {
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameName")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameName")]
 	Name,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameComment")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameComment")]
 	Comment,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameHQLevel")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameHQLevel")]
 	HeadquartersLevel,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameShipSlots")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameShipSlots")]
 	ShipSlots,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameEquipmentSlots")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameEquipmentSlots")]
 	EquipmentSlots,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameInstantRepair")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameInstantRepair")]
 	InstantRepair,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameInstantConstruction")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameInstantConstruction")]
 	InstantConstruction,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameDevelopmentMaterial")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameDevelopmentMaterial")]
 	DevelopmentMaterial,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameImproveMaterial")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameImproveMaterial")]
 	ImprovementMaterial,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameFurnitureCoin")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameFurnitureCoin")]
 	FurnitureCoins,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameFuel")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameFuel")]
 	Fuel,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameAmmo")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameAmmo")]
 	Ammo,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameSteel")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameSteel")]
 	Steel,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameBauxite")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameBauxite")]
 	Bauxite,
 
-	[Display(ResourceType = typeof(FormHeadQuarters), Name = "ItemNameOtherItem")]
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameOtherItem")]
 	OtherItem,
 }

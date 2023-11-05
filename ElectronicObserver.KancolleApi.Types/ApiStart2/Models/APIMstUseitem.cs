@@ -3,28 +3,20 @@
 public class ApiMstUseitem
 {
 	[JsonPropertyName("api_category")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCategory { get; set; } = default!;
+	public int ApiCategory { get; set; }
 
 	[JsonPropertyName("api_description")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<string> ApiDescription { get; set; } = new();
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_price")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiPrice { get; set; } = default!;
+	public int ApiPrice { get; set; }
 
 	[JsonPropertyName("api_usetype")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiUsetype { get; set; } = default!;
+	public int ApiUsetype { get; set; }
 }

@@ -30,7 +30,7 @@ public class EquipmentSlotViewModel : ObservableObject
 		Name = equipment?.MasterEquipment.Name switch
 		{
 			string s => Db.Translation.Equipment.Name(s),
-			_ => FleetImageGenerator.Empty,
+			_ => FleetImageGeneratorResources.Empty,
 		};
 		Level = equipment?.Level ?? 0;
 		AircraftLevel = equipment?.AircraftLevel ?? 0;

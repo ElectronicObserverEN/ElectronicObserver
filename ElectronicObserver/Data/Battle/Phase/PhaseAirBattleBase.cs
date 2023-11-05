@@ -83,8 +83,8 @@ public abstract class PhaseAirBattleBase : PhaseBase
 		if (data == null || !data.IsArray)
 			return new int[0];
 
-		var planes = (dynamic[])data;
-		if (index < planes.Length)
+		var planes = (dynamic[]?)data;
+		if (index < planes?.Length)
 		{
 			var plane = (int[])planes[index];
 

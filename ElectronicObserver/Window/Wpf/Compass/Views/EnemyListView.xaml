@@ -1,41 +1,87 @@
-﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Compass.Views.EnemyListView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Compass.Views"
-
-             x:Name="EnemyListControl"
-
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Wpf.Compass.Views.EnemyListView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="EnemyListControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
 	<ScrollViewer DataContext="{Binding ViewModel, ElementName=EnemyListControl}" HorizontalScrollBarVisibility="Auto">
-		<ItemsControl ItemsSource="{Binding EnemyFleetCandidate}" Margin="2">
+		<ItemsControl Margin="2" ItemsSource="{Binding EnemyFleetCandidate}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<StackPanel CanHorizontallyScroll="True" Orientation="Horizontal" />
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
+
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<Border BorderThickness="1" BorderBrush="#444" Padding="2">
-							<ItemsControl ItemsSource="{Binding FleetMember}">
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<TextBlock Text="{Binding Name}" MaxWidth="{Binding MaxNameWidth}" TextTrimming="CharacterEllipsis" ToolTip="{Binding NameToolTip}" Foreground="{Binding ShipNameBrush}">
-											<TextBlock.InputBindings>
-												<MouseBinding MouseAction="RightClick" Command="{Binding OpenShipEncyclopediaCommand}" CommandParameter="{Binding ShipId}" />
-											</TextBlock.InputBindings>
-										</TextBlock>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
+						<Border
+							Padding="2"
+							BorderBrush="#444"
+							BorderThickness="1"
+							>
+							<StackPanel Orientation="Horizontal">
+								<ItemsControl
+									Margin="0 0 3 0"
+									ItemsSource="{Binding EscortFleetMember}"
+									Visibility="{Binding Path=HasEscortFleet, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
+									>
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<TextBlock
+												MaxWidth="{Binding MaxNameWidth}"
+												Foreground="{Binding ShipNameBrush}"
+												Text="{Binding Name}"
+												TextTrimming="CharacterEllipsis"
+												ToolTip="{Binding NameToolTip}"
+												>
+												<TextBlock.InputBindings>
+													<MouseBinding
+														Command="{Binding OpenShipEncyclopediaCommand}"
+														CommandParameter="{Binding ShipId}"
+														MouseAction="RightClick"
+														/>
+												</TextBlock.InputBindings>
+											</TextBlock>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+								<ItemsControl ItemsSource="{Binding MainFleetMember}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<TextBlock
+												MaxWidth="{Binding MaxNameWidth}"
+												Foreground="{Binding ShipNameBrush}"
+												Text="{Binding Name}"
+												TextTrimming="CharacterEllipsis"
+												ToolTip="{Binding NameToolTip}"
+												>
+												<TextBlock.InputBindings>
+													<MouseBinding
+														Command="{Binding OpenShipEncyclopediaCommand}"
+														CommandParameter="{Binding ShipId}"
+														MouseAction="RightClick"
+														/>
+												</TextBlock.InputBindings>
+											</TextBlock>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</StackPanel>
 						</Border>
-						<Border BorderThickness="1 0 1 1" BorderBrush="#444" Padding="2">
+						<Border
+							Padding="2"
+							BorderBrush="#444"
+							BorderThickness="1 0 1 1"
+							>
 							<StackPanel>
-								<TextBlock Text="{Binding Formation}" TextAlignment="Right" />
+								<TextBlock Text="{Binding FormationString}" TextAlignment="Right" />
 								<Border Background="Transparent" ToolTip="{Binding AirToolTip}">
 									<Grid HorizontalAlignment="Right">
 										<Grid.ColumnDefinitions>
@@ -43,8 +89,16 @@
 											<ColumnDefinition Width="Auto" />
 										</Grid.ColumnDefinitions>
 
-										<Image Grid.Column="0" Source="{Binding AirIcon}" Margin="2" />
-										<TextBlock Grid.Column="1" Text="{Binding Air}" Margin="2" />
+										<common:EquipmentIcon
+											Grid.Column="0"
+											Margin="2"
+											Type="{Binding AirIcon}"
+											/>
+										<TextBlock
+											Grid.Column="1"
+											Margin="2"
+											Text="{Binding Air}"
+											/>
 									</Grid>
 								</Border>
 							</StackPanel>

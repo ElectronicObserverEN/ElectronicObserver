@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -10,7 +11,12 @@ public class DataAndTranslationManager
 	public static string DataFolder => Path.Combine(WorkingFolder, "Data");
 	public static string TranslationFolder => Path.Combine(WorkingFolder, "Translations", CurrentTranslationLanguage);
 
-	public static string CurrentTranslationLanguage => "en-US";
+	public static string CurrentTranslationLanguage => Configuration.Config.UI.Culture switch
+	{
+		// Japanese translations don't exist, so fall back to English
+		"ja-JP" => "en-US",
+		string culture => culture,
+	};
 
 	public DestinationData Destination { get; private set; }
 	public QuestTranslationData Quest { get; private set; }
@@ -22,9 +28,13 @@ public class DataAndTranslationManager
 	public FitBonusData FitBonus { get; private set; }
 	public EquipmentUpgradeData EquipmentUpgrade { get; private set; }
 
+	public DataAndTranslationIssueReporter DataAndTranslationIssueReporter { get; }
+
 	public DataAndTranslationManager()
 	{
 		Initialize();
+
+		DataAndTranslationIssueReporter = new();
 	}
 
 	public void Initialize()

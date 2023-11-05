@@ -6,7 +6,7 @@ namespace ElectronicObserverTypes.Extensions;
 
 public static class EquipmentTypesExtensions
 {
-	public static IEnumerable<EquipmentTypes> ToTypes(this EquipmentTypeGroup group) 
+	public static IEnumerable<EquipmentTypes> ToTypes(this EquipmentTypeGroup group)
 		=> Enum.GetValues<EquipmentTypes>()
 			.Where(e => e.ToGroup() == group);
 
@@ -76,13 +76,14 @@ public static class EquipmentTypesExtensions
 		EquipmentTypes.Ration or
 		EquipmentTypes.Supplies or
 		EquipmentTypes.TransportMaterial or
-		EquipmentTypes.SubmarineEquipment or 
-		EquipmentTypes.ArmyInfantry => EquipmentTypeGroup.Other,
+		EquipmentTypes.SubmarineEquipment or
+		EquipmentTypes.ArmyInfantry or
+		EquipmentTypes.SurfaceShipEquipment => EquipmentTypeGroup.Other,
 
 		EquipmentTypes.LandingCraft or
 		EquipmentTypes.TransportContainer or
 		EquipmentTypes.SpecialAmphibiousTank => EquipmentTypeGroup.Transport,
 
-		_ => EquipmentTypeGroup.Other
+		_ => EquipmentTypeGroup.Other,
 	};
 }

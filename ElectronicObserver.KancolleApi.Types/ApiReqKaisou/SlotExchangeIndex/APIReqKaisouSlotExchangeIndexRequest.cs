@@ -3,22 +3,14 @@
 public class ApiReqKaisouSlotExchangeIndexRequest
 {
 	[JsonPropertyName("api_dst_idx")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDstIdx { get; set; } = default!;
+	public string ApiDstIdx { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiId { get; set; } = default!;
+	public string ApiId { get; set; } = "";
 
 	[JsonPropertyName("api_src_idx")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSrcIdx { get; set; } = default!;
+	public string ApiSrcIdx { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

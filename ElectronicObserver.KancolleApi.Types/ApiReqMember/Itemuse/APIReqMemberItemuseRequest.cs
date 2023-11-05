@@ -3,22 +3,14 @@
 public class ApiReqMemberItemuseRequest
 {
 	[JsonPropertyName("api_exchange_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiExchangeType { get; set; } = default!;
+	public string ApiExchangeType { get; set; } = "";
 
 	[JsonPropertyName("api_force_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiForceFlag { get; set; } = default!;
+	public string ApiForceFlag { get; set; } = "";
 
 	[JsonPropertyName("api_useitem_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiUseitemId { get; set; } = default!;
+	public string ApiUseitemId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

@@ -1,17 +1,21 @@
-﻿<Window x:Class="ElectronicObserver.Window.Dialog.DialogKancolleProgressWpf"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:kancolleProgress="clr-namespace:KancolleProgress;assembly=KancolleProgress"
-        mc:Ignorable="d"
-
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True"
-
-        Title="Ship Progression List"
-		WindowState="Maximized"
-        Loaded="Window_Loaded">
-
-	<kancolleProgress:KancolleProgressView Name="KancolleProgress" Height="auto" Width="auto" />
+﻿<Window
+	x:Class="ElectronicObserver.Window.Dialog.DialogKancolleProgressWpf"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:kancolleProgress="clr-namespace:KancolleProgress;assembly=KancolleProgress"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	xmlns:translations="clr-namespace:KancolleProgress.Translations;assembly=KancolleProgress"
+	Title="{x:Static translations:KancolleProgressResources.Title}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	Loaded="Window_Loaded"
+	WindowState="Maximized"
+	mc:Ignorable="d"
+	>
+	<kancolleProgress:KancolleProgressView
+		Name="KancolleProgress"
+		Width="auto"
+		Height="auto"
+		/>
 </Window>

@@ -12,17 +12,12 @@ using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 using KancolleProgress.Models;
+using KancolleProgress.Translations;
 using Microsoft.Win32;
 using ShipTypeGroup = KancolleProgress.Models.ShipTypeGroup;
 using ShipTypes = ElectronicObserverTypes.ShipTypes;
 
 namespace KancolleProgress.ViewModels;
-
-public enum Display
-{
-	Ships,
-	Event
-}
 
 public partial class KancolleProgressViewModel : ObservableObject
 {
@@ -37,7 +32,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 	public Visibility ColorFilterVisibility => Display switch
 	{
 		Display.Ships => Visibility.Visible,
-		_ => Visibility.Collapsed
+		_ => Visibility.Collapsed,
 	};
 
 	public SolidColorBrush ShipColorBrush(ShipDataMock ship) => ColorFilters
@@ -52,12 +47,12 @@ public partial class KancolleProgressViewModel : ObservableObject
 	{
 		List<ColorFilter> colorFilters = new()
 		{
-			new(this, Comparator.Equal, 175, Colors.DeepPink, "Max"),
+			new(this, Comparator.Equal, 180, Colors.DeepPink, KancolleProgressResources.Max),
 			new(this, Comparator.GreaterOrEqual, 99, Colors.DeepSkyBlue),
 			new(this, Comparator.GreaterOrEqual, 90, Colors.LimeGreen),
 			new(this, Comparator.GreaterOrEqual, 80, Colors.Yellow),
-			new(this, Comparator.GreaterOrEqual, 1, Colors.LightGray, "Collection"),
-			new(this, Comparator.Equal, 0, Colors.Red, "Missing"),
+			new(this, Comparator.GreaterOrEqual, 1, Colors.LightGray, KancolleProgressResources.Collection),
+			new(this, Comparator.Equal, 0, Colors.Red, KancolleProgressResources.Missing),
 		};
 
 		TypeGroups = new ObservableCollection<ShipTypeGroup>();
@@ -83,7 +78,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 		{
 			Display.Ships => MakeKancolleProgress,
 			Display.Event => MakeEventCheckList,
-			_ => () => { }
+			_ => () => { },
 		};
 
 		action();
@@ -99,7 +94,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Select(s => new ShipDataMock(s)
 			{
 				Level = 0,
-				SortID = s.SortID
+				SortID = s.SortID,
 			})
 			.ToDictionary(s => s.ShipID, s => s);
 
@@ -133,27 +128,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 		TypeGroups = groups;
 	}
 
-	private enum DaihatsuGroup
-	{
-		None,
-		Daihatsu,
-		Tank,
-		DaihatsuAndTank
-	}
-
-	private enum FcfGroup
-	{
-		None,
-		Fcf
-	}
-
-	private enum AswGroup
-	{
-		None,
-		NoSonar,
-		SingleSonar
-	}
-
 	private DaihatsuGroup GetDaihatsuGroup(IShipData ship) => ship switch
 	{
 		_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft) &&
@@ -166,7 +140,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 		_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)
 			=> DaihatsuGroup.Tank,
 
-		_ => DaihatsuGroup.None
+		_ => DaihatsuGroup.None,
 	};
 
 	private FcfGroup GetFcfGroup(IShipData ship) => ship switch
@@ -174,7 +148,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 		_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility)
 			=> FcfGroup.Fcf,
 
-		_ => FcfGroup.None
+		_ => FcfGroup.None,
 	};
 
 	private AswGroup GetAswGroup(IShipData ship) => ship switch
@@ -187,7 +161,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 				.Max(e => e.MasterEquipment.ASW)
 			=> AswGroup.SingleSonar,
 
-		_ => AswGroup.None
+		_ => AswGroup.None,
 	};
 
 	private void MakeEventCheckList()
@@ -201,7 +175,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Select(s => new ShipDataMock(s)
 			{
 				Level = 0,
-				SortID = s.SortID
+				SortID = s.SortID,
 			})
 			.ToList<IShipData>();
 
@@ -220,7 +194,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.SelectMany(g => g.First().Level switch
 			{
 				0 => g.Take(1),
-				_ => g.TakeWhile(s => s.Level > 0)
+				_ => g.TakeWhile(s => s.Level > 0),
 			})
 			.ToList();
 

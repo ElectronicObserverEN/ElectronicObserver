@@ -13,7 +13,7 @@ public static class AswAttackAccuracy
 		double shipAccuracy = ship.Accuracy();
 		double equipAccuracy = ship.AllSlotInstance
 			.Where(e => e != null)
-			.Sum(e => e.MasterEquipment.Accuracy + e.AswAccuracyBonus() + e.AswAccuracy());
+			.Sum(e => e!.AswAccuracyBonus() + e!.AswAccuracy());
 
 		return (baseAccuracy + shipAccuracy + equipAccuracy)
 			   * ship.ConditionMod();
@@ -23,23 +23,23 @@ public static class AswAttackAccuracy
 
 	private static double AswAccuracyBonus(this IEquipmentData equip) => equip switch
 	{
-		{ } when equip.MasterEquipment.IsSonar => 1.3 * Math.Sqrt(equip.Level),
+		{ MasterEquipment.IsSonar: true } => 1.3 * Math.Sqrt(equip.Level),
 
-		_ => 0
+		_ => 0,
 	};
 
 	private static double AswAccuracy(this IEquipmentData equip) => equip switch
 	{
-		{ } when equip.MasterEquipment.IsSonar => equip.MasterEquipment.ASW * 2,
+		{ MasterEquipment.IsSonar: true } => equip.MasterEquipment.ASW * 2,
 
-		_ => 0
+		_ => 0,
 	};
 
 	private static double ConditionMod(this IShipData ship) => ship.Condition switch
 	{
-		int condition when condition > 52 => 1.2,
-		int condition when condition > 32 => 1,
-		int condition when condition > 22 => 0.8,
-		_ => 0.5
+		> 52 => 1.2,
+		> 32 => 1,
+		> 22 => 0.8,
+		_ => 0.5,
 	};
 }

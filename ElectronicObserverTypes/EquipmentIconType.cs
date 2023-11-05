@@ -145,8 +145,10 @@ public enum EquipmentIconType
 	/// <summary>陸上対潜哨戒機</summary>
 	LandBasedASPatrol = 47,
 
+	/// <summary>陸上襲撃機</summary>
 	LandAssaulter = 48,
 
+	/// <summary>大型陸上機</summary>
 	HeavyBomber = 49,
 
 	/// <summary>夜間水上機</summary>
@@ -157,6 +159,15 @@ public enum EquipmentIconType
 
 	/// <summary>陸戦部隊</summary>
 	ArmyInfantry = 52,
+
+	/// <summary>艦載発煙装置</summary>
+	SmokeGenerator = 54,
+
+	/// <summary>阻塞気球</summary>
+	BarrageBalloon = 55,
+
+	/// <summary></summary>
+	LandBasedFighterJet = 56,
 
 	Locked,
 	Unknown,

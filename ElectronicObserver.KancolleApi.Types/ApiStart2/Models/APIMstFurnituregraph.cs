@@ -3,24 +3,17 @@
 public class ApiMstFurnituregraph
 {
 	[JsonPropertyName("api_filename")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiFilename { get; set; } = default!;
+	public string ApiFilename { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNo { get; set; } = default!;
+	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 
 	[JsonPropertyName("api_version")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVersion { get; set; } = default!;
+	public string ApiVersion { get; set; } = "";
 }

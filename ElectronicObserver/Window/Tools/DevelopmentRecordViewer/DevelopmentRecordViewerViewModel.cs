@@ -12,7 +12,6 @@ using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
@@ -61,7 +60,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		_ => DialogDevelopmentRecordViewer.RecipeTries
 	};
 
-	private string NameNotExist => Properties.Window.Dialog.DialogDevelopmentRecordViewer.NameNotExist; //(失敗)
+	private string NameNotExist => DevelopmentRecordViewerResources.NameNotExist; //(失敗)
 
 	public string Today => $"{DialogDevelopmentRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
@@ -313,7 +312,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 					r.EquipmentName,
 					r.Date,
 					GetRecipeString(r),
-					shiptype?.NameEN ?? Properties.Window.Dialog.DialogDevelopmentRecordViewer.Unknown,
+					shiptype?.NameEN ?? DevelopmentRecordViewerResources.Unknown,
 					r.FlagshipName,
 					null
 				);
@@ -352,7 +351,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 				string key2 = prioritySecretary switch
 				{
 					> 0 => currentRecipe,
-					_ => shiptype?.NameEN ?? Properties.Window.Dialog.DialogDevelopmentRecordViewer.Unknown
+					_ => shiptype?.NameEN ?? DevelopmentRecordViewerResources.Unknown
 				};
 
 				if (!countsdetail.ContainsKey(key))

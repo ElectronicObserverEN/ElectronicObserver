@@ -6,7 +6,6 @@ using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -107,7 +106,7 @@ public class DevelopmentRecord : RecordBase
 		public override void LoadLine(string line)
 		{
 
-			string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
+			string[] elem = Utility.Storage.CsvHelper.ParseCsvLine(line).ToArray();
 			if (elem.Length < 11) throw new ArgumentException("要素数が少なすぎます。");
 
 			EquipmentID = int.Parse(elem[0]);
@@ -129,14 +128,14 @@ public class DevelopmentRecord : RecordBase
 
 			return string.Join(",",
 				EquipmentID,
-				CsvHelper.EscapeCsvCell(EquipmentName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(EquipmentName),
 				DateTimeHelper.TimeToCSVString(Date),
 				Fuel,
 				Ammo,
 				Steel,
 				Bauxite,
 				FlagshipID,
-				CsvHelper.EscapeCsvCell(FlagshipName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(FlagshipName),
 				FlagshipType,
 				HQLevel);
 		}

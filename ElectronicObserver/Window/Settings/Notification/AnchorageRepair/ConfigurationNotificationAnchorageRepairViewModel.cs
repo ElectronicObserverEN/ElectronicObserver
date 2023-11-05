@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Documents;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Notification.Base;

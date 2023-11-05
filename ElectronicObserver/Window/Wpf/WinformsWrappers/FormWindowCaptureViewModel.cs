@@ -10,8 +10,8 @@ public class FormWindowCaptureViewModel : WinformsHostViewModel
 {
 	private FormWindowCaptureTranslationViewModel FormWindowCapture { get; }
 
-	public FormWindowCaptureViewModel(FormMainViewModel parent) : base("Window Capture", "WindowCapture",
-		ImageSourceIcons.GetIcon(IconContent.FormJson))
+	public FormWindowCaptureViewModel(FormMainViewModel parent) 
+		: base("Window Capture", "WindowCapture", IconContent.FormJson)
 	{
 		FormWindowCapture = Ioc.Default.GetService<FormWindowCaptureTranslationViewModel>()!;
 

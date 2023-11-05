@@ -19,7 +19,7 @@ public record NelsonSpecialAttack : SpecialAttack
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
-		if (flagship.MasterShip.ShipId is not ShipId.Nelson and not ShipId.NelsonKai) return false;
+		if (flagship.MasterShip.ShipClassTyped is not ShipClass.Nelson) return false;
 
 		if (flagship.HPRate <= 0.5) return false;
 
@@ -46,27 +46,59 @@ public record NelsonSpecialAttack : SpecialAttack
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()
-		=> new()
+	{
+		return new()
 		{
 			new()
 			{
 				ShipIndex = 0,
-				AccuracyModifier = 1,
-				PowerModifier = 2,
+				AccuracyModifier = 1.05,
+				PowerModifier = GetFlagshipPowerModifier(),
 			},
 			new()
 			{
 				ShipIndex = 2,
-				AccuracyModifier = 1,
-				PowerModifier = 2,
+				AccuracyModifier = 1.05,
+				PowerModifier = GetHelperPowerModifier(2),
 			},
 			new()
 			{
 				ShipIndex = 4,
-				AccuracyModifier = 1,
-				PowerModifier = 2,
+				AccuracyModifier = 1.05,
+				PowerModifier = GetHelperPowerModifier(4),
 			},
 		};
+	}
+
+	private double GetFlagshipPowerModifier()
+	{
+		return GetNumberOfNelsonClass() switch
+		{
+			2 => 2.3,
+			_ => 2,
+		};
+	}
+
+	private double GetHelperPowerModifier(int shipIndex)
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		if (ships[shipIndex]?.MasterShip.ShipClassTyped is ShipClass.Nelson)
+		{
+			return 2.4;
+		}
+
+		return 2;
+	}
+
+	private int GetNumberOfNelsonClass()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		List<IShipData?> touchShips = new() { ships[0], ships[2], ships[4] };
+
+		return touchShips.Count(ship => ship?.MasterShip.ShipClassTyped is ShipClass.Nelson);
+	}
 
 	public override double GetEngagmentModifier(EngagementType engagement) => engagement switch
 	{

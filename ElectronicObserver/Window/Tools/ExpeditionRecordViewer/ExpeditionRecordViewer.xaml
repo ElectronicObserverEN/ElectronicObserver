@@ -54,10 +54,26 @@
 					Orientation="Vertical"
 					>
 					<UniformGrid Columns="4">
-						<commontools:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding MaterialList[0]}" />
-						<commontools:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding MaterialList[1]}" />
-						<commontools:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding MaterialList[2]}" />
-						<commontools:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding MaterialList[3]}" />
+						<commontools:ImageTextControl Text="{Binding MaterialList[0]}">
+							<commontools:ImageTextControl.Image>
+								<common:IconContentIcon Type="ResourceFuel" />
+							</commontools:ImageTextControl.Image>
+						</commontools:ImageTextControl>
+						<commontools:ImageTextControl Text="{Binding MaterialList[1]}">
+							<commontools:ImageTextControl.Image>
+								<common:IconContentIcon Type="ResourceAmmo" />
+							</commontools:ImageTextControl.Image>
+						</commontools:ImageTextControl>
+						<commontools:ImageTextControl Text="{Binding MaterialList[2]}">
+							<commontools:ImageTextControl.Image>
+								<common:IconContentIcon Type="ResourceSteel" />
+							</commontools:ImageTextControl.Image>
+						</commontools:ImageTextControl>
+						<commontools:ImageTextControl Text="{Binding MaterialList[3]}">
+							<commontools:ImageTextControl.Image>
+								<common:IconContentIcon Type="ResourceBauxite" />
+							</commontools:ImageTextControl.Image>
+						</commontools:ImageTextControl>
 					</UniformGrid>
 				</StackPanel>
 				<StackPanel

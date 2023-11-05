@@ -35,7 +35,7 @@ public partial class ShipDataRecord : ObservableObject
 	}).ToBrush();
 
 	public string ResourceNameText => $"{Ship.ResourceName} {Ship.ResourceGraphicVersion}/{Ship.ResourceVoiceVersion}/{Ship.ResourcePortVoiceVersion}";
-	public string ResourceNameToolTip => string.Format(Properties.Window.Dialog.DialogAlbumMasterShip.ResourceNameToolTip,
+	public string ResourceNameToolTip => string.Format(AlbumMasterShipResources.ResourceNameToolTip,
 		Ship.ResourceName, Ship.ResourceGraphicVersion, Ship.ResourceVoiceVersion, Ship.ResourcePortVoiceVersion, Constants.GetVoiceFlag(Ship.VoiceFlag));
 
 	public string ShipBannerToolTip => DialogAlbumMasterShip.ShipBannerToolTip;
@@ -66,7 +66,7 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	private string EquippableString => string.Join("\r\n", Ship.EquippableCategories.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN)
-		.Concat(KCDatabase.Instance.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(Ship.ShipID)).Select(eq => eq.NameEN + $" ({DialogAlbumMasterShip.ReinforcementSlot})")));
+		.Concat(KCDatabase.Instance.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(Ship.ShipId)).Select(eq => eq.NameEN + $" ({DialogAlbumMasterShip.ReinforcementSlot})")));
 
 	private string ShipTypePrefix => Ship.IsAbyssalShip switch
 	{
@@ -469,7 +469,7 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	public string AirPower => Calculator.GetAirSuperiority(Ship).ToString();
-	public string DayAttack => Constants.GetDayAttackKind(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
+	public string DayAttack => ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
 	public string NightAttack => ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(Calculator.GetNightAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
 
 	#endregion

@@ -151,8 +151,11 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private static bool IsYamatoHelperPair(ShipId firstHelper, ShipId secondHelper) => firstHelper switch
 	{
-		ShipId.KongouKaiNiC => secondHelper is ShipId.HieiKaiNiC,
-		ShipId.HieiKaiNiC => secondHelper is ShipId.KongouKaiNiC,
+		ShipId.KongouKaiNiC => secondHelper is ShipId.HieiKaiNiC or ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC,
+
+		ShipId.HieiKaiNiC or
+		ShipId.HarunaKaiNiC or 
+		ShipId.HarunaKaiNiB => secondHelper is ShipId.KongouKaiNiC,
 
 		ShipId.RomaKai => secondHelper is ShipId.Italia,
 		ShipId.Italia => secondHelper is ShipId.RomaKai,

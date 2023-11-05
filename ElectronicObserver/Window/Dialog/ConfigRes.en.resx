@@ -643,4 +643,10 @@ If this feature is enabled, localisation may not function correctly.</value>
   <data name="ShipTraining" xml:space="preserve">
     <value>Ship Training</value>
   </data>
+  <data name="BrowserFont" xml:space="preserve">
+    <value>Browser font</value>
+  </data>
+  <data name="MatchMainFont" xml:space="preserve">
+    <value>Match main font</value>
+  </data>
 </root>

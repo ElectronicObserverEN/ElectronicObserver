@@ -3,14 +3,11 @@
 public class ApiGetMemberMaterialResponse
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_member_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberId { get; set; } = default!;
+	public int ApiMemberId { get; set; }
 
 	[JsonPropertyName("api_value")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiValue { get; set; } = default!;
+	public int ApiValue { get; set; }
 }

@@ -627,9 +627,6 @@
   <data name="BattleDetail_EnemyFleet" xml:space="preserve">
     <value>- Enemy Fleet -</value>
   </data>
-  <data name="BattleDetail_IsBossDamaged" xml:space="preserve">
-    <value> : Damaged</value>
-  </data>
   <data name="BattleDetail_AirAttackUnits" xml:space="preserve">
     <value>Friendly Air Squadrons:</value>
   </data>
@@ -694,7 +691,7 @@
     <value>Admiral Exp: +{0}</value>
   </data>
   <data name="BattleDetail_ShipExp" xml:space="preserve">
-    <value>Ship Exp: +{1}</value>
+    <value>Ship Exp: +{0}</value>
   </data>
   <data name="BattleDetail_FriendlyStarshell" xml:space="preserve">
     <value>Starshell: : {0} #{1}</value>
@@ -1091,5 +1088,11 @@
   </data>
   <data name="CutinZuiun" xml:space="preserve">
     <value>CI (Zuiun)</value>
+  </data>
+  <data name="Title_NormalRadar" xml:space="preserve">
+    <value>Normal Fleet Radar Ambush</value>
+  </data>
+  <data name="Title_NormalDayFromNight" xml:space="preserve">
+    <value>Night→Day Battle</value>
   </data>
 </root>

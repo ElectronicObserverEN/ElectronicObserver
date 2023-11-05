@@ -24,14 +24,14 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 
 	public string Display => $"({CountConditionDisplay}) {ComparisonTypeDisplay} {Model.Count}{FlagshipConditionDisplay}";
 
-	private string CountConditionDisplay => string.Join($" {Properties.Window.Dialog.QuestTrackerManager.Operator_Or} ",
+	private string CountConditionDisplay => string.Join($" {QuestTrackerManagerResources.Operator_Or} ",
 		Model.Types.Select(s => s.Display()));
 
 	private string ComparisonTypeDisplay => ComparisonType.Display();
 
 	private string FlagshipConditionDisplay => MustBeFlagship switch
 	{
-		true => $"({Properties.Window.Dialog.QuestTrackerManager.Flagship})",
+		true => $"({QuestTrackerManagerResources.Flagship})",
 		_ => ""
 	};
 

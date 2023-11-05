@@ -24,19 +24,19 @@ public partial class ShipNationalityConditionViewModel : ObservableObject, ICond
 
 	public string Display => $"({ShipNationalityText}) {ComparisonTypeDisplay} {Model.Count}{FlagshipConditionDisplay}";
 
-	private string ShipNationalityText => $"{NationalityText}{Properties.Window.Dialog.QuestTrackerManager.Kanmusu}";
+	private string ShipNationalityText => $"{NationalityText}{QuestTrackerManagerResources.Kanmusu}";
 
 	private string NationalityText => Model.Nationalities switch
 	{
 		{ Count: 1 } => Model.Nationalities[0].Display(),
-		_ => $"({string.Join($" {Properties.Window.Dialog.QuestTrackerManager.Operator_Or} ", Model.Nationalities.Select(s => s.Display()))})"
+		_ => $"({string.Join($" {QuestTrackerManagerResources.Operator_Or} ", Model.Nationalities.Select(s => s.Display()))})"
 	};
 
 	private string ComparisonTypeDisplay => ComparisonType.Display();
 
 	private string FlagshipConditionDisplay => MustBeFlagship switch
 	{
-		true => $"({Properties.Window.Dialog.QuestTrackerManager.Flagship})",
+		true => $"({QuestTrackerManagerResources.Flagship})",
 		_ => ""
 	};
 

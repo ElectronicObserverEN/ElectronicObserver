@@ -54,8 +54,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	public string LevelTotalText { get; set; } = "";
 	public string LevelAverageText { get; set; } = "";
 
-	public ShipGroupWinformsViewModel() : base("Group", "ShipGroup",
-		ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
+	public ShipGroupWinformsViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
 	{
 		FormShipGroup = Ioc.Default.GetService<FormShipGroupTranslationViewModel>()!;
 

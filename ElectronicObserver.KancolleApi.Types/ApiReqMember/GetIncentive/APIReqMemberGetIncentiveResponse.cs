@@ -5,10 +5,8 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.GetIncentive;
 public class ApiReqMemberGetIncentiveResponse
 {
 	[JsonPropertyName("api_count")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCount { get; set; } = default!;
+	public int ApiCount { get; set; }
 
 	[JsonPropertyName("api_item")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<ApiItem>? ApiItem { get; set; } = default!;
+	public List<ApiItem>? ApiItem { get; set; }
 }

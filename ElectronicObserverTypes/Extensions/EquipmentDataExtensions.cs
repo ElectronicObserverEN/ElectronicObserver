@@ -19,7 +19,8 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 副砲系かどうか </summary>
 	public static bool IsSecondaryGun(this IEquipmentDataMaster equip) => equip.CategoryType is
-		EquipmentTypes.SecondaryGun;
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.SecondaryGun2;
 
 	/// <summary> 魚雷系かどうか </summary>
 	public static bool IsTorpedo(this IEquipmentDataMaster equip) => equip.CategoryType is
@@ -179,7 +180,7 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 対空噴進弾幕が発動可能なロケットランチャーかどうか </summary>
 	public static bool IsAARocketLauncher(this IEquipmentDataMaster equip) => equip.EquipmentId is
-		EquipmentId.AAGun_12cm30tubeRocketLauncherKai2;
+		EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi;
 
 	public static bool IsSeaplane(this IEquipmentDataMaster equip) => equip.CategoryType switch
 	{
@@ -235,4 +236,31 @@ public static class EquipmentDataExtensions
 
 		_ => 18,
 	};
+
+	public static bool IsAircraft(this IEquipmentData? equipment) => equipment?.MasterEquipment.CategoryType is
+		EquipmentTypes.CarrierBasedFighter or
+		EquipmentTypes.CarrierBasedBomber or
+		EquipmentTypes.CarrierBasedTorpedo or
+		EquipmentTypes.CarrierBasedRecon or
+		EquipmentTypes.CarrierBasedRecon2 or
+
+		EquipmentTypes.SeaplaneRecon or
+		EquipmentTypes.SeaplaneBomber or
+		EquipmentTypes.SeaplaneFighter or
+
+		EquipmentTypes.Autogyro or
+		EquipmentTypes.ASPatrol or
+
+		EquipmentTypes.FlyingBoat or
+
+		EquipmentTypes.LandBasedAttacker or
+		EquipmentTypes.Interceptor or
+		EquipmentTypes.LandBasedRecon or
+
+		EquipmentTypes.HeavyBomber or
+
+		EquipmentTypes.JetFighter or
+		EquipmentTypes.JetBomber or
+		EquipmentTypes.JetTorpedo or
+		EquipmentTypes.JetRecon;
 }

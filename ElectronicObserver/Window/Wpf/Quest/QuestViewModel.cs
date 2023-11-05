@@ -19,7 +19,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
-using Translation = ElectronicObserver.Properties.Window.FormQuest;
 
 namespace ElectronicObserver.Window.Wpf.Quest;
 
@@ -86,7 +85,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	private List<ColumnViewModel> Columns { get; }
 
-	public QuestViewModel() : base("Quest", "Quest", ImageSourceIcons.GetIcon(IconContent.FormQuest))
+	public QuestViewModel() : base("Quest", "Quest", IconContent.FormQuest)
 	{
 		FormQuest = Ioc.Default.GetService<FormQuestTranslationViewModel>()!;
 		View = CollectionViewSource.GetDefaultView(Quests);
@@ -362,7 +361,7 @@ public partial class QuestViewModel : AnchorableViewModel
 			// row.Cells[QuestView_State.Index].Style.SelectionBackColor = color;
 
 			row.QuestView_State = (q.State == 3) ? null : (q.State == 2);
-			row.QuestView_StateToolTip = $"{Translation.Page} #{questIndex / 5 + 1}";
+			row.QuestView_StateToolTip = $"{QuestResources.Page} #{questIndex / 5 + 1}";
 
 			// row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
 			// row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
@@ -414,7 +413,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 				if (q.State == 3)
 				{
-					value = Translation.Complete;
+					value = QuestResources.Complete;
 					tag = 1.0;
 
 				}
@@ -552,7 +551,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			Quests.Add(new()
 			{
-				QuestView_Name = Translation.Unknown,
+				QuestView_Name = QuestResources.Unknown,
 			});
 		}
 
@@ -611,7 +610,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		if (needTranslation == false)
 		{
-			MessageBox.Show(Translation.AllQuestsAreTranslated, Translation.Information, MessageBoxButtons.OK,
+			MessageBox.Show(QuestResources.AllQuestsAreTranslated, QuestResources.Information, MessageBoxButtons.OK,
 				MessageBoxIcon.Information);
 			return;
 		}
@@ -633,7 +632,7 @@ public partial class QuestViewModel : AnchorableViewModel
 					Uri.EscapeDataString(SelectedQuest.QuestCode) +
 					"+" +
 					Uri.EscapeDataString(SelectedQuest.QuestName) +
-					Translation.SearchEngineKancolleSpecifier,
+					QuestResources.SearchEngineKancolleSpecifier,
 				UseShellExecute = true
 			};
 
@@ -641,7 +640,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnDuckDuckGo);
+			ErrorReporter.SendErrorReport(ex, QuestResources.FailedToSearchOnDuckDuckGo);
 		}
 	}
 
@@ -659,7 +658,7 @@ public partial class QuestViewModel : AnchorableViewModel
 					Uri.EscapeDataString(SelectedQuest.QuestCode) +
 					"+" +
 					Uri.EscapeDataString(SelectedQuest.QuestName) +
-					Translation.SearchEngineKancolleSpecifier,
+					QuestResources.SearchEngineKancolleSpecifier,
 				UseShellExecute = true
 			};
 
@@ -667,7 +666,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnStartpage);
+			ErrorReporter.SendErrorReport(ex, QuestResources.FailedToSearchOnStartpage);
 		}
 	}
 
@@ -680,8 +679,8 @@ public partial class QuestViewModel : AnchorableViewModel
 		{
 			string url = SelectedQuest.QuestCode switch
 			{
-				"" => @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(SelectedQuest.QuestName) + "+" + Uri.EscapeDataString(Translation.SearchOnWikiQuery),
-				_ => string.Format(Translation.SearchLinkWiki, Uri.EscapeDataString(SelectedQuest.QuestCode)),
+				"" => @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(SelectedQuest.QuestName) + "+" + Uri.EscapeDataString(QuestResources.SearchOnWikiQuery),
+				_ => string.Format(QuestResources.SearchLinkWiki, Uri.EscapeDataString(SelectedQuest.QuestCode)),
 			};
 
 			ProcessStartInfo psi = new ProcessStartInfo
@@ -693,7 +692,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Translation.FailedToOpenKancolleWiki);
+			ErrorReporter.SendErrorReport(ex, QuestResources.FailedToOpenKancolleWiki);
 		}
 	}
 
@@ -717,7 +716,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		catch (Exception)
 		{
-			Logger.Add(3, string.Format(Translation.FailedToChangeQuestProgress, quest.Name));
+			Logger.Add(3, string.Format(QuestResources.FailedToChangeQuestProgress, quest.Name));
 			System.Media.SystemSounds.Hand.Play();
 		}
 	}
@@ -742,7 +741,7 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		catch (Exception)
 		{
-			Logger.Add(3, string.Format(Translation.FailedToChangeQuestProgress, quest.Name));
+			Logger.Add(3, string.Format(QuestResources.FailedToChangeQuestProgress, quest.Name));
 			System.Media.SystemSounds.Hand.Play();
 		}
 	}
@@ -760,8 +759,8 @@ public partial class QuestViewModel : AnchorableViewModel
 		if (id == -1 || (quest == null && progress == null)) return;
 
 		if (MessageBox.Show(
-				string.Format(Translation.QuestResetConfirmationText, (quest != null ? ($"『{quest.Name}』") : ($"ID: {id} "))),
-				Translation.QuestResetConfirmationCaption,
+				string.Format(QuestResources.QuestResetConfirmationText, (quest != null ? ($"『{quest.Name}』") : ($"ID: {id} "))),
+				QuestResources.QuestResetConfirmationCaption,
 				MessageBoxButtons.YesNo,
 				MessageBoxIcon.Exclamation,
 				MessageBoxDefaultButton.Button1) is not DialogResult.Yes)

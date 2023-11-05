@@ -6,6 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:common1="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:equipmentUpgrade="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade"
 	xmlns:filter="clr-namespace:ElectronicObserver.Window.Control.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -79,7 +80,7 @@
 				HeadersVisibility="Column"
 				IsReadOnly="True"
 				ItemsSource="{Binding DataGridViewModel.Items, IsAsync=True, NotifyOnTargetUpdated=True}"
-				SelectedItem="{Binding SelectedEquipment}"
+				SelectedItem="{Binding SelectedEquipmentModel}"
 				SelectionMode="Single"
 				SelectionUnit="FullRow"
 				TargetUpdated="DataGrid_OnTargetUpdated"
@@ -130,7 +131,7 @@
 				<DataGrid.Columns>
 					<DataGridTextColumn
 						Width="60"
-						Binding="{Binding Equipment.ID}"
+						Binding="{Binding ID}"
 						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
@@ -140,9 +141,9 @@
 					<DataGridTemplateColumn SortMemberPath="Equipment.IconTypeTyped">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<common1:EquipmentIcon Type="{Binding Equipment.IconTypeTyped}">
+								<common1:EquipmentIcon Type="{Binding IconTypeTyped}">
 									<common1:EquipmentIcon.ToolTip>
-										<TextBlock Text="{Binding Equipment.IconType}" />
+										<TextBlock Text="{Binding IconType}" />
 									</common1:EquipmentIcon.ToolTip>
 								</common1:EquipmentIcon>
 							</DataTemplate>
@@ -151,7 +152,7 @@
 
 					<DataGridTextColumn
 						Width="110"
-						Binding="{Binding Equipment.CategoryTypeInstance.NameEN}"
+						Binding="{Binding CategoryTypeInstance.NameEN}"
 						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
@@ -160,7 +161,7 @@
 
 					<DataGridTextColumn
 						Width="120"
-						Binding="{Binding Equipment.NameEN}"
+						Binding="{Binding NameEN}"
 						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
 						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
 						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
@@ -169,418 +170,516 @@
 				</DataGrid.Columns>
 			</DataGrid>
 
-			<Grid
-				Grid.Column="1"
-				Margin="10"
-				Visibility="{Binding DetailsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-				>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
+			<ScrollViewer Grid.Column="1">
+				<Grid Margin="10" Visibility="{Binding DetailsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
 
-				<Grid Grid.Row="0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*" />
-						<ColumnDefinition Width="Auto" />
-					</Grid.ColumnDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
 
-					<Grid Grid.Column="0">
-						<Grid.Resources>
-							<Style TargetType="TextBlock">
-								<Setter Property="Margin" Value="4 0" />
-							</Style>
+						<Grid Grid.Column="0">
+							<Grid.Resources>
+								<Style TargetType="TextBlock">
+									<Setter Property="Margin" Value="4 0" />
+								</Style>
 
-							<Style TargetType="StackPanel">
-								<Setter Property="Margin" Value="4 0" />
-							</Style>
-						</Grid.Resources>
+								<Style TargetType="StackPanel">
+									<Setter Property="Margin" Value="4 0" />
+								</Style>
+							</Grid.Resources>
 
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="*" />
-						</Grid.RowDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="*" />
+							</Grid.RowDefinitions>
 
-						<StackPanel Grid.Row="0">
-							<StackPanel Orientation="Horizontal">
+							<StackPanel Grid.Row="0">
 								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="ID" />
-									<TextBlock Text="{Binding SelectedEquipment.Equipment.ID}" ToolTip="{Binding SelectedEquipment.EquipmentIdToolTip}" />
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="ID" />
+										<TextBlock Text="{Binding SelectedEquipmentViewModel.Equipment.ID}" ToolTip="{Binding SelectedEquipmentViewModel.EquipmentIdToolTip}" />
+									</StackPanel>
+
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="{Binding DialogAlbumMasterEquipment.LibraryId}" />
+										<TextBlock Text="{Binding SelectedEquipmentViewModel.Equipment.AlbumNo}" />
+									</StackPanel>
 								</StackPanel>
 
 								<StackPanel Orientation="Horizontal">
-									<TextBlock Text="{Binding DialogAlbumMasterEquipment.LibraryId}" />
-									<TextBlock Text="{Binding SelectedEquipment.Equipment.AlbumNo}" />
+									<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.CategoryTypeInstance.NameEN}" ToolTip="{Binding SelectedEquipmentViewModel.EquipmentTypeToolTip}">
+										<common:ImageTextControl.Image>
+											<common1:EquipmentIcon Type="{Binding SelectedEquipmentViewModel.Equipment.IconTypeTyped}" />
+										</common:ImageTextControl.Image>
+									</common:ImageTextControl>
+
+									<TextBlock Text="{Binding SelectedEquipmentViewModel.Equipment.NameEN}" ToolTip="{Binding SelectedEquipmentViewModel.EquipmentNameToolTip}">
+										<TextBlock.InputBindings>
+											<MouseBinding Command="{Binding StripMenu_Edit_CopyEquipmentName_ClickCommand}" MouseAction="RightClick" />
+										</TextBlock.InputBindings>
+									</TextBlock>
 								</StackPanel>
 							</StackPanel>
 
-							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl
-									Image="{Binding SelectedEquipment.Equipment.IconTypeTyped, Converter={StaticResource ImageSourceConverter}}"
-									Text="{Binding SelectedEquipment.Equipment.CategoryTypeInstance.NameEN}"
-									ToolTip="{Binding SelectedEquipment.EquipmentTypeToolTip}"
-									/>
-								<TextBlock Text="{Binding SelectedEquipment.Equipment.NameEN}" ToolTip="{Binding SelectedEquipment.EquipmentNameToolTip}">
-									<TextBlock.InputBindings>
-										<MouseBinding Command="{Binding StripMenu_Edit_CopyEquipmentName_ClickCommand}" MouseAction="RightClick" />
-									</TextBlock.InputBindings>
-								</TextBlock>
-							</StackPanel>
-						</StackPanel>
+							<Grid Grid.Row="1" Margin="0 10">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
 
-						<Grid Grid.Row="1" Margin="0 10">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
+								<StackPanel Grid.Column="0">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition SharedSizeGroup="EquipmentStatImage" />
+											<ColumnDefinition SharedSizeGroup="EquipmentStatText" />
+											<ColumnDefinition MinWidth="50" SharedSizeGroup="EquipmentStatValue" />
+										</Grid.ColumnDefinitions>
 
-							<StackPanel Grid.Column="0">
-								<Grid>
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition SharedSizeGroup="EquipmentStatImage" />
-										<ColumnDefinition SharedSizeGroup="EquipmentStatText" />
-										<ColumnDefinition MinWidth="50" SharedSizeGroup="EquipmentStatValue" />
-									</Grid.ColumnDefinitions>
+										<TextBlock Grid.Column="2" Text="{Binding DialogAlbumMasterEquipment.Performance}" />
+									</Grid>
 
-									<TextBlock Grid.Column="2" Text="{Binding DialogAlbumMasterEquipment.Performance}" />
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Firepower}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleFirepower}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Firepower}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Torpedo}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleTorpedo}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Torpedo}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.AntiAir}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleAA}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.AA}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Armor}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleArmor}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Armor}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.AntiSubmarine}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleASW}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.ASW}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Evasion}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleEvasion}"
+										Visibility="{Binding SelectedEquipmentViewModel.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Evasion}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Interception}"
+										Text="{Binding DialogAlbumMasterEquipment.Interception}"
+										Visibility="{Binding SelectedEquipmentViewModel.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Evasion}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Los}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleLOS}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.LOS}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Accuracy}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleAccuracy}"
+										Visibility="{Binding SelectedEquipmentViewModel.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Accuracy}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.AntiBomber}"
+										Text="{Binding DialogAlbumMasterEquipment.AntiBomber}"
+										Visibility="{Binding SelectedEquipmentViewModel.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Accuracy}"
+										/>
+
+									<local:EquipmentStatControl
+										Image="{StaticResource Parameter.Bomber}"
+										Text="{Binding DialogAlbumMasterEquipment.TitleBomber}"
+										Value="{Binding SelectedEquipmentViewModel.Equipment.Bomber}"
+										/>
+								</StackPanel>
+
+								<Grid Grid.Column="1" Margin="10 0">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+
+									<TextBlock Grid.Row="0" Text="{Binding DialogAlbumMasterEquipment.InitialEquipmentShip}" />
+
+
+									<Border
+										Grid.Row="1"
+										Height="220"
+										VerticalAlignment="Top"
+										BorderBrush="Gray"
+										BorderThickness="1"
+										>
+										<ScrollViewer
+											Margin="2"
+											HorizontalScrollBarVisibility="Auto"
+											VerticalScrollBarVisibility="Auto"
+											>
+											<ItemsControl ItemsSource="{Binding SelectedEquipmentViewModel.DefaultSlotShips}">
+												<ItemsControl.ItemTemplate>
+													<DataTemplate>
+														<TextBlock Text="{Binding}">
+															<TextBlock.InputBindings>
+																<MouseBinding
+																	Command="{Binding ViewModel.OpenShipEncyclopediaCommand, ElementName=DialogAlbumMasterEquipmentView}"
+																	CommandParameter="{Binding}"
+																	MouseAction="RightClick"
+																	/>
+															</TextBlock.InputBindings>
+														</TextBlock>
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</ScrollViewer>
+									</Border>
 								</Grid>
+							</Grid>
+						</Grid>
 
-								<local:EquipmentStatControl
-									Image="{StaticResource Firepower}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleFirepower}"
-									Value="{Binding SelectedEquipment.Equipment.Firepower}"
-									/>
+						<Image
+							Grid.Column="1"
+							Width="260"
+							VerticalAlignment="Top"
+							Source="{Binding SelectedEquipmentViewModel.Equipment, Converter={StaticResource EquipmentToImageConverter}}"
+							/>
+					</Grid>
 
-								<local:EquipmentStatControl
-									Image="{StaticResource Torpedo}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleTorpedo}"
-									Value="{Binding SelectedEquipment.Equipment.Torpedo}"
-									/>
+					<Grid Grid.Row="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
 
-								<local:EquipmentStatControl
-									Image="{StaticResource AntiAir}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleAA}"
-									Value="{Binding SelectedEquipment.Equipment.AA}"
-									/>
+						<Grid Grid.Column="0">
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition />
+							</Grid.RowDefinitions>
 
-								<local:EquipmentStatControl
-									Image="{StaticResource Armor}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleArmor}"
-									Value="{Binding SelectedEquipment.Equipment.Armor}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource AntiSubmarine}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleASW}"
-									Value="{Binding SelectedEquipment.Equipment.ASW}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource Evasion}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleEvasion}"
-									Visibility="{Binding SelectedEquipment.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
-									Value="{Binding SelectedEquipment.Equipment.Evasion}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource Interception}"
-									Text="{Binding DialogAlbumMasterEquipment.Interception}"
-									Visibility="{Binding SelectedEquipment.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
-									Value="{Binding SelectedEquipment.Equipment.Evasion}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource Los}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleLOS}"
-									Value="{Binding SelectedEquipment.Equipment.LOS}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource Accuracy}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleAccuracy}"
-									Visibility="{Binding SelectedEquipment.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
-									Value="{Binding SelectedEquipment.Equipment.Accuracy}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource AntiBomber}"
-									Text="{Binding DialogAlbumMasterEquipment.AntiBomber}"
-									Visibility="{Binding SelectedEquipment.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
-									Value="{Binding SelectedEquipment.Equipment.Accuracy}"
-									/>
-
-								<local:EquipmentStatControl
-									Image="{StaticResource Bomber}"
-									Text="{Binding DialogAlbumMasterEquipment.TitleBomber}"
-									Value="{Binding SelectedEquipment.Equipment.Bomber}"
-									/>
-							</StackPanel>
-
-							<Grid Grid.Column="1" Margin="10 0">
+							<Grid Grid.Row="0">
 								<Grid.RowDefinitions>
-									<RowDefinition Height="Auto" />
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
 									<RowDefinition />
 								</Grid.RowDefinitions>
 
-								<TextBlock Grid.Row="0" Text="{Binding DialogAlbumMasterEquipment.InitialEquipmentShip}" />
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition SharedSizeGroup="Icon" />
+									<ColumnDefinition SharedSizeGroup="IconText" />
+									<ColumnDefinition SharedSizeGroup="Base" />
+									<ColumnDefinition SharedSizeGroup="Max" />
+									<ColumnDefinition SharedSizeGroup="Scaled" />
+								</Grid.ColumnDefinitions>
 
+								<common1:ParameterIcon
+									Grid.Row="0"
+									Grid.Column="0"
+									Type="Speed"
+									/>
 
-								<Border
+								<TextBlock
+									Grid.Row="0"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Foreground="Gray"
+									Text="{Binding DialogAlbumMasterEquipment.TitleSpeed}"
+									/>
+
+								<TextBlock
+									Grid.Row="0"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Foreground="Gray"
+									Text="{Binding SelectedEquipmentViewModel.Speed}"
+									/>
+
+								<Separator
 									Grid.Row="1"
-									Height="220"
-									VerticalAlignment="Top"
-									BorderBrush="Gray"
-									BorderThickness="1"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
+
+								<TextBlock
+									Grid.Row="2"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="{Binding DialogAlbumMasterEquipment.TitleRarity}"
+									/>
+
+								<common:ImageTextControl
+									Grid.Row="2"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Text="{Binding SelectedEquipmentViewModel.Equipment.Rarity, Converter={StaticResource EquipmentRarityConverter}}"
 									>
-									<ScrollViewer
-										Margin="2"
-										HorizontalScrollBarVisibility="Auto"
-										VerticalScrollBarVisibility="Auto"
-										>
-										<ItemsControl ItemsSource="{Binding SelectedEquipment.DefaultSlotShips}">
-											<ItemsControl.ItemTemplate>
-												<DataTemplate>
-													<TextBlock Text="{Binding}">
-														<TextBlock.InputBindings>
-															<MouseBinding
-																Command="{Binding ViewModel.OpenShipEncyclopediaCommand, ElementName=DialogAlbumMasterEquipmentView}"
-																CommandParameter="{Binding}"
-																MouseAction="RightClick"
-																/>
-														</TextBlock.InputBindings>
-													</TextBlock>
-												</DataTemplate>
-											</ItemsControl.ItemTemplate>
-										</ItemsControl>
-									</ScrollViewer>
-								</Border>
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="{Binding SelectedEquipmentViewModel.RarityIcon}" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+								<Separator
+									Grid.Row="3"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
+
+								<common1:ParameterIcon
+									Grid.Row="4"
+									Grid.Column="0"
+									Type="Range"
+									/>
+
+								<TextBlock
+									Grid.Row="4"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="{Binding DialogAlbumMasterEquipment.TitleRange}"
+									/>
+
+								<TextBlock
+									Grid.Row="4"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Text="{Binding SelectedEquipmentViewModel.Equipment.Range, Converter={StaticResource RangeConverter}}"
+									/>
+
+								<Separator
+									Grid.Row="5"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
+							</Grid>
+
+							<Grid Grid.Row="1" Visibility="{Binding SelectedEquipmentViewModel.IsAircraft, Converter={StaticResource BooleanToVisibilityConverter}}">
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition SharedSizeGroup="Icon" />
+									<ColumnDefinition SharedSizeGroup="IconText" />
+									<ColumnDefinition SharedSizeGroup="Base" />
+									<ColumnDefinition SharedSizeGroup="Max" />
+									<ColumnDefinition SharedSizeGroup="Scaled" />
+								</Grid.ColumnDefinitions>
+
+								<common1:ParameterIcon
+									Grid.Row="0"
+									Grid.Column="0"
+									Type="AircraftCost"
+									/>
+
+								<TextBlock
+									Grid.Row="0"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="{Binding DialogAlbumMasterEquipment.TitleAircraftCost}"
+									ToolTip="{Binding SelectedEquipmentViewModel.AircraftCostToolTip}"
+									/>
+
+								<TextBlock
+									Grid.Row="0"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Text="{Binding SelectedEquipmentViewModel.Equipment.AircraftCost}"
+									ToolTip="{Binding SelectedEquipmentViewModel.AircraftCostToolTip}"
+									/>
+
+								<Separator
+									Grid.Row="1"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
+
+								<common1:ParameterIcon
+									Grid.Row="2"
+									Grid.Column="0"
+									Type="Range"
+									/>
+
+								<TextBlock
+									Grid.Row="2"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="{Binding DialogAlbumMasterEquipment.TitleAircraftDistance}"
+									/>
+
+								<TextBlock
+									Grid.Row="2"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Text="{Binding SelectedEquipmentViewModel.Equipment.AircraftDistance}"
+									/>
+
+								<Separator
+									Grid.Row="3"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
 							</Grid>
 						</Grid>
-					</Grid>
 
-					<Image
-						Grid.Column="1"
-						Width="260"
-						VerticalAlignment="Top"
-						Source="{Binding SelectedEquipment.Equipment, Converter={StaticResource EquipmentToImageConverter}}"
-						/>
-				</Grid>
-
-				<Grid Grid.Row="1">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition />
-						<ColumnDefinition />
-					</Grid.ColumnDefinitions>
-
-					<Grid Grid.Column="0">
-						<Grid.RowDefinitions>
-							<RowDefinition />
-							<RowDefinition />
-						</Grid.RowDefinitions>
-
-						<Grid Grid.Row="0">
+						<Grid Grid.Column="1">
 							<Grid.RowDefinitions>
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition SharedSizeGroup="Icon" />
-								<ColumnDefinition SharedSizeGroup="IconText" />
-								<ColumnDefinition SharedSizeGroup="Base" />
-								<ColumnDefinition SharedSizeGroup="Max" />
-								<ColumnDefinition SharedSizeGroup="Scaled" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
 							</Grid.ColumnDefinitions>
 
-							<common1:ParameterIcon
+							<TextBlock
 								Grid.Row="0"
 								Grid.Column="0"
-								ParameterType="Speed"
+								Margin="4 0"
+								Text="{Binding DialogAlbumMasterEquipment.TitleDismantling}"
 								/>
 
-							<TextBlock
+							<StackPanel
 								Grid.Row="0"
 								Grid.Column="1"
-								Margin="2 0"
-								HorizontalAlignment="Right"
-								Foreground="Gray"
-								Text="{Binding DialogAlbumMasterEquipment.TitleSpeed}"
-								/>
+								Orientation="Horizontal"
+								>
+								<StackPanel.Resources>
+									<Style TargetType="{x:Type common:ImageTextControl}">
+										<Setter Property="Margin" Value="0 0 4 0" />
+									</Style>
+								</StackPanel.Resources>
 
-							<TextBlock
-								Grid.Row="0"
-								Grid.Column="2"
-								Margin="8 0"
-								HorizontalAlignment="Right"
-								Foreground="Gray"
-								Text="{Binding SelectedEquipment.Speed}"
-								/>
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[0]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceFuel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[1]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceAmmo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[2]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceSteel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[3]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceBauxite" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+							</StackPanel>
 							<Separator
 								Grid.Row="1"
 								Grid.Column="0"
-								Grid.ColumnSpan="5"
+								Grid.ColumnSpan="2"
 								/>
 
 							<TextBlock
 								Grid.Row="2"
-								Grid.Column="1"
-								Margin="2 0"
-								HorizontalAlignment="Right"
-								Text="{Binding DialogAlbumMasterEquipment.TitleRarity}"
+								Grid.Column="0"
+								Margin="4 0"
+								Text="{Binding DialogAlbumMasterEquipment.TitleUpgradeCost}"
 								/>
 
-							<common:ImageTextControl
+							<StackPanel
 								Grid.Row="2"
-								Grid.Column="2"
-								Margin="8 0"
-								HorizontalAlignment="Right"
-								Image="{Binding SelectedEquipment.RarityIcon, Converter={StaticResource ImageSourceConverter}}"
-								Text="{Binding SelectedEquipment.Equipment.Rarity, Converter={StaticResource EquipmentRarityConverter}}"
-								/>
+								Grid.Column="1"
+								Orientation="Horizontal"
+								>
+								<StackPanel.Resources>
+									<Style TargetType="{x:Type common:ImageTextControl}">
+										<Setter Property="Margin" Value="0 0 4 0" />
+									</Style>
+								</StackPanel.Resources>
 
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Fuel}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceFuel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Ammo}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceAmmo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Steel}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceSteel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Bauxite}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceBauxite" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
+
+							</StackPanel>
 							<Separator
 								Grid.Row="3"
 								Grid.Column="0"
-								Grid.ColumnSpan="5"
-								/>
-
-							<common1:ParameterIcon
-								Grid.Row="4"
-								Grid.Column="0"
-								ParameterType="Range"
-								/>
-
-							<TextBlock
-								Grid.Row="4"
-								Grid.Column="1"
-								Margin="2 0"
-								HorizontalAlignment="Right"
-								Text="{Binding DialogAlbumMasterEquipment.TitleRange}"
-								/>
-
-							<TextBlock
-								Grid.Row="4"
-								Grid.Column="2"
-								Margin="8 0"
-								HorizontalAlignment="Right"
-								Text="{Binding SelectedEquipment.Equipment.Range, Converter={StaticResource RangeConverter}}"
-								/>
-
-							<Separator
-								Grid.Row="5"
-								Grid.Column="0"
-								Grid.ColumnSpan="5"
-								/>
-						</Grid>
-
-						<Grid Grid.Row="1" Visibility="{Binding SelectedEquipment.IsAircraft, Converter={StaticResource BooleanToVisibilityConverter}}">
-							<Grid.RowDefinitions>
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
-								<RowDefinition />
-							</Grid.RowDefinitions>
-
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition SharedSizeGroup="Icon" />
-								<ColumnDefinition SharedSizeGroup="IconText" />
-								<ColumnDefinition SharedSizeGroup="Base" />
-								<ColumnDefinition SharedSizeGroup="Max" />
-								<ColumnDefinition SharedSizeGroup="Scaled" />
-							</Grid.ColumnDefinitions>
-
-							<common1:ParameterIcon
-								Grid.Row="0"
-								Grid.Column="0"
-								ParameterType="AircraftCost"
-								/>
-
-							<TextBlock
-								Grid.Row="0"
-								Grid.Column="1"
-								Margin="2 0"
-								HorizontalAlignment="Right"
-								Text="{Binding DialogAlbumMasterEquipment.TitleAircraftCost}"
-								ToolTip="{Binding SelectedEquipment.AircraftCostToolTip}"
-								/>
-
-							<TextBlock
-								Grid.Row="0"
-								Grid.Column="2"
-								Margin="8 0"
-								HorizontalAlignment="Right"
-								Text="{Binding SelectedEquipment.Equipment.AircraftCost}"
-								ToolTip="{Binding SelectedEquipment.AircraftCostToolTip}"
-								/>
-
-							<Separator
-								Grid.Row="1"
-								Grid.Column="0"
-								Grid.ColumnSpan="5"
-								/>
-
-							<common1:ParameterIcon
-								Grid.Row="2"
-								Grid.Column="0"
-								ParameterType="Range"
-								/>
-
-							<TextBlock
-								Grid.Row="2"
-								Grid.Column="1"
-								Margin="2 0"
-								HorizontalAlignment="Right"
-								Text="{Binding DialogAlbumMasterEquipment.TitleAircraftDistance}"
-								/>
-
-							<TextBlock
-								Grid.Row="2"
-								Grid.Column="2"
-								Margin="8 0"
-								HorizontalAlignment="Right"
-								Text="{Binding SelectedEquipment.Equipment.AircraftDistance}"
-								/>
-
-							<Separator
-								Grid.Row="3"
-								Grid.Column="0"
-								Grid.ColumnSpan="5"
+								Grid.ColumnSpan="2"
 								/>
 						</Grid>
 					</Grid>
 
-					<StackPanel Grid.Column="1">
-						<StackPanel Orientation="Horizontal">
-							<StackPanel.Resources>
-								<Style TargetType="{x:Type common:ImageTextControl}">
-									<Setter Property="Margin" Value="0 0 4 0" />
-								</Style>
-							</StackPanel.Resources>
+					<TextBlock Grid.Row="2" Text="{Binding SelectedEquipmentViewModel.Equipment.Message}" />
 
-							<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterEquipment.TitleDismantling}" />
-
-							<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipment.Equipment.Material[0]}" />
-
-							<common:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding SelectedEquipment.Equipment.Material[1]}" />
-
-							<common:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding SelectedEquipment.Equipment.Material[2]}" />
-
-							<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedEquipment.Equipment.Material[3]}" />
-
-						</StackPanel>
-						<Separator />
+					<StackPanel Grid.Row="3">
+						<equipmentUpgrade:AlbumMasterEquipmentUpgradeControl DataContext="{Binding SelectedEquipmentViewModel.UpgradeViewModel}" />
 					</StackPanel>
+
 				</Grid>
+			</ScrollViewer>
 
-				<TextBlock Grid.Row="2" Text="{Binding SelectedEquipment.Equipment.Message}" />
-
-			</Grid>
 		</Grid>
 	</Grid>
 </common1:WindowBase>

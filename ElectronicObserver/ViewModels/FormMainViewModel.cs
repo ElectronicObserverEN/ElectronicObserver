@@ -24,7 +24,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
@@ -47,7 +46,6 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
-using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -70,12 +68,13 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using ElectronicObserverTypes;
 using ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -134,50 +133,6 @@ public partial class FormMainViewModel : ObservableObject
 	// single instance hack
 	private EventLockPlannerWindow? EventLockPlannerWindow { get; set; }
 	private AutoRefreshWindow? AutoRefreshWindow { get; set; }
-
-	#region Icons
-
-	public ImageSource? ConfigurationImageSource { get; }
-
-	public ImageSource? FleetsImageSource { get; }
-	public ImageSource? FleetOverviewImageSource { get; }
-	public ImageSource? ShipGroupImageSource { get; }
-	public ImageSource? FleetPresetImageSource { get; }
-	public ImageSource? ShipTrainingPlanImageSource { get; }	
-	public ImageSource? DockImageSource { get; }
-	public ImageSource? ArsenalImageSource { get; }
-	public ImageSource? EquipmentUpgradePlanImageSource { get; }
-	public ImageSource? BaseAirCorpsImageSource { get; }
-	public ImageSource? HeadquartersImageSource { get; }
-	public ImageSource? QuestImageSource { get; }
-	public ImageSource? InformationImageSource { get; }
-	public ImageSource? CompassImageSource { get; }
-	public ImageSource? BattleImageSource { get; }
-	public ImageSource? BrowserHostImageSource { get; }
-	public ImageSource? LogImageSource { get; }
-	public ImageSource? JsonImageSource { get; }
-	public ImageSource? WindowCaptureImageSource { get; }
-
-	public ImageSource? EquipmentListImageSource { get; }
-	public ImageSource? DropRecordImageSource { get; }
-	public ImageSource? DevelopmentRecordImageSource { get; }
-	public ImageSource? ConstructionRecordImageSource { get; }
-	public ImageSource? ResourceChartImageSource { get; }
-	public ImageSource? AlbumMasterShipImageSource { get; }
-	public ImageSource? AlbumMasterEquipmentImageSource { get; }
-	public ImageSource? AntiAirDefenseImageSource { get; }
-	public ImageSource? FleetImageGeneratorImageSource { get; }
-	public ImageSource? BaseAirCorpsSimulationImageSource { get; }
-	public ImageSource? ExpCheckerImageSource { get; }
-	public ImageSource? ExpeditionCheckImageSource { get; }
-	public ImageSource? KancolleProgressImageSource { get; }
-	public ImageSource? ExtraBrowserImageSource { get; }
-	public ImageSource? AutoRefreshImageSource { get; }
-
-	public ImageSource? ViewHelpImageSource { get; }
-	public ImageSource? ViewVersionImageSource { get; }
-
-	#endregion
 
 	public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -265,7 +220,7 @@ public partial class FormMainViewModel : ObservableObject
 			_ => SoftwareInformation.SoftwareNameJapanese
 		};
 
-		Utility.Logger.Add(2, softwareName + Properties.Window.FormMain.Starting);
+		Utility.Logger.Add(2, softwareName + MainResources.Starting);
 
 		ResourceManager.Instance.Load();
 		RecordManager.Instance.Load();
@@ -279,91 +234,6 @@ public partial class FormMainViewModel : ObservableObject
 		UIUpdateTimer = new Timer() { Interval = 1000 };
 		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
 		UIUpdateTimer.Start();
-
-		#region Icon settings
-
-		ConfigurationImageSource = ImageSourceIcons.GetIcon(IconContent.FormConfiguration);
-
-		FleetsImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleet);
-		FleetOverviewImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleet);
-		ShipGroupImageSource = ImageSourceIcons.GetIcon(IconContent.FormShipGroup);
-		FleetPresetImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleetPreset);
-		ShipTrainingPlanImageSource = ImageSourceIcons.GetIcon(IconContent.ItemActionReport);
-		DockImageSource = ImageSourceIcons.GetIcon(IconContent.FormDock);
-		ArsenalImageSource = ImageSourceIcons.GetIcon(IconContent.FormArsenal);
-		EquipmentUpgradePlanImageSource = ImageSourceIcons.GetIcon(IconContent.ItemModdingMaterial);
-		BaseAirCorpsImageSource = ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps);
-		HeadquartersImageSource = ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters);
-		QuestImageSource = ImageSourceIcons.GetIcon(IconContent.FormQuest);
-		InformationImageSource = ImageSourceIcons.GetIcon(IconContent.FormInformation);
-		CompassImageSource = ImageSourceIcons.GetIcon(IconContent.FormCompass);
-		BattleImageSource = ImageSourceIcons.GetIcon(IconContent.FormBattle);
-		BrowserHostImageSource = ImageSourceIcons.GetIcon(IconContent.FormBrowser);
-		LogImageSource = ImageSourceIcons.GetIcon(IconContent.FormLog);
-		JsonImageSource = ImageSourceIcons.GetIcon(IconContent.FormJson);
-		WindowCaptureImageSource = ImageSourceIcons.GetIcon(IconContent.FormWindowCapture);
-
-		EquipmentListImageSource = ImageSourceIcons.GetIcon(IconContent.FormEquipmentList);
-		DropRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormDropRecord);
-		DevelopmentRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormDevelopmentRecord);
-		ConstructionRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormConstructionRecord);
-		ResourceChartImageSource = ImageSourceIcons.GetIcon(IconContent.FormResourceChart);
-		AlbumMasterShipImageSource = ImageSourceIcons.GetIcon(IconContent.FormAlbumShip);
-		AlbumMasterEquipmentImageSource = ImageSourceIcons.GetIcon(IconContent.FormAlbumEquipment);
-		AntiAirDefenseImageSource = ImageSourceIcons.GetIcon(IconContent.FormAntiAirDefense);
-		FleetImageGeneratorImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleetImageGenerator);
-		BaseAirCorpsSimulationImageSource = ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps);
-		ExpCheckerImageSource = ImageSourceIcons.GetIcon(IconContent.FormExpChecker);
-		ExpeditionCheckImageSource = ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck);
-		KancolleProgressImageSource = ImageSourceIcons.GetIcon(IconContent.FormEquipmentList);
-		ExtraBrowserImageSource = ImageSourceIcons.GetIcon(IconContent.FormBrowser);
-		AutoRefreshImageSource = ImageSourceIcons.GetIcon(IconContent.BrowserRefresh);
-
-		ViewHelpImageSource = ImageSourceIcons.GetIcon(IconContent.FormInformation);
-		ViewVersionImageSource = ImageSourceIcons.GetIcon(IconContent.AppIcon);
-
-		/*
-		Icon = ResourceManager.Instance.AppIcon;
-
-		StripMenu_File_Configuration.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormConfiguration];
-
-		StripMenu_View_Fleet.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet];
-		StripMenu_View_FleetOverview.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet];
-		StripMenu_View_ShipGroup.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormShipGroup];
-		StripMenu_View_Dock.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDock];
-		StripMenu_View_Arsenal.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormArsenal];
-		StripMenu_View_Headquarters.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormHeadQuarters];
-		StripMenu_View_Quest.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormQuest];
-		StripMenu_View_Information.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
-		StripMenu_View_Compass.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormCompass];
-		StripMenu_View_Battle.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBattle];
-		StripMenu_View_Browser.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser];
-		StripMenu_View_Log.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormLog];
-		StripMenu_WindowCapture.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormWindowCapture];
-		StripMenu_View_BaseAirCorps.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
-		StripMenu_View_Json.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormJson];
-		StripMenu_View_FleetPreset.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetPreset];
-
-		StripMenu_Tool_EquipmentList.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList];
-		StripMenu_Tool_DropRecord.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDropRecord];
-		StripMenu_Tool_DevelopmentRecord.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDevelopmentRecord];
-		StripMenu_Tool_ConstructionRecord.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormConstructionRecord];
-		StripMenu_Tool_ResourceChart.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormResourceChart];
-		StripMenu_Tool_AlbumMasterShip.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumShip];
-		StripMenu_Tool_AlbumMasterEquipment.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumEquipment];
-		StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
-		StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
-		StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
-		StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
-		StripMenu_Tool_ExpeditionCheck.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpeditionCheck];
-		StripMenu_Tool_KancolleProgress.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList];
-
-
-		StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
-		StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
-		*/
-
-		#endregion
 
 		APIObserver.Instance.Start(Configuration.Config.Connection.Port, Window);
 
@@ -386,8 +256,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(ShipTrainingPlanViewer);
 
 		Views.Add(Dock = new DockViewModel());
-		Views.Add(Arsenal = new ArsenalViewModel()); 
-		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel()); 
+		Views.Add(Arsenal = new ArsenalViewModel());
+		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel());
 		Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
@@ -494,7 +364,7 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void LoadData()
 	{
-		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
+		if (MessageBox.Show(Resources.AskLoad, MainResources.ConfirmatonCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
@@ -549,22 +419,29 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (File.Exists(IntegratePath) && WindowCapture.WinformsControl is FormWindowCapture capture)
 		{
-			capture.CloseAll();
-
-			string integrateString = File.ReadAllText(IntegratePath);
-			byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
-
-			IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
-				.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
-
-			foreach (FormIntegrate.WindowInfo info in integrateWindows)
+			try
 			{
-				// the constructor captures it so no need to call AddCapturedWindow
-				FormIntegrate integrate = new(this, info);
-				// capture.AddCapturedWindow(integrate);
-			}
+				capture.CloseAll();
 
-			capture.AttachAll();
+				string integrateString = File.ReadAllText(IntegratePath);
+				byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
+
+				IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
+					.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
+
+				foreach (FormIntegrate.WindowInfo info in integrateWindows)
+				{
+					// the constructor captures it so no need to call AddCapturedWindow
+					FormIntegrate integrate = new(this, info);
+					// capture.AddCapturedWindow(integrate);
+				}
+
+				capture.AttachAll();
+			}
+			catch
+			{
+				Logger.Add(3, FormMain.WindowCaptureLoadFailed);
+			}
 		}
 
 		try
@@ -756,7 +633,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -776,7 +653,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Development.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoDevData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -796,7 +673,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Construction.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show(GeneralRes.NoBuildData, MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -828,7 +705,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -844,7 +721,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterEquipments.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.EquipmentDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -861,8 +738,8 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			MessageBox.Show
 			(
-				Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
-				Properties.Window.Dialog.DialogAntiAirDefense.Error,
+				AntiAirDefenseResources.DataNotLoaded,
+				AntiAirDefenseResources.Error,
 				MessageBoxButton.OK, MessageBoxImage.Error
 			);
 
@@ -882,6 +759,12 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenBaseAirCorpsSimulation()
 	{
 		ToolService.AirControlSimulator();
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		ToolService.OperationRoom();
 	}
 
 	[RelayCommand]
@@ -907,14 +790,14 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (!KCDatabase.Instance.Quest.IsLoaded)
 		{
-			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.QuestDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
 
 		new QuestTrackerManagerWindow().Show(Window);
 	}
-	
+
 	[RelayCommand]
 	private void OpenEquipmentUpgradePlanner()
 	{
@@ -926,7 +809,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show(MainResources.ShipDataNotLoaded, MainResources.ErrorCaption,
 				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
@@ -961,6 +844,12 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		AutoRefreshWindow.Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenTelegram()
+	{
+		new TelegramWindow().Show(Window);
 	}
 
 	[RelayCommand]
@@ -999,7 +888,7 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void LoadInitialAPI()
+	private async Task LoadInitialAPI()
 	{
 		using OpenFileDialog ofd = new();
 
@@ -1021,7 +910,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API List.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 
 			}
@@ -1142,7 +1031,7 @@ public partial class FormMainViewModel : ObservableObject
 		Window.Dispatcher.Invoke((() =>
 		{
 			APIObserver.Instance.LoadResponse($"/kcsapi/{apiName}", data);
-		})); 
+		}));
 	}
 
 	[RelayCommand]
@@ -1151,7 +1040,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1189,7 +1078,7 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
@@ -1201,7 +1090,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+			MessageBox.Show("Please load normal api_start2 first.", MainResources.ErrorCaption,
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
@@ -1227,10 +1116,9 @@ public partial class FormMainViewModel : ObservableObject
 
 					foreach (dynamic elem in json.api_data.api_mst_ship)
 					{
+						IShipDataMaster ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
 
-						var ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
-
-						if (elem.api_name != "なし" && ship != null && ship.IsAbyssalShip)
+						if (elem.api_name != "なし" && ship is { IsAbyssalShip: true })
 						{
 
 							KCDatabase.Instance.MasterShips[(int)elem.api_id].LoadFromResponse("api_start2", elem);
@@ -1244,63 +1132,51 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to load API.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}
 
 	[RelayCommand]
-	private async void DeleteOldAPI()
+	private async Task DeleteOldAPI()
 	{
-
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
-
 			try
 			{
-
-				int count = await Task.Factory.StartNew(() => DeleteOldAPIInternal());
+				int count = await Task.Factory.StartNew(DeleteOldAPIInternal);
 
 				MessageBox.Show("Delete successful.\r\n" + count + " files deleted.", "Delete Successful",
 					MessageBoxButton.OK, MessageBoxImage.Information);
-
 			}
 			catch (Exception ex)
 			{
-
-				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("Failed to delete.\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 			}
-
-
 		}
-
 	}
 
 	private int DeleteOldAPIInternal()
 	{
-
-
 		//適当極まりない
 		int count = 0;
 
-		var apilist = new Dictionary<string, List<KeyValuePair<string, string>>>();
+		Dictionary<string, List<KeyValuePair<string, string>>> apilist = new();
 
 		foreach (string s in Directory.EnumerateFiles(Utility.Configuration.Config.Connection.SaveDataPath,
 			"*.json", SearchOption.TopDirectoryOnly))
 		{
-
 			int start = s.IndexOf('@');
 			int end = s.LastIndexOf('.');
 
 			start--;
 			string key = s.Substring(start, end - start + 1);
 			string date = s.Substring(0, start);
-
 
 			if (!apilist.ContainsKey(key))
 			{
@@ -1324,12 +1200,11 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void RenameShipResource()
+	private async Task RenameShipResource()
 	{
-
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show("Ship data is not loaded.", MainResources.ErrorCaption, MessageBoxButton.OK,
 				MessageBoxImage.Error);
 			return;
 		}
@@ -1370,7 +1245,7 @@ public partial class FormMainViewModel : ObservableObject
 			{
 
 				Utility.ErrorReporter.SendErrorReport(ex, "艦船リソースのリネームに失敗しました。");
-				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, MainResources.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 
@@ -1587,7 +1462,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		Dictionary<ShipId, IShipDataMaster> wikiShips = TestData.Wiki.WikiDataParser.Ships(wikiEquipment);
 		Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips = TestData.Wiki.WikiDataParser.AbyssalShips(wikiAbyssalEquipment);
-		Dictionary<ShipId, List<int>> abyssalAircraft = await  TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
+		Dictionary<ShipId, List<int>> abyssalAircraft = await TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
 
 		foreach (IShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 		{
@@ -1682,7 +1557,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ViewHelp()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
+		if (MessageBox.Show(MainResources.OpenEOWiki, MainResources.HelpCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
@@ -1695,7 +1570,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ReportIssue()
 	{
 
-		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
+		if (MessageBox.Show(MainResources.ReportIssue, MainResources.ReportIssueCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
@@ -1705,11 +1580,10 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void JoinDiscord()
-		=> OpenLink("https://discord.gg/6ZvX8DG");
+	private void JoinDiscord() => OpenLink("https://discord.gg/6ZvX8DG");
 
 	[RelayCommand]
-	private async void CheckForUpdate()
+	private async Task CheckForUpdate()
 	{
 		// translations and maintenance state
 		await SoftwareUpdater.CheckUpdateAsync();
@@ -2033,7 +1907,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
+			ErrorReporter.SendErrorReport(ex, MainResources.FailedToOpenBrowser);
 		}
 	}
 
@@ -2049,8 +1923,8 @@ public partial class FormMainViewModel : ObservableObject
 		if (Configuration.Config.Life.ConfirmOnClosing)
 		{
 			if (MessageBox.Show(
-					string.Format(Properties.Window.FormMain.ExitConfirmation, name),
-					Properties.Window.FormMain.ConfirmatonCaption,
+					string.Format(MainResources.ExitConfirmation, name),
+					MainResources.ConfirmatonCaption,
 					MessageBoxButton.YesNo,
 					MessageBoxImage.Question,
 					MessageBoxResult.No)

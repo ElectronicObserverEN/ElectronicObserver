@@ -1,28 +1,24 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
 
-public class ApiReqPracticeBattleRequest
+namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+
+public class ApiReqPracticeBattleRequest : IBattleApiRequest
 {
 	[JsonPropertyName("api_deck_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDeckId { get; set; } = default!;
+	public string ApiDeckId { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEnemyId { get; set; } = default!;
+	public string ApiEnemyId { get; set; } = "";
 
 	[JsonPropertyName("api_formation_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiFormationId { get; set; } = default!;
+	public string ApiFormationId { get; set; } = "";
 
 	[JsonPropertyName("api_start")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public string? ApiStart { get; set; } = default!;
+	public string? ApiStart { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
+
+	[JsonPropertyName("api_smoke_flag")]
+	public string? ApiSmokeFlag { get; set; }
 }

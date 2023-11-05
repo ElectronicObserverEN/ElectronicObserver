@@ -4,10 +4,10 @@ namespace ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 
 public enum DevelopmentRecordOption
 {
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDevelopmentRecordViewer), Name = "NameAny")]
+	[Display(ResourceType = typeof(DevelopmentRecordViewerResources), Name = "NameAny")]
 	All,
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDevelopmentRecordViewer), Name = "NameExist")]
+	[Display(ResourceType = typeof(DevelopmentRecordViewerResources), Name = "NameExist")]
 	Success,
-	[Display(ResourceType = typeof(Properties.Window.Dialog.DialogDevelopmentRecordViewer), Name = "NameNotExist")]
+	[Display(ResourceType = typeof(DevelopmentRecordViewerResources), Name = "NameNotExist")]
 	Failure
 }

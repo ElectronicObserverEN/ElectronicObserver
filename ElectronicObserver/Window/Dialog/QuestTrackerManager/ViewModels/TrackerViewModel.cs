@@ -49,7 +49,7 @@ public partial class TrackerViewModel : ObservableObject
 	private List<string?> TaskProgressDisplays => Tasks
 		.Select(t => t switch
 		{
-			null => Properties.Window.Dialog.QuestTrackerManager.UnknownTask,
+			null => QuestTrackerManagerResources.UnknownTask,
 			_ => t.Progress
 		})
 		.Where(p => !string.IsNullOrEmpty(p))

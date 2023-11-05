@@ -51,4 +51,14 @@ public class PhaseSearching : PhaseBase
 	/// 交戦形態
 	/// </summary>
 	public int EngagementForm => (int)RawData.api_formation[2];
+
+	/// <summary>
+	/// 0, 1, 2, 3 - number of active smokers <br />
+	/// null - no idea when this can be null
+	/// </summary>
+	public int? SmokeCount => RawData.api_smoke_type() switch
+	{
+		true => (int)RawData.api_smoke_type,
+		_ => null,
+	};
 }

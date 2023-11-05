@@ -1,0 +1,765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NetworkSettingsNote" xml:space="preserve">
+    <value>* Network settings will take effect after restart</value>
+  </data>
+  <data name="UpstreamProxyToolTip" xml:space="preserve">
+    <value>Specify address of the upstream proxy. 
+The default value is 127.0.0.1.</value>
+  </data>
+  <data name="Connection_DownstreamProxyLabel" xml:space="preserve">
+    <value>Downstream proxy:</value>
+  </data>
+  <data name="Connection_DownstreamProxyToolTip" xml:space="preserve">
+    <value>Specify the downstream proxy settings.
+This setting will override the upstream proxy settings.
+For advanced users only.</value>
+  </data>
+  <data name="Connection_UseSystemProxy" xml:space="preserve">
+    <value>Use system proxy</value>
+  </data>
+  <data name="Connection_UpstreamProxyPortToolTip" xml:space="preserve">
+    <value>Specify port number of the local proxy server.</value>
+  </data>
+  <data name="Connection_UseUpstreamProxyToolTip" xml:space="preserve">
+    <value>Use local proxy server.
+Enable if you want to route the connection through
+third-party application (e.g: MyFleetGirls).</value>
+  </data>
+  <data name="Connection_RegisterAsSystemProxy" xml:space="preserve">
+    <value>Register as system proxy.</value>
+  </data>
+  <data name="Connection_SaveDataPathSearch" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="Connection_SaveReceivedData" xml:space="preserve">
+    <value>Save API data</value>
+  </data>
+  <data name="UI_JapaneseEquipmentTypes" xml:space="preserve">
+    <value>Use JP equipment types</value>
+  </data>
+  <data name="UI_JapaneseEquipmentNames" xml:space="preserve">
+    <value>Use JP equipment names</value>
+  </data>
+  <data name="UI_JapaneseShipTypes" xml:space="preserve">
+    <value>Use JP ship types</value>
+  </data>
+  <data name="UI_JapaneseShipNames" xml:space="preserve">
+    <value>Use JP ship names</value>
+  </data>
+  <data name="UI_DisableOtherTranslations" xml:space="preserve">
+    <value>Disable other translations</value>
+  </data>
+  <data name="UI_DisableOtherTranslationsToolTip" xml:space="preserve">
+    <value>Expeditions, sortie maps and quests.</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme:</value>
+  </data>
+  <data name="ThemeToolTip" xml:space="preserve">
+    <value>Use the specified color theme.
+Changes will take effect after restart.
+Custom option will use color values from Settings\ColorScheme.json</value>
+  </data>
+  <data name="UI_RenderingTestToolTip" xml:space="preserve">
+    <value>This is a preview.
+Use the slider below to adjust the value.</value>
+  </data>
+  <data name="UI_IsLayoutFixed" xml:space="preserve">
+    <value>Use fixed font height</value>
+  </data>
+  <data name="UI_IsLayoutFixedToolTip" xml:space="preserve">
+    <value>Apply the same height for all UI fonts.
+If disabled, the font height may differ for each UI elements.</value>
+  </data>
+  <data name="UI_BarColorMorphingToolTip" xml:space="preserve">
+    <value>Use color gradient on color bar such as HP, etc.</value>
+  </data>
+  <data name="Log_SaveLogImmediately" xml:space="preserve">
+    <value>Write log immediately</value>
+  </data>
+  <data name="Log_SaveLogImmediatelyToolTip" xml:space="preserve">
+    <value>Write log to file immediately instead of caching it until program exit.
+If disabled, logs are saved only when exiting the program.</value>
+  </data>
+  <data name="Log_SaveBattleLog" xml:space="preserve">
+    <value>Save battle history</value>
+  </data>
+  <data name="Log_SaveBattleLogToolTip" xml:space="preserve">
+    <value>Save battle history as text file.
+Battle histories are saved in the BattleLog subfolder.</value>
+  </data>
+  <data name="Log_ShowSpoiler" xml:space="preserve">
+    <value>Show spoilers</value>
+  </data>
+  <data name="Log_ShowSpoilerToolTip" xml:space="preserve">
+    <value>Show developed items and dropped ships in the log.
+Disable this setting to hide the information.</value>
+  </data>
+  <data name="Log_LogLevelToolTip" xml:space="preserve">
+    <value>Specify logging level for the program. Smaller number means more verbose logging.
+1: Debug
+2: Normal
+3: Error-only</value>
+  </data>
+  <data name="TabPage4" xml:space="preserve">
+    <value>Behavior</value>
+  </data>
+  <data name="ApplicationId" xml:space="preserve">
+    <value>Application ID</value>
+  </data>
+  <data name="Control_ApplicationIDToolTip" xml:space="preserve">
+    <value>Application ID to use with Discord Rich Presence</value>
+  </data>
+  <data name="Control_ForceUpdate" xml:space="preserve">
+    <value>Force update</value>
+  </data>
+  <data name="TranslationURL" xml:space="preserve">
+    <value>Translation URL</value>
+  </data>
+  <data name="Control_translationURLToolTip" xml:space="preserve">
+    <value>Specify the repository to use to update translations.</value>
+  </data>
+  <data name="Control_DiscordRPCShowFCM" xml:space="preserve">
+    <value>Show number of First Class Medals</value>
+  </data>
+  <data name="Control_DiscordRPCShowFCMToolTip" xml:space="preserve">
+    <value>Check to show on Discord Rich Presence the number of first class medal you have.</value>
+  </data>
+  <data name="Control_EnableDiscordRPC" xml:space="preserve">
+    <value>Enable Discord RPC</value>
+  </data>
+  <data name="Control_EnableDiscordRPCToolTip" xml:space="preserve">
+    <value>Enable Discord Rich Presence</value>
+  </data>
+  <data name="DiscordRPCMessage" xml:space="preserve">
+    <value>Discord RPC message</value>
+  </data>
+  <data name="Control_DiscordRPCMessageToolTip" xml:space="preserve">
+    <value>Allows you to choose what message to display on discord. Use {{secretary}} to put your secretary's name in the message.</value>
+  </data>
+  <data name="Control_ShowExpeditionAlertDialog" xml:space="preserve">
+    <value>Warn when sending expedition w/ unmet requirements</value>
+  </data>
+  <data name="Control_ShowExpeditionAlertDialogTooltip" xml:space="preserve">
+    <value>Specifies whether to display a warning dialog when a fleet that 
+does not meet the formation conditions departs for an expedition.</value>
+  </data>
+  <data name="Control_ShowSallyAreaAlertDialog" xml:space="preserve">
+    <value>Warn before sending untagged ship</value>
+  </data>
+  <data name="Control_ShowSallyAreaAlertDialogTooltip" xml:space="preserve">
+    <value>Show a warning dialog when sending fleet with untagged ship to event map.
+Due to incomplete information, a false positive may also trigger this warning.</value>
+  </data>
+  <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
+    <value>Sets the default engagement form for attack power calculation</value>
+  </data>
+  <data name="FormationModifier" xml:space="preserve">
+    <value>Form Modifier:</value>
+  </data>
+  <data name="Control_UseSystemVolume" xml:space="preserve">
+    <value>Use system volume settings</value>
+  </data>
+  <data name="Control_UseSystemVolumeToolTip" xml:space="preserve">
+    <value>Disable individual volume setting in notification sound and BGM.
+You will need to use windows volume mixer to adjust the volume setting.</value>
+  </data>
+  <data name="ProgressAutoSaving_Immediately" xml:space="preserve">
+    <value>Immediately</value>
+  </data>
+  <data name="LogFrequency" xml:space="preserve">
+    <value>Log Frequency:</value>
+  </data>
+  <data name="Debug_LoadAPIListOnLoad" xml:space="preserve">
+    <value>Load API list on startup</value>
+  </data>
+  <data name="Debug_LoadAPIListOnLoadToolTip" xml:space="preserve">
+    <value>Load the following API list at startup.
+Refer to the online help on format and usage of API list.</value>
+  </data>
+  <data name="Debug_EnableDebugMenu" xml:space="preserve">
+    <value>Show debug menu</value>
+  </data>
+  <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
+    <value>Show debug menu in the menu bar.
+Use it at your own risk.</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
+    <value>Allow floating window to be closed regardless of lock layout setting.</value>
+  </data>
+  <data name="Life_LockLayout" xml:space="preserve">
+    <value>Lock current layout</value>
+  </data>
+  <data name="Life_LockLayoutToolTip" xml:space="preserve">
+    <value>Prevent changes to tab layout and window size.</value>
+  </data>
+  <data name="ClockMode" xml:space="preserve">
+    <value>Clock mode:</value>
+  </data>
+  <data name="Life_ClockFormat_ServerTime" xml:space="preserve">
+    <value>Server time</value>
+  </data>
+  <data name="Life_ClockFormat_PvpReset" xml:space="preserve">
+    <value>PVP reset</value>
+  </data>
+  <data name="Life_ClockFormat_QuestReset" xml:space="preserve">
+    <value>Quest reset</value>
+  </data>
+  <data name="Life_ShowStatusBar" xml:space="preserve">
+    <value>Show status bar</value>
+  </data>
+  <data name="Life_CheckUpdateInformation" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="Life_TopMost" xml:space="preserve">
+    <value>Always on top</value>
+  </data>
+  <data name="Life_ConfirmOnClosing" xml:space="preserve">
+    <value>Confirm on exit</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>Subwindow</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Fleet</value>
+  </data>
+  <data name="FormFleet_AppliesSallyAreaColor" xml:space="preserve">
+    <value>Use fleet tag color</value>
+  </data>
+  <data name="FormFleet_AppliesSallyAreaColorToolTip" xml:space="preserve">
+    <value>Use fleet tag color as background of each ship name.
+The colors may not match each event tag colors.</value>
+  </data>
+  <data name="FleetStatus" xml:space="preserve">
+    <value>Fleet status:</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_SingleStatus" xml:space="preserve">
+    <value>Single status</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_CollapseAll" xml:space="preserve">
+    <value>Collapse all</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_CollapseMultiple" xml:space="preserve">
+    <value>Collapse multiple</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_ExpandAll" xml:space="preserve">
+    <value>Expand all</value>
+  </data>
+  <data name="FormFleet_EmphasizesSubFleetInPort" xml:space="preserve">
+    <value>Highlight idle fleet</value>
+  </data>
+  <data name="FormFleet_EmphasizesSubFleetInPortToolTip" xml:space="preserve">
+    <value>Highlight expedition fleet idling on homeport.</value>
+  </data>
+  <data name="FormFleet_BlinkAtDamaged" xml:space="preserve">
+    <value>Highlight at critical damage</value>
+  </data>
+  <data name="FormFleet_BlinkAtDamagedToolTip" xml:space="preserve">
+    <value>Highlight fleet on homeport if it contains critically damaged ships.</value>
+  </data>
+  <data name="FormFleet_ReflectAnchorageRepairHealing" xml:space="preserve">
+    <value>HP recovery</value>
+  </data>
+  <data name="FormFleet_ReflectAnchorageRepairHealingToolTip" xml:space="preserve">
+    <value>Show recovered HP in the HP bar from anchorage repair.</value>
+  </data>
+  <data name="FormFleet_ShowAirSuperiorityRange" xml:space="preserve">
+    <value>Show AS value range</value>
+  </data>
+  <data name="FormFleet_ShowAirSuperiorityRangeToolTip" xml:space="preserve">
+    <value>Show fleet AS value range based on minimum and maximum plane proficiency.
+The default setting is to use the lowest plane proficiency for AS calculation.</value>
+  </data>
+  <data name="FormFleet_ShowAircraftLevelByNumber" xml:space="preserve">
+    <value>Numeric proficiency level</value>
+  </data>
+  <data name="FormFleet_ShowAircraftLevelByNumberToolTip" xml:space="preserve">
+    <value>Show plane proficiency level in digits (1,2,3) instead of symbols (|,||,&gt;&gt;).</value>
+  </data>
+  <data name="FormFleet_FixedShipNameWidthToolTip" xml:space="preserve">
+    <value>Specify width of ship name column.</value>
+  </data>
+  <data name="FormFleet_ShowConditionIcon" xml:space="preserve">
+    <value>Fatigue icon</value>
+  </data>
+  <data name="FormFleet_ShowConditionIconToolTip" xml:space="preserve">
+    <value>Show fatigue level icon in the fleet window.
+If disabled, ship fatigue level is denoted by background color.</value>
+  </data>
+  <data name="EquipmentLevelVisibility_OverlayProficiency" xml:space="preserve">
+    <value>Overlay proficiency</value>
+  </data>
+  <data name="FormFleet_EquipmentLevelVisibilityToolTip" xml:space="preserve">
+    <value>Specify the display mode of improvement and proficiency level of aircraft.
+If set to prioritize, it will prioritize the specified item over another.
+If set to both, both item will be displayed.</value>
+  </data>
+  <data name="EquipmentLevelDisplay" xml:space="preserve">
+    <value>Eq lvl display:</value>
+  </data>
+  <data name="FormFleet_ShowAnchorageRepairingTimer" xml:space="preserve">
+    <value>Repair timer</value>
+  </data>
+  <data name="FormFleet_ShowAnchorageRepairingTimerToolTip" xml:space="preserve">
+    <value>Show repair timer in the fleet list window.</value>
+  </data>
+  <data name="FormFleet_AirSuperiorityMethod_Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="FormFleet_AirSuperiorityMethod_Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="FormFleet_ShowNextExpToolTip" xml:space="preserve">
+    <value>Show the amount of experience needed to level up.
+Disable this setting to save horizontal space.</value>
+  </data>
+  <data name="FormFleet_ShortenHPBar" xml:space="preserve">
+    <value>Small HP bar</value>
+  </data>
+  <data name="FormFleet_FixShipNameWidth" xml:space="preserve">
+    <value>Fixed name width</value>
+  </data>
+  <data name="FormFleet_FixShipNameWidthToolTip" xml:space="preserve">
+    <value>Specify a fixed width of ship name column.
+It may decrease horizontal space requirement but may cut off long ship names.</value>
+  </data>
+  <data name="FormFleet_IsScrollable" xml:space="preserve">
+    <value>Show scrollbar</value>
+  </data>
+  <data name="FormFleet_IsScrollableToolTip" xml:space="preserve">
+    <value>Show scrollbar if the content does not fit.</value>
+  </data>
+  <data name="FormFleet_ShowAircraft" xml:space="preserve">
+    <value>Show plane slot</value>
+  </data>
+  <data name="NameWidth" xml:space="preserve">
+    <value>Name width:</value>
+  </data>
+  <data name="FormArsenal_MaxShipNameWidthToolTip" xml:space="preserve">
+    <value>Specify maximum width of ship name column.</value>
+  </data>
+  <data name="FormArsenal_ShowShipName" xml:space="preserve">
+    <value>Show ship name</value>
+  </data>
+  <data name="HQ" xml:space="preserve">
+    <value>HQ</value>
+  </data>
+  <data name="OtherItem" xml:space="preserve">
+    <value>Other item:</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show:</value>
+  </data>
+  <data name="ShipNameSortMethod_GameSort" xml:space="preserve">
+    <value>Game sort</value>
+  </data>
+  <data name="FormShipGroup_ShowStatusBar" xml:space="preserve">
+    <value>Show status bar</value>
+  </data>
+  <data name="Combat" xml:space="preserve">
+    <value>Combat</value>
+  </data>
+  <data name="FormBattle_Display7thAsSingleLine" xml:space="preserve">
+    <value>Show 7th ship in the same line</value>
+  </data>
+  <data name="FormBattle_Display7thAsSingleLineToolTip" xml:space="preserve">
+    <value>Specify placement of the 7th ship in Striking Force fleet mode.
+ If enabled, it will be displayed under the 6th ship.
+ If disabled, it will be displayed as flagship of the escort fleet.
+ Disabling the setting may save vertical space.</value>
+  </data>
+  <data name="FormBattle_ShowShipTypeInHPBar" xml:space="preserve">
+    <value>Show ship type on HP bar</value>
+  </data>
+  <data name="FormBattle_ShowShipTypeInHPBarToolTip" xml:space="preserve">
+    <value>Show ship type (e.g: DD) instead of HP title text.</value>
+  </data>
+  <data name="FormBattle_ShowHPBar" xml:space="preserve">
+    <value>Show HP bar</value>
+  </data>
+  <data name="FormBattle_ShowHPBarToolTip" xml:space="preserve">
+    <value>Disabling this option will remove the HP bar and save vertical space.</value>
+  </data>
+  <data name="FormBattle_HideDuringBattle" xml:space="preserve">
+    <value>Hide until the end of battle</value>
+  </data>
+  <data name="FormBattle_HideDuringBattleToolTip" xml:space="preserve">
+    <value>Avoid spoiler by hiding the battle prediction screen.
+You can temporarily display it by the right-clicking menu of the battle window.</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="FormBrowser_SavesBrowserLog" xml:space="preserve">
+    <value>Save browser error log*</value>
+  </data>
+  <data name="FormBrowser_SavesBrowserLogTooltip" xml:space="preserve">
+    <value>Save browser error log to BrowserLog.log.
+May reduce performance.</value>
+  </data>
+  <data name="FormBrowser_ForceColorProfile" xml:space="preserve">
+    <value>Force sRGB color profile*</value>
+  </data>
+  <data name="FormBrowser_ForceColorProfileToolTip" xml:space="preserve">
+    <value>Enable this setting if the browser displays wrong color.
+* Changes will take effect after application restart.</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBuffer" xml:space="preserve">
+    <value>Preserve drawing buffer *</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBufferToolTip" xml:space="preserve">
+    <value>Disabling the setting may improve performance.
+Note: if preserve drawing buffer is not enabled, screenshot 
+size may be limited to browser window size.
+* Changes will take effect after application restart.
+</value>
+  </data>
+  <data name="RestartNotice" xml:space="preserve">
+    <value>* Some settings will take effect after restart</value>
+  </data>
+  <data name="FormBrowser_HardwareAccelerationEnabled" xml:space="preserve">
+    <value>HW acceleration *</value>
+  </data>
+  <data name="FormBrowser_HardwareAccelerationEnabledToolTip" xml:space="preserve">
+    <value>Use hardware acceleration when available.
+Note: Disable this setting if you need to use window capture 
+for recording/streaming.
+* Changes will take effect after application restart.</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyable" xml:space="preserve">
+    <value>Hide page reload popup</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyableToolTip" xml:space="preserve">
+    <value>Hide DMM page reload pop-up dialog from appearing in browser window.</value>
+  </data>
+  <data name="FormBrowser_ConfirmAtRefresh" xml:space="preserve">
+    <value>Refresh confirmation</value>
+  </data>
+  <data name="FormBrowser_ConfirmAtRefreshToolTip" xml:space="preserve">
+    <value>Displays a confirmation dialog before refreshing the page.</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output:</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_ToFile" xml:space="preserve">
+    <value>To file</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_ToClipboard" xml:space="preserve">
+    <value>To clipboard</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_Both" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration" xml:space="preserve">
+    <value>Prevent compression on Twitter</value>
+  </data>
+  <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>Apply modification to images in order to
+prevent Twitter from automatically converting them to JPEG.</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zoom: </value>
+  </data>
+  <data name="AB" xml:space="preserve">
+    <value>AB</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnly" xml:space="preserve">
+    <value>Hide non-event AB</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnlyToolTip" xml:space="preserve">
+    <value>Hide AB stationed in non-event map during event period.</value>
+  </data>
+  <data name="FormJson_AutoUpdate" xml:space="preserve">
+    <value>Refresh automatically</value>
+  </data>
+  <data name="FormJson_AutoUpdateToolTip" xml:space="preserve">
+    <value>Automatically update the displayed API data.
+May increase processing load.</value>
+  </data>
+  <data name="AutoUpdateCouldIncreaseLoad" xml:space="preserve">
+    <value>※Enabling automatic update may increase processing load</value>
+  </data>
+  <data name="FormJson_UpdatesTree" xml:space="preserve">
+    <value>Also update JSON tree view</value>
+  </data>
+  <data name="FormJson_UpdatesTreeToolTip" xml:space="preserve">
+    <value>Automatically update tree content when sending/receiving API data.
+It only works if automatic refresh is enabled. May increase processing load.</value>
+  </data>
+  <data name="FormJson_AutoUpdateFilterToolTip" xml:space="preserve">
+    <value>Filter that selects API data to be read at automatic update. Supports Regex.</value>
+  </data>
+  <data name="UpdateFilter" xml:space="preserve">
+    <value>Update filter:</value>
+  </data>
+  <data name="silenceFullscreen" xml:space="preserve">
+    <value>Silence while fullscreen</value>
+  </data>
+  <data name="Notification_Silencio" xml:space="preserve">
+    <value>Mute all notifications</value>
+  </data>
+  <data name="Notification_SilencioToolTip" xml:space="preserve">
+    <value>Hide/stop all notifications and notification sounds.</value>
+  </data>
+  <data name="Notification_RemodelLevel" xml:space="preserve">
+    <value>Remodel level</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>Mute sync</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMuteToolTip" xml:space="preserve">
+    <value>Syncronize mute setting with browser window.</value>
+  </data>
+  <data name="APIListBrowser" xml:space="preserve">
+    <value>Open API List File</value>
+  </data>
+  <data name="Log_PlayTime" xml:space="preserve">
+    <value>Play time</value>
+  </data>
+  <data name="checkBoxUseSecretaryIconForRPC" xml:space="preserve">
+    <value>Use secretary icon as game picture</value>
+  </data>
+  <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
+    <value>Enable TsunDb submission</value>
+  </data>
+  <data name="Notification_BaseAirCorps" xml:space="preserve">
+    <value>AB notification</value>
+  </data>
+  <data name="Notification_BattleEnd" xml:space="preserve">
+    <value>Battle end notification</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Theme_Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Theme_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Control_PowerEngagementForm_Parallel" xml:space="preserve">
+    <value>Parallel</value>
+  </data>
+  <data name="Control_PowerEngagementForm_HeadOn" xml:space="preserve">
+    <value>Head-on</value>
+  </data>
+  <data name="Control_PowerEngagementForm_GreenT" xml:space="preserve">
+    <value>Green T</value>
+  </data>
+  <data name="Control_PowerEngagementForm_RedT" xml:space="preserve">
+    <value>Red T</value>
+  </data>
+  <data name="Connection_UseUpstreamProxy" xml:space="preserve">
+    <value>Use local proxy:</value>
+  </data>
+  <data name="SaveDataPathDoesNotExist" xml:space="preserve">
+    <value>The specified folder does not exists.</value>
+  </data>
+  <data name="DialogCaptionErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="PleaseStartKancolle" xml:space="preserve">
+    <value>Please start KanColle first.</value>
+  </data>
+  <data name="SavePacFileAs" xml:space="preserve">
+    <value>Save PAC File As</value>
+  </data>
+  <data name="ProxyAutoConfigSaved" xml:space="preserve">
+    <value>The proxy auto-config script has been saved.
+The file path was copied to clipboard, paste it to the proxy settings in Internet Explorer.</value>
+  </data>
+  <data name="FailedToSavePac" xml:space="preserve">
+    <value>Failed to save proxy auto-config script.</value>
+  </data>
+  <data name="PacSavedTitle" xml:space="preserve">
+    <value>PAC Script Saved</value>
+  </data>
+  <data name="PlayerVolumeWillBeSet" xml:space="preserve">
+    <value>BGM player volume will be set to {0}.
+Are you sure?</value>
+  </data>
+  <data name="ConfirmSetting" xml:space="preserve">
+    <value>Confirm Setting</value>
+  </data>
+  <data name="UseLetterForNodes" xml:space="preserve">
+    <value>Use letter for node assignment</value>
+  </data>
+  <data name="Language_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Language_Japanese" xml:space="preserve">
+    <value>Japanese</value>
+  </data>
+  <data name="UI_RestartHint" xml:space="preserve">
+    <value>You should restart EO after changing the theme or language.</value>
+  </data>
+  <data name="UI_LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>Use Gadget Redirect *</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
+    <value>Redirect the gadget api call to bypass the foreigner block.
+If you live in Japan or use a Japanese VPN you can keep this option disabled.</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
+    <value>Vulkan workaround *</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
+    <value>Removes the WebView2 files required for the vulkan software rendering implementation, which can cause high CPU load on older hardware.</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenu" xml:space="preserve">
+    <value>Show context menu</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
+    <value>Right click in browser will display a context menu.</value>
+  </data>
+  <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
+    <value>Port and upstream proxy port values must be different.</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
+    <value>Allow to add multiple plans for the same ship</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
+    <value>If unchecked, when adding a new ship training plan, the ship list will be filtered to only display ships without a training plan.
+If checked, no filter will be applied.</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
+    <value>Display all enemy compositions</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
+    <value>When disabled, only the compositions matching the preview from map screen will be shown.
+When enabled, the preview will be ignored and all compositions will be shown.</value>
+  </data>
+  <data name="Language_Korean" xml:space="preserve">
+    <value>Korean</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>Electronic Observer API URL</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
+    <value>URL for the Electronic Observer API used to repport data issues.</value>
+  </data>
+</root>

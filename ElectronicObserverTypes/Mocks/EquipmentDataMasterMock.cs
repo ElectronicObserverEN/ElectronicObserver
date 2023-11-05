@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
 
 public class EquipmentDataMasterMock : IEquipmentDataMaster
 {
+	private string? _nameEn;
+
 	public bool IsSurfaceRadar => this.IsSurfaceRadar();
 	public bool IsSonar => this.IsSonar();
 	public bool IsDepthCharge => this.IsDepthCharge();
@@ -24,7 +27,11 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public int EquipmentID { get; set; }
 	public int AlbumNo { get; set; }
 	public string Name { get; set; }
-	public string NameEN { get; set; }
+	public string NameEN
+	{
+		get => _nameEn ?? Name;
+		set => _nameEn = value;
+	}
 	public bool IsTranslated { get; set; }
 	public IList<int> EquipmentType { get; set; }
 	public int Armor { get; set; }
@@ -50,7 +57,9 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public IEquipmentType CategoryTypeInstance { get; set; }
 	public int IconType { get; set; }
 	public EquipmentIconType IconTypeTyped => (EquipmentIconType)IconType;
-	public IEnumerable<int> EquippableShipsAtExpansion { get; set; }
+	public IEnumerable<ShipId> EquippableShipsAtExpansion { get; set; } = Array.Empty<ShipId>();
+	public IEnumerable<ShipTypes> EquippableShipTypesAtExpansion { get; set; } = Array.Empty<ShipTypes>();
+	public IEnumerable<ShipClass> EquippableShipClassesAtExpansion { get; set; } = Array.Empty<ShipClass>();
 	public bool IsGun => this.IsGun();
 	public bool IsMainGun => this.IsMainGun();
 	public bool IsSecondaryGun => this.IsSecondaryGun();

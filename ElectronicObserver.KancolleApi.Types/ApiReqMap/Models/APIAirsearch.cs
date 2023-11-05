@@ -3,10 +3,8 @@
 public class ApiAirsearch
 {
 	[JsonPropertyName("api_plane_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiPlaneType { get; set; } = default!;
+	public int ApiPlaneType { get; set; }
 
 	[JsonPropertyName("api_result")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiResult { get; set; } = default!;
+	public int ApiResult { get; set; }
 }

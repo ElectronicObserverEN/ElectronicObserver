@@ -14,7 +14,6 @@ using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
@@ -53,7 +52,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
 
-	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<ExpeditionRecordViewModel> Expeditions { get; } = new();
 
@@ -178,8 +177,8 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			hqLevel,
-			expedition?.Model.Fleet.MakeFleet()
-	);
+			expedition?.Model.Fleet.MakeFleet(0)
+		);
 
 		FleetImageGeneratorImageDataModel model = new()
 		{

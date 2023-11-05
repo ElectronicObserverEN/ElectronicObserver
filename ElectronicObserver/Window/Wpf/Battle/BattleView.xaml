@@ -2,11 +2,10 @@
 	x:Class="ElectronicObserver.Window.Wpf.Battle.BattleView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Battle.Views"
-	xmlns:window="clr-namespace:ElectronicObserver.Window"
 	x:Name="BattleControl"
 	d:DesignHeight="250"
 	d:DesignWidth="300"
@@ -15,7 +14,6 @@
 	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 	mc:Ignorable="d"
 	>
-
 	<Border
 		Background="Transparent"
 		ContextMenuOpening="FrameworkElement_OnContextMenuOpening"
@@ -91,15 +89,23 @@
 							Background="Transparent"
 							ToolTip="{Binding SearchingFriendToolTip}"
 							>
-							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding SearchingFriendIcon}" />
-								<TextBlock
-									MaxWidth="60"
-									d:Text="Night Contact"
-									Text="{Binding SearchingFriendText}"
-									TextAlignment="Center"
-									TextTrimming="CharacterEllipsis"
-									/>
+							<StackPanel>
+								<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+									<common:EquipmentIcon Type="{Binding SearchingFriendIcon}" />
+									<TextBlock
+										MaxWidth="60"
+										d:Text="Night Contact"
+										Text="{Binding SearchingFriendText}"
+										TextAlignment="Center"
+										TextTrimming="CharacterEllipsis"
+										/>
+								</StackPanel>
+
+								<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+									<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding Smoker1Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+									<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding Smoker2Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+									<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding Smoker3Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+								</StackPanel>
 							</StackPanel>
 						</Border>
 						<Border
@@ -109,7 +115,18 @@
 							ToolTip="{Binding SearchingToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding SearchingIcon}" />
+								<common:EquipmentIcon Type="{Binding SearchingIcon}">
+									<common:EquipmentIcon.Style>
+										<Style TargetType="common:EquipmentIcon">
+											<Setter Property="Visibility" Value="Visible" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding SearchingIcon}" Value="{x:Null}">
+													<Setter Property="Visibility" Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</common:EquipmentIcon.Style>
+								</common:EquipmentIcon>
 								<TextBlock
 									d:Text="-"
 									Text="{Binding SearchingText}"
@@ -123,8 +140,12 @@
 							Background="Transparent"
 							ToolTip="{Binding SearchingEnemyToolTip}"
 							>
-							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding SearchingEnemyIcon}" />
+							<StackPanel
+								HorizontalAlignment="Center"
+								VerticalAlignment="Top"
+								Orientation="Horizontal"
+								>
+								<common:EquipmentIcon Type="{Binding SearchingEnemyIcon}" />
 								<TextBlock
 									MaxWidth="60"
 									d:Text="Night Contact"
@@ -148,7 +169,7 @@
 							ToolTip="{Binding AirStage1FriendToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding AirStage1FriendIcon}" />
+								<common:EquipmentIcon Type="{Binding AirStage1FriendIcon}" />
 								<TextBlock
 									d:Text="-20/200"
 									Foreground="{Binding AirStage1FriendForeColor}"
@@ -181,7 +202,7 @@
 							ToolTip="{Binding AirStage1EnemyToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding AirStage1EnemyIcon}" />
+								<common:EquipmentIcon Type="{Binding AirStage1EnemyIcon}" />
 								<TextBlock
 									d:Text="-20/200"
 									Foreground="{Binding AirStage1EnemyForeColor}"
@@ -198,7 +219,7 @@
 							ToolTip="{Binding AirStage2FriendToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding AirStage2FriendIcon}" />
+								<common:EquipmentIcon Type="{Binding AirStage2FriendIcon}" />
 								<TextBlock
 									d:Text="-5/150"
 									Foreground="{Binding AirStage2FriendForeColor}"
@@ -214,7 +235,7 @@
 							ToolTip="{Binding AACutinToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding AACutinIcon}" />
+								<common:EquipmentIcon Type="{Binding AACutinIcon}" />
 								<TextBlock
 									d:Text="AA Defense"
 									Text="{Binding AACutinText}"
@@ -229,7 +250,7 @@
 							ToolTip="{Binding AirStage2EnemyToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding AirStage2EnemyIcon}" />
+								<common:EquipmentIcon Type="{Binding AirStage2EnemyIcon}" />
 								<TextBlock
 									d:Text="-5/150"
 									Foreground="{Binding AirStage2EnemyForeColor}"
@@ -268,7 +289,18 @@
 							Visibility="{Binding PlayerFleetVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding FleetFriendIcon}" />
+								<common:EquipmentIcon Type="{Binding FleetFriendIcon}">
+									<common:EquipmentIcon.Style>
+										<Style TargetType="common:EquipmentIcon">
+											<Setter Property="Visibility" Value="Visible" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding FleetFriendIcon}" Value="{x:Null}">
+													<Setter Property="Visibility" Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</common:EquipmentIcon.Style>
+								</common:EquipmentIcon>
 								<TextBlock
 									d:Text="Friendly"
 									Text="{Binding FleetFriendText}"

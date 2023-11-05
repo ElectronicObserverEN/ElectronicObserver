@@ -1,39 +1,48 @@
-﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Compass.Views.TextView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Compass.Views"
-
-			 x:Name="TextControl"
-
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Wpf.Compass.Views.TextView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="TextControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
 	<Grid DataContext="{Binding ViewModel, ElementName=TextControl}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<TextBlock Text="{Binding TextMapArea}" ToolTip="{Binding TextMapAreaToolTip}" Margin="2" />
+			<TextBlock
+				Margin="2"
+				Text="{Binding TextMapArea}"
+				ToolTip="{Binding TextMapAreaToolTip}"
+				/>
 			<Border Background="Transparent" ToolTip="{Binding TextDestinationToolTip}">
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="{Binding TextDestination}" Margin="2" />
-					<Image Source="{Binding TextDestinationIcon}" Margin="2" />
-				</StackPanel>	
+					<TextBlock Margin="2" Text="{Binding TextDestination}" />
+					<common:EquipmentIcon Margin="2" Type="{Binding TextDestinationIcon}" />
+				</StackPanel>
 			</Border>
 		</StackPanel>
 		<StackPanel Grid.Row="1" Orientation="Horizontal">
 			<Border Background="Transparent" ToolTip="{Binding TextEventKindToolTip}">
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="{Binding TextEventKindText}" Margin="2" Foreground="{Binding TextEventKindForeColor}" />
-					<Image Source="{Binding TextEventKindIcon}" Margin="2" />
+					<TextBlock
+						Margin="2"
+						Foreground="{Binding TextEventKindForeColor}"
+						Text="{Binding TextEventKindText}"
+						/>
+					<common:EquipmentIcon Margin="2" Type="{Binding TextEventKindIcon}" />
 				</StackPanel>
 			</Border>
 			<Border Background="Transparent" ToolTip="{Binding TextEventDetailToolTip}">
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding TextEventDetailIcon}" Margin="2" />
-					<TextBlock Text="{Binding TextEventDetailText}" Margin="2" />
+					<common:EquipmentIcon Margin="2" Type="{Binding TextEventDetailIcon}" />
+					<TextBlock Margin="2" Text="{Binding TextEventDetailText}" />
 				</StackPanel>
 			</Border>
 		</StackPanel>

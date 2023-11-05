@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Integrate;
@@ -9,14 +8,14 @@ using ElectronicObserver.Window.Wpf.WinformsHost;
 
 namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 
-public partial class FormIntegrateViewModel : WinformsHostViewModel
+public class FormIntegrateViewModel : WinformsHostViewModel
 {
 	private FormMainViewModel Parent { get; }
 	private FormIntegrate Integrate { get; }
 	public override string ContentId => Integrate.PersistString;
 
 	public FormIntegrateViewModel(FormIntegrate integrate, FormMainViewModel parent)
-		: base("Integrate", "Integrate", ImageSourceIcons.GetIcon(IconContent.FormJson))
+		: base("Integrate", "Integrate", IconContent.FormJson)
 	{
 		Parent = parent;
 		Integrate = integrate;

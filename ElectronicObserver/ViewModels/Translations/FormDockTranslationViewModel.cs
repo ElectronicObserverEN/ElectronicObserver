@@ -2,5 +2,5 @@
 
 public class FormDockTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.FormDock.Title;
+	public string Title => DockResources.Title;
 }

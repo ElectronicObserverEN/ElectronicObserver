@@ -13,8 +13,7 @@ public partial class LogViewModel : AnchorableViewModel
 	public FormLogTranslationViewModel FormLog { get; set; }
 	public ObservableCollection<string> LogList { get; set; } = new();
 
-	public LogViewModel() : base("Log", "Log",
-		ImageSourceIcons.GetIcon(IconContent.FormLog))
+	public LogViewModel() : base("Log", "Log", IconContent.FormLog)
 	{
 		FormLog = Ioc.Default.GetService<FormLogTranslationViewModel>()!;
 		Title = FormLog.Title;

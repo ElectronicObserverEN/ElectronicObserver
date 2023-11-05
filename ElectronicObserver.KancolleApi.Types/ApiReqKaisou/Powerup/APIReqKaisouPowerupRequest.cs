@@ -3,17 +3,11 @@
 public class ApiReqKaisouPowerupRequest
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiId { get; set; } = default!;
+	public string ApiId { get; set; } = "";
 
 	[JsonPropertyName("api_id_items")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiIdItems { get; set; } = default!;
+	public string ApiIdItems { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text.Json;
+using DynaJson;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 
 namespace ElectronicObserver.Data;
 
@@ -345,4 +348,19 @@ public class CompassData : ResponseWrapper
 	/// True if boss node
 	/// </summary>
 	public bool IsBossNode => EventID == 5;
+
+	/// <summary>
+	/// Map preview of the enemy fleet
+	/// </summary>
+	public List<EDeckInfo> EnemyFleetPreview
+	{
+		get
+		{
+			if (!RawData.api_e_deck_info()) return new();
+			if (RawData.api_e_deck_info is not JsonObject fleets) return new();
+			if (!fleets.IsArray) return new();
+
+			return JsonSerializer.Deserialize<List<EDeckInfo>>(fleets.ToString()) ?? new();
+		}
+	}
 }

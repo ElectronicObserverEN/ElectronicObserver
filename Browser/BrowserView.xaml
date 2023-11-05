@@ -45,7 +45,11 @@
 			Command="{Binding HardRefreshCommand}"
 			Modifiers="Control"
 			/>
-		<KeyBinding Key="F7" Command="{Binding MuteCommand}" />
+		<KeyBinding
+			Key="M"
+			Command="{Binding MuteCommand}"
+			Modifiers="Control"
+			/>
 		<KeyBinding Key="F12" Command="{Binding OpenDevtoolsCommand}" />
 	</Window.InputBindings>
 
@@ -522,7 +526,7 @@
 					<MenuItem
 						Command="{Binding MuteCommand}"
 						Header="{Binding FormBrowser.ToolMenu_Other_Mute}"
-						InputGestureText="F7"
+						InputGestureText="Ctrl+M"
 						>
 						<MenuItem.Icon>
 							<Image>

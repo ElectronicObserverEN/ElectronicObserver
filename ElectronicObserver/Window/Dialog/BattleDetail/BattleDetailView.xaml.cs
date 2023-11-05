@@ -1,7 +1,5 @@
-﻿using ElectronicObserver.Window.Tools.DropRecordViewer;
-using ElectronicObserverTypes;
+﻿namespace ElectronicObserver.Window.Dialog.BattleDetail;
 
-namespace ElectronicObserver.Window.Dialog.BattleDetail;
 /// <summary>
 /// Interaction logic for BattleDetailView.xaml
 /// </summary>

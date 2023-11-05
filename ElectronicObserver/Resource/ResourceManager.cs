@@ -93,6 +93,9 @@ public sealed class ResourceManager
 		NightSeaplane,
 		NightSeaplaneBomber,
 		ArmyInfantry,
+		SmokeGenerator = 54,
+		BarrageBalloon,
+		LandBasedFighterJet,
 		Locked,
 		Unknown,
 	}
@@ -342,6 +345,10 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplane.png", "Equipment_NightSeaplane");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightSeaplaneBomber.png", "Equipment_NightSeaplaneBomber");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/ArmyInfantry.png", "Equipment_ArmyInfantry");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/SmokeGenerator.png", "Equipment_SmokeGenerator");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/BarrageBalloon.png", "Equipment_BarrageBalloon");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterJet.png", "Equipment_LandBasedFighterJet");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
 		}

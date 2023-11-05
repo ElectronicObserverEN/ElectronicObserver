@@ -3,12 +3,8 @@
 public class ApiShipData
 {
 	[JsonPropertyName("api_set_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public ApiSetShip ApiSetShip { get; set; } = new();
+	public ApiShip ApiSetShip { get; set; } = new();
 
 	[JsonPropertyName("api_unset_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
-	public ApiSetShip ApiUnsetShip { get; set; } = new();
+	public ApiShip ApiUnsetShip { get; set; } = new();
 }

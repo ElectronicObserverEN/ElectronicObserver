@@ -5,6 +5,7 @@ namespace ElectronicObserverTypes.Serialization.FleetAnalysis;
 
 public class FleetAnalysisShip
 {
+	[JsonPropertyName("api_id")] public int DropId { get; set; }
 	[JsonPropertyName("api_ship_id")] public ShipId ShipId { get; set; }
 	[JsonPropertyName("api_lv")] public int Level { get; set; }
 	[JsonPropertyName("api_kyouka")] public IEnumerable<int>? Modernization { get; set; }

@@ -51,7 +51,7 @@ public static class DayAttackPower
 		{ MasterShip.ShipId: ShipId.HayasuiKai } when ship.HasAttacker() => ship.CarrierBasePower(fleet),
 		{ MasterShip.ShipId: ShipId.YamashioMaruKai } when ship.HasBomber() => ship.CarrierBasePower(fleet),
 
-		_ => ship.SurfaceShipBasePower(fleet)
+		_ => ship.SurfaceShipBasePower(fleet),
 	};
 
 	private static double SurfaceShipBasePower(this IShipData ship, IFleetData fleet) =>
@@ -70,39 +70,40 @@ public static class DayAttackPower
 
 	private static double DayFirepowerBonus(this IEquipmentData? equip) => equip?.MasterEquipment.CategoryType switch
 	{
-		EquipmentTypes.MainGunSmall => Math.Sqrt(equip.Level),
-		EquipmentTypes.MainGunMedium => Math.Sqrt(equip.Level),
-		EquipmentTypes.APShell => Math.Sqrt(equip.Level),
-		EquipmentTypes.AADirector => Math.Sqrt(equip.Level),
-		EquipmentTypes.Searchlight => Math.Sqrt(equip.Level),
-		EquipmentTypes.SearchlightLarge => Math.Sqrt(equip.Level),
-		EquipmentTypes.AAGun => Math.Sqrt(equip.Level),
-		EquipmentTypes.LandingCraft => Math.Sqrt(equip.Level),
-		EquipmentTypes.SpecialAmphibiousTank => Math.Sqrt(equip.Level),
+		EquipmentTypes.MainGunSmall or
+		EquipmentTypes.MainGunMedium or
+		EquipmentTypes.APShell or
+		EquipmentTypes.AADirector or
+		EquipmentTypes.Searchlight or
+		EquipmentTypes.SearchlightLarge or
+		EquipmentTypes.AAGun or
+		EquipmentTypes.LandingCraft or
+		EquipmentTypes.SpecialAmphibiousTank or
+		EquipmentTypes.SurfaceShipPersonnel => Math.Sqrt(equip.Level),
 
-		EquipmentTypes.MainGunLarge => Math.Sqrt(equip.Level) * 1.5,
+		EquipmentTypes.MainGunLarge or
 		EquipmentTypes.MainGunLarge2 => Math.Sqrt(equip.Level) * 1.5,
 
-		EquipmentTypes.Sonar => Math.Sqrt(equip.Level) * 0.75,
+		EquipmentTypes.Sonar or
 		EquipmentTypes.SonarLarge => Math.Sqrt(equip.Level) * 0.75,
 		EquipmentTypes.DepthCharge when equip.MasterEquipment.IsDepthChargeProjector => Math.Sqrt(equip.Level) * 0.75,
 
 		EquipmentTypes.SecondaryGun => equip.EquipmentId switch
 		{
-			EquipmentId.SecondaryGun_12_7cmTwinHighangleGun => 0.2 * equip.Level,
-			EquipmentId.SecondaryGun_8cmHighangleGun => 0.2 * equip.Level,
-			EquipmentId.SecondaryGun_8cmHighangleGunKai_MachineGun => 0.2 * equip.Level,
+			EquipmentId.SecondaryGun_12_7cmTwinHighangleGun or
+			EquipmentId.SecondaryGun_8cmHighangleGun or
+			EquipmentId.SecondaryGun_8cmHighangleGunKai_MachineGun or
 			EquipmentId.SecondaryGun_10cmTwinHighangleGunKai_AdditionalMachineGuns => 0.2 * equip.Level,
 
-			EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun => 0.3 * equip.Level,
+			EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun or
 			EquipmentId.SecondaryGun_15_5cmTripleSecondaryGunKai => 0.3 * equip.Level,
 
-			_ => Math.Sqrt(equip.Level)
+			_ => Math.Sqrt(equip.Level),
 		},
 
 		EquipmentTypes.CarrierBasedTorpedo => 0.2 * equip.Level,
 
-		_ => 0
+		_ => 0,
 	};
 
 	private static double CombinedFleetDayAttackBonus(this IFleetData fleet, IShipData ship) =>
@@ -117,7 +118,7 @@ public static class DayAttackPower
 			(FleetType.Transport, 1) => -5,
 			(FleetType.Transport, 2) => 10,
 
-			_ => 0
+			_ => 0,
 		};
 
 	private static double DayAttackMod(Enum attackKind) => attackKind switch
@@ -135,6 +136,6 @@ public static class DayAttackPower
 		DayAirAttackCutinKind.BomberBomberAttacker => 1.20,
 		DayAirAttackCutinKind.BomberAttacker => 1.15,
 
-		_ => 1
+		_ => 1,
 	};
 }

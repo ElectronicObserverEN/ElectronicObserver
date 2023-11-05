@@ -5,47 +5,33 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 public class ApiReqPracticeBattleResultResponse
 {
 	[JsonPropertyName("api_enemy_info")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public ApiEnemyInfo ApiEnemyInfo { get; set; } = new();
 
 	[JsonPropertyName("api_get_base_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiGetBaseExp { get; set; } = default!;
+	public int ApiGetBaseExp { get; set; }
 
 	[JsonPropertyName("api_get_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiGetExp { get; set; } = default!;
+	public int ApiGetExp { get; set; }
 
 	[JsonPropertyName("api_get_exp_lvup")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<List<int>> ApiGetExpLvup { get; set; } = new();
 
 	[JsonPropertyName("api_get_ship_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiGetShipExp { get; set; } = new();
 
 	[JsonPropertyName("api_member_exp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberExp { get; set; } = default!;
+	public int ApiMemberExp { get; set; }
 
 	[JsonPropertyName("api_member_lv")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMemberLv { get; set; } = default!;
+	public int ApiMemberLv { get; set; }
 
 	[JsonPropertyName("api_mvp")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMvp { get; set; } = default!;
+	public int ApiMvp { get; set; }
 
 	[JsonPropertyName("api_ship_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiShipId { get; set; } = new();
 
+	// todo: should be an enum
 	[JsonPropertyName("api_win_rank")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiWinRank { get; set; } = default!;
+	public string ApiWinRank { get; set; } = "";
 }

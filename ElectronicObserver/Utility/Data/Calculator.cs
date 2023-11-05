@@ -274,6 +274,20 @@ public static class Calculator
 	}
 
 	/// <summary>
+	/// Air power value if min and max are the same, min ～ max otherwise.
+	/// </summary>
+	/// <param name="aircorps">対象の艦隊。</param>
+	public static string GetAirSuperiorityRangeString(IBaseAirCorpsData aircorps)
+	{
+		int min = GetAirSuperiority(aircorps);
+		int max = GetAirSuperiority(aircorps, true);
+
+		if (min == max) return min.ToString();
+
+		return $"{min} ～ {max}";
+	}
+
+	/// <summary>
 	/// 基地航空隊での出撃時における、偵察機による制空値ボーナス係数を求めます。
 	/// </summary>
 	public static double GetAirSuperioritySortieReconBonus(int equipmentID)

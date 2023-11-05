@@ -20,12 +20,18 @@ public class SortieRecordViewModel
 		Model = sortie;
 		SortieStart = sortieStart.ToLocalTime();
 
+		int combinedFlag = sortie.FleetData.FleetId switch
+		{
+			1 => sortie.FleetData.CombinedFlag,
+			_ => 0,
+		};
+
 		Fleet = (sortie.FleetData.Fleets.Count >= sortie.FleetData.FleetId) switch
 		{
-			true => sortie.FleetData.Fleets[sortie.FleetData.FleetId - 1].MakeFleet(),
+			true => sortie.FleetData.Fleets[sortie.FleetData.FleetId - 1].MakeFleet(combinedFlag),
 			// in an earlier version, fleets that weren't supposed to be saved were skipped
 			// instead of being saved as null
-			_ => sortie.FleetData.Fleets.First().MakeFleet(),
+			_ => sortie.FleetData.Fleets.First().MakeFleet(sortie.FleetData.CombinedFlag),
 		};
 	}
 }

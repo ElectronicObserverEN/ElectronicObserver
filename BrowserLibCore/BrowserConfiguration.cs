@@ -149,4 +149,16 @@ public class BrowserConfiguration
 
 	[Key(25)]
 	public bool IsBrowserContextMenuEnabled { get; set; }
+
+	[Key(26)]
+	public string MainFont { get; set; } = null!;
+
+	[Key(27)]
+	public bool UseCustomBrowserFont { get; set; }
+
+	[Key(28)]
+	public string? BrowserFont { get; set; }
+
+	[Key(29)]
+	public bool MatchMainFont { get; set; }
 }

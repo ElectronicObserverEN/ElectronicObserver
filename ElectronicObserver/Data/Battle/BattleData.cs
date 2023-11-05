@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserver.Properties.Data;
 
 namespace ElectronicObserver.Data.Battle;
 

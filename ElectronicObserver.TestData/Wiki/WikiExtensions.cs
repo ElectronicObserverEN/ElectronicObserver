@@ -8,7 +8,11 @@ public static class WikiExtensions
 {
 	public static ShipDataMasterMock ToMasterShip(this WikiShip wikiShip) => new()
 	{
-		ShipId = (ShipId)wikiShip._api_id,
+		ShipId = wikiShip._japanese_name switch
+		{
+			"榛名改二乙" => (ShipId)(wikiShip._api_id = (int)ShipId.HarunaKaiNiB),
+			_ => (ShipId)wikiShip._api_id,
+		},
 		AlbumNo = wikiShip._id,
 		Name = wikiShip._japanese_name,
 		NameReading = wikiShip._reading.ToStringValue(),
@@ -30,7 +34,11 @@ public static class WikiExtensions
 		Speed = wikiShip._speed,
 		Range = wikiShip._range,
 		BuildingTime = wikiShip._build_time * 60 * 1000,
-		Rarity = wikiShip._rarity,
+		Rarity = wikiShip._rarity switch
+		{
+			{ ValueKind: JsonValueKind.Number } n => n.GetInt32(),
+			_ => -1,
+		},
 		Fuel = wikiShip._fuel,
 		Ammo = wikiShip._ammo,
 		Aircraft = wikiShip._equipment.Select(s => s.size).Concat(Enumerable.Repeat<int>(default, 5)).Take(5).ToArray(),
@@ -61,6 +69,7 @@ public static class WikiExtensions
 		FirepowerMax = wikiShip._firepower ?? 0,
 		TorpedoMin = wikiShip._torpedo ?? 0,
 		TorpedoMax = wikiShip._torpedo ?? 0,
+		AAMin = wikiShip._aa ?? 0,
 		AAMax = wikiShip._aa ?? 0,
 		ASW = new ParameterMock
 		{
@@ -82,7 +91,7 @@ public static class WikiExtensions
 		},
 		LuckMin = wikiShip._luck ?? 0,
 		LuckMax = wikiShip._luck ?? 0,
-		Speed = wikiShip._speed,
+		Speed = wikiShip._speed ?? 0,
 		Range = wikiShip._range ?? -1,
 		Aircraft = wikiShip._equipment.Select(s => s.size.ToIntValueAircraft())
 			.Concat(Enumerable.Repeat<int>(default, 5)).Take(5).ToArray(),

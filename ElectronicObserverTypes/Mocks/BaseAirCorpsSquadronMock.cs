@@ -9,7 +9,7 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 	public int State { get; set; } = 1;
 	public int EquipmentMasterID { get; set; }
 	public IEquipmentData? EquipmentInstance { get; set; }
-	public int EquipmentID { get; set; }
+	public int EquipmentID => (int?)EquipmentInstance?.EquipmentId ?? 0;
 	public IEquipmentDataMaster? EquipmentInstanceMaster { get; set; }
 	public int AircraftCurrent { get; set; }
 	public int AircraftMax { get; set; }

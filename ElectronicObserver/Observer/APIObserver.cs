@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -17,13 +16,12 @@ using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
-using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Observer;
 
 public sealed class APIObserver
 {
-
+	private object LockObject { get; } = new();
 
 	#region Singleton
 
@@ -730,22 +728,22 @@ public sealed class APIObserver
 			ConnectionTimeOutSeconds = 15,
 			ReuseSocket = false,
 			EnableConnectionPool = false,
-			ForwardToUpstreamGateway = true
+			ForwardToUpstreamGateway = true,
 		};
-		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
+
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
 
 		Task.Run(ProcessApiDataAsync);
 	}
 
-	private async void ProcessApiDataAsync()
+	private async Task ProcessApiDataAsync()
 	{
 		// basically while (true)
 		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
 		{
 			Action apiAction = await ApiProcessingChannel.Reader.ReadAsync();
-			UIControl.Dispatcher.Invoke(apiAction);
+			await UIControl.Dispatcher.BeginInvoke(apiAction);
 		}
 	}
 
@@ -761,18 +759,24 @@ public sealed class APIObserver
 
 		UIControl = uiControl;
 
-		if (Proxy.ProxyRunning) Proxy.Stop();
+		if (Proxy.ProxyRunning)
+		{
+			Proxy.Stop();
+		}
 
 		try
 		{
-			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, false);
+			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID);
 			Proxy.AddEndPoint(Endpoint);
-
-			Proxy.UpStreamHttpProxy = c switch
+			
+			ExternalProxy? upstreamProxy = c switch
 			{
-				{ UseUpstreamProxy: true } => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
+				{ UseUpstreamProxy: true } => new(c.UpstreamProxyAddress, c.UpstreamProxyPort),
 				_ => null,
 			};
+
+			Proxy.UpStreamHttpProxy = upstreamProxy;
+			Proxy.UpStreamHttpsProxy = upstreamProxy;
 
 			Proxy.Start();
 			ProxyPort = portID;
@@ -854,7 +858,7 @@ public sealed class APIObserver
 				string url = body.Split('/')[2];
 				url = url.Split('\\')[0];
 
-				db.Server = getKCServer(url);
+				db.Server = Constants.getKCServer(url);
 			}
 		}
 
@@ -918,11 +922,11 @@ public sealed class APIObserver
 					byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
 					Array.Copy(await e.GetResponseBody(), responseCopy, (await e.GetResponseBody()).Length);
 
-					Task.Run((Action)(() =>
+					Task.Run((() =>
 					{
 						try
 						{
-							lock (this)
+							lock (LockObject)
 							{
 								// 同時に書き込みが走るとアレなのでロックしておく
 
@@ -1064,6 +1068,7 @@ public sealed class APIObserver
 				APIList.OnResponseReceived(shortpath, null);
 			}
 
+			Task.Run(() => ApiFileService.Value.ProcessedApi(shortpath));
 		}
 		catch (Exception ex)
 		{

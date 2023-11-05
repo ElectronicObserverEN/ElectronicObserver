@@ -177,7 +177,7 @@ public class OpeningAswTests
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel22_634AirGroup]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12_MurataSquadron]),
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Ju87CKai2_KMXSkilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Ju87CKaiNi_KMXSkilled]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron]),
 			},
 		};

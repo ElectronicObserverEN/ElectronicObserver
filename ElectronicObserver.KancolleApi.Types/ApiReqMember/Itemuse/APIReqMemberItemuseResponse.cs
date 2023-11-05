@@ -5,19 +5,14 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.Itemuse;
 public class ApiReqMemberItemuseResponse
 {
 	[JsonPropertyName("api_caution_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiCautionFlag { get; set; } = default!;
+	public int ApiCautionFlag { get; set; }
 
 	[JsonPropertyName("api_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiFlag { get; set; } = default!;
+	public int ApiFlag { get; set; }
 
 	[JsonPropertyName("api_getitem")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<ApiGetitem?> ApiGetitem { get; set; } = new();
 
 	[JsonPropertyName("api_material")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public List<int>? ApiMaterial { get; set; } = default!;
+	public List<int>? ApiMaterial { get; set; }
 }

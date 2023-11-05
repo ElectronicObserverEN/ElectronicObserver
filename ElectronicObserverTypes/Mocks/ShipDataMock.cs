@@ -103,21 +103,25 @@ public class ShipDataMock : IShipData
 	public int LuckTotal => this.LuckTotal();
 	public int BomberTotal => this.BomberTotal();
 	public int AccuracyTotal => this.AccuracyTotal();
-	public int ExpeditionFirepowerTotal { get; }
-	public int ExpeditionASWTotal { get; }
-	public int ExpeditionLOSTotal { get; }
-	public int ExpeditionAATotal { get; }
+	public int ExpeditionFirepowerTotal => this.ExpeditionFirepowerTotal();
+	public int ExpeditionASWTotal => this.ExpeditionAswTotal();
+	public int ExpeditionLOSTotal => this.ExpeditionLosTotal();
+	public int ExpeditionAATotal => this.ExpeditionAaTotal();
 	public int FirepowerBase => Math.Min(MasterShip.FirepowerMin + FirepowerModernized, MasterShip.FirepowerMax);
 	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
 	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
-	public int EvasionBase => MasterShip.Evasion.GetParameter(Level);
+	public int EvasionBase => MasterShip.Evasion.IsDetermined switch
+	{
+		true => MasterShip.Evasion.GetParameter(Level),
+		_ => 0,
+	};
 	public int ShipID => (int)MasterShip.ShipId;
 	public int MasterID { get; set; }
 	public int SortID { get; set; }
 	public int SallyArea { get; set; }
 	public IShipDataMaster MasterShip { get; set; }
-	public int RepairingDockID { get; set; }
+	public int RepairingDockID { get; set; } = -1;
 	public int Fleet { get; set; }
 	public string FleetWithIndex { get; set; }
 	public bool IsMarried => Level > 99;
@@ -129,8 +133,16 @@ public class ShipDataMock : IShipData
 	public Dictionary<string, string> RequestData { get; set; }
 	public dynamic RawData { get; set; }
 	public bool IsAvailable { get; set; }
-	public int ASWBase => MasterShip.ASW.GetParameter(Level) + ASWModernized;
-	public int LOSBase => MasterShip.LOS.GetParameter(Level);
+	public int ASWBase => MasterShip.ASW.IsDetermined switch
+	{
+		true => MasterShip.ASW.GetParameter(Level),
+		_ => 0,
+	} + ASWModernized;
+	public int LOSBase => MasterShip.LOS.IsDetermined switch
+	{
+		true => MasterShip.LOS.GetParameter(Level),
+		_ => 0,
+	};
 	public int LuckBase
 	{
 		get => Math.Min(MasterShip.LuckMin + LuckModernized, MasterShip.LuckMax);
@@ -140,6 +152,11 @@ public class ShipDataMock : IShipData
 	public int EvasionMax { get; set; }
 	public int ASWMax { get; set; }
 	public int LOSMax { get; set; }
+	public List<SpecialEffectItem> SpecialEffectItems { get; set; } = new();
+	public int SpecialEffectItemFirepower { get; set; }
+	public int SpecialEffectItemTorpedo { get; set; }
+	public int SpecialEffectItemArmor { get; set; }
+	public int SpecialEffectItemEvasion { get; set; }
 	public bool IsLocked { get; set; }
 	public bool IsLockedByEquipment { get; set; }
 
@@ -149,6 +166,7 @@ public class ShipDataMock : IShipData
 
 		HPCurrent = MasterShip.HPMin;
 
+		SlotSize = MasterShip.SlotSize;
 		Aircraft = MasterShip.Aircraft;
 
 		Fuel = ship.Fuel;
@@ -163,6 +181,8 @@ public class ShipDataMock : IShipData
 		LuckModernized = 0;
 		HPMaxModernized = 0;
 		ASWModernized = 0;
+
+		Speed = ship.Speed;
 	}
 
 	public void LoadFromResponse(string apiname, dynamic data)

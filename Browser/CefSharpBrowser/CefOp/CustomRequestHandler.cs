@@ -1,5 +1,4 @@
-﻿using Browser.Properties;
-using CefSharp;
+﻿using CefSharp;
 using CefSharp.DevTools;
 using CefSharp.Handler;
 
@@ -14,7 +13,7 @@ public class CustomRequestHandler : RequestHandler
 	private bool UseGadgetRedirect { get; }
 
 
-	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect) : base()
+	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect)
 	{
 		PixiSettingEnabled = pixiSettingEnabled;
 		UseGadgetRedirect = useGadgetRedirect;
@@ -40,21 +39,13 @@ public class CustomRequestHandler : RequestHandler
 		// note: out of memory (例外コード: 0xe0000008) でクラッシュした場合、このイベントは呼ばれない
 
 		string ret = Resources.RenderProcessTerminatedBy;
-		switch (status)
+		ret += status switch
 		{
-			case CefTerminationStatus.AbnormalTermination:
-				ret += Resources.RenderProcessAbnormalTermination;
-				break;
-			case CefTerminationStatus.ProcessWasKilled:
-				ret += Resources.RenderProcessProcessWasKilled;
-				break;
-			case CefTerminationStatus.ProcessCrashed:
-				ret += Resources.RenderProcessProcessCrashed;
-				break;
-			default:
-				ret += Resources.RenderProcessUnexpectedTermination;
-				break;
-		}
+			CefTerminationStatus.AbnormalTermination => Resources.RenderProcessAbnormalTermination,
+			CefTerminationStatus.ProcessWasKilled => Resources.RenderProcessProcessWasKilled,
+			CefTerminationStatus.ProcessCrashed => Resources.RenderProcessProcessCrashed,
+			_ => Resources.RenderProcessUnexpectedTermination,
+		};
 		ret += Resources.RenderProcessReturnWhenReloaded;
 
 		RenderProcessTerminated?.Invoke(ret);

@@ -4,30 +4,34 @@ namespace ElectronicObserver.Window.Tools.ExpChecker;
 
 public class ExpCheckerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title = Properties.Window.Dialog.DialogExpChecker.Title;
+	public string Title = ExpCheckerResources.Title;
 
-	public string DisplayCriteria => Properties.Window.Dialog.DialogExpChecker.DisplayCriteria;
-	public string Ship => Properties.Window.Dialog.DialogExpChecker.Ship;
-	public string SearchInFleet => Properties.Window.Dialog.DialogExpChecker.SearchInFleet;
-	public string SearchInFleetToolTip => Properties.Window.Dialog.DialogExpChecker.SearchInFleetToolTip;
-	public string SortieExp => Properties.Window.Dialog.DialogExpChecker.SortieExp;
-	public string ShowAllASWEquipments => Properties.Window.Dialog.DialogExpChecker.ShowAllASWEquipments;
-	public string ShowAllASWEquipmentsToolTip => Properties.Window.Dialog.DialogExpChecker.ShowAllASWEquipmentsToolTip;
+	public string DisplayCriteria => ExpCheckerResources.DisplayCriteria;
+	public string Ship => ExpCheckerResources.Ship;
+	public string SearchInFleet => ExpCheckerResources.SearchInFleet;
+	public string SearchInFleetToolTip => ExpCheckerResources.SearchInFleetToolTip;
+	public string SortieExp => ExpCheckerResources.SortieExp;
+	public string ShowAllASWEquipments => ExpCheckerResources.ShowAllASWEquipments;
+	public string ShowAllASWEquipmentsToolTip => ExpCheckerResources.ShowAllASWEquipmentsToolTip;
 
-	public string ShowAllLevel => Properties.Window.Dialog.DialogExpChecker.ShowAllLevel;
-	public string ShowAllLevelToolTip => Properties.Window.Dialog.DialogExpChecker.ShowAllLevelToolTip;
+	public string ShowAllLevel => ExpCheckerResources.ShowAllLevel;
+	public string ShowAllLevelToolTip => ExpCheckerResources.ShowAllLevelToolTip;
 
-	public string AswOffset => Properties.Window.Dialog.DialogExpChecker.AswOffset;
-	public string ASWModernizationToolTip => Properties.Window.Dialog.DialogExpChecker.ASWModernizationToolTip;
+	public string AswOffset => ExpCheckerResources.AswOffset;
+	public string ASWModernizationToolTip => ExpCheckerResources.ASWModernizationToolTip;
 
-	public string ExpUnitToolTip => Properties.Window.Dialog.DialogExpChecker.ExpUnitToolTip;
-	public string GroupExp => Properties.Window.Dialog.DialogExpChecker.GroupExp;
+	public string LuckOffset => ExpCheckerResources.LuckOffset;
+	public string LuckOffsetToolTip => ExpCheckerResources.LuckOffsetToolTip;
 
-	public string ColumnSortieCount => Properties.Window.Dialog.DialogExpChecker.ColumnSortieCount;
-	public string ASW => Properties.Window.Dialog.DialogExpChecker.ASW;
-	public string ColumnEquipment => Properties.Window.Dialog.DialogExpChecker.ColumnEquipment;
+	public string ExpUnitToolTip => ExpCheckerResources.ExpUnitToolTip;
+	public string GroupExp => ExpCheckerResources.GroupExp;
 
-	public string AswUnknown => Properties.Window.Dialog.DialogExpChecker.AswUnknown;
-	public string AswApproximated => Properties.Window.Dialog.DialogExpChecker.AswApproximated;
-	public string Modernization => Properties.Window.Dialog.DialogExpChecker.Modernization;
+	public string ColumnSortieCount => ExpCheckerResources.ColumnSortieCount;
+	public string ASW => ExpCheckerResources.ASW;
+	public string ColumnEquipment => ExpCheckerResources.ColumnEquipment;
+	public string Accuracy => ExpCheckerResources.Accuracy;
+
+	public string AswUnknown => ExpCheckerResources.AswUnknown;
+	public string AswApproximated => ExpCheckerResources.AswApproximated;
+	public string Modernization => ExpCheckerResources.Modernization;
 }

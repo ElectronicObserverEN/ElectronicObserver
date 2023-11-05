@@ -1,30 +1,28 @@
-﻿using ElectronicObserver.Window.Dialog;
-
-namespace ElectronicObserver.ViewModels.Translations;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 
 public class DialogDevelopmentRecordViewerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => Properties.Window.Dialog.DialogDevelopmentRecordViewer.Title;
+	public string Title => DevelopmentRecordViewerResources.Title;
 
-	public string ButtonRun => Properties.Window.Dialog.DialogDevelopmentRecordViewer.ButtonRun;
-	public string MergeRows => Properties.Window.Dialog.DialogDevelopmentRecordViewer.MergeRows;
-	public string Recipe => Properties.Window.Dialog.DialogDevelopmentRecordViewer.Recipe;
-	public string Flagship => Properties.Window.Dialog.DialogDevelopmentRecordViewer.Flagship;
-	public string Until => Properties.Window.Dialog.DialogDevelopmentRecordViewer.Until;
-	public string From => Properties.Window.Dialog.DialogDevelopmentRecordViewer.From;
-	public string Type => Properties.Window.Dialog.DialogDevelopmentRecordViewer.Type;
-	public string EquipmentName => Properties.Window.Dialog.DialogDevelopmentRecordViewer.EquipmentName;
+	public string ButtonRun => DevelopmentRecordViewerResources.ButtonRun;
+	public string MergeRows => DevelopmentRecordViewerResources.MergeRows;
+	public string Recipe => DevelopmentRecordViewerResources.Recipe;
+	public string Flagship => DevelopmentRecordViewerResources.Flagship;
+	public string Until => DevelopmentRecordViewerResources.Until;
+	public string From => DevelopmentRecordViewerResources.From;
+	public string Type => DevelopmentRecordViewerResources.Type;
+	public string EquipmentName => DevelopmentRecordViewerResources.EquipmentName;
 
 	public string Tries => EncycloRes.Tries;
-	public string Equipment => Properties.Window.Dialog.DialogDevelopmentRecordViewer.Equipment;
-	public string RecordView_Date => Properties.Window.Dialog.DialogDevelopmentRecordViewer.RecordView_Date;
-	public string RecordView_Recipe => Properties.Window.Dialog.DialogDevelopmentRecordViewer.RecordView_Recipe;
-	public string RecordView_FlagshipType => Properties.Window.Dialog.DialogDevelopmentRecordViewer.RecordView_FlagshipType;
-	public string RecordView_Flagship => Properties.Window.Dialog.DialogDevelopmentRecordViewer.RecordView_Flagship;
-	public string ShipType => Properties.Window.Dialog.DialogDevelopmentRecordViewer.ShipType;
-	public string RecipeTries => Properties.Window.Dialog.DialogDevelopmentRecordViewer.RecipeTries;
+	public string Equipment => DevelopmentRecordViewerResources.Equipment;
+	public string RecordView_Date => DevelopmentRecordViewerResources.RecordView_Date;
+	public string RecordView_Recipe => DevelopmentRecordViewerResources.RecordView_Recipe;
+	public string RecordView_FlagshipType => DevelopmentRecordViewerResources.RecordView_FlagshipType;
+	public string RecordView_Flagship => DevelopmentRecordViewerResources.RecordView_Flagship;
+	public string ShipType => DevelopmentRecordViewerResources.ShipType;
+	public string RecipeTries => DevelopmentRecordViewerResources.RecipeTries;
 	
-	public string SelectedItems => Properties.Window.Dialog.DialogDevelopmentRecordViewer.SelectedItems;
+	public string SelectedItems => DevelopmentRecordViewerResources.SelectedItems;
 	
-	public string Today => Properties.Window.Dialog.DialogDropRecordViewer.Today;
+	public string Today => DropRecordViewerResources.Today;
 }

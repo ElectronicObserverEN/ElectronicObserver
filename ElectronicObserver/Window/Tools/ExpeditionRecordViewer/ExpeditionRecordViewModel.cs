@@ -45,7 +45,7 @@ public class ExpeditionRecordViewModel
 		ExpeditionStart = expeditionStart.ToLocalTime();
 		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.MapAreaID;
 		DisplayID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.DisplayID;
-		Fleet = record.Fleet.MakeFleet();
+		Fleet = record.Fleet.MakeFleet(0);
 		ItemList = response.ApiUseitemFlag;
 		MaterialList = response.ApiGetMaterial.ToString() != "-1" ? JsonSerializer.Deserialize<List<int>>(response.ApiGetMaterial.ToString()!) : new List<int>(new int[4]);
 		ItemOneID = ItemList[0];

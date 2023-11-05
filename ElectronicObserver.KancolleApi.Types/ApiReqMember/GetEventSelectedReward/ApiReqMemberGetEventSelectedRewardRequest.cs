@@ -3,17 +3,11 @@
 public class ApiReqMemberGetEventSelectedRewardRequest
 {
 	[JsonPropertyName("api_token")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiToken { get; set; } = default!;
+	public string ApiToken { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 
 	[JsonPropertyName("api_selected_dict[21]")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSelectedDict21 { get; set; } = default!;
+	public string ApiSelectedDict21 { get; set; } = "";
 }

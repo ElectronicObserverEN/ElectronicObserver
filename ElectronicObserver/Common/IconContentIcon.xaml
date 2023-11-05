@@ -1,0 +1,119 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Common.IconContentIcon"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
+	x:Name="Root"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<Image Width="16" Height="16">
+		<Image.Style>
+			<Style TargetType="Image">
+				<Setter Property="Visibility" Value="Visible" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding Type, ElementName=Root}" Value="{x:Null}">
+						<Setter Property="Visibility" Value="Collapsed" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+		</Image.Style>
+
+		<Image.Source>
+			<markup:Switch To="{Binding Type, ElementName=Root}">
+				<markup:Case Label="{x:Static resource:IconContent.Nothing}" Value="{StaticResource Nothing}" />
+				<markup:Case Label="{x:Static resource:IconContent.AppIcon}" Value="{StaticResource AppIcon}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.ResourceFuel}" Value="{StaticResource Resource.Fuel}" />
+				<markup:Case Label="{x:Static resource:IconContent.ResourceAmmo}" Value="{StaticResource Resource.Ammo}" />
+				<markup:Case Label="{x:Static resource:IconContent.ResourceSteel}" Value="{StaticResource Resource.Steel}" />
+				<markup:Case Label="{x:Static resource:IconContent.ResourceBauxite}" Value="{StaticResource Resource.Bauxite}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.ConditionSparkle}" Value="{StaticResource Condition.Sparkle}" />
+				<markup:Case Label="{x:Static resource:IconContent.ConditionNormal}" Value="{StaticResource Condition.Normal}" />
+				<markup:Case Label="{x:Static resource:IconContent.ConditionLittleTired}" Value="{StaticResource Condition.LittleTired}" />
+				<markup:Case Label="{x:Static resource:IconContent.ConditionTired}" Value="{StaticResource Condition.Tired}" />
+				<markup:Case Label="{x:Static resource:IconContent.ConditionVeryTired}" Value="{StaticResource Condition.VeryTired}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.ItemInstantRepair}" Value="{StaticResource Item.InstantRepair}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemInstantConstruction}" Value="{StaticResource Item.InstantConstruction}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemDevelopmentMaterial}" Value="{StaticResource Item.DevelopmentMaterial}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemModdingMaterial}" Value="{StaticResource Item.ModdingMaterial}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemFurnitureCoin}" Value="{StaticResource Item.FurnitureCoin}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemBlueprint}" Value="{StaticResource Item.Blueprint}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemCatapult}" Value="{StaticResource Item.Catapult}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemPresentBox}" Value="{StaticResource Item.PresentBox}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemActionReport}" Value="{StaticResource Item.ActionReport}" />
+				<markup:Case Label="{x:Static resource:IconContent.ItemAviationMaterial}" Value="{StaticResource Item.AviationMaterial}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.FormArsenal}" Value="{StaticResource Form.Arsenal}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormBattle}" Value="{StaticResource Form.Battle}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormCompass}" Value="{StaticResource Form.Compass}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormDock}" Value="{StaticResource Form.Dock}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormFleet}" Value="{StaticResource Form.Fleet}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormHeadQuarters}" Value="{StaticResource Form.Headquarters}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormInformation}" Value="{StaticResource Form.Information}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormLog}" Value="{StaticResource Form.Log}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormMain}" Value="{StaticResource Form.Main}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormQuest}" Value="{StaticResource Form.Quest}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormShipGroup}" Value="{StaticResource Form.ShipGroup}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormBrowser}" Value="{StaticResource Form.Browser}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormAlbumShip}" Value="{StaticResource Form.AlbumShip}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormAlbumEquipment}" Value="{StaticResource Form.AlbumEquipment}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormConfiguration}" Value="{StaticResource Form.Configuration}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormEquipmentList}" Value="{StaticResource Form.EquipmentList}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormWindowCapture}" Value="{StaticResource Form.WindowCapture}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormDropRecord}" Value="{StaticResource Form.DropRecord}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormDevelopmentRecord}" Value="{StaticResource Form.DevelopmentRecord}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormConstructionRecord}" Value="{StaticResource Form.ConstructionRecord}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormResourceChart}" Value="{StaticResource Form.ResourceChart}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormBaseAirCorps}" Value="{StaticResource Form.BaseAirCorps}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormJson}" Value="{StaticResource Form.Json}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormAntiAirDefense}" Value="{StaticResource Form.AntiAirDefense}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormFleetImageGenerator}" Value="{StaticResource Form.FleetImageGenerator}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormExpChecker}" Value="{StaticResource Form.ExpChecker}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormExpeditionCheck}" Value="{StaticResource Form.ExpeditionCheck}" />
+				<markup:Case Label="{x:Static resource:IconContent.FormFleetPreset}" Value="{StaticResource Form.FleetPreset}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.FleetNoShip}" Value="{StaticResource Fleet.NoShip}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetDocking}" Value="{StaticResource Fleet.Docking}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetSortieDamaged}" Value="{StaticResource Fleet.SortieDamaged}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetSortie}" Value="{StaticResource Fleet.Sortie}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetExpedition}" Value="{StaticResource Fleet.Expedition}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetDamaged}" Value="{StaticResource Fleet.Damaged}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetNotReplenished}" Value="{StaticResource Fleet.NotReplenished}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetAnchorageRepairing}" Value="{StaticResource Fleet.AnchorageRepairing}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetReady}" Value="{StaticResource Fleet.Ready}" />
+				<markup:Case Label="{x:Static resource:IconContent.FleetCombined}" Value="{StaticResource Fleet.Combined}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.HeadQuartersShip}" Value="{StaticResource Headquarters.Ship}" />
+				<markup:Case Label="{x:Static resource:IconContent.HeadQuartersEquipment}" Value="{StaticResource Headquarters.Equipment}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.BrowserScreenShot}" Value="{StaticResource Browser.ScreenShot}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserZoom}" Value="{StaticResource Browser.Zoom}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserZoomIn}" Value="{StaticResource Browser.ZoomIn}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserZoomOut}" Value="{StaticResource Browser.ZoomOut}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserUnmute}" Value="{StaticResource Browser.Unmute}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserMute}" Value="{StaticResource Browser.Mute}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserRefresh}" Value="{StaticResource Browser.Refresh}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserNavigate}" Value="{StaticResource Browser.Navigate}" />
+				<markup:Case Label="{x:Static resource:IconContent.BrowserOther}" Value="{StaticResource Browser.Other}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.RarityBlack}" Value="{StaticResource Rarity.Black}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityRed}" Value="{StaticResource Rarity.Red}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityBlueC}" Value="{StaticResource Rarity.BlueC}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityBlueB}" Value="{StaticResource Rarity.BlueB}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityBlueA}" Value="{StaticResource Rarity.BlueA}" />
+				<markup:Case Label="{x:Static resource:IconContent.RaritySilver}" Value="{StaticResource Rarity.Silver}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityGold}" Value="{StaticResource Rarity.Gold}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityHoloB}" Value="{StaticResource Rarity.HoloB}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityHoloA}" Value="{StaticResource Rarity.HoloA}" />
+				<markup:Case Label="{x:Static resource:IconContent.RarityCherry}" Value="{StaticResource Rarity.Cherry}" />
+			</markup:Switch>
+		</Image.Source>
+	</Image>
+</UserControl>

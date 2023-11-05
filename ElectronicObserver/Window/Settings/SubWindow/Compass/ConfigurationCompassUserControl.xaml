@@ -22,5 +22,11 @@
 				Value="{Binding MaxShipNameWidth}"
 				/>
 		</StackPanel>
+
+		<CheckBox
+			Content="{Binding Translation.Compass_DisplayAllPossibleEnemyComps}"
+			IsChecked="{Binding DisplayAllEnemyCompositions}"
+			ToolTip="{Binding Translation.Compass_DisplayAllPossibleEnemyCompsToolTip}"
+			/>
 	</StackPanel>
 </UserControl>

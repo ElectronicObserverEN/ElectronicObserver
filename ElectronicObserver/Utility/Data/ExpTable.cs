@@ -53,7 +53,7 @@ public static class ExpTable
 	/// <summary>
 	/// 艦娘レベル最大値
 	/// </summary>
-	public static int ShipMaximumLevel => 175;
+	public static int ShipMaximumLevel => 180;
 
 	/// <summary>
 	/// 提督レベル最大値
@@ -314,7 +314,12 @@ public static class ExpTable
 			new Experience( 172, 9248000, 457000 ),
 			new Experience( 173, 9705000, 561000 ),
 			new Experience( 174, 10266000, 684000 ),
-			new Experience( 175, 10950000, 0 ),
+			new Experience( 175, 10950000, 150000 ),
+			new Experience( 176, 11100000, 200000 ),
+			new Experience( 177, 11300000, 300000 ),
+			new Experience( 178, 11600000, 500000 ),
+			new Experience( 179, 12100000, 900000 ),
+			new Experience( 180, 13000000, 0 ),
 		};
 
 

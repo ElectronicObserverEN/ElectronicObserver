@@ -3,34 +3,23 @@
 public class ApiMstPayitem
 {
 	[JsonPropertyName("api_description")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiDescription { get; set; } = default!;
+	public string ApiDescription { get; set; } = "";
 
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_item")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required]
 	public List<int> ApiItem { get; set; } = new();
 
 	[JsonPropertyName("api_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_price")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiPrice { get; set; } = default!;
+	public int ApiPrice { get; set; }
 
 	[JsonPropertyName("api_shop_description")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiShopDescription { get; set; } = default!;
+	public string ApiShopDescription { get; set; } = "";
 
 	[JsonPropertyName("api_type")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiType { get; set; } = default!;
+	public int ApiType { get; set; }
 }

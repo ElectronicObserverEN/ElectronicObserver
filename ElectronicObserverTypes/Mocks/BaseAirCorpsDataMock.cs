@@ -15,4 +15,6 @@ public class BaseAirCorpsDataMock : IBaseAirCorpsData
 	public IDictionary<int, IBaseAirCorpsSquadron> Squadrons { get; set; }
 	public int ID { get; set; }
 	public bool IsAvailable { get; set; }
+	public int HPCurrent { get; set; }
+	public int HPMax { get; set; }
 }

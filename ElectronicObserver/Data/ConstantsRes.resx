@@ -630,9 +630,6 @@
   <data name="BattleDetail_EnemyFleet" xml:space="preserve">
     <value> 〈敵艦隊〉 </value>
   </data>
-  <data name="BattleDetail_IsBossDamaged" xml:space="preserve">
-    <value>  : 装甲破壊</value>
-  </data>
   <data name="BattleDetail_AirAttackUnits" xml:space="preserve">
     <value>味方基地航空隊 参加中隊:</value>
   </data>
@@ -691,7 +688,7 @@
     <value>MVP(随伴艦隊): {0}</value>
   </data>
   <data name="BattleDetail_ShipExp" xml:space="preserve">
-    <value>艦娘基本経験値: +{1}</value>
+    <value>艦娘基本経験値: +{0}</value>
   </data>
   <data name="BattleDetail_AdmiralExp" xml:space="preserve">
     <value>提督経験値: +{0}</value>
@@ -874,10 +871,10 @@
     <value>第四警戒</value>
   </data>
   <data name="GreenT" xml:space="preserve">
-    <value>T字有利</value>
+    <value>Ｔ字有利</value>
   </data>
   <data name="RedT" xml:space="preserve">
-    <value>T字不利</value>
+    <value>Ｔ字不利</value>
   </data>
   <data name="NormalAttack" xml:space="preserve">
     <value>通常攻撃</value>
@@ -1091,5 +1088,11 @@
   </data>
   <data name="CutinZuiun" xml:space="preserve">
     <value>夜間瑞雲カットイン</value>
+  </data>
+  <data name="Title_NormalRadar" xml:space="preserve">
+    <value>通常艦隊 レーダー射撃</value>
+  </data>
+  <data name="Title_NormalDayFromNight" xml:space="preserve">
+    <value>対通常艦隊　夜昼戦</value>
   </data>
 </root>

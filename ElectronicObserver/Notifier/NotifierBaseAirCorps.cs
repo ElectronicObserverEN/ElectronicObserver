@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
 
@@ -162,13 +161,13 @@ public class NotifierBaseAirCorps : NotifierBase
 				if (corps.Squadrons.Values.Any(sq => sq.State == 0))
 					messages.AddLast(NotifierBaseAirCorpsResources.Unorganized);
 				if (corps.Squadrons.Values.Any(sq => sq.State == 2))
-					messages.AddLast(Window.GeneralRes.BaseRedeployment);
+					messages.AddLast(GeneralRes.BaseRedeployment);
 			}
 
 			if (NotifiesStandby && corps.ActionKind == AirBaseActionKind.Standby)
 				messages.AddLast(NotifierBaseAirCorpsResources.Standby);
 			if (NotifiesRetreat && corps.ActionKind == AirBaseActionKind.TakeCover)
-				messages.AddLast(Window.GeneralRes.Retreating);
+				messages.AddLast(GeneralRes.Retreating);
 			if (NotifiesRest && corps.ActionKind == AirBaseActionKind.Rest)
 				messages.AddLast(NotifierBaseAirCorpsResources.Resting);
 

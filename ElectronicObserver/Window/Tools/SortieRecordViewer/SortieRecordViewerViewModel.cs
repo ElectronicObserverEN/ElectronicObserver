@@ -1,42 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
 using System.Linq;
-using System.Text.Json;
-using System.Windows;
-using System.Windows.Controls;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using CsvHelper;
+using CsvHelper.Configuration;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.ContentDialogs;
+using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.KancolleApi.Types;
-using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
-using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
-using ElectronicObserver.KancolleApi.Types.Interfaces;
-using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window.Tools.FleetImageGenerator;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
-using ElectronicObserverTypes.Serialization.FitBonus;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 using Microsoft.EntityFrameworkCore;
+using Calendar = System.Windows.Controls.Calendar;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
 public partial class SortieRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
-	private DataSerializationService DataSerializationService { get; }
-	
+	private FileService FileService { get; }
 	private ElectronicObserverContext Db { get; } = new();
+	private DataExportHelper DataExportHelper { get; }
 
 	public SortieRecordViewerTranslationViewModel SortieRecordViewer { get; }
 
@@ -60,14 +53,25 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
 
-	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
+	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
+
+	public SortieRecordViewModel? SelectedSortie { get; set; }
+
+	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = new();
+
+	private DateTime SearchStartTime { get; set; }
+	public string? StatusBarText { get; private set; }
+
+	public ExportProgressViewModel? ExportProgress { get; set; }
+	public ContentDialogService? ContentDialogService { get; set; }
 
 	public SortieRecordViewerViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
-		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
+		FileService = Ioc.Default.GetRequiredService<FileService>();
+		DataExportHelper = new(Db, ToolService);
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
 		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -99,229 +103,80 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			.Cast<object>()
 			.Prepend(AllRecords)
 			.ToList();
-	}
 
-	[RelayCommand]
-	private void Search()
-	{
-		Sorties.Clear();
-
-		List<SortieRecordViewModel> sorties = Db.Sorties
-			.Where(s => World as string == AllRecords || s.World == World as int?)
-			.Where(s => Map as string == AllRecords || s.Map == Map as int?)
-			.Select(s => new
-			{
-				SortieRecord = s,
-				s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp,
-			})
-			.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
-			.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
-			.AsEnumerable()
-			.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp))
-			.OrderByDescending(s => s.Id)
-			.ToList();
-
-		foreach (SortieRecordViewModel sortie in sorties)
+		SelectedSorties.CollectionChanged += (sender, args) =>
 		{
-			Sorties.Add(sortie);
-		}
-	}
-
-	// normal battle - day
-	// night node - battle
-	// night to day - night
-	// etc...
-	private static bool IsFirstBattleApi(string name) => name is
-		"api_req_sortie/battle" or // normal day
-		"api_req_battle_midnight/sp_midnight" or // night node
-		"api_req_sortie/airbattle" or // single air raid
-		"api_req_sortie/ld_airbattle" or // single air raid
-		"api_req_sortie/night_to_day" or // single night to day
-		"api_req_sortie/ld_shooting" or // single fleet radar ambush
-		"api_req_combined_battle/battle" or // combined normal
-		"api_req_combined_battle/sp_midnight" or // combined night battle
-		"api_req_combined_battle/airbattle" or // combined air exchange ?
-		"api_req_combined_battle/battle_water" or // CTF TCF combined battle
-		"api_req_combined_battle/ld_airbattle" or // air raid
-		"api_req_combined_battle/ec_battle" or // CTF enemy combined battle
-		"api_req_combined_battle/ec_night_to_day" or // enemy combined night to day
-		"api_req_combined_battle/each_battle" or // STF combined vs combined
-		"api_req_combined_battle/each_battle_water" or // STF combined
-		"api_req_combined_battle/ld_shooting"; // combined radar ambush
-
-	// normal battle - night
-	// night to day - day
-	// etc...
-	private static bool IsSecondBattleApi(string name) => name is
-		"api_req_battle_midnight/battle" or // normal night
-		"api_req_combined_battle/midnight_battle" or // combined day to night
-		"api_req_combined_battle/ec_midnight_battle"; // combined normal night battle
-
-	private static bool IsBattleEndApi(string name) => name is
-		"api_req_sortie/battleresult" or
-		"api_req_combined_battle/battleresult" or
-		"api_req_practice/battle_result";
-
-	private static bool IsMapProgressApi(string name) => name is
-		"api_req_map/start" or
-		"api_req_map/next";
-
-	[RelayCommand]
-	private void CopyReplayToClipboard(SortieRecordViewModel? sortie)
-	{
-		if (sortie is null) return;
-
-		if (!sortie.Model.ApiFiles.Any())
-		{
-			sortie.Model.ApiFiles = Db.ApiFiles
-				.Where(f => f.SortieRecordId == sortie.Model.Id)
-				.ToList();
-		}
-
-		ReplayData replay = sortie.Model.ToReplayData();
-
-		replay.Battles = new();
-
-		ReplayBattle battle = new();
-
-		foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
-		{
-			if (IsMapProgressApi(apiFile.Name))
-			{
-				IMapProgressApi? progress = apiFile.GetMapProgressApiData();
-
-				if (progress is null)
-				{
-					// this shouldn't happen
-					continue;
-				}
-
-				battle.Node = progress.ApiNo;
-			}
-
-			if (IsFirstBattleApi(apiFile.Name))
-			{
-				try
-				{
-					battle.FirstBattle = apiFile.GetResponseApiData();
-				}
-				catch (Exception e)
-				{
-					Logger.Add(2, SortieRecordViewer.FailedToParseApiData + e.StackTrace);
-				}
-			}
-
-			if (IsSecondBattleApi(apiFile.Name))
-			{
-				try
-				{
-					battle.SecondBattle = apiFile.GetResponseApiData();
-				}
-				catch (Exception e)
-				{
-					Logger.Add(2, SortieRecordViewer.FailedToParseApiData + e.StackTrace);
-				}
-			}
-
-			if (IsBattleEndApi(apiFile.Name))
-			{
-				ISortieBattleResultApi? result = apiFile.GetSortieBattleResultApi();
-
-				if (result is null)
-				{
-					// this shouldn't happen
-					continue;
-				}
-
-				battle.FirstBattle ??= new();
-				battle.SecondBattle ??= new();
-				battle.BaseExp = result.ApiGetBaseExp;
-				battle.HqExp = result.ApiGetExp;
-				battle.Drop = result.ApiGetShip?.ApiShipId ?? ShipId.Unknown;
-				battle.Rating = result.ApiWinRank;
-				battle.Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-				battle.Mvp = new() { result.ApiMvp, };
-
-				if (result is ApiReqCombinedBattleBattleresultResponse combinedResult)
-				{
-					battle.Mvp.Add(combinedResult.ApiMvpCombined ?? -1);
-				}
-
-				replay.Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-				replay.Battles.Add(battle);
-				battle = new();
-			}
-		}
-
-		// there was battle data but no battle end
-		if (battle.FirstBattle is not null || battle.SecondBattle is not null)
-		{
-			battle.FirstBattle ??= new();
-			battle.SecondBattle ??= new();
-
-			replay.Battles.Add(battle);
-		}
-
-		Clipboard.SetText(JsonSerializer.Serialize(replay));
-	}
-
-	[RelayCommand]
-	private void OpenFleetImageGenerator(SortieRecordViewModel? sortie)
-	{
-		if (sortie is null) return;
-
-		int hqLevel = KCDatabase.Instance.Admiral.Level;
-
-		if (sortie.Model.ApiFiles.Any())
-		{
-			// get the last port response right before the sortie started
-			ApiFile? portFile = Db.ApiFiles
-				.Where(f => f.ApiFileType == ApiFileType.Response)
-				.Where(f => f.Name == "api_port/port")
-				.Where(f => f.TimeStamp < sortie.Model.ApiFiles.First().TimeStamp)
-				.OrderByDescending(f => f.TimeStamp)
-				.FirstOrDefault();
-
-			if (portFile is not null)
-			{
-				try
-				{
-					ApiPortPortResponse? port = JsonSerializer
-						.Deserialize<ApiResponse<ApiPortPortResponse>>(portFile.Content)?.ApiData;
-
-					if (port != null)
-					{
-						hqLevel = port.ApiBasic.ApiLevel;
-					}
-				}
-				catch
-				{
-					// can probably ignore this
-				}
-			}
-		}
-
-		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
-		(
-			hqLevel,
-			sortie.Model.FleetData.Fleets.Skip(0).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.Fleets.Skip(1).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.Fleets.Skip(2).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.Fleets.Skip(3).FirstOrDefault().MakeFleet(),
-			sortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault().MakeAirBase(),
-			sortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault().MakeAirBase(),
-			sortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault().MakeAirBase()
-		);
-
-		FleetImageGeneratorImageDataModel model = new()
-		{
-			Fleet1Visible = data.Fleet1 is not null,
-			Fleet2Visible = data.Fleet2 is not null,
-			Fleet3Visible = data.Fleet3 is not null,
-			Fleet4Visible = data.Fleet4 is not null,
+			StatusBarText = string.Format(SortieRecordViewer.SelectedItems, SelectedSorties.Count, Sorties.Count);
 		};
+	}
 
-		ToolService.FleetImageGenerator(model, data);
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task Search(CancellationToken ct)
+	{
+		SearchStartTime = DateTime.UtcNow;
+		StatusBarText = EncycloRes.SearchingNow;
+
+		try
+		{
+			List<SortieRecordViewModel> sorties = await Task.Run(async () => await Db.Sorties
+				.Where(s => World as string == AllRecords || s.World == World as int?)
+				.Where(s => Map as string == AllRecords || s.Map == Map as int?)
+				.OrderByDescending(s => s.Id)
+				.Select(s => new { SortieRecord = s, s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp, })
+				.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
+				.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
+				.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp))
+				.ToListAsync(ct), ct);
+
+			Sorties.Clear();
+
+			foreach (SortieRecordViewModel sortie in sorties)
+			{
+				Sorties.Add(sortie);
+			}
+
+			int searchTime = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
+
+			StatusBarText = $"{EncycloRes.SearchComplete} ({searchTime} ms)";
+		}
+		catch (OperationCanceledException)
+		{
+			StatusBarText = EncycloRes.SearchCancelled;
+		}
+		catch (Exception e)
+		{
+			Logger.Add(2, $"Unknown error while loading data: {e.Message}{e.StackTrace}");
+		}
+	}
+
+	[RelayCommand]
+	private async Task CopyReplayLinkToClipboard()
+	{
+		if (SelectedSortie is null) return;
+
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
+
+		ToolService.CopyReplayLinkToClipboard(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private async Task CopyReplayDataToClipboard()
+	{
+		if (SelectedSortie is null) return;
+
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
+
+		ToolService.CopyReplayDataToClipboard(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private async Task OpenFleetImageGenerator()
+	{
+		if (SelectedSortie is null) return;
+
+		int hqLevel = await SelectedSortie.Model.GetAdmiralLevel(Db) ?? KCDatabase.Instance.Admiral.Level;
+
+		ToolService.FleetImageGenerator(SelectedSortie, hqLevel);
 	}
 
 	[RelayCommand]
@@ -330,5 +185,211 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		if (calendar is null) return;
 
 		calendar.SelectedDate = DateTime.Now.Date;
+	}
+
+	[RelayCommand]
+	private async Task ShowSortieDetails()
+	{
+		if (SelectedSortie is null) return;
+
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
+
+		ToolService.OpenSortieDetail(Db, SelectedSortie);
+	}
+
+	[RelayCommand]
+	private async Task CopySmokerDataCsv()
+	{
+		foreach (SortieRecordViewModel sortieRecord in SelectedSorties)
+		{
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
+		}
+
+		ToolService.CopySmokerDataCsv(Db, SelectedSorties);
+	}
+
+	[RelayCommand]
+	private async Task CopySortieData()
+	{
+		await ToolService.CopySortieDataToClipboard(Db, SelectedSorties);
+	}
+
+	[RelayCommand]
+	private void LoadSortieData()
+	{
+		ToolService.LoadSortieDataFromClipboard(Db);
+	}
+
+	[RelayCommand]
+	private void CopyAirControlSimulatorLink()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.CopyAirControlSimulatorLink(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void OpenAirControlSimulator()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.AirControlSimulator(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void CopyOperationRoomLink()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.CopyOperationRoomLink(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.OperationRoom(SelectedSortie);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportShellingBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<ShellingBattleExportMap, ShellingBattleExportModel>(
+			DataExportHelper.ShellingBattle,
+			ExportShellingBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportNightBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<NightBattleExportMap, NightBattleExportModel>(
+			DataExportHelper.NightBattle,
+			ExportNightBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportTorpedoBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<TorpedoBattleExportMap, TorpedoBattleExportModel>(
+			DataExportHelper.TorpedoBattle,
+			ExportTorpedoBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportAirBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<AirBattleExportMap, AirBattleExportModel>(
+			DataExportHelper.AirBattle,
+			ExportAirBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportAirBaseBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(
+			DataExportHelper.AirBaseBattle,
+			ExportAirBaseBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedShellingBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedShellingBattleExportMap, ShellingBattleExportModel>(
+			DataExportHelper.ShellingBattle,
+			ExportRedShellingBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedNightBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedNightBattleExportMap, NightBattleExportModel>(
+			DataExportHelper.NightBattle,
+			ExportRedNightBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedTorpedoBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedTorpedoBattleExportMap, TorpedoBattleExportModel>(
+			DataExportHelper.TorpedoBattle,
+			ExportRedTorpedoBattleCancelCommand,
+			cancellationToken);
+	}
+
+	private async Task ExportCsv<TMap, TElement>(
+		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
+		ICommand cancellationCommand,
+		CancellationToken cancellationToken = default
+	) where TMap : ClassMap<TElement>
+	{
+		await App.Current!.Dispatcher.BeginInvoke(async () =>
+		{
+			string? path = FileService.ExportCsv(Configuration.Config.Life.CsvExportPath);
+
+			if (string.IsNullOrEmpty(path)) return;
+
+			Configuration.Config.Life.CsvExportPath = Path.GetDirectoryName(path);
+
+			ExportProgress = new();
+
+			Task<List<TElement>> processDataTask = Task.Run(async () => await
+				processData(SelectedSorties, ExportProgress, cancellationToken), cancellationToken);
+
+			List<Task> tasks = new() { processDataTask };
+
+			if (ContentDialogService is not null)
+			{
+				tasks.Add(ContentDialogService.ShowExportProgressAsync(ExportProgress));
+			}
+
+			await Task.WhenAny(tasks);
+
+			try
+			{
+				if (processDataTask.IsCompleted)
+				{
+					List<TElement> dayShellingData = await processDataTask;
+					await SaveCsvFile<TMap, TElement>(path, dayShellingData);
+				}
+				else
+				{
+					cancellationCommand.Execute(null);
+				}
+
+				ExportProgress = null;
+
+				if (ContentDialogService is not null)
+				{
+					await ContentDialogService.ShowNotificationAsync(CsvExportResources.CsvWasSavedSuccessfully);
+				}
+			}
+			catch (Exception e)
+			{
+				if (ContentDialogService is not null)
+				{
+					await ContentDialogService.ShowNotificationAsync($"{CsvExportResources.FailedToSaveCsv}: {e.Message}{e.StackTrace}");
+				}
+			}
+		});
+	}
+
+	private static async Task SaveCsvFile<TMap, TElement>(string path, IEnumerable<TElement> data)
+		where TMap : ClassMap<TElement>
+	{
+		CsvConfiguration config = new(CultureInfo.CurrentCulture);
+
+		await using StreamWriter writer = new(path);
+		await using CsvWriter csv = new(writer, config);
+
+		csv.Context.RegisterClassMap<TMap>();
+		await csv.WriteRecordsAsync(data);
 	}
 }

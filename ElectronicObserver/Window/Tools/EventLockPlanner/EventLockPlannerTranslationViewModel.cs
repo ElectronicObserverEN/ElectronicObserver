@@ -4,42 +4,42 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
 public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Title => EventLockPlanner.Title;
+	public string Title => EventLockPlannerResources.Title;
 
-	public string File => EventLockPlanner.File;
-	public string CopyToClipboard => EventLockPlanner.CopyToClipboard;
-	public string LoadFromClipboard => EventLockPlanner.LoadFromClipboard;
-	public string LoadEventLocks => EventLockPlanner.LoadEventLocks;
+	public string File => EventLockPlannerResources.File;
+	public string CopyToClipboard => EventLockPlannerResources.CopyToClipboard;
+	public string LoadFromClipboard => EventLockPlannerResources.LoadFromClipboard;
+	public string LoadEventLocks => EventLockPlannerResources.LoadEventLocks;
 
-	public string View => EventLockPlanner.View;
-	public string ShowFinishedPhases => EventLockPlanner.ShowFinishedPhases;
+	public string View => EventLockPlannerResources.View;
+	public string ShowFinishedPhases => EventLockPlannerResources.ShowFinishedPhases;
 
-	public string LockLoadWarningText => EventLockPlanner.LockLoadWarningText;
-	public string Warning => EventLockPlanner.Warning;
-	public string FailedToLoadLockData => EventLockPlanner.FailedToLoadLockData;
+	public string LockLoadWarningText => EventLockPlannerResources.LockLoadWarningText;
+	public string Warning => EventLockPlannerResources.Warning;
+	public string FailedToLoadLockData => EventLockPlannerResources.FailedToLoadLockData;
 
-	public string AddLock => EventLockPlanner.AddLock;
-	public string RemoveLock => EventLockPlanner.RemoveLock;
+	public string AddLock => EventLockPlannerResources.AddLock;
+	public string RemoveLock => EventLockPlannerResources.RemoveLock;
 
-	public string AddPhase => EventLockPlanner.AddPhase;
-	public string RemovePhase => EventLockPlanner.RemovePhase;
-	public string AssignLock => EventLockPlanner.AssignLock;
-	public string IsFinished => EventLockPlanner.IsFinished;
+	public string AddPhase => EventLockPlannerResources.AddPhase;
+	public string RemovePhase => EventLockPlannerResources.RemovePhase;
+	public string AssignLock => EventLockPlannerResources.AssignLock;
+	public string IsFinished => EventLockPlannerResources.IsFinished;
 
-	public string Remove => EventLockPlanner.Remove;
+	public string Remove => EventLockPlannerResources.Remove;
 
-	public string ShipTypeToggle => EventLockPlanner.ShipTypeToggle;
+	public string ShipTypeToggle => EventLockPlannerResources.ShipTypeToggle;
 
-	public string ShipType => Properties.Window.FormShipGroup.ShipView_ShipType;
-	public string Name => Properties.Window.FormShipGroup.ShipView_Name;
+	public string ShipType => ShipGroupResources.ShipView_ShipType;
+	public string Name => ShipGroupResources.ShipView_Name;
 	public string Firepower => GeneralRes.Firepower;
-	public string NightBattlePower => Properties.Window.FormShipGroup.ShipView_NightBattlePower;
+	public string NightBattlePower => ShipGroupResources.ShipView_NightBattlePower;
 	public string ASW => GeneralRes.ASW;
 	public string Luck => GeneralRes.Luck;
-	public string Daihatsu => EventLockPlanner.Daihatsu;
-	public string Tank => EventLockPlanner.Tank;
-	public string Fcf => EventLockPlanner.Fcf;
+	public string Daihatsu => EventLockPlannerResources.Daihatsu;
+	public string Tank => EventLockPlannerResources.Tank;
+	public string Fcf => EventLockPlannerResources.Fcf;
 	public string Expansion => GeneralRes.Expansion;
 
-	public string InvalidModelState => EventLockPlanner.InvalidModelState;
+	public string InvalidModelState => EventLockPlannerResources.InvalidModelState;
 }

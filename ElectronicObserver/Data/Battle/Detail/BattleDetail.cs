@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -276,7 +275,7 @@ public class BattleDayDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return Constants.GetDayAttackKind((DayAttackKind)AttackType);
+		return DayAttack.AttackDisplay((DayAttackKind)AttackType);
 	}
 }
 

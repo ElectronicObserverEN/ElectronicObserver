@@ -6,7 +6,6 @@ using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Resource.Record;
@@ -146,6 +145,17 @@ public class ShipParameterRecord : RecordBase
 		public int GetParameter(int level)
 		{
 			return CalculateParameter(level, Minimum, Maximum);
+		}
+
+		public int? GetNextLevel(int level, int? current = null)
+		{
+			if (!IsAvailable) return null;
+			if (!IsDetermined) return null;
+			if (Maximum <= Minimum) return null;
+
+			int target = (current ?? GetParameter(level)) + 1;
+
+			return (int)Math.Ceiling(((target - Minimum) * 99.0) / (Maximum - Minimum));
 		}
 
 		private int CalculateParameter(int level, int min, int max)
@@ -331,7 +341,7 @@ public class ShipParameterRecord : RecordBase
 
 		public override void LoadLine(string line)
 		{
-			string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
+			string[] elem = Utility.Storage.CsvHelper.ParseCsvLine(line).ToArray();
 			if (elem.Length < 36) throw new ArgumentException("The number of elements is too small.");
 
 			ShipID = int.Parse(elem[0]);
@@ -425,7 +435,7 @@ public class ShipParameterRecord : RecordBase
 
 			sb.Append(string.Join(",",
 				ShipID,
-				CsvHelper.EscapeCsvCell(ShipName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(ShipName),
 				HPMin,
 				HPMax,
 				FirepowerMin,
@@ -469,9 +479,9 @@ public class ShipParameterRecord : RecordBase
 			}
 
 			sb.Append(",").Append(string.Join(",",
-				CsvHelper.EscapeCsvCell(MessageGet),
-				CsvHelper.EscapeCsvCell(MessageAlbum),
-				CsvHelper.EscapeCsvCell(ResourceName),
+				Utility.Storage.CsvHelper.EscapeCsvCell(MessageGet),
+				Utility.Storage.CsvHelper.EscapeCsvCell(MessageAlbum),
+				Utility.Storage.CsvHelper.EscapeCsvCell(ResourceName),
 				ResourceGraphicVersion ?? "null",
 				ResourceVoiceVersion ?? "null",
 				ResourcePortVoiceVersion ?? "null",
@@ -721,15 +731,15 @@ public class ShipParameterRecord : RecordBase
 
 
 		if (e.ASW.SetEstParameter(level, aswMin, aswMax))
-			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.ShipParameterRecord_AswOutOfPredictedRange,
+			Utility.Logger.Add(1, string.Format(ResourceRecordResources.ShipParameterRecord_AswOutOfPredictedRange,
 				KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.ASW.MinimumEstMin, e.ASW.MinimumEstMax, e.ASW.Maximum));
 
 		if (e.Evasion.SetEstParameter(level, evasionMin, evasionMax))
-			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.ShipParameterRecord_EvasionOutOfPredictedRange,
+			Utility.Logger.Add(1, string.Format(ResourceRecordResources.ShipParameterRecord_EvasionOutOfPredictedRange,
 				KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.Evasion.MinimumEstMin, e.Evasion.MinimumEstMax, e.Evasion.Maximum));
 
 		if (e.LOS.SetEstParameter(level, losMin, losMax))
-			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.ShipParameterRecord_LosOutOfPredictedRange,
+			Utility.Logger.Add(1, string.Format(ResourceRecordResources.ShipParameterRecord_LosOutOfPredictedRange,
 				KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.LOS.MinimumEstMin, e.LOS.MinimumEstMax, e.LOS.Maximum));
 
 
@@ -780,7 +790,7 @@ public class ShipParameterRecord : RecordBase
 		}
 
 		if (e.DefaultSlot == null || !e.DefaultSlot.SequenceEqual(slot))
-			Utility.Logger.Add(2, string.Format(Properties.ResourceRecord.ShipParameterRecord_StockEquipmentUpdated,
+			Utility.Logger.Add(2, string.Format(ResourceRecordResources.ShipParameterRecord_StockEquipmentUpdated,
 					KCDatabase.Instance.MasterShips[shipID].NameWithClass));
 
 		e.DefaultSlot = slot;

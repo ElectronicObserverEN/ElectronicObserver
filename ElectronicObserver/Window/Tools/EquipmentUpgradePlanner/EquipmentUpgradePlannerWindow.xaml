@@ -8,8 +8,6 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:pager="clr-namespace:ElectronicObserver.Window.Control.Paging"
-	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
-	xmlns:types="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding EquipmentUpgradePlanner.Title}"
 	Width="900"
@@ -28,14 +26,6 @@
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 		</Style>
 
-		<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
-			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="Margin" Value="4 0" />
-		</Style>
-
 		<Style TargetType="{x:Type ui:NumberBox}">
 			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
@@ -50,339 +40,9 @@
 			<Setter Property="MinWidth" Value="0" />
 		</Style>
 
-		<DataTemplate x:Key="CostTemplate" DataType="{x:Type costs:EquipmentUpgradePlanCostViewModel}">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-
-
-				<Grid.Resources>
-					<Style TargetType="StackPanel">
-						<Setter Property="Margin" Value="2 0" />
-						<Style.Resources>
-							<Style TargetType="TextBlock">
-								<Style.Triggers>
-									<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
-										<Setter Property="Foreground" Value="Red" />
-									</DataTrigger>
-								</Style.Triggers>
-							</Style>
-						</Style.Resources>
-					</Style>
-				</Grid.Resources>
-
-				<StackPanel
-					Grid.Row="0"
-					Grid.Column="0"
-					DataContext="{Binding Fuel}"
-					Orientation="Horizontal"
-					>
-					<common:UseItemIcon Type="Fuel" />
-					<TextBlock Margin="2 0" Text="{Binding Required}" />
-				</StackPanel>
-
-				<StackPanel
-					Grid.Row="0"
-					Grid.Column="1"
-					DataContext="{Binding Ammo}"
-					Orientation="Horizontal"
-					>
-					<common:UseItemIcon Type="Ammo" />
-					<TextBlock Margin="2 0" Text="{Binding Required}" />
-				</StackPanel>
-
-				<StackPanel
-					Grid.Row="0"
-					Grid.Column="2"
-					DataContext="{Binding Steel}"
-					Orientation="Horizontal"
-					>
-					<common:UseItemIcon Type="Steel" />
-					<TextBlock Margin="2 0" Text="{Binding Required}" />
-				</StackPanel>
-
-				<StackPanel
-					Grid.Row="0"
-					Grid.Column="3"
-					DataContext="{Binding Bauxite}"
-					Orientation="Horizontal"
-					>
-					<common:UseItemIcon Type="Bauxite" />
-					<TextBlock Margin="2 0" Text="{Binding Required}" />
-				</StackPanel>
-
-				<StackPanel
-					Grid.Row="1"
-					Grid.Column="0"
-					DataContext="{Binding DevelopmentMaterial}"
-					Orientation="Horizontal"
-					>
-					<common:UseItemIcon Type="DevelopmentMaterial" />
-					<TextBlock Margin="2 0" Text="{Binding Required}" />
-				</StackPanel>
-				<StackPanel
-					Grid.Row="1"
-					Grid.Column="2"
-					DataContext="{Binding ImprovementMaterial}"
-					Orientation="Horizontal"
-					>
-					<common:UseItemIcon Type="ImproveMaterial" />
-					<TextBlock Margin="2 0" Text="{Binding Required}" />
-				</StackPanel>
-
-				<ItemsControl
-					Grid.Row="2"
-					Grid.Column="0"
-					Grid.ColumnSpan="4"
-					Background="Transparent"
-					ItemsSource="{Binding RequiredEquipments}"
-					>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Margin="4 4 0 0" Orientation="Horizontal">
-
-								<StackPanel.ToolTip>
-									<StackPanel>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Margin="2 0" Text="{Binding DataContext.EquipmentUpgradePlanner.Owned, Source={StaticResource Proxy}}" />
-											<TextBlock Text="{Binding Owned}" />
-										</StackPanel>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Margin="2 0" Text="{Binding DataContext.EquipmentUpgradePlanner.Required, Source={StaticResource Proxy}}" />
-											<TextBlock Margin="2 0" Text="{Binding Required}" />
-										</StackPanel>
-									</StackPanel>
-								</StackPanel.ToolTip>
-
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Style>
-										<Style TargetType="StackPanel">
-											<Style.Resources>
-												<Style TargetType="TextBlock">
-													<Style.Triggers>
-														<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
-															<Setter Property="Foreground" Value="Red" />
-														</DataTrigger>
-													</Style.Triggers>
-												</Style>
-											</Style.Resources>
-										</Style>
-									</StackPanel.Style>
-
-									<TextBlock Text="{Binding Equipment.NameEN}" />
-									<TextBlock Margin="4 0 0 0" Text="(" />
-									<TextBlock Text="{Binding Owned}" />
-									<TextBlock Text="/" />
-									<TextBlock Text="{Binding Required}" />
-									<TextBlock Text=")" />
-								</StackPanel>
-							</StackPanel>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-
-				<ItemsControl
-					Grid.Row="3"
-					Grid.Column="0"
-					Grid.ColumnSpan="4"
-					ItemsSource="{Binding RequiredConsumables}"
-					>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Margin="4 4 0 0" Orientation="Horizontal">
-
-								<StackPanel.ToolTip>
-									<StackPanel>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Margin="2 0" Text="{Binding DataContext.EquipmentUpgradePlanner.Owned, Source={StaticResource Proxy}}" />
-											<TextBlock Text="{Binding Owned}" />
-										</StackPanel>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Margin="2 0" Text="{Binding DataContext.EquipmentUpgradePlanner.Required, Source={StaticResource Proxy}}" />
-											<TextBlock Margin="2 0" Text="{Binding Required}" />
-										</StackPanel>
-									</StackPanel>
-								</StackPanel.ToolTip>
-
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Style>
-										<Style TargetType="StackPanel">
-											<Style.Resources>
-												<Style TargetType="TextBlock">
-													<Style.Triggers>
-														<DataTrigger Binding="{Binding EnoughOwned}" Value="False">
-															<Setter Property="Foreground" Value="Red" />
-														</DataTrigger>
-													</Style.Triggers>
-												</Style>
-											</Style.Resources>
-										</Style>
-									</StackPanel.Style>
-
-									<TextBlock Text="{Binding Consumable.NameTranslated}" />
-									<TextBlock Margin="4 0 0 0" Text="(" />
-									<TextBlock Text="{Binding Owned}" />
-									<TextBlock Text="/" />
-									<TextBlock Text="{Binding Required}" />
-									<TextBlock Text=")" />
-								</StackPanel>
-							</StackPanel>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</Grid>
-		</DataTemplate>
-
-		<DataTemplate x:Key="DetailedUpgradeDayDisplayTemplate" DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
-
-			<ItemsControl
-				Margin="0 5"
-				HorizontalAlignment="Center"
-				ItemsSource="{Binding HelperViewModels}"
-				>
-
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Orientation="Vertical">
-							<ItemsControl
-								Margin="0 5"
-								HorizontalAlignment="Center"
-								ItemsSource="{Binding Helpers}"
-								>
-
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<DataTemplate.Resources>
-											<Style TargetType="TextBlock">
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
-														<Setter Property="Foreground" Value="Red" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</DataTemplate.Resources>
-
-										<TextBlock Text="{Binding Helper.NameEN}" />
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-
-							</ItemsControl>
-
-							<ItemsControl
-								Margin="0 5"
-								HorizontalAlignment="Center"
-								ItemsSource="{Binding Days}"
-								>
-
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<StackPanel Orientation="Horizontal" />
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border
-											Background="{Binding Background}"
-											BorderBrush="Gray"
-											BorderThickness="1"
-											>
-											<StackPanel Margin="5 3">
-												<TextBlock Text="{Binding DisplayValue}" />
-											</StackPanel>
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-
-							</ItemsControl>
-						</StackPanel>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-
-			</ItemsControl>
-		</DataTemplate>
-
-		<DataTemplate x:Key="CompactUpgradeDayDisplayTemplate" DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
-			<StackPanel Orientation="Vertical">
-				<ItemsControl
-					Margin="0 5"
-					HorizontalAlignment="Center"
-					ItemsSource="{Binding HelperViewModelCompact.Days}"
-					>
-
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<StackPanel Orientation="Horizontal" />
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<Border
-								Background="{Binding Background}"
-								BorderBrush="Gray"
-								BorderThickness="1"
-								>
-
-								<Border.Style>
-									<Style TargetType="Border">
-										<Setter Property="ToolTip">
-											<Setter.Value>
-												<ToolTip>
-													<ItemsControl ItemsSource="{Binding Helpers}">
-														<ItemsControl.ItemTemplate>
-															<DataTemplate>
-																<DataTemplate.Resources>
-																	<Style TargetType="TextBlock">
-																		<Style.Triggers>
-																			<DataTrigger Binding="{Binding PlayerHasAtleastOne}" Value="False">
-																				<Setter Property="Foreground" Value="Red" />
-																			</DataTrigger>
-																		</Style.Triggers>
-																	</Style>
-																</DataTemplate.Resources>
-
-																<TextBlock Text="{Binding Helper.NameEN}" />
-															</DataTemplate>
-														</ItemsControl.ItemTemplate>
-													</ItemsControl>
-												</ToolTip>
-											</Setter.Value>
-										</Setter>
-										<Style.Triggers>
-											<DataTrigger Binding="{Binding Helpers.Count}" Value="0">
-												<Setter Property="ToolTip" Value="{x:Null}" />
-											</DataTrigger>
-										</Style.Triggers>
-									</Style>
-								</Border.Style>
-
-								<StackPanel Margin="5 3">
-									<TextBlock Text="{Binding DisplayValue}" />
-								</StackPanel>
-							</Border>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-
-				</ItemsControl>
-			</StackPanel>
-		</DataTemplate>
-
 	</Window.Resources>
 
 	<Grid>
-
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
@@ -473,229 +133,38 @@
 				</ItemsControl.ItemsPanel>
 
 				<ItemsControl.ItemTemplate>
-					<DataTemplate>
+					<DataTemplate DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
 						<Border
 							Margin="2"
 							BorderBrush="Gray"
 							BorderThickness="2"
 							>
-							<Grid Margin="4 10">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="*" />
-								</Grid.RowDefinitions>
+							<StackPanel>
+								<StackPanel Margin="0 10 0 0" Orientation="Horizontal">
 
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto" SharedSizeGroup="Column1" />
-									<ColumnDefinition Width="*" SharedSizeGroup="Column2" />
-								</Grid.ColumnDefinitions>
-
-								<Button
-									Grid.Row="0"
-									Grid.Column="0"
-									Grid.ColumnSpan="2"
-									Command="{Binding OpenEquipmentPickerCommand}"
-									ToolTip="{Binding EquipmentName}"
-									>
-									<Button.Content>
-										<TextBlock
-											MaxWidth="150"
-											Text="{Binding EquipmentName}"
-											TextTrimming="CharacterEllipsis"
-											/>
-									</Button.Content>
-								</Button>
-
-								<Button
-									Grid.Row="1"
-									Grid.Column="0"
-									Margin="0 10 0 0"
-									Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
-									CommandParameter="{Binding}"
-									Content="{Binding DataContext.EquipmentUpgradePlanner.Remove, Source={StaticResource Proxy}}"
-									/>
-
-								<TextBlock
-									Grid.Row="2"
-									Grid.Column="0"
-									Margin="2 8"
-									Text="{Binding DataContext.EquipmentUpgradePlanner.UpgradeLevel, Source={StaticResource Proxy}}"
-									/>
-								<TextBlock
-									Grid.Row="2"
-									Grid.Column="1"
-									Margin="2 8"
-									Text="{Binding CurrentLevelDisplay}"
-									/>
-
-								<TextBlock
-									Grid.Row="3"
-									Grid.Column="0"
-									Margin="2 8"
-									Text="{Binding DataContext.EquipmentUpgradePlanner.Goal, Source={StaticResource Proxy}}"
-									/>
-								<ComboBox
-									Grid.Row="3"
-									Grid.Column="1"
-									ItemsSource="{Binding PossibleUpgradeLevels}"
-									SelectedItem="{Binding DesiredUpgradeLevel}"
-									>
-									<ComboBox.ItemTemplate>
-										<DataTemplate DataType="{x:Type types:UpgradeLevel}">
-											<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
-										</DataTemplate>
-									</ComboBox.ItemTemplate>
-								</ComboBox>
-
-								<TextBlock
-									Grid.Row="4"
-									Grid.Column="0"
-									Margin="2 8"
-									Text="{Binding DataContext.EquipmentUpgradePlanner.Priority, Source={StaticResource Proxy}}"
-									/>
-								<ui:NumberBox
-									Grid.Row="4"
-									Grid.Column="1"
-									HorizontalAlignment="Left"
-									Value="{Binding Priority}"
-									/>
-
-								<TextBlock
-									Grid.Row="5"
-									Grid.Column="0"
-									Margin="2 8"
-									Text="{Binding DataContext.EquipmentUpgradePlanner.IsFinished, Source={StaticResource Proxy}}"
-									/>
-								<CheckBox
-									Grid.Row="5"
-									Grid.Column="1"
-									IsChecked="{Binding Finished}"
-									/>
-
-								<Border
-									Grid.Row="6"
-									Grid.Column="0"
-									Grid.ColumnSpan="2"
-									Margin="0 5"
-									BorderBrush="Gray"
-									BorderThickness="0 1 0 0"
-									/>
-
-								<Grid
-									Grid.Row="7"
-									Grid.Column="0"
-									Grid.ColumnSpan="2"
-									>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto" />
-										<RowDefinition Height="Auto" />
-										<RowDefinition Height="Auto" />
-										<RowDefinition Height="*" />
-									</Grid.RowDefinitions>
-
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="*" />
-									</Grid.ColumnDefinitions>
-
-									<TextBlock Grid.Row="0" Text="{Binding DataContext.EquipmentUpgradePlanner.Cost, Source={StaticResource Proxy}}" />
-
-									<TextBlock
-										Grid.Row="1"
-										Grid.Column="0"
-										Margin="2 8"
-										Text="{Binding DataContext.EquipmentUpgradePlanner.UseSliderFromLevel, Source={StaticResource Proxy}}"
+									<Button
+										Margin="4 0"
+										Command="{Binding DataContext.OpenEditDialogCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Content="{Binding DataContext.EquipmentUpgradePlanner.Edit, Source={StaticResource Proxy}}"
 										/>
-									<ComboBox
-										Grid.Row="1"
-										Grid.Column="1"
-										ItemsSource="{Binding PossibleSliderLevels}"
-										SelectedItem="{Binding SliderLevel}"
-										>
-										<ComboBox.ItemTemplate>
-											<DataTemplate DataType="{x:Type types:UpgradeLevel}">
-												<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
-											</DataTemplate>
-										</ComboBox.ItemTemplate>
-									</ComboBox>
 
-									<StackPanel
-										Grid.Row="2"
-										Grid.Column="0"
-										Grid.ColumnSpan="2"
-										Margin="0 0 0 8"
-										>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Margin="2 8" Text="{Binding DataContext.EquipmentUpgradePlanner.Helper, Source={StaticResource Proxy}}" />
-											<ComboBox
-												Grid.Row="2"
-												Grid.Column="1"
-												ItemsSource="{Binding PossibleHelpers}"
-												SelectedItem="{Binding SelectedHelper}"
-												>
-												<ComboBox.ItemTemplate>
-													<DataTemplate DataType="{x:Type types:IShipDataMaster}">
-														<TextBlock Text="{Binding NameEN}" />
-													</DataTemplate>
-												</ComboBox.ItemTemplate>
-											</ComboBox>
-										</StackPanel>
-
-										<StackPanel Orientation="Horizontal" Visibility="{Binding EquipmentAfterConversionVisible}">
-											<TextBlock Margin="2 0" Text="{Binding DataContext.EquipmentUpgradePlanner.ConvertTo, Source={StaticResource Proxy}}" />
-											<TextBlock Text="{Binding EquipmentAfterConversionDisplay}" />
-										</StackPanel>
-									</StackPanel>
-
-									<ContentControl
-										Grid.Row="3"
-										Grid.Column="0"
-										Grid.ColumnSpan="2"
-										Content="{Binding Cost}"
-										ContentTemplate="{StaticResource CostTemplate}"
+									<Button
+										Margin="4 0"
+										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
+										CommandParameter="{Binding}"
+										Content="{Binding DataContext.EquipmentUpgradePlanner.Remove, Source={StaticResource Proxy}}"
 										/>
-								</Grid>
 
-								<Border
-									Grid.Row="8"
-									Grid.Column="0"
-									Grid.ColumnSpan="2"
-									Margin="0 5"
-									BorderBrush="Gray"
-									BorderThickness="0 1 0 0"
-									/>
-
-								<StackPanel
-									Grid.Row="9"
-									Grid.Column="0"
-									Grid.ColumnSpan="2"
-									>
-									<ContentControl Content="{Binding}">
-										<ContentControl.Style>
-											<Style TargetType="ContentControl">
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding DataContext.CompactMode, Source={StaticResource Proxy}}" Value="True">
-														<Setter Property="ContentTemplate" Value="{StaticResource CompactUpgradeDayDisplayTemplate}" />
-													</DataTrigger>
-													<DataTrigger Binding="{Binding DataContext.CompactMode, Source={StaticResource Proxy}}" Value="False">
-														<Setter Property="ContentTemplate" Value="{StaticResource DetailedUpgradeDayDisplayTemplate}" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</ContentControl.Style>
-									</ContentControl>
 								</StackPanel>
-							</Grid>
-						</Border>
 
+								<local:EquipmentUpgradePlanItemControl
+									CompactMode="{Binding DataContext.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
+									DataContext="{Binding}"
+									ReadOnly="True"
+									/>
+							</StackPanel>
+						</Border>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
@@ -714,7 +183,8 @@
 		<ScrollViewer Grid.Row="1" Grid.Column="2">
 			<StackPanel Orientation="Vertical">
 				<TextBlock Margin="2 0 0 5" Text="{Binding DataContext.EquipmentUpgradePlanner.TotalCost, Source={StaticResource Proxy}}" />
-				<ContentControl Content="{Binding TotalCost}" ContentTemplate="{StaticResource CostTemplate}" />
+
+				<costs:EquipmentUpgradeCostControl DataContext="{Binding TotalCost}" />
 			</StackPanel>
 		</ScrollViewer>
 	</Grid>

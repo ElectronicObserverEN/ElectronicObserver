@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using ElectronicObserver.ViewModels;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupCSVOutput;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -108,15 +107,15 @@ public partial class DialogShipGroupCSVOutput : Form
 	public void Translate()
 	{
 		groupBox1.Text = GeneralRes.Option;
-		RadioFormat_Data.Text = Translation.RadioFormat_Data;
-		RadioFormat_User.Text = Translation.RadioFormat_User;
-		RadioOutput_VisibleColumnOnly.Text = Translation.RadioOutput_VisibleColumnOnly;
-		RadioOutput_All.Text = Translation.RadioOutput_All;
+		RadioFormat_Data.Text = ShipGroupCSVOutputResources.RadioFormat_Data;
+		RadioFormat_User.Text = ShipGroupCSVOutputResources.RadioFormat_User;
+		RadioOutput_VisibleColumnOnly.Text = ShipGroupCSVOutputResources.RadioOutput_VisibleColumnOnly;
+		RadioOutput_All.Text = ShipGroupCSVOutputResources.RadioOutput_All;
 		ButtonCancel.Text = GeneralRes.Cancel;
-		groupBox2.Text = Translation.OutputDestination;
-		DialogSaveCSV.Title = Translation.DialogSaveCSV;
+		groupBox2.Text = ShipGroupCSVOutputResources.OutputDestination;
+		DialogSaveCSV.Title = ShipGroupCSVOutputResources.DialogSaveCSV;
 
-		Text = Translation.Title;
+		Text = ShipGroupCSVOutputResources.Title;
 	}
 
 	private void DialogShipGroupCSVOutput_Load(object sender, EventArgs e)

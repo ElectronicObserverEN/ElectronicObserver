@@ -3,15 +3,12 @@
 public class ApiqVoiceInfo
 {
 	[JsonPropertyName("api_icon_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiIconId { get; set; } = default!;
+	public int ApiIconId { get; set; }
 
 	[JsonPropertyName("api_no")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiNo { get; set; } = default!;
+	public int ApiNo { get; set; }
 
 	[JsonPropertyName("api_voice_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiVoiceId { get; set; } = default!;
+	public int ApiVoiceId { get; set; }
 
 }

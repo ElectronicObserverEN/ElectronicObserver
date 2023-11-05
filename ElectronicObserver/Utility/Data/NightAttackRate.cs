@@ -17,24 +17,24 @@ public static class NightAttackRate
 
 		double luckLevelPart = ship.LuckTotal switch
 		{
-			 < 50 => 15 + ship.LuckTotal + 0.75 * Math.Sqrt(ship.Level),
+			< 50 => 15 + ship.LuckTotal + 0.75 * Math.Sqrt(ship.Level),
 			_ => 65 + Math.Sqrt(ship.LuckTotal - 50) + 0.8 * Math.Sqrt(ship.Level),
 		};
 
 		double baseRate = luckLevelPart
-						  + FlagshipBonus(fleet, ship)
-						  + ship.HpBonus()
-						  + ship.SkilledLookoutsBonus()
-						  + fleet.SearchlightBonus()
-						  + fleet.StarShellBonus();
+			+ FlagshipBonus(fleet, ship)
+			+ ship.HpBonus()
+			+ ship.SkilledLookoutsBonus(attack)
+			+ fleet.SearchlightBonus(attack)
+			+ fleet.StarShellBonus(ship, attack);
 
 		return Math.Floor(baseRate) / attackMod;
 	}
 
-	private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersWithoutEscaped
-		.FirstOrDefault()?.MasterShip.ShipId switch
+	private static double FlagshipBonus(IFleetData fleet, IShipData ship) =>
+		fleet.MembersWithoutEscaped!.IndexOf(ship) switch
 		{
-			{ } id when id == ship.MasterShip.ShipId => 15,
+			0 => 15,
 			_ => 0,
 		};
 
@@ -45,30 +45,48 @@ public static class NightAttackRate
 		_ => 0,
 	};
 
-	private static int SkilledLookoutsBonus(this IShipData ship) => ship switch
+	private static int SkilledLookoutsBonus(this IShipData ship, NightAttack attack) => attack switch
 	{
+		NightZuiunCutinAttack when ship.HasRegularSkilledLookouts() => 8,
+		NightZuiunCutinAttack => 0,
+
+		_ when ship is
 		{
 			MasterShip.ShipType:
-				ShipTypes.Destroyer or
-				ShipTypes.LightCruiser or
-				ShipTypes.TorpedoCruiser or
-				ShipTypes.TrainingCruiser,
-		} when ship.HasDestroyerSkilledLookouts() => 9,
+			ShipTypes.Destroyer or
+			ShipTypes.LightCruiser or
+			ShipTypes.TorpedoCruiser,
+		} && ship.HasDestroyerSkilledLookouts() => 8,
 
-		_ when ship.HasSkilledLookouts() => 5,
+		_ when ship.HasRegularSkilledLookouts() => 5,
 
 		_ => 0,
 	};
 
-	private static int SearchlightBonus(this IFleetData fleet) => fleet switch
+	private static int SearchlightBonus(this IFleetData fleet, NightAttack attack) => attack switch
 	{
-		{ } when fleet.HasSearchlight() => 7,
+		NightZuiunCutinAttack when fleet.HasSearchlight() => -10,
+
+		_ when fleet.HasSearchlight() => 7,
 		_ => 0,
 	};
 
-	private static int StarShellBonus(this IFleetData fleet) => fleet switch
+	private static int StarShellBonus(this IFleetData fleet, IShipData ship, NightAttack attack) => attack switch
 	{
-		{ } when fleet.HasStarShell() => 4,
+		NightZuiunCutinAttack when fleet.CanShipBeforeActivateNightZuiunCutIn(ship) => -10,
+		NightZuiunCutinAttack when fleet.HasStarShell() => -10,
+
+		_ when fleet.CanShipBeforeActivateNightZuiunCutIn(ship) => 4,
+		_ when fleet.HasStarShell() => 4,
 		_ => 0,
 	};
+
+	private static bool CanShipBeforeActivateNightZuiunCutIn(this IFleetData fleet, IShipData ship)
+	{
+		int currentIndex = fleet.MembersWithoutEscaped!.IndexOf(ship);
+
+		return fleet.MembersWithoutEscaped
+			.Take(currentIndex)
+			.Any(s => s?.GetNightAttacks().Any(a => a.NightAttackKind is NightAttackKind.CutinZuiun) ?? false);
+	}
 }

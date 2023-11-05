@@ -9,6 +9,7 @@ public class ConfigurationCompassViewModel : ConfigurationViewModelBase
 	private Configuration.ConfigurationData.ConfigFormCompass Config { get; }
 
 	public int MaxShipNameWidth { get; set; }
+	public bool DisplayAllEnemyCompositions { get; set; }
 
 	public ConfigurationCompassViewModel(Configuration.ConfigurationData.ConfigFormCompass config)
 	{
@@ -21,10 +22,12 @@ public class ConfigurationCompassViewModel : ConfigurationViewModelBase
 	private void Load()
 	{
 		MaxShipNameWidth = Config.MaxShipNameWidth;
+		DisplayAllEnemyCompositions = Config.DisplayAllEnemyCompositions;
 	}
 
 	public override void Save()
 	{
 		Config.MaxShipNameWidth = MaxShipNameWidth;
+		Config.DisplayAllEnemyCompositions = DisplayAllEnemyCompositions;
 	}
 }

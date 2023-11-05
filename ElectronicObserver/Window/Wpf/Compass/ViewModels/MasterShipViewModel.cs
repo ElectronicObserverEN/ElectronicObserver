@@ -11,7 +11,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
@@ -20,19 +19,19 @@ public partial class MasterShipViewModel : ObservableObject
 {
 	public IShipDataMaster? Ship { get; set; }
 
-	public IEnumerable<MasterShipSlotViewModel> Slots => Slot?.Select(id => id switch
-															 {
-																 > 0 => KCDatabase.Instance.MasterEquipments[id],
-																 _ => null
-															 })
-															 .Zip(Ship?.Aircraft ?? Enumerable.Empty<int>(), (equip, size) => (Equipment: equip, Size: size))
-															 .Select(s => new MasterShipSlotViewModel
-															 {
-																 Equipment = s.Equipment,
-																 Size = s.Size
-															 })
-															 .Take(Math.Max(Slot?.Count(id => id > 0) ?? 0, Ship?.SlotSize ?? 0))
-														 ?? Enumerable.Empty<MasterShipSlotViewModel>();
+	public IEnumerable<MasterShipSlotViewModel> Slots => Slot?.Select(id => id switch 
+		{
+			> 0 => KCDatabase.Instance.MasterEquipments[id],
+			_ => null,
+		})
+		.Zip(Ship?.Aircraft ?? Enumerable.Empty<int>(), (equip, size) => (Equipment: equip, Size: size))
+		.Select(s => new MasterShipSlotViewModel
+		{
+			Equipment = s.Equipment,
+			Size = s.Size,
+		})
+		.Take(Math.Max(Slot?.Count(id => id > 0) ?? 0, Ship?.SlotSize ?? 0)) 
+	?? Enumerable.Empty<MasterShipSlotViewModel>();
 
 	public int[]? Slot { get; set; }
 	public int Level { get; set; } = -1;
@@ -43,7 +42,11 @@ public partial class MasterShipViewModel : ObservableObject
 	public int Armor { get; set; }
 
 	public int ShipId => Ship?.ShipID ?? -1;
-	public string Name => Ship?.NameEN ?? "-";
+	public string Name => IsUnknown switch
+	{
+		true => "???",
+		_ => Ship?.NameEN ?? "-"
+	};
 	public int MaxNameWidth { get; set; }
 	public string? NameToolTip => Ship switch
 	{
@@ -63,6 +66,8 @@ public partial class MasterShipViewModel : ObservableObject
 		{ IsAbyssalShip: true } => Ship.GetShipNameColor().ToBrush(),
 		_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
 	};
+
+	public bool IsUnknown { get; init; }
 
 	public MasterShipViewModel()
 	{
@@ -227,7 +232,7 @@ public partial class MasterShipViewModel : ObservableObject
 		}
 
 		sb.AppendFormat("\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
-			Constants.GetDayAttackKind(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
+			DayAttack.AttackDisplay(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
 			NightAttack.AttackDisplay(Calculator.GetNightAttackKind(slot, ship.ShipID, -1)));
 
 		/*

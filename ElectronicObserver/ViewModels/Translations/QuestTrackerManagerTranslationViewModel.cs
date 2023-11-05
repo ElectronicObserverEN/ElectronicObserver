@@ -1,21 +1,19 @@
-﻿using ElectronicObserver.Properties.Window.Dialog;
-
-namespace ElectronicObserver.ViewModels.Translations;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 
 public class QuestTrackerManagerTranslationViewModel : TranslationBaseViewModel
 {
-	public string Flagship => QuestTrackerManager.Flagship;
-	public string Copy => QuestTrackerManager.Copy;
-	public string ShowDetails => QuestTrackerManager.ShowDetails;
-	public string MustBeFlagship => QuestTrackerManager.MustBeFlagship;
-	public string File => QuestTrackerManager.File;
-	public string Load => QuestTrackerManager.Load;
-	public string CopyTrackersToClipboard => QuestTrackerManager.CopyTrackersToClipboard;
-	public string Warning => QuestTrackerManager.Warning;
-	public string TrackerOverwrite => QuestTrackerManager.TrackerOverwrite;
+	public string Flagship => QuestTrackerManagerResources.Flagship;
+	public string Copy => QuestTrackerManagerResources.Copy;
+	public string ShowDetails => QuestTrackerManagerResources.ShowDetails;
+	public string MustBeFlagship => QuestTrackerManagerResources.MustBeFlagship;
+	public string File => QuestTrackerManagerResources.File;
+	public string Load => QuestTrackerManagerResources.Load;
+	public string CopyTrackersToClipboard => QuestTrackerManagerResources.CopyTrackersToClipboard;
+	public string Warning => QuestTrackerManagerResources.Warning;
+	public string TrackerOverwrite => QuestTrackerManagerResources.TrackerOverwrite;
 
-	public string UnknownTask => QuestTrackerManager.UnknownTask;
-	public string UnknownCondition => QuestTrackerManager.UnknownCondition;
+	public string UnknownTask => QuestTrackerManagerResources.UnknownTask;
+	public string UnknownCondition => QuestTrackerManagerResources.UnknownCondition;
 
-	public string Title => QuestTrackerManager.Title;
+	public string Title => QuestTrackerManagerResources.Title;
 }

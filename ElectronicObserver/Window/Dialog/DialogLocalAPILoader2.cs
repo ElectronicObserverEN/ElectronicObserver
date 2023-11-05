@@ -7,7 +7,6 @@ using System.Linq;
 using System.Windows.Forms;
 using ElectronicObserver.Observer;
 using ElectronicObserver.ViewModels;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogLocalAPILoader2;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -27,20 +26,20 @@ public partial class DialogLocalAPILoader2 : Form
 
 	public void Translate()
 	{
-		APIView_FileName.HeaderText = Translation.APIView_FileName;
-		ViewMenu_Execute.Text = Translation.ViewMenu_Execute;
-		ViewMenu_Delete.Text = Translation.ViewMenu_Delete;
+		APIView_FileName.HeaderText = LocalAPILoader2Resources.APIView_FileName;
+		ViewMenu_Execute.Text = LocalAPILoader2Resources.ViewMenu_Execute;
+		ViewMenu_Delete.Text = LocalAPILoader2Resources.ViewMenu_Delete;
 
-		Menu_File.Text = Translation.Menu_File;
-		Menu_File_OpenFolder.Text = Translation.Menu_File_OpenFolder;
-		Menu_File_Reload.Text = Translation.Menu_File_Reload;
+		Menu_File.Text = LocalAPILoader2Resources.Menu_File;
+		Menu_File_OpenFolder.Text = LocalAPILoader2Resources.Menu_File_OpenFolder;
+		Menu_File_Reload.Text = LocalAPILoader2Resources.Menu_File_Reload;
 
-		ButtonSearchPrev.Text = Translation.ButtonSearchPrev;
-		ButtonSearch.Text = Translation.ButtonSearch;
-		ButtonExecuteNext.Text = Translation.ButtonExecuteNext;
-		ButtonExecute.Text = Translation.ButtonExecute;
+		ButtonSearchPrev.Text = LocalAPILoader2Resources.ButtonSearchPrev;
+		ButtonSearch.Text = LocalAPILoader2Resources.ButtonSearch;
+		ButtonExecuteNext.Text = LocalAPILoader2Resources.ButtonExecuteNext;
+		ButtonExecute.Text = LocalAPILoader2Resources.ButtonExecute;
 
-		Text = Translation.Title;
+		Text = LocalAPILoader2Resources.Title;
 	}
 
 	private void DialogLocalAPILoader2_Load(object sender, EventArgs e)
@@ -66,7 +65,7 @@ public partial class DialogLocalAPILoader2 : Form
 		if (Directory.Exists(CurrentPath))
 			LoadFiles(CurrentPath);
 		else
-			MessageBox.Show(Translation.FolderNotSpecifiedOrDoesNotExist, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(LocalAPILoader2Resources.FolderNotSpecifiedOrDoesNotExist, LocalAPILoader2Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 	}
 
 	private void ViewMenu_Execute_Click(object sender, EventArgs e)
@@ -82,7 +81,7 @@ public partial class DialogLocalAPILoader2 : Form
 		if (!APICaller.IsBusy)
 			APICaller.RunWorkerAsync(APIView.SelectedRows.Cast<DataGridViewRow>().Select(row => row.Cells[APIView_FileName.Index].Value as string).OrderBy(s => s));
 		else
-		if (MessageBox.Show(Translation.OperationAlreadyInProgress, Translation.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+		if (MessageBox.Show(LocalAPILoader2Resources.OperationAlreadyInProgress, LocalAPILoader2Resources.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
 			== System.Windows.Forms.DialogResult.Yes)
 		{
 			APICaller.CancelAsync();
@@ -120,7 +119,7 @@ public partial class DialogLocalAPILoader2 : Form
 		}
 		else
 		{
-			MessageBox.Show(Translation.SelectSingleRow, Translation.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(LocalAPILoader2Resources.SelectSingleRow, LocalAPILoader2Resources.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 		}
 
@@ -385,7 +384,7 @@ public partial class DialogLocalAPILoader2 : Form
 		}
 		catch (Exception ex)
 		{
-			Utility.Logger.Add(1, string.Format(Translation.FailedToStart, ex.GetType().Name, ex.Message));
+			Utility.Logger.Add(1, string.Format(LocalAPILoader2Resources.FailedToStart, ex.GetType().Name, ex.Message));
 		}
 	}
 }

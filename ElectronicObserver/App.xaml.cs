@@ -4,14 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.ElectronicObserverApi;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Dialog.EquipmentPicker;
@@ -46,6 +49,7 @@ using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
@@ -55,6 +59,10 @@ using ElectronicObserver.Window.Tools.ExpChecker;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
@@ -94,7 +102,7 @@ public partial class App : Application
 
 			if (args.Exception is not COMException { ErrorCode: CLIPBRD_E_CANT_OPEN }) return;
 
-			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
+			Logger.Add(3, MainResources.CopyingToClipboardFailed);
 			args.Handled = true;
 		};
 	}
@@ -135,7 +143,7 @@ public partial class App : Application
 				// 多重起動禁止
 				MessageBox.Show
 				(
-					ElectronicObserver.Properties.Resources.MultiInstanceNotification,
+					ElectronicObserver.Translations.Resources.MultiInstanceNotification,
 					caption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation
@@ -156,14 +164,21 @@ public partial class App : Application
 			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 #endif
 
+			Task.Run(() =>
+			{
+				// pre-load ef model to avoid performance hits later
+				using ElectronicObserverContext db = new();
+				_ = db.Model;
+			});
+
 			try
 			{
 				Directory.CreateDirectory(@"Settings\Layout");
 			}
 			catch (UnauthorizedAccessException)
 			{
-				MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
-					ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
+				MessageBox.Show(MainResources.MissingPermissions,
+					MainResources.ErrorCaption,
 					MessageBoxButton.OK, MessageBoxImage.Error);
 				throw;
 			}
@@ -271,10 +286,17 @@ public partial class App : Application
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
 			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
+			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
+			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
+			.AddSingleton<SortieDetailTranslationViewModel>()
+			.AddSingleton<TelegramTranslationViewModel>()
+			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
+			.AddSingleton<PhaseFactory>()
+			.AddSingleton<BattleFactory>()
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
@@ -285,6 +307,7 @@ public partial class App : Application
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
+			.AddSingleton<ElectronicObserverApiService>()
 			// external
 			.AddSingleton(JotTracker())
 

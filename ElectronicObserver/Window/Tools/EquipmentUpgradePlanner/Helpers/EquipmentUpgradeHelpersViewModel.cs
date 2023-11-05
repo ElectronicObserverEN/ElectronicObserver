@@ -37,4 +37,9 @@ public class EquipmentUpgradeHelpersViewModel : ObservableObject
 
 		TimeService.DayChanged += () => OnPropertyChanged(nameof(CanHelpToday));
 	}
+
+	public void UnsubscribeFromApis()
+	{
+		Helpers.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+	}
 }

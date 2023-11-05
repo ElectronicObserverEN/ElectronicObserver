@@ -18,14 +18,8 @@ public class SurfaceShipCountTests
 	private ShipDataMock Kamikaze => new(Db.MasterShips[ShipId.KamikazeKai]);
 	private ShipDataMock Hachijou => new(Db.MasterShips[ShipId.HachijouKai]);
 	private ShipDataMock Ukuru => new(Db.MasterShips[ShipId.UkuruKai]);
-	private ShipDataMock Furei => new(Db.MasterShips[ShipId.I201Kai])
-	{
-		MasterID = 1
-	};
-	private ShipDataMock Jervis => new(Db.MasterShips[ShipId.JervisKai])
-	{
-		MasterID = 2
-	};
+	private ShipDataMock Furei => new(Db.MasterShips[ShipId.I201Kai]);
+	private ShipDataMock Jervis => new(Db.MasterShips[ShipId.JervisKai]);
 
 	public SurfaceShipCountTests(DatabaseFixture db)
 	{
@@ -44,8 +38,8 @@ public class SurfaceShipCountTests
 				Hyuuga,
 				Kamikaze,
 				Hachijou,
-				Furei
-			})
+				Furei,
+			}),
 		};
 
 		Assert.Equal(5, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -63,8 +57,8 @@ public class SurfaceShipCountTests
 				Hyuuga,
 				Kamikaze,
 				Hachijou,
-				Jervis
-			})
+				Jervis,
+			}),
 		};
 
 		Assert.Equal(6, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -82,14 +76,14 @@ public class SurfaceShipCountTests
 				Hyuuga,
 				Kamikaze,
 				Hachijou,
-				Furei
+				Furei,
 			}),
 
 			// Furei escaped
-			EscapedShipList = new ReadOnlyCollection<int>(new List<int>()
+			EscapedShipList = new ReadOnlyCollection<int>(new List<int>
 			{
-				Furei.MasterID
-			})
+				5,
+			}),
 		};
 
 		Assert.Equal(5, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -107,14 +101,14 @@ public class SurfaceShipCountTests
 				Hyuuga,
 				Kamikaze,
 				Hachijou,
-				Jervis
+				Jervis,
 			}),
 
 			// Jervis escaped
-			EscapedShipList = new ReadOnlyCollection<int>(new List<int>()
+			EscapedShipList = new ReadOnlyCollection<int>(new List<int>
 			{
-				Jervis.MasterID
-			})
+				5,
+			}),
 		};
 
 		Assert.Equal(5, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -134,8 +128,8 @@ public class SurfaceShipCountTests
 				Kamikaze,
 				Ukuru,
 				Hachijou,
-				Jervis
-			})
+				Jervis,
+			}),
 		};
 
 		Assert.Equal(7, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -155,8 +149,8 @@ public class SurfaceShipCountTests
 				Kamikaze,
 				Furei,
 				Hachijou,
-				Jervis
-			})
+				Jervis,
+			}),
 		};
 
 		Assert.Equal(6, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -176,14 +170,14 @@ public class SurfaceShipCountTests
 				Kamikaze,
 				Furei,
 				Hachijou,
-				Jervis
+				Jervis,
 			}),
 
 			// Furei escaped
-			EscapedShipList = new ReadOnlyCollection<int>(new List<int>()
+			EscapedShipList = new ReadOnlyCollection<int>(new List<int>
 			{
-				Furei.MasterID
-			})
+				4,
+			}),
 		};
 
 		Assert.Equal(6, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());
@@ -203,14 +197,14 @@ public class SurfaceShipCountTests
 				Kamikaze,
 				Furei,
 				Hachijou,
-				Jervis
+				Jervis,
 			}),
 
 			// Jervis escaped
-			EscapedShipList = new ReadOnlyCollection<int>(new List<int>()
+			EscapedShipList = new ReadOnlyCollection<int>(new List<int>
 			{
-				Jervis.MasterID
-			})
+				6,
+			}),
 		};
 
 		Assert.Equal(5, fleet.NumberOfSurfaceShipNotRetreatedNotSunk());

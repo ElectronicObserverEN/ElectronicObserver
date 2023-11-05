@@ -643,4 +643,10 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="ShipTraining" xml:space="preserve">
     <value>艦娘訓練</value>
   </data>
+  <data name="BrowserFont" xml:space="preserve">
+    <value>ブラウザフォント</value>
+  </data>
+  <data name="MatchMainFont" xml:space="preserve">
+    <value>メインフォントに合わせる</value>
+  </data>
 </root>

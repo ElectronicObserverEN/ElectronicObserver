@@ -3,51 +3,35 @@
 public class ApiPracticeList
 {
 	[JsonPropertyName("api_enemy_comment")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEnemyComment { get; set; } = default!;
+	public string ApiEnemyComment { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_comment_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEnemyCommentId { get; set; } = default!;
+	public string ApiEnemyCommentId { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_flag")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiEnemyFlag { get; set; } = default!;
+	public int ApiEnemyFlag { get; set; }
 
 	[JsonPropertyName("api_enemy_flag_ship")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiEnemyFlagShip { get; set; } = default!;
+	public int ApiEnemyFlagShip { get; set; }
 
 	[JsonPropertyName("api_enemy_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiEnemyId { get; set; } = default!;
+	public int ApiEnemyId { get; set; }
 
 	[JsonPropertyName("api_enemy_level")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiEnemyLevel { get; set; } = default!;
+	public int ApiEnemyLevel { get; set; }
 
 	[JsonPropertyName("api_enemy_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEnemyName { get; set; } = default!;
+	public string ApiEnemyName { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_name_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEnemyNameId { get; set; } = default!;
+	public string ApiEnemyNameId { get; set; } = "";
 
 	[JsonPropertyName("api_enemy_rank")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiEnemyRank { get; set; } = default!;
+	public string ApiEnemyRank { get; set; } = "";
 
 	[JsonPropertyName("api_medals")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiMedals { get; set; } = default!;
+	public int ApiMedals { get; set; }
 
 	[JsonPropertyName("api_state")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiState { get; set; } = default!;
+	public int ApiState { get; set; }
 }

@@ -22,7 +22,7 @@
 		<common:ParameterIcon
 			Grid.Column="0"
 			VerticalAlignment="Center"
-			ParameterType="{Binding ParameterType}"
+			Type="{Binding ParameterType}"
 			>
 			<common:ParameterIcon.Style>
 				<Style TargetType="common:ParameterIcon">

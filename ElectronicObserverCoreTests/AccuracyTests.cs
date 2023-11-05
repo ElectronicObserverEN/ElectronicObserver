@@ -2,6 +2,7 @@
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 using Xunit;
 
@@ -46,5 +47,17 @@ public class AccuracyTests
 		double expected = 160;
 
 		Assert.Equal(expected, bismarck.GetDayAttackAccuracy(DayAttackKind.NormalAttack, fleet));
+	}
+
+	[Fact]
+	public void AccuracyTest2()
+	{
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
+		{
+			Level = 180,
+			LuckBase = 99,
+		};
+
+		Assert.Equal(184, kamikaze.NextAccuracyLevel());
 	}
 }

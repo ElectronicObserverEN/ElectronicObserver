@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
@@ -19,7 +20,7 @@ public partial class ShipFilterViewModel : ObservableObject
 	public List<Filter> TypeFilters { get; }
 
 	public int LevelMin { get; set; } = 0;
-	public int LevelMax { get; set; } = 175;
+	public int LevelMax => ExpTable.ShipMaximumLevel;
 
 	public int AswMin { get; set; } = 0;
 	public int AswMax { get; set; } = 200;
@@ -31,6 +32,7 @@ public partial class ShipFilterViewModel : ObservableObject
 	public bool CanEquipTank { get; set; }
 	public bool CanEquipFcf { get; set; }
 	public bool CanEquipBulge { get; set; }
+	public bool CanEquipSeaplaneFighter { get; set; }
 	public bool HasExpansionSlot { get; set; }
 	public string? NameFilter { get; set; } = "";
 
@@ -77,6 +79,7 @@ public partial class ShipFilterViewModel : ObservableObject
 		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
 		if (CanEquipFcf && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility)) return false;
 		if (CanEquipBulge && !ship.MasterShip.EquippableCategoriesTyped.Intersect(BulgeTypes).Any()) return false;
+		if (CanEquipSeaplaneFighter && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SeaplaneFighter)) return false;
 		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
 		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
 		// other filters

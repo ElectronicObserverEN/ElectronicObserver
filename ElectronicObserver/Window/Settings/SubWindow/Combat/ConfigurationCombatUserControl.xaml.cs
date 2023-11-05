@@ -1,5 +1,4 @@
-﻿using System;
-namespace ElectronicObserver.Window.Settings.SubWindow.Combat;
+﻿namespace ElectronicObserver.Window.Settings.SubWindow.Combat;
 
 /// <summary>
 /// Interaction logic for ConfigurationCombatUserControl.xaml

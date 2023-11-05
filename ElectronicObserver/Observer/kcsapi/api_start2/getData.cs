@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.MapData;
+using ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Observer.kcsapi.api_start2;
 
@@ -243,10 +248,30 @@ public class getData : APIBase
 			db.MasterShips[id].SpecialEquippableCategories = (int[])elem.api_equip_type;
 		}
 
-		foreach (var elem in data.api_mst_equip_exslot_ship)
+		Dictionary<string, ApiMstEquipExslotShip> expansionSlotData = JsonSerializer
+			.Deserialize<Dictionary<string, ApiMstEquipExslotShip>>(data.api_mst_equip_exslot_ship.ToString());
+
+		foreach ((string key, ApiMstEquipExslotShip value) in expansionSlotData)
 		{
-			int id = (int)elem.api_slotitem_id;
-			db.MasterEquipments[id].EquippableShipsAtExpansion = (int[])elem.api_ship_ids;
+			int id = int.Parse(key);
+
+			if (value.ApiShipIds is not null)
+			{
+				db.MasterEquipments[id].EquippableShipsAtExpansion = value.ApiShipIds.Keys
+					.Select(Enum.Parse<ShipId>);
+			}
+
+			if (value.ApiStypes is not null)
+			{
+				db.MasterEquipments[id].EquippableShipTypesAtExpansion = value.ApiStypes.Keys
+					.Select(Enum.Parse<ShipTypes>);
+			}
+
+			if (value.ApiCtypes is not null)
+			{
+				db.MasterEquipments[id].EquippableShipClassesAtExpansion = value.ApiCtypes.Keys
+					.Select(Enum.Parse<ShipClass>);
+			}
 		}
 
 

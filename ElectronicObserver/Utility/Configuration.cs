@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
-using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
@@ -473,6 +472,15 @@ public sealed class Configuration
 			/// </summary>
 			public bool FontFamilyTextSearch { get; set; }
 
+			public bool UseCustomBrowserFont { get; set; }
+
+			public string? BrowserFontName { get; set; }
+
+			/// <summary>
+			/// When enabled, the browser font will be the same as the main font.
+			/// </summary>
+			public bool MatchMainFont { get; set; }
+
 			public ConfigUI()
 			{
 				MainFont = new Font("Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -750,6 +758,11 @@ public sealed class Configuration
 			public string APIListPath { get; set; }
 
 			/// <summary>
+			/// Electronic Observer API URL
+			/// </summary>
+			public string ElectronicObserverApiUrl { get; set; } = "";
+
+			/// <summary>
 			/// エラー発生時に警告音を鳴らすか
 			/// </summary>
 			public bool AlertOnError { get; set; }
@@ -812,6 +825,8 @@ public sealed class Configuration
 			/// レイアウトロック中でもフロートウィンドウを閉じられるようにするか
 			/// </summary>
 			public bool CanCloseFloatWindowInLock { get; set; }
+
+			public string? CsvExportPath { get; set; }
 
 			public ConfigLife()
 			{
@@ -1393,12 +1408,18 @@ public sealed class Configuration
 			/// </summary>
 			public int MaxShipNameWidth { get; set; }
 
+			/// <summary>
+			/// By default, only the compositions matching the preview from map screen will be shown. <br></br>
+			/// If you enable this setting, the preview will be ignored and all compositions will be shown.
+			/// </summary>
+			public bool DisplayAllEnemyCompositions { get; set; }
 
 			public ConfigFormCompass()
 			{
 				CandidateDisplayCount = 4;
 				IsScrollable = false;
 				MaxShipNameWidth = 60;
+				DisplayAllEnemyCompositions = false;
 			}
 		}
 		/// <summary>[羅針盤]ウィンドウ</summary>

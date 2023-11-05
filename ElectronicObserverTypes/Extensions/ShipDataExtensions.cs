@@ -24,8 +24,23 @@ public static class ShipDataExtensions
 	/// </summary>
 	public static bool IsAbyssalShip(this IShipDataMaster ship) => ship.ShipID > 1500;
 
-	public static double Accuracy(this IShipData ship) =>
-		2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
+	/// <summary>
+	/// Calculates the ship accuracy.
+	/// </summary>
+	/// <param name="ship">Ship.</param>
+	/// <param name="level">Custom level override, ship.Level will be used by default.</param>
+	/// <param name="luck">Custom luck override, ship.LuckTotal will be used by default.</param>
+	/// <returns>Ship accuracy.</returns>
+	public static double Accuracy(this IShipData ship, int? level = null, int? luck = null) =>
+		2 * Math.Sqrt(level ?? ship.Level) + 1.5 * Math.Sqrt(luck ?? ship.LuckTotal);
+
+	public static int NextAccuracyLevel(this IShipData ship, int? currentAccuracy = null)
+	{
+		int targetAccuracy = (currentAccuracy ?? (int)ship.Accuracy()) + 1;
+		double luckPart = 1.5 * Math.Sqrt(ship.LuckTotal);
+
+		return (int)Math.Ceiling(Math.Pow((targetAccuracy - luckPart) / 2, 2));
+	}
 
 	public static double ShellingEvasion(this IShipData ship) =>
 		new ShellingEvasion(ship).PostcapValue;
@@ -119,6 +134,9 @@ public static class ShipDataExtensions
 	public static bool HasSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SurfaceShipPersonnel);
 
+	public static bool HasRegularSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.EquipmentId == EquipmentId.SurfaceShipPersonnel_SkilledLookouts);
+
 	public static bool HasDestroyerSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.EquipmentId == EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts);
 
@@ -175,12 +193,12 @@ public static class ShipDataExtensions
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.StarShell);
 
 	public static bool HasSearchlight(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.MasterEquipment.CategoryType switch
-		{
-			EquipmentTypes.Searchlight => true,
-			EquipmentTypes.SearchlightLarge => true,
-			_ => false
-		});
+		.Any(e => e?.MasterEquipment.CategoryType is
+			EquipmentTypes.Searchlight or
+			EquipmentTypes.SearchlightLarge);
+
+	public static bool HasLargeSearchlight(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.SearchlightLarge);
 
 	public static int HighAngleGunCount(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsHighAngleGun is true);
@@ -226,7 +244,7 @@ public static class ShipDataExtensions
 
 	public static bool HasAaRocketMod(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
-			EquipmentId.AAGun_12cm30tubeRocketLauncherKai2)
+			EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi)
 		>= count;
 
 	public static bool HasHighAngleMusashi(this IShipData ship, int count = 1) => ship.AllSlotInstance
@@ -263,6 +281,12 @@ public static class ShipDataExtensions
 	public static bool HasHighAngleAtlantaGfcs(this IShipData ship, int count = 1) =>
 		ship.HighAngleAtlantaGfcsCount() >= count;
 
+	public static bool HasHarunaGun(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSan_DazzleCamouflageSpecification or
+			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon)
+		>= count;
+
 	public static bool HasHighAngleConcentrated(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
 			EquipmentId.SecondaryGun_10cmTwinHighangleGunMountBatteryConcentratedDeployment)
@@ -270,7 +294,7 @@ public static class ShipDataExtensions
 
 	public static bool HasYamatoRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
-			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKai2 or
+			EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKaiNi or
 			EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC)
 		>= count;
 
@@ -344,7 +368,8 @@ public static class ShipDataExtensions
 		ShipId.Saratoga or
 		ShipId.TaiyouKaiNi or
 		ShipId.ShinyouKaiNi or
-		ShipId.UnyouKaiNi;
+		ShipId.UnyouKaiNi or 
+		ShipId.KagaKaiNiGo;
 
 	public static bool IsArkRoyal(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
@@ -469,6 +494,7 @@ public static class ShipDataExtensions
 	public static bool CanNoSonarOpeningAsw(this IShipData ship) => ship.MasterShip is
 	{ ShipId: ShipId.JervisKai } or
 	{ ShipId: ShipId.JanusKai } or
+	{ ShipId: ShipId.JavelinKai } or
 	{ ShipId: ShipId.SamuelBRobertsKai } or
 	{ ShipId: ShipId.SamuelBRobertsMkII } or
 	{ ShipId: ShipId.IsuzuKaiNi } or
@@ -553,4 +579,17 @@ public static class ShipDataExtensions
 			EquipmentId.Autogyro_S51J or
 			EquipmentId.Autogyro_S51JKai);
 	}
+
+	public static bool CanSink(this IShipData ship, IFleetData fleet)
+	{
+		if (ship.HPRate > 0.25) return false;
+		if (fleet.MembersInstance.FirstOrDefault() == ship) return false;
+		if (ship.HasDamecon()) return false;
+		if (ship.RepairingDockID > -1) return false;
+
+		return fleet.MembersWithoutEscaped!.Contains(ship);
+	}
+
+	private static bool HasDamecon(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl);
 }

@@ -3,12 +3,8 @@
 public class ApiReqKaisouLockRequest
 {
 	[JsonPropertyName("api_slotitem_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiSlotitemId { get; set; } = default!;
+	public string ApiSlotitemId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiVerno { get; set; } = default!;
+	public string ApiVerno { get; set; } = "";
 }

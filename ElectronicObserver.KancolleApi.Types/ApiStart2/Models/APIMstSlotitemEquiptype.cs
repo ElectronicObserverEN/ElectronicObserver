@@ -3,15 +3,11 @@
 public class ApiMstSlotitemEquiptype
 {
 	[JsonPropertyName("api_id")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiId { get; set; } = default!;
+	public int ApiId { get; set; }
 
 	[JsonPropertyName("api_name")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	[Required(AllowEmptyStrings = true)]
-	public string ApiName { get; set; } = default!;
+	public string ApiName { get; set; } = "";
 
 	[JsonPropertyName("api_show_flg")]
-	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-	public int ApiShowFlg { get; set; } = default!;
+	public int ApiShowFlg { get; set; }
 }

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ElectronicObserver.Data;
+using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.AirControlSimulator;
@@ -66,15 +68,58 @@ public class DataSerializationService
 		);
 	}
 
-	public string FleetAnalysisShips()
+	public string FleetAnalysisShips(bool allShips)
 	{
-		return FleetAnalysisShips(KCDatabase.Instance.Ships.Values);
+		return FleetAnalysisShips(KCDatabase.Instance.Ships.Values
+			.Where(s => allShips || s.IsLocked));
 	}
 
 	public string FleetAnalysisEquipment(bool allEquipment)
 	{
 		return FleetAnalysisEquipment(KCDatabase.Instance.Equipments.Values
 			.Where(eq => allEquipment || eq.IsLocked));
+	}
+
+	private static FleetData? FleetOrDefault(bool include, int index) => include switch
+	{
+		false => null,
+		_ => KCDatabase.Instance.Fleet.Fleets.Values.Skip(index).FirstOrDefault(),
+	};
+
+	public string AirControlSimulatorLink(AirControlSimulatorViewModel airControlSimulator)
+	{
+		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
+			.ToList();
+
+		string airControlSimulatorData = AirControlSimulator
+		(
+			KCDatabase.Instance.Admiral.Level,
+			FleetOrDefault(airControlSimulator.Fleet1, 0),
+			FleetOrDefault(airControlSimulator.Fleet2, 1),
+			FleetOrDefault(airControlSimulator.Fleet3, 2),
+			FleetOrDefault(airControlSimulator.Fleet4, 3),
+			bases.Skip(0).FirstOrDefault(),
+			bases.Skip(1).FirstOrDefault(),
+			bases.Skip(2).FirstOrDefault(),
+			airControlSimulator.ShipData switch
+			{
+				true => KCDatabase.Instance.Ships.Values
+					.Where(s => airControlSimulator.IncludeUnlockedShips || s.IsLocked),
+				_ => null,
+			},
+			airControlSimulator.EquipmentData switch
+			{
+				true => KCDatabase.Instance.Equipments.Values
+					.Where(e => airControlSimulator.IncludeUnlockedEquipment || e!.IsLocked)
+					.Cast<EquipmentData>(),
+				_ => null,
+			},
+			airControlSimulator.MaxAircraftLevelFleet,
+			airControlSimulator.MaxAircraftLevelAirBase
+		);
+
+		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
 	}
 
 	public string AirControlSimulator
@@ -101,6 +146,29 @@ public class DataSerializationService
 		),
 		JsonSerializerOptions
 	);
+
+	public string OperationRoomLink(AirControlSimulatorViewModel airControlSimulator)
+	{
+		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
+			.ToList();
+
+		string operationRoomData = DeckBuilder
+		(
+			KCDatabase.Instance.Admiral.Level,
+			FleetOrDefault(airControlSimulator.Fleet1, 0),
+			FleetOrDefault(airControlSimulator.Fleet2, 1),
+			FleetOrDefault(airControlSimulator.Fleet3, 2),
+			FleetOrDefault(airControlSimulator.Fleet4, 3),
+			bases.Skip(0).FirstOrDefault(),
+			bases.Skip(1).FirstOrDefault(),
+			bases.Skip(2).FirstOrDefault(),
+			airControlSimulator.MaxAircraftLevelFleet,
+			airControlSimulator.MaxAircraftLevelAirBase
+		);
+
+		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
+	}
 
 	public string DeckBuilder
 	(
@@ -271,6 +339,7 @@ public class DataSerializationService
 
 	private static FleetAnalysisShip MakeFleetAnalysisShip(IShipData ship) => new()
 	{
+		DropId = ship.MasterID,
 		ShipId = ship.MasterShip.ShipId,
 		Level = ship.Level,
 		Modernization = new List<int>

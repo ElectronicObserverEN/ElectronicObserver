@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
+    <value>編成テキストをコピー(&amp;C)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
+    <value>編成をコピー(デッキビルダー)(&amp;D)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
+    <value>艦隊晒しページへコピー(&amp;R)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetAnalysis" xml:space="preserve">
+    <value>艦隊分析ページへコピー(&amp;F)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetAnalysisLockedEquip" xml:space="preserve">
+    <value>艦隊分析ロックされた装備コピー</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetAnalysisAllEquip" xml:space="preserve">
+    <value>艦隊分析全装備コピー</value>
+  </data>
+  <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
+    <value>対空砲火の詳細表示(&amp;A)</value>
+  </data>
+  <data name="ContextMenuFleet_Capture" xml:space="preserve">
+    <value>この画面をキャプチャ(&amp;S)</value>
+  </data>
+  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
+    <value>編成画像を出力(&amp;I)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>*not loaded*</value>
+    <comment>This is never displayed</comment>
+  </data>
+  <data name="SupportTypeNone" xml:space="preserve">
+    <value>発動不能</value>
+  </data>
+  <data name="SupportTypeAerial" xml:space="preserve">
+    <value>航空支援</value>
+  </data>
+  <data name="SupportTypeShelling" xml:space="preserve">
+    <value>支援射撃</value>
+  </data>
+  <data name="SupportTypeTorpedo" xml:space="preserve">
+    <value>支援長距離雷撃</value>
+  </data>
+  <data name="FleetNameToolTip" xml:space="preserve">
+    <value>Lv合計: {0} / 平均: {1:0.00}
+{2}艦隊
+支援攻撃: {3}
+合計火力 {4} ({20})  / 雷装 {5} / 対空 {6} ({21}) / 対潜 {7} ({22}) / 索敵 {8} ({23}){26}
+ドラム缶搭載: {9}個 ({10}艦)
+大発動艇搭載: {11}個 ({12}艦, +{13:p1})
+輸送量(TP): S {14} / A {15}
+水上電探: {24}個 ({25}艦)
+総積載: 燃 {16} / 弾 {17}
+(1戦当たり 燃 {18} / 弾 {19})</value>
+  </data>
+  <data name="WithoutProficiency" xml:space="preserve">
+    <value>熟練度なし</value>
+  </data>
+  <data name="WithProficiency" xml:space="preserve">
+    <value>熟練度あり</value>
+  </data>
+  <data name="FleetLosToolTip" xml:space="preserve">
+    <value>新判定式(33) 分岐点係数: {0}
+　(クリックで切り替え)
+
+触接開始率: 
+　確保 {1:p1} / 優勢 {2:p1}
+</value>
+  </data>
+  <data name="ContactSelection" xml:space="preserve">
+    <value>触接選択率: </value>
+  </data>
+  <data name="ContactProbability" xml:space="preserve">
+    <value>　命中{0} : {1:p1}</value>
+  </data>
+  <data name="ShipNameToolTip" xml:space="preserve">
+    <value>{0}{1} {2}
+火力: {3}/{4}
+雷装: {5}/{6}
+対空: {7}/{8}
+装甲: {9}/{10}
+対潜: {11}/{12}
+回避: {13}/{14}
+索敵: {15}/{16}
+運: {17}
+命中: {18:+#;-#;+0}
+爆装: {19:+#;-#;+0}
+射程: {20} / 速力: {21}
+(右クリックで図鑑)</value>
+  </data>
+  <data name="ExpCalcHint" xml:space="preserve">
+    <value>(右クリックで必要Exp計算)</value>
+  </data>
+  <data name="CvciFba" xml:space="preserve">
+    <value>空母カットイン(FBA)</value>
+  </data>
+  <data name="CvciBba" xml:space="preserve">
+    <value>空母カットイン(BBA)</value>
+  </data>
+  <data name="CvciBa" xml:space="preserve">
+    <value>空母カットイン(BA)</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>威力</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>命中</value>
+  </data>
+  <data name="Asw" xml:space="preserve">
+    <value>対潜</value>
+  </data>
+  <data name="OpeningAsw" xml:space="preserve">
+    <value> (先制可能)</value>
+  </data>
+  <data name="Aarb" xml:space="preserve">
+    <value>対空噴進弾幕</value>
+  </data>
+  <data name="AirstrikePower" xml:space="preserve">
+    <value>航空威力</value>
+  </data>
+  <data name="CopyFleetText" xml:space="preserve">
+    <value>{0}    制空戦力{1} / 索敵能力 {2} / 輸送能力 {3}</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
+    <value>艦隊分析スプレッドシート艦娘へコピー</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
+    <value>艦隊分析スプレッドシートロックされた装備コピー</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
+    <value>艦隊分析スプレッドシート全装備コピー</value>
+  </data>
+  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
+    <value>(右クリックで図鑑)</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
+    <value>艦娘訓練追加</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
+    <value>必要Exp計算</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
+    <value>艦娘訓練編集</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
+    <value>艦娘訓練除去</value>
+  </data>
+  <data name="SpecialAttacksDay" xml:space="preserve">
+    <value>特殊砲撃(昼戦)：</value>
+  </data>
+  <data name="SpecialAttacksNight" xml:space="preserve">
+    <value>特殊砲撃(夜戦)：</value>
+  </data>
+  <data name="NightRecon" xml:space="preserve">
+    <value>夜偵</value>
+  </data>
+  <data name="Flare" xml:space="preserve">
+    <value>照明弾</value>
+  </data>
+</root>

@@ -1,0 +1,403 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail.PhaseControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:phase="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase"
+	Name="PhaseWrapper"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<!--  Attacks  -->
+
+		<DataTemplate DataType="{x:Type phase:NightAttack}">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding Damage}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseNightBattleAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseFriendNightBattleAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:DayAttack}">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding Damage}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseShellingAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseTorpedoAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseSupportAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:AirBattleAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding AttackerName, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:AirBaseRaidAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding AttackerName, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<!--  Phases  -->
+
+		<DataTemplate DataType="{x:Type phase:PhaseInitial}">
+			<ContentControl>
+				<ContentControl.Style>
+					<Style TargetType="ContentControl">
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<StackPanel>
+										<StackPanel>
+											<TextBlock Text="{Binding PlayerMainFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0">
+											<StackPanel.Style>
+												<Style TargetType="StackPanel">
+													<Setter Property="Visibility" Value="Visible" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding PlayerEscortFleetDisplay}" Value="{x:Null}">
+															<Setter Property="Visibility" Value="Collapsed" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</StackPanel.Style>
+
+											<TextBlock Text="{Binding PlayerEscortFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0">
+											<TextBlock Text="{Binding EnemyMainFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0">
+											<StackPanel.Style>
+												<Style TargetType="StackPanel">
+													<Setter Property="Visibility" Value="Visible" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding EnemyEscortFleetDisplay}" Value="{x:Null}">
+															<Setter Property="Visibility" Value="Collapsed" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</StackPanel.Style>
+
+											<TextBlock Text="{Binding EnemyEscortFleetDisplay}" />
+										</StackPanel>
+
+										<StackPanel Margin="0 10 0 0" Visibility="{Binding HasAirBaseAttack, Converter={StaticResource BooleanToVisibilityConverter}}">
+											<TextBlock Text="{Binding AirBaseDisplay}" />
+										</StackPanel>
+									</StackPanel>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding IsAirBaseRaid}" Value="True">
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<StackPanel>
+												<StackPanel Margin="0 10 0 0">
+													<TextBlock Text="{Binding AirRaidAirBaseDisplay}" />
+												</StackPanel>
+
+												<StackPanel Margin="0 10 0 0">
+													<TextBlock Text="{Binding EnemyMainFleetDisplay}" />
+												</StackPanel>
+
+												<StackPanel Margin="0 10 0 0">
+													<StackPanel.Style>
+														<Style TargetType="StackPanel">
+															<Setter Property="Visibility" Value="Visible" />
+															<Style.Triggers>
+																<DataTrigger Binding="{Binding EnemyEscortFleetDisplay}" Value="{x:Null}">
+																	<Setter Property="Visibility" Value="Collapsed" />
+																</DataTrigger>
+															</Style.Triggers>
+														</Style>
+													</StackPanel.Style>
+
+													<TextBlock Text="{Binding EnemyEscortFleetDisplay}" />
+												</StackPanel>
+
+												<StackPanel Margin="0 10 0 0" Visibility="{Binding HasAirBaseAttack, Converter={StaticResource BooleanToVisibilityConverter}}">
+													<TextBlock Text="{Binding AirBaseDisplay}" />
+												</StackPanel>
+											</StackPanel>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ContentControl.Style>
+			</ContentControl>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseSearching}">
+			<StackPanel>
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseNightInitial}">
+			<StackPanel>
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseFriendlySupportInfo}">
+			<StackPanel>
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseFriendlyShelling}">
+			<StackPanel>
+				<TextBlock Text="{Binding InitialDisplay}" />
+
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseSupport}">
+			<StackPanel>
+				<TextBlock Text="{Binding SupportFleetDisplay}" />
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseNightBattle}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseShelling}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate x:Key="PhaseAirBattleBase" DataType="{x:Type phase:PhaseAirBattleBase}">
+			<StackPanel>
+				<TextBlock Text="{Binding Stage1Display}" />
+
+				<TextBlock Text="{Binding TouchAircraftFriendDisplay}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftFriendDisplay}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<TextBlock Text="{Binding TouchAircraftEnemyDisplay}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftEnemyDisplay}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<TextBlock Text="{Binding Stage2Display}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Stage2Display}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<ItemsControl Margin="0 5 0 0" ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseFriendlyAirBattle}">
+			<StackPanel>
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirRaid}">
+			<StackPanel>
+				<TextBlock Text="{Binding Display}" />
+
+				<TextBlock Text="{Binding Stage1Display}" />
+
+				<TextBlock Text="{Binding TouchAircraftFriend}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftFriend}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<TextBlock Text="{Binding TouchAircraftEnemy}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Visibility" Value="Visible" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding TouchAircraftEnemy}" Value="{x:Null}">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+
+				<ItemsControl Margin="0 5 0 0" ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseJetAirBattle}">
+			<StackPanel>
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirAttackUnit}">
+			<StackPanel>
+				<TextBlock Text="{Binding Display}" />
+
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseJetBaseAirAttack}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding Units}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseBaseAirAttack}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding Units}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseAirBattle}">
+			<StackPanel>
+				<ContentControl Content="{Binding}" ContentTemplate="{StaticResource PhaseAirBattleBase}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseOpeningAsw}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseTorpedo}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<StackPanel Margin="0 8" DataContext="{Binding PhaseData, ElementName=PhaseWrapper}">
+		<TextBlock>
+			<Run Text="==" />
+			<Run Text="{Binding Title, Mode=OneWay}" />
+			<Run Text="==" />
+		</TextBlock>
+
+		<ContentPresenter Content="{Binding}" />
+	</StackPanel>
+</UserControl>

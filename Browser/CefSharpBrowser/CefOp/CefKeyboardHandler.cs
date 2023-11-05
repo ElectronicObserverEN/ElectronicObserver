@@ -39,21 +39,21 @@ public class CefKeyboardHandler : IKeyboardHandler
 			case Key.F2:
 				ViewModel.ScreenshotCommand.Execute(null);
 				return true;
+
 			case Key.F12:
 				chromiumWebBrowser.GetBrowser().ShowDevTools();
 				return true;
-			case Key.F7:
+
+			case Key.M when modifiers is CefEventFlags.ControlDown:
 				ViewModel.MuteCommand.Execute(null);
 				return true;
+
+			case Key.F5 when modifiers is CefEventFlags.ControlDown:
+				ViewModel.HardRefreshCommand.Execute(null);
+				return true;
+
 			case Key.F5:
-				if (modifiers == CefEventFlags.ControlDown)
-				{
-					ViewModel.HardRefreshCommand.Execute(null);
-				}
-				else
-				{
-					ViewModel.RefreshCommand.Execute(null);
-				}
+				ViewModel.RefreshCommand.Execute(null);
 				return true;
 		}
 

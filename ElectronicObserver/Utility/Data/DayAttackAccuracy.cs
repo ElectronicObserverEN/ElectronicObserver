@@ -40,7 +40,7 @@ public static class DayAttackAccuracy
 		(FleetType.Transport, 1) => 51,
 		(FleetType.Transport, 2) => 45,
 
-		_ => 0
+		_ => 0,
 	};
 
 	private static int PositionPenalty(this IFleetData fleet, IShipData ship) =>
@@ -52,38 +52,39 @@ public static class DayAttackAccuracy
 			(FleetType.Surface, 2, true) => 10,
 			(FleetType.Transport, 2, true) => 10,
 
-			_ => 0
+			_ => 0,
 		};
 
 	private static double DayAccuracyBonus(this IEquipmentData? equip) => equip?.MasterEquipment.CategoryType switch
 	{
-		EquipmentTypes.RadarSmall when equip.MasterEquipment.IsSurfaceRadar => 1.7 * Math.Sqrt(equip.Level),
-		EquipmentTypes.RadarLarge when equip.MasterEquipment.IsSurfaceRadar => 1.7 * Math.Sqrt(equip.Level),
+		EquipmentTypes.RadarSmall or
+		EquipmentTypes.RadarLarge or
 		EquipmentTypes.RadarLarge2 when equip.MasterEquipment.IsSurfaceRadar => 1.7 * Math.Sqrt(equip.Level),
 
-		EquipmentTypes.RadarSmall => Math.Sqrt(equip.Level),
-		EquipmentTypes.RadarLarge => Math.Sqrt(equip.Level),
+		EquipmentTypes.RadarSmall or
+		EquipmentTypes.RadarLarge or
 		EquipmentTypes.RadarLarge2 => Math.Sqrt(equip.Level),
 
-		EquipmentTypes.MainGunSmall => Math.Sqrt(equip.Level),
-		EquipmentTypes.MainGunMedium => Math.Sqrt(equip.Level),
-		EquipmentTypes.MainGunLarge => Math.Sqrt(equip.Level),
-		EquipmentTypes.MainGunLarge2 => Math.Sqrt(equip.Level),
-		EquipmentTypes.SecondaryGun => Math.Sqrt(equip.Level),
-		EquipmentTypes.APShell => Math.Sqrt(equip.Level),
-		EquipmentTypes.AADirector => Math.Sqrt(equip.Level),
-		EquipmentTypes.Searchlight => Math.Sqrt(equip.Level),
-		EquipmentTypes.SearchlightLarge => Math.Sqrt(equip.Level),
+		EquipmentTypes.MainGunSmall or
+		EquipmentTypes.MainGunMedium or
+		EquipmentTypes.MainGunLarge or
+		EquipmentTypes.MainGunLarge2 or
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.APShell or
+		EquipmentTypes.AADirector or
+		EquipmentTypes.Searchlight or
+		EquipmentTypes.SearchlightLarge or
+		EquipmentTypes.SurfaceShipPersonnel => Math.Sqrt(equip.Level),
 
-		_ => 0
+		_ => 0,
 	};
 
 	private static double ConditionMod(this IShipData ship) => ship.Condition switch
 	{
-		int condition when condition > 52 => 1.2,
-		int condition when condition > 32 => 1,
-		int condition when condition > 22 => 0.8,
-		_ => 0.5
+		> 52 => 1.2,
+		> 32 => 1,
+		> 22 => 0.8,
+		_ => 0.5,
 	};
 
 	private static double AttackKindMod(Enum attack) => attack switch
@@ -97,7 +98,7 @@ public static class DayAttackAccuracy
 
 		DayAttackKind.DoubleShelling => 1.1,
 
-		_ => 1
+		_ => 1,
 	};
 
 	private static double ApShellMod(this IShipData ship)
@@ -114,7 +115,7 @@ public static class DayAttackAccuracy
 			(true, true, true, false) => 1.2,
 			(true, true, true, true) => 1.3,
 
-			_ => 1
+			_ => 1,
 		};
 	}
 }

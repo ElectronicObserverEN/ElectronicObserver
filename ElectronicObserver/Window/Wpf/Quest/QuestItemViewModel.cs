@@ -48,12 +48,12 @@ public class QuestItemViewModel
 		// 出撃(2)
 		8 => Configuration.Config.UI.Quest_Type2Color.ToBrush(),
 		// 出撃(3)
-		9 => System.Drawing.Color.FromArgb(0xFF, 0xCC, 0xCC).ToBrush(),
+		9 => Configuration.Config.UI.Quest_Type2Color.ToBrush(),
 		// その他
-		10 => System.Drawing.Color.Transparent.ToBrush(),
+		10 => Configuration.Config.UI.Quest_Type2Color.ToBrush(),
 		11 => Configuration.Config.UI.Quest_Type6Color.ToBrush(),
 
-		_ => System.Drawing.Color.Transparent.ToBrush()
+		_ => System.Drawing.Color.Transparent.ToBrush(),
 	};
 	public SolidColorBrush QuestView_CategoryForeground => QuestView_Category switch
 	{

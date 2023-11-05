@@ -47,12 +47,12 @@ public partial class EquipmentFilterViewModel : ObservableObject
 
 	public bool MeetsFilterCondition(IEquipmentDataMaster equipment)
 	{
-		List<EquipmentTypes> enabledFilters = TypeFilters
+		List<EquipmentTypeGroup> enabledGroups = TypeFilters
 			.Where(f => f.IsChecked)
-			.SelectMany(f => f.Value.ToTypes())
+			.Select(f => f.Value)
 			.ToList();
 
-		if (!enabledFilters.Contains(equipment.CategoryType)) return false;
+		if (!enabledGroups.Contains(equipment.CategoryType.ToGroup())) return false;
 		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment, NameFilter)) return false;
 
 		return true;
