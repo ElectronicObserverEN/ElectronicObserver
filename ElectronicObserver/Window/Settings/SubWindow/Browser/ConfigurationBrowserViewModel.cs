@@ -149,10 +149,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 				gadgetServer.IsChecked = b == GadgetBypassServer;
 			}
 			
-			// needed to rerun the validator
-			// OnPropertyChanged(nameof(GadgetBypassServerCustom));
 			ValidateProperty(GadgetBypassServerCustom, nameof(GadgetBypassServerCustom));
-			// ValidateUrl(GadgetBypassServerCustom, new ValidationContext(this));
 		};
 
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
