@@ -166,5 +166,5 @@ public class BrowserConfiguration
 	public GadgetServerOptions GadgetBypassServer { get; set; }
 
 	[Key(31)]
-	public string GadgetBypassServerCustom { get; set; }
+	public string GadgetBypassServerCustom { get; set; } = "";
 }
