@@ -757,9 +757,6 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
     <value>ポートと上流プロキシポートの値は異なる必要があります</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>編集</value>
-  </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
     <value>同じ艦娘に対して訓練プランを追加できるようにする</value>
   </data>
@@ -791,5 +788,11 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   </data>
   <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>七四式EN API URL</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
+    <value>データ問題を報告するために使用される七四式EN APIのURL</value>
   </data>
 </root>

@@ -10,6 +10,7 @@ public class SortieDetailTranslationViewModel : TranslationBaseViewModel
 	public string CopySortieData => SortieRecordViewerResources.CopySortieData;
 	public string LoadSortieData => SortieRecordViewerResources.LoadSortieData;
 	public string AirControlSimulator => AirControlSimulatorResources.Title;
+	public string OperationRoom => MainResources.OperationRoom;
 	public string CopyLink => SortieRecordViewerResources.CopyLink;
 	public string Open => SortieRecordViewerResources.Open;
 

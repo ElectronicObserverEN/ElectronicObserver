@@ -158,4 +158,14 @@ Please recheck before sortieing.
   <data name="FleetTagAlertDialogCaption" xml:space="preserve">
     <value>Fleet Tag</value>
   </data>
+  <data name="EnemyWasWeakened" xml:space="preserve">
+    <value>We have confirmed the weakening of enemy forces!</value>
+  </data>
+  <data name="ExpeditionFailureFuelAmmo" xml:space="preserve">
+    <value>#{0} {1} expedition {2}:{3} may fail.
+
+Unsupplied
+
+(This warning can be disabled via Configuration -&gt; Behavior)</value>
+  </data>
 </root>

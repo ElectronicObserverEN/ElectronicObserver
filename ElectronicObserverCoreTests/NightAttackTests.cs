@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
@@ -591,5 +590,26 @@ public class NightAttackTests
 
 		Assert.True(kamikaze.HPRate <= 0.5);
 		Assert.All(totalRates, rate => Assert.True(rate is >= 0 and <= 1));
+	}
+
+	[Fact(DisplayName = "Some ships can't attack at night")]
+	public void NightAttackTest13()
+	{
+		ShipDataMock souya645 = new(Db.MasterShips[ShipId.Souya645]);
+		ShipDataMock souya650 = new(Db.MasterShips[ShipId.Souya650]);
+		
+		Assert.Empty(souya645.GetNightAttacks());
+		Assert.Empty(souya650.GetNightAttacks());
+
+		ShipDataMock luigi = new(Db.MasterShips[ShipId.LuigiTorelli]);
+		ShipDataMock luigiKai = new(Db.MasterShips[ShipId.LuigiTorelliKai]);
+		ShipDataMock cappellini = new(Db.MasterShips[ShipId.CCappellini]);
+		ShipDataMock cappelliniKai = new(Db.MasterShips[ShipId.CCappelliniKai]);
+		
+		Assert.NotEmpty(luigi.GetNightAttacks());
+		Assert.NotEmpty(cappellini.GetNightAttacks());
+		
+		Assert.Empty(luigiKai.GetNightAttacks());
+		Assert.Empty(cappelliniKai.GetNightAttacks());
 	}
 }

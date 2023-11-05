@@ -11,5 +11,5 @@ public class ConfigurationBGMTranslationViewModel : TranslationBaseViewModel
 	public string BGMPlayer_ColumnContent => ConfigRes.Scene;
 	public string BGMPlayer_ColumnPath => ConfigRes.FileName;
 	public string BGMPlayer_ColumnSetting => ConfigRes.Settings;
-	public string Edit => ConfigurationResources.Edit;
+	public string Edit => GeneralRes.Edit;
 }

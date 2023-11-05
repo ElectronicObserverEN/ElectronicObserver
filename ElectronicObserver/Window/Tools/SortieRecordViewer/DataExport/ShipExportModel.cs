@@ -9,12 +9,15 @@ public record ShipExportModel
 	public string Name { get; init; }
 	public string ShipType { get; init; }
 	public int? Condition { get; init; }
+	public int? ConditionAfterBattle { get; init; }
 	public int HpCurrent { get; init; }
 	public int HpMax { get; init; }
 	public string DamageState { get; init; }
 	public int? FuelCurrent { get; init; }
+	public int? FuelAfterBattle { get; init; }
 	public int? FuelMax { get; init; }
 	public int? AmmoCurrent { get; init; }
+	public int? AmmoAfterBattle { get; init; }
 	public int? AmmoMax { get; init; }
 	public int Level { get; init; }
 	public string Speed { get; init; }

@@ -17,9 +17,9 @@ public abstract class PhaseBase
 	public virtual BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
-		FleetsAfterPhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 
 	protected static void AddDamage(BattleFleets fleets, BattleIndex index, int damage)

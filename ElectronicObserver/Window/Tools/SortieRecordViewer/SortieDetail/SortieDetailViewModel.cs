@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.Json;
-using System.Windows;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.Database.Sortie;
+using ElectronicObserver.Database;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
@@ -34,7 +32,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Services;
-using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Wpf;
@@ -49,98 +46,111 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	private BattleFactory BattleFactory { get; }
 	private ToolService ToolService { get; }
 
+	private ElectronicObserverContext Db { get; }
 	private SortieRecordViewModel Sortie { get; }
 
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
 	public int Map { get; }
 	private BattleFleets Fleets { get; set; }
+	private BattleFleets? FleetsAfterSortie { get; set; }
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(SortieRecordViewModel sortie, BattleFleets fleets)
+	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecordViewModel sortie,
+		BattleFleets fleets, BattleFleets? fleetsAfterSortie)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
 		BattleFactory = Ioc.Default.GetRequiredService<BattleFactory>();
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 
+		Db = db;
 		Sortie = sortie;
 		World = sortie.World;
 		Map = sortie.Map;
 		Fleets = fleets;
+		FleetsAfterSortie = fleetsAfterSortie;
 	}
 
-	private List<(object Response, DateTime Time)> ApiResponseCache { get; } = new();
+	private List<(object ApiData, DateTime Time)> ApiDataCache { get; } = new();
 
-	public void AddApiFile(object response, DateTime time)
+	public void AddApiFile(object apiData, DateTime time)
 	{
-		if (response is ApiReqMapStartResponse start)
+		if (apiData is ApiReqMapStartResponse start)
 		{
-			ProcessResponseCache();
+			ProcessApiDataCache();
 
-			ApiResponseCache.Add((start, time));
+			ApiDataCache.Add((start, time));
 
 			return;
 		}
 
-		if (response is ApiReqMapNextResponse next)
+		if (apiData is ApiReqMapNextResponse next)
 		{
-			ProcessResponseCache();
+			ProcessApiDataCache();
 
-			ApiResponseCache.Add((next, time));
+			ApiDataCache.Add((next, time));
 
 			if (next.ApiDestructionBattle is not null)
 			{
-				ApiResponseCache.Add((next.ApiDestructionBattle, time));
+				ApiDataCache.Add((next.ApiDestructionBattle, time));
 			}
 
 			return;
 		}
 
-		if (response is ApiReqSortieBattleresultResponse or ApiReqCombinedBattleBattleresultResponse)
+		if (apiData is ApiReqSortieBattleresultResponse or ApiReqCombinedBattleBattleresultResponse)
 		{
-			ApiResponseCache.Add((response, time));
+			ApiDataCache.Add((apiData, time));
 
 			return;
 		}
 
-		if (response is ApiGetMemberShipDeckResponse deck)
+		if (apiData is ApiGetMemberShipDeckResponse deck)
 		{
-			ApiResponseCache.Add((deck, time));
+			ApiDataCache.Add((deck, time));
 
 			return;
 		}
 
-		ApiResponseCache.Add((response, time));
+		ApiDataCache.Add((apiData, time));
 	}
 
-	private void ProcessResponseCache()
+	private void ProcessApiDataCache()
 	{
-		if (!ApiResponseCache.Any()) return;
+		if (!ApiDataCache.Any()) return;
 
 		SortieNode? node = null;
 		BattleBaseAirRaid? abRaid = null;
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
 		bool isBoss = false;
+		ApiOffshoreSupply? offshoreSupply = null;
+		IBattleApiRequest? request = null;
 
-		foreach ((object response, DateTime time) in ApiResponseCache)
+		foreach ((object apiData, DateTime time) in ApiDataCache)
 		{
-			cell = response switch
+			cell = apiData switch
 			{
 				ApiReqMapStartResponse s => s.ApiNo,
 				ApiReqMapNextResponse n => n.ApiNo,
 				_ => cell,
 			};
 
-			isBoss = response switch
+			isBoss = apiData switch
 			{
 				ApiReqMapStartResponse s => s.ApiEventId == 5,
 				ApiReqMapNextResponse n => n.ApiEventId == 5,
 				_ => isBoss,
 			};
 
-			BattleData? battle = GetBattle(response, node);
+			offshoreSupply = apiData switch
+			{
+				ApiReqMapNextResponse n => n.ApiOffshoreSupply,
+				_ => offshoreSupply,
+			};
+
+			BattleData? battle = GetBattle(apiData, node);
 
 			if (battle is not null)
 			{
@@ -165,7 +175,12 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				}
 			}
 
-			if (response is ISortieBattleResultApi result)
+			if (apiData is IBattleApiRequest r)
+			{
+				request = r;
+			}
+
+			if (apiData is ISortieBattleResultApi result)
 			{
 				if (node is not BattleNode battleNode) continue;
 
@@ -173,7 +188,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			}
 
 			// comes before next, so this should always be the last response
-			if (response is ApiGetMemberShipDeckResponse deck)
+			if (apiData is ApiGetMemberShipDeckResponse deck)
 			{
 				deckResponse = deck;
 			}
@@ -186,8 +201,19 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			node.AddAirBaseRaid(abRaid);
 		}
 
+		node.ApiOffshoreSupply = offshoreSupply;
+
 		if (node is BattleNode b)
 		{
+			if (deckResponse is not null)
+			{
+				b.UpdateState(deckResponse);
+			}
+			else if (FleetsAfterSortie is not null)
+			{
+				b.UpdateState(FleetsAfterSortie);
+			}
+
 			Fleets = b.SecondBattle?.FleetsAfterBattle.Clone() ?? b.FirstBattle.FleetsAfterBattle.Clone();
 
 			CleanFleet(Fleets.Fleet);
@@ -195,14 +221,9 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			ApplyBattleResult(b.BattleResult, Fleets);
 		}
 
-		if (deckResponse is not null)
-		{
-			Fleets.UpdateState(deckResponse);
-		}
-
 		Nodes.Add(node);
 
-		ApiResponseCache.Clear();
+		ApiDataCache.Clear();
 	}
 
 	private static void CleanFleet(IFleetData? fleetData)
@@ -260,7 +281,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 	public void EnsureApiFilesProcessed()
 	{
-		ProcessResponseCache();
+		ProcessApiDataCache();
 	}
 
 	private BattleData? GetBattle(object api, SortieNode? node) => node switch
@@ -311,39 +332,15 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	};
 
 	[RelayCommand]
-	private void CopySortieData()
+	private async Task CopySortieData()
 	{
-		SortieRecord sortie = new()
-		{
-			Id = Sortie.Id,
-			World = Sortie.World,
-			Map = Sortie.Map,
-			ApiFiles = Sortie.Model.ApiFiles
-				.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
-				.ToList(),
-			FleetData = Sortie.Model.FleetData,
-			MapData = Sortie.Model.MapData,
-		};
-
-		Clipboard.SetText(JsonSerializer.Serialize(sortie));
+		await ToolService.CopySortieDataToClipboard(Db, Sortie);
 	}
 
 	[RelayCommand]
 	private void LoadSortieData()
 	{
-		try
-		{
-			SortieRecord? sortie = JsonSerializer
-				.Deserialize<SortieRecord>(Clipboard.GetText());
-
-			if (sortie is null) return;
-
-			ToolService.OpenSortieDetail(new SortieRecordViewModel(sortie, DateTime.UtcNow));
-		}
-		catch (Exception e)
-		{
-			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
-		}
+		ToolService.LoadSortieDataFromClipboard(Db);
 	}
 
 	[RelayCommand]
@@ -356,5 +353,17 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	private void OpenAirControlSimulator()
 	{
 		ToolService.AirControlSimulator(Sortie);
+	}
+
+	[RelayCommand]
+	private void CopyOperationRoomLink()
+	{
+		ToolService.CopyOperationRoomLink(Sortie);
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		ToolService.OperationRoom(Sortie);
 	}
 }

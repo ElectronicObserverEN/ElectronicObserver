@@ -182,19 +182,11 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		ICookieManager cookieManager = CefSharp.GetCookieManager();
+		string cookieScript = $"""
+			document.cookie="ckcy=1;expires={DateTime.Now.AddYears(6):ddd, dd MMM yyyy HH:mm:ss 'GMT'};path=/netgame;domain=.dmm.com";
+			""";
 
-		Cookie dmmCookie = new()
-		{
-			Domain = ".www.dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/netgame/",
-			Value = "1",
-			Secure = false,
-		};
-
-		cookieManager.SetCookie("http://www.dmm.com", dmmCookie);
+		CefSharp.ExecuteScriptAsync(cookieScript);
 	}
 
 	protected override void ApplyZoom()

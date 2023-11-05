@@ -12,6 +12,11 @@ public static class ShipNightAttacks
 	{
 		IEnumerable<NightAttack> nightAttacks = new List<NightAttack>();
 
+		// those Souya forms can't attack at night, there might be others
+		if (ship.MasterShip.ShipId is ShipId.Souya645 or ShipId.Souya650) return nightAttacks;
+		// Kai version of Luigi and Cappellini can't attack at night (cause base FP and torp is 0 ?)
+		if (ship.MasterShip.ShipId is ShipId.LuigiTorelliKai or ShipId.CCappelliniKai) return nightAttacks;
+
 		if (ship.MasterShip.IsSubmarine)
 		{
 			// sub TCI or normal TCI
@@ -135,12 +140,12 @@ public static class ShipNightAttacks
 
 		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment } => ship.HasLateModelTorp() && ship.HasSubmarineEquipment(),
 		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedo2 } => ship.HasLateModelTorp(2),
-		
+
 		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunZuiunRadar } => ship.HasMainGun(2) && ship.HasNightZuiun(2) && ship.HasSurfaceRadar(),
 		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunZuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(2),
 		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.ZuiunRadar } => ship.HasMainGun(2) && ship.HasNightZuiun() && ship.HasSurfaceRadar(),
 		NightZuiunCutinAttack { NightZuiunCutinKind: NightZuiunCutinKind.Zuiun } => ship.HasMainGun(2) && ship.HasNightZuiun(),
-		
+
 		{ NightAttackKind: NightAttackKind.CutinTorpedoTorpedo } => ship.HasTorpedo(2),
 		{ NightAttackKind: NightAttackKind.CutinMainMain } => ship.HasMainGun(3),
 		{ NightAttackKind: NightAttackKind.CutinMainSub } => ship.HasMainGun(2) && ship.HasSecondaryGun(),
@@ -161,7 +166,7 @@ public static class ShipNightAttacks
 
 		{ NightAttackKind: NightAttackKind.Shelling } => true,
 		{ NightAttackKind: NightAttackKind.Torpedo } => true,
-		{ NightAttackKind:NightAttackKind.AirAttack } => ship.HasNightAircraft(),
+		{ NightAttackKind: NightAttackKind.AirAttack } => ship.HasNightAircraft(),
 
 		_ => false,
 	};

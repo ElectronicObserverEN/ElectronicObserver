@@ -4,9 +4,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
-	xmlns:local="clr-namespace:ElectronicObserver.Common"
+	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	x:Name="EquipmentIconControl"
+	x:Name="Root"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d"
@@ -14,499 +14,79 @@
 	<Image
 		Width="16"
 		Height="16"
-		DataContext="{Binding ElementName=EquipmentIconControl}"
+		DataContext="{Binding ElementName=Root}"
 		>
 		<Image.Style>
 			<Style TargetType="Image">
-				<Setter Property="Source" Value="{StaticResource EquipmentIconType.Unknown}" />
+				<Setter Property="Visibility" Value="Visible" />
 				<Style.Triggers>
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Nothing
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Nothing}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								MainGunSmall
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.MainGunSmall}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								MainGunMedium
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.MainGunMedium}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								MainGunLarge
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.MainGunLarge}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								SecondaryGun
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SecondaryGun}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Torpedo
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Torpedo}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								CarrierBasedFighter
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.CarrierBasedFighter}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								CarrierBasedBomber
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.CarrierBasedBomber}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								CarrierBasedTorpedo
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.CarrierBasedTorpedo}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								CarrierBasedRecon
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.CarrierBasedRecon}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Seaplane
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Seaplane}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Radar
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Radar}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								AAShell
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.AaShell}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								APShell
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.ApShell}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								DamageControl
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.DamageControl}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								AAGun
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.AaGun}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								HighAngleGun
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.HighAngleGun}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								DepthCharge
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.DepthCharge}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Sonar
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Sonar}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Engine
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Engine}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								LandingCraft
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.LandingCraft}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Autogyro
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Autogyro}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								ASPatrol
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.AsPatrol}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								ExtraArmor
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.ExtraArmor}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Searchlight
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Searchlight}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								TransportContainer
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.TransportContainer}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								RepairFacility
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.RepairFacility}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								StarShell
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.StarShell}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								CommandFacility
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.CommandFacility}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								AviationPersonnel
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.AviationPersonnel}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								AADirector
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.AaDirector}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Rocket
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Rocket}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								SurfaceShipPersonnel
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SurfaceShipPersonnel}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								FlyingBoat
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.FlyingBoat}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Ration
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Ration}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Supplies
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Supplies}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								SpecialAmphibiousTank
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SpecialAmphibiousTank}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								LandBasedAttacker
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.LandBasedAttacker}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								Interceptor
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.Interceptor}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								JetBomberKeiun
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.JetBomberKeiun}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								JetBomberKikka
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.JetBomberKikka}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								TransportMaterial
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.TransportMaterial}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								SubmarineEquipment
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SubmarineEquipment}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								SeaplaneFighter
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SeaplaneFighter}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								LandBasedFighter
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.LandBasedFighter}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								NightFighter
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightFighter}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								NightAttacker
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightAttacker}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								LandBasedASPatrol
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.LandBasedAsPatrol}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								LandAssaulter
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.LandAssaulter}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								HeavyBomber
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.HeavyBomber}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								NightSeaplane
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplane}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								NightSeaplaneBomber
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.NightSeaplaneBomber}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								ArmyInfantry
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.ArmyInfantry}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding Type}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:EquipmentIconType>
-								SmokeGenerator
-							</electronicObserverTypes:EquipmentIconType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
+					<DataTrigger Binding="{Binding Type}" Value="{x:Null}">
+						<Setter Property="Visibility" Value="Collapsed" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>
+
+		<Image.Source>
+			<markup:Switch To="{Binding Type}">
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Nothing}" Value="{StaticResource EquipmentIconType.Nothing}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.MainGunSmall}" Value="{StaticResource EquipmentIconType.MainGunSmall}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.MainGunMedium}" Value="{StaticResource EquipmentIconType.MainGunMedium}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.MainGunLarge}" Value="{StaticResource EquipmentIconType.MainGunLarge}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SecondaryGun}" Value="{StaticResource EquipmentIconType.SecondaryGun}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Torpedo}" Value="{StaticResource EquipmentIconType.Torpedo}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.CarrierBasedFighter}" Value="{StaticResource EquipmentIconType.CarrierBasedFighter}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.CarrierBasedBomber}" Value="{StaticResource EquipmentIconType.CarrierBasedBomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.CarrierBasedTorpedo}" Value="{StaticResource EquipmentIconType.CarrierBasedTorpedo}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.CarrierBasedRecon}" Value="{StaticResource EquipmentIconType.CarrierBasedRecon}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Seaplane}" Value="{StaticResource EquipmentIconType.Seaplane}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Radar}" Value="{StaticResource EquipmentIconType.Radar}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.AAShell}" Value="{StaticResource EquipmentIconType.AaShell}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.APShell}" Value="{StaticResource EquipmentIconType.ApShell}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.DamageControl}" Value="{StaticResource EquipmentIconType.DamageControl}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.AAGun}" Value="{StaticResource EquipmentIconType.AaGun}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.HighAngleGun}" Value="{StaticResource EquipmentIconType.HighAngleGun}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.DepthCharge}" Value="{StaticResource EquipmentIconType.DepthCharge}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Sonar}" Value="{StaticResource EquipmentIconType.Sonar}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Engine}" Value="{StaticResource EquipmentIconType.Engine}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandingCraft}" Value="{StaticResource EquipmentIconType.LandingCraft}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Autogyro}" Value="{StaticResource EquipmentIconType.Autogyro}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.ASPatrol}" Value="{StaticResource EquipmentIconType.AsPatrol}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.ExtraArmor}" Value="{StaticResource EquipmentIconType.ExtraArmor}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Searchlight}" Value="{StaticResource EquipmentIconType.Searchlight}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.TransportContainer}" Value="{StaticResource EquipmentIconType.TransportContainer}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.RepairFacility}" Value="{StaticResource EquipmentIconType.RepairFacility}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.StarShell}" Value="{StaticResource EquipmentIconType.StarShell}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.CommandFacility}" Value="{StaticResource EquipmentIconType.CommandFacility}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.AviationPersonnel}" Value="{StaticResource EquipmentIconType.AviationPersonnel}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.AADirector}" Value="{StaticResource EquipmentIconType.AaDirector}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Rocket}" Value="{StaticResource EquipmentIconType.Rocket}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SurfaceShipPersonnel}" Value="{StaticResource EquipmentIconType.SurfaceShipPersonnel}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.FlyingBoat}" Value="{StaticResource EquipmentIconType.FlyingBoat}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Ration}" Value="{StaticResource EquipmentIconType.Ration}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Supplies}" Value="{StaticResource EquipmentIconType.Supplies}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SpecialAmphibiousTank}" Value="{StaticResource EquipmentIconType.SpecialAmphibiousTank}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedAttacker}" Value="{StaticResource EquipmentIconType.LandBasedAttacker}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.Interceptor}" Value="{StaticResource EquipmentIconType.Interceptor}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.JetBomberKeiun}" Value="{StaticResource EquipmentIconType.JetBomberKeiun}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.JetBomberKikka}" Value="{StaticResource EquipmentIconType.JetBomberKikka}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.TransportMaterial}" Value="{StaticResource EquipmentIconType.TransportMaterial}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SubmarineEquipment}" Value="{StaticResource EquipmentIconType.SubmarineEquipment}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SeaplaneFighter}" Value="{StaticResource EquipmentIconType.SeaplaneFighter}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighter}" Value="{StaticResource EquipmentIconType.LandBasedFighter}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.NightFighter}" Value="{StaticResource EquipmentIconType.NightFighter}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.NightAttacker}" Value="{StaticResource EquipmentIconType.NightAttacker}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedASPatrol}" Value="{StaticResource EquipmentIconType.LandBasedAsPatrol}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandAssaulter}" Value="{StaticResource EquipmentIconType.LandAssaulter}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.HeavyBomber}" Value="{StaticResource EquipmentIconType.HeavyBomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.NightSeaplane}" Value="{StaticResource EquipmentIconType.NightSeaplane}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.NightSeaplaneBomber}" Value="{StaticResource EquipmentIconType.NightSeaplaneBomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.ArmyInfantry}" Value="{StaticResource EquipmentIconType.ArmyInfantry}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SmokeGenerator}" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.BarrageBalloon}" Value="{StaticResource EquipmentIconType.BarrageBalloon}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterJet}" Value="{StaticResource EquipmentIconType.LandBasedFighterJet}" />
+				<markup:Case Value="{StaticResource EquipmentIconType.Unknown}" />
+			</markup:Switch>
+		</Image.Source>
 	</Image>
 </UserControl>

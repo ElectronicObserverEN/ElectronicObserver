@@ -459,50 +459,25 @@ public partial class FormBrowserHost : Form
 
 	private string BuildDownstreamProxy()
 	{
-		var config = Utility.Configuration.Config.Connection;
+		Configuration.ConfigurationData.ConfigConnection config = Configuration.Config.Connection;
 
 		if (!string.IsNullOrEmpty(config.DownstreamProxy))
 		{
 			return config.DownstreamProxy;
-
 		}
-		else if (config.UseSystemProxy)
+		
+		if (config.UseSystemProxy)
 		{
 			return APIObserver.Instance.ProxyPort.ToString();
 		}
-		else if (config.UseUpstreamProxy)
-		{
-			return string.Format(
-				"http=127.0.0.1:{0};https={1}:{2}",
-				APIObserver.Instance.ProxyPort,
-				config.UpstreamProxyAddress,
-				config.UpstreamProxyPort);
-		}
-		else
-		{
-			return string.Format("http=127.0.0.1:{0}", APIObserver.Instance.ProxyPort);
-		}
-	}
 
+		return string.Format("http=127.0.0.1:{0};https=127.0.0.1:{0}", APIObserver.Instance.ProxyPort);
+	}
 
 	public void SetProxyCompleted()
 	{
 		InitializationStage |= InitializationStageFlag.SetProxyCompleted;
 	}
-
-
-	void Browser_Faulted(Exception e)
-	{
-		/*if ( Browser.Proxy == null ) 
-		{
-			Utility.Logger.Add( 3, Resources.BrowserClosedWithoutWarning );
-		} 
-		else
-		{
-			Utility.ErrorReporter.SendErrorReport( e, Resources.BrowserThrewError );
-		}*/
-	}
-
 
 	private void TerminateBrowserProcess()
 	{

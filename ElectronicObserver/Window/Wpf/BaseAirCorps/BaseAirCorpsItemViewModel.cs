@@ -51,14 +51,12 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		AirSuperiority = new()
 		{
 			Text = "*",
-			ImageIndex = ResourceManager.EquipmentContent.CarrierBasedFighter,
 			Visible = false,
 		};
 
 		Distance = new()
 		{
 			Text = "*",
-			ImageIndex = IconContent.ParameterAircraftDistance,
 			Visible = false,
 		};
 
@@ -92,32 +90,36 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 
 			// state
 
-			if (corps.Squadrons.Values.Any(sq => sq != null && sq.Condition > 1))
+			// 疲労
+			int tired = corps.Squadrons.Values.Max(sq => sq?.Condition ?? 0);
+
+			Name.ConditionIcon = tired switch
 			{
-				// 疲労
-				int tired = corps.Squadrons.Values.Max(sq => sq?.Condition ?? 0);
+				3 => IconContent.ConditionVeryTired,
+				2 => IconContent.ConditionTired,
+				_ => null,
+			};
 
-				if (tired == 2)
-				{
-					Name.ImageIndex = IconContent.ConditionTired;
+			switch (tired)
+			{
+				case 2:
 					sb.AppendLine(GeneralRes.Tired);
-				}
-				else
-				{
-					Name.ImageIndex = IconContent.ConditionVeryTired;
-					sb.AppendLine(GeneralRes.VeryTired);
-				}
+					break;
 
+				case 3:
+					sb.AppendLine(GeneralRes.VeryTired);
+					break;
 			}
-			else if (corps.Squadrons.Values.Any(sq => sq != null && sq.AircraftCurrent < sq.AircraftMax))
+
+			if (corps.Squadrons.Values.Any(sq => sq != null && sq.AircraftCurrent < sq.AircraftMax))
 			{
 				// 未補給
-				Name.ImageIndex = IconContent.FleetNotReplenished;
+				Name.SupplyIcon = IconContent.FleetNotReplenished;
 				sb.AppendLine(FormBaseAirCorps.Unsupplied);
 			}
 			else
 			{
-				Name.ImageIndex = null;
+				Name.SupplyIcon = null;
 			}
 
 			sb.AppendLine(string.Format(FormBaseAirCorps.AirControlSummary,

@@ -123,8 +123,8 @@
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
   </data>
-  <data name="Ships" xml:space="preserve">
-    <value>艦娘</value>
+  <data name="LockedShips" xml:space="preserve">
+    <value>ロック済みのみ艦娘</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>制空権シミュレータ</value>
@@ -137,5 +137,8 @@
   </data>
   <data name="AllEquipment" xml:space="preserve">
     <value>未ロックも含める装備</value>
+  </data>
+  <data name="AllShips" xml:space="preserve">
+    <value>未ロックも含める艦娘</value>
   </data>
 </root>

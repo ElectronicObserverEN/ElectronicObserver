@@ -3,12 +3,16 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:avalonDockProperties="clr-namespace:AvalonDock.Properties;assembly=AvalonDock"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:local="clr-namespace:ElectronicObserver"
+	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
 	xmlns:reskeys="clr-namespace:AvalonDock.Themes.VS2013.Themes;assembly=AvalonDock.Themes.VS2013"
+	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
@@ -266,7 +270,7 @@
 				<Separator />
 				<MenuItem d:Header="Settings" Header="{Binding FormMain.StripMenu_File_Configuration}">
 					<MenuItem.Icon>
-						<Image Source="{Binding ConfigurationImageSource}" />
+						<common:IconContentIcon Type="FormConfiguration" />
 					</MenuItem.Icon>
 					<MenuItem Command="{Binding OpenConfigurationCommand}" Header="{Binding FormMain.Old}">
 						<MenuItem.CommandParameter>
@@ -288,7 +292,7 @@
 				>
 				<MenuItem d:Header="Fleet" Header="{Binding FormMain.StripMenu_View_Fleet}">
 					<MenuItem.Icon>
-						<Image Source="{Binding FleetsImageSource}" />
+						<common:IconContentIcon Type="FormFleet" />
 					</MenuItem.Icon>
 					<MenuItem
 						d:Header="#1"
@@ -322,7 +326,7 @@
 					Header="{Binding FormMain.StripMenu_View_FleetOverview}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding FleetOverviewImageSource}" />
+						<common:IconContentIcon Type="FormFleet" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -332,7 +336,7 @@
 					Header="{Binding FormMain.StripMenu_View_ShipGroup}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ShipGroupImageSource}" />
+						<common:IconContentIcon Type="FormShipGroup" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -343,7 +347,7 @@
 					Visibility="Collapsed"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ShipGroupImageSource}" />
+						<common:IconContentIcon Type="FormShipGroup" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -353,7 +357,7 @@
 					Header="{Binding FormMain.StripMenu_View_FleetPreset}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding FleetPresetImageSource}" />
+						<common:IconContentIcon Type="FormFleetPreset" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -363,7 +367,7 @@
 					Header="{Binding FormMain.StripMenu_View_ShipTrainingPlanViewer}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ShipTrainingPlanImageSource}" />
+						<common:UseItemIcon Type="ActionReport" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -374,7 +378,7 @@
 					Header="{Binding FormMain.StripMenu_View_Dock}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding DockImageSource}" />
+						<common:IconContentIcon Type="FormDock" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -384,7 +388,7 @@
 					Header="{Binding FormMain.StripMenu_View_Arsenal}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ArsenalImageSource}" />
+						<common:IconContentIcon Type="FormArsenal" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -393,7 +397,7 @@
 					Header="{Binding FormMain.EquipmentUpgradePlanViewerTitle}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding EquipmentUpgradePlanImageSource}" />
+						<common:UseItemIcon Type="ImproveMaterial" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -403,7 +407,7 @@
 					Header="{Binding FormMain.StripMenu_View_BaseAirCorps}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding BaseAirCorpsImageSource}" />
+						<common:IconContentIcon Type="FormBaseAirCorps" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -414,7 +418,7 @@
 					Header="{Binding FormMain.StripMenu_View_Headquarters}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding HeadquartersImageSource}" />
+						<common:IconContentIcon Type="FormHeadQuarters" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -424,7 +428,7 @@
 					Header="{Binding FormMain.StripMenu_View_Quest}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding QuestImageSource}" />
+						<common:IconContentIcon Type="FormQuest" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -434,7 +438,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_ExpeditionCheck}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ExpeditionCheckImageSource}" />
+						<common:IconContentIcon Type="FormExpeditionCheck" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -444,7 +448,7 @@
 					Header="{Binding FormMain.StripMenu_View_Information}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding InformationImageSource}" />
+						<common:IconContentIcon Type="FormInformation" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -455,7 +459,7 @@
 					Header="{Binding FormMain.StripMenu_View_Compass}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding CompassImageSource}" />
+						<common:IconContentIcon Type="FormCompass" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -465,7 +469,7 @@
 					Header="{Binding FormMain.StripMenu_View_Battle}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding BattleImageSource}" />
+						<common:IconContentIcon Type="FormBattle" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -476,7 +480,7 @@
 					Header="{Binding FormMain.StripMenu_View_Browser}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding BrowserHostImageSource}" />
+						<common:IconContentIcon Type="FormBrowser" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -486,7 +490,7 @@
 					Header="{Binding FormMain.StripMenu_View_Log}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding LogImageSource}" />
+						<common:IconContentIcon Type="FormLog" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -497,12 +501,12 @@
 					Visibility="{Binding DebugVisibility}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding JsonImageSource}" />
+						<common:IconContentIcon Type="FormJson" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem d:Header="Window Capture" Header="{Binding FormMain.StripMenu_WindowCapture}">
 					<MenuItem.Icon>
-						<Image Source="{Binding WindowCaptureImageSource}" />
+						<common:IconContentIcon Type="FormWindowCapture" />
 					</MenuItem.Icon>
 
 					<MenuItem
@@ -535,7 +539,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_EquipmentList}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding EquipmentListImageSource}" />
+						<common:IconContentIcon Type="FormEquipmentList" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -545,7 +549,7 @@
 					Header="{Binding FormMain.SortieRecordViewer}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding EquipmentListImageSource}" />
+						<common:IconContentIcon Type="FormEquipmentList" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -554,7 +558,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_DropRecord}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding DropRecordImageSource}" />
+						<common:IconContentIcon Type="FormDropRecord" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -563,7 +567,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding DevelopmentRecordImageSource}" />
+						<common:IconContentIcon Type="FormDevelopmentRecord" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -572,7 +576,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ConstructionRecordImageSource}" />
+						<common:IconContentIcon Type="FormConstructionRecord" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -581,7 +585,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_ResourceChart}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ResourceChartImageSource}" />
+						<common:IconContentIcon Type="FormResourceChart" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -590,7 +594,7 @@
 					Header="{Binding FormMain.SenkaViewer}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ResourceChartImageSource}" />
+						<common:IconContentIcon Type="FormResourceChart" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -600,7 +604,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_AlbumMasterShip}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding AlbumMasterShipImageSource}" />
+						<common:IconContentIcon Type="FormAlbumShip" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -609,7 +613,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_AlbumMasterEquipment}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding AlbumMasterEquipmentImageSource}" />
+						<common:IconContentIcon Type="FormAlbumEquipment" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
@@ -619,7 +623,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding AntiAirDefenseImageSource}" />
+						<common:IconContentIcon Type="FormAntiAirDefense" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -628,7 +632,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_FleetImageGenerator}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding FleetImageGeneratorImageSource}" />
+						<common:IconContentIcon Type="FormFleetImageGenerator" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -637,7 +641,16 @@
 					Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
+						<common:IconContentIcon Type="FormBaseAirCorps" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Operation room"
+					Command="{Binding OpenOperationRoomCommand}"
+					Header="{Binding FormMain.OperationRoom}"
+					>
+					<MenuItem.Icon>
+						<common:IconContentIcon Type="FormDock" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -646,7 +659,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ExpCheckerImageSource}" />
+						<common:IconContentIcon Type="FormExpChecker" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -655,7 +668,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_KancolleProgress}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding KancolleProgressImageSource}" />
+						<common:IconContentIcon Type="FormEquipmentList" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -664,27 +677,27 @@
 					Header="{Binding FormMain.StripMenu_Tool_ExtraBrowser}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ExtraBrowserImageSource}" />
+						<common:IconContentIcon Type="FormBrowser" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenQuestTrackerManagerCommand}" Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}">
 					<MenuItem.Icon>
-						<Image Source="{Binding QuestImageSource}" />
+						<common:IconContentIcon Type="FormQuest" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
 					<MenuItem.Icon>
-						<Image Source="{Binding QuestImageSource}" />
+						<common:IconContentIcon Type="FormQuest" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEquipmentUpgradePlannerCommand}" Header="{Binding FormMain.EquipmentUpgradePlannerTitle}">
 					<MenuItem.Icon>
-						<Image Source="{Binding QuestImageSource}" />
+						<common:IconContentIcon Type="FormQuest" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenAutoRefreshCommand}" Header="{Binding FormMain.AutoRefreshTitle}">
 					<MenuItem.Icon>
-						<Image Source="{Binding AutoRefreshImageSource}" />
+						<common:IconContentIcon Type="BrowserRefresh" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenTelegramCommand}" Header="{Binding FormMain.Telegram}" />
@@ -752,7 +765,7 @@
 					Header="{Binding FormMain.StripMenu_Help_Help}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ViewHelpImageSource}" />
+						<common:IconContentIcon Type="FormInformation" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -773,7 +786,7 @@
 					/>
 				<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="{Binding FormMain.StripMenu_Update_OpenReleaseNotes}">
 					<MenuItem.Icon>
-						<Image Source="{Binding ViewHelpImageSource}" />
+						<common:IconContentIcon Type="FormInformation" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -782,7 +795,7 @@
 					Header="{Binding FormMain.StripMenu_Help_Version}"
 					>
 					<MenuItem.Icon>
-						<Image Source="{Binding ViewVersionImageSource}" />
+						<common:IconContentIcon Type="AppIcon" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
@@ -806,7 +819,7 @@
 
 				<MenuItem Command="{Binding OpenReleaseNotesCommand}" Header="{Binding FormMain.StripMenu_Update_OpenReleaseNotes}">
 					<MenuItem.Icon>
-						<Image Source="{Binding ViewHelpImageSource}" />
+						<common:IconContentIcon Type="FormInformation" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
@@ -854,12 +867,28 @@
 			<DockingManager.DocumentHeaderTemplate>
 				<DataTemplate DataType="LayoutAnchorable">
 					<StackPanel Orientation="Horizontal">
-						<Image Margin="0 0 4 0" Source="{Binding IconSource}" />
+						<Image
+							Width="16"
+							Height="16"
+							Margin="0 0 4 0"
+							Source="{Binding IconSource}"
+							/>
 						<TextBlock Text="{Binding Title}" />
 						<ContentControl Template="{StaticResource AutoHideButtonTemplate}" />
 					</StackPanel>
 				</DataTemplate>
 			</DockingManager.DocumentHeaderTemplate>
+
+			<DockingManager.IconContentTemplate>
+				<DataTemplate DataType="LayoutAnchorable">
+					<Image
+						Width="16"
+						Height="16"
+						Margin="0 0 4 0"
+						Source="{Binding IconSource}"
+						/>
+				</DataTemplate>
+			</DockingManager.IconContentTemplate>
 
 			<DockingManager.LayoutItemContainerStyleSelector>
 				<local:ViewStyleSelector>
@@ -875,6 +904,53 @@
 							<Setter Property="CanClose" Value="{Binding Model.CanClose, Mode=TwoWay}" />
 							<Setter Property="CanHide" Value="False" />
 							<Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Model.IconSource}" Value="{x:Null}">
+									<Setter Property="IconSource">
+										<Setter.Value>
+											<markup:Switch To="{Binding Model.Icon}">
+												<markup:Case Label="{x:Static resource:IconContent.FormArsenal}" Value="{StaticResource Form.Arsenal}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormBaseAirCorps}" Value="{StaticResource Form.BaseAirCorps}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormBattle}" Value="{StaticResource Form.Battle}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormBrowser}" Value="{StaticResource Form.Browser}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormCompass}" Value="{StaticResource Form.Compass}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormDock}" Value="{StaticResource Form.Dock}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormExpeditionCheck}" Value="{StaticResource Form.ExpeditionCheck}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormFleet}" Value="{StaticResource Form.Fleet}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormFleetPreset}" Value="{StaticResource Form.FleetPreset}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormHeadQuarters}" Value="{StaticResource Form.Headquarters}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormInformation}" Value="{StaticResource Form.Information}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormJson}" Value="{StaticResource Form.Json}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormLog}" Value="{StaticResource Form.Log}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormQuest}" Value="{StaticResource Form.Quest}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormShipGroup}" Value="{StaticResource Form.ShipGroup}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormWindowCapture}" Value="{StaticResource Form.WindowCapture}" />
+
+												<markup:Case Label="{x:Static resource:IconContent.FleetAnchorageRepairing}" Value="{StaticResource Fleet.AnchorageRepairing}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetCombined}" Value="{StaticResource Fleet.Combined}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetDamaged}" Value="{StaticResource Fleet.Damaged}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetDocking}" Value="{StaticResource Fleet.Docking}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetExpedition}" Value="{StaticResource Fleet.Expedition}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetNoShip}" Value="{StaticResource Fleet.NoShip}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetNotReplenished}" Value="{StaticResource Fleet.NotReplenished}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetReady}" Value="{StaticResource Fleet.Ready}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetSortie}" Value="{StaticResource Fleet.Sortie}" />
+												<markup:Case Label="{x:Static resource:IconContent.FleetSortieDamaged}" Value="{StaticResource Fleet.SortieDamaged}" />
+
+												<markup:Case Label="{x:Static resource:IconContent.ItemActionReport}" Value="{StaticResource Item.ActionReport}" />
+												<markup:Case Label="{x:Static resource:IconContent.ItemModdingMaterial}" Value="{StaticResource Item.ModdingMaterial}" />
+
+												<markup:Case Label="{x:Static resource:IconContent.ConditionSparkle}" Value="{StaticResource Condition.Sparkle}" />
+												<markup:Case Label="{x:Static resource:IconContent.ConditionNormal}" Value="{StaticResource Condition.Normal}" />
+												<markup:Case Label="{x:Static resource:IconContent.ConditionLittleTired}" Value="{StaticResource Condition.LittleTired}" />
+												<markup:Case Label="{x:Static resource:IconContent.ConditionTired}" Value="{StaticResource Condition.Tired}" />
+												<markup:Case Label="{x:Static resource:IconContent.ConditionVeryTired}" Value="{StaticResource Condition.VeryTired}" />
+											</markup:Switch>
+										</Setter.Value>
+									</Setter>
+								</DataTrigger>
+							</Style.Triggers>
 						</Style>
 					</local:ViewStyleSelector.AnchorableStyle>
 				</local:ViewStyleSelector>

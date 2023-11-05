@@ -1,4 +1,6 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserverTypes.Data;
 
@@ -12,6 +14,7 @@ public abstract class SortieNode
 	public int Map { get; }
 	public int Cell { get; }
 	public BattleBaseAirRaid? AirBaseRaid { get; private set; }
+	public ApiOffshoreSupply? ApiOffshoreSupply { get; set; }
 
 	public string DisplayCell => KCDatabase.Instance.Translation.Destination.DisplayID(World, Map, Cell);
 
@@ -27,5 +30,10 @@ public abstract class SortieNode
 	public void AddAirBaseRaid(BattleBaseAirRaid abRaid)
 	{
 		AirBaseRaid = abRaid;
+	}
+
+	public virtual void UpdateState(ApiGetMemberShipDeckResponse deck)
+	{
+
 	}
 }

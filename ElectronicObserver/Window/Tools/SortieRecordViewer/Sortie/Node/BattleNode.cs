@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -10,9 +11,15 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
 public class BattleNode : SortieNode
 {
+	public IBattleApiRequest? Request { get; set; }
 	public BattleData FirstBattle { get; }
 	public BattleData? SecondBattle { get; set; }
 	public BattleResult? BattleResult { get; private set; }
+	public BattleData LastBattle => SecondBattle switch
+	{
+		null => FirstBattle,
+		_ => SecondBattle,
+	};
 
 	public bool IsBoss { get; set; }
 
@@ -106,5 +113,15 @@ public class BattleNode : SortieNode
 			("S", false) => "SS",
 			_ => BattleResult?.WinRank,
 		};
+	}
+
+	public override void UpdateState(ApiGetMemberShipDeckResponse deck)
+	{
+		LastBattle.FleetsAfterBattle.UpdateState(deck);
+	}
+
+	public void UpdateState(BattleFleets fleets)
+	{
+		LastBattle.FleetsAfterBattle.UpdateState(fleets);
 	}
 }

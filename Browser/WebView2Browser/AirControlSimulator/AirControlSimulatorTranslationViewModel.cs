@@ -5,8 +5,8 @@ public class AirControlSimulatorTranslationViewModel
 	public string Title => AirControlSimulatorResources.Title;
 
 	public string Fleet => AirControlSimulatorResources.Fleet;
-	public string Ships => AirControlSimulatorResources.Ships;
-	public string Equipment => AirControlSimulatorResources.Equipment;
+	public string LockedShips => AirControlSimulatorResources.LockedShips;
+	public string AllShips => AirControlSimulatorResources.AllShips;
 	public string LockedEquipment => AirControlSimulatorResources.LockedEquipment;
 	public string AllEquipment => AirControlSimulatorResources.AllEquipment;
 

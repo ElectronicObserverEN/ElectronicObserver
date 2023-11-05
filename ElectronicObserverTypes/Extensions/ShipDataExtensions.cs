@@ -24,8 +24,23 @@ public static class ShipDataExtensions
 	/// </summary>
 	public static bool IsAbyssalShip(this IShipDataMaster ship) => ship.ShipID > 1500;
 
-	public static double Accuracy(this IShipData ship) =>
-		2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
+	/// <summary>
+	/// Calculates the ship accuracy.
+	/// </summary>
+	/// <param name="ship">Ship.</param>
+	/// <param name="level">Custom level override, ship.Level will be used by default.</param>
+	/// <param name="luck">Custom luck override, ship.LuckTotal will be used by default.</param>
+	/// <returns>Ship accuracy.</returns>
+	public static double Accuracy(this IShipData ship, int? level = null, int? luck = null) =>
+		2 * Math.Sqrt(level ?? ship.Level) + 1.5 * Math.Sqrt(luck ?? ship.LuckTotal);
+
+	public static int NextAccuracyLevel(this IShipData ship, int? currentAccuracy = null)
+	{
+		int targetAccuracy = (currentAccuracy ?? (int)ship.Accuracy()) + 1;
+		double luckPart = 1.5 * Math.Sqrt(ship.LuckTotal);
+
+		return (int)Math.Ceiling(Math.Pow((targetAccuracy - luckPart) / 2, 2));
+	}
 
 	public static double ShellingEvasion(this IShipData ship) =>
 		new ShellingEvasion(ship).PostcapValue;
@@ -178,12 +193,12 @@ public static class ShipDataExtensions
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.StarShell);
 
 	public static bool HasSearchlight(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.MasterEquipment.CategoryType switch
-		{
-			EquipmentTypes.Searchlight => true,
-			EquipmentTypes.SearchlightLarge => true,
-			_ => false
-		});
+		.Any(e => e?.MasterEquipment.CategoryType is
+			EquipmentTypes.Searchlight or
+			EquipmentTypes.SearchlightLarge);
+
+	public static bool HasLargeSearchlight(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.SearchlightLarge);
 
 	public static int HighAngleGunCount(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsHighAngleGun is true);
@@ -353,7 +368,8 @@ public static class ShipDataExtensions
 		ShipId.Saratoga or
 		ShipId.TaiyouKaiNi or
 		ShipId.ShinyouKaiNi or
-		ShipId.UnyouKaiNi;
+		ShipId.UnyouKaiNi or 
+		ShipId.KagaKaiNiGo;
 
 	public static bool IsArkRoyal(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
@@ -478,6 +494,7 @@ public static class ShipDataExtensions
 	public static bool CanNoSonarOpeningAsw(this IShipData ship) => ship.MasterShip is
 	{ ShipId: ShipId.JervisKai } or
 	{ ShipId: ShipId.JanusKai } or
+	{ ShipId: ShipId.JavelinKai } or
 	{ ShipId: ShipId.SamuelBRobertsKai } or
 	{ ShipId: ShipId.SamuelBRobertsMkII } or
 	{ ShipId: ShipId.IsuzuKaiNi } or

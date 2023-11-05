@@ -296,7 +296,7 @@
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.HpMin}"
 								BaseToolTip="{Binding SelectedShip.HpMinToolTip}"
-								Icon="{StaticResource Hp}"
+								Icon="{StaticResource Parameter.Hp}"
 								Max="{Binding SelectedShip.HpMax}"
 								MaxToolTip="{Binding SelectedShip.HpMaxToolTip}"
 								StatName="{Binding DialogAlbumMasterShip.TitleHP}"
@@ -304,35 +304,35 @@
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.FirepowerMin}"
-								Icon="{StaticResource Firepower}"
+								Icon="{StaticResource Parameter.Firepower}"
 								Max="{Binding SelectedShip.FirepowerMax}"
 								StatName="{Binding DialogAlbumMasterShip.Firepower}"
 								/>
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.TorpedoMin}"
-								Icon="{StaticResource Torpedo}"
+								Icon="{StaticResource Parameter.Torpedo}"
 								Max="{Binding SelectedShip.TorpedoMax}"
 								StatName="{Binding DialogAlbumMasterShip.Torpedo}"
 								/>
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.AaMin}"
-								Icon="{StaticResource AntiAir}"
+								Icon="{StaticResource Parameter.AntiAir}"
 								Max="{Binding SelectedShip.AaMax}"
 								StatName="{Binding DialogAlbumMasterShip.AA}"
 								/>
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.ArmorMin}"
-								Icon="{StaticResource Armor}"
+								Icon="{StaticResource Parameter.Armor}"
 								Max="{Binding SelectedShip.ArmorMax}"
 								StatName="{Binding DialogAlbumMasterShip.Armor}"
 								/>
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.AswMin}"
-								Icon="{StaticResource AntiSubmarine}"
+								Icon="{StaticResource Parameter.AntiSubmarine}"
 								Max="{Binding SelectedShip.AswMax}"
 								Scaled="{Binding SelectedShip.AswCurrent}"
 								StatName="{Binding DialogAlbumMasterShip.ASW}"
@@ -340,7 +340,7 @@
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.EvasionMin}"
-								Icon="{StaticResource Evasion}"
+								Icon="{StaticResource Parameter.Evasion}"
 								Max="{Binding SelectedShip.EvasionMax}"
 								Scaled="{Binding SelectedShip.EvasionCurrent}"
 								StatName="{Binding DialogAlbumMasterShip.Evasion}"
@@ -348,7 +348,7 @@
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.LosMin}"
-								Icon="{StaticResource Los}"
+								Icon="{StaticResource Parameter.Los}"
 								Max="{Binding SelectedShip.LosMax}"
 								Scaled="{Binding SelectedShip.LosCurrent}"
 								StatName="{Binding DialogAlbumMasterShip.LOS}"
@@ -356,14 +356,14 @@
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.LuckMin}"
-								Icon="{StaticResource Luck}"
+								Icon="{StaticResource Parameter.Luck}"
 								Max="{Binding SelectedShip.LuckMax}"
 								StatName="{Binding DialogAlbumMasterShip.Luck}"
 								/>
 
 							<local:ShipStatControl
 								Base="{Binding SelectedShip.AccuracyMin}"
-								Icon="{StaticResource Accuracy}"
+								Icon="{StaticResource Parameter.Accuracy}"
 								Max="{Binding SelectedShip.AccuracyMax}"
 								Scaled="{Binding SelectedShip.AccuracyCurrent}"
 								StatName="{Binding DialogAlbumMasterShip.Accuracy}"
@@ -394,7 +394,7 @@
 								<common1:ParameterIcon
 									Grid.Row="0"
 									Grid.Column="0"
-									ParameterType="Speed"
+									Type="Speed"
 									/>
 
 								<TextBlock
@@ -432,9 +432,12 @@
 									Grid.Column="2"
 									Margin="8 0"
 									HorizontalAlignment="Right"
-									Image="{Binding SelectedShip.RarityIcon, Converter={StaticResource ImageSourceConverter}}"
 									Text="{Binding SelectedShip.Ship.Rarity, Converter={StaticResource ShipRarityConverter}}"
-									/>
+									>
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="{Binding SelectedShip.RarityIcon}" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 								<Separator
 									Grid.Row="3"
@@ -445,7 +448,7 @@
 								<common1:ParameterIcon
 									Grid.Row="4"
 									Grid.Column="0"
-									ParameterType="Range"
+									Type="Range"
 									/>
 
 								<TextBlock
@@ -484,18 +487,24 @@
 									Grid.Column="2"
 									Margin="8 0"
 									HorizontalAlignment="Right"
-									Image="{StaticResource Resource.Fuel}"
 									Text="{Binding SelectedShip.Fuel}"
-									/>
+									>
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceFuel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 								<common:ImageTextControl
 									Grid.Row="6"
 									Grid.Column="3"
 									Margin="8 0"
 									HorizontalAlignment="Right"
-									Image="{StaticResource Resource.Ammo}"
 									Text="{Binding SelectedShip.Ammo}"
-									/>
+									>
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceAmmo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 								<Border
 									Grid.Row="6"
@@ -545,7 +554,7 @@
 												HorizontalAlignment="Right"
 												Text="{Binding Size}"
 												/>
-											<Image Grid.Column="1" Source="{Binding IconType, Converter={StaticResource ImageSourceConverter}}" />
+											<common1:EquipmentIcon Grid.Column="1" Type="{Binding IconType}" />
 											<TextBlock
 												Grid.Column="2"
 												Margin="4 0"
@@ -577,7 +586,7 @@
 							Margin="0 4"
 							Orientation="Horizontal"
 							>
-							<Image Source="{Binding Source={x:Static resource:IconContent.FormArsenal}, Converter={StaticResource ImageSourceConverter}}" />
+							<common1:IconContentIcon Type="FormArsenal" />
 							<TextBlock Text="{Binding DialogAlbumMasterShip.TitleConstructionTime}" />
 							<TextBlock Margin="4 0" Text="{Binding SelectedShip.BuildingTime}" />
 						</StackPanel>
@@ -592,13 +601,29 @@
 
 								<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterShip.TitleDismantling}" />
 
-								<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedShip.Ship.Material[0]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.Material[0]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceFuel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding SelectedShip.Ship.Material[1]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.Material[1]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceAmmo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding SelectedShip.Ship.Material[2]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.Material[2]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceSteel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedShip.Ship.Material[3]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.Material[3]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceBauxite" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 							</StackPanel>
 							<Separator />
@@ -612,13 +637,29 @@
 
 								<TextBlock Margin="4 0" Text="{Binding DialogAlbumMasterShip.TitleModernization}" />
 
-								<common:ImageTextControl Image="{StaticResource Firepower}" Text="{Binding SelectedShip.Ship.PowerUp[0]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.PowerUp[0]}">
+									<common:ImageTextControl.Image>
+										<common1:ParameterIcon Type="Firepower" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Torpedo}" Text="{Binding SelectedShip.Ship.PowerUp[1]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.PowerUp[1]}">
+									<common:ImageTextControl.Image>
+										<common1:ParameterIcon Type="Torpedo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource AntiAir}" Text="{Binding SelectedShip.Ship.PowerUp[2]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.PowerUp[2]}">
+									<common:ImageTextControl.Image>
+										<common1:ParameterIcon Type="AntiAir" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Armor}" Text="{Binding SelectedShip.Ship.PowerUp[3]}" />
+								<common:ImageTextControl Text="{Binding SelectedShip.Ship.PowerUp[3]}">
+									<common:ImageTextControl.Image>
+										<common1:ParameterIcon Type="Armor" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 							</StackPanel>
 							<Separator />
@@ -672,24 +713,28 @@
 												</ItemsControl.ItemsPanel>
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>
-														<common:ImageTextControl Image="{Binding Icon, Converter={StaticResource ImageSourceConverter}}" Text="{Binding Count}" />
+														<common:ImageTextControl Text="{Binding Count}">
+															<common:ImageTextControl.Image>
+																<common1:IconContentIcon Type="{Binding Icon}" />
+															</common:ImageTextControl.Image>
+														</common:ImageTextControl>
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
 										</Border>
 									</StackPanel>
 
-									<common:ImageTextControl
-										Grid.Column="1"
-										Image="{StaticResource Resource.Ammo}"
-										Text="{Binding SelectedShip.RemodelBeforeAmmo, FallbackValue='-'}"
-										/>
+									<common:ImageTextControl Grid.Column="1" Text="{Binding SelectedShip.RemodelBeforeAmmo, FallbackValue='-'}">
+										<common:ImageTextControl.Image>
+											<common1:IconContentIcon Type="ResourceAmmo" />
+										</common:ImageTextControl.Image>
+									</common:ImageTextControl>
 
-									<common:ImageTextControl
-										Grid.Column="2"
-										Image="{StaticResource Resource.Steel}"
-										Text="{Binding SelectedShip.RemodelBeforeSteel, FallbackValue='-'}"
-										/>
+									<common:ImageTextControl Grid.Column="2" Text="{Binding SelectedShip.RemodelBeforeSteel, FallbackValue='-'}">
+										<common:ImageTextControl.Image>
+											<common1:IconContentIcon Type="ResourceSteel" />
+										</common:ImageTextControl.Image>
+									</common:ImageTextControl>
 								</Grid>
 								<Separator />
 							</StackPanel>
@@ -737,24 +782,28 @@
 												</ItemsControl.ItemsPanel>
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>
-														<common:ImageTextControl Image="{Binding Icon, Converter={StaticResource ImageSourceConverter}}" Text="{Binding Count}" />
+														<common:ImageTextControl Text="{Binding Count}">
+															<common:ImageTextControl.Image>
+																<common1:IconContentIcon Type="{Binding Icon}" />
+															</common:ImageTextControl.Image>
+														</common:ImageTextControl>
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
 										</Border>
 									</StackPanel>
 
-									<common:ImageTextControl
-										Grid.Column="1"
-										Image="{StaticResource Resource.Ammo}"
-										Text="{Binding SelectedShip.RemodelAfterAmmo, FallbackValue='-'}"
-										/>
+									<common:ImageTextControl Grid.Column="1" Text="{Binding SelectedShip.RemodelAfterAmmo, FallbackValue='-'}">
+										<common:ImageTextControl.Image>
+											<common1:IconContentIcon Type="ResourceAmmo" />
+										</common:ImageTextControl.Image>
+									</common:ImageTextControl>
 
-									<common:ImageTextControl
-										Grid.Column="2"
-										Image="{StaticResource Resource.Steel}"
-										Text="{Binding SelectedShip.RemodelAfterSteel, FallbackValue='-'}"
-										/>
+									<common:ImageTextControl Grid.Column="2" Text="{Binding SelectedShip.RemodelAfterSteel, FallbackValue='-'}">
+										<common:ImageTextControl.Image>
+											<common1:IconContentIcon Type="ResourceSteel" />
+										</common:ImageTextControl.Image>
+									</common:ImageTextControl>
 								</Grid>
 								<Separator />
 							</StackPanel>
@@ -766,17 +815,29 @@
 							Visibility="{Binding SelectedShip.IsAbyssalShip, Converter={StaticResource BooleanToVisibilityConverter}}"
 							>
 							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl Image="{StaticResource EquipmentIconType.CarrierBasedFighter}" Text="{Binding DialogAlbumMasterShip.TitleAirSuperiority}" />
+								<common:ImageTextControl Text="{Binding DialogAlbumMasterShip.TitleAirSuperiority}">
+									<common:ImageTextControl.Image>
+										<common1:EquipmentIcon Type="CarrierBasedFighter" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 								<TextBlock Text="{Binding SelectedShip.AirPower}" />
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl Image="{StaticResource EquipmentIconType.Seaplane}" Text="{Binding DialogAlbumMasterShip.TitleDayAttack}" />
+								<common:ImageTextControl Text="{Binding DialogAlbumMasterShip.TitleDayAttack}">
+									<common:ImageTextControl.Image>
+										<common1:EquipmentIcon Type="Seaplane" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 								<TextBlock Text="{Binding SelectedShip.DayAttack}" />
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl Image="{StaticResource EquipmentIconType.Torpedo}" Text="{Binding DialogAlbumMasterShip.TitleNightAttack}" />
+								<common:ImageTextControl Text="{Binding DialogAlbumMasterShip.TitleNightAttack}">
+									<common:ImageTextControl.Image>
+										<common1:EquipmentIcon Type="Torpedo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 								<TextBlock Text="{Binding SelectedShip.NightAttack}" />
 							</StackPanel>
 						</StackPanel>

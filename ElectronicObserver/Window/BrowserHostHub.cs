@@ -111,11 +111,11 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		return a;
 	}
 
-	public Task<string> GetShipData()
+	public Task<string> GetShipData(bool allShips)
 	{
 		DataSerializationService service = Ioc.Default.GetService<DataSerializationService>()!;
 
-		return Task.Run(() => service.FleetAnalysisShips());
+		return Task.Run(() => service.FleetAnalysisShips(allShips));
 	}
 
 	public Task<string> GetEquipmentData(bool allEquipment)

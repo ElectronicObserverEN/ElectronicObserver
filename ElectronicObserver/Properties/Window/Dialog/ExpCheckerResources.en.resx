@@ -184,4 +184,13 @@ Please return to the home port page.</value>
   <data name="Modernization" xml:space="preserve">
     <value>Modernization</value>
   </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Accuracy</value>
+  </data>
+  <data name="LuckOffset" xml:space="preserve">
+    <value>Luck offset</value>
+  </data>
+  <data name="LuckOffsetToolTip" xml:space="preserve">
+    <value>Offset the current luck value by a specified value.</value>
+  </data>
 </root>

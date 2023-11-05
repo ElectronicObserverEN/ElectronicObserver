@@ -7,7 +7,7 @@ public class PhaseOpeningAsw : PhaseShelling
 {
 	public override string Title => BattleRes.BattlePhaseOpeningAsw;
 
-	public PhaseOpeningAsw(IKCDatabase kcDatabase, ApiHougeki1? shellingData) 
+	public PhaseOpeningAsw(IKCDatabase kcDatabase, ApiHougeki1 shellingData)
 		: base(kcDatabase, shellingData, DayShellingPhase.Other)
 	{
 	}

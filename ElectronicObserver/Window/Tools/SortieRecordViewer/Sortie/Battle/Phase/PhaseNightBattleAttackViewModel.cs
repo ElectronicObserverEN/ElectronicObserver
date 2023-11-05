@@ -21,13 +21,15 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
 
-	public PhaseNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack)
+	public PhaseNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack,
+		BattleIndex defenderIndex)
 	{
 		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
-		DefenderIndex = attack.Defenders.First().Defender;
+		DefenderIndex = defenderIndex;
 		Defender = fleets.GetShip(DefenderIndex)!;
 		Attacks = attack.Defenders
+			.Where(d => d.Defender == DefenderIndex)
 			.Select(d => new NightAttack
 			{
 				Attacker = Attacker,

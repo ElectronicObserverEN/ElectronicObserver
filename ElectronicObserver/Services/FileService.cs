@@ -209,13 +209,18 @@ public class FileService
 		};
 	}
 
-	public string? ExportCsv()
+	public string? ExportCsv(string? path)
 	{
+		if (string.IsNullOrEmpty(path))
+		{
+			path = Directory.GetCurrentDirectory();
+		}
+
 		SaveFileDialog dialog = new()
 		{
 			Filter = "CSV|*.csv|File|*",
 			Title = EquipmentListResources.SaveCSVDialog,
-			InitialDirectory = Directory.GetCurrentDirectory(),
+			InitialDirectory = path,
 		};
 
 		return dialog.ShowDialog(MainWindow) switch

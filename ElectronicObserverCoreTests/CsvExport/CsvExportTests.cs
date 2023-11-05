@@ -101,7 +101,7 @@ public class CsvExportTests
 		IShipDataMaster? defender = null;
 		int attackType = 0;
 
-		for (int i = 0; i < eoHeaders.Length; i++)
+		for (int i = 0; i < logbookHeaders.Length; i++)
 		{
 			Assert.Equal(logbookHeaders[i], eoHeaders[i]);
 
@@ -184,8 +184,12 @@ public class CsvExportTests
 		if (!ship.IsAbyssalShip) return false;
 
 		static bool HasWrongRange(IShipDataMaster ship) => ship.ID is
+			1525 or
+			1528 or
 			1560 or
 			1565 or
+			1573 or
+			1579 or
 			1586 or
 			1615 or
 			1617 or
@@ -238,38 +242,38 @@ public class CsvExportTests
 		return csv.TrimEnd().Split("\r\n");
 	}
 
-	[Theory(DisplayName = "Day shelling - 砲撃戦")]
+	[Theory(DisplayName = "Shelling battle - 砲撃戦")]
 	[InlineData("砲撃戦1.csv", "砲撃戦1.json")]
 	[InlineData("砲撃戦2.csv", "砲撃戦2.json")]
 	[InlineData("砲撃戦3.csv", "砲撃戦3.json")]
 	public async Task CsvExportTest1(string logbookCsvFileName, string eoJsonFileName)
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
-		IReadOnlyList<string> eoLines = await LoadEoLines<DayShellingExportMap, DayShellingExportModel>(
-			eoJsonFileName, DataExportHelper.DayShelling);
+		IReadOnlyList<string> eoLines = await LoadEoLines<ShellingBattleExportMap, ShellingBattleExportModel>(
+			eoJsonFileName, DataExportHelper.ShellingBattle);
 
 		VerifyCsv(logbookLines, eoLines);
 	}
 
-	[Theory(DisplayName = "Night shelling - 夜戦")]
+	[Theory(DisplayName = "Night battle - 夜戦")]
 	[InlineData("夜戦1.csv", "夜戦1.json")]
 	[InlineData("夜戦2.csv", "夜戦2.json")]
 	public async Task CsvExportTest2(string logbookCsvFileName, string eoJsonFileName)
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
-		IReadOnlyList<string> eoLines = await LoadEoLines<NightShellingExportMap, NightShellingExportModel>(
-			eoJsonFileName, DataExportHelper.NightShelling);
+		IReadOnlyList<string> eoLines = await LoadEoLines<NightBattleExportMap, NightBattleExportModel>(
+			eoJsonFileName, DataExportHelper.NightBattle);
 
 		VerifyCsv(logbookLines, eoLines);
 	}
 
-	[Theory(DisplayName = "Torpedo - 雷撃戦")]
+	[Theory(DisplayName = "Torpedo battle - 雷撃戦")]
 	[InlineData("雷撃戦1.csv", "雷撃戦1.json")]
 	public async Task CsvExportTest3(string logbookCsvFileName, string eoJsonFileName)
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
-		IReadOnlyList<string> eoLines = await LoadEoLines<TorpedoExportMap, TorpedoExportModel>(
-			eoJsonFileName, DataExportHelper.Torpedo);
+		IReadOnlyList<string> eoLines = await LoadEoLines<TorpedoBattleExportMap, TorpedoBattleExportModel>(
+			eoJsonFileName, DataExportHelper.TorpedoBattle);
 
 		VerifyCsv(logbookLines, eoLines);
 	}
@@ -292,6 +296,42 @@ public class CsvExportTests
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
 		IReadOnlyList<string> eoLines = await LoadEoLines<AirBaseBattleExportMap, AirBaseBattleExportModel>(
 			eoJsonFileName, DataExportHelper.AirBaseBattle);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
+
+	[Theory(DisplayName = "Red shelling battle - 赤仮砲撃戦")]
+	[InlineData("赤仮砲撃戦1.csv", "赤仮砲撃戦1.json")]
+	[InlineData("赤仮砲撃戦2.csv", "赤仮砲撃戦2.json")]
+	[InlineData("赤仮砲撃戦3.csv", "赤仮砲撃戦3.json")]
+	public async Task CsvExportTest6(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<RedShellingBattleExportMap, ShellingBattleExportModel>(
+			eoJsonFileName, DataExportHelper.ShellingBattle);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
+
+	[Theory(DisplayName = "Red night battle - 赤仮夜戦")]
+	[InlineData("赤仮夜戦1.csv", "赤仮夜戦1.json")]
+	[InlineData("赤仮夜戦2.csv", "赤仮夜戦2.json")]
+	public async Task CsvExportTest7(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<RedNightBattleExportMap, NightBattleExportModel>(
+			eoJsonFileName, DataExportHelper.NightBattle);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
+
+	[Theory(DisplayName = "Red torpedo battle - 赤仮雷撃戦")]
+	[InlineData("赤仮雷撃戦1.csv", "赤仮雷撃戦1.json")]
+	public async Task CsvExportTest8(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<RedTorpedoBattleExportMap, TorpedoBattleExportModel>(
+			eoJsonFileName, DataExportHelper.TorpedoBattle);
 
 		VerifyCsv(logbookLines, eoLines);
 	}

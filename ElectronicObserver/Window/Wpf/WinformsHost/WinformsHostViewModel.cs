@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-using System.Windows.Media;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 
 
@@ -16,7 +16,7 @@ public class WinformsHostViewModel : AnchorableViewModel
 
 	}
 
-	protected WinformsHostViewModel(string title, string contentId, ImageSource? icon = null)
+	protected WinformsHostViewModel(string title, string contentId, IconContent? icon = null)
 		: base(title, contentId, icon)
 	{
 		PropertyChanged += (sender, args) =>

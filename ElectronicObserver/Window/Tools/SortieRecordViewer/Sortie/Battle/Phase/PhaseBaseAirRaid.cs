@@ -92,6 +92,7 @@ public class PhaseBaseAirRaid : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		if (Stage2 is { } stage2)
 		{
@@ -101,7 +102,7 @@ public class PhaseBaseAirRaid : PhaseBase
 			if (stage2.ApiAirFire is not null)
 			{
 				sb.AppendFormat(BattleRes.AaciType,
-					battleFleets.GetShip(new(stage2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
+					FleetsAfterPhase.GetShip(new(stage2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
 					AntiAirCutIn.FromId(stage2.ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
 					stage2.ApiAirFire.ApiKind);
 			}
@@ -116,7 +117,7 @@ public class PhaseBaseAirRaid : PhaseBase
 
 		if (stage3 is not null)
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, battleFleets.Fleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, FleetsAfterPhase.Fleet,
 				stage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
 				stage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
 				stage3.ApiFclFlag,
@@ -125,7 +126,7 @@ public class PhaseBaseAirRaid : PhaseBase
 
 		if (stage3 is not null)
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.EnemyFleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, FleetsAfterPhase.EnemyFleet,
 				stage3.ApiEraiFlag,
 				stage3.ApiEbakFlag,
 				stage3.ApiEclFlag,
@@ -134,12 +135,11 @@ public class PhaseBaseAirRaid : PhaseBase
 
 		foreach (AirBattleAttack attack in Attacks.Where(attack => attack.AttackType is not AirAttack.None))
 		{
-			AttackDisplays.Add(new(battleFleets, WaveIndex, attack));
-			AddAirBaseDamage(battleFleets, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
+			AttackDisplays.Add(new(FleetsAfterPhase, WaveIndex, attack));
+			AddAirBaseDamage(FleetsAfterPhase, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
 
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 }

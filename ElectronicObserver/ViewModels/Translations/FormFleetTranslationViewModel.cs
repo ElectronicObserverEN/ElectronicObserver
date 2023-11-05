@@ -70,6 +70,7 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string ContextMenuFleet_Capture => FleetResources.ContextMenuFleet_Capture.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_OutputFleetImage => FleetResources.ContextMenuFleet_OutputFleetImage.Replace("_", "__").Replace("&", "_");
 	public string AirControlSimulator => AirControlSimulatorResources.Title;
+	public string OperationRoom => MainResources.OperationRoom;
 
 	public string HP => AlbumMasterShipResources.TitleHP;
 	public string Firepower => AlbumMasterShipResources.Firepower;

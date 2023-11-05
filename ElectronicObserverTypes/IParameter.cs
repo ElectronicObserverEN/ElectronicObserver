@@ -60,4 +60,12 @@ public interface IParameter
 	public int GetEstParameterMax(int level);
 
 	public int GetParameter(int level);
+
+	/// <summary>
+	/// Returns the level when the parameter will increase, null if increase is impossible.
+	/// </summary>
+	/// <param name="level">Current ship level.</param>
+	/// <param name="current">Current parameter value.</param>
+	/// <returns>Level or null if the parameter will never increase.</returns>
+	public int? GetNextLevel(int level, int? current = null);
 }

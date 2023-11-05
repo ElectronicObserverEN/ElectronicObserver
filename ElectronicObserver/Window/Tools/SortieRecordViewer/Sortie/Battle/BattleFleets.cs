@@ -19,7 +19,7 @@ public class BattleFleets
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
-	private int CombinedFleetMainFleetShipCount => 6;
+	private static int CombinedFleetMainFleetShipCount => 6;
 
 	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null, List<IFleetData?>? fleets = null,
 		List<IBaseAirCorpsData>? airBases = null)
@@ -32,6 +32,7 @@ public class BattleFleets
 
 	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases.Select(CloneAirBase).ToList()!)
 	{
+		FriendFleet = CloneFleet(FriendFleet),
 		EnemyFleet = CloneFleet(EnemyFleet),
 		EnemyEscortFleet = CloneFleet(EnemyEscortFleet),
 	};
@@ -48,6 +49,15 @@ public class BattleFleets
 	{
 		null => null,
 		_ => ab.DeepClone(),
+	};
+
+	public IShipData? GetShipByDropId(int? dropId) => dropId switch
+	{
+		null => null,
+		int id => Fleet.MembersWithoutEscaped
+			?.FirstOrDefault(s => s?.MasterID == id)
+			?? EscortFleet?.MembersWithoutEscaped
+				?.FirstOrDefault(s => s?.MasterID == id),
 	};
 
 	public IShipData? GetShip(BattleIndex index) => index.FleetFlag switch
@@ -142,6 +152,29 @@ public class BattleFleets
 			ship.Condition = shipData.ApiCond;
 			ship.Fuel = shipData.ApiFuel;
 			ship.Ammo = shipData.ApiBull;
+		}
+	}
+
+	public void UpdateState(BattleFleets fleetsAfterSortie)
+	{
+		UpdateFleet(Fleet, fleetsAfterSortie.Fleet);
+		UpdateFleet(EscortFleet, fleetsAfterSortie.EscortFleet);
+	}
+
+	private static void UpdateFleet(IFleetData? fleet, IFleetData? updateFleet)
+	{
+		if (fleet is null) return;
+		if (updateFleet is null) return;
+
+		foreach ((IShipData? ship, IShipData? updateShip) in fleet.MembersInstance.Zip(updateFleet.MembersInstance))
+		{
+			if (ship is not ShipDataMock s) continue;
+			if (updateShip is not ShipDataMock u) continue;
+
+			s.Aircraft = u.Aircraft;
+			s.Condition = u.Condition;
+			s.Fuel = u.Fuel;
+			s.Ammo = u.Ammo;
 		}
 	}
 

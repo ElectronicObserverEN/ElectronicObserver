@@ -16,8 +16,7 @@ public class AirControlSimulatorTranslationViewModel : TranslationBaseViewModel
 
 	public string Ships => AirControlSimulatorResources.Ships;
 	public string Equipment => AirControlSimulatorResources.Equipment;
-	public string AllEquipment => AirControlSimulatorResources.AllEquipment;
-	public string LockedEquipment => AirControlSimulatorResources.LockedEquipment;
+	public string IncludeUnlocked => AirControlSimulatorResources.IncludeUnlocked;
 
 	public string CopyLink => SortieRecordViewerResources.CopyLink;
 	public string Ok => AirControlSimulatorResources.Ok;

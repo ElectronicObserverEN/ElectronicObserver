@@ -6,4 +6,5 @@ public record EquipmentExportModel
 	public int? Level { get; init; }
 	public int? AircraftLevel { get; init; }
 	public int? Aircraft { get; init; }
+	public int? AircraftAfterBattle { get; init; }
 }

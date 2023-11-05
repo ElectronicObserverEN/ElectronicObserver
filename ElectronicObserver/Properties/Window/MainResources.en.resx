@@ -444,4 +444,7 @@ Do you want to open this github issue?</value>
   <data name="WindowCaptureLoadFailed" xml:space="preserve">
     <value>Failed to load window capture data</value>
   </data>
+  <data name="OperationRoom" xml:space="preserve">
+    <value>Operation room</value>
+  </data>
 </root>

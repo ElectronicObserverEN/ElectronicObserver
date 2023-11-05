@@ -63,15 +63,14 @@ public class PhaseFriendlySupportInfo : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		battleFleets.FriendFleet = new FleetDataMock
 		{
 			MembersInstance = new(Ships),
 		};
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 
 	private string CreateDisplay()

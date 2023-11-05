@@ -57,6 +57,8 @@ public static class EquipmentIconTypeExtensions
 		EquipmentIconType.NightSeaplaneBomber => Properties.EquipmentIconType.NightSeaplaneBomber,
 		EquipmentIconType.ArmyInfantry => Properties.EquipmentIconType.ArmyInfantry,
 		EquipmentIconType.SmokeGenerator => Properties.EquipmentIconType.SmokeGenerator,
+		EquipmentIconType.BarrageBalloon => Properties.EquipmentIconType.BarrageBalloon,
+		EquipmentIconType.LandBasedFighterJet => Properties.EquipmentIconType.LandBasedFighterJet,
 		EquipmentIconType.Locked => Properties.EquipmentIconType.Locked,
 		_ => Properties.EquipmentIconType.Unknown,
 	};

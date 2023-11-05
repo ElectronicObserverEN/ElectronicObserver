@@ -33,9 +33,11 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async Task UpdateShips()
+	private async Task UpdateShips(bool? allShips)
 	{
-		string data = await BrowserHost.GetShipData();
+		if (allShips is not bool all) return;
+
+		string data = await BrowserHost.GetShipData(all);
 
 		ExecuteScriptAsync?.Invoke($"loadShipData('{data}')");
 	}

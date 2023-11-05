@@ -169,12 +169,19 @@
 							<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
 							<MenuItem Command="{Binding OpenAirControlSimulatorCommand}" Header="{Binding SortieRecordViewer.Open}" />
 						</MenuItem>
+						<MenuItem Header="{Binding SortieRecordViewer.OperationRoom}">
+							<MenuItem Command="{Binding CopyOperationRoomLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
+							<MenuItem Command="{Binding OpenOperationRoomCommand}" Header="{Binding SortieRecordViewer.Open}" />
+						</MenuItem>
 						<MenuItem Header="{x:Static translations:CsvExportResources.LogbookRedCsvExport}">
-							<MenuItem Command="{Binding ExportDayShellingCommand}" Header="{x:Static translations:CsvExportResources.ShellingBattle}" />
-							<MenuItem Command="{Binding ExportNightShellingCommand}" Header="{x:Static translations:CsvExportResources.NightBattle}" />
-							<MenuItem Command="{Binding ExportTorpedoCommand}" Header="{x:Static translations:CsvExportResources.Torpedo}" />
+							<MenuItem Command="{Binding ExportShellingBattleCommand}" Header="{x:Static translations:CsvExportResources.ShellingBattle}" />
+							<MenuItem Command="{Binding ExportNightBattleCommand}" Header="{x:Static translations:CsvExportResources.NightBattle}" />
+							<MenuItem Command="{Binding ExportTorpedoBattleCommand}" Header="{x:Static translations:CsvExportResources.TorpedoBattle}" />
 							<MenuItem Command="{Binding ExportAirBattleCommand}" Header="{x:Static translations:CsvExportResources.AirBattle}" />
 							<MenuItem Command="{Binding ExportAirBaseBattleCommand}" Header="{x:Static translations:CsvExportResources.AirBaseBattle}" />
+							<MenuItem Command="{Binding ExportRedShellingBattleCommand}" Header="{x:Static translations:CsvExportResources.RedShellingBattle}" />
+							<MenuItem Command="{Binding ExportRedNightBattleCommand}" Header="{x:Static translations:CsvExportResources.RedNightBattle}" />
+							<MenuItem Command="{Binding ExportRedTorpedoBattleCommand}" Header="{x:Static translations:CsvExportResources.RedTorpedoBattle}" />
 						</MenuItem>
 					</ContextMenu>
 				</DataGrid.ContextMenu>

@@ -74,6 +74,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.Getship;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlot;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlistDetail;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.AnchorageRepair;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.SelectEventmapRank;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
@@ -320,6 +321,7 @@ public static class Extensions
 		"api_req_map/select_eventmap_rank" => JsonSerializer.Deserialize<ApiResponse<ApiReqMapSelectEventmapRankResponse>>(file.Content).GetApiData(),
 		"api_req_map/start" => JsonSerializer.Deserialize<ApiResponse<ApiReqMapStartResponse>>(file.Content).GetApiData(),
 		"api_req_map/start_air_base" => JsonSerializer.Deserialize<ApiResponse<ApiReqMapStartAirBaseResponse>>(file.Content).GetApiData(),
+		"api_req_map/anchorage_repair" => JsonSerializer.Deserialize<ApiResponse<ApiReqMapAnchorageRepairResponse>>(file.Content).GetApiData(),
 		"api_req_member/get_event_selected_reward" => JsonSerializer.Deserialize<ApiResponse<ApiReqMemberGetEventSelectedRewardResponse>>(file.Content).GetApiData(),
 		"api_req_member/get_incentive" => JsonSerializer.Deserialize<ApiResponse<ApiReqMemberGetIncentiveResponse>>(file.Content).GetApiData(),
 		"api_req_member/get_practice_enemyinfo" => JsonSerializer.Deserialize<ApiResponse<ApiReqMemberGetPracticeEnemyinfoResponse>>(file.Content).GetApiData(),
@@ -436,7 +438,7 @@ public static class Extensions
 			Dictionary<string, string>? requestData = JsonSerializer
 				.Deserialize<Dictionary<string, string>>(apiFile.Content);
 
-			if(requestData is null) continue;
+			if (requestData is null) continue;
 
 			requestData.Remove("api_token");
 

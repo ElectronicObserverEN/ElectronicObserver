@@ -5,11 +5,13 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.BaseAirCorps;
 
@@ -19,8 +21,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 
 	public List<BaseAirCorpsItemViewModel> ControlMember { get; }
 
-	public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps",
-		ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
+	public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps", IconContent.FormBaseAirCorps)
 	{
 		FormBaseAirCorps = Ioc.Default.GetService<FormBaseAirCorpsTranslationViewModel>()!;
 
@@ -28,14 +29,13 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		FormBaseAirCorps.PropertyChanged += (_, _) => Title = FormBaseAirCorps.Title;
 
 		ControlMember = new();
-		// TableMember.SuspendLayout();
+
 		for (int i = 0; i < 9; i++)
 		{
 			ControlMember.Add(new(CopyOrganizationCommand, DisplayRelocatedEquipmentsCommand));
 		}
-		// TableMember.ResumeLayout();
 
-		var api = Observer.APIObserver.Instance;
+		APIObserver api = APIObserver.Instance;
 
 		api.ApiPort_Port.ResponseReceived += Updated;
 		api.ApiGetMember_MapInfo.ResponseReceived += Updated;
@@ -54,91 +54,56 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 
 	private void ConfigurationChanged()
 	{
-		var c = Utility.Configuration.Config;
-
-		// TableMember.SuspendLayout();
-
-		// Font = c.UI.MainFont;
-
-		foreach (var control in ControlMember)
+		foreach (BaseAirCorpsItemViewModel control in ControlMember)
+		{
 			control.ConfigurationChanged();
-
-		// ControlHelper.SetTableRowStyles(TableMember, ControlHelper.GetDefaultRowStyle());
-
-		// TableMember.ResumeLayout();
+		}
 
 		if (KCDatabase.Instance.BaseAirCorps.Any())
+		{
 			Updated(null, null);
+		}
 	}
 
-
-	void Updated(string apiname, dynamic data)
+	private void Updated(string? apiname, dynamic? data)
 	{
-		var keys = KCDatabase.Instance.BaseAirCorps.Keys;
+		List<int> keys = KCDatabase.Instance.BaseAirCorps.Keys.ToList();
 
 		if (Utility.Configuration.Config.FormBaseAirCorps.ShowEventMapOnly)
 		{
-			var eventAreaCorps = KCDatabase.Instance.BaseAirCorps.Values.Where(b =>
-			{
-				var maparea = KCDatabase.Instance.MapArea[b.MapAreaID];
-				return maparea != null && maparea.MapType == 1;
-			}).Select(b => b.ID);
+			List<int> eventAreaCorps = KCDatabase.Instance.BaseAirCorps.Values
+				.Where(b => KCDatabase.Instance.MapArea[b.MapAreaID] is { MapType: 1 })
+				.Select(b => b.ID)
+				.ToList();
 
 			if (eventAreaCorps.Any())
+			{
 				keys = eventAreaCorps;
+			}
 		}
 
-
-		// TableMember.SuspendLayout();
-		// TableMember.RowCount = keys.Count();
 		for (int i = 0; i < ControlMember.Count; i++)
 		{
-			ControlMember[i].Update(i < keys.Count() ? keys.ElementAt(i) : -1);
+			ControlMember[i].Update(i < keys.Count ? keys.ElementAt(i) : -1);
 		}
-		// TableMember.ResumeLayout();
 
-		// set icon
+		List<IBaseAirCorpsSquadron> squadrons = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(b => b != null)
+			.SelectMany(b => b.Squadrons.Values)
+			.Where(s => s != null)
+			.ToList();
+
+		bool isNotReplenished = squadrons.Any(s => s.State == 1 && s.AircraftCurrent < s.AircraftMax);
+		bool isTired = squadrons.Any(s => s is { State: 1, Condition: 2 });
+		bool isVeryTired = squadrons.Any(s => s is { State: 1, Condition: 3 });
+
+		Icon = true switch
 		{
-			var squadrons = KCDatabase.Instance.BaseAirCorps.Values.Where(b => b != null)
-				.SelectMany(b => b.Squadrons.Values)
-				.Where(s => s != null);
-			bool isNotReplenished = squadrons.Any(s => s.State == 1 && s.AircraftCurrent < s.AircraftMax);
-			bool isTired = squadrons.Any(s => s.State == 1 && s.Condition == 2);
-			bool isVeryTired = squadrons.Any(s => s.State == 1 && s.Condition == 3);
-
-			IconContent imageIndex;
-
-			if (isNotReplenished)
-				imageIndex = IconContent.FleetNotReplenished;
-			else if (isVeryTired)
-				imageIndex = IconContent.ConditionVeryTired;
-			else if (isTired)
-				imageIndex = IconContent.ConditionTired;
-			else
-				imageIndex = IconContent.FormBaseAirCorps;
-
-			IconSource = ImageSourceIcons.GetIcon(imageIndex);
-
-			// if (Icon != null) ResourceManager.DestroyIcon(Icon);
-			// Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[imageIndex]);
-			// if (Parent != null) Parent.Refresh();       //アイコンを更新するため
-		}
-	}
-
-	private void ContextMenuBaseAirCorps_Opening()
-	{
-		/*
-		if (KCDatabase.Instance.BaseAirCorps.Count == 0)
-		{
-			e.Cancel = true;
-			return;
-		}
-
-		if (ContextMenuBaseAirCorps.SourceControl.Name == "Name")
-			ContextMenuBaseAirCorps_CopyOrganization.Tag = ContextMenuBaseAirCorps.SourceControl.Tag as int? ?? -1;
-		else
-			ContextMenuBaseAirCorps_CopyOrganization.Tag = -1;
-		*/
+			_ when isNotReplenished => IconContent.FleetNotReplenished,
+			_ when isVeryTired => IconContent.ConditionVeryTired,
+			_ when isTired => IconContent.ConditionTired,
+			_ => IconContent.FormBaseAirCorps,
+		};
 	}
 
 	[RelayCommand]
@@ -146,16 +111,16 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 	{
 		areaid ??= -1;
 
-		var sb = new StringBuilder();
-		// int areaid = ContextMenuBaseAirCorps_CopyOrganization.Tag as int? ?? -1;
+		StringBuilder sb = new();
 
-		var baseaircorps = KCDatabase.Instance.BaseAirCorps.Values;
+		IEnumerable<BaseAirCorpsData> baseaircorps = KCDatabase.Instance.BaseAirCorps.Values;
 		if (areaid != -1)
-			baseaircorps = baseaircorps.Where(c => c.MapAreaID == areaid);
-
-		foreach (var corps in baseaircorps)
 		{
+			baseaircorps = baseaircorps.Where(c => c.MapAreaID == areaid);
+		}
 
+		foreach (BaseAirCorpsData corps in baseaircorps)
+		{
 			string areaName = KCDatabase.Instance.MapArea.ContainsKey(corps.MapAreaID) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
 
 			sb.AppendFormat($"{FormBaseAirCorps.CopyOrganizationFormat}\n",
@@ -164,7 +129,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 				Calculator.GetAirSuperiority(corps),
 				corps.Distance);
 
-			var sq = corps.Squadrons.Values.ToArray();
+			IBaseAirCorpsSquadron[] sq = corps.Squadrons.Values.ToArray();
 
 			for (int i = 0; i < sq.Length; i++)
 			{
@@ -184,7 +149,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 						break;
 					case 1:
 					{
-						var eq = sq[i].EquipmentInstance;
+						IEquipmentData? eq = sq[i].EquipmentInstance;
 
 						sb.Append(eq?.NameWithLevel ?? FormBaseAirCorps.Empty);
 
@@ -212,7 +177,9 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 			.Select(eq => string.Format("{0} ({1}～)", eq.EquipmentInstance.NameWithLevel, DateTimeHelper.TimeToCSVString(eq.RelocatedTime))));
 
 		if (message.Length == 0)
+		{
 			message = GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail;
+		}
 
 		MessageBox.Show(message, GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title, MessageBoxButton.OK, MessageBoxImage.Information);
 	}

@@ -10,7 +10,6 @@
 	d:DesignWidth="32"
 	mc:Ignorable="d"
 	>
-
 	<Border
 		Background="Transparent"
 		DataContext="{Binding ViewModel, ElementName=ShipSlotControl}"

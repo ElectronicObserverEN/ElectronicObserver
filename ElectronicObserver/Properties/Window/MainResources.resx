@@ -444,4 +444,7 @@
   <data name="WindowCaptureLoadFailed" xml:space="preserve">
     <value>ウィンドウキャプチャデータの読み込みに失敗しました</value>
   </data>
+  <data name="OperationRoom" xml:space="preserve">
+    <value>作戦室</value>
+  </data>
 </root>

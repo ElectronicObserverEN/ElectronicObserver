@@ -758,6 +758,11 @@ public sealed class Configuration
 			public string APIListPath { get; set; }
 
 			/// <summary>
+			/// Electronic Observer API URL
+			/// </summary>
+			public string ElectronicObserverApiUrl { get; set; } = "";
+
+			/// <summary>
 			/// エラー発生時に警告音を鳴らすか
 			/// </summary>
 			public bool AlertOnError { get; set; }
@@ -820,6 +825,8 @@ public sealed class Configuration
 			/// レイアウトロック中でもフロートウィンドウを閉じられるようにするか
 			/// </summary>
 			public bool CanCloseFloatWindowInLock { get; set; }
+
+			public string? CsvExportPath { get; set; }
 
 			public ConfigLife()
 			{

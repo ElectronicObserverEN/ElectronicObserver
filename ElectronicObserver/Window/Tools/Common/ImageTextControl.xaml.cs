@@ -1,20 +1,18 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace ElectronicObserver.Window.Tools.Common;
 
 /// <summary>
 /// Interaction logic for ImageTextControl.xaml
 /// </summary>
-public partial class ImageTextControl : UserControl
+public partial class ImageTextControl
 {
 	public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
-		nameof(Image), typeof(ImageSource), typeof(ImageTextControl), new PropertyMetadata(default(ImageSource)));
+		nameof(Image), typeof(object), typeof(ImageTextControl), new PropertyMetadata(default(object)));
 
-	public ImageSource Image
+	public object Image
 	{
-		get => (ImageSource)GetValue(ImageProperty);
+		get => GetValue(ImageProperty);
 		set => SetValue(ImageProperty, value);
 	}
 

@@ -76,6 +76,7 @@ public class PhaseNightBattle : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		foreach (PhaseNightBattleAttack atk in Attacks)
 		{
@@ -91,8 +92,8 @@ public class PhaseNightBattle : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack));
-						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
+						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
 
@@ -108,8 +109,8 @@ public class PhaseNightBattle : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack));
-						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
+						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
 
@@ -135,23 +136,21 @@ public class PhaseNightBattle : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, comboAttack));
-						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
+						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
 
 				default:
 					foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 					{
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(battleFleets, atk));
-						AddDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
+						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, atk, defs.Key));
+						AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
 					}
 					break;
 			}
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 }

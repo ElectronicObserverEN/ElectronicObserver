@@ -11,7 +11,7 @@ public class WikiEquipment
 	public bool _buildable { get; set; }
 	public JsonElement _evasion { get; set; }
 	public JsonElement _firepower { get; set; }
-	public int _icon { get; set; }
+	public int? _icon { get; set; }
 	public int _id { get; set; }
 	public JsonElement _info { get; set; }
 	public string _japanese_name { get; set; }

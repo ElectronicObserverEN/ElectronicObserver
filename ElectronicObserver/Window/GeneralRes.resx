@@ -832,4 +832,16 @@
 
 （この警告は 設定→動作 から無効化できます。）</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="NextAccuracy" xml:space="preserve">
+    <value>次の命中項</value>
+  </data>
+  <data name="NextEvasion" xml:space="preserve">
+    <value>次の回避</value>
+  </data>
+  <data name="NextAsw" xml:space="preserve">
+    <value>次の対潜</value>
+  </data>
 </root>

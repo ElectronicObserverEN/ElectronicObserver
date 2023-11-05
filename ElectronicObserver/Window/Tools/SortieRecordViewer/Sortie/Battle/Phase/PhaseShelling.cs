@@ -21,19 +21,17 @@ public class PhaseShelling : PhaseBase
 	};
 
 	private IKCDatabase KcDatabase { get; }
-	private ApiHougeki1? ShellingData { get; }
+	private ApiHougeki1 ShellingData { get; }
 	public DayShellingPhase DayShellingPhase { get; }
 
 	private List<PhaseShellingAttack> Attacks { get; } = new();
 	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseShelling(IKCDatabase kcDatabase, ApiHougeki1? shellingData, DayShellingPhase dayShellingPhase)
+	public PhaseShelling(IKCDatabase kcDatabase, ApiHougeki1 shellingData, DayShellingPhase dayShellingPhase)
 	{
 		KcDatabase = kcDatabase;
 		ShellingData = shellingData;
 		DayShellingPhase = dayShellingPhase;
-
-		if (ShellingData is null) return;
 
 		static int ParseInt(object e) => e switch
 		{
@@ -85,9 +83,8 @@ public class PhaseShelling : PhaseBase
 
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
-		if (ShellingData is null) return battleFleets;
-
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		foreach (PhaseShellingAttack atk in Attacks)
 		{
@@ -103,8 +100,8 @@ public class PhaseShelling : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(battleFleets, comboAttack));
-						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
+						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
 
@@ -120,8 +117,8 @@ public class PhaseShelling : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(battleFleets, comboAttack));
-						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
+						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
 
@@ -137,23 +134,21 @@ public class PhaseShelling : PhaseBase
 							Defenders = new() { atk.Defenders[i] },
 						};
 
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(battleFleets, comboAttack));
-						AddDamage(battleFleets, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
+						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
 					}
 					break;
 
 				default:
 					foreach (IGrouping<BattleIndex, PhaseShellingDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 					{
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(battleFleets, atk));
-						AddDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
+						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, atk));
+						AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
 					}
 					break;
 			}
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 }

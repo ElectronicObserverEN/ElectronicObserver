@@ -348,6 +348,10 @@
 					<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieDetail.CopyLink}" />
 					<MenuItem Command="{Binding OpenAirControlSimulatorCommand}" Header="{Binding SortieDetail.Open}" />
 				</MenuItem>
+				<MenuItem Header="{Binding SortieDetail.OperationRoom}">
+					<MenuItem Command="{Binding CopyOperationRoomLinkCommand}" Header="{Binding SortieDetail.CopyLink}" />
+					<MenuItem Command="{Binding OpenOperationRoomCommand}" Header="{Binding SortieDetail.Open}" />
+				</MenuItem>
 			</MenuItem>
 		</Menu>
 

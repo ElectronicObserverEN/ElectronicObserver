@@ -138,11 +138,8 @@
   <data name="Equipment" xml:space="preserve">
     <value>Equipment</value>
   </data>
-  <data name="AllEquipment" xml:space="preserve">
-    <value>All equipment</value>
-  </data>
-  <data name="LockedEquipment" xml:space="preserve">
-    <value>Locked equipment</value>
+  <data name="IncludeUnlocked" xml:space="preserve">
+    <value>Include unlocked</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>

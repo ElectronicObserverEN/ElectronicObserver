@@ -32,19 +32,18 @@ public class PhaseTorpedo : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		ProcessPlayerAttacks();
 		ProcessEnemyAttacks();
 
 		foreach (PhaseTorpedoAttack attack in Attacks)
 		{
-			AttackDisplays.Add(new(battleFleets, attack));
-			AddDamage(battleFleets, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
+			AttackDisplays.Add(new(FleetsAfterPhase, attack));
+			AddDamage(FleetsAfterPhase, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 
 	private void ProcessPlayerAttacks()

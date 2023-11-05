@@ -2,9 +2,9 @@
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public sealed class TorpedoExportMap : ClassMap<TorpedoExportModel>
+public sealed class RedTorpedoBattleExportMap : ClassMap<TorpedoBattleExportModel>
 {
-	public TorpedoExportMap()
+	public RedTorpedoBattleExportMap()
 	{
 		References<CommonDataExportMap>(s => s.CommonData);
 		Map(m => m.BattleType).Name(CsvExportResources.BattleType);
@@ -18,8 +18,8 @@ public sealed class TorpedoExportMap : ClassMap<TorpedoExportModel>
 		Map(m => m.HitType).Name(CsvExportResources.HitType);
 		Map(m => m.Damage).Name(CsvExportResources.Damage);
 		Map(m => m.Protected).Name(CsvExportResources.Protected);
-		References<ShipExportMap>(s => s.Attacker, CsvExportResources.PrefixAttacker).Prefix(CsvExportResources.PrefixAttacker);
-		References<ShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
+		References<RedShipExportMap>(s => s.Attacker, CsvExportResources.PrefixAttacker).Prefix(CsvExportResources.PrefixAttacker);
+		References<RedShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
 		Map(m => m.FleetType).Name(CsvExportResources.FleetType);
 		Map(m => m.EnemyFleetType).Name(CsvExportResources.EnemyFleetType);
 	}

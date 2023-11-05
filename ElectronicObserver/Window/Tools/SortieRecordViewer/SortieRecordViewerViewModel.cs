@@ -4,10 +4,9 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CsvHelper;
@@ -17,8 +16,6 @@ using ElectronicObserver.Common.ContentDialogs;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
@@ -197,7 +194,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
-		ToolService.OpenSortieDetail(SelectedSortie);
+		ToolService.OpenSortieDetail(Db, SelectedSortie);
 	}
 
 	[RelayCommand]
@@ -208,51 +205,19 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
 		}
 
-		ToolService.CopySmokerDataCsv(SelectedSorties);
+		ToolService.CopySmokerDataCsv(Db, SelectedSorties);
 	}
 
 	[RelayCommand]
 	private async Task CopySortieData()
 	{
-		foreach (SortieRecordViewModel sortieRecord in SelectedSorties)
-		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
-			sortieRecord.Model.CleanRequests();
-		}
-
-		List<SortieRecord> sorties = SelectedSorties
-			.OrderBy(s => s.SortieStart)
-			.Select(s => new SortieRecord
-			{
-				Id = s.Id,
-				World = s.World,
-				Map = s.Map,
-				ApiFiles = s.Model.ApiFiles
-					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
-					.ToList(),
-				FleetData = s.Model.FleetData,
-				MapData = s.Model.MapData,
-			}).ToList();
-
-		Clipboard.SetText(JsonSerializer.Serialize(sorties));
+		await ToolService.CopySortieDataToClipboard(Db, SelectedSorties);
 	}
 
 	[RelayCommand]
 	private void LoadSortieData()
 	{
-		try
-		{
-			List<SortieRecord>? sorties = JsonSerializer
-				.Deserialize<List<SortieRecord>>(Clipboard.GetText());
-
-			if (sorties is null) return;
-
-			ToolService.OpenSortieDetail(new SortieRecordViewModel(sorties.First(), DateTime.UtcNow));
-		}
-		catch (Exception e)
-		{
-			Logger.Add(2, $"Failed to load sortie details: {e.Message}{e.StackTrace}");
-		}
+		ToolService.LoadSortieDataFromClipboard(Db);
 	}
 
 	[RelayCommand]
@@ -271,46 +236,107 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		ToolService.AirControlSimulator(SelectedSortie);
 	}
 
-	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportDayShelling(CancellationToken cancellationToken)
+	[RelayCommand]
+	private void CopyOperationRoomLink()
 	{
-		await ExportCsv<DayShellingExportMap, DayShellingExportModel>(DataExportHelper.DayShelling, cancellationToken);
+		if (SelectedSortie is null) return;
+
+		ToolService.CopyOperationRoomLink(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.OperationRoom(SelectedSortie);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportNightShelling(CancellationToken cancellationToken)
+	private async Task ExportShellingBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<NightShellingExportMap, NightShellingExportModel>(DataExportHelper.NightShelling, cancellationToken);
+		await ExportCsv<ShellingBattleExportMap, ShellingBattleExportModel>(
+			DataExportHelper.ShellingBattle,
+			ExportShellingBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportTorpedo(CancellationToken cancellationToken)
+	private async Task ExportNightBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<TorpedoExportMap, TorpedoExportModel>(DataExportHelper.Torpedo, cancellationToken);
+		await ExportCsv<NightBattleExportMap, NightBattleExportModel>(
+			DataExportHelper.NightBattle,
+			ExportNightBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportTorpedoBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<TorpedoBattleExportMap, TorpedoBattleExportModel>(
+			DataExportHelper.TorpedoBattle,
+			ExportTorpedoBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportAirBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<AirBattleExportMap, AirBattleExportModel>(DataExportHelper.AirBattle, cancellationToken);
+		await ExportCsv<AirBattleExportMap, AirBattleExportModel>(
+			DataExportHelper.AirBattle,
+			ExportAirBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportAirBaseBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(DataExportHelper.AirBaseBattle, cancellationToken);
+		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(
+			DataExportHelper.AirBaseBattle,
+			ExportAirBaseBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedShellingBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedShellingBattleExportMap, ShellingBattleExportModel>(
+			DataExportHelper.ShellingBattle,
+			ExportRedShellingBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedNightBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedNightBattleExportMap, NightBattleExportModel>(
+			DataExportHelper.NightBattle,
+			ExportRedNightBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedTorpedoBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedTorpedoBattleExportMap, TorpedoBattleExportModel>(
+			DataExportHelper.TorpedoBattle,
+			ExportRedTorpedoBattleCancelCommand,
+			cancellationToken);
 	}
 
 	private async Task ExportCsv<TMap, TElement>(
 		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
+		ICommand cancellationCommand,
 		CancellationToken cancellationToken = default
 	) where TMap : ClassMap<TElement>
 	{
 		await App.Current!.Dispatcher.BeginInvoke(async () =>
 		{
-			string? path = FileService.ExportCsv();
+			string? path = FileService.ExportCsv(Configuration.Config.Life.CsvExportPath);
 
 			if (string.IsNullOrEmpty(path)) return;
+
+			Configuration.Config.Life.CsvExportPath = Path.GetDirectoryName(path);
 
 			ExportProgress = new();
 
@@ -335,7 +361,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				}
 				else
 				{
-					ExportDayShellingCancelCommand.Execute(null);
+					cancellationCommand.Execute(null);
 				}
 
 				ExportProgress = null;

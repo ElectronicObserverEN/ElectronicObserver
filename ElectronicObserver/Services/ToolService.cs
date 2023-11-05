@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
@@ -22,7 +27,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
@@ -37,7 +41,6 @@ public class ToolService
 		DataSerializationService = dataSerializationService;
 	}
 
-
 	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null)
 	{
 		viewModel ??= new();
@@ -47,7 +50,7 @@ public class ToolService
 		if (dialog.ShowDialog(App.Current!.MainWindow!) is not true) return;
 
 		AirControlSimulatorViewModel result = dialog.Result!;
-		
+
 		string url = DataSerializationService.AirControlSimulatorLink(result);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
@@ -73,6 +76,42 @@ public class ToolService
 		string url = GetAirControlSimulatorLink(sortie);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
+	}
+
+	public void OperationRoom(AirControlSimulatorViewModel? viewModel = null)
+	{
+		viewModel ??= new(DataSerializationService.OperationRoomLink);
+
+		viewModel.DataSelectionVisible = false;
+
+		BaseAirCorpsSimulationContentDialog dialog = new(viewModel);
+
+		if (dialog.ShowDialog(App.Current!.MainWindow!) is not true) return;
+
+		AirControlSimulatorViewModel result = dialog.Result!;
+
+		string url = DataSerializationService.OperationRoomLink(result);
+
+		ProcessStartInfo psi = new()
+		{
+			FileName = url,
+			UseShellExecute = true,
+		};
+
+		Process.Start(psi);
+	}
+
+	public void OperationRoom(SortieRecordViewModel sortie)
+	{
+		string url = GetOperationRoomLink(sortie);
+
+		ProcessStartInfo psi = new()
+		{
+			FileName = url,
+			UseShellExecute = true,
+		};
+
+		Process.Start(psi);
 	}
 
 	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null, DeckBuilderData? data = null)
@@ -205,9 +244,9 @@ public class ToolService
 		new EquipmentUpgradePlannerWindow(viewModel).Show(App.Current.MainWindow);
 	}
 
-	public void OpenSortieDetail(SortieRecordViewModel sortie)
+	public void OpenSortieDetail(ElectronicObserverContext db, SortieRecordViewModel sortie)
 	{
-		SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(sortie);
+		SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(db, sortie);
 
 		if (sortieDetail is null) return;
 
@@ -216,13 +255,13 @@ public class ToolService
 
 	private static string CsvSeparator => ";";
 
-	public void CopySmokerDataCsv(IEnumerable<SortieRecordViewModel> sorties)
+	public void CopySmokerDataCsv(ElectronicObserverContext db, IEnumerable<SortieRecordViewModel> sorties)
 	{
 		List<(SortieDetailViewModel SortieDetail, BattleData Battle)> data = new();
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(sortieRecord);
+			SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(db, sortieRecord);
 
 			if (sortieDetail is null) return;
 
@@ -361,14 +400,11 @@ public class ToolService
 		});
 	}
 
-	public SortieDetailViewModel? GenerateSortieDetailViewModel(SortieRecordViewModel sortie)
+	public SortieDetailViewModel? GenerateSortieDetailViewModel(ElectronicObserverContext db, 
+		SortieRecordViewModel sortie)
 	{
 		try
 		{
-			List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
-			bool isCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
-			List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases.Select(f => f.MakeAirBase()).ToList();
-
 			ApiFile startRequestFile = sortie.Model.ApiFiles
 				.First(f => f.ApiFileType is ApiFileType.Request && f.Name is "api_req_map/start");
 
@@ -378,15 +414,11 @@ public class ToolService
 
 			// fleetId is 1 based, so need to do -1 when fetching data from fleets
 			if (!int.TryParse(startRequest.ApiDeckId, out int fleetId)) throw new Exception();
-			if (fleets.Skip(fleetId - 1).FirstOrDefault() is not IFleetData fleet) throw new Exception();
 
-			IFleetData? escortFleet = isCombinedFleet switch
-			{
-				true => fleets.Skip(fleetId).FirstOrDefault(),
-				_ => null,
-			};
+			BattleFleets fleetsBeforeSortie = MakeBattleFleets(sortie.Model.FleetData, fleetId);
+			BattleFleets? fleetsAfterSortie = MakeBattleFleets(sortie.Model.FleetAfterSortieData, fleetId);
 
-			SortieDetailViewModel sortieDetail = new(sortie, new(fleet, escortFleet, fleets, airBases));
+			SortieDetailViewModel sortieDetail = new(db, sortie, fleetsBeforeSortie, fleetsAfterSortie);
 
 			// todo: battle requests contain a flag if smoke screen was activated
 			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
@@ -415,6 +447,26 @@ public class ToolService
 		}
 
 		return null;
+	}
+
+	[return: NotNullIfNotNull(nameof(fleetData))]
+	private static BattleFleets? MakeBattleFleets(SortieFleetData? fleetData, int fleetId)
+	{
+		if (fleetData is null) return null;
+
+		List<IFleetData?> fleets = fleetData.MakeFleets();
+		bool isCombinedFleet = fleetData.CombinedFlag > 0;
+		List<IBaseAirCorpsData> airBases = fleetData.AirBases.Select(f => f.MakeAirBase()).ToList();
+
+		if (fleets.Skip(fleetId - 1).FirstOrDefault() is not IFleetData fleet) throw new Exception();
+
+		IFleetData? escortFleet = isCombinedFleet switch
+		{
+			true => fleets.Skip(fleetId).FirstOrDefault(),
+			_ => null,
+		};
+
+		return new(fleet, escortFleet, fleets, airBases);
 	}
 
 	public void CopyReplayLinkToClipboard(SortieRecordViewModel sortie)
@@ -549,5 +601,94 @@ public class ToolService
 		);
 
 		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
+	}
+
+	public void CopyOperationRoomLink(SortieRecordViewModel sortie)
+	{
+		string url = GetOperationRoomLink(sortie);
+
+		Clipboard.SetText(url);
+	}
+
+	private string GetOperationRoomLink(SortieRecordViewModel sortie)
+	{
+		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
+
+		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
+			.Select(f => f.MakeAirBase())
+			.ToList();
+
+		string operationRoomData = DataSerializationService.DeckBuilder
+		(
+			KCDatabase.Instance.Admiral.Level,
+			fleets.Skip(0).FirstOrDefault(),
+			fleets.Skip(1).FirstOrDefault(),
+			fleets.Skip(2).FirstOrDefault(),
+			fleets.Skip(3).FirstOrDefault(),
+			airBases.Skip(0).FirstOrDefault(),
+			airBases.Skip(1).FirstOrDefault(),
+			airBases.Skip(2).FirstOrDefault()
+		);
+
+		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
+	}
+
+	public async Task CopySortieDataToClipboard(ElectronicObserverContext db, 
+		SortieRecordViewModel sortie)
+	{
+		await CopySortieDataToClipboard(db, new List<SortieRecord> { sortie.Model });
+	}
+
+	public async Task CopySortieDataToClipboard(ElectronicObserverContext db,
+		IEnumerable<SortieRecordViewModel> selectedSorties)
+	{
+		List<SortieRecord> sortieRecords = selectedSorties
+			.OrderBy(s => s.SortieStart)
+			.Select(s => s.Model)
+			.ToList();
+
+		await CopySortieDataToClipboard(db, sortieRecords);
+	}
+
+	private async Task CopySortieDataToClipboard(ElectronicObserverContext db, List<SortieRecord> sortieRecords)
+	{
+		foreach (SortieRecord sortieRecord in sortieRecords)
+		{
+			await sortieRecord.EnsureApiFilesLoaded(db);
+			sortieRecord.CleanRequests();
+		}
+
+		List<SortieRecord> sorties = sortieRecords
+			.Select(s => new SortieRecord
+			{
+				Id = s.Id,
+				World = s.World,
+				Map = s.Map,
+				ApiFiles = s.ApiFiles
+					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
+					.ToList(),
+				FleetData = s.FleetData,
+				FleetAfterSortieData = s.FleetAfterSortieData,
+				MapData = s.MapData,
+			}).ToList();
+
+		Clipboard.SetText(JsonSerializer.Serialize(sorties));
+	}
+
+	public void LoadSortieDataFromClipboard(ElectronicObserverContext db)
+	{
+		try
+		{
+			List<SortieRecord>? sorties = JsonSerializer
+				.Deserialize<List<SortieRecord>>(Clipboard.GetText());
+
+			if (sorties is null) return;
+
+			OpenSortieDetail(db, new SortieRecordViewModel(sorties.First(), DateTime.UtcNow));
+		}
+		catch (Exception e)
+		{
+			Logger.Add(2, $"Failed to load sortie details: {e.Message}{e.StackTrace}");
+		}
 	}
 }

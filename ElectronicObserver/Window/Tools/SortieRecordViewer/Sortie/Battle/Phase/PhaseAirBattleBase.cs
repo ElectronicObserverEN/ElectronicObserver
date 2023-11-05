@@ -173,6 +173,7 @@ public class PhaseAirBattleBase : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		if (Stage2 is { } stage2)
 		{
@@ -196,7 +197,7 @@ public class PhaseAirBattleBase : PhaseBase
 		if (ApiAirFire is not null)
 		{
 			sb.AppendFormat(BattleRes.AaciType,
-				battleFleets.GetShip(new(ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
+				FleetsAfterPhase.GetShip(new(ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
 				AntiAirCutIn.FromId(ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
 				ApiAirFire.ApiKind);
 		}
@@ -214,7 +215,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3 is not null)
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, battleFleets.Fleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, FleetsAfterPhase.Fleet,
 				stage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
 				stage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
 				stage3.ApiFclFlag,
@@ -223,7 +224,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3Jet is not null)
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.Fleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, FleetsAfterPhase.Fleet,
 				stage3Jet.ApiEraiFlag,
 				stage3Jet.ApiEbakFlag,
 				stage3Jet.ApiEclFlag,
@@ -232,7 +233,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3Combined is { ApiFraiFlag: not null, ApiFbakFlag: not null, ApiFclFlag: not null, ApiFdam: not null })
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, battleFleets.EscortFleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Player, 6, FleetsAfterPhase.EscortFleet,
 				stage3Combined.ApiFraiFlag.Select(i => i ?? 0).ToList(),
 				stage3Combined.ApiFbakFlag.Select(i => i ?? 0).ToList(),
 				stage3Combined.ApiFclFlag,
@@ -241,7 +242,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3JetCombined is { ApiEraiFlag: not null, ApiEbakFlag: not null, ApiEclFlag: not null, ApiEdam: not null })
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EscortFleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, FleetsAfterPhase.EscortFleet,
 				stage3JetCombined.ApiEraiFlag,
 				stage3JetCombined.ApiEbakFlag,
 				stage3JetCombined.ApiEclFlag,
@@ -250,7 +251,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3 is not null)
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, battleFleets.EnemyFleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, FleetsAfterPhase.EnemyFleet,
 				stage3.ApiEraiFlag,
 				stage3.ApiEbakFlag,
 				stage3.ApiEclFlag,
@@ -259,7 +260,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3Combined is { ApiEraiFlag: not null, ApiEbakFlag: not null, ApiEclFlag: not null, ApiEdam: not null })
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, battleFleets.EnemyEscortFleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, FleetsAfterPhase.EnemyEscortFleet,
 				stage3Combined.ApiEraiFlag,
 				stage3Combined.ApiEbakFlag,
 				stage3Combined.ApiEclFlag,
@@ -268,12 +269,10 @@ public class PhaseAirBattleBase : PhaseBase
 
 		foreach (AirBattleAttack attack in Attacks.Where(attack => attack.AttackType is not AirAttack.None))
 		{
-			AttackDisplays.Add(new(battleFleets, WaveIndex, attack));
-			AddDamage(battleFleets, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
+			AttackDisplays.Add(new(FleetsAfterPhase, WaveIndex, attack));
+			AddDamage(FleetsAfterPhase, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 }

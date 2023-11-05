@@ -9,6 +9,7 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string Priority => EquipmentUpgradePlannerResources.Priority;
 	public string Remove => EquipmentUpgradePlannerResources.Remove;
 	public string Title => EquipmentUpgradePlannerResources.Title;
+	public string EquipmentUpgradePlan => EquipmentUpgradePlannerResources.EquipmentUpgradePlan;
 	public string UpgradeLevel => EquipmentUpgradePlannerResources.UpgradeLevel;
 	public string AddEquipmentFromLibrary => EquipmentUpgradePlannerResources.AddEquipmentFromLibrary;
 	public string AddOwnedEquipment => EquipmentUpgradePlannerResources.AddOwnedEquipment;
@@ -23,4 +24,7 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string TotalCost => EquipmentUpgradePlannerResources.TotalCost;
 	public string CompactMode => EquipmentUpgradePlannerResources.CompactMode;
 	public string Today => EquipmentUpgradePlannerResources.Today;
+	public string Cancel => GeneralRes.Cancel;
+	public string Edit => GeneralRes.Edit;
+	public string Ok => "OK";
 }

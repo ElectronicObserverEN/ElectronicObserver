@@ -460,4 +460,37 @@
   <data name="TotalBomberFlags" xml:space="preserve">
     <value>爆撃合計</value>
   </data>
+  <data name="ConditionAfterBattle" xml:space="preserve">
+    <value>戦闘後疲労</value>
+  </data>
+  <data name="FuelAfterBattle" xml:space="preserve">
+    <value>戦闘後残燃料</value>
+  </data>
+  <data name="AmmoAfterBattle" xml:space="preserve">
+    <value>戦闘後残弾薬</value>
+  </data>
+  <data name="AircraftAfterBattle" xml:space="preserve">
+    <value>戦闘後搭載数</value>
+  </data>
+  <data name="RedShellingBattle" xml:space="preserve">
+    <value>赤仮砲撃戦</value>
+  </data>
+  <data name="RedNightBattle" xml:space="preserve">
+    <value>赤仮夜戦</value>
+  </data>
+  <data name="RedTorpedoBattle" xml:space="preserve">
+    <value>赤仮雷撃戦</value>
+  </data>
+  <data name="PlayerSearchlightShipIndex" xml:space="preserve">
+    <value>自探照灯.位置</value>
+  </data>
+  <data name="EnemySearchlightShipIndex" xml:space="preserve">
+    <value>敵探照灯.位置</value>
+  </data>
+  <data name="PlayerSearchlightEquipmentId" xml:space="preserve">
+    <value>自探照灯.装備</value>
+  </data>
+  <data name="EnemySearchlightEquipmentId" xml:space="preserve">
+    <value>敵探照灯.装備</value>
+  </data>
 </root>

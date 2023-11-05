@@ -92,29 +92,28 @@ public class PhaseFriendlyShelling : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		// this part is mostly the same as PhaseNightInitial
 		// might be a good idea to refactor to avoid duplication at some point?
 		FlareIndexFriend = ApiFriendlyBattle.ApiFlarePos[0];
 		FlareIndexEnemy = ApiFriendlyBattle.ApiFlarePos[1];
-		FlareFriend = GetFlareFriend(battleFleets, ApiFriendlyBattle.ApiFlarePos[0]);
-		FlareEnemy = GetFlareEnemy(battleFleets, false, ApiFriendlyBattle.ApiFlarePos[1]);
+		FlareFriend = GetFlareFriend(FleetsAfterPhase, ApiFriendlyBattle.ApiFlarePos[0]);
+		FlareEnemy = GetFlareEnemy(FleetsAfterPhase, false, ApiFriendlyBattle.ApiFlarePos[1]);
 
-		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(battleFleets.FriendFleet);
-		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(battleFleets.EnemyFleet);
+		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(FleetsAfterPhase.FriendFleet);
+		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(FleetsAfterPhase.EnemyFleet);
 
 		foreach (PhaseNightBattleAttack atk in Attacks)
 		{
 			foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 			{
-				AttackDisplays.Add(new PhaseFriendNightBattleAttackViewModel(battleFleets, atk.Attacker, defs.Key, atk.AttackType, defs.ToList()));
-				AddFriendDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
+				AttackDisplays.Add(new PhaseFriendNightBattleAttackViewModel(FleetsAfterPhase, atk.Attacker, defs.Key, atk.AttackType, defs.ToList()));
+				AddFriendDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
 			}
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 
 	private static (IShipData? Ship, int Index) GetSearchlightShip(IFleetData? fleet) => fleet switch

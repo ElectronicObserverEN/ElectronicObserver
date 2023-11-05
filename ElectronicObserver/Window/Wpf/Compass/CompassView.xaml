@@ -1,21 +1,20 @@
-﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Compass.CompassView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
-             xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Compass.Views"
-
-             x:Name="CompassControl"
-
-             TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
-             TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
-             TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
-
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-
-	<ContentPresenter DataContext="{Binding ViewModel, ElementName=CompassControl}" Content="{Binding CurrentViewModel}">
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Wpf.Compass.CompassView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Compass.Views"
+	x:Name="CompassControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+	TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
+	mc:Ignorable="d"
+	>
+	<ContentPresenter Content="{Binding CurrentViewModel}" DataContext="{Binding ViewModel, ElementName=CompassControl}">
 		<ContentPresenter.ContentTemplateSelector>
 			<local:CompassTemplateSelector>
 				<local:CompassTemplateSelector.EmptyTemplate>
@@ -30,7 +29,7 @@
 				</local:CompassTemplateSelector.TextTemplate>
 				<local:CompassTemplateSelector.EnemyListTemplate>
 					<DataTemplate>
-						<Grid >
+						<Grid>
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="*" />

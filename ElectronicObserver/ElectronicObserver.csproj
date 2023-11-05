@@ -28,9 +28,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.9.3</AssemblyVersion>
-		<FileVersion>5.2.9.3</FileVersion>
-		<Version>5.2.9.3</Version>
+		<AssemblyVersion>5.2.11.0</AssemblyVersion>
+		<FileVersion>5.2.11.0</FileVersion>
+		<Version>5.2.11.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
@@ -155,6 +155,7 @@
 		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 		<PackageReference Include="WanaKana-net" Version="1.0.0" />
+		<PackageReference Include="WpfExtensions.Xaml" Version="1.2.0" />
 	</ItemGroup>
 	
 	<ItemGroup>

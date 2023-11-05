@@ -1,11 +1,9 @@
-﻿using System;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -18,16 +16,10 @@ public partial class FleetItemControlViewModel : ObservableObject
 	public Color ForeColor { get; set; }
 	public Color BackColor { get; set; }
 	public bool Visible { get; set; }
-	public Enum? ImageIndex { get; set; }
 
 	public SolidColorBrush Foreground => new(ForeColor);
 	public SolidColorBrush Background => new(BackColor);
-	public ImageSource? Icon => ImageIndex switch
-	{
-		IconContent i => ImageSourceIcons.GetIcon(i),
-		ResourceManager.EquipmentContent e => ImageSourceIcons.GetEquipmentIcon((EquipmentIconType)e),
-		_ => null
-	};
+	public IconContent? Icon { get; set; }
 
 	public FleetItemControlViewModel()
 	{
@@ -39,7 +31,7 @@ public partial class FleetItemControlViewModel : ObservableObject
 	[RelayCommand]
 	private void OpenShipEncyclopedia()
 	{
-		new DialogAlbumMasterShipWpf(Tag).Show(App.Current.MainWindow);
+		new DialogAlbumMasterShipWpf(Tag).Show(App.Current!.MainWindow!);
 	}
 
 	private void ConfigurationChanged()

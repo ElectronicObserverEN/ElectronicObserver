@@ -2,9 +2,9 @@
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public sealed class NightShellingExportMap : ClassMap<NightShellingExportModel>
+public sealed class RedNightBattleExportMap : ClassMap<NightBattleExportModel>
 {
-	public NightShellingExportMap()
+	public RedNightBattleExportMap()
 	{
 		References<CommonDataExportMap>(s => s.CommonData);
 		Map(m => m.BattleType).Name(CsvExportResources.BattleType);
@@ -25,9 +25,13 @@ public sealed class NightShellingExportMap : ClassMap<NightShellingExportModel>
 		Map(m => m.HitType).Name(CsvExportResources.HitType);
 		Map(m => m.Damage).Name(CsvExportResources.Damage);
 		Map(m => m.Protected).Name(CsvExportResources.Protected);
-		References<ShipExportMap>(s => s.Attacker, CsvExportResources.PrefixAttacker).Prefix(CsvExportResources.PrefixAttacker);
-		References<ShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
+		References<RedShipExportMap>(s => s.Attacker, CsvExportResources.PrefixAttacker).Prefix(CsvExportResources.PrefixAttacker);
+		References<RedShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
 		Map(m => m.FleetType).Name(CsvExportResources.FleetType);
 		Map(m => m.EnemyFleetType).Name(CsvExportResources.EnemyFleetType);
+		Map(m => m.PlayerSearchlightShipIndex).Name(CsvExportResources.PlayerSearchlightShipIndex);
+		Map(m => m.PlayerSearchlightEquipmentId).Name(CsvExportResources.PlayerSearchlightEquipmentId);
+		Map(m => m.EnemySearchlightShipIndex).Name(CsvExportResources.EnemySearchlightShipIndex);
+		Map(m => m.EnemySearchlightEquipmentId).Name(CsvExportResources.EnemySearchlightEquipmentId);
 	}
 }

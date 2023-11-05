@@ -23,8 +23,8 @@ public class PhaseInitial : PhaseBase
 
 	public bool IsEnemyCombinedFleet { get; }
 	private bool IsBossDamaged { get; }
-	private List<int>? ApiCombatRation { get; }
-	private List<int>? ApiCombatRationCombined { get; }
+	public List<int>? ApiCombatRation { get; }
+	public List<int>? ApiCombatRationCombined { get; }
 	private List<int> FriendInitialHPs { get; }
 	private List<int> FriendMaxHPs { get; }
 
@@ -397,15 +397,16 @@ public class PhaseInitial : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		battleFleets = FleetsBeforePhase!.Clone();
+		FleetsAfterPhase = battleFleets;
 
-		battleFleets.EnemyFleet = new FleetDataMock
+		FleetsAfterPhase.EnemyFleet = new FleetDataMock
 		{
 			MembersInstance = new(EnemyMembersInstance),
 		};
 
 		if (EnemyMembersEscortInstance is not null)
 		{
-			battleFleets.EnemyEscortFleet = new FleetDataMock
+			FleetsAfterPhase.EnemyEscortFleet = new FleetDataMock
 			{
 				MembersInstance = new(EnemyMembersEscortInstance),
 			};
@@ -413,14 +414,14 @@ public class PhaseInitial : PhaseBase
 
 		if (IsAirBaseRaid)
 		{
-			foreach ((IBaseAirCorpsData? airBase, int hp) in battleFleets.AirBases.Zip(FriendMaxHPs))
+			foreach ((IBaseAirCorpsData? airBase, int hp) in FleetsAfterPhase.AirBases.Zip(FriendMaxHPs))
 			{
 				if (airBase is not BaseAirCorpsDataMock ab) continue;
 
 				ab.HPMax = hp;
 			}
 
-			foreach ((IBaseAirCorpsData? airBase, int hp) in battleFleets.AirBases.Zip(FriendInitialHPs))
+			foreach ((IBaseAirCorpsData? airBase, int hp) in FleetsAfterPhase.AirBases.Zip(FriendInitialHPs))
 			{
 				if (airBase is not BaseAirCorpsDataMock ab) continue;
 
@@ -429,7 +430,7 @@ public class PhaseInitial : PhaseBase
 		}
 		else
 		{
-			foreach ((IShipData? ship, int hp) in battleFleets.Fleet.MembersInstance.Zip(FriendInitialHPs))
+			foreach ((IShipData? ship, int hp) in FleetsAfterPhase.Fleet.MembersInstance.Zip(FriendInitialHPs))
 			{
 				if (ship is not ShipDataMock s) continue;
 
@@ -437,9 +438,7 @@ public class PhaseInitial : PhaseBase
 			}
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 
 	private static string GetLosString(IFleetData fleet)

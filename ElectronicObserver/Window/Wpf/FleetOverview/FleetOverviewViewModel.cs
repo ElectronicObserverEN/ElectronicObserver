@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -17,17 +14,6 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.FleetOverview;
 
-public class FleetOverviewItemViewModel : ObservableObject
-{
-	public string? Text { get; set; }
-	public string? ToolTip { get; set; }
-	public ImageSource? Icon { get; set; }
-	public bool Visible { get; set; }
-	public DateTime? Tag { get; set; }
-
-	public Visibility Visibility => Visible.ToVisibility();
-}
-
 public class FleetOverviewViewModel : AnchorableViewModel
 {
 	public FormFleetOverviewTranslationViewModel FormFleetOverview { get; }
@@ -36,8 +22,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 	public FleetOverviewItemViewModel AnchorageRepairingTimer { get; }
 	public FleetOverviewItemViewModel CombinedTag { get; }
 
-	public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets",
-		ImageSourceIcons.GetIcon(IconContent.FormFleet))
+	public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets", IconContent.FormFleet)
 	{
 		FormFleetOverview = Ioc.Default.GetService<FormFleetOverviewTranslationViewModel>()!;
 
@@ -77,37 +62,19 @@ public class FleetOverviewViewModel : AnchorableViewModel
 		o.ApiReqKaisou_Marriage.ResponseReceived += Updated;
 		o.ApiReqMap_AnchorageRepair.ResponseReceived += Updated;
 
-
 		AnchorageRepairingTimer = new()
 		{
-			// Anchor = AnchorStyles.Left,
-			// Padding = new Padding(0, 1, 0, 1),
-			// Margin = new Padding(2, 1, 2, 1),
-			// ImageList = ResourceManager.Instance.Icons,
-			// ImageIndex = (int)ResourceManager.IconContent.FleetAnchorageRepairing,
 			Text = "-",
-			Icon = ImageSourceIcons.GetIcon(IconContent.FleetAnchorageRepairing),
-			// AutoSize = true
-			Visible = false
+			Icon = IconContent.FleetAnchorageRepairing,
+			Visible = false,
 		};
-
-		// TableFleet.Controls.Add(AnchorageRepairingTimer, 1, 4);
 
 		CombinedTag = new()
 		{
-			// Anchor = AnchorStyles.Left,
-			// Padding = new Padding(0, 1, 0, 1),
-			// Margin = new Padding(2, 1, 2, 1),
-			// ImageList = ResourceManager.Instance.Icons,
-			// ImageIndex = (int)ResourceManager.IconContent.FleetCombined,
 			Text = "-",
-			Icon = ImageSourceIcons.GetIcon(IconContent.FleetCombined),
-
-			// AutoSize = true,
-			Visible = false
+			Icon = IconContent.FleetCombined,
+			Visible = false,
 		};
-
-		// TableFleet.Controls.Add(CombinedTag, 1, 5);
 
 		ConfigurationChanged();
 
@@ -115,55 +82,31 @@ public class FleetOverviewViewModel : AnchorableViewModel
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
 
-	void ConfigurationChanged()
+	private void ConfigurationChanged()
 	{
-		// TableFleet.SuspendLayout();
-
-		// AutoScroll = Utility.Configuration.Config.FormFleet.IsScrollable;
-
-		/*
-		foreach (var c in ControlFleet)
-			c.ConfigurationChanged(this);
-		*/
-
-		// CombinedTag.Font = Font;
-		// AnchorageRepairingTimer.Font = Font;
 		AnchorageRepairingTimer.Visible = Utility.Configuration.Config.FormFleet.ShowAnchorageRepairingTimer;
-
-		// LayoutSubInformation();
-
-		// ControlHelper.SetTableRowStyles(TableFleet, ControlHelper.GetDefaultRowStyle());
-
-		// TableFleet.ResumeLayout();
 	}
-
 
 	private void Updated(string apiname, dynamic data)
 	{
-
-		// TableFleet.SuspendLayout();
-
-		// TableFleet.RowCount = KCDatabase.Instance.Fleet.Fleets.Values.Count(f => f.IsAvailable);
-		// for (int i = 0; i < ControlFleet.Count; i++)
-		// {
-		// 	ControlFleet[i].Update();
-		// }
-
 		if (KCDatabase.Instance.Fleet.CombinedFlag > 0)
 		{
 			CombinedTag.Text = Constants.GetCombinedFleet(KCDatabase.Instance.Fleet.CombinedFlag);
 
-			var fleet1 = KCDatabase.Instance.Fleet[1];
-			var fleet2 = KCDatabase.Instance.Fleet[2];
+			FleetData fleet1 = KCDatabase.Instance.Fleet[1];
+			FleetData fleet2 = KCDatabase.Instance.Fleet[2];
 
 			int tp = Calculator.GetTPDamage(fleet1) + Calculator.GetTPDamage(fleet2);
 
-			var members = fleet1.MembersWithoutEscaped.Concat(fleet2.MembersWithoutEscaped).Where(s => s != null);
+			List<IShipData> members = fleet1.MembersWithoutEscaped!
+				.Concat(fleet2.MembersWithoutEscaped!)
+				.Where(s => s is not null)
+				.ToList()!;
 
 			// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
-			var transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
-			var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
-			var radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
+			IEnumerable<int> transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
+			IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
+			IEnumerable<int> radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
 
 			CombinedTag.ToolTip = string.Format(FormFleetOverview.CombinedFleetToolTip,
 				transport.Sum(),
@@ -182,7 +125,6 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				landing.Count(i => i > 0)
 
 			);
-
 
 			CombinedTag.Visible = true;
 		}
@@ -204,15 +146,11 @@ public class FleetOverviewViewModel : AnchorableViewModel
 
 	}
 
-
-	void UpdateTimerTick()
+	private void UpdateTimerTick()
 	{
-		// for (int i = 0; i < ControlFleet.Count; i++)
-		// {
-		// 	ControlFleet[i].Refresh();
-		// }
-
-		if (AnchorageRepairingTimer.Visible && AnchorageRepairingTimer.Tag != null)
+		if (AnchorageRepairingTimer is { Visible: true, Tag: not null })
+		{
 			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString((DateTime)AnchorageRepairingTimer.Tag);
+		}
 	}
 }

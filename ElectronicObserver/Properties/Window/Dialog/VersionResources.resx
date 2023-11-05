@@ -122,7 +122,7 @@
     <value>修正：</value>
   </data>
   <data name="Maintainers" xml:space="preserve">
-    <value>gre4bee, MyAngelKamikaze, Jebzou</value>
+    <value>MyAngelKamikaze, Jebzou</value>
   </data>
   <data name="TextVersionFormat" xml:space="preserve">
     <value>{0} (ver. {1} - {2} Release)</value>

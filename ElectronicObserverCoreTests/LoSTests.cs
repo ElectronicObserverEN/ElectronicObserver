@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
@@ -8,23 +6,12 @@ using Xunit;
 
 namespace ElectronicObserverCoreTests;
 
-public static class NumberExtensions
-{
-	public static double RoundDown(this double value, int precision = 0)
-	{
-		double power = Math.Pow(10, precision);
-		return Math.Floor(value * power) / power;
-	}
-}
-
 [Collection(DatabaseCollection.Name)]
 public class LoSTests
 {
 	private DatabaseFixture Db { get; }
 
 	private int AdmiralLevel => 120;
-
-	private ReadOnlyCollection<IEquipmentData> NoEquip => new(new List<IEquipmentData>());
 
 	public LoSTests(DatabaseFixture db)
 	{

@@ -2,21 +2,14 @@
 
 // all required
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-public record DayShellingExportModel
+public record TorpedoBattleExportModel
 {
 	public CommonDataExportModel CommonData { get; init; }
 	public string BattleType { get; init; }
-	public string? ShipName1 { get; init; }
-	public string? ShipName2 { get; init; }
-	public string? ShipName3 { get; init; }
-	public string? ShipName4 { get; init; }
-	public string? ShipName5 { get; init; }
-	public string? ShipName6 { get; init; }
 	public string PlayerFleetType { get; init; }
 	public string BattlePhase { get; init; }
 	public string AttackerSide { get; init; }
-	public int AttackType { get; init; }
-	public int AttackIndex { get; init; }
+	public int? AttackType { get; init; }
 	public string? DisplayedEquipment1 { get; init; }
 	public string? DisplayedEquipment2 { get; init; }
 	public string? DisplayedEquipment3 { get; init; }

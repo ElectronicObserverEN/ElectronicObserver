@@ -77,13 +77,14 @@ public class PhaseSupport : PhaseBase
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
+		FleetsAfterPhase = battleFleets;
 
 		if (SupportFleetId is not -1)
 		{
-			SupportFleet = battleFleets.Fleets?.Skip(SupportFleetId - 1).FirstOrDefault();
+			SupportFleet = FleetsAfterPhase.Fleets?.Skip(SupportFleetId - 1).FirstOrDefault();
 		}
 
-		int mainFleetLimit = battleFleets.EnemyFleet!.MembersInstance.Count(s => s is not null);
+		int mainFleetLimit = FleetsAfterPhase.EnemyFleet!.MembersInstance.Count(s => s is not null);
 		mainFleetLimit = Math.Min(mainFleetLimit, Damages.Count);
 		mainFleetLimit = Math.Min(mainFleetLimit, Criticals.Count);
 
@@ -104,9 +105,9 @@ public class PhaseSupport : PhaseBase
 			});
 		}
 
-		if (battleFleets.EnemyEscortFleet is not null)
+		if (FleetsAfterPhase.EnemyEscortFleet is not null)
 		{
-			int escortFleetLimit = battleFleets.EnemyEscortFleet.MembersInstance.Count(s => s is not null);
+			int escortFleetLimit = FleetsAfterPhase.EnemyEscortFleet.MembersInstance.Count(s => s is not null);
 			escortFleetLimit = Math.Min(escortFleetLimit, Damages.Count);
 			escortFleetLimit = Math.Min(escortFleetLimit, Criticals.Count);
 
@@ -132,14 +133,12 @@ public class PhaseSupport : PhaseBase
 		{
 			foreach (IGrouping<BattleIndex, PhaseSupportDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
 			{
-				AttackDisplays.Add(new PhaseSupportAttackViewModel(battleFleets, atk));
-				AddDamage(battleFleets, defs.Key, defs.Sum(d => d.Damage));
+				AttackDisplays.Add(new PhaseSupportAttackViewModel(FleetsAfterPhase, atk));
+				AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
 			}
 		}
 
-		FleetsAfterPhase = battleFleets.Clone();
-
-		return battleFleets;
+		return FleetsAfterPhase.Clone();
 	}
 
 	private string? CreateDisplay()

@@ -216,4 +216,7 @@
   <data name="ETA" xml:space="preserve">
     <value>ETA: </value>
   </data>
+  <data name="ExpansionSlotOpened" xml:space="preserve">
+    <value>{0}'s expansion slot has been opened</value>
+  </data>
 </root>
