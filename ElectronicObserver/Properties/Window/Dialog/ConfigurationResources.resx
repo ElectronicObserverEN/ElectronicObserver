@@ -778,16 +778,17 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value></value>
   </data>
   <data name="FormBrowser_EO_URL" xml:space="preserve">
-    <value></value>
+    <value>https://electronicobserveren.github.io/cache</value>
   </data>
   <data name="FormBrowser_Wiki_URL" xml:space="preserve">
-    <value></value>
+    <value>https://kcwiki.github.io/cache</value>
   </data>
   <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
-    <value></value>
+    <value>キャッシュサーバーのURLの最初の部分のみ、"/gadget_html5/"サブディレクトリより前のすべてを入力してください。
+例えば、"http://luckyjervis.com/gadget_html5/js/kcs_const.js "を使用しようとする場合、フィールドに "http://luckyjervis.com/"を入力する必要があります。</value>
   </data>
   <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
-    <value></value>
+    <value>無効なURL形式です。</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>七四式EN API URL</value>

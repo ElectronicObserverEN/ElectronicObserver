@@ -1,5 +1,4 @@
-﻿using Browser.Properties;
-using BrowserLibCore;
+﻿using BrowserLibCore;
 using CefSharp;
 using CefSharp.DevTools;
 using CefSharp.Handler;
@@ -12,17 +11,15 @@ public class CustomRequestHandler : RequestHandler
 	public delegate void RenderProcessTerminatedEventHandler(string message);
 	public event RenderProcessTerminatedEventHandler? RenderProcessTerminated;
 
-	private bool PixiSettingEnabled { get; }
-	private bool UseGadgetRedirect { get; }
-	private GadgetServerOptions GadgetBypassServer { get; }
-	private string GadgetBypassServerCustom { get; }
+	private BrowserConfiguration BrowserConfiguration { get; }
+	private bool PixiSettingEnabled => BrowserConfiguration.PreserveDrawingBuffer;
+	private bool UseGadgetRedirect => BrowserConfiguration.UseGadgetRedirect;
+	private GadgetServerOptions GadgetBypassServer => BrowserConfiguration.GadgetBypassServer;
+	private string GadgetBypassServerCustom => BrowserConfiguration.GadgetBypassServerCustom;
 
-	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect, GadgetServerOptions gadgetBypassServer, string gadgetBypassServerCustom)
+	public CustomRequestHandler(BrowserConfiguration browserConfiguration)
 	{
-		PixiSettingEnabled = pixiSettingEnabled;
-		UseGadgetRedirect = useGadgetRedirect;
-		GadgetBypassServer = gadgetBypassServer;
-		GadgetBypassServerCustom = gadgetBypassServerCustom;
+		BrowserConfiguration = browserConfiguration;
 	}
 
 	/// <summary>

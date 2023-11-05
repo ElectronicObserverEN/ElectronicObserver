@@ -15,16 +15,17 @@ internal class GadgetUrlHandler : ResourceRequestHandler
 		GadgetBypassServer = gadgetBypassServer;
 		GadgetBypassServerCustom = gadgetBypassServerCustom;
 	}
+
 	protected override IResponseFilter GetResourceResponseFilter(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response)
 	{
 		if (request.Url.Contains(@"gadget_html5"))
 		{
 			return GadgetBypassServer switch
 			{
-				GadgetServerOptions.Wiki => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL()),
-				GadgetServerOptions.EO => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL()),
-				GadgetServerOptions.Custom => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL(GadgetBypassServerCustom)),
-				_ => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceURL())
+				GadgetServerOptions.Wiki => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl()),
+				GadgetServerOptions.EO => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl()),
+				GadgetServerOptions.Custom => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl(GadgetBypassServerCustom)),
+				_ => new GadgetReplaceFilter("http://203.104.209.7/gadget_html5/", GadgetBypassServer.GetReplaceUrl()),
 			};
 		}
 

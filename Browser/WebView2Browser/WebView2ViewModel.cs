@@ -355,6 +355,7 @@ public class WebView2ViewModel : BrowserViewModel
 			e.Cancel = true;
 		}
 	}
+
 	private void CoreWebView2_FrameCreated(object? sender, CoreWebView2FrameCreatedEventArgs e)
 	{
 		if (e.Frame.Name.Contains(@"game_frame"))
@@ -368,23 +369,26 @@ public class WebView2ViewModel : BrowserViewModel
 			kancolleframe = e.Frame;
 		}
 	}
+
 	private void CoreWebView2_WebResourceRequested(object? sender, CoreWebView2WebResourceRequestedEventArgs e)
 	{
-		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration.UseGadgetRedirect)
+		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration?.UseGadgetRedirect is true)
 		{
 			e.Request.Uri = Configuration.GadgetBypassServer switch
 			{
-				GadgetServerOptions.Wiki => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceURL()),
-				GadgetServerOptions.Custom => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceURL(Configuration.GadgetBypassServerCustom)),
-				_ => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceURL()),
+				GadgetServerOptions.Wiki => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl()),
+				GadgetServerOptions.Custom => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl(Configuration.GadgetBypassServerCustom)),
+				_ => e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl()),
 			};
 		}
+
 		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
 		{
 			//not working in webview2
 			//e.Request.Headers.RemoveHeader("Range");
 		}
 	}
+
 	private void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
 	{
 		if (e.IsSuccess)
@@ -395,7 +399,6 @@ public class WebView2ViewModel : BrowserViewModel
 			DestroyDMMreloadDialog();
 		}
 	}
-
 
 	protected override void Exit()
 	{

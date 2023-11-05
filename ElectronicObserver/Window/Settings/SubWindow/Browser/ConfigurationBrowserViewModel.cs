@@ -29,7 +29,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
-	[CustomValidation(typeof(ConfigurationBrowserViewModel), nameof(ValidateURL))]
+	[CustomValidation(typeof(ConfigurationBrowserViewModel), nameof(ValidateUrl))]
 	private string _gadgetBypassServerCustom;
 
 	public double ZoomRate { get; set; }
@@ -122,7 +122,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 			{
 				GadgetServerOptions.EO => Translation.FormBrowser_EO_URL,
 				GadgetServerOptions.Wiki => Translation.FormBrowser_Wiki_URL,
-				_ => null
+				_ => null,
 			};
 		}
 
@@ -142,12 +142,17 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		{
 			if (args.PropertyName is not nameof(GadgetBypassServer)) return;
 
-			foreach (CheckBoxEnumViewModel gadgetserver in GadgetServers)
+			foreach (CheckBoxEnumViewModel gadgetServer in GadgetServers)
 			{
-				if (gadgetserver.Value is not GadgetServerOptions b) return;
+				if (gadgetServer.Value is not GadgetServerOptions b) return;
 
-				gadgetserver.IsChecked = b == GadgetBypassServer;
+				gadgetServer.IsChecked = b == GadgetBypassServer;
 			}
+			
+			// needed to rerun the validator
+			// OnPropertyChanged(nameof(GadgetBypassServerCustom));
+			ValidateProperty(GadgetBypassServerCustom, nameof(GadgetBypassServerCustom));
+			// ValidateUrl(GadgetBypassServerCustom, new ValidationContext(this));
 		};
 
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
@@ -268,20 +273,20 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		ScreenShotPath = newSaveDataPath;
 	}
 
-	public static ValidationResult ValidateURL(string url, ValidationContext context)
+	public static ValidationResult ValidateUrl(string url, ValidationContext context)
 	{
-		if (context.ObjectInstance is not ConfigurationBrowserViewModel)
+		if (context.ObjectInstance is not ConfigurationBrowserViewModel config)
 		{
 			throw new NotImplementedException();
 		}
 
-		if (!Uri.IsWellFormedUriString(url, UriKind.Absolute) && (Configuration.Config.FormBrowser.GadgetBypassServer == GadgetServerOptions.Custom))
+		bool isCustomUrlValid = Uri.IsWellFormedUriString(url, UriKind.Absolute) ||
+			config.GadgetBypassServer is not GadgetServerOptions.Custom;
+
+		return isCustomUrlValid switch
 		{
-			return new(ConfigurationResources.FormBrowser_GadgetBypassCustomURLInvalidURL);
-		}
-		else
-		{
-			return ValidationResult.Success!;
-		}
+			false => new(ConfigurationResources.FormBrowser_GadgetBypassCustomURLInvalidURL),
+			_ => ValidationResult.Success!,
+		};
 	}
 }
