@@ -11,6 +11,10 @@
 	>
 	<StackPanel Orientation="Horizontal">
 		<ContentControl Content="{Binding Image, ElementName=Root}" />
-		<TextBlock Margin="2 0" Text="{Binding Text, ElementName=Root}" />
+		<TextBlock
+			Margin="2 0"
+			VerticalAlignment="Center"
+			Text="{Binding Text, ElementName=Root}"
+			/>
 	</StackPanel>
 </UserControl>
