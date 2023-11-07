@@ -17,8 +17,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.ElectronicObserverApi;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
-using ElectronicObserver.Window.Dialog.EquipmentPicker;
-using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
@@ -56,6 +54,7 @@ using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
+using ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
@@ -271,6 +270,7 @@ public partial class App : Application
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
 			.AddSingleton<SortieRecordViewerTranslationViewModel>()
+			.AddSingleton<ExpeditionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogResourceChartTranslationViewModel>()

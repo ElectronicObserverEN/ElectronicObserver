@@ -7,72 +7,106 @@ using ElectronicObserverTypes;
 using System.Text.Json;
 using System.Collections.Generic;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.KancolleApi.Types;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 
 public class ExpeditionRecordViewModel
 {
 	public ExpeditionRecord Model { get; }
-	public int? Id => Model?.Id;
 	public DateTime ExpeditionStart { get; }
 
-	public int? MapAreaID { get; }
-	public string? DisplayID { get; }
+	public string? DisplayId { get; }
+	public string? ClearResult { get; }
+
+	public int Fuel { get; }
+	public int Ammo { get; }
+	public int Steel { get; }
+	public int Bauxite { get; }
+
+	public UseItemId ItemOneId { get; }
+	public int? ItemOneCount { get; }
+	public string? ItemOneName { get; }
+
+	public UseItemId ItemTwoId { get; }
+	public int? ItemTwoCount { get; }
+	public string? ItemTwoName { get; }
 
 	public IFleetData? Fleet { get; }
 
-	public object? MaterialList { get; }
-	public int MaterialFuel { get; }
-	public int MaterialAmmo { get; }
-	public int MaterialSteel { get; }
-	public int MaterialBaux { get; }
-
-	public List<int>? ItemList { get; }
-	public int? ItemOneID { get; }
-	public string? ItemOneName { get; }
-	public int? ItemOneCount { get; }
-	public string? ItemOneString { get; }
-	public int? ItemTwoID { get; }
-	public string? ItemTwoName { get; }
-	public int? ItemTwoCount { get; }
-	public string? ItemTwoString { get; }
-
-	public string? ClearResult { get; }
-
-	public ExpeditionRecordViewModel(ExpeditionRecord record, ApiReqMissionResultResponse response, DateTime expeditionStart)
+	public ExpeditionRecordViewModel(ExpeditionRecord record, DateTime expeditionStart)
 	{
 		Model = record;
 		ExpeditionStart = expeditionStart.ToLocalTime();
-		MapAreaID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.MapAreaID;
-		DisplayID = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.DisplayID;
+		DisplayId = KCDatabase.Instance.Mission.Values.FirstOrDefault(s => s.MissionID == record.Expedition)?.DisplayID;
 		Fleet = record.Fleet.MakeFleet(0);
-		ItemList = response.ApiUseitemFlag;
-		MaterialList = response.ApiGetMaterial.ToString() != "-1" ? JsonSerializer.Deserialize<List<int>>(response.ApiGetMaterial.ToString()!) : new List<int>(new int[4]);
-		ItemOneID = ItemList[0];
-		ItemOneName = ParseUseItemControl(ItemOneID, response.ApiGetItem1?.ApiUseitemId).ToString();
+
+		ApiReqMissionResultResponse? response = ParseExpeditionResult(record);
+
+		if (response is null) return;
+
+		List<int> materialList = response.ApiGetMaterial switch
+		{
+			JsonElement { ValueKind: JsonValueKind.Array } materials => materials
+				.EnumerateArray()
+				.Select(e => e.GetInt32())
+				.ToList(),
+
+			_ => new List<int>(Enumerable.Repeat(0, 4)),
+		};
+
+		Fuel = materialList[0];
+		Ammo = materialList[1];
+		Steel = materialList[2];
+		Bauxite = materialList[3];
+
+		ItemOneId = ParseUseItemId(response.ApiUseitemFlag[0], response.ApiGetItem1?.ApiUseitemId);
 		ItemOneCount = response.ApiGetItem1?.ApiUseitemCount;
-		ItemOneString = ItemList.Count > 0 && ItemOneCount > 0 ? ParseUseItem(ItemOneID, response.ApiGetItem1?.ApiUseitemId) : "";
-		ItemTwoID = ItemList[1];
-		ItemTwoName = ParseUseItemControl(ItemTwoID, response.ApiGetItem2?.ApiUseitemId).ToString();
+		ItemOneName = (response.ApiUseitemFlag.Count > 0 && ItemOneCount > 0) switch
+		{
+			true => UseItemName(ItemOneId),
+			_ => null,
+		};
+
+		ItemTwoId = ParseUseItemId(response.ApiUseitemFlag[1], response.ApiGetItem2?.ApiUseitemId);
 		ItemTwoCount = response.ApiGetItem2?.ApiUseitemCount;
-		ItemTwoString = ItemTwoCount > 0 && ItemList.Count > 0 ? ParseUseItem(ItemTwoID, response.ApiGetItem2?.ApiUseitemId) : "";
+		ItemTwoName = (ItemTwoCount > 0 && response.ApiUseitemFlag.Count > 0) switch
+		{
+			true => UseItemName(ItemTwoId),
+			_ => null,
+		};
+		
 		ClearResult = Constants.GetExpeditionResult(response.ApiClearResult);
 	}
 
-	private string ParseUseItem(int? kind, int? key)
+	private static ApiReqMissionResultResponse? ParseExpeditionResult(ExpeditionRecord record)
 	{
-		return kind switch
+		try
 		{
-			1 => ConstantsRes.Bucket,
-			2 => ConstantsRes.Flamethrower,
-			3 => ConstantsRes.DevMat,
-			4 => KCDatabase.Instance.MasterUseItems[(int)key!].NameTranslated,
-			5 => ConstantsRes.FurnitureCoin,
-			_ => "",
-		};
+			ApiFile? apiFile = record.ApiFiles
+				.Where(f => f.ApiFileType == ApiFileType.Response)
+				.FirstOrDefault(f => f.Name == "api_req_mission/result");
+
+			return apiFile switch
+			{
+				null => null,
+				_ => JsonSerializer.Deserialize<ApiResponse<ApiReqMissionResultResponse>>(apiFile.Content)?.ApiData,
+			};
+		}
+		catch
+		{
+			return null;
+		}
 	}
 
-	private UseItemId ParseUseItemControl(int? kind, int? key)
+	private static string UseItemName(UseItemId id) => id switch
+	{
+		UseItemId.Unknown => "",
+		_ => KCDatabase.Instance.MasterUseItems[(int)id].NameTranslated,
+	};
+
+	private static UseItemId ParseUseItemId(int? kind, int? key)
 	{
 		if (key is not int id) return UseItemId.Unknown;
 
