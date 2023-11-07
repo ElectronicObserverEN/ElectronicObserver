@@ -756,10 +756,20 @@ When enabled, the preview will be ignored and all compositions will be shown.</v
   <data name="Language_Korean" xml:space="preserve">
     <value>Korean</value>
   </data>
+  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
+    <value>Custom Gadget Cache URL</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
+    <value>Only input the initial part of the cache server's URL, everything before the "/gadget_html5/" subdirectory. 
+For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_const.js", you will need to enter "http://luckyjervis.com/" into the field.</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
+    <value>Invalid URL format.</value>
+  </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>Electronic Observer API URL</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
-    <value>URL for the Electronic Observer API used to repport data issues.</value>
+    <value>URL for the Electronic Observer API used to report data issues.</value>
   </data>
 </root>

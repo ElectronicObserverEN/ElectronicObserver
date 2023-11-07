@@ -1,6 +1,8 @@
-﻿using CefSharp;
+﻿using BrowserLibCore;
+using CefSharp;
 using CefSharp.DevTools;
 using CefSharp.Handler;
+using IBrowser = CefSharp.IBrowser;
 
 namespace Browser.CefSharpBrowser.CefOp;
 
@@ -9,14 +11,15 @@ public class CustomRequestHandler : RequestHandler
 	public delegate void RenderProcessTerminatedEventHandler(string message);
 	public event RenderProcessTerminatedEventHandler? RenderProcessTerminated;
 
-	private bool PixiSettingEnabled { get; }
-	private bool UseGadgetRedirect { get; }
+	private BrowserConfiguration BrowserConfiguration { get; }
+	private bool PixiSettingEnabled => BrowserConfiguration.PreserveDrawingBuffer;
+	private bool UseGadgetRedirect => BrowserConfiguration.UseGadgetRedirect;
+	private GadgetServerOptions GadgetBypassServer => BrowserConfiguration.GadgetBypassServer;
+	private string GadgetBypassServerCustom => BrowserConfiguration.GadgetBypassServerCustom;
 
-
-	public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect)
+	public CustomRequestHandler(BrowserConfiguration browserConfiguration)
 	{
-		PixiSettingEnabled = pixiSettingEnabled;
-		UseGadgetRedirect = useGadgetRedirect;
+		BrowserConfiguration = browserConfiguration;
 	}
 
 	/// <summary>
@@ -61,7 +64,7 @@ public class CustomRequestHandler : RequestHandler
 
 		if (UseGadgetRedirect && request.Url.Contains("gadget_html5"))
 		{
-			return new GadgetUrlHandler();
+			return new GadgetUrlHandler(GadgetBypassServer, GadgetBypassServerCustom);
 		}
 
 		if (request.Url.Contains(@"accounts.google.com"))
