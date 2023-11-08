@@ -162,4 +162,7 @@
   <data name="DuplicateShipError" xml:space="preserve">
     <value>Duplicate ship error: couldn't determine the correct ship.</value>
   </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Fleet</value>
+  </data>
 </root>

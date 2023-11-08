@@ -14,6 +14,7 @@ using CsvHelper.Configuration;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.ContentDialogs;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
@@ -56,10 +57,10 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
-
 	public SortieRecordViewModel? SelectedSortie { get; set; }
-
 	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = new();
+
+	public DataGridViewModel<SortieRecordViewModel> DataGridViewModel { get; }
 
 	private DateTime SearchStartTime { get; set; }
 	public string? StatusBarText { get; private set; }
@@ -75,6 +76,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
 		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		DataGridViewModel = new(Sorties);
 
 		MinDate = Db.Sorties
 			.Include(s => s.ApiFiles)

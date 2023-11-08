@@ -142,4 +142,7 @@
   <data name="DuplicateShipError" xml:space="preserve">
     <value>サブ艦娘エラー：正しい艦娘を特定できませんでした。</value>
   </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>艦隊</value>
+  </data>
 </root>
