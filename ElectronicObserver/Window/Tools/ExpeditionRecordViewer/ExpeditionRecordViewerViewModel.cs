@@ -29,11 +29,12 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 
 	public ExpeditionRecordViewerTranslationViewModel ExpeditionRecordViewer { get; }
 
-	private static string AllRecords { get; } = "*";
-	public List<string> Missions { get; }
 	public List<object> Worlds { get; }
-	public string Mission { get; set; } = AllRecords;
+	public List<string> Missions { get; private set; } = new();
+
+	private static string AllRecords { get; } = "*";
 	public object World { get; set; } = AllRecords;
+	public string Mission { get; set; } = AllRecords;
 
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
@@ -88,17 +89,31 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 			.Prepend(AllRecords)
 			.ToList();
 
-		Missions = KCDatabase.Instance.Mission.Values
-			.OrderBy(m => m.SortID)
-			.Select(m => m.DisplayID)
-			.Distinct()
-			.Prepend(AllRecords)
-			.ToList();
+		PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(World)) return;
+
+			Missions = KCDatabase.Instance.Mission.Values
+				.Where(m => World as string == AllRecords || m.MapAreaID == World as int?)
+				.OrderBy(m => m.SortID)
+				.Select(m => m.DisplayID)
+				.Distinct()
+				.Prepend(AllRecords)
+				.ToList();
+
+			if (!Missions.Contains(Mission))
+			{
+				Mission = AllRecords;
+			}
+		};
 
 		SelectedExpeditions.CollectionChanged += (_, _) =>
 		{
 			StatusBarText = string.Format(SortieRecordViewerResources.SelectedItems, SelectedExpeditions.Count, Expeditions.Count);
 		};
+
+		// generate missions
+		OnPropertyChanged(nameof(World));
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
