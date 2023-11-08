@@ -622,6 +622,19 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
+	private void OpenExpeditionRecordViewer()
+	{
+		if (KCDatabase.Instance.MasterShips.Count == 0)
+		{
+			MessageBox.Show(GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButton.OK,
+				MessageBoxImage.Error);
+			return;
+		}
+
+		new ExpeditionRecordViewerWindow().Show(Window);
+	}
+
+	[RelayCommand]
 	private void OpenDropRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -691,12 +704,6 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenSenkaViewer()
 	{
 		new SenkaViewerWindow().Show(Window);
-	}
-
-	[RelayCommand]
-	private void OpenExpeditionRecordViewer()
-	{
-		new ExpeditionRecordViewerWindow().Show(Window);
 	}
 
 	[RelayCommand]
