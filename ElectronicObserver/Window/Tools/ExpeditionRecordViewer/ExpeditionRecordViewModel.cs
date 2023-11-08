@@ -102,7 +102,7 @@ public class ExpeditionRecordViewModel
 
 	private static string UseItemName(UseItemId id) => id switch
 	{
-		UseItemId.Unknown => "",
+		UseItemId.Unknown => $"{ConstantsRes.Unknown}({id})",
 		_ => KCDatabase.Instance.MasterUseItems[(int)id].NameTranslated,
 	};
 
