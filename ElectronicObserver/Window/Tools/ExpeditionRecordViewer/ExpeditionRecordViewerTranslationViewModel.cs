@@ -12,6 +12,8 @@ public class ExpeditionRecordViewerTranslationViewModel : TranslationBaseViewMod
 	public string Search => SortieRecordViewerResources.Search;
 	public string Cancel => GeneralRes.Cancel;
 
+	public string Result => ExpeditionRecordViewerResources.Result;
+
 	public string Fuel => ConstantsRes.Fuel;
 	public string Ammo => ConstantsRes.Ammo;
 	public string Steel => ConstantsRes.Steel;
@@ -19,6 +21,8 @@ public class ExpeditionRecordViewerTranslationViewModel : TranslationBaseViewMod
 
 	public string Item1 => ExpeditionRecordViewerResources.Item1;
 	public string Item2 => ExpeditionRecordViewerResources.Item2;
+
+	public string Fleet => SortieRecordViewerResources.Fleet;
 
 	public string FleetImage => SortieRecordViewerResources.FleetImage;
 }

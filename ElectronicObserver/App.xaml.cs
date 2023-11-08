@@ -440,6 +440,11 @@ public partial class App : Application
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
+		tracker
+			.Configure<ExpeditionRecordViewerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
 		return tracker;
 	}
 }

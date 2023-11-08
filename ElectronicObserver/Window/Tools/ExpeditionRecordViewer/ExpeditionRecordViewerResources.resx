@@ -126,4 +126,7 @@
   <data name="Item2" xml:space="preserve">
     <value>アイテム２</value>
   </data>
+  <data name="Result" xml:space="preserve">
+    <value>結果</value>
+  </data>
 </root>

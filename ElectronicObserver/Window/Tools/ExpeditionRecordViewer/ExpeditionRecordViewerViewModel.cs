@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
@@ -53,6 +54,8 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 	public ExpeditionRecordViewModel? SelectedExpedition { get; set; }
 	public ObservableCollection<ExpeditionRecordViewModel> SelectedExpeditions { get; } = new();
 
+	public DataGridViewModel<ExpeditionRecordViewModel> DataGridViewModel { get; }
+
 	private DateTime SearchStartTime { get; set; }
 	public string? StatusBarText { get; private set; }
 
@@ -63,6 +66,8 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 		ExpeditionRecordViewer = Ioc.Default.GetRequiredService<ExpeditionRecordViewerTranslationViewModel>();
 
 		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		DataGridViewModel = new(Expeditions);
 
 		MinDate = Db.Expeditions
 			.Include(s => s.ApiFiles)

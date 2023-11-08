@@ -11,6 +11,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.ExpeditionRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:mocks="clr-namespace:ElectronicObserverTypes.Mocks;assembly=ElectronicObserverTypes"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding ExpeditionRecordViewer.Title}"
 	Width="800"
@@ -142,17 +143,43 @@
 			>
 			<b:Interaction.Behaviors>
 				<behaviors:MultiSelectionBehavior SelectedItems="{Binding SelectedExpeditions}" />
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
 			</b:Interaction.Behaviors>
 
 			<DataGrid.ContextMenu>
 				<ContextMenu>
+					<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="{Binding DataGridViewModel.DataGrid.ClearSorting}" />
+					<Separator />
 					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding ExpeditionRecordViewer.FleetImage}" />
 				</ContextMenu>
 			</DataGrid.ContextMenu>
 
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding DisplayId}" Header="ID" />
-				<DataGridTextColumn Binding="{Binding ClearResult}" />
+				<DataGridTextColumn Binding="{Binding ClearResult}" Header="{Binding DataContext.ExpeditionRecordViewer.Result, Source={StaticResource Proxy}}" />
 
 				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Fuel, Source={StaticResource Proxy}}" SortMemberPath="Fuel">
 					<DataGridTemplateColumn.CellTemplate>
@@ -266,7 +293,7 @@
 
 				<DataGridTextColumn Binding="{Binding ExpeditionStart, Converter={StaticResource DateTimeDisplayConverter}}" Header="{Binding DataContext.ExpeditionRecordViewer.Start, Source={StaticResource Proxy}}" />
 
-				<DataGridTemplateColumn Visibility="Collapsed">
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Fleet, Source={StaticResource Proxy}}">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
 							<ItemsControl ItemsSource="{Binding Fleet.MembersInstance}">
