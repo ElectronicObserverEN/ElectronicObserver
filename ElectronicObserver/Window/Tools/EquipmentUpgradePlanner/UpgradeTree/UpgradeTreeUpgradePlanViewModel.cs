@@ -135,14 +135,23 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 		if (upgradePlan is not null)
 		{
-			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
+			List<EquipmentUpgradePlanItemViewModel> children =
+				EquipmentUpgradePlanManager.PlannedUpgrades
+					.Where(p => p.Plan.Parent == plan.Plan)
+					.ToList();
 
-			newPlan.DesiredUpgradeLevel = UpgradeLevel.Conversion;
-			newPlan.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
-
-			Enumerable.Repeat(new UpgradeTreeUpgradePlanViewModel(newPlan, 1, plan.EquipmentMasterDataId), RequiredCount)
-				.ToList()
-				.ForEach(Children.Add);
+			while (children.Count < RequiredCount)
+			{
+				EquipmentUpgradePlanItemViewModel newChild = EquipmentUpgradePlanManager.MakePlanViewModel(new());
+				newChild.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
+				newChild.DesiredUpgradeLevel = UpgradeLevel.Conversion;
+				children.Add(newChild);
+			}
+			
+			foreach (EquipmentUpgradePlanItemViewModel child in children)
+			{
+				Children.Add(new UpgradeTreeUpgradePlanViewModel(new EquipmentConversionPlanItemViewModel(plan, new List<EquipmentUpgradePlanItemViewModel>{ child })));
+			}
 		}
 		else
 		{
@@ -168,7 +177,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 					.Where(p => p.Plan.Parent == plan.Plan)
 					.ToList();
 
-			while (children.Count <= required)
+			while (children.Count < required)
 			{
 				EquipmentUpgradePlanItemViewModel newChild = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 				newChild.EquipmentMasterDataId = (EquipmentId)planModel.EquipmentId;
