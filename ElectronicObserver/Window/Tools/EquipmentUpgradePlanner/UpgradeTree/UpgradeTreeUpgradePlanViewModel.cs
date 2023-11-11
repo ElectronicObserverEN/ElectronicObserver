@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -10,7 +9,6 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
-using Org.BouncyCastle.Ocsp;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 
@@ -55,19 +53,20 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 	public EquipmentUpgradePlannerTranslationViewModel Translations { get; }
 
-	public UpgradeTreeUpgradePlanViewModel(EquipmentUpgradePlanItemViewModel plan, int required)
+	public UpgradeTreeUpgradePlanViewModel(EquipmentUpgradePlanItemViewModel plan, int required, EquipmentId? needsToBeConvertedInto)
 	{
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 
 		RequiredCount = required;
+		NeedsToBeConvertedInto = needsToBeConvertedInto;
 		Plan = plan;
 
 		Initialize(plan);
 	}
 
-	public UpgradeTreeUpgradePlanViewModel(IEquipmentPlanItemViewModel plan, int required)
+	public UpgradeTreeUpgradePlanViewModel(EquipmentCraftPlanItemViewModel plan, int required)
 	{
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
@@ -105,7 +104,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 			newPlan.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
 
 			Enumerable.Repeat(
-				new UpgradeTreeUpgradePlanViewModel(newPlan, 1) { NeedsToBeConvertedInto = plan.EquipmentMasterDataId },RequiredCount)
+				new UpgradeTreeUpgradePlanViewModel(newPlan, 1, plan.EquipmentMasterDataId), RequiredCount)
 				.ToList()
 				.ForEach(Children.Add);
 		}
@@ -118,7 +117,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	private UpgradeTreeUpgradePlanViewModel InitializeEquipmentPlanChild(int required, EquipmentId equipment)
 	{
 		// if fodder = upgraded equipment, return a craft plan to avoid infinite loops
-		if (equipment == Plan?.EquipmentMasterDataId)
+		if (equipment == Plan?.EquipmentMasterDataId && NeedsToBeConvertedInto == equipment)
 		{
 			return new UpgradeTreeUpgradePlanViewModel(new EquipmentCraftPlanItemViewModel(equipment), required);
 		}
@@ -132,7 +131,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 			newPlan.EquipmentMasterDataId = equipment;
 
-			return new UpgradeTreeUpgradePlanViewModel(newPlan, required);
+			return new UpgradeTreeUpgradePlanViewModel(newPlan, required, Plan?.EquipmentMasterDataId);
 		}
 
 		// if equipment can't be upgraded, return an empty plan
