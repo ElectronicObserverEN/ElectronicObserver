@@ -14,12 +14,10 @@ public class UpgradeTreeUpgradePlanViewModel
 	public string DisplayName => Plan switch
 	{
 		EquipmentCraftPlanItemViewModel => $"{RequiredCount}x {Plan.EquipmentMasterData?.NameEN}",
-		EquipmentUpgradePlanItemViewModel plan => $"{RequiredCount}x {plan.EquipmentName} (Goal : {plan.DesiredUpgradeLevel})",
+		EquipmentUpgradePlanItemViewModel plan => $"{RequiredCount}x {plan.EquipmentName} ({Translations.Goal}: {plan.DesiredUpgradeLevel})",
 		_ => ""
 	};
-
-	public string DisplayIcon => "icon";
-
+	
 	public EquipmentUpgradePlanCostViewModel? Cost => Plan?.Cost.Model is null or { Fuel: 0, Ammo: 0, Steel: 0, Bauxite: 0 } ? null : Plan.Cost;
 
 	public UpgradeTreeViewNodeState State => Plan switch
@@ -38,8 +36,11 @@ public class UpgradeTreeUpgradePlanViewModel
 
 	public ObservableCollection<UpgradeTreeUpgradePlanViewModel> Children { get; } = new();
 
+	public EquipmentUpgradePlannerTranslationViewModel Translations { get; }
+
 	public UpgradeTreeUpgradePlanViewModel(EquipmentUpgradePlanItemViewModel plan)
 	{
+		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 
@@ -49,6 +50,7 @@ public class UpgradeTreeUpgradePlanViewModel
 
 	public UpgradeTreeUpgradePlanViewModel(EquipmentCraftPlanItemViewModel plan)
 	{
+		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 
