@@ -155,7 +155,7 @@
 			Grid.Column="0"
 			Grid.ColumnSpan="2"
 			Command="{Binding OpenEquipmentPickerCommand}"
-			IsEnabled="{Binding AllowToChangeEquipment, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+			IsEnabled="{Binding AllowToChangeEquipment, Mode=OneWay}"
 			ToolTip="{Binding EquipmentName}"
 			>
 			<Button.Content>
@@ -201,7 +201,7 @@
 		<ComboBox
 			Grid.Row="2"
 			Grid.Column="1"
-			IsEnabled="{Binding AllowToChangeDesiredUpgradeLevel, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+			IsEnabled="{Binding AllowToChangeDesiredUpgradeLevel, Mode=OneWay}"
 			ItemsSource="{Binding PossibleUpgradeLevels}"
 			SelectedItem="{Binding DesiredUpgradeLevel}"
 			>
