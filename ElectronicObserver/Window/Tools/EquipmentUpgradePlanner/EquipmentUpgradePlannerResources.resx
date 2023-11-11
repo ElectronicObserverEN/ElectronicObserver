@@ -183,4 +183,13 @@
   <data name="EquipmentUpgradePlan" xml:space="preserve">
     <value>改修計画</value>
   </data>
+  <data name="CreateUpgradePlan" xml:space="preserve">
+    <value>改修計画追加</value>
+  </data>
+  <data name="EditUpgradePlan" xml:space="preserve">
+    <value>改修計画編集</value>
+  </data>
+  <data name="RemoveUpgradePlan" xml:space="preserve">
+    <value>改修計画除去</value>
+  </data>
 </root>

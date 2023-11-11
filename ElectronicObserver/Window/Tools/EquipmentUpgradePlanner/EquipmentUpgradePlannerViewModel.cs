@@ -94,29 +94,6 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		}
 	}
 
-	private bool OpenPlanDialog(EquipmentUpgradePlanItemViewModel plan)
-	{
-		EquipmentUpgradePlanItemViewModel editVm = new(plan.Plan);
-		EquipmentUpgradePlanItemWindow editView = new(editVm);
-
-		if (editView.ShowDialog() is true)
-		{
-			plan.DesiredUpgradeLevel = editVm.DesiredUpgradeLevel;
-			plan.Finished = editVm.Finished;
-			plan.SliderLevel = editVm.SliderLevel;
-			plan.SelectedHelper = editVm.SelectedHelper;
-			plan.Priority = editVm.Priority;
-			plan.EquipmentMasterDataId = editVm.EquipmentMasterDataId;
-			plan.EquipmentId = editVm.EquipmentId;
-
-			plan.Save();
-
-			return true;
-		}
-
-		return false;
-	}
-
 	[RelayCommand]
 	private void RemovePlan(EquipmentUpgradePlanItemViewModel planToRemove)
 	{

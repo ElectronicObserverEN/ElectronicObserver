@@ -13,6 +13,9 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string UpgradeLevel => EquipmentUpgradePlannerResources.UpgradeLevel;
 	public string AddEquipmentFromLibrary => EquipmentUpgradePlannerResources.AddEquipmentFromLibrary;
 	public string AddOwnedEquipment => EquipmentUpgradePlannerResources.AddOwnedEquipment;
+	public string CreateUpgradePlan => EquipmentUpgradePlannerResources.CreateUpgradePlan;
+	public string EditUpgradePlan => EquipmentUpgradePlannerResources.EditUpgradePlan;
+	public string RemoveUpgradePlan => EquipmentUpgradePlannerResources.RemoveUpgradePlan;
 	public string DisplayFinished => EquipmentUpgradePlannerResources.DisplayFinished;
 	public string All => EquipmentUpgradePlannerResources.All;
 	public string Cost => EquipmentUpgradePlannerResources.Cost;

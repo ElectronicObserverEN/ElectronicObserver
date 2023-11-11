@@ -21,98 +21,104 @@
 				<TreeView.ItemTemplate>
 					<HierarchicalDataTemplate ItemsSource="{Binding Children}">
 
-						<StackPanel Orientation="Horizontal">
+						<StackPanel>
+							<StackPanel.ContextMenu>
+								<ContextMenu>
+									<MenuItem
+										Command="{Binding AddEquipmentPlanCommand}"
+										Header="{Binding Translations.CreateUpgradePlan}"
+										Visibility="{Binding CanBePlanned, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
+										/>
+									<MenuItem
+										Command="{Binding EditEquipmentPlanCommand}"
+										Header="{Binding Translations.EditUpgradePlan}"
+										Visibility="{Binding AlreadyPlanned, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
+										/>
+									<MenuItem
+										Command="{Binding RemoveEquipmentPlanCommand}"
+										Header="{Binding Translations.RemoveUpgradePlan}"
+										Visibility="{Binding AlreadyPlanned, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
+										/>
+								</ContextMenu>
+							</StackPanel.ContextMenu>
 
-							<StackPanel>
+							<TextBlock Text="{Binding DisplayName}" />
 
-								<TextBlock Text="{Binding DisplayName}" />
+							<Grid>
+								<Grid.Style>
+									<Style TargetType="Grid">
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding Cost}" Value="{x:Null}">
+												<Setter Property="Visibility" Value="Collapsed" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Grid.Style>
 
-								<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
 
-									<Grid.Style>
-										<Style TargetType="Grid">
-											<Style.Triggers>
-												<DataTrigger Binding="{Binding Cost}" Value="{x:Null}">
-													<Setter Property="Visibility" Value="Collapsed" />
-												</DataTrigger>
-											</Style.Triggers>
-										</Style>
-									</Grid.Style>
+								<StackPanel
+									Grid.Column="0"
+									DataContext="{Binding Cost.Fuel}"
+									Orientation="Horizontal"
+									>
+									<common:UseItemIcon Type="Fuel" />
+									<TextBlock Margin="2 0" Text="{Binding Required}" />
+								</StackPanel>
 
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="Auto" />
-									</Grid.ColumnDefinitions>
+								<StackPanel
+									Grid.Column="1"
+									DataContext="{Binding Cost.Ammo}"
+									Orientation="Horizontal"
+									>
+									<common:UseItemIcon Type="Ammo" />
+									<TextBlock Margin="2 0" Text="{Binding Required}" />
+								</StackPanel>
 
-									<StackPanel
-										Grid.Column="0"
-										DataContext="{Binding Cost.Fuel}"
-										Orientation="Horizontal"
-										>
-										<common:UseItemIcon Type="Fuel" />
-										<TextBlock Margin="2 0" Text="{Binding Required}" />
-									</StackPanel>
+								<StackPanel
+									Grid.Column="2"
+									DataContext="{Binding Cost.Steel}"
+									Orientation="Horizontal"
+									>
+									<common:UseItemIcon Type="Steel" />
+									<TextBlock Margin="2 0" Text="{Binding Required}" />
+								</StackPanel>
 
-									<StackPanel
-										Grid.Column="1"
-										DataContext="{Binding Cost.Ammo}"
-										Orientation="Horizontal"
-										>
-										<common:UseItemIcon Type="Ammo" />
-										<TextBlock Margin="2 0" Text="{Binding Required}" />
-									</StackPanel>
+								<StackPanel
+									Grid.Column="3"
+									DataContext="{Binding Cost.Bauxite}"
+									Orientation="Horizontal"
+									>
+									<common:UseItemIcon Type="Bauxite" />
+									<TextBlock Margin="2 0" Text="{Binding Required}" />
+								</StackPanel>
 
-									<StackPanel
-										Grid.Column="2"
-										DataContext="{Binding Cost.Steel}"
-										Orientation="Horizontal"
-										>
-										<common:UseItemIcon Type="Steel" />
-										<TextBlock Margin="2 0" Text="{Binding Required}" />
-									</StackPanel>
+								<StackPanel
+									Grid.Column="4"
+									DataContext="{Binding Cost.DevelopmentMaterial}"
+									Orientation="Horizontal"
+									>
+									<common:UseItemIcon Type="DevelopmentMaterial" />
+									<TextBlock Margin="2 0" Text="{Binding Required}" />
+								</StackPanel>
 
-									<StackPanel
-										Grid.Column="3"
-										DataContext="{Binding Cost.Bauxite}"
-										Orientation="Horizontal"
-										>
-										<common:UseItemIcon Type="Bauxite" />
-										<TextBlock Margin="2 0" Text="{Binding Required}" />
-									</StackPanel>
-
-									<StackPanel
-										Grid.Column="4"
-										DataContext="{Binding Cost.DevelopmentMaterial}"
-										Orientation="Horizontal"
-										>
-										<common:UseItemIcon Type="DevelopmentMaterial" />
-										<TextBlock Margin="2 0" Text="{Binding Required}" />
-									</StackPanel>
-
-									<StackPanel
-										Grid.Column="5"
-										DataContext="{Binding Cost.ImprovementMaterial}"
-										Orientation="Horizontal"
-										>
-										<common:UseItemIcon Type="ImproveMaterial" />
-										<TextBlock Margin="2 0" Text="{Binding Required}" />
-									</StackPanel>
-								</Grid>
-							</StackPanel>
-
-							<StackPanel Margin="10 0 0 0">
-								<Button
-									Command="{Binding AddEquipmentPlanFromMasterDataCommand}"
-									Content="Make a new Plan"
-									Visibility="{Binding CanBePlanned, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
-									/>
-							</StackPanel>
+								<StackPanel
+									Grid.Column="5"
+									DataContext="{Binding Cost.ImprovementMaterial}"
+									Orientation="Horizontal"
+									>
+									<common:UseItemIcon Type="ImproveMaterial" />
+									<TextBlock Margin="2 0" Text="{Binding Required}" />
+								</StackPanel>
+							</Grid>
 						</StackPanel>
-
 					</HierarchicalDataTemplate>
 				</TreeView.ItemTemplate>
 			</TreeView>

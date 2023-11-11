@@ -28,6 +28,7 @@ public partial class UpgradeTreeUpgradePlanViewModel
 	};
 
 	public bool CanBePlanned => Plan is EquipmentUpgradePlanItemViewModel plan && !EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
+	public bool AlreadyPlanned => Plan is EquipmentUpgradePlanItemViewModel plan && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
 	private IEquipmentPlanItemViewModel? Plan { get; }
 
@@ -146,14 +147,33 @@ public partial class UpgradeTreeUpgradePlanViewModel
 		};
 	}
 
-	[RelayCommand(CanExecute = nameof(CanBePlanned))]
-	private void AddEquipmentPlanFromMasterData()
+	[RelayCommand]
+	private void AddEquipmentPlan()
 	{
 		if (Plan is not EquipmentUpgradePlanItemViewModel plan) return;
 		if (!plan.OpenPlanDialog()) return;
 
 		EquipmentUpgradePlanManager.AddPlan(plan);
 		EquipmentUpgradePlanManager.Save();
-		AddEquipmentPlanFromMasterDataCommand.NotifyCanExecuteChanged();
+	}
+
+	[RelayCommand]
+	private void EditEquipmentPlan()
+	{
+		if (Plan is not EquipmentUpgradePlanItemViewModel plan) return;
+
+		if (plan.OpenPlanDialog())
+		{
+			EquipmentUpgradePlanManager.Save();
+		}
+	}
+
+	[RelayCommand]
+	private void RemoveEquipmentPlan()
+	{
+		if (Plan is not EquipmentUpgradePlanItemViewModel plan) return;
+
+		EquipmentUpgradePlanManager.RemovePlan(plan);
+		EquipmentUpgradePlanManager.Save();
 	}
 }
