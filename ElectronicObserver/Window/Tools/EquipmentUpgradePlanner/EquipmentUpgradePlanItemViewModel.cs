@@ -17,7 +17,7 @@ using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase
+public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IEquipmentPlanItemViewModel
 {
 	public EquipmentUpgradeData EquipmentUpgradeData { get; set; }
 

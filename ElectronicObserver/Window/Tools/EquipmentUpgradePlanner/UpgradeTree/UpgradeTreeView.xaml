@@ -19,7 +19,7 @@
 		<Grid Margin="10">
 			<TreeView ItemsSource="{Binding Items}">
 				<TreeView.ItemTemplate>
-					<HierarchicalDataTemplate ItemsSource="{Binding Items}">
+					<HierarchicalDataTemplate ItemsSource="{Binding Children}">
 
 						<StackPanel>
 
