@@ -10,7 +10,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 /// </summary>
 public class EquipmentConversionPlanItemViewModel(EquipmentUpgradePlanItemViewModel parent, List<EquipmentUpgradePlanItemViewModel> children) : IEquipmentPlanItemViewModel
 {
-	public EquipmentId EquipmentMasterDataId => EquipmentRequiredForUpgradePlan.FirstOrDefault()?.EquipmentMasterDataId ?? EquipmentId.Unknown;
+	public EquipmentId EquipmentMasterDataId => EquipmentToUpgradePlan.EquipmentMasterDataId;
 
 	public EquipmentUpgradePlanCostViewModel Cost => new(new());
 	public List<EquipmentUpgradePlanItemViewModel> EquipmentRequiredForUpgradePlan { get; set; } = children;

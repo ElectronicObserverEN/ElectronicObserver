@@ -16,4 +16,15 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 
 		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1, null));
 	}
+
+	public override void Closed()
+	{
+		foreach (UpgradeTreeUpgradePlanViewModel child in Items)
+		{
+			child.SaveChanges();
+		}
+
+		Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>().Save();
+		base.Closed();
+	}
 }
