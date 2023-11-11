@@ -1,0 +1,328 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.ExpeditionRecordViewer.ExpeditionRecordViewerWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:behaviors="clr-namespace:ElectronicObserver.Behaviors"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:commontools="clr-namespace:ElectronicObserver.Window.Tools.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.ExpeditionRecordViewer"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:mocks="clr-namespace:ElectronicObserverTypes.Mocks;assembly=ElectronicObserverTypes"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding ExpeditionRecordViewer.Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:ExpeditionRecordViewerViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:ExpeditionRecordViewerViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:ExpeditionRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="0"
+				Margin="4"
+				VerticalAlignment="Center"
+				Text="{Binding ExpeditionRecordViewer.Start}"
+				/>
+
+			<StackPanel
+				Grid.Row="0"
+				Grid.Column="1"
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					HorizontalAlignment="Stretch"
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					FirstDayOfWeek="Monday"
+					SelectedDate="{Binding DateBegin}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeBegin}" />
+			</StackPanel>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="0"
+				Margin="4"
+				VerticalAlignment="Center"
+				Text="{Binding ExpeditionRecordViewer.End}"
+				/>
+
+			<StackPanel
+				Grid.Row="1"
+				Grid.Column="1"
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					HorizontalAlignment="Stretch"
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					FirstDayOfWeek="Monday"
+					SelectedDate="{Binding DateEnd}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeEnd}" />
+			</StackPanel>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="4"
+				Margin="2"
+				ItemsSource="{Binding Worlds}"
+				SelectedItem="{Binding World}"
+				/>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="5"
+				Margin="2"
+				ItemsSource="{Binding Missions}"
+				SelectedItem="{Binding Mission}"
+				/>
+			<Button
+				Grid.Row="1"
+				Grid.Column="6"
+				Margin="2"
+				Command="{Binding SearchCommand}"
+				Content="{Binding ExpeditionRecordViewer.Search}"
+				/>
+
+			<Button
+				Grid.Row="1"
+				Grid.Column="7"
+				Margin="2"
+				Command="{Binding SearchCancelCommand}"
+				Content="{Binding ExpeditionRecordViewer.Cancel}"
+				IsEnabled="{Binding SearchCommand.CanBeCanceled}"
+				/>
+		</Grid>
+
+		<!--
+			images will stretch row height anyway
+			so might as well set min height to avoid extra rendering
+		-->
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding Expeditions}"
+			MinRowHeight="26"
+			SelectedItem="{Binding SelectedExpedition}"
+			>
+			<b:Interaction.Behaviors>
+				<behaviors:MultiSelectionBehavior SelectedItems="{Binding SelectedExpeditions}" />
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding DataGridViewModel.ColumnProperties}" SortDescriptions="{Binding DataGridViewModel.SortDescriptions}" />
+			</b:Interaction.Behaviors>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
+					<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="{Binding DataGridViewModel.DataGrid.ClearSorting}" />
+					<Separator />
+					<MenuItem Command="{Binding OpenFleetImageGeneratorCommand}" Header="{Binding ExpeditionRecordViewer.FleetImage}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					<Setter Property="ContextMenu">
+						<Setter.Value>
+							<ContextMenu>
+								<MenuItem
+									Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
+									CommandParameter="{Binding}"
+									Header="{Binding DataContext.DataGridViewModel.DataGrid.HideColumn, Source={StaticResource Proxy}}"
+									/>
+								<Separator />
+								<MenuItem Command="{Binding DataContext.DataGridViewModel.OpenColumnSelectorCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.OpenColumnSelector, Source={StaticResource Proxy}}" />
+								<MenuItem Command="{Binding DataContext.DataGridViewModel.ClearSortingCommand, Source={StaticResource Proxy}}" Header="{Binding DataContext.DataGridViewModel.DataGrid.ClearSorting, Source={StaticResource Proxy}}" />
+							</ContextMenu>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding DisplayId}" Header="ID" />
+				<DataGridTextColumn Binding="{Binding ClearResult}" Header="{Binding DataContext.ExpeditionRecordViewer.Result, Source={StaticResource Proxy}}" />
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Fuel, Source={StaticResource Proxy}}" SortMemberPath="Fuel">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<commontools:ImageTextControl HorizontalAlignment="Center" Text="{Binding Fuel}">
+								<commontools:ImageTextControl.Image>
+									<common:IconContentIcon Type="ResourceFuel" />
+								</commontools:ImageTextControl.Image>
+							</commontools:ImageTextControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Ammo, Source={StaticResource Proxy}}" SortMemberPath="Ammo">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<commontools:ImageTextControl HorizontalAlignment="Center" Text="{Binding Ammo}">
+								<commontools:ImageTextControl.Image>
+									<common:IconContentIcon Type="ResourceAmmo" />
+								</commontools:ImageTextControl.Image>
+							</commontools:ImageTextControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Steel, Source={StaticResource Proxy}}" SortMemberPath="Steel">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<commontools:ImageTextControl HorizontalAlignment="Center" Text="{Binding Steel}">
+								<commontools:ImageTextControl.Image>
+									<common:IconContentIcon Type="ResourceSteel" />
+								</commontools:ImageTextControl.Image>
+							</commontools:ImageTextControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Baux, Source={StaticResource Proxy}}" SortMemberPath="Bauxite">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<commontools:ImageTextControl HorizontalAlignment="Center" Text="{Binding Bauxite}">
+								<commontools:ImageTextControl.Image>
+									<common:IconContentIcon Type="ResourceBauxite" />
+								</commontools:ImageTextControl.Image>
+							</commontools:ImageTextControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Item1, Source={StaticResource Proxy}}" SortMemberPath="ItemOneCount">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Border Background="Transparent" ToolTip="{Binding ItemOneName}">
+								<commontools:ImageTextControl HorizontalAlignment="Center" Text="{Binding ItemOneCount}">
+									<commontools:ImageTextControl.Style>
+										<Style TargetType="commontools:ImageTextControl">
+											<Setter Property="Visibility" Value="Visible" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding ItemOneId}">
+													<DataTrigger.Value>
+														<electronicObserverTypes:UseItemId>
+															Unknown
+														</electronicObserverTypes:UseItemId>
+													</DataTrigger.Value>
+
+													<Setter Property="Visibility" Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</commontools:ImageTextControl.Style>
+
+									<commontools:ImageTextControl.Image>
+										<common:UseItemIcon Type="{Binding ItemOneId}" />
+									</commontools:ImageTextControl.Image>
+								</commontools:ImageTextControl>
+							</Border>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Item2, Source={StaticResource Proxy}}" SortMemberPath="ItemTwoCount">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Border Background="Transparent" ToolTip="{Binding ItemTwoName}">
+								<commontools:ImageTextControl HorizontalAlignment="Center" Text="{Binding ItemTwoCount}">
+									<commontools:ImageTextControl.Style>
+										<Style TargetType="commontools:ImageTextControl">
+											<Setter Property="Visibility" Value="Visible" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding ItemTwoId}">
+													<DataTrigger.Value>
+														<electronicObserverTypes:UseItemId>
+															Unknown
+														</electronicObserverTypes:UseItemId>
+													</DataTrigger.Value>
+
+													<Setter Property="Visibility" Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</commontools:ImageTextControl.Style>
+
+									<commontools:ImageTextControl.Image>
+										<common:UseItemIcon Type="{Binding ItemTwoId}" />
+									</commontools:ImageTextControl.Image>
+								</commontools:ImageTextControl>
+							</Border>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTextColumn Binding="{Binding ExpeditionStart, Converter={StaticResource DateTimeDisplayConverter}}" Header="{Binding DataContext.ExpeditionRecordViewer.Start, Source={StaticResource Proxy}}" />
+
+				<DataGridTemplateColumn Header="{Binding DataContext.ExpeditionRecordViewer.Fleet, Source={StaticResource Proxy}}">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ItemsControl ItemsSource="{Binding Fleet.MembersInstance}">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+								<ItemsControl.ItemTemplate>
+									<DataTemplate DataType="{x:Type mocks:ShipDataMock}">
+										<Image
+											Width="100"
+											Margin="2 0"
+											Source="{Binding MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+											Stretch="Uniform"
+											/>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StatusBar Grid.Row="2">
+			<StatusBarItem>
+				<TextBlock Text="{Binding StatusBarText}" />
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
+</common:WindowBase>

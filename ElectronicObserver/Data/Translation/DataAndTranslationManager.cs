@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -27,9 +28,13 @@ public class DataAndTranslationManager
 	public FitBonusData FitBonus { get; private set; }
 	public EquipmentUpgradeData EquipmentUpgrade { get; private set; }
 
+	public DataAndTranslationIssueReporter DataAndTranslationIssueReporter { get; }
+
 	public DataAndTranslationManager()
 	{
 		Initialize();
+
+		DataAndTranslationIssueReporter = new();
 	}
 
 	public void Initialize()

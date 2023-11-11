@@ -126,14 +126,11 @@
   <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
     <value>艦隊晒しページへコピー(&amp;R)</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysis" xml:space="preserve">
-    <value>艦隊分析ページへコピー(&amp;F)</value>
+  <data name="ContextMenuFleet_CopyFleetAnalysisShips" xml:space="preserve">
+    <value>艦隊分析艦娘へコピー</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisLockedEquip" xml:space="preserve">
-    <value>艦隊分析ロックされた装備コピー</value>
-  </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisAllEquip" xml:space="preserve">
-    <value>艦隊分析全装備コピー</value>
+  <data name="ContextMenuFleet_CopyFleetAnalysisEquipment" xml:space="preserve">
+    <value>艦隊分析装備へコピー</value>
   </data>
   <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
     <value>対空砲火の詳細表示(&amp;A)</value>
@@ -243,11 +240,8 @@
   <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
     <value>艦隊分析スプレッドシート艦娘へコピー</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
-    <value>艦隊分析スプレッドシートロックされた装備コピー</value>
-  </data>
-  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
-    <value>艦隊分析スプレッドシート全装備コピー</value>
+  <data name="CopyToFleetAnalysisSpreadsheetEquipment" xml:space="preserve">
+    <value>艦隊分析スプレッドシート装備へコピー</value>
   </data>
   <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
     <value>(右クリックで図鑑)</value>
@@ -275,5 +269,11 @@
   </data>
   <data name="Flare" xml:space="preserve">
     <value>照明弾</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>ロックされた</value>
   </data>
 </root>

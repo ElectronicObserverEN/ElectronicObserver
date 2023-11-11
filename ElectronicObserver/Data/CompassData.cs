@@ -31,7 +31,7 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// Map Node Display ID
 	/// </summary>
-	public string DestinationID => KCDatabase.Instance.Translation.Destination.DisplayID(MapAreaID, MapInfoID, Destination);
+	public string DestinationID => KCDatabase.Instance.Translation.Destination.DisplayId(MapAreaID, MapInfoID, Destination);
 
 	/// <summary>
 	/// 次のセルのグラフィック
@@ -251,7 +251,7 @@ public class CompassData : ResponseWrapper
 			var nodes = new string[RouteChoices.Count];
 			for (int i = 0; i < RouteChoices.Count; i++)
 			{
-				nodes[i] = KCDatabase.Instance.Translation.Destination.DisplayID(MapAreaID, MapInfoID, RouteChoices[i]);
+				nodes[i] = KCDatabase.Instance.Translation.Destination.DisplayId(MapAreaID, MapInfoID, RouteChoices[i]);
 			}
 			return nodes;
 		}

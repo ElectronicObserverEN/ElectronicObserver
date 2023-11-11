@@ -16,7 +16,7 @@ public abstract class TranslationBase
 	public abstract void Initialize();
 
 	// todo: use the generic version instead of this one for all translation files
-	public dynamic Load(string path)
+	public dynamic? Load(string path)
 	{
 		try
 		{

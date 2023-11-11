@@ -126,14 +126,11 @@
   <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
     <value>Copy Ship &amp;List (kancolle-calc)</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysis" xml:space="preserve">
-    <value>Copy Ship List (kancolle-&amp;fleetanalysis)</value>
+  <data name="ContextMenuFleet_CopyFleetAnalysisShips" xml:space="preserve">
+    <value>Copy Ship List (kancolle-fleetanalysis)</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisLockedEquip" xml:space="preserve">
-    <value>Copy Locked Equip (kancolle-fleetanalysis)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyFleetAnalysisAllEquip" xml:space="preserve">
-    <value>Copy All Equip (kancolle-fleetanalysis)</value>
+  <data name="ContextMenuFleet_CopyFleetAnalysisEquipment" xml:space="preserve">
+    <value>Copy Equipment List (kancolle-fleetanalysis)</value>
   </data>
   <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
     <value>&amp;AA Defense</value>
@@ -243,11 +240,8 @@ Range: {20} / Speed: {21}
   <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
     <value>Copy Ship List (fleet analysis spreadsheet)</value>
   </data>
-  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
-    <value>Copy Locked Equip (fleet analysis spreadsheet)</value>
-  </data>
-  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
-    <value>Copy All Equip (fleet analysis spreadsheet)</value>
+  <data name="CopyToFleetAnalysisSpreadsheetEquipment" xml:space="preserve">
+    <value>Copy Equipment List (fleet analysis spreadsheet)</value>
   </data>
   <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
     <value>(right click to open encyclopedia)</value>
@@ -275,5 +269,11 @@ Range: {20} / Speed: {21}
   </data>
   <data name="Flare" xml:space="preserve">
     <value>Flare</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Locked</value>
   </data>
 </root>

@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
@@ -450,11 +451,23 @@ public static class Extensions
 	{
 		if (sortieRecord.ApiFiles.Count is 0) return null;
 
-		// get the last port response right before the sortie started
+		return await GetAdmiralLevel(sortieRecord.ApiFiles.First().TimeStamp, db, cancellationToken);
+	}
+
+	public static async Task<int?> GetAdmiralLevel(this ExpeditionRecord expeditionRecord, ElectronicObserverContext db, CancellationToken cancellationToken = default)
+	{
+		if (expeditionRecord.ApiFiles.Count is 0) return null;
+
+		return await GetAdmiralLevel(expeditionRecord.ApiFiles.First().TimeStamp, db, cancellationToken);
+	}
+
+	private static async Task<int?> GetAdmiralLevel(DateTime timeStamp, ElectronicObserverContext db, CancellationToken cancellationToken = default)
+	{
+		// get the last port response right before the time stamp
 		ApiFile? portFile = await db.ApiFiles
 			.Where(f => f.ApiFileType == ApiFileType.Response)
 			.Where(f => f.Name == "api_port/port")
-			.Where(f => f.TimeStamp < sortieRecord.ApiFiles.First().TimeStamp)
+			.Where(f => f.TimeStamp < timeStamp)
 			.OrderByDescending(f => f.TimeStamp)
 			.FirstOrDefaultAsync(cancellationToken);
 

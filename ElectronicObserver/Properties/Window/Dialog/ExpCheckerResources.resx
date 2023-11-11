@@ -165,4 +165,13 @@
   <data name="Modernization" xml:space="preserve">
     <value>現在改修</value>
   </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>命中項</value>
+  </data>
+  <data name="LuckOffset" xml:space="preserve">
+    <value>運改修</value>
+  </data>
+  <data name="LuckOffsetToolTip" xml:space="preserve">
+    <value>運改修値を現在値から変更します。</value>
+  </data>
 </root>

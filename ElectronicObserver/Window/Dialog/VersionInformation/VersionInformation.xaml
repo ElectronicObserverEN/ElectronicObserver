@@ -49,7 +49,7 @@
 
 			<TextBlock>
 				<Run x:Name="TextModifiedBy" Text="Modified by:" />
-				<Run x:Name="TextMaintainers" Text="gre4bee, MyAngelKamikaze, Jebzou" />
+				<Run x:Name="TextMaintainers" Text="MyAngelKamikaze, Jebzou" />
 			</TextBlock>
 		</StackPanel>
 

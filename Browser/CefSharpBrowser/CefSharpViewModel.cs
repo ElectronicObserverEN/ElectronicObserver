@@ -135,7 +135,7 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
 
-		CustomRequestHandler requestHandler = new(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
+		CustomRequestHandler requestHandler = new(Configuration);
 
 		requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 

@@ -17,10 +17,9 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 
 	public ObservableCollection<ExpeditionCheckRow> Rows { get; } = new();
 
-	public DataGridViewModel<ExpeditionCheckRow> DataGridViewModel { get; set; }
+	public DataGridViewModel<ExpeditionCheckRow> DataGridViewModel { get; }
 
-	public ExpeditionCheckViewModel() : base(Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!.Title, "ExpeditionCheck",
-		ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck))
+	public ExpeditionCheckViewModel() : base("ExpeditionCheck", "ExpeditionCheck", IconContent.FormExpeditionCheck)
 	{
 		ExpeditionCheckTranslation = Ioc.Default.GetService<ExpeditionCheckTranslationViewModel>()!;
 
@@ -62,25 +61,26 @@ public class ExpeditionCheckViewModel : AnchorableViewModel
 
 	private void LoadData()
 	{
-		var db = KCDatabase.Instance;
+		KCDatabase db = KCDatabase.Instance;
 		Rows.Clear();
 
-		List<ExpeditionCheckRow> rows = db.Mission.Values.Select(mission => new ExpeditionCheckRow()
-		{
-			AreaName = db.MapArea[mission.MapAreaID].NameEN,
-			AreaId = mission.MapAreaID,
+		List<ExpeditionCheckRow> rows = db.Mission.Values
+			.Select(mission => new ExpeditionCheckRow
+			{
+				AreaName = db.MapArea[mission.MapAreaID].NameEN,
+				AreaId = mission.MapAreaID,
 
-			ExpeditionId = mission.ID,
-			ExpeditionDisplayId = mission.DisplayID,
-			ExpeditionName = mission.NameEN,
-			ExpeditionType = mission.ExpeditionType,
+				ExpeditionId = mission.ID,
+				ExpeditionDisplayId = mission.DisplayID,
+				ExpeditionName = mission.NameEN,
+				ExpeditionType = mission.ExpeditionType,
 
-			Fleet1Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[1]),
-			Fleet2Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[2]),
-			Fleet3Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[3]),
-			Fleet4Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[4]),
-			Conditions = MissionClearCondition.Check(mission.MissionID, null),
-		})
+				Fleet1Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[1]),
+				Fleet2Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[2]),
+				Fleet3Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[3]),
+				Fleet4Result = MissionClearCondition.Check(mission.MissionID, db.Fleet[4]),
+				Conditions = MissionClearCondition.Check(mission.MissionID, null),
+			})
 			.OrderBy(m => m.AreaId)
 			.ThenBy(m => m.ExpeditionId)
 			.ToList();

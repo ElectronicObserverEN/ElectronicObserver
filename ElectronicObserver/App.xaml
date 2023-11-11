@@ -24,7 +24,6 @@
 
 			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 			<converters:BooleanToHiddenConverter x:Key="BooleanToHiddenConverter" />
-			<converters:ImageSourceConverter x:Key="ImageSourceConverter" />
 			<converters:SpeedConverter x:Key="SpeedConverter" />
 			<converters:RangeConverter x:Key="RangeConverter" />
 			<converters:ShipRarityConverter x:Key="ShipRarityConverter" />

@@ -5,33 +5,33 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data.Translation;
 
-public class DestinationData : TranslationBase
+public sealed class DestinationData : TranslationBase
 {
-	private string DefaultFilePath = DataAndTranslationManager.DataFolder + @"\destination.json";
+	private static string DefaultFilePath => DataAndTranslationManager.DataFolder + @"\destination.json";
 
-	private IDDictionary<Destinations> DestinationList;
+	public IDDictionary<Destination> DestinationList { get; private set; } = new();
 
 	/// <summary>
 	/// Destination Node Letter ID (e.g: 1-1-A)
 	/// </summary>
-	public string DisplayID(int mapAreaID, int mapInfoID, int destination)
+	public string DisplayId(int mapAreaId, int mapInfoId, int destination)
 	{
-		int hash = GetHashCode(mapAreaID, mapInfoID, destination);
-		return IsLoaded && DestinationList.TryGetValue(hash, out Destinations value) ? value.DestinationDisplayID : destination.ToString();
+		int hash = GetHashCode(mapAreaId, mapInfoId, destination);
+		return IsLoaded && DestinationList.TryGetValue(hash, out Destination value) ? value.DestinationDisplayId : destination.ToString();
 	}
 
-	public string PreviousID(int mapAreaID, int mapInfoID, int destination)
+	public string PreviousId(int mapAreaId, int mapInfoId, int destination)
 	{
-		int hash = GetHashCode(mapAreaID, mapInfoID, destination);
-		return IsLoaded && DestinationList.TryGetValue(hash, out Destinations value) ? value.PreviousDisplayID : "";
+		int hash = GetHashCode(mapAreaId, mapInfoId, destination);
+		return IsLoaded && DestinationList.TryGetValue(hash, out Destination value) ? value.PreviousDisplayId : "";
 	}
 
-	private bool IsLoaded => Configuration.Config.UI.UseOriginalNodeId == false && DestinationList != null;
+	private static bool IsLoaded => !Configuration.Config.UI.UseOriginalNodeId;
 
-	private int GetHashCode(int mapAreaID, int mapInfoID, int destination)
+	private static int GetHashCode(int mapAreaId, int mapInfoId, int destination)
 	{
-		int hash = mapAreaID;
-		hash = hash * 397 ^ mapInfoID;
+		int hash = mapAreaId;
+		hash = hash * 397 ^ mapInfoId;
 		hash = hash * 397 ^ destination;
 		return hash;
 	}
@@ -46,51 +46,57 @@ public class DestinationData : TranslationBase
 		Initialize();
 	}
 
-	private IDDictionary<Destinations> LoadDictionary(string path)
+	private IDDictionary<Destination> LoadDictionary(string path)
 	{
-		var dict = new IDDictionary<Destinations>();
+		IDDictionary<Destination> dict = new();
 
-		var json = Load(path);
-		if (json == null) return dict;
+		dynamic? json = Load(path);
+
+		if (json is null) return dict;
 
 		foreach (KeyValuePair<string, object> map in json)
 		{
-			if (map.Key == "version") continue;
-			var destinations = JsonObject.Parse(map.Value.ToString());
+			if (map.Key is "version") continue;
+
+			dynamic? destinations = JsonObject.Parse(map.Value.ToString());
+
 			foreach (KeyValuePair<string, dynamic> dest in destinations)
 			{
 				string[] world = map.Key.Remove(0, 6).Split('-');
-				int mapAreaID = int.Parse(world[0]);
-				int mapInfoID = int.Parse(world[1]);
+				int mapAreaId = int.Parse(world[0]);
+				int mapInfoId = int.Parse(world[1]);
 				int destination = int.Parse(dest.Key);
-				string previousDisplayID = dest.Value[0];
-				string destinationDisplayID = dest.Value[1];
+				string previousDisplayId = dest.Value[0];
+				string destinationDisplayId = dest.Value[1];
 
-				int hash = GetHashCode(mapAreaID, mapInfoID, destination);
+				int hash = GetHashCode(mapAreaId, mapInfoId, destination);
 
-				var item = new Destinations
+				Destination item = new()
 				{
 					ID = hash,
-					MapAreaID = mapAreaID,
-					MapInfoID = mapInfoID,
-					Destination = destination,
-					PreviousDisplayID = previousDisplayID,
-					DestinationDisplayID = destinationDisplayID
+					MapAreaId = mapAreaId,
+					MapInfoId = mapInfoId,
+					CellId = destination,
+					PreviousDisplayId = previousDisplayId,
+					DestinationDisplayId = destinationDisplayId
 				};
 
 				dict.Add(item);
 			}
 		}
+
 		return dict;
 	}
+}
 
-	private class Destinations : IIdentifiable
-	{
-		public int ID { get; set; }
-		public int MapAreaID { get; set; }
-		public int MapInfoID { get; set; }
-		public int Destination { get; set; }
-		public string PreviousDisplayID { get; set; }
-		public string DestinationDisplayID { get; set; }
-	}
+public class Destination : IIdentifiable
+{
+	public int ID { get; set; }
+	public int MapAreaId { get; set; }
+	public int MapInfoId { get; set; }
+	public int CellId { get; set; }
+	public string PreviousDisplayId { get; set; }
+	public string DestinationDisplayId { get; set; }
+
+	public string Display => $"{MapAreaId}-{MapInfoId}-{DestinationDisplayId}";
 }

@@ -53,18 +53,18 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string ContextMenuFleet_CopyFleet => FleetResources.ContextMenuFleet_CopyFleet.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_CopyFleetDeckBuilder => FleetResources.ContextMenuFleet_CopyFleetDeckBuilder.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_CopyKanmusuList => FleetResources.ContextMenuFleet_CopyKanmusuList.Replace("_", "__").Replace("&", "_");
-	public string ContextMenuFleet_CopyFleetAnalysis => FleetResources.ContextMenuFleet_CopyFleetAnalysis.Replace("_", "__").Replace("&", "_");
-	public string ContextMenuFleet_CopyFleetAnalysisLockedEquip => FleetResources.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Replace("_", "__").Replace("&", "_");
-	public string ContextMenuFleet_CopyFleetAnalysisAllEquip => FleetResources.ContextMenuFleet_CopyFleetAnalysisAllEquip.Replace("_", "__").Replace("&", "_");
-	
+	public string ContextMenuFleet_CopyFleetAnalysisShips => FleetResources.ContextMenuFleet_CopyFleetAnalysisShips;
+	public string ContextMenuFleet_CopyFleetAnalysisEquipment => FleetResources.ContextMenuFleet_CopyFleetAnalysisEquipment;
+	public string All => FleetResources.All;
+	public string Locked => FleetResources.Locked;
+
 	public string ContextMenuFleetShipLevel_OpenExpChecker => FleetResources.ContextMenuFleetShipLevel_OpenExpChecker;
 	public string ContextMenuFleetShipLevel_CreateTrainingPlan => FleetResources.ContextMenuFleetShipLevel_CreateTrainingPlan;
 	public string ContextMenuFleetShipLevel_EditTrainingPlan => FleetResources.ContextMenuFleetShipLevel_EditTrainingPlan;
 	public string ContextMenuFleetShipLevel_RemoveTrainingPlan => FleetResources.ContextMenuFleetShipLevel_RemoveTrainingPlan;
 
 	public string CopyToFleetAnalysisSpreadsheetShips => FleetResources.CopyToFleetAnalysisSpreadsheetShips;
-	public string CopyToFleetAnalysisSpreadsheetLockedEquipment => FleetResources.CopyToFleetAnalysisSpreadsheetLockedEquipment;
-	public string CopyToFleetAnalysisSpreadsheetAllEquipment => FleetResources.CopyToFleetAnalysisSpreadsheetAllEquipment;
+	public string CopyToFleetAnalysisSpreadsheetEquipment => FleetResources.CopyToFleetAnalysisSpreadsheetEquipment;
 
 	public string ContextMenuFleet_AntiAirDetails => FleetResources.ContextMenuFleet_AntiAirDetails.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_Capture => FleetResources.ContextMenuFleet_Capture.Replace("_", "__").Replace("&", "_");

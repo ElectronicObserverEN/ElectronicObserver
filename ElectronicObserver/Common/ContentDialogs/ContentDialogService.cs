@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Common.ContentDialogs.Notification;
 using ModernWpf.Controls;
@@ -11,8 +12,24 @@ namespace ElectronicObserver.Common.ContentDialogs;
 /// </summary>
 public class ContentDialogService
 {
+	public ExportFilterContentDialog? ExportFilterContentDialog { get; init; }
 	public ExportProgressContentDialog? ExportProgressContentDialog { get; init; }
 	public NotificationContentDialog? NotificationContentDialog { get; init; }
+
+	public async Task<ExportFilterViewModel?> ShowExportFilterAsync(ExportFilterViewModel exportFilter)
+	{
+		ArgumentNullException.ThrowIfNull(ExportFilterContentDialog);
+
+		ExportFilterContentDialog.ExportFilter = exportFilter;
+
+		ExportFilterViewModel? result = await ExportFilterContentDialog.ShowAsync(ContentDialogPlacement.InPlace) switch
+		{
+			ContentDialogResult.Primary => exportFilter,
+			_ => null,
+		};
+
+		return result;
+	}
 
 	public async Task<bool> ShowExportProgressAsync(ExportProgressViewModel exportProgress)
 	{

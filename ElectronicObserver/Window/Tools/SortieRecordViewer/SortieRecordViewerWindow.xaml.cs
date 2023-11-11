@@ -13,6 +13,7 @@ public partial class SortieRecordViewerWindow
 
 		ViewModel.ContentDialogService = new ContentDialogService
 		{
+			ExportFilterContentDialog = ExportFilterContentDialog,
 			ExportProgressContentDialog = ExportProgressContentDialog,
 			NotificationContentDialog = NotificationContentDialog,
 		};

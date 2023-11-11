@@ -39,7 +39,7 @@
 	<WrapPanel
 		Background="Transparent"
 		DataContext="{Binding ViewModel, ElementName=HeadquartersControl}"
-		Visibility="{Binding Visible}"
+		Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 		>
 		<WrapPanel.Resources>
 			<Style TargetType="Border">
@@ -55,7 +55,7 @@
 			<Border
 				Background="{Binding AdmiralName.Background}"
 				ToolTip="{Binding AdmiralName.ToolTip}"
-				Visibility="{Binding AdmiralName.Visible}"
+				Visibility="{Binding AdmiralName.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<TextBlock
 					d:Text="Mirai Fleet Admiral"
@@ -64,14 +64,14 @@
 					TextWrapping="Wrap"
 					/>
 			</Border>
-			<Border ToolTip="{Binding AdmiralComment.ToolTip}" Visibility="{Binding AdmiralComment.Visible}">
+			<Border ToolTip="{Binding AdmiralComment.ToolTip}" Visibility="{Binding AdmiralComment.Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
 				<TextBlock
 					d:Text="神風のまっしろおぱんちゅ"
 					Text="{Binding AdmiralComment.Text}"
 					TextWrapping="Wrap"
 					/>
 			</Border>
-			<Border ToolTip="{Binding HQLevel.ToolTip}" Visibility="{Binding HQLevel.Visible}">
+			<Border ToolTip="{Binding HQLevel.ToolTip}" Visibility="{Binding HQLevel.Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
 				<StackPanel Orientation="Horizontal">
 					<TextBlock
 						VerticalAlignment="Bottom"
@@ -117,7 +117,7 @@
 		<WrapPanel ContextMenu="{StaticResource OffsetWorkaroundContextMenu}">
 			<Border Background="{Binding ShipCount.Background}" ToolTip="{Binding ShipCount.ToolTip}">
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding ShipCount.Icon}" />
+					<Image Source="{StaticResource Headquarters.Ship}" />
 					<TextBlock
 						d:Text="480/480"
 						Foreground="{Binding ShipCount.Foreground}"
@@ -128,10 +128,10 @@
 			<Border
 				Background="{Binding EquipmentCount.Background}"
 				ToolTip="{Binding EquipmentCount.ToolTip}"
-				Visibility="{Binding EquipmentCount.Visible}"
+				Visibility="{Binding EquipmentCount.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding EquipmentCount.Icon}" />
+					<Image Source="{StaticResource Headquarters.Equipment}" />
 					<TextBlock
 						d:Text="2057/2057"
 						Foreground="{Binding EquipmentCount.Foreground}"
@@ -144,10 +144,10 @@
 			<Border
 				Background="{Binding InstantRepair.Background}"
 				ToolTip="{Binding InstantRepair.ToolTip}"
-				Visibility="{Binding InstantRepair.Visible}"
+				Visibility="{Binding InstantRepair.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding InstantRepair.Icon}" />
+					<common:UseItemIcon Type="InstantRepair" />
 					<TextBlock
 						d:Text="2937"
 						Foreground="{Binding InstantRepair.Foreground}"
@@ -158,10 +158,10 @@
 			<Border
 				Background="{Binding InstantConstruction.Background}"
 				ToolTip="{Binding InstantConstruction.ToolTip}"
-				Visibility="{Binding InstantConstruction.Visible}"
+				Visibility="{Binding InstantConstruction.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding InstantConstruction.Icon}" />
+					<common:UseItemIcon Type="InstantConstruction" />
 					<TextBlock
 						d:Text="2928"
 						Foreground="{Binding InstantConstruction.Foreground}"
@@ -172,10 +172,10 @@
 			<Border
 				Background="{Binding DevelopmentMaterial.Background}"
 				ToolTip="{Binding DevelopmentMaterial.ToolTip}"
-				Visibility="{Binding DevelopmentMaterial.Visible}"
+				Visibility="{Binding DevelopmentMaterial.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding DevelopmentMaterial.Icon}" />
+					<common:UseItemIcon Type="DevelopmentMaterial" />
 					<TextBlock
 						d:Text="2493"
 						Foreground="{Binding DevelopmentMaterial.Foreground}"
@@ -186,10 +186,10 @@
 			<Border
 				Background="{Binding ModdingMaterial.Background}"
 				ToolTip="{Binding ModdingMaterial.ToolTip}"
-				Visibility="{Binding ModdingMaterial.Visible}"
+				Visibility="{Binding ModdingMaterial.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding ModdingMaterial.Icon}" />
+					<common:UseItemIcon Type="ImproveMaterial" />
 					<TextBlock
 						d:Text="472"
 						Foreground="{Binding ModdingMaterial.Foreground}"
@@ -200,10 +200,10 @@
 			<Border
 				Background="{Binding FurnitureCoin.Background}"
 				ToolTip="{Binding FurnitureCoin.ToolTip}"
-				Visibility="{Binding FurnitureCoin.Visible}"
+				Visibility="{Binding FurnitureCoin.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding FurnitureCoin.Icon}" />
+					<common:UseItemIcon Type="FurnitureCoin" />
 					<TextBlock
 						d:Text="106174"
 						Foreground="{Binding FurnitureCoin.Foreground}"
@@ -214,13 +214,13 @@
 			<Border
 				Background="{Binding DisplayUseItem.Background}"
 				ToolTip="{Binding DisplayUseItem.ToolTip}"
-				Visibility="{Binding DisplayUseItem.Visible}"
+				Visibility="{Binding DisplayUseItem.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>
 				<Border.InputBindings>
 					<MouseBinding Command="{Binding ViewUseItemsCommand}" MouseAction="RightClick" />
 				</Border.InputBindings>
 				<StackPanel Orientation="Horizontal">
-					<Image Source="{Binding DisplayUseItem.Icon}" />
+					<common:UseItemIcon Type="PresentBox" />
 					<TextBlock
 						d:Text="123"
 						Foreground="{Binding DisplayUseItem.Foreground}"
@@ -240,7 +240,7 @@
 					<Border
 						Background="{Binding Fuel.Background}"
 						ToolTip="{Binding Fuel.ToolTip}"
-						Visibility="{Binding Fuel.Visible}"
+						Visibility="{Binding Fuel.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 						>
 						<Grid>
 							<Grid.ColumnDefinitions>
@@ -263,7 +263,7 @@
 						Margin="{Binding WorkaroundOffset}"
 						Background="{Binding Ammo.Background}"
 						ToolTip="{Binding Ammo.ToolTip}"
-						Visibility="{Binding Ammo.Visible}"
+						Visibility="{Binding Ammo.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 						>
 						<Grid>
 							<Grid.ColumnDefinitions>
@@ -287,7 +287,7 @@
 					<Border
 						Background="{Binding Steel.Background}"
 						ToolTip="{Binding Steel.ToolTip}"
-						Visibility="{Binding Steel.Visible}"
+						Visibility="{Binding Steel.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 						>
 						<Grid>
 							<Grid.ColumnDefinitions>
@@ -310,7 +310,7 @@
 						Margin="{Binding WorkaroundOffset}"
 						Background="{Binding Bauxite.Background}"
 						ToolTip="{Binding Bauxite.ToolTip}"
-						Visibility="{Binding Bauxite.Visible}"
+						Visibility="{Binding Bauxite.Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 						>
 						<Grid>
 							<Grid.ColumnDefinitions>

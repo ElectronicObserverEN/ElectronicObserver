@@ -758,6 +758,11 @@ public sealed class Configuration
 			public string APIListPath { get; set; }
 
 			/// <summary>
+			/// Electronic Observer API URL
+			/// </summary>
+			public string ElectronicObserverApiUrl { get; set; } = "";
+
+			/// <summary>
 			/// エラー発生時に警告音を鳴らすか
 			/// </summary>
 			public bool AlertOnError { get; set; }
@@ -820,6 +825,8 @@ public sealed class Configuration
 			/// レイアウトロック中でもフロートウィンドウを閉じられるようにするか
 			/// </summary>
 			public bool CanCloseFloatWindowInLock { get; set; }
+
+			public string? CsvExportPath { get; set; }
 
 			public ConfigLife()
 			{
@@ -1331,6 +1338,13 @@ public sealed class Configuration
 			public bool UseGadgetRedirect { get; set; }
 
 			/// <summary>
+			///  Gadget Bypass server options
+			/// </summary>
+			public GadgetServerOptions GadgetBypassServer { get; set; }
+
+			public string GadgetBypassServerCustom { get; set; }
+
+			/// <summary>
 			/// Rename WebView2 vulkan files so it can't use the vulkan software rendering implementation
 			/// This fixes performance on older CPUs
 			/// </summary>
@@ -1372,6 +1386,8 @@ public sealed class Configuration
 				UseVulkanWorkaround = false;
 				Volume = 100;
 				IsMute = false;
+				GadgetBypassServer = GadgetServerOptions.EO;
+				GadgetBypassServerCustom = "";
 				IsBrowserContextMenuEnabled = true;
 			}
 		}

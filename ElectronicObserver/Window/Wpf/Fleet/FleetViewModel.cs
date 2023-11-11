@@ -41,8 +41,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
 
-	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
-		ImageSourceIcons.GetIcon(IconContent.FormFleet))
+	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}", IconContent.FormFleet)
 	{
 		FormFleet = Ioc.Default.GetRequiredService<FormFleetTranslationViewModel>();
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
@@ -53,7 +52,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		FleetId = fleetId;
 
-		Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
+		SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 		AnchorageRepairBound = 0;
 
@@ -131,44 +130,39 @@ public partial class FleetViewModel : AnchorableViewModel
 
 			ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
 		}
-
-		int iconIndex = ControlFleet.State.GetIconIndex();
-		IconSource = ImageSourceIcons.GetIcon((IconContent)iconIndex);
+		
+		Icon = ControlFleet.State.GetIcon();
 	}
 
-	void UpdateTimerTick()
+	private void UpdateTimerTick()
 	{
-		FleetData fleet = KCDatabase.Instance.Fleet.Fleets[FleetId];
+		FleetData? fleet = KCDatabase.Instance.Fleet.Fleets[FleetId];
 
-		if (fleet != null)
+		if (fleet is not null)
 		{
 			ControlFleet.Refresh();
 		}
 
-		for (int i = 0; i < ControlMember.Count; i++)
+		foreach (FleetItemViewModel fleetItem in ControlMember)
 		{
 			// this is for updating the repair timer when a ship is docked
-			ControlMember[i].HP.ResumeUpdate();
+			fleetItem.HP.ResumeUpdate();
 		}
 
 		// anchorage repairing
-		if (fleet != null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
+		if (fleet is not null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
 		{
 			TimeSpan elapsed = DateTime.Now - KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
 
 			if (elapsed.TotalMinutes >= 20 && AnchorageRepairBound > 0)
 			{
-
 				for (int i = 0; i < AnchorageRepairBound; i++)
 				{
-					var hpbar = ControlMember[i].HP;
+					FleetHpViewModel hpbar = ControlMember[i].HP;
 
 					double dockingSeconds = hpbar.Tag as double? ?? 0.0;
 
-					if (dockingSeconds <= 0.0)
-						continue;
-
-					// hpbar.SuspendUpdate();
+					if (dockingSeconds <= 0.0) continue;
 
 					if (!hpbar.UsePrevValue)
 					{
@@ -190,7 +184,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		}
 	}
 
-	void ConfigurationChanged()
+	private void ConfigurationChanged()
 	{
 		Configuration.ConfigurationData c = Configuration.Config;
 
@@ -218,34 +212,31 @@ public partial class FleetViewModel : AnchorableViewModel
 
 			for (int i = 0; i < ControlMember.Count; i++)
 			{
-				var member = ControlMember[i];
+				FleetItemViewModel member = ControlMember[i];
 
 				member.Equipments.ShowAircraft = showAircraft;
-				if (fixShipNameWidth)
+				member.Name.MaxWidth = fixShipNameWidth switch
 				{
-					member.Name.MaxWidth = fixedShipNameWidth;
-				}
-				else
-				{
-					member.Name.MaxWidth = int.MaxValue;
-				}
+					true => fixedShipNameWidth,
+					_ => int.MaxValue,
+				};
 
-				// member.HP.SuspendUpdate();
 				member.HP.Text = shortHPBar ? "" : "HP:";
 				member.HP.HPBar.ColorMorphing = colorMorphing;
 				member.HP.HPBar.SetBarColorScheme(colorScheme);
-				// member.HP.MaximumSize = isLayoutFixed ? new Size(int.MaxValue, (int)ControlHelper.GetDefaultRowStyle().Height - member.HP.Margin.Vertical) : Size.Empty;
-				// member.HP.ResumeUpdate();
 
 				member.Level.NextVisible = showNext;
 				member.Level.TextNext = showNext ? "next:" : null;
 
-				member.Condition.ImageAlign = showConditionIcon ? System.Drawing.ContentAlignment.MiddleLeft : System.Drawing.ContentAlignment.MiddleCenter;
+				member.Condition.ImageAlign = showConditionIcon switch
+				{
+					true => System.Drawing.ContentAlignment.MiddleLeft,
+					_ => System.Drawing.ContentAlignment.MiddleCenter,
+				};
+
 				member.Equipments.LevelVisibility = levelVisibility;
 				member.Equipments.ShowAircraftLevelByNumber = showAircraftLevelByNumber;
-				// member.Equipments.MaximumSize = isLayoutFixed ? new Size(int.MaxValue, (int)ControlHelper.GetDefaultRowStyle().Height - member.Equipments.Margin.Vertical) : Size.Empty;
-				member.ShipResource.BarFuel.ColorMorphing =
-					member.ShipResource.BarAmmo.ColorMorphing = colorMorphing;
+				member.ShipResource.BarFuel.ColorMorphing = member.ShipResource.BarAmmo.ColorMorphing = colorMorphing;
 				member.ShipResource.BarFuel.SetBarColorScheme(colorScheme);
 				member.ShipResource.BarAmmo.SetBarColorScheme(colorScheme);
 
@@ -501,25 +492,18 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	/// <summary>
-	/// 
-	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
-	/// </summary>
 	[RelayCommand]
-	private void CopyFleetAnalysis()
+	private void CopyFleetAnalysisAllShips()
 	{
 		string json = DataSerializationService.FleetAnalysisShips(true);
 
 		Clipboard.SetDataObject(json);
 	}
 
-	/// <summary>
-	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
-	/// </summary>
 	[RelayCommand]
-	private void CopyFleetAnalysisEquip()
+	private void CopyFleetAnalysisLockedShips()
 	{
-		string json = DataSerializationService.FleetAnalysisEquipment(false);
+		string json = DataSerializationService.FleetAnalysisShips(false);
 
 		Clipboard.SetDataObject(json);
 	}
@@ -532,17 +516,48 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(json);
 	}
 
-	/// <summary>
-	/// Short versions are for the fleet analysis spreadsheet
-	/// <see cref="https://docs.google.com/spreadsheets/d/1NuLlff6EXM0XQ_qNHP9lEOosbwHXamaVNJb72M7ZLoY"/>
-	/// </summary>
 	[RelayCommand]
-	private void CopyFleetAnalysisShipsShort()
+	private void CopyFleetAnalysisLockedEquip()
+	{
+		string json = DataSerializationService.FleetAnalysisEquipment(false);
+
+		Clipboard.SetDataObject(json);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisAllShipsShort()
+	{
+		GenerateShipListShort(true);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisLockedShipsShort()
+	{
+		GenerateShipListShort(false);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisAllEquipShort()
+	{
+		GenerateEquipListShort(true);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisLockedEquipShort()
+	{
+		GenerateEquipListShort(false);
+	}
+
+	/// <summary>
+	/// <see cref="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
+	/// </summary>
+	/// <param name="allShips"></param>
+	private void GenerateShipListShort(bool allShips)
 	{
 		KCDatabase db = KCDatabase.Instance;
 		List<string> ships = new List<string>();
 
-		foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
+		foreach (ShipData ship in db.Ships.Values.Where(s => allShips || s.IsLocked))
 		{
 			int[] apiKyouka =
 			{
@@ -552,7 +567,7 @@ public partial class FleetViewModel : AnchorableViewModel
 				ship.ArmorModernized,
 				ship.LuckModernized,
 				ship.HPMaxModernized,
-				ship.ASWModernized
+				ship.ASWModernized,
 			};
 
 			int expProgress = 0;
@@ -576,18 +591,6 @@ public partial class FleetViewModel : AnchorableViewModel
 		string json = $"[{string.Join(",", ships)}]";
 
 		Clipboard.SetDataObject(json);
-	}
-
-	[RelayCommand]
-	private void CopyFleetAnalysisLockedEquipShort()
-	{
-		GenerateEquipListShort(false);
-	}
-
-	[RelayCommand]
-	private void CopyFleetAnalysisAllEquipShort()
-	{
-		GenerateEquipListShort(true);
 	}
 
 	/// <summary>

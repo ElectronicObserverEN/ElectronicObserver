@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
@@ -19,43 +18,19 @@ using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Headquarters;
 
-public class HeadquarterItemViewModel : ObservableObject
-{
-	public string? Text { get; set; }
-	public string? ToolTip { get; set; }
-	public Visibility Visible { get; set; } = Visibility.Visible;
-	public ImageSource? Icon { get; set; }
-	public System.Drawing.Color BackColor { get; set; }
-	public System.Drawing.Color ForeColor { get; set; }
-	public bool Tag { get; set; }
-
-	public SolidColorBrush Foreground => ForeColor.ToBrush();
-	public SolidColorBrush Background => BackColor.ToBrush();
-}
-
-public class HQLevelViewModel : HeadquarterItemViewModel
-{
-	public int Value { get; set; }
-	public string? TextNext { get; set; }
-	public int ValueNext { get; set; }
-}
-
 public partial class HeadquartersViewModel : AnchorableViewModel
 {
 	public FormHeadquartersTranslationViewModel FormHeadquarters { get; }
 
-	public Visibility Visible { get; set; } = Visibility.Collapsed;
+	public bool Visible { get; set; }
 	// WPF is failing to calculate item size in WrapPanel correctly
 	// adding an extra offset to ammo and baux to make them bigger fixes it
 	public Thickness WorkaroundOffset => new(0, 0, 0, WorkaroundOffsetBottom);
 	public int WorkaroundOffsetBottom { get; set; }
 
-	public FontFamily MainFont { get; set; }
-	public float MainFontSize { get; set; }
-	public SolidColorBrush MainFontColor { get; set; }
-	public FontFamily SubFont { get; set; }
+	public FontFamily? SubFont { get; set; }
 	public float SubFontSize { get; set; }
-	public SolidColorBrush SubFontColor { get; set; }
+	public SolidColorBrush? SubFontColor { get; set; }
 
 	public HeadquarterItemViewModel AdmiralName { get; } = new();
 	public HeadquarterItemViewModel AdmiralComment { get; } = new();
@@ -75,26 +50,12 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 	private List<HeadquarterItemViewModel> Items { get; }
 
-	public HeadquartersViewModel() : base("HQ", "Headquarters",
-		ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters))
+	public HeadquartersViewModel() : base("HQ", "Headquarters", IconContent.FormHeadQuarters)
 	{
 		FormHeadquarters = Ioc.Default.GetService<FormHeadquartersTranslationViewModel>()!;
 
 		Title = FormHeadquarters.Title;
 		FormHeadquarters.PropertyChanged += (_, _) => Title = FormHeadquarters.Title;
-
-		ShipCount.Icon = ImageSourceIcons.GetIcon(IconContent.HeadQuartersShip);
-		EquipmentCount.Icon = ImageSourceIcons.GetIcon(IconContent.HeadQuartersEquipment);
-		InstantRepair.Icon = ImageSourceIcons.GetIcon(IconContent.ItemInstantRepair);
-		InstantConstruction.Icon = ImageSourceIcons.GetIcon(IconContent.ItemInstantConstruction);
-		DevelopmentMaterial.Icon = ImageSourceIcons.GetIcon(IconContent.ItemDevelopmentMaterial);
-		ModdingMaterial.Icon = ImageSourceIcons.GetIcon(IconContent.ItemModdingMaterial);
-		FurnitureCoin.Icon = ImageSourceIcons.GetIcon(IconContent.ItemFurnitureCoin);
-		DisplayUseItem.Icon = ImageSourceIcons.GetIcon(IconContent.ItemPresentBox);
-		Fuel.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceFuel);
-		Ammo.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceAmmo);
-		Steel.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceSteel);
-		Bauxite.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceBauxite);
 
 		Items = new()
 		{
@@ -142,7 +103,6 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		o.ApiReqAirCorps_Supply.ResponseReceived += Updated;
 		o.ApiGetMember_UseItem.ResponseReceived += Updated;
 
-
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		Utility.SystemEvents.UpdateTimerTick += SystemEvents_UpdateTimerTick;
 
@@ -156,13 +116,10 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		};
 	}
 
-	void ConfigurationChanged()
+	private void ConfigurationChanged()
 	{
-		MainFont = new(Utility.Configuration.Config.UI.MainFont.FontData.FontFamily.Name);
-		MainFontSize = Utility.Configuration.Config.UI.MainFont.FontData.ToSize();
 		SubFont = new(Utility.Configuration.Config.UI.SubFont.FontData.FontFamily.Name);
 		SubFontSize = Utility.Configuration.Config.UI.SubFont.FontData.ToSize();
-		MainFontColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 		SubFontColor = Utility.Configuration.Config.UI.SubForeColor.ToBrush();
 
 		WorkaroundOffsetBottom = Utility.Configuration.Config.FormHeadquarters.WrappingOffset;
@@ -173,50 +130,27 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 			item.BackColor = Utility.Configuration.Config.UI.BackColor;
 		}
 
-		/*
-		Font = FlowPanelMaster.Font = Utility.Configuration.Config.UI.MainFont;
-		HQLevel.MainFont = Utility.Configuration.Config.UI.MainFont;
-		HQLevel.SubFont = Utility.Configuration.Config.UI.SubFont;
-		HQLevel.MainFontColor = Utility.Configuration.Config.UI.ForeColor;
-		HQLevel.SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
-
-		// 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
-		if (!Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum)
-		{
-			if (ShipCount.Tag as bool? ?? false)
-			{
-				ShipCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
-				ShipCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
-			}
-
-			if (EquipmentCount.Tag as bool? ?? false)
-			{
-				EquipmentCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
-				EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
-			}
-		}
-		*/
-
 		//visibility
 		CheckVisibilityConfiguration();
-		{
-			var visibility = Utility.Configuration.Config.FormHeadquarters.Visibility.List;
-			AdmiralName.Visible = visibility[0].ToVisibility();
-			AdmiralComment.Visible = visibility[1].ToVisibility();
-			HQLevel.Visible = visibility[2].ToVisibility();
-			ShipCount.Visible = visibility[3].ToVisibility();
-			EquipmentCount.Visible = visibility[4].ToVisibility();
-			InstantRepair.Visible = visibility[5].ToVisibility();
-			InstantConstruction.Visible = visibility[6].ToVisibility();
-			DevelopmentMaterial.Visible = visibility[7].ToVisibility();
-			ModdingMaterial.Visible = visibility[8].ToVisibility();
-			FurnitureCoin.Visible = visibility[9].ToVisibility();
-			Fuel.Visible = visibility[10].ToVisibility();
-			Ammo.Visible = visibility[11].ToVisibility();
-			Steel.Visible = visibility[12].ToVisibility();
-			Bauxite.Visible = visibility[13].ToVisibility();
-			DisplayUseItem.Visible = visibility[14].ToVisibility();
-		}
+
+		List<bool> visibility = Utility.Configuration.Config.FormHeadquarters.Visibility.List;
+
+		AdmiralName.Visible = visibility[0];
+		AdmiralComment.Visible = visibility[1];
+		HQLevel.Visible = visibility[2];
+		ShipCount.Visible = visibility[3];
+		EquipmentCount.Visible = visibility[4];
+		InstantRepair.Visible = visibility[5];
+		InstantConstruction.Visible = visibility[6];
+		DevelopmentMaterial.Visible = visibility[7];
+		ModdingMaterial.Visible = visibility[8];
+		FurnitureCoin.Visible = visibility[9];
+		Fuel.Visible = visibility[10];
+		Ammo.Visible = visibility[11];
+		Steel.Visible = visibility[12];
+		Bauxite.Visible = visibility[13];
+		DisplayUseItem.Visible = visibility[14];
+
 		UpdateDisplayUseItem();
 	}
 
@@ -594,21 +528,15 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				Bauxite.ForeColor = configUI.ForeColor;
 				Bauxite.BackColor = System.Drawing.Color.Transparent;
 			}
+
 			Bauxite.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 				resday == null ? 0 : (db.Material.Bauxite - resday.Bauxite),
 				resweek == null ? 0 : (db.Material.Bauxite - resweek.Bauxite),
 				resmonth == null ? 0 : (db.Material.Bauxite - resmonth.Bauxite));
 
 		}
-		// FlowPanelResource.ResumeLayout();
 
-		// FlowPanelMaster.ResumeLayout();
-		// if (!FlowPanelMaster.Visible)
-		// FlowPanelMaster.Visible = true;
-		// AdmiralName.Refresh();
-		// AdmiralComment.Refresh();
-
-		Visible = Visibility.Visible;
+		Visible = true;
 	}
 
 	void SystemEvents_UpdateTimerTick()

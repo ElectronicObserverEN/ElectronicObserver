@@ -16,7 +16,7 @@ public abstract class SortieNode
 	public BattleBaseAirRaid? AirBaseRaid { get; private set; }
 	public ApiOffshoreSupply? ApiOffshoreSupply { get; set; }
 
-	public string DisplayCell => KCDatabase.Instance.Translation.Destination.DisplayID(World, Map, Cell);
+	public string DisplayCell => KCDatabase.Instance.Translation.Destination.DisplayId(World, Map, Cell);
 
 	protected SortieNode(IKCDatabase kcDatabase, int world, int map, int cell)
 	{

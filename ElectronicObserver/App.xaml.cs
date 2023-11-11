@@ -14,10 +14,9 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.ElectronicObserverApi;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
-using ElectronicObserver.Window.Dialog.EquipmentPicker;
-using ElectronicObserver.Window.Dialog.ShipDataPicker;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
@@ -55,6 +54,7 @@ using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpChecker;
+using ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
@@ -270,6 +270,7 @@ public partial class App : Application
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
 			.AddSingleton<SortieRecordViewerTranslationViewModel>()
+			.AddSingleton<ExpeditionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogResourceChartTranslationViewModel>()
@@ -289,6 +290,7 @@ public partial class App : Application
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<TelegramTranslationViewModel>()
+			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
@@ -305,6 +307,7 @@ public partial class App : Application
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
+			.AddSingleton<ElectronicObserverApiService>()
 			// external
 			.AddSingleton(JotTracker())
 
@@ -429,6 +432,16 @@ public partial class App : Application
 
 		tracker
 			.Configure<SenkaViewerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<SortieRecordViewerWindow>()
+			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<ExpeditionRecordViewerWindow>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 

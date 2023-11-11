@@ -13,7 +13,9 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.ContentDialogs;
+using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
@@ -56,10 +58,10 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
-
 	public SortieRecordViewModel? SelectedSortie { get; set; }
-
 	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = new();
+
+	public DataGridViewModel<SortieRecordViewModel> DataGridViewModel { get; }
 
 	private DateTime SearchStartTime { get; set; }
 	public string? StatusBarText { get; private set; }
@@ -75,6 +77,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
 		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		DataGridViewModel = new(Sorties);
 
 		MinDate = Db.Sorties
 			.Include(s => s.ApiFiles)
@@ -325,21 +329,31 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	private async Task ExportCsv<TMap, TElement>(
-		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
+		Func<ObservableCollection<SortieRecordViewModel>, ExportFilterViewModel?, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
 		ICommand cancellationCommand,
 		CancellationToken cancellationToken = default
 	) where TMap : ClassMap<TElement>
 	{
 		await App.Current!.Dispatcher.BeginInvoke(async () =>
 		{
-			string? path = FileService.ExportCsv();
+			ExportFilterViewModel? exportFilter = null;
+
+			if (ContentDialogService is not null)
+			{
+				exportFilter = new(World, Map);
+				exportFilter = await ContentDialogService.ShowExportFilterAsync(exportFilter);
+			}
+
+			string? path = FileService.ExportCsv(Configuration.Config.Life.CsvExportPath);
 
 			if (string.IsNullOrEmpty(path)) return;
+
+			Configuration.Config.Life.CsvExportPath = Path.GetDirectoryName(path);
 
 			ExportProgress = new();
 
 			Task<List<TElement>> processDataTask = Task.Run(async () => await
-				processData(SelectedSorties, ExportProgress, cancellationToken), cancellationToken);
+				processData(SelectedSorties, exportFilter, ExportProgress, cancellationToken), cancellationToken);
 
 			List<Task> tasks = new() { processDataTask };
 

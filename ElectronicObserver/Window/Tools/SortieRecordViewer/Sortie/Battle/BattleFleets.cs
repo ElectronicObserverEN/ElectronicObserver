@@ -32,6 +32,7 @@ public class BattleFleets
 
 	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases.Select(CloneAirBase).ToList()!)
 	{
+		FriendFleet = CloneFleet(FriendFleet),
 		EnemyFleet = CloneFleet(EnemyFleet),
 		EnemyEscortFleet = CloneFleet(EnemyEscortFleet),
 	};

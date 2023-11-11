@@ -4,9 +4,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
-	xmlns:local="clr-namespace:ElectronicObserver.Common"
+	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	x:Name="ParameterIconControl"
+	x:Name="Root"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d"
@@ -14,175 +14,30 @@
 	<Image
 		Width="16"
 		Height="16"
-		DataContext="{Binding ElementName=ParameterIconControl}"
+		DataContext="{Binding ElementName=Root}"
 		>
-		<Image.Style>
-			<Style TargetType="Image">
-				<Setter Property="Source" Value="{StaticResource EquipmentIconType.Unknown}" />
-				<Style.Triggers>
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Hp
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Hp}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Firepower
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Firepower}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Torpedo
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Torpedo}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								AntiAir
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource AntiAir}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Armor
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Armor}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								AntiSubmarine
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource AntiSubmarine}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Evasion
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Evasion}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Los
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Los}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Luck
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Luck}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Bomber
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Bomber}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Accuracy
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Accuracy}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Aircraft
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Aircraft}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Speed
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Speed}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Range
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Range}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								Interception
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource Interception}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								AntiBomber
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource AntiBomber}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								AircraftCost
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource AircraftCost}" />
-					</DataTrigger>
-
-					<DataTrigger Binding="{Binding ParameterType}">
-						<DataTrigger.Value>
-							<electronicObserverTypes:ParameterType>
-								AircraftDistance
-							</electronicObserverTypes:ParameterType>
-						</DataTrigger.Value>
-						<Setter Property="Source" Value="{StaticResource AircraftDistance}" />
-					</DataTrigger>
-				</Style.Triggers>
-			</Style>
-		</Image.Style>
+		<Image.Source>
+			<markup:Switch To="{Binding Type}">
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.None}" Value="{StaticResource Nothing}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Hp}" Value="{StaticResource Parameter.Hp}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Firepower}" Value="{StaticResource Parameter.Firepower}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Torpedo}" Value="{StaticResource Parameter.Torpedo}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.AntiAir}" Value="{StaticResource Parameter.AntiAir}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Armor}" Value="{StaticResource Parameter.Armor}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.AntiSubmarine}" Value="{StaticResource Parameter.AntiSubmarine}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Evasion}" Value="{StaticResource Parameter.Evasion}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Los}" Value="{StaticResource Parameter.Los}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Luck}" Value="{StaticResource Parameter.Luck}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Bomber}" Value="{StaticResource Parameter.Bomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Accuracy}" Value="{StaticResource Parameter.Accuracy}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Aircraft}" Value="{StaticResource Parameter.Aircraft}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Speed}" Value="{StaticResource Parameter.Speed}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Range}" Value="{StaticResource Parameter.Range}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.Interception}" Value="{StaticResource Parameter.Interception}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.AntiBomber}" Value="{StaticResource Parameter.AntiBomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.AircraftCost}" Value="{StaticResource Parameter.AircraftCost}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:ParameterType.AircraftDistance}" Value="{StaticResource Parameter.AircraftDistance}" />
+			</markup:Switch>
+		</Image.Source>
 	</Image>
 </UserControl>

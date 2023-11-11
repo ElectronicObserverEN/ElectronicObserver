@@ -20,12 +20,16 @@ public class ExpCheckerTranslationViewModel : TranslationBaseViewModel
 	public string AswOffset => ExpCheckerResources.AswOffset;
 	public string ASWModernizationToolTip => ExpCheckerResources.ASWModernizationToolTip;
 
+	public string LuckOffset => ExpCheckerResources.LuckOffset;
+	public string LuckOffsetToolTip => ExpCheckerResources.LuckOffsetToolTip;
+
 	public string ExpUnitToolTip => ExpCheckerResources.ExpUnitToolTip;
 	public string GroupExp => ExpCheckerResources.GroupExp;
 
 	public string ColumnSortieCount => ExpCheckerResources.ColumnSortieCount;
 	public string ASW => ExpCheckerResources.ASW;
 	public string ColumnEquipment => ExpCheckerResources.ColumnEquipment;
+	public string Accuracy => ExpCheckerResources.Accuracy;
 
 	public string AswUnknown => ExpCheckerResources.AswUnknown;
 	public string AswApproximated => ExpCheckerResources.AswApproximated;

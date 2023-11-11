@@ -144,6 +144,42 @@
 						</DataTrigger.Value>
 						<Setter Property="Source" Value="{StaticResource Item.ActionReport}" />
 					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								MoraleFoodIrako
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.Irako}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								FurnitureBoxSmall
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.SmallBox}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								FurnitureBoxMedium
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.MediumBox}" />
+					</DataTrigger>
+
+					<DataTrigger Binding="{Binding Type}">
+						<DataTrigger.Value>
+							<electronicObserverTypes:UseItemId>
+								FurnitureBoxLarge
+							</electronicObserverTypes:UseItemId>
+						</DataTrigger.Value>
+						<Setter Property="Source" Value="{StaticResource Item.LargeBox}" />
+					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>

@@ -85,7 +85,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	private List<ColumnViewModel> Columns { get; }
 
-	public QuestViewModel() : base("Quest", "Quest", ImageSourceIcons.GetIcon(IconContent.FormQuest))
+	public QuestViewModel() : base("Quest", "Quest", IconContent.FormQuest)
 	{
 		FormQuest = Ioc.Default.GetService<FormQuestTranslationViewModel>()!;
 		View = CollectionViewSource.GetDefaultView(Quests);

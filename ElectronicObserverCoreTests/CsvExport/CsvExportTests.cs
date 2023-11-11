@@ -15,6 +15,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 using Xunit;
 using System.Threading;
+using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Translations;
 using ElectronicObserver.Window.Wpf;
@@ -101,7 +102,7 @@ public class CsvExportTests
 		IShipDataMaster? defender = null;
 		int attackType = 0;
 
-		for (int i = 0; i < eoHeaders.Length; i++)
+		for (int i = 0; i < logbookHeaders.Length; i++)
 		{
 			Assert.Equal(logbookHeaders[i], eoHeaders[i]);
 
@@ -224,7 +225,7 @@ public class CsvExportTests
 
 	private static async Task<IReadOnlyList<string>> LoadEoLines<TMap, TElement>(
 		string fileName,
-		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData
+		Func<ObservableCollection<SortieRecordViewModel>, ExportFilterViewModel?, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData
 	) where TMap : ClassMap<TElement>
 	{
 		Stream sortieRecordStream = File.OpenRead(Path.Join(BasePath, fileName));
@@ -236,7 +237,7 @@ public class CsvExportTests
 			.Select(s => new SortieRecordViewModel(s, DateTime.UtcNow))
 			.ToObservableCollection();
 
-		List<TElement> dayShelling = await processData(sorties, new(), default);
+		List<TElement> dayShelling = await processData(sorties, null, new(), default);
 
 		string csv = await GenerateCsv<TMap, TElement>(dayShelling);
 		return csv.TrimEnd().Split("\r\n");

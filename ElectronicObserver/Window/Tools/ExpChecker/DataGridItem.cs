@@ -9,4 +9,5 @@ public class DataGridItem
 	public string EquipmentList { get; init; }
 	public string ToolTip { get; init; }
 	public bool IsRemodelLevel { get; init; }
+	public double ShipAccuracy { get; init; }
 }

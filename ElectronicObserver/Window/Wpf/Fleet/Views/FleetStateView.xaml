@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Window.Wpf.Fleet.Views.FleetStateView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -35,7 +36,7 @@
 							</i:EventTrigger>
 						</i:Interaction.Triggers>
 						<StackPanel Orientation="Horizontal">
-							<Image Margin="2 0" Source="{Binding Label.Icon}" />
+							<common:IconContentIcon Margin="2 0" Type="{Binding Label.Icon}" />
 							<TextBlock Foreground="{Binding Label.Foreground}" Text="{Binding DisplayText}" />
 						</StackPanel>
 					</Border>

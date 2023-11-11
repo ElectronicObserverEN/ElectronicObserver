@@ -215,11 +215,12 @@
 								</StackPanel>
 
 								<StackPanel Orientation="Horizontal">
-									<common:ImageTextControl
-										Image="{Binding SelectedEquipmentViewModel.Equipment.IconTypeTyped, Converter={StaticResource ImageSourceConverter}}"
-										Text="{Binding SelectedEquipmentViewModel.Equipment.CategoryTypeInstance.NameEN}"
-										ToolTip="{Binding SelectedEquipmentViewModel.EquipmentTypeToolTip}"
-										/>
+									<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.CategoryTypeInstance.NameEN}" ToolTip="{Binding SelectedEquipmentViewModel.EquipmentTypeToolTip}">
+										<common:ImageTextControl.Image>
+											<common1:EquipmentIcon Type="{Binding SelectedEquipmentViewModel.Equipment.IconTypeTyped}" />
+										</common:ImageTextControl.Image>
+									</common:ImageTextControl>
+
 									<TextBlock Text="{Binding SelectedEquipmentViewModel.Equipment.NameEN}" ToolTip="{Binding SelectedEquipmentViewModel.EquipmentNameToolTip}">
 										<TextBlock.InputBindings>
 											<MouseBinding Command="{Binding StripMenu_Edit_CopyEquipmentName_ClickCommand}" MouseAction="RightClick" />
@@ -246,71 +247,71 @@
 									</Grid>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Firepower}"
+										Image="{StaticResource Parameter.Firepower}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleFirepower}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Firepower}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Torpedo}"
+										Image="{StaticResource Parameter.Torpedo}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleTorpedo}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Torpedo}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource AntiAir}"
+										Image="{StaticResource Parameter.AntiAir}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleAA}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.AA}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Armor}"
+										Image="{StaticResource Parameter.Armor}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleArmor}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Armor}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource AntiSubmarine}"
+										Image="{StaticResource Parameter.AntiSubmarine}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleASW}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.ASW}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Evasion}"
+										Image="{StaticResource Parameter.Evasion}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleEvasion}"
 										Visibility="{Binding SelectedEquipmentViewModel.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Evasion}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Interception}"
+										Image="{StaticResource Parameter.Interception}"
 										Text="{Binding DialogAlbumMasterEquipment.Interception}"
 										Visibility="{Binding SelectedEquipmentViewModel.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Evasion}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Los}"
+										Image="{StaticResource Parameter.Los}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleLOS}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.LOS}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Accuracy}"
+										Image="{StaticResource Parameter.Accuracy}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleAccuracy}"
 										Visibility="{Binding SelectedEquipmentViewModel.IsNotInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Accuracy}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource AntiBomber}"
+										Image="{StaticResource Parameter.AntiBomber}"
 										Text="{Binding DialogAlbumMasterEquipment.AntiBomber}"
 										Visibility="{Binding SelectedEquipmentViewModel.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Accuracy}"
 										/>
 
 									<local:EquipmentStatControl
-										Image="{StaticResource Bomber}"
+										Image="{StaticResource Parameter.Bomber}"
 										Text="{Binding DialogAlbumMasterEquipment.TitleBomber}"
 										Value="{Binding SelectedEquipmentViewModel.Equipment.Bomber}"
 										/>
@@ -399,7 +400,7 @@
 								<common1:ParameterIcon
 									Grid.Row="0"
 									Grid.Column="0"
-									ParameterType="Speed"
+									Type="Speed"
 									/>
 
 								<TextBlock
@@ -439,9 +440,12 @@
 									Grid.Column="2"
 									Margin="8 0"
 									HorizontalAlignment="Right"
-									Image="{Binding SelectedEquipmentViewModel.RarityIcon, Converter={StaticResource ImageSourceConverter}}"
 									Text="{Binding SelectedEquipmentViewModel.Equipment.Rarity, Converter={StaticResource EquipmentRarityConverter}}"
-									/>
+									>
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="{Binding SelectedEquipmentViewModel.RarityIcon}" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 								<Separator
 									Grid.Row="3"
@@ -452,7 +456,7 @@
 								<common1:ParameterIcon
 									Grid.Row="4"
 									Grid.Column="0"
-									ParameterType="Range"
+									Type="Range"
 									/>
 
 								<TextBlock
@@ -497,7 +501,7 @@
 								<common1:ParameterIcon
 									Grid.Row="0"
 									Grid.Column="0"
-									ParameterType="AircraftCost"
+									Type="AircraftCost"
 									/>
 
 								<TextBlock
@@ -527,7 +531,7 @@
 								<common1:ParameterIcon
 									Grid.Row="2"
 									Grid.Column="0"
-									ParameterType="Range"
+									Type="Range"
 									/>
 
 								<TextBlock
@@ -585,13 +589,29 @@
 									</Style>
 								</StackPanel.Resources>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipmentViewModel.Equipment.Material[0]}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[0]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceFuel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding SelectedEquipmentViewModel.Equipment.Material[1]}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[1]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceAmmo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding SelectedEquipmentViewModel.Equipment.Material[2]}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[2]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceSteel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedEquipmentViewModel.Equipment.Material[3]}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.Equipment.Material[3]}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceBauxite" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 							</StackPanel>
 							<Separator
@@ -618,13 +638,29 @@
 									</Style>
 								</StackPanel.Resources>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Fuel}" Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Fuel}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Fuel}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceFuel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Ammo}" Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Ammo}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Ammo}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceAmmo" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Steel}" Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Steel}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Steel}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceSteel" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
-								<common:ImageTextControl Image="{StaticResource Resource.Bauxite}" Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Bauxite}" />
+								<common:ImageTextControl Text="{Binding SelectedEquipmentViewModel.UpgradeViewModel.EquipmentUpgradeCost.Bauxite}">
+									<common:ImageTextControl.Image>
+										<common1:IconContentIcon Type="ResourceBauxite" />
+									</common:ImageTextControl.Image>
+								</common:ImageTextControl>
 
 							</StackPanel>
 							<Separator
