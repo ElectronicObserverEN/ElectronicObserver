@@ -65,7 +65,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentId = equipment.MasterID;
 
-			if (OpenPlanDialog(newPlan))
+			if (newPlan.OpenPlanDialog())
 			{
 				EquipmentUpgradePlanManager.AddPlan(newPlan);
 				EquipmentUpgradePlanManager.Save();
@@ -86,7 +86,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
 
-			if (OpenPlanDialog(newPlan))
+			if (newPlan.OpenPlanDialog())
 			{
 				EquipmentUpgradePlanManager.AddPlan(newPlan);
 				EquipmentUpgradePlanManager.Save();
@@ -127,7 +127,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void OpenEditDialog(EquipmentUpgradePlanItemViewModel plan)
 	{
-		if (OpenPlanDialog(plan))
+		if (plan.OpenPlanDialog())
 		{
 			EquipmentUpgradePlanManager.Save();
 		}

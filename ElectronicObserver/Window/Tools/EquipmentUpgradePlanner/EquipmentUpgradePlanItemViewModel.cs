@@ -246,6 +246,30 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Plan.SelectedHelper = SelectedHelper?.ShipId ?? ShipId.Unknown;
 	}
 
+	public bool OpenPlanDialog()
+	{
+		EquipmentUpgradePlanItemViewModel editVm = new(Plan);
+		EquipmentUpgradePlanItemWindow editView = new(editVm);
+
+		if (editView.ShowDialog() is not true)
+		{
+			return false;
+		}
+
+		DesiredUpgradeLevel = editVm.DesiredUpgradeLevel;
+		Finished = editVm.Finished;
+		SliderLevel = editVm.SliderLevel;
+		SelectedHelper = editVm.SelectedHelper;
+		Priority = editVm.Priority;
+		EquipmentMasterDataId = editVm.EquipmentMasterDataId;
+		EquipmentId = editVm.EquipmentId;
+
+		Save();
+
+		return true;
+
+	}
+
 	[RelayCommand]
 	public void OpenEquipmentPicker()
 	{

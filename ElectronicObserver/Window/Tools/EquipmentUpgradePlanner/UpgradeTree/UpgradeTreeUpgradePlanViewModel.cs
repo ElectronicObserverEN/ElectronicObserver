@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
@@ -9,7 +10,7 @@ using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 
-public class UpgradeTreeUpgradePlanViewModel
+public partial class UpgradeTreeUpgradePlanViewModel
 {
 	public string DisplayName => Plan switch
 	{
@@ -25,6 +26,8 @@ public class UpgradeTreeUpgradePlanViewModel
 		not null => UpgradeTreeViewNodeState.Planned,
 		_ => UpgradeTreeViewNodeState.ToCraft
 	};
+
+	public bool CanBePlanned => Plan is EquipmentUpgradePlanItemViewModel plan && !EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
 	private IEquipmentPlanItemViewModel? Plan { get; }
 
@@ -48,7 +51,7 @@ public class UpgradeTreeUpgradePlanViewModel
 		Initialize(plan);
 	}
 
-	public UpgradeTreeUpgradePlanViewModel(EquipmentCraftPlanItemViewModel plan)
+	public UpgradeTreeUpgradePlanViewModel(IEquipmentPlanItemViewModel plan)
 	{
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
@@ -59,7 +62,7 @@ public class UpgradeTreeUpgradePlanViewModel
 
 	private void Initialize(EquipmentUpgradePlanItemViewModel plan)
 	{
-		InitializeEquipmentPlan(1, plan.EquipmentMasterDataId);
+		AddUpgradedEquipmentNodeIfNeeded(plan);
 
 		foreach (EquipmentUpgradePlanCostEquipmentViewModel equipment in plan.Cost.RequiredEquipments)
 		{
@@ -67,36 +70,37 @@ public class UpgradeTreeUpgradePlanViewModel
 		}
 	}
 
-	private void InitializeEquipmentPlan(int required, EquipmentId equipment)
+	/// <summary>
+	/// Adds a node to specify the equipment ness to be crafted / upgraded from something else
+	/// </summary>
+	/// <param name="plan"></param>
+	private void AddUpgradedEquipmentNodeIfNeeded(EquipmentUpgradePlanItemViewModel plan)
 	{
-		if (State is not UpgradeTreeViewNodeState.Planned)
+		if (plan.EquipmentId is not null) return;
+
+		EquipmentUpgradeDataModel? upgradePlan = EquipmentUpgradeData.UpgradeList
+			.FirstOrDefault(equipmentData => equipmentData.ConvertTo
+				.Any(equipmentAfterConvertion =>
+					equipmentAfterConvertion.IdEquipmentAfter == (int)plan.EquipmentMasterDataId));
+
+		if (upgradePlan is not null)
 		{
-			EquipmentUpgradeDataModel? upgradePlan = EquipmentUpgradeData.UpgradeList
-				.FirstOrDefault(equipmentData => equipmentData.ConvertTo
-					.Any(equipmentAfterConvertion =>
-						equipmentAfterConvertion.IdEquipmentAfter == (int)equipment));
+			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 
-			if (upgradePlan is not null)
+			newPlan.DesiredUpgradeLevel = UpgradeLevel.Conversion;
+			newPlan.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
+
+			Children.Add(new UpgradeTreeUpgradePlanViewModel(newPlan)
 			{
-				EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
-
-				// Use a setting to set default level ?
-				newPlan.DesiredUpgradeLevel = UpgradeLevel.Conversion;
-				newPlan.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
-
-				Children.Add(new UpgradeTreeUpgradePlanViewModel(newPlan)
-				{
-					RequiredCount = required
-				});
-			}
-			else
+				RequiredCount = 1
+			});
+		}
+		else
+		{
+			Children.Add(new UpgradeTreeUpgradePlanViewModel(new EquipmentCraftPlanItemViewModel(plan.EquipmentMasterDataId))
 			{
-				Children.Add(new UpgradeTreeUpgradePlanViewModel(new EquipmentCraftPlanItemViewModel(equipment))
-				{
-					RequiredCount = required
-				});
-			}
-
+				RequiredCount = 1
+			});
 		}
 	}
 
@@ -140,5 +144,16 @@ public class UpgradeTreeUpgradePlanViewModel
 		{
 			RequiredCount = required
 		};
+	}
+
+	[RelayCommand(CanExecute = nameof(CanBePlanned))]
+	private void AddEquipmentPlanFromMasterData()
+	{
+		if (Plan is not EquipmentUpgradePlanItemViewModel plan) return;
+		if (!plan.OpenPlanDialog()) return;
+
+		EquipmentUpgradePlanManager.AddPlan(plan);
+		EquipmentUpgradePlanManager.Save();
+		AddEquipmentPlanFromMasterDataCommand.NotifyCanExecuteChanged();
 	}
 }
