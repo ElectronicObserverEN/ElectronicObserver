@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
 public interface IEquipmentPlanItemViewModel
 {
-	public EquipmentId EquipmentMasterDataId { get; set; }
+	public EquipmentId EquipmentMasterDataId { get; }
 
 	public IEquipmentDataMaster? EquipmentMasterData => KCDatabase.Instance.MasterEquipments.ContainsKey((int)EquipmentMasterDataId) switch
 	{

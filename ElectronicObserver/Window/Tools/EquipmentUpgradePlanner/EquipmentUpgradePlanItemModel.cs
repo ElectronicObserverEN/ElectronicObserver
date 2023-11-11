@@ -6,6 +6,8 @@ public class EquipmentUpgradePlanItemModel
 {
 	public int Id { get; set; }
 
+	public EquipmentUpgradePlanItemModel? Parent { get; set; }
+
 	/// <summary>
 	/// The id of the equipment owned by the player (drop id)
 	/// </summary>
