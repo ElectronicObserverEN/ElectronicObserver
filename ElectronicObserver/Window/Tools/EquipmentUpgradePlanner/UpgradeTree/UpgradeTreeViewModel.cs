@@ -14,9 +14,6 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 	{
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 
-		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan)
-		{
-			RequiredCount = 1
-		});
+		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1));
 	}
 }

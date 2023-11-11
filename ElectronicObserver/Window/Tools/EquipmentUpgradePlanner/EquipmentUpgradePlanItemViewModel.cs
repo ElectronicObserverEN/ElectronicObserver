@@ -81,6 +81,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
 		.SelectMany(data => data.Improvement)
+		.Where(upgrade => EquipmentAfterConversionFilter is null || (upgrade.ConversionData is not null && (int)EquipmentAfterConversionFilter == upgrade.ConversionData.IdEquipmentAfter))
 		.SelectMany(improvement => improvement.Helpers)
 		.SelectMany(helpers => helpers.ShipIds)
 		.Distinct()
@@ -101,6 +102,10 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		.Any(helper => helper.PlayerHasAtleastOne);
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanItem { get; }
+
+	public bool AllowToChangeDesiredUpgradeLevel { get; set; } = true;
+	public bool AllowToChangeEquipment { get; set; } = true;
+	public EquipmentId? EquipmentAfterConversionFilter { get; set; }
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
@@ -246,9 +251,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Plan.SelectedHelper = SelectedHelper?.ShipId ?? ShipId.Unknown;
 	}
 
-	public bool OpenPlanDialog()
+	public bool OpenPlanDialog(EquipmentUpgradePlanItemViewModel editVm)
 	{
-		EquipmentUpgradePlanItemViewModel editVm = new(Plan);
 		EquipmentUpgradePlanItemWindow editView = new(editVm);
 
 		if (editView.ShowDialog() is not true)
@@ -267,7 +271,12 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Save();
 
 		return true;
+	}
 
+	public bool OpenPlanDialog()
+	{
+		EquipmentUpgradePlanItemViewModel editVm = new(Plan);
+		return OpenPlanDialog(editVm);
 	}
 
 	[RelayCommand]
