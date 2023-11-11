@@ -10,9 +10,12 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 
 	public EquipmentUpgradePlannerTranslationViewModel Translations { get; }
 
+	public EquipmentUpgradePlanManager UpgradeManager { get; }
+
 	public UpgradeTreeViewModel(EquipmentUpgradePlanItemViewModel plan)
 	{
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
+		UpgradeManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 
 		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1, null));
 	}
@@ -24,7 +27,7 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 			child.SaveChanges();
 		}
 
-		Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>().Save();
+		UpgradeManager.Save();
 		base.Closed();
 	}
 }

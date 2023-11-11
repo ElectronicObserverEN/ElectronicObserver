@@ -1,4 +1,5 @@
 ﻿namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
+
 /// <summary>
 /// Interaction logic for UpgradeTreeView.xaml
 /// </summary>
