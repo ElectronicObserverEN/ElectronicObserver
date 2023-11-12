@@ -23,9 +23,9 @@ namespace ElectronicObserverCoreTests;
 
 public class Startup
 {
-	public async void ConfigureServices(IServiceCollection services)
+	public void ConfigureServices(IServiceCollection services)
 	{
-		await using TestDataContext testDb = new();
+		using TestDataContext testDb = new();
 		Dictionary<ShipId, IShipDataMaster> masterShips = testDb.MasterShips
 			.Select(s => s.ToMasterShip())
 			.ToDictionary(s => s.ShipId);
@@ -73,11 +73,11 @@ public class Startup
 
 		Directory.CreateDirectory("Record");
 
-		await using ElectronicObserverContext db = new();
-		await db.Database.MigrateAsync();
+		using ElectronicObserverContext db = new();
+		db.Database.MigrateAsync();
 
 		// Download data 
-		await SoftwareUpdater.CheckUpdateAsync();
+		SoftwareUpdater.CheckUpdateAsync().Wait();
 	}
 
 	/// <summary>
