@@ -9,6 +9,11 @@ public class EquipmentUpgradePlanItemModel
 	public EquipmentUpgradePlanItemModel? Parent { get; set; }
 
 	/// <summary>
+	/// If this plan is used in another plan, then it should only be converted into this equipment
+	/// </summary>
+	public EquipmentId? ShouldBeConvertedInto { get; set; }
+
+	/// <summary>
 	/// The id of the equipment owned by the player (drop id)
 	/// </summary>
 	public int? EquipmentMasterId { get; set; }

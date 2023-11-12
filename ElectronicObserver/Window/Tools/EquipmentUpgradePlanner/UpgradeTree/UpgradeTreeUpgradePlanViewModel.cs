@@ -45,7 +45,6 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	private IEquipmentPlanItemViewModel? Plan { get; set; }
 
 	public int RequiredCount { get; }
-	public EquipmentId? NeedsToBeConvertedInto { get; set; }
 
 	private EquipmentUpgradeData EquipmentUpgradeData { get; }
 
@@ -55,14 +54,13 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 	public EquipmentUpgradePlannerTranslationViewModel Translations { get; }
 
-	public UpgradeTreeUpgradePlanViewModel(EquipmentUpgradePlanItemViewModel plan, int required, EquipmentId? needsToBeConvertedInto)
+	public UpgradeTreeUpgradePlanViewModel(EquipmentUpgradePlanItemViewModel plan, int required)
 	{
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 
 		RequiredCount = required;
-		NeedsToBeConvertedInto = needsToBeConvertedInto;
 		Plan = plan;
 
 		Initialize(plan);
@@ -76,7 +74,6 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 		Plan = plan;
 		RequiredCount = 1;
-		NeedsToBeConvertedInto = plan.EquipmentToUpgradePlan.EquipmentMasterDataId;
 
 		plan.EquipmentRequiredForUpgradePlan.ForEach(InitializeFromConversion);
 	}
@@ -90,27 +87,10 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		RequiredCount = required;
 		Plan = plan;
 	}
-
-	public void SaveChanges()
-	{
-		if (Plan is EquipmentConversionPlanItemViewModel conversion && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(conversion.EquipmentToUpgradePlan))
-		{
-			foreach (EquipmentUpgradePlanItemViewModel childPlan in conversion.EquipmentRequiredForUpgradePlan.Where(EquipmentUpgradePlanManager.PlannedUpgrades.Contains))
-			{
-				// Save link between plans
-				childPlan.Plan.Parent = conversion.EquipmentToUpgradePlan.Plan;
-			}
-		}
-
-		foreach (UpgradeTreeUpgradePlanViewModel child in Children)
-		{
-			child.SaveChanges();
-		}
-	}
-
+	
 	private void InitializeFromConversion(EquipmentUpgradePlanItemViewModel plan)
 	{
-		Children.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1, NeedsToBeConvertedInto));
+		Children.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1));
 	}
 
 	private void Initialize(EquipmentUpgradePlanItemViewModel plan)
@@ -145,6 +125,8 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 				EquipmentUpgradePlanItemViewModel newChild = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 				newChild.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
 				newChild.DesiredUpgradeLevel = UpgradeLevel.Conversion;
+				newChild.Parent = plan.Plan;
+				newChild.ShouldBeConvertedInto = plan.EquipmentMasterDataId;
 				children.Add(newChild);
 			}
 			
@@ -162,7 +144,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	private UpgradeTreeUpgradePlanViewModel InitializeEquipmentPlanChild(EquipmentUpgradePlanItemViewModel plan, int required, EquipmentId equipment)
 	{
 		// if fodder = upgraded equipment, return a craft plan to avoid infinite loops
-		if (equipment == Plan?.EquipmentMasterDataId && NeedsToBeConvertedInto == equipment)
+		if (equipment == Plan?.EquipmentMasterDataId && plan.ShouldBeConvertedInto == equipment)
 		{
 			return new UpgradeTreeUpgradePlanViewModel(new EquipmentCraftPlanItemViewModel(equipment), required);
 		}
@@ -182,6 +164,8 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 				EquipmentUpgradePlanItemViewModel newChild = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 				newChild.EquipmentMasterDataId = (EquipmentId)planModel.EquipmentId;
 				newChild.DesiredUpgradeLevel = UpgradeLevel.Conversion;
+				newChild.Parent = plan.Plan;
+				newChild.ShouldBeConvertedInto = equipment;
 				children.Add(newChild);
 			}
 
@@ -215,16 +199,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 			_ => throw new NotImplementedException()
 		};
 
-		EquipmentUpgradePlanItemViewModel editVm = new(newPlan.Plan)
-		{
-			DesiredUpgradeLevel = UpgradeLevel.Conversion,
-			EquipmentMasterDataId = Plan.EquipmentMasterDataId,
-			AllowToChangeDesiredUpgradeLevel = false,
-			AllowToChangeEquipment = false,
-			EquipmentAfterConversionFilter = NeedsToBeConvertedInto
-		};
-
-		if (!newPlan.OpenPlanDialog(editVm)) return;
+		if (!newPlan.OpenPlanDialog()) return;
 
 		EquipmentUpgradePlanManager.AddPlan(newPlan);
 		EquipmentUpgradePlanManager.Save();
@@ -237,14 +212,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	{
 		if (Plan is not EquipmentUpgradePlanItemViewModel plan) return;
 
-		EquipmentUpgradePlanItemViewModel editVm = new(plan.Plan)
-		{
-			AllowToChangeDesiredUpgradeLevel = false,
-			AllowToChangeEquipment = false,
-			EquipmentAfterConversionFilter = NeedsToBeConvertedInto
-		};
-
-		if (!plan.OpenPlanDialog(editVm)) return;
+		if (!plan.OpenPlanDialog()) return;
 
 		EquipmentUpgradePlanManager.Save();
 

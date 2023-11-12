@@ -82,7 +82,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
 		.SelectMany(data => data.Improvement)
-		.Where(upgrade => EquipmentAfterConversionFilter is null || (upgrade.ConversionData is not null && (int)EquipmentAfterConversionFilter == upgrade.ConversionData.IdEquipmentAfter))
+		.Where(upgrade => ShouldBeConvertedInto is null || (upgrade.ConversionData is not null && (int)ShouldBeConvertedInto == upgrade.ConversionData.IdEquipmentAfter))
 		.SelectMany(improvement => improvement.Helpers)
 		.SelectMany(helpers => helpers.ShipIds)
 		.Distinct()
@@ -104,9 +104,11 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanItem { get; }
 
-	public bool AllowToChangeDesiredUpgradeLevel { get; set; } = true;
-	public bool AllowToChangeEquipment { get; set; } = true;
-	public EquipmentId? EquipmentAfterConversionFilter { get; set; }
+	public EquipmentUpgradePlanItemModel? Parent { get; set; }
+	public EquipmentId? ShouldBeConvertedInto { get; set; }
+
+	public bool AllowToChangeDesiredUpgradeLevel => Parent is null;
+	public bool AllowToChangeEquipment => Parent is null;
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
@@ -133,6 +135,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Priority = Plan.Priority;
 		EquipmentId = Plan.EquipmentMasterId;
 		EquipmentMasterDataId = Plan.EquipmentId;
+		Parent = Plan.Parent;
+		ShouldBeConvertedInto = Plan.ShouldBeConvertedInto;
 
 		Update();
 		UpdateHelperDisplay();
@@ -250,6 +254,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Plan.Priority = Priority;
 		Plan.SliderLevel = SliderLevel;
 		Plan.SelectedHelper = SelectedHelper?.ShipId ?? ShipId.Unknown;
+		Plan.Parent = Parent;
+		Plan.ShouldBeConvertedInto = ShouldBeConvertedInto;
 	}
 
 	public bool OpenPlanDialog(EquipmentUpgradePlanItemViewModel editVm)
@@ -268,6 +274,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Priority = editVm.Priority;
 		EquipmentMasterDataId = editVm.EquipmentMasterDataId;
 		EquipmentId = editVm.EquipmentId;
+		Parent = editVm.Parent;
+		ShouldBeConvertedInto = editVm.ShouldBeConvertedInto;
 
 		Save();
 
