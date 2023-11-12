@@ -41,17 +41,17 @@ public interface IKCDatabase
 	/// 提督・司令部データ
 	/// </summary>
 	AdmiralData Admiral { get; }
-
+	*/
 	/// <summary>
 	/// アイテムのマスターデータ
 	/// </summary>
-	IDDictionary<UseItemMaster> MasterUseItems { get; }
+	IDDictionary<IUseItemMaster> MasterUseItems { get; }
 
 	/// <summary>
 	/// アイテムデータ
 	/// </summary>
-	IDDictionary<UseItem> UseItems { get; }
-
+	IDDictionary<IUseItem> UseItems { get; }
+	/*
 	/// <summary>
 	/// 工廠ドックデータ
 	/// </summary>

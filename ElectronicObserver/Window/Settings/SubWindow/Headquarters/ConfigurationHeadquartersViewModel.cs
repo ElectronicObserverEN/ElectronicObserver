@@ -14,7 +14,7 @@ public class ConfigurationHeadquartersViewModel : ConfigurationViewModelBase
 	public ConfigurationHeadquartersTranslationViewModel Translation { get; }
 	private Configuration.ConfigurationData.ConfigFormHeadquarters Config { get; }
 
-	public List<UseItemMaster> Items { get; set; } = new();
+	public List<IUseItemMaster> Items { get; set; } = new();
 	public List<CheckBoxEnumViewModel> ItemVisibilities { get; }
 
 	private List<UseItemId> IgnoredItems { get; } = new()
@@ -32,7 +32,7 @@ public class ConfigurationHeadquartersViewModel : ConfigurationViewModelBase
 
 	public bool BlinkAtMaximum { get; set; }
 
-	public UseItemMaster? SelectedItem { get; set; }
+	public IUseItemMaster? SelectedItem { get; set; }
 
 	public int DisplayUseItemID { get; set; }
 

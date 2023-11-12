@@ -23,51 +23,6 @@ public class DataSerializationService
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
 	};
 
-	public string DeckBuilderFleet(int fleetId) => fleetId switch
-	{
-		1 => DeckBuilderFleet1(),
-		2 => DeckBuilderFleet2(),
-		3 => DeckBuilderFleet3(),
-		4 => DeckBuilderFleet4(),
-		_ => ""
-	};
-
-	private string DeckBuilderFleet1()
-	{
-		return DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			KCDatabase.Instance.Fleet[1]
-		);
-	}
-
-	private string DeckBuilderFleet2()
-	{
-		return DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			fleet2: KCDatabase.Instance.Fleet[2]
-		);
-	}
-
-	private string DeckBuilderFleet3()
-	{
-		return DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			fleet3: KCDatabase.Instance.Fleet[3]
-		);
-	}
-
-	private string DeckBuilderFleet4()
-	{
-		return DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			fleet4: KCDatabase.Instance.Fleet[4]
-		);
-	}
-
 	public string FleetAnalysisShips(bool allShips)
 	{
 		return FleetAnalysisShips(KCDatabase.Instance.Ships.Values

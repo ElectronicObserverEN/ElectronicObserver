@@ -190,7 +190,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			.Select(record => (UseItemId)record.ItemID)
 			.Distinct();
 
-		IEnumerable<UseItemMaster> includedItemObjects = includedItemNames
+		IEnumerable<IUseItemMaster> includedItemObjects = includedItemNames
 			.Select(id => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.ItemID == id))
 			.Where(s => s != null)!;
 
@@ -256,7 +256,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	private string GetContentStringForSorting(ShipDropRecord.ShipDropElement elem, bool ignoreShip = false, bool ignoreItem = false, bool ignoreEquipment = false)
 	{
 		IShipDataMaster? ship = KCDatabase.Instance.MasterShips[elem.ShipID];
-		UseItemMaster? item = KCDatabase.Instance.MasterUseItems[elem.ItemID];
+		IUseItemMaster? item = KCDatabase.Instance.MasterUseItems[elem.ItemID];
 		IEquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
 		if (ship != null && ship.NameEN != elem.ShipName) ship = null;

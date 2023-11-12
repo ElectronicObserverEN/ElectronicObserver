@@ -1,11 +1,11 @@
-﻿using ElectronicObserverTypes.Data;
+﻿using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 消費アイテムのデータを保持します。
 /// </summary>
-public class UseItem : ResponseWrapper, IIdentifiable
+public class UseItem : ResponseWrapper, IUseItem
 {
 
 	/// <summary>
@@ -19,7 +19,7 @@ public class UseItem : ResponseWrapper, IIdentifiable
 	public int Count => (int)RawData.api_count;
 
 
-	public UseItemMaster MasterUseItem => KCDatabase.Instance.MasterUseItems[ItemID];
+	public IUseItemMaster MasterUseItem => KCDatabase.Instance.MasterUseItems[ItemID];
 
 
 	public int ID => ItemID;

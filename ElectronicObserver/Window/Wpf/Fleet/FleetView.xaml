@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:data="clr-namespace:ElectronicObserver.Data"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
@@ -83,9 +84,17 @@
 						/>
 					<MenuItem
 						d:Header="Copy (deck-builder)"
-						Command="{Binding CopyDeckBuilderCommand}"
 						Header="{Binding FormFleet.ContextMenuFleet_CopyFleetDeckBuilder}"
-						/>
+						ItemsSource="{Binding AirBaseAreas}"
+						>
+						<MenuItem.ItemContainerStyle>
+							<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+								<Setter Property="Command" Value="{Binding DataContext.CopyDeckBuilderCommand, Source={StaticResource Proxy}}" />
+								<Setter Property="CommandParameter" Value="{Binding AreaId}" />
+								<Setter Property="Header" Value="{Binding Display}" />
+							</Style>
+						</MenuItem.ItemContainerStyle>
+					</MenuItem>
 					<MenuItem
 						d:Header="Copy Ship List (kancolle-calc)"
 						Command="{Binding CopyKanmusuListCommand}"

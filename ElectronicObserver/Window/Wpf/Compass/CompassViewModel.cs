@@ -525,7 +525,7 @@ public class CompassViewModel : AnchorableViewModel
 			}
 			else
 			{
-				UseItemMaster? itemMaster = KCDatabase.Instance.MasterUseItems[item.Metadata];
+				IUseItemMaster? itemMaster = KCDatabase.Instance.MasterUseItems[item.Metadata];
 
 				itemName = itemMaster switch
 				{

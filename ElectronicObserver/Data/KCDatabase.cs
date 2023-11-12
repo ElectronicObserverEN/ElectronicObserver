@@ -69,12 +69,12 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// アイテムのマスターデータ
 	/// </summary>
-	public IDDictionary<UseItemMaster> MasterUseItems { get; private set; }
+	public IDDictionary<IUseItemMaster> MasterUseItems { get; private set; }
 
 	/// <summary>
 	/// アイテムデータ
 	/// </summary>
-	public IDDictionary<UseItem> UseItems { get; private set; }
+	public IDDictionary<IUseItem> UseItems { get; private set; }
 
 
 	/// <summary>
@@ -186,8 +186,8 @@ public sealed class KCDatabase : IKCDatabase
 		Ships = new IDDictionary<ShipData>();
 		Equipments = new IDDictionary<EquipmentData>();
 		Admiral = new AdmiralData();
-		MasterUseItems = new IDDictionary<UseItemMaster>();
-		UseItems = new IDDictionary<UseItem>();
+		MasterUseItems = new IDDictionary<IUseItemMaster>();
+		UseItems = new IDDictionary<IUseItem>();
 		Arsenals = new IDDictionary<ArsenalData>();
 		Docks = new IDDictionary<DockData>();
 		Development = new DevelopmentData();

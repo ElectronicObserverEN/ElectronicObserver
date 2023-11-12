@@ -1,10 +1,11 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanCostItemViewModel
 {
-	public UseItemMaster Consumable { get; set; }
+	public IUseItemMaster Consumable { get; set; }
 
 	public EquipmentUpgradePlanCostConsumableViewModel(EquipmentUpgradePlanCostItemModel model) : base(model)
 	{
@@ -18,7 +19,7 @@ public class EquipmentUpgradePlanCostConsumableViewModel : EquipmentUpgradePlanC
 	{
 		KCDatabase db = KCDatabase.Instance;
 
-		UseItem? item = db.UseItems[Consumable.ID];
+		IUseItem? item = db.UseItems[Consumable.ID];
 
 		Owned = item?.Count ?? 0;
 	}

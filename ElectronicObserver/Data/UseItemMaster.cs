@@ -1,12 +1,11 @@
 ﻿using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 消費アイテムのマスターデータを保持します。
 /// </summary>
-public class UseItemMaster : ResponseWrapper, IIdentifiable
+public class UseItemMaster : ResponseWrapper, IUseItemMaster
 {
 
 	/// <summary>

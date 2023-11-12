@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -40,6 +41,15 @@ public partial class FleetViewModel : AnchorableViewModel
 	public List<SpecialAttack> SpecialsAttacks { get; set; } = new();
 
 	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
+
+	public IEnumerable<AirBaseArea> AirBaseAreas => KCDatabase.Instance.BaseAirCorps.Values
+		.Select(b => b.MapAreaID)
+		.Distinct()
+		.OrderBy(i => i)
+		.Select(i => KCDatabase.Instance.MapArea[i])
+		.Where(m => m != null)
+		.Select(m => new AirBaseArea(m.MapAreaID, m.NameEN))
+		.Prepend(new AirBaseArea(0, AirControlSimulatorResources.None));
 
 	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}", IconContent.FormFleet)
 	{
@@ -105,6 +115,11 @@ public partial class FleetViewModel : AnchorableViewModel
 		o.ApiReqKaisou_SlotDeprive.ResponseReceived += Updated;
 		o.ApiReqKaisou_Marriage.ResponseReceived += Updated;
 		o.ApiReqMap_AnchorageRepair.ResponseReceived += Updated;
+
+		o.ApiGetMember_MapInfo.ResponseReceived += (_, _) =>
+		{
+			OnPropertyChanged(nameof(AirBaseAreas));
+		};
 	}
 
 	private void Updated(string apiname, dynamic data)
@@ -363,60 +378,25 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// <see cref="http://www.kancolle-calc.net/deckbuilder.html"/>
 	/// </summary>
 	[RelayCommand]
-	private void CopyDeckBuilder()
+	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+	private void CopyDeckBuilder(int? areaId)
 	{
+		IEnumerable<BaseAirCorpsData> airbases = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(a => a.MapAreaID == areaId);
 
-		StringBuilder sb = new StringBuilder();
-		KCDatabase db = KCDatabase.Instance;
+		string deckBuilderData = DataSerializationService.DeckBuilder
+		(
+			KCDatabase.Instance.Admiral.Level,
+			KCDatabase.Instance.Fleet.Fleets.Values.Skip(0).FirstOrDefault(),
+			KCDatabase.Instance.Fleet.Fleets.Values.Skip(1).FirstOrDefault(),
+			KCDatabase.Instance.Fleet.Fleets.Values.Skip(2).FirstOrDefault(),
+			KCDatabase.Instance.Fleet.Fleets.Values.Skip(3).FirstOrDefault(),
+			airbases.Skip(0).FirstOrDefault(),
+			airbases.Skip(1).FirstOrDefault(),
+			airbases.Skip(2).FirstOrDefault()
+		);
 
-		// 手書き json の悲しみ
-
-		sb.Append(@"{""version"":4,");
-
-		foreach (var fleet in db.Fleet.Fleets.Values)
-		{
-			if (fleet == null || fleet.MembersInstance.All(m => m == null)) continue;
-
-			sb.AppendFormat(@"""f{0}"":{{", fleet.FleetID);
-
-			int shipcount = 1;
-			foreach (var ship in fleet.MembersInstance)
-			{
-				if (ship == null) break;
-
-				sb.AppendFormat(@"""s{0}"":{{""id"":{1},""lv"":{2},""luck"":{3},""items"":{{",
-					shipcount,
-					ship.ShipID,
-					ship.Level,
-					ship.LuckBase);
-
-				int eqcount = 1;
-				foreach (var eq in ship.AllSlotInstance.Where(eq => eq != null))
-				{
-					if (eq == null) break;
-
-					sb.AppendFormat(@"""i{0}"":{{""id"":{1},""rf"":{2},""mas"":{3}}},", eqcount >= 6 ? "x" : eqcount.ToString(), eq.EquipmentID, eq.Level, eq.AircraftLevel);
-
-					eqcount++;
-				}
-
-				if (eqcount > 1)
-					sb.Remove(sb.Length - 1, 1);        // remove ","
-				sb.Append(@"}},");
-
-				shipcount++;
-			}
-
-			if (shipcount > 0)
-				sb.Remove(sb.Length - 1, 1);        // remove ","
-			sb.Append(@"},");
-
-		}
-
-		sb.Remove(sb.Length - 1, 1);        // remove ","
-		sb.Append(@"}");
-
-		Clipboard.SetDataObject(sb.ToString());
+		Clipboard.SetDataObject(deckBuilderData);
 	}
 
 	/// <summary>
