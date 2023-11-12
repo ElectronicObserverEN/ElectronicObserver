@@ -45,4 +45,9 @@ public class EquipmentUpgradeDayViewModel
 			_ => Color.FromArgb(0, 0, 0, 0),
 		};
 	}
+
+	public void UnsubscribeFromApis()
+	{
+		Helpers.ForEach(helper => helper.UnsubscribeFromApis());
+	}
 }

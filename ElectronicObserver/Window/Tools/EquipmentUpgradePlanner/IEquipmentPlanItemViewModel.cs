@@ -15,4 +15,6 @@ public interface IEquipmentPlanItemViewModel
 	};
 
 	public EquipmentUpgradePlanCostViewModel Cost { get; }
+
+	public void UnsubscribeFromApis();
 }

@@ -9,29 +9,29 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculatio
 
 public class EquipmentUpgradePlanCostViewModel : ObservableObject
 {
-	public EquipmentUpgradePlanCostModel Model { get; set; }
+	public EquipmentUpgradePlanCostModel Model { get; }
 
-	public EquipmentUpgradePlanCostMaterialViewModel Fuel { get; set; }
+	public EquipmentUpgradePlanCostMaterialViewModel Fuel { get; }
 
-	public EquipmentUpgradePlanCostMaterialViewModel Ammo { get; set; }
+	public EquipmentUpgradePlanCostMaterialViewModel Ammo { get; }
 
-	public EquipmentUpgradePlanCostMaterialViewModel Steel { get; set; }
+	public EquipmentUpgradePlanCostMaterialViewModel Steel { get; }
 
-	public EquipmentUpgradePlanCostMaterialViewModel Bauxite { get; set; }
+	public EquipmentUpgradePlanCostMaterialViewModel Bauxite { get; }
 
 	/// <summary>
 	/// "screws"
 	/// </summary>
-	public EquipmentUpgradePlanCostMaterialViewModel ImprovementMaterial { get; set; }
+	public EquipmentUpgradePlanCostMaterialViewModel ImprovementMaterial { get; }
 
 	/// <summary>
 	/// "devmats"
 	/// </summary>
-	public EquipmentUpgradePlanCostMaterialViewModel DevelopmentMaterial { get; set; }
+	public EquipmentUpgradePlanCostMaterialViewModel DevelopmentMaterial { get; }
 
-	public List<EquipmentUpgradePlanCostEquipmentViewModel> RequiredEquipments { get; set; } = new();
+	public List<EquipmentUpgradePlanCostEquipmentViewModel> RequiredEquipments { get; }
 
-	public List<EquipmentUpgradePlanCostConsumableViewModel> RequiredConsumables { get; set; } = new();
+	public List<EquipmentUpgradePlanCostConsumableViewModel> RequiredConsumables { get; }
 
 	public bool HasEnoughResources => GetHasEnoughResourceValue();
 
@@ -101,5 +101,19 @@ public class EquipmentUpgradePlanCostViewModel : ObservableObject
 		if (RequiredConsumables.Any(consumable => !consumable.EnoughOwned)) return false;
 
 		return true;
+	}
+
+	public void UnsubscribeFromApis()
+	{
+		Fuel.UnsubscribeFromApis();
+		Ammo.UnsubscribeFromApis();
+		Steel.UnsubscribeFromApis();
+		Bauxite.UnsubscribeFromApis();
+
+		ImprovementMaterial.UnsubscribeFromApis();
+		DevelopmentMaterial.UnsubscribeFromApis();
+
+		RequiredEquipments.ForEach(eq => eq.UnsubscribeFromApis());
+		RequiredConsumables.ForEach(eq => eq.UnsubscribeFromApis());
 	}
 }

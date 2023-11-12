@@ -34,23 +34,46 @@ public class EquipmentUpgradePlanCostMaterialViewModel : EquipmentUpgradePlanRes
 		};
 	}
 
+	private void UpdateOnResponseReceived(string apiname, dynamic data)
+	{
+		Update();
+	}
+
 	public void SubscribeToApis()
 	{
-		APIObserver.Instance.ApiPort_Port.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiPort_Port.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiGetMember_Material.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiGetMember_Material.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqHokyu_Charge.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqHokyu_Charge.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_CreateItem.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_CreateItem.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqAirCorps_Supply.ResponseReceived += (_, _) => Update();
-		APIObserver.Instance.ApiReqAirCorps_SetPlane.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqAirCorps_Supply.ResponseReceived += UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqAirCorps_SetPlane.ResponseReceived += UpdateOnResponseReceived;
 
-		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += (_, _) => Update();
+		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived += UpdateOnResponseReceived;
+	}
 
+	public void UnsubscribeFromApis()
+	{
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiGetMember_Material.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqHokyu_Charge.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_CreateItem.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqAirCorps_Supply.ResponseReceived -= UpdateOnResponseReceived;
+		APIObserver.Instance.ApiReqAirCorps_SetPlane.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived -= UpdateOnResponseReceived;
 	}
 }

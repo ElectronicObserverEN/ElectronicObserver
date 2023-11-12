@@ -19,4 +19,14 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 
 		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1));
 	}
+
+	public override void Closed()
+	{
+		foreach (UpgradeTreeUpgradePlanViewModel item in Items)
+		{
+			item.CleanupUnusedPlan();
+		}
+
+		base.Closed();
+	}
 }

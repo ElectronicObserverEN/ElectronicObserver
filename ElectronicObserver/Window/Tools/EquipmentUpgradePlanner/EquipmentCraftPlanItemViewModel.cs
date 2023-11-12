@@ -17,4 +17,9 @@ public class EquipmentCraftPlanItemViewModel(EquipmentId equipmentId) : WindowVi
 	};
 
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
+
+	public void UnsubscribeFromApis()
+	{
+		Cost.UnsubscribeFromApis();
+	}
 }

@@ -87,6 +87,29 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		RequiredCount = required;
 		Plan = plan;
 	}
+
+	/// <summary>
+	/// Unsubscribes the plans that aren't saved in db from the API events
+	/// </summary>
+	public void CleanupUnusedPlan()
+	{
+		if (Plan is EquipmentUpgradePlanItemViewModel plan)
+		{
+			if (!EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan))
+			{
+				plan.UnsubscribeFromApis();
+			}
+		}
+		else
+		{
+			Plan?.UnsubscribeFromApis();
+		}
+
+		foreach (UpgradeTreeUpgradePlanViewModel child in Children)
+		{
+			child.CleanupUnusedPlan();
+		}
+	}
 	
 	private void InitializeFromConversion(EquipmentUpgradePlanItemViewModel plan)
 	{
@@ -241,6 +264,8 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	{
 		Children.Clear();
 		OnPropertyChanged(nameof(DisplayName));
+
+		CleanupUnusedPlan();
 		Initialize(plan);
 
 		OnPropertyChanged(nameof(CanBePlanned));

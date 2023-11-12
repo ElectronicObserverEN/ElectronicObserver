@@ -29,4 +29,9 @@ public class EquipmentUpgradeDaysViewModel
 			.Select(day => new EquipmentUpgradeDayViewModel(day, models.Where(helpers => helpers.CanHelpOnDays.Contains(day)).SelectMany(helpers => helpers.ShipIds).ToList()))
 			.ToList();
 	}
+
+	public void UnsubscribeFromApis()
+	{
+		Days.ForEach(day => day.UnsubscribeFromApis());
+	}
 }

@@ -20,4 +20,9 @@ public class EquipmentConversionPlanItemViewModel(EquipmentUpgradePlanItemViewMo
 
 	public List<EquipmentUpgradePlanItemViewModel> EquipmentRequiredForUpgradePlan { get; set; } = children;
 	public EquipmentUpgradePlanItemViewModel EquipmentToUpgradePlan { get; set; } = parent;
+
+	public void UnsubscribeFromApis()
+	{
+		Cost.UnsubscribeFromApis();
+	}
 }

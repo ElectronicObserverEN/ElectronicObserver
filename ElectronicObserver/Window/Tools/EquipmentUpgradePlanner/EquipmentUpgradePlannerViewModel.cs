@@ -22,7 +22,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	private EquipmentPickerService EquipmentPicker { get; }
 	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
-	public EquipmentUpgradePlanCostViewModel TotalCost { get; set; } = new(new());
+	public EquipmentUpgradePlanCostViewModel TotalCost { get; private set; } = new(new());
 
 	public GridLength PlanListWidth { get; set; } = new(350, GridUnitType.Pixel);
 
@@ -117,10 +117,13 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		view.ShowDialog();
 	}
 
-	private void UpdateTotalCost() 
-		=> TotalCost = new(PlannedUpgrades
+	private void UpdateTotalCost()
+	{
+		TotalCost.UnsubscribeFromApis();
+		TotalCost = new(PlannedUpgrades
 			.Where(plan => !plan.Finished)
 			.Aggregate(new EquipmentUpgradePlanCostModel(), (cost, viewModel) => cost + viewModel.Cost.Model, totalCost => totalCost));
+	}
 
 	private void Update()
 	{

@@ -66,9 +66,9 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 
 	public IShipDataMaster? SelectedHelper { get; set; }
 
-	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; set; } = new();
+	public List<EquipmentUpgradeHelpersViewModel> HelperViewModels { get; private set; } = new();
 
-	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; set; } = new(new());
+	public EquipmentUpgradeDaysViewModel HelperViewModelCompact { get; private set; } = new(new());
 
 	public Dictionary<DayOfWeek, List<EquipmentUpgradeHelperViewModel>> HelpersPerDay => HelperViewModelCompact
 		.Days
@@ -76,8 +76,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 
 	public List<EquipmentUpgradeHelperViewModel> HelpersForCurrentDay => HelpersPerDay[TimeChangeService.CurrentDayOfWeekJST];
 
-	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
-	public EquipmentUpgradePlanCostViewModel NextUpgradeCost { get; set; } = new(new());
+	public EquipmentUpgradePlanCostViewModel Cost { get; private set; } = new(new());
+	public EquipmentUpgradePlanCostViewModel NextUpgradeCost { get; private set; } = new(new());
 
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
@@ -154,12 +154,16 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	{
 		if (Equipment is null) return;
 
+		Cost.UnsubscribeFromApis();
 		Cost = new(Equipment.CalculateUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, DesiredUpgradeLevel, SliderLevel));
+
+		NextUpgradeCost.UnsubscribeFromApis();
 		NextUpgradeCost = new(Equipment.CalculateNextUpgradeCost(EquipmentUpgradeData.UpgradeList, SelectedHelper, SliderLevel));
 	}
 
 	public void UpdateHelperDisplay()
 	{
+		HelperViewModels.ForEach(helper => helper.UnsubscribeFromApis());
 		HelperViewModels = Equipment switch
 		{
 			IEquipmentData equipment => EquipmentUpgradeData.UpgradeList
@@ -171,6 +175,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 			_ => new()
 		};
 
+		HelperViewModelCompact.UnsubscribeFromApis();
 		HelperViewModelCompact = Equipment switch
 		{
 			IEquipmentData equipment => new EquipmentUpgradeDaysViewModel(EquipmentUpgradeData.UpgradeList
@@ -278,9 +283,20 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Parent = editVm.Parent;
 		ShouldBeConvertedInto = editVm.ShouldBeConvertedInto;
 
+		editVm.UnsubscribeFromApis();
+
 		Save();
 
 		return true;
+	}
+
+	public void UnsubscribeFromApis()
+	{
+		HelperViewModels.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+		HelperViewModelCompact.UnsubscribeFromApis();
+
+		Cost.UnsubscribeFromApis();
+		NextUpgradeCost.UnsubscribeFromApis();
 	}
 
 	[RelayCommand]
