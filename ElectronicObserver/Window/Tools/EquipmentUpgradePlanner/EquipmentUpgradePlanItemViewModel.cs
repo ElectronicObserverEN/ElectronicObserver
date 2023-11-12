@@ -258,8 +258,9 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Plan.ShouldBeConvertedInto = ShouldBeConvertedInto;
 	}
 
-	public bool OpenPlanDialog(EquipmentUpgradePlanItemViewModel editVm)
+	public bool OpenPlanDialog()
 	{
+		EquipmentUpgradePlanItemViewModel editVm = new(Plan);
 		EquipmentUpgradePlanItemWindow editView = new(editVm);
 
 		if (editView.ShowDialog() is not true)
@@ -280,12 +281,6 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		Save();
 
 		return true;
-	}
-
-	public bool OpenPlanDialog()
-	{
-		EquipmentUpgradePlanItemViewModel editVm = new(Plan);
-		return OpenPlanDialog(editVm);
 	}
 
 	[RelayCommand]
