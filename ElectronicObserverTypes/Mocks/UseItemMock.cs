@@ -2,7 +2,7 @@
 
 public class UseItemMock : IUseItem
 {
-	public int ID { get; set; }
+	public int ID => ItemID;
 	public int ItemID { get; set; }
 	public int Count { get; set; }
 	public IUseItemMaster MasterUseItem { get; set; }
