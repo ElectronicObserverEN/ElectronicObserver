@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
@@ -56,7 +55,7 @@ public class Startup
 			kcdb.MasterEquipments.Add(equipment);
 		}
 
-		await InitializeKcDatabase(kcdb);
+		InitializeKcDatabase(kcdb);
 
 		Ioc.Default.ConfigureServices(new ServiceCollection()
 			.AddSingleton<IKCDatabase>(kcdb)
@@ -84,7 +83,7 @@ public class Startup
 	/// <summary>
 	/// hack: this should ideally be removed
 	/// </summary>
-	private static async Task InitializeKcDatabase(KCDatabaseMock kcdb)
+	private static void InitializeKcDatabase(KCDatabaseMock kcdb)
 	{
 		foreach (IShipDataMaster ship in kcdb.MasterShips.Values)
 		{
