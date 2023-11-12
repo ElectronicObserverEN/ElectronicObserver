@@ -42,7 +42,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 	public bool AlreadyPlanned => Plan is EquipmentUpgradePlanItemViewModel plan && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
-	private IEquipmentPlanItemViewModel? Plan { get; set; }
+	public IEquipmentPlanItemViewModel? Plan { get; private set; }
 
 	public int RequiredCount { get; }
 
