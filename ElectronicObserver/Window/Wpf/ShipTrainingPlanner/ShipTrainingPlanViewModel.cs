@@ -120,7 +120,7 @@ public class ShipTrainingPlanViewModel : WindowViewModelBase
 			&& Ship.HPMax >= TargetHP
 			&& Ship.ASWBase >= TargetASW
 			&& Ship.LuckBase >= TargetLuck
-			&& (Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
+			&& (TargetRemodel is null || Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
 
 		OnPropertyChanged(nameof(PlanFinished));
 	}
