@@ -16,35 +16,43 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 
 public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 {
-	public string DisplayName => Plan switch
+	public EquipmentId EquipmentId => Plan.EquipmentMasterDataId;
+
+	public int Count => Plan switch
 	{
-		EquipmentUpgradePlanItemViewModel plan =>
-			$"{RequiredCount}x {plan.EquipmentName} ({Translations.Goal}: {plan.DesiredUpgradeLevel.Display()})",
-		EquipmentConversionPlanItemViewModel conversion => $"{conversion.EquipmentRequiredForUpgradePlan.Count}x {Plan.EquipmentMasterData?.NameEN}",
-		not null => $"{RequiredCount}x {Plan.EquipmentMasterData?.NameEN}",
-		_ => ""
+		EquipmentUpgradePlanItemViewModel => RequiredCount,
+		EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.Count,
+		EquipmentCraftPlanItemViewModel => RequiredCount,
+
+		_ => throw new NotImplementedException(),
 	};
 
-	public EquipmentUpgradePlanCostViewModel? Cost =>
-		Plan?.Cost.Model is null or { Fuel: 0, Ammo: 0, Steel: 0, Bauxite: 0 } ? null : Plan.Cost;
-
-	public UpgradeTreeViewNodeState State => Plan switch
+	public string DisplayName => Plan switch
 	{
-		not null => UpgradeTreeViewNodeState.Planned,
-		_ => UpgradeTreeViewNodeState.ToCraft
+		EquipmentUpgradePlanItemViewModel plan => $"{Count}x {plan.EquipmentName} ({Translations.Goal}: {plan.DesiredUpgradeLevel.Display()})",
+		EquipmentConversionPlanItemViewModel => $"{Count}x {Plan.EquipmentMasterData?.NameEN}",
+		EquipmentCraftPlanItemViewModel => $"{Count}x {Plan.EquipmentMasterData?.NameEN}",
+
+		_ => throw new NotImplementedException(),
+	};
+
+	public EquipmentUpgradePlanCostViewModel? Cost => Plan.Cost.Model switch
+	{
+		{ Fuel: 0, Ammo: 0, Steel: 0, Bauxite: 0 } => null,
+		_ => Plan.Cost,
 	};
 
 	public bool CanBePlanned => Plan switch
 	{
 		EquipmentUpgradePlanItemViewModel plan => !EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan),
-		_ => false
+		_ => false,
 	};
 
 	public bool AlreadyPlanned => Plan is EquipmentUpgradePlanItemViewModel plan && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
-	public IEquipmentPlanItemViewModel? Plan { get; private set; }
+	private IEquipmentPlanItemViewModel Plan { get; set; }
 
-	public int RequiredCount { get; }
+	private int RequiredCount { get; }
 
 	private EquipmentUpgradeData EquipmentUpgradeData { get; }
 
@@ -102,7 +110,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		}
 		else
 		{
-			Plan?.UnsubscribeFromApis();
+			Plan.UnsubscribeFromApis();
 		}
 
 		foreach (UpgradeTreeUpgradePlanViewModel child in Children)
@@ -110,7 +118,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 			child.CleanupUnusedPlan();
 		}
 	}
-	
+
 	private void InitializeFromConversion(EquipmentUpgradePlanItemViewModel plan)
 	{
 		Children.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1));
@@ -152,10 +160,10 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 				newChild.ShouldBeConvertedInto = plan.EquipmentMasterDataId;
 				children.Add(newChild);
 			}
-			
+
 			foreach (EquipmentUpgradePlanItemViewModel child in children)
 			{
-				Children.Add(new UpgradeTreeUpgradePlanViewModel(new EquipmentConversionPlanItemViewModel(plan, new List<EquipmentUpgradePlanItemViewModel>{ child })));
+				Children.Add(new UpgradeTreeUpgradePlanViewModel(new EquipmentConversionPlanItemViewModel(plan, new List<EquipmentUpgradePlanItemViewModel> { child })));
 			}
 		}
 		else
@@ -167,7 +175,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	private UpgradeTreeUpgradePlanViewModel InitializeEquipmentPlanChild(EquipmentUpgradePlanItemViewModel plan, int required, EquipmentId equipment)
 	{
 		// if fodder = upgraded equipment, return a craft plan to avoid infinite loops
-		if (equipment == Plan?.EquipmentMasterDataId && plan.ShouldBeConvertedInto == equipment)
+		if (equipment == Plan.EquipmentMasterDataId && plan.ShouldBeConvertedInto == equipment)
 		{
 			return new UpgradeTreeUpgradePlanViewModel(new EquipmentCraftPlanItemViewModel(equipment), required);
 		}
@@ -214,12 +222,10 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	[RelayCommand]
 	private void AddEquipmentPlan()
 	{
-		if (Plan is null) return;
-
 		EquipmentUpgradePlanItemViewModel newPlan = Plan switch
 		{
 			EquipmentUpgradePlanItemViewModel plan => plan,
-			_ => throw new NotImplementedException()
+			_ => throw new NotImplementedException(),
 		};
 
 		if (!newPlan.OpenPlanDialog()) return;
