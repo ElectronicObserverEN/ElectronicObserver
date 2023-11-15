@@ -5,6 +5,7 @@ public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 {
 	public string Title => ShipTrainingPlannerResources.Title;
 	public string PlanCompletedNotification => ShipTrainingPlannerResources.PlanCompletedNotification;
+	public string PlanCompleted => ShipTrainingPlannerResources.PlanCompleted;
 	public string AddShip => ShipTrainingPlannerResources.AddShip;
 	public string RemovePlan => ShipTrainingPlannerResources.RemovePlan;
 	public string ShipName => EncycloRes.ShipName;

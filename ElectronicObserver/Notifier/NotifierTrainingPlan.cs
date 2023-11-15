@@ -12,7 +12,7 @@ public class NotifierTrainingPlan : NotifierBase
 	{
 		PlanManager = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
 
-		DialogData.Title = PlanManager.ShipTrainingPlanner.Title;
+		DialogData.Title = PlanManager.ShipTrainingPlanner.PlanCompleted;
 
 		Initialize();
 	}

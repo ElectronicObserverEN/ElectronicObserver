@@ -215,4 +215,7 @@ When enabled, you'll be notified when you can remodel Kamikaze to Kamikaze Kai a
   <data name="PlanCompletedNotification" xml:space="preserve">
     <value>{0}'s training has been completed</value>
   </data>
+  <data name="PlanCompleted" xml:space="preserve">
+    <value>Ship training completed</value>
+  </data>
 </root>
