@@ -17,7 +17,7 @@ public class ShipTrainingPlanViewModel : WindowViewModelBase
 
 	public IShipData Ship => KCDatabase.Instance.Ships[Model.ShipId] switch
 	{
-		IShipData => KCDatabase.Instance.Ships[Model.ShipId],
+		not null => KCDatabase.Instance.Ships[Model.ShipId],
 		_ => new ShipDataMock(new ShipDataMasterMock())
 	};
 
@@ -27,9 +27,9 @@ public class ShipTrainingPlanViewModel : WindowViewModelBase
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
 	public bool ShipRemodelLevelReached =>
-		TargetRemodel?.Ship is IShipDataMaster remodel
+		TargetRemodel?.Ship is { } remodel
 		&& Ship.MasterShip.ShipId != remodel.ShipId
-		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
+		&& remodel.RemodelBeforeShip is { } shipBefore
 		&& Ship.Level >= shipBefore.RemodelAfterLevel;
 
 	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel && Ship.MasterShip.RemodelAfterLevel > 0;
@@ -136,7 +136,7 @@ public class ShipTrainingPlanViewModel : WindowViewModelBase
 
 		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
 
-		if (Model.TargetRemodel is ShipId shipId)
+		if (Model.TargetRemodel is { } shipId)
 			TargetRemodel = new(KCDatabase.Instance.MasterShips[(int)shipId]);
 
 		PossibleRemodels.Clear();

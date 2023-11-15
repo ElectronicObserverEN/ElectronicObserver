@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
@@ -127,7 +126,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		{
 			newPlan.TargetRemodel = lastRemodel.ShipId;
 
-			if (lastRemodel.RemodelBeforeShip is IShipDataMaster shipBefore)
+			if (lastRemodel.RemodelBeforeShip is { } shipBefore)
 			{
 				newPlan.TargetLevel = shipBefore.RemodelAfterLevel;
 			}
@@ -195,7 +194,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		pickerView.ShowDialog();
 
-		if (PickerViewModel.PickedShip is IShipData ship)
+		if (PickerViewModel.PickedShip is { } ship)
 		{
 			AddNewPlan(ship);
 		}
