@@ -1,16 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>Enable</Nullable>
 		<LangVersion>preview</LangVersion>
-		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Aigamo.ResXGenerator" Version="4.1.2">

@@ -54,6 +54,7 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 	public ObservableCollection<ExpeditionRecordViewModel> Expeditions { get; } = new();
 	public ExpeditionRecordViewModel? SelectedExpedition { get; set; }
 	public ObservableCollection<ExpeditionRecordViewModel> SelectedExpeditions { get; } = new();
+	public ExpeditionSummary? ExpeditionSummary { get; private set; }
 
 	public DataGridViewModel<ExpeditionRecordViewModel> DataGridViewModel { get; }
 
@@ -110,6 +111,11 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 		SelectedExpeditions.CollectionChanged += (_, _) =>
 		{
 			StatusBarText = string.Format(SortieRecordViewerResources.SelectedItems, SelectedExpeditions.Count, Expeditions.Count);
+			ExpeditionSummary = SelectedExpeditions.Count switch
+			{
+				0 => null,
+				_ => new(SelectedExpeditions),
+			};
 		};
 
 		// generate missions

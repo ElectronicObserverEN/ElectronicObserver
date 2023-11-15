@@ -182,8 +182,15 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		string cookieScript = $"""
-			document.cookie="ckcy=1;expires={DateTime.Now.AddYears(6):ddd, dd MMM yyyy HH:mm:ss 'GMT'};path=/netgame;domain=.dmm.com";
+		string cookieScript = $$"""
+			try
+			{
+				document.cookie="ckcy=1;expires={{DateTime.Now.AddYears(6):ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/netgame;domain=.dmm.com";
+			}
+			catch
+			{
+				console.log("Setting the cookie failed.");
+			}
 			""";
 
 		CefSharp.ExecuteScriptAsync(cookieScript);

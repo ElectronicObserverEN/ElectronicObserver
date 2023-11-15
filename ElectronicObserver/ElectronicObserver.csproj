@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows7</TargetFramework>
 		<RuntimeFrameworkVersion>6.0.5</RuntimeFrameworkVersion>
@@ -28,22 +28,19 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.11.1</AssemblyVersion>
-		<FileVersion>5.2.11.1</FileVersion>
-		<Version>5.2.11.1</Version>
+		<AssemblyVersion>5.2.11.2</AssemblyVersion>
+		<FileVersion>5.2.11.2</FileVersion>
+		<Version>5.2.11.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
 		<OutputPath>bin\x64\Debug\</OutputPath>
-		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
 		<OutputPath>bin\x64\Release\</OutputPath>
-		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -81,7 +78,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
 		<Content Include="74eo.ico" />
 		<Content Include="Other\Information\apilist.txt" />
 		<Content Include="Other\Information\todo.txt" />

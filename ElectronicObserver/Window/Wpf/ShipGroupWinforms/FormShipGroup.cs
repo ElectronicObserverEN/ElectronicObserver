@@ -601,7 +601,7 @@ public partial class FormShipGroup: Form
 			int membersCount = group.MembersInstance.Count(s => s != null);
 			int levelsum = group.MembersInstance.Sum(s => s?.Level ?? 0);
 			double levelAverage = levelsum / Math.Max(membersCount, 1.0);
-			int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
+			long expsum = group.MembersInstance.Sum(s => (long?)s?.ExpTotal ?? 0);
 			double expAverage = expsum / Math.Max(membersCount, 1.0);
 
 			ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
@@ -736,7 +736,7 @@ public partial class FormShipGroup: Form
 				int membersCount = group.MembersInstance.Count(s => s != null);
 				int levelsum = group.MembersInstance.Sum(s => s?.Level ?? 0);
 				double levelAverage = levelsum / Math.Max(membersCount, 1.0);
-				int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
+				long expsum = group.MembersInstance.Sum(s => (long?)s?.ExpTotal ?? 0);
 				double expAverage = expsum / Math.Max(membersCount, 1.0);
 
 				ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);

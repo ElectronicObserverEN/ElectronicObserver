@@ -755,7 +755,7 @@ public sealed class APIObserver
 	/// <returns>実際に使用されるポート番号。</returns>
 	public int Start(int portID, Control uiControl)
 	{
-		Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
+		Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 		UIControl = uiControl;
 
@@ -783,16 +783,14 @@ public sealed class APIObserver
 
 			ProxyStarted();
 
-			Utility.Logger.Add(1, string.Format(LoggerRes.APIObserverStarted, portID));
+			Logger.Add(1, string.Format(LoggerRes.APIObserverStarted, portID));
 
 		}
 		catch (Exception ex)
 		{
-
-			Utility.Logger.Add(3, ObserverRes.APIObserverFailed + ex.Message);
+			Logger.Add(3, ObserverRes.APIObserverFailed, ex);
 			ProxyPort = 0;
 		}
-
 
 		return ProxyPort;
 	}
@@ -804,7 +802,7 @@ public sealed class APIObserver
 	{
 		Proxy.Stop();
 
-		Utility.Logger.Add(1, LoggerRes.APIObserverStopped);
+		Logger.Add(1, LoggerRes.APIObserverStopped);
 	}
 
 	private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)
@@ -899,7 +897,7 @@ public sealed class APIObserver
 						int index = tpath.IndexOf("?");
 						if (index != -1)
 						{
-							if (Utility.Configuration.Config.Connection.ApplyVersion)
+							if (Configuration.Config.Connection.ApplyVersion)
 							{
 								string over = tpath.Substring(index + 1);
 								int vindex = over.LastIndexOf("VERSION=", StringComparison.CurrentCultureIgnoreCase);
@@ -936,13 +934,13 @@ public sealed class APIObserver
 								File.WriteAllBytesAsync(tpath, responseCopy);
 							}
 
-							Utility.Logger.Add(1, string.Format(LoggerRes.SavedAPI, tpath.Remove(0, saveDataPath.Length + 1)));
+							Logger.Add(1, string.Format(LoggerRes.SavedAPI, tpath.Remove(0, saveDataPath.Length + 1)));
 
 						}
 						catch (IOException ex)
 						{   //ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
 
-							Utility.Logger.Add(3, LoggerRes.FailedSaveAPI + ex.Message);
+							Logger.Add(3, LoggerRes.FailedSaveAPI + ex.Message);
 						}
 					}));
 
@@ -952,7 +950,7 @@ public sealed class APIObserver
 			catch (Exception ex)
 			{
 
-				Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
+				ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 			}
 
 		}
@@ -982,7 +980,7 @@ public sealed class APIObserver
 		try
 		{
 
-			Utility.Logger.Add(1, LoggerRes.RecievedRequest + shortpath);
+			Logger.Add(1, LoggerRes.RecievedRequest + shortpath);
 
 			SystemEvents.UpdateTimerEnabled = false;
 
@@ -1024,7 +1022,7 @@ public sealed class APIObserver
 		try
 		{
 
-			Utility.Logger.Add(1, ObserverRes.ResponseRecieved + shortpath);
+			Logger.Add(1, ObserverRes.ResponseRecieved + shortpath);
 
 			SystemEvents.UpdateTimerEnabled = false;
 
@@ -1036,7 +1034,7 @@ public sealed class APIObserver
 			{
 				if (result == 201)
 				{
-					Utility.Logger.Add(3,
+					Logger.Add(3,
 						ObserverRes.Error201);
 				}
 				else
@@ -1094,9 +1092,9 @@ public sealed class APIObserver
 		try
 		{
 
-			string tpath = string.Format("{0}\\{1}Q@{2}.json", Utility.Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
+			string tpath = string.Format("{0}\\{1}Q@{2}.json", Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
 
-			using (var sw = new System.IO.StreamWriter(tpath, false, Encoding.UTF8))
+			using (var sw = new StreamWriter(tpath, false, Encoding.UTF8))
 			{
 				sw.Write(body);
 			}
@@ -1106,7 +1104,7 @@ public sealed class APIObserver
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
+			ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 
 		}
 	}
@@ -1118,9 +1116,9 @@ public sealed class APIObserver
 		try
 		{
 
-			string tpath = string.Format("{0}\\{1}S@{2}.json", Utility.Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
+			string tpath = string.Format("{0}\\{1}S@{2}.json", Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
 
-			using (var sw = new System.IO.StreamWriter(tpath, false, Encoding.UTF8))
+			using (var sw = new StreamWriter(tpath, false, Encoding.UTF8))
 			{
 				sw.Write(body);
 			}
@@ -1129,7 +1127,7 @@ public sealed class APIObserver
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
+			ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 
 		}
 

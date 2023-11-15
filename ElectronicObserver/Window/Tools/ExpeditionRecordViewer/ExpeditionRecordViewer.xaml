@@ -23,6 +23,14 @@
 	>
 	<Window.Resources>
 		<local:ExpeditionRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+		<DataTemplate DataType="{x:Type local:ExpeditionItem}">
+			<commontools:ImageTextControl Text="{Binding Count}">
+				<commontools:ImageTextControl.Image>
+					<common:UseItemIcon Type="{Binding UseItemId}" />
+				</commontools:ImageTextControl.Image>
+			</commontools:ImageTextControl>
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid>
@@ -322,6 +330,52 @@
 		<StatusBar Grid.Row="2">
 			<StatusBarItem>
 				<TextBlock Text="{Binding StatusBarText}" />
+			</StatusBarItem>
+			<StatusBarItem>
+				<StatusBarItem.Style>
+					<Style TargetType="StatusBarItem">
+						<Setter Property="Visibility" Value="Visible" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ExpeditionSummary}" Value="{x:Null}">
+								<Setter Property="Visibility" Value="Collapsed" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</StatusBarItem.Style>
+
+				<StackPanel Orientation="Horizontal">
+					<commontools:ImageTextControl Text="{Binding ExpeditionSummary.Fuel}">
+						<commontools:ImageTextControl.Image>
+							<common:IconContentIcon Type="ResourceFuel" />
+						</commontools:ImageTextControl.Image>
+					</commontools:ImageTextControl>
+
+					<commontools:ImageTextControl Text="{Binding ExpeditionSummary.Ammo}">
+						<commontools:ImageTextControl.Image>
+							<common:IconContentIcon Type="ResourceAmmo" />
+						</commontools:ImageTextControl.Image>
+					</commontools:ImageTextControl>
+
+					<commontools:ImageTextControl Text="{Binding ExpeditionSummary.Steel}">
+						<commontools:ImageTextControl.Image>
+							<common:IconContentIcon Type="ResourceSteel" />
+						</commontools:ImageTextControl.Image>
+					</commontools:ImageTextControl>
+
+					<commontools:ImageTextControl Text="{Binding ExpeditionSummary.Bauxite}">
+						<commontools:ImageTextControl.Image>
+							<common:IconContentIcon Type="ResourceBauxite" />
+						</commontools:ImageTextControl.Image>
+					</commontools:ImageTextControl>
+
+					<ItemsControl ItemsSource="{Binding ExpeditionSummary.ExpeditionItems.Values}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
 			</StatusBarItem>
 		</StatusBar>
 	</Grid>

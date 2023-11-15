@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows7</TargetFramework>
 		<LangVersion>preview</LangVersion>
@@ -33,11 +33,7 @@
 		<AssemblyVersion>5.2.11.0</AssemblyVersion>
 		<FileVersion>5.2.11.0</FileVersion>
 		<Version>5.2.11.0</Version>
-		<CodeAnalysisRuleSet>..\.sonarlint\electronicobserveren_electronicobservercsharp.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
-	<ItemGroup>
-	  <AdditionalFiles Include="..\.sonarlint\electronicobserveren_electronicobserver\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 	</ItemGroup>
