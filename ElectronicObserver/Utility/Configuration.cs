@@ -1813,9 +1813,12 @@ public sealed class Configuration
 
 		[DataMember]
 		public ConfigNotifierBattleEnd NotifierBattleEnd { get; private set; }
+
 		[DataMember]
 		public ConfigNotifierBase NotifierRemodelLevel { get; private set; }
 
+		[DataMember]
+		public ConfigNotifierBase NotifierTrainingPlan { get; private set; }
 
 		/// <summary>
 		/// SyncBGMPlayer の設定を扱います。
@@ -1971,6 +1974,7 @@ public sealed class Configuration
 			NotifierBaseAirCorps = new ConfigNotifierBaseAirCorps();
 			NotifierBattleEnd = new ConfigNotifierBattleEnd();
 			NotifierRemodelLevel = new ConfigNotifierBase();
+			NotifierTrainingPlan = new ConfigNotifierBase();
 
 			BGMPlayer = new ConfigBGMPlayer();
 			FleetImageGenerator = new ConfigFleetImageGenerator();

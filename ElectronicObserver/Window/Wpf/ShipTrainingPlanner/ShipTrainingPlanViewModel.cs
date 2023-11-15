@@ -10,7 +10,8 @@ using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-public partial class ShipTrainingPlanViewModel : WindowViewModelBase
+
+public class ShipTrainingPlanViewModel : WindowViewModelBase
 {
 	public ShipTrainingPlanModel Model { get; }
 
@@ -120,8 +121,9 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 			&& Ship.ASWBase >= TargetASW
 			&& Ship.LuckBase >= TargetLuck
 			&& (Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
-	}
 
+		OnPropertyChanged(nameof(PlanFinished));
+	}
 
 	public void UpdateFromModel()
 	{
