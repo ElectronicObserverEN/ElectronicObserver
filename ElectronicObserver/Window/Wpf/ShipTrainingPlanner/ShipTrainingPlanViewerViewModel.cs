@@ -38,18 +38,18 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	public delegate void OnPlanCompletedArgs(ShipTrainingPlanViewModel plan);
 	public event OnPlanCompletedArgs? OnPlanCompleted;
 
-	public ShipTrainingPlanViewerViewModel() : base("ShipTrainingPlanViewer", "ShipTrainingPlanViewer", IconContent.ItemActionReport)
+	public ShipTrainingPlanViewerViewModel(ShipTrainingPlannerTranslationViewModel translations, Tracker tracker) : base("ShipTrainingPlanViewer", "ShipTrainingPlanViewer", IconContent.ItemActionReport)
 	{
-		Tracker = Ioc.Default.GetService<Tracker>()!;
-		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
+		Tracker = tracker;
+		ShipTrainingPlanner = translations;
 
 		DataGridViewModel = new(Plans)
 		{
 			FilterValue = plan => DisplayFinished || !plan.PlanFinished
 		};
 
-		Title = ShipTrainingPlanner.ViewTitle;
-		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
+		Title = ShipTrainingPlanner.Title;
+		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.Title;
 		PropertyChanged += ShipTrainingPlanViewerViewModel_PropertyChanged;
 
 		SubscribeToApi();

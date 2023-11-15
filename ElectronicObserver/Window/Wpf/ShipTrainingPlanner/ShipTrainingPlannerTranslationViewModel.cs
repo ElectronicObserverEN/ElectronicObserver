@@ -3,7 +3,8 @@
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 public class ShipTrainingPlannerTranslationViewModel : TranslationBaseViewModel
 {
-	public string ViewTitle => ShipTrainingPlannerResources.ViewerTitle;
+	public string Title => ShipTrainingPlannerResources.Title;
+	public string PlanCompletedNotification => ShipTrainingPlannerResources.PlanCompletedNotification;
 	public string AddShip => ShipTrainingPlannerResources.AddShip;
 	public string RemovePlan => ShipTrainingPlannerResources.RemovePlan;
 	public string ShipName => EncycloRes.ShipName;

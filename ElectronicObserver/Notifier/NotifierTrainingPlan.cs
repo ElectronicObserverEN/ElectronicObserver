@@ -1,9 +1,5 @@
-﻿using System.ComponentModel;
-using System.Linq;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Data;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Notifier;
 
@@ -14,9 +10,9 @@ public class NotifierTrainingPlan : NotifierBase
 	public NotifierTrainingPlan(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
 		: base(config)
 	{
-		DialogData.Title = NotifierRes.RemodelTitle;
-
 		PlanManager = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
+
+		DialogData.Title = PlanManager.ShipTrainingPlanner.Title;
 
 		Initialize();
 	}
@@ -28,7 +24,7 @@ public class NotifierTrainingPlan : NotifierBase
 
 	private void Notify(ShipTrainingPlanViewModel plan)
 	{
-		DialogData.Message = "TODO";
+		DialogData.Message = string.Format(PlanManager.ShipTrainingPlanner.PlanCompletedNotification, plan.Ship.MasterShip.NameEN);
 
 		base.Notify();
 	}

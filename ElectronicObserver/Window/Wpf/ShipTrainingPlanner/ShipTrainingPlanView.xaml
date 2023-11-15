@@ -7,7 +7,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.ShipTrainingPlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	Title="{Binding ShipTrainingPlanner.ViewTitle}"
+	Title="{Binding ShipTrainingPlanner.Title}"
 	Width="800"
 	Height="450"
 	d:DataContext="{d:DesignInstance local:ShipTrainingPlanViewModel}"

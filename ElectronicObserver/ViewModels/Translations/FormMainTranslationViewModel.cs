@@ -54,7 +54,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_View_Log => MainResources.View_Log.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Json => MainResources.View_Json.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_FleetPreset => MainResources.View_FleetPreset.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_View_ShipTrainingPlanViewer => ShipTrainingPlannerResources.ViewerTitle;
+	public string StripMenu_View_ShipTrainingPlanViewer => ShipTrainingPlannerResources.Title;
 
 	public string StripMenu_WindowCapture => MainResources.WindowCapture.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_WindowCapture_SubWindow => MainResources.WindowCapture_SubWindow.Replace("_", "__").Replace("&", "_");
