@@ -213,9 +213,9 @@
     <value>運残</value>
   </data>
   <data name="PlanCompletedNotification" xml:space="preserve">
-    <value>??? ({0}'s training has been completed)</value>
+    <value>{0}の艦娘訓練終了</value>
   </data>
   <data name="PlanCompleted" xml:space="preserve">
-    <value>??? (Ship training completed)</value>
+    <value>艦娘訓練終了</value>
   </data>
 </root>
