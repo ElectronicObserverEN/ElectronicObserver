@@ -103,7 +103,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		if (e.PropertyName is not nameof(ShipTrainingPlanViewModel.PlanFinished)) return;
 
 		UpdatePlanList();
-		if (sender is ShipTrainingPlanViewModel { PlanFinished: true } plan) OnPlanCompleted?.Invoke(plan);
+
+		if (sender is ShipTrainingPlanViewModel { PlanFinished: true } plan)
+		{
+			OnPlanCompleted?.Invoke(plan);
+		}
 	}
 
 	private void UpdatePlanList() => DataGridViewModel.Items.Refresh();
