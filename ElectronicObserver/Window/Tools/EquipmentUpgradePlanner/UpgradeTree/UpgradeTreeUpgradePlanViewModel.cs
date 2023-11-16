@@ -212,8 +212,8 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	private EquipmentUpgradeDataModel? GetPlanToMakeEquipmentFromUpgrade(EquipmentId equipment)
 	{
 		EquipmentUpgradeDataModel? upgradePlan = EquipmentUpgradeData.UpgradeList
-			.FirstOrDefault(equipmentData => equipmentData.ConvertTo
-				.Any(equipmentAfterConvertion =>
+			.Find(equipmentData => equipmentData.ConvertTo
+				.Exists(equipmentAfterConvertion =>
 					equipmentAfterConvertion.IdEquipmentAfter == (int)equipment));
 
 		return upgradePlan;
