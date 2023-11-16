@@ -145,6 +145,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private void RemovePlan(ShipTrainingPlanViewModel plan)
 	{
 		Plans.Remove(plan);
+		plan.PropertyChanged -= OnPlanViewModelPropertyChanged;
 		DatabaseContext.ShipTrainingPlans.Remove(plan.Model);
 		DatabaseContext.SaveChanges();
 	}
