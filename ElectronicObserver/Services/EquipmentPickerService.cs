@@ -8,15 +8,16 @@ public class EquipmentPickerService
 {
 	private System.Windows.Window MainWindow => App.Current!.MainWindow!;
 
-	public IEquipmentData? OpenEquipmentPicker()
+	public IEquipmentData? OpenEquipmentPicker() => OpenEquipmentPicker(new());
+
+	public IEquipmentData? OpenEquipmentPicker(EquipmentDataPickerViewModel viewModel)
 	{
-		EquipmentDataPickerView equipmentPicker = new(new());
+		EquipmentDataPickerView equipmentPicker = new(viewModel);
 
 		equipmentPicker.ShowDialog(MainWindow);
 
 		return equipmentPicker.PickedEquipment;
 	}
-
 
 	public IEquipmentDataMaster? OpenMasterEquipmentPicker()
 	{

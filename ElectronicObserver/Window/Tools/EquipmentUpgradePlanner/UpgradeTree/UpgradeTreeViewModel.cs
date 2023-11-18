@@ -7,7 +7,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 public class UpgradeTreeViewModel : WindowViewModelBase
 {
 	public ObservableCollection<UpgradeTreeUpgradePlanViewModel> Items { get; } = new();
-
+	
 	public EquipmentUpgradePlannerTranslationViewModel Translations { get; }
 
 	public EquipmentUpgradePlanManager UpgradeManager { get; }

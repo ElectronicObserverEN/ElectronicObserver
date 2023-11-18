@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Numerics;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -100,6 +102,19 @@ public class EquipmentUpgradePlanManager
 	public void Save()
 	{
 		DatabaseContext.SaveChanges();
+	}
+
+	public List<EquipmentAssignmentItemModel> GetAssignments(EquipmentUpgradePlanItemModel plan)
+		=> DatabaseContext.EquipmentAssignmentItems.Where(assignment => assignment.Plan == plan).ToList();
+
+	public void AddAssignment(EquipmentAssignmentItemViewModel assignment)
+	{
+		DatabaseContext.EquipmentAssignmentItems.Add(assignment.Model);
+	}
+
+	public void RemoveAssignment(EquipmentAssignmentItemViewModel assignment)
+	{
+		DatabaseContext.EquipmentAssignmentItems.Remove(assignment.Model);
 	}
 
 	private void HandleEquipmentUpgradeRequest(string apiname, dynamic data)

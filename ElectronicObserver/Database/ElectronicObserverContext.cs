@@ -10,6 +10,7 @@ using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ public class ElectronicObserverContext : DbContext
 	public DbSet<SortieRecord> Sorties { get; set; } = null!;
 	public DbSet<ExpeditionRecord> Expeditions { get; set; } = null!;
 	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
+	public DbSet<EquipmentAssignmentItemModel> EquipmentAssignmentItems { get; set; } = null!;
 	public DbSet<ShipTrainingPlanModel> ShipTrainingPlans { get; set; } = null!;
 
 	private string DbPath { get; }

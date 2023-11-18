@@ -41,6 +41,17 @@
 													<ContextMenu>
 														<MenuItem Command="{Binding EditEquipmentPlanCommand}" Header="{Binding Translations.EditUpgradePlan}" />
 														<MenuItem Command="{Binding RemoveEquipmentPlanCommand}" Header="{Binding Translations.RemoveUpgradePlan}" />
+														<Separator />
+														<MenuItem Command="{Binding AssignEquipmentToPlanCommand}" Header="Assign equipment" />
+													</ContextMenu>
+												</Setter.Value>
+											</Setter>
+										</DataTrigger>
+										<DataTrigger Binding="{Binding AlreadyAssignedAnEquipment}" Value="True">
+											<Setter Property="ContextMenu">
+												<Setter.Value>
+													<ContextMenu>
+														<MenuItem Command="{Binding UnassignEquipmentToPlanCommand}" Header="Unassign equipment" />
 													</ContextMenu>
 												</Setter.Value>
 											</Setter>
