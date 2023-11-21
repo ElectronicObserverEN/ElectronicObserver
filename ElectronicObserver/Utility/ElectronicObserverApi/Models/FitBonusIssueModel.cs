@@ -16,5 +16,5 @@ public record FitBonusIssueModel
 
 	[JsonPropertyName("ship")] public ShipModel Ship { get; set; } = new();
 
-	[JsonPropertyName("equipments")] public List<EquipmentModel> Equipments { get; set; }
+	[JsonPropertyName("equipments")] public List<EquipmentModel> Equipments { get; set; } = new();
 }
