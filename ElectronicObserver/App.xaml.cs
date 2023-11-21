@@ -311,6 +311,7 @@ public partial class App : Application
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			//.ActivateSingleton<DataAndTranslationIssueReporter>() todo uncomment and test with .net 8 
+			// external
 			.AddSingleton(JotTracker())
 
 			.BuildServiceProvider();
