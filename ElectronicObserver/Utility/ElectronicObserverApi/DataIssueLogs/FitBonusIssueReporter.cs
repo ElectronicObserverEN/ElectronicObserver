@@ -18,8 +18,10 @@ public class FitBonusIssueReporter
 		Api = api;
 	}
 
-	public void ProcessShipDataChanged(string apiname, dynamic data)
+	public void ProcessShipDataChanged(string _, dynamic data)
 	{
+		if (!Api.IsEnabled) return;
+
 		foreach (var elem in data.api_ship_data)
 		{
 			int id = (int)elem.api_id;

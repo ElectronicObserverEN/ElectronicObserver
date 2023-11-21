@@ -14,6 +14,8 @@ public class ElectronicObserverApiService
 
 	private ElectronicObserverApiTranslationViewModel Translations { get; }
 
+	public bool IsEnabled => !string.IsNullOrEmpty(Url);
+
 	public ElectronicObserverApiService(ElectronicObserverApiTranslationViewModel translations)
 	{
 		Translations = translations;
@@ -21,7 +23,7 @@ public class ElectronicObserverApiService
 
 	public async Task PostJson<T>(string route, T data)
 	{
-		if (string.IsNullOrEmpty(Url)) return;
+		if (!IsEnabled) return;
 
 		try
 		{

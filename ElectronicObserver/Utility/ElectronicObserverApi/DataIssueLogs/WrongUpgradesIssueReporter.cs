@@ -22,6 +22,8 @@ public class WrongUpgradesIssueReporter
 
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
+		if (!Api.IsEnabled) return;
+
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
 		if (helperId <= 0) return;
