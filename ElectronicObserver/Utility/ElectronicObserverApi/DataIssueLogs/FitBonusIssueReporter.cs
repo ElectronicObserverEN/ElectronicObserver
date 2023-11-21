@@ -36,7 +36,7 @@ public class FitBonusIssueReporter
 	}
 
 	private bool CheckIfIssueAlreadySent(FitBonusIssueModel issue) 
-		=> AlreadySentIssues.Exists(item => item.Ship == issue.Ship && issue.Equipments.SequenceEqual(item.Equipments));
+		=> AlreadySentIssues.Exists(item => issue.Ship.IsSameShip(item.Ship) && issue.Equipments.SequenceEqual(item.Equipments));
 
 	private void ReportIssue(IShipData ship, FitBonusValue theoricalBonus, FitBonusValue actualBonus)
 	{

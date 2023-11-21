@@ -1,9 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models;
 
-public class ShipModel
+public record ShipModel
 {
 	[JsonPropertyName("shipId")] public ShipId ShipId { get; set; }
 
@@ -26,4 +27,14 @@ public class ShipModel
 	[JsonPropertyName("accuracy")] public int Accuracy { get; set; }
 
 	[JsonPropertyName("range")] public int Range { get; set; }
+
+	public bool IsSameShip(ShipModel? otherModel)
+	{
+		if (otherModel is null) return false;
+
+		if (ShipId != otherModel.ShipId) return false;
+		if (Level != otherModel.Level) return false;
+
+		return true;
+	}
 }
