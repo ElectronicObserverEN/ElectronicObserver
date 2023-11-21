@@ -499,7 +499,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 						.Cast<IEquipmentData?>()
 						.ToList();
 
-					mockShip.AswFit = mockShip.GetFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList).ASW;
+					mockShip.AswFit = mockShip.GetTheoricalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList).ASW;
 
 					bool hasEquipment = stack
 						.GroupBy(s => s)

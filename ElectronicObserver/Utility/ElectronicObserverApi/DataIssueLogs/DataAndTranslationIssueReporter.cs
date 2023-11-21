@@ -1,14 +1,18 @@
-﻿using ElectronicObserver.Observer;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Observer;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
 public class DataAndTranslationIssueReporter
 {
 	private WrongUpgradesIssueReporter WrongUpgradesIssueReporter { get; }
+	private FitBonusIssueReporter FitBonusIssueReporter { get; }
 
 	public DataAndTranslationIssueReporter()
 	{
-		WrongUpgradesIssueReporter = new();
+		ElectronicObserverApiService api = Ioc.Default.GetRequiredService<ElectronicObserverApiService>();
+		WrongUpgradesIssueReporter = new(api);
+		FitBonusIssueReporter = new(api);
 
 		SubscribeToAPI();
 	}

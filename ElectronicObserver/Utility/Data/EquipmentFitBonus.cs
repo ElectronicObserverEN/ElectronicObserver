@@ -1,16 +1,51 @@
-﻿using System.Collections.Generic;
-using ElectronicObserverTypes;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes.Serialization.FitBonus;
+using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Utility.Data;
 
 public static class EquipmentFitBonus
 {
+	public static FitBonusValue GetFitBonus(this IShipData ship)
+	{
+		if (!ship.MasterShip.ASW.IsDetermined) return new();
+		if (!ship.MasterShip.Evasion.IsDetermined) return new();
+		if (!ship.MasterShip.LOS.IsDetermined) return new();
+		
+		FitBonusValue bonus = new()
+		{
+			Firepower = ship.FirepowerTotal - ship.FirepowerBase,
+			Torpedo = ship.TorpedoTotal - ship.TorpedoBase,
+			AntiAir = ship.AATotal - ship.AABase,
+			Armor = ship.ArmorTotal - ship.ArmorBase,
+			ASW = ship.ASWTotal - (ship.MasterShip.ASW.GetEstParameterMin(ship.Level) + ship.ASWModernized),
+			Evasion = ship.EvasionTotal - ship.MasterShip.Evasion.GetEstParameterMin(ship.Level),
+			LOS = ship.LOSTotal - ship.MasterShip.LOS.GetEstParameterMin(ship.Level),
+			Range = ship.MasterShip.Range
+		};
 
-	public static FitBonusValue GetFitBonus(this IShipData ship, IList<FitBonusPerEquipment> bonusList) => 
-		GetFitBonuses(ship, bonusList)
+		foreach (var eq in ship.AllSlotInstanceMaster.Where(eq => eq != null))
+		{
+			bonus.Firepower -= eq.Firepower;
+			bonus.Torpedo -= eq.Torpedo;
+			bonus.AntiAir -= eq.AA;
+			bonus.Armor -= eq.Armor;
+			bonus.ASW -= eq.ASW;
+			bonus.Evasion -= eq.Evasion;
+			bonus.LOS -= eq.LOS;
+			bonus.Range = Math.Max(bonus.Range, eq.Range);
+		}
+
+		bonus.Range = ship.Range - bonus.Range;
+
+		return bonus;
+	}
+
+	public static FitBonusValue GetTheoricalFitBonus(this IShipData ship, IList<FitBonusPerEquipment> bonusList) =>
+		ship.GetTheoricalFitBonuses(bonusList)
 		.Aggregate(
 			new FitBonusValue(),
 			(bonusA, bonusB) => bonusA + bonusB,
@@ -22,53 +57,55 @@ public static class EquipmentFitBonus
 	/// Keep in mind that accuracy bonus is included
 	/// </summary>
 	/// <param name="ship"></param>
+	/// <param name="bonusList"></param>
 	/// <returns></returns>
-	public static List<FitBonusValue> GetFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList) 
-		=> ship.GetFitBonusList(bonusList).Select(bonus => bonus.FinalBonus).ToList();
+	public static List<FitBonusValue> GetTheoricalFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
+		=> ship.GetTheoricalFitBonusList(bonusList).Select(bonus => bonus.FinalBonus).ToList();
 
 	/// <summary>
 	/// Keep in mind that accuracy bonus is included
 	/// </summary>
 	/// <param name="ship"></param>
+	/// <param name="bonusList"></param>
 	/// <returns></returns>
-	public static List<FitBonusResult> GetFitBonusList(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
-	{ 
+	public static List<FitBonusResult> GetTheoricalFitBonusList(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
+	{
 		IList<IEquipmentData> equipments = ship.AllSlotInstance.Where(eq => eq != null).ToList()!;
 
-		List<EquipmentId> distinctEquipments = equipments
+		var distinctEquipments = equipments
 			.Select(equipment => equipment.MasterEquipment.EquipmentId)
 			.Distinct()
 			.ToList();
 
-		List<EquipmentTypes> distinctEquipmentTypes = equipments
+		var distinctEquipmentTypes = equipments
 			.Select(equipment => equipment.MasterEquipment.CategoryType)
 			.Distinct()
 			.ToList();
 
 		// Keep only the rules that can be applied depending on equip ids or type before cheking them one by one
-		List<FitBonusPerEquipment> fitBonusThatApplies = bonusList
-			.Where(fitCondition => 
+		var fitBonusThatApplies = bonusList
+			.Where(fitCondition =>
 				distinctEquipments.Any(equipment => fitCondition.EquipmentIds?.Contains(equipment) == true)
 				||
 				distinctEquipmentTypes.Any(equipment => fitCondition.EquipmentTypes?.Contains(equipment) == true)
 			)
 			.ToList();
 
-		List<FitBonusResult> finalBonuses = new List<FitBonusResult>();
+		var finalBonuses = new List<FitBonusResult>();
 
-		foreach (FitBonusPerEquipment fitPerEquip in fitBonusThatApplies)
+		foreach (var fitPerEquip in fitBonusThatApplies)
 		{
-			foreach (FitBonusData fitData in fitPerEquip.Bonuses)
+			foreach (var fitData in fitPerEquip.Bonuses)
 			{
-				FitBonusResult result = new FitBonusResult();
+				var result = new FitBonusResult();
 				if (fitPerEquip.EquipmentTypes != null) result.EquipmentTypes.AddRange(fitPerEquip.EquipmentTypes);
 				if (fitPerEquip.EquipmentIds != null) result.EquipmentIds.AddRange(fitPerEquip.EquipmentIds);
 
-				int bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
+				var bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
 				if (bonusMultiplier > 0)
 				{
 					result.FitBonusData = fitData;
-					if (fitData.Bonuses != null) result.FitBonusValues.Add(bonusMultiplier > 1 ? (fitData.Bonuses * bonusMultiplier) : fitData.Bonuses);
+					if (fitData.Bonuses != null) result.FitBonusValues.Add(bonusMultiplier > 1 ? fitData.Bonuses * bonusMultiplier : fitData.Bonuses);
 					if (fitData.BonusesIfSurfaceRadar != null && ship.HasSurfaceRadar()) result.FitBonusValues.Add(fitData.BonusesIfSurfaceRadar);
 					if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar(1)) result.FitBonusValues.Add(fitData.BonusesIfAirRadar);
 
@@ -89,17 +126,17 @@ public static class EquipmentFitBonus
 
 		if (fitBonusData.EquipmentRequired != null)
 		{
-			int count = equipments.Count(eq => fitBonusData.EquipmentRequired.Contains(eq.EquipmentId));
+			var count = equipments.Count(eq => fitBonusData.EquipmentRequired.Contains(eq.EquipmentId));
 			if ((fitBonusData.NumberOfEquipmentsRequired ?? 1) > count) return 0;
 		}
 
 		if (fitBonusData.EquipmentTypesRequired != null)
 		{
-			int count = equipments.Count(eq => fitBonusData.EquipmentTypesRequired.Contains(eq.MasterEquipment.CategoryType));
+			var count = equipments.Count(eq => fitBonusData.EquipmentTypesRequired.Contains(eq.MasterEquipment.CategoryType));
 			if ((fitBonusData.NumberOfEquipmentTypesRequired ?? 1) > count) return 0;
 		}
 
-		List<IEquipmentData> equipmentsThatMatches = new List<IEquipmentData>();
+		var equipmentsThatMatches = new List<IEquipmentData>();
 
 		if (fitPerEquip.EquipmentIds != null) equipmentsThatMatches.AddRange(equipments.Where(eq => fitPerEquip.EquipmentIds.Contains(eq.EquipmentId)));
 		if (fitPerEquip.EquipmentTypes != null) equipmentsThatMatches.AddRange(equipments.Where(eq => fitPerEquip.EquipmentTypes.Contains(eq.MasterEquipment.CategoryType)));

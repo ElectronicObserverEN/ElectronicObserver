@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Observer.kcsapi.api_get_member;
 
@@ -36,70 +37,41 @@ public class ship3 : APIBase
 				}
 			}
 
-
 			// 装備シナジー検出カッコカリ
-			if (!isRemodeled &&
-				ship.MasterShip.ASW.IsDetermined &&
-				ship.MasterShip.Evasion.IsDetermined &&
-				ship.MasterShip.LOS.IsDetermined)
+			if (!isRemodeled)
 			{
-				int firepower = ship.FirepowerTotal - ship.FirepowerBase;
-				int torpedo = ship.TorpedoTotal - ship.TorpedoBase;
-				int aa = ship.AATotal - ship.AABase;
-				int armor = ship.ArmorTotal - ship.ArmorBase;
-				int asw = ship.ASWTotal - (ship.MasterShip.ASW.GetEstParameterMin(ship.Level) + ship.ASWModernized);
-				int evasion = ship.EvasionTotal - ship.MasterShip.Evasion.GetEstParameterMin(ship.Level);
-				int los = ship.LOSTotal - ship.MasterShip.LOS.GetEstParameterMin(ship.Level);
-				int luck = ship.LuckTotal - ship.LuckBase;
-				int range = ship.MasterShip.Range;
+				FitBonusValue bonus = ship.GetFitBonus();
 
-				foreach (var eq in ship.AllSlotInstanceMaster.Where(eq => eq != null))
-				{
-					firepower -= eq.Firepower;
-					torpedo -= eq.Torpedo;
-					aa -= eq.AA;
-					armor -= eq.Armor;
-					asw -= eq.ASW;
-					evasion -= eq.Evasion;
-					los -= eq.LOS;
-					luck -= eq.Luck;
-					range = Math.Max(range, eq.Range);
-				}
-
-				range = ship.Range - range;
-
-				if (firepower != 0 ||
-					torpedo != 0 ||
-					aa != 0 ||
-					armor != 0 ||
-					asw != 0 ||
-					evasion != 0 ||
-					los != 0 ||
-					luck != 0 ||
-					range != 0)
+				if (bonus.HasBonus())
 				{
 					var sb = new StringBuilder();
 					sb.Append(ObserverRes.DetectedSynergy);
 
 					var a = new List<string>();
-					if (firepower != 0)
-						a.Add(ObserverRes.Firepower + $"{firepower:+#;-#;0}");
-					if (torpedo != 0)
-						a.Add(ObserverRes.Torpedo + $"{torpedo:+#;-#;0}");
-					if (aa != 0)
-						a.Add(ObserverRes.AntiAir + $"{aa:+#;-#;0}");
-					if (armor != 0)
-						a.Add(ObserverRes.Armor + $"{armor:+#;-#;0}");
-					if (asw != 0)
-						a.Add(ObserverRes.Asw + $"{asw:+#;-#;0}");
-					if (evasion != 0)
-						a.Add(ObserverRes.Evasion + $"{evasion:+#;-#;0}");
-					if (los != 0)
-						a.Add(ObserverRes.Los + $"{los:+#;-#;0}");
-					if (luck != 0)
-						a.Add(ObserverRes.Luck + $"{luck:+#;-#;0}");
-					if (range != 0)
-						a.Add(ObserverRes.Range + $"{range:+#;-#;0}");
+
+					if (bonus.Firepower != 0)
+						a.Add(ObserverRes.Firepower + $"{bonus.Firepower:+#;-#;0}");
+
+					if (bonus.Torpedo != 0)
+						a.Add(ObserverRes.Torpedo + $"{bonus.Torpedo:+#;-#;0}");
+
+					if (bonus.AntiAir != 0)
+						a.Add(ObserverRes.AntiAir + $"{bonus.AntiAir:+#;-#;0}");
+
+					if (bonus.Armor != 0)
+						a.Add(ObserverRes.Armor + $"{bonus.Armor:+#;-#;0}");
+
+					if (bonus.ASW != 0)
+						a.Add(ObserverRes.Asw + $"{bonus.ASW:+#;-#;0}");
+
+					if (bonus.Evasion != 0)
+						a.Add(ObserverRes.Evasion + $"{bonus.Evasion:+#;-#;0}");
+
+					if (bonus.LOS != 0)
+						a.Add(ObserverRes.Los + $"{bonus.LOS:+#;-#;0}");
+
+					if (bonus.Range != 0)
+						a.Add(ObserverRes.Range + $"{bonus.Range:+#;-#;0}");
 
 					sb.Append(string.Join(", ", a));
 
