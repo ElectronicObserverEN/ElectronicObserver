@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models;
 using ElectronicObserverTypes;
@@ -17,10 +16,9 @@ public class FitBonusIssueReporter
 	public FitBonusIssueReporter(ElectronicObserverApiService api)
 	{
 		Api = api;
-		APIObserver.Instance.ApiGetMember_Ship3.ResponseReceived += ApiGetMember_Ship3OnResponseReceived;
 	}
 
-	private void ApiGetMember_Ship3OnResponseReceived(string apiname, dynamic data)
+	public void ProcessShipDataChanged(string apiname, dynamic data)
 	{
 		foreach (var elem in data.api_ship_data)
 		{
