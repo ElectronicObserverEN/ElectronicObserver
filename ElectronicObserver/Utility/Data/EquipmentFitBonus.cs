@@ -11,10 +11,6 @@ public static class EquipmentFitBonus
 {
 	public static FitBonusValue GetFitBonus(this IShipData ship)
 	{
-		if (!ship.MasterShip.ASW.IsDetermined) return new();
-		if (!ship.MasterShip.Evasion.IsDetermined) return new();
-		if (!ship.MasterShip.LOS.IsDetermined) return new();
-		
 		FitBonusValue bonus = new()
 		{
 			Firepower = ship.FirepowerTotal - ship.FirepowerBase,
@@ -24,7 +20,8 @@ public static class EquipmentFitBonus
 			ASW = ship.ASWTotal - (ship.MasterShip.ASW.GetEstParameterMin(ship.Level) + ship.ASWModernized),
 			Evasion = ship.EvasionTotal - ship.MasterShip.Evasion.GetEstParameterMin(ship.Level),
 			LOS = ship.LOSTotal - ship.MasterShip.LOS.GetEstParameterMin(ship.Level),
-			Range = ship.MasterShip.Range
+			Accuracy = ship.AccuracyTotal,
+			Range = ship.MasterShip.Range,
 		};
 
 		foreach (IEquipmentDataMaster eq in ship.AllSlotInstanceMaster.Where(eq => eq != null))
@@ -36,10 +33,15 @@ public static class EquipmentFitBonus
 			bonus.ASW -= eq.ASW;
 			bonus.Evasion -= eq.Evasion;
 			bonus.LOS -= eq.LOS;
+			bonus.Accuracy -= eq.Accuracy;
 			bonus.Range = Math.Max(bonus.Range, eq.Range);
 		}
 
 		bonus.Range = ship.Range - bonus.Range;
+
+		if (!ship.MasterShip.ASW.IsDetermined) bonus.ASW = 0;
+		if (!ship.MasterShip.Evasion.IsDetermined) bonus.Evasion = 0;
+		if (!ship.MasterShip.LOS.IsDetermined) bonus.LOS = 0;
 
 		return bonus;
 	}

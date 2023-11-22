@@ -85,7 +85,7 @@ public record FitBonusValue
 
 	public override int GetHashCode()
 	{
-		var hashCode = new HashCode();
+		HashCode hashCode = new();
 		hashCode.Add(Firepower);
 		hashCode.Add(Torpedo);
 		hashCode.Add(AntiAir);

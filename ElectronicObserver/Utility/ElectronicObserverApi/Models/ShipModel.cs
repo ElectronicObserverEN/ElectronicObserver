@@ -19,10 +19,13 @@ public record ShipModel
 	[JsonPropertyName("armor")] public int Armor { get; set; }
 
 	[JsonPropertyName("evasion")] public int Evasion { get; set; }
+	[JsonPropertyName("evasionKnown")] public bool EvasionDetermined { get; set; }
 
 	[JsonPropertyName("asw")] public int ASW { get; set; }
+	[JsonPropertyName("aswKnown")] public bool ASWDetermined { get; set; }
 
 	[JsonPropertyName("los")] public int LOS { get; set; }
+	[JsonPropertyName("losKnown")] public bool LOSDetermined { get; set; }
 
 	[JsonPropertyName("accuracy")] public int Accuracy { get; set; }
 

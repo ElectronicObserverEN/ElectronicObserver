@@ -8,27 +8,26 @@ using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
-public class FitBonusIssueReporter
+public class FitBonusIssueReporter(ElectronicObserverApiService api)
 {
 	private List<FitBonusIssueModel> AlreadySentIssues { get; } = new();
-	private ElectronicObserverApiService Api { get; }
-
-	public FitBonusIssueReporter(ElectronicObserverApiService api)
-	{
-		Api = api;
-	}
 
 	public void ProcessShipDataChanged(string _, dynamic data)
 	{
-		if (!Api.IsEnabled) return;
+		if (!api.IsEnabled) return;
 
 		foreach (var elem in data.api_ship_data)
 		{
 			int id = (int)elem.api_id;
 			IShipData ship = KCDatabase.Instance.Ships[id];
 
-			FitBonusValue actualBonus = ship.GetFitBonus();
 			FitBonusValue theoricalBonus = ship.GetTheoricalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
+
+			if (!ship.MasterShip.ASW.IsDetermined) theoricalBonus.ASW = 0;
+			if (!ship.MasterShip.Evasion.IsDetermined) theoricalBonus.Evasion = 0;
+			if (!ship.MasterShip.LOS.IsDetermined) theoricalBonus.LOS = 0;
+
+			FitBonusValue actualBonus = ship.GetFitBonus();
 
 			if (!actualBonus.Equals(theoricalBonus))
 			{
@@ -71,8 +70,11 @@ public class FitBonusIssueReporter
 				Armor = ship.ArmorTotal,
 
 				Evasion = ship.EvasionTotal,
+				EvasionDetermined = ship.MasterShip.Evasion.IsDetermined,
 				ASW = ship.ASWTotal,
+				ASWDetermined = ship.MasterShip.ASW.IsDetermined,
 				LOS = ship.LOSTotal,
+				LOSDetermined = ship.MasterShip.LOS.IsDetermined,
 
 				Accuracy = ship.AccuracyTotal,
 
@@ -85,7 +87,7 @@ public class FitBonusIssueReporter
 		AlreadySentIssues.Add(issue);
 
 #pragma warning disable CS4014
-		Api.PostJson("FitBonusIssues", issue);
+		api.PostJson("FitBonusIssues", issue);
 #pragma warning restore CS4014
 	}
 }

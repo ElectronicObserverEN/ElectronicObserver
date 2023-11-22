@@ -189,4 +189,7 @@
   <data name="ErrorResponse" xml:space="preserve">
     <value>There was an error while receiving the response.</value>
   </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Acc</value>
+  </data>
 </root>

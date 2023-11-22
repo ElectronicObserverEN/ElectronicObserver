@@ -11,18 +11,11 @@ using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
-public class WrongUpgradesIssueReporter
+public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 {
-	private ElectronicObserverApiService Api { get; }
-
-	public WrongUpgradesIssueReporter(ElectronicObserverApiService api)
-	{
-		Api = api;
-	}
-
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
-		if (!Api.IsEnabled) return;
+		if (!api.IsEnabled) return;
 
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
@@ -46,7 +39,7 @@ public class WrongUpgradesIssueReporter
 			};
 
 #pragma warning disable CS4014
-			Api.PostJson("EquipmentUpgradeIssues", report);
+			api.PostJson("EquipmentUpgradeIssues", report);
 #pragma warning restore CS4014
 		}
 	}
