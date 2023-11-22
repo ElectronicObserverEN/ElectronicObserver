@@ -69,10 +69,7 @@ public class ship3 : APIBase
 
 					if (bonus.LOS != 0)
 						a.Add(ObserverRes.Los + $"{bonus.LOS:+#;-#;0}");
-
-					if (bonus.Accuracy != 0)
-						a.Add(ObserverRes.Accuracy + $"{bonus.Accuracy:+#;-#;0}");
-
+					
 					if (bonus.Range != 0)
 						a.Add(ObserverRes.Range + $"{bonus.Range:+#;-#;0}");
 

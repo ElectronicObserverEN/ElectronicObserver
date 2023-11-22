@@ -189,7 +189,4 @@
   <data name="ErrorResponse" xml:space="preserve">
     <value>Responseの受信中にエラーが発生しました。</value>
   </data>
-  <data name="Accuracy" xml:space="preserve">
-    <value>命中</value>
-  </data>
 </root>

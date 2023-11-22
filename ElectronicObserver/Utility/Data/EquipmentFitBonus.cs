@@ -20,7 +20,6 @@ public static class EquipmentFitBonus
 			ASW = ship.ASWTotal - (ship.MasterShip.ASW.GetEstParameterMin(ship.Level) + ship.ASWModernized),
 			Evasion = ship.EvasionTotal - ship.MasterShip.Evasion.GetEstParameterMin(ship.Level),
 			LOS = ship.LOSTotal - ship.MasterShip.LOS.GetEstParameterMin(ship.Level),
-			Accuracy = ship.AccuracyTotal,
 			Range = ship.MasterShip.Range,
 		};
 
@@ -33,7 +32,6 @@ public static class EquipmentFitBonus
 			bonus.ASW -= eq.ASW;
 			bonus.Evasion -= eq.Evasion;
 			bonus.LOS -= eq.LOS;
-			bonus.Accuracy -= eq.Accuracy;
 			bonus.Range = Math.Max(bonus.Range, eq.Range);
 		}
 

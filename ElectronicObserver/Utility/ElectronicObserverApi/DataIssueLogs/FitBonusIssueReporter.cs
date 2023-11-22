@@ -27,6 +27,9 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 			if (!ship.MasterShip.Evasion.IsDetermined) theoricalBonus.Evasion = 0;
 			if (!ship.MasterShip.LOS.IsDetermined) theoricalBonus.LOS = 0;
 
+			// There's no way to get accuracy bonus from the API
+			theoricalBonus.Accuracy = 0; 
+
 			FitBonusValue actualBonus = ship.GetFitBonus();
 
 			if (!actualBonus.Equals(theoricalBonus))
