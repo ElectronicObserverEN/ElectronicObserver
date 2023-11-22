@@ -37,9 +37,20 @@ public static class EquipmentFitBonus
 
 		bonus.Range = ship.Range - bonus.Range;
 
-		if (!ship.MasterShip.ASW.IsDetermined) bonus.ASW = 0;
-		if (!ship.MasterShip.Evasion.IsDetermined) bonus.Evasion = 0;
-		if (!ship.MasterShip.LOS.IsDetermined) bonus.LOS = 0;
+		if (!ship.MasterShip.ASW.IsDetermined)
+		{
+			bonus.ASW = 0;
+		}
+
+		if (!ship.MasterShip.Evasion.IsDetermined)
+		{
+			bonus.Evasion = 0;
+		}
+
+		if (!ship.MasterShip.LOS.IsDetermined)
+		{
+			bonus.LOS = 0;
+		}
 
 		return bonus;
 	}
@@ -103,7 +114,11 @@ public static class EquipmentFitBonus
 			foreach (FitBonusData fitData in fitPerEquip.Bonuses)
 			{
 				FitBonusResult? result = GetFitBonusResultFromFitData(ship, equipments, fitPerEquip, fitData);
-				if (result is not null) finalBonuses.Add(result);
+
+				if (result is not null)
+				{
+					finalBonuses.Add(result);
+				}
 			}
 		}
 
@@ -122,14 +137,25 @@ public static class EquipmentFitBonus
 		if (bonusMultiplier <= 0) return null;
 
 		result.FitBonusData = fitData;
+
 		if (fitData.Bonuses != null)
-			result.FitBonusValues.Add(bonusMultiplier > 1
-				? fitData.Bonuses * bonusMultiplier
-				: fitData.Bonuses);
+		{
+			result.FitBonusValues.Add(bonusMultiplier switch
+			{
+				> 1 => fitData.Bonuses * bonusMultiplier,
+				_ => fitData.Bonuses,
+			});
+		}
+
 		if (fitData.BonusesIfSurfaceRadar != null && ship.HasSurfaceRadar())
+		{
 			result.FitBonusValues.Add(fitData.BonusesIfSurfaceRadar);
-		if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar(1))
+		}
+
+		if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar())
+		{
 			result.FitBonusValues.Add(fitData.BonusesIfAirRadar);
+		}
 
 		return result;
 	}

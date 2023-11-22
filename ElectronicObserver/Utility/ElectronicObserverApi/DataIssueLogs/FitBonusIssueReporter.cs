@@ -23,9 +23,20 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 
 			FitBonusValue theoricalBonus = ship.GetTheoricalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
 
-			if (!ship.MasterShip.ASW.IsDetermined) theoricalBonus.ASW = 0;
-			if (!ship.MasterShip.Evasion.IsDetermined) theoricalBonus.Evasion = 0;
-			if (!ship.MasterShip.LOS.IsDetermined) theoricalBonus.LOS = 0;
+			if (!ship.MasterShip.ASW.IsDetermined)
+			{
+				theoricalBonus.ASW = 0;
+			}
+
+			if (!ship.MasterShip.Evasion.IsDetermined)
+			{
+				theoricalBonus.Evasion = 0;
+			}
+
+			if (!ship.MasterShip.LOS.IsDetermined)
+			{
+				theoricalBonus.LOS = 0;
+			}
 
 			// There's no way to get accuracy bonus from the API
 			theoricalBonus.Accuracy = 0; 
