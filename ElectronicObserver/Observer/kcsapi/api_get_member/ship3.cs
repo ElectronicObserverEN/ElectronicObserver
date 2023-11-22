@@ -9,10 +9,8 @@ namespace ElectronicObserver.Observer.kcsapi.api_get_member;
 
 public class ship3 : APIBase
 {
-
 	public override void OnResponseReceived(dynamic data)
 	{
-
 		KCDatabase db = KCDatabase.Instance;
 
 		//api_ship_data
@@ -44,42 +42,9 @@ public class ship3 : APIBase
 
 				if (bonus.HasBonus())
 				{
-					var sb = new StringBuilder();
-					sb.Append(ObserverRes.DetectedSynergy);
+					string fitBonusString = BuildFitBonusString(bonus, ship);
 
-					var a = new List<string>();
-
-					if (bonus.Firepower != 0)
-						a.Add(ObserverRes.Firepower + $"{bonus.Firepower:+#;-#;0}");
-
-					if (bonus.Torpedo != 0)
-						a.Add(ObserverRes.Torpedo + $"{bonus.Torpedo:+#;-#;0}");
-
-					if (bonus.AntiAir != 0)
-						a.Add(ObserverRes.AntiAir + $"{bonus.AntiAir:+#;-#;0}");
-
-					if (bonus.Armor != 0)
-						a.Add(ObserverRes.Armor + $"{bonus.Armor:+#;-#;0}");
-
-					if (bonus.ASW != 0)
-						a.Add(ObserverRes.Asw + $"{bonus.ASW:+#;-#;0}");
-
-					if (bonus.Evasion != 0)
-						a.Add(ObserverRes.Evasion + $"{bonus.Evasion:+#;-#;0}");
-
-					if (bonus.LOS != 0)
-						a.Add(ObserverRes.Los + $"{bonus.LOS:+#;-#;0}");
-					
-					if (bonus.Range != 0)
-						a.Add(ObserverRes.Range + $"{bonus.Range:+#;-#;0}");
-
-					sb.Append(string.Join(", ", a));
-
-					sb.AppendFormat(" ; {0} [{1}]",
-						ship.NameWithLevel,
-						string.Join(", ", ship.AllSlotInstance.Where(eq => eq != null).Select(eq => eq.NameWithLevel)));
-
-					Utility.Logger.Add(2, sb.ToString());
+					Utility.Logger.Add(2, fitBonusString);
 				}
 			}
 		}
@@ -87,9 +52,63 @@ public class ship3 : APIBase
 		//api_deck_data
 		db.Fleet.LoadFromResponse(APIName, data.api_deck_data);
 
-
-
 		base.OnResponseReceived((object)data);
+	}
+
+	private static string BuildFitBonusString(FitBonusValue bonus, ShipData ship)
+	{
+		StringBuilder sb = new();
+		sb.Append(ObserverRes.DetectedSynergy);
+
+		List<string> bonusList = new();
+
+		if (bonus.Firepower != 0)
+		{
+			bonusList.Add(ObserverRes.Firepower + $"{bonus.Firepower:+#;-#;0}");
+		}
+
+		if (bonus.Torpedo != 0)
+		{
+			bonusList.Add(ObserverRes.Torpedo + $"{bonus.Torpedo:+#;-#;0}");
+		}
+
+		if (bonus.AntiAir != 0)
+		{
+			bonusList.Add(ObserverRes.AntiAir + $"{bonus.AntiAir:+#;-#;0}");
+		}
+
+		if (bonus.Armor != 0)
+		{
+			bonusList.Add(ObserverRes.Armor + $"{bonus.Armor:+#;-#;0}");
+		}
+
+		if (bonus.ASW != 0)
+		{
+			bonusList.Add(ObserverRes.Asw + $"{bonus.ASW:+#;-#;0}");
+		}
+
+		if (bonus.Evasion != 0)
+		{
+			bonusList.Add(ObserverRes.Evasion + $"{bonus.Evasion:+#;-#;0}");
+		}
+
+		if (bonus.LOS != 0)
+		{
+			bonusList.Add(ObserverRes.Los + $"{bonus.LOS:+#;-#;0}");
+		}
+
+		if (bonus.Range != 0)
+		{
+			bonusList.Add(ObserverRes.Range + $"{bonus.Range:+#;-#;0}");
+		}
+
+		sb.Append(string.Join(", ", bonusList));
+
+		sb.AppendFormat(" ; {0} [{1}]",
+			ship.NameWithLevel,
+			string.Join(", ", ship.AllSlotInstance.Where(eq => eq != null).Select(eq => eq.NameWithLevel)));
+
+		return sb.ToString();
 	}
 
 	public override string APIName => "api_get_member/ship3";
