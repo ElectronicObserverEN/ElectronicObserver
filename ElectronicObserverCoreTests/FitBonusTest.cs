@@ -282,4 +282,68 @@ public class FitBonusTest
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
+
+	[Fact]
+	public void FitBonusTest7()
+	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
+		IShipData kuma = new ShipDataMock(Db.MasterShips[ShipId.KumaKai])
+		{
+			Level = 180,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Walrus])
+			}
+		};
+
+		FitBonusValue expectedBonus = new FitBonusValue();
+
+		FitBonusValue finalBonus = kuma.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+
+		IShipData sheffield = new ShipDataMock(Db.MasterShips[ShipId.SheffieldKai])
+		{
+			Level = 180,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Walrus])
+			}
+		};
+
+		expectedBonus = new FitBonusValue()
+		{
+			Firepower = 2,
+			ASW = 3,
+			LOS = 2,
+			Evasion = 2
+		};
+
+		finalBonus = sheffield.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+
+		IShipData rodney = new ShipDataMock(Db.MasterShips[ShipId.RodneyKai])
+		{
+			Level = 180,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Walrus])
+			}
+		};
+
+		expectedBonus = new FitBonusValue()
+		{
+			Firepower = 6,
+			ASW = 3,
+			Accuracy = 2,
+			LOS = 5,
+			Evasion = 4
+		};
+
+		finalBonus = rodney.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+	}
 }
