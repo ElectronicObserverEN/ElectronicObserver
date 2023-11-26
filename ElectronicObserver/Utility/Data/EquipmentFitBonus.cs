@@ -185,6 +185,7 @@ public static class EquipmentFitBonus
 		if (fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters != null && fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters > equipmentsThatMatches.Count) return 0;
 
 		if (fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters != null || fitBonusData.EquipmentRequired != null || fitBonusData.EquipmentTypesRequired != null) return 1;
+
 		return equipmentsThatMatches.Count;
 	}
 
@@ -194,14 +195,20 @@ public static class EquipmentFitBonus
 		List<IEquipmentData> equipmentsThatMatches = new();
 
 		if (fitPerEquip.EquipmentIds != null)
+		{
 			equipmentsThatMatches.AddRange(equipments.Where(eq => fitPerEquip.EquipmentIds.Contains(eq.EquipmentId)));
+		}
 
 		if (fitPerEquip.EquipmentTypes != null)
+		{
 			equipmentsThatMatches.AddRange(equipments.Where(eq =>
 				fitPerEquip.EquipmentTypes.Contains(eq.MasterEquipment.CategoryType)));
+		}
 
 		if (fitBonusData.EquipmentLevel != null)
+		{
 			equipmentsThatMatches = equipmentsThatMatches.Where(eq => eq.Level >= fitBonusData.EquipmentLevel).ToList();
+		}
 
 		return equipmentsThatMatches;
 	}
