@@ -258,12 +258,25 @@ public class FitBonusTest
 		Assert.Equal(expectedBonus, finalBonus);
 
 		kazagumo.SlotInstance.Add(
-			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiNi]) { UpgradeLevel = UpgradeLevel.Four });
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiNi]) { UpgradeLevel = UpgradeLevel.Three });
 
 		expectedBonus.Firepower += 8;
 		expectedBonus.Torpedo += 6;
 		expectedBonus.Accuracy += 2;
 		expectedBonus.Evasion += 4;
+
+		finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+
+		kazagumo.SlotInstance.Add(
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiSan]) { UpgradeLevel = UpgradeLevel.Four });
+
+		expectedBonus.Firepower += 6;
+		expectedBonus.Torpedo += 4;
+		expectedBonus.AntiAir += 3;
+		expectedBonus.Accuracy += 3;
+		expectedBonus.Evasion += 3;
 
 		finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
 
