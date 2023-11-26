@@ -19,6 +19,8 @@ public class FitBonusData
 
 	[JsonPropertyName("shipType")] public List<ShipTypes>? ShipTypes { get; set; }
 
+	[JsonPropertyName("shipNationality")] public List<ShipNationality>? ShipNationalities { get; set; }
+
 	[JsonPropertyName("requires")] public List<EquipmentId>? EquipmentRequired { get; set; }
 
 	/// <summary>

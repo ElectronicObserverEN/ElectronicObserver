@@ -166,6 +166,7 @@ public static class EquipmentFitBonus
 		if (fitBonusData.ShipMasterIds != null && !fitBonusData.ShipMasterIds.Contains(shipMaster.ShipId)) return 0;
 		if (fitBonusData.ShipIds != null && !fitBonusData.ShipIds.Contains(shipMaster.BaseShip().ShipId)) return 0;
 		if (fitBonusData.ShipTypes != null && !fitBonusData.ShipTypes.Contains(shipMaster.ShipType)) return 0;
+		if (fitBonusData.ShipNationalities != null && !fitBonusData.ShipNationalities.Contains(shipMaster.Nationality())) return 0;
 
 		if (fitBonusData.EquipmentRequired != null)
 		{
