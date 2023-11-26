@@ -192,4 +192,81 @@ public class FitBonusTest
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
+
+	[Fact]
+	public void FitBonusTest5()
+	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
+		IShipData kazagumo = new ShipDataMock(Db.MasterShips[ShipId.KazagumoKaiNi])
+		{
+			Level = 180,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_PassiveRadiolocator_E27_Type22SurfaceRadarKai4_CalibratedLateModel])
+			}
+		};
+
+		FitBonusValue expectedBonus = new FitBonusValue()
+		{
+			Firepower = 1,
+			Accuracy = 2,
+			Evasion = 1,
+			LOS = 1
+		};
+
+		FitBonusValue finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+
+		kazagumo.SlotInstance.Add(
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiNi]));
+
+		expectedBonus.Firepower += 6;
+		expectedBonus.Torpedo += 6;
+		expectedBonus.Evasion += 4;
+
+		finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+	}
+
+	[Fact]
+	public void FitBonusTest6()
+	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
+		IShipData kazagumo = new ShipDataMock(Db.MasterShips[ShipId.KazagumoKaiNi])
+		{
+			Level = 180,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_PassiveRadiolocator_E27_Type22SurfaceRadarKai4_CalibratedLateModel])
+			}
+		};
+
+		FitBonusValue expectedBonus = new FitBonusValue()
+		{
+			Firepower = 1,
+			Accuracy = 2,
+			Evasion = 1,
+			LOS = 1
+		};
+
+		FitBonusValue finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+
+		kazagumo.SlotInstance.Add(
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_12_7cmTwinGunModelDKaiNi]) { UpgradeLevel = UpgradeLevel.Four });
+
+		expectedBonus.Firepower += 8;
+		expectedBonus.Torpedo += 6;
+		expectedBonus.Accuracy += 2;
+		expectedBonus.Evasion += 4;
+
+		finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+	}
 }
