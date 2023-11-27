@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.FitBonus;
-using ElectronicObserverTypes;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.FitBonus;
