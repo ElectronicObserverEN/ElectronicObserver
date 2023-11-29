@@ -8738,6 +8738,23 @@
     "IconType": 11
   },
   {
+    "EquipmentId": 518,
+    "Name": "14cm連装砲改二",
+    "Armor": 2,
+    "Firepower": 5,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 0,
+    "Asw": 3,
+    "Accuracy": 4,
+    "Evasion": 0,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 2,
+    "CategoryType": 2,
+    "IconType": 2
+  },
+  {
     "EquipmentId": 1501,
     "Name": "5inch単装砲",
     "Armor": 0,
