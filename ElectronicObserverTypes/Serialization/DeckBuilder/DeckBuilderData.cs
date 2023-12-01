@@ -13,4 +13,5 @@ public class DeckBuilderData
 	[JsonPropertyName("a1")] public DeckBuilderAirBase? AirBase1 { get; set; }
 	[JsonPropertyName("a2")] public DeckBuilderAirBase? AirBase2 { get; set; }
 	[JsonPropertyName("a3")] public DeckBuilderAirBase? AirBase3 { get; set; }
+	[JsonPropertyName("s")] public DeckBuilderSortieData? Sortie { get; set; }
 }
