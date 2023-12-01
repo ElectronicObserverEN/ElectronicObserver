@@ -204,6 +204,7 @@ public class DataSerializationService
 		{ } f => new()
 		{
 			Name = fleet.Name,
+			Type = fleet.FleetType,
 			Ship1 = MakeDeckBuilderShip(f.MembersInstance.Skip(0).FirstOrDefault(), maxAircraftLevel),
 			Ship2 = MakeDeckBuilderShip(f.MembersInstance.Skip(1).FirstOrDefault(), maxAircraftLevel),
 			Ship3 = MakeDeckBuilderShip(f.MembersInstance.Skip(2).FirstOrDefault(), maxAircraftLevel),

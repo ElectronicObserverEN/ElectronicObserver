@@ -31,6 +31,7 @@ public static class Extensions
 		_ => new FleetDataMock
 		{
 			Name = deckBuilderFleet.Name ?? "",
+			FleetType = deckBuilderFleet.Type,
 			MembersInstance = new(new List<IShipData?>
 			{
 				ToShipData(deckBuilderFleet.Ship1),
