@@ -586,6 +586,8 @@ public class ToolService(DataSerializationService dataSerializationService)
 	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie,
 		SortieDetailViewModel? sortieDetail = null)
 	{
+		sortie.Model.EnsureApiFilesLoaded(new()).Wait();
+
 		sortieDetail ??= GenerateSortieDetailViewModel(new(), sortie);
 
 		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
