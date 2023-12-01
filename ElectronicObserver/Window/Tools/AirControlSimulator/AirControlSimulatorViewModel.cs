@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
 namespace ElectronicObserver.Window.Tools.AirControlSimulator;
 
@@ -40,9 +41,9 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 	public bool? DialogResult { get; set; }
 
-	private Func<AirControlSimulatorViewModel, string> GenerateLink { get; }
+	private Func<AirControlSimulatorViewModel, SortieDetailViewModel?, string> GenerateLink { get; }
 
-	public AirControlSimulatorViewModel(Func<AirControlSimulatorViewModel, string>? generateLink = null)
+	public AirControlSimulatorViewModel(Func<AirControlSimulatorViewModel, SortieDetailViewModel?, string>? generateLink = null)
 	{
 		AirControlSimulator = Ioc.Default.GetRequiredService<AirControlSimulatorTranslationViewModel>();
 		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
@@ -83,7 +84,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void CopyLink()
 	{
-		string link = GenerateLink(this);
+		string link = GenerateLink(this, null);
 
 		Clipboard.SetText(link);
 	}

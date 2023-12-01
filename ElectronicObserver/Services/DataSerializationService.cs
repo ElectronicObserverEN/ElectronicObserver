@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.AirControlSimulator;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
@@ -41,7 +44,8 @@ public class DataSerializationService
 		_ => KCDatabase.Instance.Fleet.Fleets.Values.Skip(index).FirstOrDefault(),
 	};
 
-	public string AirControlSimulatorLink(AirControlSimulatorViewModel airControlSimulator)
+	public string AirControlSimulatorLink(AirControlSimulatorViewModel airControlSimulator,
+		SortieDetailViewModel? sortieDetail)
 	{
 		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
 			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
@@ -57,6 +61,7 @@ public class DataSerializationService
 			bases.Skip(0).FirstOrDefault(),
 			bases.Skip(1).FirstOrDefault(),
 			bases.Skip(2).FirstOrDefault(),
+			sortieDetail,
 			airControlSimulator.ShipData switch
 			{
 				true => KCDatabase.Instance.Ships.Values
@@ -87,22 +92,23 @@ public class DataSerializationService
 		IBaseAirCorpsData? airBase1 = null,
 		IBaseAirCorpsData? airBase2 = null,
 		IBaseAirCorpsData? airBase3 = null,
+		SortieDetailViewModel? sortieDetails = null,
 		IEnumerable<IShipData>? ships = null,
 		IEnumerable<IEquipmentData>? equipment = null,
 		bool maxAircraftLevelFleet = false,
-		bool maxAircraftLevelAirBase = false
-	) => JsonSerializer.Serialize
+		bool maxAircraftLevelAirBase = false) => JsonSerializer.Serialize
 	(
 		MakeAirControlSimulatorData
 		(
-			MakeDeckBuilderData(hqLevel, fleet1, fleet2, fleet3, fleet4, airBase1, airBase2, airBase3, maxAircraftLevelFleet, maxAircraftLevelAirBase),
+			MakeDeckBuilderData(hqLevel, fleet1, fleet2, fleet3, fleet4, airBase1, airBase2, airBase3, sortieDetails, maxAircraftLevelFleet, maxAircraftLevelAirBase),
 			ships?.Select(MakeFleetAnalysisShip),
 			equipment?.Select(MakeFleetAnalysisEquipment)
 		),
 		JsonSerializerOptions
 	);
 
-	public string OperationRoomLink(AirControlSimulatorViewModel airControlSimulator)
+	public string OperationRoomLink(AirControlSimulatorViewModel airControlSimulator,
+		SortieDetailViewModel? sortieDetail = null)
 	{
 		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
 			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
@@ -118,6 +124,7 @@ public class DataSerializationService
 			bases.Skip(0).FirstOrDefault(),
 			bases.Skip(1).FirstOrDefault(),
 			bases.Skip(2).FirstOrDefault(),
+			sortieDetail,
 			airControlSimulator.MaxAircraftLevelFleet,
 			airControlSimulator.MaxAircraftLevelAirBase
 		);
@@ -135,11 +142,12 @@ public class DataSerializationService
 		IBaseAirCorpsData? airBase1 = null,
 		IBaseAirCorpsData? airBase2 = null,
 		IBaseAirCorpsData? airBase3 = null,
+		SortieDetailViewModel? sortieDetails = null,
 		bool maxAircraftLevelFleet = false,
 		bool maxAircraftLevelAirBase = false
 	) => JsonSerializer.Serialize
 	(
-		MakeDeckBuilderData(hqLevel, fleet1, fleet2, fleet3, fleet4, airBase1, airBase2, airBase3, maxAircraftLevelFleet, maxAircraftLevelAirBase),
+		MakeDeckBuilderData(hqLevel, fleet1, fleet2, fleet3, fleet4, airBase1, airBase2, airBase3, sortieDetails, maxAircraftLevelFleet, maxAircraftLevelAirBase),
 		JsonSerializerOptions
 	);
 
@@ -171,6 +179,7 @@ public class DataSerializationService
 		IBaseAirCorpsData? airBase1 = null,
 		IBaseAirCorpsData? airBase2 = null,
 		IBaseAirCorpsData? airBase3 = null,
+		SortieDetailViewModel? sortieDetails = null,
 		bool maxAircraftLevelFleet = false,
 		bool maxAircraftLevelAirBase = false
 	) => new()
@@ -180,9 +189,10 @@ public class DataSerializationService
 		Fleet2 = MakeDeckBuilderFleet(fleet2, maxAircraftLevelFleet),
 		Fleet3 = MakeDeckBuilderFleet(fleet3, maxAircraftLevelFleet),
 		Fleet4 = MakeDeckBuilderFleet(fleet4, maxAircraftLevelFleet),
-		AirBase1 = MakeDeckBuilderAirBase(airBase1, maxAircraftLevelAirBase),
-		AirBase2 = MakeDeckBuilderAirBase(airBase2, maxAircraftLevelAirBase),
-		AirBase3 = MakeDeckBuilderAirBase(airBase3, maxAircraftLevelAirBase),
+		AirBase1 = MakeDeckBuilderAirBase(airBase1, sortieDetails?.StrikePoints.Skip(0).FirstOrDefault(), maxAircraftLevelAirBase),
+		AirBase2 = MakeDeckBuilderAirBase(airBase2, sortieDetails?.StrikePoints.Skip(1).FirstOrDefault(), maxAircraftLevelAirBase),
+		AirBase3 = MakeDeckBuilderAirBase(airBase3, sortieDetails?.StrikePoints.Skip(2).FirstOrDefault(), maxAircraftLevelAirBase),
+		Sortie = MakeDeckBuilderSortie(sortieDetails),
 	};
 
 	private static DeckBuilderFleet? MakeDeckBuilderFleet
@@ -269,6 +279,7 @@ public class DataSerializationService
 	private static DeckBuilderAirBase? MakeDeckBuilderAirBase
 	(
 		IBaseAirCorpsData? airBase,
+		List<int>? strikePoints,
 		bool maxAircraftLevel
 	) => airBase switch
 	{
@@ -284,9 +295,81 @@ public class DataSerializationService
 			},
 			Mode = airBase.ActionKind,
 			Distance = airBase.Distance,
+			StrikePoints = strikePoints,
 		},
 
 		_ => null,
+	};
+
+	private static DeckBuilderSortieData? MakeDeckBuilderSortie(SortieDetailViewModel? sortieDetails) => sortieDetails switch
+	{
+		null => null,
+		_ => new()
+		{
+			MapAreaId = sortieDetails.World,
+			MapInfoId = sortieDetails.Map,
+			Cells = sortieDetails.Nodes
+				.OfType<BattleNode>()
+				.Select(MakeDeckBuilderCell)
+				.ToList(),
+		},
+	};
+
+	private static DeckBuilderCell MakeDeckBuilderCell(BattleNode node) => new DeckBuilderCell
+	{
+		CellId = node.Cell,
+		PlayerFormation = node.FirstBattle.Phases
+			.OfType<PhaseSearching>()
+			.FirstOrDefault()
+			?.PlayerFormationType
+			?? FormationType.LineAhead,
+		EnemyFormation = node.FirstBattle.Phases
+			.OfType<PhaseSearching>()
+			.FirstOrDefault()
+			?.EnemyFormationType
+			?? FormationType.LineAhead,
+		Fleet1 = node.FirstBattle.FleetsBeforeBattle.EnemyFleet switch
+		{
+			{ } fleet => new()
+			{
+				Name = fleet.Name,
+				Ships = fleet.MembersInstance
+					.Where(s => s is not null)
+					.Cast<IShipData>()
+					.Select(MakeDeckBuilderEnemyShip)
+					.ToList(),
+			},
+			// enemy fleet should never be null
+			_ => new(),
+		},
+		Fleet2 = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet switch
+		{
+			{ } fleet => new()
+			{
+				Name = fleet.Name,
+				Ships = fleet.MembersInstance
+					.Where(s => s is not null)
+					.Cast<IShipData>()
+					.Select(MakeDeckBuilderEnemyShip)
+					.ToList(),
+			},
+			_ => null,
+		},
+	};
+
+	private static DeckBuilderEnemyShip MakeDeckBuilderEnemyShip(IShipData ship) => new()
+	{
+		Id = ship.MasterShip.ShipId,
+		Equipment = ship.AllSlotInstance
+			.Where(e => e is not null)
+			.Cast<IEquipmentData>()
+			.Select(MakeDeckBuilderEnemyEquipment)
+			.ToList(),
+	};
+
+	private static DeckBuilderEnemyEquipment MakeDeckBuilderEnemyEquipment(IEquipmentData equip) => new()
+	{
+		Id = equip.EquipmentId,
 	};
 
 	private static IEnumerable<FleetAnalysisShip> MakeFleetAnalysisShips(IEnumerable<IShipData> ships)

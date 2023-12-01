@@ -32,16 +32,12 @@ using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Batt
 
 namespace ElectronicObserver.Services;
 
-public class ToolService
+public class ToolService(DataSerializationService dataSerializationService)
 {
-	private DataSerializationService DataSerializationService { get; }
+	private DataSerializationService DataSerializationService { get; } = dataSerializationService;
 
-	public ToolService(DataSerializationService dataSerializationService)
-	{
-		DataSerializationService = dataSerializationService;
-	}
-
-	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null)
+	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null,
+		SortieDetailViewModel? sortieDetail = null)
 	{
 		viewModel ??= new();
 
@@ -51,7 +47,7 @@ public class ToolService
 
 		AirControlSimulatorViewModel result = dialog.Result!;
 
-		string url = DataSerializationService.AirControlSimulatorLink(result);
+		string url = DataSerializationService.AirControlSimulatorLink(result, sortieDetail);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
 
@@ -204,6 +200,7 @@ public class ToolService
 			bases.Skip(0).FirstOrDefault(),
 			bases.Skip(1).FirstOrDefault(),
 			bases.Skip(2).FirstOrDefault(),
+			null,
 			result.MaxAircraftLevelFleet,
 			result.MaxAircraftLevelAirBase
 		);
@@ -578,15 +575,19 @@ public class ToolService
 		return JsonSerializer.Serialize(replay);
 	}
 
-	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie)
+	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie,
+		SortieDetailViewModel? sortieDetail = null)
 	{
-		string url = GetAirControlSimulatorLink(sortie);
+		string url = GetAirControlSimulatorLink(sortie, sortieDetail);
 
 		Clipboard.SetText(url);
 	}
 
-	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie)
+	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie,
+		SortieDetailViewModel? sortieDetail = null)
 	{
+		sortieDetail ??= GenerateSortieDetailViewModel(new(), sortie);
+
 		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
 
 		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
@@ -602,7 +603,8 @@ public class ToolService
 			fleets.Skip(3).FirstOrDefault(),
 			airBases.Skip(0).FirstOrDefault(),
 			airBases.Skip(1).FirstOrDefault(),
-			airBases.Skip(2).FirstOrDefault()
+			airBases.Skip(2).FirstOrDefault(),
+			sortieDetail
 		);
 
 		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";

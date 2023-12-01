@@ -100,6 +100,7 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 					bases.Skip(0).FirstOrDefault(),
 					bases.Skip(1).FirstOrDefault(),
 					bases.Skip(2).FirstOrDefault(),
+					null,
 					result.MaxAircraftLevelFleet,
 					result.MaxAircraftLevelAirBase
 				));
