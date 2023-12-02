@@ -1,9 +1,9 @@
 ﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public record AirBattleStageExportModel
+public sealed record AirBattleStageExportModel
 {
-	public int PlayerAircraftTotal { get; init; }
-	public int PlayerAircraftLost { get; init; }
-	public int EnemyAircraftTotal { get; init; }
-	public int EnemyAircraftLost { get; init; }
+	public required int PlayerAircraftTotal { get; init; }
+	public required int PlayerAircraftLost { get; init; }
+	public required int EnemyAircraftTotal { get; init; }
+	public required int EnemyAircraftLost { get; init; }
 }

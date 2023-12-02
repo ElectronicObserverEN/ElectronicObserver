@@ -1,10 +1,10 @@
 ﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public record EquipmentExportModel
+public sealed record EquipmentExportModel
 {
-	public string? Name { get; init; }
-	public int? Level { get; init; }
-	public int? AircraftLevel { get; init; }
-	public int? Aircraft { get; init; }
-	public int? AircraftAfterBattle { get; init; }
+	public required string? Name { get; init; }
+	public required int? Level { get; init; }
+	public required int? AircraftLevel { get; init; }
+	public required int? Aircraft { get; init; }
+	public required int? AircraftAfterBattle { get; init; }
 }

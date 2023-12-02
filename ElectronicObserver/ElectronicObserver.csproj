@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows7</TargetFramework>
-		<RuntimeFrameworkVersion>6.0.5</RuntimeFrameworkVersion>
+		<TargetFramework>net8.0-windows7</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -28,9 +27,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.11.5</AssemblyVersion>
-		<FileVersion>5.2.11.5</FileVersion>
-		<Version>5.2.11.5</Version>
+		<AssemblyVersion>5.2.12.0</AssemblyVersion>
+		<FileVersion>5.2.12.0</FileVersion>
+		<Version>5.2.12.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -97,55 +96,54 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Aigamo.ResXGenerator" Version="4.1.2">
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.2.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="CsvHelper" Version="30.0.1" />
-		<PackageReference Include="Dirkster.AvalonDock" Version="4.70.3" />
+		<PackageReference Include="Dirkster.AvalonDock" Version="4.72.1" />
 		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
-		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.3.1">
+		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.5.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="gong-wpf-dragdrop" Version="3.2.0" />
-		<PackageReference Include="Jot" Version="2.1.13" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
-		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.4" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+		<PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
+		<PackageReference Include="Jot" Version="2.1.17" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
-		<PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
-		<PackageReference Include="ScottPlot" Version="4.1.59" />
-		<PackageReference Include="ScottPlot.WPF" Version="4.1.59" />
-		<PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
-		<PackageReference Include="System.Management" Version="6.0.0" />
-		<PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
-		<PackageReference Include="Grpc" Version="2.46.5" />
-		<PackageReference Include="Grpc.Core" Version="2.46.5" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.50.0" />
+		<PackageReference Include="ScottPlot" Version="4.1.68" />
+		<PackageReference Include="ScottPlot.WPF" Version="4.1.68" />
+		<PackageReference Include="System.Diagnostics.EventLog" Version="8.0.0" />
+		<PackageReference Include="System.Management" Version="8.0.0" />
+		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+		<PackageReference Include="Grpc" Version="2.46.6" />
+		<PackageReference Include="Grpc.Core" Version="2.46.6" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.59.0" />
 		<PackageReference Include="log4net" Version="2.0.15" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
-		<PackageReference Include="MessagePack" Version="2.4.59" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.4.59" />
-		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="MessagePack" Version="2.5.140" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.5.140" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
 		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />

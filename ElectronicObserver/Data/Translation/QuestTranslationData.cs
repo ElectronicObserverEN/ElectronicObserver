@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Utility;
-using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -57,15 +58,15 @@ public class QuestTranslationData : TranslationBase
 
 	public class QuestRecord
 	{
-		[JsonProperty("code")]
+		[JsonPropertyName("code")]
 		public string Code { get; set; } = "";
-		[JsonProperty("name_jp")]
+		[JsonPropertyName("name_jp")]
 		public string NameJp { get; set; } = "";
-		[JsonProperty("name")]
+		[JsonPropertyName("name")]
 		public string Name { get; set; } = "";
-		[JsonProperty("desc_jp")]
+		[JsonPropertyName("desc_jp")]
 		public string DescJp { get; set; } = "";
-		[JsonProperty("desc")]
+		[JsonPropertyName("desc")]
 		public string Desc { get; set; } = "";
 
 		// hack to parse the version entry
@@ -80,19 +81,19 @@ public class QuestTranslationData : TranslationBase
 
 		try
 		{
-			questRecords = JsonConvert.DeserializeObject<Dictionary<string, QuestRecord>>(File.ReadAllText(path));
+			questRecords = JsonSerializer.Deserialize<Dictionary<string, QuestRecord>>(File.ReadAllText(path));
 		}
 		catch (FileNotFoundException)
 		{
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			Logger.Add(3, GetType().Name + ": File does not exists.");
 		}
 		catch (DirectoryNotFoundException)
 		{
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			Logger.Add(3, GetType().Name + ": File does not exists.");
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
+			ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
 		}
 
 		if (questRecords == null) return dict;

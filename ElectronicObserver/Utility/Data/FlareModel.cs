@@ -4,9 +4,8 @@ namespace ElectronicObserver.Utility.Data;
 
 public record FlareModel : IActivatableEquipment
 {
-	// todo: both required
-	public IShipData Ship { get; init; } = null!;
-	public IEquipmentData Equipment { get; init; } = null!;
+	public required IShipData Ship { get; init; }
+	public required IEquipmentData Equipment { get; init; }
 
 	public double ActivationRate => 0.7;
 

@@ -1,8 +1,8 @@
 ﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public record AirBattleShipExportModel
+public sealed record AirBattleShipExportModel
 {
-	public int? Id { get; init; }
-	public string? Name { get; init; }
-	public int? Level { get; init; }
+	public required int? Id { get; init; }
+	public required string? Name { get; init; }
+	public required int? Level { get; init; }
 }
