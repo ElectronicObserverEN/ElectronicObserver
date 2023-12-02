@@ -15,7 +15,6 @@ using ElectronicObserverTypes.Serialization.AirControlSimulator;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 using ElectronicObserverTypes.Serialization.EventLockPlanner;
 using ElectronicObserverTypes.Serialization.FleetAnalysis;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ElectronicObserver.Services;
 
