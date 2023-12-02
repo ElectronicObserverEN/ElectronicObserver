@@ -23,7 +23,6 @@ namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
-	private DataSerializationService DataSerializationService { get; }
 
 	private ElectronicObserverContext Db { get; } = new();
 
@@ -64,7 +63,6 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 	public ExpeditionRecordViewerViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
-		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
 		ExpeditionRecordViewer = Ioc.Default.GetRequiredService<ExpeditionRecordViewerTranslationViewModel>();
 
 		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
