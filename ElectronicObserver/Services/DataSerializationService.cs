@@ -15,6 +15,7 @@ using ElectronicObserverTypes.Serialization.AirControlSimulator;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 using ElectronicObserverTypes.Serialization.EventLockPlanner;
 using ElectronicObserverTypes.Serialization.FleetAnalysis;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ElectronicObserver.Services;
 
@@ -47,24 +48,7 @@ public class DataSerializationService
 	public string AirControlSimulatorLink(AirControlSimulatorViewModel airControlSimulator,
 		SortieDetailViewModel? sortieDetail)
 	{
-		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
-			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
-			.ToList();
-
-		DeckBuilderParameters parameters = new()
-		{
-			HqLevel = KCDatabase.Instance.Admiral.Level,
-			Fleet1 = FleetOrDefault(airControlSimulator.Fleet1, 0),
-			Fleet2 = FleetOrDefault(airControlSimulator.Fleet2, 1),
-			Fleet3 = FleetOrDefault(airControlSimulator.Fleet3, 2),
-			Fleet4 = FleetOrDefault(airControlSimulator.Fleet4, 3),
-			AirBase1 = bases.Skip(0).FirstOrDefault(),
-			AirBase2 = bases.Skip(1).FirstOrDefault(),
-			AirBase3 = bases.Skip(2).FirstOrDefault(),
-			SortieDetails = sortieDetail,
-			MaxAircraftLevelFleet = airControlSimulator.MaxAircraftLevelFleet,
-			MaxAircraftLevelAirBase = airControlSimulator.MaxAircraftLevelAirBase,
-		};
+		DeckBuilderParameters parameters = MakeParameters(airControlSimulator, sortieDetail);
 
 		string airControlSimulatorData = AirControlSimulator
 		(
@@ -103,11 +87,21 @@ public class DataSerializationService
 	public string OperationRoomLink(AirControlSimulatorViewModel airControlSimulator,
 		SortieDetailViewModel? sortieDetail = null)
 	{
+		DeckBuilderParameters parameters = MakeParameters(airControlSimulator, sortieDetail);
+
+		string operationRoomData = DeckBuilder(parameters);
+
+		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
+	}
+
+	private static DeckBuilderParameters MakeParameters(AirControlSimulatorViewModel airControlSimulator,
+		SortieDetailViewModel? sortieDetail)
+	{
 		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
 			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
 			.ToList();
 
-		string operationRoomData = DeckBuilder(new()
+		return new()
 		{
 			HqLevel = KCDatabase.Instance.Admiral.Level,
 			Fleet1 = FleetOrDefault(airControlSimulator.Fleet1, 0),
@@ -119,10 +113,8 @@ public class DataSerializationService
 			AirBase3 = bases.Skip(2).FirstOrDefault(),
 			SortieDetails = sortieDetail,
 			MaxAircraftLevelFleet = airControlSimulator.MaxAircraftLevelFleet,
-			MaxAircraftLevelAirBase = airControlSimulator.MaxAircraftLevelAirBase
-		});
-
-		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
+			MaxAircraftLevelAirBase = airControlSimulator.MaxAircraftLevelAirBase,
+		};
 	}
 
 	public string DeckBuilder(DeckBuilderParameters parameters) => JsonSerializer.Serialize
