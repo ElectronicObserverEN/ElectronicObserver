@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.ElectronicObserverApi.Models;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
-public class WrongUpgradesIssueReporter
-{ 
+public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
+{
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
-		ElectronicObserverApiService api = Ioc.Default.GetRequiredService<ElectronicObserverApiService>();
+		if (!api.IsEnabled) return;
 
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];

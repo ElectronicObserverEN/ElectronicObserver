@@ -15,6 +15,7 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.ElectronicObserverApi;
+using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Dialog.ShipPicker;
@@ -308,12 +309,16 @@ public partial class App : Application
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
+			.AddSingleton<DataAndTranslationIssueReporter>()
+			//.ActivateSingleton<DataAndTranslationIssueReporter>() todo uncomment and test with .net 8 
 			// external
 			.AddSingleton(JotTracker())
 
 			.BuildServiceProvider();
 
 		Ioc.Default.ConfigureServices(services);
+
+		Ioc.Default.GetRequiredService<DataAndTranslationIssueReporter>(); // todo remove with .net 8 if the above test is successful
 	}
 
 	private static Tracker JotTracker()

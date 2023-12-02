@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
+namespace ElectronicObserver.Utility.ElectronicObserverApi.Models;
 
 public record EquipmentUpgradeIssueModel
 {

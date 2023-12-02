@@ -421,8 +421,13 @@ public class ToolService
 			SortieDetailViewModel sortieDetail = new(db, sortie, fleetsBeforeSortie, fleetsAfterSortie);
 
 			// todo: battle requests contain a flag if smoke screen was activated
-			foreach (ApiFile apiFile in sortie.Model.ApiFiles.Where(f => f.ApiFileType is ApiFileType.Response))
+			foreach (ApiFile apiFile in sortie.Model.ApiFiles)
 			{
+				if (apiFile is { ApiFileType: ApiFileType.Request, Name: not "api_req_map/start_air_base" })
+				{
+					continue;
+				}
+
 				sortieDetail.StartTime ??= apiFile.TimeStamp;
 
 				object? battleData = apiFile.ApiFileType switch

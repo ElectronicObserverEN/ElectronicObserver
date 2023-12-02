@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserverTypes.Serialization.FitBonus;
 
 public record FitBonusValue
 {
-
 	[JsonPropertyName("houg")] public int Firepower { get; set; }
 
 	[JsonPropertyName("raig")] public int Torpedo { get; set; }
@@ -51,4 +51,50 @@ public record FitBonusValue
 		Accuracy = a.Accuracy + b.Accuracy,
 		Range = a.Range + b.Range
 	};
+
+	public bool HasBonus()
+	{
+		if (Firepower > 0) return true;
+		if (Torpedo > 0) return true;
+		if (AntiAir > 0) return true;
+		if (Armor > 0) return true;
+		if (Evasion > 0) return true;
+		if (ASW > 0) return true;
+		if (LOS > 0) return true;
+		if (Accuracy > 0) return true;
+		if (Range > 0) return true;
+
+		return false;
+	}
+
+	public virtual bool Equals(FitBonusValue? other)
+	{
+		if (other is null) return false;
+		if (Firepower != other.Firepower) return false;
+		if (Torpedo != other.Torpedo) return false;
+		if (AntiAir != other.AntiAir) return false;
+		if (Armor != other.Armor) return false;
+		if (Evasion != other.Evasion) return false;
+		if (ASW != other.ASW) return false;
+		if (LOS != other.LOS) return false;
+		if (Accuracy != other.Accuracy) return false;
+		if (Range != other.Range) return false;
+
+		return true;
+	}
+
+	public override int GetHashCode()
+	{
+		HashCode hashCode = new();
+		hashCode.Add(Firepower);
+		hashCode.Add(Torpedo);
+		hashCode.Add(AntiAir);
+		hashCode.Add(Armor);
+		hashCode.Add(Evasion);
+		hashCode.Add(ASW);
+		hashCode.Add(LOS);
+		hashCode.Add(Accuracy);
+		hashCode.Add(Range);
+		return hashCode.ToHashCode();
+	}
 }

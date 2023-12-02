@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -11,7 +12,7 @@ using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
-public class ShipTrainingPlanViewModel : WindowViewModelBase
+public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 {
 	public ShipTrainingPlanModel Model { get; }
 
@@ -21,7 +22,8 @@ public class ShipTrainingPlanViewModel : WindowViewModelBase
 		_ => new ShipDataMock(new ShipDataMasterMock())
 	};
 
-	public bool PlanFinished { get; set; }
+	[ObservableProperty] private bool planFinished;
+
 	public int Priority { get; set; }
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
@@ -121,8 +123,6 @@ public class ShipTrainingPlanViewModel : WindowViewModelBase
 			&& Ship.ASWBase >= TargetASW
 			&& Ship.LuckBase >= TargetLuck
 			&& (TargetRemodel is null || Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
-
-		OnPropertyChanged(nameof(PlanFinished));
 	}
 
 	public void UpdateFromModel()

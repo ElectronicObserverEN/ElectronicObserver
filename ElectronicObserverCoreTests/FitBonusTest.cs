@@ -52,7 +52,7 @@ public class FitBonusTest
 			Torpedo = 0,
 		};
 
-		FitBonusValue finalBonus = hachijou.GetFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = hachijou.GetTheoricalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -92,7 +92,7 @@ public class FitBonusTest
 			Range = 0,
 		};
 
-		FitBonusValue finalBonus = yikikaze.GetFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = yikikaze.GetTheoricalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -139,7 +139,7 @@ public class FitBonusTest
 			Range = 0,
 		};
 
-		FitBonusValue finalBonus = yikikaze.GetFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = yikikaze.GetTheoricalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -188,7 +188,7 @@ public class FitBonusTest
 			Range = 0,
 		};
 
-		FitBonusValue finalBonus = yamato.GetFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = yamato.GetTheoricalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}

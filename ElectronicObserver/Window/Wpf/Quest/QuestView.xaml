@@ -152,7 +152,11 @@
 		</ContextMenu>
 	</UserControl.Resources>
 
-	<Grid DataContext="{Binding ViewModel, ElementName=QuestControl}">
+	<Grid
+		Background="Transparent"
+		ContextMenu="{StaticResource MainContextMenu}"
+		DataContext="{Binding ViewModel, ElementName=QuestControl}"
+		>
 		<DataGrid
 			x:Name="DataGrid"
 			AutoGenerateColumns="False"

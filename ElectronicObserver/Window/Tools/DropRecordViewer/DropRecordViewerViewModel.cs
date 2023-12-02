@@ -14,11 +14,9 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
@@ -34,6 +32,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private ShipPickerViewModel ShipPickerViewModel { get; }
 	public List<object> Items { get; set; } = new();
+	public List<ShipTypes> ShipTypeOptions { get; set; } = new();
 
 	public List<object> Worlds { get; set; } = new();
 	public List<object> Maps { get; set; } = new();
@@ -46,6 +45,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	public object ShipSearchOption { get; set; } = DropRecordOption.All;
 	// DropRecordOption or UseItemMaster
 	public object ItemSearchOption { get; set; } = DropRecordOption.All;
+	public ShipTypes ShipTypeSearchOption { get; set; } = ShipTypes.All;
 
 	private DateTime DateTimeBegin =>
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
@@ -199,6 +199,11 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			.Prepend(DropRecordOption.NoDrop)
 			.Prepend(DropRecordOption.Drop)
 			.Prepend(DropRecordOption.All)
+			.ToList();
+
+		ShipTypeOptions = Enum.GetValues<ShipTypes>()
+			.Where(t => t is not ShipTypes.Unknown)
+			.Where(t => t is not ShipTypes.SuperDreadnoughts)
 			.ToList();
 
 		Difficulties = Record.Record
@@ -488,6 +493,20 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 					case UseItemMaster item:
 						if (item.ID != r.ItemID)
 							continue;
+						break;
+				}
+
+				switch (ShipTypeSearchOption)
+				{
+					case ShipTypes.All:
+						break;
+
+					default:
+						IShipDataMaster? ship = KCDatabase.Instance.MasterShips[r.ShipID];
+						if (ship?.ShipType != ShipTypeSearchOption)
+						{
+							continue;
+						}
 						break;
 				}
 

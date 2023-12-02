@@ -6,7 +6,6 @@ using System.Windows;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
 using Microsoft.Win32;
-using Ookii.Dialogs.Wpf;
 
 namespace ElectronicObserver.Services;
 
@@ -76,14 +75,14 @@ public class FileService
 
 		string fullPath = Path.GetFullPath(path);
 
-		VistaFolderBrowserDialog dialog = new()
+		OpenFolderDialog dialog = new()
 		{
-			SelectedPath = fullPath,
+			InitialDirectory = fullPath,
 		};
 
 		return dialog.ShowDialog(MainWindow) switch
 		{
-			true => dialog.SelectedPath,
+			true => dialog.FolderName,
 			_ => null,
 		};
 	}

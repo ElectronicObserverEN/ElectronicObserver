@@ -3,10 +3,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Common.ContentDialogs.ExportFilter;
 
-// todo: all required
 public class DestinationItemViewModel : ObservableObject
 {
-	public string Display { get; init; } = null!;
-	public List<int> CellIds { get; init; } = null!;
+	public required string Display { get; init; }
+	public required List<int> CellIds { get; init; }
 	public bool IsChecked { get; set; } = true;
 }

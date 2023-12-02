@@ -75,7 +75,6 @@ public class CefSharpViewModel : BrowserViewModel
 		if (ProxySettings is null) return;
 		if (Configuration is null) return;
 
-		Cef.EnableHighDPISupport();
 		CefSettings? settings;
 
 		try

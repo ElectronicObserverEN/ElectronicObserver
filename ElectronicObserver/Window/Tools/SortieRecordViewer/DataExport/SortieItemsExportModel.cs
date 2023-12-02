@@ -2,13 +2,13 @@
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public record SortieItemsExportModel
+public sealed record SortieItemsExportModel
 {
-	public string? SmokerFlag { get; init; }
-	public int SmokerType { get; init; }
-	public string? SupplyShip { get; init; }
-	public string? GivenShip { get; init; }
-	public int? UseNum { get; init;}
-	public List<int>? ApiCombatRation { get; init; }
-	public List<int>? ApiCombatRationCombined { get; init; }
+	public required string? SmokerFlag { get; init; }
+	public required int SmokerType { get; init; }
+	public required string? SupplyShip { get; init; }
+	public required string? GivenShip { get; init; }
+	public required int? UseNum { get; init;}
+	public required List<int>? ApiCombatRation { get; init; }
+	public required List<int>? ApiCombatRationCombined { get; init; }
 }

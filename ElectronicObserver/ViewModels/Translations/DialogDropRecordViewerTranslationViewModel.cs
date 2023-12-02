@@ -8,6 +8,7 @@ public class DialogDropRecordViewerTranslationViewModel : TranslationBaseViewMod
 	public string ShipNameToolTip => DropRecordViewerResources.ShipNameToolTip;
 	public string LabelItemName => DropRecordViewerResources.LabelItemName;
 	public string ItemNameToolTip => DropRecordViewerResources.ItemNameToolTip;
+	public string LabelShipType => GeneralRes.ShipType;
 	public string LabelEquipmentName => DropRecordViewerResources.LabelEquipmentName;
 	public string EquipmentNameToolTip => DropRecordViewerResources.EquipmentNameToolTip;
 

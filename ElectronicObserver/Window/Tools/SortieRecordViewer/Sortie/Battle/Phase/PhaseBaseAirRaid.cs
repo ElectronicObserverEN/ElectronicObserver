@@ -52,7 +52,7 @@ public class PhaseBaseAirRaid : PhaseBase
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-		[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+	[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
@@ -63,7 +63,7 @@ public class PhaseBaseAirRaid : PhaseBase
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-		[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+	[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
@@ -74,15 +74,15 @@ public class PhaseBaseAirRaid : PhaseBase
 
 	public string? Stage2Display { get; protected set; }
 
-	public List<int> PlayerTorpedoFlags { get; set; }
-	public List<int> PlayerBomberFlags { get; set; }
-	public List<AirHitType> PlayerHitFlags { get; set; }
-	public List<double> PlayerDamage { get; set; }
+	public List<int> PlayerTorpedoFlags { get; set; } = new();
+	public List<int> PlayerBomberFlags { get; set; } = new();
+	public List<AirHitType> PlayerHitFlags { get; set; } = new();
+	public List<double> PlayerDamage { get; set; } = new();
 
-	public List<int> EnemyTorpedoFlags { get; set; }
-	public List<int> EnemyBomberFlags { get; set; }
-	public List<AirHitType> EnemyHitFlags { get; set; }
-	public List<double> EnemyDamage { get; set; }
+	public List<int> EnemyTorpedoFlags { get; set; } = new();
+	public List<int> EnemyBomberFlags { get; set; } = new();
+	public List<AirHitType> EnemyHitFlags { get; set; } = new();
+	public List<double> EnemyDamage { get; set; } = new();
 
 	private List<BattleBaseAirCorpsSquadron> Squadrons { get; }
 
