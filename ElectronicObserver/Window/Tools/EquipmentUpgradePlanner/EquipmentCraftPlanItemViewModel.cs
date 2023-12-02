@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Common;
+﻿using System.Collections.Generic;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserverTypes;
@@ -16,7 +17,14 @@ public class EquipmentCraftPlanItemViewModel(EquipmentId equipmentId) : WindowVi
 		_ => null,
 	};
 
+	public int RequiredCount { get; set; }
+
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
+
+	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren()
+	{
+		return new();
+	}
 
 	public void UnsubscribeFromApis()
 	{

@@ -69,6 +69,11 @@ public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
 		Cost.UnsubscribeFromApis();
 	}
 
+	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren()
+	{
+		return new();
+	}
+
 	public void OpenEquipmentPicker()
 	{
 		EquipmentDataPickerViewModel viewModel = new() { Filters = { EquipmentIdsFilter = EquipmentFilter } };

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Numerics;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;

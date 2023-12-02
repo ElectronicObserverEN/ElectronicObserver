@@ -17,7 +17,7 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		UpgradeManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 
-		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan, 1));
+		Items.Add(new UpgradeTreeUpgradePlanViewModel(plan));
 	}
 
 	public override void Closed()
