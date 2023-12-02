@@ -316,7 +316,7 @@ public class DataSerializationService
 		},
 	};
 
-	private static DeckBuilderCell MakeDeckBuilderCell(BattleNode node) => new DeckBuilderCell
+	private static DeckBuilderCell MakeDeckBuilderCell(BattleNode node) => new()
 	{
 		CellId = node.Cell,
 		PlayerFormation = node.FirstBattle.Phases
