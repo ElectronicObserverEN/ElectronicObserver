@@ -19,12 +19,10 @@ namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
 public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 {
-	private DataSerializationService DataSerialization { get; }
 	private ToolService Tools { get; }
-	private FileService FileService { get; }
 	public FleetImageGeneratorTranslationViewModel DialogFleetImageGenerator { get; }
 
-	private FleetImageGeneratorImageDataModel ImageDataModel { get; set; } = new();
+	private FleetImageGeneratorImageDataModel ImageDataModel { get; set; }
 
 	public string? Title { get; set; }
 	public string? Comment { get; set; }
@@ -40,7 +38,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public int MaxEquipmentNameWidth { get; set; } = 200;
 	public bool DownloadMissingShipImage { get; set; }
 
-	public string ImageSaveLocation { get; set; }
+	public string ImageSaveLocation { get; set; } = "";
 	public bool DisableOverwritePrompt { get; set; }
 	public bool AutoSetFileNameToDate { get; set; }
 	public bool OpenImageAfterOutput { get; set; }
@@ -143,10 +141,10 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 	public FleetImageGeneratorViewModel(FleetImageGeneratorImageDataModel model)
 	{
-		DataSerialization = Ioc.Default.GetRequiredService<DataSerializationService>();
 		Tools = Ioc.Default.GetRequiredService<ToolService>();
-		FileService = Ioc.Default.GetRequiredService<FileService>();
 		DialogFleetImageGenerator = Ioc.Default.GetRequiredService<FleetImageGeneratorTranslationViewModel>();
+
+		ImageDataModel = model;
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -266,8 +264,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 			Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
 		};
 
-		ImageDataModel = model;
-
+		LoadModel(ImageDataModel);
 		LoadConfig();
 	}
 
