@@ -51,17 +51,24 @@ public class DataSerializationService
 			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
 			.ToList();
 
+		DeckBuilderParameters parameters = new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = FleetOrDefault(airControlSimulator.Fleet1, 0),
+			Fleet2 = FleetOrDefault(airControlSimulator.Fleet2, 1),
+			Fleet3 = FleetOrDefault(airControlSimulator.Fleet3, 2),
+			Fleet4 = FleetOrDefault(airControlSimulator.Fleet4, 3),
+			AirBase1 = bases.Skip(0).FirstOrDefault(),
+			AirBase2 = bases.Skip(1).FirstOrDefault(),
+			AirBase3 = bases.Skip(2).FirstOrDefault(),
+			SortieDetails = sortieDetail,
+			MaxAircraftLevelFleet = airControlSimulator.MaxAircraftLevelFleet,
+			MaxAircraftLevelAirBase = airControlSimulator.MaxAircraftLevelAirBase,
+		};
+
 		string airControlSimulatorData = AirControlSimulator
 		(
-			KCDatabase.Instance.Admiral.Level,
-			FleetOrDefault(airControlSimulator.Fleet1, 0),
-			FleetOrDefault(airControlSimulator.Fleet2, 1),
-			FleetOrDefault(airControlSimulator.Fleet3, 2),
-			FleetOrDefault(airControlSimulator.Fleet4, 3),
-			bases.Skip(0).FirstOrDefault(),
-			bases.Skip(1).FirstOrDefault(),
-			bases.Skip(2).FirstOrDefault(),
-			sortieDetail,
+			parameters,
 			airControlSimulator.ShipData switch
 			{
 				true => KCDatabase.Instance.Ships.Values
@@ -74,38 +81,24 @@ public class DataSerializationService
 					.Where(e => airControlSimulator.IncludeUnlockedEquipment || e!.IsLocked)
 					.Cast<EquipmentData>(),
 				_ => null,
-			},
-			airControlSimulator.MaxAircraftLevelFleet,
-			airControlSimulator.MaxAircraftLevelAirBase
+			}
 		);
 
 		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
 	}
 
-	public string AirControlSimulator
-	(
-		int hqLevel,
-		IFleetData? fleet1 = null,
-		IFleetData? fleet2 = null,
-		IFleetData? fleet3 = null,
-		IFleetData? fleet4 = null,
-		IBaseAirCorpsData? airBase1 = null,
-		IBaseAirCorpsData? airBase2 = null,
-		IBaseAirCorpsData? airBase3 = null,
-		SortieDetailViewModel? sortieDetails = null,
-		IEnumerable<IShipData>? ships = null,
-		IEnumerable<IEquipmentData>? equipment = null,
-		bool maxAircraftLevelFleet = false,
-		bool maxAircraftLevelAirBase = false) => JsonSerializer.Serialize
-	(
-		MakeAirControlSimulatorData
+	public static string AirControlSimulator(DeckBuilderParameters parameters,
+		IEnumerable<IShipData>? ships = null, IEnumerable<IEquipmentData>? equipment = null) =>
+		JsonSerializer.Serialize
 		(
-			MakeDeckBuilderData(hqLevel, fleet1, fleet2, fleet3, fleet4, airBase1, airBase2, airBase3, sortieDetails, maxAircraftLevelFleet, maxAircraftLevelAirBase),
-			ships?.Select(MakeFleetAnalysisShip),
-			equipment?.Select(MakeFleetAnalysisEquipment)
-		),
-		JsonSerializerOptions
-	);
+			MakeAirControlSimulatorData
+			(
+				MakeDeckBuilderData(parameters),
+				ships?.Select(MakeFleetAnalysisShip),
+				equipment?.Select(MakeFleetAnalysisEquipment)
+			),
+			JsonSerializerOptions
+		);
 
 	public string OperationRoomLink(AirControlSimulatorViewModel airControlSimulator,
 		SortieDetailViewModel? sortieDetail = null)
@@ -114,40 +107,27 @@ public class DataSerializationService
 			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
 			.ToList();
 
-		string operationRoomData = DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			FleetOrDefault(airControlSimulator.Fleet1, 0),
-			FleetOrDefault(airControlSimulator.Fleet2, 1),
-			FleetOrDefault(airControlSimulator.Fleet3, 2),
-			FleetOrDefault(airControlSimulator.Fleet4, 3),
-			bases.Skip(0).FirstOrDefault(),
-			bases.Skip(1).FirstOrDefault(),
-			bases.Skip(2).FirstOrDefault(),
-			sortieDetail,
-			airControlSimulator.MaxAircraftLevelFleet,
-			airControlSimulator.MaxAircraftLevelAirBase
-		);
+		string operationRoomData = DeckBuilder(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = FleetOrDefault(airControlSimulator.Fleet1, 0),
+			Fleet2 = FleetOrDefault(airControlSimulator.Fleet2, 1),
+			Fleet3 = FleetOrDefault(airControlSimulator.Fleet3, 2),
+			Fleet4 = FleetOrDefault(airControlSimulator.Fleet4, 3),
+			AirBase1 = bases.Skip(0).FirstOrDefault(),
+			AirBase2 = bases.Skip(1).FirstOrDefault(),
+			AirBase3 = bases.Skip(2).FirstOrDefault(),
+			SortieDetails = sortieDetail,
+			MaxAircraftLevelFleet = airControlSimulator.MaxAircraftLevelFleet,
+			MaxAircraftLevelAirBase = airControlSimulator.MaxAircraftLevelAirBase
+		});
 
 		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
 	}
 
-	public string DeckBuilder
+	public string DeckBuilder(DeckBuilderParameters parameters) => JsonSerializer.Serialize
 	(
-		int hqLevel,
-		IFleetData? fleet1 = null,
-		IFleetData? fleet2 = null,
-		IFleetData? fleet3 = null,
-		IFleetData? fleet4 = null,
-		IBaseAirCorpsData? airBase1 = null,
-		IBaseAirCorpsData? airBase2 = null,
-		IBaseAirCorpsData? airBase3 = null,
-		SortieDetailViewModel? sortieDetails = null,
-		bool maxAircraftLevelFleet = false,
-		bool maxAircraftLevelAirBase = false
-	) => JsonSerializer.Serialize
-	(
-		MakeDeckBuilderData(hqLevel, fleet1, fleet2, fleet3, fleet4, airBase1, airBase2, airBase3, sortieDetails, maxAircraftLevelFleet, maxAircraftLevelAirBase),
+		MakeDeckBuilderData(parameters),
 		JsonSerializerOptions
 	);
 
@@ -169,30 +149,17 @@ public class DataSerializationService
 		Equipment = equipment
 	};
 
-	public DeckBuilderData MakeDeckBuilderData
-	(
-		int hqLevel,
-		IFleetData? fleet1 = null,
-		IFleetData? fleet2 = null,
-		IFleetData? fleet3 = null,
-		IFleetData? fleet4 = null,
-		IBaseAirCorpsData? airBase1 = null,
-		IBaseAirCorpsData? airBase2 = null,
-		IBaseAirCorpsData? airBase3 = null,
-		SortieDetailViewModel? sortieDetails = null,
-		bool maxAircraftLevelFleet = false,
-		bool maxAircraftLevelAirBase = false
-	) => new()
+	public static DeckBuilderData MakeDeckBuilderData(DeckBuilderParameters parameters) => new()
 	{
-		HqLevel = hqLevel,
-		Fleet1 = MakeDeckBuilderFleet(fleet1, maxAircraftLevelFleet),
-		Fleet2 = MakeDeckBuilderFleet(fleet2, maxAircraftLevelFleet),
-		Fleet3 = MakeDeckBuilderFleet(fleet3, maxAircraftLevelFleet),
-		Fleet4 = MakeDeckBuilderFleet(fleet4, maxAircraftLevelFleet),
-		AirBase1 = MakeDeckBuilderAirBase(airBase1, sortieDetails?.StrikePoints.Skip(0).FirstOrDefault(), maxAircraftLevelAirBase),
-		AirBase2 = MakeDeckBuilderAirBase(airBase2, sortieDetails?.StrikePoints.Skip(1).FirstOrDefault(), maxAircraftLevelAirBase),
-		AirBase3 = MakeDeckBuilderAirBase(airBase3, sortieDetails?.StrikePoints.Skip(2).FirstOrDefault(), maxAircraftLevelAirBase),
-		Sortie = MakeDeckBuilderSortie(sortieDetails),
+		HqLevel = parameters.HqLevel,
+		Fleet1 = MakeDeckBuilderFleet(parameters.Fleet1, parameters.MaxAircraftLevelFleet),
+		Fleet2 = MakeDeckBuilderFleet(parameters.Fleet2, parameters.MaxAircraftLevelFleet),
+		Fleet3 = MakeDeckBuilderFleet(parameters.Fleet3, parameters.MaxAircraftLevelFleet),
+		Fleet4 = MakeDeckBuilderFleet(parameters.Fleet4, parameters.MaxAircraftLevelFleet),
+		AirBase1 = MakeDeckBuilderAirBase(parameters.AirBase1, parameters.SortieDetails?.StrikePoints.Skip(0).FirstOrDefault(), parameters.MaxAircraftLevelAirBase),
+		AirBase2 = MakeDeckBuilderAirBase(parameters.AirBase2, parameters.SortieDetails?.StrikePoints.Skip(1).FirstOrDefault(), parameters.MaxAircraftLevelAirBase),
+		AirBase3 = MakeDeckBuilderAirBase(parameters.AirBase3, parameters.SortieDetails?.StrikePoints.Skip(2).FirstOrDefault(), parameters.MaxAircraftLevelAirBase),
+		Sortie = MakeDeckBuilderSortie(parameters.SortieDetails),
 	};
 
 	private static DeckBuilderFleet? MakeDeckBuilderFleet

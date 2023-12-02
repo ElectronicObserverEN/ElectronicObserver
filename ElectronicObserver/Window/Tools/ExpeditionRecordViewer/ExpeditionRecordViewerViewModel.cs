@@ -179,11 +179,11 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 
 		int hqLevel = await SelectedExpedition.Model.GetAdmiralLevel(Db) ?? KCDatabase.Instance.Admiral.Level;
 
-		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
-		(
-			hqLevel,
-			SelectedExpedition?.Model.Fleet.MakeFleet(0)
-		);
+		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData(new()
+		{
+			HqLevel = hqLevel,
+			Fleet1 = SelectedExpedition?.Model.Fleet.MakeFleet(0),
+		});
 
 		FleetImageGeneratorImageDataModel model = new()
 		{

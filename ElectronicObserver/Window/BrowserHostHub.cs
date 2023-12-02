@@ -90,20 +90,19 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 					.Where(b => b.MapAreaID == result.AirBaseArea?.AreaId)
 					.ToList();
 
-				return Task.Run(() => serialization.DeckBuilder
-				(
-					KCDatabase.Instance.Admiral.Level,
-					result.Fleet1 ? KCDatabase.Instance.Fleet[1] : null,
-					result.Fleet2 ? KCDatabase.Instance.Fleet[2] : null,
-					result.Fleet3 ? KCDatabase.Instance.Fleet[3] : null,
-					result.Fleet4 ? KCDatabase.Instance.Fleet[4] : null,
-					bases.Skip(0).FirstOrDefault(),
-					bases.Skip(1).FirstOrDefault(),
-					bases.Skip(2).FirstOrDefault(),
-					null,
-					result.MaxAircraftLevelFleet,
-					result.MaxAircraftLevelAirBase
-				));
+				return Task.Run(() => serialization.DeckBuilder(new()
+				{
+					HqLevel = KCDatabase.Instance.Admiral.Level,
+					Fleet1 = result.Fleet1 ? KCDatabase.Instance.Fleet[1] : null,
+					Fleet2 = result.Fleet2 ? KCDatabase.Instance.Fleet[2] : null,
+					Fleet3 = result.Fleet3 ? KCDatabase.Instance.Fleet[3] : null,
+					Fleet4 = result.Fleet4 ? KCDatabase.Instance.Fleet[4] : null,
+					AirBase1 = bases.Skip(0).FirstOrDefault(),
+					AirBase2 = bases.Skip(1).FirstOrDefault(),
+					AirBase3 = bases.Skip(2).FirstOrDefault(),
+					MaxAircraftLevelFleet = result.MaxAircraftLevelFleet,
+					MaxAircraftLevelAirBase = result.MaxAircraftLevelAirBase,
+				}));
 			}
 
 			return Task.Run(() => (string?)null);

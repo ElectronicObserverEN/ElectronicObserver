@@ -384,17 +384,17 @@ public partial class FleetViewModel : AnchorableViewModel
 		IEnumerable<BaseAirCorpsData> airbases = KCDatabase.Instance.BaseAirCorps.Values
 			.Where(a => a.MapAreaID == areaId);
 
-		string deckBuilderData = DataSerializationService.DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			KCDatabase.Instance.Fleet.Fleets.Values.Skip(0).FirstOrDefault(),
-			KCDatabase.Instance.Fleet.Fleets.Values.Skip(1).FirstOrDefault(),
-			KCDatabase.Instance.Fleet.Fleets.Values.Skip(2).FirstOrDefault(),
-			KCDatabase.Instance.Fleet.Fleets.Values.Skip(3).FirstOrDefault(),
-			airbases.Skip(0).FirstOrDefault(),
-			airbases.Skip(1).FirstOrDefault(),
-			airbases.Skip(2).FirstOrDefault()
-		);
+		string deckBuilderData = DataSerializationService.DeckBuilder(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = KCDatabase.Instance.Fleet.Fleets.Values.Skip(0).FirstOrDefault(),
+			Fleet2 = KCDatabase.Instance.Fleet.Fleets.Values.Skip(1).FirstOrDefault(),
+			Fleet3 = KCDatabase.Instance.Fleet.Fleets.Values.Skip(2).FirstOrDefault(),
+			Fleet4 = KCDatabase.Instance.Fleet.Fleets.Values.Skip(3).FirstOrDefault(),
+			AirBase1 = airbases.Skip(0).FirstOrDefault(),
+			AirBase2 = airbases.Skip(1).FirstOrDefault(),
+			AirBase3 = airbases.Skip(2).FirstOrDefault(),
+		});
 
 		Clipboard.SetDataObject(deckBuilderData);
 	}

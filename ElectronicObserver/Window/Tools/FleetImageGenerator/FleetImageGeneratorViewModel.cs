@@ -374,17 +374,17 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Fleet3Visible = Fleet3Visible,
 		Fleet4Visible = Fleet4Visible,
 
-		DeckBuilderData = DataSerialization.MakeDeckBuilderData
-		(
-			HqLevel,
-			GetFleet(1, Fleet1Visible),
-			GetFleet(2, Fleet2Visible),
-			GetFleet(3, Fleet3Visible),
-			GetFleet(4, Fleet4Visible),
-			AirBases.Skip(0).FirstOrDefault()?.Model,
-			AirBases.Skip(1).FirstOrDefault()?.Model,
-			AirBases.Skip(2).FirstOrDefault()?.Model
-		),
+		DeckBuilderData = DataSerializationService.MakeDeckBuilderData(new()
+		{
+			HqLevel = HqLevel,
+			Fleet1 = GetFleet(1, Fleet1Visible),
+			Fleet2 = GetFleet(2, Fleet2Visible),
+			Fleet3 = GetFleet(3, Fleet3Visible),
+			Fleet4 = GetFleet(4, Fleet4Visible),
+			AirBase1 = AirBases.Skip(0).FirstOrDefault()?.Model,
+			AirBase2 = AirBases.Skip(1).FirstOrDefault()?.Model,
+			AirBase3 = AirBases.Skip(2).FirstOrDefault()?.Model,
+		}),
 	};
 
 	public void SetImageDataModel(FleetImageGeneratorImageDataModel model)
