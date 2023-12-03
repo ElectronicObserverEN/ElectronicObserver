@@ -308,46 +308,22 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	{
 		List<IEquipmentPlanItemViewModel> children = new();
 
-		// Equipment itself (if plan is unasigned)
-		if (EquipmentId is null)
-		{
-			// Find a plan assigned to this one 
-			IEquipmentPlanItemViewModel? plan =
-				EquipmentUpgradePlanManager.PlannedUpgrades.FirstOrDefault(plan =>
-					plan.Parent == Plan && plan.EquipmentMasterDataId == EquipmentMasterDataId);
-
-			if (plan is null)
-			{
-				EquipmentUpgradeDataModel? upgradePlan = GetPlanToMakeEquipmentFromUpgrade(EquipmentMasterDataId);
-
-				if (upgradePlan is not null)
-				{
-					EquipmentUpgradePlanItemViewModel newChild = EquipmentUpgradePlanManager.MakePlanViewModel(new());
-					newChild.EquipmentMasterDataId = (EquipmentId)upgradePlan.EquipmentId;
-					newChild.DesiredUpgradeLevel = UpgradeLevel.Conversion;
-					newChild.Parent = Plan;
-					newChild.ShouldBeConvertedInto = EquipmentMasterDataId;
-
-					plan = new EquipmentConversionPlanItemViewModel(this, new() { newChild });
-				}
-				else
-				{
-					plan = new EquipmentCraftPlanItemViewModel(EquipmentMasterDataId, this)
-					{
-						RequiredCount = 1
-					};
-				}
-			}
-
-			children.Add(plan);
-		}
-
 		// Equipments needed
 		Dictionary<EquipmentId, int> equipmentsRequired = Cost.RequiredEquipments
 			.GroupBy(eq => eq.Equipment.EquipmentId)
 			.ToDictionary(group => group.Key, group => group.Sum(eq => eq.Required));
 
-		foreach (KeyValuePair<EquipmentId, int> equipmentRequired in equipmentsRequired)
+		// Equipment itself (if plan is unassigned)
+		if (EquipmentId is null)
+		{
+			if (!equipmentsRequired.TryAdd(EquipmentMasterDataId, 1))
+			{
+				equipmentsRequired[EquipmentMasterDataId]++;
+			}
+		}
+
+		// The order by is here so that the first child is the equipment itself if needed
+		foreach (KeyValuePair<EquipmentId, int> equipmentRequired in equipmentsRequired.OrderBy(eq => eq.Key == EquipmentMasterDataId ? 0 : eq.Key))
 		{
 			children.AddRange(GetUpgradeChildrenForRequiredEquipments(equipmentRequired.Key, equipmentRequired.Value));
 		}
@@ -401,7 +377,10 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 				newPlans.Add(newChild);
 			}
 
-			plans.Add(new EquipmentConversionPlanItemViewModel(this, newPlans));
+			if (newPlans.Count > 0)
+			{
+				plans.Add(new EquipmentConversionPlanItemViewModel(this, newPlans));
+			}
 		}
 		else if (plans.Count < required)
 		{
