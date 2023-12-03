@@ -34,6 +34,7 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string UpgradeTree => EquipmentUpgradePlannerResources.UpgradeTree;
 	public string Error => EquipmentUpgradePlannerResources.Error;
 	public string AssignEquipment => EquipmentUpgradePlannerResources.AssignEquipment;
+	public string AddPlanAndAssignEquipment => EquipmentUpgradePlannerResources.AddPlanAndAssignEquipment;
 	public string UnassignEquipment => EquipmentUpgradePlannerResources.UnassignEquipment;
 	public string AlreadyOwned => EquipmentUpgradePlannerResources.AlreadyOwned;
 }

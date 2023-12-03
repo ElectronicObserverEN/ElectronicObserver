@@ -43,6 +43,12 @@
 										/>
 
 									<MenuItem
+										Command="{Binding CreatePlanAndAssignEquipmentCommand}"
+										Header="{Binding Translations.AddPlanAndAssignEquipment}"
+										Visibility="{Binding CanAddPlanAndAssignEquipment, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
 										Command="{Binding AssignEquipmentToPlanCommand}"
 										Header="{Binding Translations.AssignEquipment}"
 										Visibility="{Binding CanAssignEquipment, Converter={BoolToVisibilityConverter}}"

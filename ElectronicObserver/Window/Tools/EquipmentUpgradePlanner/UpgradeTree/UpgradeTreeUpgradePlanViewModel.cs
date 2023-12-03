@@ -49,13 +49,18 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 	public bool AlreadyPlanned => Plan is EquipmentUpgradePlanItemViewModel plan && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
-	public bool CanAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel;
+	public bool CanAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel && UpgradePlanHasBeenSavedInDatabase;
 
-	public bool ParentHasBeenSavedInDatabase => Plan switch
+	public bool CanAddPlanAndAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel && !UpgradePlanHasBeenSavedInDatabase;
+
+	public bool UpgradePlanHasBeenSavedInDatabase => UpgradePlan is not null && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(UpgradePlan);
+
+	public EquipmentUpgradePlanItemViewModel? UpgradePlan => Plan switch
 	{
-		EquipmentConversionPlanItemViewModel conversionPlan => EquipmentUpgradePlanManager.PlannedUpgrades.Contains(conversionPlan.EquipmentToUpgradePlan),
-		EquipmentCraftPlanItemViewModel craftPlan => EquipmentUpgradePlanManager.PlannedUpgrades.Contains(craftPlan.PlannedToBeUsedBy),
-		_ => false
+		EquipmentConversionPlanItemViewModel conversionPlan => conversionPlan.EquipmentToUpgradePlan,
+		EquipmentCraftPlanItemViewModel craftPlan => craftPlan.PlannedToBeUsedBy,
+		EquipmentUpgradePlanItemViewModel upgradePlan => upgradePlan,
+		_ => null
 	};
 
 	public bool AlreadyAssignedAnEquipment => Plan is EquipmentAssignmentItemViewModel;
@@ -189,7 +194,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		OnPropertyChanged(nameof(Children));
 	}
 
-	[RelayCommand(CanExecute = nameof(ParentHasBeenSavedInDatabase))]
+	[RelayCommand]
 	private void AssignEquipmentToPlan()
 	{
 		EquipmentUpgradePlanItemViewModel plan = Plan switch
@@ -218,6 +223,43 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		{
 			EquipmentUpgradePlanManager.AddAssignment(assignmentViewModel);
 			EquipmentUpgradePlanManager.Save();
+			OnPropertyChanged(nameof(Children));
+		}
+	}
+
+	[RelayCommand]
+	private void CreatePlanAndAssignEquipment()
+	{
+		EquipmentUpgradePlanItemViewModel plan = Plan switch
+		{
+			EquipmentCraftPlanItemViewModel craftPlan => craftPlan.PlannedToBeUsedBy,
+			EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentToUpgradePlan,
+			_ => throw new NotImplementedException(),
+		};
+
+		EquipmentAssignmentItemViewModel assignmentViewModel = new(new()
+		{
+			EquipmentMasterDataId = Plan switch
+			{
+				EquipmentCraftPlanItemViewModel craftPlan => craftPlan.EquipmentMasterDataId,
+				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.ShouldBeConvertedInto ?? EquipmentId.Unknown,
+				_ => throw new NotImplementedException(),
+			},
+			Plan = plan.Plan
+		});
+
+		assignmentViewModel.AssignedPlan = plan;
+
+		assignmentViewModel.OpenEquipmentPicker();
+
+		if (assignmentViewModel.AssignedEquipment is not null && assignmentViewModel.TrySaveChanges())
+		{
+			if (!plan.OpenPlanDialog()) return;
+
+			EquipmentUpgradePlanManager.AddAssignment(assignmentViewModel);
+			EquipmentUpgradePlanManager.AddPlan(plan);
+			EquipmentUpgradePlanManager.Save();
+
 			OnPropertyChanged(nameof(Children));
 		}
 	}

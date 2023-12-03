@@ -207,4 +207,7 @@
   <data name="UnassignEquipment" xml:space="preserve">
     <value>Unassign equipment</value>
   </data>
+  <data name="AddPlanAndAssignEquipment" xml:space="preserve">
+    <value>Add plan and assign equipment</value>
+  </data>
 </root>
