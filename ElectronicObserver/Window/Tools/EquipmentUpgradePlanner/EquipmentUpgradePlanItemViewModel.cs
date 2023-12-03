@@ -350,7 +350,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		// Look for assigned plans
 		List<IEquipmentPlanItemViewModel> plans =
 			EquipmentUpgradePlanManager.PlannedUpgrades
-				.Where(plan => plan.Parent == Plan && plan.EquipmentMasterDataId == id)
+				.Where(plan => plan.Parent == Plan && plan.ShouldBeConvertedInto == id)
 				.Cast<IEquipmentPlanItemViewModel>()
 				.ToList();
 
