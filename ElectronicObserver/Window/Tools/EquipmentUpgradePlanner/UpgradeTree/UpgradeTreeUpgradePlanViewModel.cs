@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -97,7 +98,17 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	{
 		foreach (IEquipmentPlanItemViewModel planChild in Plan.GetPlanChildren())
 		{
-			Children.Add(new UpgradeTreeUpgradePlanViewModel(planChild));
+			UpgradeTreeUpgradePlanViewModel child = new(planChild);
+			Children.Add(child);
+
+			if (planChild is EquipmentAssignmentItemViewModel or EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel)
+			{
+				child.PropertyChanged += (_, args) =>
+				{
+					if (args.PropertyName is not nameof(Children)) return;
+					EquipmentPlanHasChanged();
+				};
+			}
 		}
 	}
 
@@ -150,10 +161,10 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 	private void EquipmentPlanHasChanged()
 	{
+		CleanupUnusedPlan();
 		Children.Clear();
 		OnPropertyChanged(nameof(DisplayName));
 
-		CleanupUnusedPlan();
 		Initialize();
 
 		OnPropertyChanged(nameof(CanBePlanned));
@@ -169,7 +180,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		EquipmentUpgradePlanManager.RemoveAssignment(plan);
 		EquipmentUpgradePlanManager.Save();
 
-		EquipmentPlanHasChanged();
+		OnPropertyChanged(nameof(Children));
 	}
 
 	[RelayCommand]
@@ -187,7 +198,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 			EquipmentMasterDataId = Plan switch
 			{
 				EquipmentCraftPlanItemViewModel craftPlan => craftPlan.EquipmentMasterDataId,
-				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.EquipmentMasterDataId ?? EquipmentId.Unknown,
+				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.ShouldBeConvertedInto ?? EquipmentId.Unknown,
 				_ => throw new NotImplementedException(),
 			}
 		});
@@ -200,7 +211,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		{
 			EquipmentUpgradePlanManager.AddAssignment(assignmentViewModel);
 			EquipmentUpgradePlanManager.Save();
-			EquipmentPlanHasChanged();
+			OnPropertyChanged(nameof(Children));
 		}
 	}
 }

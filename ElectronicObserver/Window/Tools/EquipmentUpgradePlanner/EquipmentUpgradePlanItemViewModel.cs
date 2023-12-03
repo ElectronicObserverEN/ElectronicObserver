@@ -344,9 +344,13 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		}
 
 		// Equipments needed
-		foreach (EquipmentUpgradePlanCostEquipmentViewModel equipmentRequired in Cost.RequiredEquipments)
+		Dictionary<EquipmentId, int> equipmentsRequired = Cost.RequiredEquipments
+			.GroupBy(eq => eq.Equipment.EquipmentId)
+			.ToDictionary(group => group.Key, group => group.Sum(eq => eq.Required));
+
+		foreach (KeyValuePair<EquipmentId, int> equipmentRequired in equipmentsRequired)
 		{
-			children.AddRange(GetUpgradeChildrenForRequiredEquipments(equipmentRequired));
+			children.AddRange(GetUpgradeChildrenForRequiredEquipments(equipmentRequired.Key, equipmentRequired.Value));
 		}
 
 		// TODO Consumable needed
@@ -354,16 +358,16 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		return children;
 	}
 
-	private List<IEquipmentPlanItemViewModel> GetUpgradeChildrenForRequiredEquipments(EquipmentUpgradePlanCostEquipmentViewModel equipmentRequired)
+	private List<IEquipmentPlanItemViewModel> GetUpgradeChildrenForRequiredEquipments(EquipmentId id, int required)
 	{
 		// if fodder = upgraded equipment, return a craft plan to avoid infinite loops
-		if (equipmentRequired.Equipment.EquipmentId == EquipmentMasterDataId && Plan.ShouldBeConvertedInto == equipmentRequired.Equipment.EquipmentId)
+		if (EquipmentMasterDataId == id && Plan.ShouldBeConvertedInto == id)
 		{
 			return new List<IEquipmentPlanItemViewModel>
 			{
-				new EquipmentCraftPlanItemViewModel(equipmentRequired.Equipment.EquipmentId, this)
+				new EquipmentCraftPlanItemViewModel(id, this)
 				{
-					RequiredCount = equipmentRequired.Required
+					RequiredCount = required
 				}
 			};
 		}
@@ -371,39 +375,40 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		// Look for assigned plans
 		List<IEquipmentPlanItemViewModel> plans =
 			EquipmentUpgradePlanManager.PlannedUpgrades
-				.Where(plan => plan.Parent == Plan && plan.EquipmentMasterDataId == equipmentRequired.Equipment.EquipmentId)
+				.Where(plan => plan.Parent == Plan && plan.EquipmentMasterDataId == id)
 				.Cast<IEquipmentPlanItemViewModel>()
 				.ToList();
 
 		// Look for assigned equipments
 		plans.AddRange(EquipmentUpgradePlanManager
 			.GetAssignments(Plan)
+			.Where(plan => plan.EquipmentMasterDataId == id)
 			.Select(model => new EquipmentAssignmentItemViewModel(model))
 		);
 
-		EquipmentUpgradeDataModel? planToMakeRequiredEquipment = GetPlanToMakeEquipmentFromUpgrade(equipmentRequired.Equipment.EquipmentId);
+		EquipmentUpgradeDataModel? planToMakeRequiredEquipment = GetPlanToMakeEquipmentFromUpgrade(id);
 
 		if (planToMakeRequiredEquipment is not null)
 		{
 			List<EquipmentUpgradePlanItemViewModel> newPlans = new();
 
-			while (newPlans.Count + plans.Count < equipmentRequired.Required)
+			while (newPlans.Count + plans.Count < required)
 			{
 				EquipmentUpgradePlanItemViewModel newChild = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 				newChild.EquipmentMasterDataId = (EquipmentId)planToMakeRequiredEquipment.EquipmentId;
 				newChild.DesiredUpgradeLevel = UpgradeLevel.Conversion;
 				newChild.Parent = Plan;
-				newChild.ShouldBeConvertedInto = equipmentRequired.Equipment.EquipmentId;
+				newChild.ShouldBeConvertedInto = id;
 				newPlans.Add(newChild);
 			}
 
 			plans.Add(new EquipmentConversionPlanItemViewModel(this, newPlans));
 		}
-		else if (plans.Count < equipmentRequired.Required)
+		else if (plans.Count < required)
 		{
-			plans.Add(new EquipmentCraftPlanItemViewModel(equipmentRequired.Equipment.EquipmentId, this)
+			plans.Add(new EquipmentCraftPlanItemViewModel(id, this)
 			{
-				RequiredCount = equipmentRequired.Required - plans.Count
+				RequiredCount = required - plans.Count
 			});
 		}
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 
@@ -22,10 +23,13 @@ public class UpgradeTreeViewModel : WindowViewModelBase
 
 	public override void Closed()
 	{
-		foreach (UpgradeTreeUpgradePlanViewModel item in Items)
+		Task.Run(() =>
 		{
-			item.CleanupUnusedPlan();
-		}
+			foreach (UpgradeTreeUpgradePlanViewModel item in Items)
+			{
+				item.CleanupUnusedPlan();
+			}
+		});
 
 		base.Closed();
 	}
