@@ -207,7 +207,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 		assignmentViewModel.OpenEquipmentPicker();
 
-		if (assignmentViewModel.SaveChanges())
+		if (assignmentViewModel.AssignedEquipment is not null && assignmentViewModel.TrySaveChanges())
 		{
 			EquipmentUpgradePlanManager.AddAssignment(assignmentViewModel);
 			EquipmentUpgradePlanManager.Save();

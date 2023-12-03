@@ -195,4 +195,7 @@
   <data name="UpgradeTree" xml:space="preserve">
     <value>Tree</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

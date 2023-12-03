@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+
 public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewModel
 {
 	public string Goal => EquipmentUpgradePlannerResources.Goal;
@@ -31,4 +32,5 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string Edit => GeneralRes.Edit;
 	public string Ok => "OK";
 	public string UpgradeTree => EquipmentUpgradePlannerResources.UpgradeTree;
+	public string Error => EquipmentUpgradePlannerResources.Error;
 }

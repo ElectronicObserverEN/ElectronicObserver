@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
@@ -8,13 +12,17 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 
-public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
+public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEquipmentPlanItemViewModel
 {
 	public EquipmentAssignmentItemModel Model { get; }
 
-	public IEquipmentData? AssignedEquipment { get; set; }
+	[Required] [NotifyDataErrorInfo] [ObservableProperty] private IEquipmentData? _assignedEquipment;
 
-	public EquipmentUpgradePlanItemViewModel? AssignedPlan { get; set; }
+	[Required] [NotifyDataErrorInfo][ObservableProperty] private EquipmentUpgradePlanItemViewModel? _assignedPlan;
+
+	[MemberNotNullWhen(false, nameof(AssignedPlan))]
+	[MemberNotNullWhen(false, nameof(AssignedEquipment))]
+	private bool HasValidationErrors => GetErrors().Any();
 
 	public EquipmentId EquipmentMasterDataId { get; private set; }
 
@@ -22,11 +30,13 @@ public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
 
 	private EquipmentUpgradePlanManager PlanManager { get; }
 	private EquipmentPickerService EquipmentPicker { get; }
+	private EquipmentUpgradePlannerTranslationViewModel Translations { get; }
 
 	public EquipmentAssignmentItemViewModel(EquipmentAssignmentItemModel model)
 	{
 		PlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		EquipmentPicker = Ioc.Default.GetRequiredService<EquipmentPickerService>();
+		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 
 		Model = model;
 
@@ -49,13 +59,21 @@ public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
 	/// <summary>
 	/// Saves changes to the model
 	/// Returns false if changes couldn't have been saved
-	/// TODO : maybe there's a better way to do data validation
 	/// </summary>
 	/// <returns></returns>
-	public bool SaveChanges()
+	public bool TrySaveChanges()
 	{
-		if (AssignedPlan is null) return false;
-		if (AssignedEquipment is null) return false;
+		if (HasValidationErrors)
+		{
+			List<ValidationResult> errors = GetErrors().ToList();
+
+			string caption = Translations.Error;
+			string errorMessage = string.Join("\n", errors);
+
+			MessageBox.Show(App.Current!.MainWindow!, errorMessage, caption, MessageBoxButton.OK, MessageBoxImage.Error);
+
+			return false;
+		}
 
 		Model.Plan = AssignedPlan.Plan;
 		Model.EquipmentId = AssignedEquipment.ID;

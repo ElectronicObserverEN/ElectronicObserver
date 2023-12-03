@@ -9,6 +9,7 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignmen
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+
 public class EquipmentUpgradePlanManager
 {
 	public ObservableCollection<EquipmentUpgradePlanItemViewModel> PlannedUpgrades { get; } = new();
