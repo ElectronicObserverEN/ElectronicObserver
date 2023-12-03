@@ -17,7 +17,7 @@ public abstract class EquipmentPickerViewModel : WindowViewModelBase
 	protected abstract List<IEquipmentData> AllEquipments { get; }
 
 	public IEquipmentData? SelectedEquipment { get; set; }
-	
+
 	protected void Initialize()
 	{
 		DataGridViewModel = new(new(AllEquipments));
