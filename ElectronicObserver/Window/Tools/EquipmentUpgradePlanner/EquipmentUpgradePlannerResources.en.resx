@@ -198,4 +198,13 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="AlreadyOwned" xml:space="preserve">
+    <value>Already owned</value>
+  </data>
+  <data name="AssignEquipment" xml:space="preserve">
+    <value>Assign equipment</value>
+  </data>
+  <data name="UnassignEquipment" xml:space="preserve">
+    <value>Unassign equipment</value>
+  </data>
 </root>
