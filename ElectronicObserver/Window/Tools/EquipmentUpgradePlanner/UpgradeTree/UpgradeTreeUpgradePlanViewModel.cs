@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -51,6 +50,13 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	public bool AlreadyPlanned => Plan is EquipmentUpgradePlanItemViewModel plan && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
 	public bool CanAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel;
+
+	public bool ParentHasBeenSavedInDatabase => Plan switch
+	{
+		EquipmentConversionPlanItemViewModel conversionPlan => EquipmentUpgradePlanManager.PlannedUpgrades.Contains(conversionPlan.EquipmentToUpgradePlan),
+		EquipmentCraftPlanItemViewModel craftPlan => EquipmentUpgradePlanManager.PlannedUpgrades.Contains(craftPlan.PlannedToBeUsedBy),
+		_ => false
+	};
 
 	public bool AlreadyAssignedAnEquipment => Plan is EquipmentAssignmentItemViewModel;
 
@@ -183,7 +189,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 		OnPropertyChanged(nameof(Children));
 	}
 
-	[RelayCommand]
+	[RelayCommand(CanExecute = nameof(ParentHasBeenSavedInDatabase))]
 	private void AssignEquipmentToPlan()
 	{
 		EquipmentUpgradePlanItemViewModel plan = Plan switch
