@@ -201,13 +201,19 @@
   <data name="AlreadyOwned" xml:space="preserve">
     <value>Already owned</value>
   </data>
-  <data name="AssignEquipment" xml:space="preserve">
-    <value>Assign equipment</value>
+  <data name="AssignEquipmentToUpgrade" xml:space="preserve">
+    <value>Assign equipment to upgrade</value>
   </data>
   <data name="UnassignEquipment" xml:space="preserve">
     <value>Unassign equipment</value>
   </data>
-  <data name="AddPlanAndAssignEquipment" xml:space="preserve">
-    <value>Add plan and assign equipment</value>
+  <data name="AddPlanAndAssignEquipmentToUpgrade" xml:space="preserve">
+    <value>Add plan and assign equipment to upgrade</value>
+  </data>
+  <data name="AssignEquipmentToUse" xml:space="preserve">
+    <value>Assign equipment to consume</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUse" xml:space="preserve">
+    <value>Add plan and assign equipment to consume</value>
   </data>
 </root>

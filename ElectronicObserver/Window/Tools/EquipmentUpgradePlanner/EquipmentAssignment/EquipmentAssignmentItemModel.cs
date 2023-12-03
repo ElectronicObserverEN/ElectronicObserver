@@ -11,4 +11,6 @@ public class EquipmentAssignmentItemModel
 	public EquipmentId EquipmentMasterDataId { get; set; }
 
 	public int EquipmentId { get; set; }
+
+	public bool WillBeUsedForConversion { get; set; }
 }

@@ -50,8 +50,16 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	public bool AlreadyPlanned => Plan is EquipmentUpgradePlanItemViewModel plan && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(plan);
 
 	public bool CanAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel && UpgradePlanHasBeenSavedInDatabase;
+	public bool CanAssignEquipmentToUpgrade => CanAssignEquipment && UpgradePlan?.EquipmentMasterDataId == Plan.EquipmentMasterDataId && !EquipmentToUpgradeHasBeenSet;
 
 	public bool CanAddPlanAndAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel && !UpgradePlanHasBeenSavedInDatabase;
+	public bool CanAddPlanAndAssignEquipmentToUpgrade => CanAddPlanAndAssignEquipment && UpgradePlan?.EquipmentMasterDataId == Plan.EquipmentMasterDataId && !EquipmentToUpgradeHasBeenSet;
+
+	private bool EquipmentToUpgradeHasBeenSet => UpgradePlan switch
+	{
+		not null => EquipmentUpgradePlanManager.GetAssignments(UpgradePlan.Plan).Any(plan => plan.WillBeUsedForConversion),
+		_ => false
+	};
 
 	public bool UpgradePlanHasBeenSavedInDatabase => UpgradePlan is not null && EquipmentUpgradePlanManager.PlannedUpgrades.Contains(UpgradePlan);
 
@@ -195,14 +203,20 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void AssignEquipmentToPlan()
+	private void AssignEquipmentToUpgradeToPlan() => AssignEquipmentToPlan(true);
+
+	[RelayCommand]
+	private void AssignEquipmentToPlan() => AssignEquipmentToPlan(false);
+
+	private void AssignEquipmentToPlan(bool willBeUsedForConversion)
 	{
 		if (UpgradePlan is null) return;
 
 		EquipmentAssignmentItemViewModel assignmentViewModel = new(new()
 		{
 			EquipmentMasterDataId = Plan.EquipmentMasterDataId,
-			Plan = UpgradePlan.Plan
+			Plan = UpgradePlan.Plan,
+			WillBeUsedForConversion = willBeUsedForConversion
 		});
 
 		assignmentViewModel.AssignedPlan = UpgradePlan;
@@ -218,14 +232,20 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void CreatePlanAndAssignEquipment()
+	private void CreatePlanAndAssignEquipmentToUpgrade() => CreatePlanAndAssignEquipment(true);
+
+	[RelayCommand]
+	private void CreatePlanAndAssignEquipment() => CreatePlanAndAssignEquipment(false);
+
+	private void CreatePlanAndAssignEquipment(bool willBeUsedForConversion)
 	{
 		if (UpgradePlan is null) return;
 
 		EquipmentAssignmentItemViewModel assignmentViewModel = new(new()
 		{
 			EquipmentMasterDataId = Plan.EquipmentMasterDataId,
-			Plan = UpgradePlan.Plan
+			Plan = UpgradePlan.Plan,
+			WillBeUsedForConversion = willBeUsedForConversion
 		});
 
 		assignmentViewModel.AssignedPlan = UpgradePlan;

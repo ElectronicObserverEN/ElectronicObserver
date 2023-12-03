@@ -6,6 +6,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding Translations.EquipmentUpgradePlan}"
 	Width="800"
@@ -43,14 +44,26 @@
 										/>
 
 									<MenuItem
+										Command="{Binding CreatePlanAndAssignEquipmentToUpgradeCommand}"
+										Header="{Binding Translations.AddPlanAndAssignEquipmentToUpgrade}"
+										Visibility="{Binding CanAddPlanAndAssignEquipmentToUpgrade, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
 										Command="{Binding CreatePlanAndAssignEquipmentCommand}"
-										Header="{Binding Translations.AddPlanAndAssignEquipment}"
+										Header="{Binding Translations.AddPlanAndAssignEquipmentToUse}"
 										Visibility="{Binding CanAddPlanAndAssignEquipment, Converter={BoolToVisibilityConverter}}"
 										/>
 
 									<MenuItem
+										Command="{Binding AssignEquipmentToUpgradeToPlanCommand}"
+										Header="{Binding Translations.AssignEquipmentToUpgrade}"
+										Visibility="{Binding CanAssignEquipmentToUpgrade, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
 										Command="{Binding AssignEquipmentToPlanCommand}"
-										Header="{Binding Translations.AssignEquipment}"
+										Header="{Binding Translations.AssignEquipmentToUse}"
 										Visibility="{Binding CanAssignEquipment, Converter={BoolToVisibilityConverter}}"
 										/>
 

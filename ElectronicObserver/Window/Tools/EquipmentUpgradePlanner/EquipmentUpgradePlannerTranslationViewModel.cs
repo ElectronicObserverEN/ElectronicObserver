@@ -33,8 +33,10 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string Ok => "OK";
 	public string UpgradeTree => EquipmentUpgradePlannerResources.UpgradeTree;
 	public string Error => EquipmentUpgradePlannerResources.Error;
-	public string AssignEquipment => EquipmentUpgradePlannerResources.AssignEquipment;
-	public string AddPlanAndAssignEquipment => EquipmentUpgradePlannerResources.AddPlanAndAssignEquipment;
+	public string AssignEquipmentToUpgrade => EquipmentUpgradePlannerResources.AssignEquipmentToUpgrade;
+	public string AssignEquipmentToUse => EquipmentUpgradePlannerResources.AssignEquipmentToUse;
+	public string AddPlanAndAssignEquipmentToUpgrade => EquipmentUpgradePlannerResources.AddPlanAndAssignEquipmentToUpgrade;
+	public string AddPlanAndAssignEquipmentToUse => EquipmentUpgradePlannerResources.AddPlanAndAssignEquipmentToUse;
 	public string UnassignEquipment => EquipmentUpgradePlannerResources.UnassignEquipment;
 	public string AlreadyOwned => EquipmentUpgradePlannerResources.AlreadyOwned;
 }

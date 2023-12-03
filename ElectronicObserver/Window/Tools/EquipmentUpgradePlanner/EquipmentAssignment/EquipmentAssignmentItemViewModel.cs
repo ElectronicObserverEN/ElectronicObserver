@@ -30,6 +30,8 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 	[MemberNotNullWhen(false, nameof(AssignedEquipment))]
 	private bool HasValidationErrors => GetErrors().Any();
 
+	public bool WillBeUsedForConversion { get; set; }
+
 	public EquipmentId EquipmentMasterDataId { get; private set; }
 
 	public EquipmentUpgradePlanCostViewModel Cost => new(new());
@@ -60,6 +62,7 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 		};
 
 		EquipmentMasterDataId = Model.EquipmentMasterDataId;
+		WillBeUsedForConversion = Model.WillBeUsedForConversion;
 	}
 
 	/// <summary>
@@ -83,6 +86,8 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 
 		Model.Plan = AssignedPlan.Plan;
 		Model.EquipmentId = AssignedEquipment.ID;
+		Model.EquipmentMasterDataId = EquipmentMasterDataId;
+		Model.WillBeUsedForConversion = WillBeUsedForConversion;
 
 		return true;
 	}
@@ -99,7 +104,7 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 
 	public void OpenEquipmentPicker()
 	{
-		EquipmentAssignmentPickerViewModel viewModel = new(PlanManager, EquipmentMasterDataId);
+		EquipmentAssignmentPickerViewModel viewModel = new(PlanManager, EquipmentMasterDataId, !WillBeUsedForConversion);
 
 		IEquipmentData? equipment = EquipmentPicker.OpenEquipmentPicker(viewModel);
 
