@@ -197,25 +197,15 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	[RelayCommand]
 	private void AssignEquipmentToPlan()
 	{
-		EquipmentUpgradePlanItemViewModel plan = Plan switch
-		{
-			EquipmentCraftPlanItemViewModel craftPlan => craftPlan.PlannedToBeUsedBy,
-			EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentToUpgradePlan,
-			_ => throw new NotImplementedException(),
-		};
+		if (UpgradePlan is null) return;
 
 		EquipmentAssignmentItemViewModel assignmentViewModel = new(new()
 		{
-			EquipmentMasterDataId = Plan switch
-			{
-				EquipmentCraftPlanItemViewModel craftPlan => craftPlan.EquipmentMasterDataId,
-				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.ShouldBeConvertedInto ?? EquipmentId.Unknown,
-				_ => throw new NotImplementedException(),
-			},
-			Plan = plan.Plan
+			EquipmentMasterDataId = Plan.EquipmentMasterDataId,
+			Plan = UpgradePlan.Plan
 		});
 
-		assignmentViewModel.AssignedPlan = plan;
+		assignmentViewModel.AssignedPlan = UpgradePlan;
 
 		assignmentViewModel.OpenEquipmentPicker();
 
@@ -230,34 +220,24 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	[RelayCommand]
 	private void CreatePlanAndAssignEquipment()
 	{
-		EquipmentUpgradePlanItemViewModel plan = Plan switch
-		{
-			EquipmentCraftPlanItemViewModel craftPlan => craftPlan.PlannedToBeUsedBy,
-			EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentToUpgradePlan,
-			_ => throw new NotImplementedException(),
-		};
+		if (UpgradePlan is null) return;
 
 		EquipmentAssignmentItemViewModel assignmentViewModel = new(new()
 		{
-			EquipmentMasterDataId = Plan switch
-			{
-				EquipmentCraftPlanItemViewModel craftPlan => craftPlan.EquipmentMasterDataId,
-				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.ShouldBeConvertedInto ?? EquipmentId.Unknown,
-				_ => throw new NotImplementedException(),
-			},
-			Plan = plan.Plan
+			EquipmentMasterDataId = Plan.EquipmentMasterDataId,
+			Plan = UpgradePlan.Plan
 		});
 
-		assignmentViewModel.AssignedPlan = plan;
+		assignmentViewModel.AssignedPlan = UpgradePlan;
 
 		assignmentViewModel.OpenEquipmentPicker();
 
 		if (assignmentViewModel.AssignedEquipment is not null && assignmentViewModel.TrySaveChanges())
 		{
-			if (!plan.OpenPlanDialog()) return;
+			if (!UpgradePlan.OpenPlanDialog()) return;
 
 			EquipmentUpgradePlanManager.AddAssignment(assignmentViewModel);
-			EquipmentUpgradePlanManager.AddPlan(plan);
+			EquipmentUpgradePlanManager.AddPlan(UpgradePlan);
 			EquipmentUpgradePlanManager.Save();
 
 			OnPropertyChanged(nameof(Children));
