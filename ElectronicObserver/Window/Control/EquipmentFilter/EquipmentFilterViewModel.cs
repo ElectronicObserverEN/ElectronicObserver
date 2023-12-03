@@ -13,14 +13,14 @@ namespace ElectronicObserver.Window.Control.EquipmentFilter;
 public partial class EquipmentFilterViewModel : ObservableObject
 {
 	public List<Filter> TypeFilters { get; }
-	
+
 	private TransliterationService TransliterationService { get; }
 
 	public string? NameFilter { get; set; } = "";
 
 	public EquipmentFilterTranslationViewModel EquipmentFilter { get; } = new();
 
-	public EquipmentFilterViewModel() : this (false)
+	public EquipmentFilterViewModel() : this(false)
 	{
 
 	}
