@@ -119,8 +119,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 		Plan = plan;
 
-		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
-		TimeChangeService = Ioc.Default.GetService<TimeChangeService>()!;
+		EquipmentPicker = Ioc.Default.GetRequiredService<EquipmentPickerService>();
+		TimeChangeService = Ioc.Default.GetRequiredService<TimeChangeService>();
 		EquipmentUpgradePlanItem = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 
