@@ -7,8 +7,10 @@ using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
-public class EquipmentCraftPlanItemViewModel(EquipmentId equipmentId) : WindowViewModelBase, IEquipmentPlanItemViewModel
+public class EquipmentCraftPlanItemViewModel(EquipmentId equipmentId, EquipmentUpgradePlanItemViewModel parentPlan) : WindowViewModelBase, IEquipmentPlanItemViewModel
 {
+	public EquipmentUpgradePlanItemViewModel PlannedToBeUsedBy { get; set; } = parentPlan;
+
 	public EquipmentId EquipmentMasterDataId { get; set; } = equipmentId;
 
 	public IEquipmentData? Equipment => KCDatabase.Instance.MasterEquipments.ContainsKey((int)EquipmentMasterDataId) switch
@@ -21,7 +23,7 @@ public class EquipmentCraftPlanItemViewModel(EquipmentId equipmentId) : WindowVi
 
 	public EquipmentUpgradePlanCostViewModel Cost { get; set; } = new(new());
 
-	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren()
+	public List<IEquipmentPlanItemViewModel> GetPlanChildren()
 	{
 		return new();
 	}

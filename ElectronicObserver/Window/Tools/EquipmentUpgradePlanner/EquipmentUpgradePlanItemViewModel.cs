@@ -305,7 +305,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		NextUpgradeCost.UnsubscribeFromApis();
 	}
 
-	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren()
+	public List<IEquipmentPlanItemViewModel> GetPlanChildren()
 	{
 		List<IEquipmentPlanItemViewModel> children = new();
 
@@ -333,7 +333,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 				}
 				else
 				{
-					plan = new EquipmentCraftPlanItemViewModel(EquipmentMasterDataId)
+					plan = new EquipmentCraftPlanItemViewModel(EquipmentMasterDataId, this)
 					{
 						RequiredCount = 1
 					};
@@ -361,7 +361,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		{
 			return new List<IEquipmentPlanItemViewModel>
 			{
-				new EquipmentCraftPlanItemViewModel(equipmentRequired.Equipment.EquipmentId)
+				new EquipmentCraftPlanItemViewModel(equipmentRequired.Equipment.EquipmentId, this)
 				{
 					RequiredCount = equipmentRequired.Required
 				}
@@ -401,7 +401,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		}
 		else if (plans.Count < equipmentRequired.Required)
 		{
-			plans.Add(new EquipmentCraftPlanItemViewModel(equipmentRequired.Equipment.EquipmentId)
+			plans.Add(new EquipmentCraftPlanItemViewModel(equipmentRequired.Equipment.EquipmentId, this)
 			{
 				RequiredCount = equipmentRequired.Required - plans.Count
 			});

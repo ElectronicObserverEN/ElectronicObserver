@@ -8,9 +8,9 @@ public class EquipmentPickerService
 {
 	private System.Windows.Window MainWindow => App.Current!.MainWindow!;
 
-	public IEquipmentData? OpenEquipmentPicker() => OpenEquipmentPicker(new());
+	public IEquipmentData? OpenEquipmentPicker() => OpenEquipmentPicker(new EquipmentDataPickerViewModel());
 
-	public IEquipmentData? OpenEquipmentPicker(EquipmentDataPickerViewModel viewModel)
+	public IEquipmentData? OpenEquipmentPicker(EquipmentPickerViewModel viewModel)
 	{
 		EquipmentDataPickerView equipmentPicker = new(viewModel);
 

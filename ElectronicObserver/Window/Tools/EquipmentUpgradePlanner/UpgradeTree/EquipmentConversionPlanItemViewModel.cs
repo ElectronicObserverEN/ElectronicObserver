@@ -21,7 +21,7 @@ public class EquipmentConversionPlanItemViewModel(EquipmentUpgradePlanItemViewMo
 	public List<EquipmentUpgradePlanItemViewModel> EquipmentRequiredForUpgradePlan { get; set; } = children;
 	public EquipmentUpgradePlanItemViewModel EquipmentToUpgradePlan { get; set; } = parent;
 
-	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren() => EquipmentRequiredForUpgradePlan
+	public List<IEquipmentPlanItemViewModel> GetPlanChildren() => EquipmentRequiredForUpgradePlan
 		.Cast<IEquipmentPlanItemViewModel>()
 		.ToList();
 

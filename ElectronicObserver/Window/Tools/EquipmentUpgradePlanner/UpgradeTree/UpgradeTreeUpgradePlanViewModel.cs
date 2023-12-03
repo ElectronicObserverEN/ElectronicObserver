@@ -95,7 +95,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	
 	private void Initialize()
 	{
-		foreach (IEquipmentPlanItemViewModel planChild in Plan.GetUpgradePlanChildren())
+		foreach (IEquipmentPlanItemViewModel planChild in Plan.GetPlanChildren())
 		{
 			Children.Add(new UpgradeTreeUpgradePlanViewModel(planChild));
 		}
@@ -161,7 +161,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void UnassignEquipmentToPlan()
+	private void UnAssignEquipmentToPlan()
 	{
 		if (Plan is not EquipmentAssignmentItemViewModel plan) return;
 		if (plan.AssignedPlan is null) return;
@@ -177,24 +177,22 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 	{
 		EquipmentUpgradePlanItemViewModel plan = Plan switch
 		{
-			EquipmentUpgradePlanItemViewModel upgradePlan => upgradePlan,
+			EquipmentCraftPlanItemViewModel craftPlan => craftPlan.PlannedToBeUsedBy,
 			EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentToUpgradePlan,
 			_ => throw new NotImplementedException(),
 		};
 
-		EquipmentAssignmentItemViewModel assignmentViewModel = new(new());
-		assignmentViewModel.AssignedPlan = plan;
-
-		assignmentViewModel.EquipmentFilter = Children
-			.Where(child => child.Plan switch
+		EquipmentAssignmentItemViewModel assignmentViewModel = new(new()
+		{
+			EquipmentMasterDataId = Plan switch
 			{
-				EquipmentCraftPlanItemViewModel => true,
-				EquipmentConversionPlanItemViewModel p => !p.EquipmentRequiredForUpgradePlan.TrueForAll(EquipmentUpgradePlanManager.PlannedUpgrades.Contains),
-				_ => false,
-			})
-			.Select(p => p.EquipmentId)
-			.Distinct()
-			.ToList();
+				EquipmentCraftPlanItemViewModel craftPlan => craftPlan.EquipmentMasterDataId,
+				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.EquipmentMasterDataId ?? EquipmentId.Unknown,
+				_ => throw new NotImplementedException(),
+			}
+		});
+
+		assignmentViewModel.AssignedPlan = plan;
 
 		assignmentViewModel.OpenEquipmentPicker();
 

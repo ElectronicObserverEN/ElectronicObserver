@@ -18,7 +18,7 @@
 	Height="450"
 	d:DataContext="{d:DesignInstance local:EquipmentPickerViewModel}"
 	ui:WindowHelper.UseModernWindowStyle="True"
-	x:TypeArguments="local:EquipmentDataPickerViewModel"
+	x:TypeArguments="local:EquipmentPickerViewModel"
 	mc:Ignorable="d"
 	>
 	<Window.Resources>

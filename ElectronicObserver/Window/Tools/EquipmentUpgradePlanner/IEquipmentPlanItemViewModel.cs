@@ -19,5 +19,5 @@ public interface IEquipmentPlanItemViewModel
 
 	public void UnsubscribeFromApis();
 
-	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren();
+	public List<IEquipmentPlanItemViewModel> GetPlanChildren();
 }

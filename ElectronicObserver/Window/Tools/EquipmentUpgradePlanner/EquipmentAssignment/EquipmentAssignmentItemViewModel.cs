@@ -3,7 +3,6 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
-using ElectronicObserver.Window.Dialog.EquipmentPicker;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserverTypes;
 
@@ -17,9 +16,7 @@ public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
 
 	public EquipmentUpgradePlanItemViewModel? AssignedPlan { get; set; }
 
-	public EquipmentId EquipmentMasterDataId => AssignedEquipment?.EquipmentId ?? EquipmentId.Unknown;
-
-	public List<EquipmentId>? EquipmentFilter { get; set; }
+	public EquipmentId EquipmentMasterDataId { get; private set; }
 
 	public EquipmentUpgradePlanCostViewModel Cost => new(new());
 
@@ -45,6 +42,8 @@ public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
 			true => KCDatabase.Instance.Equipments[Model.EquipmentId]!,
 			_ => null
 		};
+
+		EquipmentMasterDataId = Model.EquipmentMasterDataId;
 	}
 
 	/// <summary>
@@ -69,14 +68,14 @@ public class EquipmentAssignmentItemViewModel : IEquipmentPlanItemViewModel
 		Cost.UnsubscribeFromApis();
 	}
 
-	public List<IEquipmentPlanItemViewModel> GetUpgradePlanChildren()
+	public List<IEquipmentPlanItemViewModel> GetPlanChildren()
 	{
 		return new();
 	}
 
 	public void OpenEquipmentPicker()
 	{
-		EquipmentDataPickerViewModel viewModel = new() { Filters = { EquipmentIdsFilter = EquipmentFilter } };
+		EquipmentAssignmentPickerViewModel viewModel = new(PlanManager, EquipmentMasterDataId);
 
 		IEquipmentData? equipment = EquipmentPicker.OpenEquipmentPicker(viewModel);
 

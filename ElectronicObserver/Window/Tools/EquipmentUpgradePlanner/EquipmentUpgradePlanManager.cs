@@ -103,6 +103,9 @@ public class EquipmentUpgradePlanManager
 		DatabaseContext.SaveChanges();
 	}
 
+	public List<EquipmentAssignmentItemModel> GetAssignments(EquipmentId equipmentId)
+		=> DatabaseContext.EquipmentAssignmentItems.Where(assignment => assignment.Plan.EquipmentMasterId == (int)equipmentId).ToList();
+
 	public List<EquipmentAssignmentItemModel> GetAssignments(EquipmentUpgradePlanItemModel plan)
 		=> DatabaseContext.EquipmentAssignmentItems.Where(assignment => assignment.Plan == plan).ToList();
 
