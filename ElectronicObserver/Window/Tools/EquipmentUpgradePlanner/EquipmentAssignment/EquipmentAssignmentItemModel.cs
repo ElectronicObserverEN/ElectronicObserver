@@ -6,7 +6,7 @@ public class EquipmentAssignmentItemModel
 {
 	public int Id { get; set; }
 
-	public EquipmentUpgradePlanItemModel Plan { get; set; } = null!;
+	public required EquipmentUpgradePlanItemModel Plan { get; set; }
 
 	public EquipmentId EquipmentMasterDataId { get; set; }
 

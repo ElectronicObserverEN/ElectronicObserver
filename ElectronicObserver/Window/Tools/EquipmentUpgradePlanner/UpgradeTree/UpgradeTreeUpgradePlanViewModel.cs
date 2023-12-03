@@ -200,7 +200,8 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 				EquipmentCraftPlanItemViewModel craftPlan => craftPlan.EquipmentMasterDataId,
 				EquipmentConversionPlanItemViewModel conversion => conversion.EquipmentRequiredForUpgradePlan.FirstOrDefault()?.ShouldBeConvertedInto ?? EquipmentId.Unknown,
 				_ => throw new NotImplementedException(),
-			}
+			},
+			Plan = plan.Plan
 		});
 
 		assignmentViewModel.AssignedPlan = plan;

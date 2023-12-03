@@ -16,9 +16,15 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 {
 	public EquipmentAssignmentItemModel Model { get; }
 
-	[Required] [NotifyDataErrorInfo] [ObservableProperty] private IEquipmentData? _assignedEquipment;
+	[Required]
+	[NotifyDataErrorInfo]
+	[ObservableProperty]
+	private IEquipmentData? _assignedEquipment;
 
-	[Required] [NotifyDataErrorInfo][ObservableProperty] private EquipmentUpgradePlanItemViewModel? _assignedPlan;
+	[Required]
+	[NotifyDataErrorInfo]
+	[ObservableProperty]
+	private EquipmentUpgradePlanItemViewModel? _assignedPlan;
 
 	[MemberNotNullWhen(false, nameof(AssignedPlan))]
 	[MemberNotNullWhen(false, nameof(AssignedEquipment))]
