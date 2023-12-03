@@ -13,9 +13,7 @@ namespace ElectronicObserver.Window.Control.EquipmentFilter;
 public partial class EquipmentFilterViewModel : ObservableObject
 {
 	public List<Filter> TypeFilters { get; }
-
-	public List<EquipmentId>? EquipmentIdsFilter { get; set; }
-
+	
 	private TransliterationService TransliterationService { get; }
 
 	public string? NameFilter { get; set; } = "";
@@ -54,7 +52,6 @@ public partial class EquipmentFilterViewModel : ObservableObject
 			.Select(f => f.Value)
 			.ToList();
 
-		if (EquipmentIdsFilter is not null && !EquipmentIdsFilter.Contains(equipment.EquipmentId)) return false;
 		if (!enabledGroups.Contains(equipment.CategoryType.ToGroup())) return false;
 		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment, NameFilter)) return false;
 
