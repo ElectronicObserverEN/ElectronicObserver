@@ -51,9 +51,11 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 	public bool CanAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel && UpgradePlanHasBeenSavedInDatabase;
 	public bool CanAssignEquipmentToUpgrade => CanAssignEquipment && UpgradePlan?.EquipmentMasterDataId == Plan.EquipmentMasterDataId && !EquipmentToUpgradeHasBeenSet;
+	public bool CanAssignEquipmentToConsume => CanAssignEquipment && UpgradePlan?.Cost.RequiredEquipments.Any(eq => eq.Equipment.EquipmentId == Plan.EquipmentMasterDataId) is true;
 
 	public bool CanAddPlanAndAssignEquipment => Plan is EquipmentConversionPlanItemViewModel or EquipmentCraftPlanItemViewModel && !UpgradePlanHasBeenSavedInDatabase;
 	public bool CanAddPlanAndAssignEquipmentToUpgrade => CanAddPlanAndAssignEquipment && UpgradePlan?.EquipmentMasterDataId == Plan.EquipmentMasterDataId && !EquipmentToUpgradeHasBeenSet;
+	public bool CanAddPlanAndAssignEquipmentToConsume => CanAddPlanAndAssignEquipment && UpgradePlan?.Cost.RequiredEquipments.Any(eq => eq.Equipment.EquipmentId == Plan.EquipmentMasterDataId) is true;
 
 	private bool EquipmentToUpgradeHasBeenSet => UpgradePlan switch
 	{
