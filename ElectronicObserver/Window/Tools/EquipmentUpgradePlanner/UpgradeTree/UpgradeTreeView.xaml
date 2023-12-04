@@ -51,7 +51,7 @@
 									<MenuItem
 										Command="{Binding CreatePlanAndAssignEquipmentCommand}"
 										Header="{Binding Translations.AddPlanAndAssignEquipmentToUse}"
-										Visibility="{Binding CanAddPlanAndAssignEquipmentToUpgrade, Converter={BoolToVisibilityConverter}}"
+										Visibility="{Binding CanAddPlanAndAssignEquipmentToConsume, Converter={BoolToVisibilityConverter}}"
 										/>
 
 									<MenuItem
