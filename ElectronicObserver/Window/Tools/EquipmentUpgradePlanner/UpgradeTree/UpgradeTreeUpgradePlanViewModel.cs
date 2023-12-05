@@ -114,7 +114,7 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 			child.CleanupUnusedPlan();
 		}
 	}
-	
+
 	private void Initialize()
 	{
 		foreach (IEquipmentPlanItemViewModel planChild in Plan.GetPlanChildren())
