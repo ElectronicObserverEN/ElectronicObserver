@@ -199,21 +199,21 @@
     <value>エラー</value>
   </data>
   <data name="AlreadyOwned" xml:space="preserve">
-    <value>??? (Already owned)</value>
+    <value>すでに所有</value>
   </data>
   <data name="UnassignEquipment" xml:space="preserve">
-    <value>??? (Unassign equipment)</value>
+    <value>装備の割り当て解除</value>
   </data>
   <data name="AssignEquipmentToUpgrade" xml:space="preserve">
-    <value>??? (Assign equipment to upgrade)</value>
+    <value>改修計画を装備を割り当てる</value>
   </data>
   <data name="AssignEquipmentToUse" xml:space="preserve">
-    <value>??? (Assign equipment to consume)</value>
+    <value>消費する装備を割り当てる</value>
   </data>
   <data name="AddPlanAndAssignEquipmentToUpgrade" xml:space="preserve">
-    <value>??? (Add plan and assign equipment to upgrade)</value>
+    <value>改修計画を追加しと装備を割り当てる</value>
   </data>
   <data name="AddPlanAndAssignEquipmentToUse" xml:space="preserve">
-    <value>??? (Add plan and assign equipment to consume)</value>
+    <value>改修計画を追加しと消費する装備を割り当てる</value>
   </data>
 </root>
