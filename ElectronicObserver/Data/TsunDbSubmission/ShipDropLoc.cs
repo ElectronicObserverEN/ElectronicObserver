@@ -1,23 +1,23 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class ShipDropLoc : TsunDbEntity
 {
-	[JsonProperty("map")]
+	[JsonPropertyName("map")]
 	public string? Map { get; private set; }
 
-	[JsonProperty("node")]
+	[JsonPropertyName("node")]
 	public int Node { get; private set; }
 
-	[JsonProperty("rank")]
+	[JsonPropertyName("rank")]
 	public string? Rank { get; private set; }
 
-	[JsonProperty("difficulty")]
+	[JsonPropertyName("difficulty")]
 	public int Difficulty { get; private set; }
 
-	[JsonProperty("ship")]
+	[JsonPropertyName("ship")]
 	public int Ship { get; private set; }
 
 	protected override string Url => "droplocs";
@@ -38,9 +38,9 @@ public class ShipDropLoc : TsunDbEntity
 	{
 		KCDatabase db = KCDatabase.Instance;
 
-		this.Map = string.Format("{0}-{1}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID);
-		this.Node = db.Battle.Compass.Destination;
-		this.Rank = apidata.api_win_rank;
+		Map = $"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}";
+		Node = db.Battle.Compass.Destination;
+		Rank = apidata.api_win_rank;
 
 		MapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
 
@@ -49,7 +49,7 @@ public class ShipDropLoc : TsunDbEntity
 			throw new Exception("Drop data submission : map not found");
 		}
 
-		this.Difficulty = mapInfoData.EventDifficulty > 0 ? mapInfoData.EventDifficulty : 0;
-		this.Ship = (int)(db.Battle.Result.DroppedShipID > 0 ? db.Battle.Result.DroppedShipID : -1);
+		Difficulty = mapInfoData.EventDifficulty > 0 ? mapInfoData.EventDifficulty : 0;
+		Ship = db.Battle.Result.DroppedShipID > 0 ? db.Battle.Result.DroppedShipID : -1;
 	}
 }

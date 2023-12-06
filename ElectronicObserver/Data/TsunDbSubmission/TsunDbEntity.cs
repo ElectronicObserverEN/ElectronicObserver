@@ -2,23 +2,24 @@
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ElectronicObserver.Utility;
-using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public abstract class TsunDbEntity
 {
-	[JsonIgnore]
 	/// <summary>
 	/// Is initialized ? 
 	/// </summary>
+	[JsonIgnore]
 	public bool IsInitialized { get; set; } = true;
 
 	protected abstract string Url { get; }
 
-	protected virtual bool IsBetaAPI { get; } = false;
+	protected virtual bool IsBetaAPI => false;
 
 	public void SendData()
 	{
@@ -35,8 +36,8 @@ public abstract class TsunDbEntity
 		{
 			try
 			{
-				var result = await this.HttpSendData();
-				string response = result.Content.ReadAsStringAsync().Result;
+				HttpResponseMessage result = await HttpSendData();
+				string response = await result.Content.ReadAsStringAsync();
 
 				if (!result.IsSuccessStatusCode)
 				{
@@ -45,7 +46,7 @@ public abstract class TsunDbEntity
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
+				ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
 			}
 		});
 
@@ -54,38 +55,42 @@ public abstract class TsunDbEntity
 
 	private async Task<HttpResponseMessage> HttpSendData()
 	{
-		using (var httpClient = new HttpClient())
+		using var httpClient = new HttpClient();
+		string contentSerialized = MakeJson();
+		StringContent content = new StringContent(contentSerialized);
+
+		content.Headers.Add("tsun-ver", "Kasumi Kai");
+		content.Headers.Add("dataorigin", "eo");
+		content.Headers.Add("version", SoftwareInformation.VersionEnglish);
+		content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+		if (Configuration.Config.Debug.EnableDebugMenu)
 		{
-			string contentSerialized = MakeJson();
-			StringContent content = new StringContent(contentSerialized);
-
-			content.Headers.Add("tsun-ver", "Kasumi Kai");
-			content.Headers.Add("dataorigin", "eo");
-			content.Headers.Add("version", SoftwareInformation.VersionEnglish);
-			content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-			if (Configuration.Config.Debug.EnableDebugMenu) WriteJson(contentSerialized);
-
-			return await httpClient.PutAsync($"https://tsundb.kc3.moe/api/{this.Url}", content);
+			WriteJson(contentSerialized);
 		}
+
+		return await httpClient.PutAsync($"https://tsundb.kc3.moe/api/{this.Url}", content);
 	}
 
 	private string MakeJson()
 	{
-		JsonSerializerSettings jsonSerializer = new JsonSerializerSettings()
+		JsonSerializerOptions jsonSerializer = new()
 		{
-			CheckAdditionalContent = true,
-			NullValueHandling = NullValueHandling.Ignore
+			UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
 		};
 
-		return JsonConvert.SerializeObject(this, jsonSerializer);
+		return JsonSerializer.Serialize(this, jsonSerializer);
 	}
 
 	private void WriteJson(string contentSerialized)
 	{
-		if (!Directory.Exists("TsunDb")) Directory.CreateDirectory("TsunDb");
+		if (!Directory.Exists("TsunDb"))
+		{
+			Directory.CreateDirectory("TsunDb");
+		}
 
-		string path = Path.Combine("TsunDb", $"tsundb_{this.Url}.json");
+		string path = Path.Combine("TsunDb", $"tsundb_{Url}.json");
 
 		File.WriteAllText(path, contentSerialized);
 	}

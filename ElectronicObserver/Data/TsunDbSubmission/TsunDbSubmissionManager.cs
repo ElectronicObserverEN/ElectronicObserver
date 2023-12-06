@@ -9,7 +9,7 @@ namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbSubmissionManager : ResponseWrapper
 {
-	private TsunDbRouting RoutingSubmission = new TsunDbRouting();
+	private TsunDbRouting _routingSubmission = new();
 
 	/// <summary>
 	/// When start API is called, the amount of nodes of the map is stored here (didn't find elsewhere to store it w)
@@ -25,7 +25,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	{
 		// if tsundb disabled => disable initialization of RoutingSubmission 
 		// Cause if you reenable it it will send wrong start data
-		RoutingSubmission.IsInitialized = false;
+		_routingSubmission.IsInitialized = false;
 	}
 
 	/// <summary>
@@ -57,28 +57,28 @@ public class TsunDbSubmissionManager : ResponseWrapper
 					object[] cell_data = data["api_cell_data"];
 					CurrentMapAmountOfNodes = cell_data.Length;
 
-					RoutingSubmission = jData.IsDefined("api_eventmap") ? new TsunDbEventRouting() : new TsunDbRouting();
+					_routingSubmission = jData.IsDefined("api_eventmap") ? new TsunDbEventRouting() : new TsunDbRouting();
 
-					RoutingSubmission.ProcessStart(data);
+					_routingSubmission.ProcessStart(data);
 
-					if (RoutingSubmission is TsunDbEventRouting routing)
+					if (_routingSubmission is TsunDbEventRouting routing)
 					{
 						routing.ProcessEvent(data);
 					}
 
-					RoutingSubmission.SendData();
+					_routingSubmission.SendData();
 					break;
 				}
 				case "api_req_map/next":
 				{
-					RoutingSubmission.ProcessNext(data);
+					_routingSubmission.ProcessNext(data);
 
-					if (RoutingSubmission is TsunDbEventRouting routing)
+					if (_routingSubmission is TsunDbEventRouting routing)
 					{
 						routing.ProcessEvent(data);
 					}
 
-					RoutingSubmission.SendData();
+					_routingSubmission.SendData();
 					break;
 				}
 				case "api_req_sortie/battle":
