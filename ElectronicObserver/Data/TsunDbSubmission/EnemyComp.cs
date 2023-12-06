@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Data.Battle.Phase;
-using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
@@ -9,64 +9,59 @@ public class EnemyComp : TsunDbEntity
 {
 	protected override string Url => "";
 
-	[JsonProperty("ship")]
-	public List<int> Ship { get; private set; } = new List<int>();
+	[JsonPropertyName("ship")]
+	public List<int> Ship { get; private set; } = new();
 
-	[JsonProperty("lvl")]
-	public List<int> Lvl { get; private set; } = new List<int>();
+	[JsonPropertyName("lvl")]
+	public List<int> Lvl { get; private set; } = new();
 
-	[JsonProperty("hp")]
-	public List<int> HP { get; private set; } = new List<int>();
+	[JsonPropertyName("hp")]
+	public List<int> HP { get; private set; } = new();
 
-	[JsonProperty("stats")]
-	public List<int[]> Stats { get; private set; } = new List<int[]>();
+	[JsonPropertyName("stats")]
+	public List<int[]> Stats { get; private set; } = new();
 
-	[JsonProperty("equip")]
-	public List<int[]> Equips { get; private set; } = new List<int[]>();
+	[JsonPropertyName("equip")]
+	public List<int[]> Equips { get; private set; } = new();
 
-	[JsonProperty("formation")]
+	[JsonPropertyName("formation")]
 	public int Formation { get; private set; }
 
-	[JsonProperty("isAirRaid")]
+	[JsonPropertyName("isAirRaid")]
 	public bool IsAirRaid { get; private set; }
 
 
-	[JsonProperty("gaugeNum")]
+	[JsonPropertyName("gaugeNum")]
 	public int GaugeNum { get; private set; }
 
-	[JsonProperty("currentHP")]
+	[JsonPropertyName("currentHP")]
 	public int CurrentHP { get; private set; }
 
-	[JsonProperty("maxHP")]
+	[JsonPropertyName("maxHP")]
 	public int MaxHP { get; private set; }
 
 
-	[JsonProperty("shipEscort")]
+	[JsonPropertyName("shipEscort")]
 	public List<int>? ShipEscort { get; private set; }
 
-	[JsonProperty("lvlEscort")]
+	[JsonPropertyName("lvlEscort")]
 	public List<int>? LvlEscort { get; private set; }
 
-	[JsonProperty("hpEscort")]
+	[JsonPropertyName("hpEscort")]
 	public List<int>? HPEscort { get; private set; }
 
-	[JsonProperty("statsEscort")]
+	[JsonPropertyName("statsEscort")]
 	public List<int[]>? StatsEscort { get; private set; }
 
-	[JsonProperty("equipEscort")]
+	[JsonPropertyName("equipEscort")]
 	public List<int[]>? EquipsEscort { get; private set; }
-
-	public EnemyComp()
-	{
-
-	}
-
+	
 	public void PrepareEnemyCompFromCurrentState()
 	{
 		KCDatabase db = KCDatabase.Instance;
 		PhaseInitial initial = db.Battle.FirstBattle.Initial;
 
-		int shipCount = initial.EnemyMembers.Count((id) => { return id != -1; });
+		int shipCount = initial.EnemyMembers.Count((id) => id != -1);
 
 		Ship = initial.EnemyMembers.Take(shipCount).ToList();
 		Lvl = initial.EnemyLevels.Take(shipCount).ToList();
@@ -88,11 +83,11 @@ public class EnemyComp : TsunDbEntity
 		// --- If enemy fleet is combined
 		if (initial.IsEnemyCombined)
 		{
-			shipCount = initial.EnemyMembersEscort.Count((id) => { return id != -1; });
+			shipCount = initial.EnemyMembersEscort?.Count((id) => id != -1) ?? 0;
 
-			ShipEscort = initial.EnemyMembersEscort.Take(shipCount).ToList();
-			LvlEscort = initial.EnemyLevelsEscort.Take(shipCount).ToList();
-			HPEscort = initial.EnemyMaxHPsEscort.Take(shipCount).ToList();
+			ShipEscort = initial.EnemyMembersEscort?.Take(shipCount).ToList();
+			LvlEscort = initial.EnemyLevelsEscort?.Take(shipCount).ToList();
+			HPEscort = initial.EnemyMaxHPsEscort?.Take(shipCount).ToList();
 			StatsEscort = initial.EnemyParametersEscort.Take(shipCount).ToList();
 			EquipsEscort = initial.EnemySlotsEscort.Take(shipCount).ToList();
 		}

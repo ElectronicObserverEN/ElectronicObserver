@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
@@ -13,42 +14,42 @@ public class TsunDbBattleLBASData : TsunDbEntity
 	/// <summary>
 	/// Array of mst id of each plane in the base
 	/// </summary>
-	[JsonProperty("planes")]
-	public List<int> PlaneIds { get; private set; }
+	[JsonPropertyName("planes")]
+	public List<int> PlaneIds { get; }
 
 	/// <summary>
 	/// Array of plane count of each plane in the base
 	/// </summary>
-	[JsonProperty("slots")]
-	public List<int> PlaneCounts { get; private set; }
+	[JsonPropertyName("slots")]
+	public List<int> PlaneCounts { get; }
 
 	/// <summary>
 	/// Array of plane proficiencies for each plane in the base
 	/// </summary>
-	[JsonProperty("proficiency")]
-	public List<int> PlaneProfiencies { get; private set; }
+	[JsonPropertyName("proficiency")]
+	public List<int> PlaneProfiencies { get; }
 
 	/// <summary>
 	/// Array of plane improvements for each plane in the base, -1 if none
 	/// </summary>
-	[JsonProperty("improvements")]
-	public List<int> PlaneImprovements { get; private set; }
+	[JsonPropertyName("improvements")]
+	public List<int> PlaneImprovements { get; }
 
 	/// <summary>
 	/// Array of plane morale for each plane in the base pre-sortie
 	/// </summary>
-	[JsonProperty("morale")]
-	public List<int> PlaneMorale { get; private set; }
+	[JsonPropertyName("morale")]
+	public List<int> PlaneMorale { get; }
 
 	/// <summary>
 	/// Array of int[2] of edges targeted by the land base
 	/// </summary>
-	[JsonProperty("strikepoints")]
-	public List<int> StrikePoints { get; private set; }
+	[JsonPropertyName("strikepoints")]
+	public List<int> StrikePoints { get; }
 
 	protected override string Url => throw new NotImplementedException();
 
-	public TsunDbBattleLBASData(BaseAirCorpsData airCorp)
+	public TsunDbBattleLBASData(IBaseAirCorpsData airCorp)
 	{
 		PlaneIds = airCorp.Squadrons.Values.Select(squadron => squadron.EquipmentID).ToList();
 		PlaneCounts = airCorp.Squadrons.Values.Select(squadron => squadron.AircraftCurrent).ToList();

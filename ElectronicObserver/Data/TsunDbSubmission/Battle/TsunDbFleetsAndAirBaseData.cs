@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
@@ -16,32 +17,32 @@ public class TsunDbFleetsAndAirBaseData : TsunDbEntity
 	/// <summary>
 	/// Fleet 1 data (first sortied fleet)
 	/// </summary>
-	[JsonProperty("fleet1")]
-	public List<TsunDbBattleShipData> Fleet1 { get; private set; }
+	[JsonPropertyName("fleet1")]
+	public List<TsunDbBattleShipData> Fleet1 { get; }
 
 	/// <summary>
 	/// Follows fleet1 or null if not in combined fleet
 	/// </summary>
-	[JsonProperty("fleet2")]
-	public List<TsunDbBattleShipData>? Fleet2 { get; private set; }
+	[JsonPropertyName("fleet2")]
+	public List<TsunDbBattleShipData>? Fleet2 { get; }
 
 	/// <summary>
 	/// Node/boss support fleet, null if no such fleet assigned
 	/// </summary>
-	[JsonProperty("support")]
-	public List<TsunDbBattleShipData>? SupportFleet { get; private set; }
+	[JsonPropertyName("support")]
+	public List<TsunDbBattleShipData>? SupportFleet { get; }
 
 	/// <summary>
 	/// Array of JSON containing land base information
 	/// </summary>
-	[JsonProperty("lbas")]
-	public List<TsunDbBattleLBASData> AirCorps { get; private set; }
+	[JsonPropertyName("lbas")]
+	public List<TsunDbBattleLBASData> AirCorps { get; }
 
 	/// <summary>
 	/// Combined fleet type, corresponds to api_combined_flag
 	/// </summary>
-	[JsonProperty("fleettype")]
-	public int FleetType { get; private set; }
+	[JsonPropertyName("fleettype")]
+	public int FleetType { get; }
 	#endregion
 
 	#region Constructor
@@ -84,14 +85,14 @@ public class TsunDbFleetsAndAirBaseData : TsunDbEntity
 	#endregion
 
 	#region Private methods
-
 	/// <summary>
 	/// Prepare a fleet and returns it
 	/// </summary>
 	/// <param name="fleetData"></param>
 	/// <returns></returns>
-	private List<TsunDbBattleShipData> PrepareFleet(FleetData fleetData) => fleetData.MembersInstance
+	private List<TsunDbBattleShipData> PrepareFleet(IFleetData fleetData) => fleetData.MembersInstance
 		.Where(s => s != null)
+		.Cast<IShipData>()
 		.Select(ship => new TsunDbBattleShipData(ship, fleetData))
 		.ToList();
 	#endregion

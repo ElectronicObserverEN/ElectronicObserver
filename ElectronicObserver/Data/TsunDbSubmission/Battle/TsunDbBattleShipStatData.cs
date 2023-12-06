@@ -1,70 +1,58 @@
-﻿using ElectronicObserverTypes;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
 /// <summary>
 /// Contains information about the ship
 /// </summary>
-public class TsunDbBattleShipStatData
+public class TsunDbBattleShipStatData(IShipData ship)
 {
 	/// <summary>
 	/// Ship visible firepower
 	/// </summary>
-	[JsonProperty("fp")]
-	public int Firepower { get; private set; }
+	[JsonPropertyName("fp")]
+	public int Firepower => ship.FirepowerTotal;
 
 	/// <summary>
 	/// Ship visible torpedo power
 	/// </summary>
-	[JsonProperty("tp")]
-	public int Torpedo { get; private set; }
+	[JsonPropertyName("tp")]
+	public int Torpedo => ship.TorpedoTotal;
 
 	/// <summary>
 	/// Ship visible anti-air
 	/// </summary>
-	[JsonProperty("aa")]
-	public int AntiAir { get; private set; }
+	[JsonPropertyName("aa")]
+	public int AntiAir => ship.AATotal;
 
 	/// <summary>
 	/// Ship visible armor
 	/// </summary>
-	[JsonProperty("ar")]
-	public int Armor { get; private set; }
+	[JsonPropertyName("ar")]
+	public int Armor => ship.ArmorTotal;
 
 	/// <summary>
 	/// Ship visible evasion
 	/// </summary>
-	[JsonProperty("ev")]
-	public int Evasion { get; private set; }
+	[JsonPropertyName("ev")]
+	public int Evasion => ship.EvasionTotal;
 
 	/// <summary>
 	/// Ship visible Anti-Submarine
 	/// </summary>
-	[JsonProperty("as")]
-	public int ASW { get; private set; }
+	[JsonPropertyName("as")]
+	public int ASW => ship.ASWTotal;
 
 	/// <summary>
 	/// Ship visible line-of-sight
 	/// </summary>
-	[JsonProperty("ls")]
-	public int LOS { get; private set; }
+	[JsonPropertyName("ls")]
+	public int LOS => ship.LOSTotal;
 
 	/// <summary>
 	/// Ship visible luck
 	/// </summary>
-	[JsonProperty("lk")]
-	public int Luck { get; private set; }
-
-	public TsunDbBattleShipStatData(IShipData ship)
-	{
-		Firepower = ship.FirepowerTotal;
-		Torpedo = ship.TorpedoTotal;
-		AntiAir = ship.AATotal;
-		Armor = ship.ArmorTotal;
-		Evasion = ship.EvasionTotal;
-		ASW = ship.ASWTotal;
-		LOS = ship.LOSTotal;
-		Luck = ship.LuckTotal;
-	}
+	[JsonPropertyName("lk")]
+	public int Luck => ship.LuckTotal;
 }
