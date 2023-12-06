@@ -3,7 +3,7 @@ using System.Linq;
 using ElectronicObserver.Data.Battle.Phase;
 using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class EnemyComp : TsunDbEntity
 {
@@ -97,6 +97,6 @@ public class EnemyComp : TsunDbEntity
 			EquipsEscort = initial.EnemySlotsEscort.Take(shipCount).ToList();
 		}
 
-		IsAirRaid = db.Battle.BattleMode == Battle.BattleManager.BattleModes.AirRaid;
+		IsAirRaid = db.Battle.BattleMode == Data.Battle.BattleManager.BattleModes.AirRaid;
 	}
 }

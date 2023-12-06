@@ -5,7 +5,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbRouting : TsunDbEntity
 {

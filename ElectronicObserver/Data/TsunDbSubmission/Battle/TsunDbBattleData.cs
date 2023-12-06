@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
 public class TsunDbBattleData : TsunDbEntity
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ElectronicObserver.Utility;
 using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public abstract class TsunDbEntity
 {

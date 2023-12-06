@@ -1,7 +1,7 @@
 ﻿using ElectronicObserverTypes;
 using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
 /// <summary>
 /// Contains information about the ship
