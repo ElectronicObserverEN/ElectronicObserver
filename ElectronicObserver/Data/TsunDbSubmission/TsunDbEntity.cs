@@ -21,8 +21,7 @@ public abstract class TsunDbEntity
 
 	protected virtual bool IsBetaAPI => false;
 
-
-	private static readonly JsonSerializerOptions JsonSerializer = new()
+	private static JsonSerializerOptions JsonSerializer { get; } = new()
 	{
 		UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
 		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
