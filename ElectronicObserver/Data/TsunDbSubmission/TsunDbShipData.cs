@@ -52,16 +52,16 @@ public class TsunDbShipData : TsunDbEntity
 		Type = (int)ship.MasterShip.ShipType;
 		Speed = ship.Speed;
 
-		// --- Equips
-		Equip = ship.SlotInstanceMaster.Select(eq => eq != null ? eq.EquipmentID : -1).ToArray();
+		// Equips
+		Equip = ship.SlotInstanceMaster.Select(eq => eq?.EquipmentID ?? -1).ToArray();
 
-		// --- Stars
-		Stars = ship.SlotInstance.Select(eq => eq != null ? eq.Level : -1).ToArray();
+		// Stars
+		Stars = ship.SlotInstance.Select(eq => eq?.Level ?? -1).ToArray();
 
-		// --- Ace
-		Ace = ship.SlotInstance.Select(eq => eq != null ? eq.AircraftLevel : -1).ToArray();
+		// Ace
+		Ace = ship.SlotInstance.Select(eq => eq?.AircraftLevel ?? -1).ToArray();
 
-		// --- Expension slot
+		// Expension slot
 		Exslot = ship is { IsExpansionSlotAvailable: true, ExpansionSlotInstanceMaster: not null } ? ship.ExpansionSlotInstanceMaster.EquipmentID : -1;
 	}
 	#endregion
