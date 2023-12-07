@@ -9,7 +9,7 @@ namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbSubmissionManager : ResponseWrapper
 {
-	private TsunDbRouting _routingSubmission = new();
+	private TsunDbRouting RoutingSubmission { get; set; } = new();
 
 	/// <summary>
 	/// When start API is called, the amount of nodes of the map is stored here (didn't find elsewhere to store it w)
@@ -25,7 +25,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	{
 		// if tsundb disabled => disable initialization of RoutingSubmission 
 		// Cause if you reenable it it will send wrong start data
-		_routingSubmission.IsInitialized = false;
+		RoutingSubmission.IsInitialized = false;
 	}
 
 	/// <summary>
@@ -54,31 +54,31 @@ public class TsunDbSubmissionManager : ResponseWrapper
 					break;
 				case "api_req_map/start":
 				{
-					object[] cell_data = data["api_cell_data"];
-					CurrentMapAmountOfNodes = cell_data.Length;
+					object[] cellData = data["api_cell_data"];
+					CurrentMapAmountOfNodes = cellData.Length;
 
-					_routingSubmission = jData.IsDefined("api_eventmap") ? new TsunDbEventRouting() : new TsunDbRouting();
+					RoutingSubmission = jData.IsDefined("api_eventmap") ? new TsunDbEventRouting() : new TsunDbRouting();
 
-					_routingSubmission.ProcessStart(data);
+					RoutingSubmission.ProcessStart(data);
 
-					if (_routingSubmission is TsunDbEventRouting routing)
+					if (RoutingSubmission is TsunDbEventRouting routing)
 					{
 						routing.ProcessEvent(data);
 					}
 
-					_routingSubmission.SendData();
+					RoutingSubmission.SendData();
 					break;
 				}
 				case "api_req_map/next":
 				{
-					_routingSubmission.ProcessNext(data);
+					RoutingSubmission.ProcessNext(data);
 
-					if (_routingSubmission is TsunDbEventRouting routing)
+					if (RoutingSubmission is TsunDbEventRouting routing)
 					{
 						routing.ProcessEvent(data);
 					}
 
-					_routingSubmission.SendData();
+					RoutingSubmission.SendData();
 					break;
 				}
 				case "api_req_sortie/battle":
@@ -114,7 +114,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
+			ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
 		}
 	}
 }

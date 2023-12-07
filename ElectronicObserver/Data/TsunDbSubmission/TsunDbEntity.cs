@@ -21,6 +21,13 @@ public abstract class TsunDbEntity
 
 	protected virtual bool IsBetaAPI => false;
 
+
+	private static readonly JsonSerializerOptions JsonSerializer = new()
+	{
+		UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+	};
+
 	public void SendData()
 	{
 		if (!IsInitialized) return;
@@ -74,13 +81,7 @@ public abstract class TsunDbEntity
 
 	private string MakeJson()
 	{
-		JsonSerializerOptions jsonSerializer = new()
-		{
-			UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-		};
-
-		return JsonSerializer.Serialize(this, jsonSerializer);
+		return System.Text.Json.JsonSerializer.Serialize(this, JsonSerializer);
 	}
 
 	private void WriteJson(string contentSerialized)
