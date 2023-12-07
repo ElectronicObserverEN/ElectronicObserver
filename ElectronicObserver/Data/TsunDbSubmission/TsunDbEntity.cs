@@ -86,10 +86,7 @@ public abstract class TsunDbEntity
 
 	private void WriteJson(string contentSerialized)
 	{
-		if (!Directory.Exists("TsunDb"))
-		{
-			Directory.CreateDirectory("TsunDb");
-		}
+		Directory.CreateDirectory("TsunDb");
 
 		string path = Path.Combine("TsunDb", $"tsundb_{Url}.json");
 

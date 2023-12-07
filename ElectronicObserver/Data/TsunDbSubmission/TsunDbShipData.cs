@@ -62,7 +62,7 @@ public class TsunDbShipData : TsunDbEntity
 		Ace = ship.SlotInstance.Select(eq => eq?.AircraftLevel ?? -1).ToArray();
 
 		// Expension slot
-		Exslot = ship is { IsExpansionSlotAvailable: true, ExpansionSlotInstanceMaster: not null } ? ship.ExpansionSlotInstanceMaster.EquipmentID : -1;
+		Exslot = ship.ExpansionSlotInstanceMaster?.EquipmentID ?? -1;
 	}
 	#endregion
 }
