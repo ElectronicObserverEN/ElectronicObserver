@@ -90,13 +90,9 @@ public class ShipDrop : TsunDbEntity
 		{
 			int baseId = ship.MasterShip.BaseShip().ShipID;
 
-			if (Counts.ContainsKey(baseId))
+			if (!Counts.TryAdd(baseId, 1))
 			{
 				Counts[baseId] += 1;
-			}
-			else
-			{
-				Counts.Add(baseId, 1);
 			}
 		}
 	}
