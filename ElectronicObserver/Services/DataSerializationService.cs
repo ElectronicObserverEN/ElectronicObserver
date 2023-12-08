@@ -206,9 +206,18 @@ public class DataSerializationService
 			Luck = s.LuckTotal,
 			Speed = s.Speed,
 			Range = s.Range,
+			SpecialEffectItems = s.SpecialEffectItems
+				.Select(i => new DeckBuilderSpecialEffectItem
+				{
+					SpEffectItemKind = i.ApiKind,
+					Firepower = i.Firepower,
+					Torpedo = i.Torpedo,
+					Armor = i.Armor,
+					Evasion = i.Evasion,
+				}).ToList(),
 		},
 
-		_ => null
+		_ => null,
 	};
 
 	private static DeckBuilderEquipment? MakeDeckBuilderEquipment

@@ -88,6 +88,16 @@ public static class Extensions
 		ship.Speed = deckBuilderShip.Speed;
 		ship.Range = deckBuilderShip.Range;
 
+		ship.SpecialEffectItems = deckBuilderShip.SpecialEffectItems
+			.Select(i => new SpecialEffectItem
+			{
+				ApiKind = i.SpEffectItemKind,
+				Firepower = i.Firepower,
+				Torpedo = i.Torpedo,
+				Armor = i.Armor,
+				Evasion = i.Evasion,
+			}).ToList();
+
 		return ship;
 	}
 

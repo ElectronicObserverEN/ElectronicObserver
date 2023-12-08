@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserverTypes.Serialization.DeckBuilder;
 
@@ -19,4 +20,5 @@ public class DeckBuilderShip
 	[JsonPropertyName("luck")] public int Luck { get; set; }
 	[JsonPropertyName("sp")] public int Speed { get; set; }
 	[JsonPropertyName("ra")] public int Range { get; set; }
+	[JsonPropertyName("sp")] public required List<DeckBuilderSpecialEffectItem> SpecialEffectItems { get; set; }
 }
