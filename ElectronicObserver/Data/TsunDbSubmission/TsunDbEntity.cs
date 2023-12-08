@@ -81,6 +81,7 @@ public abstract class TsunDbEntity
 
 	private string MakeJson()
 	{
+		// the cast to object is needed to serialize an abstract class
 		return JsonSerializer.Serialize((object)this, JsonSerializerOptions);
 	}
 
