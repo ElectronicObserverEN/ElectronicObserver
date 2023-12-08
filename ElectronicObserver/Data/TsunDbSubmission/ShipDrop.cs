@@ -1,37 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class ShipDrop : TsunDbEntity
 {
-	[JsonProperty("map")]
+	[JsonPropertyName("map")]
 	public string? Map { get; private set; }
 
-	[JsonProperty("node")]
+	[JsonPropertyName("node")]
 	public int Node { get; private set; }
 
-	[JsonProperty("rank")]
+	[JsonPropertyName("rank")]
 	public string? Rank { get; private set; }
 
-	[JsonProperty("cleared")]
+	[JsonPropertyName("cleared")]
 	public int Cleared { get; private set; }
 
-	[JsonProperty("enemyComp")]
+	[JsonPropertyName("enemyComp")]
 	public EnemyCompShipDrop? EnemyComp { get; private set; }
 
-	[JsonProperty("hqLvl")]
+	[JsonPropertyName("hqLvl")]
 	public int HqLvl { get; private set; }
 
-	[JsonProperty("difficulty")]
+	[JsonPropertyName("difficulty")]
 	public int Difficulty { get; private set; }
 
-	[JsonProperty("ship")]
+	[JsonPropertyName("ship")]
 	public int Ship { get; private set; }
 
-	[JsonProperty("counts")]
-	public Dictionary<int, int> Counts { get; private set; }
+	[JsonPropertyName("counts")]
+	public Dictionary<int, int> Counts { get; } = new();
 
 	protected override string Url => "drops";
 
@@ -41,8 +41,6 @@ public class ShipDrop : TsunDbEntity
 	/// <param name="apidata"></param>
 	public ShipDrop(dynamic apidata)
 	{
-		this.Counts = new Dictionary<int, int>();
-
 		PrepareShipCountDictionary();
 		PrepareDropData(apidata);
 	}
@@ -54,9 +52,9 @@ public class ShipDrop : TsunDbEntity
 	{
 		KCDatabase db = KCDatabase.Instance;
 
-		this.Map = string.Format("{0}-{1}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID);
-		this.Node = db.Battle.Compass.Destination;
-		this.Rank = apidata.api_win_rank;
+		Map = $"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}";
+		Node = db.Battle.Compass.Destination;
+		Rank = apidata.api_win_rank;
 
 		MapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
 
@@ -65,11 +63,11 @@ public class ShipDrop : TsunDbEntity
 			throw new Exception("Drop data submission : map not found");
 		}
 
-		this.Cleared = mapInfoData.IsCleared ? 1 : 0;
+		Cleared = mapInfoData.IsCleared ? 1 : 0;
 
-		this.HqLvl = db.Admiral.Level;
-		this.Difficulty = mapInfoData.EventDifficulty > 0 ? mapInfoData.EventDifficulty : 0;
-		this.Ship = (int)(db.Battle.Result.DroppedShipID > 0 ? db.Battle.Result.DroppedShipID : -1);
+		HqLvl = db.Admiral.Level;
+		Difficulty = mapInfoData.EventDifficulty > 0 ? mapInfoData.EventDifficulty : 0;
+		Ship = db.Battle.Result.DroppedShipID > 0 ? db.Battle.Result.DroppedShipID : -1;
 
 		PrepareEnemyCompData(apidata);
 	}
@@ -92,29 +90,10 @@ public class ShipDrop : TsunDbEntity
 		{
 			int baseId = ship.MasterShip.BaseShip().ShipID;
 
-			if (this.Counts.ContainsKey(baseId))
-				this.Counts[baseId] += 1;
-			else
-				this.Counts.Add(baseId, 1);
+			if (!Counts.TryAdd(baseId, 1))
+			{
+				Counts[baseId] += 1;
+			}
 		}
-	}
-}
-
-public class EnemyCompShipDrop : EnemyComp
-{
-	[JsonProperty("mapName")]
-	public string mapName;
-
-	[JsonProperty("compName")]
-	public string compName;
-
-	[JsonProperty("baseExp")]
-	public int baseExp;
-
-	public EnemyCompShipDrop(dynamic apidata)
-	{
-		this.mapName = apidata.api_quest_name;
-		this.compName = apidata.api_enemy_info.api_deck_name;
-		this.baseExp = (int)apidata.api_get_base_exp;
 	}
 }

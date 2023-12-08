@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using ElectronicObserverTypes;
-using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
 /// <summary>
 /// Contains information about the ship
@@ -13,70 +13,70 @@ public class TsunDbBattleShipData
 	/// <summary>
 	/// Ship mst id
 	/// </summary>
-	[JsonProperty("id")]
-	public int Id { get; private set; }
+	[JsonPropertyName("id")]
+	public int Id { get; }
 
 	/// <summary>
 	/// Ship level
 	/// </summary>
-	[JsonProperty("lvl")]
-	public int Level { get; private set; }
+	[JsonPropertyName("lvl")]
+	public int Level { get; }
 
 	/// <summary>
 	/// Ship morale pre-battle
 	/// </summary>
-	[JsonProperty("morale")]
-	public int Morale { get; private set; }
+	[JsonPropertyName("morale")]
+	public int Morale { get; }
 
 	/// <summary>
 	/// Ship stats
 	/// </summary>
-	[JsonProperty("stats")]
-	public TsunDbBattleShipStatData ShipStats { get; private set; }
+	[JsonPropertyName("stats")]
+	public TsunDbBattleShipStatData ShipStats { get; }
 
 	/// <summary>
 	/// Array of mst ids of ship equipment, -1 if slot is empty, extra slot is included
 	/// </summary>
-	[JsonProperty("equips")]
-	public List<int> EquipIds { get; private set; }
+	[JsonPropertyName("equips")]
+	public List<int> EquipIds { get; }
 
 	/// <summary>
 	/// Array of improvement level of ship equipment, -1 if slot is empty, extra slot is included
 	/// </summary>
-	[JsonProperty("improvements")]
-	public List<int> EquipImprovements { get; private set; }
+	[JsonPropertyName("improvements")]
+	public List<int> EquipImprovements { get; }
 
 	/// <summary>
 	/// Array of proficiency level of ship equipment, -1 if slot is empty, extra slot is included
 	/// </summary>
-	[JsonProperty("proficiency")]
-	public List<int> EquipProfiency { get; private set; }
+	[JsonPropertyName("proficiency")]
+	public List<int> EquipProfiency { get; }
 
 	/// <summary>
 	/// Array of plane slot count, corresponds to api_slotnum
 	/// </summary>
-	[JsonProperty("slots")]
-	public IList<int> PlaneSlots { get; private set; }
+	[JsonPropertyName("slots")]
+	public IList<int> PlaneSlots { get; }
 
 	/// <summary>
 	/// Boolean to check if ship has been retreated by FCF
 	/// </summary>
-	[JsonProperty("flee")]
-	public bool Flee { get; private set; }
+	[JsonPropertyName("flee")]
+	public bool Flee { get; }
 
 	/// <summary>
 	/// Fuel of the ship pre-battle
 	/// </summary>
-	[JsonProperty("fuel")]
-	public int Fuel { get; private set; }
+	[JsonPropertyName("fuel")]
+	public int Fuel { get; }
 
 	/// <summary>
 	/// Ammo of the ship pre-battle
 	/// </summary>
-	[JsonProperty("ammo")]
-	public int Ammo { get; private set; }
+	[JsonPropertyName("ammo")]
+	public int Ammo { get; }
 
-	public TsunDbBattleShipData(IShipData ship, FleetData fleetData)
+	public TsunDbBattleShipData(IShipData ship, IFleetData fleetData)
 	{
 		Id = ship.ShipID;
 		Level = ship.Level;

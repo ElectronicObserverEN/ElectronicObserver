@@ -166,10 +166,12 @@ public static class EquipmentFitBonus
 		if (fitBonusData.ShipMasterIds != null && !fitBonusData.ShipMasterIds.Contains(shipMaster.ShipId)) return 0;
 		if (fitBonusData.ShipIds != null && !fitBonusData.ShipIds.Contains(shipMaster.BaseShip().ShipId)) return 0;
 		if (fitBonusData.ShipTypes != null && !fitBonusData.ShipTypes.Contains(shipMaster.ShipType)) return 0;
+		if (fitBonusData.ShipNationalities != null && !fitBonusData.ShipNationalities.Contains(shipMaster.Nationality())) return 0;
 
 		if (fitBonusData.EquipmentRequired != null)
 		{
-			int count = equipments.Count(eq => fitBonusData.EquipmentRequired.Contains(eq.EquipmentId));
+			int count = GetRequiredEquipmentsFittingRequirements(fitBonusData, equipments).Count;
+
 			if ((fitBonusData.NumberOfEquipmentsRequired ?? 1) > count) return 0;
 		}
 
@@ -179,15 +181,46 @@ public static class EquipmentFitBonus
 			if ((fitBonusData.NumberOfEquipmentTypesRequired ?? 1) > count) return 0;
 		}
 
-		List<IEquipmentData> equipmentsThatMatches = new();
-
-		if (fitPerEquip.EquipmentIds != null) equipmentsThatMatches.AddRange(equipments.Where(eq => fitPerEquip.EquipmentIds.Contains(eq.EquipmentId)));
-		if (fitPerEquip.EquipmentTypes != null) equipmentsThatMatches.AddRange(equipments.Where(eq => fitPerEquip.EquipmentTypes.Contains(eq.MasterEquipment.CategoryType)));
-		if (fitBonusData.EquipmentLevel != null) equipmentsThatMatches = equipmentsThatMatches.Where(eq => eq.Level >= fitBonusData.EquipmentLevel).ToList();
+		List<IEquipmentData> equipmentsThatMatches = GetEquipmentsFittingRequirements(fitPerEquip, fitBonusData, equipments);
 
 		if (fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters != null && fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters > equipmentsThatMatches.Count) return 0;
 
 		if (fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters != null || fitBonusData.EquipmentRequired != null || fitBonusData.EquipmentTypesRequired != null) return 1;
+
 		return equipmentsThatMatches.Count;
+	}
+
+	private static List<IEquipmentData> GetEquipmentsFittingRequirements(FitBonusPerEquipment fitPerEquip, FitBonusData fitBonusData,
+		IList<IEquipmentData> equipments)
+	{
+		List<IEquipmentData> equipmentsThatMatches = new();
+
+		if (fitPerEquip.EquipmentIds != null)
+		{
+			equipmentsThatMatches.AddRange(equipments.Where(eq => fitPerEquip.EquipmentIds.Contains(eq.EquipmentId)));
+		}
+
+		if (fitPerEquip.EquipmentTypes != null)
+		{
+			equipmentsThatMatches.AddRange(equipments.Where(eq =>
+				fitPerEquip.EquipmentTypes.Contains(eq.MasterEquipment.CategoryType)));
+		}
+
+		if (fitBonusData.EquipmentLevel != null)
+		{
+			equipmentsThatMatches = equipmentsThatMatches.Where(eq => eq.Level >= fitBonusData.EquipmentLevel).ToList();
+		}
+
+		return equipmentsThatMatches;
+	}
+
+	private static List<IEquipmentData> GetRequiredEquipmentsFittingRequirements(FitBonusData fitBonusData, IEnumerable<IEquipmentData> equipments)
+	{
+		if (fitBonusData.EquipmentRequired is null) return new();
+
+		return equipments
+			.Where(eq => fitBonusData.EquipmentRequired.Contains(eq.EquipmentId))
+			.Where(eq => fitBonusData.EquipmentRequiresLevel is null || eq.UpgradeLevel >= fitBonusData.EquipmentRequiresLevel)
+			.ToList();
 	}
 }

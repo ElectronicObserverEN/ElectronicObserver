@@ -1,94 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
-using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbRouting : TsunDbEntity
 {
 	protected override string Url => "routing";
 
 	#region Json Properties
-	[JsonProperty("sortiedFleet")]
+	[JsonPropertyName("sortiedFleet")]
 	public int SortiedFleet { get; private set; }
 
-	[JsonProperty("fleetType")]
+	[JsonPropertyName("fleetType")]
 	public int FleetType { get; private set; }
 
-	[JsonProperty("nodeInfo")]
-	public TsunDbNodeInfo NodeInfo { get; private set; }
+	[JsonPropertyName("nodeInfo")]
+	public TsunDbNodeInfo NodeInfo { get; private set; } = new(0);
 
-	[JsonProperty("map")]
-	public string Map { get; private set; }
+	[JsonPropertyName("map")] 
+	public string Map { get; private set; } = "";
 
-	[JsonProperty("hqLvl")]
+	[JsonPropertyName("hqLvl")]
 	public int HqLvl { get; private set; }
 
-	[JsonProperty("cleared")]
+	[JsonPropertyName("cleared")]
 	public bool Cleared { get; private set; }
 
-	[JsonProperty("edgeID")]
-	public List<int> EdgeID { get; private set; }
+	[JsonPropertyName("edgeID")]
+	public List<int> EdgeID { get; } = new();
 
-	[JsonProperty("nextRoute")]
+	[JsonPropertyName("nextRoute")]
 	public int NextRoute { get; private set; }
 
-	[JsonProperty("fleet1")]
-	public List<TsunDbShipData> Fleet1 { get; private set; }
+	[JsonPropertyName("fleet1")]
+	public List<TsunDbShipData> Fleet1 { get; private set; } = new();
 
-	[JsonProperty("fleet2")]
-	public List<TsunDbShipData> Fleet2 { get; private set; }
+	[JsonPropertyName("fleet2")]
+	public List<TsunDbShipData> Fleet2 { get; private set; } = new();
 
-	[JsonProperty("fleetSpeed")]
+	[JsonPropertyName("fleetSpeed")]
 	public int FleetSpeed { get; private set; }
 
-	[JsonProperty("los")]
-	public double[] LOS { get; private set; }
+	[JsonPropertyName("los")]
+	public double[] LOS { get; private set; } = { 0, 0, 0, 0 };
 
-	[JsonProperty("fleetids")]
-	public List<int> FleetIds { get; private set; }
+	[JsonPropertyName("fleetids")]
+	public List<int> FleetIds { get; private set; } = new();
 
-	[JsonProperty("fleetlevel")]
+	[JsonPropertyName("fleetlevel")]
 	public int FleetLevel { get; private set; }
 
-	[JsonProperty("fleetoneequips")]
-	public List<int> FleetOneEquips { get; private set; }
+	[JsonPropertyName("fleetoneequips")]
+	public List<int> FleetOneEquips { get; private set; } = new();
 
-	[JsonProperty("fleetoneexslots")]
-	public List<int> FleetOneExSlots { get; private set; }
+	[JsonPropertyName("fleetoneexslots")]
+	public List<int> FleetOneExSlots { get; private set; } = new();
 
-	[JsonProperty("fleetonetypes")]
-	public List<int> FleetOneTypes { get; private set; }
+	[JsonPropertyName("fleetonetypes")]
+	public List<int> FleetOneTypes { get; private set; } = new();
 
-	[JsonProperty("fleettwoequips")]
-	public List<int> FleetTwoEquips { get; private set; }
+	[JsonPropertyName("fleettwoequips")]
+	public List<int> FleetTwoEquips { get; private set; } = new();
 
-	[JsonProperty("fleettwoexslots")]
-	public List<int> FleetTwoExSlots { get; private set; }
+	[JsonPropertyName("fleettwoexslots")]
+	public List<int> FleetTwoExSlots { get; private set; } = new();
 
-	[JsonProperty("fleettwotypes")]
-	public List<int> FleetTwoTypes { get; private set; }
+	[JsonPropertyName("fleettwotypes")]
+	public List<int> FleetTwoTypes { get; private set; } = new();
+
 	#endregion
 
-	public TsunDbRouting() : base()
+	public TsunDbRouting()
 	{
-		FleetTwoTypes = new List<int>();
-		FleetTwoExSlots = new List<int>();
-		FleetTwoEquips = new List<int>();
-		FleetOneTypes = new List<int>();
-		FleetOneExSlots = new List<int>();
-		FleetOneEquips = new List<int>();
-		EdgeID = new List<int>();
-		FleetIds = new List<int>();
-		LOS = new double[] { 0, 0, 0, 0 };
-		Fleet1 = new List<TsunDbShipData>();
-		Fleet2 = new List<TsunDbShipData>();
-		NodeInfo = new TsunDbNodeInfo(0);
-		Map = string.Empty;
-
 		// Need start call to initialize
 		IsInitialized = false;
 	}
@@ -97,39 +84,39 @@ public class TsunDbRouting : TsunDbEntity
 	/// <summary>
 	/// Process Start node request
 	/// </summary>
-	/// <param name="api_data"></param>
-	public void ProcessStart(dynamic api_data)
+	/// <param name="apiData"></param>
+	public void ProcessStart(dynamic apiData)
 	{
 		KCDatabase db = KCDatabase.Instance;
 
-		this.SortiedFleet = db.Fleet.Fleets
+		SortiedFleet = db.Fleet.Fleets
 			.Where(fleet => fleet.Value.IsInSortie)
 			.Select(fleet => fleet.Value.FleetID)
 			.Min();
 
-		// --- Get the fleet type, if first fleet => flag of the combined fleet, else 0 (single fleet & strike force)
+		// Get the fleet type, if first fleet => flag of the combined fleet, else 0 (single fleet & strike force)
 		FleetType = SortiedFleet == 1 ? db.Fleet.CombinedFlag : 0;
 
-		// --- Sets amount of nodes value in NodeInfo
-		object[] cell_data = api_data["api_cell_data"];
-		this.NodeInfo = new TsunDbNodeInfo(cell_data.Length);
+		// Sets amount of nodes value in NodeInfo
+		object[] cellData = apiData["api_cell_data"];
+		NodeInfo = new TsunDbNodeInfo(cellData.Length);
 
-		// --- Sets the map value
-		this.Map = string.Format("{0}-{1}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID);
+		// Sets the map value
+		Map = $"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}";
 
 		// LBAS THINGS
 		//this.processCellData(http); TODO
 
 		IsInitialized = true;
 
-		this.ProcessNext(api_data);
+		ProcessNext(apiData);
 	}
 
 	/// <summary>
 	/// Process next node request
 	/// </summary>
-	/// <param name="api_data"></param>
-	public void ProcessNext(dynamic api_data)
+	/// <param name="apiData"></param>
+	public void ProcessNext(dynamic apiData)
 	{
 		// Some data is initiaized by Start api
 		// In some case it's missing (Enabling tsundb midsortie)
@@ -139,49 +126,48 @@ public class TsunDbRouting : TsunDbEntity
 
 		KCDatabase db = KCDatabase.Instance;
 
-		// --- Sets player's HQ level
-		this.HqLvl = db.Admiral.Level;
+		// Sets player's HQ level
+		HqLvl = db.Admiral.Level;
 
-		// --- Sets whether the map is cleared or not
-		this.Cleared = db.Battle.Compass.MapInfo.IsCleared;
+		// Sets whether the map is cleared or not
+		Cleared = db.Battle.Compass.MapInfo.IsCleared;
 
-		// --- Charts the route array using edge ids as values
-		this.EdgeID.Add((int)api_data.api_no);
+		// Charts the route array using edge ids as values
+		EdgeID.Add((int)apiData.api_no);
 
-		// --- All values related to node types
-		this.NodeInfo.ProcessNext(api_data);
+		// All values related to node types
+		NodeInfo.ProcessNext(apiData);
 
-		// --- Checks whether the fleet has hit a dead end or not
-		this.NextRoute = (int)api_data.api_next;
+		// Checks whether the fleet has hit a dead end or not
+		NextRoute = (int)apiData.api_next;
 
-		// --- Fleet 1
-		this.Fleet1 = this.PrepareFleet(db.Fleet[this.SortiedFleet]);
+		// Fleet 1
+		Fleet1 = PrepareFleet(db.Fleet[SortiedFleet]);
 
-		// --- Fleet 2
-		if (this.FleetType > 0 && this.SortiedFleet == 1)
+		// Fleet 2
+		if (FleetType > 0 && SortiedFleet == 1)
 		{
-			this.Fleet2 = this.PrepareFleet(db.Fleet[2]);
+			Fleet2 = PrepareFleet(db.Fleet[2]);
 		}
 
-		foreach (var ship in this.Fleet1)
+		foreach (TsunDbShipData? ship in Fleet1)
 		{
-			this.FleetIds.Add(ship.Id);
-			this.FleetLevel += ship.Level;
-			this.FleetOneEquips.AddRange(ship.Equip);
-			this.FleetOneExSlots.Add(ship.Exslot);
-			this.FleetOneTypes.Add(ship.Type);
+			FleetIds.Add(ship.Id);
+			FleetLevel += ship.Level;
+			FleetOneEquips.AddRange(ship.Equip);
+			FleetOneExSlots.Add(ship.Exslot);
+			FleetOneTypes.Add(ship.Type);
 		}
 
-
-		if (this.Fleet2.Count > 0)
+		if (Fleet2.Count > 0)
 		{
-			foreach (var ship in this.Fleet2)
+			foreach (TsunDbShipData? ship in Fleet2)
 			{
-				this.FleetIds.Add(ship.Id);
-				this.FleetLevel += ship.Level;
-				this.FleetTwoEquips.AddRange(ship.Equip);
-				this.FleetTwoExSlots.Add(ship.Exslot);
-				this.FleetTwoTypes.Add(ship.Type);
+				FleetIds.Add(ship.Id);
+				FleetLevel += ship.Level;
+				FleetTwoEquips.AddRange(ship.Equip);
+				FleetTwoExSlots.Add(ship.Exslot);
+				FleetTwoTypes.Add(ship.Type);
 			}
 		}
 	}
@@ -194,18 +180,18 @@ public class TsunDbRouting : TsunDbEntity
 	/// </summary>
 	private void CleanOnNext()
 	{
-		this.LOS = new double[] { 0, 0, 0, 0 };
-		this.Fleet1 = new List<TsunDbShipData>();
-		this.Fleet2 = new List<TsunDbShipData>();
-		this.FleetSpeed = 20;
-		this.FleetIds = new List<int>();
-		this.FleetLevel = 0;
-		this.FleetOneEquips = new List<int>();
-		this.FleetOneExSlots = new List<int>();
-		this.FleetOneTypes = new List<int>();
-		this.FleetTwoEquips = new List<int>();
-		this.FleetTwoExSlots = new List<int>();
-		this.FleetTwoTypes = new List<int>();
+		LOS = new double[] { 0, 0, 0, 0 };
+		Fleet1 = new();
+		Fleet2 = new();
+		FleetSpeed = 20;
+		FleetIds = new();
+		FleetLevel = 0;
+		FleetOneEquips = new();
+		FleetOneExSlots = new();
+		FleetOneTypes = new();
+		FleetTwoEquips = new();
+		FleetTwoExSlots = new();
+		FleetTwoTypes = new();
 	}
 
 	/// <summary>
@@ -213,30 +199,22 @@ public class TsunDbRouting : TsunDbEntity
 	/// </summary>
 	/// <param name="fleetData"></param>
 	/// <returns></returns>
-	private List<TsunDbShipData> PrepareFleet(FleetData fleetData)
+	private List<TsunDbShipData> PrepareFleet(IFleetData fleetData)
 	{
-		List<TsunDbShipData> shipsData = new List<TsunDbShipData>();
-
-		IEnumerable<IShipData> members = fleetData.MembersWithoutEscaped?.Where(s => s != null).Cast<IShipData>().ToList() ?? new List<IShipData>();
+		IEnumerable<IShipData> members = fleetData.MembersWithoutEscaped?.Where(s => s != null).Cast<IShipData>().ToList() ?? new();
 
 		FleetSpeed = Math.Min(FleetSpeed, members.Select(s => s.Speed).Min());
 
-		foreach (int weight in new int[4] { 1, 2, 3, 4 })
+		foreach (int weight in new[] { 1, 2, 3, 4 })
 		{
-			this.LOS[weight - 1] += Calculator.GetSearchingAbility_New33(fleetData, weight, this.HqLvl);
+			LOS[weight - 1] += Calculator.GetSearchingAbility_New33(fleetData, weight, HqLvl);
 		}
 
-		foreach (IShipData ship in fleetData.MembersInstance)
-		{
-			if (ship is null) continue;
-
-			shipsData.Add(new TsunDbShipData(ship)
-			{
-				Flee = fleetData.EscapedShipList.Contains(ship.MasterID)
-			});
-		}
-
-		return shipsData;
+		return fleetData.MembersInstance
+			.Where(ship => ship is not null)
+			.Cast<IShipData>()
+			.Select(ship => new TsunDbShipData(ship) { Flee = fleetData.EscapedShipList.Contains(ship.MasterID) })
+			.ToList();
 	}
 	#endregion
 }

@@ -1,68 +1,68 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json.Serialization;
 using ElectronicObserverTypes;
-using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbShipData : TsunDbEntity
 {
 	protected override string Url => throw new NotImplementedException();
 
 	#region Json properties
-	[JsonProperty("id")]
+	[JsonPropertyName("id")]
 	public int Id { get; private set; }
 
-	[JsonProperty("name")]
+	[JsonPropertyName("name")]
 	public string Name { get; private set; }
 
-	[JsonProperty("shiplock")]
+	[JsonPropertyName("shiplock")]
 	public int Shiplock { get; private set; }
 
-	[JsonProperty("level")]
+	[JsonPropertyName("level")]
 	public int Level { get; private set; }
 
-	[JsonProperty("type")]
+	[JsonPropertyName("type")]
 	public int Type { get; private set; }
 
-	[JsonProperty("speed")]
+	[JsonPropertyName("speed")]
 	public int Speed { get; private set; }
 
-	[JsonProperty("flee")]
+	[JsonPropertyName("flee")]
 	public bool Flee { get; set; }
 
-	[JsonProperty("equip")]
+	[JsonPropertyName("equip")]
 	public int[] Equip { get; private set; }
 
-	[JsonProperty("stars")]
+	[JsonPropertyName("stars")]
 	public int[] Stars { get; private set; }
 
-	[JsonProperty("ace")]
+	[JsonPropertyName("ace")]
 	public int[] Ace { get; private set; }
 
-	[JsonProperty("exslot")]
+	[JsonPropertyName("exslot")]
 	public int Exslot { get; private set; }
 
 	public TsunDbShipData(IShipData ship)
 	{
-		this.Id = ship.ShipID;
-		this.Name = ship.MasterShip.Name;
-		this.Shiplock = ship.SallyArea;
-		this.Level = ship.Level;
-		this.Type = (int)ship.MasterShip.ShipType;
-		this.Speed = ship.Speed;
+		Id = ship.ShipID;
+		Name = ship.MasterShip.Name;
+		Shiplock = ship.SallyArea;
+		Level = ship.Level;
+		Type = (int)ship.MasterShip.ShipType;
+		Speed = ship.Speed;
 
-		// --- Equips
-		this.Equip = ship.SlotInstanceMaster.Select(eq => eq != null ? eq.EquipmentID : -1).ToArray();
+		// Equips
+		Equip = ship.SlotInstanceMaster.Select(eq => eq?.EquipmentID ?? -1).ToArray();
 
-		// --- Stars
-		this.Stars = ship.SlotInstance.Select(eq => eq != null ? eq.Level : -1).ToArray();
+		// Stars
+		Stars = ship.SlotInstance.Select(eq => eq?.Level ?? -1).ToArray();
 
-		// --- Ace
-		this.Ace = ship.SlotInstance.Select(eq => eq != null ? eq.AircraftLevel : -1).ToArray();
+		// Ace
+		Ace = ship.SlotInstance.Select(eq => eq?.AircraftLevel ?? -1).ToArray();
 
-		// --- Expension slot
-		this.Exslot = ship.IsExpansionSlotAvailable && ship.ExpansionSlotInstanceMaster != null ? ship.ExpansionSlotInstanceMaster.EquipmentID : -1;
+		// Expension slot
+		Exslot = ship.ExpansionSlotInstanceMaster?.EquipmentID ?? -1;
 	}
 	#endregion
 }

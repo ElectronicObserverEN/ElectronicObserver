@@ -5,22 +5,12 @@ using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.FitBonus;
 using Xunit;
 
-namespace ElectronicObserverCoreTests;
+namespace ElectronicObserverCoreTests.FitBonus;
 
 [Collection(DatabaseCollection.Name)]
-public class FitBonusTest
+public class EquipmentFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 {
-	private DatabaseFixture Db { get; }
-
-	private ElectronicObserver.Data.Translation.FitBonusData BonusData { get; }
-
-	public FitBonusTest(DatabaseFixture db)
-	{
-		Db = db;
-		BonusData = new();
-	}
-
-	[Fact]
+	[Fact(DisplayName = "12cm Model E on a DE with a surface/air radar")]
 	public void FitBonusTest1()
 	{
 		Assert.NotEmpty(BonusData.FitBonusList);
@@ -39,11 +29,11 @@ public class FitBonusTest
 			}
 		};
 
-		FitBonusValue expectedBonus = new FitBonusValue()
+		FitBonusValue expectedBonus = new()
 		{
 			Firepower = 2,
-			Evasion = 3 + 3 + (2 * 2),
-			AntiAir = 2 + (2 * 2),
+			Evasion = 3 + 3 + 2 * 2,
+			AntiAir = 2 + 2 * 2,
 			ASW = 1 * 2,
 			Accuracy = 0,
 			Armor = 0,
@@ -57,7 +47,7 @@ public class FitBonusTest
 		Assert.Equal(expectedBonus, finalBonus);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "10cm + AAFD on Yukikaze with a torpedo")]
 	public void FitBonusTest2()
 	{
 		Assert.NotEmpty(BonusData.FitBonusList);
@@ -79,7 +69,7 @@ public class FitBonusTest
 			}
 		};
 
-		FitBonusValue expectedBonus = new FitBonusValue()
+		FitBonusValue expectedBonus = new()
 		{
 			Firepower = 5,
 			Torpedo = 2,
@@ -97,7 +87,7 @@ public class FitBonusTest
 		Assert.Equal(expectedBonus, finalBonus);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "10cm + AAFD on Yukikaze with a torpedo and Skilled Lookout")]
 	public void FitBonusTest3()
 	{
 		Assert.NotEmpty(BonusData.FitBonusList);
@@ -126,7 +116,7 @@ public class FitBonusTest
 			},
 		};
 
-		FitBonusValue expectedBonus = new FitBonusValue()
+		FitBonusValue expectedBonus = new()
 		{
 			Firepower = 5 + 5 + 1 + 3,
 			Torpedo = 3 + 4,
@@ -144,7 +134,7 @@ public class FitBonusTest
 		Assert.Equal(expectedBonus, finalBonus);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "51cm Twin, 51 Proto Twin, Recon, T1K, 15.5cm secondary K2 AAFD and Yamato Radar on Yamato K2")]
 	public void FitBonusTest4()
 	{
 		Assert.NotEmpty(BonusData.FitBonusList);
@@ -175,7 +165,7 @@ public class FitBonusTest
 			ExpansionSlotInstance = new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinder_Type21AirRADARKaiNi]),
 		};
 
-		FitBonusValue expectedBonus = new FitBonusValue()
+		FitBonusValue expectedBonus = new()
 		{
 			Firepower = 1 + 1 + 2 + 2 + 1,
 			Torpedo = 0,

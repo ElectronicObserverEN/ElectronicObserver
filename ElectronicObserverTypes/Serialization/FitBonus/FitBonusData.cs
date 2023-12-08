@@ -19,14 +19,21 @@ public class FitBonusData
 
 	[JsonPropertyName("shipType")] public List<ShipTypes>? ShipTypes { get; set; }
 
+	[JsonPropertyName("shipNationality")] public List<ShipNationality>? ShipNationalities { get; set; }
 
 	[JsonPropertyName("requires")] public List<EquipmentId>? EquipmentRequired { get; set; }
 
+	/// <summary>
+	/// If <see cref="EquipmentRequired"/> is set, equipments requires to be at least this level
+	/// </summary>
+	[JsonPropertyName("requiresLevel")] public UpgradeLevel? EquipmentRequiresLevel { get; set; } = null;
+
+	/// <summary>
+	/// If <see cref="EquipmentRequired"/> is set, you need this number of equipments
+	/// </summary>
 	[JsonPropertyName("requiresNum")] public int? NumberOfEquipmentsRequired { get; set; }
 
-
 	[JsonPropertyName("requiresType")] public List<EquipmentTypes>? EquipmentTypesRequired { get; set; }
-
 	[JsonPropertyName("requiresNumType")] public int? NumberOfEquipmentTypesRequired { get; set; }
 
 	/// <summary>

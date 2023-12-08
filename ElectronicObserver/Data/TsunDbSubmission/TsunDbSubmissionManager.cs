@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
 using DynaJson;
+using ElectronicObserver.Data.TsunDbSubmission.Battle;
 using ElectronicObserver.Utility;
 using ElectronicObserverTypes.Extensions;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbSubmissionManager : ResponseWrapper
 {
-	private TsunDbRouting RoutingSubmission = new TsunDbRouting();
+	private TsunDbRouting RoutingSubmission { get; set; } = new();
 
 	/// <summary>
 	/// When start API is called, the amount of nodes of the map is stored here (didn't find elsewhere to store it w)
@@ -45,6 +46,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 			switch (apiname)
 			{
 				case "api_req_sortie/battleresult":
+				case "api_req_combined_battle/battleresult":
 					if (db.Ships.Count < db.Admiral.MaxShipCount && (db.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace()) < db.Admiral.MaxEquipmentCount))
 					{
 						new ShipDrop(data).SendData();
@@ -53,8 +55,8 @@ public class TsunDbSubmissionManager : ResponseWrapper
 					break;
 				case "api_req_map/start":
 				{
-					object[] cell_data = data["api_cell_data"];
-					CurrentMapAmountOfNodes = cell_data.Length;
+					object[] cellData = data["api_cell_data"];
+					CurrentMapAmountOfNodes = cellData.Length;
 
 					RoutingSubmission = jData.IsDefined("api_eventmap") ? new TsunDbEventRouting() : new TsunDbRouting();
 
@@ -113,7 +115,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
+			ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
 		}
 	}
 }

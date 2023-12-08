@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
+using ElectronicObserver.Data.TsunDbSubmission;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;

@@ -1,28 +1,28 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbEventRouting : TsunDbRouting
 {
 	protected override string Url => "eventrouting";
 
 	#region Json Properties
-	[JsonProperty("currentMapHP")]
+	[JsonPropertyName("currentMapHP")]
 	public int CurrentMapHP { get; private set; }
 
-	[JsonProperty("maxMapHP")]
+	[JsonPropertyName("maxMapHP")]
 	public int MaxMapHP { get; private set; }
 
-	[JsonProperty("difficulty")]
+	[JsonPropertyName("difficulty")]
 	public int Difficulty { get; private set; }
 
-	[JsonProperty("gaugeNum")]
+	[JsonPropertyName("gaugeNum")]
 	public int GaugeNum { get; private set; }
 
-	[JsonProperty("gaugeType")]
+	[JsonPropertyName("gaugeType")]
 	public int GaugeType { get; private set; }
 
-	[JsonProperty("debuffSound")]
+	[JsonPropertyName("debuffSound")]
 	public int DebuffSound { get; private set; }
 	#endregion
 
@@ -30,17 +30,17 @@ public class TsunDbEventRouting : TsunDbRouting
 	/// <summary>
 	/// Process next node request
 	/// </summary>
-	/// <param name="api_data"></param>
-	public void ProcessEvent(dynamic api_data)
+	/// <param name="apiData"></param>
+	public void ProcessEvent(dynamic apiData)
 	{
-		// Some data is initiaized by Start api
+		// Some data is initialized by Start api
 		// In some case it's missing (Enabling tsundb midsortie)
 		if (!IsInitialized) return;
 
 		KCDatabase db = KCDatabase.Instance;
 
-		CurrentMapHP = (int)api_data.api_eventmap.api_now_maphp;
-		MaxMapHP = (int)api_data.api_eventmap.api_max_maphp;
+		CurrentMapHP = (int)apiData.api_eventmap.api_now_maphp;
+		MaxMapHP = (int)apiData.api_eventmap.api_max_maphp;
 		Difficulty = db.Battle.Compass.MapInfo.EventDifficulty;
 		GaugeNum = db.Battle.Compass.MapInfo.CurrentGaugeIndex;
 		GaugeType = db.Battle.Compass.MapInfo.GaugeType;

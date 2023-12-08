@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
 public class TsunDbBattleData : TsunDbEntity
 {
@@ -14,68 +15,68 @@ public class TsunDbBattleData : TsunDbEntity
 	/// <summary>
 	/// Map name, e.g. 53-5
 	/// </summary>
-	[JsonProperty("map")]
-	public string Map { get; private set; }
+	[JsonPropertyName("map")]
+	public string Map { get; }
 
 	/// <summary>
 	/// Node edge number
 	/// </summary>
-	[JsonProperty("node")]
-	public int Node { get; private set; }
+	[JsonPropertyName("node")]
+	public int Node { get; }
 
 	/// <summary>
 	/// Chosen map difficulty
 	/// </summary>
-	[JsonProperty("difficulty")]
-	public int Difficulty { get; private set; }
+	[JsonPropertyName("difficulty")]
+	public int Difficulty { get; }
 
 	/// <summary>
 	/// Checks if the node is debuffed
 	/// </summary>
-	[JsonProperty("debuffed")]
-	public bool Debuffed { get; private set; }
+	[JsonPropertyName("debuffed")]
+	public bool Debuffed { get; }
 
 	/// <summary>
 	/// Checks if the map is cleared
 	/// </summary>
-	[JsonProperty("cleared")]
-	public bool MapCleared { get; private set; }
+	[JsonPropertyName("cleared")]
+	public bool MapCleared { get; }
 
 	/// <summary>
 	/// Contains information about the sortied fleet(s), LBAS and support
 	/// </summary>
-	[JsonProperty("fleet")]
-	public TsunDbFleetsAndAirBaseData Fleet { get; private set; }
+	[JsonPropertyName("fleet")]
+	public TsunDbFleetsAndAirBaseData Fleet { get; }
 
 	/// <summary>
 	/// Checks if resupply has been used in the battle, obtained from request.params.api_supply_flag
 	/// </summary>
-	[JsonProperty("resupplyused")]
-	public bool ResupplyUsed { get; private set; }
+	[JsonPropertyName("resupplyused")]
+	public bool ResupplyUsed { get; }
 
 	/// <summary>
 	/// Formation ID chosen by the player, obtained from request.params.api_formation
 	/// </summary>
-	[JsonProperty("playerformation")]
-	public int Formation { get; private set; }
+	[JsonPropertyName("playerformation")]
+	public int Formation { get; }
 
 	/// <summary>
 	/// Raw battle data
 	/// </summary>
-	[JsonProperty("rawapi")]
-	public object? RawApi { get; private set; }
+	[JsonPropertyName("rawapi")]
+	public object? RawApi { get; }
 
 	/// <summary>
 	/// Amount of edges in the map
 	/// </summary>
-	[JsonProperty("amountofnodes")]
-	public int AmountOfNodes { get; private set; }
+	[JsonPropertyName("amountofnodes")]
+	public int AmountOfNodes { get; }
 
 	/// <summary>
 	/// API endpoint for the battle, e.g. api_req_sortie/battle
 	/// </summary>
-	[JsonProperty("apiname")]
-	public string ApiName { get; private set; }
+	[JsonPropertyName("apiname")]
+	public string ApiName { get; }
 	#endregion
 
 	#region Constructor
@@ -95,12 +96,7 @@ public class TsunDbBattleData : TsunDbEntity
 		Formation = Database.Battle.FirstBattle.Searching.FormationFriend;
 		AmountOfNodes = TsunDbSubmissionManager.CurrentMapAmountOfNodes;
 
-		// --- Send data as Json : used the same workaround as replay (serialize then deserialiaze as object with CheckAdditionalContent as true)
-		string rawDataAsString = rawApi.ToString();
-		RawApi = JsonConvert.DeserializeObject(rawDataAsString, new JsonSerializerSettings()
-		{
-			CheckAdditionalContent = true
-		});
+		RawApi = JsonSerializer.Deserialize<object?>(rawApi.ToString());
 
 		ApiName = apiName;
 	}

@@ -1,31 +1,32 @@
 ﻿using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using DynaJson;
-using Newtonsoft.Json;
 
-namespace ElectronicObserver.Data;
+namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbNodeInfo : TsunDbEntity
 {
 	protected override string Url => throw new NotImplementedException();
 
 	#region Json Properties 
-	[JsonProperty("amountOfNodes")]
+	[JsonPropertyName("amountOfNodes")]
 	public int AmountOfNodes { get; private set; }
 
-	[JsonProperty("nodeType")]
+	[JsonPropertyName("nodeType")]
 	public int NodeType { get; private set; }
 
-	[JsonProperty("eventId")]
+	[JsonPropertyName("eventId")]
 	public int EventId { get; private set; }
 
-	[JsonProperty("eventKind")]
+	[JsonPropertyName("eventKind")]
 	public int EventKind { get; private set; }
 
-	[JsonProperty("nodeColor")]
+	[JsonPropertyName("nodeColor")]
 	public int NodeColor { get; private set; }
 
-	[JsonProperty("itemGet")]
-	public object[] ItemGet { get; private set; }
+	[JsonPropertyName("itemGet")]
+	public object[]? ItemGet { get; private set; }
 	#endregion
 
 	public TsunDbNodeInfo(int amountOfNodes)
@@ -37,33 +38,32 @@ public class TsunDbNodeInfo : TsunDbEntity
 	/// <summary>
 	/// Process next node data
 	/// </summary>
-	/// <param name="api_data"></param>
-	internal void ProcessNext(dynamic api_data)
+	/// <param name="apiData"></param>
+	internal void ProcessNext(dynamic apiData)
 	{
-		JsonObject jData = (JsonObject)api_data;
+		JsonObject jData = (JsonObject)apiData;
 
-		this.NodeType = (int)api_data["api_color_no"];
-		this.EventId = (int)api_data["api_event_id"]; ;
-		this.EventKind = (int)api_data["api_event_kind"]; ;
-		this.NodeColor = (int)api_data["api_color_no"]; ;
+		NodeType = (int)apiData["api_color_no"];
+		EventId = (int)apiData["api_event_id"];
+		EventKind = (int)apiData["api_event_kind"];
+		NodeColor = (int)apiData["api_color_no"];
+
+		ItemGet = Array.Empty<object>();
 
 		if (jData.IsDefined("api_itemget"))
 		{
-			if (api_data["api_itemget"].IsArray)
+			// On 6-3 api_itemget is an object and not an array
+			string? itemGet = apiData["api_itemget"].IsArray switch
 			{
-				this.ItemGet = (object[])api_data["api_itemget"];
-			}
-			else
-			{
-				// --- On 6-3 api_itemget is an object and not an array
-				this.ItemGet = new object[] { (object)api_data["api_itemget"] };
-			}
-		}
-		else
-		{
-			this.ItemGet = new object[0];
-		}
+				true => apiData["api_itemget"][0]?.ToString(),
+				_ => apiData["api_itemget"]?.ToString()
+			};
 
+			if (itemGet is not null && JsonSerializer.Deserialize<object>(itemGet) is {} deserializedItemGet)
+			{
+				ItemGet = new[] { deserializedItemGet };
+			}
+		}
 	}
 	#endregion
 }
