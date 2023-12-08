@@ -68,6 +68,7 @@ public class Startup
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.AddSingleton<TimeChangeService>()
+			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.BuildServiceProvider());
 

@@ -22,32 +22,57 @@
 					<HierarchicalDataTemplate ItemsSource="{Binding Children}">
 
 						<StackPanel>
+							<StackPanel.ContextMenu>
+								<ContextMenu>
+									<MenuItem
+										Command="{Binding AddEquipmentPlanCommand}"
+										Header="{Binding Translations.CreateUpgradePlan}"
+										Visibility="{Binding CanBePlanned, Converter={BoolToVisibilityConverter}}"
+										/>
 
-							<StackPanel.Style>
-								<Style TargetType="StackPanel">
-									<Style.Triggers>
-										<DataTrigger Binding="{Binding CanBePlanned}" Value="True">
-											<Setter Property="ContextMenu">
-												<Setter.Value>
-													<ContextMenu>
-														<MenuItem Command="{Binding AddEquipmentPlanCommand}" Header="{Binding Translations.CreateUpgradePlan}" />
-													</ContextMenu>
-												</Setter.Value>
-											</Setter>
-										</DataTrigger>
-										<DataTrigger Binding="{Binding AlreadyPlanned}" Value="True">
-											<Setter Property="ContextMenu">
-												<Setter.Value>
-													<ContextMenu>
-														<MenuItem Command="{Binding EditEquipmentPlanCommand}" Header="{Binding Translations.EditUpgradePlan}" />
-														<MenuItem Command="{Binding RemoveEquipmentPlanCommand}" Header="{Binding Translations.RemoveUpgradePlan}" />
-													</ContextMenu>
-												</Setter.Value>
-											</Setter>
-										</DataTrigger>
-									</Style.Triggers>
-								</Style>
-							</StackPanel.Style>
+									<MenuItem
+										Command="{Binding EditEquipmentPlanCommand}"
+										Header="{Binding Translations.EditUpgradePlan}"
+										Visibility="{Binding AlreadyPlanned, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
+										Command="{Binding RemoveEquipmentPlanCommand}"
+										Header="{Binding Translations.RemoveUpgradePlan}"
+										Visibility="{Binding AlreadyPlanned, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
+										Command="{Binding CreatePlanAndAssignEquipmentToUpgradeCommand}"
+										Header="{Binding Translations.AddPlanAndAssignEquipmentToUpgrade}"
+										Visibility="{Binding CanAddPlanAndAssignEquipmentToUpgrade, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
+										Command="{Binding CreatePlanAndAssignEquipmentCommand}"
+										Header="{Binding Translations.AddPlanAndAssignEquipmentToUse}"
+										Visibility="{Binding CanAddPlanAndAssignEquipmentToConsume, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
+										Command="{Binding AssignEquipmentToUpgradeToPlanCommand}"
+										Header="{Binding Translations.AssignEquipmentToUpgrade}"
+										Visibility="{Binding CanAssignEquipmentToUpgrade, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
+										Command="{Binding AssignEquipmentToPlanCommand}"
+										Header="{Binding Translations.AssignEquipmentToUse}"
+										Visibility="{Binding CanAssignEquipmentToConsume, Converter={BoolToVisibilityConverter}}"
+										/>
+
+									<MenuItem
+										Command="{Binding UnAssignEquipmentToPlanCommand}"
+										Header="{Binding Translations.UnassignEquipment}"
+										Visibility="{Binding AlreadyAssignedAnEquipment, Converter={BoolToVisibilityConverter}}"
+										/>
+								</ContextMenu>
+							</StackPanel.ContextMenu>
 
 							<TextBlock Text="{Binding DisplayName}" />
 

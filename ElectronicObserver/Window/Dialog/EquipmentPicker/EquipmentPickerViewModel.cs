@@ -6,9 +6,9 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 
-public abstract partial class EquipmentPickerViewModel : WindowViewModelBase
+public abstract class EquipmentPickerViewModel : WindowViewModelBase
 {
-	public DataGridViewModel<IEquipmentData> DataGridViewModel { get; set; }
+	public DataGridViewModel<IEquipmentData> DataGridViewModel { get; set; } = new(new());
 
 	public EquipmentPickerTranslationViewModel Translations { get; set; } = new();
 
@@ -18,7 +18,7 @@ public abstract partial class EquipmentPickerViewModel : WindowViewModelBase
 
 	public IEquipmentData? SelectedEquipment { get; set; }
 
-	protected EquipmentPickerViewModel()
+	protected void Initialize()
 	{
 		DataGridViewModel = new(new(AllEquipments));
 		DataGridViewModel.FilterValue = Filters.MeetsFilterCondition;

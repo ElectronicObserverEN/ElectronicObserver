@@ -44,7 +44,7 @@
 
 			<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml
-				only change is removing max width
+				only change is max width override
 			-->
 			<Style
 				x:Key="DefaultToolTipStyleEO"
@@ -55,6 +55,7 @@
 					<Setter.Value>
 						<ControlTemplate TargetType="ToolTip">
 							<ui:ThemeShadowChrome
+								MaxWidth="600"
 								CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
 								Depth="16"
 								IsShadowEnabled="{TemplateBinding HasDropShadow}"

@@ -7,7 +7,7 @@ namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 /// </summary>
 public partial class EquipmentDataPickerView
 {
-	public EquipmentDataPickerView(EquipmentDataPickerViewModel viewModel) : base(viewModel)
+	public EquipmentDataPickerView(EquipmentPickerViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
 	}

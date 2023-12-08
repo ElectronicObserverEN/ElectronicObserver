@@ -112,21 +112,14 @@ public class UpgradeTreeTests
 
 		UpgradeTreeUpgradePlanViewModel? bomberPlan = root.Children
 			.FirstOrDefault(p => p.EquipmentId is EquipmentId.CarrierBasedBomber_Type99DiveBomber);
-
-		// fodder used to upgrade oGyroKaiNiPlan
-		UpgradeTreeUpgradePlanViewModel? gyroPlan = root.Children
-			.Where(p => p != oGyroKaiNiPlan)
-			.FirstOrDefault(p => p.EquipmentId is EquipmentId.Autogyro_OTypeObservationAutogyroKaiNi);
-
+		
 		Assert.NotNull(oGyroKaiNiPlan);
 		Assert.NotNull(reconPlan);
 		Assert.NotNull(bomberPlan);
-		Assert.NotNull(gyroPlan);
 
-		Assert.Equal(1, oGyroKaiNiPlan.Count);
+		Assert.Equal(2, oGyroKaiNiPlan.Count);
 		Assert.Equal(6, reconPlan.Count);
 		Assert.Equal(8, bomberPlan.Count);
-		Assert.Equal(1, gyroPlan.Count);
 
 		UpgradeTreeUpgradePlanViewModel? oGyroKaiPlan = oGyroKaiNiPlan.Children
 			.FirstOrDefault(p => p.EquipmentId is EquipmentId.Autogyro_OTypeObservationAutogyroKai);
@@ -184,18 +177,11 @@ public class UpgradeTreeTests
 
 		UpgradeTreeUpgradePlanViewModel? reconPlan = root.Children
 			.FirstOrDefault(p => p.EquipmentId is EquipmentId.SeaplaneRecon_Type0ReconSeaplane);
-
-		// fodder used to upgrade kaGyroPlan
-		UpgradeTreeUpgradePlanViewModel? gyroPlan = root.Children
-			.Where(p => p != kaGyroPlan)
-			.FirstOrDefault(p => p.EquipmentId is EquipmentId.Autogyro_KaTypeObservationAutogyro);
-
+		
 		Assert.NotNull(kaGyroPlan);
 		Assert.NotNull(reconPlan);
-		Assert.NotNull(gyroPlan);
 
-		Assert.Equal(1, kaGyroPlan.Count);
+		Assert.Equal(2, kaGyroPlan.Count);
 		Assert.Equal(4, reconPlan.Count);
-		Assert.Equal(1, gyroPlan.Count);
 	}
 }

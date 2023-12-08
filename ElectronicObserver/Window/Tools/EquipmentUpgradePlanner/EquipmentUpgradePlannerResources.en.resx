@@ -195,4 +195,25 @@
   <data name="UpgradeTree" xml:space="preserve">
     <value>Tree</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="AlreadyOwned" xml:space="preserve">
+    <value>Already owned</value>
+  </data>
+  <data name="AssignEquipmentToUpgrade" xml:space="preserve">
+    <value>Assign equipment to upgrade</value>
+  </data>
+  <data name="UnassignEquipment" xml:space="preserve">
+    <value>Unassign equipment</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUpgrade" xml:space="preserve">
+    <value>Add plan and assign equipment to upgrade</value>
+  </data>
+  <data name="AssignEquipmentToUse" xml:space="preserve">
+    <value>Assign equipment to consume</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUse" xml:space="preserve">
+    <value>Add plan and assign equipment to consume</value>
+  </data>
 </root>

@@ -20,7 +20,7 @@ public partial class EquipmentFilterViewModel : ObservableObject
 
 	public EquipmentFilterTranslationViewModel EquipmentFilter { get; } = new();
 
-	public EquipmentFilterViewModel() : this (false)
+	public EquipmentFilterViewModel() : this(false)
 	{
 
 	}

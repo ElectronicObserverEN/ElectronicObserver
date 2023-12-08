@@ -19,6 +19,14 @@
 					<DataTrigger Binding="{Binding Type, ElementName=Root}" Value="{x:Null}">
 						<Setter Property="Visibility" Value="Collapsed" />
 					</DataTrigger>
+					<DataTrigger Binding="{Binding Type, ElementName=Root}">
+						<DataTrigger.Value>
+							<resource:IconContent>
+								Nothing
+							</resource:IconContent>
+						</DataTrigger.Value>
+						<Setter Property="Visibility" Value="Collapsed" />
+					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Image.Style>

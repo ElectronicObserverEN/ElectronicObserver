@@ -68,20 +68,28 @@ public class QuestTranslationData : TranslationBase
 		public string DescJp { get; set; } = "";
 		[JsonPropertyName("desc")]
 		public string Desc { get; set; } = "";
-
-		// hack to parse the version entry
-		public static implicit operator QuestRecord?(string s) => null;
 	}
 
 
 	private Dictionary<int, Quests> LoadDictionary(string path)
 	{
-		var dict = new Dictionary<int, Quests>();
-		Dictionary<string, QuestRecord>? questRecords = null;
+		Dictionary<int, Quests> dict = new();
+		Dictionary<string, QuestRecord> questRecords = new();
 
 		try
 		{
-			questRecords = JsonSerializer.Deserialize<Dictionary<string, QuestRecord>>(File.ReadAllText(path));
+			string json = File.ReadAllText(path);
+			Dictionary<string, JsonElement> raw = JsonSerializer
+				.Deserialize<Dictionary<string, JsonElement>>(json)
+				?? throw new Exception();
+
+			raw.Remove("version");
+
+			foreach ((string key, JsonElement data) in raw)
+			{
+				QuestRecord record = data.Deserialize<QuestRecord>() ?? throw new Exception();
+				questRecords.Add(key, record);
+			}
 		}
 		catch (FileNotFoundException)
 		{
@@ -96,24 +104,10 @@ public class QuestTranslationData : TranslationBase
 			ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
 		}
 
-		if (questRecords == null) return dict;
-
 		foreach ((string i, QuestRecord quest) in questRecords)
 		{
-			// the quest dictionary includes version
-			// ignore that entry
 			if (!int.TryParse(i, out int questId)) continue;
 
-			if (quest.Code == "")
-			{
-				int pos = quest.Name.IndexOf(":");
-				if (pos > 0 && pos < 10)
-				{
-					var ch = char.Parse(quest.Name.Substring(pos - 2, 1));
-					quest.Code = pos > 3 && char.IsLetter(ch) ? quest.Name.Substring(0, pos - 2) : quest.Name.Substring(0, pos);
-					quest.Name = quest.Name.Substring(pos + 2);
-				}
-			}
 			dict.TryAdd(questId, new Quests(quest.Code, quest.Name, quest.NameJp, quest.Desc, quest.DescJp));
 		}
 
@@ -123,7 +117,7 @@ public class QuestTranslationData : TranslationBase
 	public Quests? this[int index] => QuestList.ContainsKey(index) switch
 	{
 		true => QuestList[index],
-		false => null
+		false => null,
 	};
 }
 

@@ -306,6 +306,12 @@
 
 					<DataGrid.ContextMenu>
 						<ContextMenu>
+							<MenuItem
+								Header="{Binding DataContext.Translation.DisplayFinished, Source={StaticResource Proxy}}"
+								IsCheckable="True"
+								IsChecked="{Binding DataContext.Filters.DisplayFinished, Source={StaticResource Proxy}}"
+								/>
+							<Separator />
 							<MenuItem Command="{Binding DataGridViewModel.OpenColumnSelectorCommand}" Header="{Binding DataGridViewModel.DataGrid.OpenColumnSelector}" />
 							<MenuItem Command="{Binding DataGridViewModel.ClearSortingCommand}" Header="{Binding DataGridViewModel.DataGrid.ClearSorting}" />
 						</ContextMenu>
@@ -323,6 +329,12 @@
 							<Setter Property="ContextMenu">
 								<Setter.Value>
 									<ContextMenu>
+										<MenuItem
+											Header="{Binding DataContext.Translation.DisplayFinished, Source={StaticResource Proxy}}"
+											IsCheckable="True"
+											IsChecked="{Binding DataContext.Filters.DisplayFinished, Source={StaticResource Proxy}}"
+											/>
+										<Separator />
 										<MenuItem
 											Command="{Binding DataContext.DataGridViewModel.HideColumnCommand, Source={StaticResource Proxy}}"
 											CommandParameter="{Binding}"

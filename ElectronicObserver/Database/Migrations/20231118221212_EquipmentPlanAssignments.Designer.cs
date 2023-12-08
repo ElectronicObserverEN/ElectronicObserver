@@ -3,6 +3,7 @@ using System;
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,12 +11,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20231118221212_EquipmentPlanAssignments")]
+    partial class EquipmentPlanAssignments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
             modelBuilder.Entity("ElectronicObserver.Database.Expedition.ExpeditionRecord", b =>
                 {
@@ -183,13 +185,7 @@ namespace ElectronicObserver.Database.Migrations
                     b.Property<int>("EquipmentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EquipmentMasterDataId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("PlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("WillBeUsedForConversion")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
