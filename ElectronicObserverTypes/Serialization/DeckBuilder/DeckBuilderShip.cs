@@ -20,5 +20,5 @@ public class DeckBuilderShip
 	[JsonPropertyName("luck")] public int Luck { get; set; }
 	[JsonPropertyName("sp")] public int Speed { get; set; }
 	[JsonPropertyName("ra")] public int Range { get; set; }
-	[JsonPropertyName("sp")] public required List<DeckBuilderSpecialEffectItem> SpecialEffectItems { get; set; }
+	[JsonPropertyName("spi")] public required List<DeckBuilderSpecialEffectItem> SpecialEffectItems { get; set; }
 }
