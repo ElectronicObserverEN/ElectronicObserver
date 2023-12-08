@@ -46,6 +46,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 			switch (apiname)
 			{
 				case "api_req_sortie/battleresult":
+				case "api_req_combined_battle/battleresult":
 					if (db.Ships.Count < db.Admiral.MaxShipCount && (db.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace()) < db.Admiral.MaxEquipmentCount))
 					{
 						new ShipDrop(data).SendData();
