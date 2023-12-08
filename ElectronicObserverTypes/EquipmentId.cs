@@ -519,5 +519,5 @@ public enum EquipmentId
 	SeaplaneRecon_SeaOtter = 515,
 	Interceptor_Me262A1aR1 = 516,
 	RadarSmall_PassiveRadiolocator_E27_Type22SurfaceRadarKai4_CalibratedLateModel = 517,
-	MainGunMedium_14cmTwinGunKaiNi = 518
+	MainGunMedium_14cmTwinGunKaiNi = 518,
 }
