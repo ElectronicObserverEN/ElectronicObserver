@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using DynaJson;
 
@@ -47,21 +48,21 @@ public class TsunDbNodeInfo : TsunDbEntity
 		EventKind = (int)apiData["api_event_kind"];
 		NodeColor = (int)apiData["api_color_no"];
 
+		ItemGet = Array.Empty<object>();
+
 		if (jData.IsDefined("api_itemget"))
 		{
-			if (apiData["api_itemget"].IsArray)
+			// On 6-3 api_itemget is an object and not an array
+			string? itemGet = apiData["api_itemget"].IsArray switch
 			{
-				ItemGet = (object[])apiData["api_itemget"];
-			}
-			else
+				true => apiData["api_itemget"][0]?.ToString(),
+				_ => apiData["api_itemget"]?.ToString()
+			};
+
+			if (itemGet is not null && JsonSerializer.Deserialize<object>(itemGet) is {} deserializedItemGet)
 			{
-				// On 6-3 api_itemget is an object and not an array
-				ItemGet = new[] { (object)apiData["api_itemget"] };
+				ItemGet = new[] { deserializedItemGet };
 			}
-		}
-		else
-		{
-			ItemGet = Array.Empty<object>();
 		}
 	}
 	#endregion
