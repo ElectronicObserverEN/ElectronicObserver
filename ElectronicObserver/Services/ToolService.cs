@@ -396,7 +396,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		});
 	}
 
-	public SortieDetailViewModel? GenerateSortieDetailViewModel(ElectronicObserverContext db, 
+	public SortieDetailViewModel? GenerateSortieDetailViewModel(ElectronicObserverContext db,
 		SortieRecordViewModel sortie)
 	{
 		try
@@ -641,7 +641,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
 	}
 
-	public async Task CopySortieDataToClipboard(ElectronicObserverContext db, 
+	public async Task CopySortieDataToClipboard(ElectronicObserverContext db,
 		SortieRecordViewModel sortie)
 	{
 		await CopySortieDataToClipboard(db, new List<SortieRecord> { sortie.Model });
@@ -669,6 +669,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		List<SortieRecord> sorties = sortieRecords
 			.Select(s => new SortieRecord
 			{
+				Version = s.Version,
 				Id = s.Id,
 				World = s.World,
 				Map = s.Map,

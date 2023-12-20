@@ -26,8 +26,12 @@ namespace ElectronicObserver.Services.ApiFileService;
 // migrating all at once is very expensive
 public class ApiFileService : ObservableObject
 {
-	// version 1 was saving HP max instead of hp current for ships
-	private static int CurrentApiFileVersion => 2;
+	private static int CurrentApiFileVersion => 1;
+
+	// before version 1:
+	// fleet after sortie can be null
+	// hp value is set to hp max instead of hp current
+	private static int CurrentSortieRecordVersion => 1;
 
 	private KCDatabase KcDatabase { get; }
 
@@ -260,6 +264,7 @@ public class ApiFileService : ObservableObject
 
 		SortieRecord sortieRecord = new()
 		{
+			Version = CurrentSortieRecordVersion,
 			World = response.ApiData.ApiMapareaId,
 			Map = response.ApiData.ApiMapinfoNo,
 			FleetData = fleetData,

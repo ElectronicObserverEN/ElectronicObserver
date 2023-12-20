@@ -2,8 +2,6 @@
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
@@ -20,82 +18,76 @@ using CellModel = ElectronicObserver.Database.MapData.CellModel;
 namespace ElectronicObserver.Database;
 
 // Add-Migration <name> -Context ElectronicObserverContext -OutputDir Database/Migrations
-public class ElectronicObserverContext : DbContext
+public class ElectronicObserverContext(bool inMemory = false) : DbContext
 {
-	public DbSet<EventLockPlannerModel> EventLockPlans { get; set; } = null!;
-	public DbSet<AutoRefreshModel> AutoRefresh { get; set; } = null!;
-	public DbSet<WorldModel> Worlds { get; set; } = null!;
-	public DbSet<MapModel> Maps { get; set; } = null!;
-	public DbSet<CellModel> Cells { get; set; } = null!;
-	public DbSet<ApiFile> ApiFiles { get; set; } = null!;
-	public DbSet<SortieRecord> Sorties { get; set; } = null!;
-	public DbSet<ExpeditionRecord> Expeditions { get; set; } = null!;
-	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems { get; set; } = null!;
-	public DbSet<EquipmentAssignmentItemModel> EquipmentAssignmentItems { get; set; } = null!;
-	public DbSet<ShipTrainingPlanModel> ShipTrainingPlans { get; set; } = null!;
+	public DbSet<EventLockPlannerModel> EventLockPlans => Set<EventLockPlannerModel>();
+	public DbSet<AutoRefreshModel> AutoRefresh => Set<AutoRefreshModel>();
+	public DbSet<WorldModel> Worlds => Set<WorldModel>();
+	public DbSet<MapModel> Maps => Set<MapModel>();
+	public DbSet<CellModel> Cells => Set<CellModel>();
+	public DbSet<ApiFile> ApiFiles => Set<ApiFile>();
+	public DbSet<SortieRecord> Sorties => Set<SortieRecord>();
+	public DbSet<ExpeditionRecord> Expeditions => Set<ExpeditionRecord>();
+	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems => Set<EquipmentUpgradePlanItemModel>();
+	public DbSet<EquipmentAssignmentItemModel> EquipmentAssignmentItems => Set<EquipmentAssignmentItemModel>();
+	public DbSet<ShipTrainingPlanModel> ShipTrainingPlans => Set<ShipTrainingPlanModel>();
 
-	private string DbPath { get; }
-	private bool InMemory { get; }
+	private string DbPath { get; } = Path.Join("Record", "ElectronicObserver.sqlite");
+	private bool InMemory { get; } = inMemory;
 
-	public ElectronicObserverContext(bool inMemory = false)
-	{
-		DbPath = Path.Join("Record", "ElectronicObserver.sqlite");
-		InMemory = inMemory;
-	}
-
-	protected override void OnConfiguring(DbContextOptionsBuilder options)
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
 		if (InMemory)
 		{
-			options.UseInMemoryDatabase("ElectronicObserver");
+			optionsBuilder.UseInMemoryDatabase("ElectronicObserver");
 		}
 		else
 		{
-			options.UseSqlite($"Data Source={DbPath}");
+			optionsBuilder.UseSqlite($"Data Source={DbPath}");
 		}
 	}
 
-	protected override void OnModelCreating(ModelBuilder builder)
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		builder.Entity<EventLockPlannerModel>()
+		modelBuilder.Entity<EventLockPlannerModel>()
 			.HasKey(s => s.Id);
 
-		builder.Entity<EventLockPlannerModel>()
+		modelBuilder.Entity<EventLockPlannerModel>()
 			.Property(s => s.Locks)
 			.HasConversion(JsonConverter<List<EventLockModel>>());
 
-		builder.Entity<EventLockPlannerModel>()
+		modelBuilder.Entity<EventLockPlannerModel>()
 			.Property(s => s.ShipLocks)
 			.HasConversion(JsonConverter<List<ShipLockModel>>());
 
-		builder.Entity<EventLockPlannerModel>()
+		modelBuilder.Entity<EventLockPlannerModel>()
 			.Property(s => s.Phases)
 			.HasConversion(JsonConverter<List<EventPhaseModel>>());
 
-		builder.Entity<WorldModel>()
+		modelBuilder.Entity<WorldModel>()
 			.HasKey(w => w.Id);
 
-		builder.Entity<MapModel>()
+		modelBuilder.Entity<MapModel>()
 			.HasKey(m => m.Id);
 
-		builder.Entity<CellModel>()
+		modelBuilder.Entity<CellModel>()
 			.HasKey(n => n.Id);
 
-		builder.Entity<AutoRefreshModel>()
+		modelBuilder.Entity<AutoRefreshModel>()
 			.HasKey(a => a.Id);
 
-		builder.Entity<AutoRefreshModel>()
+		modelBuilder.Entity<AutoRefreshModel>()
 			.Property(a => a.SingleMapModeMap)
 			.HasConversion(JsonConverter<MapModel>());
 
-		builder.Entity<AutoRefreshModel>()
+		modelBuilder.Entity<AutoRefreshModel>()
 			.Property(a => a.Rules)
 			.HasConversion(JsonConverter<List<AutoRefreshRuleModel>>());
 
-		builder.Entity<ApiFile>()
+		modelBuilder.Entity<ApiFile>()
 			.HasKey(a => a.Id);
 
-		builder.Entity<ApiFile>()
+		modelBuilder.Entity<ApiFile>()
 			.Property(a => a.Content)
 			.HasConversion(new ValueConverter<string, byte[]>
 			(
@@ -103,19 +95,19 @@ public class ElectronicObserverContext : DbContext
 				b => System.Text.Encoding.UTF8.GetString(DecompressBytes(b))
 			));
 
-		builder.Entity<SortieRecord>()
+		modelBuilder.Entity<SortieRecord>()
 			.Property(s => s.FleetData)
 			.HasConversion(JsonConverter<SortieFleetData>());
 
-		builder.Entity<SortieRecord>()
+		modelBuilder.Entity<SortieRecord>()
 			.Property(s => s.FleetAfterSortieData)
 			.HasConversion(JsonConverter<SortieFleetData?>());
 
-		builder.Entity<SortieRecord>()
+		modelBuilder.Entity<SortieRecord>()
 			.Property(s => s.MapData)
 			.HasConversion(JsonConverter<SortieMapData>());
 
-		builder.Entity<ExpeditionRecord>()
+		modelBuilder.Entity<ExpeditionRecord>()
 			.Property(s => s.Fleet)
 			.HasConversion(JsonConverter<SortieFleet>());
 	}
@@ -129,7 +121,7 @@ public class ElectronicObserverContext : DbContext
 	private static T FromJson<T>(string s) where T : new() => s switch
 	{
 		null or "" => new T(),
-		_ => JsonSerializer.Deserialize<T>(s)!
+		_ => JsonSerializer.Deserialize<T>(s)!,
 	};
 
 	private static byte[] CompressBytes(byte[] bytes)
@@ -150,29 +142,6 @@ public class ElectronicObserverContext : DbContext
 		using (BrotliStream decompressStream = new(inputStream, CompressionMode.Decompress))
 		{
 			decompressStream.CopyTo(outputStream);
-		}
-
-		return outputStream.ToArray();
-	}
-
-	private static async Task<byte[]> CompressBytesAsync(byte[] bytes, CancellationToken cancel = default)
-	{
-		using var outputStream = new MemoryStream();
-		await using (var compressStream = new BrotliStream(outputStream, CompressionLevel.SmallestSize))
-		{
-			await compressStream.WriteAsync(bytes, 0, bytes.Length, cancel);
-		}
-
-		return outputStream.ToArray();
-	}
-
-	private static async Task<byte[]> DecompressBytesAsync(byte[] bytes, CancellationToken cancel = default)
-	{
-		using var inputStream = new MemoryStream(bytes);
-		using var outputStream = new MemoryStream();
-		await using (var decompressStream = new BrotliStream(inputStream, CompressionMode.Decompress))
-		{
-			await decompressStream.CopyToAsync(outputStream, cancel);
 		}
 
 		return outputStream.ToArray();

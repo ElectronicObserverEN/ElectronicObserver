@@ -5,6 +5,7 @@ namespace ElectronicObserver.Database.Sortie;
 
 public class SortieRecord
 {
+	public required int Version { get; set; }
 	public int Id { get; set; }
 	public int World { get; set; }
 	public int Map { get; set; }
