@@ -36,4 +36,10 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="SortieCost\*.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>

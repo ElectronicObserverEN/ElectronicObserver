@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -21,6 +22,7 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using Microsoft.EntityFrameworkCore;
 using Calendar = System.Windows.Controls.Calendar;
 
@@ -412,5 +414,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		csv.Context.RegisterClassMap<TMap>();
 		await csv.WriteRecordsAsync(data);
+	}
+
+	[RelayCommand]
+	private void OpenSortieCost()
+	{
+		if (SelectedSorties.Count <= 0) return;
+
+		SortieCostViewerViewModel sortieCost = new(Db, SelectedSorties);
+
+		new SortieCostViewerWindow(sortieCost).Show();
 	}
 }

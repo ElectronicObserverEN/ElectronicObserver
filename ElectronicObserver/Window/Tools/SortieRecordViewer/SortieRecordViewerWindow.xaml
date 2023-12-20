@@ -169,6 +169,7 @@
 							<MenuItem Command="{Binding CopyReplayDataToClipboardCommand}" Header="{Binding SortieRecordViewer.CopyData}" />
 						</MenuItem>
 						<MenuItem Command="{Binding ShowSortieDetailsCommand}" Header="{Binding SortieRecordViewer.SortieDetail}" />
+						<MenuItem Command="{Binding OpenSortieCostCommand}" Header="{Binding SortieRecordViewer.SortieCost}" />
 						<MenuItem Command="{Binding CopySmokerDataCsvCommand}" Header="{Binding SortieRecordViewer.SmokeScreenCsv}" />
 						<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieRecordViewer.CopySortieData}" />
 						<MenuItem Header="{Binding SortieRecordViewer.AirControlSimulator}">

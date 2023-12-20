@@ -1,0 +1,1028 @@
+﻿[
+	{
+		"Id": 1615509,
+		"ApiFileType": 0,
+		"Name": "api_port/port",
+		"Content": "{\"api_verno\":\"1\",\"api_sort_key\":\"5\",\"spi_sort_order\":\"2\",\"api_port\":\"643625627824055294292830853284\"}",
+		"TimeStamp": "2023-12-05T02:28:58.1953555",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615510,
+		"ApiFileType": 1,
+		"Name": "api_port/port",
+		"Content": "{\"api_data\":{\"api_basic\":{\"api_active_flag\":1,\"api_comment\":\"RIP \\u8349\\u7530\\u8349\\u592A\",\"api_comment_id\":\"183007501\",\"api_count_deck\":4,\"api_count_kdock\":2,\"api_count_ndock\":4,\"api_experience\":107464005,\"api_fcoin\":21383,\"api_firstflag\":1,\"api_fleetname\":null,\"api_furniture\":[297,296,288,274,133,202],\"api_large_dock\":1,\"api_level\":120,\"api_max_chara\":600,\"api_max_kagu\":0,\"api_max_slotitem\":2587,\"api_medals\":28,\"api_member_id\":\"19064362\",\"api_ms_count\":148611,\"api_ms_success\":148293,\"api_nickname\":\"Mirai\",\"api_nickname_id\":\"132491031\",\"api_playtime\":0,\"api_pt_challenged\":0,\"api_pt_challenged_win\":0,\"api_pt_lose\":833,\"api_pt_win\":29320,\"api_pvp\":[0,0],\"api_rank\":1,\"api_st_lose\":15040,\"api_st_win\":430215,\"api_starttime\":1701595639681,\"api_tutorial\":0,\"api_tutorial_progress\":100},\"api_c_flag\":null,\"api_combined_flag\":null,\"api_deck_port\":[],\"api_dest_ship_slot\":1,\"api_event_object\":null,\"api_log\":[],\"api_material\":[{\"api_id\":1,\"api_member_id\":19064362,\"api_value\":294357},{\"api_id\":2,\"api_member_id\":19064362,\"api_value\":302472},{\"api_id\":3,\"api_member_id\":19064362,\"api_value\":328370},{\"api_id\":4,\"api_member_id\":19064362,\"api_value\":221731},{\"api_id\":5,\"api_member_id\":19064362,\"api_value\":2999},{\"api_id\":6,\"api_member_id\":19064362,\"api_value\":2874},{\"api_id\":7,\"api_member_id\":19064362,\"api_value\":2812},{\"api_id\":8,\"api_member_id\":19064362,\"api_value\":432}],\"api_ndock\":[],\"api_p_bgm_id\":115,\"api_parallel_quest_count\":8,\"api_plane_info\":null,\"api_ship\":[]},\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529F\"}",
+		"TimeStamp": "2023-12-05T02:28:58.1953558",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615511,
+		"ApiFileType": 0,
+		"Name": "api_get_member/mapinfo",
+		"Content": "{\"api_verno\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:29:01.3090763",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615512,
+		"ApiFileType": 1,
+		"Name": "api_get_member/mapinfo",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_map_info\":[{\"api_id\":11,\"api_cleared\":1},{\"api_id\":12,\"api_cleared\":1},{\"api_id\":13,\"api_cleared\":1},{\"api_id\":14,\"api_cleared\":1},{\"api_id\":15,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":16,\"api_cleared\":0,\"api_defeat_count\":2,\"api_required_defeat_count\":7,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":21,\"api_cleared\":1},{\"api_id\":22,\"api_cleared\":1},{\"api_id\":23,\"api_cleared\":1},{\"api_id\":24,\"api_cleared\":1},{\"api_id\":25,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":4,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":31,\"api_cleared\":1},{\"api_id\":32,\"api_cleared\":1},{\"api_id\":33,\"api_cleared\":1},{\"api_id\":34,\"api_cleared\":1},{\"api_id\":35,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":41,\"api_cleared\":1},{\"api_id\":42,\"api_cleared\":1},{\"api_id\":43,\"api_cleared\":1},{\"api_id\":44,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":45,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":5,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":51,\"api_cleared\":1},{\"api_id\":52,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":53,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":54,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":55,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":5,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":61,\"api_cleared\":1},{\"api_id\":62,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":63,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":64,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1,\"api_air_base_decks\":1},{\"api_id\":65,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":6,\"api_gauge_type\":1,\"api_gauge_num\":1,\"api_air_base_decks\":2},{\"api_id\":71,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":72,\"api_cleared\":1,\"api_defeat_count\":0,\"api_required_defeat_count\":3,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":73,\"api_cleared\":1,\"api_defeat_count\":0,\"api_required_defeat_count\":3,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":74,\"api_cleared\":1,\"api_defeat_count\":0,\"api_required_defeat_count\":5,\"api_gauge_type\":1,\"api_gauge_num\":1,\"api_air_base_decks\":1},{\"api_id\":75,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":2,\"api_gauge_type\":1,\"api_gauge_num\":1}],\"api_air_base\":[{\"api_area_id\":6,\"api_rid\":1,\"api_name\":\"\\u7b2c\\u4e00\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":5,\"api_bonus\":0},\"api_action_kind\":1,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":54018,\"api_count\":10,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":142767,\"api_count\":14,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":156195,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":187980,\"api_count\":5,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":6,\"api_rid\":2,\"api_name\":\"\\u7b2c\\u4e8c\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":5,\"api_bonus\":0},\"api_action_kind\":1,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":54131,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":133360,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":132328,\"api_count\":8,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":132106,\"api_count\":6,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":6,\"api_rid\":3,\"api_name\":\"\\u7b2c\\u4e09\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":3,\"api_bonus\":0},\"api_action_kind\":2,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":154354,\"api_count\":11,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":154355,\"api_count\":9,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":157162,\"api_count\":8,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":32405,\"api_count\":9,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":7,\"api_rid\":1,\"api_name\":\"\\u7b2c\\u4e00\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":3,\"api_bonus\":0},\"api_action_kind\":4,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":142682,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":163317,\"api_count\":11,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":69888,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":98544,\"api_count\":16,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":7,\"api_rid\":2,\"api_name\":\"\\u7b2c\\u4e8c\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":7,\"api_bonus\":0},\"api_action_kind\":1,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":119385,\"api_count\":4,\"api_max_count\":4,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":98693,\"api_count\":4,\"api_max_count\":4,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":0,\"api_slotid\":0},{\"api_squadron_id\":4,\"api_state\":0,\"api_slotid\":0}]}],\"api_air_base_expanded_info\":[{\"api_area_id\":57,\"api_maintenance_level\":0}]}}",
+		"TimeStamp": "2023-12-05T02:29:01.3090764",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615513,
+		"ApiFileType": 0,
+		"Name": "api_req_map/start",
+		"Content": "{\"api_verno\":\"1\",\"api_maparea_id\":\"7\",\"api_mapinfo_no\":\"4\",\"api_deck_id\":\"1\",\"api_serial_cid\":\"170174334356367203172\"}",
+		"TimeStamp": "2023-12-05T02:29:05.2372444",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615514,
+		"ApiFileType": 1,
+		"Name": "api_req_map/start",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_cell_data\":[{\"api_id\":7201,\"api_no\":0,\"api_color_no\":0,\"api_passed\":0},{\"api_id\":7202,\"api_no\":1,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":8},{\"api_id\":7203,\"api_no\":2,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":7204,\"api_no\":3,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":7205,\"api_no\":4,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":6},{\"api_id\":7206,\"api_no\":5,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":5},{\"api_id\":7207,\"api_no\":6,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":7208,\"api_no\":7,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":4},{\"api_id\":7209,\"api_no\":8,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":4},{\"api_id\":7210,\"api_no\":9,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":4},{\"api_id\":7211,\"api_no\":10,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7212,\"api_no\":11,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7213,\"api_no\":12,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7214,\"api_no\":13,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7215,\"api_no\":14,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":1},{\"api_id\":7216,\"api_no\":15,\"api_color_no\":8,\"api_passed\":1,\"api_distance\":1},{\"api_id\":7217,\"api_no\":16,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7218,\"api_no\":17,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":5},{\"api_id\":7219,\"api_no\":18,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7220,\"api_no\":19,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7221,\"api_no\":20,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7222,\"api_no\":21,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7223,\"api_no\":22,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7224,\"api_no\":23,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2}],\"api_rashin_flg\":1,\"api_rashin_id\":4,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":3,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":22,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1534,1534,1532]}],\"api_limit_state\":0,\"api_from_no\":0}}",
+		"TimeStamp": "2023-12-05T02:29:05.2372445",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615515,
+		"ApiFileType": 0,
+		"Name": "api_req_map/start_air_base",
+		"Content": "{\"api_verno\":\"1\",\"api_strike_point_2\":\"11,3\"}",
+		"TimeStamp": "2023-12-05T02:29:11.3416013",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615516,
+		"ApiFileType": 1,
+		"Name": "api_req_map/start_air_base",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\"}",
+		"TimeStamp": "2023-12-05T02:29:11.3416014",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615517,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:29:28.2256121",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615518,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,4,1],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,68,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,69,5,18],[12,88,0,21]],\"api_ship_ke\":[1534,1534,1532,1532,1532],\"api_ship_lv\":[50,50,50,50,50],\"api_e_nowhps\":[37,37,27,27,27],\"api_e_maxhps\":[37,37,27,27,27],\"api_eSlot\":[[1515,1515,1513,-1,-1],[1515,1515,1513,-1,-1],[1515,1513,1513,-1,-1],[1515,1513,1513,-1,-1],[1515,1513,1513,-1,-1]],\"api_eParam\":[[0,86,0,30],[0,86,0,30],[0,64,0,21],[0,64,0,21],[0,64,0,21]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,5],\"api_air_base_attack\":[{\"api_base_id\":2,\"api_stage_flag\":[1,0,1],\"api_plane_from\":[null,null],\"api_squadron_plane\":[{\"api_mst_id\":238,\"api_count\":4},{\"api_mst_id\":238,\"api_count\":4}],\"api_stage1\":{\"api_f_count\":8,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[238,-1]},\"api_stage2\":null,\"api_stage3\":{\"api_erai_flag\":[0,0,0,0,0],\"api_ebak_flag\":[0,1,1,0,0],\"api_ecl_flag\":[0,0,0,0,0],\"api_edam\":[0,2,2,0,0],\"api_e_sp_list\":[null,null,null,null,null]}}],\"api_stage_flag\":[1,0,0],\"api_kouku\":{\"api_plane_from\":[null,null],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":null},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[1,4,4,4,3,2,-1],\"api_fcl\":[0,0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[0,0,0,0,0,0,0],\"api_erai\":[3,5,1,0,5,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]},\"api_hourai_flag\":[0,0,0,0],\"api_hougeki1\":null,\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":null}}",
+		"TimeStamp": "2023-12-05T02:29:28.2256122",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615519,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"53911414\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"37\",\"api_l_value3[1]\":\"35\",\"api_l_value3[2]\":\"25\",\"api_l_value3[3]\":\"27\",\"api_l_value3[4]\":\"27\"}",
+		"TimeStamp": "2023-12-05T02:29:56.7137059",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615520,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1534,1534,1532,1532,1532],\"api_win_rank\":\"B\",\"api_get_exp\":85,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107464090,\"api_get_base_exp\":155,\"api_get_ship_exp\":[-1,465,155,155,155,155,155],\"api_get_exp_lvup\":[[1593406,1647000],[4721462,4777000],[492549,509000],[1680601,1714000],[1900197,1940000],[3367765,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u6f5c\\u6c34\\u8266\\u968a \\u54e8\\u6212\\u96c6\\u56e3 C\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:29:56.7137065",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615521,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:30:11.5909368",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615522,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4721617,55383,73],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":9,\"api_bull\":20,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":19,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1680756,33244,50],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":9,\"api_bull\":20,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":19,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3367920,97080,37],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":9,\"api_bull\":25,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":84,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1900352,39648,50],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":19,\"api_bull\":20,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":68,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1593871,53129,15],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":19,\"api_bull\":20,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":65,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[492704,16296,6],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":9,\"api_bull\":20,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":19,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[97959,10350,110454,50009,87288,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:30:11.5909369",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615523,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:30:12.0930574",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615524,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":3,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":4,\"api_color_no\":10,\"api_event_id\":4,\"api_event_kind\":6,\"api_next\":1,\"api_bosscell_no\":23,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:30:12.0930575",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615525,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:30:28.0781351",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615526,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,4],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,68,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,69,5,18],[12,88,0,21]],\"api_ship_ke\":[1777,1777,1592,1575,1575,1575],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[70,70,66,35,35,35],\"api_e_maxhps\":[70,70,66,35,35,35],\"api_eSlot\":[[1581,1582,1583,-1,-1],[1581,1582,1583,-1,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[15,0,15,35],[15,0,15,35],[64,92,96,68],[38,60,30,22],[38,60,30,22],[38,60,30,22]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[5,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[null,[1,2]],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":144,\"api_e_lostcount\":3,\"api_disp_seiku\":4,\"api_touch_plane\":[-1,1583]},\"api_stage2\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":91,\"api_e_lostcount\":0},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,0,0],\"api_ebak_flag\":[0,0,0,0,0,0],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}}}}",
+		"TimeStamp": "2023-12-05T02:30:28.0781352",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615527,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"48400130\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"70\",\"api_l_value3[1]\":\"70\",\"api_l_value3[2]\":\"66\",\"api_l_value3[3]\":\"35\",\"api_l_value3[4]\":\"35\",\"api_l_value3[5]\":\"35\"}",
+		"TimeStamp": "2023-12-05T02:30:43.5184571",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615528,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1777,1777,1592,1575,1575,1575],\"api_win_rank\":\"S\",\"api_get_exp\":170,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107464260,\"api_get_base_exp\":80,\"api_get_ship_exp\":[-1,288,96,96,96,96,96],\"api_get_exp_lvup\":[[1593871,1647000],[4721617,4777000],[492704,509000],[1680756,1714000],[1900352,1940000],[3367920,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u4efb\\u52d9\\u90e8\\u968a \\u8266\\u8f09\\u6a5f\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:30:43.5184572",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615529,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:30:58.8563432",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615530,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4721713,55287,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":8,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":14,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1680852,33148,50],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":8,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":14,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3368016,96984,37],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":8,\"api_bull\":24,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":85,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1900448,39552,50],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":18,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":69,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1594159,52841,16],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":18,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":79,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[492800,16200,7],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":8,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":14,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[97959,10350,110454,50009,87288,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:30:58.8563433",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615531,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:30:59.3435971",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615532,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":6,\"api_color_no\":4,\"api_event_id\":6,\"api_event_kind\":2,\"api_next\":1,\"api_bosscell_no\":22,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_select_route\":{\"api_select_cells\":[8,18]},\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:30:59.3435971",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615533,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\",\"api_cell_id\":\"18\"}",
+		"TimeStamp": "2023-12-05T02:31:09.4596421",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615534,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":18,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":16,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":1,\"api_ship_ids\":[1527,1572,1572]}],\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:31:09.4596421",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615535,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:31:19.401728",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615536,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,4,2],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,68,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,69,5,18],[12,88,0,21]],\"api_ship_ke\":[1527,1572,1572,1572],\"api_ship_lv\":[1,50,50,50],\"api_e_nowhps\":[76,48,48,48],\"api_e_maxhps\":[76,48,48,48],\"api_eSlot\":[[1505,1506,1515,1525,-1],[1515,1515,1515,-1,-1],[1515,1515,1515,-1,-1],[1515,1515,1515,-1,-1]],\"api_eParam\":[[68,48,40,70],[30,135,0,42],[30,135,0,42],[30,135,0,42]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,1],\"api_stage_flag\":[1,0,0],\"api_kouku\":{\"api_plane_from\":[null,null],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":null},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[0,0,0,0,0,0,-1],\"api_fcl\":[0,1,0,0,1,1,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[0,6,0,0,31,31,0],\"api_erai\":[-1,1,4,5,-1,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[68,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]},\"api_hourai_flag\":[0,0,0,1],\"api_hougeki1\":null,\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":{\"api_frai\":[0,0,0,0,0,0,-1],\"api_fcl\":[1,0,0,0,1,1,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[0,0,0,0,17,40,0],\"api_erai\":[-1,-1,-1,-1,-1,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[57,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]}}}",
+		"TimeStamp": "2023-12-05T02:31:19.4017284",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615537,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"59429821\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"0\",\"api_l_value3[1]\":\"48\",\"api_l_value3[2]\":\"48\",\"api_l_value3[3]\":\"48\"}",
+		"TimeStamp": "2023-12-05T02:31:52.2700488",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615538,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1527,1572,1572,1572],\"api_win_rank\":\"B\",\"api_get_exp\":85,\"api_mvp\":6,\"api_member_lv\":120,\"api_member_exp\":107464345,\"api_get_base_exp\":170,\"api_get_ship_exp\":[-1,255,170,170,170,170,340],\"api_get_exp_lvup\":[[1594159,1647000],[4721713,4777000],[492800,509000],[1680852,1714000],[1900448,1940000],[3368016,3465000]],\"api_dests\":1,\"api_destsf\":1,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u8266\\u968a \\u7279\\u6b8a\\u4efb\\u52d9\\u90e8\\u968a\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:31:52.2700488",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615539,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:32:08.3936756",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615540,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4721883,55117,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":6,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":7,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681022,32978,50],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":6,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":7,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3368356,96644,37],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":6,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":94,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1900618,39382,50],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":14,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":68,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1594414,52586,16],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":14,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":81,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[492970,16030,8],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":6,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":7,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[97959,10350,110454,50009,87288,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:32:08.3936757",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615541,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:32:08.9236288",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615542,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":3,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":19,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":23,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1736,1571,1571]}],\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:32:08.9236288",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615543,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:32:25.0314614",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615544,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,4,4],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,68,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,69,5,18],[12,88,0,21]],\"api_ship_ke\":[1736,1571,1571,1571,1532],\"api_ship_lv\":[50,50,50,50,50],\"api_e_nowhps\":[177,45,45,45,27],\"api_e_maxhps\":[177,45,45,45,27],\"api_eSlot\":[[1570,1570,1570,-1,-1],[1515,1515,1503,-1,-1],[1515,1515,1503,-1,-1],[1515,1515,1503,-1,-1],[1515,1513,1513,-1,-1]],\"api_eParam\":[[27,117,0,37],[30,100,0,30],[30,100,0,30],[30,100,0,30],[0,64,0,21]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,5],\"api_air_base_attack\":[{\"api_base_id\":2,\"api_stage_flag\":[1,0,1],\"api_plane_from\":[null,null],\"api_squadron_plane\":[{\"api_mst_id\":238,\"api_count\":4},{\"api_mst_id\":238,\"api_count\":4}],\"api_stage1\":{\"api_f_count\":8,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":{\"api_erai_flag\":[0,0,0,0,0],\"api_ebak_flag\":[0,0,1,0,0],\"api_ecl_flag\":[0,0,0,0,0],\"api_edam\":[0,0,8,0,0],\"api_e_sp_list\":[null,null,null,null,null]}}],\"api_stage_flag\":[1,0,0],\"api_kouku\":{\"api_plane_from\":[null,null],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":null},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[4,4,4,1,4,3,-1],\"api_fcl\":[0,0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[0,0,0,0,0,0,0],\"api_erai\":[2,4,1,5,4,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]},\"api_hourai_flag\":[0,0,0,0],\"api_hougeki1\":null,\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":null}}",
+		"TimeStamp": "2023-12-05T02:32:25.0314615",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615545,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"95500947\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"177\",\"api_l_value3[1]\":\"45\",\"api_l_value3[2]\":\"37\",\"api_l_value3[3]\":\"45\",\"api_l_value3[4]\":\"27\"}",
+		"TimeStamp": "2023-12-05T02:32:57.3721639",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615546,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1736,1571,1571,1571,1532],\"api_win_rank\":\"B\",\"api_get_exp\":85,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107464430,\"api_get_base_exp\":180,\"api_get_ship_exp\":[-1,540,180,180,180,180,180],\"api_get_exp_lvup\":[[1594414,1647000],[4721883,4777000],[492970,509000],[1681022,1714000],[1900618,1940000],[3368356,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u6f5c\\u6c34\\u8266\\u968a \\u54e8\\u6212\\u96c6\\u56e3 \\u65d7\\u8266\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:32:57.3721639",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615547,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:33:12.9708502",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615548,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722063,54937,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":5,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681202,32798,51],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":5,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3368536,96464,37],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":5,\"api_bull\":19,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":93,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1900798,39202,50],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":13,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":67,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1594954,52046,17],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":13,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":93,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[493150,15850,9],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":5,\"api_bull\":15,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[97959,10350,110454,50009,87288,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:33:12.9708504",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615549,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:33:13.4769702",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615550,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":2,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":13,\"api_color_no\":10,\"api_event_id\":4,\"api_event_kind\":6,\"api_next\":1,\"api_bosscell_no\":23,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:33:13.4769702",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615551,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:33:29.7544005",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615552,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,4],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,68,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,69,5,18],[12,88,0,21]],\"api_ship_ke\":[2060,1765,1765,1591,1575,1575],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[500,88,88,48,35,35],\"api_e_maxhps\":[500,88,88,48,35,35],\"api_eSlot\":[[1621,1619,1617,1621,-1],[1574,1547,1548,1549,-1],[1574,1547,1548,1549,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[98,0,84,185],[35,0,48,73],[35,0,48,73],[58,84,88,55],[38,60,30,22],[38,60,30,22]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[5,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[null,[1,2,3]],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":207,\"api_e_lostcount\":4,\"api_disp_seiku\":4,\"api_touch_plane\":[-1,-1]},\"api_stage2\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":154,\"api_e_lostcount\":9},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,0,0],\"api_ebak_flag\":[0,0,0,0,0,0],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}}}}",
+		"TimeStamp": "2023-12-05T02:33:29.7544006",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615553,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"65822014\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"500\",\"api_l_value3[1]\":\"88\",\"api_l_value3[2]\":\"88\",\"api_l_value3[3]\":\"48\",\"api_l_value3[4]\":\"35\",\"api_l_value3[5]\":\"35\"}",
+		"TimeStamp": "2023-12-05T02:33:44.8240855",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615554,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[2060,1765,1765,1591,1575,1575],\"api_win_rank\":\"S\",\"api_get_exp\":170,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107464600,\"api_get_base_exp\":120,\"api_get_ship_exp\":[-1,432,144,144,144,144,144],\"api_get_exp_lvup\":[[1594954,1647000],[4722063,4777000],[493150,509000],[1681202,1714000],[1900798,1940000],[3368536,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u4efb\\u52d9\\u90e8\\u968a \\u8266\\u8f09\\u6a5f\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:33:44.8240858",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615555,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:33:59.5248103",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615556,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722207,54793,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":4,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681346,32654,51],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":4,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3368680,96320,37],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":4,\"api_bull\":18,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":94,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1900942,39058,51],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":12,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":68,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1595386,51614,18],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":12,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":100,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[493294,15706,10],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":4,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[97959,10350,110454,50009,87288,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:33:59.5248105",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615557,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:34:00.077055",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615558,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":2,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":15,\"api_color_no\":8,\"api_event_id\":2,\"api_event_kind\":0,\"api_next\":0,\"api_bosscell_no\":21,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0,\"api_itemget\":[{\"api_usemst\":4,\"api_id\":1,\"api_getcount\":86,\"api_name\":\"\",\"api_icon_id\":1},{\"api_usemst\":4,\"api_id\":4,\"api_getcount\":64,\"api_name\":\"\",\"api_icon_id\":4}]}}",
+		"TimeStamp": "2023-12-05T02:34:00.077055",
+		"Version": 1,
+		"SortieRecordId": 27808
+	},
+	{
+		"Id": 1615559,
+		"ApiFileType": 0,
+		"Name": "api_port/port",
+		"Content": "{\"api_verno\":\"1\",\"api_sort_key\":\"5\",\"spi_sort_order\":\"2\",\"api_port\":\"343625640222030947040958262185\"}",
+		"TimeStamp": "2023-12-05T02:34:18.0374874",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615560,
+		"ApiFileType": 1,
+		"Name": "api_port/port",
+		"Content": "{\"api_data\":{\"api_basic\":{\"api_active_flag\":1,\"api_comment\":\"RIP \\u8349\\u7530\\u8349\\u592A\",\"api_comment_id\":\"183007501\",\"api_count_deck\":4,\"api_count_kdock\":2,\"api_count_ndock\":4,\"api_experience\":107464600,\"api_fcoin\":21383,\"api_firstflag\":1,\"api_fleetname\":null,\"api_furniture\":[297,296,288,274,133,202],\"api_large_dock\":1,\"api_level\":120,\"api_max_chara\":600,\"api_max_kagu\":0,\"api_max_slotitem\":2587,\"api_medals\":28,\"api_member_id\":\"19064362\",\"api_ms_count\":148611,\"api_ms_success\":148293,\"api_nickname\":\"Mirai\",\"api_nickname_id\":\"132491031\",\"api_playtime\":0,\"api_pt_challenged\":0,\"api_pt_challenged_win\":0,\"api_pt_lose\":833,\"api_pt_win\":29320,\"api_pvp\":[0,0],\"api_rank\":1,\"api_st_lose\":15040,\"api_st_win\":430220,\"api_starttime\":1701595639681,\"api_tutorial\":0,\"api_tutorial_progress\":100},\"api_c_flag\":null,\"api_combined_flag\":null,\"api_deck_port\":[],\"api_dest_ship_slot\":1,\"api_event_object\":null,\"api_log\":[],\"api_material\":[{\"api_id\":1,\"api_member_id\":19064362,\"api_value\":294435},{\"api_id\":2,\"api_member_id\":19064362,\"api_value\":302466},{\"api_id\":3,\"api_member_id\":19064362,\"api_value\":328370},{\"api_id\":4,\"api_member_id\":19064362,\"api_value\":221795},{\"api_id\":5,\"api_member_id\":19064362,\"api_value\":2999},{\"api_id\":6,\"api_member_id\":19064362,\"api_value\":2874},{\"api_id\":7,\"api_member_id\":19064362,\"api_value\":2812},{\"api_id\":8,\"api_member_id\":19064362,\"api_value\":432}],\"api_ndock\":[],\"api_p_bgm_id\":115,\"api_parallel_quest_count\":8,\"api_plane_info\":null,\"api_ship\":[]},\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529F\"}",
+		"TimeStamp": "2023-12-05T02:34:18.0374877",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615561,
+		"ApiFileType": 0,
+		"Name": "api_get_member/useitem",
+		"Content": "{\"api_verno\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:34:19.1198758",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615562,
+		"ApiFileType": 1,
+		"Name": "api_get_member/useitem",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":[{\"api_id\":10,\"api_count\":83},{\"api_id\":11,\"api_count\":4},{\"api_id\":12,\"api_count\":1},{\"api_id\":52,\"api_count\":71},{\"api_id\":54,\"api_count\":217},{\"api_id\":56,\"api_count\":12},{\"api_id\":57,\"api_count\":481},{\"api_id\":58,\"api_count\":2},{\"api_id\":59,\"api_count\":520},{\"api_id\":60,\"api_count\":181},{\"api_id\":61,\"api_count\":28},{\"api_id\":64,\"api_count\":26},{\"api_id\":65,\"api_count\":9},{\"api_id\":70,\"api_count\":37},{\"api_id\":71,\"api_count\":6},{\"api_id\":73,\"api_count\":2},{\"api_id\":74,\"api_count\":5},{\"api_id\":75,\"api_count\":58},{\"api_id\":77,\"api_count\":69},{\"api_id\":78,\"api_count\":28},{\"api_id\":79,\"api_count\":1},{\"api_id\":81,\"api_count\":1},{\"api_id\":91,\"api_count\":86},{\"api_id\":92,\"api_count\":13},{\"api_id\":94,\"api_count\":39},{\"api_id\":95,\"api_count\":20},{\"api_id\":98,\"api_count\":2},{\"api_id\":99,\"api_count\":2}]}",
+		"TimeStamp": "2023-12-05T02:34:19.1198759",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615563,
+		"ApiFileType": 0,
+		"Name": "api_get_member/preset_deck",
+		"Content": "{\"api_verno\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:34:30.1684877",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615564,
+		"ApiFileType": 1,
+		"Name": "api_get_member/preset_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_max_num\":10,\"api_deck\":{\"1\":{\"api_preset_no\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[26984,110748,74812,99344,110490,110610,-1]},\"2\":{\"api_preset_no\":2,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[12191,128,39298,18855,31200,83,-1]},\"3\":{\"api_preset_no\":3,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[100532,845,953,72668,78527,3476,-1]},\"4\":{\"api_preset_no\":4,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[26984,367,263,107,11853,21937,-1]},\"5\":{\"api_preset_no\":5,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[26984,48135,48029,152,18188,12504,-1]},\"6\":{\"api_preset_no\":6,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[21624,30986,22073,33431,39077,-1,-1]},\"7\":{\"api_preset_no\":7,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[78575,10350,110454,50009,87288,97959,-1]},\"8\":{\"api_preset_no\":8,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[845,953,4271,81247,63939,97963,-1]},\"9\":{\"api_preset_no\":9,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[12721,57826,821,87548,74793,2026,-1]},\"10\":{\"api_preset_no\":10,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_ship\":[110748,12447,57826,46683,172,214,-1]}}}}",
+		"TimeStamp": "2023-12-05T02:34:30.1684883",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615565,
+		"ApiFileType": 0,
+		"Name": "api_req_hensei/change",
+		"Content": "{\"api_verno\":\"1\",\"api_id\":\"1\",\"api_ship_idx\":\"0\",\"api_ship_id\":\"87288\"}",
+		"TimeStamp": "2023-12-05T02:34:43.8838258",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615566,
+		"ApiFileType": 1,
+		"Name": "api_req_hensei/change",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\"}",
+		"TimeStamp": "2023-12-05T02:34:43.8838259",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615567,
+		"ApiFileType": 0,
+		"Name": "api_port/port",
+		"Content": "{\"api_verno\":\"1\",\"api_sort_key\":\"5\",\"spi_sort_order\":\"2\",\"api_port\":\"873625613180401551568546442819\"}",
+		"TimeStamp": "2023-12-05T02:34:47.2935066",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615568,
+		"ApiFileType": 1,
+		"Name": "api_port/port",
+		"Content": "{\"api_data\":{\"api_basic\":{\"api_active_flag\":1,\"api_comment\":\"RIP \\u8349\\u7530\\u8349\\u592A\",\"api_comment_id\":\"183007501\",\"api_count_deck\":4,\"api_count_kdock\":2,\"api_count_ndock\":4,\"api_experience\":107464600,\"api_fcoin\":21383,\"api_firstflag\":1,\"api_fleetname\":null,\"api_furniture\":[297,296,288,274,133,202],\"api_large_dock\":1,\"api_level\":120,\"api_max_chara\":600,\"api_max_kagu\":0,\"api_max_slotitem\":2587,\"api_medals\":28,\"api_member_id\":\"19064362\",\"api_ms_count\":148611,\"api_ms_success\":148293,\"api_nickname\":\"Mirai\",\"api_nickname_id\":\"132491031\",\"api_playtime\":0,\"api_pt_challenged\":0,\"api_pt_challenged_win\":0,\"api_pt_lose\":833,\"api_pt_win\":29320,\"api_pvp\":[0,0],\"api_rank\":1,\"api_st_lose\":15040,\"api_st_win\":430220,\"api_starttime\":1701595639681,\"api_tutorial\":0,\"api_tutorial_progress\":100},\"api_c_flag\":null,\"api_combined_flag\":null,\"api_deck_port\":[],\"api_dest_ship_slot\":1,\"api_event_object\":null,\"api_log\":[],\"api_material\":[{\"api_id\":1,\"api_member_id\":19064362,\"api_value\":294435},{\"api_id\":2,\"api_member_id\":19064362,\"api_value\":302466},{\"api_id\":3,\"api_member_id\":19064362,\"api_value\":328370},{\"api_id\":4,\"api_member_id\":19064362,\"api_value\":221795},{\"api_id\":5,\"api_member_id\":19064362,\"api_value\":2999},{\"api_id\":6,\"api_member_id\":19064362,\"api_value\":2874},{\"api_id\":7,\"api_member_id\":19064362,\"api_value\":2812},{\"api_id\":8,\"api_member_id\":19064362,\"api_value\":432}],\"api_ndock\":[],\"api_p_bgm_id\":115,\"api_parallel_quest_count\":8,\"api_plane_info\":null,\"api_ship\":[]},\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529F\"}",
+		"TimeStamp": "2023-12-05T02:34:47.2935068",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615569,
+		"ApiFileType": 0,
+		"Name": "api_get_member/mapinfo",
+		"Content": "{\"api_verno\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:34:50.4548371",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615570,
+		"ApiFileType": 1,
+		"Name": "api_get_member/mapinfo",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_map_info\":[{\"api_id\":11,\"api_cleared\":1},{\"api_id\":12,\"api_cleared\":1},{\"api_id\":13,\"api_cleared\":1},{\"api_id\":14,\"api_cleared\":1},{\"api_id\":15,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":16,\"api_cleared\":0,\"api_defeat_count\":2,\"api_required_defeat_count\":7,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":21,\"api_cleared\":1},{\"api_id\":22,\"api_cleared\":1},{\"api_id\":23,\"api_cleared\":1},{\"api_id\":24,\"api_cleared\":1},{\"api_id\":25,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":4,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":31,\"api_cleared\":1},{\"api_id\":32,\"api_cleared\":1},{\"api_id\":33,\"api_cleared\":1},{\"api_id\":34,\"api_cleared\":1},{\"api_id\":35,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":41,\"api_cleared\":1},{\"api_id\":42,\"api_cleared\":1},{\"api_id\":43,\"api_cleared\":1},{\"api_id\":44,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":45,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":5,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":51,\"api_cleared\":1},{\"api_id\":52,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":53,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":54,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":55,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":5,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":61,\"api_cleared\":1},{\"api_id\":62,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":63,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":64,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1,\"api_air_base_decks\":1},{\"api_id\":65,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":6,\"api_gauge_type\":1,\"api_gauge_num\":1,\"api_air_base_decks\":2},{\"api_id\":71,\"api_cleared\":1,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":72,\"api_cleared\":1,\"api_defeat_count\":0,\"api_required_defeat_count\":3,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":73,\"api_cleared\":1,\"api_defeat_count\":0,\"api_required_defeat_count\":3,\"api_gauge_type\":1,\"api_gauge_num\":1},{\"api_id\":74,\"api_cleared\":1,\"api_defeat_count\":0,\"api_required_defeat_count\":5,\"api_gauge_type\":1,\"api_gauge_num\":1,\"api_air_base_decks\":1},{\"api_id\":75,\"api_cleared\":0,\"api_defeat_count\":0,\"api_required_defeat_count\":2,\"api_gauge_type\":1,\"api_gauge_num\":1}],\"api_air_base\":[{\"api_area_id\":6,\"api_rid\":1,\"api_name\":\"\\u7b2c\\u4e00\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":5,\"api_bonus\":0},\"api_action_kind\":1,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":54018,\"api_count\":10,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":142767,\"api_count\":14,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":156195,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":187980,\"api_count\":5,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":6,\"api_rid\":2,\"api_name\":\"\\u7b2c\\u4e8c\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":5,\"api_bonus\":0},\"api_action_kind\":1,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":54131,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":133360,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":132328,\"api_count\":8,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":132106,\"api_count\":6,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":6,\"api_rid\":3,\"api_name\":\"\\u7b2c\\u4e09\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":3,\"api_bonus\":0},\"api_action_kind\":2,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":154354,\"api_count\":11,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":154355,\"api_count\":9,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":157162,\"api_count\":8,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":32405,\"api_count\":9,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":7,\"api_rid\":1,\"api_name\":\"\\u7b2c\\u4e00\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":3,\"api_bonus\":0},\"api_action_kind\":4,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":142682,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":163317,\"api_count\":11,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":3,\"api_state\":1,\"api_slotid\":69888,\"api_count\":15,\"api_max_count\":18,\"api_cond\":1},{\"api_squadron_id\":4,\"api_state\":1,\"api_slotid\":98544,\"api_count\":16,\"api_max_count\":18,\"api_cond\":1}]},{\"api_area_id\":7,\"api_rid\":2,\"api_name\":\"\\u7b2c\\u4e8c\\u57fa\\u5730\\u822a\\u7a7a\\u968a\",\"api_distance\":{\"api_base\":7,\"api_bonus\":0},\"api_action_kind\":1,\"api_plane_info\":[{\"api_squadron_id\":1,\"api_state\":1,\"api_slotid\":119385,\"api_count\":4,\"api_max_count\":4,\"api_cond\":2},{\"api_squadron_id\":2,\"api_state\":1,\"api_slotid\":98693,\"api_count\":4,\"api_max_count\":4,\"api_cond\":2},{\"api_squadron_id\":3,\"api_state\":0,\"api_slotid\":0},{\"api_squadron_id\":4,\"api_state\":0,\"api_slotid\":0}]}],\"api_air_base_expanded_info\":[{\"api_area_id\":57,\"api_maintenance_level\":0}]}}",
+		"TimeStamp": "2023-12-05T02:34:50.4548373",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615571,
+		"ApiFileType": 0,
+		"Name": "api_req_map/start",
+		"Content": "{\"api_verno\":\"1\",\"api_maparea_id\":\"7\",\"api_mapinfo_no\":\"4\",\"api_deck_id\":\"1\",\"api_serial_cid\":\"170174369557767926920\"}",
+		"TimeStamp": "2023-12-05T02:34:56.7791152",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615572,
+		"ApiFileType": 1,
+		"Name": "api_req_map/start",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_cell_data\":[{\"api_id\":7201,\"api_no\":0,\"api_color_no\":0,\"api_passed\":0},{\"api_id\":7202,\"api_no\":1,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":8},{\"api_id\":7203,\"api_no\":2,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":7204,\"api_no\":3,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":7205,\"api_no\":4,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":6},{\"api_id\":7206,\"api_no\":5,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":5},{\"api_id\":7207,\"api_no\":6,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":7208,\"api_no\":7,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":4},{\"api_id\":7209,\"api_no\":8,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":4},{\"api_id\":7210,\"api_no\":9,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":4},{\"api_id\":7211,\"api_no\":10,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7212,\"api_no\":11,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7213,\"api_no\":12,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7214,\"api_no\":13,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7215,\"api_no\":14,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":1},{\"api_id\":7216,\"api_no\":15,\"api_color_no\":8,\"api_passed\":1,\"api_distance\":1},{\"api_id\":7217,\"api_no\":16,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7218,\"api_no\":17,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":5},{\"api_id\":7219,\"api_no\":18,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7220,\"api_no\":19,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7221,\"api_no\":20,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":7222,\"api_no\":21,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7223,\"api_no\":22,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2},{\"api_id\":7224,\"api_no\":23,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":2}],\"api_rashin_flg\":1,\"api_rashin_id\":1,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":3,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":22,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":1,\"api_ship_ids\":[1534,1534,1532]}],\"api_limit_state\":0,\"api_from_no\":0}}",
+		"TimeStamp": "2023-12-05T02:34:56.7791152",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615573,
+		"ApiFileType": 0,
+		"Name": "api_req_map/start_air_base",
+		"Content": "{\"api_verno\":\"1\",\"api_strike_point_2\":\"11,3\"}",
+		"TimeStamp": "2023-12-05T02:35:04.0700254",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615574,
+		"ApiFileType": 1,
+		"Name": "api_req_map/start_air_base",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\"}",
+		"TimeStamp": "2023-12-05T02:35:04.0700255",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615575,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:35:21.1705598",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615576,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,5,2],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,69,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,68,5,18],[12,88,0,21]],\"api_ship_ke\":[1534,1534,1532,1532],\"api_ship_lv\":[50,50,50,50],\"api_e_nowhps\":[37,37,27,27],\"api_e_maxhps\":[37,37,27,27],\"api_eSlot\":[[1515,1515,1513,-1,-1],[1515,1515,1513,-1,-1],[1515,1513,1513,-1,-1],[1515,1513,1513,-1,-1]],\"api_eParam\":[[0,86,0,30],[0,86,0,30],[0,64,0,21],[0,64,0,21]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,5],\"api_air_base_attack\":[{\"api_base_id\":2,\"api_stage_flag\":[1,0,1],\"api_plane_from\":[null,null],\"api_squadron_plane\":[{\"api_mst_id\":238,\"api_count\":4},{\"api_mst_id\":238,\"api_count\":4}],\"api_stage1\":{\"api_f_count\":8,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[238,-1]},\"api_stage2\":null,\"api_stage3\":{\"api_erai_flag\":[0,0,0,0],\"api_ebak_flag\":[0,1,1,0],\"api_ecl_flag\":[0,0,0,0],\"api_edam\":[0,5,1,0],\"api_e_sp_list\":[null,null,null,null]}}],\"api_stage_flag\":[1,0,0],\"api_kouku\":{\"api_plane_from\":[null,null],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":null},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[1,2,1,2,2,3,-1],\"api_fcl\":[0,0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[0,0,0,0,0,0,0],\"api_erai\":[1,1,2,3,-1,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]},\"api_hourai_flag\":[0,0,0,0],\"api_hougeki1\":null,\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":null}}",
+		"TimeStamp": "2023-12-05T02:35:21.1705599",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615577,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"31378112\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"37\",\"api_l_value3[1]\":\"32\",\"api_l_value3[2]\":\"26\",\"api_l_value3[3]\":\"27\"}",
+		"TimeStamp": "2023-12-05T02:35:55.1131098",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615578,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1534,1534,1532,1532],\"api_win_rank\":\"B\",\"api_get_exp\":85,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107464685,\"api_get_base_exp\":150,\"api_get_ship_exp\":[-1,450,150,150,150,150,150],\"api_get_exp_lvup\":[[1900942,1940000],[4722207,4777000],[493294,509000],[1681346,1714000],[1595386,1647000],[3368680,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u6f5c\\u6c34\\u8266\\u968a \\u54e8\\u6212\\u96c6\\u56e3 C\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:35:55.1131099",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615579,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:36:10.8428837",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615580,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722357,54643,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":3,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681496,32504,51],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":3,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3368830,96170,37],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":3,\"api_bull\":18,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":78,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1901392,38608,51],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":11,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":65,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1595536,51464,18],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":11,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":84,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[493444,15556,11],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":3,\"api_bull\":14,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[87288,10350,110454,50009,97959,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:36:10.842884",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615581,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:36:11.3370522",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615582,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":3,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":4,\"api_color_no\":10,\"api_event_id\":4,\"api_event_kind\":6,\"api_next\":1,\"api_bosscell_no\":22,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:36:11.3370523",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615583,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:36:27.7064039",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615584,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,1],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,69,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,68,5,18],[12,88,0,21]],\"api_ship_ke\":[1777,1777,1592,1575,1575,1575],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[70,70,66,35,35,35],\"api_e_maxhps\":[70,70,66,35,35,35],\"api_eSlot\":[[1581,1582,1583,-1,-1],[1581,1582,1583,-1,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[15,0,15,35],[15,0,15,35],[64,92,96,68],[38,60,30,22],[38,60,30,22],[38,60,30,22]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[5,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[null,[1,2]],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":144,\"api_e_lostcount\":3,\"api_disp_seiku\":4,\"api_touch_plane\":[-1,-1]},\"api_stage2\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":92,\"api_e_lostcount\":2},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,0,0],\"api_ebak_flag\":[0,0,0,0,0,0],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}}}}",
+		"TimeStamp": "2023-12-05T02:36:27.7064041",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615585,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"91493276\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"70\",\"api_l_value3[1]\":\"70\",\"api_l_value3[2]\":\"66\",\"api_l_value3[3]\":\"35\",\"api_l_value3[4]\":\"35\",\"api_l_value3[5]\":\"35\"}",
+		"TimeStamp": "2023-12-05T02:36:42.7336778",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615586,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1777,1777,1592,1575,1575,1575],\"api_win_rank\":\"S\",\"api_get_exp\":170,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107464855,\"api_get_base_exp\":80,\"api_get_ship_exp\":[-1,288,96,96,96,96,96],\"api_get_exp_lvup\":[[1901392,1940000],[4722357,4777000],[493444,509000],[1681496,1714000],[1595536,1647000],[3368830,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u4efb\\u52d9\\u90e8\\u968a \\u8266\\u8f09\\u6a5f\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:36:42.7336779",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615587,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:36:57.6375509",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615588,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722453,54547,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":2,\"api_bull\":13,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681592,32408,51],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":2,\"api_bull\":13,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3368926,96074,38],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":2,\"api_bull\":17,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":79,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1901680,38320,52],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":10,\"api_bull\":13,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":79,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1595632,51368,18],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":10,\"api_bull\":13,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":85,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[493540,15460,11],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":2,\"api_bull\":13,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[87288,10350,110454,50009,97959,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:36:57.637551",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615589,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:36:58.1145215",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615590,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":6,\"api_color_no\":4,\"api_event_id\":6,\"api_event_kind\":2,\"api_next\":1,\"api_bosscell_no\":23,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_select_route\":{\"api_select_cells\":[8,18]},\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:36:58.1145216",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615591,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\",\"api_cell_id\":\"18\"}",
+		"TimeStamp": "2023-12-05T02:37:08.2160931",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615592,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":18,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":22,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":1,\"api_ship_ids\":[1527,1572,1572]}],\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:37:08.2160932",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615593,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:37:18.1168221",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615594,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,5,4],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,69,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,68,5,18],[12,88,0,21]],\"api_ship_ke\":[1527,1572,1572,1572],\"api_ship_lv\":[1,50,50,50],\"api_e_nowhps\":[76,48,48,48],\"api_e_maxhps\":[76,48,48,48],\"api_eSlot\":[[1505,1506,1515,1525,-1],[1515,1515,1515,-1,-1],[1515,1515,1515,-1,-1],[1515,1515,1515,-1,-1]],\"api_eParam\":[[68,48,40,70],[30,135,0,42],[30,135,0,42],[30,135,0,42]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,1],\"api_stage_flag\":[1,0,0],\"api_kouku\":{\"api_plane_from\":[null,null],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":null},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[0,0,0,0,0,0,-1],\"api_fcl\":[1,0,0,0,2,1,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[15,0,0,0,46,15,0],\"api_erai\":[-1,4,4,4,-1,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[76,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]},\"api_hourai_flag\":[0,0,0,0],\"api_hougeki1\":null,\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":null}}",
+		"TimeStamp": "2023-12-05T02:37:18.1168224",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615595,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"10500929\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"0\",\"api_l_value3[1]\":\"48\",\"api_l_value3[2]\":\"48\",\"api_l_value3[3]\":\"48\"}",
+		"TimeStamp": "2023-12-05T02:37:39.0417445",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615596,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1527,1572,1572,1572],\"api_win_rank\":\"B\",\"api_get_exp\":85,\"api_mvp\":5,\"api_member_lv\":120,\"api_member_exp\":107464940,\"api_get_base_exp\":170,\"api_get_ship_exp\":[-1,255,170,170,170,340,170],\"api_get_exp_lvup\":[[1901680,1940000],[4722453,4777000],[493540,509000],[1681592,1714000],[1595632,1647000],[3368926,3465000]],\"api_dests\":1,\"api_destsf\":1,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u8266\\u968a \\u7279\\u6b8a\\u4efb\\u52d9\\u90e8\\u968a\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:37:39.0417446",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615597,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:37:54.0206642",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615598,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722623,54377,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":0,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681762,32238,51],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":0,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3369096,95904,38],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":0,\"api_bull\":12,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":78,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1901935,38065,52],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":6,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":81,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1595972,51028,19],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":6,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":94,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[493710,15290,12],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":0,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[87288,10350,110454,50009,97959,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:37:54.0206643",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615599,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:37:54.5585326",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615600,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":1,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":19,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":21,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1736,1571,1571]}],\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:37:54.5585328",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615601,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:38:12.1512785",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615602,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,5,1],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,69,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,68,5,18],[12,88,0,21]],\"api_ship_ke\":[1736,1571,1571,1571,1532],\"api_ship_lv\":[50,50,50,50,50],\"api_e_nowhps\":[177,45,45,45,27],\"api_e_maxhps\":[177,45,45,45,27],\"api_eSlot\":[[1570,1570,1570,-1,-1],[1515,1515,1503,-1,-1],[1515,1515,1503,-1,-1],[1515,1515,1503,-1,-1],[1515,1513,1513,-1,-1]],\"api_eParam\":[[27,117,0,37],[30,100,0,30],[30,100,0,30],[30,100,0,30],[0,64,0,21]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,5],\"api_air_base_attack\":[{\"api_base_id\":2,\"api_stage_flag\":[1,0,1],\"api_plane_from\":[null,null],\"api_squadron_plane\":[{\"api_mst_id\":238,\"api_count\":4},{\"api_mst_id\":238,\"api_count\":4}],\"api_stage1\":{\"api_f_count\":8,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[238,-1]},\"api_stage2\":null,\"api_stage3\":{\"api_erai_flag\":[0,0,0,0,0],\"api_ebak_flag\":[0,1,0,0,0],\"api_ecl_flag\":[0,0,0,0,0],\"api_edam\":[0,6.1,0,0,0],\"api_e_sp_list\":[null,null,null,null,null]}}],\"api_stage_flag\":[1,0,0],\"api_kouku\":{\"api_plane_from\":[null,null],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":null,\"api_stage3\":null},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[1,4,2,3,3,2,-1],\"api_fcl\":[0,0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[0,0,0,0,0,0,0],\"api_erai\":[5,4,5,2,2,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]},\"api_hourai_flag\":[0,0,0,0],\"api_hougeki1\":null,\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":null}}",
+		"TimeStamp": "2023-12-05T02:38:12.1512785",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615603,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"62695971\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"177\",\"api_l_value3[1]\":\"39\",\"api_l_value3[2]\":\"45\",\"api_l_value3[3]\":\"45\",\"api_l_value3[4]\":\"27\"}",
+		"TimeStamp": "2023-12-05T02:38:51.9295547",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615604,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1736,1571,1571,1571,1532],\"api_win_rank\":\"B\",\"api_get_exp\":85,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107465025,\"api_get_base_exp\":180,\"api_get_ship_exp\":[-1,540,180,180,180,180,180],\"api_get_exp_lvup\":[[1901935,1940000],[4722623,4777000],[493710,509000],[1681762,1714000],[1595972,1647000],[3369096,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u6f5c\\u6c34\\u8266\\u968a \\u54e8\\u6212\\u96c6\\u56e3 \\u65d7\\u8266\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:38:51.9295547",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615605,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:39:07.4851872",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615606,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722803,54197,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":0,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1681942,32058,52],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":0,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3369276,95724,38],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":0,\"api_bull\":12,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":77,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1902475,37525,53],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":5,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":93,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1596152,50848,19],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":5,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":93,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[493890,15110,13],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":0,\"api_bull\":9,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":2,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[87288,10350,110454,50009,97959,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:39:07.4851873",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615607,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:39:08.018905",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615608,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":4,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":13,\"api_color_no\":10,\"api_event_id\":4,\"api_event_kind\":6,\"api_next\":1,\"api_bosscell_no\":16,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0}}",
+		"TimeStamp": "2023-12-05T02:39:08.0189051",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615609,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_verno\":\"1\",\"api_formation\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:39:24.075264",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615610,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/ld_airbattle",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,1],\"api_f_nowhps\":[17,17,13,18,17,22],\"api_f_maxhps\":[17,17,13,18,17,22],\"api_fParam\":[[4,69,5,18],[12,64,0,20],[18,70,25,22],[15,68,28,21],[4,68,5,18],[12,88,0,21]],\"api_ship_ke\":[2060,1765,1765,1591,1575,1575],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[500,88,88,48,35,35],\"api_e_maxhps\":[500,88,88,48,35,35],\"api_eSlot\":[[1621,1619,1617,1621,-1],[1574,1547,1548,1549,-1],[1574,1547,1548,1549,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[98,0,84,185],[35,0,48,73],[35,0,48,73],[58,84,88,55],[38,60,30,22],[38,60,30,22]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[5,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[null,[1,2,3]],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":207,\"api_e_lostcount\":3,\"api_disp_seiku\":4,\"api_touch_plane\":[-1,-1]},\"api_stage2\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":155,\"api_e_lostcount\":19},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,0,0],\"api_ebak_flag\":[0,0,0,0,0,0],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}}}}",
+		"TimeStamp": "2023-12-05T02:39:24.0752641",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615611,
+		"ApiFileType": 0,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_verno\":\"1\",\"api_btime\":\"15441801\",\"api_l_value[0]\":\"17\",\"api_l_value[1]\":\"17\",\"api_l_value[2]\":\"13\",\"api_l_value[3]\":\"18\",\"api_l_value[4]\":\"17\",\"api_l_value[5]\":\"22\",\"api_l_value3[0]\":\"500\",\"api_l_value3[1]\":\"88\",\"api_l_value3[2]\":\"88\",\"api_l_value3[3]\":\"48\",\"api_l_value3[4]\":\"35\",\"api_l_value3[5]\":\"35\"}",
+		"TimeStamp": "2023-12-05T02:39:39.1082894",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615612,
+		"ApiFileType": 1,
+		"Name": "api_req_sortie/battleresult",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[2060,1765,1765,1591,1575,1575],\"api_win_rank\":\"S\",\"api_get_exp\":170,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107465195,\"api_get_base_exp\":120,\"api_get_ship_exp\":[-1,432,144,144,144,144,144],\"api_get_exp_lvup\":[[1902475,1940000],[4722803,4777000],[493890,509000],[1681942,1714000],[1596152,1647000],[3369276,3465000]],\"api_dests\":0,\"api_destsf\":0,\"api_quest_name\":\"\\u662d\\u5357\\u672c\\u571f\\u822a\\u8def\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6df1\\u6d77\\u4efb\\u52d9\\u90e8\\u968a \\u8266\\u8f09\\u6a5f\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+		"TimeStamp": "2023-12-05T02:39:39.1082895",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615613,
+		"ApiFileType": 0,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_verno\":\"1\",\"api_deck_rid\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:39:54.2812843",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615614,
+		"ApiFileType": 1,
+		"Name": "api_get_member/ship_deck",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":10350,\"api_sortno\":1504,\"api_ship_id\":334,\"api_lv\":151,\"api_exp\":[4722947,54053,74],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[31796,93644,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":57743,\"api_kyouka\":[9,37,0,14,5,0,0],\"api_backs\":6,\"api_fuel\":0,\"api_bull\":8,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[13,12],\"api_raisou\":[64,64],\"api_taiku\":[1,0],\"api_soukou\":[20,20],\"api_kaihi\":[90,59],\"api_taisen\":[0,0],\"api_sakuteki\":[44,29],\"api_lucky\":[39,67],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":50009,\"api_sortno\":330,\"api_ship_id\":530,\"api_lv\":128,\"api_exp\":[1682086,31914,52],\"api_nowhp\":18,\"api_maxhp\":18,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[37,6507,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[12,38,28,16,3,0,0],\"api_backs\":7,\"api_fuel\":0,\"api_bull\":8,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[15,15],\"api_raisou\":[68,68],\"api_taiku\":[28,28],\"api_soukou\":[21,21],\"api_kaihi\":[76,64],\"api_taisen\":[0,0],\"api_sakuteki\":[38,32],\"api_lucky\":[43,85],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":78575,\"api_sortno\":1507,\"api_ship_id\":607,\"api_lv\":144,\"api_exp\":[3369420,95580,38],\"api_nowhp\":22,\"api_maxhp\":22,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[126261,130074,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162138,\"api_kyouka\":[9,48,0,16,4,0,0],\"api_backs\":6,\"api_fuel\":0,\"api_bull\":11,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":78,\"api_karyoku\":[12,12],\"api_raisou\":[133,88],\"api_taiku\":[0,0],\"api_soukou\":[23,21],\"api_kaihi\":[87,50],\"api_taisen\":[0,0],\"api_sakuteki\":[44,30],\"api_lucky\":[54,97],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":87288,\"api_sortno\":487,\"api_ship_id\":887,\"api_lv\":131,\"api_exp\":[1902907,37093,53],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[51465,162064,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":126303,\"api_kyouka\":[3,47,5,14,5,0,0],\"api_backs\":7,\"api_fuel\":4,\"api_bull\":8,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":100,\"api_karyoku\":[6,4],\"api_raisou\":[106,69],\"api_taiku\":[5,5],\"api_soukou\":[20,18],\"api_kaihi\":[113,80],\"api_taisen\":[0,0],\"api_sakuteki\":[65,48],\"api_lucky\":[29,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":97959,\"api_sortno\":1719,\"api_ship_id\":719,\"api_lv\":127,\"api_exp\":[1596296,50704,19],\"api_nowhp\":17,\"api_maxhp\":17,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[163318,151999,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":162065,\"api_kyouka\":[3,46,5,14,3,0,0],\"api_backs\":7,\"api_fuel\":4,\"api_bull\":8,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":94,\"api_karyoku\":[4,4],\"api_raisou\":[105,68],\"api_taiku\":[5,5],\"api_soukou\":[21,18],\"api_kaihi\":[122,80],\"api_taisen\":[0,0],\"api_sakuteki\":[63,48],\"api_lucky\":[27,87],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":110454,\"api_sortno\":540,\"api_ship_id\":940,\"api_lv\":87,\"api_exp\":[494034,14966,14],\"api_nowhp\":13,\"api_maxhp\":13,\"api_soku\":5,\"api_leng\":1,\"api_slot\":[175746,176111,-1,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":0,\"api_kyouka\":[14,38,25,17,0,0,0],\"api_backs\":7,\"api_fuel\":0,\"api_bull\":8,\"api_slotnum\":2,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":4,\"api_karyoku\":[18,18],\"api_raisou\":[70,70],\"api_taiku\":[25,29],\"api_soukou\":[22,22],\"api_kaihi\":[62,68],\"api_taisen\":[0,0],\"api_sakuteki\":[30,33],\"api_lucky\":[43,93],\"api_locked\":1,\"api_locked_equip\":0}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[87288,10350,110454,50009,97959,78575]}]}}",
+		"TimeStamp": "2023-12-05T02:39:54.2812843",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615615,
+		"ApiFileType": 0,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_verno\":\"1\",\"api_recovery_type\":\"0\"}",
+		"TimeStamp": "2023-12-05T02:39:54.823035",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615616,
+		"ApiFileType": 1,
+		"Name": "api_req_map/next",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":1,\"api_maparea_id\":7,\"api_mapinfo_no\":4,\"api_no\":15,\"api_color_no\":8,\"api_event_id\":2,\"api_event_kind\":0,\"api_next\":0,\"api_bosscell_no\":22,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0,\"api_itemget\":[{\"api_usemst\":4,\"api_id\":1,\"api_getcount\":86,\"api_name\":\"\",\"api_icon_id\":1},{\"api_usemst\":4,\"api_id\":4,\"api_getcount\":64,\"api_name\":\"\",\"api_icon_id\":4}]}}",
+		"TimeStamp": "2023-12-05T02:39:54.823035",
+		"Version": 1,
+		"SortieRecordId": 27809
+	},
+	{
+		"Id": 1615617,
+		"ApiFileType": 0,
+		"Name": "api_port/port",
+		"Content": "{\"api_verno\":\"1\",\"api_sort_key\":\"5\",\"spi_sort_order\":\"2\",\"api_port\":\"743625644011708266508630760846\"}",
+		"TimeStamp": "2023-12-05T02:40:12.7962826",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615618,
+		"ApiFileType": 1,
+		"Name": "api_port/port",
+		"Content": "{\"api_data\":{\"api_basic\":{\"api_active_flag\":1,\"api_comment\":\"RIP \\u8349\\u7530\\u8349\\u592A\",\"api_comment_id\":\"183007501\",\"api_count_deck\":4,\"api_count_kdock\":2,\"api_count_ndock\":4,\"api_experience\":107465195,\"api_fcoin\":21383,\"api_firstflag\":1,\"api_fleetname\":null,\"api_furniture\":[297,296,288,274,133,202],\"api_large_dock\":1,\"api_level\":120,\"api_max_chara\":600,\"api_max_kagu\":0,\"api_max_slotitem\":2587,\"api_medals\":28,\"api_member_id\":\"19064362\",\"api_ms_count\":148611,\"api_ms_success\":148293,\"api_nickname\":\"Mirai\",\"api_nickname_id\":\"132491031\",\"api_playtime\":0,\"api_pt_challenged\":0,\"api_pt_challenged_win\":0,\"api_pt_lose\":833,\"api_pt_win\":29320,\"api_pvp\":[0,0],\"api_rank\":1,\"api_st_lose\":15040,\"api_st_win\":430225,\"api_starttime\":1701595639681,\"api_tutorial\":0,\"api_tutorial_progress\":100},\"api_c_flag\":null,\"api_combined_flag\":null,\"api_deck_port\":[],\"api_dest_ship_slot\":1,\"api_event_object\":null,\"api_log\":[],\"api_material\":[{\"api_id\":1,\"api_member_id\":19064362,\"api_value\":294513},{\"api_id\":2,\"api_member_id\":19064362,\"api_value\":302460},{\"api_id\":3,\"api_member_id\":19064362,\"api_value\":328370},{\"api_id\":4,\"api_member_id\":19064362,\"api_value\":221859},{\"api_id\":5,\"api_member_id\":19064362,\"api_value\":2999},{\"api_id\":6,\"api_member_id\":19064362,\"api_value\":2874},{\"api_id\":7,\"api_member_id\":19064362,\"api_value\":2812},{\"api_id\":8,\"api_member_id\":19064362,\"api_value\":432}],\"api_ndock\":[],\"api_p_bgm_id\":115,\"api_parallel_quest_count\":8,\"api_plane_info\":null,\"api_ship\":[]},\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529F\"}",
+		"TimeStamp": "2023-12-05T02:40:12.7962827",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615619,
+		"ApiFileType": 0,
+		"Name": "api_get_member/useitem",
+		"Content": "{\"api_verno\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:40:13.8582326",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615620,
+		"ApiFileType": 1,
+		"Name": "api_get_member/useitem",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":[{\"api_id\":10,\"api_count\":83},{\"api_id\":11,\"api_count\":4},{\"api_id\":12,\"api_count\":1},{\"api_id\":52,\"api_count\":71},{\"api_id\":54,\"api_count\":217},{\"api_id\":56,\"api_count\":12},{\"api_id\":57,\"api_count\":481},{\"api_id\":58,\"api_count\":2},{\"api_id\":59,\"api_count\":520},{\"api_id\":60,\"api_count\":181},{\"api_id\":61,\"api_count\":28},{\"api_id\":64,\"api_count\":26},{\"api_id\":65,\"api_count\":9},{\"api_id\":70,\"api_count\":37},{\"api_id\":71,\"api_count\":6},{\"api_id\":73,\"api_count\":2},{\"api_id\":74,\"api_count\":5},{\"api_id\":75,\"api_count\":58},{\"api_id\":77,\"api_count\":69},{\"api_id\":78,\"api_count\":28},{\"api_id\":79,\"api_count\":1},{\"api_id\":81,\"api_count\":1},{\"api_id\":91,\"api_count\":86},{\"api_id\":92,\"api_count\":13},{\"api_id\":94,\"api_count\":39},{\"api_id\":95,\"api_count\":20},{\"api_id\":98,\"api_count\":2},{\"api_id\":99,\"api_count\":2}]}",
+		"TimeStamp": "2023-12-05T02:40:13.8582327",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615621,
+		"ApiFileType": 0,
+		"Name": "api_req_hokyu/charge",
+		"Content": "{\"api_verno\":\"1\",\"api_kind\":\"3\",\"api_id_items\":\"87288,10350,110454,50009,97959,78575\",\"api_onslot\":\"1\"}",
+		"TimeStamp": "2023-12-05T02:40:20.3489432",
+		"Version": 1,
+		"SortieRecordId": null
+	},
+	{
+		"Id": 1615622,
+		"ApiFileType": 1,
+		"Name": "api_req_hokyu/charge",
+		"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship\":[{\"api_id\":87288,\"api_fuel\":20,\"api_bull\":20,\"api_onslot\":[0,0,0,0,0]},{\"api_id\":10350,\"api_fuel\":10,\"api_bull\":20,\"api_onslot\":[0,0,0,0,0]},{\"api_id\":110454,\"api_fuel\":10,\"api_bull\":20,\"api_onslot\":[0,0,0,0,0]},{\"api_id\":50009,\"api_fuel\":10,\"api_bull\":20,\"api_onslot\":[0,0,0,0,0]},{\"api_id\":97959,\"api_fuel\":20,\"api_bull\":20,\"api_onslot\":[0,0,0,0,0]},{\"api_id\":78575,\"api_fuel\":10,\"api_bull\":25,\"api_onslot\":[0,0,0,0,0]}],\"api_material\":[294453,302397,328370,221859],\"api_use_bou\":0}}",
+		"TimeStamp": "2023-12-05T02:40:20.3489433",
+		"Version": 1,
+		"SortieRecordId": null
+	}
+]

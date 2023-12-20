@@ -61,6 +61,7 @@ using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
@@ -271,6 +272,7 @@ public partial class App : Application
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
 			.AddSingleton<SortieRecordViewerTranslationViewModel>()
+			.AddSingleton<SortieCostViewerTranslationViewModel>()
 			.AddSingleton<ExpeditionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
