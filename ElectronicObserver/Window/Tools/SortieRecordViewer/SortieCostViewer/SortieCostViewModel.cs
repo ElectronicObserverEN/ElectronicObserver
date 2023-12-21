@@ -213,7 +213,7 @@ public class SortieCostViewModel
 			{
 				Fuel = GetAirBasePlaneCostCategory(s.EquipmentInstance!) switch
 				{
-					AirBasePlaneCostCategory.AbAttacker => (int)Math.Ceiling(1.5 * s.AircraftCurrent),
+					AirBasePlaneCostCategory.AirBaseAttacker => (int)Math.Ceiling(1.5 * s.AircraftCurrent),
 					AirBasePlaneCostCategory.LargePlane => 2 * s.AircraftCurrent,
 					AirBasePlaneCostCategory.Other => s.AircraftCurrent,
 
@@ -221,7 +221,7 @@ public class SortieCostViewModel
 				},
 				Ammo = GetAirBasePlaneCostCategory(s.EquipmentInstance!) switch
 				{
-					AirBasePlaneCostCategory.AbAttacker => (int)(0.7 * s.AircraftCurrent),
+					AirBasePlaneCostCategory.AirBaseAttacker => (int)(0.7 * s.AircraftCurrent),
 					AirBasePlaneCostCategory.LargePlane => 2 * s.AircraftCurrent,
 					AirBasePlaneCostCategory.Other => (int)Math.Ceiling(0.6 * s.AircraftCurrent),
 
@@ -233,7 +233,7 @@ public class SortieCostViewModel
 	private static AirBasePlaneCostCategory GetAirBasePlaneCostCategory(IEquipmentData equip)
 		=> equip.MasterEquipment.CategoryType switch
 		{
-			EquipmentTypes.LandBasedAttacker => AirBasePlaneCostCategory.AbAttacker,
+			EquipmentTypes.LandBasedAttacker => AirBasePlaneCostCategory.AirBaseAttacker,
 			EquipmentTypes.HeavyBomber => AirBasePlaneCostCategory.LargePlane,
 			_ => AirBasePlaneCostCategory.Other,
 		};

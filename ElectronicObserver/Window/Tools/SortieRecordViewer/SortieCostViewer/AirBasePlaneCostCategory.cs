@@ -2,7 +2,7 @@
 
 public enum AirBasePlaneCostCategory
 {
-	AbAttacker,
+	AirBaseAttacker,
 	LargePlane,
 	Other,
 }
