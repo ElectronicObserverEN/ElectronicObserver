@@ -259,8 +259,9 @@ public class ApiFileService : ObservableObject
 		int nodeSupportFleetId = KcDatabase.Fleet.NodeSupportFleetId(map.MapAreaID) ?? 0;
 		int bossSupportFleetId = KcDatabase.Fleet.BossSupportFleetId(map.MapAreaID) ?? 0;
 
-		SortieFleetData fleetData = MakeSortieFleet(KcDatabase, fleetId, nodeSupportFleetId,
-			bossSupportFleetId, map);
+		SortieFleetData fleetData = MakeSortieFleet(KcDatabase.Fleet.Fleets.Values,
+			KcDatabase.BaseAirCorps.Values, KcDatabase.Fleet.CombinedFlag, fleetId,
+			nodeSupportFleetId, bossSupportFleetId, response.ApiData.ApiMapareaId);
 
 		SortieRecord sortieRecord = new()
 		{
@@ -303,14 +304,7 @@ public class ApiFileService : ObservableObject
 
 		IFleetData f = KCDatabase.Instance.Fleet[fleetId];
 
-		SortieFleet fleet = new()
-		{
-			Name = f.Name,
-			Ships = f.MembersInstance
-				.Where(s => s is not null)
-				.Select(MakeSortieShip!)
-				.ToList(),
-		};
+		SortieFleet fleet = MakeSortieFleet(f);
 
 		ExpeditionRecord expedition = new()
 		{
@@ -325,68 +319,46 @@ public class ApiFileService : ObservableObject
 		await db.SaveChangesAsync();
 	}
 
-	private static bool ShouldIncludeFleet(KCDatabase kcDatabase, IFleetData fleet, int fleetId,
+	private static bool ShouldIncludeFleet(IFleetData fleet, int combinedFlag, int fleetId,
 		int nodeSupportFleetId, int bossSupportFleetId) =>
 		fleet.ID == fleetId ||
-		fleet.ID == 2 && kcDatabase.Fleet.CombinedFlag != 0 ||
+		fleet.ID == 2 && combinedFlag != 0 ||
 		fleet.ID == nodeSupportFleetId ||
 		fleet.ID == bossSupportFleetId;
 
-	private static SortieFleetData MakeSortieFleet(KCDatabase kcDatabase, int fleetId,
-		int nodeSupportFleetId, int bossSupportFleetId, MapInfoData? map) => new()
-		{
-			FleetId = fleetId,
-			NodeSupportFleetId = nodeSupportFleetId,
-			BossSupportFleetId = bossSupportFleetId,
-			CombinedFlag = kcDatabase.Fleet.CombinedFlag,
-			Fleets = kcDatabase.Fleet.Fleets.Values
-				.Select(f => ShouldIncludeFleet(kcDatabase, f, fleetId, nodeSupportFleetId, bossSupportFleetId) switch
+	public static SortieFleetData MakeSortieFleet(IEnumerable<IFleetData?> fleets,
+		IEnumerable<IBaseAirCorpsData> airBases, int combinedFlag, int fleetId, int nodeSupportFleetId,
+		int bossSupportFleetId, int world) => new()
+	{
+		FleetId = fleetId,
+		NodeSupportFleetId = nodeSupportFleetId,
+		BossSupportFleetId = bossSupportFleetId,
+		CombinedFlag = combinedFlag,
+		Fleets = fleets
+			.Select(f => f switch
+			{
+				null => null,
+				_ => ShouldIncludeFleet(f, combinedFlag, fleetId, nodeSupportFleetId, bossSupportFleetId) switch
 				{
-					true => new SortieFleet
-					{
-						Name = f.Name,
-						Ships = f.MembersInstance
-							.Where(s => s is not null)
-							.Select(MakeSortieShip)
-							.ToList(),
-					},
-
+					true => MakeSortieFleet(f),
 					_ => null,
-				}).ToList(),
-			AirBases = kcDatabase.BaseAirCorps.Values
-				.Where(a => a.MapAreaID == map?.MapAreaID)
-				.Select(a => new SortieAirBase
-				{
-					Name = a.Name,
-					ActionKind = a.ActionKind,
-					AirCorpsId = a.AirCorpsID,
-					BaseDistance = a.Base_Distance,
-					BonusDistance = a.Bonus_Distance,
-					MapAreaId = a.MapAreaID,
-					Squadrons = a.Squadrons.Values
-						.Select(s => new SortieAirBaseSquadron
-						{
-							AircraftCurrent = s.AircraftCurrent,
-							State = s.State,
-							Condition = s.Condition,
-							EquipmentSlot = new()
-							{
-								AircraftCurrent = s.AircraftCurrent,
-								AircraftMax = s.AircraftMax,
-								Equipment = s.EquipmentInstance switch
-								{
-									{ } => new SortieEquipment
-									{
-										Id = s.EquipmentInstance.EquipmentId,
-										Level = s.EquipmentInstance.Level,
-										AircraftLevel = s.EquipmentInstance.AircraftLevel,
-									},
-									_ => null,
-								},
-							},
-						}).ToList(),
-				}).ToList(),
-		};
+				},
+			}).ToList(),
+		AirBases = airBases
+			.Where(a => a.MapAreaID == world)
+			.Select(MakeSortieAirBase)
+			.ToList(),
+	};
+
+	private static SortieFleet MakeSortieFleet(IFleetData f) => new()
+	{
+		Name = f.Name,
+		Ships = f.MembersInstance
+			.Where(s => s is not null)
+			.Cast<IShipData>()
+			.Select(MakeSortieShip)
+			.ToList(),
+	};
 
 	private static SortieShip MakeSortieShip(IShipData s) => new()
 	{
@@ -394,13 +366,13 @@ public class ApiFileService : ObservableObject
 		DropId = s.MasterID,
 		Level = s.Level,
 		Condition = s.Condition,
-		Kyouka = s.Kyouka.ToList(),
+		Kyouka = [.. s.Kyouka],
 		Fuel = s.Fuel,
 		Ammo = s.Ammo,
 		Hp = s.HPCurrent,
 		Armor = s.ArmorTotal,
 		Evasion = s.EvasionTotal,
-		Aircraft = s.Aircraft.ToList(),
+		Aircraft = [.. s.Aircraft],
 		Range = s.Range,
 		Speed = s.Speed,
 		Firepower = s.FirepowerTotal,
@@ -448,6 +420,41 @@ public class ApiFileService : ObservableObject
 		SpecialEffectItems = s.SpecialEffectItems,
 	};
 
+	private static SortieAirBase MakeSortieAirBase(IBaseAirCorpsData a) => new()
+	{
+		Name = a.Name,
+		ActionKind = a.ActionKind,
+		AirCorpsId = a.AirCorpsID,
+		BaseDistance = a.Base_Distance,
+		BonusDistance = a.Bonus_Distance,
+		MapAreaId = a.MapAreaID,
+		Squadrons = a.Squadrons.Values
+			.Select(MakeSortieAirBaseSquadron)
+			.ToList(),
+	};
+
+	private static SortieAirBaseSquadron MakeSortieAirBaseSquadron(IBaseAirCorpsSquadron s) => new()
+	{
+		AircraftCurrent = s.AircraftCurrent,
+		State = s.State,
+		Condition = s.Condition,
+		EquipmentSlot = new()
+		{
+			AircraftCurrent = s.AircraftCurrent,
+			AircraftMax = s.AircraftMax,
+			Equipment = s.EquipmentInstance switch
+			{
+				{ } => new SortieEquipment
+				{
+					Id = s.EquipmentInstance.EquipmentId,
+					Level = s.EquipmentInstance.Level,
+					AircraftLevel = s.EquipmentInstance.AircraftLevel,
+				},
+				_ => null,
+			},
+		},
+	};
+
 	public async Task ProcessedApi(string apiName)
 	{
 		if (apiName is not "api_port/port") return;
@@ -463,14 +470,9 @@ public class ApiFileService : ObservableObject
 		int nodeSupportFleetId = sortie.FleetData.NodeSupportFleetId;
 		int bossSupportFleetId = sortie.FleetData.BossSupportFleetId;
 
-		MapInfoData? map = KcDatabase.MapInfo.Values
-			.Where(m => m.MapAreaID == sortie.World)
-			.FirstOrDefault(m => m.MapInfoID == sortie.Map);
-
-		if (map is null) return;
-
-		sortie.FleetAfterSortieData = MakeSortieFleet(KcDatabase, fleetId,
-			nodeSupportFleetId, bossSupportFleetId, map);
+		sortie.FleetAfterSortieData = MakeSortieFleet(KcDatabase.Fleet.Fleets.Values,
+			KcDatabase.BaseAirCorps.Values, KcDatabase.Fleet.CombinedFlag, fleetId,
+			nodeSupportFleetId, bossSupportFleetId, sortie.World);
 
 		await db.SaveChangesAsync();
 	}
