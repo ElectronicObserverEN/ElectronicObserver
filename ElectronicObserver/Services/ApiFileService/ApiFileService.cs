@@ -29,7 +29,6 @@ public class ApiFileService : ObservableObject
 	private static int CurrentApiFileVersion => 1;
 
 	// before version 1:
-	// fleet after sortie can be null
 	// hp value is set to hp max instead of hp current
 	private static int CurrentSortieRecordVersion => 1;
 

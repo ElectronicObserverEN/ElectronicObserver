@@ -54,8 +54,9 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
 	public int Map { get; }
-	private BattleFleets Fleets { get; set; }
-	private BattleFleets? FleetsAfterSortie { get; set; }
+	public BattleFleets Fleets { get; set; }
+	public BattleFleets FleetsBeforeSortie { get; private set; }
+	private BattleFleets? FleetsAfterSortie { get; }
 	public List<List<int>?> StrikePoints { get; } = new();
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
@@ -72,6 +73,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		World = sortie.World;
 		Map = sortie.Map;
 		Fleets = fleets;
+		FleetsBeforeSortie = fleets.Clone();
 		FleetsAfterSortie = fleetsAfterSortie;
 	}
 

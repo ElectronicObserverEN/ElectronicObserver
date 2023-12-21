@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +34,7 @@ public class SortieCostTests
 	private static async Task<List<SortieCostViewModel>> MakeSortieCosts(string testName)
 	{
 		ToolService toolService = new(new());
+		SortieRecordMigrationService sortieRecordMigrationService = new(toolService);
 
 		await using ElectronicObserverContext db = new(true);
 		await db.Database.EnsureDeletedAsync();
@@ -55,8 +56,7 @@ public class SortieCostTests
 
 		foreach (SortieRecordViewModel sortie in sorties)
 		{
-			SortieDetailViewModel? details = toolService.GenerateSortieDetailViewModel(db, sortie.Model);
-			sortieCosts.Add(new(db, sortie, details));
+			sortieCosts.Add(new(db, sortieRecordMigrationService, sortie));
 		}
 
 		return sortieCosts;
@@ -102,5 +102,20 @@ public class SortieCostTests
 		Assert.Equal(firstSortieFleetCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(airBase1SortieCost + airBase2SortieCost, sortieCosts[0].TotalAirBaseSortieCost);
 		Assert.Equal(airBase1ResupplyCost + airBase2ResupplyCost, sortieCosts[0].TotalAirBaseSupplyCost);
+	}
+
+	[Fact(DisplayName = "Sortie record version 0→1 test")]
+	public async Task SortieCostTest3()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest3");
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel resupplyCost = new() { Fuel = 525, Ammo = 532, Bauxite = 200 };
+		SortieCostModel souyaRepairCost = new() { Fuel = 16, Steel = 30 };
+		SortieCostModel musashiRepairCost = new() { Fuel = 52, Steel = 99 };
+
+		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
+		Assert.Equal(souyaRepairCost + musashiRepairCost, sortieCosts[0].SortieFleetRepairCost);
 	}
 }

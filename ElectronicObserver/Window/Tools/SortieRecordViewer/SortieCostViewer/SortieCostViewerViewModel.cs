@@ -3,29 +3,28 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Database;
-using ElectronicObserver.Services;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
+using ElectronicObserver.Database.DataMigration;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
 public class SortieCostViewerViewModel : WindowViewModelBase
 {
 	public SortieCostViewerTranslationViewModel Translation { get; }
-	public ToolService ToolService { get; }
 
-	public ElectronicObserverContext Db { get; }
-	public ObservableCollection<SortieRecordViewModel> Sorties { get; }
-	public ObservableCollection<SortieCostViewModel> SortieCosts { get; } = new();
+	private ElectronicObserverContext Db { get; }
+	private SortieRecordMigrationService SortieRecordMigrationService { get; }
+	private ObservableCollection<SortieRecordViewModel> Sorties { get; }
+	public ObservableCollection<SortieCostViewModel> SortieCosts { get; } = [];
 
 	public SortieCostModel? SortieCostSummary { get; private set; }
 
-	public SortieCostViewerViewModel(ElectronicObserverContext db,
+	public SortieCostViewerViewModel(ElectronicObserverContext db, SortieRecordMigrationService sortieRecordMigrationService,
 		ObservableCollection<SortieRecordViewModel> sorties)
 	{
 		Translation = Ioc.Default.GetRequiredService<SortieCostViewerTranslationViewModel>();
-		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 
 		Db = db;
+		SortieRecordMigrationService = sortieRecordMigrationService;
 		Sorties = sorties;
 	}
 
@@ -40,9 +39,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 	{
 		foreach (SortieRecordViewModel sortie in Sorties)
 		{
-			sortie.Model.EnsureApiFilesLoaded(Db).Wait();
-			SortieDetailViewModel? details = ToolService.GenerateSortieDetailViewModel(Db, sortie.Model);
-			SortieCosts.Add(new(Db, sortie, details));
+			SortieCosts.Add(new(Db, SortieRecordMigrationService, sortie));
 		}
 
 		SortieCostSummary = SortieCosts

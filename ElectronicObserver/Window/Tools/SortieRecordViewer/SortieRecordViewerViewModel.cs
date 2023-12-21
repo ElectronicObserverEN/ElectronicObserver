@@ -18,6 +18,7 @@ using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
@@ -31,6 +32,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
 	private FileService FileService { get; }
+	private SortieRecordMigrationService SortieRecordMigrationService { get; }
 	private ElectronicObserverContext Db { get; } = new();
 	private DataExportHelper DataExportHelper { get; }
 
@@ -74,6 +76,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 		FileService = Ioc.Default.GetRequiredService<FileService>();
+		SortieRecordMigrationService = Ioc.Default.GetRequiredService<SortieRecordMigrationService>();
 		DataExportHelper = new(Db, ToolService);
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
@@ -420,7 +423,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSorties.Count <= 0) return;
 
-		SortieCostViewerViewModel sortieCost = new(Db, SelectedSorties);
+		SortieCostViewerViewModel sortieCost = new(Db, SortieRecordMigrationService, SelectedSorties);
 
 		new SortieCostViewerWindow(sortieCost).Show();
 	}

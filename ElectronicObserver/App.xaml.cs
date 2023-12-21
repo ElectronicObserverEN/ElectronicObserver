@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.ElectronicObserverApi;
@@ -312,6 +313,7 @@ public partial class App : Application
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<DataAndTranslationIssueReporter>()
+			.AddSingleton<SortieRecordMigrationService>()
 			//.ActivateSingleton<DataAndTranslationIssueReporter>() todo uncomment and test with .net 8 
 			// external
 			.AddSingleton(JotTracker())

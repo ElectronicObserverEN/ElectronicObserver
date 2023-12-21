@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
@@ -42,7 +40,8 @@ public class SortieCostViewModel
 	public SortieCostModel TotalAirBaseSupplyCost { get; }
 	public SortieCostModel TotalCost { get; }
 
-	public SortieCostViewModel(ElectronicObserverContext db, SortieRecordViewModel sortie, SortieDetailViewModel? sortieDetails)
+	public SortieCostViewModel(ElectronicObserverContext db, SortieRecordMigrationService sortieRecordMigrationService,
+		SortieRecordViewModel sortie)
 	{
 		Db = db;
 
@@ -55,36 +54,16 @@ public class SortieCostViewModel
 		NodeSupportFleetId = sortie.Model.FleetData.NodeSupportFleetId;
 		BossSupportFleetId = sortie.Model.FleetData.BossSupportFleetId;
 
+		sortieRecordMigrationService.Migrate(db, sortie.Model).Wait();
+
 		FleetsBeforeSortie = sortie.Model.FleetData.MakeFleets();
 		FleetsAfterSortie = sortie.Model.FleetAfterSortieData.MakeFleets();
 		AirBases = sortie.Model.FleetData.AirBases
-			.Select(a => GameDataExtensions.MakeAirBase(a))
+			.Select(a => a.MakeAirBase())
 			.ToList();
 
 		if (FleetsAfterSortie is not null)
 		{
-			BattleFleets? initialState = sortieDetails?.Nodes
-				.OfType<BattleNode>()
-				.FirstOrDefault()
-				?.FirstBattle
-				.FleetsBeforeBattle;
-
-			if (initialState?.Fleets is not null)
-			{
-				FixHp(FleetsBeforeSortie, initialState.Fleets);
-			}
-
-			BattleFleets? finalState = sortieDetails?.Nodes
-				.OfType<BattleNode>()
-				.LastOrDefault()
-				?.LastBattle
-				.FleetsAfterBattle;
-
-			if (finalState?.Fleets is not null)
-			{
-				FixHp(FleetsAfterSortie, finalState.Fleets);
-			}
-
 			SortieFleetSupplyCost = SupplyCost(FleetsBeforeSortie[SortieFleetId - 1], FleetsAfterSortie[SortieFleetId - 1]);
 			SortieFleetRepairCost = RepairCost(FleetsBeforeSortie[SortieFleetId - 1], FleetsAfterSortie[SortieFleetId - 1]);
 
@@ -108,9 +87,7 @@ public class SortieCostViewModel
 
 			TotalSupplyCost = SortieFleetSupplyCost + NodeSupportSupplyCost + BossSupportSupplyCost;
 
-			TotalRepairCost = FleetsBeforeSortie
-				.Zip(FleetsAfterSortie, RepairCost)
-				.Aggregate(new SortieCostModel(), (a, b) => a + b);
+			TotalRepairCost = SortieFleetRepairCost;
 
 			TotalAirBaseSortieCost = AirBases
 				.Where(a => a.ActionKind is AirBaseActionKind.Mission)
@@ -131,23 +108,6 @@ public class SortieCostViewModel
 		TotalAirBaseSortieCost ??= new();
 		TotalAirBaseSupplyCost ??= new();
 		TotalCost ??= new();
-	}
-
-	private static void FixHp(List<IFleetData?> fleetsToFix, List<IFleetData?> computedFleets)
-	{
-		foreach ((IFleetData? dbFleet, IFleetData? computedFleet) in fleetsToFix.Zip(computedFleets))
-		{
-			if (dbFleet is null) continue;
-			if (computedFleet is null) continue;
-
-			foreach ((IShipData? dbShip, IShipData? computedShip) in dbFleet.MembersInstance.Zip(computedFleet.MembersInstance))
-			{
-				if (dbShip is null) continue;
-				if (computedShip is null) continue;
-
-				((ShipDataMock)dbShip).HPCurrent = ((ShipDataMock)computedShip).HPCurrent;
-			}
-		}
 	}
 
 	private static SortieCostModel SupplyCost(IFleetData? before, IFleetData? after) => (before, after) switch
