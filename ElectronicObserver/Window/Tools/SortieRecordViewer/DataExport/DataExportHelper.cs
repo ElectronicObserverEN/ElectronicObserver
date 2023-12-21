@@ -44,7 +44,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord.Model);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 			ApiOffshoreSupply? offshoreSupply = null;
 
@@ -178,7 +178,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord.Model);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -311,7 +311,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord.Model);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 			ApiOffshoreSupply? offshoreSupply = null;
 
@@ -429,7 +429,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord.Model);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -508,7 +508,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord.Model);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -653,7 +653,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord.Model);
 
 			if (sortieDetail is null) continue;
 

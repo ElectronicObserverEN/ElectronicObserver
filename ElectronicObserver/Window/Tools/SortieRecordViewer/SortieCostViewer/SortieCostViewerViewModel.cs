@@ -41,7 +41,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 		foreach (SortieRecordViewModel sortie in Sorties)
 		{
 			sortie.Model.EnsureApiFilesLoaded(Db).Wait();
-			SortieDetailViewModel? details = ToolService.GenerateSortieDetailViewModel(Db, sortie);
+			SortieDetailViewModel? details = ToolService.GenerateSortieDetailViewModel(Db, sortie.Model);
 			SortieCosts.Add(new(Db, sortie, details));
 		}
 

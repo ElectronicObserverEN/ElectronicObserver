@@ -199,7 +199,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
-		ToolService.OpenSortieDetail(Db, SelectedSortie);
+		ToolService.OpenSortieDetail(Db, SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -230,7 +230,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.CopyAirControlSimulatorLink(SelectedSortie);
+		ToolService.CopyAirControlSimulatorLink(SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -238,7 +238,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.AirControlSimulator(SelectedSortie);
+		ToolService.AirControlSimulator(SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -246,7 +246,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.CopyOperationRoomLink(SelectedSortie);
+		ToolService.CopyOperationRoomLink(SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -254,7 +254,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.OperationRoom(SelectedSortie);
+		ToolService.OperationRoom(SelectedSortie.Model);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]

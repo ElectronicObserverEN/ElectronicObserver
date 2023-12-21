@@ -55,7 +55,7 @@ public class SortieCostTests
 
 		foreach (SortieRecordViewModel sortie in sorties)
 		{
-			SortieDetailViewModel? details = toolService.GenerateSortieDetailViewModel(db, sortie);
+			SortieDetailViewModel? details = toolService.GenerateSortieDetailViewModel(db, sortie.Model);
 			sortieCosts.Add(new(db, sortie, details));
 		}
 

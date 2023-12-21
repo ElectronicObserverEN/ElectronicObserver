@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
@@ -48,7 +49,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	private ToolService ToolService { get; }
 
 	private ElectronicObserverContext Db { get; }
-	private SortieRecordViewModel Sortie { get; }
+	private SortieRecord Sortie { get; }
 
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
@@ -59,7 +60,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecordViewModel sortie,
+	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecord sortie,
 		BattleFleets fleets, BattleFleets? fleetsAfterSortie)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
