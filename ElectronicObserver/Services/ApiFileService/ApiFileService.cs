@@ -455,9 +455,7 @@ public class ApiFileService : ObservableObject
 
 		await using ElectronicObserverContext db = new();
 
-		SortieRecord? sortie = await db.Sorties
-			.Include(s => s.FleetData)
-			.FirstOrDefaultAsync(s => s.Id == sortieId);
+		SortieRecord? sortie = await db.Sorties.FirstOrDefaultAsync(s => s.Id == sortieId);
 
 		if (sortie is null) return;
 
