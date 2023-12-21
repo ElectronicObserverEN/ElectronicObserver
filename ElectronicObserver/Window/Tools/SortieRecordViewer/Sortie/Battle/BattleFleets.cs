@@ -28,6 +28,11 @@ public class BattleFleets(
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
+	public required int FleetId { get; set; }
+	public required int NodeSupportFleetId { get; set; }
+	public required int BossSupportFleetId { get; set; }
+	public required int CombinedFlag { get; set; }
+
 	private static int CombinedFleetMainFleetShipCount => 6;
 
 	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases.Select(CloneAirBase).ToList()!)
@@ -35,6 +40,10 @@ public class BattleFleets(
 		FriendFleet = CloneFleet(FriendFleet),
 		EnemyFleet = CloneFleet(EnemyFleet),
 		EnemyEscortFleet = CloneFleet(EnemyEscortFleet),
+		FleetId = FleetId,
+		NodeSupportFleetId = NodeSupportFleetId,
+		BossSupportFleetId = BossSupportFleetId,
+		CombinedFlag = CombinedFlag,
 	};
 
 	[return: NotNullIfNotNull(nameof(fleet))]

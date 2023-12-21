@@ -469,7 +469,13 @@ public class ToolService(DataSerializationService dataSerializationService)
 			_ => null,
 		};
 
-		return new(fleet, escortFleet, fleets, airBases);
+		return new(fleet, escortFleet, fleets, airBases)
+		{
+			FleetId = fleetData.FleetId,
+			NodeSupportFleetId = fleetData.NodeSupportFleetId,
+			BossSupportFleetId = fleetData.BossSupportFleetId,
+			CombinedFlag = fleetData.CombinedFlag,
+		};
 	}
 
 	public void CopyReplayLinkToClipboard(SortieRecordViewModel sortie)
