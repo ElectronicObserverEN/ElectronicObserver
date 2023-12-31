@@ -447,4 +447,7 @@
   <data name="OperationRoom" xml:space="preserve">
     <value>作戦室</value>
   </data>
+  <data name="GitHubWikiLink" xml:space="preserve">
+    <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
+  </data>
 </root>

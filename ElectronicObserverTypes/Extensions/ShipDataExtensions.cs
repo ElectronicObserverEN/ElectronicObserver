@@ -177,13 +177,13 @@ public static class ShipDataExtensions
 		.Count(e => e?.MasterEquipment.IsNightAircraft == true || e?.IsNightCapableAircraft() == true)
 		>= count;
 
-	public static bool HasNightPhototoubePlane(this IShipData ship) => ship.AllSlotInstance
+	public static bool HasNightPhototubePlane(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.EquipmentId == EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs);
 
 	public static bool HasSwordfish(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsSwordfish ?? false);
 
-	public static bool HasLateModelTorp(this IShipData ship, int count = 1) => ship.AllSlotInstance
+	public static bool HasLateModelTorpedo(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsLateModelTorpedo() == true) >= count;
 
 	public static bool HasSubmarineEquipment(this IShipData ship) => ship.AllSlotInstance

@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
@@ -15,7 +16,6 @@ namespace ElectronicObserver.Window.Settings.SubWindow.Browser;
 public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 {
 	public ConfigurationBrowserTranslationViewModel Translation { get; }
-	private FileService FileService { get; }
 	private Configuration.ConfigurationData.ConfigFormBrowser Config { get; }
 
 	public List<CheckBoxEnumViewModel> EmbeddedBrowsers { get; }
@@ -25,6 +25,30 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	public List<ScreenshotSaveMode> ScreenshotSaveModes { get; }
 
 	public BrowserOption Browser { get; set; }
+
+	public bool IsEnabled { get; set; }
+	public double ZoomRate { get; set; }
+	public bool ZoomFit { get; set; }
+	public bool ConfirmAtRefresh { get; set; }
+	public bool AppliesStyleSheet { get; set; }
+	public bool UseHttps { get; set; }
+	public bool IsBrowserContextMenuEnabled { get; set; }
+	public string LogInPageURL { get; set; }
+	public DockStyle ToolMenuDockStyle { get; set; }
+	public bool IsDMMreloadDialogDestroyable { get; set; }
+
+	public ScreenshotFormat ScreenShotFormat { get; set; }
+	public bool AvoidTwitterDeterioration { get; set; }
+	public ScreenshotSaveMode ScreenShotSaveMode { get; set; }
+	public string ScreenShotPath { get; set; }
+
+	public bool HardwareAccelerationEnabled { get; set; }
+	public bool PreserveDrawingBuffer { get; set; }
+	public bool ForceColorProfile { get; set; }
+	public bool SavesBrowserLog { get; set; }
+	public bool UseVulkanWorkaround { get; set; }
+
+	public bool UseGadgetRedirect { get; set; }
 	public GadgetServerOptions GadgetBypassServer { get; set; }
 
 	[ObservableProperty]
@@ -32,56 +56,9 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	[CustomValidation(typeof(ConfigurationBrowserViewModel), nameof(ValidateUrl))]
 	private string _gadgetBypassServerCustom;
 
-	public double ZoomRate { get; set; }
-
-	public bool ZoomFit { get; set; }
-
-	public string LogInPageURL { get; set; }
-
-	public bool IsEnabled { get; set; }
-
-	public string ScreenShotPath { get; set; }
-
-	public ScreenshotFormat ScreenShotFormat { get; set; }
-
-	public ScreenshotSaveMode ScreenShotSaveMode { get; set; }
-
-	public string StyleSheet { get; set; }
-
-	public bool IsScrollable { get; set; }
-
-	public bool AppliesStyleSheet { get; set; }
-
-	public bool IsDMMreloadDialogDestroyable { get; set; }
-
-	public bool AvoidTwitterDeterioration { get; set; }
-
-	public DockStyle ToolMenuDockStyle { get; set; }
-
-	public bool ConfirmAtRefresh { get; set; }
-
-	public bool HardwareAccelerationEnabled { get; set; }
-
-	public bool PreserveDrawingBuffer { get; set; }
-
-	public bool ForceColorProfile { get; set; }
-
-	public bool SavesBrowserLog { get; set; }
-
-	public bool UseGadgetRedirect { get; set; }
-
-	public bool UseVulkanWorkaround { get; set; }
-
-	public float Volume { get; set; }
-
-	public bool IsMute { get; set; }
-
-	public bool IsBrowserContextMenuEnabled { get; set; }
-
 	public ConfigurationBrowserViewModel(Configuration.ConfigurationData.ConfigFormBrowser config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBrowserTranslationViewModel>();
-		FileService = Ioc.Default.GetRequiredService<FileService>();
 
 		EmbeddedBrowsers = Enum.GetValues<BrowserOption>()
 			.Select(b => new CheckBoxEnumViewModel(b))
@@ -190,8 +167,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		ScreenShotPath = Config.ScreenShotPath;
 		ScreenShotFormat = (ScreenshotFormat)Config.ScreenShotFormat;
 		ScreenShotSaveMode = (ScreenshotSaveMode)Config.ScreenShotSaveMode;
-		StyleSheet = Config.StyleSheet;
-		IsScrollable = Config.IsScrollable;
 		AppliesStyleSheet = Config.AppliesStyleSheet;
 		IsDMMreloadDialogDestroyable = Config.IsDMMreloadDialogDestroyable;
 		AvoidTwitterDeterioration = Config.AvoidTwitterDeterioration;
@@ -217,13 +192,14 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		GadgetBypassServer = Config.GadgetBypassServer;
 		GadgetBypassServerCustom = Config.GadgetBypassServerCustom;
 		UseVulkanWorkaround = Config.UseVulkanWorkaround;
-		Volume = Config.Volume;
-		IsMute = Config.IsMute;
 		IsBrowserContextMenuEnabled = Config.IsBrowserContextMenuEnabled;
+		UseHttps = Config.UseHttps;
 	}
 
 	public override void Save()
 	{
+		bool changed = false;
+
 		Config.Browser = Browser;
 		Config.ZoomRate = ZoomRate / 100;
 		Config.ZoomFit = ZoomFit;
@@ -232,8 +208,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.ScreenShotPath = ScreenShotPath;
 		Config.ScreenShotFormat = (int)ScreenShotFormat;
 		Config.ScreenShotSaveMode = (int)ScreenShotSaveMode;
-		Config.StyleSheet = StyleSheet;
-		Config.IsScrollable = IsScrollable;
 		Config.AppliesStyleSheet = AppliesStyleSheet;
 		Config.IsDMMreloadDialogDestroyable = IsDMMreloadDialogDestroyable;
 		Config.AvoidTwitterDeterioration = AvoidTwitterDeterioration;
@@ -255,9 +229,15 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.GadgetBypassServer = GadgetBypassServer;
 		Config.GadgetBypassServerCustom = GadgetBypassServerCustom;
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
-		Config.Volume = Volume;
-		Config.IsMute = IsMute;
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
+		Config.UseHttps = UseHttps;
+
+		changed |= Config.UseHttps != UseHttps;
+
+		if (changed)
+		{
+			APIObserver.Instance.Start(Configuration.Config.Connection.Port, App.Current!.MainWindow!);
+		}
 	}
 
 	[RelayCommand]

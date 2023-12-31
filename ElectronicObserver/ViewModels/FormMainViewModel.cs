@@ -527,22 +527,11 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void OpenConfiguration(bool useNewVersion)
+	private void OpenConfiguration()
 	{
 		UpdatePlayTime();
 
-		if (useNewVersion)
-		{
-			new ConfigurationWindow(new()).ShowDialog(Window);
-		}
-		else
-		{
-			using DialogConfiguration dialog = new(Configuration.Config);
-			if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
-
-			dialog.ToConfiguration(Configuration.Config);
-			Configuration.Instance.OnConfigurationChanged();
-		}
+		new ConfigurationWindow(new()).ShowDialog(Window);
 	}
 
 	#endregion
@@ -763,7 +752,7 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void OpenBaseAirCorpsSimulation()
+	private void OpenAirControlSimulator()
 	{
 		ToolService.AirControlSimulator();
 	}
@@ -1568,7 +1557,7 @@ public partial class FormMainViewModel : ObservableObject
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
-			OpenLink("https://github.com/silfumus/ElectronicObserver/wiki");
+			OpenLink(MainResources.GitHubWikiLink);
 		}
 
 	}

@@ -74,7 +74,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_AlbumMasterEquipment => MainResources.Tool_AlbumMasterEquipment.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_AntiAirDefense => MainResources.Tool_AntiAirDefense.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_FleetImageGenerator => MainResources.Tool_FleetImageGenerator.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_BaseAirCorpsSimulation => MainResources.Tool_BaseAirCorpsSimulation.Replace("_", "__").Replace("&", "_");
+	public string AirControlSimulator => AirControlSimulatorResources.Title;
 	public string OperationRoom => MainResources.OperationRoom;
 	public string StripMenu_Tool_ExpChecker => MainResources.Tool_ExpChecker.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ExpeditionCheck => MainResources.Tool_ExpeditionCheck.Replace("_", "__").Replace("&", "_");

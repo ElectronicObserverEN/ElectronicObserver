@@ -362,10 +362,19 @@ public class DataSerializationService
 		{
 			ship.ExpTotal,
 			ship.ExpNext,
-			ship.ExpNextPercentage
+			ship.ExpNextPercentage,
 		},
 		ExpansionSlot = ship.ExpansionSlot,
 		SallyArea = ship.SallyArea,
+		SpecialEffectItems = ship.SpecialEffectItems
+			.Select(i => new FleetAnalysisSpecialEffectItem
+			{
+				ApiKind = i.ApiKind,
+				Firepower = i.Firepower,
+				Torpedo = i.Torpedo,
+				Armor = i.Armor,
+				Evasion = i.Evasion,
+			}).ToList(),
 	};
 
 	private static IEnumerable<FleetAnalysisEquipment> MakeFleetAnalysisEquipment(IEnumerable<IEquipmentData> equipment)

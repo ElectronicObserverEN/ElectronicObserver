@@ -5,7 +5,6 @@
 	xmlns:avalonDockProperties="clr-namespace:AvalonDock.Properties;assembly=AvalonDock"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:local="clr-namespace:ElectronicObserver"
 	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
@@ -268,20 +267,14 @@
 						/>
 				</MenuItem>
 				<Separator />
-				<MenuItem d:Header="Settings" Header="{Binding FormMain.StripMenu_File_Configuration}">
+				<MenuItem
+					d:Header="Settings"
+					Command="{Binding OpenConfigurationCommand}"
+					Header="{Binding FormMain.StripMenu_File_Configuration}"
+					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormConfiguration" />
 					</MenuItem.Icon>
-					<MenuItem Command="{Binding OpenConfigurationCommand}" Header="{Binding FormMain.Old}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>False</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
-					<MenuItem Command="{Binding OpenConfigurationCommand}" Header="{Binding FormMain.New}">
-						<MenuItem.CommandParameter>
-							<system:Boolean>True</system:Boolean>
-						</MenuItem.CommandParameter>
-					</MenuItem>
 				</MenuItem>
 			</MenuItem>
 			<MenuItem
@@ -646,8 +639,8 @@
 				</MenuItem>
 				<MenuItem
 					d:Header="AB Simulator"
-					Command="{Binding OpenBaseAirCorpsSimulationCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}"
+					Command="{Binding OpenAirControlSimulatorCommand}"
+					Header="{Binding FormMain.AirControlSimulator}"
 					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormBaseAirCorps" />

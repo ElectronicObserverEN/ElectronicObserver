@@ -4,6 +4,7 @@ using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
@@ -76,23 +77,44 @@ public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBa
 
 	public override void Save()
 	{
+		bool changed = false;
+
+		changed |= ConfigConnection.Port != Port;
 		ConfigConnection.Port = Port;
+
+		changed |= ConfigConnection.RegisterAsSystemProxy != RegisterAsSystemProxy;
+		ConfigConnection.RegisterAsSystemProxy = RegisterAsSystemProxy;
+
+		changed |= ConfigConnection.UseUpstreamProxy != UseUpstreamProxy;
+		ConfigConnection.UseUpstreamProxy = UseUpstreamProxy;
+
+		changed |= ConfigConnection.UpstreamProxyPort != UpstreamProxyPort;
+		ConfigConnection.UpstreamProxyPort = UpstreamProxyPort;
+
+		changed |= ConfigConnection.UpstreamProxyAddress != UpstreamProxyAddress;
+		ConfigConnection.UpstreamProxyAddress = UpstreamProxyAddress;
+
+		changed |= ConfigConnection.UseSystemProxy != UseSystemProxy;
+		ConfigConnection.UseSystemProxy = UseSystemProxy;
+
+		changed |= ConfigConnection.DownstreamProxy != DownstreamProxy;
+		ConfigConnection.DownstreamProxy = DownstreamProxy;
+
 		ConfigConnection.SaveReceivedData = SaveReceivedData;
 		ConfigConnection.SaveDataPath = SaveDataPath;
 		ConfigConnection.SaveRequest = SaveRequest;
 		ConfigConnection.SaveResponse = SaveResponse;
 		ConfigConnection.SaveOtherFile = SaveOtherFile;
 		ConfigConnection.ApplyVersion = ApplyVersion;
-		ConfigConnection.RegisterAsSystemProxy = RegisterAsSystemProxy;
-		ConfigConnection.UseUpstreamProxy = UseUpstreamProxy;
-		ConfigConnection.UpstreamProxyPort = UpstreamProxyPort;
-		ConfigConnection.UpstreamProxyAddress = UpstreamProxyAddress;
-		ConfigConnection.UseSystemProxy = UseSystemProxy;
-		ConfigConnection.DownstreamProxy = DownstreamProxy;
 
 		if (ConfigConnection.SaveReceivedData)
 		{
 			Directory.CreateDirectory(ConfigConnection.SaveDataPath);
+		}
+
+		if (changed)
+		{
+			APIObserver.Instance.Start(ConfigConnection.Port, App.Current!.MainWindow!);
 		}
 	}
 
