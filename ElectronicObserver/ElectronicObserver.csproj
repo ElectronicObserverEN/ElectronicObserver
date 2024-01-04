@@ -27,9 +27,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.2.12.2</AssemblyVersion>
-		<FileVersion>5.2.12.2</FileVersion>
-		<Version>5.2.12.2</Version>
+		<AssemblyVersion>5.3.0.0</AssemblyVersion>
+		<FileVersion>5.3.0.0</FileVersion>
+		<Version>5.3.0.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -104,7 +104,7 @@
 		<PackageReference Include="CsvHelper" Version="30.0.1" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.72.1" />
 		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
-		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.5.1">
+		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.5.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -124,14 +124,14 @@
 		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
-		<PackageReference Include="ScottPlot" Version="4.1.68" />
-		<PackageReference Include="ScottPlot.WPF" Version="4.1.68" />
+		<PackageReference Include="ScottPlot" Version="4.1.70" />
+		<PackageReference Include="ScottPlot.WPF" Version="4.1.70" />
 		<PackageReference Include="System.Diagnostics.EventLog" Version="8.0.0" />
 		<PackageReference Include="System.Management" Version="8.0.0" />
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.59.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.60.0" />
 		<PackageReference Include="log4net" Version="2.0.15" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
