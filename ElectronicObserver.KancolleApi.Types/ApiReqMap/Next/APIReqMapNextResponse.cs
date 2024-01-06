@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 
@@ -19,7 +20,7 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	public ApiCellFlavor? ApiCellFlavor { get; set; }
 
 	[JsonPropertyName("api_color_no")]
-	public int ApiColorNo { get; set; }
+	public CellType ApiColorNo { get; set; }
 
 	[JsonPropertyName("api_comment_kind")]
 	public int ApiCommentKind { get; set; }
