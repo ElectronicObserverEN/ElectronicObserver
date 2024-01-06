@@ -402,6 +402,11 @@ public interface IShipDataMaster : IIdentifiable
 	/// </summary>
 	bool IsEscortAircraftCarrier { get; }
 
+	/// <summary>
+	/// PT imps
+	/// </summary>
+	bool IsPt { get; }
+
 	int ID { get; }
 
 	/// <summary>

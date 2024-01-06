@@ -693,6 +693,8 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 護衛空母か
 	/// </summary>
 	public bool IsEscortAircraftCarrier => ShipType == ShipTypes.LightAircraftCarrier && ASW.Minimum > 0;
+	
+	public bool IsPt => this.IsPt();
 
 
 	/// <summary>

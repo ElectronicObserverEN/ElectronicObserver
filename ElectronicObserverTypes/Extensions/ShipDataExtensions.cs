@@ -143,6 +143,15 @@ public static class ShipDataExtensions
 	public static bool HasDrum(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.TransportContainer);
 
+	public static bool IsPt(this IShipDataMaster ship) => ship.ShipID is
+		1637 or
+		1638 or
+		1639 or
+		1640 or
+		2192 or
+		2193 or
+		2194;
+
 	/// <summary>
 	/// 空母系か (軽空母/正規空母/装甲空母)
 	/// </summary>
