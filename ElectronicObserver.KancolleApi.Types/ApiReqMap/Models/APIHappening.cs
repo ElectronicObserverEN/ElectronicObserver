@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 
 public class ApiHappening
 {
@@ -12,7 +14,7 @@ public class ApiHappening
 	public int ApiIconId { get; set; }
 
 	[JsonPropertyName("api_mst_id")]
-	public int ApiMstId { get; set; }
+	public MaelstromType ApiMstId { get; set; }
 
 	[JsonPropertyName("api_type")]
 	public int ApiType { get; set; }
