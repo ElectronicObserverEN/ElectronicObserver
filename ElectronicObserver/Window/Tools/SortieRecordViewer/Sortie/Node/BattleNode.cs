@@ -9,8 +9,8 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
-public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, int eventId, int eventKind)
-	: SortieNode(kcDatabase, world, map, cell, eventId, eventKind)
+public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, CellType colorNo, int eventId, int eventKind)
+	: SortieNode(kcDatabase, world, map, cell, colorNo, eventId, eventKind)
 {
 	public IBattleApiRequest? Request { get; set; }
 	public BattleData FirstBattle { get; } = battle;
@@ -118,4 +118,10 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 	{
 		LastBattle.FleetsAfterBattle.UpdateState(fleets);
 	}
+
+	public bool IsSubsOnly() => FirstBattle.FleetsBeforeBattle.EnemyFleet?.MembersInstance
+		.All(s => s?.MasterShip.IsSubmarine ?? true) ?? false;
+
+	public bool IsPtOnly() => FirstBattle.FleetsBeforeBattle.EnemyFleet?.MembersInstance
+		.All(s => s?.MasterShip.IsPt ?? true) ?? false;
 }

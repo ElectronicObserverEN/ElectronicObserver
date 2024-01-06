@@ -129,8 +129,10 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		BattleBaseAirRaid? abRaid = null;
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
+		CellType colorNo = CellType.Unknown;
 		int eventId = 0;
 		int eventKind = 0;
+		ApiHappening? happening = null;
 		ApiOffshoreSupply? offshoreSupply = null;
 
 		foreach ((object apiData, DateTime time) in ApiDataCache)
@@ -156,26 +158,14 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				};
 			}
 
-			cell = apiData switch
+			if (apiData is IMapProgressApi progress)
 			{
-				ApiReqMapStartResponse s => s.ApiNo,
-				ApiReqMapNextResponse n => n.ApiNo,
-				_ => cell,
-			};
-
-			eventId = apiData switch
-			{
-				ApiReqMapStartResponse s => s.ApiEventId,
-				ApiReqMapNextResponse n => n.ApiEventId,
-				_ => eventId,
-			};
-
-			eventKind = apiData switch
-			{
-				ApiReqMapStartResponse s => s.ApiEventKind,
-				ApiReqMapNextResponse n => n.ApiEventKind,
-				_ => eventKind,
-			};
+				cell = progress.ApiNo;
+				colorNo = progress.ApiColorNo;
+				eventId = progress.ApiEventId;
+				eventKind = progress.ApiEventKind;
+				happening = progress.ApiHappening;
+			}
 
 			offshoreSupply = apiData switch
 			{
@@ -204,7 +194,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				}
 				else
 				{
-					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, eventId, eventKind);
+					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, colorNo, eventId, eventKind);
 				}
 			}
 
@@ -222,13 +212,14 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			}
 		}
 
-		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell, eventId, eventKind);
+		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell, colorNo, eventId, eventKind);
 
 		if (abRaid is not null)
 		{
 			node.AddAirBaseRaid(abRaid);
 		}
 
+		node.Happening = happening;
 		node.ApiOffshoreSupply = offshoreSupply;
 
 		if (node is BattleNode b)
