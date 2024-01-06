@@ -3,8 +3,11 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseAirBattle : PhaseAirBattleBase
+public class PhaseAirBattle(IKCDatabase kcDatabase, ApiKouku airBattleData, AirPhaseType type)
+	: PhaseAirBattleBase(kcDatabase, airBattleData)
 {
+	private AirPhaseType Type { get; } = type;
+
 	public override string Title => Type switch
 	{
 		AirPhaseType.First => BattleRes.BattlePhaseAirAttackFirst,
@@ -12,12 +15,4 @@ public class PhaseAirBattle : PhaseAirBattleBase
 		AirPhaseType.Raid => BattleRes.BattlePhaseAirRaid,
 		_ => BattleRes.BattlePhaseAirBattle,
 	};
-
-	private AirPhaseType Type { get; }
-
-	public PhaseAirBattle(IKCDatabase kcDatabase, ApiKouku airBattleData, AirPhaseType type)
-		: base(kcDatabase, airBattleData)
-	{
-		Type = type;
-	}
 }

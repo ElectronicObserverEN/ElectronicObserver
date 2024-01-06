@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using ElectronicObserver.Data;
+﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
