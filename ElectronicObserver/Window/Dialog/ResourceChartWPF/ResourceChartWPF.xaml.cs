@@ -942,10 +942,11 @@ public partial class ResourceChartWPF
 			if (Math.Abs(min - max) < 1)
 			{
 				ChartArea.Plot.AxisAuto();
-				return;
 			}
-
-			ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(min / 100000.0) * 100000, yMax: Math.Ceiling(max / 100000.0) * 100000, yAxisIndex: 0);
+			else
+			{
+				ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(min / 100000.0) * 100000, yMax: Math.Ceiling(max / 100000.0) * 100000, yAxisIndex: 0);
+			}
 		}
 		SetYBounds();
 		ChartArea.Refresh();
