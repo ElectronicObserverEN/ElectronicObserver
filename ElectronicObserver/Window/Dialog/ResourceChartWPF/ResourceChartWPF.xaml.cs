@@ -811,15 +811,27 @@ public partial class ResourceChartWPF
 	{
 		int order = (int)Math.Log10(Math.Max(max - min, 1));
 		double powered = Math.Pow(10, order);
-		double unitbase = Math.Round((max - min) / powered);
-		double unit = powered * (
-			unitbase < 2 ? 0.2 :
-			unitbase < 5 ? 0.5 :
-			unitbase < 7 ? 1.0 : 2.0);
-		var axisYmin = Math.Floor(min / unit) * unit;
-		var axisYmax = Math.Ceiling(max / unit) * unit;
+		double unitBase = Math.Round((max - min) / powered);
+		double unit = powered * unitBase switch
+		{
+			< 2 => 0.2,
+			< 5 => 0.5,
+			< 7 => 1,
+			_ => 2
+		};
+
+		double axisYmin = Math.Floor(min / unit) * unit;
+		double axisYmax = Math.Ceiling(max / unit) * unit;
+
 		bool isYaxisPlotsVisible = ChartArea.Plot.GetPlottables().Any(p => p.YAxisIndex == 0 && p.IsVisible);
 		ChartArea.Plot.YAxis.IsVisible = isYaxisPlotsVisible;
+
+		if (Math.Abs(axisYmin - axisYmax) < 1)
+		{
+			ChartArea.Plot.AxisAuto();
+			return;
+		}
+
 		if (isYaxisPlotsVisible)
 		{
 			ChartArea.Plot.SetAxisLimits(yMin: axisYmin, yMax: axisYmax, yAxisIndex: 0);
@@ -828,15 +840,15 @@ public partial class ResourceChartWPF
 		{
 			ChartArea.Plot.AxisAuto();
 		}
+
 		if (ChartArea.Plot.YAxis2.IsVisible && isYaxisPlotsVisible)
 		{
-			ChartArea.Plot.SetAxisLimits(yMin: axisYmin / 100, yMax: axisYmax / 100, yAxisIndex:1);
+			ChartArea.Plot.SetAxisLimits(yMin: axisYmin / 100, yMax: axisYmax / 100, yAxisIndex: 1);
 		}
 		else
 		{
 			ChartArea.Plot.AxisAuto();
 		}
-
 	}
 
 	private void SetMaterialChart()
@@ -926,6 +938,13 @@ public partial class ResourceChartWPF
 		{
 			double min = ExperiencePlot.Ys.Min();
 			double max = ExperiencePlot.Ys.Min();
+
+			if (Math.Abs(min - max) < 1)
+			{
+				ChartArea.Plot.AxisAuto();
+				return;
+			}
+
 			ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(min / 100000.0) * 100000, yMax: Math.Ceiling(max / 100000.0) * 100000, yAxisIndex: 0);
 		}
 		SetYBounds();
@@ -934,11 +953,11 @@ public partial class ResourceChartWPF
 
 	private void SetYBounds()
 	{
-		double chartmin = ChartArea.Plot.YAxis2.IsVisible ? (ChartArea.Plot.GetDataLimits(yAxisIndex: 1).YMin * 100) : ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMin;
-		double chartmax = ChartArea.Plot.YAxis2.IsVisible ? (ChartArea.Plot.GetDataLimits(yAxisIndex: 1).YMax * 100) : ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMax;
+		double chartMin = ChartArea.Plot.YAxis2.IsVisible ? (ChartArea.Plot.GetDataLimits(yAxisIndex: 1).YMin * 100) : ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMin;
+		double chartMax = ChartArea.Plot.YAxis2.IsVisible ? (ChartArea.Plot.GetDataLimits(yAxisIndex: 1).YMax * 100) : ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMax;
 		SetYBounds(
-			!ChartArea.Plot.GetPlottables().Any(p => p.IsVisible) || SelectedChartType == ChartType.ExperienceDiff ? 0 : Math.Min(ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMin, chartmin),
-			!ChartArea.Plot.GetPlottables().Any(p => p.IsVisible) ? 0 : Math.Max(ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMax, chartmax)
+			!ChartArea.Plot.GetPlottables().Any(p => p.IsVisible) || SelectedChartType == ChartType.ExperienceDiff ? 0 : Math.Min(ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMin, chartMin),
+			!ChartArea.Plot.GetPlottables().Any(p => p.IsVisible) ? 0 : Math.Max(ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMax, chartMax)
 		);
 	}
 
