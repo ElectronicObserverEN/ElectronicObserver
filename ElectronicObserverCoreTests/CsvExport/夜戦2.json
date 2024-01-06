@@ -1,6 +1,7 @@
 [
 	{
 		"Id": 17556,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -632,6 +633,7 @@
 	},
 	{
 		"Id": 17557,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [

@@ -1,6 +1,7 @@
 ﻿[
 	{
 		"Id": 18569,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -1083,6 +1084,7 @@
 	},
 	{
 		"Id": 18570,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -2165,6 +2167,7 @@
 	},
 	{
 		"Id": 18571,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -3247,6 +3250,7 @@
 	},
 	{
 		"Id": 18572,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -4320,6 +4324,7 @@
 	},
 	{
 		"Id": 18573,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -5402,6 +5407,7 @@
 	},
 	{
 		"Id": 18574,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
@@ -6430,6 +6436,7 @@
 	},
 	{
 		"Id": 18575,
+		"Version": 0,
 		"World": 5,
 		"Map": 5,
 		"ApiFiles": [
