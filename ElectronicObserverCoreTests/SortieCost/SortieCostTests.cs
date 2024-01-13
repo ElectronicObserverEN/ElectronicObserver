@@ -31,7 +31,8 @@ public class SortieCostTests
 		return data;
 	}
 
-	private static async Task<List<SortieCostViewModel>> MakeSortieCosts(string testName)
+	private static async Task<List<SortieCostViewModel>> MakeSortieCosts(string testFilePrefix,
+		bool clearFleetAfterBattleData = false)
 	{
 		ToolService toolService = new(new());
 		SortieRecordMigrationService sortieRecordMigrationService = new(toolService);
@@ -40,8 +41,16 @@ public class SortieCostTests
 		await db.Database.EnsureDeletedAsync();
 		await db.Database.EnsureCreatedAsync();
 
-		List<ApiFile> apiFiles = await GetDataFromFile<List<ApiFile>>($"{testName}ApiFiles.json");
-		List<SortieRecord> sortieRecords = await GetDataFromFile<List<SortieRecord>>($"{testName}SortieRecords.json");
+		List<ApiFile> apiFiles = await GetDataFromFile<List<ApiFile>>($"{testFilePrefix}ApiFiles.json");
+		List<SortieRecord> sortieRecords = await GetDataFromFile<List<SortieRecord>>($"{testFilePrefix}SortieRecords.json");
+
+		if (clearFleetAfterBattleData)
+		{
+			foreach (SortieRecord sortie in sortieRecords)
+			{
+				sortie.FleetAfterSortieData = null;
+			}
+		}
 
 		await db.AddRangeAsync(sortieRecords);
 		await db.AddRangeAsync(apiFiles);
@@ -56,7 +65,7 @@ public class SortieCostTests
 
 		foreach (SortieRecordViewModel sortie in sorties)
 		{
-			sortieCosts.Add(new(db, sortieRecordMigrationService, sortie));
+			sortieCosts.Add(new(db, toolService, sortieRecordMigrationService, sortie));
 		}
 
 		return sortieCosts;
@@ -117,5 +126,35 @@ public class SortieCostTests
 
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(souyaRepairCost + musashiRepairCost, sortieCosts[0].SortieFleetRepairCost);
+	}
+
+	[Fact(DisplayName = "6-5 with AB - no fleet after sortie data")]
+	public async Task SortieCostTest4()
+	{
+		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts("SortieCostTest2");
+		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts("SortieCostTest2", true);
+
+		Assert.Single(sortieCosts1);
+		Assert.Single(sortieCosts2);
+
+		Assert.Equal(sortieCosts1[0].SortieFleetSupplyCost, sortieCosts2[0].SortieFleetSupplyCost);
+		Assert.Equal(sortieCosts1[0].SortieFleetRepairCost, sortieCosts2[0].SortieFleetRepairCost);
+		Assert.Equal(sortieCosts1[0].TotalAirBaseSortieCost, sortieCosts2[0].TotalAirBaseSortieCost);
+		Assert.Equal(sortieCosts1[0].TotalAirBaseSupplyCost, sortieCosts2[0].TotalAirBaseSupplyCost);
+	}
+
+	[Fact(DisplayName = "Sortie record version 0→1 test - no fleet after sortie data")]
+	public async Task SortieCostTest5()
+	{
+		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts("SortieCostTest3");
+		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts("SortieCostTest3", true);
+
+		Assert.Single(sortieCosts1);
+		Assert.Single(sortieCosts2);
+
+		Assert.Equal(sortieCosts1[0].SortieFleetSupplyCost, sortieCosts2[0].SortieFleetSupplyCost);
+		Assert.Equal(sortieCosts1[0].SortieFleetRepairCost, sortieCosts2[0].SortieFleetRepairCost);
+		Assert.Equal(sortieCosts1[0].TotalAirBaseSortieCost, sortieCosts2[0].TotalAirBaseSortieCost);
+		Assert.Equal(sortieCosts1[0].TotalAirBaseSupplyCost, sortieCosts2[0].TotalAirBaseSupplyCost);
 	}
 }

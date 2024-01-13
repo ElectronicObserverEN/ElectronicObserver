@@ -423,7 +423,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSorties.Count <= 0) return;
 
-		SortieCostViewerViewModel sortieCost = new(Db, SortieRecordMigrationService, SelectedSorties);
+		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties);
 
 		new SortieCostViewerWindow(sortieCost).Show();
 	}

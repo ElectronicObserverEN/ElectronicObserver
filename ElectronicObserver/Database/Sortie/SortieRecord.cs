@@ -13,4 +13,5 @@ public class SortieRecord
 	public SortieFleetData FleetData { get; set; } = new();
 	public SortieFleetData? FleetAfterSortieData { get; set; }
 	public required SortieMapData MapData { get; set; } = new();
+	public CalculatedSortieCost CalculatedSortieCost { get; set; } = new();
 }

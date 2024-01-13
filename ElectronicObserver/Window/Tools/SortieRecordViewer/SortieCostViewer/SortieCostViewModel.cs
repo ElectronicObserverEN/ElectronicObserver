@@ -5,16 +5,30 @@ using System.Text.Json;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Mocks;
+using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
 public class SortieCostViewModel
 {
 	private ElectronicObserverContext Db { get; }
+	private ToolService ToolService { get; }
+
+	private SortieRecord Model { get; }
+	private SortieDetailViewModel? SortieDetails { get; set; }
 
 	public DateTime Time { get; }
 	public int World { get; }
@@ -39,11 +53,13 @@ public class SortieCostViewModel
 	public SortieCostModel TotalAirBaseSupplyCost { get; }
 	public SortieCostModel TotalCost { get; }
 
-	public SortieCostViewModel(ElectronicObserverContext db, SortieRecordMigrationService sortieRecordMigrationService,
-		SortieRecordViewModel sortie)
+	public SortieCostViewModel(ElectronicObserverContext db, ToolService toolService,
+		SortieRecordMigrationService sortieRecordMigrationService, SortieRecordViewModel sortie)
 	{
 		Db = db;
+		ToolService = toolService;
 
+		Model = sortie.Model;
 		Time = sortie.SortieStart.ToUniversalTime();
 		World = sortie.World;
 		Map = sortie.Map;
@@ -83,30 +99,26 @@ public class SortieCostViewModel
 				<= 0 => new(),
 				int id => SupplyCost(FleetsBeforeSortie[id - 1], FleetsAfterSortie[id - 1]),
 			};
-
-			TotalSupplyCost = SortieFleetSupplyCost + NodeSupportSupplyCost + BossSupportSupplyCost;
-
-			TotalRepairCost = SortieFleetRepairCost;
-
-			TotalAirBaseSortieCost = AirBases
-				.Where(a => a.ActionKind is AirBaseActionKind.Mission)
-				.Select(AirBaseSortieCost)
-				.Aggregate(new SortieCostModel(), (a, b) => a + b);
-
-			TotalAirBaseSupplyCost = AirBaseSupplyCost();
-
-			TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
+		}
+		else
+		{
+			SortieFleetSupplyCost = CalculateSupplyCost(Db, Model);
+			SortieFleetRepairCost = CalculateRepairCost(Db, Model);
+			NodeSupportSupplyCost ??= new();
+			BossSupportSupplyCost ??= new();
 		}
 
-		SortieFleetSupplyCost ??= new();
-		SortieFleetRepairCost ??= new();
-		NodeSupportSupplyCost ??= new();
-		BossSupportSupplyCost ??= new();
-		TotalSupplyCost ??= new();
-		TotalRepairCost ??= new();
-		TotalAirBaseSortieCost ??= new();
-		TotalAirBaseSupplyCost ??= new();
-		TotalCost ??= new();
+		TotalSupplyCost = SortieFleetSupplyCost + NodeSupportSupplyCost + BossSupportSupplyCost;
+		TotalRepairCost = SortieFleetRepairCost;
+
+		TotalAirBaseSortieCost = AirBases
+			.Where(a => a.ActionKind is AirBaseActionKind.Mission)
+			.Select(AirBaseSortieCost)
+			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+
+		TotalAirBaseSupplyCost = AirBaseSupplyCost();
+
+		TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
 	}
 
 	private static SortieCostModel SupplyCost(IFleetData? before, IFleetData? after) => (before, after) switch
@@ -130,6 +142,153 @@ public class SortieCostViewModel
 		_ => new(),
 	};
 
+	private SortieCostModel CalculateSupplyCost(ElectronicObserverContext db, SortieRecord model)
+	{
+		if (model.CalculatedSortieCost.SortieFleetSupplyCost is not null)
+		{
+			return model.CalculatedSortieCost.SortieFleetSupplyCost;
+		}
+
+		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(db, model);
+
+		if (SortieDetails is null) return new();
+
+		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
+		BattleFleets fleetsAfter = fleetsBefore.Clone();
+
+		FleetType? enemyFleetType = fleetsBefore.EnemyFleet?.FleetType;
+
+		int bauxite = 0;
+
+		if (fleetsAfter.Fleet.MembersWithoutEscaped is null) return new();
+
+		foreach (SortieNode node in SortieDetails.Nodes)
+		{
+			(double fuelConsumptionModifier, double ammoConsumptionModifier) = node.Happening switch
+			{
+				ApiHappening h => ConsumptionModifier(h, fleetsAfter.Fleet.MembersInstance),
+				_ => ConsumptionModifier(node),
+			};
+
+			List<DayAttack> specialAttacks = [];
+			bool hasSecondBattle = false;
+
+			if (node is BattleNode battleNode)
+			{
+				hasSecondBattle = battleNode.SecondBattle is not null;
+
+				specialAttacks = battleNode.FirstBattle.Phases
+					.OfType<PhaseShelling>()
+					.SelectMany(s => s.AttackDisplays)
+					.SelectMany(a => a.Attacks)
+					.Where(a => a.AttackKind is DayAttackKind.SpecialYamato2Ships)
+					.ToList();
+
+				bauxite += battleNode.FirstBattle.Phases
+					.OfType<PhaseAirBattleBase>()
+					.Sum(b => b.Stage1FLostcount + b.Stage2FLostcount) * 5;
+			}
+
+			foreach (IShipData? ship in fleetsAfter.Fleet.MembersWithoutEscaped)
+			{
+				if (ship is not ShipDataMock s) continue;
+
+				if (fuelConsumptionModifier > 0)
+				{
+					s.Fuel -= node.Happening switch
+					{
+						ApiHappening => (int)Math.Max(1, Math.Floor(s.Fuel * fuelConsumptionModifier)),
+						_ => (int)Math.Max(1, Math.Floor(s.FuelMax * fuelConsumptionModifier)),
+					};
+				}
+
+				if (ammoConsumptionModifier > 0)
+				{
+					DayAttackKind? attack = specialAttacks
+						.FirstOrDefault(a => a.Attacker.ShipID == s.ShipID)?.AttackKind;
+
+					double specialAttackBonus = (attack, enemyFleetType, hasSecondBattle) switch
+					{
+						(DayAttackKind.SpecialNagato, FleetType.Single, _) => ammoConsumptionModifier / 2,
+						(DayAttackKind.SpecialNagato, _, true) => 0,
+						(DayAttackKind.SpecialNagato, _, _) => ammoConsumptionModifier / 2,
+
+						(DayAttackKind.SpecialYamato2Ships, _, _) => 0.12,
+
+						_ => 0,
+					};
+
+					s.Ammo -= node.Happening switch
+					{
+						ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
+						_ => (attack, enemyFleetType) switch
+						{
+							(DayAttackKind.SpecialNagato, FleetType.Single) => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+							(DayAttackKind.SpecialNagato, _) => (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
+							_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+						},
+					};
+				}
+
+				if (hasSecondBattle)
+				{
+					s.Ammo -= (int)Math.Max(1, Math.Ceiling(s.AmmoMax * ammoConsumptionModifier / 2));
+				}
+			}
+		}
+
+		SortieCostModel supplyCost = SupplyCost(fleetsBefore.Fleet, fleetsAfter.Fleet);
+		model.CalculatedSortieCost.SortieFleetSupplyCost = supplyCost with
+		{
+			Bauxite = bauxite,
+		};
+
+		db.Sorties.Update(model);
+		db.SaveChanges();
+
+		return model.CalculatedSortieCost.SortieFleetSupplyCost;
+	}
+
+	private static (double Fuel, double Ammo) ConsumptionModifier(SortieNode node) => node switch
+	{
+		// handled with api data
+		{ ApiColorNo: CellType.Maelstrom } => (0, 0),
+
+		{ ApiColorNo: CellType.SubAir } => (0.12, 0.06),
+		{ ApiColorNo: CellType.NightBattle } => (0.1, 0.1),
+		{ ApiColorNo: CellType.RadarFire } => (0.04, 0),
+
+		BattleNode b => b.FirstBattle switch
+		{
+			DayFromNightBattleData => (0.2, 0.2),
+
+			BattleAirBattle or
+			BattleCombinedAirBattle => (0.2, 0.2),
+
+			BattleAirRaid or
+			BattleCombinedAirRaid => node.World switch
+			{
+				6 => (0.04, 0.08),
+				_ => (0.06, 0.04),
+			},
+
+			_ when b.IsSubsOnly() => (0.08, 0),
+			_ when b.IsPtOnly() => (0.04, 0.08),
+			_ => (0.2, 0.2),
+		},
+
+		_ => (0, 0),
+	};
+
+	private static (double Fuel, double Ammo) ConsumptionModifier(ApiHappening happening, IEnumerable<IShipData?> ships)
+		=> happening.ApiMstId switch
+		{
+			MaelstromType.Fuel => ((double)happening.ApiCount / ships.Max(s => s?.Fuel ?? 0), 0),
+			MaelstromType.Ammo => (0, (double)happening.ApiCount / ships.Max(s => s?.Ammo ?? 0)),
+
+			_ => (0, 0),
+		};
+
 	private static int SupplyCost(IShipData ship, int max, int before, int after) => (before == max) switch
 	{
 		true => MarriageResupply(ship, before - after),
@@ -142,6 +301,40 @@ public class SortieCostViewModel
 		_ when ship.IsMarried => Math.Max(1, (int)(resupply * 0.85)),
 		_ => resupply,
 	};
+
+	private SortieCostModel CalculateRepairCost(ElectronicObserverContext db, SortieRecord model)
+	{
+		if (model.CalculatedSortieCost.SortieFleetRepairCost is not null)
+		{
+			return model.CalculatedSortieCost.SortieFleetRepairCost;
+		}
+
+		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(db, model);
+
+		if (SortieDetails is null) return new();
+
+		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
+		BattleFleets fleetsAfter = fleetsBefore.Clone();
+
+		foreach (BattleNode battleNode in SortieDetails.Nodes.OfType<BattleNode>())
+		{
+			foreach ((IShipData? before, IShipData? after) in fleetsAfter.Fleet.MembersWithoutEscaped
+				.Zip(battleNode.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped))
+			{
+				if (before is not ShipDataMock ship) continue;
+				if (after is null) continue;
+
+				ship.HPCurrent = after.HPCurrent;
+			}
+		}
+
+		model.CalculatedSortieCost.SortieFleetRepairCost = RepairCost(fleetsBefore.Fleet, fleetsAfter.Fleet);
+
+		db.Sorties.Update(model);
+		db.SaveChanges();
+
+		return model.CalculatedSortieCost.SortieFleetRepairCost;
+	}
 
 	private static SortieCostModel RepairCost(IFleetData? before, IFleetData? after) => (before, after) switch
 	{
