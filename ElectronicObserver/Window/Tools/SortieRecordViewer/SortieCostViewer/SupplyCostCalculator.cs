@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using ElectronicObserver.Database;
-using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.KancolleApi.Types;
-using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
-using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -27,10 +22,6 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	private ToolService ToolService { get; } = toolService;
 
 	private SortieRecord Model { get; } = sortie.Model;
-	private DateTime Time { get; } = sortie.SortieStart.ToUniversalTime();
-	private List<IBaseAirCorpsData> AirBases { get; } = sortie.Model.FleetData.AirBases
-		.Select(a => a.MakeAirBase())
-		.ToList();
 
 	private SortieDetailViewModel? SortieDetails { get; set; }
 
@@ -146,70 +137,12 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			{
 				if (ship is not ShipDataMock s) continue;
 
-				if (fuelConsumptionModifier > 0)
-				{
-					s.Fuel -= node.Happening switch
-					{
-						ApiHappening => (int)Math.Max(1, Math.Floor(s.Fuel * fuelConsumptionModifier)),
-						_ => (int)Math.Max(1, Math.Floor(s.FuelMax * fuelConsumptionModifier)),
-					};
-				}
+				DayAttackKind? attack = specialAttacks
+					.FirstOrDefault(a => a.Attacker.ShipID == ship.ShipID)
+					?.AttackKind;
 
-				if (ammoConsumptionModifier > 0)
-				{
-					int ammoConsumption = 0;
-
-					DayAttackKind? attack = specialAttacks
-						.FirstOrDefault(a => a.Attacker.ShipID == s.ShipID)?.AttackKind;
-
-					double specialAttackBonus = attack switch
-					{
-						DayAttackKind.SpecialNagato or
-						DayAttackKind.SpecialMutsu or
-						DayAttackKind.SpecialColorado => (enemyFleetType, hasSecondBattle) switch
-						{
-							(FleetType.Single, _) => ammoConsumptionModifier / 2,
-							(_, true) => 0,
-							_ => ammoConsumptionModifier / 2,
-						},
-
-						DayAttackKind.SpecialYamato2Ships => 0.12,
-
-						_ => 0,
-					};
-
-					Func<double, double> roundingFunction = hasSecondBattle switch
-					{
-						true => Math.Ceiling,
-						_ => Math.Floor,
-					};
-
-					if (hasSecondBattle)
-					{
-						ammoConsumptionModifier *= 1.5;
-					}
-
-					ammoConsumption += node.Happening switch
-					{
-						ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
-						_ => attack switch
-						{
-							DayAttackKind.SpecialNagato or
-							DayAttackKind.SpecialMutsu or
-							DayAttackKind.SpecialColorado => enemyFleetType switch
-							{
-								FleetType.Single => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
-								_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
-							},
-
-							DayAttackKind.SpecialKongo => (int)Math.Max(1, roundingFunction(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
-
-							_ => (int)Math.Max(1, roundingFunction(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
-						},
-					};
-
-					s.Ammo -= ammoConsumption;
-				}
+				ApplyFuelConsumption(s, fuelConsumptionModifier, node);
+				ApplyAmmoConsumption(s, ammoConsumptionModifier, node, enemyFleetType, attack, hasSecondBattle);
 			}
 		}
 
@@ -264,4 +197,80 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 			_ => (0, 0),
 		};
+
+	private static void ApplyFuelConsumption(IShipData ship, double fuelConsumptionModifier,
+		SortieNode node)
+	{
+		if (fuelConsumptionModifier > 0)
+		{
+			ship.Fuel -= node.Happening switch
+			{
+				ApiHappening => (int)Math.Max(1, Math.Floor(ship.Fuel * fuelConsumptionModifier)),
+				_ => (int)Math.Max(1, Math.Floor(ship.FuelMax * fuelConsumptionModifier)),
+			};
+		}
+	}
+
+	private static void ApplyAmmoConsumption(IShipData s, double ammoConsumptionModifier,
+		SortieNode node, FleetType? enemyFleetType, DayAttackKind? attack, bool hasSecondBattle)
+	{
+		if (ammoConsumptionModifier > 0)
+		{
+			int ammoConsumption = CalculateAmmoConsumption(s, attack, enemyFleetType, hasSecondBattle,
+				ammoConsumptionModifier, node);
+
+			s.Ammo -= ammoConsumption;
+		}
+	}
+
+	private static int CalculateAmmoConsumption(IShipData s, DayAttackKind? attack,
+		FleetType? enemyFleetType, bool hasSecondBattle, double ammoConsumptionModifier,
+		SortieNode node)
+	{
+		double specialAttackBonus = attack switch
+		{
+			DayAttackKind.SpecialNagato or
+			DayAttackKind.SpecialMutsu or
+			DayAttackKind.SpecialColorado => (enemyFleetType, hasSecondBattle) switch
+			{
+				(FleetType.Single, _) => ammoConsumptionModifier / 2,
+				(_, true) => 0,
+				_ => ammoConsumptionModifier / 2,
+			},
+
+			DayAttackKind.SpecialYamato2Ships => 0.12,
+
+			_ => 0,
+		};
+
+		Func<double, double> roundingFunction = hasSecondBattle switch
+		{
+			true => Math.Ceiling,
+			_ => Math.Floor,
+		};
+
+		if (hasSecondBattle)
+		{
+			ammoConsumptionModifier *= 1.5;
+		}
+
+		return node.Happening switch
+		{
+			ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
+			_ => attack switch
+			{
+				DayAttackKind.SpecialNagato or
+				DayAttackKind.SpecialMutsu or
+				DayAttackKind.SpecialColorado => enemyFleetType switch
+				{
+					FleetType.Single => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+					_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
+				},
+
+				DayAttackKind.SpecialKongo => (int)Math.Max(1, roundingFunction(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
+
+				_ => (int)Math.Max(1, roundingFunction(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+			},
+		};
+	}
 }
