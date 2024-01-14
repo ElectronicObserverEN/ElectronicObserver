@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
 
@@ -37,7 +38,7 @@ public class FleetDataMock : IFleetData
 	public bool IsInSortie { get; set; }
 	public bool IsInPractice { get; set; }
 	public int ID { get; set; }
-	public int SupportType { get; set; }
+	public SupportType SupportType => this.GetSupportType();
 	public bool IsFlagshipRepairShip { get; set; }
 	public bool CanAnchorageRepair { get; set; }
 	public DateTime? ConditionTime { get; set; }

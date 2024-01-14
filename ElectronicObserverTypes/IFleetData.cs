@@ -66,7 +66,7 @@ public interface IFleetData
 	/// 支援艦隊種別
 	/// 0=不発, 1=空撃, 2=砲撃, 3=雷撃
 	/// </summary>
-	int SupportType { get; }
+	SupportType SupportType { get; }
 
 	/// <summary>
 	/// 旗艦が工作艦か
