@@ -66,6 +66,9 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		foreach (BattleNode battleNode in SortieDetails.Nodes.OfType<BattleNode>())
 		{
+			if (fleetsAfter.Fleet.MembersWithoutEscaped is null) continue;
+			if (battleNode.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped is null) continue;
+
 			foreach ((IShipData? before, IShipData? after) in fleetsAfter.Fleet.MembersWithoutEscaped
 				.Zip(battleNode.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped))
 			{
