@@ -71,6 +71,25 @@ public class SortieCostTests
 		return sortieCosts;
 	}
 
+	[Theory(DisplayName = "no fleet after sortie data")]
+	[InlineData("SortieCostTest2")]
+	[InlineData("SortieCostTest3")]
+	public async Task SortieCostTest0(string testFilePrefix)
+	{
+		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts(testFilePrefix);
+		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts(testFilePrefix, true);
+
+		Assert.Equal(sortieCosts1.Count, sortieCosts2.Count);
+
+		foreach ((SortieCostViewModel first, SortieCostViewModel second) in sortieCosts1.Zip(sortieCosts2))
+		{
+			Assert.Equal(first.SortieFleetSupplyCost, second.SortieFleetSupplyCost);
+			Assert.Equal(first.SortieFleetRepairCost, second.SortieFleetRepairCost);
+			Assert.Equal(first.TotalAirBaseSortieCost, second.TotalAirBaseSortieCost);
+			Assert.Equal(first.TotalAirBaseSupplyCost, second.TotalAirBaseSupplyCost);
+		}
+	}
+
 	[Fact(DisplayName = "Double 7-4 resource run without resupply with AB")]
 	public async Task SortieCostTest1()
 	{
@@ -126,35 +145,5 @@ public class SortieCostTests
 
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(souyaRepairCost + musashiRepairCost, sortieCosts[0].SortieFleetRepairCost);
-	}
-
-	[Fact(DisplayName = "6-5 with AB - no fleet after sortie data")]
-	public async Task SortieCostTest4()
-	{
-		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts("SortieCostTest2");
-		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts("SortieCostTest2", true);
-
-		Assert.Single(sortieCosts1);
-		Assert.Single(sortieCosts2);
-
-		Assert.Equal(sortieCosts1[0].SortieFleetSupplyCost, sortieCosts2[0].SortieFleetSupplyCost);
-		Assert.Equal(sortieCosts1[0].SortieFleetRepairCost, sortieCosts2[0].SortieFleetRepairCost);
-		Assert.Equal(sortieCosts1[0].TotalAirBaseSortieCost, sortieCosts2[0].TotalAirBaseSortieCost);
-		Assert.Equal(sortieCosts1[0].TotalAirBaseSupplyCost, sortieCosts2[0].TotalAirBaseSupplyCost);
-	}
-
-	[Fact(DisplayName = "Sortie record version 0→1 test - no fleet after sortie data")]
-	public async Task SortieCostTest5()
-	{
-		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts("SortieCostTest3");
-		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts("SortieCostTest3", true);
-
-		Assert.Single(sortieCosts1);
-		Assert.Single(sortieCosts2);
-
-		Assert.Equal(sortieCosts1[0].SortieFleetSupplyCost, sortieCosts2[0].SortieFleetSupplyCost);
-		Assert.Equal(sortieCosts1[0].SortieFleetRepairCost, sortieCosts2[0].SortieFleetRepairCost);
-		Assert.Equal(sortieCosts1[0].TotalAirBaseSortieCost, sortieCosts2[0].TotalAirBaseSortieCost);
-		Assert.Equal(sortieCosts1[0].TotalAirBaseSupplyCost, sortieCosts2[0].TotalAirBaseSupplyCost);
 	}
 }
