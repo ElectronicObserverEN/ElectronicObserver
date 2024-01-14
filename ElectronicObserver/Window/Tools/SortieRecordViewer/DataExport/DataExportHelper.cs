@@ -100,7 +100,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 							{
 								int actualAttackIndex = attackIndex;
 
-								if (IsSpecialAttack(attack.AttackKind))
+								if (attack.AttackKind.IsSpecialAttack())
 								{
 									if (previousSpecial != attack.AttackKind)
 									{
@@ -230,7 +230,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 							{
 								int actualAttackIndex = attackIndex;
 
-								if (IsSpecialAttack(attack.AttackKind))
+								if (attack.AttackKind.IsSpecialAttack())
 								{
 									if (previousSpecial != attack.AttackKind)
 									{
@@ -1133,31 +1133,6 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		int i => KCDatabase.Instance.MasterEquipments[i],
 		_ => null,
 	};
-
-	private static bool IsSpecialAttack(DayAttackKind dayAttack) => dayAttack is
-		DayAttackKind.SpecialNelson or
-		DayAttackKind.SpecialNagato or
-		DayAttackKind.SpecialMutsu or
-		DayAttackKind.SpecialColorado or
-		DayAttackKind.SpecialKongo or
-		DayAttackKind.SpecialSubmarineTender23 or
-		DayAttackKind.SpecialSubmarineTender34 or
-		DayAttackKind.SpecialSubmarineTender24 or
-		DayAttackKind.SpecialYamato2Ships or
-		DayAttackKind.SpecialYamato3Ships;
-
-	private static bool IsSpecialAttack(NightAttackKind nightAttack) => nightAttack is
-		NightAttackKind.CutinZuiun or
-		NightAttackKind.SpecialNelson or
-		NightAttackKind.SpecialNagato or
-		NightAttackKind.SpecialMutsu or
-		NightAttackKind.SpecialColorado or
-		NightAttackKind.SpecialKongou or
-		NightAttackKind.SpecialSubmarineTender23 or
-		NightAttackKind.SpecialSubmarineTender34 or
-		NightAttackKind.SpecialSubmarineTender24 or
-		NightAttackKind.SpecialYamato2Ships or
-		NightAttackKind.SpecialYamato3Ships;
 
 	private static string AirDefenseSquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell} ({GetEventKind(node.ApiEventId, node.ApiEventKind)})";
