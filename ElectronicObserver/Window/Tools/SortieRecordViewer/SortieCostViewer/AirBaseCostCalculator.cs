@@ -140,7 +140,6 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, SortieRecordVie
 				if (squadron.EquipmentMasterID != plane.ApiSlotid)
 				{
 					// don't have that data currently
-					// return false;
 				}
 			}
 		}
