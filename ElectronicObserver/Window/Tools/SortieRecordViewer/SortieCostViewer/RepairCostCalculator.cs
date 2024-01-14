@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
@@ -64,19 +65,20 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
 		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
-		foreach (BattleNode battleNode in SortieDetails.Nodes.OfType<BattleNode>())
+		ReadOnlyCollection<IShipData?>? membersAfterFinalBattle = SortieDetails.Nodes
+			.OfType<BattleNode>()
+			.Select(n => n.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped)
+			.Last();
+
+		if (fleetsAfter.Fleet.MembersWithoutEscaped is null) return new();
+		if (membersAfterFinalBattle is null) return new();
+
+		foreach ((IShipData? before, IShipData? after) in fleetsAfter.Fleet.MembersWithoutEscaped.Zip(membersAfterFinalBattle))
 		{
-			if (fleetsAfter.Fleet.MembersWithoutEscaped is null) continue;
-			if (battleNode.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped is null) continue;
+			if (before is not ShipDataMock ship) continue;
+			if (after is null) continue;
 
-			foreach ((IShipData? before, IShipData? after) in fleetsAfter.Fleet.MembersWithoutEscaped
-				.Zip(battleNode.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped))
-			{
-				if (before is not ShipDataMock ship) continue;
-				if (after is null) continue;
-
-				ship.HPCurrent = after.HPCurrent;
-			}
+			ship.HPCurrent = after.HPCurrent;
 		}
 
 		model.CalculatedSortieCost.SortieFleetRepairCost = RepairCost(fleetsBefore.Fleet, fleetsAfter.Fleet);
