@@ -54,16 +54,23 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, SortieRecordVie
 
 	public SortieCostModel AirBaseSupplyCost()
 	{
-		if (TryGetAirBaseState(Db, Time) is List<ApiAirBase> airBaseState)
+		// todo: get plane shotdown from battle details
+		return TryGetAirBaseSupplyCostFromDatabase() ??  new();
+	}
+
+	private SortieCostModel? TryGetAirBaseSupplyCostFromDatabase()
+	{
+		if (TryGetAirBaseState(Db, Time) is not List<ApiAirBase> airBaseState)
 		{
-			if (TryGetCostFromState(AirBases, airBaseState) is SortieCostModel sortieCost)
-			{
-				return sortieCost;
-			}
+			return null;
 		}
 
-		// todo: get plane shotdown from battle details
-		return new();
+		if (TryGetCostFromState(AirBases, airBaseState) is SortieCostModel sortieCost)
+		{
+			return sortieCost;
+		}
+
+		return null;
 	}
 
 	private static List<ApiAirBase>? TryGetAirBaseState(ElectronicObserverContext db, DateTime sortieStart)
