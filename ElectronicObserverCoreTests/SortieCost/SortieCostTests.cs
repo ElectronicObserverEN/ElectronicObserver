@@ -21,9 +21,13 @@ public class SortieCostTests
 	private static string BasePath =>
 		Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "SortieCost");
 
-	private static async Task<T> GetDataFromFile<T>(string fileName)
+	private static async Task<T> GetDataFromFile<T>(string fileName) where T : new()
 	{
-		Stream stream = File.OpenRead(Path.Join(BasePath, fileName));
+		string path = Path.Join(BasePath, fileName);
+
+		if (!File.Exists(path)) return new();
+
+		Stream stream = File.OpenRead(path);
 		T? data = await JsonSerializer.DeserializeAsync<T>(stream);
 
 		Assert.NotNull(data);
@@ -74,10 +78,12 @@ public class SortieCostTests
 	[Theory(DisplayName = "no fleet after sortie data")]
 	[InlineData("SortieCostTest2")]
 	[InlineData("SortieCostTest3")]
+	[InlineData("SortieCostTest4")]
+	[InlineData("SortieCostTest5")]
 	public async Task SortieCostTest0(string testFilePrefix)
 	{
-		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts(testFilePrefix);
 		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts(testFilePrefix, true);
+		List<SortieCostViewModel> sortieCosts1 = await MakeSortieCosts(testFilePrefix);
 
 		Assert.Equal(sortieCosts1.Count, sortieCosts2.Count);
 
@@ -145,5 +151,35 @@ public class SortieCostTests
 
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(souyaRepairCost + musashiRepairCost, sortieCosts[0].SortieFleetRepairCost);
+	}
+
+	[Fact(DisplayName = "Refreshing a battle before battle result ignores fuel/ammo cost")]
+	public async Task SortieCostTest4()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest4", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel mainResupplyCost = new() { Fuel = 131, Ammo = 74, Bauxite = 880 };
+		SortieCostModel escortResupplyCost = new() { Fuel = 39, Ammo = 25 };
+
+		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
+	}
+
+	[Fact(DisplayName = "57-7-3 last dance")]
+	public async Task SortieCostTest5()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest5", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel mainResupplyCost = new() { Fuel = 197, Ammo = 140, Bauxite = 780 };
+		SortieCostModel escortResupplyCost = new() { Fuel = 57, Ammo = 43 };
+		SortieCostModel nodeSupportResupplyCost = new() { Fuel = 99, Ammo = 81, Bauxite = 20 };
+		SortieCostModel bossSupportResupplyCost = new() { Fuel = 176, Ammo = 406 };
+
+		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
+		Assert.Equal(nodeSupportResupplyCost, sortieCosts[0].NodeSupportSupplyCost);
+		Assert.Equal(bossSupportResupplyCost, sortieCosts[0].BossSupportSupplyCost);
 	}
 }
