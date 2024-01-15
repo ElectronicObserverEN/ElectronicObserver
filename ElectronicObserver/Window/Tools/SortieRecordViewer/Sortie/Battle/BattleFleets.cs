@@ -195,4 +195,18 @@ public class BattleFleets(
 		_ when index.Index < EnemyFleet?.MembersWithoutEscaped?.Count => EnemyFleet,
 		_ => EnemyEscortFleet,
 	};
+
+	public List<IShipData?> SortieShips()
+	{
+		if (Fleet.MembersWithoutEscaped is null) return [];
+
+		IEnumerable<IShipData?> shipsBefore = Fleet.MembersWithoutEscaped;
+
+		if (EscortFleet?.MembersWithoutEscaped is not null)
+		{
+			shipsBefore = shipsBefore.Concat(EscortFleet.MembersWithoutEscaped);
+		}
+
+		return shipsBefore.ToList();
+	}
 }

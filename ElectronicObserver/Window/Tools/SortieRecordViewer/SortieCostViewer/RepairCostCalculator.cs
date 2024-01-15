@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
@@ -22,21 +21,36 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 	private SortieDetailViewModel? SortieDetails { get; set; }
 
 	public SortieCostModel RepairCost(List<IFleetData?> fleetsBeforeSortie,
-		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId) =>
-		fleetsAfterSortie switch
-		{
-			not null => RepairCost(fleetsBeforeSortie[sortieFleetId - 1], fleetsAfterSortie[sortieFleetId - 1]),
-			_ => CalculateRepairCost(Db, Model),
-		};
-
-	private static SortieCostModel RepairCost(IFleetData? before, IFleetData? after) => (before, after) switch
+		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId, bool isCombinedFleet)
 	{
-		(not null, not null) => before.MembersInstance
-			.Zip(after.MembersInstance, RepairCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b),
+		if (fleetsAfterSortie is null)
+		{
+			return CalculateRepairCost(Db, Model);
+		}
 
-		_ => new(),
-	};
+		IEnumerable<IShipData?>? mainShipsBefore = fleetsBeforeSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
+		IEnumerable<IShipData?>? mainShipsAfter = fleetsAfterSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
+
+		if (mainShipsBefore is null) return new();
+		if (mainShipsAfter is null) return new();
+
+		SortieCostModel cost = RepairCost(mainShipsBefore, mainShipsAfter);
+
+		if (!isCombinedFleet) return cost;
+
+		IEnumerable<IShipData?>? escortShipsBefore = fleetsBeforeSortie[1]?.MembersWithoutEscaped;
+		IEnumerable<IShipData?>? escortShipsAfter = fleetsAfterSortie[1]?.MembersWithoutEscaped;
+
+		if (escortShipsBefore is null) return cost;
+		if (escortShipsAfter is null) return cost;
+
+		return cost + RepairCost(escortShipsBefore, escortShipsAfter);
+	}
+
+	private static SortieCostModel RepairCost(IEnumerable<IShipData?> before, IEnumerable<IShipData?> after) 
+		=> before
+			.Zip(after, RepairCost)
+			.Aggregate(new SortieCostModel(), (a, b) => a + b);
 
 	private static SortieCostModel RepairCost(IShipData? before, IShipData? after) => (before, after) switch
 	{
@@ -65,15 +79,18 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
 		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
-		ReadOnlyCollection<IShipData?>? membersAfterFinalBattle = SortieDetails.Nodes
-			.OfType<BattleNode>()
-			.Select(n => n.LastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped)
-			.Last();
+		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
+		List<IShipData?> shipsAfter = fleetsAfter.SortieShips();
 
-		if (fleetsAfter.Fleet.MembersWithoutEscaped is null) return new();
+		List<IShipData?>? membersAfterFinalBattle = SortieDetails.Nodes
+			.OfType<BattleNode>()
+			.Select(n => n.LastBattle.FleetsAfterBattle)
+			.LastOrDefault()
+			?.SortieShips();
+
 		if (membersAfterFinalBattle is null) return new();
 
-		foreach ((IShipData? before, IShipData? after) in fleetsAfter.Fleet.MembersWithoutEscaped.Zip(membersAfterFinalBattle))
+		foreach ((IShipData? before, IShipData? after) in shipsAfter.Zip(membersAfterFinalBattle))
 		{
 			if (before is not ShipDataMock ship) continue;
 			if (after is null) continue;
@@ -81,7 +98,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 			ship.HPCurrent = after.HPCurrent;
 		}
 
-		model.CalculatedSortieCost.SortieFleetRepairCost = RepairCost(fleetsBefore.Fleet, fleetsAfter.Fleet);
+		model.CalculatedSortieCost.SortieFleetRepairCost = RepairCost(shipsBefore, shipsAfter);
 
 		db.Sorties.Update(model);
 		db.SaveChanges();

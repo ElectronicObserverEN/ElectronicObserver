@@ -57,17 +57,11 @@ public class SortieCostViewModel
 			.Select(a => a.MakeAirBase())
 			.ToList();
 
-		SortieFleetSupplyCost = supplyCostCalculator.SupplyCost(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId);
-		SortieFleetRepairCost = repairCostCalculator.RepairCost(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId);
+		SortieFleetSupplyCost = supplyCostCalculator.SupplyCost(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
+		SortieFleetRepairCost = repairCostCalculator.RepairCost(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
 
-		if (IsCombinedFleet)
-		{
-			SortieFleetSupplyCost += supplyCostCalculator.SupplyCost(FleetsBeforeSortie, FleetsAfterSortie, 2);
-			SortieFleetRepairCost += repairCostCalculator.RepairCost(FleetsBeforeSortie, FleetsAfterSortie, 2);
-		}
-
-		NodeSupportSupplyCost = supplyCostCalculator.SupportSupplyCost(FleetsBeforeSortie, FleetsAfterSortie, NodeSupportFleetId);
-		BossSupportSupplyCost = supplyCostCalculator.SupportSupplyCost(FleetsBeforeSortie, FleetsAfterSortie, BossSupportFleetId);
+		NodeSupportSupplyCost = supplyCostCalculator.NodeSupportSupplyCost(FleetsBeforeSortie, FleetsAfterSortie, NodeSupportFleetId);
+		BossSupportSupplyCost = supplyCostCalculator.BossSupportSupplyCost(FleetsBeforeSortie, FleetsAfterSortie, BossSupportFleetId);
 
 		TotalSupplyCost = SortieFleetSupplyCost + NodeSupportSupplyCost + BossSupportSupplyCost;
 		TotalRepairCost = SortieFleetRepairCost;

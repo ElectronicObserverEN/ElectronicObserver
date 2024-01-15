@@ -26,20 +26,36 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	private SortieDetailViewModel? SortieDetails { get; set; }
 
 	public SortieCostModel SupplyCost(List<IFleetData?> fleetsBeforeSortie,
-		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId) => fleetsAfterSortie switch
+		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId, bool isCombinedFleet)
 	{
-		not null => SupplyCost(fleetsBeforeSortie[sortieFleetId - 1], fleetsAfterSortie[sortieFleetId - 1]),
-		_ => CalculateSupplyCost(Db, Model),
-	};
+		if (fleetsAfterSortie is null)
+		{
+			return CalculateSupplyCost(Db, Model);
+		}
 
-	private static SortieCostModel SupplyCost(IFleetData? before, IFleetData? after) => (before, after) switch
-	{
-		(not null, not null) => before.MembersInstance
-			.Zip(after.MembersInstance, SupplyCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b),
+		IEnumerable<IShipData?>? mainShipsBefore = fleetsBeforeSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
+		IEnumerable<IShipData?>? mainShipsAfter = fleetsAfterSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
 
-		_ => new(),
-	};
+		if (mainShipsBefore is null) return new();
+		if (mainShipsAfter is null) return new();
+
+		SortieCostModel cost = SupplyCost(mainShipsBefore, mainShipsAfter);
+
+		if (!isCombinedFleet) return cost;
+
+		IEnumerable<IShipData?>? escortShipsBefore = fleetsBeforeSortie[1]?.MembersWithoutEscaped;
+		IEnumerable<IShipData?>? escortShipsAfter = fleetsAfterSortie[1]?.MembersWithoutEscaped;
+
+		if (escortShipsBefore is null) return cost;
+		if (escortShipsAfter is null) return cost;
+
+		return cost + SupplyCost(escortShipsBefore, escortShipsAfter);
+	}
+
+	private static SortieCostModel SupplyCost(IEnumerable<IShipData?> before, IEnumerable<IShipData?> after)
+		=> before
+			.Zip(after, SupplyCost)
+			.Aggregate(new SortieCostModel(), (a, b) => a + b);
 
 	private static SortieCostModel SupplyCost(IShipData? before, IShipData? after) => (before, after) switch
 	{
@@ -66,12 +82,60 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		_ => resupply,
 	};
 
-	public SortieCostModel SupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
+	public SortieCostModel NodeSupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
 		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
 	{
-		if (sortieFleetId > 0 && fleetsAfterSortie is not null)
+		if (sortieFleetId <= 0) return new();
+
+		if (Model.CalculatedSortieCost.NodeSupportSupplyCost is not null)
 		{
-			SortieCostModel cost = SupplyCost(fleetsBeforeSortie[sortieFleetId - 1], fleetsAfterSortie[sortieFleetId - 1]);
+			return Model.CalculatedSortieCost.NodeSupportSupplyCost;
+		}
+
+		SortieCostModel cost = SupportSupplyCost(fleetsBeforeSortie, fleetsAfterSortie, sortieFleetId);
+
+		Model.CalculatedSortieCost.NodeSupportSupplyCost = cost;
+
+		Db.Sorties.Update(Model);
+		Db.SaveChanges();
+
+		return Model.CalculatedSortieCost.NodeSupportSupplyCost;
+	}
+
+	public SortieCostModel BossSupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
+		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
+	{
+		if (sortieFleetId <= 0) return new();
+
+		if (Model.CalculatedSortieCost.BossSupportSupplyCost is not null)
+		{
+			return Model.CalculatedSortieCost.BossSupportSupplyCost;
+		}
+
+		SortieCostModel cost = SupportSupplyCost(fleetsBeforeSortie, fleetsAfterSortie, sortieFleetId);
+
+		Model.CalculatedSortieCost.BossSupportSupplyCost = cost;
+
+		Db.Sorties.Update(Model);
+		Db.SaveChanges();
+
+		return Model.CalculatedSortieCost.BossSupportSupplyCost;
+	}
+
+	private static SortieCostModel SupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
+		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
+	{
+		if (fleetsBeforeSortie[sortieFleetId - 1] is not IFleetData fleet) return new();
+		if (fleet.MembersWithoutEscaped is null) return new();
+
+		if (fleetsAfterSortie is not null)
+		{
+			IEnumerable<IShipData?>? shipsBefore = fleet.MembersWithoutEscaped;
+			IEnumerable<IShipData?>? shipsAfter = fleetsAfterSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
+
+			if (shipsAfter is null) return new();
+
+			SortieCostModel cost = SupplyCost(shipsBefore, shipsAfter);
 
 			// in come cases the support fleet data isn't recorded correctly
 			// no idea why
@@ -81,9 +145,29 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			}
 		}
 
-		SortieCostModel calculatedSupportCost = new();
+		(double fuelConsumptionModifier, double ammoConsumptionModifier) = ConsumptionModifier(fleet.SupportType);
+
+		int fuel = 0;
+		int ammo = 0;
+
+		foreach (IShipData? ship in fleet.MembersWithoutEscaped)
+		{
+			if (ship is null) continue;
+
+			fuel += MarriageResupply(ship, SupportResupply(ship.Fuel, ship.FuelMax, fuelConsumptionModifier));
+			ammo += MarriageResupply(ship, SupportResupply(ship.Ammo, ship.AmmoMax, ammoConsumptionModifier));
+		}
+
+		SortieCostModel calculatedSupportCost = new()
+		{
+			Fuel = fuel,
+			Ammo = ammo,
+		};
 
 		return calculatedSupportCost;
+
+		static int SupportResupply(int current, int max, double modifier) =>
+			(int)Math.Min(current, Math.Ceiling(max * modifier));
 	}
 
 	private SortieCostModel CalculateSupplyCost(ElectronicObserverContext db, SortieRecord model)
@@ -104,13 +188,14 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		int bauxite = 0;
 
-		if (fleetsAfter.Fleet.MembersWithoutEscaped is null) return new();
+		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
+		List<IShipData?> shipsAfter = fleetsAfter.SortieShips();
 
 		foreach (SortieNode node in SortieDetails.Nodes)
 		{
 			(double fuelConsumptionModifier, double ammoConsumptionModifier) = node.Happening switch
 			{
-				ApiHappening h => ConsumptionModifier(h, fleetsAfter.Fleet.MembersInstance),
+				ApiHappening h => ConsumptionModifier(h, shipsAfter),
 				_ => ConsumptionModifier(node),
 			};
 
@@ -119,6 +204,12 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 			if (node is BattleNode battleNode)
 			{
+				bauxite += battleNode.FirstBattle.Phases
+					.OfType<PhaseAirBattleBase>()
+					.Sum(b => b.Stage1FLostcount + b.Stage2FLostcount) * 5;
+
+				if (battleNode.BattleResult is null) continue;
+
 				hasSecondBattle = battleNode.SecondBattle is not null;
 
 				specialAttacks = battleNode.FirstBattle.Phases
@@ -127,13 +218,9 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 					.SelectMany(a => a.Attacks)
 					.Where(a => a.AttackKind.IsSpecialAttack())
 					.ToList();
-
-				bauxite += battleNode.FirstBattle.Phases
-					.OfType<PhaseAirBattleBase>()
-					.Sum(b => b.Stage1FLostcount + b.Stage2FLostcount) * 5;
 			}
 
-			foreach (IShipData? ship in fleetsAfter.Fleet.MembersWithoutEscaped)
+			foreach (IShipData? ship in shipsAfter)
 			{
 				if (ship is not ShipDataMock s) continue;
 
@@ -146,7 +233,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			}
 		}
 
-		SortieCostModel supplyCost = SupplyCost(fleetsBefore.Fleet, fleetsAfter.Fleet);
+		SortieCostModel supplyCost = SupplyCost(shipsBefore, shipsAfter);
 		model.CalculatedSortieCost.SortieFleetSupplyCost = supplyCost with
 		{
 			Bauxite = bauxite,
@@ -196,6 +283,14 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			MaelstromType.Ammo => (0, (double)happening.ApiCount / ships.Max(s => s?.Ammo ?? 0)),
 
 			_ => (0, 0),
+		};
+
+	private static (double Fuel, double Ammo) ConsumptionModifier(SupportType supportType)
+		=> supportType switch
+		{
+			SupportType.Shelling or SupportType.Torpedo => (0.5, 0.8),
+
+			_ => (0.5, 0.4),
 		};
 
 	private static void ApplyFuelConsumption(IShipData ship, double fuelConsumptionModifier,
