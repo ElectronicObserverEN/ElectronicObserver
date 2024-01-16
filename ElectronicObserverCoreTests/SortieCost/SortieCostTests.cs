@@ -76,10 +76,10 @@ public class SortieCostTests
 	}
 
 	[Theory(DisplayName = "no fleet after sortie data")]
-	[InlineData("SortieCostTest2")]
-	[InlineData("SortieCostTest3")]
-	[InlineData("SortieCostTest4")]
-	[InlineData("SortieCostTest5")]
+	[InlineData("SortieCostTest02")]
+	[InlineData("SortieCostTest03")]
+	[InlineData("SortieCostTest04")]
+	[InlineData("SortieCostTest05")]
 	public async Task SortieCostTest0(string testFilePrefix)
 	{
 		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts(testFilePrefix, true);
@@ -99,7 +99,7 @@ public class SortieCostTests
 	[Fact(DisplayName = "Double 7-4 resource run without resupply with AB")]
 	public async Task SortieCostTest1()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest1");
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest01");
 
 		Assert.Equal(2, sortieCosts.Count);
 
@@ -123,7 +123,7 @@ public class SortieCostTests
 	[Fact(DisplayName = "6-5 with AB")]
 	public async Task SortieCostTest2()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest2");
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest02");
 
 		Assert.Single(sortieCosts);
 
@@ -141,7 +141,7 @@ public class SortieCostTests
 	[Fact(DisplayName = "Sortie record version 0→1 test")]
 	public async Task SortieCostTest3()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest3");
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest03");
 
 		Assert.Single(sortieCosts);
 
@@ -156,7 +156,7 @@ public class SortieCostTests
 	[Fact(DisplayName = "Refreshing a battle before battle result ignores fuel/ammo cost")]
 	public async Task SortieCostTest4()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest4", true);
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest04", true);
 
 		Assert.Single(sortieCosts);
 
@@ -169,7 +169,7 @@ public class SortieCostTests
 	[Fact(DisplayName = "57-7-3 last dance")]
 	public async Task SortieCostTest5()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest5", true);
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest05", true);
 
 		Assert.Single(sortieCosts);
 
