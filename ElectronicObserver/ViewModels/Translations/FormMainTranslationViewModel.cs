@@ -76,6 +76,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_FleetImageGenerator => MainResources.Tool_FleetImageGenerator.Replace("_", "__").Replace("&", "_");
 	public string AirControlSimulator => AirControlSimulatorResources.Title;
 	public string OperationRoom => MainResources.OperationRoom;
+	public string CompassPrediction => CompassPredictionResources.Title;
 	public string StripMenu_Tool_ExpChecker => MainResources.Tool_ExpChecker.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ExpeditionCheck => MainResources.Tool_ExpeditionCheck.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_KancolleProgress => KancolleProgressResources.Title;

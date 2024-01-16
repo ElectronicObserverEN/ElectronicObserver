@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Browser.WebView2Browser.AirControlSimulator;
+using Browser.WebView2Browser.CompassPrediction;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
@@ -81,6 +82,7 @@ public partial class App : Application
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<FormBrowserTranslationViewModel>()
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
+			.AddSingleton<CompassPredictionTranslationViewModel>()
 			// external
 			.AddSingleton(JotTracker())
 			.BuildServiceProvider();

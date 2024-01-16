@@ -74,6 +74,11 @@ public class ToolService(DataSerializationService dataSerializationService)
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
 	}
 
+	public void CompassPrediction()
+	{
+		Window.FormBrowserHost.Instance.Browser.OpenCompassPrediction();
+	}
+
 	public void OperationRoom(AirControlSimulatorViewModel? viewModel = null)
 	{
 		viewModel ??= new(DataSerializationService.OperationRoomLink);

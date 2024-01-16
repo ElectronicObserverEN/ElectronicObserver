@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -121,5 +122,17 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		DataSerializationService service = Ioc.Default.GetService<DataSerializationService>()!;
 
 		return Task.Run(() => service.FleetAnalysisEquipment(allEquipment));
+	}
+
+	public Task<Dictionary<int, List<int>>> GetMapList()
+	{
+		return Task.Run(() =>
+		{
+			return KCDatabase.Instance.MapArea.Keys
+				.ToDictionary(mapId => mapId, mapId => KCDatabase.Instance.MapInfo.Values
+					.Where(map => map.MapAreaID == mapId)
+					.Select(map => map.MapInfoID)
+					.ToList());
+		});
 	}
 }

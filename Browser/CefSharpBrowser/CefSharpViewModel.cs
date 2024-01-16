@@ -618,6 +618,11 @@ public class CefSharpViewModel : BrowserViewModel
 		}.Show();
 	}
 
+	public override void OpenCompassPrediction()
+	{
+		throw new NotImplementedException();
+	}
+
 	protected override async Task ApplyCustomBrowserFont(BrowserConfiguration configuration)
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return;

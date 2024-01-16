@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using Browser.WebView2Browser.AirControlSimulator;
+using Browser.WebView2Browser.CompassPrediction;
 using Browser.WebView2Browser.ExtraBrowser;
 using BrowserLibCore;
 using Microsoft.Web.WebView2.Core;
@@ -759,6 +760,14 @@ public class WebView2ViewModel : BrowserViewModel
 	public override void OpenAirControlSimulator(string url)
 	{
 		new AirControlSimulatorWindow(url, BrowserHost)
+		{
+			Owner = App.Current.MainWindow,
+		}.Show();
+	}
+
+	public override void OpenCompassPrediction()
+	{
+		new CompassPredictionView(BrowserHost)
 		{
 			Owner = App.Current.MainWindow,
 		}.Show();

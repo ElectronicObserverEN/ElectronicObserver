@@ -764,6 +764,12 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
+	private void OpenCompassPrediction()
+	{
+		ToolService.CompassPrediction();
+	}
+
+	[RelayCommand]
 	private void OpenExpChecker()
 	{
 		ToolService.ExpChecker();

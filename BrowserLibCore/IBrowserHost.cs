@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MagicOnion;
 
 namespace BrowserLibCore;
@@ -18,4 +19,5 @@ public interface IBrowserHost : IStreamingHub<IBrowserHost, IBrowser>
 	Task<string?> GetFleetData();
 	Task<string> GetShipData(bool allShips);
 	Task<string> GetEquipmentData(bool allEquipment);
+	Task<Dictionary<int, List<int>>> GetMapList();
 }

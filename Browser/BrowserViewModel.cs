@@ -475,6 +475,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	[RelayCommand]
 	public abstract void OpenAirControlSimulator(string url);
 
+	[RelayCommand]
+	public abstract void OpenCompassPrediction();
+
 	#region 呪文
 
 	[DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]

@@ -656,6 +656,15 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
+					d:Header="Compass prediction"
+					Command="{Binding OpenCompassPredictionCommand}"
+					Header="{Binding FormMain.CompassPrediction}"
+					>
+					<MenuItem.Icon>
+						<common:IconContentIcon Type="FormCompass" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="Exp Calculator"
 					Command="{Binding OpenExpCheckerCommand}"
 					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"
