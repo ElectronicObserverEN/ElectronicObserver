@@ -329,7 +329,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			DayAttackKind.SpecialMutsu or
 			DayAttackKind.SpecialColorado => (enemyFleetType, hasSecondBattle) switch
 			{
-				(FleetType.Single, _) => ammoConsumptionModifier / 2,
+				// todo: this is wrong for combined vs single
+				// (FleetType.Single, _) => ammoConsumptionModifier / 2,
 				(_, true) => 0,
 				_ => ammoConsumptionModifier / 2,
 			},
@@ -339,18 +340,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			_ => 0,
 		};
 
-		Func<double, double> roundingFunction = hasSecondBattle switch
-		{
-			true => Math.Ceiling,
-			_ => Math.Floor,
-		};
-
-		if (hasSecondBattle)
-		{
-			ammoConsumptionModifier *= 1.5;
-		}
-
-		return node.Happening switch
+		int consumption = node.Happening switch
 		{
 			ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
 			_ => attack switch
@@ -363,10 +353,17 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 					_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
 				},
 
-				DayAttackKind.SpecialKongo => (int)Math.Max(1, roundingFunction(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
+				DayAttackKind.SpecialKongo => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
 
-				_ => (int)Math.Max(1, roundingFunction(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+				_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
 			},
 		};
+
+		if (hasSecondBattle && enemyFleetType is FleetType.Single)
+		{
+			consumption += (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier / 2)));
+		}
+
+		return consumption;
 	}
 }
