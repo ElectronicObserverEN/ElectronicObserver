@@ -315,23 +315,25 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	{
 		if (fuelConsumptionModifier > 0)
 		{
-			ship.Fuel -= node.Happening switch
+			int fuelConsumption = node.Happening switch
 			{
 				ApiHappening => (int)Math.Max(1, Math.Floor(ship.Fuel * fuelConsumptionModifier)),
 				_ => (int)Math.Max(1, Math.Floor(ship.FuelMax * fuelConsumptionModifier)),
 			};
+
+			ship.Fuel = Math.Max(0, ship.Fuel - fuelConsumption);
 		}
 	}
 
-	private static void ApplyAmmoConsumption(IShipData s, double ammoConsumptionModifier,
+	private static void ApplyAmmoConsumption(IShipData ship, double ammoConsumptionModifier,
 		SortieNode node, FleetType? enemyFleetType, DayAttackKind? attack, bool hasSecondBattle)
 	{
 		if (ammoConsumptionModifier > 0)
 		{
-			int ammoConsumption = CalculateAmmoConsumption(s, attack, enemyFleetType, hasSecondBattle,
+			int ammoConsumption = CalculateAmmoConsumption(ship, attack, enemyFleetType, hasSecondBattle,
 				ammoConsumptionModifier, node);
 
-			s.Ammo -= ammoConsumption;
+			ship.Ammo = Math.Max(0, ship.Ammo - ammoConsumption);
 		}
 	}
 

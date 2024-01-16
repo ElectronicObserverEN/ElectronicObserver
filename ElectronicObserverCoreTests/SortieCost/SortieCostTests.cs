@@ -76,6 +76,7 @@ public class SortieCostTests
 	}
 
 	[Theory(DisplayName = "no fleet after sortie data")]
+	[InlineData("SortieCostTest01")]
 	[InlineData("SortieCostTest02")]
 	[InlineData("SortieCostTest03")]
 	[InlineData("SortieCostTest04")]
