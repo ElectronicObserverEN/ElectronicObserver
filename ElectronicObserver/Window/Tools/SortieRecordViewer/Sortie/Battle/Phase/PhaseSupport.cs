@@ -16,6 +16,12 @@ public class PhaseSupport : PhaseBase
 		_ => BattleRes.BattlePhaseSupportExpedition,
 	};
 
+	public int? Stage1FLostcount { get; }
+	public int? Stage1FCount { get; }
+
+	public int? Stage2FLostcount { get; }
+	public int? Stage2FCount { get; }
+
 	private SupportType ApiSupportFlag { get; }
 	private bool IsNightSupport { get; }
 
@@ -72,6 +78,15 @@ public class PhaseSupport : PhaseBase
 
 			_ => -1,
 		};
+
+		if (apiSupportInfo.ApiSupportAiratack is ApiSupportAiratack airAttack)
+		{
+			Stage1FCount = airAttack.ApiStage1.ApiFCount;
+			Stage1FLostcount = airAttack.ApiStage1.ApiFLostcount;
+
+			Stage2FCount = airAttack.ApiStage2.ApiFCount;
+			Stage2FLostcount = airAttack.ApiStage2.ApiFLostcount;
+		}
 	}
 
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)

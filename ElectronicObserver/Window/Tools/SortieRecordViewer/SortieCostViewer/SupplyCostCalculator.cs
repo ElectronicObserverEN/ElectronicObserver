@@ -122,7 +122,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		return Model.CalculatedSortieCost.BossSupportSupplyCost;
 	}
 
-	private static SortieCostModel SupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
+	private SortieCostModel SupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
 		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
 	{
 		if (fleetsBeforeSortie[sortieFleetId - 1] is not IFleetData fleet) return new();
@@ -149,6 +149,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		int fuel = 0;
 		int ammo = 0;
+		int baux = 0;
 
 		foreach (IShipData? ship in fleet.MembersWithoutEscaped)
 		{
@@ -158,10 +159,25 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			ammo += MarriageResupply(ship, SupportResupply(ship.Ammo, ship.AmmoMax, ammoConsumptionModifier));
 		}
 
+		if (fleet.SupportType is SupportType.Aerial or SupportType.AntiSubmarine)
+		{
+			SortieDetails ??= ToolService.GenerateSortieDetailViewModel(Db, Model);
+
+			if (SortieDetails is not null)
+			{
+				baux = SortieDetails.Nodes
+					.OfType<BattleNode>()
+					.SelectMany(b => b.AllPhases)
+					.OfType<PhaseSupport>()
+					.Sum(s => (s.Stage1FLostcount ?? 0) + (s.Stage2FLostcount ?? 0)) * 5;
+			}
+		}
+
 		SortieCostModel calculatedSupportCost = new()
 		{
 			Fuel = fuel,
 			Ammo = ammo,
+			Bauxite = baux,
 		};
 
 		return calculatedSupportCost;

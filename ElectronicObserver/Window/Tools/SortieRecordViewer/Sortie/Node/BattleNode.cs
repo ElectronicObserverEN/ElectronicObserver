@@ -4,6 +4,7 @@ using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 
@@ -33,6 +34,9 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 	public string? AdmiralExp { get; private set; }
 	public string? BaseExp { get; private set; }
 	public string? DropShip { get; private set; }
+
+	public IEnumerable<PhaseBase> AllPhases => FirstBattle.Phases
+		.Concat(SecondBattle?.Phases ?? []);
 
 	public void AddResult(ISortieBattleResultApi result)
 	{
