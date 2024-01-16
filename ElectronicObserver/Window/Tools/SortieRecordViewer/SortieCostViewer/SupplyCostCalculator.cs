@@ -184,8 +184,6 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
 		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
-		FleetType? enemyFleetType = fleetsBefore.EnemyFleet?.FleetType;
-
 		int bauxite = 0;
 
 		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
@@ -201,12 +199,15 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 			List<DayAttack> specialAttacks = [];
 			bool hasSecondBattle = false;
+			FleetType? enemyFleetType = null;
 
 			if (node is BattleNode battleNode)
 			{
 				bauxite += battleNode.FirstBattle.Phases
 					.OfType<PhaseAirBattleBase>()
 					.Sum(b => b.Stage1FLostcount + b.Stage2FLostcount) * 5;
+
+				enemyFleetType = battleNode.FirstBattle.FleetsBeforeBattle.EnemyFleet?.FleetType;
 
 				if (battleNode.BattleResult is null) continue;
 
