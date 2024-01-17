@@ -134,6 +134,8 @@ public partial class FormBrowserHost : Form
 		APIObserver.Instance.ApiReqMap_Next.ResponseReceived += RefreshIfAdvanceIsNotAllowed;
 
 		APIObserver.Instance.ApiPort_Port.ResponseReceived += RequestCompassPredictionFleetUpdate;
+		APIObserver.Instance.ApiReqHensei_Change.ResponseReceived += RequestCompassPredictionFleetUpdate;
+		APIObserver.Instance.ApiReqHensei_PresetSelect.ResponseReceived += RequestCompassPredictionFleetUpdate;
 		APIObserver.Instance.ApiGetMember_Ship2.ResponseReceived += RequestCompassPredictionFleetUpdate;
 		APIObserver.Instance.ApiGetMember_Ship3.ResponseReceived += RequestCompassPredictionFleetUpdate;
 	}
