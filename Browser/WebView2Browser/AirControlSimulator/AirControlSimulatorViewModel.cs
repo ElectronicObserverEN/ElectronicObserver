@@ -25,7 +25,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 	[RelayCommand]
 	private async Task UpdateFleet()
 	{
-		string? data = await BrowserHost.GetFleetData();
+		string? data = await BrowserHost.GetFleetAndAirBaseData();
 
 		if(data is null) return;
 

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
-using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -70,7 +69,7 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		return Task.Run(() => FormBrowserHost.Instance.GetTheme());
 	}
 
-	public Task<string?> GetFleetData()
+	public Task<string?> GetFleetAndAirBaseData()
 	{
 		Task<string?> a = App.Current.Dispatcher.Invoke(() =>
 		{
@@ -108,6 +107,21 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		});
 
 		return a;
+	}
+
+	public Task<string> GetFleetData()
+	{
+		AirControlSimulatorViewModel viewModel = new() { DataSelectionVisible = false };
+		DataSerializationService serialization = Ioc.Default.GetRequiredService<DataSerializationService>();
+
+		return Task.Run(() => serialization.DeckBuilder(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = viewModel.Fleet1 ? KCDatabase.Instance.Fleet[1] : null,
+			Fleet2 = viewModel.Fleet2 ? KCDatabase.Instance.Fleet[2] : null,
+			Fleet3 = viewModel.Fleet3 ? KCDatabase.Instance.Fleet[3] : null,
+			Fleet4 = viewModel.Fleet4 ? KCDatabase.Instance.Fleet[4] : null
+		}));
 	}
 
 	public Task<string> GetShipData(bool allShips)

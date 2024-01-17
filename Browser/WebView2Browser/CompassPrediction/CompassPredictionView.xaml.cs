@@ -13,12 +13,11 @@ public partial class CompassPredictionView
 	private Tracker Tracker { get; }
 	private CompassPredictionViewModel ViewModel { get; }
 
-	public CompassPredictionView(IBrowserHost browserHost)
+	public CompassPredictionView(CompassPredictionViewModel viewModel)
 	{
 		Tracker = Ioc.Default.GetRequiredService<Tracker>();
-		CompassPredictionTranslationViewModel translation = Ioc.Default.GetRequiredService<CompassPredictionTranslationViewModel>();
 
-		ViewModel = new(browserHost, translation);
+		ViewModel = viewModel;
 
 		DataContext = ViewModel;
 
@@ -44,6 +43,8 @@ public partial class CompassPredictionView
 	private async Task InitializeAsync()
 	{
 		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
+
+		Browser.CoreWebView2.NavigationCompleted += (_, _) => ViewModel.Initialize();
 
 		Browser.CoreWebView2.Navigate(ViewModel.Uri);
 	}

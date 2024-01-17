@@ -6,12 +6,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Browser.WebView2Browser.CompassPrediction;
 
-public partial class CompassPredictionViewModel : ObservableObject
+public partial class CompassPredictionViewModel(IBrowserHost browserHost, CompassPredictionTranslationViewModel translations)
+	: ObservableObject
 {
-	public CompassPredictionTranslationViewModel Translations { get; }
+	public CompassPredictionTranslationViewModel Translations { get; } = translations;
 
-	public IBrowserHost BrowserHost { get; }
-	
+	public IBrowserHost BrowserHost { get; } = browserHost;
+
 	public Action<string>? ExecuteScriptAsync { get; set; }
 
 	public string Uri => "https://x-20a.github.io/compass/";
@@ -29,14 +30,6 @@ public partial class CompassPredictionViewModel : ObservableObject
 	[ObservableProperty]
 	private List<int> _maps = new();
 
-	public CompassPredictionViewModel(IBrowserHost browserHost, CompassPredictionTranslationViewModel translations)
-	{
-		BrowserHost = browserHost;
-		Translations = translations;
-
-		Initialize();
-	}
-
 	public void Initialize()
 	{
 		MapList = BrowserHost.GetMapList().Result;
@@ -44,6 +37,9 @@ public partial class CompassPredictionViewModel : ObservableObject
 		Worlds = MapList.Keys.ToList();
 
 		PropertyChanged += OnWorldChanged;
+		PropertyChanged += OnMapChanged;
+
+		UpdateFleet();
 	}
 
 	private void OnWorldChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -60,5 +56,34 @@ public partial class CompassPredictionViewModel : ObservableObject
 			{ } id => MapList[id],
 			_ => Maps
 		};
+
+		UpdateDisplayedMap();
+	}
+
+	private void OnMapChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is not nameof(SelectedMap)) return;
+
+		UpdateDisplayedMap();
+	}
+
+	private void UpdateDisplayedMap()
+	{
+		if (SelectedWorld is null) return;
+		if (SelectedMap is null) return;
+		if (ExecuteScriptAsync is null) return;
+
+		ExecuteScriptAsync($"$('#area').val('{SelectedWorld}-{SelectedMap}'); $('#area').trigger('input'); $('#go').trigger('click');");
+	}
+
+	public void UpdateFleet()
+	{
+		if (ExecuteScriptAsync is null) return;
+
+		string? fleetData = BrowserHost.GetFleetData().Result;
+
+		if (fleetData is null) return;
+
+		ExecuteScriptAsync($"$('#fleet-import').val('{fleetData}'); $('#fleet-import').trigger('input'); $('#go').trigger('click');");
 	}
 }

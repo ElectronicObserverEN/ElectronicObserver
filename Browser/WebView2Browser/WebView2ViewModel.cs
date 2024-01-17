@@ -12,6 +12,7 @@ using Browser.WebView2Browser.AirControlSimulator;
 using Browser.WebView2Browser.CompassPrediction;
 using Browser.WebView2Browser.ExtraBrowser;
 using BrowserLibCore;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Core.DevToolsProtocolExtension;
 using Microsoft.Web.WebView2.Wpf;
@@ -767,7 +768,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 	public override void OpenCompassPrediction()
 	{
-		new CompassPredictionView(BrowserHost)
+		new CompassPredictionView(CompassPredictionViewModel)
 		{
 			Owner = App.Current.MainWindow,
 		}.Show();

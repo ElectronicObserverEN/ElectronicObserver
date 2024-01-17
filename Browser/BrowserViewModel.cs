@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Browser.WebView2Browser.CompassPrediction;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -74,12 +75,15 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	
 	protected string BrowserFontStyleId { get; } = Guid.NewGuid().ToString()[..8];
 
+	protected CompassPredictionViewModel CompassPredictionViewModel { get; set; }
+
 	protected BrowserViewModel(string host, int port, string culture)
 	{
 		// Debugger.Launch();
 
 		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
-
+		CompassPredictionTranslationViewModel translation = Ioc.Default.GetRequiredService<CompassPredictionTranslationViewModel>();
+		
 		Host = host;
 		Port = port;
 		Culture = culture;
@@ -127,6 +131,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 			VolumeChanged();
 		};
+
+		CompassPredictionViewModel = new(BrowserHost, translation);
 	}
 
 	public abstract void OnLoaded(object sender, RoutedEventArgs e);
@@ -300,6 +306,11 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (messageBoxResult is not MessageBoxResult.OK) return;
 
 		RefreshBrowser();
+	}
+
+	public void RequestCompassPredictionFleetUpdate()
+	{
+		CompassPredictionViewModel.UpdateFleet();
 	}
 
 	public void CloseBrowser()

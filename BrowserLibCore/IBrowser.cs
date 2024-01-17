@@ -1,4 +1,6 @@
-﻿namespace BrowserLibCore;
+﻿using System.Threading.Tasks;
+
+namespace BrowserLibCore;
 
 public interface IBrowser
 {
@@ -11,4 +13,5 @@ public interface IBrowser
 	void OpenAirControlSimulator(string url);
 	void OpenCompassPrediction();
 	void RequestAutoRefresh();
+	void RequestCompassPredictionFleetUpdate();
 }
