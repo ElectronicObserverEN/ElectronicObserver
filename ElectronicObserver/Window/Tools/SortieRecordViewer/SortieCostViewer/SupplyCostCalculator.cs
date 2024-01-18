@@ -354,6 +354,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			},
 
 			DayAttackKind.SpecialYamato2Ships => 0.12,
+			DayAttackKind.SpecialYamato3Ships => 0.16,
 
 			_ => 0,
 		};

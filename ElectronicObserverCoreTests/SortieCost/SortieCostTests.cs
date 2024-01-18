@@ -91,6 +91,8 @@ public class SortieCostTests
 	[InlineData("SortieCostTest13")]
 	[InlineData("SortieCostTest14")]
 	[InlineData("SortieCostTest15")]
+	[InlineData("SortieCostTest16")]
+	[InlineData("SortieCostTest17")]
 	public async Task SortieCostTest0(string testFilePrefix)
 	{
 		List<SortieCostViewModel> sortieCosts2 = await MakeSortieCosts(testFilePrefix, true);
@@ -350,6 +352,37 @@ public class SortieCostTests
 
 		SortieCostModel mainResupplyCost = new() { Fuel = 395, Ammo = 466, Bauxite = 105 };
 		SortieCostModel escortResupplyCost = new() { Fuel = 62, Ammo = 63 };
+
+		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
+	}
+
+	/// <summary>
+	/// single vs single, Yamato touch 3 ships, day S rank
+	/// </summary>
+	[Fact(DisplayName = "5-1")]
+	public async Task SortieCostTest16()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest16", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel resupplyCost = new() { Fuel = 334, Ammo = 483, Bauxite = 120 };
+
+		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
+	}
+
+	/// <summary>
+	/// combined vs combined, chipping, Yamato touch 2 ships, night A rank
+	/// </summary>
+	[Fact(DisplayName = "57-6-3 chipping")]
+	public async Task SortieCostTest17()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest17", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel mainResupplyCost = new() { Fuel = 442, Ammo = 464, Bauxite = 465 };
+		SortieCostModel escortResupplyCost = new() { Fuel = 82, Ammo = 84 };
 
 		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
