@@ -12,7 +12,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Mocks;
-using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
@@ -149,7 +148,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		int fuel = 0;
 		int ammo = 0;
-		int baux = 0;
+		int bauxite = 0;
 
 		foreach (IShipData? ship in fleet.MembersWithoutEscaped)
 		{
@@ -165,7 +164,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 			if (SortieDetails is not null)
 			{
-				baux = SortieDetails.Nodes
+				bauxite = SortieDetails.Nodes
 					.OfType<BattleNode>()
 					.SelectMany(b => b.AllPhases)
 					.OfType<PhaseSupport>()
@@ -177,7 +176,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		{
 			Fuel = fuel,
 			Ammo = ammo,
-			Bauxite = baux,
+			Bauxite = bauxite,
 		};
 
 		return calculatedSupportCost;
@@ -197,27 +196,40 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		if (SortieDetails is null) return new();
 
-		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
-		BattleFleets fleetsAfter = fleetsBefore.Clone();
+		model.CalculatedSortieCost.SortieFleetSupplyCost = CalculateSupplyCost(SortieDetails);
 
-		FleetType playerFleetType = fleetsBefore.Fleet.FleetType;
-		int bauxite = 0;
+		db.Sorties.Update(model);
+		db.SaveChanges();
+
+		return model.CalculatedSortieCost.SortieFleetSupplyCost;
+	}
+
+#pragma warning disable S3776
+	private static SortieCostModel CalculateSupplyCost(SortieDetailViewModel details)
+#pragma warning restore S3776
+	{
+		BattleFleets fleetsBefore = details.FleetsBeforeSortie;
+		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
 		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
 		List<IShipData?> shipsAfter = fleetsAfter.SortieShips();
 
-		foreach (SortieNode node in SortieDetails.Nodes)
-		{
-			(double fuelConsumptionModifier, double ammoConsumptionModifier) = node.Happening switch
-			{
-				ApiHappening h => ConsumptionModifier(h, shipsAfter),
-				_ => ConsumptionModifier(node),
-			};
+		FleetType playerFleetType = fleetsBefore.Fleet.FleetType;
+		int bauxite = 0;
 
+		foreach (SortieNode node in details.Nodes)
+		{
 			DayAttackKind? daySpecialAttack = null;
 			List<int> daySpecialAttackIndexes = [];
 			bool hasSecondBattle = false;
 			FleetType? enemyFleetType = null;
+			ApiHappening? happening = node.Happening;
+
+			(double fuelConsumptionModifier, double ammoConsumptionModifier) = happening switch
+			{
+				ApiHappening => ConsumptionModifier(happening, shipsAfter),
+				_ => ConsumptionModifier(node),
+			};
 
 			if (node is BattleNode battleNode)
 			{
@@ -225,10 +237,9 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 					.OfType<PhaseAirBattleBase>()
 					.Sum(b => b.Stage1FLostcount + b.Stage2FLostcount) * 5;
 
-				enemyFleetType = battleNode.FirstBattle.FleetsBeforeBattle.EnemyFleet?.FleetType;
-
 				if (battleNode.BattleResult is null) continue;
 
+				enemyFleetType = battleNode.FirstBattle.FleetsBeforeBattle.EnemyFleet?.FleetType;
 				hasSecondBattle = battleNode.SecondBattle is not null;
 
 				daySpecialAttack = battleNode.FirstBattle.Phases
@@ -252,21 +263,15 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 					_ => DayAttackKind.Unknown,
 				};
 
-				ApplyFuelConsumption(s, fuelConsumptionModifier, node);
-				ApplyAmmoConsumption(s, ammoConsumptionModifier, node, playerFleetType, enemyFleetType, attack, hasSecondBattle);
+				ApplyFuelConsumption(s, fuelConsumptionModifier, happening);
+				ApplyAmmoConsumption(s, ammoConsumptionModifier, happening, playerFleetType, enemyFleetType, attack, hasSecondBattle);
 			}
 		}
 
-		SortieCostModel supplyCost = SupplyCost(shipsBefore, shipsAfter);
-		model.CalculatedSortieCost.SortieFleetSupplyCost = supplyCost with
+		return SupplyCost(shipsBefore, shipsAfter) with
 		{
 			Bauxite = bauxite,
 		};
-
-		db.Sorties.Update(model);
-		db.SaveChanges();
-
-		return model.CalculatedSortieCost.SortieFleetSupplyCost;
 	}
 
 	private static (double Fuel, double Ammo) ConsumptionModifier(SortieNode node) => node switch
@@ -318,11 +323,11 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		};
 
 	private static void ApplyFuelConsumption(IShipData ship, double fuelConsumptionModifier,
-		SortieNode node)
+		ApiHappening? happening)
 	{
 		if (fuelConsumptionModifier > 0)
 		{
-			int fuelConsumption = node.Happening switch
+			int fuelConsumption = happening switch
 			{
 				ApiHappening => (int)Math.Max(1, Math.Floor(ship.Fuel * fuelConsumptionModifier)),
 				_ => (int)Math.Max(1, Math.Floor(ship.FuelMax * fuelConsumptionModifier)),
@@ -333,13 +338,13 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	}
 
 	private static void ApplyAmmoConsumption(IShipData ship, double ammoConsumptionModifier,
-		SortieNode node, FleetType playerFleetType, FleetType? enemyFleetType, DayAttackKind? attack,
-		bool hasSecondBattle)
+		ApiHappening? happening, FleetType playerFleetType, FleetType? enemyFleetType, 
+		DayAttackKind? attack, bool hasSecondBattle)
 	{
 		if (ammoConsumptionModifier > 0)
 		{
 			int ammoConsumption = CalculateAmmoConsumption(ship, attack, playerFleetType, enemyFleetType, hasSecondBattle,
-				ammoConsumptionModifier, node);
+				ammoConsumptionModifier, happening);
 
 			ship.Ammo = Math.Max(0, ship.Ammo - ammoConsumption);
 		}
@@ -347,7 +352,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 	private static int CalculateAmmoConsumption(IShipData s, DayAttackKind? attack,
 		FleetType playerFleetType, FleetType? enemyFleetType, bool hasSecondBattle,
-		double ammoConsumptionModifier, SortieNode node)
+		double ammoConsumptionModifier, ApiHappening? happening)
 	{
 		double specialAttackBonus = attack switch
 		{
@@ -366,7 +371,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			_ => 0,
 		};
 
-		int consumption = node.Happening switch
+		int consumption = happening switch
 		{
 			ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
 			_ => attack switch
