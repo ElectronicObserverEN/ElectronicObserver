@@ -6,6 +6,7 @@ using Xunit;
 
 namespace ElectronicObserverCoreTests.SortieCost.NagatoTouch;
 
+#pragma warning disable xUnit1004
 /// <summary>
 /// Mutsu touch should be exactly the same, so it's not tested explicitly
 /// </summary>
@@ -100,5 +101,6 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 	public async Task NagatoTouchCostTest7()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 }

@@ -6,6 +6,7 @@ using Xunit;
 
 namespace ElectronicObserverCoreTests.SortieCost.YamatoTouch;
 
+#pragma warning disable xUnit1004
 public sealed class YamatoTouchCostTests : SortieCostTestBase
 {
 	protected override string RelativePath => Path.Join("SortieCost", "YamatoTouch");
@@ -60,60 +61,70 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 	public async Task YamatoTouchCostTest3()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "2 ships, combined vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest4()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "2 ships, single vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest5()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "2 ships, single vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest6()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "2 ships, single vs single, night only", Skip = "todo")]
 	public async Task YamatoTouchCostTest7()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "3 ships, combined vs combined, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest8()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "3 ships, combined vs combined, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest9()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "3 ships, combined vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest10()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "3 ships, combined vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest11()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "3 ships, single vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest12()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 
 	[Fact(DisplayName = "3 ships, single vs single, day S rank")]
@@ -132,5 +143,6 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 	public async Task YamatoTouchCostTest14()
 	{
 		// todo
+		Assert.True(await Task.FromResult(true));
 	}
 }
