@@ -78,7 +78,7 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "single vs single, night S rank")]
+	[Fact(DisplayName = "single vs single, night S rank", Skip = "todo")]
 	public async Task NagatoTouchCostTest5()
 	{
 		// todo
@@ -96,7 +96,7 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "single vs single, night only")]
+	[Fact(DisplayName = "single vs single, night only", Skip = "todo")]
 	public async Task NagatoTouchCostTest7()
 	{
 		// todo

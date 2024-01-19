@@ -56,61 +56,61 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "2 ships, combined vs single, night")]
+	[Fact(DisplayName = "2 ships, combined vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest3()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "2 ships, combined vs single, day")]
+	[Fact(DisplayName = "2 ships, combined vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest4()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "2 ships, single vs single, night")]
+	[Fact(DisplayName = "2 ships, single vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest5()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "2 ships, single vs single, day")]
+	[Fact(DisplayName = "2 ships, single vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest6()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "2 ships, single vs single, night only")]
+	[Fact(DisplayName = "2 ships, single vs single, night only", Skip = "todo")]
 	public async Task YamatoTouchCostTest7()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs combined, night")]
+	[Fact(DisplayName = "3 ships, combined vs combined, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest8()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs combined, day")]
+	[Fact(DisplayName = "3 ships, combined vs combined, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest9()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs single, night")]
+	[Fact(DisplayName = "3 ships, combined vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest10()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs single, day")]
+	[Fact(DisplayName = "3 ships, combined vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest11()
 	{
 		// todo
 	}
 
-	[Fact(DisplayName = "3 ships, single vs single, night")]
+	[Fact(DisplayName = "3 ships, single vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest12()
 	{
 		// todo
@@ -128,7 +128,7 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "3 ships, single vs single, night only")]
+	[Fact(DisplayName = "3 ships, single vs single, night only", Skip = "todo")]
 	public async Task YamatoTouchCostTest14()
 	{
 		// todo
