@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
@@ -39,7 +40,7 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 	{
 		if (InMemory)
 		{
-			optionsBuilder.UseInMemoryDatabase("ElectronicObserver");
+			optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
 		}
 		else
 		{
