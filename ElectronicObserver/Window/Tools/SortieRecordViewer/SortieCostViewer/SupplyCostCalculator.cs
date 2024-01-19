@@ -200,6 +200,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
 		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
+		FleetType playerFleetType = fleetsBefore.Fleet.FleetType;
 		int bauxite = 0;
 
 		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
@@ -213,7 +214,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 				_ => ConsumptionModifier(node),
 			};
 
-			List<DayAttack> specialAttacks = [];
+			DayAttackKind? daySpecialAttack = null;
+			List<int> daySpecialAttackIndexes = [];
 			bool hasSecondBattle = false;
 			FleetType? enemyFleetType = null;
 
@@ -229,24 +231,29 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 				hasSecondBattle = battleNode.SecondBattle is not null;
 
-				specialAttacks = battleNode.FirstBattle.Phases
+				daySpecialAttack = battleNode.FirstBattle.Phases
 					.OfType<PhaseShelling>()
 					.SelectMany(s => s.AttackDisplays)
 					.SelectMany(a => a.Attacks)
 					.Where(a => a.AttackKind.IsSpecialAttack())
-					.ToList();
+					.Select(a => a.AttackKind)
+					.FirstOrDefault();
+
+				daySpecialAttackIndexes = daySpecialAttack.SpecialAttackParticipationIndexes();
 			}
 
 			foreach (IShipData? ship in shipsAfter)
 			{
 				if (ship is not ShipDataMock s) continue;
 
-				DayAttackKind? attack = specialAttacks
-					.FirstOrDefault(a => a.Attacker.ShipID == ship.ShipID)
-					?.AttackKind;
+				DayAttackKind? attack = daySpecialAttackIndexes.Contains(shipsAfter.IndexOf(ship)) switch
+				{
+					true => daySpecialAttack,
+					_ => DayAttackKind.Unknown,
+				};
 
 				ApplyFuelConsumption(s, fuelConsumptionModifier, node);
-				ApplyAmmoConsumption(s, ammoConsumptionModifier, node, enemyFleetType, attack, hasSecondBattle);
+				ApplyAmmoConsumption(s, ammoConsumptionModifier, node, playerFleetType, enemyFleetType, attack, hasSecondBattle);
 			}
 		}
 
@@ -326,11 +333,12 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	}
 
 	private static void ApplyAmmoConsumption(IShipData ship, double ammoConsumptionModifier,
-		SortieNode node, FleetType? enemyFleetType, DayAttackKind? attack, bool hasSecondBattle)
+		SortieNode node, FleetType playerFleetType, FleetType? enemyFleetType, DayAttackKind? attack,
+		bool hasSecondBattle)
 	{
 		if (ammoConsumptionModifier > 0)
 		{
-			int ammoConsumption = CalculateAmmoConsumption(ship, attack, enemyFleetType, hasSecondBattle,
+			int ammoConsumption = CalculateAmmoConsumption(ship, attack, playerFleetType, enemyFleetType, hasSecondBattle,
 				ammoConsumptionModifier, node);
 
 			ship.Ammo = Math.Max(0, ship.Ammo - ammoConsumption);
@@ -338,18 +346,17 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	}
 
 	private static int CalculateAmmoConsumption(IShipData s, DayAttackKind? attack,
-		FleetType? enemyFleetType, bool hasSecondBattle, double ammoConsumptionModifier,
-		SortieNode node)
+		FleetType playerFleetType, FleetType? enemyFleetType, bool hasSecondBattle,
+		double ammoConsumptionModifier, SortieNode node)
 	{
 		double specialAttackBonus = attack switch
 		{
 			DayAttackKind.SpecialNagato or
 			DayAttackKind.SpecialMutsu or
-			DayAttackKind.SpecialColorado => (enemyFleetType, hasSecondBattle) switch
+			DayAttackKind.SpecialColorado => (playerFleetType, enemyFleetType, hasSecondBattle) switch
 			{
-				// todo: this is wrong for combined vs single
-				// (FleetType.Single, _) => ammoConsumptionModifier / 2,
-				(_, true) => 0,
+				(FleetType.Single, FleetType.Single, _) => ammoConsumptionModifier / 2,
+				(_, _, true) => 0,
 				_ => ammoConsumptionModifier / 2,
 			},
 
@@ -366,11 +373,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			{
 				DayAttackKind.SpecialNagato or
 				DayAttackKind.SpecialMutsu or
-				DayAttackKind.SpecialColorado => enemyFleetType switch
-				{
-					FleetType.Single => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
-					_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
-				},
+				DayAttackKind.SpecialColorado
+					=> (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
 
 				DayAttackKind.SpecialKongo => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
 
