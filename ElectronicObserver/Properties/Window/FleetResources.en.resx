@@ -276,4 +276,7 @@ Range: {20} / Speed: {21}
   <data name="Locked" xml:space="preserve">
     <value>Locked</value>
   </data>
+  <data name="SupportTypeAntiSubmarine" xml:space="preserve">
+    <value>Anti-submarine Support</value>
+  </data>
 </root>

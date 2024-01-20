@@ -72,10 +72,11 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			string supporttype = fleet.SupportType switch
 			{
-				SupportType.None => FormFleet.SupportTypeNone,
-				SupportType.Aerial => FormFleet.SupportTypeAerial,
-				SupportType.Shelling => FormFleet.SupportTypeShelling,
-				SupportType.Torpedo => FormFleet.SupportTypeTorpedo,
+				SupportType.None => FleetResources.SupportTypeNone,
+				SupportType.Aerial => FleetResources.SupportTypeAerial,
+				SupportType.Shelling => FleetResources.SupportTypeShelling,
+				SupportType.Torpedo => FleetResources.SupportTypeTorpedo,
+				SupportType.AntiSubmarine => FleetResources.SupportTypeAntiSubmarine,
 				_ => FormFleet.SupportTypeNone,
 			};
 

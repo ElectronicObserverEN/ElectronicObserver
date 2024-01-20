@@ -276,4 +276,7 @@
   <data name="Locked" xml:space="preserve">
     <value>ロックされた</value>
   </data>
+  <data name="SupportTypeAntiSubmarine" xml:space="preserve">
+    <value>対潜支援</value>
+  </data>
 </root>
