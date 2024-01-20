@@ -1,63 +1,54 @@
 ﻿[
 	{
 		"Version": 1,
-		"Id": 29264,
-		"World": 5,
-		"Map": 3,
+		"Id": 29263,
+		"World": 6,
+		"Map": 2,
 		"ApiFiles": [
 			{
-				"Id": 1747161,
+				"Id": 1747143,
 				"ApiFileType": 0,
 				"Name": "api_req_map/start",
-				"Content": "{\"api_verno\":\"1\",\"api_maparea_id\":\"5\",\"api_mapinfo_no\":\"3\",\"api_deck_id\":\"1\",\"api_serial_cid\":\"170573333555127660652\"}",
-				"TimeStamp": "2024-01-20T06:48:58.6016135",
+				"Content": "{\"api_verno\":\"1\",\"api_maparea_id\":\"6\",\"api_mapinfo_no\":\"2\",\"api_deck_id\":\"1\",\"api_serial_cid\":\"170573138445607344660\"}",
+				"TimeStamp": "2024-01-20T06:16:25.5857646",
 				"Version": 1,
-				"SortieRecordId": 29264
+				"SortieRecordId": 29263
 			},
 			{
-				"Id": 1747162,
+				"Id": 1747144,
 				"ApiFileType": 1,
 				"Name": "api_req_map/start",
-				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_cell_data\":[{\"api_id\":3374,\"api_no\":0,\"api_color_no\":0,\"api_passed\":0},{\"api_id\":3375,\"api_no\":1,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":3376,\"api_no\":2,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":3377,\"api_no\":3,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3378,\"api_no\":4,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3379,\"api_no\":5,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3380,\"api_no\":6,\"api_color_no\":2,\"api_passed\":0},{\"api_id\":3381,\"api_no\":7,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3382,\"api_no\":8,\"api_color_no\":2,\"api_passed\":0},{\"api_id\":3383,\"api_no\":9,\"api_color_no\":11,\"api_passed\":1},{\"api_id\":3384,\"api_no\":10,\"api_color_no\":11,\"api_passed\":1},{\"api_id\":3385,\"api_no\":11,\"api_color_no\":11,\"api_passed\":1},{\"api_id\":3386,\"api_no\":12,\"api_color_no\":3,\"api_passed\":0},{\"api_id\":3387,\"api_no\":13,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":3388,\"api_no\":14,\"api_color_no\":11,\"api_passed\":0},{\"api_id\":3389,\"api_no\":15,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3390,\"api_no\":16,\"api_color_no\":11,\"api_passed\":1},{\"api_id\":3391,\"api_no\":17,\"api_color_no\":5,\"api_passed\":1},{\"api_id\":3392,\"api_no\":18,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3393,\"api_no\":19,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3394,\"api_no\":20,\"api_color_no\":11,\"api_passed\":1},{\"api_id\":3395,\"api_no\":21,\"api_color_no\":11,\"api_passed\":1},{\"api_id\":3396,\"api_no\":22,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3397,\"api_no\":23,\"api_color_no\":4,\"api_passed\":1}],\"api_rashin_flg\":1,\"api_rashin_id\":4,\"api_maparea_id\":5,\"api_mapinfo_no\":3,\"api_no\":4,\"api_color_no\":4,\"api_event_id\":6,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":17,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0,\"api_from_no\":0}}",
-				"TimeStamp": "2024-01-20T06:48:58.6016136",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_cell_data\":[{\"api_id\":340,\"api_no\":0,\"api_color_no\":0,\"api_passed\":0},{\"api_id\":341,\"api_no\":1,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":342,\"api_no\":2,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":343,\"api_no\":3,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":344,\"api_no\":4,\"api_color_no\":3,\"api_passed\":0},{\"api_id\":345,\"api_no\":5,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":346,\"api_no\":6,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":347,\"api_no\":7,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":348,\"api_no\":8,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":349,\"api_no\":9,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":350,\"api_no\":10,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":351,\"api_no\":11,\"api_color_no\":5,\"api_passed\":1},{\"api_id\":352,\"api_no\":12,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":353,\"api_no\":13,\"api_color_no\":3,\"api_passed\":0},{\"api_id\":354,\"api_no\":14,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":355,\"api_no\":15,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":356,\"api_no\":16,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":357,\"api_no\":17,\"api_color_no\":5,\"api_passed\":1},{\"api_id\":358,\"api_no\":18,\"api_color_no\":5,\"api_passed\":1}],\"api_rashin_flg\":1,\"api_rashin_id\":2,\"api_maparea_id\":6,\"api_mapinfo_no\":2,\"api_no\":2,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":11,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1529,1523,1522]}],\"api_limit_state\":0,\"api_from_no\":0}}",
+				"TimeStamp": "2024-01-20T06:16:25.5857647",
 				"Version": 1,
-				"SortieRecordId": 29264
+				"SortieRecordId": 29263
 			},
 			{
-				"Id": 1747164,
+				"Id": 1747146,
 				"ApiFileType": 1,
-				"Name": "api_req_map/next",
-				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":5,\"api_mapinfo_no\":3,\"api_no\":7,\"api_color_no\":4,\"api_event_id\":6,\"api_event_kind\":0,\"api_next\":1,\"api_bosscell_no\":17,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_cell_flavor\":{\"api_type\":0,\"api_message\":\"\\u3053\\u308c\\u3088\\u308a\\u9244\\u5e95\\u6d77\\u5ce1\\u306b\\u7a81\\u5165\\u3059! \\u5168\\u8266\\u3001\\u6226\\u95d8\\u914d\\u7f6e!\"},\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_limit_state\":0}}",
-				"TimeStamp": "2024-01-20T06:49:12.0708771",
+				"Name": "api_req_sortie/battle",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,4],\"api_f_nowhps\":[93,94,37,35,37],\"api_f_maxhps\":[93,94,37,35,37],\"api_fParam\":[[96,43,91,93],[99,44,89,91],[62,96,64,51],[49,79,49,49],[69,88,70,52]],\"api_ship_ke\":[1529,1523,1522,1591,1575,1575],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[98,70,60,48,35,35],\"api_e_maxhps\":[98,70,60,48,35,35],\"api_eSlot\":[[1509,1509,1525,1528,-1],[1520,1523,1516,-1,-1],[1505,1506,1525,1525,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[90,0,80,99],[0,0,15,35],[58,42,30,60],[58,84,88,55],[38,60,30,22],[38,60,30,22]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[5,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[null,[2]],\"api_stage1\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":72,\"api_e_lostcount\":5,\"api_disp_seiku\":4,\"api_touch_plane\":[-1,1525]},\"api_stage2\":{\"api_f_count\":0,\"api_f_lostcount\":0,\"api_e_count\":44,\"api_e_lostcount\":12},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,1],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[1,0,0,0,0],\"api_ebak_flag\":[0,0,0,0,0,0],\"api_fcl_flag\":[0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,3],\"api_edam\":[0,0,0,0,0,0],\"api_f_sp_list\":[null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":0,\"api_opening_atack\":null,\"api_hourai_flag\":[1,1,0,1],\"api_hougeki1\":{\"api_at_eflag\":[0,1,0,1,0,1,0,1,0,1,1],\"api_at_list\":[0,0,1,3,4,2,3,4,2,5,1],\"api_at_type\":[0,2,0,0,0,0,0,0,0,0,0],\"api_df_list\":[[3],[1,1],[4],[4],[2],[4],[3],[4],[5],[3],[2]],\"api_si_list\":[[329],[1509,1509],[-1],[1550],[-1],[1505],[-1],[1502],[-1],[1502],[-1]],\"api_cl_list\":[[1],[1,1],[0],[2],[0],[1],[1],[0],[1],[0],[1]],\"api_damage\":[[31],[9,7],[0],[4],[0],[4],[1],[0],[22],[0.1],[2.1]]},\"api_hougeki2\":{\"api_at_eflag\":[0,1,0,1,0,1,0,0,1],\"api_at_list\":[0,0,1,1,2,2,3,4,4],\"api_at_type\":[0,0,0,0,0,2,0,0,0],\"api_df_list\":[[5],[4],[3],[4],[4],[3,3],[2],[4],[0]],\"api_si_list\":[[329],[1509],[-1],[-1],[-1],[1505,1506],[-1],[-1],[1502]],\"api_cl_list\":[[1],[0],[1],[0],[0],[1,1],[2],[1],[0]],\"api_damage\":[[66],[0],[22],[0],[0.1],[3.1,2.1],[6],[23],[0]]},\"api_hougeki3\":null,\"api_raigeki\":{\"api_frai\":[2,2,2,1,2,-1,-1],\"api_fcl\":[1,1,1,1,0,0,0],\"api_fdam\":[0,0,0,0,0,0,0],\"api_fydam\":[4,6,4,21,0,0,0],\"api_erai\":[-1,-1,4,-1,-1,-1,-1],\"api_ecl\":[0,0,0,0,0,0,0],\"api_edam\":[0,21,14,0,0,0,0],\"api_eydam\":[0,0,0,0,0,0,0]}}}",
+				"TimeStamp": "2024-01-20T06:16:48.4499985",
 				"Version": 1,
-				"SortieRecordId": 29264
+				"SortieRecordId": 29263
 			},
 			{
-				"Id": 1747166,
+				"Id": 1747148,
 				"ApiFileType": 1,
-				"Name": "api_req_map/next",
-				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":4,\"api_maparea_id\":5,\"api_mapinfo_no\":3,\"api_no\":9,\"api_color_no\":11,\"api_event_id\":4,\"api_event_kind\":2,\"api_next\":1,\"api_bosscell_no\":17,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1527,1527,1522]}],\"api_limit_state\":0}}",
-				"TimeStamp": "2024-01-20T06:49:18.3050806",
+				"Name": "api_req_battle_midnight/battle",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,4],\"api_f_nowhps\":[93,78,35,30,26],\"api_f_maxhps\":[93,94,37,35,37],\"api_fParam\":[[96,43,91,93],[99,44,89,91],[62,96,64,51],[49,79,49,49],[69,88,70,52]],\"api_ship_ke\":[1529,1523,1522,1591,1575,1575],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[98,49,40,0,12,0],\"api_e_maxhps\":[98,70,60,48,35,35],\"api_eSlot\":[[1509,1509,1525,1528,-1],[1520,1523,1516,-1,-1],[1505,1506,1525,1525,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[90,0,80,99],[0,0,15,35],[58,42,30,60],[58,84,88,55],[38,60,30,22],[38,60,30,22]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_touch_plane\":[-1,-1],\"api_flare_pos\":[-1,-1],\"api_hougeki\":{\"api_at_eflag\":[0,1,0,0,0,0],\"api_at_list\":[0,0,1,2,3,4],\"api_n_mother_list\":[0,0,0,0,0,0],\"api_df_list\":[[0,4],[3,3],[2],[1],[0],[4]],\"api_si_list\":[[-1],[1509,1509],[-1],[-1],[-1],[-1]],\"api_cl_list\":[[1,1],[1,1],[2],[1],[0],[1]],\"api_sp_list\":[104,1,0,0,0,0],\"api_damage\":[[11,1],[3,2],[167],[128],[0],[132]]}}}",
+				"TimeStamp": "2024-01-20T06:18:10.9343241",
 				"Version": 1,
-				"SortieRecordId": 29264
+				"SortieRecordId": 29263
 			},
 			{
-				"Id": 1747168,
-				"ApiFileType": 1,
-				"Name": "api_req_battle_midnight/sp_midnight",
-				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,1,1],\"api_f_nowhps\":[93,78,35,25,26],\"api_f_maxhps\":[93,94,37,35,37],\"api_fParam\":[[96,43,91,93],[99,44,89,91],[62,96,64,51],[49,79,49,49],[69,88,70,52]],\"api_ship_ke\":[1527,1527,1522,1518,1576,1576],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[76,76,60,48,37,37],\"api_e_maxhps\":[76,76,60,48,37,37],\"api_eSlot\":[[1505,1506,1515,1525,-1],[1505,1506,1515,1525,-1],[1505,1506,1525,1525,-1],[1504,1525,-1,-1,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[68,48,40,70],[68,48,40,70],[58,42,30,60],[30,40,20,30],[38,66,32,26],[38,66,32,26]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_n_support_flag\":0,\"api_touch_plane\":[-1,-1],\"api_flare_pos\":[-1,-1],\"api_hougeki\":{\"api_at_eflag\":[0,1,0,0,1,0,0],\"api_at_list\":[0,0,1,2,2,3,4],\"api_n_mother_list\":[0,0,0,0,0,0,0],\"api_df_list\":[[3,1],[3],[0],[5],[0,0],[4],[2]],\"api_si_list\":[[-1],[1505],[-1],[-1],[1505,1506],[-1],[-1]],\"api_cl_list\":[[1,1],[0],[2],[1],[1,1],[1],[0]],\"api_sp_list\":[104,0,0,0,1,0,0],\"api_damage\":[[335,256],[0],[155],[137],[21,9],[97],[0]]}}}",
-				"TimeStamp": "2024-01-20T06:49:31.780232",
-				"Version": 1,
-				"SortieRecordId": 29264
-			},
-			{
-				"Id": 1747170,
+				"Id": 1747150,
 				"ApiFileType": 1,
 				"Name": "api_req_sortie/battleresult",
-				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1527,1527,1522,1518,1576,1576],\"api_win_rank\":\"A\",\"api_get_exp\":152,\"api_mvp\":2,\"api_member_lv\":120,\"api_member_exp\":108915759,\"api_get_base_exp\":210,\"api_get_ship_exp\":[-1,315,420,210,210,210,-1],\"api_get_exp_lvup\":[[5295470,5470000],[5840376,5860000],[4660138,4777000],[1011102,1013000],[3151499,3162000]],\"api_dests\":5,\"api_destsf\":1,\"api_quest_name\":\"\\u30b5\\u30d6\\u5cf6\\u6c96\\u6d77\\u57df\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6575\\u9244\\u5e95\\u6d77\\u5ce1\\u4efb\\u52d9\\u90e8\\u968a \\u91cd\\u5de1\\u6226\\u968a\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
-				"TimeStamp": "2024-01-20T06:50:01.3741132",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1529,1523,1522,1591,1575,1575],\"api_win_rank\":\"A\",\"api_get_exp\":160,\"api_mvp\":2,\"api_member_lv\":120,\"api_member_exp\":108915607,\"api_get_base_exp\":420,\"api_get_ship_exp\":[-1,630,840,420,420,420,-1],\"api_get_exp_lvup\":[[5294840,5470000],[5839536,5860000],[4659718,4777000],[1010682,1011000,1013000],[3151079,3162000]],\"api_dests\":5,\"api_destsf\":0,\"api_quest_name\":\"MS\\u8af8\\u5cf6\\u6c96\",\"api_quest_level\":9,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6575\\u653b\\u7565\\u652f\\u63f4\\u90e8\\u968aB\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+				"TimeStamp": "2024-01-20T06:18:37.0221925",
 				"Version": 1,
-				"SortieRecordId": 29264
+				"SortieRecordId": 29263
 			}
 		],
 		"FleetData": {
@@ -165,7 +156,7 @@
 							],
 							"Fuel": 100,
 							"Ammo": 160,
-							"Hp": 78,
+							"Hp": 94,
 							"Armor": 91,
 							"Evasion": 95,
 							"Aircraft": [
@@ -237,7 +228,7 @@
 							],
 							"Fuel": 15,
 							"Ammo": 20,
-							"Hp": 35,
+							"Hp": 37,
 							"Armor": 51,
 							"Evasion": 113,
 							"Aircraft": [
@@ -296,7 +287,7 @@
 						{
 							"Id": 247,
 							"DropId": 58116,
-							"Level": 102,
+							"Level": 101,
 							"Condition": 49,
 							"Kyouka": [
 								37,
@@ -309,9 +300,9 @@
 							],
 							"Fuel": 15,
 							"Ammo": 20,
-							"Hp": 25,
+							"Hp": 35,
 							"Armor": 49,
-							"Evasion": 90,
+							"Evasion": 89,
 							"Aircraft": [
 								0,
 								0,
@@ -324,7 +315,7 @@
 							"Firepower": 49,
 							"Torpedo": 79,
 							"Aa": 49,
-							"Asw": 60,
+							"Asw": 59,
 							"Search": 39,
 							"Luck": 15,
 							"EquipmentSlots": [
@@ -373,7 +364,7 @@
 							],
 							"Fuel": 15,
 							"Ammo": 20,
-							"Hp": 26,
+							"Hp": 37,
 							"Armor": 52,
 							"Evasion": 107,
 							"Aircraft": [
@@ -427,7 +418,206 @@
 				null,
 				null
 			],
-			"AirBases": []
+			"AirBases": [
+				{
+					"Name": "\\u7B2C\\u4E00\\u57FA\\u5730\\u822A\\u7A7A\\u968A",
+					"MapAreaId": 6,
+					"AirCorpsId": 1,
+					"ActionKind": 1,
+					"BaseDistance": 5,
+					"BonusDistance": 0,
+					"Squadrons": [
+						{
+							"AircraftCurrent": 12,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 12,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 224,
+									"Level": 10,
+									"AircraftLevel": 6
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 10,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 10,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 224,
+									"Level": 10,
+									"AircraftLevel": 5
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 11,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 11,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 224,
+									"Level": 9,
+									"AircraftLevel": 6
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 13,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 13,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 484,
+									"Level": 1,
+									"AircraftLevel": 4
+								}
+							}
+						}
+					]
+				},
+				{
+					"Name": "\\u7B2C\\u4E8C\\u57FA\\u5730\\u822A\\u7A7A\\u968A",
+					"MapAreaId": 6,
+					"AirCorpsId": 2,
+					"ActionKind": 1,
+					"BaseDistance": 5,
+					"BonusDistance": 0,
+					"Squadrons": [
+						{
+							"AircraftCurrent": 15,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 15,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 225,
+									"Level": 0,
+									"AircraftLevel": 7
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 10,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 10,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 403,
+									"Level": 9,
+									"AircraftLevel": 4
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 13,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 13,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 403,
+									"Level": 10,
+									"AircraftLevel": 5
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 16,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 16,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 403,
+									"Level": 10,
+									"AircraftLevel": 4
+								}
+							}
+						}
+					]
+				},
+				{
+					"Name": "\\u7B2C\\u4E09\\u57FA\\u5730\\u822A\\u7A7A\\u968A",
+					"MapAreaId": 6,
+					"AirCorpsId": 3,
+					"ActionKind": 2,
+					"BaseDistance": 3,
+					"BonusDistance": 0,
+					"Squadrons": [
+						{
+							"AircraftCurrent": 16,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 16,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 176,
+									"Level": 0,
+									"AircraftLevel": 6
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 15,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 15,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 176,
+									"Level": 0,
+									"AircraftLevel": 5
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 15,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 15,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 177,
+									"Level": 2,
+									"AircraftLevel": 7
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 16,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 16,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 177,
+									"Level": 0,
+									"AircraftLevel": 7
+								}
+							}
+						}
+					]
+				}
+			]
 		},
 		"FleetAfterSortieData": {
 			"FleetId": 1,
@@ -452,9 +642,9 @@
 								0,
 								0
 							],
-							"Fuel": 90,
-							"Ammo": 141,
-							"Hp": 63,
+							"Fuel": 80,
+							"Ammo": 103,
+							"Hp": 93,
 							"Armor": 97,
 							"Evasion": 98,
 							"Aircraft": [
@@ -532,8 +722,8 @@
 								0,
 								0
 							],
-							"Fuel": 90,
-							"Ammo": 141,
+							"Fuel": 80,
+							"Ammo": 103,
 							"Hp": 78,
 							"Armor": 91,
 							"Evasion": 95,
@@ -604,8 +794,8 @@
 								1,
 								0
 							],
-							"Fuel": 14,
-							"Ammo": 18,
+							"Fuel": 12,
+							"Ammo": 14,
 							"Hp": 35,
 							"Armor": 51,
 							"Evasion": 113,
@@ -676,8 +866,8 @@
 								0,
 								0
 							],
-							"Fuel": 14,
-							"Ammo": 18,
+							"Fuel": 12,
+							"Ammo": 14,
 							"Hp": 25,
 							"Armor": 49,
 							"Evasion": 90,
@@ -740,8 +930,8 @@
 								1,
 								0
 							],
-							"Fuel": 14,
-							"Ammo": 18,
+							"Fuel": 12,
+							"Ammo": 14,
 							"Hp": 26,
 							"Armor": 52,
 							"Evasion": 107,
@@ -796,7 +986,206 @@
 				null,
 				null
 			],
-			"AirBases": []
+			"AirBases": [
+				{
+					"Name": "\\u7B2C\\u4E00\\u57FA\\u5730\\u822A\\u7A7A\\u968A",
+					"MapAreaId": 6,
+					"AirCorpsId": 1,
+					"ActionKind": 1,
+					"BaseDistance": 5,
+					"BonusDistance": 0,
+					"Squadrons": [
+						{
+							"AircraftCurrent": 12,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 12,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 224,
+									"Level": 10,
+									"AircraftLevel": 6
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 10,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 10,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 224,
+									"Level": 10,
+									"AircraftLevel": 5
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 11,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 11,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 224,
+									"Level": 9,
+									"AircraftLevel": 6
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 13,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 13,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 484,
+									"Level": 1,
+									"AircraftLevel": 4
+								}
+							}
+						}
+					]
+				},
+				{
+					"Name": "\\u7B2C\\u4E8C\\u57FA\\u5730\\u822A\\u7A7A\\u968A",
+					"MapAreaId": 6,
+					"AirCorpsId": 2,
+					"ActionKind": 1,
+					"BaseDistance": 5,
+					"BonusDistance": 0,
+					"Squadrons": [
+						{
+							"AircraftCurrent": 15,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 15,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 225,
+									"Level": 0,
+									"AircraftLevel": 7
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 10,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 10,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 403,
+									"Level": 9,
+									"AircraftLevel": 4
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 13,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 13,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 403,
+									"Level": 10,
+									"AircraftLevel": 5
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 16,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 16,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 403,
+									"Level": 10,
+									"AircraftLevel": 4
+								}
+							}
+						}
+					]
+				},
+				{
+					"Name": "\\u7B2C\\u4E09\\u57FA\\u5730\\u822A\\u7A7A\\u968A",
+					"MapAreaId": 6,
+					"AirCorpsId": 3,
+					"ActionKind": 2,
+					"BaseDistance": 3,
+					"BonusDistance": 0,
+					"Squadrons": [
+						{
+							"AircraftCurrent": 16,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 16,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 176,
+									"Level": 0,
+									"AircraftLevel": 6
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 15,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 15,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 176,
+									"Level": 0,
+									"AircraftLevel": 5
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 15,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 15,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 177,
+									"Level": 2,
+									"AircraftLevel": 7
+								}
+							}
+						},
+						{
+							"AircraftCurrent": 16,
+							"State": 1,
+							"Condition": 1,
+							"EquipmentSlot": {
+								"AircraftCurrent": 16,
+								"AircraftMax": 18,
+								"Equipment": {
+									"Id": 177,
+									"Level": 0,
+									"AircraftLevel": 7
+								}
+							}
+						}
+					]
+				}
+			]
 		},
 		"MapData": {
 			"RequiredDefeatedCount": -1,

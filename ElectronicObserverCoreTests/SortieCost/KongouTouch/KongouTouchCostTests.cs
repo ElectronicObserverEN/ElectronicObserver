@@ -19,6 +19,7 @@ public sealed class KongouTouchCostTests : SortieCostTestBase
 	[InlineData("KongouTouchCostTest02")]
 	[InlineData("KongouTouchCostTest03")]
 	[InlineData("KongouTouchCostTest04")]
+	[InlineData("KongouTouchCostTest05")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -38,10 +39,17 @@ public sealed class KongouTouchCostTests : SortieCostTestBase
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "single vs single")]
+	[Fact(DisplayName = "single vs combined", Skip = "todo")]
 	public async Task KongouTouchCostTest3()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("KongouTouchCostTest03", true);
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "single vs single")]
+	public async Task KongouTouchCostTest4()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("KongouTouchCostTest04", true);
 
 		Assert.Single(sortieCosts);
 
@@ -51,9 +59,9 @@ public sealed class KongouTouchCostTests : SortieCostTestBase
 	}
 
 	[Fact(DisplayName = "single vs single, night only")]
-	public async Task KongouTouchCostTest4()
+	public async Task KongouTouchCostTest5()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("KongouTouchCostTest04", true);
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("KongouTouchCostTest05", true);
 
 		Assert.Single(sortieCosts);
 

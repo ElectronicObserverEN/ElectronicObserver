@@ -22,6 +22,8 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 	[InlineData("NagatoTouchCostTest05")]
 	[InlineData("NagatoTouchCostTest06")]
 	[InlineData("NagatoTouchCostTest07")]
+	[InlineData("NagatoTouchCostTest08")]
+	[InlineData("NagatoTouchCostTest09")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -79,10 +81,24 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "single vs single, night S rank")]
+	[Fact(DisplayName = "single vs combined, night", Skip = "todo")]
 	public async Task NagatoTouchCostTest5()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest05", true);
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "single vs combined, day", Skip = "todo")]
+	public async Task NagatoTouchCostTest6()
+	{
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "single vs single, night S rank")]
+	public async Task NagatoTouchCostTest7()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest07", true);
 
 		Assert.Single(sortieCosts);
 
@@ -92,9 +108,9 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 	}
 
 	[Fact(DisplayName = "single vs single, day S rank")]
-	public async Task NagatoTouchCostTest6()
+	public async Task NagatoTouchCostTest8()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest06", true);
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest08", true);
 
 		Assert.Single(sortieCosts);
 
@@ -104,9 +120,9 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 	}
 
 	[Fact(DisplayName = "single vs single, night only")]
-	public async Task NagatoTouchCostTest7()
+	public async Task NagatoTouchCostTest9()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest07", true);
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest09", true);
 
 		Assert.Single(sortieCosts);
 

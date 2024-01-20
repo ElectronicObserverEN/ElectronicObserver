@@ -26,6 +26,10 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 	[InlineData("YamatoTouchCostTest12")]
 	[InlineData("YamatoTouchCostTest13")]
 	[InlineData("YamatoTouchCostTest14")]
+	[InlineData("YamatoTouchCostTest15")]
+	[InlineData("YamatoTouchCostTest16")]
+	[InlineData("YamatoTouchCostTest17")]
+	[InlineData("YamatoTouchCostTest18")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -71,66 +75,94 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "2 ships, single vs single, night", Skip = "todo")]
+	[Fact(DisplayName = "2 ships, single vs combined, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest5()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "2 ships, single vs single, day", Skip = "todo")]
+	[Fact(DisplayName = "2 ships, single vs combined, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest6()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "2 ships, single vs single, night only", Skip = "todo")]
+	[Fact(DisplayName = "2 ships, single vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest7()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs combined, night", Skip = "todo")]
+	[Fact(DisplayName = "2 ships, single vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest8()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs combined, day", Skip = "todo")]
+	[Fact(DisplayName = "2 ships, single vs single, night only", Skip = "todo")]
 	public async Task YamatoTouchCostTest9()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs single, night", Skip = "todo")]
+	[Fact(DisplayName = "3 ships, combined vs combined, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest10()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "3 ships, combined vs single, day", Skip = "todo")]
+	[Fact(DisplayName = "3 ships, combined vs combined, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest11()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "3 ships, single vs single, night", Skip = "todo")]
+	[Fact(DisplayName = "3 ships, combined vs single, night", Skip = "todo")]
 	public async Task YamatoTouchCostTest12()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
 	}
 
-	[Fact(DisplayName = "3 ships, single vs single, day S rank")]
+	[Fact(DisplayName = "3 ships, combined vs single, day", Skip = "todo")]
 	public async Task YamatoTouchCostTest13()
 	{
-		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("YamatoTouchCostTest13", true);
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "3 ships, single vs combined, night", Skip = "todo")]
+	public async Task YamatoTouchCostTest14()
+	{
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "3 ships, single vs combined, day", Skip = "todo")]
+	public async Task YamatoTouchCostTest15()
+	{
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "3 ships, single vs single, night", Skip = "todo")]
+	public async Task YamatoTouchCostTest16()
+	{
+		// todo
+		Assert.True(await Task.FromResult(true));
+	}
+
+	[Fact(DisplayName = "3 ships, single vs single, day S rank")]
+	public async Task YamatoTouchCostTest17()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("YamatoTouchCostTest17", true);
 
 		Assert.Single(sortieCosts);
 
@@ -140,7 +172,7 @@ public sealed class YamatoTouchCostTests : SortieCostTestBase
 	}
 
 	[Fact(DisplayName = "3 ships, single vs single, night only", Skip = "todo")]
-	public async Task YamatoTouchCostTest14()
+	public async Task YamatoTouchCostTest18()
 	{
 		// todo
 		Assert.True(await Task.FromResult(true));
