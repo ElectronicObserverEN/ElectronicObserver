@@ -53,6 +53,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<DataGrid
@@ -98,7 +99,24 @@
 			</DataGrid.RowDetailsTemplate>
 		</DataGrid>
 
-		<StatusBar Grid.Row="2">
+		<TextBlock
+			Grid.Row="2"
+			Margin="4"
+			Text="{Binding Progress}"
+			>
+			<TextBlock.Style>
+				<Style TargetType="TextBlock">
+					<Setter Property="Visibility" Value="Visible" />
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding Progress}" Value="{x:Null}">
+							<Setter Property="Visibility" Value="Collapsed" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</TextBlock.Style>
+		</TextBlock>
+
+		<StatusBar Grid.Row="3">
 			<StatusBarItem>
 				<TextBlock Text="{Binding Translation.TotalSortieCost}" />
 			</StatusBarItem>
