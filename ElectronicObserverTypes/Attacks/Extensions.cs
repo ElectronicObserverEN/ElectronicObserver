@@ -47,4 +47,24 @@ public static class Extensions
 
 			_ => [],
 		};
+
+	public static List<int> SpecialAttackParticipationIndexes(this NightAttackKind? nightAttack)
+		=> nightAttack switch
+		{
+			NightAttackKind.SpecialNelson => [0, 2, 4],
+
+			NightAttackKind.SpecialNagato or
+			NightAttackKind.SpecialMutsu or
+			NightAttackKind.SpecialYamato2Ships or
+			NightAttackKind.SpecialKongou => [0, 1],
+
+			NightAttackKind.SpecialColorado or
+			NightAttackKind.SpecialYamato3Ships or
+			NightAttackKind.SpecialSubmarineTender23 => [0, 1, 2],
+
+			NightAttackKind.SpecialSubmarineTender34 => [0, 2, 3],
+			NightAttackKind.SpecialSubmarineTender24 => [0, 1, 3],
+
+			_ => [],
+		};
 }

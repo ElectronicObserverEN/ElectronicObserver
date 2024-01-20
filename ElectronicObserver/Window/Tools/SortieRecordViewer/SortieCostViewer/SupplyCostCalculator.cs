@@ -221,6 +221,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		{
 			DayAttackKind? daySpecialAttack = null;
 			List<int> daySpecialAttackIndexes = [];
+			NightAttackKind? nightSpecialAttack = null;
+			List<int> nightSpecialAttackIndexes = [];
 			bool hasSecondBattle = false;
 			FleetType? enemyFleetType = null;
 			ApiHappening? happening = node.Happening;
@@ -242,7 +244,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 				enemyFleetType = battleNode.FirstBattle.FleetsBeforeBattle.EnemyFleet?.FleetType;
 				hasSecondBattle = battleNode.SecondBattle is not null;
 
-				daySpecialAttack = battleNode.FirstBattle.Phases
+				daySpecialAttack = battleNode.AllPhases
 					.OfType<PhaseShelling>()
 					.SelectMany(s => s.AttackDisplays)
 					.SelectMany(a => a.Attacks)
@@ -251,16 +253,38 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 					.FirstOrDefault();
 
 				daySpecialAttackIndexes = daySpecialAttack.SpecialAttackParticipationIndexes();
+
+				nightSpecialAttack = battleNode.AllPhases
+					.OfType<PhaseNightBattle>()
+					.SelectMany(s => s.AttackDisplays)
+					.SelectMany(a => a.Attacks)
+					.Where(a => a.AttackKind.IsSpecialAttack())
+					.Select(a => a.AttackKind)
+					.FirstOrDefault();
+
+				nightSpecialAttackIndexes = nightSpecialAttack.SpecialAttackParticipationIndexes();
 			}
 
 			foreach (IShipData? ship in shipsAfter)
 			{
 				if (ship is not ShipDataMock s) continue;
 
-				DayAttackKind? attack = daySpecialAttackIndexes.Contains(shipsAfter.IndexOf(ship)) switch
+				Enum? attack = daySpecialAttackIndexes.Contains(shipsAfter.IndexOf(ship)) switch
 				{
 					true => daySpecialAttack,
-					_ => DayAttackKind.Unknown,
+					_ => null,
+				};
+
+				int combinedFleetOffset = playerFleetType switch
+				{
+					FleetType.Single => 0,
+					_ => 6,
+				};
+
+				attack ??= nightSpecialAttackIndexes.Contains(shipsAfter.IndexOf(ship) - combinedFleetOffset) switch
+				{
+					true => nightSpecialAttack,
+					_ => null,
 				};
 
 				ApplyFuelConsumption(s, fuelConsumptionModifier, happening);
@@ -338,8 +362,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	}
 
 	private static void ApplyAmmoConsumption(IShipData ship, double ammoConsumptionModifier,
-		ApiHappening? happening, FleetType playerFleetType, FleetType? enemyFleetType, 
-		DayAttackKind? attack, bool hasSecondBattle)
+		ApiHappening? happening, FleetType playerFleetType, FleetType? enemyFleetType,
+		Enum? attack, bool hasSecondBattle)
 	{
 		if (ammoConsumptionModifier > 0)
 		{
@@ -350,23 +374,29 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		}
 	}
 
-	private static int CalculateAmmoConsumption(IShipData s, DayAttackKind? attack,
+	private static int CalculateAmmoConsumption(IShipData s, Enum? attack,
 		FleetType playerFleetType, FleetType? enemyFleetType, bool hasSecondBattle,
 		double ammoConsumptionModifier, ApiHappening? happening)
 	{
 		double specialAttackBonus = attack switch
 		{
 			DayAttackKind.SpecialNagato or
+			NightAttackKind.SpecialNagato or
 			DayAttackKind.SpecialMutsu or
-			DayAttackKind.SpecialColorado => (playerFleetType, enemyFleetType, hasSecondBattle) switch
+			NightAttackKind.SpecialMutsu or
+			DayAttackKind.SpecialColorado or
+			NightAttackKind.SpecialColorado => (playerFleetType, enemyFleetType, hasSecondBattle) switch
 			{
 				(FleetType.Single, FleetType.Single, _) => ammoConsumptionModifier / 2,
 				(_, _, true) => 0,
 				_ => ammoConsumptionModifier / 2,
 			},
 
-			DayAttackKind.SpecialYamato2Ships => 0.12,
-			DayAttackKind.SpecialYamato3Ships => 0.16,
+			DayAttackKind.SpecialYamato2Ships or 
+			NightAttackKind.SpecialYamato2Ships => 0.12,
+
+			DayAttackKind.SpecialYamato3Ships or 
+			NightAttackKind.SpecialYamato3Ships => 0.16,
 
 			_ => 0,
 		};
@@ -377,11 +407,14 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			_ => attack switch
 			{
 				DayAttackKind.SpecialNagato or
+				NightAttackKind.SpecialNagato or
 				DayAttackKind.SpecialMutsu or
-				DayAttackKind.SpecialColorado
+				NightAttackKind.SpecialMutsu or
+				DayAttackKind.SpecialColorado or
+				NightAttackKind.SpecialColorado
 					=> (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
 
-				DayAttackKind.SpecialKongo => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
+				NightAttackKind.SpecialKongou => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
 
 				_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
 			},
@@ -389,7 +422,11 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		if (hasSecondBattle && enemyFleetType is FleetType.Single)
 		{
-			consumption += (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier / 2)));
+			consumption += attack switch
+			{
+				NightAttackKind.SpecialKongou => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2 / 2))),
+				_ => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier / 2))),
+			};
 		}
 
 		return consumption;
