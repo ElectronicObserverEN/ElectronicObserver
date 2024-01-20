@@ -378,7 +378,45 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		FleetType playerFleetType, FleetType? enemyFleetType, bool hasSecondBattle,
 		double ammoConsumptionModifier, ApiHappening? happening)
 	{
-		double specialAttackBonus = attack switch
+		double specialAttackBonus = SpecialAttackBonus(attack, playerFleetType, enemyFleetType, 
+			hasSecondBattle, ammoConsumptionModifier);
+
+		int consumption = happening switch
+		{
+			ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
+			_ => attack switch
+			{
+				DayAttackKind.SpecialNagato or
+				NightAttackKind.SpecialNagato or
+				DayAttackKind.SpecialMutsu or
+				NightAttackKind.SpecialMutsu or
+				DayAttackKind.SpecialColorado or
+				NightAttackKind.SpecialColorado => (hasSecondBattle, enemyFleetType) switch
+				{
+					(true, FleetType.Single) => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+					_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
+				},
+
+				NightAttackKind.SpecialKongou => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
+
+				_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
+			},
+		};
+
+		if (hasSecondBattle && enemyFleetType is FleetType.Single)
+		{
+			consumption += attack switch
+			{
+				NightAttackKind.SpecialKongou => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2 / 2))),
+				_ => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * ((ammoConsumptionModifier + specialAttackBonus) / 2))),
+			};
+		}
+
+		return consumption;
+	}
+
+	private static double SpecialAttackBonus(Enum? attack, FleetType playerFleetType,
+		FleetType? enemyFleetType, bool hasSecondBattle, double ammoConsumptionModifier) => attack switch
 		{
 			DayAttackKind.SpecialNagato or
 			NightAttackKind.SpecialNagato or
@@ -392,43 +430,12 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 				_ => ammoConsumptionModifier / 2,
 			},
 
-			DayAttackKind.SpecialYamato2Ships or 
+			DayAttackKind.SpecialYamato2Ships or
 			NightAttackKind.SpecialYamato2Ships => 0.12,
 
-			DayAttackKind.SpecialYamato3Ships or 
+			DayAttackKind.SpecialYamato3Ships or
 			NightAttackKind.SpecialYamato3Ships => 0.16,
 
 			_ => 0,
 		};
-
-		int consumption = happening switch
-		{
-			ApiHappening => (int)Math.Max(1, Math.Floor(s.Ammo * ammoConsumptionModifier)),
-			_ => attack switch
-			{
-				DayAttackKind.SpecialNagato or
-				NightAttackKind.SpecialNagato or
-				DayAttackKind.SpecialMutsu or
-				NightAttackKind.SpecialMutsu or
-				DayAttackKind.SpecialColorado or
-				NightAttackKind.SpecialColorado
-					=> (int)Math.Max(1, Math.Floor(s.AmmoMax * ammoConsumptionModifier) + Math.Floor(s.AmmoMax * specialAttackBonus)),
-
-				NightAttackKind.SpecialKongou => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2))),
-
-				_ => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier + specialAttackBonus))),
-			},
-		};
-
-		if (hasSecondBattle && enemyFleetType is FleetType.Single)
-		{
-			consumption += attack switch
-			{
-				NightAttackKind.SpecialKongou => (int)Math.Max(1, Math.Floor(s.AmmoMax * (ammoConsumptionModifier * 1.2 / 2))),
-				_ => (int)Math.Max(1, Math.Ceiling(s.AmmoMax * (ammoConsumptionModifier / 2))),
-			};
-		}
-
-		return consumption;
-	}
 }

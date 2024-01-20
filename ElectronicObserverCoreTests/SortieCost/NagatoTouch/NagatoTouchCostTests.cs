@@ -79,11 +79,16 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "single vs single, night S rank", Skip = "todo")]
+	[Fact(DisplayName = "single vs single, night S rank")]
 	public async Task NagatoTouchCostTest5()
 	{
-		// todo
-		Assert.True(await Task.FromResult(true));
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest05", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel resupplyCost = new() { Fuel = 72, Ammo = 195 };
+
+		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
 	[Fact(DisplayName = "single vs single, day S rank")]
@@ -98,10 +103,15 @@ public sealed class NagatoTouchCostTests : SortieCostTestBase
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 
-	[Fact(DisplayName = "single vs single, night only", Skip = "todo")]
+	[Fact(DisplayName = "single vs single, night only")]
 	public async Task NagatoTouchCostTest7()
 	{
-		// todo
-		Assert.True(await Task.FromResult(true));
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("NagatoTouchCostTest07", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel resupplyCost = new() { Fuel = 36, Ammo = 63 };
+
+		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 	}
 }
