@@ -9,9 +9,9 @@ public class SortieRecord
 	public required int Version { get; set; }
 	public required int World { get; set; }
 	public required int Map { get; set; }
-	public List<ApiFile> ApiFiles { get; set; } = new();
-	public SortieFleetData FleetData { get; set; } = new();
+	public List<ApiFile> ApiFiles { get; set; } = [];
+	public required SortieFleetData FleetData { get; set; }
 	public SortieFleetData? FleetAfterSortieData { get; set; }
-	public required SortieMapData MapData { get; set; } = new();
+	public required SortieMapData MapData { get; set; }
 	public CalculatedSortieCost CalculatedSortieCost { get; set; } = new();
 }
