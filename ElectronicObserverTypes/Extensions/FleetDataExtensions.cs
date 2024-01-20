@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ElectronicObserverTypes.Extensions;
 public static class FleetDataExtensions
@@ -8,84 +9,103 @@ public static class FleetDataExtensions
 
 	public static SupportType GetSupportType(this IFleetData fleet)
 	{
-		int destroyerCount = 0;
-		int aircraftCarrierCount = 0;
-		int aircraftAuxiliaryCount = 0;
-		int aircraftShellingCount = 0;
-		int shellingCount = 0;
-		int battleshipCount = 0;
-		int heavyCruiserCount = 0;
+		int destroyers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.Destroyer);
 
-		foreach (IShipData? ship in fleet.MembersInstance)
+		if (destroyers < 2) return SupportType.None;
+
+		if (IsAirSupport(fleet))
 		{
-			if (ship is null) continue;
-
-			switch (ship.MasterShip.ShipType)
+			if (IsAntiSubmarineSupport(fleet))
 			{
-				case ShipTypes.Destroyer:
-					destroyerCount++;
-					break;
-
-				case ShipTypes.AircraftCarrier:
-				case ShipTypes.LightAircraftCarrier:
-				case ShipTypes.ArmoredAircraftCarrier:
-					aircraftCarrierCount++;
-					break;
-
-				case ShipTypes.SeaplaneTender:
-				case ShipTypes.AmphibiousAssaultShip:
-					aircraftAuxiliaryCount++;
-					break;
-
-				case ShipTypes.AviationBattleship:
-					aircraftShellingCount++;
-					battleshipCount++;
-					break;
-
-				case ShipTypes.AviationCruiser:
-					aircraftShellingCount++;
-					heavyCruiserCount++;
-					break;
-
-				case ShipTypes.Transport:
-					aircraftShellingCount++;
-					break;
-
-				case ShipTypes.Battleship:
-				case ShipTypes.Battlecruiser:
-					shellingCount++;
-					battleshipCount++;
-					break;
-
-				case ShipTypes.HeavyCruiser:
-					shellingCount++;
-					heavyCruiserCount++;
-					break;
+				return SupportType.AntiSubmarine;
 			}
 
+			return SupportType.Aerial;
 		}
 
-		// 発生しない
-		if (destroyerCount < 2) return SupportType.None;
-
-		if (shellingCount == 0)
+		if (IsShellingSupport(fleet))
 		{
-			if (aircraftCarrierCount >= 1 ||
-				aircraftAuxiliaryCount >= 2 ||
-				aircraftShellingCount >= 2)
-				return SupportType.Aerial;   // 空撃
+			return SupportType.Shelling;
 		}
-		if (shellingCount == 1)
+
+		return SupportType.Torpedo;
+	}
+
+	private static bool IsAirSupport(IFleetData fleet)
+	{
+		int carriers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.AircraftCarrier or
+			ShipTypes.ArmoredAircraftCarrier or
+			ShipTypes.LightAircraftCarrier);
+
+		int carrierSupportA = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.SeaplaneTender or
+			ShipTypes.AmphibiousAssaultShip);
+
+		int carrierSupportB = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.AviationBattleship or
+			ShipTypes.AviationCruiser or
+			ShipTypes.FleetOiler);
+
+		int gunboats = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.Battleship or
+			ShipTypes.Battlecruiser or
+			ShipTypes.HeavyCruiser);
+
+		if (gunboats is 0)
 		{
-			if (aircraftCarrierCount + aircraftAuxiliaryCount >= 2)
-				return SupportType.Aerial;   // 空撃
+			if (carriers >= 1) return true;
+			if (carrierSupportA >= 2) return true;
+			if (carrierSupportB >= 2) return true;
 		}
 
-		if (battleshipCount >= 2 ||
-			(battleshipCount == 1 && heavyCruiserCount >= 3) ||
-			heavyCruiserCount >= 4)
-			return SupportType.Shelling;       // 砲撃
+		if (gunboats is 1)
+		{
+			return carriers + carrierSupportA >= 2;
+		}
 
-		return SupportType.Torpedo;           // 雷撃
+		return false;
+	}
+
+	/// <summary>
+	/// This function doesn't check if it's a valid air support,
+	/// so that check must be performed before calling this one.
+	/// </summary>
+	private static bool IsAntiSubmarineSupport(IFleetData fleet)
+	{
+		List<IShipData> antiSubmarineAircraftCarriers = fleet.MembersInstance
+			.Where(s => s is not null)
+			.Cast<IShipData>()
+			.Where(s => s.HasAntiSubmarineAircraft())
+			.ToList();
+
+		int lightCarriers = antiSubmarineAircraftCarriers
+			.Count(s => s.MasterShip.ShipType is ShipTypes.LightAircraftCarrier);
+
+		int escorts = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.Escort);
+
+		return lightCarriers > 0 && (antiSubmarineAircraftCarriers.Count > 1 || escorts > 1);
+	}
+
+	private static bool IsShellingSupport(IFleetData fleet)
+	{
+		int battleships = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.Battleship or
+			ShipTypes.Battlecruiser or
+			ShipTypes.AviationBattleship);
+
+		if (battleships >= 2) return true;
+
+		int heavyCruisers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.HeavyCruiser);
+
+		int aviationCruisers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.AviationCruiser);
+
+		if (battleships > 0 && heavyCruisers + aviationCruisers > 0) return true;
+
+		return heavyCruisers > 3;
 	}
 }
