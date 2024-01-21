@@ -303,6 +303,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		// handled with api data
 		{ ApiColorNo: CellType.Maelstrom } => (0, 0),
 
+		{ ApiColorNo: CellType.BossBattle } => (0.2, 0.2),
+
 		{ ApiColorNo: CellType.SubAir } => (0.12, 0.06),
 		{ ApiColorNo: CellType.NightBattle } => (0.1, 0.1),
 		{ ApiColorNo: CellType.RadarFire } => (0.04, 0),

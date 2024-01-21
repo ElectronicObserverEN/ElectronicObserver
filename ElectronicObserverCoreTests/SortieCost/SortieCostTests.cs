@@ -18,6 +18,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest06")]
 	[InlineData("SortieCostTest07")]
 	[InlineData("SortieCostTest08")]
+	[InlineData("SortieCostTest09")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -144,5 +145,17 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel repairCost = new();
 
 		Assert.Equal(repairCost, sortieCosts[0].TotalRepairCost);
+	}
+
+	[Fact(DisplayName = "All subs boss consumption is 0.2, 0.2")]
+	public async Task SortieCostTest9()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest09", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel supplyCost = new() { Fuel = 18, Ammo = 6 };
+
+		Assert.Equal(supplyCost, sortieCosts[0].TotalSupplyCost);
 	}
 }
