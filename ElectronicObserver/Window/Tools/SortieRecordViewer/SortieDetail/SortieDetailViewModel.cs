@@ -233,7 +233,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				b.UpdateState(FleetsAfterSortie);
 			}
 
-			Fleets = b.SecondBattle?.FleetsAfterBattle.Clone() ?? b.FirstBattle.FleetsAfterBattle.Clone();
+			Fleets = b.LastBattle.FleetsAfterBattle.Clone();
 
 			CleanFleet(Fleets.Fleet);
 			CleanFleet(Fleets.EscortFleet);

@@ -17,6 +17,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest05")]
 	[InlineData("SortieCostTest06")]
 	[InlineData("SortieCostTest07")]
+	[InlineData("SortieCostTest08")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -131,5 +132,17 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel resupplyCost = new() { Fuel = 197, Ammo = 299, Bauxite = 190 };
 
 		Assert.Equal(resupplyCost, sortieCosts[0].SortieFleetSupplyCost);
+	}
+
+	[Fact(DisplayName = "Sortie record version 0→1 test, missing fleet after sortie data and initial HP value")]
+	public async Task SortieCostTest8()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest08");
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel repairCost = new();
+
+		Assert.Equal(repairCost, sortieCosts[0].TotalRepairCost);
 	}
 }

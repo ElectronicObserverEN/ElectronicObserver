@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Database.DataMigration;
 
@@ -25,12 +25,21 @@ public class SortieRecordMigrationService(ToolService toolService)
 	{
 		SortieDetailViewModel? sortieDetails = ToolService.GenerateSortieDetailViewModel(db, record);
 
-		if (sortieDetails?.FleetsBeforeSortie.Fleets is null) return;
-		if (sortieDetails.Fleets.Fleets is null) return;
-		if (record.FleetAfterSortieData is null) return;
+		List<IFleetData?>? computedFleetsBeforeSortie = sortieDetails?.Nodes
+			.OfType<BattleNode>()
+			.FirstOrDefault()
+			?.FirstBattle.FleetsBeforeBattle.Fleets;
 
-		FixHp(record.FleetData, sortieDetails.FleetsBeforeSortie.Fleets);
-		FixHp(record.FleetAfterSortieData, sortieDetails.Fleets.Fleets);
+		if (computedFleetsBeforeSortie is null) return;
+
+		FixHp(record.FleetData, computedFleetsBeforeSortie);
+
+		if (record.FleetAfterSortieData is not null)
+		{
+			if (sortieDetails!.Fleets.Fleets is null) return;
+
+			FixHp(record.FleetAfterSortieData, sortieDetails.Fleets.Fleets);
+		}
 
 		record.Version = 1;
 
@@ -51,7 +60,7 @@ public class SortieRecordMigrationService(ToolService toolService)
 			{
 				if (computedShip is null) continue;
 
-				dbShip.Hp = ((ShipDataMock)computedShip).HPCurrent;
+				dbShip.Hp = computedShip.HPCurrent;
 			}
 		}
 	}
