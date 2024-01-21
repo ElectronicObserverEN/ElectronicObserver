@@ -79,13 +79,13 @@ public class PhaseSupport : PhaseBase
 			_ => -1,
 		};
 
-		if (apiSupportInfo.ApiSupportAiratack is ApiSupportAiratack airAttack)
+		if (apiSupportInfo.ApiSupportAiratack is not null)
 		{
-			Stage1FCount = airAttack.ApiStage1.ApiFCount;
-			Stage1FLostcount = airAttack.ApiStage1.ApiFLostcount;
+			Stage1FCount = apiSupportInfo.ApiSupportAiratack.ApiStage1.ApiFCount;
+			Stage1FLostcount = apiSupportInfo.ApiSupportAiratack.ApiStage1.ApiFLostcount;
 
-			Stage2FCount = airAttack.ApiStage2.ApiFCount;
-			Stage2FLostcount = airAttack.ApiStage2.ApiFLostcount;
+			Stage2FCount = apiSupportInfo.ApiSupportAiratack.ApiStage2.ApiFCount;
+			Stage2FLostcount = apiSupportInfo.ApiSupportAiratack.ApiStage2.ApiFLostcount;
 		}
 	}
 
