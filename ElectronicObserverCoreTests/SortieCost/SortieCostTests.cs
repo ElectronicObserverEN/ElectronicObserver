@@ -19,6 +19,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest07")]
 	[InlineData("SortieCostTest08")]
 	[InlineData("SortieCostTest09")]
+	[InlineData("SortieCostTest10")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -157,5 +158,17 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel supplyCost = new() { Fuel = 18, Ammo = 6 };
 
 		Assert.Equal(supplyCost, sortieCosts[0].TotalSupplyCost);
+	}
+
+	[Fact(DisplayName = "6-1 - no air base sortie cost even if bases are set to sortie")]
+	public async Task SortieCostTest10()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest10", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel airBaseSortieCost = new();
+
+		Assert.Equal(airBaseSortieCost, sortieCosts[0].TotalAirBaseSortieCost);
 	}
 }

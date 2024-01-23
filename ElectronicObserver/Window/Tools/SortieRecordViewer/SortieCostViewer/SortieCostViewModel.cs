@@ -42,7 +42,7 @@ public class SortieCostViewModel
 
 		SupplyCostCalculator supplyCostCalculator = new(db, toolService, sortie);
 		RepairCostCalculator repairCostCalculator = new(db, toolService, sortie);
-		AirBaseCostCalculator airBaseCostCalculator = new(db, sortie);
+		AirBaseCostCalculator airBaseCostCalculator = new(db, toolService, sortie);
 
 		SortieFleetId = sortie.Model.FleetData.FleetId;
 		IsCombinedFleet = sortie.Model.FleetData.CombinedFlag > 0;
@@ -66,12 +66,8 @@ public class SortieCostViewModel
 		TotalSupplyCost = SortieFleetSupplyCost + NodeSupportSupplyCost + BossSupportSupplyCost;
 		TotalRepairCost = SortieFleetRepairCost;
 
-		TotalAirBaseSortieCost = AirBases
-			.Where(a => a.ActionKind is AirBaseActionKind.Mission)
-			.Select(airBaseCostCalculator.AirBaseSortieCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b);
-
-		TotalAirBaseSupplyCost = airBaseCostCalculator.AirBaseSupplyCost();
+		TotalAirBaseSortieCost = airBaseCostCalculator.AirBaseSortieCost(AirBases);
+		TotalAirBaseSupplyCost = airBaseCostCalculator.AirBaseSupplyCost(AirBases);
 
 		TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
 	}

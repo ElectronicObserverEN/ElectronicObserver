@@ -4,45 +4,80 @@ using System.Linq;
 using System.Text.Json;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
-public class AirBaseCostCalculator(ElectronicObserverContext db, SortieRecordViewModel sortie)
+public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService toolService,
+	SortieRecordViewModel sortie)
 {
 	private ElectronicObserverContext Db { get; } = db;
+	private ToolService ToolService { get; } = toolService;
 
+	private SortieRecord SortieRecord { get; } = sortie.Model;
 	private DateTime Time { get; } = sortie.SortieStart.ToUniversalTime();
-	private List<IBaseAirCorpsData> AirBases { get; } = sortie.Model.FleetData.AirBases
-		.Select(a => a.MakeAirBase())
-		.ToList();
+	private SortieDetailViewModel? SortieDetails { get; set; }
 
-	public SortieCostModel AirBaseSortieCost(IBaseAirCorpsData airBase)
+	public SortieCostModel AirBaseSortieCost(IEnumerable<IBaseAirCorpsData> airBases)
+	{
+		if (SortieRecord.CalculatedSortieCost.TotalAirBaseSortieCost is not null)
+		{
+			return SortieRecord.CalculatedSortieCost.TotalAirBaseSortieCost;
+		}
+
+		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(Db, SortieRecord);
+
+		if (SortieDetails is null) return new();
+
+		SortieRecord.CalculatedSortieCost.TotalAirBaseSortieCost = airBases
+			.Zip(SortieDetails.StrikePoints, (corps, points) => (Corps: corps, StrikePoints: points))
+			.Where(t => t.StrikePoints is not null)
+			.Select(t => t.Corps)
+			.Select(AirBaseSortieCost)
+			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+
+		Db.Sorties.Update(SortieRecord);
+		Db.SaveChanges();
+
+		return SortieRecord.CalculatedSortieCost.TotalAirBaseSortieCost;
+	}
+
+	private static SortieCostModel AirBaseSortieCost(IBaseAirCorpsData airBase)
 		=> airBase.Squadrons.Values
 			.Where(s => s.EquipmentInstance is not null)
-			.Select(s => new SortieCostModel
-			{
-				Fuel = GetAirBasePlaneCostCategory(s.EquipmentInstance!) switch
-				{
-					AirBasePlaneCostCategory.AirBaseAttacker => (int)Math.Ceiling(1.5 * s.AircraftCurrent),
-					AirBasePlaneCostCategory.LargePlane => 2 * s.AircraftCurrent,
-					AirBasePlaneCostCategory.Other => s.AircraftCurrent,
-
-					_ => throw new NotImplementedException(),
-				},
-				Ammo = GetAirBasePlaneCostCategory(s.EquipmentInstance!) switch
-				{
-					AirBasePlaneCostCategory.AirBaseAttacker => (int)(0.7 * s.AircraftCurrent),
-					AirBasePlaneCostCategory.LargePlane => 2 * s.AircraftCurrent,
-					AirBasePlaneCostCategory.Other => (int)Math.Ceiling(0.6 * s.AircraftCurrent),
-
-					_ => throw new NotImplementedException(),
-				},
-			})
+			.Select(AirBaseSquadronCost)
 			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+
+	private static SortieCostModel AirBaseSquadronCost(IBaseAirCorpsSquadron squadron) =>
+		squadron.EquipmentInstance switch
+		{
+			null => new(),
+			_ => new()
+			{
+				Fuel = GetAirBasePlaneCostCategory(squadron.EquipmentInstance) switch
+				{
+					AirBasePlaneCostCategory.AirBaseAttacker => (int)Math.Ceiling(1.5 * squadron.AircraftCurrent),
+					AirBasePlaneCostCategory.LargePlane => 2 * squadron.AircraftCurrent,
+					AirBasePlaneCostCategory.Other => squadron.AircraftCurrent,
+
+					_ => throw new NotImplementedException(),
+				},
+				Ammo = GetAirBasePlaneCostCategory(squadron.EquipmentInstance) switch
+				{
+					AirBasePlaneCostCategory.AirBaseAttacker => (int)(0.7 * squadron.AircraftCurrent),
+					AirBasePlaneCostCategory.LargePlane => 2 * squadron.AircraftCurrent,
+					AirBasePlaneCostCategory.Other => (int)Math.Ceiling(0.6 * squadron.AircraftCurrent),
+
+					_ => throw new NotImplementedException(),
+				},
+			},
+		};
 
 	private static AirBasePlaneCostCategory GetAirBasePlaneCostCategory(IEquipmentData equip)
 		=> equip.MasterEquipment.CategoryType switch
@@ -52,20 +87,30 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, SortieRecordVie
 			_ => AirBasePlaneCostCategory.Other,
 		};
 
-	public SortieCostModel AirBaseSupplyCost()
+	public SortieCostModel AirBaseSupplyCost(List<IBaseAirCorpsData> airBases)
 	{
-		// todo: get plane shotdown from battle details
-		return TryGetAirBaseSupplyCostFromDatabase() ??  new();
+		if (SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost is not null)
+		{
+			return SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost;
+		}
+
+		SortieCostModel airBaseSupplyCost = TryGetAirBaseSupplyCostFromDatabase(airBases) ?? new();
+
+		SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost = airBaseSupplyCost;
+		Db.Sorties.Update(SortieRecord);
+		Db.SaveChanges();
+
+		return SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost;
 	}
 
-	private SortieCostModel? TryGetAirBaseSupplyCostFromDatabase()
+	private SortieCostModel? TryGetAirBaseSupplyCostFromDatabase(List<IBaseAirCorpsData> airBases)
 	{
 		if (TryGetAirBaseState(Db, Time) is not List<ApiAirBase> airBaseState)
 		{
 			return null;
 		}
 
-		if (TryGetCostFromState(AirBases, airBaseState) is SortieCostModel sortieCost)
+		if (TryGetCostFromState(airBases, airBaseState) is SortieCostModel sortieCost)
 		{
 			return sortieCost;
 		}

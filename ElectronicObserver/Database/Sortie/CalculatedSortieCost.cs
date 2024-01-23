@@ -17,6 +17,9 @@ public class CalculatedSortieCost
 	[JsonPropertyName("BossSupportSupplyCost")]
 	public SortieCostModel? BossSupportSupplyCost { get; set; }
 
+	[JsonPropertyName("TotalAirBaseSortieCost")]
+	public SortieCostModel? TotalAirBaseSortieCost { get; set; }
+
 	[JsonPropertyName("TotalAirBaseSupplyCost")]
 	public SortieCostModel? TotalAirBaseSupplyCost { get; set; }
 }
