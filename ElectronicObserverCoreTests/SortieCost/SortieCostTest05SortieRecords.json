@@ -1,7 +1,7 @@
 ﻿[
 	{
-		"Version": 0,
 		"Id": 19762,
+		"Version": 0,
 		"World": 57,
 		"Map": 7,
 		"ApiFiles": [
@@ -20,6 +20,15 @@
 				"Name": "api_req_map/start",
 				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_cell_data\":[{\"api_id\":9300,\"api_no\":0,\"api_color_no\":0,\"api_passed\":0},{\"api_id\":9301,\"api_no\":1,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":9302,\"api_no\":2,\"api_color_no\":10,\"api_passed\":0,\"api_distance\":7},{\"api_id\":9303,\"api_no\":3,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9304,\"api_no\":4,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9305,\"api_no\":5,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":9306,\"api_no\":6,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9307,\"api_no\":7,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":9308,\"api_no\":8,\"api_color_no\":4,\"api_passed\":0,\"api_distance\":8},{\"api_id\":9309,\"api_no\":9,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":9310,\"api_no\":10,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9311,\"api_no\":11,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":9312,\"api_no\":12,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9313,\"api_no\":13,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9314,\"api_no\":14,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":2},{\"api_id\":9315,\"api_no\":15,\"api_color_no\":8,\"api_passed\":1,\"api_distance\":2},{\"api_id\":9316,\"api_no\":16,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9317,\"api_no\":17,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9318,\"api_no\":18,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":7},{\"api_id\":9319,\"api_no\":19,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":2},{\"api_id\":9320,\"api_no\":20,\"api_color_no\":15,\"api_passed\":0,\"api_distance\":3},{\"api_id\":9321,\"api_no\":21,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9322,\"api_no\":22,\"api_color_no\":6,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9323,\"api_no\":23,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9324,\"api_no\":24,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9325,\"api_no\":25,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9326,\"api_no\":26,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9327,\"api_no\":27,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9328,\"api_no\":28,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":3},{\"api_id\":9329,\"api_no\":29,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9330,\"api_no\":30,\"api_color_no\":15,\"api_passed\":0,\"api_distance\":1},{\"api_id\":9331,\"api_no\":31,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":3},{\"api_id\":9332,\"api_no\":32,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9333,\"api_no\":33,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9334,\"api_no\":34,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":3},{\"api_id\":9335,\"api_no\":35,\"api_color_no\":0,\"api_passed\":0,\"api_distance\":99},{\"api_id\":9336,\"api_no\":36,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":2},{\"api_id\":9337,\"api_no\":37,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9338,\"api_no\":38,\"api_color_no\":6,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9339,\"api_no\":39,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":3},{\"api_id\":9340,\"api_no\":40,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9341,\"api_no\":41,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9342,\"api_no\":42,\"api_color_no\":0,\"api_passed\":0,\"api_distance\":99},{\"api_id\":9343,\"api_no\":43,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9344,\"api_no\":44,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9345,\"api_no\":45,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9346,\"api_no\":46,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9347,\"api_no\":47,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9348,\"api_no\":48,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9349,\"api_no\":49,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":4},{\"api_id\":9350,\"api_no\":50,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9351,\"api_no\":51,\"api_color_no\":10,\"api_passed\":1,\"api_distance\":3},{\"api_id\":9352,\"api_no\":52,\"api_color_no\":14,\"api_passed\":0,\"api_distance\":5},{\"api_id\":9353,\"api_no\":53,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9354,\"api_no\":54,\"api_color_no\":5,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9355,\"api_no\":55,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":6},{\"api_id\":9356,\"api_no\":56,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5},{\"api_id\":9357,\"api_no\":57,\"api_color_no\":4,\"api_passed\":1,\"api_distance\":5}],\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":57,\"api_mapinfo_no\":7,\"api_no\":26,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":41,\"api_bosscomp\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_eventmap\":{\"api_max_maphp\":7700,\"api_now_maphp\":1100,\"api_dmg\":0},\"api_e_deck_info\":[{\"api_kind\":1,\"api_ship_ids\":[1572,1571,1571]}],\"api_limit_state\":0,\"api_from_no\":35}}",
 				"TimeStamp": "2023-09-24T10:50:59.8428135",
+				"Version": 1,
+				"SortieRecordId": 19762
+			},
+			{
+				"Id": 1348961,
+				"ApiFileType": 0,
+				"Name": "api_req_map/start_air_base",
+				"Content": "{\"api_verno\":\"1\",\"api_strike_point_1\":\"53,53\",\"api_strike_point_2\":\"53,53\",\"api_strike_point_3\":\"53,53\"}",
+				"TimeStamp": "2023-09-24T10:51:10.0721836",
 				"Version": 1,
 				"SortieRecordId": 19762
 			},
@@ -4643,6 +4652,14 @@
 			"RequiredDefeatedCount": -1,
 			"MapHPCurrent": 1100,
 			"MapHPMax": 7700
+		},
+		"CalculatedSortieCost": {
+			"SortieFleetSupplyCost": null,
+			"SortieFleetRepairCost": null,
+			"NodeSupportSupplyCost": null,
+			"BossSupportSupplyCost": null,
+			"TotalAirBaseSortieCost": null,
+			"TotalAirBaseSupplyCost": null
 		}
 	}
 ]
