@@ -10,7 +10,7 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
-public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, CellType colorNo, int eventId, int eventKind)
+public sealed class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, CellType colorNo, int eventId, int eventKind)
 	: SortieNode(kcDatabase, world, map, cell, colorNo, eventId, eventKind)
 {
 	public IBattleApiRequest? Request { get; set; }
@@ -35,7 +35,8 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 	public string? BaseExp { get; private set; }
 	public string? DropShip { get; private set; }
 
-	public IEnumerable<PhaseBase> AllPhases => FirstBattle.Phases
+	public override IEnumerable<PhaseBase> AllPhases => base.AllPhases
+		.Concat(FirstBattle.Phases)
 		.Concat(SecondBattle?.Phases ?? []);
 
 	public void AddResult(ISortieBattleResultApi result)
@@ -98,7 +99,7 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 		if (FirstBattle.FleetsBeforeBattle.EscortFleet is IFleetData escort)
 		{
 			shipsBeforeBattle = shipsBeforeBattle.Concat(escort.MembersWithoutEscaped!);
-			shipsAfterBattle = shipsAfterBattle.Concat(lastBattle.FleetsAfterBattle.EscortFleet.MembersWithoutEscaped!);
+			shipsAfterBattle = shipsAfterBattle.Concat(lastBattle.FleetsAfterBattle.EscortFleet!.MembersWithoutEscaped!);
 		}
 
 		int hpBeforeBattle = shipsBeforeBattle.Sum(s => s?.HPCurrent ?? 0);
