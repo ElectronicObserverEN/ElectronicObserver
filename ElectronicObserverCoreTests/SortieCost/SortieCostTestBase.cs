@@ -57,6 +57,8 @@ public abstract class SortieCostTestBase
 			{
 				sortie.FleetAfterSortieData = null;
 			}
+
+			apiFiles = apiFiles.Where(f => f.SortieRecordId is not null).ToList();
 		}
 
 		await db.AddRangeAsync(sortieRecords);

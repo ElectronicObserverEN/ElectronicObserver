@@ -9,6 +9,8 @@ using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 
@@ -94,7 +96,9 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 			return SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost;
 		}
 
-		SortieCostModel airBaseSupplyCost = TryGetAirBaseSupplyCostFromDatabase(airBases) ?? new();
+		SortieCostModel? airBaseSupplyCost = TryGetAirBaseSupplyCostFromDatabase(airBases);
+
+		airBaseSupplyCost ??= CalculateAirBaseSupplyCost();
 
 		SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost = airBaseSupplyCost;
 		Db.Sorties.Update(SortieRecord);
@@ -102,6 +106,79 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 
 		return SortieRecord.CalculatedSortieCost.TotalAirBaseSupplyCost;
 	}
+
+	private SortieCostModel CalculateAirBaseSupplyCost()
+	{
+		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(Db, SortieRecord);
+
+		if (SortieDetails is null) return new();
+
+		int aircraftLoss = GetAircraftLossFromAirBattles(SortieDetails.Nodes);
+
+		if (SortieDetails.Nodes.Any(n => n.AirBaseRaid is not null))
+		{
+			aircraftLoss += GetAircraftLossFromRaid(SortieDetails);
+		}
+
+		return AirBaseResupplyCost(aircraftLoss);
+	}
+
+	/// <summary>
+	/// Number of aircraft lost due to the base getting damaged.
+	/// </summary>
+	private static int GetAircraftLossFromRaid(SortieDetailViewModel sortieDetails)
+	{
+		IEnumerable<int> aircraftBeforeSortie = sortieDetails.FleetsBeforeSortie.AirBases
+			.Zip(sortieDetails.StrikePoints, (ab, sp) => (AirBase: ab, StrikePoints: sp))
+			.Where(t => t.StrikePoints is not null)
+			.Select(t => t.AirBase)
+			.Select(a => a.Squadrons.Values.Sum(s => s.AircraftCurrent));
+
+		IEnumerable<int>? aircraftInBattle = sortieDetails.Nodes
+			.SelectMany(n => n.AllPhases)
+			.OfType<PhaseBaseAirAttack>()
+			.FirstOrDefault()
+			?.Units
+			.DistinctBy(u => u.AirBaseId)
+			.Select(u => u.Stage1FCount);
+
+		if (aircraftInBattle is null) return 0;
+
+		int aircraftLostInRaid = aircraftBeforeSortie
+			.Zip(aircraftInBattle, (s, b) => s - b)
+			.Sum();
+
+		// can't lose more than 4 aircraft per air base in a raid
+		// a squadron can't go under 1 aircraft as a result of an air raid
+		int maxAircraftLossInRaid = sortieDetails.FleetsBeforeSortie.AirBases
+			.Select(a => a.Squadrons.Values)
+			.Select(c => c.Sum(s => Math.Max(0, s.AircraftCurrent - 1)))
+			.Sum(c => Math.Min(4, c));
+
+		if (aircraftLostInRaid > maxAircraftLossInRaid)
+		{
+			// todo: log or something, more tests would be good
+			return 0;
+		}
+
+		return aircraftLostInRaid;
+	}
+
+	private static int GetAircraftLossFromAirBattles(IEnumerable<SortieNode> nodes) => nodes
+		.SelectMany(n => n.AllPhases)
+		.Sum(p => p switch
+		{
+			PhaseBaseAirRaid r => r.Stage1FLostcount + r.Stage2FLostcount,
+			PhaseBaseAirAttack r => r.Units
+				.Select((u, i) => (i % 2) switch
+				{
+					1 => u.Stage1FLostcount + u.Stage2FLostcount,
+					_ => 0,
+				})
+				.Sum(),
+
+			_ => 0,
+		});
 
 	private SortieCostModel? TryGetAirBaseSupplyCostFromDatabase(List<IBaseAirCorpsData> airBases)
 	{
@@ -162,12 +239,14 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 				null => 0,
 			});
 
-		return new()
-		{
-			Fuel = 3 * aircraftLost,
-			Ammo = 5 * aircraftLost,
-		};
+		return AirBaseResupplyCost(aircraftLost);
 	}
+
+	private static SortieCostModel AirBaseResupplyCost(int aircraftLost) => new()
+	{
+		Fuel = 3 * aircraftLost,
+		Bauxite = 5 * aircraftLost,
+	};
 
 	private static bool AreIdentical(List<IBaseAirCorpsData> airBases, List<ApiAirBase> airBaseStates)
 	{

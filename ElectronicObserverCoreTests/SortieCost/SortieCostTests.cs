@@ -20,6 +20,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest08")]
 	[InlineData("SortieCostTest09")]
 	[InlineData("SortieCostTest10")]
+	[InlineData("SortieCostTest11")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -59,8 +60,8 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel firstSortieFleetCost = new() { Fuel = 368, Ammo = 511, Bauxite = 150 };
 		SortieCostModel airBase1SortieCost = new() { Fuel = 108, Ammo = 48 };
 		SortieCostModel airBase2SortieCost = new() { Fuel = 99, Ammo = 47 };
-		SortieCostModel airBase1ResupplyCost = new() { Fuel = 78, Ammo = 130 };
-		SortieCostModel airBase2ResupplyCost = new() { Fuel = 81, Ammo = 135 };
+		SortieCostModel airBase1ResupplyCost = new() { Fuel = 78, Bauxite = 130 };
+		SortieCostModel airBase2ResupplyCost = new() { Fuel = 81, Bauxite = 135 };
 
 		Assert.Equal(firstSortieFleetCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(airBase1SortieCost + airBase2SortieCost, sortieCosts[0].TotalAirBaseSortieCost);
@@ -106,10 +107,12 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel escortResupplyCost = new() { Fuel = 57, Ammo = 43 };
 		SortieCostModel nodeSupportResupplyCost = new() { Fuel = 99, Ammo = 81, Bauxite = 20 };
 		SortieCostModel bossSupportResupplyCost = new() { Fuel = 176, Ammo = 406 };
+		SortieCostModel airBaseSortieCost = new() { Fuel = 219, Ammo = 113 };
 
 		Assert.Equal(mainResupplyCost + escortResupplyCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(nodeSupportResupplyCost, sortieCosts[0].NodeSupportSupplyCost);
 		Assert.Equal(bossSupportResupplyCost, sortieCosts[0].BossSupportSupplyCost);
+		Assert.Equal(airBaseSortieCost, sortieCosts[0].TotalAirBaseSortieCost);
 	}
 
 	[Fact(DisplayName = "single vs combined, night S rank")]
@@ -170,5 +173,17 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel airBaseSortieCost = new();
 
 		Assert.Equal(airBaseSortieCost, sortieCosts[0].TotalAirBaseSortieCost);
+	}
+
+	[Fact(DisplayName = "planes lost in air base raid")]
+	public async Task SortieCostTest11()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest11", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel airBaseSupplyCost = new() { Fuel = 72, Bauxite = 120 };
+
+		Assert.Equal(airBaseSupplyCost, sortieCosts[0].TotalAirBaseSupplyCost);
 	}
 }
