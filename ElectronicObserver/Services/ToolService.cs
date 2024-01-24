@@ -681,7 +681,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 				World = s.World,
 				Map = s.Map,
 				ApiFiles = s.ApiFiles
-					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
+					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start" or "api_req_map/start_air_base")
 					.ToList(),
 				FleetData = s.FleetData,
 				FleetAfterSortieData = s.FleetAfterSortieData,
