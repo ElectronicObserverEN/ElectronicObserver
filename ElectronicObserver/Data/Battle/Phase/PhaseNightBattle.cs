@@ -77,68 +77,48 @@ public class PhaseNightBattle : PhaseBase
 
 	public override void EmulateBattle(int[] hps, int[] damages)
 	{
-
 		if (!IsAvailable) return;
-
 
 		foreach (var atk in Attacks)
 		{
-			switch ((NightAttackKind)atk.AttackType)
+			if (atk.AttackTypeTyped.IsSpecialAttack())
 			{
-				case NightAttackKind.SpecialNelson:
-					for (int i = 0; i < atk.Defenders.Count; i++)
+				List<int> attackers = atk.AttackTypeTyped switch
+				{
+					NightAttackKind.CutinZuiun => Enumerable.Repeat(atk.Attacker.Index, 2).ToList(),
+					_ => atk.AttackTypeTyped.SpecialAttackIndexes(),
+				};
+
+				int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
+					.Count(f => f.IsInSortie);
+
+				for (int i = 0; i < atk.Defenders.Count; i++)
+				{
+					List<FleetData> fleets = KCDatabase.Instance.Fleet.Fleets.Values
+						.Where(f => f.IsInSortie)
+						.ToList();
+
+					int attackerIndex = attackers[i];
+
+					BattleIndex comboatk = fleets.Count switch
 					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i * 2);       // #1, #3, #5
-						BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
-						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
-					}
-					break;
+						2 => new(attackerIndex + 6, true, true),
+						_ => new BattleIndex(atk.Attacker.Side, attackerIndex)
+					};
 
-				case NightAttackKind.SpecialNagato:
-				case NightAttackKind.SpecialMutsu:
-				case NightAttackKind.SpecialYamato2Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i / 2);       // #1, #1, #2
-						BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
-						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
-					}
-					break;
-
-				case NightAttackKind.SpecialColorado:
-				case NightAttackKind.SpecialKongou:
-				case NightAttackKind.SpecialYamato3Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						List<FleetData> fleets = KCDatabase.Instance.Fleet.Fleets.Values
-							.Where(f => f.IsInSortie)
-							.ToList();
-
-						BattleIndex comboatk = fleets.Count switch
-						{
-							// hack: Kongou night special attack index is messed up for combined fleet vs combined fleet
-							// todo: need to check what happens in case only 1 of the fleets is combined
-							// note: when testing via api replay you need a combined fleet in-game, else fleet data (count) won't be correct
-							2 when i < 6 => new(i + 6, true, true),
-							_ => new BattleIndex(atk.Attacker.Side, i)
-						};
-
-						BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
-						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
-					}
-					break;
-
-				default:
-					foreach (var defs in atk.Defenders.GroupBy(d => d.Defender))
-					{
-						BattleDetails.Add(new BattleNightDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[defs.Key]));
-						AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
-					}
-					damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
-					break;
+					BattleDetails.Add(new BattleNightDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[atk.Defenders[i].Defender]));
+					AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+					damages[comboatk] += atk.Defenders[i].Damage;
+				}
+			}
+			else 
+			{
+				foreach (var defs in atk.Defenders.GroupBy(d => d.Defender))
+				{
+					BattleDetails.Add(new BattleNightDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, atk.NightAirAttackFlag, hps[defs.Key]));
+					AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
+				}
+				damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
 			}
 		}
 
@@ -149,9 +129,15 @@ public class PhaseNightBattle : PhaseBase
 	public class PhaseNightBattleAttack
 	{
 		public BattleIndex Attacker;
+
 		public int AttackType;
+
+		public NightAttackKind AttackTypeTyped => (NightAttackKind)AttackType;
+
 		public bool NightAirAttackFlag;
+
 		public List<PhaseNightBattleDefender> Defenders;
+
 		public int[] EquipmentIDs;
 
 		public PhaseNightBattleAttack()
