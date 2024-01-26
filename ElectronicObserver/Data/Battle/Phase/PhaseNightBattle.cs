@@ -74,7 +74,6 @@ public class PhaseNightBattle : PhaseBase
 
 	private string ShellingDataName => PhaseID == 0 ? "api_hougeki" : ("api_n_hougeki" + PhaseID);
 
-
 	public override void EmulateBattle(int[] hps, int[] damages)
 	{
 		if (!IsAvailable) return;
@@ -94,13 +93,9 @@ public class PhaseNightBattle : PhaseBase
 
 				for (int i = 0; i < atk.Defenders.Count; i++)
 				{
-					List<FleetData> fleets = KCDatabase.Instance.Fleet.Fleets.Values
-						.Where(f => f.IsInSortie)
-						.ToList();
-
 					int attackerIndex = attackers[i];
 
-					BattleIndex comboatk = fleets.Count switch
+					BattleIndex comboatk = fleetCount switch
 					{
 						2 => new(attackerIndex + 6, true, true),
 						_ => new BattleIndex(atk.Attacker.Side, attackerIndex)
