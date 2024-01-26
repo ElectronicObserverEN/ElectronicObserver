@@ -347,7 +347,7 @@ public class Yamato12SpecialAttackTests
 				{
 					SlotInstance = new List<IEquipmentData?>()
 					{
-						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShell]),
 						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
 					}
 				},
@@ -355,7 +355,7 @@ public class Yamato12SpecialAttackTests
 				{
 					SlotInstance = new List<IEquipmentData?>()
 					{
-						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShell]),
 						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_15mDuplexRangefinderKai_Type21RadarKaiNi_SkilledFDC]),
 					}
 				},
