@@ -11,19 +11,21 @@ namespace ElectronicObserver.Data.Battle.Phase;
 /// </summary>
 public class PhaseShelling : PhaseBase
 {
-
 	protected readonly int PhaseID;
 	protected readonly string Suffix;
 
-
 	public List<PhaseShellingAttack> Attacks { get; private set; }
-
 
 	public class PhaseShellingAttack
 	{
 		public BattleIndex Attacker;
+
 		public int AttackType;
+
+		public DayAttackKind AttackTypeTyped => (DayAttackKind)AttackType;
+
 		public List<PhaseShellingDefender> Defenders;
+
 		public int[] EquipmentIDs;
 
 		public PhaseShellingAttack()
@@ -49,8 +51,6 @@ public class PhaseShelling : PhaseBase
 				GuardsFlagship ? " (guard)" : "");
 		}
 	}
-
-
 
 	public PhaseShelling(BattleData data, string title, int phaseID, string suffix)
 		: base(data, title)
@@ -99,72 +99,38 @@ public class PhaseShelling : PhaseBase
 
 			Attacks.Add(attack);
 		}
-
 	}
-
 
 	public override bool IsAvailable => (int)RawData.api_hourai_flag[PhaseID - 1] != 0;
 
-
 	public virtual dynamic ShellingData => RawData["api_hougeki" + Suffix];
-
 
 	public override void EmulateBattle(int[] hps, int[] damages)
 	{
+		if (!IsAvailable) return;
 
-		if (!IsAvailable)
-			return;
-
-
-		foreach (var atk in Attacks)
+		foreach (PhaseShellingAttack atk in Attacks)
 		{
-			switch ((DayAttackKind)atk.AttackType)
+			if (atk.AttackTypeTyped.IsSpecialAttack())
 			{
-				case DayAttackKind.SpecialNelson:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i * 2);       // #1, #3, #5
-						BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
-						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
-					}
-					break;
+				List<int> attackers = atk.AttackTypeTyped.SpecialAttackIndexes();
 
-				case DayAttackKind.SpecialNagato:
-				case DayAttackKind.SpecialMutsu:
-				case DayAttackKind.SpecialYamato2Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i / 2);       // #1, #1, #2
-						BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
-						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
-					}
-					break;
-
-				case DayAttackKind.SpecialColorado:
-				case DayAttackKind.SpecialKongo:
-				case DayAttackKind.SpecialYamato3Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						var comboatk = new BattleIndex(atk.Attacker.Side, i);       // #1, #2 (, #3)
-						BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
-						AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-						damages[comboatk] += atk.Defenders[i].Damage;
-					}
-					break;
-
-				default:
-					foreach (var defs in atk.Defenders.GroupBy(d => d.Defender))
-					{
-						BattleDetails.Add(new BattleDayDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, hps[defs.Key]));
-						AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
-					}
-					damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
-					break;
+				for (int i = 0; i < atk.Defenders.Count; i++)
+				{
+					var comboatk = new BattleIndex(atk.Attacker.Side, attackers[i]);
+					BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
+					AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+					damages[comboatk] += atk.Defenders[i].Damage;
+				}
+			}
+			else {
+				foreach (var defs in atk.Defenders.GroupBy(d => d.Defender))
+				{
+					BattleDetails.Add(new BattleDayDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, hps[defs.Key]));
+					AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
+				}
+				damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
 			}
 		}
-
 	}
-
 }
