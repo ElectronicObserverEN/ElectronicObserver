@@ -25,6 +25,7 @@ public abstract class SortieNode(
 	public int Cell { get; } = cell;
 	public BattleBaseAirRaid? AirBaseRaid { get; private set; }
 	public ApiHappening? Happening { get; set; }
+	public List<ApiItemget>? Items { get; set; }
 	public ApiOffshoreSupply? ApiOffshoreSupply { get; set; }
 
 	public CellType ApiColorNo { get; set; } = colorNo;

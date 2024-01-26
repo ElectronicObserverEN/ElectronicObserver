@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
@@ -31,6 +33,10 @@ public class SortieCostViewModel
 	public SortieCostModel TotalRepairCost { get; }
 	public SortieCostModel TotalAirBaseSortieCost { get; }
 	public SortieCostModel TotalAirBaseSupplyCost { get; }
+
+	public SortieCostModel ResourceGain { get; }
+	public SortieCostModel SinkingResourceGain { get; }
+
 	public SortieCostModel TotalCost { get; }
 
 	public SortieCostViewModel(ElectronicObserverContext db, ToolService toolService,
@@ -69,6 +75,51 @@ public class SortieCostViewModel
 		TotalAirBaseSortieCost = airBaseCostCalculator.AirBaseSortieCost(AirBases);
 		TotalAirBaseSupplyCost = airBaseCostCalculator.AirBaseSupplyCost(AirBases);
 
+		ResourceGain = GetResourceGain(db, toolService, sortie);
+		SinkingResourceGain = new();
+
 		TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
+		TotalCost -= ResourceGain - SinkingResourceGain;
 	}
+
+	private static SortieCostModel GetResourceGain(ElectronicObserverContext db, ToolService toolService,
+		SortieRecordViewModel sortie)
+	{
+		SortieDetailViewModel? sortieDetails = toolService.GenerateSortieDetailViewModel(db, sortie.Model);
+
+		if (sortieDetails is null) return new();
+
+		return sortieDetails.Nodes
+			.Where(n => n.Items is not null)
+			.SelectMany(n => n.Items!)
+			.Select(i => GetItemId(i) switch
+			{
+				UseItemId.Fuel => new SortieCostModel { Fuel = i.ApiGetcount },
+				UseItemId.Ammo => new SortieCostModel { Ammo = i.ApiGetcount },
+				UseItemId.Steel => new SortieCostModel { Steel = i.ApiGetcount },
+				UseItemId.Bauxite => new SortieCostModel { Bauxite = i.ApiGetcount },
+
+				// todo: other items
+				_ => new(),
+			})
+			.Sum();
+	}
+
+	private static UseItemId GetItemId(ApiItemget item) => item.ApiUsemst switch
+	{
+		4 => item.ApiId switch
+		{
+			1 => UseItemId.Fuel,
+			2 => UseItemId.Ammo,
+			3 => UseItemId.Steel,
+			4 => UseItemId.Bauxite,
+			5 => UseItemId.InstantConstruction,
+			6 => UseItemId.InstantRepair,
+			7 => UseItemId.DevelopmentMaterial,
+			8 => UseItemId.ImproveMaterial,
+			_ => UseItemId.Unknown,
+		},
+
+		_ => (UseItemId)item.ApiUsemst,
+	};
 }

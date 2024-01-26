@@ -21,6 +21,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest09")]
 	[InlineData("SortieCostTest10")]
 	[InlineData("SortieCostTest11")]
+	[InlineData("SortieCostTest12")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -36,6 +37,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel firstSortieFleetCost = new() { Fuel = 33, Ammo = 31 };
 		SortieCostModel secondSortieFleetCost = new() { Fuel = 27, Ammo = 32 };
 		SortieCostModel airBaseSortieCost = new() { Fuel = 8, Ammo = 6 };
+		SortieCostModel resourceGain = new() { Fuel = 86, Bauxite = 64 };
 
 		Assert.Equal(firstSortieFleetCost, sortieCosts[0].SortieFleetSupplyCost);
 		Assert.Equal(secondSortieFleetCost, sortieCosts[1].SortieFleetSupplyCost);
@@ -46,8 +48,8 @@ public sealed class SortieCostTests : SortieCostTestBase
 		Assert.Equal(new(), sortieCosts[0].TotalAirBaseSupplyCost);
 		Assert.Equal(new(), sortieCosts[1].TotalAirBaseSupplyCost);
 
-		Assert.Equal(firstSortieFleetCost + airBaseSortieCost, sortieCosts[0].TotalCost);
-		Assert.Equal(secondSortieFleetCost + airBaseSortieCost, sortieCosts[1].TotalCost);
+		Assert.Equal(firstSortieFleetCost + airBaseSortieCost - resourceGain, sortieCosts[0].TotalCost);
+		Assert.Equal(secondSortieFleetCost + airBaseSortieCost - resourceGain, sortieCosts[1].TotalCost);
 	}
 
 	[Fact(DisplayName = "6-5 with AB")]
@@ -185,5 +187,17 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel airBaseSupplyCost = new() { Fuel = 72, Bauxite = 120 };
 
 		Assert.Equal(airBaseSupplyCost, sortieCosts[0].TotalAirBaseSupplyCost);
+	}
+
+	[Fact(DisplayName = "resource gain")]
+	public async Task SortieCostTest12()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest12", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel resourceGain = new() { Fuel = 60, Ammo = 15 };
+
+		Assert.Equal(resourceGain, sortieCosts[0].ResourceGain);
 	}
 }

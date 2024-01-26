@@ -14,4 +14,12 @@ public record SortieCostModel
 		Steel = a.Steel + b.Steel,
 		Bauxite = a.Bauxite + b.Bauxite,
 	};
+
+	public static SortieCostModel operator -(SortieCostModel a, SortieCostModel b) => new()
+	{
+		Fuel = a.Fuel - b.Fuel,
+		Ammo = a.Ammo - b.Ammo,
+		Steel = a.Steel - b.Steel,
+		Bauxite = a.Bauxite - b.Bauxite,
+	};
 }

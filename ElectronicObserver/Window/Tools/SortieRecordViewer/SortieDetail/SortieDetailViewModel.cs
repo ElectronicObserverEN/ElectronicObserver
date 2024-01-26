@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -133,6 +134,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		int eventId = 0;
 		int eventKind = 0;
 		ApiHappening? happening = null;
+		List<ApiItemget>? items = null;
 		ApiOffshoreSupply? offshoreSupply = null;
 
 		foreach ((object apiData, DateTime time) in ApiDataCache)
@@ -165,6 +167,19 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				eventId = progress.ApiEventId;
 				eventKind = progress.ApiEventKind;
 				happening = progress.ApiHappening;
+
+				if (apiData is ApiReqMapNextResponse next)
+				{
+					items = next.ApiItemget switch
+					{
+						JsonElement { ValueKind: JsonValueKind.Array } i
+							=> i.Deserialize<List<ApiItemget>>(),
+
+						JsonElement i => [i.Deserialize<ApiItemget>()],
+
+						_ => [],
+					};
+				}
 			}
 
 			offshoreSupply = apiData switch
@@ -220,6 +235,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		}
 
 		node.Happening = happening;
+		node.Items = items;
 		node.ApiOffshoreSupply = offshoreSupply;
 
 		if (node is BattleNode b)
