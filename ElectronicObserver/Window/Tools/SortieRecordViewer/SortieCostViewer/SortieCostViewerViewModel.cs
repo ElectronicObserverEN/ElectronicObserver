@@ -65,7 +65,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 
 		SortieCostSummary = SortieCosts
 			.Select(c => c.TotalCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+			.Sum();
 
 		Progress = null;
 	}

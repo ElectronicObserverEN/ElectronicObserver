@@ -42,7 +42,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 			.Where(t => t.StrikePoints is not null)
 			.Select(t => t.Corps)
 			.Select(AirBaseSortieCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+			.Sum();
 
 		Db.Sorties.Update(SortieRecord);
 		Db.SaveChanges();
@@ -54,7 +54,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 		=> airBase.Squadrons.Values
 			.Where(s => s.EquipmentInstance is not null)
 			.Select(AirBaseSquadronCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+			.Sum();
 
 	private static SortieCostModel AirBaseSquadronCost(IBaseAirCorpsSquadron squadron) =>
 		squadron.EquipmentInstance switch

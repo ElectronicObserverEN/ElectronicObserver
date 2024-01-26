@@ -54,7 +54,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	private static SortieCostModel SupplyCost(IEnumerable<IShipData?> before, IEnumerable<IShipData?> after)
 		=> before
 			.Zip(after, SupplyCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+			.Sum();
 
 	private static SortieCostModel SupplyCost(IShipData? before, IShipData? after) => (before, after) switch
 	{

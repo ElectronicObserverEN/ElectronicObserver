@@ -50,7 +50,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 	private static SortieCostModel RepairCost(IEnumerable<IShipData?> before, IEnumerable<IShipData?> after) 
 		=> before
 			.Zip(after, RepairCost)
-			.Aggregate(new SortieCostModel(), (a, b) => a + b);
+			.Sum();
 
 	private static SortieCostModel RepairCost(IShipData? before, IShipData? after) => (before, after) switch
 	{
