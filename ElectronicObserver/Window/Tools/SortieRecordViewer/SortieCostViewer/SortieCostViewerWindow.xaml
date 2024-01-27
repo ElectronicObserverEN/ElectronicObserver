@@ -76,7 +76,11 @@
 
 			<DataGrid.RowDetailsTemplate>
 				<DataTemplate DataType="{x:Type local:SortieCostViewModel}">
-					<UniformGrid Columns="2">
+					<UniformGrid
+						Margin="2"
+						HorizontalAlignment="Left"
+						Columns="2"
+						>
 						<TextBlock Text="{Binding DataContext.Translation.SortieSupply, Source={StaticResource Proxy}}" />
 						<ContentControl Content="{Binding SortieFleetSupplyCost}" />
 
