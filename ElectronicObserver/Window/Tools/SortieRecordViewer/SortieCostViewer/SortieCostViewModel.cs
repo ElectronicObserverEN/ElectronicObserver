@@ -117,6 +117,7 @@ public class SortieCostViewModel
 		return sortieDetails.Nodes
 			.Where(n => n.Items is not null)
 			.SelectMany(n => n.Items!)
+			.OfType<ApiItemget>()
 			.Select(i => GetItemId(i) switch
 			{
 				UseItemId.Fuel => new SortieCostModel { Fuel = i.ApiGetcount },
@@ -130,10 +131,8 @@ public class SortieCostViewModel
 			.Sum();
 	}
 
-	private static UseItemId GetItemId(ApiItemget? item) => item?.ApiUsemst switch
+	private static UseItemId GetItemId(ApiItemget item) => item.ApiUsemst switch
 	{
-		null => UseItemId.Unknown,
-
 		4 => item.ApiId switch
 		{
 			1 => UseItemId.Fuel,
