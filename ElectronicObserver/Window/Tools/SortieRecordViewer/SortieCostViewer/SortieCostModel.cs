@@ -2,6 +2,8 @@
 
 public record SortieCostModel
 {
+	public static SortieCostModel Zero { get; } = new();
+
 	public int Fuel { get; init; }
 	public int Ammo { get; init; }
 	public int Steel { get; init; }

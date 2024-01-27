@@ -35,7 +35,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 
 		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(Db, SortieRecord);
 
-		if (SortieDetails is null) return new();
+		if (SortieDetails is null) return SortieCostModel.Zero;
 
 		SortieRecord.CalculatedSortieCost.TotalAirBaseSortieCost = airBases
 			.Zip(SortieDetails.StrikePoints, (corps, points) => (Corps: corps, StrikePoints: points))
@@ -59,7 +59,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 	private static SortieCostModel AirBaseSquadronCost(IBaseAirCorpsSquadron squadron) =>
 		squadron.EquipmentInstance switch
 		{
-			null => new(),
+			null => SortieCostModel.Zero,
 			_ => new()
 			{
 				Fuel = GetAirBasePlaneCostCategory(squadron.EquipmentInstance) switch
@@ -111,7 +111,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 	{
 		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(Db, SortieRecord);
 
-		if (SortieDetails is null) return new();
+		if (SortieDetails is null) return SortieCostModel.Zero;
 
 		int aircraftLoss = GetAircraftLossFromAirBattles(SortieDetails.Nodes);
 
@@ -225,7 +225,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 	{
 		if (!AreIdentical(airBases, airBaseStates)) return null;
 
-		if (airBases.Count is 0) return new();
+		if (airBases.Count is 0) return SortieCostModel.Zero;
 
 		int world = airBases[0].MapAreaID;
 

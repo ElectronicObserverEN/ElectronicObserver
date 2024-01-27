@@ -31,8 +31,8 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 		IEnumerable<IShipData?>? mainShipsBefore = fleetsBeforeSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
 		IEnumerable<IShipData?>? mainShipsAfter = fleetsAfterSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
 
-		if (mainShipsBefore is null) return new();
-		if (mainShipsAfter is null) return new();
+		if (mainShipsBefore is null) return SortieCostModel.Zero;
+		if (mainShipsAfter is null) return SortieCostModel.Zero;
 
 		SortieCostModel cost = RepairCost(mainShipsBefore, mainShipsAfter);
 
@@ -56,7 +56,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 	{
 		(not null, not null) => RepairCost(before, before.HPCurrent - after.HPCurrent),
 
-		_ => new(),
+		_ => SortieCostModel.Zero,
 	};
 
 	private static SortieCostModel RepairCost(IShipData ship, int damage) => new()
@@ -74,7 +74,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(db, model);
 
-		if (SortieDetails is null) return new();
+		if (SortieDetails is null) return SortieCostModel.Zero;
 
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
 		BattleFleets fleetsAfter = fleetsBefore.Clone();
@@ -88,7 +88,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 			.LastOrDefault()
 			?.SortieShips();
 
-		if (membersAfterFinalBattle is null) return new();
+		if (membersAfterFinalBattle is null) return SortieCostModel.Zero;
 
 		foreach ((IShipData? before, IShipData? after) in shipsAfter.Zip(membersAfterFinalBattle))
 		{

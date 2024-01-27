@@ -87,9 +87,9 @@ public class SortieCostViewModel
 	{
 		SortieDetailViewModel? sortieDetails = toolService.GenerateSortieDetailViewModel(db, sortie.Model);
 
-		if (sortieDetails is null) return new();
+		if (sortieDetails is null) return SortieCostModel.Zero;
 
-		SortieCostModel sinkResourceGain = new();
+		SortieCostModel sinkResourceGain = SortieCostModel.Zero;
 
 		foreach (BattleNode battle in sortieDetails.Nodes.OfType<BattleNode>())
 		{
@@ -112,7 +112,7 @@ public class SortieCostViewModel
 	{
 		SortieDetailViewModel? sortieDetails = toolService.GenerateSortieDetailViewModel(db, sortie.Model);
 
-		if (sortieDetails is null) return new();
+		if (sortieDetails is null) return SortieCostModel.Zero;
 
 		return sortieDetails.Nodes
 			.Where(n => n.Items is not null)
@@ -126,7 +126,7 @@ public class SortieCostViewModel
 				UseItemId.Bauxite => new SortieCostModel { Bauxite = i.ApiGetcount },
 
 				// todo: other items
-				_ => new(),
+				_ => SortieCostModel.Zero,
 			})
 			.Sum();
 	}

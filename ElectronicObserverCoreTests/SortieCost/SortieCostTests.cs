@@ -46,8 +46,8 @@ public sealed class SortieCostTests : SortieCostTestBase
 		Assert.Equal(airBaseSortieCost, sortieCosts[0].TotalAirBaseSortieCost);
 		Assert.Equal(airBaseSortieCost, sortieCosts[1].TotalAirBaseSortieCost);
 
-		Assert.Equal(new(), sortieCosts[0].TotalAirBaseSupplyCost);
-		Assert.Equal(new(), sortieCosts[1].TotalAirBaseSupplyCost);
+		Assert.Equal(SortieCostModel.Zero, sortieCosts[0].TotalAirBaseSupplyCost);
+		Assert.Equal(SortieCostModel.Zero, sortieCosts[1].TotalAirBaseSupplyCost);
 
 		Assert.Equal(firstSortieFleetCost + airBaseSortieCost - resourceGain, sortieCosts[0].TotalCost);
 		Assert.Equal(secondSortieFleetCost + airBaseSortieCost - resourceGain, sortieCosts[1].TotalCost);
@@ -149,9 +149,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 
 		Assert.Single(sortieCosts);
 
-		SortieCostModel repairCost = new();
-
-		Assert.Equal(repairCost, sortieCosts[0].TotalRepairCost);
+		Assert.Equal(SortieCostModel.Zero, sortieCosts[0].TotalRepairCost);
 	}
 
 	[Fact(DisplayName = "All subs boss consumption is 0.2, 0.2")]
@@ -173,9 +171,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 
 		Assert.Single(sortieCosts);
 
-		SortieCostModel airBaseSortieCost = new();
-
-		Assert.Equal(airBaseSortieCost, sortieCosts[0].TotalAirBaseSortieCost);
+		Assert.Equal(SortieCostModel.Zero, sortieCosts[0].TotalAirBaseSortieCost);
 	}
 
 	[Fact(DisplayName = "planes lost in air base raid")]
@@ -212,7 +208,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel resourceGain = new() { Fuel = 128, Bauxite = 120 };
 		SortieCostModel sinkResourceGain = new() { Fuel = 37, Ammo = 65 };
 
-		Assert.Equal(new(), sortieCosts[0].TotalRepairCost);
+		Assert.Equal(SortieCostModel.Zero, sortieCosts[0].TotalRepairCost);
 		Assert.Equal(resourceGain, sortieCosts[0].ResourceGain);
 		Assert.Equal(sinkResourceGain, sortieCosts[0].SinkingResourceGain);
 	}

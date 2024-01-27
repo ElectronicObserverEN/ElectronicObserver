@@ -35,8 +35,8 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		IEnumerable<IShipData?>? mainShipsBefore = fleetsBeforeSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
 		IEnumerable<IShipData?>? mainShipsAfter = fleetsAfterSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
 
-		if (mainShipsBefore is null) return new();
-		if (mainShipsAfter is null) return new();
+		if (mainShipsBefore is null) return SortieCostModel.Zero;
+		if (mainShipsAfter is null) return SortieCostModel.Zero;
 
 		SortieCostModel cost = SupplyCost(mainShipsBefore, mainShipsAfter);
 
@@ -65,7 +65,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			Bauxite = (before.Aircraft.Sum() - after.Aircraft.Sum()) * 5,
 		},
 
-		_ => new(),
+		_ => SortieCostModel.Zero,
 	};
 
 	private static int SupplyCost(IShipData ship, int max, int before, int after) => (before == max) switch
@@ -84,7 +84,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	public SortieCostModel NodeSupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
 		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
 	{
-		if (sortieFleetId <= 0) return new();
+		if (sortieFleetId <= 0) return SortieCostModel.Zero;
 
 		if (Model.CalculatedSortieCost.NodeSupportSupplyCost is not null)
 		{
@@ -104,7 +104,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	public SortieCostModel BossSupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
 		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
 	{
-		if (sortieFleetId <= 0) return new();
+		if (sortieFleetId <= 0) return SortieCostModel.Zero;
 
 		if (Model.CalculatedSortieCost.BossSupportSupplyCost is not null)
 		{
@@ -124,21 +124,21 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	private SortieCostModel SupportSupplyCost(List<IFleetData?> fleetsBeforeSortie,
 		List<IFleetData?>? fleetsAfterSortie, int sortieFleetId)
 	{
-		if (fleetsBeforeSortie[sortieFleetId - 1] is not IFleetData fleet) return new();
-		if (fleet.MembersWithoutEscaped is null) return new();
+		if (fleetsBeforeSortie[sortieFleetId - 1] is not IFleetData fleet) return SortieCostModel.Zero;
+		if (fleet.MembersWithoutEscaped is null) return SortieCostModel.Zero;
 
 		if (fleetsAfterSortie is not null)
 		{
 			IEnumerable<IShipData?>? shipsBefore = fleet.MembersWithoutEscaped;
 			IEnumerable<IShipData?>? shipsAfter = fleetsAfterSortie[sortieFleetId - 1]?.MembersWithoutEscaped;
 
-			if (shipsAfter is null) return new();
+			if (shipsAfter is null) return SortieCostModel.Zero;
 
 			SortieCostModel cost = SupplyCost(shipsBefore, shipsAfter);
 
 			// in come cases the support fleet data isn't recorded correctly
 			// no idea why
-			if (cost != new SortieCostModel())
+			if (cost != SortieCostModel.Zero)
 			{
 				return cost;
 			}
@@ -194,7 +194,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 
 		SortieDetails ??= ToolService.GenerateSortieDetailViewModel(db, model);
 
-		if (SortieDetails is null) return new();
+		if (SortieDetails is null) return SortieCostModel.Zero;
 
 		model.CalculatedSortieCost.SortieFleetSupplyCost = CalculateSupplyCost(SortieDetails);
 
