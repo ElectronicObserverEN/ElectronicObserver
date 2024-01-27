@@ -134,7 +134,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		int eventId = 0;
 		int eventKind = 0;
 		ApiHappening? happening = null;
-		List<ApiItemget>? items = null;
+		List<ApiItemget?>? items = null;
 		ApiOffshoreSupply? offshoreSupply = null;
 
 		foreach ((object apiData, DateTime time) in ApiDataCache)
@@ -173,9 +173,9 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 					items = next.ApiItemget switch
 					{
 						JsonElement { ValueKind: JsonValueKind.Array } i
-							=> i.Deserialize<List<ApiItemget>>(),
+							=> i.Deserialize<List<ApiItemget?>>(),
 
-						JsonElement i => [i.Deserialize<ApiItemget>()],
+						JsonElement i => [i.Deserialize<ApiItemget?>()],
 
 						_ => [],
 					};

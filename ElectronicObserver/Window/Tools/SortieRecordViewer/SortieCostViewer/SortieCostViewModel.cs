@@ -130,8 +130,10 @@ public class SortieCostViewModel
 			.Sum();
 	}
 
-	private static UseItemId GetItemId(ApiItemget item) => item.ApiUsemst switch
+	private static UseItemId GetItemId(ApiItemget? item) => item?.ApiUsemst switch
 	{
+		null => UseItemId.Unknown,
+
 		4 => item.ApiId switch
 		{
 			1 => UseItemId.Fuel,
