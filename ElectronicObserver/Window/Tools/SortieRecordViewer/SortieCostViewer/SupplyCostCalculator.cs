@@ -292,6 +292,15 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			}
 		}
 
+		List<ShipId> finalFleet = details.Fleets
+			.SortieShips()
+			.OfType<IShipData>()
+			.Select(s => s.MasterShip.ShipId)
+			.ToList();
+
+		shipsBefore = shipsBefore.IntersectBy(finalFleet, s => s?.MasterShip.ShipId ?? ShipId.Unknown).ToList();
+		shipsAfter = shipsAfter.IntersectBy(finalFleet, s => s?.MasterShip.ShipId ?? ShipId.Unknown).ToList();
+
 		return SupplyCost(shipsBefore, shipsAfter) with
 		{
 			Bauxite = bauxite,
@@ -380,7 +389,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 		FleetType playerFleetType, FleetType? enemyFleetType, bool hasSecondBattle,
 		double ammoConsumptionModifier, ApiHappening? happening)
 	{
-		double specialAttackBonus = SpecialAttackBonus(attack, playerFleetType, enemyFleetType, 
+		double specialAttackBonus = SpecialAttackBonus(attack, playerFleetType, enemyFleetType,
 			hasSecondBattle, ammoConsumptionModifier);
 
 		int consumption = happening switch

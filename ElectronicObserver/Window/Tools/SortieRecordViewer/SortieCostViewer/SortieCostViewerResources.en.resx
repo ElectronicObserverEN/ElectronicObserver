@@ -141,4 +141,10 @@
   <data name="TotalSortieCost" xml:space="preserve">
     <value>Total sortie cost:</value>
   </data>
+  <data name="ResourceNodes" xml:space="preserve">
+    <value>Resource nodes</value>
+  </data>
+  <data name="Sinking" xml:space="preserve">
+    <value>Sinking</value>
+  </data>
 </root>

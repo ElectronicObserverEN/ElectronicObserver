@@ -5,6 +5,7 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 
@@ -76,10 +77,34 @@ public class SortieCostViewModel
 		TotalAirBaseSupplyCost = airBaseCostCalculator.AirBaseSupplyCost(AirBases);
 
 		ResourceGain = GetResourceGain(db, toolService, sortie);
-		SinkingResourceGain = new();
+		SinkingResourceGain = GetSinkingResourceGain(db, toolService, sortie);
 
 		TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
-		TotalCost -= ResourceGain - SinkingResourceGain;
+		TotalCost -= (ResourceGain + SinkingResourceGain);
+	}
+
+	private static SortieCostModel GetSinkingResourceGain(ElectronicObserverContext db, ToolService toolService, SortieRecordViewModel sortie)
+	{
+		SortieDetailViewModel? sortieDetails = toolService.GenerateSortieDetailViewModel(db, sortie.Model);
+
+		if (sortieDetails is null) return new();
+
+		SortieCostModel sinkResourceGain = new();
+
+		foreach (BattleNode battle in sortieDetails.Nodes.OfType<BattleNode>())
+		{
+			sinkResourceGain += battle.LastBattle.FleetsAfterBattle
+				.SortieShips()
+				.OfType<IShipData>()
+				.Where(s => s.HPCurrent <= 0)
+				.Select(s => new SortieCostModel
+				{
+					Fuel = s.Fuel,
+					Ammo = s.Ammo,
+				}).Sum();
+		}
+
+		return sinkResourceGain;
 	}
 
 	private static SortieCostModel GetResourceGain(ElectronicObserverContext db, ToolService toolService,

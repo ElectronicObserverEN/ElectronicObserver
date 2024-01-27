@@ -23,5 +23,8 @@ public class SortieCostViewerTranslationViewModel : TranslationBaseViewModel
 	public string AirBaseSortie => SortieCostViewerResources.AirBaseSortie;
 	public string AirBaseSupply => SortieCostViewerResources.AirBaseSupply;
 
+	public object ResourceGain => SortieCostViewerResources.ResourceNodes;
+	public object SinkingResourceGain => SortieCostViewerResources.Sinking;
+
 	public string TotalSortieCost => SortieCostViewerResources.TotalSortieCost;
 }

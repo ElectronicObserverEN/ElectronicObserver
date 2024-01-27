@@ -121,4 +121,10 @@
   <data name="TotalSortieCost" xml:space="preserve">
     <value>総出撃コスト：</value>
   </data>
+  <data name="ResourceNodes" xml:space="preserve">
+    <value>アイテム獲得</value>
+  </data>
+  <data name="Sinking" xml:space="preserve">
+    <value>撃沈</value>
+  </data>
 </root>

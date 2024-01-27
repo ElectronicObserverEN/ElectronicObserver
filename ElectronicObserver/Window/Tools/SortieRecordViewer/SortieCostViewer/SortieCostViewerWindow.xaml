@@ -94,6 +94,12 @@
 
 						<TextBlock Text="{Binding DataContext.Translation.AirBaseSupply, Source={StaticResource Proxy}}" />
 						<ContentControl Content="{Binding TotalAirBaseSupplyCost}" />
+
+						<TextBlock Text="{Binding DataContext.Translation.ResourceGain, Source={StaticResource Proxy}}" />
+						<ContentControl Content="{Binding ResourceGain}" />
+
+						<TextBlock Text="{Binding DataContext.Translation.SinkingResourceGain, Source={StaticResource Proxy}}" />
+						<ContentControl Content="{Binding SinkingResourceGain}" />
 					</UniformGrid>
 				</DataTemplate>
 			</DataGrid.RowDetailsTemplate>

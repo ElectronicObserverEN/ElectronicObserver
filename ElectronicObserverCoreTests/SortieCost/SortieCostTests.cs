@@ -22,6 +22,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest10")]
 	[InlineData("SortieCostTest11")]
 	[InlineData("SortieCostTest12")]
+	[InlineData("SortieCostTest13")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -199,5 +200,20 @@ public sealed class SortieCostTests : SortieCostTestBase
 		SortieCostModel resourceGain = new() { Fuel = 60, Ammo = 15 };
 
 		Assert.Equal(resourceGain, sortieCosts[0].ResourceGain);
+	}
+
+	[Fact(DisplayName = "sink resource gain")]
+	public async Task SortieCostTest13()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest13", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel resourceGain = new() { Fuel = 128, Bauxite = 120 };
+		SortieCostModel sinkResourceGain = new() { Fuel = 37, Ammo = 65 };
+
+		Assert.Equal(new(), sortieCosts[0].TotalRepairCost);
+		Assert.Equal(resourceGain, sortieCosts[0].ResourceGain);
+		Assert.Equal(sinkResourceGain, sortieCosts[0].SinkingResourceGain);
 	}
 }
