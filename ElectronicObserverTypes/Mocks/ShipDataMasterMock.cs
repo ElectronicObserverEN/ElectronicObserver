@@ -91,6 +91,7 @@ public class ShipDataMasterMock : IShipDataMaster
 	public bool IsAircraftCarrier => this.IsAircraftCarrier();
 	public bool IsRegularCarrier { get; set; }
 	public bool IsEscortAircraftCarrier { get; set; }
+	public bool IsPt => this.IsPt();
 	public int ID => ShipID;
 
 	public dynamic RawData { get; set; }

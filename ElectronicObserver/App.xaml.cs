@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.ElectronicObserverApi;
@@ -61,6 +62,7 @@ using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
@@ -271,6 +273,7 @@ public partial class App : Application
 			.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>()
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
 			.AddSingleton<SortieRecordViewerTranslationViewModel>()
+			.AddSingleton<SortieCostViewerTranslationViewModel>()
 			.AddSingleton<ExpeditionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
@@ -310,6 +313,7 @@ public partial class App : Application
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<DataAndTranslationIssueReporter>()
+			.AddSingleton<SortieRecordMigrationService>()
 			//.ActivateSingleton<DataAndTranslationIssueReporter>() todo uncomment and test with .net 8 
 			// external
 			.AddSingleton(JotTracker())

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
@@ -48,18 +50,19 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	private ToolService ToolService { get; }
 
 	private ElectronicObserverContext Db { get; }
-	private SortieRecordViewModel Sortie { get; }
+	private SortieRecord Sortie { get; }
 
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
 	public int Map { get; }
-	private BattleFleets Fleets { get; set; }
-	private BattleFleets? FleetsAfterSortie { get; set; }
+	public BattleFleets Fleets { get; set; }
+	public BattleFleets FleetsBeforeSortie { get; private set; }
+	private BattleFleets? FleetsAfterSortie { get; }
 	public List<List<int>?> StrikePoints { get; } = new();
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecordViewModel sortie,
+	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecord sortie,
 		BattleFleets fleets, BattleFleets? fleetsAfterSortie)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
@@ -71,6 +74,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		World = sortie.World;
 		Map = sortie.Map;
 		Fleets = fleets;
+		FleetsBeforeSortie = fleets.Clone();
 		FleetsAfterSortie = fleetsAfterSortie;
 	}
 
@@ -126,8 +130,11 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		BattleBaseAirRaid? abRaid = null;
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
+		CellType colorNo = CellType.Unknown;
 		int eventId = 0;
 		int eventKind = 0;
+		ApiHappening? happening = null;
+		List<ApiItemget?>? items = null;
 		ApiOffshoreSupply? offshoreSupply = null;
 
 		foreach ((object apiData, DateTime time) in ApiDataCache)
@@ -153,26 +160,27 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				};
 			}
 
-			cell = apiData switch
+			if (apiData is IMapProgressApi progress)
 			{
-				ApiReqMapStartResponse s => s.ApiNo,
-				ApiReqMapNextResponse n => n.ApiNo,
-				_ => cell,
-			};
+				cell = progress.ApiNo;
+				colorNo = progress.ApiColorNo;
+				eventId = progress.ApiEventId;
+				eventKind = progress.ApiEventKind;
+				happening = progress.ApiHappening;
 
-			eventId = apiData switch
-			{
-				ApiReqMapStartResponse s => s.ApiEventId,
-				ApiReqMapNextResponse n => n.ApiEventId,
-				_ => eventId,
-			};
+				if (apiData is ApiReqMapNextResponse next)
+				{
+					items = next.ApiItemget switch
+					{
+						JsonElement { ValueKind: JsonValueKind.Array } i
+							=> i.Deserialize<List<ApiItemget?>>(),
 
-			eventKind = apiData switch
-			{
-				ApiReqMapStartResponse s => s.ApiEventKind,
-				ApiReqMapNextResponse n => n.ApiEventKind,
-				_ => eventKind,
-			};
+						JsonElement i => [i.Deserialize<ApiItemget?>()],
+
+						_ => [],
+					};
+				}
+			}
 
 			offshoreSupply = apiData switch
 			{
@@ -201,7 +209,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				}
 				else
 				{
-					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, eventId, eventKind);
+					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, colorNo, eventId, eventKind);
 				}
 			}
 
@@ -219,13 +227,15 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			}
 		}
 
-		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell, eventId, eventKind);
+		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell, colorNo, eventId, eventKind);
 
 		if (abRaid is not null)
 		{
 			node.AddAirBaseRaid(abRaid);
 		}
 
+		node.Happening = happening;
+		node.Items = items;
 		node.ApiOffshoreSupply = offshoreSupply;
 
 		if (node is BattleNode b)
@@ -239,7 +249,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				b.UpdateState(FleetsAfterSortie);
 			}
 
-			Fleets = b.SecondBattle?.FleetsAfterBattle.Clone() ?? b.FirstBattle.FleetsAfterBattle.Clone();
+			Fleets = b.LastBattle.FleetsAfterBattle.Clone();
 
 			CleanFleet(Fleets.Fleet);
 			CleanFleet(Fleets.EscortFleet);

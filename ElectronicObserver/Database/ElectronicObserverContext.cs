@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
@@ -39,7 +40,7 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 	{
 		if (InMemory)
 		{
-			optionsBuilder.UseInMemoryDatabase("ElectronicObserver");
+			optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
 		}
 		else
 		{
@@ -106,6 +107,10 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 		modelBuilder.Entity<SortieRecord>()
 			.Property(s => s.MapData)
 			.HasConversion(JsonConverter<SortieMapData>());
+
+		modelBuilder.Entity<SortieRecord>()
+			.Property(s => s.CalculatedSortieCost)
+			.HasConversion(JsonConverter<CalculatedSortieCost>());
 
 		modelBuilder.Entity<ExpeditionRecord>()
 			.Property(s => s.Fleet)

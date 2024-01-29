@@ -32,7 +32,7 @@ public class DayAttackTests
 				Level = 10,
 			},
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type0ReconSeaplaneModel11B_Skilled]),
-			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell])
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShell])
 			{
 				Level = 8,
 			},
@@ -64,7 +64,7 @@ public class DayAttackTests
 			{
 				Level = 10,
 			},
-			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1APShell])
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShell])
 			{
 				Level = 8,
 			},

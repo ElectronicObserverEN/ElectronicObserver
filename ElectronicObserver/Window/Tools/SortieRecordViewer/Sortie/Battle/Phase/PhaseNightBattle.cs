@@ -80,74 +80,42 @@ public class PhaseNightBattle : PhaseBase
 
 		foreach (PhaseNightBattleAttack atk in Attacks)
 		{
-			switch (atk.AttackType)
+			if (atk.AttackType.IsSpecialAttack())
 			{
-				case NightAttackKind.SpecialNelson:
-					for (int i = 0; i < atk.Defenders.Count; i++)
+				List<int> attackers = atk.AttackType switch
+				{
+					NightAttackKind.CutinZuiun => Enumerable.Repeat(atk.Attacker.Index, 2).ToList(),
+					_ => atk.AttackType.SpecialAttackIndexes(),
+				};
+
+				int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
+					.Count(f => f.IsInSortie);
+
+				for (int i = 0; i < atk.Defenders.Count; i++)
+				{
+					int attackerIndex = attackers[i];
+
+					PhaseNightBattleAttack comboAttack = atk with
 					{
-						PhaseNightBattleAttack comboAttack = atk with
+						Attacker = fleetCount switch
 						{
-							// #1, #3, #5
-							Attacker = new(i * 2, FleetFlag.Player),
-							Defenders = new() { atk.Defenders[i] },
-						};
+							2 => new(attackerIndex + 6, FleetFlag.Player),
+							_ => new(attackerIndex, FleetFlag.Player),
+						},
+						Defenders = new() { atk.Defenders[i] },
+					};
 
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
-						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-					}
-					break;
-
-				case NightAttackKind.SpecialNagato:
-				case NightAttackKind.SpecialMutsu:
-				case NightAttackKind.SpecialYamato2Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						PhaseNightBattleAttack comboAttack = atk with
-						{
-							// #1, #1, #2
-							Attacker = new(i / 2, FleetFlag.Player),
-							Defenders = new() { atk.Defenders[i] },
-						};
-
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
-						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-					}
-					break;
-
-				case NightAttackKind.SpecialColorado:
-				case NightAttackKind.SpecialKongou:
-				case NightAttackKind.SpecialYamato3Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
-							.Count(f => f.IsInSortie);
-
-						PhaseNightBattleAttack comboAttack = atk with
-						{
-							// hack: Kongou night special attack index is messed up for combined fleet vs combined fleet
-							// todo: need to check what happens in case only 1 of the fleets is combined
-							// note: when testing via api replay you need a combined fleet in-game, else fleet data (count) won't be correct
-							// #1, #2, #3
-							Attacker = fleetCount switch
-							{
-								2 when i < 6 => new(i + 6, FleetFlag.Player),
-								_ => new(i, FleetFlag.Player),
-							},
-							Defenders = new() { atk.Defenders[i] },
-						};
-
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
-						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-					}
-					break;
-
-				default:
-					foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
-					{
-						AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, atk, defs.Key));
-						AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
-					}
-					break;
+					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
+					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+				}
+			}
+			else
+			{
+				foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
+				{
+					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, atk, atk.Defenders.First().Defender));
+					AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+				}
 			}
 		}
 

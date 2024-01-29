@@ -1,0 +1,1240 @@
+﻿[
+	{
+		"Id": 28057,
+		"Version": 0,
+		"World": 5,
+		"Map": 1,
+		"ApiFiles": [
+			{
+				"Id": 1643529,
+				"ApiFileType": 0,
+				"Name": "api_req_map/start",
+				"Content": "{\"api_verno\":\"1\",\"api_maparea_id\":\"5\",\"api_mapinfo_no\":\"1\",\"api_deck_id\":\"1\",\"api_serial_cid\":\"1702797392112162034985\"}",
+				"TimeStamp": "2023-12-17T07:16:34.3287845",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643530,
+				"ApiFileType": 1,
+				"Name": "api_req_map/start",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_cell_data\":[{\"api_id\":3338,\"api_no\":0,\"api_color_no\":0,\"api_passed\":0},{\"api_id\":3339,\"api_no\":1,\"api_color_no\":3,\"api_passed\":1},{\"api_id\":3340,\"api_no\":2,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3341,\"api_no\":3,\"api_color_no\":2,\"api_passed\":1},{\"api_id\":3342,\"api_no\":4,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3343,\"api_no\":5,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3344,\"api_no\":6,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3345,\"api_no\":7,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3346,\"api_no\":8,\"api_color_no\":2,\"api_passed\":0},{\"api_id\":3347,\"api_no\":9,\"api_color_no\":4,\"api_passed\":0},{\"api_id\":3348,\"api_no\":10,\"api_color_no\":5,\"api_passed\":1},{\"api_id\":3349,\"api_no\":11,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3350,\"api_no\":12,\"api_color_no\":4,\"api_passed\":1},{\"api_id\":3351,\"api_no\":13,\"api_color_no\":5,\"api_passed\":1}],\"api_rashin_flg\":1,\"api_rashin_id\":1,\"api_maparea_id\":5,\"api_mapinfo_no\":1,\"api_no\":2,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":10,\"api_bosscomp\":1,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1527,1518,1591]}],\"api_limit_state\":0,\"api_from_no\":0}}",
+				"TimeStamp": "2023-12-17T07:16:34.3287845",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643532,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battle",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,2,3],\"api_f_nowhps\":[107,86,86,46,38,25],\"api_f_maxhps\":[107,86,86,51,38,37],\"api_fParam\":[[152,0,95,128],[88,0,85,94],[86,0,84,94],[72,72,70,68],[67,91,64,54],[75,89,52,54]],\"api_ship_ke\":[1527,1518,1591,1576,1576,1576],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[76,48,48,37,37,37],\"api_e_maxhps\":[76,48,48,37,37,37],\"api_eSlot\":[[1505,1506,1515,1525,-1],[1504,1525,-1,-1,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[68,48,40,70],[30,40,20,30],[58,84,88,55],[38,66,32,26],[38,66,32,26],[38,66,32,26]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[1,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[[1,2,3],null],\"api_stage1\":{\"api_f_count\":110,\"api_f_lostcount\":1,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[239,-1]},\"api_stage2\":{\"api_f_count\":67,\"api_f_lostcount\":1,\"api_e_count\":0,\"api_e_lostcount\":0},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,0,0],\"api_ebak_flag\":[0,0,0,1,1,1],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[0,0,0,65,0,52],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":0,\"api_opening_atack\":null,\"api_hourai_flag\":[1,0,0,0],\"api_hougeki1\":{\"api_at_eflag\":[0,0,1,0,0,0,0],\"api_at_list\":[1,0,0,2,5,3,4],\"api_at_type\":[6,6,0,6,0,0,0],\"api_df_list\":[[2],[1],[5],[4],[0],[0],[0]],\"api_si_list\":[[\"490\",\"276\",\"276\"],[\"490\",\"465\",\"276\"],[1505],[\"322\",\"468\",\"390\"],[122],[50],[122]],\"api_cl_list\":[[1],[1],[0],[1],[1],[1],[1]],\"api_damage\":[[282.1],[304],[0],[265],[27],[36],[43]]},\"api_hougeki2\":null,\"api_hougeki3\":null,\"api_raigeki\":null}}",
+				"TimeStamp": "2023-12-17T07:16:50.6032411",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643534,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battleresult",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1527,1518,1591,1576,1576,1576],\"api_win_rank\":\"S\",\"api_get_exp\":160,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107791019,\"api_get_base_exp\":170,\"api_get_ship_exp\":[-1,612,204,204,204,204,204],\"api_get_exp_lvup\":[[2583550,2640000],[5581774,5720000],[4245122,4360000],[12239969,13000000],[10433963,10950000],[9790579,10266000]],\"api_dests\":6,\"api_destsf\":1,\"api_quest_name\":\"\\u5357\\u65b9\\u6d77\\u57df\\u524d\\u9762\",\"api_quest_level\":8,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6575\\u5357\\u65b9\\u524d\\u885b\\u54e8\\u6212\\u8266\\u968a\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+				"TimeStamp": "2023-12-17T07:17:38.1751269",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643536,
+				"ApiFileType": 1,
+				"Name": "api_get_member/ship_deck",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":83,\"api_sortno\":195,\"api_ship_id\":195,\"api_lv\":173,\"api_exp\":[9790783,475217,15],\"api_nowhp\":25,\"api_maxhp\":37,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[14889,15868,177807,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":14633,\"api_kyouka\":[58,59,36,39,4,0,0],\"api_backs\":6,\"api_fuel\":12,\"api_bull\":16,\"api_slotnum\":3,\"api_ndock_time\":12450000,\"api_ndock_item\":[5,10],\"api_srate\":4,\"api_cond\":42,\"api_karyoku\":[84,75],\"api_raisou\":[91,89],\"api_taiku\":[80,52],\"api_soukou\":[55,54],\"api_kaihi\":[128,90],\"api_taisen\":[93,63],\"api_sakuteki\":[84,49],\"api_lucky\":[44,84],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":172,\"api_sortno\":353,\"api_ship_id\":553,\"api_lv\":155,\"api_exp\":[5581978,138022,44],\"api_nowhp\":86,\"api_maxhp\":86,\"api_soku\":5,\"api_leng\":4,\"api_slot\":[30371,30853,178310,169068,154779],\"api_onslot\":[2,2,22,21,9],\"api_slot_ex\":99373,\"api_kyouka\":[28,0,37,19,6,0,0],\"api_backs\":8,\"api_fuel\":88,\"api_bull\":116,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":72,\"api_karyoku\":[160,88],\"api_raisou\":[0,0],\"api_taiku\":[125,85],\"api_soukou\":[99,94],\"api_kaihi\":[105,82],\"api_taisen\":[6,0],\"api_sakuteki\":[102,72],\"api_lucky\":[46,92],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":630,\"api_sortno\":354,\"api_ship_id\":554,\"api_lv\":149,\"api_exp\":[4245326,114674,41],\"api_nowhp\":86,\"api_maxhp\":86,\"api_soku\":5,\"api_leng\":3,\"api_slot\":[166511,129560,120266,127218,3902],\"api_onslot\":[2,8,23,12,11],\"api_slot_ex\":72667,\"api_kyouka\":[28,0,38,21,5,0,0],\"api_backs\":8,\"api_fuel\":92,\"api_bull\":112,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":55,\"api_karyoku\":[152,86],\"api_raisou\":[0,0],\"api_taiku\":[119,84],\"api_soukou\":[98,94],\"api_kaihi\":[111,83],\"api_taisen\":[100,85],\"api_sakuteki\":[104,75],\"api_lucky\":[45,93],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":31200,\"api_sortno\":367,\"api_ship_id\":567,\"api_lv\":174,\"api_exp\":[10434167,515833,24],\"api_nowhp\":38,\"api_maxhp\":38,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[5387,9976,152751,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":120158,\"api_kyouka\":[49,61,44,40,4,0,0],\"api_backs\":7,\"api_fuel\":12,\"api_bull\":16,\"api_slotnum\":3,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":42,\"api_karyoku\":[76,67],\"api_raisou\":[93,91],\"api_taiku\":[92,64],\"api_soukou\":[55,54],\"api_kaihi\":[130,90],\"api_taisen\":[98,68],\"api_sakuteki\":[76,43],\"api_lucky\":[28,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":57826,\"api_sortno\":516,\"api_ship_id\":916,\"api_lv\":138,\"api_exp\":[2584162,55838,51],\"api_nowhp\":107,\"api_maxhp\":107,\"api_soku\":5,\"api_leng\":4,\"api_slot\":[162532,162421,56476,174248,10773],\"api_onslot\":[2,2,8,22,2],\"api_slot_ex\":76128,\"api_kyouka\":[44,0,30,34,7,0,9],\"api_backs\":8,\"api_fuel\":240,\"api_bull\":320,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":99,\"api_karyoku\":[236,152],\"api_raisou\":[0,0],\"api_taiku\":[123,112],\"api_soukou\":[133,128],\"api_kaihi\":[75,60],\"api_taisen\":[75,48],\"api_sakuteki\":[101,68],\"api_lucky\":[25,108],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":74812,\"api_sortno\":418,\"api_ship_id\":618,\"api_lv\":179,\"api_exp\":[12240173,759827,15],\"api_nowhp\":46,\"api_maxhp\":51,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[172429,173178,93774,-1,-1],\"api_onslot\":[1,1,1,0,0],\"api_slot_ex\":0,\"api_kyouka\":[40,48,42,41,4,0,0],\"api_backs\":5,\"api_fuel\":24,\"api_bull\":36,\"api_slotnum\":3,\"api_ndock_time\":5355000,\"api_ndock_item\":[4,9],\"api_srate\":4,\"api_cond\":73,\"api_karyoku\":[94,72],\"api_raisou\":[72,72],\"api_taiku\":[79,70],\"api_soukou\":[68,68],\"api_kaihi\":[101,72],\"api_taisen\":[91,55],\"api_sakuteki\":[90,50],\"api_lucky\":[26,65],\"api_locked\":1,\"api_locked_equip\":1}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[57826,172,630,74812,31200,83]}]}}",
+				"TimeStamp": "2023-12-17T07:17:53.3528146",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643538,
+				"ApiFileType": 1,
+				"Name": "api_req_map/next",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":1,\"api_maparea_id\":5,\"api_mapinfo_no\":1,\"api_no\":5,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":13,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1534,1532,1530]}],\"api_limit_state\":0}}",
+				"TimeStamp": "2023-12-17T07:17:53.8566911",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643540,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battle",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[5,2,4],\"api_f_nowhps\":[107,86,86,46,38,25],\"api_f_maxhps\":[107,86,86,51,38,37],\"api_fParam\":[[152,0,95,128],[88,0,85,94],[86,0,84,94],[72,72,70,68],[67,91,64,54],[75,89,52,54]],\"api_ship_ke\":[1534,1532,1530,1530,1530],\"api_ship_lv\":[50,50,50,50,50],\"api_e_nowhps\":[37,27,19,19,19],\"api_e_maxhps\":[37,27,19,19,19],\"api_eSlot\":[[1515,1515,1513,-1,-1],[1515,1513,1513,-1,-1],[1513,1513,-1,-1,-1],[1513,1513,-1,-1,-1],[1513,1513,-1,-1,-1]],\"api_eParam\":[[0,86,0,30],[0,64,0,21],[0,42,0,7],[0,42,0,7],[0,42,0,7]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":1,\"api_search\":[1,5],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[[1,2,3],null],\"api_stage1\":{\"api_f_count\":108,\"api_f_lostcount\":3,\"api_e_count\":0,\"api_e_lostcount\":0,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":{\"api_f_count\":64,\"api_f_lostcount\":0,\"api_e_count\":0,\"api_e_lostcount\":0},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,0,0],\"api_ebak_flag\":[0,0,0,0,0],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null]}},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":1,\"api_opening_atack\":{\"api_frai\":[-1,-1,-1,-1,-1,-1,-1],\"api_fcl\":[0,0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,2,0],\"api_fydam\":[0,0,0,0,0,0,0],\"api_erai\":[5,5,-1,-1,-1,-1,-1],\"api_ecl\":[1,0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0,0],\"api_eydam\":[2,0,0,0,0,0,0]},\"api_hourai_flag\":[1,1,0,1],\"api_hougeki1\":{\"api_at_eflag\":[0,0,0,0,0,0],\"api_at_list\":[0,1,2,5,4,3],\"api_at_type\":[0,0,0,0,0,0],\"api_df_list\":[[2],[4],[3],[4],[2],[1]],\"api_si_list\":[[\"490\"],[\"490\"],[\"322\"],[-1],[-1],[\"239\"]],\"api_cl_list\":[[1],[1],[1],[1],[1],[1]],\"api_damage\":[[18],[6.1],[22],[22],[19],[3]]},\"api_hougeki2\":{\"api_at_eflag\":[0,0,0,0,0,0],\"api_at_list\":[0,1,2,3,4,5],\"api_at_type\":[0,0,0,0,0,0],\"api_df_list\":[[1],[1],[1],[0],[0],[1]],\"api_si_list\":[[\"490\"],[\"490\"],[\"322\"],[\"239\"],[-1],[-1]],\"api_cl_list\":[[1],[1],[1],[1],[1],[1]],\"api_damage\":[[3.1],[1],[8],[3],[2],[9]]},\"api_hougeki3\":null,\"api_raigeki\":{\"api_frai\":[-1,-1,-1,-1,-1,-1,-1],\"api_fcl\":[0,0,0,0,0,0,0],\"api_fdam\":[0,7,0,0,0,0,0],\"api_fydam\":[0,0,0,0,0,0,0],\"api_erai\":[1,-1,-1,-1,-1,-1,-1],\"api_ecl\":[1,0,0,0,0,0,0],\"api_edam\":[0,0,0,0,0,0,0],\"api_eydam\":[7,0,0,0,0,0,0]}}}",
+				"TimeStamp": "2023-12-17T07:18:07.4246995",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643542,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battleresult",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1534,1532,1530,1530,1530],\"api_win_rank\":\"A\",\"api_get_exp\":128,\"api_mvp\":6,\"api_member_lv\":120,\"api_member_exp\":107791147,\"api_get_base_exp\":180,\"api_get_ship_exp\":[-1,270,180,180,180,180,360],\"api_get_exp_lvup\":[[2584162,2640000],[5581978,5720000],[4245326,4360000],[12240173,13000000],[10434167,10950000],[9790783,10266000]],\"api_dests\":3,\"api_destsf\":0,\"api_quest_name\":\"\\u5357\\u65b9\\u6d77\\u57df\\u524d\\u9762\",\"api_quest_level\":8,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6575\\u6f5c\\u6c34\\u8266\\u5357\\u65b9\\u54e8\\u6212\\u7dda\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+				"TimeStamp": "2023-12-17T07:19:13.3532772",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643544,
+				"ApiFileType": 1,
+				"Name": "api_get_member/ship_deck",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":83,\"api_sortno\":195,\"api_ship_id\":195,\"api_lv\":173,\"api_exp\":[9791143,474857,15],\"api_nowhp\":23,\"api_maxhp\":37,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[14889,15868,177807,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":14633,\"api_kyouka\":[58,59,36,39,4,0,0],\"api_backs\":6,\"api_fuel\":11,\"api_bull\":16,\"api_slotnum\":3,\"api_ndock_time\":14520000,\"api_ndock_item\":[6,12],\"api_srate\":4,\"api_cond\":52,\"api_karyoku\":[84,75],\"api_raisou\":[91,89],\"api_taiku\":[80,52],\"api_soukou\":[55,54],\"api_kaihi\":[128,90],\"api_taisen\":[93,63],\"api_sakuteki\":[84,49],\"api_lucky\":[44,84],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":172,\"api_sortno\":353,\"api_ship_id\":553,\"api_lv\":155,\"api_exp\":[5582158,137842,44],\"api_nowhp\":79,\"api_maxhp\":86,\"api_soku\":5,\"api_leng\":4,\"api_slot\":[30371,30853,178310,169068,154779],\"api_onslot\":[2,2,21,20,9],\"api_slot_ex\":99373,\"api_kyouka\":[28,0,37,19,6,0,0],\"api_backs\":8,\"api_fuel\":80,\"api_bull\":116,\"api_slotnum\":5,\"api_ndock_time\":13260000,\"api_ndock_item\":[24,46],\"api_srate\":4,\"api_cond\":72,\"api_karyoku\":[160,88],\"api_raisou\":[0,0],\"api_taiku\":[125,85],\"api_soukou\":[99,94],\"api_kaihi\":[105,82],\"api_taisen\":[6,0],\"api_sakuteki\":[102,72],\"api_lucky\":[46,92],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":630,\"api_sortno\":354,\"api_ship_id\":554,\"api_lv\":149,\"api_exp\":[4245506,114494,41],\"api_nowhp\":86,\"api_maxhp\":86,\"api_soku\":5,\"api_leng\":3,\"api_slot\":[166511,129560,120266,127218,3902],\"api_onslot\":[2,8,22,12,11],\"api_slot_ex\":72667,\"api_kyouka\":[28,0,38,21,5,0,0],\"api_backs\":8,\"api_fuel\":83,\"api_bull\":112,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":55,\"api_karyoku\":[152,86],\"api_raisou\":[0,0],\"api_taiku\":[119,84],\"api_soukou\":[98,94],\"api_kaihi\":[111,83],\"api_taisen\":[100,85],\"api_sakuteki\":[104,75],\"api_lucky\":[45,93],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":31200,\"api_sortno\":367,\"api_ship_id\":567,\"api_lv\":174,\"api_exp\":[10434347,515653,24],\"api_nowhp\":38,\"api_maxhp\":38,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[5387,9976,152751,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":120158,\"api_kyouka\":[49,61,44,40,4,0,0],\"api_backs\":7,\"api_fuel\":11,\"api_bull\":16,\"api_slotnum\":3,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":42,\"api_karyoku\":[76,67],\"api_raisou\":[93,91],\"api_taiku\":[92,64],\"api_soukou\":[55,54],\"api_kaihi\":[130,90],\"api_taisen\":[98,68],\"api_sakuteki\":[76,43],\"api_lucky\":[28,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":57826,\"api_sortno\":516,\"api_ship_id\":916,\"api_lv\":138,\"api_exp\":[2584432,55568,51],\"api_nowhp\":107,\"api_maxhp\":107,\"api_soku\":5,\"api_leng\":4,\"api_slot\":[162532,162421,56476,174248,10773],\"api_onslot\":[2,2,8,22,2],\"api_slot_ex\":76128,\"api_kyouka\":[44,0,30,34,7,0,9],\"api_backs\":8,\"api_fuel\":216,\"api_bull\":320,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":100,\"api_karyoku\":[236,152],\"api_raisou\":[0,0],\"api_taiku\":[123,112],\"api_soukou\":[133,128],\"api_kaihi\":[75,60],\"api_taisen\":[75,48],\"api_sakuteki\":[101,68],\"api_lucky\":[25,108],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":74812,\"api_sortno\":418,\"api_ship_id\":618,\"api_lv\":179,\"api_exp\":[12240353,759647,15],\"api_nowhp\":46,\"api_maxhp\":51,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[172429,173178,93774,-1,-1],\"api_onslot\":[1,1,1,0,0],\"api_slot_ex\":0,\"api_kyouka\":[40,48,42,41,4,0,0],\"api_backs\":5,\"api_fuel\":22,\"api_bull\":36,\"api_slotnum\":3,\"api_ndock_time\":5355000,\"api_ndock_item\":[4,9],\"api_srate\":4,\"api_cond\":73,\"api_karyoku\":[94,72],\"api_raisou\":[72,72],\"api_taiku\":[79,70],\"api_soukou\":[68,68],\"api_kaihi\":[101,72],\"api_taisen\":[91,55],\"api_sakuteki\":[90,50],\"api_lucky\":[26,65],\"api_locked\":1,\"api_locked_equip\":1}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[57826,172,630,74812,31200,83]}]}}",
+				"TimeStamp": "2023-12-17T07:19:28.2153669",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643546,
+				"ApiFileType": 1,
+				"Name": "api_req_map/next",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":0,\"api_rashin_id\":0,\"api_maparea_id\":5,\"api_mapinfo_no\":1,\"api_no\":7,\"api_color_no\":4,\"api_event_id\":4,\"api_event_kind\":1,\"api_next\":1,\"api_bosscell_no\":10,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1543,1543,1560]}],\"api_limit_state\":0}}",
+				"TimeStamp": "2023-12-17T07:19:28.7264451",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643548,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battle",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[4,2,2],\"api_f_nowhps\":[107,79,86,46,38,23],\"api_f_maxhps\":[107,86,86,51,38,37],\"api_fParam\":[[152,0,95,128],[88,0,85,94],[86,0,84,94],[72,72,70,68],[67,91,64,54],[75,89,52,54]],\"api_ship_ke\":[1543,1543,1560,1591,1576,1576],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[90,90,84,48,37,37],\"api_e_maxhps\":[90,90,84,48,37,37],\"api_eSlot\":[[1509,1509,1525,1529,-1],[1509,1509,1525,1529,-1],[1520,1524,1524,1517,-1],[1550,1550,1545,1525,-1],[1502,1545,1542,-1,-1],[1502,1545,1542,-1,-1]],\"api_eParam\":[[85,0,70,96],[85,0,70,96],[18,0,36,70],[58,84,88,55],[38,66,32,26],[38,66,32,26]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[1,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[[1,2,3],[3]],\"api_stage1\":{\"api_f_count\":105,\"api_f_lostcount\":2,\"api_e_count\":88,\"api_e_lostcount\":34,\"api_disp_seiku\":1,\"api_touch_plane\":[-1,-1]},\"api_stage2\":{\"api_f_count\":62,\"api_f_lostcount\":6,\"api_e_count\":37,\"api_e_lostcount\":24,\"api_air_fire\":{\"api_idx\":5,\"api_kind\":8,\"api_use_items\":[122,307]}},\"api_stage3\":{\"api_frai_flag\":[0,0,0,0,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,1,0,0,0,1],\"api_ebak_flag\":[1,0,0,0,0,1],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,0,0,0],\"api_edam\":[5,0,0,0,0,45],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":0,\"api_opening_atack\":null,\"api_hourai_flag\":[1,1,0,0],\"api_hougeki1\":{\"api_at_eflag\":[0,1,0,0,0,0,0],\"api_at_list\":[1,0,0,2,3,4,5],\"api_at_type\":[2,0,400,6,0,0,0],\"api_df_list\":[[1,1],[3],[3,1,4],[2],[0],[0],[0]],\"api_si_list\":[[\"276\",\"276\"],[1509],[-1],[\"322\",\"468\",\"390\"],[50],[122],[122]],\"api_cl_list\":[[1,1],[0],[1,1,1],[1],[1],[2],[1]],\"api_damage\":[[16,65],[0],[360,167,188.1],[89],[5],[9],[6]]},\"api_hougeki2\":{\"api_at_eflag\":[0],\"api_at_list\":[0],\"api_at_type\":[2],\"api_df_list\":[[0,0]],\"api_si_list\":[[\"465\",\"276\"]],\"api_cl_list\":[[1,2]],\"api_damage\":[[106,219]]},\"api_hougeki3\":null,\"api_raigeki\":null}}",
+				"TimeStamp": "2023-12-17T07:19:38.2946825",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643550,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battleresult",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1543,1543,1560,1591,1576,1576],\"api_win_rank\":\"S\",\"api_get_exp\":160,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107791307,\"api_get_base_exp\":340,\"api_get_ship_exp\":[-1,1224,408,408,408,408,408],\"api_get_exp_lvup\":[[2584432,2640000],[5582158,5720000],[4245506,4360000],[12240353,13000000],[10434347,10950000],[9791143,10266000]],\"api_dests\":6,\"api_destsf\":1,\"api_quest_name\":\"\\u5357\\u65b9\\u6d77\\u57df\\u524d\\u9762\",\"api_quest_level\":8,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6575\\u5357\\u65b9\\u4efb\\u52d9\\u90e8\\u968a A\\u7fa4\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+				"TimeStamp": "2023-12-17T07:20:34.9640003",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643552,
+				"ApiFileType": 1,
+				"Name": "api_get_member/ship_deck",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_data\":[{\"api_id\":83,\"api_sortno\":195,\"api_ship_id\":195,\"api_lv\":173,\"api_exp\":[9791551,474449,15],\"api_nowhp\":23,\"api_maxhp\":37,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[14889,15868,177807,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":14633,\"api_kyouka\":[58,59,36,39,4,0,0],\"api_backs\":6,\"api_fuel\":8,\"api_bull\":12,\"api_slotnum\":3,\"api_ndock_time\":14520000,\"api_ndock_item\":[6,12],\"api_srate\":4,\"api_cond\":53,\"api_karyoku\":[84,75],\"api_raisou\":[91,89],\"api_taiku\":[80,52],\"api_soukou\":[55,54],\"api_kaihi\":[128,90],\"api_taisen\":[93,63],\"api_sakuteki\":[84,49],\"api_lucky\":[44,84],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":172,\"api_sortno\":353,\"api_ship_id\":553,\"api_lv\":155,\"api_exp\":[5582566,137434,45],\"api_nowhp\":79,\"api_maxhp\":86,\"api_soku\":5,\"api_leng\":4,\"api_slot\":[30371,30853,178310,169068,154779],\"api_onslot\":[2,2,21,18,9],\"api_slot_ex\":99373,\"api_kyouka\":[28,0,37,19,6,0,0],\"api_backs\":8,\"api_fuel\":58,\"api_bull\":64,\"api_slotnum\":5,\"api_ndock_time\":13260000,\"api_ndock_item\":[24,46],\"api_srate\":4,\"api_cond\":73,\"api_karyoku\":[160,88],\"api_raisou\":[0,0],\"api_taiku\":[125,85],\"api_soukou\":[99,94],\"api_kaihi\":[105,82],\"api_taisen\":[6,0],\"api_sakuteki\":[102,72],\"api_lucky\":[46,92],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":630,\"api_sortno\":354,\"api_ship_id\":554,\"api_lv\":149,\"api_exp\":[4245914,114086,41],\"api_nowhp\":86,\"api_maxhp\":86,\"api_soku\":5,\"api_leng\":3,\"api_slot\":[166511,129560,120266,127218,3902],\"api_onslot\":[2,8,19,12,11],\"api_slot_ex\":72667,\"api_kyouka\":[28,0,38,21,5,0,0],\"api_backs\":8,\"api_fuel\":60,\"api_bull\":62,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":56,\"api_karyoku\":[152,86],\"api_raisou\":[0,0],\"api_taiku\":[119,84],\"api_soukou\":[98,94],\"api_kaihi\":[111,83],\"api_taisen\":[100,85],\"api_sakuteki\":[104,75],\"api_lucky\":[45,93],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":31200,\"api_sortno\":367,\"api_ship_id\":567,\"api_lv\":174,\"api_exp\":[10434755,515245,24],\"api_nowhp\":38,\"api_maxhp\":38,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[5387,9976,152751,-1,-1],\"api_onslot\":[0,0,0,0,0],\"api_slot_ex\":120158,\"api_kyouka\":[49,61,44,40,4,0,0],\"api_backs\":7,\"api_fuel\":8,\"api_bull\":12,\"api_slotnum\":3,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":43,\"api_karyoku\":[76,67],\"api_raisou\":[93,91],\"api_taiku\":[92,64],\"api_soukou\":[55,54],\"api_kaihi\":[130,90],\"api_taisen\":[98,68],\"api_sakuteki\":[76,43],\"api_lucky\":[28,88],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":57826,\"api_sortno\":516,\"api_ship_id\":916,\"api_lv\":138,\"api_exp\":[2585656,54344,52],\"api_nowhp\":107,\"api_maxhp\":107,\"api_soku\":5,\"api_leng\":4,\"api_slot\":[162532,162421,56476,174248,10773],\"api_onslot\":[2,2,8,19,2],\"api_slot_ex\":76128,\"api_kyouka\":[44,0,30,34,7,0,9],\"api_backs\":8,\"api_fuel\":156,\"api_bull\":176,\"api_slotnum\":5,\"api_ndock_time\":0,\"api_ndock_item\":[0,0],\"api_srate\":4,\"api_cond\":100,\"api_karyoku\":[236,152],\"api_raisou\":[0,0],\"api_taiku\":[123,112],\"api_soukou\":[133,128],\"api_kaihi\":[75,60],\"api_taisen\":[75,48],\"api_sakuteki\":[101,68],\"api_lucky\":[25,108],\"api_locked\":1,\"api_locked_equip\":1},{\"api_id\":74812,\"api_sortno\":418,\"api_ship_id\":618,\"api_lv\":179,\"api_exp\":[12240761,759239,15],\"api_nowhp\":46,\"api_maxhp\":51,\"api_soku\":10,\"api_leng\":2,\"api_slot\":[172429,173178,93774,-1,-1],\"api_onslot\":[1,1,1,0,0],\"api_slot_ex\":0,\"api_kyouka\":[40,48,42,41,4,0,0],\"api_backs\":5,\"api_fuel\":16,\"api_bull\":27,\"api_slotnum\":3,\"api_ndock_time\":5355000,\"api_ndock_item\":[4,9],\"api_srate\":4,\"api_cond\":74,\"api_karyoku\":[94,72],\"api_raisou\":[72,72],\"api_taiku\":[79,70],\"api_soukou\":[68,68],\"api_kaihi\":[101,72],\"api_taisen\":[91,55],\"api_sakuteki\":[90,50],\"api_lucky\":[26,65],\"api_locked\":1,\"api_locked_equip\":1}],\"api_deck_data\":[{\"api_member_id\":19064362,\"api_id\":1,\"api_name\":\"\\u5927\\u5929\\u4f7f\\u795e\\u98a8\\u3061\\u3083\\u3093\",\"api_name_id\":\"\",\"api_mission\":[0,0,0,0],\"api_flagship\":\"0\",\"api_ship\":[57826,172,630,74812,31200,83]}]}}",
+				"TimeStamp": "2023-12-17T07:20:49.9817121",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643554,
+				"ApiFileType": 1,
+				"Name": "api_req_map/next",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_rashin_flg\":1,\"api_rashin_id\":1,\"api_maparea_id\":5,\"api_mapinfo_no\":1,\"api_no\":13,\"api_color_no\":5,\"api_event_id\":5,\"api_event_kind\":1,\"api_next\":0,\"api_bosscell_no\":13,\"api_bosscomp\":1,\"api_comment_kind\":0,\"api_production_kind\":0,\"api_airsearch\":{\"api_plane_type\":0,\"api_result\":0},\"api_e_deck_info\":[{\"api_kind\":2,\"api_ship_ids\":[1579,1579,1543]}],\"api_limit_state\":0,\"api_ration_flag\":0}}",
+				"TimeStamp": "2023-12-17T07:20:50.8461261",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643556,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battle",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_deck_id\":1,\"api_formation\":[1,3,1],\"api_f_nowhps\":[107,79,86,46,38,23],\"api_f_maxhps\":[107,86,86,51,38,37],\"api_fParam\":[[152,0,95,128],[88,0,85,94],[86,0,84,94],[72,72,70,68],[67,91,64,54],[75,89,52,54]],\"api_ship_ke\":[1579,1579,1543,1555,1577,1577],\"api_ship_lv\":[1,1,1,1,1,1],\"api_e_nowhps\":[96,96,90,57,38,38],\"api_e_maxhps\":[96,96,90,57,38,38],\"api_eSlot\":[[1547,1548,1549,1549,-1],[1547,1548,1549,1549,-1],[1509,1509,1525,1529,-1],[1506,1525,1542,1543,-1],[1502,1515,1542,-1,-1],[1502,1515,1542,-1,-1]],\"api_eParam\":[[25,0,50,80],[25,0,50,80],[85,0,70,96],[48,80,30,39],[44,72,36,29],[44,72,36,29]],\"api_smoke_type\":0,\"api_balloon_cell\":0,\"api_midnight_flag\":0,\"api_search\":[1,1],\"api_stage_flag\":[1,1,1],\"api_kouku\":{\"api_plane_from\":[[1,2,3],[1,2]],\"api_stage1\":{\"api_f_count\":97,\"api_f_lostcount\":8,\"api_e_count\":192,\"api_e_lostcount\":69,\"api_disp_seiku\":2,\"api_touch_plane\":[-1,-1]},\"api_stage2\":{\"api_f_count\":51,\"api_f_lostcount\":3,\"api_e_count\":83,\"api_e_lostcount\":37,\"api_air_fire\":{\"api_idx\":4,\"api_kind\":8,\"api_use_items\":[122,307]}},\"api_stage3\":{\"api_frai_flag\":[0,0,1,1,0,0],\"api_erai_flag\":[0,0,0,0,0,0],\"api_fbak_flag\":[0,0,0,0,1,0],\"api_ebak_flag\":[0,1,1,0,1,0],\"api_fcl_flag\":[0,0,0,0,0,0],\"api_ecl_flag\":[0,0,0,0,0,0],\"api_fdam\":[0,0,0,38,0.1,0],\"api_edam\":[0,6,0,0,25,0],\"api_f_sp_list\":[null,null,null,null,null,null],\"api_e_sp_list\":[null,null,null,null,null,null]}},\"api_support_flag\":0,\"api_support_info\":null,\"api_opening_taisen_flag\":0,\"api_opening_taisen\":null,\"api_opening_flag\":0,\"api_opening_atack\":null,\"api_hourai_flag\":[1,1,0,0],\"api_hougeki1\":{\"api_at_eflag\":[0,1,0,1,0,0,0,1,0],\"api_at_list\":[0,2,1,3,2,5,3,0,4],\"api_at_type\":[6,0,6,0,6,0,0,0,0],\"api_df_list\":[[5],[1],[1],[2],[2],[4],[3],[4],[3]],\"api_si_list\":[[\"490\",\"465\",\"276\"],[1509],[\"490\",\"276\",\"276\"],[1506],[\"322\",\"468\",\"390\"],[122],[50],[-1],[122]],\"api_cl_list\":[[1],[1],[1],[1],[1],[1],[1],[0],[1]],\"api_damage\":[[272],[5],[179.1],[7],[163],[74],[11],[0],[38.1]]},\"api_hougeki2\":{\"api_at_eflag\":[0,1,0,0],\"api_at_list\":[0,0,1,2],\"api_at_type\":[6,0,6,6],\"api_df_list\":[[3],[3],[0],[0]],\"api_si_list\":[[\"490\",\"465\",\"276\"],[-1],[\"490\",\"276\",\"276\"],[\"322\",\"468\",\"390\"]],\"api_cl_list\":[[1],[1],[1],[1]],\"api_damage\":[[254],[5],[10],[171]]},\"api_hougeki3\":null,\"api_raigeki\":null}}",
+				"TimeStamp": "2023-12-17T07:21:05.5418319",
+				"Version": 1,
+				"SortieRecordId": 28057
+			},
+			{
+				"Id": 1643558,
+				"ApiFileType": 1,
+				"Name": "api_req_sortie/battleresult",
+				"Content": "{\"api_result\":1,\"api_result_msg\":\"\\u6210\\u529f\",\"api_data\":{\"api_ship_id\":[1579,1579,1543,1555,1577,1577],\"api_win_rank\":\"S\",\"api_get_exp\":2020,\"api_mvp\":1,\"api_member_lv\":120,\"api_member_exp\":107793327,\"api_get_base_exp\":450,\"api_get_ship_exp\":[-1,1620,540,540,540,540,540],\"api_get_exp_lvup\":[[2585656,2640000],[5582566,5720000],[4245914,4360000],[12240761,13000000],[10434755,10950000],[9791551,10266000]],\"api_dests\":6,\"api_destsf\":1,\"api_quest_name\":\"\\u5357\\u65b9\\u6d77\\u57df\\u524d\\u9762\",\"api_quest_level\":8,\"api_enemy_info\":{\"api_level\":\"\",\"api_rank\":\"\",\"api_deck_name\":\"\\u6575\\u5357\\u65b9\\u524d\\u7dda\\u53f8\\u4ee4\\u8266\\u968a\"},\"api_first_clear\":0,\"api_mapcell_incentive\":0,\"api_get_flag\":[0,0,0],\"api_get_eventflag\":0,\"api_get_exmap_rate\":0,\"api_get_exmap_useitem_id\":0,\"api_escape_flag\":0,\"api_escape\":null}}",
+				"TimeStamp": "2023-12-17T07:22:31.3862995",
+				"Version": 1,
+				"SortieRecordId": 28057
+			}
+		],
+		"FleetData": {
+			"FleetId": 1,
+			"NodeSupportFleetId": 0,
+			"BossSupportFleetId": 0,
+			"CombinedFlag": 0,
+			"Fleets": [
+				{
+					"Name": "\\u5927\\u5929\\u4F7F\\u795E\\u98A8\\u3061\\u3083\\u3093",
+					"Ships": [
+						{
+							"Id": 916,
+							"DropId": 57826,
+							"Level": 138,
+							"Condition": 85,
+							"Kyouka": [
+								44,
+								0,
+								30,
+								34,
+								7,
+								0,
+								9
+							],
+							"Fuel": 300,
+							"Ammo": 400,
+							"Hp": 107,
+							"Armor": 133,
+							"Evasion": 75,
+							"Aircraft": [
+								2,
+								2,
+								8,
+								22,
+								2
+							],
+							"Range": 4,
+							"Speed": 5,
+							"Firepower": 236,
+							"Torpedo": 0,
+							"Aa": 123,
+							"Asw": 75,
+							"Search": 101,
+							"Luck": 25,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 465,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 276,
+										"Level": 8,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 8,
+									"AircraftMax": 8,
+									"Equipment": {
+										"Id": 217,
+										"Level": 10,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 22,
+									"AircraftMax": 22,
+									"Equipment": {
+										"Id": 490,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 365,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 142,
+									"Level": 0,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 553,
+							"DropId": 172,
+							"Level": 155,
+							"Condition": 71,
+							"Kyouka": [
+								28,
+								0,
+								37,
+								19,
+								6,
+								0,
+								0
+							],
+							"Fuel": 110,
+							"Ammo": 145,
+							"Hp": 86,
+							"Armor": 99,
+							"Evasion": 105,
+							"Aircraft": [
+								2,
+								2,
+								22,
+								22,
+								9
+							],
+							"Range": 4,
+							"Speed": 5,
+							"Firepower": 160,
+							"Torpedo": 0,
+							"Aa": 125,
+							"Asw": 6,
+							"Search": 102,
+							"Luck": 46,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 276,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 276,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 22,
+									"AircraftMax": 22,
+									"Equipment": {
+										"Id": 56,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 22,
+									"AircraftMax": 22,
+									"Equipment": {
+										"Id": 490,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 9,
+									"AircraftMax": 9,
+									"Equipment": {
+										"Id": 365,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 274,
+									"Level": 10,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 554,
+							"DropId": 630,
+							"Level": 149,
+							"Condition": 54,
+							"Kyouka": [
+								28,
+								0,
+								38,
+								21,
+								5,
+								0,
+								0
+							],
+							"Fuel": 115,
+							"Ammo": 140,
+							"Hp": 86,
+							"Armor": 98,
+							"Evasion": 111,
+							"Aircraft": [
+								2,
+								8,
+								24,
+								12,
+								11
+							],
+							"Range": 3,
+							"Speed": 5,
+							"Firepower": 152,
+							"Torpedo": 0,
+							"Aa": 119,
+							"Asw": 100,
+							"Search": 104,
+							"Luck": 45,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 468,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 8,
+									"AircraftMax": 8,
+									"Equipment": {
+										"Id": 390,
+										"Level": 3,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 24,
+									"AircraftMax": 24,
+									"Equipment": {
+										"Id": 322,
+										"Level": 10,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 12,
+									"AircraftMax": 12,
+									"Equipment": {
+										"Id": 375,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 11,
+									"AircraftMax": 11,
+									"Equipment": {
+										"Id": 116,
+										"Level": 8,
+										"AircraftLevel": 0
+									}
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 274,
+									"Level": 10,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 618,
+							"DropId": 74812,
+							"Level": 179,
+							"Condition": 72,
+							"Kyouka": [
+								40,
+								48,
+								42,
+								41,
+								4,
+								0,
+								0
+							],
+							"Fuel": 30,
+							"Ammo": 45,
+							"Hp": 51,
+							"Armor": 68,
+							"Evasion": 101,
+							"Aircraft": [
+								1,
+								1,
+								1,
+								0,
+								0
+							],
+							"Range": 2,
+							"Speed": 10,
+							"Firepower": 94,
+							"Torpedo": 72,
+							"Aa": 79,
+							"Asw": 91,
+							"Search": 90,
+							"Luck": 26,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 1,
+									"AircraftMax": 1,
+									"Equipment": {
+										"Id": 50,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 1,
+									"AircraftMax": 1,
+									"Equipment": {
+										"Id": 50,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 1,
+									"AircraftMax": 1,
+									"Equipment": {
+										"Id": 239,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								}
+							],
+							"ExpansionSlot": null,
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 567,
+							"DropId": 31200,
+							"Level": 174,
+							"Condition": 41,
+							"Kyouka": [
+								49,
+								61,
+								44,
+								40,
+								4,
+								0,
+								0
+							],
+							"Fuel": 15,
+							"Ammo": 20,
+							"Hp": 38,
+							"Armor": 55,
+							"Evasion": 130,
+							"Aircraft": [
+								0,
+								0,
+								0,
+								0,
+								0
+							],
+							"Range": 2,
+							"Speed": 10,
+							"Firepower": 76,
+							"Torpedo": 93,
+							"Aa": 92,
+							"Asw": 98,
+							"Search": 76,
+							"Luck": 28,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 307,
+										"Level": 2,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 129,
+									"Level": 0,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 195,
+							"DropId": 83,
+							"Level": 173,
+							"Condition": 41,
+							"Kyouka": [
+								58,
+								59,
+								36,
+								39,
+								4,
+								0,
+								0
+							],
+							"Fuel": 15,
+							"Ammo": 20,
+							"Hp": 37,
+							"Armor": 55,
+							"Evasion": 128,
+							"Aircraft": [
+								0,
+								0,
+								0,
+								0,
+								0
+							],
+							"Range": 2,
+							"Speed": 10,
+							"Firepower": 84,
+							"Torpedo": 91,
+							"Aa": 80,
+							"Asw": 93,
+							"Search": 84,
+							"Luck": 44,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 307,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 129,
+									"Level": 0,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						}
+					]
+				},
+				null,
+				null,
+				null
+			],
+			"AirBases": []
+		},
+		"FleetAfterSortieData": {
+			"FleetId": 1,
+			"NodeSupportFleetId": 0,
+			"BossSupportFleetId": 0,
+			"CombinedFlag": 0,
+			"Fleets": [
+				{
+					"Name": "\\u5927\\u5929\\u4F7F\\u795E\\u98A8\\u3061\\u3083\\u3093",
+					"Ships": [
+						{
+							"Id": 916,
+							"DropId": 57826,
+							"Level": 138,
+							"Condition": 85,
+							"Kyouka": [
+								44,
+								0,
+								30,
+								34,
+								7,
+								0,
+								9
+							],
+							"Fuel": 96,
+							"Ammo": 96,
+							"Hp": 107,
+							"Armor": 133,
+							"Evasion": 75,
+							"Aircraft": [
+								2,
+								2,
+								7,
+								16,
+								2
+							],
+							"Range": 4,
+							"Speed": 5,
+							"Firepower": 236,
+							"Torpedo": 0,
+							"Aa": 123,
+							"Asw": 75,
+							"Search": 101,
+							"Luck": 25,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 465,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 276,
+										"Level": 8,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 7,
+									"AircraftMax": 8,
+									"Equipment": {
+										"Id": 217,
+										"Level": 10,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 16,
+									"AircraftMax": 22,
+									"Equipment": {
+										"Id": 490,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 365,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 142,
+									"Level": 0,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 553,
+							"DropId": 172,
+							"Level": 155,
+							"Condition": 59,
+							"Kyouka": [
+								28,
+								0,
+								37,
+								19,
+								6,
+								0,
+								0
+							],
+							"Fuel": 36,
+							"Ammo": 35,
+							"Hp": 86,
+							"Armor": 99,
+							"Evasion": 105,
+							"Aircraft": [
+								2,
+								2,
+								19,
+								14,
+								9
+							],
+							"Range": 4,
+							"Speed": 5,
+							"Firepower": 160,
+							"Torpedo": 0,
+							"Aa": 125,
+							"Asw": 6,
+							"Search": 102,
+							"Luck": 46,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 276,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 276,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 19,
+									"AircraftMax": 22,
+									"Equipment": {
+										"Id": 56,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 14,
+									"AircraftMax": 22,
+									"Equipment": {
+										"Id": 490,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 9,
+									"AircraftMax": 9,
+									"Equipment": {
+										"Id": 365,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 274,
+									"Level": 10,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 554,
+							"DropId": 630,
+							"Level": 149,
+							"Condition": 48,
+							"Kyouka": [
+								28,
+								0,
+								38,
+								21,
+								5,
+								0,
+								0
+							],
+							"Fuel": 37,
+							"Ammo": 34,
+							"Hp": 86,
+							"Armor": 98,
+							"Evasion": 111,
+							"Aircraft": [
+								2,
+								8,
+								18,
+								12,
+								11
+							],
+							"Range": 3,
+							"Speed": 5,
+							"Firepower": 152,
+							"Torpedo": 0,
+							"Aa": 119,
+							"Asw": 100,
+							"Search": 104,
+							"Luck": 45,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 2,
+									"AircraftMax": 2,
+									"Equipment": {
+										"Id": 468,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 8,
+									"AircraftMax": 8,
+									"Equipment": {
+										"Id": 390,
+										"Level": 3,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 18,
+									"AircraftMax": 24,
+									"Equipment": {
+										"Id": 322,
+										"Level": 10,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 12,
+									"AircraftMax": 12,
+									"Equipment": {
+										"Id": 375,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 11,
+									"AircraftMax": 11,
+									"Equipment": {
+										"Id": 116,
+										"Level": 8,
+										"AircraftLevel": 0
+									}
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 274,
+									"Level": 10,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 618,
+							"DropId": 74812,
+							"Level": 179,
+							"Condition": 60,
+							"Kyouka": [
+								40,
+								48,
+								42,
+								41,
+								4,
+								0,
+								0
+							],
+							"Fuel": 10,
+							"Ammo": 18,
+							"Hp": 51,
+							"Armor": 68,
+							"Evasion": 101,
+							"Aircraft": [
+								1,
+								1,
+								1,
+								0,
+								0
+							],
+							"Range": 2,
+							"Speed": 10,
+							"Firepower": 94,
+							"Torpedo": 72,
+							"Aa": 79,
+							"Asw": 91,
+							"Search": 90,
+							"Luck": 26,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 1,
+									"AircraftMax": 1,
+									"Equipment": {
+										"Id": 50,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 1,
+									"AircraftMax": 1,
+									"Equipment": {
+										"Id": 50,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 1,
+									"AircraftMax": 1,
+									"Equipment": {
+										"Id": 239,
+										"Level": 0,
+										"AircraftLevel": 7
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								}
+							],
+							"ExpansionSlot": null,
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 567,
+							"DropId": 31200,
+							"Level": 174,
+							"Condition": 35,
+							"Kyouka": [
+								49,
+								61,
+								44,
+								40,
+								4,
+								0,
+								0
+							],
+							"Fuel": 5,
+							"Ammo": 8,
+							"Hp": 38,
+							"Armor": 55,
+							"Evasion": 130,
+							"Aircraft": [
+								0,
+								0,
+								0,
+								0,
+								0
+							],
+							"Range": 2,
+							"Speed": 10,
+							"Firepower": 76,
+							"Torpedo": 93,
+							"Aa": 92,
+							"Asw": 98,
+							"Search": 76,
+							"Luck": 28,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 307,
+										"Level": 2,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 129,
+									"Level": 0,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						},
+						{
+							"Id": 195,
+							"DropId": 83,
+							"Level": 173,
+							"Condition": 45,
+							"Kyouka": [
+								58,
+								59,
+								36,
+								39,
+								4,
+								0,
+								0
+							],
+							"Fuel": 5,
+							"Ammo": 8,
+							"Hp": 37,
+							"Armor": 55,
+							"Evasion": 128,
+							"Aircraft": [
+								0,
+								0,
+								0,
+								0,
+								0
+							],
+							"Range": 2,
+							"Speed": 10,
+							"Firepower": 84,
+							"Torpedo": 91,
+							"Aa": 80,
+							"Asw": 93,
+							"Search": 84,
+							"Luck": 44,
+							"EquipmentSlots": [
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 122,
+										"Level": 10,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": {
+										"Id": 307,
+										"Level": 0,
+										"AircraftLevel": 0
+									}
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								},
+								{
+									"AircraftCurrent": 0,
+									"AircraftMax": 0,
+									"Equipment": null
+								}
+							],
+							"ExpansionSlot": {
+								"AircraftCurrent": 0,
+								"AircraftMax": 0,
+								"Equipment": {
+									"Id": 129,
+									"Level": 0,
+									"AircraftLevel": 0
+								}
+							},
+							"SpecialEffectItems": []
+						}
+					]
+				},
+				null,
+				null,
+				null
+			],
+			"AirBases": []
+		},
+		"MapData": {
+			"RequiredDefeatedCount": -1,
+			"MapHPCurrent": 0,
+			"MapHPMax": 0
+		},
+		"CalculatedSortieCost": {
+			"SortieFleetSupplyCost": null,
+			"SortieFleetRepairCost": null,
+			"NodeSupportSupplyCost": null,
+			"BossSupportSupplyCost": null,
+			"TotalAirBaseSupplyCost": null
+		}
+	}
+]

@@ -173,7 +173,6 @@ public static class GameDataExtensions
 		IsInSortie = fleet.IsInSortie,
 		IsInPractice = fleet.IsInPractice,
 		ID = fleet.ID,
-		SupportType = fleet.SupportType,
 		IsFlagshipRepairShip = fleet.IsFlagshipRepairShip,
 		CanAnchorageRepair = fleet.CanAnchorageRepair,
 		ConditionTime = fleet.ConditionTime,

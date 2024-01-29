@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 
@@ -22,7 +23,7 @@ public class ApiReqMapStartResponse : IMapProgressApi
 	public ApiCellFlavor? ApiCellFlavor { get; set; }
 
 	[JsonPropertyName("api_color_no")]
-	public int ApiColorNo { get; set; }
+	public CellType ApiColorNo { get; set; }
 
 	/// <summary>
 	/// Enemy fleet preview. Only one element against single fleet. Two elements if fighting combined fleet.

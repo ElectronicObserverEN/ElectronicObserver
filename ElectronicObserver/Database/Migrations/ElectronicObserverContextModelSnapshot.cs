@@ -130,6 +130,10 @@ namespace ElectronicObserver.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CalculatedSortieCost")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FleetAfterSortieData")
                         .HasColumnType("TEXT");
 

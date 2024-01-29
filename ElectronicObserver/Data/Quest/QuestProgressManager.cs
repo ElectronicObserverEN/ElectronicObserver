@@ -890,9 +890,6 @@ public sealed class QuestProgressManager : DataStorage
 					case 328: //C27
 						Progresses.Add(new ProgressPractice(q, 4, true));
 						break;
-					case 329:   //|329|【節分任務】節分演習！|演習S勝利3|(駆逐or海防)2
-						Progresses.Add(new ProgressPractice(q, 3, "S"));
-						break;
 					case 330:   //|330|空母機動部隊、演習始め！|演習B勝利4|旗艦空母+空母1+駆逐2|クォータリーだが1日で進捗リセット
 						Progresses.Add(new ProgressPractice(q, 4, "B"));
 						break;

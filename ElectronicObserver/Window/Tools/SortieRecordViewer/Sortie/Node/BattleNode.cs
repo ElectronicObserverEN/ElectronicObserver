@@ -4,13 +4,14 @@ using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
-public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, int eventId, int eventKind)
-	: SortieNode(kcDatabase, world, map, cell, eventId, eventKind)
+public sealed class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, CellType colorNo, int eventId, int eventKind)
+	: SortieNode(kcDatabase, world, map, cell, colorNo, eventId, eventKind)
 {
 	public IBattleApiRequest? Request { get; set; }
 	public BattleData FirstBattle { get; } = battle;
@@ -33,6 +34,10 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 	public string? AdmiralExp { get; private set; }
 	public string? BaseExp { get; private set; }
 	public string? DropShip { get; private set; }
+
+	public override IEnumerable<PhaseBase> AllPhases => base.AllPhases
+		.Concat(FirstBattle.Phases)
+		.Concat(SecondBattle?.Phases ?? []);
 
 	public void AddResult(ISortieBattleResultApi result)
 	{
@@ -94,7 +99,7 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 		if (FirstBattle.FleetsBeforeBattle.EscortFleet is IFleetData escort)
 		{
 			shipsBeforeBattle = shipsBeforeBattle.Concat(escort.MembersWithoutEscaped!);
-			shipsAfterBattle = shipsAfterBattle.Concat(lastBattle.FleetsAfterBattle.EscortFleet.MembersWithoutEscaped!);
+			shipsAfterBattle = shipsAfterBattle.Concat(lastBattle.FleetsAfterBattle.EscortFleet!.MembersWithoutEscaped!);
 		}
 
 		int hpBeforeBattle = shipsBeforeBattle.Sum(s => s?.HPCurrent ?? 0);
@@ -118,4 +123,10 @@ public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, Ba
 	{
 		LastBattle.FleetsAfterBattle.UpdateState(fleets);
 	}
+
+	public bool IsSubsOnly() => FirstBattle.FleetsBeforeBattle.EnemyFleet?.MembersInstance
+		.All(s => s?.MasterShip.IsSubmarine ?? true) ?? false;
+
+	public bool IsPtOnly() => FirstBattle.FleetsBeforeBattle.EnemyFleet?.MembersInstance
+		.All(s => s?.MasterShip.IsPt ?? true) ?? false;
 }

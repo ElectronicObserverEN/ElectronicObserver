@@ -25,6 +25,7 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string Fleet => SortieRecordViewerResources.Fleet;
 
 	public string FleetImage => SortieRecordViewerResources.FleetImage;
+	public string SortieCost => SortieCostViewerResources.Title;
 	public string Replay => SortieRecordViewerResources.Replay;
 	public string CopyData => SortieRecordViewerResources.CopyData;
 	public string SortieDetail => SortieRecordViewerResources.SortieDetail;

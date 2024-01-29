@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -8,6 +7,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 /// <summary>
 /// 通常艦隊 vs 通常艦隊 長距離空襲戦 <br />
 /// api_req_sortie/ld_airbattle
+/// 5-2-C
 /// </summary>
 public sealed class BattleAirRaid : AirBattleData
 {

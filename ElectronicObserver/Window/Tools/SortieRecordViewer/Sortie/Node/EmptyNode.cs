@@ -1,6 +1,7 @@
-﻿using ElectronicObserverTypes.Data;
+﻿using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
-public class EmptyNode(IKCDatabase kcDatabase, int world, int map, int cell, int eventId, int eventKind)
-	: SortieNode(kcDatabase, world, map, cell, eventId, eventKind);
+public class EmptyNode(IKCDatabase kcDatabase, int world, int map, int cell, CellType colorNo, int eventId, int eventKind)
+	: SortieNode(kcDatabase, world, map, cell, colorNo, eventId, eventKind);

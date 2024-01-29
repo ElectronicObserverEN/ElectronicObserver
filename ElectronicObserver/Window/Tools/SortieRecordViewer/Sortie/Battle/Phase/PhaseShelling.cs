@@ -88,64 +88,29 @@ public class PhaseShelling : PhaseBase
 
 		foreach (PhaseShellingAttack atk in Attacks)
 		{
-			switch (atk.AttackType)
+			if (atk.AttackType.IsSpecialAttack())
 			{
-				case DayAttackKind.SpecialNelson:
-					for (int i = 0; i < atk.Defenders.Count; i++)
+				List<int> attackers = atk.AttackType.SpecialAttackIndexes();
+
+				for (int i = 0; i < atk.Defenders.Count; i++)
+				{
+					PhaseShellingAttack comboAttack = atk with
 					{
-						PhaseShellingAttack comboAttack = atk with
-						{
-							// #1, #3, #5
-							Attacker = new(i * 2, FleetFlag.Player),
-							Defenders = new() { atk.Defenders[i] },
-						};
+						Attacker = new(attackers[i], FleetFlag.Player),
+						Defenders = new() { atk.Defenders[i] },
+					};
 
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
-						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-					}
-					break;
-
-				case DayAttackKind.SpecialNagato:
-				case DayAttackKind.SpecialMutsu:
-				case DayAttackKind.SpecialYamato2Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						PhaseShellingAttack comboAttack = atk with
-						{
-							// #1, #1, #2
-							Attacker = new(i / 2, FleetFlag.Player),
-							Defenders = new() { atk.Defenders[i] },
-						};
-
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
-						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-					}
-					break;
-
-				case DayAttackKind.SpecialColorado:
-				case DayAttackKind.SpecialKongo:
-				case DayAttackKind.SpecialYamato3Ships:
-					for (int i = 0; i < atk.Defenders.Count; i++)
-					{
-						PhaseShellingAttack comboAttack = atk with
-						{
-							// #1, #2, #3
-							Attacker = new(i, FleetFlag.Player),
-							Defenders = new() { atk.Defenders[i] },
-						};
-
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
-						AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-					}
-					break;
-
-				default:
-					foreach (IGrouping<BattleIndex, PhaseShellingDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
-					{
-						AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, atk));
-						AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
-					}
-					break;
+					AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
+					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+				}
+			}
+			else
+			{
+				foreach (IGrouping<BattleIndex, PhaseShellingDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
+				{
+					AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, atk));
+					AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+				}
 			}
 		}
 

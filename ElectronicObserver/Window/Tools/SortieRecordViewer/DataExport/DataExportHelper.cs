@@ -8,6 +8,7 @@ using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -35,17 +36,17 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		exportProgress.Total = sorties.Count;
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+			await sortieRecord.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
 		List<ShellingBattleExportModel> dayShellingData = new();
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
-			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			int? admiralLevel = await sortieRecord.GetAdmiralLevel(Db, cancellationToken);
 			ApiOffshoreSupply? offshoreSupply = null;
 
 			if (sortieDetail is null) continue;
@@ -99,7 +100,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 							{
 								int actualAttackIndex = attackIndex;
 
-								if (IsSpecialAttack(attack.AttackKind))
+								if (attack.AttackKind.IsSpecialAttack())
 								{
 									if (previousSpecial != attack.AttackKind)
 									{
@@ -169,17 +170,17 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		exportProgress.Total = sorties.Count;
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+			await sortieRecord.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
 		List<NightBattleExportModel> nightShellingData = new();
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
-			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			int? admiralLevel = await sortieRecord.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
 
@@ -229,7 +230,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 							{
 								int actualAttackIndex = attackIndex;
 
-								if (IsSpecialAttack(attack.AttackKind))
+								if (attack.AttackKind.IsSpecialAttack())
 								{
 									if (previousSpecial != attack.AttackKind)
 									{
@@ -302,17 +303,17 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		exportProgress.Total = sorties.Count;
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+			await sortieRecord.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
 		List<TorpedoBattleExportModel> torpedoData = new();
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
-			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			int? admiralLevel = await sortieRecord.GetAdmiralLevel(Db, cancellationToken);
 			ApiOffshoreSupply? offshoreSupply = null;
 
 			if (sortieDetail is null) continue;
@@ -420,17 +421,17 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		exportProgress.Total = sorties.Count;
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+			await sortieRecord.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
 		List<AirBattleExportModel> airBattleData = new();
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
-			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			int? admiralLevel = await sortieRecord.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
 
@@ -499,17 +500,17 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		exportProgress.Total = sorties.Count;
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+			await sortieRecord.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
 		List<AirBaseBattleExportModel> airBattleData = new();
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
-			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			int? admiralLevel = await sortieRecord.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
 
@@ -644,14 +645,14 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		exportProgress.Total = sorties.Count;
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+			await sortieRecord.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
 		List<AirBaseAirDefenseExportModel> airBattleData = new();
 
-		foreach (SortieRecordViewModel sortieRecord in sorties)
+		foreach (SortieRecord sortieRecord in sorties.Select(s => s.Model))
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 
@@ -1132,31 +1133,6 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		int i => KCDatabase.Instance.MasterEquipments[i],
 		_ => null,
 	};
-
-	private static bool IsSpecialAttack(DayAttackKind dayAttack) => dayAttack is
-		DayAttackKind.SpecialNelson or
-		DayAttackKind.SpecialNagato or
-		DayAttackKind.SpecialMutsu or
-		DayAttackKind.SpecialColorado or
-		DayAttackKind.SpecialKongo or
-		DayAttackKind.SpecialSubmarineTender23 or
-		DayAttackKind.SpecialSubmarineTender34 or
-		DayAttackKind.SpecialSubmarineTender24 or
-		DayAttackKind.SpecialYamato2Ships or
-		DayAttackKind.SpecialYamato3Ships;
-
-	private static bool IsSpecialAttack(NightAttackKind nightAttack) => nightAttack is
-		NightAttackKind.CutinZuiun or
-		NightAttackKind.SpecialNelson or
-		NightAttackKind.SpecialNagato or
-		NightAttackKind.SpecialMutsu or
-		NightAttackKind.SpecialColorado or
-		NightAttackKind.SpecialKongou or
-		NightAttackKind.SpecialSubmarineTender23 or
-		NightAttackKind.SpecialSubmarineTender34 or
-		NightAttackKind.SpecialSubmarineTender24 or
-		NightAttackKind.SpecialYamato2Ships or
-		NightAttackKind.SpecialYamato3Ships;
 
 	private static string AirDefenseSquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell} ({GetEventKind(node.ApiEventId, node.ApiEventKind)})";

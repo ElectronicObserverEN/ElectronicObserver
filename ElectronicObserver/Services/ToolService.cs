@@ -67,7 +67,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		}
 	}
 
-	public void AirControlSimulator(SortieRecordViewModel sortie)
+	public void AirControlSimulator(SortieRecord sortie)
 	{
 		string url = GetAirControlSimulatorLink(sortie);
 
@@ -102,7 +102,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		Process.Start(psi);
 	}
 
-	public void OperationRoom(SortieRecordViewModel sortie)
+	public void OperationRoom(SortieRecord sortie)
 	{
 		string url = GetOperationRoomLink(sortie);
 
@@ -245,7 +245,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		new EquipmentUpgradePlannerWindow(viewModel).Show(App.Current.MainWindow);
 	}
 
-	public void OpenSortieDetail(ElectronicObserverContext db, SortieRecordViewModel sortie)
+	public void OpenSortieDetail(ElectronicObserverContext db, SortieRecord sortie)
 	{
 		SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(db, sortie);
 
@@ -262,7 +262,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(db, sortieRecord);
+			SortieDetailViewModel? sortieDetail = GenerateSortieDetailViewModel(db, sortieRecord.Model);
 
 			if (sortieDetail is null) return;
 
@@ -402,11 +402,13 @@ public class ToolService(DataSerializationService dataSerializationService)
 	}
 
 	public SortieDetailViewModel? GenerateSortieDetailViewModel(ElectronicObserverContext db,
-		SortieRecordViewModel sortie)
+		SortieRecord sortie)
 	{
 		try
 		{
-			ApiFile startRequestFile = sortie.Model.ApiFiles
+			sortie.EnsureApiFilesLoaded(db).Wait();
+
+			ApiFile startRequestFile = sortie.ApiFiles
 				.First(f => f.ApiFileType is ApiFileType.Request && f.Name is "api_req_map/start");
 
 			ApiReqMapStartRequest startRequest = JsonSerializer
@@ -416,13 +418,13 @@ public class ToolService(DataSerializationService dataSerializationService)
 			// fleetId is 1 based, so need to do -1 when fetching data from fleets
 			if (!int.TryParse(startRequest.ApiDeckId, out int fleetId)) throw new Exception();
 
-			BattleFleets fleetsBeforeSortie = MakeBattleFleets(sortie.Model.FleetData, fleetId);
-			BattleFleets? fleetsAfterSortie = MakeBattleFleets(sortie.Model.FleetAfterSortieData, fleetId);
+			BattleFleets fleetsBeforeSortie = MakeBattleFleets(sortie.FleetData, fleetId);
+			BattleFleets? fleetsAfterSortie = MakeBattleFleets(sortie.FleetAfterSortieData, fleetId);
 
 			SortieDetailViewModel sortieDetail = new(db, sortie, fleetsBeforeSortie, fleetsAfterSortie);
 
 			// todo: battle requests contain a flag if smoke screen was activated
-			foreach (ApiFile apiFile in sortie.Model.ApiFiles)
+			foreach (ApiFile apiFile in sortie.ApiFiles)
 			{
 				if (apiFile is { ApiFileType: ApiFileType.Request, Name: not "api_req_map/start_air_base" })
 				{
@@ -472,7 +474,13 @@ public class ToolService(DataSerializationService dataSerializationService)
 			_ => null,
 		};
 
-		return new(fleet, escortFleet, fleets, airBases);
+		return new(fleet, escortFleet, fleets, airBases)
+		{
+			FleetId = fleetData.FleetId,
+			NodeSupportFleetId = fleetData.NodeSupportFleetId,
+			BossSupportFleetId = fleetData.BossSupportFleetId,
+			CombinedFlag = fleetData.CombinedFlag,
+		};
 	}
 
 	public void CopyReplayLinkToClipboard(SortieRecordViewModel sortie)
@@ -579,7 +587,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		return JsonSerializer.Serialize(replay);
 	}
 
-	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie,
+	public void CopyAirControlSimulatorLink(SortieRecord sortie,
 		SortieDetailViewModel? sortieDetail = null)
 	{
 		string url = GetAirControlSimulatorLink(sortie, sortieDetail);
@@ -587,16 +595,16 @@ public class ToolService(DataSerializationService dataSerializationService)
 		Clipboard.SetText(url);
 	}
 
-	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie,
+	private string GetAirControlSimulatorLink(SortieRecord sortie,
 		SortieDetailViewModel? sortieDetail = null)
 	{
-		sortie.Model.EnsureApiFilesLoaded(new()).Wait();
+		sortie.EnsureApiFilesLoaded(new()).Wait();
 
 		sortieDetail ??= GenerateSortieDetailViewModel(new(), sortie);
 
-		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
+		List<IFleetData?> fleets = sortie.FleetData.MakeFleets();
 
-		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
+		List<IBaseAirCorpsData> airBases = sortie.FleetData.AirBases
 			.Select(f => f.MakeAirBase())
 			.ToList();
 
@@ -616,18 +624,18 @@ public class ToolService(DataSerializationService dataSerializationService)
 		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
 	}
 
-	public void CopyOperationRoomLink(SortieRecordViewModel sortie)
+	public void CopyOperationRoomLink(SortieRecord sortie)
 	{
 		string url = GetOperationRoomLink(sortie);
 
 		Clipboard.SetText(url);
 	}
 
-	private string GetOperationRoomLink(SortieRecordViewModel sortie)
+	private string GetOperationRoomLink(SortieRecord sortie)
 	{
-		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
+		List<IFleetData?> fleets = sortie.FleetData.MakeFleets();
 
-		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
+		List<IBaseAirCorpsData> airBases = sortie.FleetData.AirBases
 			.Select(f => f.MakeAirBase())
 			.ToList();
 
@@ -646,10 +654,9 @@ public class ToolService(DataSerializationService dataSerializationService)
 		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
 	}
 
-	public async Task CopySortieDataToClipboard(ElectronicObserverContext db,
-		SortieRecordViewModel sortie)
+	public async Task CopySortieDataToClipboard(ElectronicObserverContext db, SortieRecord sortie)
 	{
-		await CopySortieDataToClipboard(db, new List<SortieRecord> { sortie.Model });
+		await CopySortieDataToClipboard(db, [sortie]);
 	}
 
 	public async Task CopySortieDataToClipboard(ElectronicObserverContext db,
@@ -679,7 +686,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 				World = s.World,
 				Map = s.Map,
 				ApiFiles = s.ApiFiles
-					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
+					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start" or "api_req_map/start_air_base")
 					.ToList(),
 				FleetData = s.FleetData,
 				FleetAfterSortieData = s.FleetAfterSortieData,
@@ -698,7 +705,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 
 			if (sorties is null) return;
 
-			OpenSortieDetail(db, new SortieRecordViewModel(sorties.First(), DateTime.UtcNow));
+			OpenSortieDetail(db, sorties.First());
 		}
 		catch (Exception e)
 		{

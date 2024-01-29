@@ -18,9 +18,11 @@ using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using Microsoft.EntityFrameworkCore;
 using Calendar = System.Windows.Controls.Calendar;
 
@@ -30,6 +32,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
 	private FileService FileService { get; }
+	private SortieRecordMigrationService SortieRecordMigrationService { get; }
 	private ElectronicObserverContext Db { get; } = new();
 	private DataExportHelper DataExportHelper { get; }
 
@@ -73,6 +76,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 		FileService = Ioc.Default.GetRequiredService<FileService>();
+		SortieRecordMigrationService = Ioc.Default.GetRequiredService<SortieRecordMigrationService>();
 		DataExportHelper = new(Db, ToolService);
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
@@ -198,7 +202,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
-		ToolService.OpenSortieDetail(Db, SelectedSortie);
+		ToolService.OpenSortieDetail(Db, SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -229,7 +233,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.CopyAirControlSimulatorLink(SelectedSortie);
+		ToolService.CopyAirControlSimulatorLink(SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -237,7 +241,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.AirControlSimulator(SelectedSortie);
+		ToolService.AirControlSimulator(SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -245,7 +249,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.CopyOperationRoomLink(SelectedSortie);
+		ToolService.CopyOperationRoomLink(SelectedSortie.Model);
 	}
 
 	[RelayCommand]
@@ -253,7 +257,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSortie is null) return;
 
-		ToolService.OperationRoom(SelectedSortie);
+		ToolService.OperationRoom(SelectedSortie.Model);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
@@ -412,5 +416,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		csv.Context.RegisterClassMap<TMap>();
 		await csv.WriteRecordsAsync(data);
+	}
+
+	[RelayCommand]
+	private void OpenSortieCost()
+	{
+		if (SelectedSorties.Count <= 0) return;
+
+		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties);
+
+		new SortieCostViewerWindow(sortieCost).Show();
 	}
 }

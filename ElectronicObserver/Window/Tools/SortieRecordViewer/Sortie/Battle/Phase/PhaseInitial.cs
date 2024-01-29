@@ -401,6 +401,12 @@ public class PhaseInitial : PhaseBase
 
 		FleetsAfterPhase.EnemyFleet = new FleetDataMock
 		{
+			FleetType = EnemyMembersEscortInstance switch
+			{
+				null => FleetType.Single,
+				// todo: determine combined fleet type
+				_ => FleetType.Carrier,
+			},
 			MembersInstance = new(EnemyMembersInstance),
 		};
 
