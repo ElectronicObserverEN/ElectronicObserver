@@ -39,7 +39,7 @@ public record FitBonusValue
 		LOS = a.LOS * b,
 		Accuracy = a.Accuracy * b,
 		Range = a.Range * b,
-		Bombing = a.Bombing * b
+		Bombing = a.Bombing * b,
 	};
 
 	public static FitBonusValue operator +(FitBonusValue a, FitBonusValue b) => new()
@@ -53,7 +53,7 @@ public record FitBonusValue
 		LOS = a.LOS + b.LOS,
 		Accuracy = a.Accuracy + b.Accuracy,
 		Range = a.Range + b.Range,
-		Bombing = a.Bombing + b.Bombing
+		Bombing = a.Bombing + b.Bombing,
 	};
 
 	public bool HasBonus()
