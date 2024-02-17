@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
