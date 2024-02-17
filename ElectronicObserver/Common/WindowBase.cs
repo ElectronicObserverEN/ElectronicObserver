@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
@@ -28,16 +29,26 @@ public class WindowBase<TViewModel> : System.Windows.Window where TViewModel : W
 		SetBinding(FontFamilyProperty, nameof(WindowViewModelBase.Font));
 		SetBinding(ForegroundProperty, nameof(WindowViewModelBase.FontBrush));
 
-		Loaded += (_, _) =>
-		{
-			ViewModel.Loaded();
-			StartJotTracking();
-		};
-		Closed += (_, _) => ViewModel.Closed();
+		Loaded += OnLoaded;
+		Closed += OnClosed;
 	}
 
 	private void StartJotTracking()
 	{
 		Tracker.Track(this);
+	}
+
+	private void OnLoaded(object sender, RoutedEventArgs e)
+	{
+		ViewModel.Loaded();
+		StartJotTracking();
+	}
+
+	private void OnClosed(object? sender, EventArgs eventArgs)
+	{
+		ViewModel.Closed();
+
+		Loaded -= OnLoaded;
+		Closed -= OnClosed;
 	}
 }

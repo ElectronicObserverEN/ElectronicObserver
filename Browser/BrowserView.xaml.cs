@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using Windows.UI.ViewManagement;
 using Browser.CefSharpBrowser;
 using Browser.WebView2Browser;
 using BrowserLibCore;
@@ -32,6 +33,7 @@ public partial class BrowserView
 		if (sender is not FrameworkElement control) return;
 
 		ViewModel.DpiScale = VisualTreeHelper.GetDpi(this);
+		ViewModel.TextScaleFactor = new UISettings().TextScaleFactor;
 
 		ViewModel.ActualHeight = control.ActualHeight;
 		ViewModel.ActualWidth = control.ActualWidth;

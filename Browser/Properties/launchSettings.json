@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Browser": {
+      "commandName": "Project"
+    },
+    "Browser debug": {
+      "commandName": "Project",
+      "commandLineArgs": "localhost\r\n45467"
+    }
+  }
+}

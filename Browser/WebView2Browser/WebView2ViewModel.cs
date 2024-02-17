@@ -25,23 +25,24 @@ public class WebView2ViewModel : BrowserViewModel
 	private DevToolsProtocolHelper? DevToolsHelper { get; set; }
 
 	public override object? Browser => WebView2;
-	public WebView2? WebView2 { get; set; }
+	private WebView2? WebView2 { get; set; }
 	private static string BrowserCachePath => BrowserConstants.WebView2CachePath;
 	private bool IsRefreshing { get; set; }
 	private bool IsNavigating { get; set; }
 
-	private CoreWebView2Frame? gameframe { get; set; }
-	private CoreWebView2Frame? kancolleframe { get; set; }
+	private CoreWebView2Frame? GameFrame { get; set; }
+	private CoreWebView2Frame? KancolleFrame { get; set; }
 
 	public WebView2ViewModel(string host, int port, string culture) : base(host, port, culture)
 	{
+		// System.Diagnostics.Debugger.Launch();
 	}
 
 	public override async void OnLoaded(object sender, RoutedEventArgs e)
 	{
 		if (sender is not Window window) return;
 
-		var handle = new WindowInteropHelper(window).Handle;
+		IntPtr handle = new WindowInteropHelper(window).Handle;
 		SetWindowLong(handle, GWL_STYLE, WS_CHILD);
 
 		await Task.Run(ConfigurationChanged);
@@ -285,8 +286,8 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void CoreWebView2_ContextMenuRequested(object? sender, CoreWebView2ContextMenuRequestedEventArgs e)
 	{
-		if (WebView2.CoreWebView2 == null) return;
-		if (gameframe != null)
+		if (WebView2?.CoreWebView2 == null) return;
+		if (GameFrame != null)
 		{
 			e.Handled = !Configuration.IsBrowserContextMenuEnabled;
 		}
@@ -341,18 +342,29 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void CoreWebView2_NavigationStarted(object? sender, CoreWebView2NavigationStartingEventArgs e)
 	{
-		if (WebView2.CoreWebView2 == null) return;
+		if (WebView2?.CoreWebView2 == null) return;
+
+		// would probably be better if we could disable the https redirect but this should work for now
+		if (e.IsRedirected && e.Uri.Contains("https://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/"))
+		{
+			Navigate("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
+			return;
+		}
+
 		if (IsNavigating) return;
+
 		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
 		{
 			e.Cancel = true;
 		}
+
 		if (new Uri(e.Uri).Host.Contains("accounts.google.com"))
 		{
 			var settings = WebView2.CoreWebView2.Settings;
 			settings.UserAgent = "Chrome";
 		}
-		if (gameframe != null && !IsRefreshing)
+
+		if (GameFrame != null && !IsRefreshing)
 		{
 			e.Cancel = true;
 		}
@@ -362,13 +374,13 @@ public class WebView2ViewModel : BrowserViewModel
 	{
 		if (e.Frame.Name.Contains(@"game_frame"))
 		{
-			gameframe = e.Frame;
+			GameFrame = e.Frame;
 			IsRefreshing = false;
 			IsNavigating = false;
 		}
 		if (e.Frame.Name.Contains(@"htmlWrap"))
 		{
-			kancolleframe = e.Frame;
+			KancolleFrame = e.Frame;
 		}
 	}
 
@@ -418,17 +430,17 @@ public class WebView2ViewModel : BrowserViewModel
 
 		try
 		{
-			if (gameframe is null) return;
+			if (GameFrame is null) return;
 
 			if (!StyleSheetApplied)
 			{
 				WebView2.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
-				gameframe.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				GameFrame.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
 			}
 			else
 			{
 				WebView2.ExecuteScriptAsync(string.Format(Resources.PageScript, StyleClassId));
-				gameframe.ExecuteScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
+				GameFrame.ExecuteScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
 			}
 		}
 		catch (Exception ex)
@@ -496,16 +508,18 @@ public class WebView2ViewModel : BrowserViewModel
 	/// </summary>
 	protected override void ApplyZoom()
 	{
+		if (Configuration is null) return;
 		if (WebView2 is not { IsInitialized: true }) return;
-		var zoomRate = Configuration.ZoomRate;
-		var fit = Configuration.ZoomFit && StyleSheetApplied;
+
+		double zoomRate = Configuration.ZoomRate;
+		bool fit = Configuration.ZoomFit && StyleSheetApplied;
 
 		double zoomFactor;
 
 		if (fit)
 		{
-			var rateX = ActualWidth / KanColleSize.Width;
-			var rateY = ActualHeight / KanColleSize.Height;
+			double rateX = ActualWidth / (KanColleSize.Width * TextScaleFactor);
+			double rateY = ActualHeight / (KanColleSize.Height * TextScaleFactor);
 
 			zoomFactor = Math.Min(rateX, rateY);
 		}
@@ -514,13 +528,13 @@ public class WebView2ViewModel : BrowserViewModel
 			zoomFactor = Math.Clamp(zoomRate, 0.1, 10);
 		}
 
-		// DpiScaleX and DpiScaleY should always be the same so it doesn't matter which one you use
+		// DpiScaleX and DpiScaleY should always be the same, so it doesn't matter which one you use
 		WebView2.ZoomFactor = zoomFactor;
 
-		if (StyleSheetApplied && gameframe != null)
+		if (StyleSheetApplied && GameFrame != null)
 		{
-			var newWidth = (int)(KanColleSize.Width * zoomFactor);
-			var newHeight = (int)(KanColleSize.Height * zoomFactor);
+			double newWidth = (int)(KanColleSize.Width * TextScaleFactor * zoomFactor);
+			double newHeight = (int)(KanColleSize.Height * TextScaleFactor * zoomFactor);
 
 			WebView2.Width = newWidth;
 			WebView2.Height = newHeight;

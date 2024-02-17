@@ -28,13 +28,16 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	public Thickness WorkaroundOffset => new(0, 0, 0, WorkaroundOffsetBottom);
 	public int WorkaroundOffsetBottom { get; set; }
 
-	public FontFamily? SubFont { get; set; }
-	public float SubFontSize { get; set; }
-	public SolidColorBrush? SubFontColor { get; set; }
+	public FontFamily? SubFont { get; private set; }
+	public float SubFontSize { get; private set; }
+	public SolidColorBrush? SubFontColor { get; private set; }
 
 	public HeadquarterItemViewModel AdmiralName { get; } = new();
 	public HeadquarterItemViewModel AdmiralComment { get; } = new();
 	public HQLevelViewModel HQLevel { get; } = new();
+	public HeadquarterItemViewModel SenkaSession { get; } = new();
+	public HeadquarterItemViewModel SenkaDay { get; } = new();
+	public HeadquarterItemViewModel SenkaMonth { get; } = new();
 	public HeadquarterItemViewModel ShipCount { get; } = new();
 	public HeadquarterItemViewModel EquipmentCount { get; } = new();
 	public HeadquarterItemViewModel InstantRepair { get; } = new();
@@ -57,8 +60,8 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		Title = FormHeadquarters.Title;
 		FormHeadquarters.PropertyChanged += (_, _) => Title = FormHeadquarters.Title;
 
-		Items = new()
-		{
+		Items =
+		[
 			AdmiralName,
 			AdmiralComment,
 			HQLevel,
@@ -74,7 +77,10 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 			Ammo,
 			Steel,
 			Bauxite,
-		};
+			SenkaSession,
+			SenkaDay,
+			SenkaMonth,
+		];
 
 		APIObserver o = APIObserver.Instance;
 
@@ -150,6 +156,9 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		Steel.Visible = visibility[12];
 		Bauxite.Visible = visibility[13];
 		DisplayUseItem.Visible = visibility[14];
+		SenkaSession.Visible = visibility[15];
+		SenkaDay.Visible = visibility[16];
+		SenkaMonth.Visible = visibility[17];
 
 		UpdateDisplayUseItem();
 	}
@@ -157,13 +166,12 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	/// <summary>
 	/// VisibleFlags 設定をチェックし、不正な値だった場合は初期値に戻します。
 	/// </summary>
-	public static void CheckVisibilityConfiguration()
+	private void CheckVisibilityConfiguration()
 	{
-		const int count = 15;
+		int count = Items.Count;
 		var config = Utility.Configuration.Config.FormHeadquarters;
 
-		if (config.Visibility == null)
-			config.Visibility = new Utility.Storage.SerializableList<bool>(Enumerable.Repeat(true, count).ToList());
+		config.Visibility ??= new Utility.Storage.SerializableList<bool>(Enumerable.Repeat(true, count).ToList());
 
 		for (int i = config.Visibility.List.Count; i < count; i++)
 		{
@@ -204,18 +212,13 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 		var configUI = Utility.Configuration.Config.UI;
 
-		if (!db.Admiral.IsAvailable)
-			return;
+		if (!db.Admiral.IsAvailable) return;
 
-		//FlowPanelMaster.SuspendLayout();
-
-		//Admiral
-		//FlowPanelAdmiral.SuspendLayout();
 		AdmiralName.Text = string.Format("{0} {1}", db.Admiral.AdmiralName, Constants.GetAdmiralRank(db.Admiral.Rank));
 		{
 			StringBuilder tooltip = new();
 
-			var sortieCount = db.Admiral.SortieWin + db.Admiral.SortieLose;
+			int sortieCount = db.Admiral.SortieWin + db.Admiral.SortieLose;
 			tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipSortie + "\r\n",
 				sortieCount, db.Admiral.SortieWin, db.Admiral.SortieWin / Math.Max(sortieCount, 1.0), db.Admiral.SortieLose);
 
@@ -226,7 +229,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 			tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipExpedition + "\r\n",
 				db.Admiral.MissionCount, db.Admiral.MissionSuccess, db.Admiral.MissionSuccess / Math.Max(db.Admiral.MissionCount, 1.0), db.Admiral.MissionCount - db.Admiral.MissionSuccess);
 
-			var practiceCount = db.Admiral.PracticeWin + db.Admiral.PracticeLose;
+			int practiceCount = db.Admiral.PracticeWin + db.Admiral.PracticeLose;
 			tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipPractice + "\r\n",
 				practiceCount, db.Admiral.PracticeWin, db.Admiral.PracticeWin / Math.Max(practiceCount, 1.0), db.Admiral.PracticeLose);
 
@@ -236,7 +239,6 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		}
 
 		AdmiralComment.Text = db.Admiral.Comment;
-		//FlowPanelAdmiral.ResumeLayout();
 
 		//HQ Level
 		HQLevel.Value = db.Admiral.Level;
@@ -261,7 +263,9 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				if (res != null)
 				{
 					int diff = db.Admiral.Exp - res.HQExp;
-					tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaSession + "\r\n", diff, diff * 7 / 10000.0);
+					double senkaSession = diff * 7 / 10000.0;
+					SenkaSession.Text = $"{HeadquartersResources.SenkaSession}：{senkaSession:N2}";
+					tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaSession + "\r\n", diff, senkaSession);
 				}
 			}
 			{
@@ -269,7 +273,9 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				if (res != null)
 				{
 					int diff = db.Admiral.Exp - res.HQExp;
-					tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaDay + "\r\n", diff, diff * 7 / 10000.0);
+					double senkaDay = diff * 7 / 10000.0;
+					SenkaDay.Text = $"{HeadquartersResources.SenkaDay}：{senkaDay:N2}";
+					tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaDay + "\r\n", diff, senkaDay);
 				}
 			}
 			{
@@ -277,7 +283,9 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				if (res != null)
 				{
 					int diff = db.Admiral.Exp - res.HQExp;
-					tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaMonth + "\r\n", diff, diff * 7 / 10000.0);
+					double senkaMonth = diff * 7 / 10000.0;
+					SenkaMonth.Text = $"{HeadquartersResources.SenkaMonth}：{senkaMonth:N2}";
+					tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaMonth + "\r\n", diff, senkaMonth);
 				}
 			}
 

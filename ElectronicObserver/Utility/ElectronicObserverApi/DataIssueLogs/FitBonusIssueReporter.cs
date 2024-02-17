@@ -40,6 +40,8 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 
 			// There's no way to get accuracy bonus from the API
 			theoricalBonus.Accuracy = 0; 
+			// Same for bombing
+			theoricalBonus.Bombing = 0;
 
 			FitBonusValue actualBonus = ship.GetFitBonus();
 

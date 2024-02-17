@@ -26,7 +26,9 @@ public record FitBonusValue
 
 	[JsonPropertyName("leng")] public int Range { get; set; }
 
-	public static FitBonusValue operator *(FitBonusValue a, int b) => new FitBonusValue()
+	[JsonPropertyName("baku")] public int Bombing { get; set; }
+
+	public static FitBonusValue operator *(FitBonusValue a, int b) => new()
 	{
 		Firepower = a.Firepower * b,
 		Torpedo = a.Torpedo * b,
@@ -36,10 +38,11 @@ public record FitBonusValue
 		ASW = a.ASW * b,
 		LOS = a.LOS * b,
 		Accuracy = a.Accuracy * b,
-		Range = a.Range * b
+		Range = a.Range * b,
+		Bombing = a.Bombing * b,
 	};
 
-	public static FitBonusValue operator +(FitBonusValue a, FitBonusValue b) => new FitBonusValue()
+	public static FitBonusValue operator +(FitBonusValue a, FitBonusValue b) => new()
 	{
 		Firepower = a.Firepower + b.Firepower,
 		Torpedo = a.Torpedo + b.Torpedo,
@@ -49,7 +52,8 @@ public record FitBonusValue
 		ASW = a.ASW + b.ASW,
 		LOS = a.LOS + b.LOS,
 		Accuracy = a.Accuracy + b.Accuracy,
-		Range = a.Range + b.Range
+		Range = a.Range + b.Range,
+		Bombing = a.Bombing + b.Bombing,
 	};
 
 	public bool HasBonus()
@@ -63,6 +67,7 @@ public record FitBonusValue
 		if (LOS > 0) return true;
 		if (Accuracy > 0) return true;
 		if (Range > 0) return true;
+		if (Bombing > 0) return true;
 
 		return false;
 	}
@@ -79,6 +84,7 @@ public record FitBonusValue
 		if (LOS != other.LOS) return false;
 		if (Accuracy != other.Accuracy) return false;
 		if (Range != other.Range) return false;
+		if (Bombing != other.Bombing) return false;
 
 		return true;
 	}
@@ -95,6 +101,7 @@ public record FitBonusValue
 		hashCode.Add(LOS);
 		hashCode.Add(Accuracy);
 		hashCode.Add(Range);
+		hashCode.Add(Bombing);
 		return hashCode.ToHashCode();
 	}
 }

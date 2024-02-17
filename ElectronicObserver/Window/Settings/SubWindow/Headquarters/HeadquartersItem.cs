@@ -48,4 +48,13 @@ public enum HeadquartersItem
 
 	[Display(ResourceType = typeof(HeadquartersResources), Name = "ItemNameOtherItem")]
 	OtherItem,
+
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "SenkaSession")]
+	SenkaSession,
+
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "SenkaDay")]
+	SenkaDay,
+
+	[Display(ResourceType = typeof(HeadquartersResources), Name = "SenkaMonth")]
+	SenkaMonth,
 }

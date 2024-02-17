@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0-windows7</TargetFramework>
+		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -10,6 +10,8 @@
 		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
 		<LangVersion>preview</LangVersion>
 		<DebugType>embedded</DebugType>
+		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+		<Configurations>Debug;Release;Browser Debug</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -27,19 +29,11 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.3.0.1</AssemblyVersion>
-		<FileVersion>5.3.0.1</FileVersion>
-		<Version>5.3.0.1</Version>
+		<AssemblyVersion>5.3.1.0</AssemblyVersion>
+		<FileVersion>5.3.1.0</FileVersion>
+		<Version>5.3.1.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-		<OutputPath>bin\x64\Debug\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-		<OutputPath>bin\x64\Release\</OutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>

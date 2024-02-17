@@ -207,8 +207,8 @@ public class CefSharpViewModel : BrowserViewModel
 
 		if (fit)
 		{
-			double rateX = ActualWidth * DpiScale.DpiScaleX / KanColleSize.Width;
-			double rateY = ActualHeight * DpiScale.DpiScaleY / KanColleSize.Height;
+			double rateX = ActualWidth * DpiScale.DpiScaleX / (KanColleSize.Width * TextScaleFactor);
+			double rateY = ActualHeight * DpiScale.DpiScaleY / (KanColleSize.Height * TextScaleFactor);
 
 			zoomFactor = Math.Min(rateX, rateY);
 		}
@@ -217,13 +217,13 @@ public class CefSharpViewModel : BrowserViewModel
 			zoomFactor = Math.Clamp(zoomRate, 0.1, 10);
 		}
 
-		// DpiScaleX and DpiScaleY should always be the same so it doesn't matter which one you use
+		// DpiScaleX and DpiScaleY should always be the same, so it doesn't matter which one you use
 		CefSharp.SetZoomLevel(Math.Log(zoomFactor / DpiScale.DpiScaleX, 1.2));
 
 		if (StyleSheetApplied)
 		{
-			int newWidth = (int)(KanColleSize.Width * zoomFactor);
-			int newHeight = (int)(KanColleSize.Height * zoomFactor);
+			int newWidth = (int)(KanColleSize.Width * TextScaleFactor * zoomFactor);
+			int newHeight = (int)(KanColleSize.Height * TextScaleFactor * zoomFactor);
 
 			CefSharp.Width = newWidth;
 			CefSharp.Height = newHeight;

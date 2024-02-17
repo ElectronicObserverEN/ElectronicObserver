@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -112,10 +113,19 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			.Prepend(AllRecords)
 			.ToList();
 
-		SelectedSorties.CollectionChanged += (sender, args) =>
-		{
-			StatusBarText = string.Format(SortieRecordViewer.SelectedItems, SelectedSorties.Count, Sorties.Count);
-		};
+		SelectedSorties.CollectionChanged += OnSelectedSortiesOnCollectionChanged;
+	}
+
+	private void OnSelectedSortiesOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+	{
+		StatusBarText = string.Format(SortieRecordViewer.SelectedItems, SelectedSorties.Count, Sorties.Count);
+	}
+
+	public override void Closed()
+	{
+		base.Closed();
+
+		DataGridViewModel.ItemsSource.Clear();
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]

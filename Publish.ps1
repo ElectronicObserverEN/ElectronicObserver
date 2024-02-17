@@ -1,7 +1,7 @@
 $configuration = "Release"
 $arch = "x64"
 $os = "win"
-$framework = "net8.0-windows7"
+$framework = "net8.0-windows10.0.17763.0"
 $selfContained = "false"
 $output = "..\ElectronicObserver\bin\x64\publish\"
 

@@ -54,6 +54,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	/// WebView2 doesn't need this.
 	/// </summary>
 	public DpiScale DpiScale { get; set; }
+	public double TextScaleFactor { get; set; }
 	public double ActualWidth { get; set; }
 	public double ActualHeight { get; set; }
 

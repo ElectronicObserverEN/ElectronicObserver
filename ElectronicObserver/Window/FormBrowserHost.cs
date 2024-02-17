@@ -113,14 +113,18 @@ public partial class FormBrowserHost : Form
 
 	private static int GetPort()
 	{
+#if BROWSER_DEBUG
+		return 45467;
+#else
 		TcpListener server = new(IPAddress.Loopback, 0);
 		server.Start();
-		
+
 		int port = ((IPEndPoint)server.LocalEndpoint).Port;
-		
+
 		server.Stop();
-		
+
 		return port;
+#endif
 	}
 
 	public void Translate()
@@ -217,6 +221,10 @@ public partial class FormBrowserHost : Form
 
 	private void LaunchBrowserProcess()
 	{
+#if BROWSER_DEBUG
+		return;
+#endif
+
 		try
 		{
 			// プロセス起動
@@ -326,7 +334,7 @@ public partial class FormBrowserHost : Form
 				UseVulkanWorkaround = c.UseVulkanWorkaround,
 				Volume = c.Volume,
 				IsMute = c.IsMute,
-				IsBrowserContextMenuEnabled = c.IsBrowserContextMenuEnabled, 
+				IsBrowserContextMenuEnabled = c.IsBrowserContextMenuEnabled,
 				MainFont = Utility.Configuration.Config.UI.MainFont.FontData!.Name,
 				UseCustomBrowserFont = Utility.Configuration.Config.UI.UseCustomBrowserFont,
 				BrowserFont = Utility.Configuration.Config.UI.BrowserFontName,
@@ -484,7 +492,7 @@ public partial class FormBrowserHost : Form
 		{
 			return config.DownstreamProxy;
 		}
-		
+
 		if (config.UseSystemProxy)
 		{
 			return APIObserver.Instance.ProxyPort.ToString();

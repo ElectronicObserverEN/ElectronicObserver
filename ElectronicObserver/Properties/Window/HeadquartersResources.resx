@@ -431,4 +431,13 @@
   <data name="WhiteSash" xml:space="preserve">
     <value>白たすき</value>
   </data>
+  <data name="SenkaSession" xml:space="preserve">
+    <value>今回戦果</value>
+  </data>
+  <data name="SenkaDay" xml:space="preserve">
+    <value>今日戦果</value>
+  </data>
+  <data name="SenkaMonth" xml:space="preserve">
+    <value>今月戦果</value>
+  </data>
 </root>

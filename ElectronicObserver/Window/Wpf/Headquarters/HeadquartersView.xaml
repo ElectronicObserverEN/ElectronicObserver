@@ -113,6 +113,15 @@
 					</StackPanel>
 				</StackPanel>
 			</Border>
+			<Border Visibility="{Binding SenkaSession.Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
+				<TextBlock Text="{Binding SenkaSession.Text}" />
+			</Border>
+			<Border Visibility="{Binding SenkaDay.Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
+				<TextBlock Text="{Binding SenkaDay.Text}" />
+			</Border>
+			<Border Visibility="{Binding SenkaMonth.Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
+				<TextBlock Text="{Binding SenkaMonth.Text}" />
+			</Border>
 		</WrapPanel>
 		<WrapPanel ContextMenu="{StaticResource OffsetWorkaroundContextMenu}">
 			<Border Background="{Binding ShipCount.Background}" ToolTip="{Binding ShipCount.ToolTip}">

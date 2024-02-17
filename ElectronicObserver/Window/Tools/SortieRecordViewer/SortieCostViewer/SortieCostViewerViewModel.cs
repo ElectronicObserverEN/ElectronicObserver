@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
@@ -22,6 +23,8 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 	public SortieCostModel? SortieCostSummary { get; private set; }
 	public string? Progress { get; set; }
 
+	private CancellationTokenSource CancellationTokenSource { get; set; } = new();
+
 	public SortieCostViewerViewModel(ElectronicObserverContext db, ToolService toolService,
 		SortieRecordMigrationService sortieRecordMigrationService, ObservableCollection<SortieRecordViewModel> sorties)
 	{
@@ -37,10 +40,17 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 	{
 		base.Loaded();
 
-		_ = CalculateCost();
+		_ = CalculateCost(CancellationTokenSource.Token);
 	}
 
-	private async Task CalculateCost()
+	public override void Closed()
+	{
+		base.Closed();
+
+		CancellationTokenSource.Cancel();
+	}
+
+	private async Task CalculateCost(CancellationToken cancellationToken)
 	{
 		int index = 0;
 		int total = Sorties.Count;
@@ -51,6 +61,11 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 		{
 			foreach (SortieRecordViewModel sortie in Sorties)
 			{
+				if (cancellationToken.IsCancellationRequested)
+				{
+					break;
+				}
+
 				SortieCostViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, sortie);
 
 				App.Current!.Dispatcher.Invoke(() =>
@@ -61,7 +76,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 					Progress = $"{index}/{total}";
 				});
 			}
-		});
+		}, cancellationToken);
 
 		SortieCostSummary = SortieCosts
 			.Select(c => c.TotalCost)

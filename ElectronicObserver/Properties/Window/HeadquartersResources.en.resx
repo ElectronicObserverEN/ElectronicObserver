@@ -380,4 +380,13 @@ Monthly: {2:+##;-##;±0}</value>
   <data name="WhiteSash" xml:space="preserve">
     <value>White Sash</value>
   </data>
+  <data name="SenkaSession" xml:space="preserve">
+    <value>Session pt</value>
+  </data>
+  <data name="SenkaDay" xml:space="preserve">
+    <value>Daily pt</value>
+  </data>
+  <data name="SenkaMonth" xml:space="preserve">
+    <value>Monthly pt</value>
+  </data>
 </root>
