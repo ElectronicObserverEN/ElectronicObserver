@@ -71,10 +71,8 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 	{
 		if (ExecuteScriptAsync is null) return;
 
-		string? fleetData = BrowserHost.GetFleetData().Result;
-
-		if (fleetData is null) return;
-
+		string fleetData = BrowserHost.GetFleetData().Result;
+		
 		ExecuteScriptAsync($"document.querySelector(\"#fleet-import\").value='{fleetData}';document.querySelector(\"#fleet-import\").dispatchEvent(new Event(\"input\"))");
 	}
 }
