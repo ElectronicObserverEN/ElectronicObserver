@@ -2,7 +2,7 @@
 
 public class CompassPredictionTranslationViewModel
 {
-	public string Title => "";
+	public string Title => CompassPredictionResources.Title;
 
-	public string SynchronizeWithGame => "Synchronize current map";
+	public string SynchronizeMap => CompassPredictionResources.SynchronizeMap;
 }

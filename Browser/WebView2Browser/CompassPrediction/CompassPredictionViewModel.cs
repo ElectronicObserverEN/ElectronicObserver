@@ -3,10 +3,11 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Jot;
 
 namespace Browser.WebView2Browser.CompassPrediction;
 
-public partial class CompassPredictionViewModel(IBrowserHost browserHost, CompassPredictionTranslationViewModel translations)
+public partial class CompassPredictionViewModel(IBrowserHost browserHost, CompassPredictionTranslationViewModel translations, Tracker tracker)
 	: ObservableObject
 {
 	public CompassPredictionTranslationViewModel Translations { get; } = translations;
@@ -18,13 +19,28 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 	public string Uri => "https://x-20a.github.io/compass/";
 
 	[ObservableProperty] 
-	private bool _synchronizeMap = true;
-	
-	public void Initialize()
+	private bool _synchronizeMap;
+
+	private Tracker Tracker { get; } = tracker;
+
+	public async Task Initialize()
 	{
+		Tracker.Track(this);
+
 		PropertyChanged += OnSynchronizeChanged;
 
 		UpdateFleet();
+
+		if (SynchronizeMap)
+		{
+			await SynchronizeMapWithPlayedOne();
+		}
+	}
+
+	public void OnClose()
+	{
+		Tracker.StopTracking(this);
+		Tracker.PersistAll();
 	}
 
 	private async void OnSynchronizeChanged(object? sender, PropertyChangedEventArgs e)

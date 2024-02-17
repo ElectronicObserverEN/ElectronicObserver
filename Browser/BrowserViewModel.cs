@@ -14,6 +14,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using Grpc.Core;
+using Jot;
 using MagicOnion.Client;
 using ModernWpf;
 
@@ -84,7 +85,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
 		CompassPredictionTranslationViewModel translation = Ioc.Default.GetRequiredService<CompassPredictionTranslationViewModel>();
-		
+		Tracker tracker = Ioc.Default.GetRequiredService<Tracker>();
+
 		Host = host;
 		Port = port;
 		Culture = culture;
@@ -133,7 +135,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 			VolumeChanged();
 		};
 
-		CompassPredictionViewModel = new(BrowserHost, translation);
+		CompassPredictionViewModel = new(BrowserHost, translation, tracker);
 	}
 
 	public abstract void OnLoaded(object sender, RoutedEventArgs e);

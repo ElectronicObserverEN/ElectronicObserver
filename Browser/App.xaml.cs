@@ -116,6 +116,9 @@ public partial class App : Application
 			.PersistOn(nameof(Window.Closed))
 			.StopTrackingOn(nameof(Window.Closed));
 
+		tracker.Configure<CompassPredictionViewModel>()
+			.Property(vm => vm.SynchronizeMap);
+
 		return tracker;
 	}
 

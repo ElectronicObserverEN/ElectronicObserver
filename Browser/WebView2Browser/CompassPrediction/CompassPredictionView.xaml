@@ -38,7 +38,7 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<CheckBox Content="{Binding Translations.SynchronizeWithGame}" IsChecked="{Binding SynchronizeMap}" />
+			<CheckBox Content="{Binding Translations.SynchronizeMap}" IsChecked="{Binding SynchronizeMap}" />
 		</StackPanel>
 
 		<ContentControl Grid.Row="1">

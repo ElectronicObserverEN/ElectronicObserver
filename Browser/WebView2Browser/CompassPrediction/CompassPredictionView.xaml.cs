@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
@@ -33,6 +32,11 @@ public partial class CompassPredictionView
 		{
 			StartJotTracking();
 		};
+
+		Closed += (_, _) =>
+		{
+			ViewModel.OnClose();
+		};
 	}
 
 	private void StartJotTracking()
@@ -44,7 +48,7 @@ public partial class CompassPredictionView
 	{
 		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 
-		Browser.CoreWebView2.NavigationCompleted += (_, _) => ViewModel.Initialize();
+		Browser.CoreWebView2.NavigationCompleted += async (_, _) => await ViewModel.Initialize();
 
 		Browser.CoreWebView2.Navigate(ViewModel.Uri);
 	}
