@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -17,63 +17,38 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 
 	public string Uri => "https://x-20a.github.io/compass/";
 
-	[ObservableProperty]
-	private int? _selectedWorld;
-
-	[ObservableProperty]
-	private int? _selectedMap;
-
-	private Dictionary<int, List<int>> MapList { get; set; } = new();
-
-	public List<int> Worlds { get; set; } = new();
-
-	[ObservableProperty]
-	private List<int> _maps = new();
-
+	[ObservableProperty] 
+	private bool _synchronizeMap = true;
+	
 	public void Initialize()
 	{
-		MapList = BrowserHost.GetMapList().Result;
-
-		Worlds = MapList.Keys.ToList();
-
-		PropertyChanged += OnWorldChanged;
-		PropertyChanged += OnMapChanged;
+		PropertyChanged += OnSynchronizeChanged;
 
 		UpdateFleet();
 	}
 
-	private void OnWorldChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private async void OnSynchronizeChanged(object? sender, PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is not nameof(SelectedWorld)) return;
+		if (e.PropertyName is not nameof(SynchronizeMap)) return;
 
-		if (SelectedWorld is null)
-		{
-			Maps = new List<int>();
-		}
-
-		Maps = SelectedWorld switch
-		{
-			{ } id => MapList[id],
-			_ => Maps
-		};
-
-		UpdateDisplayedMap();
+		await SynchronizeMapWithPlayedOne();
 	}
 
-	private void OnMapChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private async Task SynchronizeMapWithPlayedOne()
 	{
-		if (e.PropertyName is not nameof(SelectedMap)) return;
+		if (!SynchronizeMap) return;
 
-		UpdateDisplayedMap();
+		(int? currentArea, int? currentMap) = await BrowserHost.GetCurrentMap();
+
+		if (currentArea is not {} currentAreaNotNull) return;
+		if (currentMap is not {} currentMapNotNull) return;
+
+		UpdateDisplayedMap(currentAreaNotNull, currentMapNotNull);
 	}
 
-	private void UpdateDisplayedMap()
+	public void UpdateDisplayedMap(int area, int map)
 	{
-		if (SelectedWorld is null) return;
-		if (SelectedMap is null) return;
-		if (ExecuteScriptAsync is null) return;
-
-		ExecuteScriptAsync($"document.querySelector(\".areas[value='{SelectedWorld}-{SelectedMap}']\").click();");
+		ExecuteScriptAsync?.Invoke($"document.querySelector(\".areas[value='{area}-{map}']\").click();");
 	}
 
 	public void UpdateFleet()

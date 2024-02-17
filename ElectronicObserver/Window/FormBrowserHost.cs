@@ -151,6 +151,8 @@ public partial class FormBrowserHost : Form
 		APIObserver.Instance.ApiReqKaisou_SlotExchangeIndex.ResponseReceived += RequestCompassPredictionFleetUpdate;
 		APIObserver.Instance.ApiReqKaisou_SlotDeprive.ResponseReceived += RequestCompassPredictionFleetUpdate;
 		APIObserver.Instance.ApiReqKaisou_Marriage.ResponseReceived += RequestCompassPredictionFleetUpdate;
+
+		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += RequestCompassPredictionMapUpdate;
 	}
 
 	private void RefreshIfAdvanceIsNotAllowed(string apiname, object data)
@@ -166,6 +168,13 @@ public partial class FormBrowserHost : Form
 	private void RequestCompassPredictionFleetUpdate(string apiname, object data)
 	{
 		Browser.RequestCompassPredictionFleetUpdate();
+	}
+
+	private void RequestCompassPredictionMapUpdate(string apiname, object data)
+	{
+		CompassData compass = KCDatabase.Instance.Battle.Compass;
+
+		Browser.RequestCompassPredictionMapUpdate(compass.MapAreaID, compass.MapInfoID);
 	}
 
 	public static bool ShouldRefresh(int mapAreaId, int mapInfoId, int destination, AutoRefreshViewModel autoRefresh)

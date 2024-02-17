@@ -22,6 +22,12 @@
 
 		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
 			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
 	</Window.Resources>
 
@@ -32,8 +38,7 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<ComboBox ItemsSource="{Binding Worlds}" SelectedItem="{Binding SelectedWorld}" />
-			<ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding SelectedMap}" />
+			<CheckBox Content="{Binding Translations.SynchronizeWithGame}" IsChecked="{Binding SynchronizeMap}" />
 		</StackPanel>
 
 		<ContentControl Grid.Row="1">

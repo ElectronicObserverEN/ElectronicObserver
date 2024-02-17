@@ -21,4 +21,5 @@ public interface IBrowserHost : IStreamingHub<IBrowserHost, IBrowser>
 	Task<string> GetShipData(bool allShips);
 	Task<string> GetEquipmentData(bool allEquipment);
 	Task<Dictionary<int, List<int>>> GetMapList();
+	Task<(int?, int?)> GetCurrentMap();
 }

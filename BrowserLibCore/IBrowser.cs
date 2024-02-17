@@ -14,4 +14,5 @@ public interface IBrowser
 	void OpenCompassPrediction();
 	void RequestAutoRefresh();
 	void RequestCompassPredictionFleetUpdate();
+	void RequestCompassPredictionMapUpdate(int area, int map);
 }

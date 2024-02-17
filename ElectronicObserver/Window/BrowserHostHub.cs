@@ -149,4 +149,13 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 					.ToList());
 		});
 	}
+
+	public Task<(int?, int?)> GetCurrentMap()
+	{
+		return Task.Run<(int?, int?)>(() =>
+		{
+			if (KCDatabase.Instance.Battle.Compass is null) return (null, null);
+			return (KCDatabase.Instance.Battle.Compass.MapAreaID, KCDatabase.Instance.Battle.Compass.MapInfoID);
+		});
+	}
 }

@@ -314,6 +314,11 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		CompassPredictionViewModel.UpdateFleet();
 	}
 
+	public void RequestCompassPredictionMapUpdate(int area, int map)
+	{
+		CompassPredictionViewModel.UpdateDisplayedMap(area, map);
+	}
+
 	public void CloseBrowser()
 	{
 		HeartbeatTimer.Stop();
