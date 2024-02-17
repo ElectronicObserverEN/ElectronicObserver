@@ -656,7 +656,7 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
-					d:Header="Compass prediction"
+					d:Header="Compass simulator"
 					Command="{Binding OpenCompassPredictionCommand}"
 					Header="{Binding FormMain.CompassPrediction}"
 					>
