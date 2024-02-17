@@ -76,7 +76,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 
 	public void CompassPrediction()
 	{
-		if (!KCDatabase.Instance.Ships.Any())
+		if (KCDatabase.Instance.Ships.Count is 0)
 		{
 			MessageBox.Show
 			(
