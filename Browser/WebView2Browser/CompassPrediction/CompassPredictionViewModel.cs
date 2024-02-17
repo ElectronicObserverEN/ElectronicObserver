@@ -73,7 +73,7 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 		if (SelectedMap is null) return;
 		if (ExecuteScriptAsync is null) return;
 
-		ExecuteScriptAsync($"$('#area').val('{SelectedWorld}-{SelectedMap}'); $('#area').trigger('input'); $('#go').trigger('click');");
+		ExecuteScriptAsync($"document.querySelector(\".areas[value='{SelectedWorld}-{SelectedMap}']\").click();");
 	}
 
 	public void UpdateFleet()
@@ -84,6 +84,6 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 
 		if (fleetData is null) return;
 
-		ExecuteScriptAsync($"$('#fleet-import').val('{fleetData}'); $('#fleet-import').trigger('input'); $('#go').trigger('click');");
+		ExecuteScriptAsync($"document.querySelector(\"#fleet-import\").value='{fleetData}';document.querySelector(\"#fleet-import\").dispatchEvent(new Event(\"input\"))");
 	}
 }

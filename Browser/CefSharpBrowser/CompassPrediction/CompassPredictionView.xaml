@@ -1,0 +1,43 @@
+﻿<Window
+	x:Class="Browser.CefSharpBrowser.CompassPrediction.CompassPredictionView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:Browser.WebView2Browser.CompassPrediction"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+	Title="{Binding Translations.Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:CompassPredictionViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	mc:Ignorable="d"
+	>
+
+	<Window.Resources>
+		<Style TargetType="TextBlock">
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<ComboBox ItemsSource="{Binding Worlds}" SelectedItem="{Binding SelectedWorld}" />
+			<ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding SelectedMap}" />
+		</StackPanel>
+
+		<ContentControl Grid.Row="1">
+			<WindowsFormsHost x:Name="BrowserHost" />
+		</ContentControl>
+	</Grid>
+</Window>
