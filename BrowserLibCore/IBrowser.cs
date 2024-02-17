@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace BrowserLibCore;
+﻿namespace BrowserLibCore;
 
 public interface IBrowser
 {
