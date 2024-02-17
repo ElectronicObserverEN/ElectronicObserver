@@ -76,6 +76,19 @@ public class ToolService(DataSerializationService dataSerializationService)
 
 	public void CompassPrediction()
 	{
+		if (!KCDatabase.Instance.Ships.Any())
+		{
+			MessageBox.Show
+			(
+				ExpCheckerResources.NoShipsAvailable,
+				ExpCheckerResources.ShipsUnavailable,
+				MessageBoxButton.OK,
+				MessageBoxImage.Error
+			);
+
+			return;
+		}
+
 		Window.FormBrowserHost.Instance.Browser.OpenCompassPrediction();
 	}
 
