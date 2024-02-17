@@ -64,7 +64,7 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 
 	public void UpdateDisplayedMap(int area, int map)
 	{
-		ExecuteScriptAsync?.Invoke($"document.querySelector(\".areas[value='{area}-{map}']\").click();");
+		ExecuteScriptAsync?.Invoke($"""document.querySelector(".areas[value='{area}-{map}']").click();""");
 	}
 
 	public void UpdateFleet()
@@ -73,6 +73,9 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 
 		string fleetData = BrowserHost.GetFleetData().Result;
 		
-		ExecuteScriptAsync($"document.querySelector(\"#fleet-import\").value='{fleetData}';document.querySelector(\"#fleet-import\").dispatchEvent(new Event(\"input\"))");
+		ExecuteScriptAsync($"""
+		                   document.querySelector("#fleet-import").value='{fleetData}';
+		                   document.querySelector("#fleet-import").dispatchEvent(new Event("input"));
+		                   """);
 	}
 }
