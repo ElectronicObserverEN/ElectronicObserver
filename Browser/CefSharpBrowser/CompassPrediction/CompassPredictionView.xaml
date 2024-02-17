@@ -6,7 +6,6 @@
 	xmlns:local="clr-namespace:Browser.WebView2Browser.CompassPrediction"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
 	Title="{Binding Translations.Title}"
 	Width="800"
 	Height="450"

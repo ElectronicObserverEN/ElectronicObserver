@@ -48,6 +48,11 @@ public partial class CompassPredictionView
 		{
 			StartJotTracking();
 		};
+
+		Closed += (_, _) =>
+		{
+			ViewModel.OnClose();
+		};
 	}
 
 	private void StartJotTracking()
