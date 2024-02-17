@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -73,9 +74,16 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 
 		string fleetData = BrowserHost.GetFleetData().Result;
 		
-		ExecuteScriptAsync($"""
-		                   document.querySelector("#fleet-import").value='{fleetData}';
+		ExecuteScriptAsync($$"""
+		                   document.querySelector("#fleet-import").value='{{fleetData}}';
 		                   document.querySelector("#fleet-import").dispatchEvent(new Event("input"));
+		                   
+		                   // Need to trigger fleet type change to update the map
+		                   if (!document.querySelector("#type-select").value) 
+		                   {
+		                   document.querySelector("#type-select").value = '1';
+		                   }
+		                   document.querySelector("#type-select").dispatchEvent(new Event("change"));
 		                   """);
 	}
 }
