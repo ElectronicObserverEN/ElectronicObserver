@@ -62,7 +62,7 @@ public partial class CompassPredictionView
 
 	private async Task InitializeAsync()
 	{
-		await ViewModel.Initialize();
 		await Browser.LoadUrlAsync(ViewModel.Uri);
+		await ViewModel.Initialize();
 	}
 }
