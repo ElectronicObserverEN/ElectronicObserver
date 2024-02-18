@@ -39,6 +39,7 @@
 
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
 			<CheckBox Content="{Binding Translations.SynchronizeMap}" IsChecked="{Binding SynchronizeMap}" />
+			<Button Command="{Binding UpdateFleetCommand}" Content="{Binding Translations.DataRefresh}" />
 		</StackPanel>
 
 		<ContentControl Grid.Row="1">

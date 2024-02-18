@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Jot;
 
 namespace Browser.WebView2Browser.CompassPrediction;
@@ -67,6 +68,7 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 		ExecuteScriptAsync?.Invoke($"""document.querySelector(".areas[value='{area}-{map}']").click();""");
 	}
 
+	[RelayCommand]
 	public void UpdateFleet()
 	{
 		if (ExecuteScriptAsync is null) return;
