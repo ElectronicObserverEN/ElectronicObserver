@@ -12,7 +12,7 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 {
 	public CompassPredictionTranslationViewModel Translations { get; } = translations;
 
-	public IBrowserHost BrowserHost { get; } = browserHost;
+	private IBrowserHost BrowserHost { get; } = browserHost;
 
 	public Action<string>? ExecuteScriptAsync { get; set; }
 

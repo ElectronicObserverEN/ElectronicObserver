@@ -42,7 +42,7 @@
 		</StackPanel>
 
 		<ContentControl Grid.Row="1">
-			<wpf:WebView2 x:Name="Browser" Grid.Row="1" />
+			<wpf:WebView2 x:Name="Browser" />
 		</ContentControl>
 	</Grid>
 </Window>
