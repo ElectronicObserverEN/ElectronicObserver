@@ -10,323 +10,350 @@
 	x:DataType="shipGroup:ShipGroupViewModel"
 	mc:Ignorable="d"
 	>
-	<DataGrid
-		CanUserReorderColumns="True"
-		CanUserResizeColumns="True"
-		ColumnWidth="Auto"
-		IsReadOnly="True"
-		ItemsSource="{Binding Items}"
-		>
-		<DataGrid.Columns>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding MasterId}"
-				Header="ID"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ShipTypeName}"
-				Header="{Binding FormShipGroup.ShipView_ShipType}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Name}"
-				Header="{Binding FormShipGroup.ShipView_Name}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Level}"
-				Header="Lv"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ExpTotal}"
-				Header="Exp"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ExpNext}"
-				Header="next"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ExpRemodel}"
-				Header="{Binding FormShipGroup.ShipView_NextRemodel}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Hp}"
-				Header="HP"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Condition}"
-				Header="Cond"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Fuel}"
-				Header="{Binding FormShipGroup.ShipView_Fuel}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Ammo}"
-				Header="{Binding FormShipGroup.ShipView_Ammo}"
-				/>
+	<Grid RowDefinitions="* Auto">
+		<DataGrid
+			x:Name="DataGrid"
+			Grid.Row="0"
+			CanUserReorderColumns="True"
+			CanUserResizeColumns="True"
+			ColumnWidth="Auto"
+			IsReadOnly="True"
+			ItemsSource="{Binding Items}"
+			SelectionMode="Extended"
+			>
+			<Interaction.Behaviors>
+				<EventTriggerBehavior EventName="SelectionChanged">
+					<InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItems, ElementName=DataGrid}" />
+				</EventTriggerBehavior>
+			</Interaction.Behaviors>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Slot1.Name}"
-				Header="{Binding FormShipGroup.ShipView_Slot1}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Slot2.Name}"
-				Header="{Binding FormShipGroup.ShipView_Slot2}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Slot3.Name}"
-				Header="{Binding FormShipGroup.ShipView_Slot3}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Slot4.Name}"
-				Header="{Binding FormShipGroup.ShipView_Slot4}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Slot5.Name}"
-				Header="{Binding FormShipGroup.ShipView_Slot5}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ExpansionSlot}"
-				Header="{Binding FormShipGroup.ShipView_ExpansionSlot}"
-				/>
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding MasterId}"
+					Header="ID"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ShipTypeName}"
+					Header="{Binding FormShipGroup.ShipView_ShipType}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Name}"
+					Header="{Binding FormShipGroup.ShipView_Name}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Level}"
+					Header="Lv"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ExpTotal}"
+					Header="Exp"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ExpNext}"
+					Header="next"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ExpRemodel}"
+					Header="{Binding FormShipGroup.ShipView_NextRemodel}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Hp}"
+					Header="HP"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Condition}"
+					Header="Cond"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Fuel}"
+					Header="{Binding FormShipGroup.ShipView_Fuel}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Ammo}"
+					Header="{Binding FormShipGroup.ShipView_Ammo}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Aircraft1}"
-				Header="{Binding FormShipGroup.ShipView_Aircraft1}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Aircraft2}"
-				Header="{Binding FormShipGroup.ShipView_Aircraft2}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Aircraft3}"
-				Header="{Binding FormShipGroup.ShipView_Aircraft3}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Aircraft4}"
-				Header="{Binding FormShipGroup.ShipView_Aircraft4}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Aircraft5}"
-				Header="{Binding FormShipGroup.ShipView_Aircraft5}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AircraftTotal}"
-				Header="{Binding FormShipGroup.ShipView_AircraftTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Slot1.Name}"
+					Header="{Binding FormShipGroup.ShipView_Slot1}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Slot2.Name}"
+					Header="{Binding FormShipGroup.ShipView_Slot2}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Slot3.Name}"
+					Header="{Binding FormShipGroup.ShipView_Slot3}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Slot4.Name}"
+					Header="{Binding FormShipGroup.ShipView_Slot4}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Slot5.Name}"
+					Header="{Binding FormShipGroup.ShipView_Slot5}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ExpansionSlot}"
+					Header="{Binding FormShipGroup.ShipView_ExpansionSlot}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Fleet}"
-				Header="{Binding FormShipGroup.ShipView_Fleet}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding RepairTime}"
-				Header="{Binding FormShipGroup.ShipView_RepairTime}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding RepairSteel}"
-				Header="{Binding FormShipGroup.ShipView_RepairSteel}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding RepairFuel}"
-				Header="{Binding FormShipGroup.ShipView_RepairFuel}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Aircraft1}"
+					Header="{Binding FormShipGroup.ShipView_Aircraft1}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Aircraft2}"
+					Header="{Binding FormShipGroup.ShipView_Aircraft2}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Aircraft3}"
+					Header="{Binding FormShipGroup.ShipView_Aircraft3}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Aircraft4}"
+					Header="{Binding FormShipGroup.ShipView_Aircraft4}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Aircraft5}"
+					Header="{Binding FormShipGroup.ShipView_Aircraft5}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AircraftTotal}"
+					Header="{Binding FormShipGroup.ShipView_AircraftTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Firepower}"
-				Header="{Binding FormShipGroup.ShipView_Firepower}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding FirepowerRemain}"
-				Header="{Binding FormShipGroup.ShipView_FirepowerRemain}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding FirepowerTotal}"
-				Header="{Binding FormShipGroup.ShipView_FirepowerTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Fleet}"
+					Header="{Binding FormShipGroup.ShipView_Fleet}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding RepairTime}"
+					Header="{Binding FormShipGroup.ShipView_RepairTime}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding RepairSteel}"
+					Header="{Binding FormShipGroup.ShipView_RepairSteel}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding RepairFuel}"
+					Header="{Binding FormShipGroup.ShipView_RepairFuel}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Torpedo}"
-				Header="{Binding FormShipGroup.ShipView_Torpedo}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding TorpedoRemain}"
-				Header="{Binding FormShipGroup.ShipView_TorpedoRemain}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding TorpedoTotal}"
-				Header="{Binding FormShipGroup.ShipView_TorpedoTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Firepower}"
+					Header="{Binding FormShipGroup.ShipView_Firepower}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding FirepowerRemain}"
+					Header="{Binding FormShipGroup.ShipView_FirepowerRemain}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding FirepowerTotal}"
+					Header="{Binding FormShipGroup.ShipView_FirepowerTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AA}"
-				Header="{Binding FormShipGroup.ShipView_AA}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AARemain}"
-				Header="{Binding FormShipGroup.ShipView_AARemain}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AATotal}"
-				Header="{Binding FormShipGroup.ShipView_AATotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Torpedo}"
+					Header="{Binding FormShipGroup.ShipView_Torpedo}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding TorpedoRemain}"
+					Header="{Binding FormShipGroup.ShipView_TorpedoRemain}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding TorpedoTotal}"
+					Header="{Binding FormShipGroup.ShipView_TorpedoTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Armor}"
-				Header="{Binding FormShipGroup.ShipView_Armor}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ArmorRemain}"
-				Header="{Binding FormShipGroup.ShipView_ArmorRemain}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ArmorTotal}"
-				Header="{Binding FormShipGroup.ShipView_ArmorTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AA}"
+					Header="{Binding FormShipGroup.ShipView_AA}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AARemain}"
+					Header="{Binding FormShipGroup.ShipView_AARemain}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AATotal}"
+					Header="{Binding FormShipGroup.ShipView_AATotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ASW}"
-				Header="{Binding FormShipGroup.ShipView_ASW}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ASWTotal}"
-				Header="{Binding FormShipGroup.ShipView_ASWTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Armor}"
+					Header="{Binding FormShipGroup.ShipView_Armor}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ArmorRemain}"
+					Header="{Binding FormShipGroup.ShipView_ArmorRemain}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ArmorTotal}"
+					Header="{Binding FormShipGroup.ShipView_ArmorTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Evasion}"
-				Header="{Binding FormShipGroup.ShipView_Evasion}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding EvasionTotal}"
-				Header="{Binding FormShipGroup.ShipView_EvasionTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ASW}"
+					Header="{Binding FormShipGroup.ShipView_ASW}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ASWTotal}"
+					Header="{Binding FormShipGroup.ShipView_ASWTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding LOS}"
-				Header="{Binding FormShipGroup.ShipView_LOS}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding LOSTotal}"
-				Header="{Binding FormShipGroup.ShipView_LOSTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Evasion}"
+					Header="{Binding FormShipGroup.ShipView_Evasion}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding EvasionTotal}"
+					Header="{Binding FormShipGroup.ShipView_EvasionTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Luck}"
-				Header="{Binding FormShipGroup.ShipView_Luck}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding LuckRemain}"
-				Header="{Binding FormShipGroup.ShipView_LuckRemain}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding LuckTotal}"
-				Header="{Binding FormShipGroup.ShipView_LuckTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding LOS}"
+					Header="{Binding FormShipGroup.ShipView_LOS}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding LOSTotal}"
+					Header="{Binding FormShipGroup.ShipView_LOSTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding BomberTotal}"
-				Header="{Binding FormShipGroup.ShipView_Luck}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Speed}"
-				Header="{Binding FormShipGroup.ShipView_LuckRemain}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding Range}"
-				Header="{Binding FormShipGroup.ShipView_LuckTotal}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Luck}"
+					Header="{Binding FormShipGroup.ShipView_Luck}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding LuckRemain}"
+					Header="{Binding FormShipGroup.ShipView_LuckRemain}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding LuckTotal}"
+					Header="{Binding FormShipGroup.ShipView_LuckTotal}"
+					/>
 
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AirBattlePower}"
-				Header="{Binding FormShipGroup.ShipView_AirBattlePower}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding ShellingPower}"
-				Header="{Binding FormShipGroup.ShipView_ShellingPower}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AircraftPower}"
-				Header="{Binding FormShipGroup.ShipView_AircraftPower}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding AntiSubmarinePower}"
-				Header="{Binding FormShipGroup.ShipView_AntiSubmarinePower}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding TorpedoPower}"
-				Header="{Binding FormShipGroup.ShipView_TorpedoPower}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding NightBattlePower}"
-				Header="{Binding FormShipGroup.ShipView_NightBattlePower}"
-				/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding BomberTotal}"
+					Header="{Binding FormShipGroup.ShipView_Luck}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Speed}"
+					Header="{Binding FormShipGroup.ShipView_LuckRemain}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Range}"
+					Header="{Binding FormShipGroup.ShipView_LuckTotal}"
+					/>
 
-			<DataGridCheckBoxColumn
-				Width="Auto"
-				Binding="{Binding Locked, Mode=OneWay}"
-				Header="{Binding FormShipGroup.ShipView_Locked}"
-				/>
-			<DataGridTextColumn
-				Width="Auto"
-				Binding="{Binding SallyArea}"
-				Header="{Binding FormShipGroup.ShipView_SallyArea}"
-				/>
-		</DataGrid.Columns>
-	</DataGrid>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AirBattlePower}"
+					Header="{Binding FormShipGroup.ShipView_AirBattlePower}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ShellingPower}"
+					Header="{Binding FormShipGroup.ShipView_ShellingPower}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AircraftPower}"
+					Header="{Binding FormShipGroup.ShipView_AircraftPower}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding AntiSubmarinePower}"
+					Header="{Binding FormShipGroup.ShipView_AntiSubmarinePower}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding TorpedoPower}"
+					Header="{Binding FormShipGroup.ShipView_TorpedoPower}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding NightBattlePower}"
+					Header="{Binding FormShipGroup.ShipView_NightBattlePower}"
+					/>
+
+				<DataGridCheckBoxColumn
+					Width="Auto"
+					Binding="{Binding Locked, Mode=OneWay}"
+					Header="{Binding FormShipGroup.ShipView_Locked}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding SallyArea}"
+					Header="{Binding FormShipGroup.ShipView_SallyArea}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StackPanel
+			Grid.Row="1"
+			IsVisible="{Binding ShowStatusBar}"
+			Orientation="Horizontal"
+			>
+			<StackPanel.Styles>
+				<Style Selector="TextBlock">
+					<Setter Property="Margin" Value="4" />
+				</Style>
+			</StackPanel.Styles>
+
+			<TextBlock Text="{Binding ShipCountText}" />
+			<TextBlock Text="{Binding LevelTotalText}" />
+			<TextBlock Text="{Binding LevelAverageText}" />
+		</StackPanel>
+	</Grid>
 </UserControl>

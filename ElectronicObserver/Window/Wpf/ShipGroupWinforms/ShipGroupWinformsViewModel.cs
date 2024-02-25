@@ -2,14 +2,15 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Forms.Integration;
 using Avalonia.Win32.Interoperability;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
@@ -39,10 +40,8 @@ public class ShipGroupItem : ObservableObject
 	}
 }
 
-public partial class ShipGroupWinformsViewModel : AnchorableViewModel
+public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 {
-	public FormShipGroup ShipGroup { get; }
-	public WindowsFormsHost WindowsFormsHost { get; } = new();
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
 	public ShipGroupView ShipGroupView { get; }
 	public ShipGroupViewModel ShipGroupViewModel { get; }
@@ -53,16 +52,13 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 
 	public GridLength GroupHeight { get; set; }
 
-	public ObservableCollection<ShipGroupItem> Groups { get; set; } = new();
+	public ObservableCollection<ShipGroupItem> Groups { get; } = new();
 	public ShipGroupItem? PreviousGroup { get; set; }
 	public ShipGroupItem? SelectedGroup { get; set; }
-	public string ShipCountText { get; set; } = "";
-	public string LevelTotalText { get; set; } = "";
-	public string LevelAverageText { get; set; } = "";
 
 	public ShipGroupWinformsViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
 	{
-		FormShipGroup = Ioc.Default.GetService<FormShipGroupTranslationViewModel>()!;
+		FormShipGroup = Ioc.Default.GetRequiredService<FormShipGroupTranslationViewModel>();
 
 		Title = FormShipGroup.Title;
 		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;
@@ -77,28 +73,74 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 			Content = ShipGroupView,
 		};
 
-		// todo remove parameter cause it's never used
-		ShipGroup = new(null!, this) { TopLevel = false };
-		WindowsFormsHost.Child = ShipGroup;
-
-		var config = Utility.Configuration.Config;
+		Configuration.ConfigurationData config = Configuration.Config;
 
 		AutoUpdate = config.FormShipGroup.AutoUpdate;
 		ShowStatusBar = config.FormShipGroup.ShowStatusBar;
 		GroupHeight = new(config.FormShipGroup.GroupHeight);
 
-		PropertyChanged += (sender, args) =>
+		Loaded();
+	}
+
+	public override void Loaded()
+	{
+		base.Loaded();
+
+		ShipGroupManager groups = KCDatabase.Instance.ShipGroup;
+
+
+		// 空(≒初期状態)の時、おなじみ全所属艦を追加
+		if (groups.ShipGroups.Count == 0)
 		{
-			if (args.PropertyName is not nameof(ShipGroup)) return;
-			if (ShipGroup is null) return;
+			/*
+			Utility.Logger.Add(3, string.Format(ShipGroupResources.GroupNotFound, ShipGroupManager.DefaultFilePath));
 
-			ShipGroup.FormBorderStyle = FormBorderStyle.None;
-			ShipGroup.TopLevel = false;
-			WindowsFormsHost.Child = ShipGroup;
+			ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
+			group.Name = GeneralRes.AllAssignedShips;
 
-			ShipGroup.BackColor = Utility.Configuration.Config.UI.BackColor;
-			ShipGroup.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-		};
+			for (int i = 0; i < ShipView.Columns.Count; i++)
+			{
+				ShipGroupData.ViewColumnData newdata = new(ShipView.Columns[i]);
+				if (SelectedGroup == null)
+					newdata.Visible = true;     //初期状態では全行が非表示のため
+				group.ViewColumns.Add(ShipView.Columns[i].Name, newdata);
+			}
+			*/
+		}
+
+		foreach (ShipGroupData g in groups.ShipGroups.Values)
+		{
+			Groups.Add(new(g));
+		}
+
+		ConfigurationChanged();
+
+
+		APIObserver o = APIObserver.Instance;
+
+		o.ApiPort_Port.ResponseReceived += APIUpdated;
+		o.ApiGetMember_Ship2.ResponseReceived += APIUpdated;
+		o.ApiGetMember_ShipDeck.ResponseReceived += APIUpdated;
+
+		// added later - might affect performance
+		o.ApiGetMember_NDock.ResponseReceived += APIUpdated;
+		o.ApiReqHensei_PresetSelect.ResponseReceived += APIUpdated;
+
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData config = Configuration.Config;
+	}
+
+	private void APIUpdated(string apiname, dynamic data)
+	{
+		if (AutoUpdate)
+		{
+			// todo
+			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+		}
 	}
 
 	[RelayCommand]
@@ -135,6 +177,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
 		group.Name = dialog.InputtedText.Trim();
 
+		/*
 		for (int i = 0; i < ShipGroup.DataGrid.Columns.Count; i++)
 		{
 			var newdata = new ShipGroupData.ViewColumnData(ShipGroup.DataGrid.Columns[i]);
@@ -144,7 +187,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 			}
 			@group.ViewColumns.Add(ShipGroup.DataGrid.Columns[i].Name, newdata);
 		}
-
+		*/
 		Groups.Add(new(group));
 	}
 
@@ -191,7 +234,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 
 		if (SelectedGroup == group)
 		{
-			ShipGroup.DataGrid.Rows.Clear();
+			// ShipGroup.DataGrid.Rows.Clear();
 			SelectedGroup = null;
 		}
 

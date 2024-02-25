@@ -604,9 +604,9 @@ public partial class FormShipGroup: Form
 			long expsum = group.MembersInstance.Sum(s => (long?)s?.ExpTotal ?? 0);
 			double expAverage = expsum / Math.Max(membersCount, 1.0);
 
-			ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
-			ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
-			ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
+			// ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
+			// ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
+			// ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
 		}
 	}
 
@@ -726,9 +726,9 @@ public partial class FormShipGroup: Form
 				var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Level.Index].Value);
 				var exp = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Exp.Index].Value);
 
-				ViewModel.ShipCountText = string.Format(ShipGroupResources.SelectedShips, selectedShipCount, totalShipCount);
-				ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levels.Sum(), levels.Average());
-				ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, exp.Sum(), exp.Average());
+				// ViewModel.ShipCountText = string.Format(ShipGroupResources.SelectedShips, selectedShipCount, totalShipCount);
+				// ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levels.Sum(), levels.Average());
+				// ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, exp.Sum(), exp.Average());
 
 			}
 			else
@@ -739,17 +739,17 @@ public partial class FormShipGroup: Form
 				long expsum = group.MembersInstance.Sum(s => (long?)s?.ExpTotal ?? 0);
 				double expAverage = expsum / Math.Max(membersCount, 1.0);
 
-				ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
-				ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
-				ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
+				// ViewModel.ShipCountText = string.Format(ShipGroupResources.ShipCount, group.Members.Count);
+				// ViewModel.LevelTotalText = string.Format(ShipGroupResources.TotalAndAverageLevel, levelsum, levelAverage);
+				// ViewModel.LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expsum, expAverage);
 			}
 
 		}
 		else
 		{
-			ViewModel.ShipCountText =
-			ViewModel.LevelTotalText =
-			ViewModel.LevelAverageText = "";
+			// ViewModel.ShipCountText =
+			// ViewModel.LevelTotalText =
+			// ViewModel.LevelAverageText = "";
 		}
 	}
 

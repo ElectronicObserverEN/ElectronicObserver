@@ -27,7 +27,6 @@
 			<RowDefinition Height="{Binding GroupHeight, Mode=TwoWay}" MinHeight="30" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
-			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<Border Grid.Row="0" Background="Transparent">
@@ -157,20 +156,5 @@
 			/>
 
 		<ContentControl Grid.Row="2" Content="{Binding WpfAvaloniaHost}" />
-
-		<StackPanel
-			Grid.Row="3"
-			Orientation="Horizontal"
-			Visibility="{Binding ShowStatusBar, Converter={StaticResource BooleanToVisibilityConverter}}"
-			>
-			<StackPanel.Resources>
-				<Style TargetType="TextBlock">
-					<Setter Property="Margin" Value="4" />
-				</Style>
-			</StackPanel.Resources>
-			<TextBlock Text="{Binding ShipCountText}" />
-			<TextBlock Text="{Binding LevelTotalText}" />
-			<TextBlock Text="{Binding LevelAverageText}" />
-		</StackPanel>
 	</Grid>
 </UserControl>

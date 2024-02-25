@@ -1646,64 +1646,15 @@ public partial class FormMainViewModel : ObservableObject
 		ClockFormat = c.Life.ClockFormat;
 		SetTheme();
 
-		/*
-		//StripMenu.Font = Font;
-		StripStatus.Font = Font;
-		MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
-		MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
-
-		foreach (var f in SubForms)
-		{
-			f.BackColor = this.BackColor;
-			f.ForeColor = this.ForeColor;
-			if (f is FormShipGroup)
-			{ // 暂时不对舰队编成窗口应用主题
-				f.BackColor = SystemColors.Control;
-				f.ForeColor = SystemColors.ControlText;
-			}
-		}*/
-
-		if (FormShipGroup.ShipGroup is not null)
-		{
-			FormShipGroup.ShipGroup.BackColor = System.Drawing.SystemColors.Control;
-			FormShipGroup.ShipGroup.ForeColor = System.Drawing.SystemColors.ControlText;
-		}
-
-		/*
-
-		StripStatus_Information.BackColor = System.Drawing.Color.Transparent;
-		StripStatus_Information.Margin = new Padding(-1, 1, -1, 0);
-
-
-		if (c.Life.LockLayout)
-		{
-			MainDockPanel.AllowChangeLayout = false;
-			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-		}
-		else
-		{
-			MainDockPanel.AllowChangeLayout = true;
-			FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-		}
-
-		StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
-		MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
-		*/
 		LockLayout = c.Life.LockLayout;
 		CanChangeGridSplitterSize = !LockLayout;
 		GridSplitterSize = LockLayout switch
 		{
 			true => 0,
-			_ => 1
+			_ => 1,
 		};
 		SetAnchorableProperties();
 		Topmost = c.Life.TopMost;
-		/*
-		StripMenu_File_Notification_MuteAll.Checked = Notifier.NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
-
-		if (!c.Control.UseSystemVolume)
-			_volumeUpdateState = -1;
-		*/
 	}
 
 	private void SetAnchorableProperties()
