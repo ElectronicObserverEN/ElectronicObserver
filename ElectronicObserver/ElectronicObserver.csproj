@@ -82,7 +82,9 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj" />
+		<ProjectReference Include="..\Avalonia.Win32.Interoperability\Avalonia.Win32.Interoperability.csproj" />
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
+		<ProjectReference Include="..\ElectronicObserver.Avalonia\ElectronicObserver.Avalonia.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.KancolleApi.Types\ElectronicObserver.KancolleApi.Types.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />

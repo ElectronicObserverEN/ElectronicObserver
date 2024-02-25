@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
+using Avalonia.Win32.Interoperability;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
@@ -40,6 +43,9 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 {
 	public FormShipGroup ShipGroup { get; }
 	public WindowsFormsHost WindowsFormsHost { get; } = new();
+	public WpfAvaloniaHost WpfAvaloniaHost { get; }
+	public ShipGroupView ShipGroupView { get; }
+	public ShipGroupViewModel ShipGroupViewModel { get; }
 	public FormShipGroupTranslationViewModel FormShipGroup { get; }
 
 	public bool AutoUpdate { get; set; }
@@ -60,6 +66,16 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 
 		Title = FormShipGroup.Title;
 		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;
+
+		ShipGroupViewModel = new();
+		ShipGroupView = new()
+		{
+			DataContext = ShipGroupViewModel,
+		};
+		WpfAvaloniaHost = new()
+		{
+			Content = ShipGroupView,
+		};
 
 		// todo remove parameter cause it's never used
 		ShipGroup = new(null!, this) { TopLevel = false };
@@ -88,6 +104,10 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
+		ShipGroupViewModel.Items = KCDatabase.Instance.Ships.Values
+			.Select(s => new ShipGroupItemViewModel(s))
+			.ToObservableCollection();
+
 		PreviousGroup = SelectedGroup;
 		SelectedGroup = group;
 

@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Update="**\*.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+		<AvaloniaResource Include="**\*.xaml">
+			<SubType>Designer</SubType>
+		</AvaloniaResource>
+		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.2.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Avalonia" Version="11.0.9" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.9" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.0.9" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.9" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
+		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>
+		<ResXGenerator_NullForgivingOperators>true</ResXGenerator_NullForgivingOperators>
+		<ResXGenerator_StaticClass>true</ResXGenerator_StaticClass>
+		<ResXGenerator_StaticMembers>true</ResXGenerator_StaticMembers>
+	</PropertyGroup>
+
+</Project>

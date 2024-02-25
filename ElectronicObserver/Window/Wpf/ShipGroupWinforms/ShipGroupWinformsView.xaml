@@ -3,9 +3,10 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:data="clr-namespace:ElectronicObserver.Data"
 	xmlns:dd="urn:gong-wpf-dragdrop"
+	xmlns:interoperability="clr-namespace:Avalonia.Win32.Interoperability;assembly=Avalonia.Win32.Interoperability"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.ShipGroup;assembly=ElectronicObserver.Avalonia"
 	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="ShipGroupWinformsControl"
@@ -155,7 +156,7 @@
 			ResizeDirection="Rows"
 			/>
 
-		<ContentPresenter Grid.Row="2" Content="{Binding WindowsFormsHost}" />
+		<ContentControl Grid.Row="2" Content="{Binding WpfAvaloniaHost}" />
 
 		<StackPanel
 			Grid.Row="3"
