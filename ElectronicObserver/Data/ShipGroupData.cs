@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
+using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes.Data;
@@ -16,7 +17,7 @@ namespace ElectronicObserver.Data;
 /// </summary>
 [DataContract(Name = "ShipGroupData")]
 [DebuggerDisplay("[{GroupID}] : {Name} ({Members.Count} ships)")]
-public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable
+public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable, IGroupItem
 {
 
 

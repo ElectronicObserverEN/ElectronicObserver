@@ -5,15 +5,132 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.ShipGroup"
+	Name="ShipGroupControl"
 	d:DesignHeight="300"
 	d:DesignWidth="400"
 	x:DataType="shipGroup:ShipGroupViewModel"
 	mc:Ignorable="d"
 	>
-	<Grid RowDefinitions="* Auto">
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="shipGroup:ShipGroupItem">
+			<Border Padding="3" BorderThickness="1">
+				<Interaction.Behaviors>
+					<EventTriggerBehavior EventName="PointerPressed">
+						<InvokeCommandAction Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).SelectGroupCommand, ElementName=ShipGroupControl}" CommandParameter="{Binding}" />
+					</EventTriggerBehavior>
+				</Interaction.Behaviors>
+
+				<Border.Styles>
+					<Style Selector="Border">
+						<Setter Property="Background" Value="Transparent" />
+						<Setter Property="BorderBrush" Value="#888888" />
+					</Style>
+					<Style Selector="Border:pointerover">
+						<Setter Property="Background" Value="Fuchsia" />
+					</Style>
+				</Border.Styles>
+				<!--
+					<Border.InputBindings>
+						<MouseBinding
+							Command="{Binding ViewModel.SelectGroupCommand, ElementName=ShipGroupWinformsControl}"
+							CommandParameter="{Binding}"
+							MouseAction="LeftClick"
+							/>
+					</Border.InputBindings>
+
+					<Border.ContextMenu>
+						<ContextMenu>
+							<MenuItem Command="{Binding ViewModel.AddGroupCommand}" Header="{Binding ViewModel.FormShipGroup.MenuGroup_Add}" />
+							<MenuItem
+								Command="{Binding ViewModel.CopyGroupCommand}"
+								CommandParameter="{Binding}"
+								Header="{Binding ViewModel.FormShipGroup.MenuGroup_Copy}"
+								/>
+							<MenuItem
+								Command="{Binding ViewModel.RenameGroupCommand}"
+								CommandParameter="{Binding}"
+								Header="{Binding ViewModel.FormShipGroup.MenuGroup_Rename}"
+								/>
+							<MenuItem
+								Command="{Binding ViewModel.DeleteGroupCommand}"
+								CommandParameter="{Binding}"
+								Header="{Binding ViewModel.FormShipGroup.MenuGroup_Delete}"
+								/>
+							<Separator />
+							<MenuItem
+								Header="{Binding ViewModel.FormShipGroup.MenuGroup_AutoUpdate}"
+								IsCheckable="True"
+								IsChecked="{Binding ViewModel.AutoUpdate}"
+								/>
+							<MenuItem
+								Header="{Binding FormShipGroup.MenuGroup_ShowStatusBar}"
+								IsCheckable="True"
+								IsChecked="{Binding ViewModel.ShowStatusBar}"
+								/>
+						</ContextMenu>
+					</Border.ContextMenu>
+					-->
+				<TextBlock MinWidth="16" Text="{Binding Name}" />
+			</Border>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<Grid RowDefinitions="Auto Auto * Auto">
+		<Border Grid.Row="0" Background="Transparent">
+			<!--
+			<Border.InputBindings>
+				<MouseBinding Command="{Binding AddGroupCommand}" MouseAction="LeftDoubleClick" />
+			</Border.InputBindings>
+			-->
+
+			<Border.ContextMenu>
+				<!--
+				<ContextMenu>
+					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
+					<MenuItem
+						Command="{Binding CopyGroupCommand}"
+						Header="{Binding FormShipGroup.MenuGroup_Copy}"
+						IsEnabled="False"
+						/>
+					<MenuItem
+						Command="{Binding RenameGroupCommand}"
+						Header="{Binding FormShipGroup.MenuGroup_Rename}"
+						IsEnabled="False"
+						/>
+					<MenuItem
+						Command="{Binding DeleteGroupCommand}"
+						Header="{Binding FormShipGroup.MenuGroup_Delete}"
+						IsEnabled="False"
+						/>
+					<Separator />
+					<MenuItem
+						Header="{Binding FormShipGroup.MenuGroup_AutoUpdate}"
+						IsCheckable="True"
+						IsChecked="{Binding AutoUpdate}"
+						/>
+					<MenuItem
+						Header="{Binding FormShipGroup.MenuGroup_ShowStatusBar}"
+						IsCheckable="True"
+						IsChecked="{Binding ShowStatusBar}"
+						/>
+				</ContextMenu>
+				-->
+			</Border.ContextMenu>
+
+			<ScrollViewer VerticalScrollBarVisibility="Visible">
+				<ItemsControl DragDrop.AllowDrop="True" ItemsSource="{Binding Groups}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
+			</ScrollViewer>
+		</Border>
+
 		<DataGrid
 			x:Name="DataGrid"
-			Grid.Row="0"
+			Grid.Row="2"
 			CanUserReorderColumns="True"
 			CanUserResizeColumns="True"
 			ColumnWidth="Auto"
@@ -341,7 +458,7 @@
 		</DataGrid>
 
 		<StackPanel
-			Grid.Row="1"
+			Grid.Row="3"
 			IsVisible="{Binding ShowStatusBar}"
 			Orientation="Horizontal"
 			>

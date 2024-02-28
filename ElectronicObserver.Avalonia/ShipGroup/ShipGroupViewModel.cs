@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
-public partial class ShipGroupViewModel : ObservableObject
+public partial class ShipGroupViewModel(IRelayCommand<ShipGroupItem> selectGroup) : ObservableObject
 {
 	public ShipGroupTranslationViewModel FormShipGroup { get; } = new();
 
 	[ObservableProperty] private bool _showStatusBar = true;
+
+	[ObservableProperty] private ObservableCollection<ShipGroupItem> _groups = [];
 
 	[ObservableProperty] private ObservableCollection<ShipGroupItemViewModel> _items = [];
 	[ObservableProperty] private string _shipCountText = "";
@@ -50,4 +53,7 @@ public partial class ShipGroupViewModel : ObservableObject
 			LevelAverageText = string.Format(ShipGroupResources.TotalAndAverageExp, expSum, expAverage);
 		}
 	}
+
+	[RelayCommand]
+	private void SelectGroup(ShipGroupItem group) => selectGroup.Execute(group);
 }

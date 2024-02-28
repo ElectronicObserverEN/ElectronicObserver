@@ -18,28 +18,6 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
-public class ShipGroupItem : ObservableObject
-{
-	public ShipGroupData Group { get; }
-
-	public string Name { get; set; }
-	public bool IsSelected { get; set; }
-
-	public ShipGroupItem(ShipGroupData group)
-	{
-		Group = group;
-
-		Name = group.Name;
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(Name)) return;
-
-			Group.Name = Name;
-		};
-	}
-}
-
 public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 {
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
@@ -52,7 +30,6 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 
 	public GridLength GroupHeight { get; set; }
 
-	public ObservableCollection<ShipGroupItem> Groups { get; } = new();
 	public ShipGroupItem? PreviousGroup { get; set; }
 	public ShipGroupItem? SelectedGroup { get; set; }
 
@@ -63,7 +40,7 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		Title = FormShipGroup.Title;
 		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;
 
-		ShipGroupViewModel = new();
+		ShipGroupViewModel = new(SelectGroupCommand);
 		ShipGroupView = new()
 		{
 			DataContext = ShipGroupViewModel,
@@ -80,6 +57,8 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		GroupHeight = new(config.FormShipGroup.GroupHeight);
 
 		Loaded();
+
+		SystemEvents.SystemShuttingDown += SystemShuttingDown;
 	}
 
 	public override void Loaded()
@@ -110,7 +89,7 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 
 		foreach (ShipGroupData g in groups.ShipGroups.Values)
 		{
-			Groups.Add(new(g));
+			ShipGroupViewModel.Groups.Add(new(g));
 		}
 
 		ConfigurationChanged();
@@ -146,7 +125,7 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
-		ShipGroupViewModel.Items = KCDatabase.Instance.Ships.Values
+		ShipGroupViewModel.Items = ((ShipGroupData)group.Group).MembersInstance
 			.Select(s => new ShipGroupItemViewModel(s))
 			.ToObservableCollection();
 
@@ -188,24 +167,24 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 			@group.ViewColumns.Add(ShipGroup.DataGrid.Columns[i].Name, newdata);
 		}
 		*/
-		Groups.Add(new(group));
+		ShipGroupViewModel.Groups.Add(new(group));
 	}
 
 	[RelayCommand]
 	private void CopyGroup(ShipGroupItem group)
 	{
-		using var dialog = new DialogTextInput(FormShipGroup.DialogGroupCopyTitle, FormShipGroup.DialogGroupCopyDescription);
+		using DialogTextInput dialog = new(FormShipGroup.DialogGroupCopyTitle, FormShipGroup.DialogGroupCopyDescription);
 
-		if (dialog.ShowDialog(App.Current.MainWindow) != DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
 
-		var newGroup = group.Group.Clone();
+		ShipGroupData newGroup = (ShipGroupData)group.Group.Clone();
 
 		newGroup.GroupID = KCDatabase.Instance.ShipGroup.GetUniqueID();
 		newGroup.Name = dialog.InputtedText.Trim();
 
 		KCDatabase.Instance.ShipGroup.ShipGroups.Add(newGroup);
 
-		Groups.Add(new(newGroup));
+		ShipGroupViewModel.Groups.Add(new(newGroup));
 	}
 
 	[RelayCommand]
@@ -238,7 +217,24 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 			SelectedGroup = null;
 		}
 
-		Groups.Remove(group);
-		KCDatabase.Instance.ShipGroup.ShipGroups.Remove(group.Group);
+		ShipGroupViewModel.Groups.Remove(group);
+		KCDatabase.Instance.ShipGroup.ShipGroups.Remove((ShipGroupData)group.Group);
+	}
+
+	private void SystemShuttingDown()
+	{
+		// todo: not needed for testing
+		/*
+		Configuration.Config.FormShipGroup.AutoUpdate = AutoUpdate;
+		Configuration.Config.FormShipGroup.ShowStatusBar = ShowStatusBar;
+		Configuration.Config.FormShipGroup.GroupHeight = GroupHeight.Value;
+
+		// update group IDs to match their current order
+		// the serializer saves groups ordered by ID to preserve user reordering
+		foreach ((ShipGroupData group, int i) in ShipGroupViewModel.Groups.Select((g, i) => ((ShipGroupData)g.Group, i)))
+		{
+			group.GroupID = i + 1;
+		}
+		*/
 	}
 }

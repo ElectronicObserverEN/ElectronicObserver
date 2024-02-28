@@ -21,7 +21,7 @@ public class App : Application
 			{
 				Content = new ShipGroupView
 				{
-					DataContext = new ShipGroupViewModel(),
+					// DataContext = new ShipGroupViewModel(),
 				},
 			};
 		}

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Observer;
@@ -16,6 +17,8 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
+using GeneralRes = ElectronicObserver.Translations.GeneralRes;
+using ShipGroupResources = ElectronicObserver.Translations.ShipGroupResources;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
@@ -38,7 +41,7 @@ public partial class FormShipGroup: Form
 		CSBlueRight, CSPurpleRight, CSCyanRight, CSIsLocked;
 
 	/// <summary>選択中のグループ</summary>
-	private ShipGroupData? CurrentGroup => ViewModel.SelectedGroup?.Group;
+	private ShipGroupData? CurrentGroup => null; // ViewModel.SelectedGroup?.Group;
 
 	private bool IsRowsUpdating;
 	private int _shipNameSortMethod;
@@ -146,7 +149,7 @@ public partial class FormShipGroup: Form
 		{
 			if (args.PropertyName is not nameof(ShipGroupWinformsViewModel.SelectedGroup)) return;
 
-			ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
 		};
 	}
 
@@ -260,7 +263,7 @@ public partial class FormShipGroup: Form
 
 		foreach (var g in groups.ShipGroups.Values)
 		{
-			ViewModel.Groups.Add(new(g));
+			// ViewModel.Groups.Add(new(g));
 		}
 
 		//*/
@@ -349,7 +352,7 @@ public partial class FormShipGroup: Form
 	{
 		if (ViewModel.AutoUpdate)
 		{
-			ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
 		}
 	}
 
@@ -616,6 +619,7 @@ public partial class FormShipGroup: Form
 	/// </summary>
 	private void ChangeShipView(ShipGroupItem? groupItem, ShipGroupItem? previousGroupItem)
 	{
+		/*
 		if (ViewModel.SelectedGroup is null) return;
 
 		ShipGroupData? group = groupItem?.Group;
@@ -674,7 +678,7 @@ public partial class FormShipGroup: Form
 				}
 			}
 		}
-
+		*/
 	}
 
 
@@ -1100,13 +1104,13 @@ public partial class FormShipGroup: Form
 
 						KCDatabase.Instance.ShipGroup.ShipGroups.Remove(id);
 						KCDatabase.Instance.ShipGroup.ShipGroups.Add(group);
-
+						/*
 						int groupIndex = ViewModel.Groups.IndexOf(ViewModel.Groups.First(g => g.Group.ID == id));
 						ShipGroupItem updatedGroup = new(group);
 						ViewModel.Groups.RemoveAt(groupIndex);
 						ViewModel.Groups.Insert(groupIndex, updatedGroup);
-
 						ViewModel.SelectGroupCommand.Execute(updatedGroup);
+						*/
 					}
 				}
 			}
@@ -1270,7 +1274,7 @@ public partial class FormShipGroup: Form
 
 				group.AddInclusionFilter(ships);
 
-				ViewModel.Groups.Add(new(group));
+				// ViewModel.Groups.Add(new(group));
 
 			}
 
@@ -1498,12 +1502,5 @@ public partial class FormShipGroup: Form
 		Utility.Configuration.Config.FormShipGroup.AutoUpdate = ViewModel.AutoUpdate;
 		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = ViewModel.ShowStatusBar;
 		Utility.Configuration.Config.FormShipGroup.GroupHeight = ViewModel.GroupHeight.Value;
-
-		// update group IDs to match their current order
-		// the serializer saves groups ordered by ID to preserve user reordering
-		foreach ((ShipGroupData group, int i) in ViewModel.Groups.Select((g, i) => (g.Group, i)))
-		{
-			group.GroupID = i + 1;
-		}
 	}
 }
