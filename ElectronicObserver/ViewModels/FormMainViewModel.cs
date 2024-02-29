@@ -1872,8 +1872,7 @@ public partial class FormMainViewModel : ObservableObject
 			(MaintenanceState.EventStart, false, false) => formMain.EventHasStarted,
 
 			(MaintenanceState.EventEnd, true, true) => formMain.EventEndsIn,
-			(MaintenanceState.EventEnd, false, true) => formMain.EventHasEnded,
-			(MaintenanceState.EventEnd, false, false) => formMain.EventHasEnded,
+			(MaintenanceState.EventEnd, false, _) => formMain.EventHasEnded,
 
 			(MaintenanceState.Regular, true, true) => formMain.MaintenanceStartsIn,
 			(MaintenanceState.Regular, false, true) => formMain.MaintenanceEndsIn,
