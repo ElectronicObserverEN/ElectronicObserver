@@ -330,8 +330,9 @@ public class SoftwareUpdater
 				_ => 0
 			};
 
-			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
-			var eventState = (MaintenanceState)(int)dataJson.event_state;
+			DateTime maintenanceStartDate = DateTimeHelper.CSVStringToTime(dataJson.MaintStart);
+			DateTime maintenanceEndDate = DateTimeHelper.CSVStringToTime(dataJson.MaintEnd);
+			var eventState = (MaintenanceState)(int)dataJson.MaintEventState;
 			string maintenanceInformationLink = (string)dataJson.MaintInfoLink;
 
 			data = new UpdateData
@@ -348,7 +349,8 @@ public class SoftwareUpdater
 				QuestTrackers = questTrackersVersion,
 				EventLocks = eventLocksVersion,
 				LockTranslations = lockTranslationsVersion,
-				MaintenanceDate = maintenanceDate,
+				MaintenanceStart = maintenanceStartDate,
+				MaintenanceEnd = maintenanceEndDate,
 				EventState = eventState,
 				FitBonuses = fitBonusesVersion,
 				EquipmentUpgrades = equipmentUpgradesVersion,
@@ -414,7 +416,8 @@ public class UpdateData
 	public int LockTranslations { get; set; }
 	public int FitBonuses { get; set; }
 	public int EquipmentUpgrades { get; set; }
-	public DateTime MaintenanceDate { get; set; }
+	public DateTime MaintenanceStart { get; set; }
+	public DateTime MaintenanceEnd { get; set; }
 	public string MaintenanceInformationLink { get; set; } = "";
 
 	/// <summary>

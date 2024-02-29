@@ -383,8 +383,8 @@ Are you sure?</value>
   <data name="MaintenanceStartsIn" xml:space="preserve">
     <value>Maintenance starts in {0}</value>
   </data>
-  <data name="MaintenanceHasStarted" xml:space="preserve">
-    <value>Maintenance has started.</value>
+  <data name="MaintenanceHasEnded" xml:space="preserve">
+    <value>Maintenance has ended.</value>
   </data>
   <data name="NextExerciseReset" xml:space="preserve">
     <value>Next PVP reset:</value>
@@ -449,5 +449,8 @@ Do you want to open this github issue?</value>
   </data>
   <data name="GitHubWikiLink" xml:space="preserve">
     <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
+  </data>
+  <data name="MaintenanceEndsIn" xml:space="preserve">
+    <value>Maintenance ends in {0}</value>
   </data>
 </root>
