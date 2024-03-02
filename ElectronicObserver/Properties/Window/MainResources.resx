@@ -384,7 +384,7 @@
     <value>{0}後にメンテナンス開始</value>
   </data>
   <data name="MaintenanceHasEnded" xml:space="preserve">
-    <value>??? (Maintenance has ended.)</value>
+    <value>メンテナンス終了</value>
   </data>
   <data name="NextExerciseReset" xml:space="preserve">
     <value>次の演習リセット：</value>
@@ -451,6 +451,6 @@
     <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
   </data>
   <data name="MaintenanceEndsIn" xml:space="preserve">
-    <value>??? (Maintenance ends in {0})</value>
+    <value>メンテナンスは{0}で終了</value>
   </data>
 </root>

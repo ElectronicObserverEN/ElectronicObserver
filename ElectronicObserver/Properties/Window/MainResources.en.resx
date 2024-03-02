@@ -384,7 +384,7 @@ Are you sure?</value>
     <value>Maintenance starts in {0}</value>
   </data>
   <data name="MaintenanceHasEnded" xml:space="preserve">
-    <value>Maintenance has ended.</value>
+    <value>Maintenance has ended</value>
   </data>
   <data name="NextExerciseReset" xml:space="preserve">
     <value>Next PVP reset:</value>
