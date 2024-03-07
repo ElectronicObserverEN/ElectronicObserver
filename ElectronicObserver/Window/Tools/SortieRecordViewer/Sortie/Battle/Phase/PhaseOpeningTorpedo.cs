@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
@@ -57,39 +58,20 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 
 		for (int i = 0; i < apiPhaseOpeningTorpedo.ApiFraiListItems.Count; i++)
 		{
-			if (apiPhaseOpeningTorpedo.ApiFraiListItems[i] is null) continue;
+			if (apiPhaseOpeningTorpedo.ApiFraiListItems[i] is not List<int> targets) continue;
+			if (apiPhaseOpeningTorpedo.ApiFydamListItems[i] is not List<int> attackDamages) continue;
+			if (apiPhaseOpeningTorpedo.ApiFclListItems[i] is not List<int> criticalFlags) continue;
 
-			for (int j = 0; j < apiPhaseOpeningTorpedo.ApiFraiListItems[i].Count; j++)
+			for (int j = 0; j < targets.Count; j++)
 			{
-				if (apiPhaseOpeningTorpedo.ApiFraiListItems[i][j] < 0) continue;
-				if (apiPhaseOpeningTorpedo.ApiFdam.Count <= j) continue;
-				if (apiPhaseOpeningTorpedo.ApiFydamListItems[i].Count <= j) continue;
-				if (apiPhaseOpeningTorpedo.ApiFclListItems[i].Count <= j) continue;
+				if (targets[j] < 0) continue;
 
-				BattleIndex attacker = new(i, FleetFlag.Player);
-				BattleIndex defender = new(apiPhaseOpeningTorpedo.ApiFraiListItems[i][j], FleetFlag.Enemy);
+				Debug.Assert(apiPhaseOpeningTorpedo.ApiFdam.Count > j);
+				Debug.Assert(attackDamages.Count > j);
+				Debug.Assert(criticalFlags.Count > j);
 
-				double protectedFlag = apiPhaseOpeningTorpedo.ApiEdam[defender.Index] - Math.Floor(apiPhaseOpeningTorpedo.ApiEdam[defender.Index]);
-
-				PhaseTorpedoAttack attack = new()
-				{
-					Attacker = attacker,
-					AttackType = DayAttackKind.Torpedo,
-					Defenders =
-					[
-						new()
-						{
-							RawDamage = apiPhaseOpeningTorpedo.ApiFydamListItems[i][j] + protectedFlag,
-							Defender = defender,
-							CriticalFlag = apiPhaseOpeningTorpedo.ApiFclListItems[i][j] switch
-							{
-								2 => HitType.Critical,
-								1 => HitType.Hit,
-								_ => HitType.Miss,
-							},
-						},
-					],
-				};
+				PhaseTorpedoAttack attack = MakeAttack(i, j, FleetFlag.Player,
+					targets, apiPhaseOpeningTorpedo.ApiFdam, attackDamages, criticalFlags);
 
 				attacks.Add(attack);
 			}
@@ -104,39 +86,20 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 
 		for (int i = 0; i < apiPhaseOpeningTorpedo.ApiEraiListItems.Count; i++)
 		{
-			if (apiPhaseOpeningTorpedo.ApiEraiListItems[i] is null) continue;
+			if (apiPhaseOpeningTorpedo.ApiEraiListItems[i] is not List<int> targets) continue;
+			if (apiPhaseOpeningTorpedo.ApiEydamListItems[i] is not List<int> attackDamages) continue;
+			if (apiPhaseOpeningTorpedo.ApiEclListItems[i] is not List<int> criticalFlags) continue;
 
-			for (int j = 0; j < apiPhaseOpeningTorpedo.ApiEraiListItems[i].Count; j++)
+			for (int j = 0; j < targets.Count; j++)
 			{
-				if (apiPhaseOpeningTorpedo.ApiEraiListItems[i][j] < 0) continue;
-				if (apiPhaseOpeningTorpedo.ApiEdam.Count <= j) continue;
-				if (apiPhaseOpeningTorpedo.ApiEydamListItems[i].Count <= j) continue;
-				if (apiPhaseOpeningTorpedo.ApiEclListItems[i].Count <= j) continue;
+				if (targets[j] < 0) continue;
 
-				BattleIndex attacker = new(i, FleetFlag.Enemy);
-				BattleIndex defender = new(apiPhaseOpeningTorpedo.ApiEraiListItems[i][j], FleetFlag.Player);
+				Debug.Assert(apiPhaseOpeningTorpedo.ApiEdam.Count > j);
+				Debug.Assert(attackDamages.Count > j);
+				Debug.Assert(criticalFlags.Count > j);
 
-				double protectedFlag = apiPhaseOpeningTorpedo.ApiFdam[defender.Index] - Math.Floor(apiPhaseOpeningTorpedo.ApiFdam[defender.Index]);
-
-				PhaseTorpedoAttack attack = new()
-				{
-					Attacker = attacker,
-					AttackType = DayAttackKind.Torpedo,
-					Defenders =
-					[
-						new()
-						{
-							RawDamage = apiPhaseOpeningTorpedo.ApiEydamListItems[i][j] + protectedFlag,
-							Defender = defender,
-							CriticalFlag = apiPhaseOpeningTorpedo.ApiEclListItems[i][j] switch
-							{
-								2 => HitType.Critical,
-								1 => HitType.Hit,
-								_ => HitType.Miss,
-							},
-						},
-					],
-				};
+				PhaseTorpedoAttack attack = MakeAttack(i, j, FleetFlag.Enemy,
+					targets, apiPhaseOpeningTorpedo.ApiEdam, attackDamages, criticalFlags);
 
 				attacks.Add(attack);
 			}
