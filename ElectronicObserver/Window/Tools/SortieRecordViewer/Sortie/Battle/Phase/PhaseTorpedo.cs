@@ -10,7 +10,7 @@ public abstract class PhaseTorpedo : PhaseBase
 {
 	public List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = [];
 
-	protected static PhaseTorpedoAttack MakeAttack(int attackerIndex, int targetIndex, FleetFlag fleetFlag, 
+	protected static PhaseTorpedoAttack MakeAttack(int attackerIndex, int targetIndex, FleetFlag fleetFlag,
 		List<int> targets, List<double> damages, List<int> attackDamages, List<int> criticalFlags)
 	{
 		FleetFlag enemyFlag = fleetFlag switch
