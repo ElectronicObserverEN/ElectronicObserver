@@ -328,7 +328,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		{
 			PhaseSearching searching = battle.Phases.OfType<PhaseSearching>().First();
 
-			foreach (PhaseBase phase in battle.Phases.Where(p => p is PhaseShelling or PhaseClosingTorpedo))
+			foreach (PhaseBase phase in battle.Phases.Where(p => p is PhaseShelling or PhaseTorpedo))
 			{
 				if (phase is PhaseShelling shelling)
 				{
