@@ -62,9 +62,9 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 			for (int j = 0; j < apiPhaseOpeningTorpedo.ApiFraiListItems[i].Count; j++)
 			{
 				if (apiPhaseOpeningTorpedo.ApiFraiListItems[i][j] < 0) continue;
-				if (apiPhaseOpeningTorpedo.ApiFdam.Count <= i) continue;
-				if (apiPhaseOpeningTorpedo.ApiFydamListItems[i].Count <= i) continue;
-				if (apiPhaseOpeningTorpedo.ApiFclListItems[i].Count <= i) continue;
+				if (apiPhaseOpeningTorpedo.ApiFdam.Count <= j) continue;
+				if (apiPhaseOpeningTorpedo.ApiFydamListItems[i].Count <= j) continue;
+				if (apiPhaseOpeningTorpedo.ApiFclListItems[i].Count <= j) continue;
 
 				BattleIndex attacker = new(i, FleetFlag.Player);
 				BattleIndex defender = new(apiPhaseOpeningTorpedo.ApiFraiListItems[i][j], FleetFlag.Enemy);
@@ -109,9 +109,9 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 			for (int j = 0; j < apiPhaseOpeningTorpedo.ApiEraiListItems[i].Count; j++)
 			{
 				if (apiPhaseOpeningTorpedo.ApiEraiListItems[i][j] < 0) continue;
-				if (apiPhaseOpeningTorpedo.ApiEdam.Count <= i) continue;
-				if (apiPhaseOpeningTorpedo.ApiEydamListItems[i].Count <= i) continue;
-				if (apiPhaseOpeningTorpedo.ApiEclListItems[i].Count <= i) continue;
+				if (apiPhaseOpeningTorpedo.ApiEdam.Count <= j) continue;
+				if (apiPhaseOpeningTorpedo.ApiEydamListItems[i].Count <= j) continue;
+				if (apiPhaseOpeningTorpedo.ApiEclListItems[i].Count <= j) continue;
 
 				BattleIndex attacker = new(i, FleetFlag.Enemy);
 				BattleIndex defender = new(apiPhaseOpeningTorpedo.ApiEraiListItems[i][j], FleetFlag.Player);
