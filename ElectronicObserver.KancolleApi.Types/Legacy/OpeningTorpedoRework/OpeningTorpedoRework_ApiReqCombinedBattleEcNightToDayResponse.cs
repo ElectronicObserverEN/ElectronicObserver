@@ -4,6 +4,8 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
+// ReSharper disable once InconsistentNaming
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "Legacy code prefix")]
 public class OpeningTorpedoRework_ApiReqCombinedBattleEcNightToDayResponse : IOpeningTorpedoRework_DayFromNightBattleApiResponse, IEnemyCombinedFleetBattle
 {
 	[JsonPropertyName("api_deck_id")]

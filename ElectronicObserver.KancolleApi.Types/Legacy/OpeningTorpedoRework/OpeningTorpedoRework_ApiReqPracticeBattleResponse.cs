@@ -3,6 +3,8 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
+// ReSharper disable once InconsistentNaming
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "Legacy code prefix")]
 public class OpeningTorpedoRework_ApiReqPracticeBattleResponse : IFirstBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
