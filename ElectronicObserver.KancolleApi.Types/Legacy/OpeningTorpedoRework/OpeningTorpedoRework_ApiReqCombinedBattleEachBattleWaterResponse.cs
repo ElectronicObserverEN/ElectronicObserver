@@ -2,9 +2,9 @@
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
+namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
-public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiResponse, ICombinedBattleApiResponse
+public class OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse : IOpeningTorpedoRework_CombinedDayBattleApiResponse, ICombinedBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
@@ -17,6 +17,15 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();
+
+	[JsonPropertyName("api_escape_idx")]
+	public List<int>? ApiEscapeIdx { get; set; }
+
+	[JsonPropertyName("api_combat_ration")]
+	public List<int>? ApiCombatRation { get; set; }
+
+	[JsonPropertyName("api_smoke_type")]
+	public int? ApiSmokeType { get; set; }
 
 	[JsonPropertyName("api_eParam_combined")]
 	public List<List<int>> ApiEParamCombined { get; set; } = new();
@@ -45,21 +54,6 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 	[JsonPropertyName("api_e_nowhps_combined")]
 	public List<int> ApiENowhpsCombined { get; set; } = new();
 
-	[JsonPropertyName("api_escape_idx")]
-	public List<int>? ApiEscapeIdx { get; set; }
-
-	[JsonPropertyName("api_combat_ration")]
-	public List<int>? ApiCombatRation { get; set; }
-
-	[JsonPropertyName("api_smoke_type")]
-	public int? ApiSmokeType { get; set; }
-
-	[JsonPropertyName("api_escape_idx_combined")]
-	public List<int>? ApiEscapeIdxCombined { get; set; }
-
-	[JsonPropertyName("api_combat_ration_combined")]
-	public List<int>? ApiCombatRationCombined { get; set; }
-
 	[JsonPropertyName("api_fParam")]
 	public List<List<int>> ApiFParam { get; set; } = new();
 
@@ -84,6 +78,12 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 	[JsonPropertyName("api_f_nowhps_combined")]
 	public List<int> ApiFNowhpsCombined { get; set; } = new();
 
+	[JsonPropertyName("api_escape_idx_combined")]
+	public List<int>? ApiEscapeIdxCombined { get; set; }
+
+	[JsonPropertyName("api_combat_ration_combined")]
+	public List<int>? ApiCombatRationCombined { get; set; }
+
 	[JsonPropertyName("api_friendly_kouku")]
 	public ApiKouku? ApiFriendlyKouku { get; set; }
 
@@ -97,10 +97,10 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 	public ApiHougeki1? ApiHougeki1 { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki2")]
-	public ApiHougeki1? ApiHougeki2 { get; set; }
+	public ApiHougeki1? ApiHougeki2 { get; set; } = new();
 
 	[JsonPropertyName("api_hougeki3")]
-	public ApiHougeki1? ApiHougeki3 { get; set; } = new();
+	public ApiHougeki1? ApiHougeki3 { get; set; }
 
 	[JsonPropertyName("api_hourai_flag")]
 	public List<int> ApiHouraiFlag { get; set; } = new();
@@ -115,7 +115,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; } = new();
 
 	[JsonPropertyName("api_opening_flag")]
 	public int ApiOpeningFlag { get; set; }
@@ -127,7 +127,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 	public int ApiOpeningTaisenFlag { get; set; }
 
 	[JsonPropertyName("api_raigeki")]
-	public ApiRaigekiClass? ApiRaigeki { get; set; } = new();
+	public ApiRaigekiClass? ApiRaigeki { get; set; }
 
 	[JsonPropertyName("api_search")]
 	public List<DetectionType> ApiSearch { get; set; } = new();

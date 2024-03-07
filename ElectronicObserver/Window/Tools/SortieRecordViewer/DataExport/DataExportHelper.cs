@@ -375,10 +375,10 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 									CommonData = MakeCommonData(torpedoData.Count + 1, battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 									BattleType = CsvExportResources.TorpedoBattle,
 									PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
-									BattlePhase = torpedo.Phase switch
+									BattlePhase = torpedo switch
 									{
-										TorpedoPhase.Opening => "開幕",
-										TorpedoPhase.Closing => "閉幕",
+										PhaseOpeningTorpedo => "開幕",
+										PhaseClosingTorpedo=> "閉幕",
 									},
 									AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
 									{

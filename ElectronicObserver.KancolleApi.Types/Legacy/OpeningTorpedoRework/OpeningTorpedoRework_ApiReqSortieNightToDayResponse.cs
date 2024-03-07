@@ -1,10 +1,9 @@
-﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
-using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcNightToDay;
+namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
-public class ApiReqCombinedBattleEcNightToDayResponse : IDayFromNightBattleApiResponse, IEnemyCombinedFleetBattle
+public class OpeningTorpedoRework_ApiReqSortieNightToDayResponse : IOpeningTorpedoRework_DayFromNightBattleApiResponse
 {
 	[JsonPropertyName("api_deck_id")]
 	public int ApiDeckId { get; set; }
@@ -27,35 +26,17 @@ public class ApiReqCombinedBattleEcNightToDayResponse : IDayFromNightBattleApiRe
 	[JsonPropertyName("api_ship_lv")]
 	public List<int> ApiShipLv { get; set; } = new();
 
-	[JsonPropertyName("api_ship_ke_combined")]
-	public List<int> ApiShipKeCombined { get; set; } = new();
-
-	[JsonPropertyName("api_ship_lv_combined")]
-	public List<int> ApiShipLvCombined { get; set; } = new();
-
 	[JsonPropertyName("api_e_nowhps")]
 	public List<object> ApiENowhps { get; set; } = new();
 
 	[JsonPropertyName("api_e_maxhps")]
 	public List<object> ApiEMaxhps { get; set; } = new();
 
-	[JsonPropertyName("api_e_nowhps_combined")]
-	public List<int> ApiENowhpsCombined { get; set; } = new();
-
-	[JsonPropertyName("api_e_maxhps_combined")]
-	public List<int> ApiEMaxhpsCombined { get; set; } = new();
-
 	[JsonPropertyName("api_eSlot")]
 	public List<List<int>> ApiESlot { get; set; } = new();
 
-	[JsonPropertyName("api_eSlot_combined")]
-	public List<List<int>> ApiESlotCombined { get; set; } = new();
-
 	[JsonPropertyName("api_eParam")]
 	public List<List<int>> ApiEParam { get; set; } = new();
-
-	[JsonPropertyName("api_eParam_combined")]
-	public List<List<int>> ApiEParamCombined { get; set; } = new();
 
 	[JsonPropertyName("api_touch_plane")]
 	public List<object> ApiTouchPlane { get; set; } = new();
@@ -121,7 +102,7 @@ public class ApiReqCombinedBattleEcNightToDayResponse : IDayFromNightBattleApiRe
 	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_hourai_flag")]
 	public List<int> ApiHouraiFlag { get; set; } = new();

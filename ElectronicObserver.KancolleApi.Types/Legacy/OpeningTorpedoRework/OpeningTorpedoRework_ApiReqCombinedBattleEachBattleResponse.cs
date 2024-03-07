@@ -2,9 +2,9 @@
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
+namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
-public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiResponse, ICombinedBattleApiResponse
+public class OpeningTorpedoRework_ApiReqCombinedBattleEachBattleResponse : IOpeningTorpedoRework_CombinedDayBattleApiResponse, ICombinedBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
 	public List<ApiAirBaseAttack>? ApiAirBaseAttack { get; set; }
@@ -115,7 +115,7 @@ public class ApiReqCombinedBattleEachBattleResponse : ICombinedDayBattleApiRespo
 	public int ApiMidnightFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_opening_flag")]
 	public int ApiOpeningFlag { get; set; }

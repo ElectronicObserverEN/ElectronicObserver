@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.NightToDay;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -13,6 +14,12 @@ public sealed class BattleNormalDayFromNight : DayFromNightBattleData
 	public override string Title => ConstantsRes.Title_NormalDayFromNight;
 
 	public BattleNormalDayFromNight(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqSortieNightToDayResponse battle)
+		: base(phaseFactory, fleets, battle)
+	{
+		EmulateBattle();
+	}
+
+	public BattleNormalDayFromNight(PhaseFactory phaseFactory, BattleFleets fleets, OpeningTorpedoRework_ApiReqSortieNightToDayResponse battle)
 		: base(phaseFactory, fleets, battle)
 	{
 		EmulateBattle();
@@ -37,6 +44,6 @@ public sealed class BattleNormalDayFromNight : DayFromNightBattleData
 		yield return OpeningTorpedo;
 		yield return Shelling1;
 		yield return Shelling2;
-		yield return Torpedo;
+		yield return ClosingTorpedo;
 	}
 }

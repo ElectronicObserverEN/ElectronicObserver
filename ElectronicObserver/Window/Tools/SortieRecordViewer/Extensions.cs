@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.Compression;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
@@ -110,6 +109,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.GoBackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.KancolleApi.Types.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -117,6 +117,9 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
 public static class Extensions
 {
+	// maintenance was 11:00 JST, this is 12:00 JST because it's still possible to get data after 11:00
+	private static DateTime OpeningTorpedoRework { get; } = new(2024, 02, 29, 03, 00, 00, DateTimeKind.Utc);
+
 	public static IMapProgressApi? GetMapProgressApiData(this ApiFile apiFile) => apiFile.Name switch
 	{
 		"api_req_map/start" => JsonSerializer.Deserialize<ApiResponse<ApiReqMapStartResponse>>(apiFile.Content)?.ApiData,
@@ -265,6 +268,8 @@ public static class Extensions
 
 	public static object? GetResponseApiData(this ApiFile file) => file.Name switch
 	{
+		"api_req_practice/battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqPracticeBattleResponse>>(file.Content).GetApiData(),
+
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiResponse<ApiDmmPaymentPaycheckResponse>>(file.Content).GetApiData(),
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberBasicResponse>>(file.Content).GetApiData(),
 		"api_get_member/deck" => JsonSerializer.Deserialize<ApiResponseList<FleetDataDto>>(file.Content).GetApiData(),
@@ -354,6 +359,13 @@ public static class Extensions
 
 	public static object? GetBattleResponseApiData(this ApiFile file) => file.Name switch
 	{
+		"api_req_sortie/battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqSortieBattleResponse>>(file.Content).GetApiData(),
+		"api_req_combined_battle/battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqCombinedBattleBattleResponse>>(file.Content).GetApiData(),
+		"api_req_combined_battle/battle_water" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqCombinedBattleBattleWaterResponse>>(file.Content).GetApiData(),
+		"api_req_combined_battle/ec_battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqCombinedBattleEcBattleResponse>>(file.Content).GetApiData(),
+		"api_req_combined_battle/each_battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqCombinedBattleEachBattleResponse>>(file.Content).GetApiData(),
+		"api_req_combined_battle/each_battle_water" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse>>(file.Content).GetApiData(),
+
 		"api_req_sortie/battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieBattleResponse>>(file.Content).GetApiData(),
 		"api_req_battle_midnight/sp_midnight" => JsonSerializer.Deserialize<ApiResponse<ApiReqBattleMidnightSpMidnightResponse>>(file.Content).GetApiData(),
 		"api_req_sortie/airbattle" => JsonSerializer.Deserialize<ApiResponse<ApiReqSortieAirbattleResponse>>(file.Content).GetApiData(),
