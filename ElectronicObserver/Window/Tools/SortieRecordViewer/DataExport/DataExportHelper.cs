@@ -379,6 +379,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 									{
 										PhaseOpeningTorpedo => "開幕",
 										PhaseClosingTorpedo=> "閉幕",
+										_ => throw new NotImplementedException(),
 									},
 									AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
 									{
