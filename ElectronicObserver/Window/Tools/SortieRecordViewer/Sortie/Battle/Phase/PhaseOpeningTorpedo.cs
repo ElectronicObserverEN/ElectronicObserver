@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -66,12 +64,12 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 			{
 				if (targets[j] < 0) continue;
 
-				Debug.Assert(apiPhaseOpeningTorpedo.ApiFdam.Count > j);
+				Debug.Assert(apiPhaseOpeningTorpedo.ApiEdam.Count > j);
 				Debug.Assert(attackDamages.Count > j);
 				Debug.Assert(criticalFlags.Count > j);
 
 				PhaseTorpedoAttack attack = MakeAttack(i, j, FleetFlag.Player,
-					targets, apiPhaseOpeningTorpedo.ApiFdam, attackDamages, criticalFlags);
+					targets, apiPhaseOpeningTorpedo.ApiEdam, attackDamages, criticalFlags);
 
 				attacks.Add(attack);
 			}
@@ -94,12 +92,12 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 			{
 				if (targets[j] < 0) continue;
 
-				Debug.Assert(apiPhaseOpeningTorpedo.ApiEdam.Count > j);
+				Debug.Assert(apiPhaseOpeningTorpedo.ApiFdam.Count > j);
 				Debug.Assert(attackDamages.Count > j);
 				Debug.Assert(criticalFlags.Count > j);
 
 				PhaseTorpedoAttack attack = MakeAttack(i, j, FleetFlag.Enemy,
-					targets, apiPhaseOpeningTorpedo.ApiEdam, attackDamages, criticalFlags);
+					targets, apiPhaseOpeningTorpedo.ApiFdam, attackDamages, criticalFlags);
 
 				attacks.Add(attack);
 			}

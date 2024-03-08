@@ -52,7 +52,7 @@ public abstract class PhaseTorpedo : PhaseBase
 		for (int i = 0; i < apiRaigekiClass.ApiFrai.Count; i++)
 		{
 			if (apiRaigekiClass.ApiFrai[i] < 0) continue;
-			if (apiRaigekiClass.ApiFdam.Count <= i) break;
+			if (apiRaigekiClass.ApiEdam.Count <= i) break;
 			if (apiRaigekiClass.ApiFydam.Count <= i) break;
 			if (apiRaigekiClass.ApiFcl.Count <= i) break;
 
@@ -72,7 +72,7 @@ public abstract class PhaseTorpedo : PhaseBase
 		for (int i = 0; i < apiRaigekiClass.ApiErai.Count; i++)
 		{
 			if (apiRaigekiClass.ApiErai[i] < 0) continue;
-			if (apiRaigekiClass.ApiEdam.Count <= i) break;
+			if (apiRaigekiClass.ApiFdam.Count <= i) break;
 			if (apiRaigekiClass.ApiEydam.Count <= i) break;
 			if (apiRaigekiClass.ApiEcl.Count <= i) break;
 
