@@ -142,6 +142,9 @@ public static class EquipmentDataExtensions
 	public static bool IsSurfaceRadar(this IEquipmentDataMaster equip) =>
 		equip.IsRadar() && equip.LOS >= 5;
 
+	public static bool IsHighAccuracyRadar(this IEquipmentDataMaster equip) =>
+		equip.IsRadar() && equip.Accuracy >= 8;
+
 	/// <summary> ソナーかどうか </summary>
 	public static bool IsSonar(this IEquipmentDataMaster equip) => equip.CategoryType is
 		EquipmentTypes.Sonar or

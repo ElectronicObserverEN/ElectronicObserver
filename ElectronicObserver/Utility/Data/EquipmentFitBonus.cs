@@ -152,6 +152,11 @@ public static class EquipmentFitBonus
 			result.FitBonusValues.Add(fitData.BonusesIfSurfaceRadar);
 		}
 
+		if (fitData.BonusesIfAccuracyRadar != null && ship.HasHighAccuracyRadar())
+		{
+			result.FitBonusValues.Add(fitData.BonusesIfAccuracyRadar);
+		}
+
 		if (fitData.BonusesIfAirRadar != null && ship.HasAirRadar())
 		{
 			result.FitBonusValues.Add(fitData.BonusesIfAirRadar);
