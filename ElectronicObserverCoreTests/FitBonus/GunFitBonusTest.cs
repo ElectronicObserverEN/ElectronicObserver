@@ -154,4 +154,86 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
+
+	[Fact(DisplayName = "Haruna K2B with 35.6cm Twin Gun Mount Kai Yon")]
+	public void GunFitBonusTest6()
+	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
+		IShipData haruna = new ShipDataMock(Db.MasterShips[ShipId.HarunaKaiNiB])
+		{
+			Level = 99,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon]),
+			}
+		};
+
+		FitBonusValue expectedBonus = new()
+		{
+			Firepower = 4,
+			AntiAir = 4,
+			Accuracy = 2,
+		};
+
+		FitBonusValue finalBonus = haruna.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+	}
+
+	[Fact(DisplayName = "Haruna K2B with 35.6cm Twin Gun Mount Kai Yon and a GFCS radar (9 acc radar)")]
+	public void GunFitBonusTest7()
+	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
+		IShipData haruna = new ShipDataMock(Db.MasterShips[ShipId.HarunaKaiNiB])
+		{
+			Level = 99,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_GFCSMk_37]),
+			}
+		};
+
+		FitBonusValue expectedBonus = new()
+		{
+			Firepower = 4 + 4,
+			AntiAir = 4 + 0,
+			Accuracy = 2 + 4,
+			Evasion = 0 + 3,
+		};
+
+		FitBonusValue finalBonus = haruna.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+	}
+
+	[Fact(DisplayName = "Haruna K2B with 35.6cm Twin Gun Mount Kai Yon and a Type 33 radar")]
+	public void GunFitBonusTest8()
+	{
+		Assert.NotEmpty(BonusData.FitBonusList);
+
+		IShipData haruna = new ShipDataMock(Db.MasterShips[ShipId.HarunaKaiNiB])
+		{
+			Level = 99,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_Type33SurfaceRADAR]),
+			}
+		};
+
+		FitBonusValue expectedBonus = new()
+		{
+			Firepower = 4 + 2,
+			AntiAir = 4 + 0,
+			Accuracy = 2 + 2,
+			Evasion = 0 + 1,
+		};
+
+		FitBonusValue finalBonus = haruna.GetTheoricalFitBonus(BonusData.FitBonusList);
+
+		Assert.Equal(expectedBonus, finalBonus);
+	}
 }
