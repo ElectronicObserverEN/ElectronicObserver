@@ -341,9 +341,8 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	/// <summary> 水上電探かどうか </summary>
 	public bool IsSurfaceRadar => IsRadar && LOS >= 5;
 
-	public bool IsHighAccuracyRadar => IsRadar && Accuracy >= 8;
+	public bool IsHighAccuracyRadar => this.IsHighAccuracyRadar();
 
-	
 	/// <summary> ソナーかどうか </summary>
 	public bool IsSonar => CategoryType == EquipmentTypes.Sonar || CategoryType == EquipmentTypes.SonarLarge;
 
