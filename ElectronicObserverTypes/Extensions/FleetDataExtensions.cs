@@ -146,7 +146,7 @@ public static class FleetDataExtensions
 		double smokeGeneratorUpgradesModifier = 0.3 * smokeGenerators.Sum(eq => eq.Level) + 0.5 * smokeGeneratorsKai.Sum(eq => eq.Level);
 
 		double modifier = Math.Ceiling(Math.Sqrt(flagship.LuckTotal) + smokeGeneratorUpgradesModifier);
-		double p0 = Math.Max(320 - 20 * modifier - 100 * modifier, 0);
+		double p0 = Math.Max(320 - 20 * modifier - 100 * smokeGeneratorCount, 0);
 
 		if (smokeGeneratorCount >= 3)
 		{

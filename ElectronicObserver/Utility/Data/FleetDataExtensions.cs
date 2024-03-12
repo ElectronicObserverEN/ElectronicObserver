@@ -16,18 +16,17 @@ public static class FleetDataExtensions
 
 	public static List<TotalRate> TotalRate(this IEnumerable<SmokeGeneratorTriggerRate> generatorRates)
 	{
-		List<IActivatableEquipment> allRates =
-		[
-			..generatorRates,
-		];
-
-		if (allRates.Sum(r => r.ActivationRate) < 1)
-		{
-			allRates.Add(new ActivatableEquipmentNoneModel());
-		}
-
-		return allRates
+		List<TotalRate> allRates = generatorRates
 			.Select(r => new TotalRate(r.ActivationRate, r))
 			.ToList();
+
+		double totalRate = allRates.Sum(r => r.Rate);
+
+		if (totalRate < 1)
+		{
+			allRates.Add(new TotalRate(1 - totalRate, new ActivatableEquipmentNoneModel()));
+		}
+
+		return allRates;
 	}
 }
