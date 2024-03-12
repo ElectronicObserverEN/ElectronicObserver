@@ -5,6 +5,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:data="clr-namespace:ElectronicObserver.Data"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
@@ -166,6 +167,14 @@
 					<Border.ToolTip>
 						<StackPanel>
 							<StackPanel.Resources>
+								<DataTemplate DataType="{x:Type electronicObserverTypes:SmokeGeneratorTriggerRate}">
+									<StackPanel Orientation="Horizontal">
+										<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding SmokeGenerator1Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+										<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding SmokeGenerator2Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+										<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding SmokeGenerator3Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+									</StackPanel>
+								</DataTemplate>
+
 								<DataTemplate DataType="{x:Type viewModels:TotalRate}">
 									<Grid HorizontalAlignment="Left">
 										<Grid.ColumnDefinitions>
@@ -197,6 +206,25 @@
 								<Run Text=":" />
 							</TextBlock>
 							<ItemsControl ItemsSource="{Binding Flares}" />
+
+							<StackPanel>
+								<StackPanel.Style>
+									<Style TargetType="StackPanel">
+										<Setter Property="Visibility" Value="Visible" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding SmokeGeneratorRates.Count}" Value="0">
+												<Setter Property="Visibility" Value="Collapsed" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</StackPanel.Style>
+
+								<TextBlock>
+									<Run Text="Smoke trigger rates" />
+									<Run Text=":" />
+								</TextBlock>
+								<ItemsControl ItemsSource="{Binding SmokeGeneratorRates}" />
+							</StackPanel>
 						</StackPanel>
 					</Border.ToolTip>
 

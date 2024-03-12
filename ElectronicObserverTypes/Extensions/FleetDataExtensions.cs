@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ElectronicObserverTypes.Extensions;
@@ -107,5 +108,106 @@ public static class FleetDataExtensions
 		if (battleships > 0 && heavyCruisers + aviationCruisers > 0) return true;
 
 		return heavyCruisers > 3;
+	}
+
+	/// <summary>
+	/// https://x.com/yukicacoon/status/1739480992090632669
+	/// </summary>
+	/// <param name="fleets"></param>
+	/// <returns></returns>
+	public static List<SmokeGeneratorTriggerRate> GetSmokeTriggerRates(this List<IFleetData> fleets)
+	{
+		if (fleets.Count is 0) return [];
+
+		IShipData? flagship = fleets[0].MembersWithoutEscaped?.First(s => s?.IsFlagship(fleets[0]) is true);
+
+		if (flagship is null) return [];
+
+		List<IShipData> ships = fleets
+			.SelectMany(fleet => fleet.MembersWithoutEscaped ?? new([]))
+			.Where(ship => ship is not null)
+			.Cast<IShipData>()
+			.ToList();
+
+		List<IEquipmentData> smokeGenerators = ships
+			.SelectMany(ship => ship.AllSlotInstance)
+			.Where(e => e?.MasterEquipment.EquipmentId is EquipmentId.SurfaceShipEquipment_SmokeGenerator_SmokeScreen)
+			.Cast<IEquipmentData>()
+			.ToList();
+
+		List<IEquipmentData> smokeGeneratorsKai = ships
+			.SelectMany(ship => ship.AllSlotInstance)
+			.Where(e => e?.MasterEquipment.EquipmentId is EquipmentId.SurfaceShipEquipment_SmokeGeneratorKai_SmokeScreen)
+			.Cast<IEquipmentData>()
+			.ToList();
+
+		// Roundup[√(luk)+0.3*煙改修+0.5*煙改改修]
+		int smokeGeneratorCount = smokeGenerators.Count + (smokeGeneratorsKai.Count * 2);
+		double smokeGeneratorUpgradesModifier = 0.3 * smokeGenerators.Sum(eq => eq.Level) + 0.5 * smokeGeneratorsKai.Sum(eq => eq.Level);
+
+		double modifier = Math.Ceiling(Math.Sqrt(flagship.LuckTotal) + smokeGeneratorUpgradesModifier);
+		double p0 = Math.Max(320 - 20 * modifier - 100 * modifier, 0);
+
+		if (smokeGeneratorCount >= 3)
+		{
+			double p3 = 4.2 * modifier + 15 * (smokeGeneratorCount - 3);
+			double p2 = Math.Min(30, 100 - p3);
+			double p1 = Math.Max(100 - p2 - p3, 0);
+
+			return
+			[
+				new()
+				{
+					SmokeGeneratorCount = 3,
+					ActivationRatePercentage = p3,
+				},
+				new()
+				{
+					SmokeGeneratorCount = 2,
+					ActivationRatePercentage = p2,
+				},
+				new()
+				{
+					SmokeGeneratorCount = 1,
+					ActivationRatePercentage = p1,
+				},
+			];
+		}
+
+		if (smokeGeneratorCount == 2)
+		{
+			double p2 = (100 - p0) * 0.05 * (modifier + 2);
+			double p1 = Math.Max(100 - p0 - p2, 0);
+
+			return
+			[
+				new()
+				{
+					SmokeGeneratorCount = 2,
+					ActivationRatePercentage = p2,
+				},
+				new()
+				{
+					SmokeGeneratorCount = 1,
+					ActivationRatePercentage = p1,
+				},
+			];
+		}
+
+		if (smokeGeneratorCount == 1)
+		{
+			double p1 = Math.Max(100 - p0, 0);
+
+			return
+			[
+				new()
+				{
+					SmokeGeneratorCount = 1,
+					ActivationRatePercentage = p1,
+				},
+			];
+		}
+
+		return [];
 	}
 }

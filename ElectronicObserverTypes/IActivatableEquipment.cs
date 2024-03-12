@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Utility.Data;
+﻿namespace ElectronicObserverTypes;
 
 public interface IActivatableEquipment
 {

@@ -442,19 +442,17 @@ public static class ShipDataExtensions
 
 	public static double GetItalianDamageBonus(this IShipData ship)
 	{
-		// todo turn to switch expression once we get or patterns
-		switch (ship.MasterShip.ShipId)
+		return ship.MasterShip.ShipId switch
 		{
-			case ShipId.Zara:
-			case ShipId.ZaraKai:
-			case ShipId.ZaraDue:
-			case ShipId.Pola:
-			case ShipId.PolaKai:
-				return Math.Sqrt(ship.AllSlotInstance.Count(e => e?.EquipmentId == EquipmentId.MainGunMedium_203mm53TwinGun));
+			ShipId.Zara or
+			ShipId.ZaraKai or
+			ShipId.ZaraDue or
+			ShipId.Pola or
+			ShipId.PolaKai 
+				=> Math.Sqrt(ship.AllSlotInstance.Count(e => e?.EquipmentId == EquipmentId.MainGunMedium_203mm53TwinGun)),
 
-			default:
-				return 0;
-		}
+			_ => 0,
+		};
 	}
 
 	public static ShipNationality Nationality(this IShipDataMaster ship)
