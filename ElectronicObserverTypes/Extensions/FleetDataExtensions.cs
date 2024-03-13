@@ -113,13 +113,20 @@ public static class FleetDataExtensions
 	/// <summary>
 	/// https://x.com/yukicacoon/status/1739480992090632669
 	/// </summary>
+	/// <param name="fleet"></param>
+	/// <returns></returns>
+	public static List<SmokeGeneratorTriggerRate> GetSmokeTriggerRates(this IFleetData fleet) => GetSmokeTriggerRates([fleet]);
+
+	/// <summary>
+	/// https://x.com/yukicacoon/status/1739480992090632669
+	/// </summary>
 	/// <param name="fleets"></param>
 	/// <returns></returns>
 	public static List<SmokeGeneratorTriggerRate> GetSmokeTriggerRates(this List<IFleetData> fleets)
 	{
 		if (fleets.Count is 0) return [];
 
-		IShipData? flagship = fleets[0].MembersWithoutEscaped?.First(s => s?.IsFlagship(fleets[0]) is true);
+		IShipData? flagship = fleets[0].MembersWithoutEscaped?.First();
 
 		if (flagship is null) return [];
 

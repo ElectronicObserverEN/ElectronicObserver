@@ -130,7 +130,7 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			NightRecons = fleet.NightRecons().TotalRate();
 			Flares = fleet.Flares().TotalRate();
-			SmokeGeneratorRates = new List<IFleetData> { fleet }.GetSmokeTriggerRates().TotalRate();
+			SmokeGeneratorRates = fleet.GetSmokeTriggerRates().TotalRate();
 		}
 
 		State.UpdateFleetState(fleet);
