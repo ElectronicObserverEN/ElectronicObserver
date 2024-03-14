@@ -4,7 +4,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:data="clr-namespace:ElectronicObserver.Data"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
