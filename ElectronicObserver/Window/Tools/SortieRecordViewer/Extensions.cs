@@ -429,6 +429,31 @@ public static class Extensions
 		"api_req_map/start" or
 		"api_req_map/next";
 
+	public static async Task<List<SortieRecord>> WithApiFiles(this IEnumerable<SortieRecord> sorties,
+		ElectronicObserverContext db, CancellationToken cancellationToken = default)
+	{
+		List<SortieRecord> sortieRecords = sorties.ToList();
+
+		List<int> idsToLoad = sortieRecords
+			.Where(s => s.ApiFiles.Count is 0)
+			.Select(s => s.Id)
+			.ToList();
+
+		IEnumerable<SortieRecord> loadedSorties = sortieRecords.Where(s => s.ApiFiles.Count is not 0);
+
+		List<SortieRecord> unloadedSorties = idsToLoad switch
+		{
+			{ Count: 0 } => [],
+
+			_ => await db.Sorties
+				.Include(s => s.ApiFiles)
+				.Where(s => idsToLoad.Contains(s.Id))
+				.ToListAsync(cancellationToken),
+		};
+
+		return [.. unloadedSorties, .. loadedSorties];
+	}
+
 	public static async Task EnsureApiFilesLoaded(this SortieRecord sortie, ElectronicObserverContext db, CancellationToken cancellationToken = default)
 	{
 		if (sortie.ApiFiles.Count is not 0) return;

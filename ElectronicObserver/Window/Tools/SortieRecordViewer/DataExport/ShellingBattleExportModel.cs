@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public sealed record ShellingBattleExportModel
+public sealed record ShellingBattleExportModel : IExportModel
 {
 	public required CommonDataExportModel CommonData { get; init; }
 	public required string BattleType { get; init; }

@@ -4,7 +4,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
 public sealed record CommonDataExportModel
 {
-	public required int No { get; init; }
+	public required int No { get; set; }
 	public required DateTime Date { get; init; }
 	public required string World { get; init; }
 	public required string Square { get; init; }
