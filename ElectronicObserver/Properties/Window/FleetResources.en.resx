@@ -279,7 +279,7 @@ Range: {20} / Speed: {21}
   <data name="SupportTypeAntiSubmarine" xml:space="preserve">
     <value>Anti-submarine Support</value>
   </data>
-  <data name="SmokeTriggerRates" xml:space="preserve">
-    <value>Smoke trigger rates</value>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>Smoke screen</value>
   </data>
 </root>

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes;
-using Xunit;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Mocks;
+using Xunit;
 
 namespace ElectronicObserverCoreTests;
 

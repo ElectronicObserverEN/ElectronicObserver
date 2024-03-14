@@ -279,7 +279,7 @@
   <data name="SupportTypeAntiSubmarine" xml:space="preserve">
     <value>対潜支援</value>
   </data>
-  <data name="SmokeTriggerRates" xml:space="preserve">
-    <value>??? (Smoke trigger rates)</value>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>煙幕</value>
   </data>
 </root>

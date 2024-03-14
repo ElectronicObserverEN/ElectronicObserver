@@ -123,7 +123,7 @@
 								<TextBlock Text="{Binding ToolTip}" />
 
 								<TextBlock>
-									<Run Text="{Binding ViewModel.FormFleetOverview.SmokeTriggerRates, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type fleetOverview:FleetOverviewView}}}" />
+									<Run Text="{Binding ViewModel.FormFleetOverview.SmokeScreen, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type fleetOverview:FleetOverviewView}}}" />
 									<Run Text=":" />
 								</TextBlock>
 								<ItemsControl ItemsSource="{Binding SmokeGeneratorRates}" />
