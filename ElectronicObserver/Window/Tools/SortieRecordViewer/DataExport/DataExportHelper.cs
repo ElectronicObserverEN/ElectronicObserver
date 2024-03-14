@@ -42,7 +42,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			.Select(s => s.Model)
 			.WithApiFiles(Db, cancellationToken);
 
-		int? cachedAdmiralLevel = null;
+		int? admiralLevel = null;
 
 		return sortieRecords
 			.AsParallel()
@@ -54,11 +54,10 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 				// getting the admiral level is slow as shit
 				// since records are ordered chronologically, the level can't change after 120
-				int? admiralLevel = cachedAdmiralLevel switch
+				if (admiralLevel is not 120)
 				{
-					120 => 120,
-					_ => cachedAdmiralLevel = r.GetAdmiralLevel(Db, cancellationToken).Result,
-				};
+					admiralLevel = r.GetAdmiralLevel(Db, cancellationToken).Result;
+				}
 
 				return dataProcessingFunction(admiralLevel, sortieDetail, exportFilter, exportProgress, cancellationToken);
 			})
