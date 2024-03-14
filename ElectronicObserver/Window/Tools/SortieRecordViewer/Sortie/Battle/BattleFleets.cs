@@ -20,6 +20,7 @@ public class BattleFleets(
 	public List<IFleetData?>? Fleets { get; } = fleets switch
 	{
 		null => null,
+		{ Count: < 2 } => fleets,
 		_ => [fleet, escortFleet, .. fleets[2..]],
 	};
 
