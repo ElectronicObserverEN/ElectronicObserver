@@ -118,7 +118,7 @@ public static class FleetDataExtensions
 	public static List<SmokeGeneratorTriggerRate> GetSmokeTriggerRates(this IFleetData fleet) => GetSmokeTriggerRates([fleet]);
 
 	/// <summary>
-	/// https://x.com/yukicacoon/status/1739480992090632669
+	/// https://x.com/Xe_UCH/status/1767407602554855730
 	/// </summary>
 	/// <param name="fleets"></param>
 	/// <returns></returns>
@@ -146,74 +146,66 @@ public static class FleetDataExtensions
 			.Where(e => e?.MasterEquipment.EquipmentId is EquipmentId.SurfaceShipEquipment_SmokeGeneratorKai_SmokeScreen)
 			.Cast<IEquipmentData>()
 			.ToList();
-
-		// Roundup[√(luk)+0.3*煙改修+0.5*煙改改修]
+		
+		// https://twitter.com/yukicacoon/status/1739480992090632669
 		int smokeGeneratorCount = smokeGenerators.Count + (smokeGeneratorsKai.Count * 2);
-		double smokeGeneratorUpgradesModifier = 0.3 * smokeGenerators.Sum(eq => eq.Level) + 0.5 * smokeGeneratorsKai.Sum(eq => eq.Level);
-
-		double modifier = Math.Ceiling(Math.Sqrt(flagship.LuckTotal) + smokeGeneratorUpgradesModifier);
-		double p0 = Math.Max(320 - 20 * modifier - 100 * smokeGeneratorCount, 0);
+		double upgradeModifier = 0.3 * smokeGenerators.Sum(eq => eq.Level) + 0.5 * smokeGeneratorsKai.Sum(eq => eq.Level);
+		double modifier = Math.Ceiling(Math.Sqrt(flagship.LuckTotal) + upgradeModifier);
+		double triggerRate = 1 - Math.Max(3.2 - 0.2 * modifier - smokeGeneratorCount, 0);
 
 		if (smokeGeneratorCount >= 3)
 		{
-			double p3 = 4.2 * modifier + 15 * (smokeGeneratorCount - 3);
-			double p2 = Math.Min(30, 100 - p3);
-			double p1 = Math.Max(100 - p2 - p3, 0);
+			double tripleTrigger = Math.Min(3 * Math.Ceiling(5 * smokeGeneratorCount + 1.5 * Math.Sqrt(flagship.LuckTotal) + upgradeModifier - 15) + 1, 100);
+			double doubleTrigger = 30 - (tripleTrigger > 70 ? (tripleTrigger - 70) : 0);
+			double singleTrigger = Math.Max(100 - tripleTrigger - doubleTrigger, 0);
 
 			return
 			[
-				new()
+				new SmokeGeneratorTriggerRate
 				{
-					SmokeGeneratorCount = 3,
-					ActivationRatePercentage = p3,
+					SmokeGeneratorCount = 3, 
+					ActivationRatePercentage = tripleTrigger * triggerRate,
 				},
-				new()
+				new SmokeGeneratorTriggerRate
 				{
 					SmokeGeneratorCount = 2,
-					ActivationRatePercentage = p2,
+					ActivationRatePercentage = doubleTrigger * triggerRate,
 				},
-				new()
+				new SmokeGeneratorTriggerRate
 				{
 					SmokeGeneratorCount = 1,
-					ActivationRatePercentage = p1,
+					ActivationRatePercentage = singleTrigger * triggerRate,
 				},
 			];
 		}
 
 		if (smokeGeneratorCount == 2)
 		{
-			double p2 = (100 - p0) * 0.05 * (modifier + 2);
-			double p1 = Math.Max(100 - p0 - p2, 0);
+			double doubleTrigger = Math.Min(3 * Math.Ceiling(5 * smokeGeneratorCount + 1.5 * Math.Sqrt(flagship.LuckTotal) + upgradeModifier - 5) + 1, 100);
+			double singleTrigger = Math.Max(100 - doubleTrigger, 0);
 
 			return
 			[
-				new()
+				new SmokeGeneratorTriggerRate
 				{
 					SmokeGeneratorCount = 2,
-					ActivationRatePercentage = p2,
+					ActivationRatePercentage = doubleTrigger * triggerRate,
 				},
-				new()
+				new SmokeGeneratorTriggerRate
 				{
 					SmokeGeneratorCount = 1,
-					ActivationRatePercentage = p1,
+					ActivationRatePercentage = singleTrigger * triggerRate,
 				},
 			];
 		}
 
-		if (smokeGeneratorCount == 1)
-		{
-			double p1 = Math.Max(100 - p0, 0);
-
-			return
-			[
-				new()
-				{
-					SmokeGeneratorCount = 1,
-					ActivationRatePercentage = p1,
-				},
-			];
-		}
-
-		return [];
+		return
+		[
+			new()
+			{
+				SmokeGeneratorCount = 1,
+				ActivationRatePercentage = triggerRate * 100,
+			},
+		];
 	}
 }
