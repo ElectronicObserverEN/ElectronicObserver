@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -78,6 +79,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		return await ProcessData(ShellingBattle, sorties, exportFilter, exportProgress, cancellationToken);
 	}
 
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "Splitting this up would cause more problems that it would solve")]
 	private static List<ShellingBattleExportModel> ShellingBattle(
 		int? admiralLevel,
 		SortieDetailViewModel sortieDetail,
