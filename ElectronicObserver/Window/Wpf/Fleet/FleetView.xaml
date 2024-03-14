@@ -219,7 +219,7 @@
 								</StackPanel.Style>
 
 								<TextBlock>
-									<Run Text="Smoke trigger rates" />
+									<Run Text="{Binding FormFleet.SmokeTriggerRates, Mode=OneWay}" />
 									<Run Text=":" />
 								</TextBlock>
 								<ItemsControl ItemsSource="{Binding SmokeGeneratorRates}" />

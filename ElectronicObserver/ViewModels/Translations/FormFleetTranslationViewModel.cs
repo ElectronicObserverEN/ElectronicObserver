@@ -89,4 +89,6 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 
 	public string SpecialAttacksDay => FleetResources.SpecialAttacksDay;
 	public string SpecialAttacksNight => FleetResources.SpecialAttacksNight;
+
+	public string SmokeTriggerRates => FleetResources.SmokeTriggerRates;
 }

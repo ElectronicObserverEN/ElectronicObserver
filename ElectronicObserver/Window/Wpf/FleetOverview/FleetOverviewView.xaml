@@ -5,6 +5,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
 	xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
@@ -122,7 +123,7 @@
 								<TextBlock Text="{Binding ToolTip}" />
 
 								<TextBlock>
-									<Run Text="Smoke trigger rates" />
+									<Run Text="{Binding ViewModel.FormFleetOverview.SmokeTriggerRates, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type fleetOverview:FleetOverviewView}}}" />
 									<Run Text=":" />
 								</TextBlock>
 								<ItemsControl ItemsSource="{Binding SmokeGeneratorRates}" />
