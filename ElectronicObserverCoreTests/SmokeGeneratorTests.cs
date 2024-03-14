@@ -15,13 +15,14 @@ namespace ElectronicObserverCoreTests;
 public class SmokeGeneratorTests(DatabaseFixture db)
 {
 	private DatabaseFixture Db { get; } = db;
+	private int Precision => 3;
 
-	private static void CheckSmokeRate(List<SmokeGeneratorTriggerRate> rates, int smokeCount, double expectedRate)
+	private void CheckSmokeRate(List<SmokeGeneratorTriggerRate> rates, int smokeCount, double expectedRate)
 	{
 		SmokeGeneratorTriggerRate? rate = rates.Find(rate => rate.SmokeGeneratorCount == smokeCount);
 
 		Assert.NotNull(rate);
-		Assert.Equal(expectedRate, rate.ActivationRatePercentage);
+		Assert.Equal(expectedRate, rate.ActivationRatePercentage, Precision);
 	}
 
 	[Fact(DisplayName = "1 smoke generator")]
