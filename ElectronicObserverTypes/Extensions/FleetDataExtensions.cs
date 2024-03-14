@@ -132,8 +132,7 @@ public static class FleetDataExtensions
 
 		List<IShipData> ships = fleets
 			.SelectMany(fleet => fleet.MembersWithoutEscaped ?? new([]))
-			.Where(ship => ship is not null)
-			.Cast<IShipData>()
+			.OfType<IShipData>()
 			.ToList();
 
 		List<IEquipmentData> smokeGenerators = ships
