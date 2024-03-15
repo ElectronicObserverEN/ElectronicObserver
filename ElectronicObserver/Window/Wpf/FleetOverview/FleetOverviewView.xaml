@@ -4,7 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
 	xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
 	x:Name="FleetOverviewControl"
 	d:DesignHeight="450"
@@ -87,11 +90,46 @@
 						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewText" />
 					</Grid.ColumnDefinitions>
 
-					<Border
-						Grid.Column="1"
-						Background="Transparent"
-						ToolTip="{Binding ToolTip}"
-						>
+					<Border Grid.Column="1" Background="Transparent">
+						<Border.ToolTip>
+							<StackPanel>
+								<StackPanel.Resources>
+									<DataTemplate DataType="{x:Type electronicObserverTypes:SmokeGeneratorTriggerRate}">
+										<StackPanel Orientation="Horizontal">
+											<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding SmokeGenerator1Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+											<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding SmokeGenerator2Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+											<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding SmokeGenerator3Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+										</StackPanel>
+									</DataTemplate>
+
+									<DataTemplate DataType="{x:Type viewModels:TotalRate}">
+										<Grid HorizontalAlignment="Left">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition SharedSizeGroup="ItemMarker" />
+												<ColumnDefinition SharedSizeGroup="Rate" />
+												<ColumnDefinition SharedSizeGroup="Equipment" />
+											</Grid.ColumnDefinitions>
+
+											<!--  KATAKANA MIDDLE DOT  -->
+											<TextBlock Grid.Column="0" Text="&#x30FB;" />
+											<TextBlock Grid.Column="1" Margin="4 0">
+												<Run Text="[" /><Run Text="{Binding Rate, StringFormat={}{0:P1}, Mode=OneWay}" /><Run Text="]" />
+											</TextBlock>
+											<ContentControl Grid.Column="2" Content="{Binding Equipment}" />
+										</Grid>
+									</DataTemplate>
+								</StackPanel.Resources>
+
+								<TextBlock Text="{Binding ToolTip}" />
+
+								<TextBlock>
+									<Run Text="{Binding ViewModel.FormFleetOverview.SmokeScreen, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type fleetOverview:FleetOverviewView}}}" />
+									<Run Text=":" />
+								</TextBlock>
+								<ItemsControl ItemsSource="{Binding SmokeGeneratorRates}" />
+							</StackPanel>
+						</Border.ToolTip>
+
 						<StackPanel Orientation="Horizontal">
 							<common:IconContentIcon Margin="2 0" Type="{Binding Icon}" />
 							<TextBlock Text="{Binding Text}" />

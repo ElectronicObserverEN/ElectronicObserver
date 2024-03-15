@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Utility.Data;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.Utility.Data;
 
 public record ActivatableEquipmentNoneModel : IActivatableEquipment
 {
