@@ -21,8 +21,10 @@
 	</ui:ContentDialog.Resources>
 
 	<Grid>
-		<ScrollViewer>
-			<ItemsControl ItemsSource="{Binding Destinations}" />
-		</ScrollViewer>
+		<ListBox
+			ItemsSource="{Binding Destinations}"
+			VirtualizingStackPanel.IsVirtualizing="True"
+			VirtualizingStackPanel.VirtualizationMode="Recycling"
+			/>
 	</Grid>
 </ui:ContentDialog>
