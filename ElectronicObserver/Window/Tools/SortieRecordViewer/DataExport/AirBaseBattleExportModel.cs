@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public sealed record AirBaseBattleExportModel
+public sealed record AirBaseBattleExportModel : IExportModel
 {
 	public required CommonDataExportModel CommonData { get; init; }
 	public required int SquadronId { get; init; }
