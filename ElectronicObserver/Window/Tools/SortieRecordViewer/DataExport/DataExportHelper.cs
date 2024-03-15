@@ -759,6 +759,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		return airBattleData;
 	}
 
+	[SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "I don't see a better way currently")]
 	private static AirBattleExportModel MakeAirBattleExport(BattleNode node,
 		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseAirBattle airBattle,
 		PhaseSearching searching, IFleetData attackerFleet, AirBattleAttackViewModel? attackDisplay,
