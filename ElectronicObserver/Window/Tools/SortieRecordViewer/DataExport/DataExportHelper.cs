@@ -161,8 +161,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 							dayShellingData.Add(new()
 							{
-								// it's not possible to get the correct record index here
-								CommonData = MakeCommonData(0, battleNode, IsFirstNode(sortieDetail.Nodes, battleNode), sortieDetail, admiralLevel, airBattle, searching),
+								CommonData = MakeCommonData(battleNode, IsFirstNode(sortieDetail.Nodes, battleNode), sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.ShellingBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -284,7 +283,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 							nightShellingData.Add(new()
 							{
-								CommonData = MakeCommonData(nightShellingData.Count + 1, battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, initial, searching),
+								CommonData = MakeCommonData(battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, initial, searching),
 								BattleType = CsvExportResources.NightBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -401,7 +400,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 						{
 							torpedoData.Add(new()
 							{
-								CommonData = MakeCommonData(torpedoData.Count + 1, battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
+								CommonData = MakeCommonData(battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.TorpedoBattle,
 								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
 								BattlePhase = torpedo switch
@@ -486,7 +485,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 						AirBattleAttackViewModel? attackDisplay = airBattle.AttackDisplays
 							.FirstOrDefault(a => a.DefenderIndex == defenderIndex);
 
-						airBattleData.Add(MakeAirBattleExport(airBattleData.Count + 1, node,
+						airBattleData.Add(MakeAirBattleExport(node,
 							sortieDetail, admiralLevel, airBattle, searching, attackerFleet,
 							attackDisplay, ship, defenderIndex, ship.HPCurrent));
 					}
@@ -565,7 +564,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 							airBattleData.Add(new()
 							{
-								CommonData = MakeCommonData(airBattleData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airAttackUnit, searching),
+								CommonData = MakeCommonData(node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airAttackUnit, searching),
 								SquadronId = airAttackUnit.AirBaseId,
 								SquadronAttackIndex = airAttackUnit.WaveIndex + 1,
 								AirBasePlayerContact = airAttackUnit.TouchAircraftFriend,
@@ -760,13 +759,13 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		return airBattleData;
 	}
 
-	private static AirBattleExportModel MakeAirBattleExport(int no, BattleNode node,
+	private static AirBattleExportModel MakeAirBattleExport(BattleNode node,
 		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseAirBattle airBattle,
 		PhaseSearching searching, IFleetData attackerFleet, AirBattleAttackViewModel? attackDisplay,
 		IShipData defender, BattleIndex defenderIndex, int defenderHpBeforeAttack)
 		=> new()
 		{
-			CommonData = MakeCommonData(no, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
+			CommonData = MakeCommonData(node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 			Stage1 = new()
 			{
 				PlayerAircraftTotal = airBattle.Stage1FCount,
@@ -832,11 +831,13 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	/// <param name="contactPhase">AirBattle for day battles, NightInitial for night battles.</param>
 	/// <param name="searching">Searching phase.</param>
 	/// <returns>Common data model.</returns>
-	private static CommonDataExportModel MakeCommonData(int no, BattleNode node, bool isFirstNode,
+	private static CommonDataExportModel MakeCommonData(BattleNode node, bool isFirstNode,
 		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseBase contactPhase,
 		PhaseSearching searching) => new()
 		{
-			No = no,
+			// it's not possible to get the correct record index here
+			// because the data processing is running in parallel
+			No = 0,
 			Date = sortieDetail.StartTime!.Value.ToLocalTime(),
 			World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
 			Square = SquareString(sortieDetail, node),
