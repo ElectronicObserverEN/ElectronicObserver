@@ -824,7 +824,6 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	/// Makes data that's common between all csv exports.
 	/// This could potentially be split into metadata and battle metadata.
 	/// </summary>
-	/// <param name="no">Export record index.</param>
 	/// <param name="node">Battle node data.</param>
 	/// <param name="isFirstNode">First node flag.</param>
 	/// <param name="sortieDetail">Sortie detail data.</param>
