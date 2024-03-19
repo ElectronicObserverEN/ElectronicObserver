@@ -384,7 +384,13 @@
 			</StackPanel>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type phase:PhaseTorpedo}">
+		<DataTemplate DataType="{x:Type phase:PhaseOpeningTorpedo}">
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type phase:PhaseClosingTorpedo}">
 			<StackPanel>
 				<ItemsControl ItemsSource="{Binding AttackDisplays}" />
 			</StackPanel>

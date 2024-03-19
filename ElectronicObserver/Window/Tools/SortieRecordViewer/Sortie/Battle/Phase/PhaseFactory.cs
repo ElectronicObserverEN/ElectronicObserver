@@ -86,10 +86,24 @@ public sealed class PhaseFactory(IKCDatabase kcDatabase)
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
-	public PhaseTorpedo? Torpedo(ApiRaigekiClass? a, TorpedoPhase torpedoPhase) => a switch
+	public PhaseOpeningTorpedo? OpeningTorpedo(ApiPhaseOpeningTorpedo? a) => a switch
 	{
 		null => null,
-		_ => new(a, torpedoPhase),
+		_ => new(a),
+	};
+
+	[return: NotNullIfNotNull(nameof(a))]
+	public PhaseOpeningTorpedo? OpeningTorpedo(ApiRaigekiClass? a) => a switch
+	{
+		null => null,
+		_ => new(a),
+	};
+
+	[return: NotNullIfNotNull(nameof(a))]
+	public PhaseClosingTorpedo? ClosingTorpedo(ApiRaigekiClass? a) => a switch
+	{
+		null => null,
+		_ => new(a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]

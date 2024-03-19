@@ -234,4 +234,10 @@
   <data name="ShipId" xml:space="preserve">
     <value>艦船ID:</value>
   </data>
+  <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
+    <value>|対象艦ID|対象艦|装備可能|装備不可能|</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
+    <value>|対象艦ID|対象艦|装備可能ID|装備可能|</value>
+  </data>
 </root>

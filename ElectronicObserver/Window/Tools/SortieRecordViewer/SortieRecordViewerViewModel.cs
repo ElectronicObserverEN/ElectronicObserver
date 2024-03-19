@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -421,7 +422,16 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		CsvConfiguration config = new(CultureInfo.CurrentCulture);
 
-		await using StreamWriter writer = new(path);
+		// UTF8 BOM so excel can recognize it
+		Encoding encoding = Encoding.UTF8;
+
+		FileStreamOptions fileStreamOptions = new()
+		{
+			Access = FileAccess.Write,
+			Mode = FileMode.Create,
+		};
+
+		await using StreamWriter writer = new(path, encoding, fileStreamOptions);
 		await using CsvWriter csv = new(writer, config);
 
 		csv.Context.RegisterClassMap<TMap>();

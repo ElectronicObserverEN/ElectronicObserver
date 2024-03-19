@@ -9,6 +9,7 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	private string? _nameEn;
 
 	public bool IsSurfaceRadar => this.IsSurfaceRadar();
+	public bool IsHighAccuracyRadar => this.IsHighAccuracyRadar();
 	public bool IsSonar => this.IsSonar();
 	public bool IsDepthCharge => this.IsDepthCharge();
 	public bool IsDepthChargeProjector => this.IsDepthChargeProjector();

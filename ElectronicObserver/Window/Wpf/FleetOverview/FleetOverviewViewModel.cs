@@ -11,6 +11,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.FleetOverview;
 
@@ -20,7 +21,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 
 	public List<FleetViewModel> Fleets { get; }
 	public FleetOverviewItemViewModel AnchorageRepairingTimer { get; }
-	public FleetOverviewItemViewModel CombinedTag { get; }
+	public CombinedFleetOverviewItemViewModel CombinedTag { get; }
 
 	public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets", IconContent.FormFleet)
 	{
@@ -125,6 +126,8 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				landing.Count(i => i > 0)
 
 			);
+
+			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();
 
 			CombinedTag.Visible = true;
 		}

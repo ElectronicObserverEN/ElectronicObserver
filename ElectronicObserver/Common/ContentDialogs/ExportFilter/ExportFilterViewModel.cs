@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
+using ScottPlot.Drawing.Colormaps;
 
 namespace ElectronicObserver.Common.ContentDialogs.ExportFilter;
 
-public class ExportFilterViewModel : ObservableObject
+public partial class ExportFilterViewModel : ObservableObject
 {
+	private object World { get; }
+	private object Map { get; }
 	private static string All { get; } = "*";
-	public List<DestinationItemViewModel> Destinations { get; }
+	public List<DestinationItemViewModel> Destinations { get; private set; }
 
 	public ExportFilterViewModel(object world, object map)
 	{
-		Destinations = KCDatabase.Instance.Translation.Destination.DestinationList.Values
-			.Where(d => world as string == All || world as int? == d.MapAreaId)
-			.Where(d => map as string == All || map as int? == d.MapInfoId)
-			.GroupBy(d => d.Display)
-			.Select(g => new DestinationItemViewModel
-			{
-				Display = g.Key,
-				CellIds = g.Select(c => c.CellId).ToList(),
-			})
-			.ToList();
+		World = world;
+		Map = map;
+
+		Destinations = MakeDestinations(true);
 	}
 
 	public bool MatchesFilter(SortieNode node)
@@ -32,4 +30,25 @@ public class ExportFilterViewModel : ObservableObject
 			.SelectMany(d => d.CellIds)
 			.Contains(node.Cell);
 	}
+
+	[RelayCommand]
+	private void ToggleAllDestinations()
+	{
+		bool newState = Destinations.Any(d => !d.IsChecked);
+
+		Destinations = MakeDestinations(newState);
+	}
+
+	private List<DestinationItemViewModel> MakeDestinations(bool isChecked) => 
+		KCDatabase.Instance.Translation.Destination.DestinationList.Values
+			.Where(d => World as string == All || World as int? == d.MapAreaId)
+			.Where(d => Map as string == All || Map as int? == d.MapInfoId)
+			.GroupBy(d => d.Display)
+			.Select(g => new DestinationItemViewModel
+			{
+				IsChecked = isChecked,
+				Display = g.Key,
+				CellIds = g.Select(c => c.CellId).ToList(),
+			})
+			.ToList();
 }

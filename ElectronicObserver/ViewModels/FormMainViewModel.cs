@@ -1800,36 +1800,39 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		TimeSpan maintTimer = new(0);
 		MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
-		DateTime maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
+
+		DateTime maintStartDate = SoftwareUpdater.LatestVersion.MaintenanceStart;
+		DateTime maintEndDate = SoftwareUpdater.LatestVersion.MaintenanceEnd;
 
 		if (eventState != MaintenanceState.None)
 		{
-			if (maintDate < now)
-				maintDate = now;
-			maintTimer = maintDate - now;
+			if (maintStartDate > now)
+			{
+				maintTimer = maintStartDate - now;
+			} 
+			else if (maintEndDate > now)
+			{
+				maintTimer = maintEndDate - now;
+			}
 		}
 
-		bool eventOrMaintenanceStarted = maintDate <= now;
-
-		string message = (eventState, eventOrMaintenanceStarted) switch
+		string message = (eventState, maintStartDate > now, maintEndDate > now) switch
 		{
-			(MaintenanceState.EventStart, false) => formMain.EventStartsIn,
-			(MaintenanceState.EventStart, _) => formMain.EventHasStarted,
+			(MaintenanceState.EventStart, true, true) => formMain.MaintenanceStartsIn,
+			(MaintenanceState.EventStart, false, true) => formMain.EventStartsIn,
+			(MaintenanceState.EventStart, false, false) => formMain.EventHasStarted,
 
-			(MaintenanceState.EventEnd, false) => formMain.EventEndsIn,
-			(MaintenanceState.EventEnd, _) => formMain.EventHasEnded,
+			(MaintenanceState.EventEnd, true, true) => formMain.EventEndsIn,
+			(MaintenanceState.EventEnd, false, _) => formMain.EventHasEnded,
 
-			(MaintenanceState.Regular, false) => formMain.MaintenanceStartsIn,
-			(MaintenanceState.Regular, _) => formMain.MaintenanceHasStarted,
+			(MaintenanceState.Regular, true, true) => formMain.MaintenanceStartsIn,
+			(MaintenanceState.Regular, false, true) => formMain.MaintenanceEndsIn,
+			(MaintenanceState.Regular, false, false) => formMain.MaintenanceHasEnded,
 
 			_ => string.Empty,
 		};
 
-		return eventOrMaintenanceStarted switch
-		{
-			false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
-			_ => message,
-		};
+		return string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}");
 	}
 
 	private void UpdatePlayTime()

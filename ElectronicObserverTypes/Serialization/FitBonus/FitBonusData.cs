@@ -54,13 +54,18 @@ public class FitBonusData
 	[JsonPropertyName("bonus")] public FitBonusValue? Bonuses { get; set; }
 
 	/// <summary>
-	/// Bonuses to apply if ship had a radar with LOS >= 5
+	/// Bonuses to apply if ship has a radar with LOS >= 5
 	/// </summary>
 	[JsonPropertyName("bonusSR")] public FitBonusValue? BonusesIfSurfaceRadar { get; set; }
 
 	/// <summary>
-	/// Bonuses to apply if ship had a radar with AA >= 2
+	/// Bonuses to apply if ship has a radar with AA >= 2
 	/// </summary>
 	[JsonPropertyName("bonusAR")] public FitBonusValue? BonusesIfAirRadar { get; set; }
+
+	/// <summary>
+	/// Bonuses to apply if ship has a radar with ACC >= 8
+	/// </summary>
+	[JsonPropertyName("bonusAccR")] public FitBonusValue? BonusesIfAccuracyRadar { get; set; }
 
 }

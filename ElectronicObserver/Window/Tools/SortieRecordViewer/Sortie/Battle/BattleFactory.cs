@@ -15,18 +15,14 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleFactory
+public class BattleFactory(PhaseFactory phaseFactory)
 {
-	private PhaseFactory PhaseFactory { get; }
-
-	public BattleFactory(PhaseFactory phaseFactory)
-	{
-		PhaseFactory = phaseFactory;
-	}
+	private PhaseFactory PhaseFactory { get; } = phaseFactory;
 
 	public BattleNormalDay CreateBattle(ApiReqSortieBattleResponse battle, BattleFleets fleets)
 		=> new(PhaseFactory, fleets, battle);
@@ -77,5 +73,23 @@ public class BattleFactory
 		=> new(PhaseFactory, fleets, battle);
 
 	public BattleCombinedRadar CreateBattle(ApiReqCombinedBattleLdShootingResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleNormalDay CreateBattle(OpeningTorpedoRework_ApiReqSortieBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleCombinedNormalDay CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleCombinedWater CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleBattleWaterResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleEnemyCombinedDay CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleEcBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleCombinedEachDay CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleEachBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleCombinedEachWater CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse battle, BattleFleets fleets)
 		=> new(PhaseFactory, fleets, battle);
 }

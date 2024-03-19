@@ -522,4 +522,10 @@ public enum EquipmentId
 	MainGunMedium_14cmTwinGunKaiNi = 518,
 	SubmarineEquipment_SJRadar_SubmarineConningTowerEquipment = 519,
 	MainGunMedium_Prototype20_3cm_no_4TwinGunMount = 520,
+	SeaplaneRecon_Shiun_Skilled = 521,
+	SeaplaneRecon_Type0SmallReconnaissanceSeaplane = 522,
+	SeaplaneRecon_Type0SmallReconnaissanceSeaplane_Skilled = 523,
+	SecondaryGun_12cmSingleHighangleGun_25mmMachineGun = 524,
+	SpecialAmphibiousTank_SpecialType4AmphibiousTank = 525,
+	SpecialAmphibiousTank_SpecialType4AmphibiousTankKai = 526,
 }

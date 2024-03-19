@@ -122,7 +122,7 @@ public class EquipmentDataViewModel : ObservableObject
 		string? ships = eq.EquippableShipsAtExpansion.Any() switch
 		{
 			true => string.Join(", ", eq.EquippableShipsAtExpansion
-				.Select(id => db.MasterShips[(int)id].NameWithClass)),
+				.Select(id => db.MasterShips[(int)id]?.NameWithClass ?? $"{ConstantsRes.Unknown}({id})")),
 			_ => null,
 		};
 

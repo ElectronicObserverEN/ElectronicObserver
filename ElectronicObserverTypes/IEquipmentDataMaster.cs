@@ -210,6 +210,8 @@ public interface IEquipmentDataMaster : IIdentifiable
 	/// <summary> 水上電探かどうか </summary>
 	bool IsSurfaceRadar { get; }
 
+	bool IsHighAccuracyRadar { get; }
+
 	/// <summary> ソナーかどうか </summary>
 	bool IsSonar { get; }
 

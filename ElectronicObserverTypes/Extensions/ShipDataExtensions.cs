@@ -97,6 +97,8 @@ public static class ShipDataExtensions
 
 	public static bool HasAirRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsAirRadar is true) >= count;
+	public static bool HasHighAccuracyRadar(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.IsHighAccuracyRadar is true);
 
 	public static bool HasRadarGfcs(this IShipData ship, int count) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
@@ -440,19 +442,17 @@ public static class ShipDataExtensions
 
 	public static double GetItalianDamageBonus(this IShipData ship)
 	{
-		// todo turn to switch expression once we get or patterns
-		switch (ship.MasterShip.ShipId)
+		return ship.MasterShip.ShipId switch
 		{
-			case ShipId.Zara:
-			case ShipId.ZaraKai:
-			case ShipId.ZaraDue:
-			case ShipId.Pola:
-			case ShipId.PolaKai:
-				return Math.Sqrt(ship.AllSlotInstance.Count(e => e?.EquipmentId == EquipmentId.MainGunMedium_203mm53TwinGun));
+			ShipId.Zara or
+			ShipId.ZaraKai or
+			ShipId.ZaraDue or
+			ShipId.Pola or
+			ShipId.PolaKai 
+				=> Math.Sqrt(ship.AllSlotInstance.Count(e => e?.EquipmentId == EquipmentId.MainGunMedium_203mm53TwinGun)),
 
-			default:
-				return 0;
-		}
+			_ => 0,
+		};
 	}
 
 	public static ShipNationality Nationality(this IShipDataMaster ship)

@@ -34,6 +34,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
@@ -347,6 +348,13 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		ApiReqCombinedBattleLdShootingResponse a => BattleFactory.CreateBattle(a, Fleets),
 
 		ApiDestructionBattle a => BattleFactory.CreateBattle(a, Fleets),
+
+		OpeningTorpedoRework_ApiReqSortieBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		OpeningTorpedoRework_ApiReqCombinedBattleBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		OpeningTorpedoRework_ApiReqCombinedBattleBattleWaterResponse a => BattleFactory.CreateBattle(a, Fleets),
+		OpeningTorpedoRework_ApiReqCombinedBattleEcBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		OpeningTorpedoRework_ApiReqCombinedBattleEachBattleResponse a => BattleFactory.CreateBattle(a, Fleets),
+		OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse a => BattleFactory.CreateBattle(a, Fleets),
 
 		_ => null,
 	};

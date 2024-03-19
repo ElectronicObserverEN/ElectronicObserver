@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcNightToDay;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -13,6 +14,12 @@ public sealed class BattleEnemyCombinedDayFromNight : DayFromNightBattleData
 	public override string Title => BattleRes.EnemyCombinedFleetNightDayBattle;
 
 	public BattleEnemyCombinedDayFromNight(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleEcNightToDayResponse battle)
+		: base(phaseFactory, fleets, battle)
+	{
+		EmulateBattle();
+	}
+
+	public BattleEnemyCombinedDayFromNight(PhaseFactory phaseFactory, BattleFleets fleets, OpeningTorpedoRework_ApiReqCombinedBattleEcNightToDayResponse battle)
 		: base(phaseFactory, fleets, battle)
 	{
 		EmulateBattle();
@@ -37,6 +44,6 @@ public sealed class BattleEnemyCombinedDayFromNight : DayFromNightBattleData
 		yield return OpeningTorpedo;
 		yield return Shelling1;
 		yield return Shelling2;
-		yield return Torpedo;
+		yield return ClosingTorpedo;
 	}
 }

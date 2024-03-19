@@ -610,18 +610,19 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void StripMenu_Edit_CopySpecialEquipmentTable_Click()
 	{
-		var sb = new StringBuilder();
-		// todo: translate
-		sb.AppendLine("|Ship ID|Ship|Equipable|Unequipable|");
+		StringBuilder sb = new();
+		sb.AppendLine(DialogAlbumMasterShip.SpecialEquipmentTableHeader1);
 		sb.AppendLine("|--:|:--|:--|:--|");
 
-		foreach (var ship in KCDatabase.Instance.MasterShips.Values)
+		foreach (IShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 		{
-			if (ship.SpecialEquippableCategories == null)
+			if (ship.SpecialEquippableCategories is null)
+			{
 				continue;
+			}
 
-			var add = ship.SpecialEquippableCategories.Except(ship.ShipTypeInstance.EquippableCategories);
-			var sub = ship.ShipTypeInstance.EquippableCategories.Except(ship.SpecialEquippableCategories);
+			IEnumerable<int> add = ship.SpecialEquippableCategories.Except(ship.ShipTypeInstance.EquippableCategories);
+			IEnumerable<int> sub = ship.ShipTypeInstance.EquippableCategories.Except(ship.SpecialEquippableCategories);
 
 			sb.AppendLine($"|{ship.ShipID}|{ship.NameWithClass}|{string.Join(", ", add.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN))}|{string.Join(", ", sub.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN))}|");
 		}
@@ -629,28 +630,37 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		sb.AppendLine();
 
 		{
-			Dictionary<ShipId, List<int>> nyan = new();
+			Dictionary<ShipId, List<int>> nyan = [];
 
 			foreach (IEquipmentDataMaster eq in KCDatabase.Instance.MasterEquipments.Values)
 			{
 				if (!(eq.EquippableShipsAtExpansion?.Any() ?? false))
-					continue;
-
-				foreach (ShipId shipid in eq.EquippableShipsAtExpansion)
 				{
-					if (nyan.TryGetValue(shipid, out List<int>? value))
+					continue;
+				}
+
+				foreach (ShipId shipId in eq.EquippableShipsAtExpansion)
+				{
+					if (nyan.TryGetValue(shipId, out List<int>? value))
+					{
 						value.Add(eq.EquipmentID);
+					}
 					else
-						nyan.Add(shipid, new List<int> { eq.EquipmentID });
+					{
+						nyan.Add(shipId, [eq.EquipmentID]);
+					}
 				}
 			}
 
-			sb.AppendLine("|Ship ID|Ship|Equipable Eq ID|Equipable|");
+			sb.AppendLine(DialogAlbumMasterShip.SpecialEquipmentTableHeader2);
 			sb.AppendLine("|--:|:--|:--|:--|");
 
-			foreach (var pair in nyan.OrderBy(p => p.Key))
+			foreach ((ShipId shipId, List<int> equipmentIds) in nyan.OrderBy(p => p.Key))
 			{
-				sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[(int)pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
+				string ship = KCDatabase.Instance.MasterShips[(int)shipId]?.NameWithClass
+					?? $"{ConstantsRes.Unknown}({shipId})";
+
+				sb.AppendLine($"|{(int)shipId}|{ship}|{string.Join(", ", equipmentIds)}|{string.Join(", ", equipmentIds.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
 			}
 
 		}

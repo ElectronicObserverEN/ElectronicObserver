@@ -121,7 +121,7 @@ public class ApiReqCombinedBattleEcNightToDayResponse : IDayFromNightBattleApiRe
 	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
+	public ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_hourai_flag")]
 	public List<int> ApiHouraiFlag { get; set; } = new();

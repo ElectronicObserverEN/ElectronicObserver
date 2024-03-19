@@ -80,11 +80,7 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 		                   document.querySelector("#fleet-import").dispatchEvent(new Event("input"));
 		                   
 		                   // Need to trigger fleet type change to update the map
-		                   if (!document.querySelector("#type-select").value) 
-		                   {
-		                   document.querySelector("#type-select").value = '1';
-		                   }
-		                   document.querySelector("#type-select").dispatchEvent(new Event("change"));
+		                   document.querySelector(".fleet-type[data-type='1']").click();
 		                   """);
 	}
 }

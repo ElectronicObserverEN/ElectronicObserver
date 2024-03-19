@@ -28,6 +28,7 @@ public partial class FleetStatusViewModel : ObservableObject
 
 	public List<TotalRate> NightRecons { get; private set; } = new();
 	public List<TotalRate> Flares { get; private set; } = new();
+	public List<TotalRate> SmokeGeneratorRates { get; private set; } = [];
 
 	public FleetStatusViewModel(int fleetId)
 	{
@@ -129,6 +130,7 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			NightRecons = fleet.NightRecons().TotalRate();
 			Flares = fleet.Flares().TotalRate();
+			SmokeGeneratorRates = fleet.GetSmokeTriggerRates().TotalRate();
 		}
 
 		State.UpdateFleetState(fleet);

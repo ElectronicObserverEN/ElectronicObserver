@@ -1,4 +1,4 @@
-﻿using ElectronicObserver.Utility.Data;
+﻿using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

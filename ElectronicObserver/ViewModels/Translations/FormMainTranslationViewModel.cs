@@ -110,14 +110,15 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripStatus_Information => MainResources.Information.Replace("_", "__").Replace("&", "_");
 	public string StripStatus_Clock => MainResources.Clock.Replace("_", "__").Replace("&", "_");
 
-	public string EventStartsIn => MainResources.EventStartsIn.Replace("_", "__").Replace("&", "_");
-	public string EventHasStarted => MainResources.EventHasStarted.Replace("_", "__").Replace("&", "_");
+	public string EventStartsIn => MainResources.EventStartsIn;
+	public string EventHasStarted => MainResources.EventHasStarted;
 
-	public string EventEndsIn => MainResources.EventEndsIn.Replace("_", "__").Replace("&", "_");
-	public string EventHasEnded => MainResources.EventHasEnded.Replace("_", "__").Replace("&", "_");
+	public string EventEndsIn => MainResources.EventEndsIn;
+	public string EventHasEnded => MainResources.EventHasEnded;
 
-	public string MaintenanceStartsIn => MainResources.MaintenanceStartsIn.Replace("_", "__").Replace("&", "_");
-	public string MaintenanceHasStarted => MainResources.MaintenanceHasStarted.Replace("_", "__").Replace("&", "_");
+	public string MaintenanceStartsIn => MainResources.MaintenanceStartsIn;
+	public string MaintenanceEndsIn => MainResources.MaintenanceEndsIn;
+	public string MaintenanceHasEnded => MainResources.MaintenanceHasEnded;
 
 	public string NextExerciseReset => MainResources.NextExerciseReset.Replace("_", "__").Replace("&", "_");
 	public string NextQuestReset => MainResources.NextQuestReset.Replace("_", "__").Replace("&", "_");

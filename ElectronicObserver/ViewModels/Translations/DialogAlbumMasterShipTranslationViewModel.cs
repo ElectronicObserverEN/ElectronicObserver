@@ -87,5 +87,8 @@ public class DialogAlbumMasterShipTranslationViewModel : TranslationBaseViewMode
 	public string SpecifyTargetShip => AlbumMasterShipResources.SpecifyTargetShip;
 	public string NoShipSelectedCaption => AlbumMasterShipResources.NoShipSelectedCaption;
 
+	public string SpecialEquipmentTableHeader1 => AlbumMasterShipResources.SpecialEquipmentTableHeader1;
+	public string SpecialEquipmentTableHeader2 => AlbumMasterShipResources.SpecialEquipmentTableHeader2;
+
 	public string Title => EncycloRes.ShipEncyclopedia;
 }

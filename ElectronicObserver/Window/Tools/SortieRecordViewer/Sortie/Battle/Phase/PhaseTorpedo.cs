@@ -1,124 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseTorpedo : PhaseBase
+public abstract class PhaseTorpedo : PhaseBase
 {
-	public override string Title => Phase switch
+	public List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = [];
+
+	protected static PhaseTorpedoAttack MakeAttack(int attackerIndex, int targetIndex, FleetFlag fleetFlag,
+		List<int> targets, List<double> damages, List<int> attackDamages, List<int> criticalFlags)
 	{
-		TorpedoPhase.Opening => BattleRes.BattlePhaseOpeningTorpedo,
-		TorpedoPhase.Closing => BattleRes.BattlePhaseClosingTorpedo,
-
-		_ => "???",
-	};
-
-	private ApiRaigekiClass BattleApiOpeningAtack { get; }
-	public TorpedoPhase Phase { get; }
-
-	private List<PhaseTorpedoAttack> Attacks { get; } = new();
-	public List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = new();
-
-	public PhaseTorpedo(ApiRaigekiClass battleApiOpeningAtack, TorpedoPhase phase)
-	{
-		BattleApiOpeningAtack = battleApiOpeningAtack;
-		Phase = phase;
-	}
-
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
-	{
-		FleetsBeforePhase = battleFleets.Clone();
-		FleetsAfterPhase = battleFleets;
-
-		ProcessPlayerAttacks();
-		ProcessEnemyAttacks();
-
-		foreach (PhaseTorpedoAttack attack in Attacks)
+		FleetFlag enemyFlag = fleetFlag switch
 		{
-			AttackDisplays.Add(new(FleetsAfterPhase, attack));
-			AddDamage(FleetsAfterPhase, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
-		}
+			FleetFlag.Player => FleetFlag.Enemy,
+			_ => FleetFlag.Player,
+		};
 
-		return FleetsAfterPhase.Clone();
-	}
+		BattleIndex attacker = new(attackerIndex, fleetFlag);
+		BattleIndex defender = new(targets[targetIndex], enemyFlag);
 
-	private void ProcessPlayerAttacks()
-	{
-		for (int i = 0; i < BattleApiOpeningAtack.ApiFrai.Count; i++)
+		double protectedFlag = damages[defender.Index] - Math.Floor(damages[defender.Index]);
+
+		return new()
 		{
-			if (BattleApiOpeningAtack.ApiFrai[i] < 0) continue;
-			if (BattleApiOpeningAtack.ApiFdam.Count <= i) break;
-			if (BattleApiOpeningAtack.ApiFydam.Count <= i) break;
-			if (BattleApiOpeningAtack.ApiFcl.Count <= i) break;
-
-			BattleIndex attacker = new(i, FleetFlag.Player);
-			BattleIndex defender = new(BattleApiOpeningAtack.ApiFrai[i], FleetFlag.Enemy);
-
-			double protectedFlag = BattleApiOpeningAtack.ApiEdam[defender.Index] - Math.Floor(BattleApiOpeningAtack.ApiEdam[defender.Index]);
-
-			PhaseTorpedoAttack attack = new()
-			{
-				Attacker = attacker,
-				AttackType = DayAttackKind.Torpedo,
-				Defenders = new()
+			Attacker = attacker,
+			AttackType = DayAttackKind.Torpedo,
+			Defenders =
+			[
+				new()
 				{
-					new()
+					RawDamage = attackDamages[targetIndex] + protectedFlag,
+					Defender = defender,
+					CriticalFlag = criticalFlags[targetIndex] switch
 					{
-						RawDamage = BattleApiOpeningAtack.ApiFydam[i] + protectedFlag,
-						Defender = defender,
-						CriticalFlag = BattleApiOpeningAtack.ApiFcl[i] switch
-						{
-							2 => HitType.Critical,
-							1 => HitType.Hit,
-							_ => HitType.Miss,
-						},
+						2 => HitType.Critical,
+						1 => HitType.Hit,
+						_ => HitType.Miss,
 					},
 				},
-			};
-
-			Attacks.Add(attack);
-		}
+			],
+		};
 	}
 
-	private void ProcessEnemyAttacks()
+	protected static List<PhaseTorpedoAttack> ProcessPlayerAttacks(ApiRaigekiClass apiRaigekiClass)
 	{
-		for (int i = 0; i < BattleApiOpeningAtack.ApiErai.Count; i++)
+		List<PhaseTorpedoAttack> attacks = [];
+
+		for (int i = 0; i < apiRaigekiClass.ApiFrai.Count; i++)
 		{
-			if (BattleApiOpeningAtack.ApiErai[i] < 0) continue;
-			if (BattleApiOpeningAtack.ApiEdam.Count <= i) break;
-			if (BattleApiOpeningAtack.ApiEydam.Count <= i) break;
-			if (BattleApiOpeningAtack.ApiEcl.Count <= i) break;
+			if (apiRaigekiClass.ApiFrai[i] < 0) continue;
+			if (apiRaigekiClass.ApiEdam.Count <= i) break;
+			if (apiRaigekiClass.ApiFydam.Count <= i) break;
+			if (apiRaigekiClass.ApiFcl.Count <= i) break;
 
-			BattleIndex attacker = new(i, FleetFlag.Enemy);
-			BattleIndex defender = new(BattleApiOpeningAtack.ApiErai[i], FleetFlag.Player);
+			PhaseTorpedoAttack attack = MakeAttack(i, i, FleetFlag.Player, apiRaigekiClass.ApiFrai,
+				apiRaigekiClass.ApiEdam, apiRaigekiClass.ApiFydam, apiRaigekiClass.ApiFcl);
 
-			double protectedFlag = BattleApiOpeningAtack.ApiFdam[defender.Index] - Math.Floor(BattleApiOpeningAtack.ApiFdam[defender.Index]);
-
-			PhaseTorpedoAttack attack = new()
-			{
-				Attacker = attacker,
-				AttackType = DayAttackKind.Torpedo,
-				Defenders = new()
-				{
-					new()
-					{
-						RawDamage = BattleApiOpeningAtack.ApiEydam[i] + protectedFlag,
-						Defender = defender,
-						CriticalFlag = BattleApiOpeningAtack.ApiEcl[i] switch
-						{
-							2 => HitType.Critical,
-							1 => HitType.Hit,
-							_ => HitType.Miss,
-						},
-					},
-				},
-			};
-
-			Attacks.Add(attack);
+			attacks.Add(attack);
 		}
+
+		return attacks;
+	}
+
+	protected static List<PhaseTorpedoAttack> ProcessEnemyAttacks(ApiRaigekiClass apiRaigekiClass)
+	{
+		List<PhaseTorpedoAttack> attacks = [];
+
+		for (int i = 0; i < apiRaigekiClass.ApiErai.Count; i++)
+		{
+			if (apiRaigekiClass.ApiErai[i] < 0) continue;
+			if (apiRaigekiClass.ApiFdam.Count <= i) break;
+			if (apiRaigekiClass.ApiEydam.Count <= i) break;
+			if (apiRaigekiClass.ApiEcl.Count <= i) break;
+
+			PhaseTorpedoAttack attack = MakeAttack(i, i, FleetFlag.Enemy, apiRaigekiClass.ApiErai,
+				apiRaigekiClass.ApiFdam, apiRaigekiClass.ApiEydam, apiRaigekiClass.ApiEcl);
+
+			attacks.Add(attack);
+		}
+
+		return attacks;
 	}
 }

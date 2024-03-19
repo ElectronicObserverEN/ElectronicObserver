@@ -252,4 +252,10 @@ Right click to open in a new window.</value>
   <data name="TitleHP" xml:space="preserve">
     <value>HP</value>
   </data>
+  <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
+    <value>|Ship ID|Ship|Equipable|Unequipable|</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
+    <value>|Ship ID|Ship|Equipable Eq ID|Equipable|</value>
+  </data>
 </root>

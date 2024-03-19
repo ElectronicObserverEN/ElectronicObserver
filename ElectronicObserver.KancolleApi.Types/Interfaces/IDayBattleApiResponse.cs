@@ -20,9 +20,9 @@ public interface IDayBattleApiResponse : IAirBattleApiResponse, ISupportApiRespo
 	int ApiOpeningFlag { get; set; }
 
 	/// <summary>
-	/// 開幕雷撃戦 api_opening_flag = 0 の時 null　中身はおそらく api_raigeki と同じ *スペルミス注意*
+	/// 開幕雷撃戦 api_opening_flag = 0 の時 null *スペルミス注意*
 	/// </summary>
-	ApiRaigekiClass? ApiOpeningAtack { get; set; }
+	ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
 
 	/// <summary>
 	/// 砲雷撃戦フラグ　[4]

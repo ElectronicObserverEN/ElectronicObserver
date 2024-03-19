@@ -38,7 +38,7 @@ public abstract class BattleData
 
 	public PhaseInitial Initial { get; }
 
-	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p is not null)!;
+	public IEnumerable<PhaseBase> Phases => AllPhases().OfType<PhaseBase>();
 
 	protected BattleData(PhaseFactory phaseFactory, BattleFleets fleets, IBattleApiResponse battle)
 	{

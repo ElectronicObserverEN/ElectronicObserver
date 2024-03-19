@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -13,6 +14,12 @@ public sealed class BattleCombinedEachWater : CombinedDayBattleData
 	public override string Title => ConstantsRes.Title_CombinedEachWater;
 
 	public BattleCombinedEachWater(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleEachBattleWaterResponse battle)
+		: base(phaseFactory, fleets, battle)
+	{
+		EmulateBattle();
+	}
+
+	public BattleCombinedEachWater(PhaseFactory phaseFactory, BattleFleets fleets, OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse battle)
 		: base(phaseFactory, fleets, battle)
 	{
 		EmulateBattle();
@@ -34,6 +41,6 @@ public sealed class BattleCombinedEachWater : CombinedDayBattleData
 		yield return Shelling1;
 		yield return Shelling2;
 		yield return Shelling3;
-		yield return Torpedo;
+		yield return ClosingTorpedo;
 	}
 }

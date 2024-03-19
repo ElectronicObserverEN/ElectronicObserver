@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -15,10 +16,10 @@ public sealed class BattlePracticeDay : FirstBattleData
 	private PhaseJetAirBattle? JetAirBattle { get; }
 	private PhaseAirBattle? AirBattle { get; }
 	private PhaseOpeningAsw? OpeningAsw { get; }
-	private PhaseTorpedo? OpeningTorpedo { get; }
+	private PhaseOpeningTorpedo? OpeningTorpedo { get; }
 	private PhaseShelling? Shelling1 { get; }
 	private PhaseShelling? Shelling2 { get; }
-	private PhaseTorpedo? Torpedo { get; }
+	private PhaseClosingTorpedo? ClosingTorpedo { get; }
 
 	public BattlePracticeDay(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqPracticeBattleResponse battle)
 		: base(phaseFactory, fleets, battle)
@@ -26,10 +27,24 @@ public sealed class BattlePracticeDay : FirstBattleData
 		JetAirBattle = PhaseFactory.JetAirBattle(battle.ApiInjectionKouku);
 		AirBattle = PhaseFactory.AirBattle(battle.ApiKouku, AirPhaseType.Battle);
 		OpeningAsw = PhaseFactory.OpeningAsw(battle.ApiOpeningTaisen);
-		OpeningTorpedo = PhaseFactory.Torpedo(battle.ApiOpeningAtack, TorpedoPhase.Opening);
+		OpeningTorpedo = PhaseFactory.OpeningTorpedo(battle.ApiOpeningAtack);
 		Shelling1 = PhaseFactory.Shelling(battle.ApiHougeki1, DayShellingPhase.First);
 		Shelling2 = PhaseFactory.Shelling(battle.ApiHougeki2, DayShellingPhase.Second);
-		Torpedo = PhaseFactory.Torpedo(battle.ApiRaigeki, TorpedoPhase.Closing);
+		ClosingTorpedo = PhaseFactory.ClosingTorpedo(battle.ApiRaigeki);
+
+		EmulateBattle();
+	}
+
+	public BattlePracticeDay(PhaseFactory phaseFactory, BattleFleets fleets, OpeningTorpedoRework_ApiReqPracticeBattleResponse battle)
+		: base(phaseFactory, fleets, battle)
+	{
+		JetAirBattle = PhaseFactory.JetAirBattle(battle.ApiInjectionKouku);
+		AirBattle = PhaseFactory.AirBattle(battle.ApiKouku, AirPhaseType.Battle);
+		OpeningAsw = PhaseFactory.OpeningAsw(battle.ApiOpeningTaisen);
+		OpeningTorpedo = PhaseFactory.OpeningTorpedo(battle.ApiOpeningAtack);
+		Shelling1 = PhaseFactory.Shelling(battle.ApiHougeki1, DayShellingPhase.First);
+		Shelling2 = PhaseFactory.Shelling(battle.ApiHougeki2, DayShellingPhase.Second);
+		ClosingTorpedo = PhaseFactory.ClosingTorpedo(battle.ApiRaigeki);
 
 		EmulateBattle();
 	}
@@ -44,6 +59,6 @@ public sealed class BattlePracticeDay : FirstBattleData
 		yield return OpeningTorpedo;
 		yield return Shelling1;
 		yield return Shelling2;
-		yield return Torpedo;
+		yield return ClosingTorpedo;
 	}
 }
