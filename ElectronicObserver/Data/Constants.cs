@@ -758,28 +758,17 @@ public static class Constants
 	/// <summary>
 	/// 勝利ランクを表すIDを取得します。
 	/// </summary>
-	public static int GetWinRank(string rank)
+	public static int GetWinRank(string rank) => rank.ToUpper() switch
 	{
-		switch (rank.ToUpper())
-		{
-			case "E":
-				return 1;
-			case "D":
-				return 2;
-			case "C":
-				return 3;
-			case "B":
-				return 4;
-			case "A":
-				return 5;
-			case "S":
-				return 6;
-			case "SS":
-				return 7;
-			default:
-				return 0;
-		}
-	}
+		"E" => 1,
+		"D" => 2,
+		"C" => 3,
+		"B" => 4,
+		"A" => 5,
+		"S" => 6,
+		"SS" => 7,
+		_ => 0,
+	};
 
 	/// <summary>
 	/// 勝利ランクを表す文字列を取得します。
