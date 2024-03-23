@@ -31,15 +31,15 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	private BackgroundWorker Searcher { get; } = new();
 
 	private ShipPickerViewModel ShipPickerViewModel { get; }
-	public List<object> Items { get; set; } = new();
-	public List<ShipTypes> ShipTypeOptions { get; set; } = new();
+	public List<object> Items { get; set; } = [];
+	public List<ShipTypes> ShipTypeOptions { get; set; } = [];
 
-	public List<object> Worlds { get; set; } = new();
-	public List<object> Maps { get; set; } = new();
-	public List<MapNode> Cells { get; set; } = new() { new(MapAny) };
-	public List<object> Difficulties { get; set; } = new() { MapAny };
+	public List<object> Worlds { get; set; } = [];
+	public List<object> Maps { get; set; } = [];
+	public List<MapNode> Cells { get; set; } = [new(MapAny)];
+	public List<object> Difficulties { get; set; } = [MapAny];
 
-	public List<DropRecordRow> SelectedRows { get; set; } = new();
+	public List<DropRecordRow> SelectedRows { get; set; } = [];
 
 	// DropRecordOption or IShipDataMaster
 	public object ShipSearchOption { get; set; } = DropRecordOption.All;
@@ -79,7 +79,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = new();
+	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = [];
 	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; set; }
 	public DataGridViewModel<DropRecordRow> DataGridMergedRowsViewModel { get; set; }
 
@@ -373,7 +373,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		int priorityContent = Math.Max(priorityShip, priorityItem);
 
 		List<ShipDropRecord.ShipDropElement> records = RecordManager.Instance.ShipDrop.Record;
-		LinkedList<DropRecordRow> rows = new();
+		LinkedList<DropRecordRow> rows = [];
 
 
 		//lock ( records )
