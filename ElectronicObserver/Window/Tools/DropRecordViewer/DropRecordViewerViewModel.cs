@@ -25,7 +25,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
-public partial class DropRecordViewerViewModel : WindowViewModelBase
+public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 {
 	public DialogDropRecordViewerTranslationViewModel DialogDropRecordViewer { get; }
 
@@ -163,8 +163,10 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		FontBrush = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 	}
 
-	private void Loaded()
+	public override void Loaded()
 	{
+		base.Loaded();
+
 		DateBegin = Record.Record.First().Date.Date;
 		MinDate = Record.Record.First().Date.Date;
 
@@ -194,7 +196,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		IEnumerable<IUseItemMaster> includedItemObjects = includedItemNames
 			.Select(id => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.ItemID == id))
-			.Where(s => s != null)!;
+			.OfType<IUseItemMaster>();
 
 		Items = includedItemObjects
 			.Cast<object>()
@@ -211,7 +213,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		Difficulties = Record.Record
 			.Select(r => r.Difficulty)
 			.Distinct()
-			.Except(new[] { 0 })
+			.Where(d => d is not 0)
 			.OrderBy(i => i)
 			.Cast<object>()
 			.Prepend(MapAny)
@@ -260,6 +262,14 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	}
 
+	private string GetContentStringForSorting(ShipDropRecord.ShipDropElement r, int priorityShip, int priorityItem)
+	{
+		bool ignoreShip = priorityShip < priorityItem && priorityShip < 2;
+		bool ignoreItem = priorityShip >= priorityItem && priorityItem < 2;
+
+		return GetContentStringForSorting(r, ignoreShip, ignoreItem);
+	}
+
 	private string GetContentStringForSorting(ShipDropRecord.ShipDropElement elem, bool ignoreShip = false, bool ignoreItem = false, bool ignoreEquipment = false)
 	{
 		IShipDataMaster? ship = KCDatabase.Instance.MasterShips[elem.ShipID];
@@ -270,8 +280,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		if (item != null && item.Name != elem.ItemName) item = null;
 		if (eq != null && eq.NameEN != elem.EquipmentName) eq = null;
 
-		StringBuilder sb = new StringBuilder();
-
+		StringBuilder sb = new();
 
 		if (elem.ShipID > 0 && !ignoreShip)
 		{
@@ -322,7 +331,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private string GetMapString(int maparea, int mapinfo, int cell = -1, bool isboss = false, int difficulty = -1, bool insertEnemyFleetName = true)
 	{
-		var sb = new StringBuilder();
+		StringBuilder sb = new();
 		sb.Append(maparea);
 		sb.Append("-");
 		sb.Append(mapinfo);
@@ -340,7 +349,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		{
 			var enemy = RecordManager.Instance.EnemyFleet.Record.Values.FirstOrDefault(r => r.MapAreaID == maparea && r.MapInfoID == mapinfo && r.CellID == cell && r.Difficulty == difficulty);
 			if (enemy != null)
-				sb.AppendFormat(" ({0})", enemy.FleetName);
+				sb.Append($" ({enemy.FleetName})");
 		}
 
 		return sb.ToString();
@@ -351,9 +360,14 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		return GetMapString(serialID >> 24 & 0xFF, serialID >> 16 & 0xFF, serialID >> 8 & 0xFF, (serialID & 1) != 0, (sbyte)((serialID >> 1 & 0x7F) << 1) >> 1, insertEnemyFleetName);
 	}
 
-	private int GetMapSerialID(int maparea, int mapinfo, int cell, bool isboss, int difficulty = -1)
+	private int GetMapSerialId(ShipDropRecord.ShipDropElement r, int difficulty)
 	{
-		return (maparea & 0xFF) << 24 | (mapinfo & 0xFF) << 16 | (cell & 0xFF) << 8 | (difficulty & 0x7F) << 1 | (isboss ? 1 : 0);
+		return GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, difficulty);
+	}
+
+	private int GetMapSerialId(int mapAreaId, int mapInfoId, int cell, bool isboss, int difficulty = -1)
+	{
+		return (mapAreaId & 0xFF) << 24 | (mapInfoId & 0xFF) << 16 | (cell & 0xFF) << 8 | (difficulty & 0x7F) << 1 | (isboss ? 1 : 0);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
@@ -364,12 +378,10 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		try
 		{
-			IEnumerable<DropRecordRow> rows = await Task.Run(MakeDropRecordRows, cancellationToken);
-
-			rows = MergeRows switch
+			IEnumerable<DropRecordRow> rows = MergeRows switch
 			{
-				true => rows.OrderByDescending(r => r.Count),
-				_ => rows.OrderByDescending(r => r.Index),
+				true => await Task.Run(MakeMergedDropRecordRows, cancellationToken),
+				_ => await Task.Run(MakeDropRecordRows, cancellationToken),
 			};
 
 			RecordRows = new(rows);
@@ -430,7 +442,39 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		return true;
 	}
 
-	private List<DropRecordRow> MakeDropRecordRows()
+	private IEnumerable<DropRecordRow> MakeDropRecordRows()
+	{
+		int i = 0;
+		List<DropRecordRow> rows = [];
+
+		foreach (ShipDropRecord.ShipDropElement r in RecordManager.Instance.ShipDrop.Record)
+		{
+			if (!ShouldIncludeInMergedCount(r)) continue;
+			if (!ShouldIncludeRecord(r)) continue;
+
+			DropRecordRow row = new(
+				i + 1,
+				GetContentString(r),
+				r.Date,
+				GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
+				Constants.GetWinRank(r.Rank),
+				null,
+				null,
+				null
+			);
+
+			row.CellsTag1 = GetContentStringForSorting(r);
+			row.CellsTag3 = GetMapSerialId(r, r.Difficulty);
+
+			rows.Add(row);
+
+			i++;
+		}
+
+		return rows.OrderByDescending(r => r.Index);
+	}
+
+	private IEnumerable<DropRecordRow> MakeMergedDropRecordRows()
 	{
 		int priorityShip = ShipSearchOption switch
 		{
@@ -448,28 +492,21 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		int priorityContent = Math.Max(priorityShip, priorityItem);
 
-		List<ShipDropRecord.ShipDropElement> records = RecordManager.Instance.ShipDrop.Record;
 		List<DropRecordRow> rows = [];
 
-		int i = 0;
 		Dictionary<string, int[]> counts = [];
 		Dictionary<string, int[]> allcounts = [];
 
-		foreach (ShipDropRecord.ShipDropElement r in records)
+		foreach (ShipDropRecord.ShipDropElement r in RecordManager.Instance.ShipDrop.Record)
 		{
-			#region Filtering
 
 			if (!ShouldIncludeInMergedCount(r)) continue;
 
-			if (MergeRows)
 			{
 				string key = priorityContent switch
 				{
-					2 => GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, MapDifficulty is 0 ? -1 : r.Difficulty)
-						.ToString("X8"),
-
-					_ => GetContentString(r, priorityShip < priorityItem && priorityShip < 2,
-						priorityShip >= priorityItem && priorityItem < 2),
+					2 => GetMapSerialId(r, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8"),
+					_ => GetContentString(r, priorityShip < priorityItem && priorityShip < 2, priorityShip >= priorityItem && priorityItem < 2),
 				};
 
 				if (!allcounts.TryGetValue(key, out int[]? value))
@@ -497,126 +534,93 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			if (!ShouldIncludeRecord(r)) continue;
 
-			#endregion
-
-			if (!MergeRows)
 			{
-				DropRecordRow row = new(
-					i + 1,
-					GetContentString(r),
-					r.Date,
-					GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
-					Constants.GetWinRank(r.Rank),
-					null,
-					null,
-					null
-				);
-
-				row.CellsTag1 = GetContentStringForSorting(r);
-				row.CellsTag3 = GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty);
-
-				rows.Add(row);
-			}
-			else
-			{
-				//merged
-
 				string key = priorityContent switch
 				{
-					2 => GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode,
-							MapDifficulty is 0 ? -1 : r.Difficulty)
-						.ToString("X8"),
-					_ => GetContentStringForSorting(r, priorityShip < priorityItem && priorityShip < 2,
-						priorityShip >= priorityItem && priorityItem < 2)
+					2 => GetMapSerialId(r, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8"),
+					_ => GetContentStringForSorting(r, priorityShip, priorityItem),
 				};
 
-				if (!counts.ContainsKey(key))
+				if (!counts.TryGetValue(key, out int[]? value))
 				{
-					counts.Add(key, new int[4]);
+					value = (new int[4]);
+					counts.Add(key, value);
 				}
 
 				switch (r.Rank)
 				{
 					case "B":
-						counts[key][3]++;
+						value[3]++;
 						break;
 					case "A":
-						counts[key][2]++;
+						value[2]++;
 						break;
 					case "S":
 					case "SS":
-						counts[key][1]++;
+						value[1]++;
 						break;
 				}
-				counts[key][0]++;
 
+				value[0]++;
 			}
-
-			if (Searcher.CancellationPending)
-				break;
-
-			i++;
 		}
 
-		if (MergeRows)
+		int[] allcountssum = Enumerable.Range(0, 4)
+			.Select(k => allcounts.Values.Sum(a => a[k]))
+			.ToArray();
+
+		foreach ((string key, int[] value) in counts)
 		{
+			string name = key;
 
-			int[] allcountssum = Enumerable.Range(0, 4).Select(k => allcounts.Values.Sum(a => a[k])).ToArray();
-
-			foreach (var c in counts)
+			if (int.TryParse(name, System.Globalization.NumberStyles.HexNumber,
+					System.Globalization.CultureInfo.InvariantCulture, out int serialId))
 			{
-				string name = c.Key;
-
-				if (int.TryParse(name, System.Globalization.NumberStyles.HexNumber,
-						System.Globalization.CultureInfo.InvariantCulture, out int serialID))
-				{
-					name = GetMapString(serialID);
-				}
-
-				// fixme: name != map だった時にソートキーが入れられない
-
-				DropRecordRow row = new(
-					c.Value[0],
-					serialID != 0 ? name : ConvertContentString(name),
-					null,
-					null,
-					null,
-					c.Value[1],
-					c.Value[2],
-					c.Value[3]
-				);
-
-
-				if (priorityContent == 2)
-				{
-					row.RateOrMaxCountTotal = allcounts[c.Key][0];
-					if (serialID != 0)
-						row.CellsTag1 = serialID;
-					else
-						row.CellsTag1 = name;
-					row.RateOrMaxCountS = allcounts[c.Key][1];
-					row.RateOrMaxCountA = allcounts[c.Key][2];
-					row.RateOrMaxCountB = allcounts[c.Key][3];
-
-				}
-				else
-				{
-					row.RateOrMaxCountTotal = ((double)c.Value[0] / Math.Max(allcountssum[0], 1));
-					if (serialID != 0)
-						row.CellsTag1 = serialID;
-					else
-						row.CellsTag1 = name;
-					row.RateOrMaxCountS = ((double)c.Value[1] / Math.Max(allcountssum[1], 1));
-					row.RateOrMaxCountA = ((double)c.Value[2] / Math.Max(allcountssum[2], 1));
-					row.RateOrMaxCountB = ((double)c.Value[3] / Math.Max(allcountssum[3], 1));
-
-				}
-
-				rows.Add(row);
+				name = GetMapString(serialId);
 			}
+
+			// fixme: name != map だった時にソートキーが入れられない
+
+			DropRecordRow row = new(
+				value[0],
+				serialId switch
+				{
+					0 => ConvertContentString(name),
+					_ => name,
+				},
+				null,
+				null,
+				null,
+				value[1],
+				value[2],
+				value[3]
+			);
+
+			row.CellsTag1 = serialId switch
+			{
+				0 => name,
+				_ => serialId,
+			};
+
+			if (priorityContent == 2)
+			{
+				row.RateOrMaxCountTotal = allcounts[key][0];
+				row.RateOrMaxCountS = allcounts[key][1];
+				row.RateOrMaxCountA = allcounts[key][2];
+				row.RateOrMaxCountB = allcounts[key][3];
+			}
+			else
+			{
+				row.RateOrMaxCountTotal = ((double)value[0] / Math.Max(allcountssum[0], 1));
+				row.RateOrMaxCountS = ((double)value[1] / Math.Max(allcountssum[1], 1));
+				row.RateOrMaxCountA = ((double)value[2] / Math.Max(allcountssum[2], 1));
+				row.RateOrMaxCountB = ((double)value[3] / Math.Max(allcountssum[3], 1));
+			}
+
+			rows.Add(row);
 		}
 
-		return rows;
+		return rows.OrderByDescending(r => r.Count);
 	}
 
 	private void Searcher_DoWork(object sender, DoWorkEventArgs e)
@@ -689,7 +693,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 					if (priorityContent == 2)
 					{
-						key = GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8");
+						key = GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8");
 
 					}
 					else
@@ -792,7 +796,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 					);
 
 					row.CellsTag1 = GetContentStringForSorting(r);
-					row.CellsTag3 = GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty);
+					row.CellsTag3 = GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty);
 
 					rows.AddLast(row);
 
@@ -804,11 +808,10 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 					string key = priorityContent switch
 					{
-						2 => GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode,
+						2 => GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode,
 								MapDifficulty is 0 ? -1 : r.Difficulty)
 							.ToString("X8"),
-						_ => GetContentStringForSorting(r, priorityShip < priorityItem && priorityShip < 2,
-							priorityShip >= priorityItem && priorityItem < 2)
+						_ => GetContentStringForSorting(r, priorityShip < priorityItem && priorityShip < 2, priorityShip >= priorityItem && priorityItem < 2)
 					};
 
 					if (!counts.ContainsKey(key))
