@@ -81,9 +81,11 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
+	private int NumberOfRecords { get; set; }
+
 	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = [];
-	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; set; }
-	public DataGridViewModel<DropRecordRow> DataGridMergedRowsViewModel { get; set; }
+	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; }
+	public DataGridViewModel<DropRecordRow> DataGridMergedRowsViewModel { get; }
 
 	public DropRecordViewerViewModel()
 	{
@@ -444,7 +446,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private IEnumerable<DropRecordRow> MakeDropRecordRows()
 	{
-		int i = 0;
+		NumberOfRecords = 0;
 		List<DropRecordRow> rows = [];
 
 		foreach (ShipDropRecord.ShipDropElement r in RecordManager.Instance.ShipDrop.Record)
@@ -453,7 +455,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			if (!ShouldIncludeRecord(r)) continue;
 
 			DropRecordRow row = new(
-				i + 1,
+				rows.Count + 1,
 				GetContentString(r),
 				r.Date,
 				GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
@@ -467,15 +469,18 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			row.CellsTag3 = GetMapSerialId(r, r.Difficulty);
 
 			rows.Add(row);
-
-			i++;
 		}
+
+		NumberOfRecords = rows.Count;
 
 		return rows.OrderByDescending(r => r.Index);
 	}
 
 	private IEnumerable<DropRecordRow> MakeMergedDropRecordRows()
 	{
+		NumberOfRecords = 0;
+		List<DropRecordRow> rows = [];
+
 		int priorityShip = ShipSearchOption switch
 		{
 			DropRecordOption.All => 0,
@@ -492,14 +497,11 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		int priorityContent = Math.Max(priorityShip, priorityItem);
 
-		List<DropRecordRow> rows = [];
-
 		Dictionary<string, int[]> counts = [];
 		Dictionary<string, int[]> allcounts = [];
 
 		foreach (ShipDropRecord.ShipDropElement r in RecordManager.Instance.ShipDrop.Record)
 		{
-
 			if (!ShouldIncludeInMergedCount(r)) continue;
 
 			{
@@ -563,6 +565,8 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 				value[0]++;
 			}
+
+			NumberOfRecords++;
 		}
 
 		int[] allcountssum = Enumerable.Range(0, 4)
@@ -939,19 +943,19 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		if (selectedCount == 0) return;
 
+		int allCount = NumberOfRecords;
+
 		if (MergeRows)
 		{
 			int count = SelectedRows.Select(r => r.Count).Sum();
-			int allcount = RecordRows.Select(r => r.Count).Sum();
 
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
-				count, allcount, (double)count / allcount);
+				count, allCount, (double)count / allCount);
 		}
 		else
 		{
-			int allcount = RecordRows.Count;
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
-				selectedCount, allcount, (double)selectedCount / allcount);
+				selectedCount, allCount, (double)selectedCount / allCount);
 		}
 	}
 
