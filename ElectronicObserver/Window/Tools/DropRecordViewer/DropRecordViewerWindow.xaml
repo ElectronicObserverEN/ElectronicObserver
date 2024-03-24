@@ -310,7 +310,7 @@
 			<Button
 				Grid.Row="2"
 				Grid.Column="7"
-				Command="{Binding StartSearchCommand}"
+				Command="{Binding SearchCommand}"
 				Content="{Binding DialogDropRecordViewer.ButtonRun}"
 				/>
 		</Grid>

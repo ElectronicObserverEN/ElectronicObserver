@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
@@ -51,7 +53,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
 	private DateTime DateTimeEnd =>
 		new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
-	
+
 	public DateTime DateBegin { get; set; }
 	public DateTime TimeBegin { get; set; }
 	public DateTime DateEnd { get; set; }
@@ -72,7 +74,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	public bool MergeRows { get; set; }
 	public bool RawRows => !MergeRows;
 	public string StatusInfoText { get; set; }
-	public DateTime StatusInfoTag { get; set; }
+	private DateTime SearchStartTime { get; set; }
 
 	private string NameNotExist => DialogDropRecordViewer.NameNotExist;
 	private const string MapAny = "*";
@@ -352,6 +354,269 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	private int GetMapSerialID(int maparea, int mapinfo, int cell, bool isboss, int difficulty = -1)
 	{
 		return (maparea & 0xFF) << 24 | (mapinfo & 0xFF) << 16 | (cell & 0xFF) << 8 | (difficulty & 0x7F) << 1 | (isboss ? 1 : 0);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task Search(CancellationToken cancellationToken)
+	{
+		SearchStartTime = DateTime.UtcNow;
+		StatusInfoText = EncycloRes.SearchingNow;
+
+		try
+		{
+			IEnumerable<DropRecordRow> rows = await Task.Run(MakeDropRecordRows, cancellationToken);
+
+			rows = MergeRows switch
+			{
+				true => rows.OrderByDescending(r => r.Count),
+				_ => rows.OrderByDescending(r => r.Index),
+			};
+
+			RecordRows = new(rows);
+			DataGridRawRowsViewModel.ItemsSource = RecordRows;
+			DataGridMergedRowsViewModel.ItemsSource = RecordRows;
+
+			StatusInfoText = $"{EncycloRes.SearchComplete} ({(int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds} ms)";
+
+		}
+		catch (OperationCanceledException)
+		{
+			StatusInfoText = EncycloRes.SearchCancelled;
+		}
+		catch (Exception e)
+		{
+		}
+	}
+
+	private bool ShouldIncludeInMergedCount(ShipDropRecord.ShipDropElement r)
+	{
+		if (r.Date < DateTimeBegin || DateTimeEnd < r.Date) return false;
+		if (r.Rank is "SS" or "S" && !RankS) return false;
+		if (r.Rank is "A" && !RankA) return false;
+		if (r.Rank is "B" && !RankB) return false;
+		if (Constants.GetWinRank(r.Rank) <= 3 && !RankX) return false;
+
+		if (MapAreaID is int world && world != r.MapAreaID) return false;
+		if (MapInfoID is int map && map != r.MapInfoID) return false;
+		if (MapCellID.Ids?.Contains(r.CellID) == false) return false;
+
+		if (IsBossOnly is false && r.IsBossNode) return false;
+		if (IsBossOnly is true && !r.IsBossNode) return false;
+
+		if (MapDifficulty is int difficulty && difficulty != r.Difficulty) return false;
+
+		return true;
+	}
+
+	private bool ShouldIncludeRecord(ShipDropRecord.ShipDropElement r)
+	{
+		if (ShipSearchOption is DropRecordOption.Drop && r.ShipID < 0) return false;
+		if (ShipSearchOption is DropRecordOption.NoDrop && r.ShipID != -1) return false;
+		if (ShipSearchOption is DropRecordOption.FullPort && r.ShipID != -2) return false;
+		if (ShipSearchOption is IShipDataMaster ship && ship.ShipID != r.ShipID) return false;
+
+		if (ItemSearchOption is DropRecordOption.Drop && r.ItemID < 0) return false;
+		if (ItemSearchOption is DropRecordOption.NoDrop && r.ItemID != -1) return false;
+		if (ItemSearchOption is UseItemMaster item && item.ID != r.ItemID) return false;
+
+		if (ShipTypeSearchOption is not ShipTypes.All)
+		{
+			if (KCDatabase.Instance.MasterShips[r.ShipID]?.ShipType != ShipTypeSearchOption)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private List<DropRecordRow> MakeDropRecordRows()
+	{
+		int priorityShip = ShipSearchOption switch
+		{
+			DropRecordOption.All => 0,
+			DropRecordOption.Drop => 1,
+			_ => 2,
+		};
+
+		int priorityItem = ItemSearchOption switch
+		{
+			DropRecordOption.All => 0,
+			DropRecordOption.Drop => 1,
+			_ => 2,
+		};
+
+		int priorityContent = Math.Max(priorityShip, priorityItem);
+
+		List<ShipDropRecord.ShipDropElement> records = RecordManager.Instance.ShipDrop.Record;
+		List<DropRecordRow> rows = [];
+
+		int i = 0;
+		Dictionary<string, int[]> counts = [];
+		Dictionary<string, int[]> allcounts = [];
+
+		foreach (ShipDropRecord.ShipDropElement r in records)
+		{
+			#region Filtering
+
+			if (!ShouldIncludeInMergedCount(r)) continue;
+
+			if (MergeRows)
+			{
+				string key = priorityContent switch
+				{
+					2 => GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, MapDifficulty is 0 ? -1 : r.Difficulty)
+						.ToString("X8"),
+
+					_ => GetContentString(r, priorityShip < priorityItem && priorityShip < 2,
+						priorityShip >= priorityItem && priorityItem < 2),
+				};
+
+				if (!allcounts.TryGetValue(key, out int[]? value))
+				{
+					value = new int[4];
+					allcounts.Add(key, value);
+				}
+
+				switch (r.Rank)
+				{
+					case "B":
+						value[3]++;
+						break;
+					case "A":
+						value[2]++;
+						break;
+					case "S":
+					case "SS":
+						value[1]++;
+						break;
+				}
+
+				value[0]++;
+			}
+
+			if (!ShouldIncludeRecord(r)) continue;
+
+			#endregion
+
+			if (!MergeRows)
+			{
+				DropRecordRow row = new(
+					i + 1,
+					GetContentString(r),
+					r.Date,
+					GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
+					Constants.GetWinRank(r.Rank),
+					null,
+					null,
+					null
+				);
+
+				row.CellsTag1 = GetContentStringForSorting(r);
+				row.CellsTag3 = GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty);
+
+				rows.Add(row);
+			}
+			else
+			{
+				//merged
+
+				string key = priorityContent switch
+				{
+					2 => GetMapSerialID(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode,
+							MapDifficulty is 0 ? -1 : r.Difficulty)
+						.ToString("X8"),
+					_ => GetContentStringForSorting(r, priorityShip < priorityItem && priorityShip < 2,
+						priorityShip >= priorityItem && priorityItem < 2)
+				};
+
+				if (!counts.ContainsKey(key))
+				{
+					counts.Add(key, new int[4]);
+				}
+
+				switch (r.Rank)
+				{
+					case "B":
+						counts[key][3]++;
+						break;
+					case "A":
+						counts[key][2]++;
+						break;
+					case "S":
+					case "SS":
+						counts[key][1]++;
+						break;
+				}
+				counts[key][0]++;
+
+			}
+
+			if (Searcher.CancellationPending)
+				break;
+
+			i++;
+		}
+
+		if (MergeRows)
+		{
+
+			int[] allcountssum = Enumerable.Range(0, 4).Select(k => allcounts.Values.Sum(a => a[k])).ToArray();
+
+			foreach (var c in counts)
+			{
+				string name = c.Key;
+
+				if (int.TryParse(name, System.Globalization.NumberStyles.HexNumber,
+						System.Globalization.CultureInfo.InvariantCulture, out int serialID))
+				{
+					name = GetMapString(serialID);
+				}
+
+				// fixme: name != map だった時にソートキーが入れられない
+
+				DropRecordRow row = new(
+					c.Value[0],
+					serialID != 0 ? name : ConvertContentString(name),
+					null,
+					null,
+					null,
+					c.Value[1],
+					c.Value[2],
+					c.Value[3]
+				);
+
+
+				if (priorityContent == 2)
+				{
+					row.RateOrMaxCountTotal = allcounts[c.Key][0];
+					if (serialID != 0)
+						row.CellsTag1 = serialID;
+					else
+						row.CellsTag1 = name;
+					row.RateOrMaxCountS = allcounts[c.Key][1];
+					row.RateOrMaxCountA = allcounts[c.Key][2];
+					row.RateOrMaxCountB = allcounts[c.Key][3];
+
+				}
+				else
+				{
+					row.RateOrMaxCountTotal = ((double)c.Value[0] / Math.Max(allcountssum[0], 1));
+					if (serialID != 0)
+						row.CellsTag1 = serialID;
+					else
+						row.CellsTag1 = name;
+					row.RateOrMaxCountS = ((double)c.Value[1] / Math.Max(allcountssum[1], 1));
+					row.RateOrMaxCountA = ((double)c.Value[2] / Math.Max(allcountssum[2], 1));
+					row.RateOrMaxCountB = ((double)c.Value[3] / Math.Max(allcountssum[3], 1));
+
+				}
+
+				rows.Add(row);
+			}
+		}
+
+		return rows;
 	}
 
 	private void Searcher_DoWork(object sender, DoWorkEventArgs e)
@@ -655,7 +920,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			DataGridRawRowsViewModel.ItemsSource = RecordRows;
 			DataGridMergedRowsViewModel.ItemsSource = RecordRows;
 
-			StatusInfoText = EncycloRes.SearchComplete + " (" + (int)(DateTime.Now - StatusInfoTag).TotalMilliseconds + " ms)";
+			StatusInfoText = EncycloRes.SearchComplete + " (" + (int)(DateTime.Now - SearchStartTime).TotalMilliseconds + " ms)";
 		}
 		else
 		{
@@ -720,7 +985,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		}
 
 		StatusInfoText = EncycloRes.SearchingNow;
-		StatusInfoTag = DateTime.Now;
+		SearchStartTime = DateTime.Now;
 
 		Searcher.RunWorkerAsync();
 	}
