@@ -83,8 +83,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public bool IgnoreCommonDrops { get; set; }
 
-	private int NumberOfRecords { get; set; }
-
 	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = [];
 	private ObservableCollection<MergedDropRecordRow> MergedRecordRows { get; set; } = [];
 	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; }
@@ -95,7 +93,27 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		Record = RecordManager.Instance.ShipDrop;
 
 		DataGridRawRowsViewModel = new(RecordRows);
+		DataGridRawRowsViewModel.FilterValue = row =>
+		{
+			if (IgnoreCommonDrops)
+			{
+				if (row.ShipId <= ShipId.Unknown) return false;
+				if (IsCommonDrop(row.ShipId)) return false;
+			}
+
+			return true;
+		};
+
 		DataGridMergedRowsViewModel = new(MergedRecordRows);
+		DataGridMergedRowsViewModel.FilterValue = row =>
+		{
+			if (IgnoreCommonDrops)
+			{
+				// todo
+			}
+
+			return true;
+		};
 
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
@@ -150,6 +168,14 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			RecordRows.Clear();
 			MergedRecordRows.Clear();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(IgnoreCommonDrops)) return;
+
+			DataGridRawRowsViewModel.Items.Refresh();
+			DataGridMergedRowsViewModel.Items.Refresh();
 		};
 
 		Loaded();
@@ -450,9 +476,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private IEnumerable<DropRecordRow> MakeDropRecordRows()
 	{
-		NumberOfRecords = 0;
-
-		IEnumerable<DropRecordRow> rows = RecordManager.Instance.ShipDrop.Record
+		List<DropRecordRow> rows = RecordManager.Instance.ShipDrop.Record
 			.Where(ShouldIncludeInMergedCount)
 			.Where(ShouldIncludeRecord)
 			.Select((r, i) => new DropRecordRow
@@ -466,21 +490,11 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			})
 			.ToList();
 
-		NumberOfRecords = rows.Count();
-
-		if (IgnoreCommonDrops)
-		{
-			rows = rows
-				.Where(r => r.ShipId > ShipId.Unknown)
-				.Where(r => !IsCommonDrop(r.ShipId));
-		}
-
 		return rows.OrderByDescending(r => r.Index);
 	}
 
 	private IEnumerable<MergedDropRecordRow> MakeMergedDropRecordRows()
 	{
-		NumberOfRecords = 0;
 		List<MergedDropRecordRow> rows = [];
 
 		int priorityShip = ShipSearchOption switch
@@ -567,8 +581,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 				value[0]++;
 			}
-
-			NumberOfRecords++;
 		}
 
 		int[] allcountssum = Enumerable.Range(0, 4)
@@ -625,19 +637,20 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	{
 		int selectedCount = SelectedRows.Count;
 
-		if (selectedCount == 0) return;
-
-		int allCount = NumberOfRecords;
+		if (selectedCount is 0) return;
 
 		if (MergeRows)
 		{
 			int count = SelectedRows.OfType<MergedDropRecordRow>().Select(r => r.Count).Sum();
+			int allCount = MergedRecordRows.Select(r => r.Count).Sum();
 
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				count, allCount, (double)count / allCount);
 		}
 		else
 		{
+			int allCount = RecordRows.Count;
+
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				selectedCount, allCount, (double)selectedCount / allCount);
 		}
