@@ -374,6 +374,7 @@ public static class Constants
 		124 => "Marcello級",
 		125 => "Nevada級",
 		126 => "改氷川丸級",
+		127 => "巡潜乙型改一",
 		_ => "不明",
 	};
 
