@@ -31,7 +31,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	public DialogDropRecordViewerTranslationViewModel DialogDropRecordViewer { get; }
 
 	private ShipDropRecord Record { get; }
-	private BackgroundWorker Searcher { get; } = new();
 
 	private ShipPickerViewModel ShipPickerViewModel { get; }
 	public List<object> Items { get; set; } = [];
@@ -86,10 +85,10 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private int NumberOfRecords { get; set; }
 
-	private ObservableCollection<DropRecordRowBase> RecordRows { get; set; } = [];
-	private ObservableCollection<DropRecordRowBase> MergedRecordRows { get; set; } = [];
-	public DataGridViewModel<DropRecordRowBase> DataGridRawRowsViewModel { get; }
-	public DataGridViewModel<DropRecordRowBase> DataGridMergedRowsViewModel { get; }
+	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = [];
+	private ObservableCollection<MergedDropRecordRow> MergedRecordRows { get; set; } = [];
+	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; }
+	public DataGridViewModel<MergedDropRecordRow> DataGridMergedRowsViewModel { get; }
 
 	public DropRecordViewerViewModel()
 	{
@@ -100,10 +99,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
-
-		Searcher.WorkerSupportsCancellation = true;
-		Searcher.DoWork += Searcher_DoWork;
-		Searcher.RunWorkerCompleted += Searcher_RunWorkerCompleted;
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -625,299 +620,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		return rows.OrderByDescending(r => r.Count);
 	}
 
-	private void Searcher_DoWork(object sender, DoWorkEventArgs e)
-	{
-		int priorityShip = ShipSearchOption switch
-		{
-			DropRecordOption.All => 0,
-			DropRecordOption.Drop => 1,
-			_ => 2
-		};
-
-		int priorityItem = ItemSearchOption switch
-		{
-			DropRecordOption.All => 0,
-			DropRecordOption.Drop => 1,
-			_ => 2
-		};
-
-		int priorityContent = Math.Max(priorityShip, priorityItem);
-
-		List<ShipDropRecord.ShipDropElement> records = RecordManager.Instance.ShipDrop.Record;
-		LinkedList<DropRecordRowBase> rows = [];
-
-
-		//lock ( records )
-		{
-			int i = 0;
-			var counts = new Dictionary<string, int[]>();
-			var allcounts = new Dictionary<string, int[]>();
-
-
-			foreach (var r in records)
-			{
-
-				#region Filtering
-
-				if (r.Date < DateTimeBegin || DateTimeEnd < r.Date)
-					continue;
-
-				if (((r.Rank == "SS" || r.Rank == "S") && !RankS) ||
-					((r.Rank == "A") && !RankA) ||
-					((r.Rank == "B") && !RankB) ||
-					((Constants.GetWinRank(r.Rank) <= BattleRank.C) && !RankX))
-					continue;
-
-
-				if (MapAreaID is int world && world != r.MapAreaID) continue;
-				if (MapInfoID is int map && map != r.MapInfoID) continue;
-				if (MapCellID.Ids?.Contains(r.CellID) == false) continue;
-
-				switch (IsBossOnly)
-				{
-					case false:
-						if (r.IsBossNode)
-							continue;
-						break;
-					case true:
-						if (!r.IsBossNode)
-							continue;
-						break;
-				}
-				if (MapDifficulty is int difficulty && difficulty != r.Difficulty)
-					continue;
-
-
-
-				if (MergeRows)
-				{
-					string key;
-
-					if (priorityContent == 2)
-					{
-						key = GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8");
-
-					}
-					else
-					{
-						key = GetContentString(r, priorityShip < priorityItem && priorityShip < 2, priorityShip >= priorityItem && priorityItem < 2);
-					}
-
-
-					if (!allcounts.ContainsKey(key))
-					{
-						allcounts.Add(key, new int[4]);
-					}
-
-					switch (r.Rank)
-					{
-						case "B":
-							allcounts[key][3]++;
-							break;
-						case "A":
-							allcounts[key][2]++;
-							break;
-						case "S":
-						case "SS":
-							allcounts[key][1]++;
-							break;
-					}
-					allcounts[key][0]++;
-				}
-
-
-
-				switch (ShipSearchOption)
-				{
-					case DropRecordOption.All:
-						break;
-					case DropRecordOption.Drop:
-						if (r.ShipID < 0)
-							continue;
-						break;
-					case DropRecordOption.NoDrop:
-						if (r.ShipID != -1)
-							continue;
-						break;
-					case DropRecordOption.FullPort:
-						if (r.ShipID != -2)
-							continue;
-						break;
-					case IShipDataMaster ship:
-						if (ship.ShipID != r.ShipID)
-							continue;
-						break;
-				}
-
-				switch (ItemSearchOption)
-				{
-					case DropRecordOption.All:
-						break;
-					case DropRecordOption.Drop:
-						if (r.ItemID < 0)
-							continue;
-						break;
-					case DropRecordOption.NoDrop:
-						if (r.ItemID != -1)
-							continue;
-						break;
-					case UseItemMaster item:
-						if (item.ID != r.ItemID)
-							continue;
-						break;
-				}
-
-				switch (ShipTypeSearchOption)
-				{
-					case ShipTypes.All:
-						break;
-
-					default:
-						IShipDataMaster? ship = KCDatabase.Instance.MasterShips[r.ShipID];
-						if (ship?.ShipType != ShipTypeSearchOption)
-						{
-							continue;
-						}
-						break;
-				}
-
-				#endregion
-
-
-				if (!MergeRows)
-				{
-					DropRecordRow row = new(i + 1)
-					{
-						Index = i + 1,
-						Name = GetContentString(r),
-						Date = r.Date,
-						Rank = Constants.GetWinRank(r.Rank),
-						MapDescription = GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
-					};
-
-					rows.AddLast(row);
-				}
-				else
-				{
-					//merged
-
-					string key = priorityContent switch
-					{
-						2 => GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode,
-								MapDifficulty is 0 ? -1 : r.Difficulty)
-							.ToString("X8"),
-						_ => GetContentStringForSorting(r, priorityShip < priorityItem && priorityShip < 2, priorityShip >= priorityItem && priorityItem < 2)
-					};
-
-					if (!counts.ContainsKey(key))
-					{
-						counts.Add(key, new int[4]);
-					}
-
-					switch (r.Rank)
-					{
-						case "B":
-							counts[key][3]++;
-							break;
-						case "A":
-							counts[key][2]++;
-							break;
-						case "S":
-						case "SS":
-							counts[key][1]++;
-							break;
-					}
-					counts[key][0]++;
-
-				}
-
-
-
-				if (Searcher.CancellationPending)
-					break;
-
-				i++;
-			}
-
-
-			if (MergeRows)
-			{
-
-				int[] allcountssum = Enumerable.Range(0, 4).Select(k => allcounts.Values.Sum(a => a[k])).ToArray();
-
-				foreach (var c in counts)
-				{
-					string name = c.Key;
-
-					if (int.TryParse(name, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out int serialID))
-						name = GetMapString(serialID);
-
-					// fixme: name != map だった時にソートキーが入れられない
-
-					MergedDropRecordRow row = new(c.Value[0])
-					{
-						Name = serialID switch
-						{
-							0 => ConvertContentString(name),
-							_ => name,
-						},
-						CountS = c.Value[1],
-						CountA = c.Value[2],
-						CountB = c.Value[3],
-					};
-
-					if (priorityContent == 2)
-					{
-						row.RateOrMaxCountTotal = allcounts[c.Key][0];
-						row.RateOrMaxCountS = allcounts[c.Key][1];
-						row.RateOrMaxCountA = allcounts[c.Key][2];
-						row.RateOrMaxCountB = allcounts[c.Key][3];
-					}
-					else
-					{
-						row.RateOrMaxCountTotal = ((double)c.Value[0] / Math.Max(allcountssum[0], 1));
-						row.RateOrMaxCountS = ((double)c.Value[1] / Math.Max(allcountssum[1], 1));
-						row.RateOrMaxCountA = ((double)c.Value[2] / Math.Max(allcountssum[2], 1));
-						row.RateOrMaxCountB = ((double)c.Value[3] / Math.Max(allcountssum[3], 1));
-					}
-
-					rows.AddLast(row);
-				}
-
-			}
-
-		}
-
-		e.Result = rows.ToList();
-	}
-
-	private void Searcher_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-	{
-
-		if (!e.Cancelled)
-		{
-			if (e.Result is not List<DropRecordRowBase> rows) return;
-
-			rows = MergeRows switch
-			{
-				true => rows.OrderByDescending(r => r.Count).ToList(),
-				_ => rows.OrderByDescending(r => r.Index).ToList()
-			};
-
-			RecordRows = new(rows);
-			DataGridRawRowsViewModel.ItemsSource = RecordRows;
-			DataGridMergedRowsViewModel.ItemsSource = RecordRows;
-
-			StatusInfoText = EncycloRes.SearchComplete + " (" + (int)(DateTime.Now - SearchStartTime).TotalMilliseconds + " ms)";
-		}
-		else
-		{
-
-			StatusInfoText = EncycloRes.SearchCancelled;
-		}
-
-	}
-
 	private void RecordView_SelectionChanged()
 	{
 		int selectedCount = SelectedRows.Count;
@@ -956,26 +658,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		}
 
 		ShipPickerViewModel.DropRecordOptions = null;
-	}
-
-	[RelayCommand]
-	private void StartSearch()
-	{
-
-		if (Searcher.IsBusy)
-		{
-			if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-				== System.Windows.Forms.DialogResult.Yes)
-			{
-				Searcher.CancelAsync();
-			}
-			return;
-		}
-
-		StatusInfoText = EncycloRes.SearchingNow;
-		SearchStartTime = DateTime.Now;
-
-		Searcher.RunWorkerAsync();
 	}
 
 	[RelayCommand]
