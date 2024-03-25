@@ -390,7 +390,7 @@ public partial class App : Application
 			.Property(w => w.ViewModel.EquipmentUpgradePlanManager.CompactMode)
 			.Property(w => w.ViewModel.PlanListWidth)
 			.Property(w => w.ViewModel.PlannedUpgradesPager.ItemsPerPage);
-		
+
 		tracker
 			.Configure<ExpCheckerWindow>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
