@@ -248,47 +248,41 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			.ToList();
 	}
 
-	private string GetContentString(ShipDropRecord.ShipDropElement elem, bool ignoreShip = false, bool ignoreItem = false, bool ignoreEquipment = false)
+	private static DropRecordContentType GetContentType(ShipDropRecord.ShipDropElement elem, int priorityShip = 3, int priorityItem = 3)
 	{
+		bool ignoreShip = priorityShip < priorityItem && priorityShip < 2;
+		bool ignoreItem = priorityShip >= priorityItem && priorityItem < 2;
+		bool ignoreEquipment = false;
 
-		if (elem.ShipID > 0 && !ignoreShip)
+		bool includeShip = !ignoreShip && elem.ShipID > 0;
+		bool includeItem = !ignoreItem && elem.ItemID > 0;
+		bool includeEquipment = !ignoreEquipment && elem.EquipmentID > 0;
+
+		return (includeShip, includeItem, includeEquipment) switch
 		{
-
-			if (elem.ItemID > 0 && !ignoreItem)
-			{
-				if (elem.EquipmentID > 0 && !ignoreEquipment)
-					return elem.ShipName + " + " + elem.ItemName + " + " + elem.EquipmentName;
-				else
-					return elem.ShipName + " + " + elem.ItemName;
-			}
-			else
-			{
-				if (elem.EquipmentID > 0 && !ignoreEquipment)
-					return elem.ShipName + " + " + elem.EquipmentName;
-				else
-					return elem.ShipName;
-			}
-
-		}
-		else
-		{
-			if (elem.ItemID > 0 && !ignoreItem)
-			{
-				if (elem.EquipmentID > 0 && !ignoreEquipment)
-					return elem.ItemName + " + " + elem.EquipmentName;
-				else
-					return elem.ItemName;
-			}
-			else
-			{
-				if (elem.EquipmentID > 0 && !ignoreEquipment)
-					return elem.EquipmentName;
-				else
-					return elem.ShipName;
-			}
-		}
-
+			(true, true, true) => DropRecordContentType.ShipItemEquipment,
+			(_, true, true) => DropRecordContentType.ItemEquipment,
+			(true, _, true) => DropRecordContentType.ShipEquipment,
+			(true, true, _) => DropRecordContentType.ShipItem,
+			(_, _, true) => DropRecordContentType.Equipment,
+			(_, true, _) => DropRecordContentType.Item,
+			_ => DropRecordContentType.Ship,
+		};
 	}
+
+	private static string GetContentString(ShipDropRecord.ShipDropElement elem, int priorityShip = 3, int priorityItem = 3)
+		=> GetContentString(elem, GetContentType(elem, priorityShip, priorityItem));
+
+	private static string GetContentString(ShipDropRecord.ShipDropElement elem, DropRecordContentType contentType) => contentType switch
+	{
+		DropRecordContentType.ShipItemEquipment => $"{elem.ShipName} + {elem.ItemName} + {elem.EquipmentName}",
+		DropRecordContentType.ItemEquipment => $"{elem.ItemName} + {elem.EquipmentName}",
+		DropRecordContentType.ShipEquipment => $"{elem.ShipName} + {elem.EquipmentName}",
+		DropRecordContentType.ShipItem => $"{elem.ShipName} + {elem.ItemName}",
+		DropRecordContentType.Equipment => elem.EquipmentName,
+		DropRecordContentType.Item => elem.ItemName,
+		_ => elem.ShipName,
+	};
 
 	private string GetContentStringForSorting(ShipDropRecord.ShipDropElement r, int priorityShip, int priorityItem)
 	{
@@ -524,7 +518,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 				string key = priorityContent switch
 				{
 					2 => GetMapSerialId(r, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8"),
-					_ => GetContentString(r, priorityShip < priorityItem && priorityShip < 2, priorityShip >= priorityItem && priorityItem < 2),
+					_ => GetContentString(r, priorityShip, priorityItem),
 				};
 
 				if (!allcounts.TryGetValue(key, out int[]? value))
