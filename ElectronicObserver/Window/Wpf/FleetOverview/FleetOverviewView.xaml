@@ -123,6 +123,10 @@
 											<ContentControl Grid.Column="2" Content="{Binding Equipment}" />
 										</Grid>
 									</DataTemplate>
+
+									<Style TargetType="TextBlock">
+										<Setter Property="TextWrapping" Value="Wrap" />
+									</Style>
 								</StackPanel.Resources>
 
 								<TextBlock Text="{Binding ToolTip}" />
