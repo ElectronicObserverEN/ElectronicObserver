@@ -240,4 +240,7 @@
   <data name="Today" xml:space="preserve">
     <value>今日</value>
   </data>
+  <data name="IgnoreCommonDrops" xml:space="preserve">
+    <value>一般的なドロップは無視</value>
+  </data>
 </root>

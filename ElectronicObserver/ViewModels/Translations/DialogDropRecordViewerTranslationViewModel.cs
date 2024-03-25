@@ -43,6 +43,8 @@ public class DialogDropRecordViewerTranslationViewModel : TranslationBaseViewMod
 	public string RecordView_RankA => DropRecordViewerResources.RecordView_RankA;
 	public string RecordView_RankB => DropRecordViewerResources.RecordView_RankB;
 
+	public string IgnoreCommonDrops => DropRecordViewerResources.IgnoreCommonDrops;
+
 	public string NameAny => DropRecordViewerResources.NameAny;
 	public string NameNotExist => DropRecordViewerResources.NameNotExist;
 	public string NameFullPort => DropRecordViewerResources.NameFullPort;

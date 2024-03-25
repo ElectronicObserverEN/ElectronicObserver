@@ -1,6 +1,7 @@
 ﻿using System;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
@@ -54,4 +55,5 @@ public class DropRecordRow(
 	public object? RateOrMaxCountS { get; set; }
 	public object? RateOrMaxCountA { get; set; }
 	public object? RateOrMaxCountB { get; set; }
+	public ShipId ShipId { get; set; }
 }
