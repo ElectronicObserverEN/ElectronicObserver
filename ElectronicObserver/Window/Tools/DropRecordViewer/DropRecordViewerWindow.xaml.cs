@@ -17,7 +17,7 @@ public partial class DropRecordViewerWindow
 	{
 		if (sender is not DataGrid dataGrid) return;
 
-		ViewModel.SelectedRows = dataGrid.SelectedItems.Cast<DropRecordRow>().ToList();
+		ViewModel.SelectedRows = dataGrid.SelectedItems.Cast<DropRecordRowBase>().ToList();
 	}
 
 	private void EventSetter_OnHandler(object sender, MouseButtonEventArgs e)

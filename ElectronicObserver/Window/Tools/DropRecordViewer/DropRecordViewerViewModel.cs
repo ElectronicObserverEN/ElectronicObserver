@@ -19,6 +19,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
@@ -41,7 +42,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	public List<MapNode> Cells { get; set; } = [new(MapAny)];
 	public List<object> Difficulties { get; set; } = [MapAny];
 
-	public List<DropRecordRow> SelectedRows { get; set; } = [];
+	public List<DropRecordRowBase> SelectedRows { get; set; } = [];
 
 	// DropRecordOption or IShipDataMaster
 	public object ShipSearchOption { get; set; } = DropRecordOption.All;
@@ -85,16 +86,17 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private int NumberOfRecords { get; set; }
 
-	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = [];
-	public DataGridViewModel<DropRecordRow> DataGridRawRowsViewModel { get; }
-	public DataGridViewModel<DropRecordRow> DataGridMergedRowsViewModel { get; }
+	private ObservableCollection<DropRecordRowBase> RecordRows { get; set; } = [];
+	private ObservableCollection<DropRecordRowBase> MergedRecordRows { get; set; } = [];
+	public DataGridViewModel<DropRecordRowBase> DataGridRawRowsViewModel { get; }
+	public DataGridViewModel<DropRecordRowBase> DataGridMergedRowsViewModel { get; }
 
 	public DropRecordViewerViewModel()
 	{
 		Record = RecordManager.Instance.ShipDrop;
 
 		DataGridRawRowsViewModel = new(RecordRows);
-		DataGridMergedRowsViewModel = new(RecordRows);
+		DataGridMergedRowsViewModel = new(MergedRecordRows);
 
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
@@ -152,6 +154,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			if (args.PropertyName is not nameof(MergeRows)) return;
 
 			RecordRows.Clear();
+			MergedRecordRows.Clear();
 		};
 
 		Loaded();
@@ -382,18 +385,22 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		try
 		{
-			IEnumerable<DropRecordRow> rows = MergeRows switch
+			if (MergeRows)
 			{
-				true => await Task.Run(MakeMergedDropRecordRows, cancellationToken),
-				_ => await Task.Run(MakeDropRecordRows, cancellationToken),
-			};
+				IEnumerable<MergedDropRecordRow> rows = await Task.Run(MakeMergedDropRecordRows, cancellationToken);
 
-			RecordRows = new(rows);
-			DataGridRawRowsViewModel.ItemsSource = RecordRows;
-			DataGridMergedRowsViewModel.ItemsSource = RecordRows;
+				MergedRecordRows = new(rows);
+				DataGridMergedRowsViewModel.ItemsSource = MergedRecordRows;
+			}
+			else
+			{
+				IEnumerable<DropRecordRow> rows = await Task.Run(MakeDropRecordRows, cancellationToken);
+
+				RecordRows = new(rows);
+				DataGridRawRowsViewModel.ItemsSource = RecordRows;
+			}
 
 			StatusInfoText = $"{EncycloRes.SearchComplete} ({(int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds} ms)";
-
 		}
 		catch (OperationCanceledException)
 		{
@@ -410,7 +417,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		if (r.Rank is "SS" or "S" && !RankS) return false;
 		if (r.Rank is "A" && !RankA) return false;
 		if (r.Rank is "B" && !RankB) return false;
-		if (Constants.GetWinRank(r.Rank) <= 3 && !RankX) return false;
+		if (Constants.GetWinRank(r.Rank) <= BattleRank.C && !RankX) return false;
 
 		if (MapAreaID is int world && world != r.MapAreaID) return false;
 		if (MapInfoID is int map && map != r.MapInfoID) return false;
@@ -449,48 +456,37 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	private IEnumerable<DropRecordRow> MakeDropRecordRows()
 	{
 		NumberOfRecords = 0;
-		List<DropRecordRow> rows = [];
 
-		foreach (ShipDropRecord.ShipDropElement r in RecordManager.Instance.ShipDrop.Record)
+		IEnumerable<DropRecordRow> rows = RecordManager.Instance.ShipDrop.Record
+			.Where(ShouldIncludeInMergedCount)
+			.Where(ShouldIncludeRecord)
+			.Select((r, i) => new DropRecordRow(i + 1)
+			{
+				Index = i + 1,
+				Name = GetContentString(r),
+				Date = r.Date,
+				MapDescription = GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
+				Rank = Constants.GetWinRank(r.Rank),
+				ShipId = (ShipId)r.ShipID,
+			})
+			.ToList();
+
+		NumberOfRecords = rows.Count();
+
+		if (IgnoreCommonDrops)
 		{
-			if (!ShouldIncludeInMergedCount(r)) continue;
-			if (!ShouldIncludeRecord(r)) continue;
-
-			DropRecordRow row = new(
-				rows.Count + 1,
-				GetContentString(r),
-				r.Date,
-				GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
-				Constants.GetWinRank(r.Rank),
-				null,
-				null,
-				null
-			);
-
-			row.CellsTag1 = GetContentStringForSorting(r);
-			row.CellsTag3 = GetMapSerialId(r, r.Difficulty);
-			row.ShipId = (ShipId)r.ShipID;
-
-			rows.Add(row);
+			rows = rows
+				.Where(r => r.ShipId > ShipId.Unknown)
+				.Where(r => !IsCommonDrop(r.ShipId));
 		}
 
-		NumberOfRecords = rows.Count;
-
-		return IgnoreCommonDrops switch
-		{
-			true => rows
-				.Where(r => r.ShipId > ShipId.Unknown)
-				.Where(r => !IsCommonDrop(r.ShipId))
-				.OrderByDescending(r => r.Index),
-
-			_ => rows.OrderByDescending(r => r.Index),
-		};
+		return rows.OrderByDescending(r => r.Index);
 	}
 
-	private IEnumerable<DropRecordRow> MakeMergedDropRecordRows()
+	private IEnumerable<MergedDropRecordRow> MakeMergedDropRecordRows()
 	{
 		NumberOfRecords = 0;
-		List<DropRecordRow> rows = [];
+		List<MergedDropRecordRow> rows = [];
 
 		int priorityShip = ShipSearchOption switch
 		{
@@ -596,25 +592,16 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			// fixme: name != map だった時にソートキーが入れられない
 
-			DropRecordRow row = new(
-				value[0],
-				serialId switch
+			MergedDropRecordRow row = new(value[0])
+			{
+				Name = serialId switch
 				{
 					0 => ConvertContentString(name),
 					_ => name,
 				},
-				null,
-				null,
-				null,
-				value[1],
-				value[2],
-				value[3]
-			);
-
-			row.CellsTag1 = serialId switch
-			{
-				0 => name,
-				_ => serialId,
+				CountS = value[1],
+				CountA = value[2],
+				CountB = value[3],
 			};
 
 			if (priorityContent == 2)
@@ -657,7 +644,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		int priorityContent = Math.Max(priorityShip, priorityItem);
 
 		List<ShipDropRecord.ShipDropElement> records = RecordManager.Instance.ShipDrop.Record;
-		LinkedList<DropRecordRow> rows = [];
+		LinkedList<DropRecordRowBase> rows = [];
 
 
 		//lock ( records )
@@ -678,7 +665,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 				if (((r.Rank == "SS" || r.Rank == "S") && !RankS) ||
 					((r.Rank == "A") && !RankA) ||
 					((r.Rank == "B") && !RankB) ||
-					((Constants.GetWinRank(r.Rank) <= 3) && !RankX))
+					((Constants.GetWinRank(r.Rank) <= BattleRank.C) && !RankX))
 					continue;
 
 
@@ -799,23 +786,16 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 				if (!MergeRows)
 				{
-					DropRecordRow row = new(
-						i + 1,
-						GetContentString(r),
-						r.Date,
-						GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
-						Constants.GetWinRank(r.Rank),
-						null,
-						null,
-						null
-					);
-
-					row.CellsTag1 = GetContentStringForSorting(r);
-					row.CellsTag3 = GetMapSerialId(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty);
+					DropRecordRow row = new(i + 1)
+					{
+						Index = i + 1,
+						Name = GetContentString(r),
+						Date = r.Date,
+						Rank = Constants.GetWinRank(r.Rank),
+						MapDescription = GetMapString(r.MapAreaID, r.MapInfoID, r.CellID, r.IsBossNode, r.Difficulty),
+					};
 
 					rows.AddLast(row);
-
-
 				}
 				else
 				{
@@ -874,41 +854,31 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 					// fixme: name != map だった時にソートキーが入れられない
 
-					DropRecordRow row = new(
-						c.Value[0],
-						serialID != 0 ? name : ConvertContentString(name),
-						null,
-						null,
-						null,
-						c.Value[1],
-						c.Value[2],
-						c.Value[3]
-					);
-
+					MergedDropRecordRow row = new(c.Value[0])
+					{
+						Name = serialID switch
+						{
+							0 => ConvertContentString(name),
+							_ => name,
+						},
+						CountS = c.Value[1],
+						CountA = c.Value[2],
+						CountB = c.Value[3],
+					};
 
 					if (priorityContent == 2)
 					{
 						row.RateOrMaxCountTotal = allcounts[c.Key][0];
-						if (serialID != 0)
-							row.CellsTag1 = serialID;
-						else
-							row.CellsTag1 = name;
 						row.RateOrMaxCountS = allcounts[c.Key][1];
 						row.RateOrMaxCountA = allcounts[c.Key][2];
 						row.RateOrMaxCountB = allcounts[c.Key][3];
-
 					}
 					else
 					{
 						row.RateOrMaxCountTotal = ((double)c.Value[0] / Math.Max(allcountssum[0], 1));
-						if (serialID != 0)
-							row.CellsTag1 = serialID;
-						else
-							row.CellsTag1 = name;
 						row.RateOrMaxCountS = ((double)c.Value[1] / Math.Max(allcountssum[1], 1));
 						row.RateOrMaxCountA = ((double)c.Value[2] / Math.Max(allcountssum[2], 1));
 						row.RateOrMaxCountB = ((double)c.Value[3] / Math.Max(allcountssum[3], 1));
-
 					}
 
 					rows.AddLast(row);
@@ -926,7 +896,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		if (!e.Cancelled)
 		{
-			if (e.Result is not List<DropRecordRow> rows) return;
+			if (e.Result is not List<DropRecordRowBase> rows) return;
 
 			rows = MergeRows switch
 			{
@@ -1022,7 +992,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		try
 		{
-			if (SelectedRows.FirstOrDefault()?.Date is not { } time) return;
+			if (SelectedRows.FirstOrDefault() is not DropRecordRow row) return;
 
 			if (!Directory.Exists(Data.Battle.BattleManager.BattleLogPath))
 			{
@@ -1032,7 +1002,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			StatusInfoText = DialogDropRecordViewer.SearchingBattleHistory;
 			string? battleLogFile = Directory.EnumerateFiles(Data.Battle.BattleManager.BattleLogPath,
-					time.ToString("yyyyMMdd_HHmmss", System.Globalization.CultureInfo.InvariantCulture) + "*.txt",
+					row.Date.ToString("yyyyMMdd_HHmmss", System.Globalization.CultureInfo.InvariantCulture) + "*.txt",
 					SearchOption.TopDirectoryOnly)
 				.FirstOrDefault();
 
@@ -1046,7 +1016,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			ProcessStartInfo psi = new ProcessStartInfo
 			{
 				FileName = battleLogFile,
-				UseShellExecute = true
+				UseShellExecute = true,
 			};
 			Process.Start(psi);
 		}
@@ -1054,7 +1024,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		{
 			StatusInfoText = DialogDropRecordViewer.CouldNotOpenBattleHistory;
 		}
-
 	}
 
 	private static bool IsCommonDrop(ShipId shipId) => shipId is
