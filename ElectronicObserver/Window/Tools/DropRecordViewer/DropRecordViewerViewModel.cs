@@ -455,7 +455,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		IEnumerable<DropRecordRow> rows = RecordManager.Instance.ShipDrop.Record
 			.Where(ShouldIncludeInMergedCount)
 			.Where(ShouldIncludeRecord)
-			.Select((r, i) => new DropRecordRow(i + 1)
+			.Select((r, i) => new DropRecordRow
 			{
 				Index = i + 1,
 				Name = GetContentString(r),
@@ -587,8 +587,9 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			// fixme: name != map だった時にソートキーが入れられない
 
-			MergedDropRecordRow row = new(value[0])
+			MergedDropRecordRow row = new()
 			{
+				Count = value[0],
 				Name = serialId switch
 				{
 					0 => ConvertContentString(name),
@@ -630,7 +631,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		if (MergeRows)
 		{
-			int count = SelectedRows.Select(r => r.Count).Sum();
+			int count = SelectedRows.OfType<MergedDropRecordRow>().Select(r => r.Count).Sum();
 
 			StatusInfoText = string.Format(DialogDropRecordViewer.SelectedItems,
 				count, allCount, (double)count / allCount);

@@ -2,15 +2,16 @@
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
-public class MergedDropRecordRow(int indexOrCount) : DropRecordRowBase(indexOrCount)
+public class MergedDropRecordRow : DropRecordRowBase
 {
+	public required int Count { get; init; }
 	public required string Name { get; init; }
 	public string? CountDisplay => GetRankDisplay(Count, RateOrMaxCountTotal);
 
 	// these 3 need to be public for sorting to work
-	public int? CountS { get; init; }
-	public int? CountA { get; init; }
-	public int? CountB { get; init; }
+	public required int? CountS { get; init; }
+	public required int? CountA { get; init; }
+	public required int? CountB { get; init; }
 
 	public string? RankDisplayS => GetRankDisplay(CountS, RateOrMaxCountS);
 	public string? RankDisplayA => GetRankDisplay(CountA, RateOrMaxCountA);
