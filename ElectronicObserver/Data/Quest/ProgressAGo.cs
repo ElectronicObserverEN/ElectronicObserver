@@ -218,17 +218,17 @@ public class ProgressAGo : ProgressData
 		}
 
 
-		int irank = Constants.GetWinRank(rank);
+		int irank = (int)Constants.GetWinRank(rank);
 
 		if (isBoss)
 		{
 			if (q != null) bossCount++; else bossCountTemp++;
 
-			if (irank >= Constants.GetWinRank("B"))
+			if (irank >= (int)Constants.GetWinRank("B"))
 				if (q != null) bossWinCount++; else bossWinCountTemp++;
 		}
 
-		if (irank >= Constants.GetWinRank("S"))
+		if (irank >= (int)Constants.GetWinRank("S"))
 			if (q != null) sWinCount++; else sWinCountTemp++;
 
 	}

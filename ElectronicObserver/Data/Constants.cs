@@ -1,4 +1,5 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 
@@ -759,16 +760,16 @@ public static class Constants
 	/// <summary>
 	/// 勝利ランクを表すIDを取得します。
 	/// </summary>
-	public static int GetWinRank(string rank) => rank.ToUpper() switch
+	public static BattleRank GetWinRank(string rank) => rank.ToUpper() switch
 	{
-		"E" => 1,
-		"D" => 2,
-		"C" => 3,
-		"B" => 4,
-		"A" => 5,
-		"S" => 6,
-		"SS" => 7,
-		_ => 0,
+		"E" => BattleRank.E,
+		"D" => BattleRank.D,
+		"C" => BattleRank.C,
+		"B" => BattleRank.B,
+		"A" => BattleRank.A,
+		"S" => BattleRank.S,
+		"SS" => BattleRank.SS,
+		_ => BattleRank.Any,
 	};
 
 	/// <summary>

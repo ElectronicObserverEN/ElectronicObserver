@@ -35,7 +35,7 @@ public class ProgressBattle : ProgressData
 		: base(quest, maxCount)
 	{
 
-		LowestRank = Constants.GetWinRank(lowestRank);
+		LowestRank = (int)Constants.GetWinRank(lowestRank);
 		TargetArea = targetArea == null ? null : new HashSet<int>(targetArea);
 		IsBossOnly = isBossOnly;
 	}
@@ -48,7 +48,7 @@ public class ProgressBattle : ProgressData
 		if (TargetArea != null && !TargetArea.Contains(areaID))
 			return;
 
-		if (Constants.GetWinRank(rank) < LowestRank)
+		if ((int)Constants.GetWinRank(rank) < LowestRank)
 			return;
 
 		if (IsBossOnly && !isBoss)
