@@ -21,14 +21,14 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; }
 
 	private EquipmentPickerService EquipmentPicker { get; }
-	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
+
+	public EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
+
 	public EquipmentUpgradePlanCostViewModel TotalCost { get; private set; } = new(new());
 
 	public GridLength PlanListWidth { get; set; } = new(350, GridUnitType.Pixel);
 
 	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
-
-	public bool CompactMode { get; set; } = false;
 
 	public EquipmentUpgradePlannerViewModel()
 	{

@@ -112,7 +112,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	public bool AllowToChangeDesiredUpgradeLevel => Parent is null;
 	public bool AllowToChangeEquipment => Parent is null;
 
-	private EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
+	public EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{

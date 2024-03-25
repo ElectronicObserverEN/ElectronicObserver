@@ -22,15 +22,14 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<local:EquipmentUpgradePlanItemControl
-			Grid.ColumnSpan="2"
-			CompactMode="False"
-			ReadOnly="False"
-			/>
+
+		<ScrollViewer Grid.ColumnSpan="2">
+			<local:EquipmentUpgradePlanItemControl CompactMode="{Binding EquipmentUpgradePlanManager.CompactMode}" ReadOnly="False" />
+		</ScrollViewer>
 
 		<StackPanel
 			Grid.Row="1"

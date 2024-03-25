@@ -75,7 +75,7 @@
 			<CheckBox
 				Margin="10 0 0 0"
 				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
-				IsChecked="{Binding CompactMode}"
+				IsChecked="{Binding EquipmentUpgradePlanManager.CompactMode}"
 				/>
 
 			<CheckBox
@@ -166,7 +166,7 @@
 								</StackPanel>
 
 								<local:EquipmentUpgradePlanItemControl
-									CompactMode="{Binding DataContext.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
+									CompactMode="{Binding DataContext.EquipmentUpgradePlanManager.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
 									DataContext="{Binding}"
 									ReadOnly="True"
 									/>
