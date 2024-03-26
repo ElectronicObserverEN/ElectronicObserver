@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -405,13 +406,14 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		}
 	}
 
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "<Pending>")]
 	private bool ShouldIncludeInMergedCount(ShipDropRecord.ShipDropElement r)
 	{
 		if (r.Date < DateTimeBegin || DateTimeEnd < r.Date) return false;
-		if (r.Rank is "SS" or "S" && !RankS) return false;
-		if (r.Rank is "A" && !RankA) return false;
-		if (r.Rank is "B" && !RankB) return false;
-		if (Constants.GetWinRank(r.Rank) <= BattleRank.C && !RankX) return false;
+		if (!RankS && r.Rank is "SS" or "S") return false;
+		if (!RankA && r.Rank is "A") return false;
+		if (!RankB && r.Rank is "B") return false;
+		if (!RankX && Constants.GetWinRank(r.Rank) <= BattleRank.C) return false;
 
 		if (MapAreaID is int world && world != r.MapAreaID) return false;
 		if (MapInfoID is int map && map != r.MapInfoID) return false;
@@ -425,6 +427,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		return true;
 	}
 
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "<Pending>")]
 	private bool ShouldIncludeRecord(ShipDropRecord.ShipDropElement r)
 	{
 		if (ShipSearchOption is DropRecordOption.Drop && r.ShipID < 0) return false;
@@ -466,6 +469,8 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		return rows.OrderByDescending(r => r.Index);
 	}
 
+	// todo: kinda needs refactoring, but it's not a high priority
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "<Pending>")]
 	private IEnumerable<MergedDropRecordRow> MakeMergedDropRecordRows()
 	{
 		List<MergedDropRecordRow> rows = [];
@@ -493,7 +498,9 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		{
 			if (!ShouldIncludeInMergedCount(r)) continue;
 
+#pragma warning disable S1199
 			{
+#pragma warning restore S1199
 				string key = priorityContent switch
 				{
 					2 => GetMapSerialId(r, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8"),
@@ -528,7 +535,9 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			if (!ShouldIncludeRecord(r)) continue;
 
+#pragma warning disable S1199
 			{
+#pragma warning restore S1199
 				string key = priorityContent switch
 				{
 					2 => GetMapSerialId(r, MapDifficulty is 0 ? -1 : r.Difficulty).ToString("X8"),
