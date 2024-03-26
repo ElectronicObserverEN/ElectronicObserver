@@ -17,6 +17,7 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
@@ -399,6 +400,8 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		}
 		catch (Exception e)
 		{
+			// this should never happen?
+			Logger.Add(2, "", e);
 		}
 	}
 
