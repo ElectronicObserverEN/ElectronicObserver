@@ -158,18 +158,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			DataGridRawRowsViewModel.Items.Refresh();
 			DataGridMergedRowsViewModel.Items.Refresh();
 		};
-
-		Loaded();
-
-		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
-		ConfigurationChanged();
-	}
-
-	private void ConfigurationChanged()
-	{
-		Font = new FontFamily(Utility.Configuration.Config.UI.MainFont.FontData.FontFamily.Name);
-		FontSize = Utility.Configuration.Config.UI.MainFont.FontData.ToSize();
-		FontBrush = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 	}
 
 	public override void Loaded()
