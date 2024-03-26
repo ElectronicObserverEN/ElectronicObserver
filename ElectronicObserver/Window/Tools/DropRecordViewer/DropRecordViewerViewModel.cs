@@ -81,7 +81,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public bool IgnoreCommonDrops { get; set; }
+	public DropRecordFilterViewModel DropRecordFilter { get; } = new();
 
 	private ObservableCollection<DropRecordRow> RecordRows { get; set; } = [];
 	private ObservableCollection<MergedDropRecordRow> MergedRecordRows { get; set; } = [];
@@ -93,27 +93,10 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		Record = RecordManager.Instance.ShipDrop;
 
 		DataGridRawRowsViewModel = new(RecordRows);
-		DataGridRawRowsViewModel.FilterValue = row =>
-		{
-			if (IgnoreCommonDrops)
-			{
-				if (row.ShipId <= ShipId.Unknown) return false;
-				if (IsCommonDrop(row.ShipId)) return false;
-			}
-
-			return true;
-		};
+		DataGridRawRowsViewModel.FilterValue = DropRecordFilter.MatchesFilter;
 
 		DataGridMergedRowsViewModel = new(MergedRecordRows);
-		DataGridMergedRowsViewModel.FilterValue = row =>
-		{
-			if (IgnoreCommonDrops)
-			{
-				// todo
-			}
-
-			return true;
-		};
+		DataGridMergedRowsViewModel.FilterValue = DropRecordFilter.MatchesFilter;
 
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
@@ -170,10 +153,8 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			MergedRecordRows.Clear();
 		};
 
-		PropertyChanged += (sender, args) =>
+		DropRecordFilter.PropertyChanged += (_, _) =>
 		{
-			if (args.PropertyName is not nameof(IgnoreCommonDrops)) return;
-
 			DataGridRawRowsViewModel.Items.Refresh();
 			DataGridMergedRowsViewModel.Items.Refresh();
 		};
@@ -507,8 +488,8 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		int priorityContent = Math.Max(priorityShip, priorityItem);
 
-		Dictionary<string, int[]> counts = [];
-		Dictionary<string, int[]> allcounts = [];
+		Dictionary<string, MergedRowCounter> counts = [];
+		Dictionary<string, MergedRowCounter> allCounts = [];
 
 		foreach (ShipDropRecord.ShipDropElement r in RecordManager.Instance.ShipDrop.Record)
 		{
@@ -521,27 +502,30 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 					_ => GetContentString(r, priorityShip, priorityItem),
 				};
 
-				if (!allcounts.TryGetValue(key, out int[]? value))
+				if (!allCounts.TryGetValue(key, out MergedRowCounter? value))
 				{
-					value = new int[4];
-					allcounts.Add(key, value);
+					value = new()
+					{
+						ShipId = (ShipId)r.ShipID,
+					};
+					allCounts.Add(key, value);
 				}
 
 				switch (r.Rank)
 				{
 					case "B":
-						value[3]++;
+						value.CountB++;
 						break;
 					case "A":
-						value[2]++;
+						value.CountA++;
 						break;
 					case "S":
 					case "SS":
-						value[1]++;
+						value.CountS++;
 						break;
 				}
 
-				value[0]++;
+				value.Count++;
 			}
 
 			if (!ShouldIncludeRecord(r)) continue;
@@ -553,35 +537,42 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 					_ => GetContentStringForSorting(r, priorityShip, priorityItem),
 				};
 
-				if (!counts.TryGetValue(key, out int[]? value))
+				if (!counts.TryGetValue(key, out MergedRowCounter? value))
 				{
-					value = (new int[4]);
+					value = new()
+					{
+						ShipId = (ShipId)r.ShipID,
+					};
 					counts.Add(key, value);
 				}
 
 				switch (r.Rank)
 				{
 					case "B":
-						value[3]++;
+						value.CountB++;
 						break;
 					case "A":
-						value[2]++;
+						value.CountA++;
 						break;
 					case "S":
 					case "SS":
-						value[1]++;
+						value.CountS++;
 						break;
 				}
 
-				value[0]++;
+				value.Count++;
 			}
 		}
 
-		int[] allcountssum = Enumerable.Range(0, 4)
-			.Select(k => allcounts.Values.Sum(a => a[k]))
-			.ToArray();
+		MergedRowCounter allCountsSum = new()
+		{
+			Count = allCounts.Values.Sum(c => c.Count),
+			CountS = allCounts.Values.Sum(c => c.CountS),
+			CountA = allCounts.Values.Sum(c => c.CountA),
+			CountB = allCounts.Values.Sum(c => c.CountB),
+		};
 
-		foreach ((string key, int[] value) in counts)
+		foreach ((string key, MergedRowCounter value) in counts)
 		{
 			string name = key;
 
@@ -595,30 +586,31 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 			MergedDropRecordRow row = new()
 			{
-				Count = value[0],
+				Count = value.Count,
 				Name = serialId switch
 				{
 					0 => ConvertContentString(name),
 					_ => name,
 				},
-				CountS = value[1],
-				CountA = value[2],
-				CountB = value[3],
+				CountS = value.CountS,
+				CountA = value.CountA,
+				CountB = value.CountB,
+				ShipId = value.ShipId,
 			};
 
 			if (priorityContent == 2)
 			{
-				row.RateOrMaxCountTotal = allcounts[key][0];
-				row.RateOrMaxCountS = allcounts[key][1];
-				row.RateOrMaxCountA = allcounts[key][2];
-				row.RateOrMaxCountB = allcounts[key][3];
+				row.RateOrMaxCountTotal = allCounts[key].Count;
+				row.RateOrMaxCountS = allCounts[key].CountS;
+				row.RateOrMaxCountA = allCounts[key].CountA;
+				row.RateOrMaxCountB = allCounts[key].CountB;
 			}
 			else
 			{
-				row.RateOrMaxCountTotal = ((double)value[0] / Math.Max(allcountssum[0], 1));
-				row.RateOrMaxCountS = ((double)value[1] / Math.Max(allcountssum[1], 1));
-				row.RateOrMaxCountA = ((double)value[2] / Math.Max(allcountssum[2], 1));
-				row.RateOrMaxCountB = ((double)value[3] / Math.Max(allcountssum[3], 1));
+				row.RateOrMaxCountTotal = ((double)value.Count / Math.Max(allCountsSum.Count, 1));
+				row.RateOrMaxCountS = ((double)value.CountS / Math.Max(allCountsSum.CountS, 1));
+				row.RateOrMaxCountA = ((double)value.CountA / Math.Max(allCountsSum.CountA, 1));
+				row.RateOrMaxCountB = ((double)value.CountB / Math.Max(allCountsSum.CountB, 1));
 			}
 
 			rows.Add(row);
@@ -715,126 +707,4 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			StatusInfoText = DialogDropRecordViewer.CouldNotOpenBattleHistory;
 		}
 	}
-
-	private static bool IsCommonDrop(ShipId shipId) => shipId is
-		ShipId.Mutsuki or
-		ShipId.Kisaragi or
-		ShipId.Nagatsuki or
-		ShipId.Mikazuki or
-		ShipId.Fubuki or
-		ShipId.Shirayuki or
-		ShipId.Miyuki or
-		ShipId.Isonami or
-		ShipId.Ayanami or
-		ShipId.Shikinami or
-		ShipId.Akebono or
-		ShipId.Ushio or
-		ShipId.Kagerou or
-		ShipId.Shiranui or
-		ShipId.Kuroshio or
-		ShipId.Yukikaze or
-		ShipId.Nagara or
-		ShipId.Isuzu or
-		ShipId.Yura or
-		ShipId.Ooi or
-		ShipId.Kitakami or
-		ShipId.Fusou or
-		ShipId.Yamashiro or
-		ShipId.Satsuki or
-		ShipId.Fumizuki or
-		ShipId.Kikuzuki or
-		ShipId.Mochizuki or
-		ShipId.Hatsuyuki or
-		ShipId.Murakumo or
-		ShipId.Akatsuki or
-		ShipId.Hibiki or
-		ShipId.Ikazuchi or
-		ShipId.Inazuma or
-		ShipId.Hatsuharu or
-		ShipId.Nenohi or
-		ShipId.Wakaba or
-		ShipId.Hatsushimo or
-		ShipId.Shiratsuyu or
-		ShipId.Shigure or
-		ShipId.Murasame or
-		ShipId.Yuudachi or
-		ShipId.Samidare or
-		ShipId.Suzukaze or
-		ShipId.Arare or
-		ShipId.Kasumi or
-		ShipId.Shimakaze or
-		ShipId.Tenryuu or
-		ShipId.Tatsuta or
-		ShipId.Natori or
-		ShipId.Sendai or
-		ShipId.Jintsuu or
-		ShipId.Naka or
-		ShipId.Furutaka or
-		ShipId.Kako or
-		ShipId.Aoba or
-		ShipId.Myoukou or
-		ShipId.Nachi or
-		ShipId.Ashigara or
-		ShipId.Haguro or
-		ShipId.Takao or
-		ShipId.Atago or
-		ShipId.Maya or
-		ShipId.Choukai or
-		ShipId.Mogami or
-		ShipId.Tone or
-		ShipId.Chikuma or
-		ShipId.Shouhou or
-		ShipId.Hiyou or
-		ShipId.Ryuujou or
-		ShipId.Ise or
-		ShipId.Kongou or
-		ShipId.Haruna or
-		ShipId.Nagato or
-		ShipId.Mutsu or
-		ShipId.Akagi or
-		ShipId.Kaga or
-		ShipId.Kirishima or
-		ShipId.Hiei or
-		ShipId.Hyuuga or
-		ShipId.Houshou or
-		ShipId.Souryuu or
-		ShipId.Hiryuu or
-		ShipId.Junyou or
-		ShipId.Oboro or
-		ShipId.Sazanami or
-		ShipId.Asashio or
-		ShipId.Ooshio or
-		ShipId.Michishio or
-		ShipId.Arashio or
-		ShipId.Kuma or
-		ShipId.Tama or
-		ShipId.Kiso or
-		ShipId.Chitose or
-		ShipId.Chiyoda or
-		ShipId.Shoukaku or
-		ShipId.Zuikaku or
-		ShipId.Kinu or
-		ShipId.Abukuma or
-		ShipId.Yuubari or
-		ShipId.Zuihou or
-		ShipId.Mikuma or
-		ShipId.Maikaze or
-		ShipId.Kinugasa or
-		ShipId.Suzuya or
-		ShipId.Kumano or
-		ShipId.I168 or
-		ShipId.I58 or
-		ShipId.I8 or
-		ShipId.Akigumo or
-		ShipId.Yuugumo or
-		ShipId.Makigumo or
-		ShipId.Naganami or
-		ShipId.Taigei or
-		ShipId.I19 or
-		ShipId.Hayashimo or
-		ShipId.Kiyoshimo or
-		ShipId.Asagumo or
-		ShipId.Yamagumo or
-		ShipId.Nowaki or
-		ShipId.Asashimo;
 }

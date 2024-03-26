@@ -320,7 +320,7 @@
 				Grid.Column="0"
 				Grid.ColumnSpan="4"
 				Content="{Binding DialogDropRecordViewer.IgnoreCommonDrops}"
-				IsChecked="{Binding IgnoreCommonDrops}"
+				IsChecked="{Binding DropRecordFilter.IgnoreCommonDrops}"
 				/>
 		</Grid>
 
