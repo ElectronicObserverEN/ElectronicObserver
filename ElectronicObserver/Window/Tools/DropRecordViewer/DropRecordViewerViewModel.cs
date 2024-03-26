@@ -92,11 +92,15 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	{
 		Record = RecordManager.Instance.ShipDrop;
 
-		DataGridRawRowsViewModel = new(RecordRows);
-		DataGridRawRowsViewModel.FilterValue = DropRecordFilter.MatchesFilter;
+		DataGridRawRowsViewModel = new(RecordRows)
+		{
+			FilterValue = DropRecordFilter.MatchesFilter,
+		};
 
-		DataGridMergedRowsViewModel = new(MergedRecordRows);
-		DataGridMergedRowsViewModel.FilterValue = DropRecordFilter.MatchesFilter;
+		DataGridMergedRowsViewModel = new(MergedRecordRows)
+		{
+			FilterValue = DropRecordFilter.MatchesFilter,
+		};
 
 		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
 		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
