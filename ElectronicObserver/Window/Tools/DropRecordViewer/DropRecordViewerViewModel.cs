@@ -229,7 +229,10 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		bool includeShip = !ignoreShip && elem.ShipID > 0;
 		bool includeItem = !ignoreItem && elem.ItemID > 0;
+#pragma warning disable S2589
+		// this part could be removed since equips aren't supported via drop record anyway
 		bool includeEquipment = !ignoreEquipment && elem.EquipmentID > 0;
+#pragma warning restore S2589
 
 		return (includeShip, includeItem, includeEquipment) switch
 		{
