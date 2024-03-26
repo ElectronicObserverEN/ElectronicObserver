@@ -11,7 +11,7 @@ using DSPair = KeyValuePair<double, string>;
 /// 任務「あ号作戦」の進捗を管理します。
 /// </summary>
 [DataContract(Name = "ProgressAGo")]
-public class ProgressAGo : ProgressData
+public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 {
 
 	/// <summary>
@@ -123,12 +123,6 @@ public class ProgressAGo : ProgressData
 	}
 
 	#endregion
-
-
-	public ProgressAGo(QuestData quest)
-		: base(quest, 0)
-	{
-	}
 
 
 	public override double ProgressPercentage

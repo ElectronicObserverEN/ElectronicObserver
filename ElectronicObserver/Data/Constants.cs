@@ -991,20 +991,12 @@ public static class Constants
 	#endregion
 
 	#region Servers
-	public class KCServer
+	public class KCServer(int num, string name, string jp, string ip)
 	{
-		public int Num { get; set; }
-		public string Name { get; set; }
-		public string Jp { get; set; }
-		public string Ip { get; set; }
-
-		public KCServer(int num, string name, string jp, string ip)
-		{
-			this.Num = num;
-			this.Name = name;
-			this.Jp = jp;
-			this.Ip = ip;
-		}
+		public int Num { get; set; } = num;
+		public string Name { get; set; } = name;
+		public string Jp { get; set; } = jp;
+		public string Ip { get; set; } = ip;
 	}
 
 	public static KCServer getKCServer(int num)
