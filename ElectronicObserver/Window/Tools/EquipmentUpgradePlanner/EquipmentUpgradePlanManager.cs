@@ -25,6 +25,8 @@ public class EquipmentUpgradePlanManager
 	public event EventHandler? PlanCostUpdated;
 	public event EventHandler? PlanEquipmentMasterUpdated;
 
+	public bool CompactMode { get; set; } = false;
+
 	public EquipmentUpgradePlanManager()
 	{
 		SubscribeToApi();
