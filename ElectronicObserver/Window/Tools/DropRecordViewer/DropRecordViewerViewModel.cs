@@ -423,7 +423,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		return true;
 	}
 
-	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "<Pending>")]
 	private bool ShouldIncludeRecord(ShipDropRecord.ShipDropElement r)
 	{
 		if (ShipSearchOption is DropRecordOption.Drop && r.ShipID < 0) return false;
@@ -435,15 +434,9 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		if (ItemSearchOption is DropRecordOption.NoDrop && r.ItemID != -1) return false;
 		if (ItemSearchOption is UseItemMaster item && item.ID != r.ItemID) return false;
 
-		if (ShipTypeSearchOption is not ShipTypes.All)
-		{
-			if (KCDatabase.Instance.MasterShips[r.ShipID]?.ShipType != ShipTypeSearchOption)
-			{
-				return false;
-			}
-		}
+		if (ShipTypeSearchOption is ShipTypes.All) return true;
 
-		return true;
+		return KCDatabase.Instance.MasterShips[r.ShipID]?.ShipType == ShipTypeSearchOption;
 	}
 
 	private IEnumerable<DropRecordRow> MakeDropRecordRows()
