@@ -386,7 +386,7 @@ public partial class App
 			.Property(w => w.ViewModel.Filters.DisplayFinished)
 			.Property(w => w.ViewModel.Filters.SelectAllDay)
 			.Property(w => w.ViewModel.Filters.SelectToday)
-			.Property(w => w.ViewModel.CompactMode)
+			.Property(w => w.ViewModel.EquipmentUpgradePlanManager.CompactMode)
 			.Property(w => w.ViewModel.PlanListWidth)
 			.Property(w => w.ViewModel.PlannedUpgradesPager.ItemsPerPage);
 

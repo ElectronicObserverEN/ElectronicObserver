@@ -27,19 +27,19 @@ public class ProgressPractice : ProgressData
 	public ProgressPractice(QuestData quest, int maxCount, bool winOnly)
 		: base(quest, maxCount)
 	{
-		LowestRank = winOnly ? Constants.GetWinRank("B") : Constants.GetWinRank("");
+		LowestRank = winOnly ? (int)Constants.GetWinRank("B") : (int)Constants.GetWinRank("");
 		WinOnly = winOnly;
 	}
 
 	public ProgressPractice(QuestData quest, int maxCount, string lowestRank)
 		: base(quest, maxCount)
 	{
-		LowestRank = Constants.GetWinRank(lowestRank);
+		LowestRank = (int)Constants.GetWinRank(lowestRank);
 	}
 
 	public void Increment(string rank)
 	{
-		if (Constants.GetWinRank(rank) < LowestRank) return;
+		if ((int)Constants.GetWinRank(rank) < LowestRank) return;
 
 		if (!MeetsSpecialRequirements(QuestID)) return;
 

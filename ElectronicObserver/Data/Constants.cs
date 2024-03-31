@@ -1,4 +1,5 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 
@@ -374,6 +375,7 @@ public static class Constants
 		124 => "Marcello級",
 		125 => "Nevada級",
 		126 => "改氷川丸級",
+		127 => "巡潜乙型改一",
 		_ => "不明",
 	};
 
@@ -758,28 +760,17 @@ public static class Constants
 	/// <summary>
 	/// 勝利ランクを表すIDを取得します。
 	/// </summary>
-	public static int GetWinRank(string rank)
+	public static BattleRank GetWinRank(string rank) => rank.ToUpper() switch
 	{
-		switch (rank.ToUpper())
-		{
-			case "E":
-				return 1;
-			case "D":
-				return 2;
-			case "C":
-				return 3;
-			case "B":
-				return 4;
-			case "A":
-				return 5;
-			case "S":
-				return 6;
-			case "SS":
-				return 7;
-			default:
-				return 0;
-		}
-	}
+		"E" => BattleRank.E,
+		"D" => BattleRank.D,
+		"C" => BattleRank.C,
+		"B" => BattleRank.B,
+		"A" => BattleRank.A,
+		"S" => BattleRank.S,
+		"SS" => BattleRank.SS,
+		_ => BattleRank.Any,
+	};
 
 	/// <summary>
 	/// 勝利ランクを表す文字列を取得します。
@@ -1000,20 +991,12 @@ public static class Constants
 	#endregion
 
 	#region Servers
-	public class KCServer
+	public class KCServer(int num, string name, string jp, string ip)
 	{
-		public int Num { get; set; }
-		public string Name { get; set; }
-		public string Jp { get; set; }
-		public string Ip { get; set; }
-
-		public KCServer(int num, string name, string jp, string ip)
-		{
-			this.Num = num;
-			this.Name = name;
-			this.Jp = jp;
-			this.Ip = ip;
-		}
+		public int Num { get; set; } = num;
+		public string Name { get; set; } = name;
+		public string Jp { get; set; } = jp;
+		public string Ip { get; set; } = ip;
 	}
 
 	public static KCServer getKCServer(int num)

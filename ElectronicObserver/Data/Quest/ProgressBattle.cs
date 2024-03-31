@@ -9,37 +9,31 @@ namespace ElectronicObserver.Data.Quest;
 /// 戦闘系の任務の進捗を管理します。
 /// </summary>
 [DataContract(Name = "ProgressBattle")]
-public class ProgressBattle : ProgressData
+public class ProgressBattle(QuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly)
+	: ProgressData(quest, maxCount)
 {
 
 	/// <summary>
 	/// 条件を満たす最低ランク
 	/// </summary>
 	[DataMember]
-	private int LowestRank { get; set; }
+	private int LowestRank { get; set; } = (int)Constants.GetWinRank(lowestRank);
 
 	/// <summary>
 	/// 対象となる海域
 	/// </summary>
 	[DataMember]
-	private HashSet<int> TargetArea { get; set; }
+	private HashSet<int>? TargetArea { get; set; } = targetArea switch
+	{
+		null => null,
+		_ => new HashSet<int>(targetArea),
+	};
 
 	/// <summary>
 	/// ボス限定かどうか
 	/// </summary>
 	[DataMember]
-	private bool IsBossOnly { get; set; }
-
-
-	public ProgressBattle(QuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly)
-		: base(quest, maxCount)
-	{
-
-		LowestRank = Constants.GetWinRank(lowestRank);
-		TargetArea = targetArea == null ? null : new HashSet<int>(targetArea);
-		IsBossOnly = isBossOnly;
-	}
-
+	private bool IsBossOnly { get; set; } = isBossOnly;
 
 
 	public virtual void Increment(string rank, int areaID, bool isBoss)
@@ -48,7 +42,7 @@ public class ProgressBattle : ProgressData
 		if (TargetArea != null && !TargetArea.Contains(areaID))
 			return;
 
-		if (Constants.GetWinRank(rank) < LowestRank)
+		if ((int)Constants.GetWinRank(rank) < LowestRank)
 			return;
 
 		if (IsBossOnly && !isBoss)

@@ -42,4 +42,10 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="SortieDetail\**\*.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>

@@ -93,6 +93,7 @@
 				<RowDefinition />
 				<RowDefinition />
 				<RowDefinition />
+				<RowDefinition />
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
@@ -310,8 +311,16 @@
 			<Button
 				Grid.Row="2"
 				Grid.Column="7"
-				Command="{Binding StartSearchCommand}"
+				Command="{Binding SearchCommand}"
 				Content="{Binding DialogDropRecordViewer.ButtonRun}"
+				/>
+
+			<CheckBox
+				Grid.Row="3"
+				Grid.Column="0"
+				Grid.ColumnSpan="4"
+				Content="{Binding DialogDropRecordViewer.IgnoreCommonDrops}"
+				IsChecked="{Binding DropRecordFilter.IgnoreCommonDrops}"
 				/>
 		</Grid>
 
@@ -358,6 +367,7 @@
 					</Setter>
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
+
 			<!--
 				no idea how to do right click the mvvm way
 			-->
@@ -366,6 +376,7 @@
 					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
 				</Style>
 			</DataGrid.RowStyle>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Width="Auto"
@@ -452,6 +463,7 @@
 					</Setter>
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
+
 			<!--
 				no idea how to do right click the mvvm way
 			-->
@@ -460,6 +472,7 @@
 					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
 				</Style>
 			</DataGrid.RowStyle>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Width="Auto"

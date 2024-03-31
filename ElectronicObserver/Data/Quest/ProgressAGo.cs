@@ -11,7 +11,7 @@ using DSPair = KeyValuePair<double, string>;
 /// 任務「あ号作戦」の進捗を管理します。
 /// </summary>
 [DataContract(Name = "ProgressAGo")]
-public class ProgressAGo : ProgressData
+public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 {
 
 	/// <summary>
@@ -125,12 +125,6 @@ public class ProgressAGo : ProgressData
 	#endregion
 
 
-	public ProgressAGo(QuestData quest)
-		: base(quest, 0)
-	{
-	}
-
-
 	public override double ProgressPercentage
 	{
 		get
@@ -218,17 +212,17 @@ public class ProgressAGo : ProgressData
 		}
 
 
-		int irank = Constants.GetWinRank(rank);
+		int irank = (int)Constants.GetWinRank(rank);
 
 		if (isBoss)
 		{
 			if (q != null) bossCount++; else bossCountTemp++;
 
-			if (irank >= Constants.GetWinRank("B"))
+			if (irank >= (int)Constants.GetWinRank("B"))
 				if (q != null) bossWinCount++; else bossWinCountTemp++;
 		}
 
-		if (irank >= Constants.GetWinRank("S"))
+		if (irank >= (int)Constants.GetWinRank("S"))
 			if (q != null) sWinCount++; else sWinCountTemp++;
 
 	}
