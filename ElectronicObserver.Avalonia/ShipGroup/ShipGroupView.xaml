@@ -77,16 +77,16 @@
 
 	<Grid RowDefinitions="Auto Auto * Auto">
 		<Border Grid.Row="0" Background="Transparent">
-			<!--
-			<Border.InputBindings>
-				<MouseBinding Command="{Binding AddGroupCommand}" MouseAction="LeftDoubleClick" />
-			</Border.InputBindings>
-			-->
+			<Interaction.Behaviors>
+				<EventTriggerBehavior EventName="DoubleTapped">
+					<InvokeCommandAction Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AddGroupCommand, ElementName=ShipGroupControl}" />
+				</EventTriggerBehavior>
+			</Interaction.Behaviors>
 
 			<Border.ContextMenu>
-				<!--
 				<ContextMenu>
 					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
+					<!--
 					<MenuItem
 						Command="{Binding CopyGroupCommand}"
 						Header="{Binding FormShipGroup.MenuGroup_Copy}"
@@ -113,8 +113,8 @@
 						IsCheckable="True"
 						IsChecked="{Binding ShowStatusBar}"
 						/>
-				</ContextMenu>
 				-->
+				</ContextMenu>
 			</Border.ContextMenu>
 
 			<ScrollViewer VerticalScrollBarVisibility="Visible">

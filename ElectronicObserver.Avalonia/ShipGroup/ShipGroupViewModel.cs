@@ -19,6 +19,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	[ObservableProperty] private string _levelAverageText = "";
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
+	public required Action AddGroupAction { get; init; }
 
 	[RelayCommand]
 	private void SelectionChanged(IList selectedItems)
@@ -57,4 +58,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group) => SelectGroupAction.Invoke(group);
+
+	[RelayCommand]
+	private void AddGroup() => AddGroupAction.Invoke();
 }
