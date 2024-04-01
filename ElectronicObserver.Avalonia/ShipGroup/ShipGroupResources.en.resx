@@ -160,37 +160,37 @@
     <value>Fleet Tag</value>
   </data>
   <data name="MenuMember_AddToGroup" xml:space="preserve">
-    <value>&amp;Add to group...</value>
+    <value>_Add to group...</value>
   </data>
   <data name="MenuMember_CreateGroup" xml:space="preserve">
-    <value>Add to a &amp;new group...</value>
+    <value>Add to a _new group...</value>
   </data>
   <data name="MenuMember_Exclude" xml:space="preserve">
-    <value>&amp;Remove</value>
+    <value>_Remove</value>
   </data>
   <data name="MenuMember_Filter" xml:space="preserve">
-    <value>&amp;Filter...</value>
+    <value>_Filter...</value>
   </data>
   <data name="MenuMember_ColumnFilter" xml:space="preserve">
-    <value>Select &amp;columns...</value>
+    <value>Select _columns...</value>
   </data>
   <data name="MenuMember_SortOrder" xml:space="preserve">
-    <value>Custom &amp;sort...</value>
+    <value>Custom _sort...</value>
   </data>
   <data name="MenuMember_CSVOutput" xml:space="preserve">
-    <value>&amp;Export...</value>
+    <value>_Export...</value>
   </data>
   <data name="MenuGroup_Add" xml:space="preserve">
-    <value>&amp;New...</value>
+    <value>_New...</value>
   </data>
   <data name="MenuGroup_Copy" xml:space="preserve">
-    <value>&amp;Copy...</value>
+    <value>_Copy...</value>
   </data>
   <data name="MenuGroup_Rename" xml:space="preserve">
-    <value>&amp;Rename...</value>
+    <value>_Rename...</value>
   </data>
   <data name="MenuGroup_Delete" xml:space="preserve">
-    <value>&amp;Delete</value>
+    <value>_Delete</value>
   </data>
   <data name="MenuGroup_AutoUpdate" xml:space="preserve">
     <value>Update automatically</value>

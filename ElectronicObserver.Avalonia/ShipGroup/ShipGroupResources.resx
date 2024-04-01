@@ -140,37 +140,37 @@
     <value>出撃先</value>
   </data>
   <data name="MenuMember_AddToGroup" xml:space="preserve">
-    <value>グループへ追加(&amp;A)...</value>
+    <value>グループへ追加(_A)...</value>
   </data>
   <data name="MenuMember_CreateGroup" xml:space="preserve">
-    <value>新規グループの作成(&amp;N)...</value>
+    <value>新規グループの作成(_N)...</value>
   </data>
   <data name="MenuMember_Exclude" xml:space="preserve">
-    <value>除外(&amp;E)</value>
+    <value>除外(_E)</value>
   </data>
   <data name="MenuMember_Filter" xml:space="preserve">
-    <value>フィルタ設定(&amp;F)...</value>
+    <value>フィルタ設定(_F)...</value>
   </data>
   <data name="MenuMember_ColumnFilter" xml:space="preserve">
-    <value>列の表示設定(&amp;C)...</value>
+    <value>列の表示設定(_C)...</value>
   </data>
   <data name="MenuMember_SortOrder" xml:space="preserve">
-    <value>自動ソート設定(&amp;S)...</value>
+    <value>自動ソート設定(_S)...</value>
   </data>
   <data name="MenuMember_CSVOutput" xml:space="preserve">
-    <value>CSV出力(&amp;O)...</value>
+    <value>CSV出力(_O)...</value>
   </data>
   <data name="MenuGroup_Add" xml:space="preserve">
-    <value>グループを追加(&amp;A)</value>
+    <value>グループを追加(_A)...</value>
   </data>
   <data name="MenuGroup_Copy" xml:space="preserve">
-    <value>グループをコピー(&amp;C)</value>
+    <value>グループをコピー(_C)...</value>
   </data>
   <data name="MenuGroup_Rename" xml:space="preserve">
-    <value>グループ名の変更(&amp;R)...</value>
+    <value>グループ名の変更(_R)...</value>
   </data>
   <data name="MenuGroup_Delete" xml:space="preserve">
-    <value>グループを削除(&amp;D)</value>
+    <value>グループを削除(_D)</value>
   </data>
   <data name="MenuGroup_AutoUpdate" xml:space="preserve">
     <value>自動更新する</value>
