@@ -1,7 +1,12 @@
-﻿namespace ElectronicObserver.Avalonia.ShipGroup;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class ShipGroupTranslationViewModel
+namespace ElectronicObserver.Avalonia.ShipGroup;
+
+public class ShipGroupTranslationViewModel : ObservableObject
 {
+	public new void OnPropertyChanged(string? propertyName = null) 
+		=> base.OnPropertyChanged(propertyName);
+
 	public string Title => ShipGroupResources.Title;
 
 	public string ShipView_ShipType => ShipGroupResources.ShipView_ShipType;

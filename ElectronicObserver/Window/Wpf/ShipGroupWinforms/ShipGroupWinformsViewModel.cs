@@ -1,10 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using Avalonia.Win32.Interoperability;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
@@ -12,9 +9,9 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using MessageBox = System.Windows.Forms.MessageBox;
+using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
@@ -23,24 +20,21 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
 	public ShipGroupView ShipGroupView { get; }
 	public ShipGroupViewModel ShipGroupViewModel { get; }
-	public FormShipGroupTranslationViewModel FormShipGroup { get; }
 
 	public bool AutoUpdate { get; set; }
 	public bool ShowStatusBar { get; set; }
 
 	public GridLength GroupHeight { get; set; }
 
-	public ShipGroupItem? PreviousGroup { get; set; }
+	public ShipGroupItem? PreviousGroup { get; private set; }
 	public ShipGroupItem? SelectedGroup { get; set; }
 
 	public ShipGroupWinformsViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
 	{
-		FormShipGroup = Ioc.Default.GetRequiredService<FormShipGroupTranslationViewModel>();
-
-		Title = FormShipGroup.Title;
-		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;
-
-		ShipGroupViewModel = new(SelectGroupCommand);
+		ShipGroupViewModel = new()
+		{
+			SelectGroupAction = SelectGroup,
+		};
 		ShipGroupView = new()
 		{
 			DataContext = ShipGroupViewModel,
@@ -49,6 +43,9 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		{
 			Content = ShipGroupView,
 		};
+
+		Title = ShipGroupResources.Title;
+		ShipGroupViewModel.FormShipGroup.PropertyChanged += (_, _) => Title = ShipGroupResources.Title;
 
 		Configuration.ConfigurationData config = Configuration.Config;
 
@@ -110,7 +107,7 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 
 	private void ConfigurationChanged()
 	{
-		Configuration.ConfigurationData config = Configuration.Config;
+		ShipGroupViewModel.FormShipGroup.OnPropertyChanged("");
 	}
 
 	private void APIUpdated(string apiname, dynamic data)
@@ -149,9 +146,10 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void AddGroup()
 	{
-		using DialogTextInput dialog = new(FormShipGroup.DialogGroupAddTitle, FormShipGroup.DialogGroupAddDescription);
+		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupAddTitle,
+			ShipGroupResources.DialogGroupAddDescription);
 
-		if (dialog.ShowDialog(App.Current.MainWindow) != DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
 
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
 		group.Name = dialog.InputtedText.Trim();
@@ -173,7 +171,8 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void CopyGroup(ShipGroupItem group)
 	{
-		using DialogTextInput dialog = new(FormShipGroup.DialogGroupCopyTitle, FormShipGroup.DialogGroupCopyDescription);
+		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupCopyTitle,
+			ShipGroupResources.DialogGroupCopyDescription);
 
 		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
 
@@ -190,10 +189,10 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void RenameGroup(ShipGroupItem group)
 	{
-		using var dialog = new DialogTextInput(FormShipGroup.DialogGroupRenameTitle, FormShipGroup.DialogGroupRenameDescription);
+		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupRenameTitle, ShipGroupResources.DialogGroupRenameDescription);
 		dialog.InputtedText = group.Name;
 
-		if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
+		if (dialog.ShowDialog(App.Current!.MainWindow!) == DialogResult.OK)
 		{
 			group.Name = dialog.InputtedText.Trim();
 		}
@@ -202,8 +201,8 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void DeleteGroup(ShipGroupItem group)
 	{
-		if (MessageBox.Show(string.Format(FormShipGroup.DialogGroupDeleteDescription, group.Name),
-			FormShipGroup.DialogGroupDeleteTitle,
+		if (MessageBox.Show(string.Format(ShipGroupResources.DialogGroupDeleteDescription, group.Name),
+			ShipGroupResources.DialogGroupDeleteTitle,
 			MessageBoxButtons.YesNo,
 			MessageBoxIcon.Question,
 			MessageBoxDefaultButton.Button2) != DialogResult.Yes)

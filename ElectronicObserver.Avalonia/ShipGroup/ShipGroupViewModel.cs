@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
-public partial class ShipGroupViewModel(IRelayCommand<ShipGroupItem> selectGroup) : ObservableObject
+public partial class ShipGroupViewModel : ObservableObject
 {
 	public ShipGroupTranslationViewModel FormShipGroup { get; } = new();
 
@@ -20,17 +18,20 @@ public partial class ShipGroupViewModel(IRelayCommand<ShipGroupItem> selectGroup
 	[ObservableProperty] private string _levelTotalText = "";
 	[ObservableProperty] private string _levelAverageText = "";
 
+	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
+
 	[RelayCommand]
-	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 	private void SelectionChanged(IList selectedItems)
 	{
-		IEnumerable<ShipGroupItemViewModel> selectedShips = selectedItems.Cast<ShipGroupItemViewModel>();
+		List<ShipGroupItemViewModel> selectedShips = selectedItems
+			.OfType<ShipGroupItemViewModel>()
+			.ToList();
 
-		int selectedShipCount = selectedShips.Count();
+		int selectedShipCount = selectedShips.Count;
 
 		if (selectedShipCount >= 2)
 		{
-			int membersCount = selectedShips.Count();
+			int membersCount = selectedShips.Count;
 			int levelSum = selectedShips.Sum(s => s.Level);
 			double levelAverage = levelSum / Math.Max(membersCount, 1.0);
 			long expSum = selectedShips.Sum(s => (long)s.ExpTotal);
@@ -55,5 +56,5 @@ public partial class ShipGroupViewModel(IRelayCommand<ShipGroupItem> selectGroup
 	}
 
 	[RelayCommand]
-	private void SelectGroup(ShipGroupItem group) => selectGroup.Execute(group);
+	private void SelectGroup(ShipGroupItem group) => SelectGroupAction.Invoke(group);
 }
