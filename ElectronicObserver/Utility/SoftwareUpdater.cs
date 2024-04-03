@@ -331,7 +331,13 @@ public class SoftwareUpdater
 			};
 
 			DateTime maintenanceStartDate = DateTimeHelper.CSVStringToTime(dataJson.MaintStart);
-			DateTime maintenanceEndDate = DateTimeHelper.CSVStringToTime(dataJson.MaintEnd);
+
+			DateTime? maintenanceEndDate = dataJson.MaintEnd switch
+			{
+				null => null,
+				_ => DateTimeHelper.CSVStringToTime(dataJson.MaintEnd),
+			};
+
 			var eventState = (MaintenanceState)(int)dataJson.MaintEventState;
 			string maintenanceInformationLink = (string)dataJson.MaintInfoLink;
 
@@ -417,7 +423,7 @@ public class UpdateData
 	public int FitBonuses { get; set; }
 	public int EquipmentUpgrades { get; set; }
 	public DateTime MaintenanceStart { get; set; }
-	public DateTime MaintenanceEnd { get; set; }
+	public DateTime? MaintenanceEnd { get; set; }
 	public string MaintenanceInformationLink { get; set; } = "";
 
 	/// <summary>

@@ -1851,7 +1851,7 @@ public partial class FormMainViewModel : ObservableObject
 		MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
 
 		DateTime maintStartDate = SoftwareUpdater.LatestVersion.MaintenanceStart;
-		DateTime maintEndDate = SoftwareUpdater.LatestVersion.MaintenanceEnd;
+		DateTime? maintEndDate = SoftwareUpdater.LatestVersion.MaintenanceEnd;
 
 		if (eventState != MaintenanceState.None)
 		{
@@ -1859,24 +1859,26 @@ public partial class FormMainViewModel : ObservableObject
 			{
 				maintTimer = maintStartDate - now;
 			} 
-			else if (maintEndDate > now)
+			else if (maintEndDate > now && maintEndDate is { } end)
 			{
-				maintTimer = maintEndDate - now;
+				maintTimer = end - now;
 			}
 		}
 
-		string message = (eventState, maintStartDate > now, maintEndDate > now) switch
+		string message = (eventState, maintStartDate > now, maintEndDate > now, maintEndDate) switch
 		{
-			(MaintenanceState.EventStart, true, true) => formMain.MaintenanceStartsIn,
-			(MaintenanceState.EventStart, false, true) => formMain.EventStartsIn,
-			(MaintenanceState.EventStart, false, false) => formMain.EventHasStarted,
+			(not MaintenanceState.None, false, _, null) => formMain.MaintenanceHasStarted,
 
-			(MaintenanceState.EventEnd, true, true) => formMain.EventEndsIn,
-			(MaintenanceState.EventEnd, false, _) => formMain.EventHasEnded,
+			(MaintenanceState.EventStart, true, true, _) => formMain.MaintenanceStartsIn,
+			(MaintenanceState.EventStart, false, true, _) => formMain.EventStartsIn,
+			(MaintenanceState.EventStart, false, false, _) => formMain.EventHasStarted,
 
-			(MaintenanceState.Regular, true, true) => formMain.MaintenanceStartsIn,
-			(MaintenanceState.Regular, false, true) => formMain.MaintenanceEndsIn,
-			(MaintenanceState.Regular, false, false) => formMain.MaintenanceHasEnded,
+			(MaintenanceState.EventEnd, true, true, _) => formMain.EventEndsIn,
+			(MaintenanceState.EventEnd, false, _, _) => formMain.EventHasEnded,
+
+			(MaintenanceState.Regular, true, true, _) => formMain.MaintenanceStartsIn,
+			(MaintenanceState.Regular, false, true, _) => formMain.MaintenanceEndsIn,
+			(MaintenanceState.Regular, false, false, _) => formMain.MaintenanceHasEnded,
 
 			_ => string.Empty,
 		};

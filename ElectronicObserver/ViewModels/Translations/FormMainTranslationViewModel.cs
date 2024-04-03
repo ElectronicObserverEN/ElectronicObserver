@@ -118,6 +118,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 
 	public string MaintenanceStartsIn => MainResources.MaintenanceStartsIn;
 	public string MaintenanceEndsIn => MainResources.MaintenanceEndsIn;
+	public string MaintenanceHasStarted => MainResources.MaintenanceHasStarted;
 	public string MaintenanceHasEnded => MainResources.MaintenanceHasEnded;
 
 	public string NextExerciseReset => MainResources.NextExerciseReset.Replace("_", "__").Replace("&", "_");

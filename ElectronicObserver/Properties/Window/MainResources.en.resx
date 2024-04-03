@@ -453,4 +453,7 @@ Do you want to open this github issue?</value>
   <data name="MaintenanceEndsIn" xml:space="preserve">
     <value>Maintenance ends in {0}</value>
   </data>
+  <data name="MaintenanceHasStarted" xml:space="preserve">
+    <value>Maintenance has started</value>
+  </data>
 </root>
