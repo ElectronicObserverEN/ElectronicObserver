@@ -38,36 +38,37 @@
 				<Border.ContextMenu>
 					<ContextMenu>
 						<MenuItem Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AddGroupCommand, ElementName=ShipGroupControl}" Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Add, ElementName=ShipGroupControl}" />
+						<MenuItem
+							Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).CopyGroupCommand, ElementName=ShipGroupControl}"
+							CommandParameter="{Binding}"
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Copy, ElementName=ShipGroupControl}"
+							/>
+						<MenuItem
+							Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).RenameGroupCommand, ElementName=ShipGroupControl}"
+							CommandParameter="{Binding}"
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Rename, ElementName=ShipGroupControl}"
+							/>
+						<MenuItem
+							Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).DeleteGroupCommand, ElementName=ShipGroupControl}"
+							CommandParameter="{Binding}"
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Delete, ElementName=ShipGroupControl}"
+							/>
 						<!--
-							<MenuItem
-								Command="{Binding ViewModel.CopyGroupCommand}"
-								CommandParameter="{Binding}"
-								Header="{Binding ViewModel.FormShipGroup.MenuGroup_Copy}"
-								/>
-							<MenuItem
-								Command="{Binding ViewModel.RenameGroupCommand}"
-								CommandParameter="{Binding}"
-								Header="{Binding ViewModel.FormShipGroup.MenuGroup_Rename}"
-								/>
-							<MenuItem
-								Command="{Binding ViewModel.DeleteGroupCommand}"
-								CommandParameter="{Binding}"
-								Header="{Binding ViewModel.FormShipGroup.MenuGroup_Delete}"
-								/>
-							<Separator />
-							<MenuItem
-								Header="{Binding ViewModel.FormShipGroup.MenuGroup_AutoUpdate}"
-								IsCheckable="True"
-								IsChecked="{Binding ViewModel.AutoUpdate}"
-								/>
-							<MenuItem
-								Header="{Binding FormShipGroup.MenuGroup_ShowStatusBar}"
-								IsCheckable="True"
-								IsChecked="{Binding ViewModel.ShowStatusBar}"
-								/>
-					-->
+						<Separator />
+						<MenuItem
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_AutoUpdate, ElementName=ShipGroupControl}"
+							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AutoUpdate, ElementName=ShipGroupControl}"
+							ToggleType="CheckBox"
+							/>
+						<MenuItem
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_ShowStatusBar, ElementName=ShipGroupControl}"
+							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).ShowStatusBar, ElementName=ShipGroupControl}"
+							ToggleType="CheckBox"
+							/>
+						-->
 					</ContextMenu>
 				</Border.ContextMenu>
+
 				<TextBlock MinWidth="16" Text="{Binding Name}" />
 			</Border>
 		</DataTemplate>
@@ -85,33 +86,18 @@
 				<ContextMenu>
 					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
 					<!--
-					<MenuItem
-						Command="{Binding CopyGroupCommand}"
-						Header="{Binding FormShipGroup.MenuGroup_Copy}"
-						IsEnabled="False"
-						/>
-					<MenuItem
-						Command="{Binding RenameGroupCommand}"
-						Header="{Binding FormShipGroup.MenuGroup_Rename}"
-						IsEnabled="False"
-						/>
-					<MenuItem
-						Command="{Binding DeleteGroupCommand}"
-						Header="{Binding FormShipGroup.MenuGroup_Delete}"
-						IsEnabled="False"
-						/>
 					<Separator />
 					<MenuItem
 						Header="{Binding FormShipGroup.MenuGroup_AutoUpdate}"
-						IsCheckable="True"
 						IsChecked="{Binding AutoUpdate}"
+						ToggleType="CheckBox"
 						/>
 					<MenuItem
 						Header="{Binding FormShipGroup.MenuGroup_ShowStatusBar}"
-						IsCheckable="True"
 						IsChecked="{Binding ShowStatusBar}"
+						ToggleType="CheckBox"
 						/>
-				-->
+					-->
 				</ContextMenu>
 			</Border.ContextMenu>
 

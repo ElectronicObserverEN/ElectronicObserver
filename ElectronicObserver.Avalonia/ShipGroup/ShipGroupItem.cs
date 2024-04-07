@@ -2,12 +2,12 @@
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
-public class ShipGroupItem : ObservableObject
+public partial class ShipGroupItem : ObservableObject
 {
 	public IGroupItem Group { get; }
 
-	public string Name { get; set; }
-	public bool IsSelected { get; set; }
+	[ObservableProperty] private string _name;
+	[ObservableProperty] private bool _isSelected;
 
 	public ShipGroupItem(IGroupItem group)
 	{

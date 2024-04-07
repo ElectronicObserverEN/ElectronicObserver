@@ -35,6 +35,9 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		{
 			SelectGroupAction = SelectGroup,
 			AddGroupAction = AddGroup,
+			CopyGroupAction = CopyGroup,
+			RenameGroupAction = RenameGroup,
+			DeleteGroupAction = DeleteGroup,
 		};
 		ShipGroupView = new()
 		{

@@ -9,6 +9,7 @@ public partial class ShipGroupViewModel : ObservableObject
 {
 	public ShipGroupTranslationViewModel FormShipGroup { get; } = new();
 
+	[ObservableProperty] private bool _autoUpdate = true;
 	[ObservableProperty] private bool _showStatusBar = true;
 
 	[ObservableProperty] private ObservableCollection<ShipGroupItem> _groups = [];
@@ -20,6 +21,9 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
 	public required Action AddGroupAction { get; init; }
+	public required Action<ShipGroupItem> CopyGroupAction { get; init; }
+	public required Action<ShipGroupItem> RenameGroupAction { get; init; }
+	public required Action<ShipGroupItem> DeleteGroupAction { get; init; }
 
 	[RelayCommand]
 	private void SelectionChanged(IList selectedItems)
@@ -61,4 +65,13 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[RelayCommand]
 	private void AddGroup() => AddGroupAction.Invoke();
+
+	[RelayCommand]
+	private void CopyGroup(ShipGroupItem group) => CopyGroupAction.Invoke(group);
+
+	[RelayCommand]
+	private void RenameGroup(ShipGroupItem group) => RenameGroupAction.Invoke(group);
+
+	[RelayCommand]
+	private void DeleteGroup(ShipGroupItem group) => DeleteGroupAction.Invoke(group);
 }
