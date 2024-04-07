@@ -86,6 +86,7 @@
 				<ContextMenu>
 					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
 					<!--
+					todo: ToggleType isn't supported in release versions yet and the beta breaks EO for some reason
 					<Separator />
 					<MenuItem
 						Header="{Binding FormShipGroup.MenuGroup_AutoUpdate}"
