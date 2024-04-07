@@ -11,6 +11,10 @@
 	x:DataType="shipGroup:ShipGroupViewModel"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<shipGroup:ShipGroupDropHandler x:Key="ShipGroupDropHandler" />
+	</UserControl.Resources>
+
 	<UserControl.DataTemplates>
 		<DataTemplate DataType="shipGroup:ShipGroupItem">
 			<Border Padding="3" BorderThickness="1">
@@ -18,6 +22,7 @@
 					<EventTriggerBehavior EventName="PointerPressed">
 						<InvokeCommandAction Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).SelectGroupCommand, ElementName=ShipGroupControl}" CommandParameter="{Binding}" />
 					</EventTriggerBehavior>
+					<ContextDragBehavior />
 				</Interaction.Behaviors>
 
 				<Border.Styles>
@@ -121,7 +126,11 @@
 				<ItemsControl DragDrop.AllowDrop="True" ItemsSource="{Binding Groups}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
-							<WrapPanel Orientation="Horizontal" />
+							<WrapPanel Orientation="Horizontal">
+								<Interaction.Behaviors>
+									<ContextDropBehavior Handler="{StaticResource ShipGroupDropHandler}" />
+								</Interaction.Behaviors>
+							</WrapPanel>
 						</ItemsPanelTemplate>
 					</ItemsControl.ItemsPanel>
 				</ItemsControl>
