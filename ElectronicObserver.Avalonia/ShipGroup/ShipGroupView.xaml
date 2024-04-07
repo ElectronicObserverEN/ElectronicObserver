@@ -34,18 +34,11 @@
 						<Setter Property="Background" Value="Fuchsia" />
 					</Style>
 				</Border.Styles>
-				<!--
-					<Border.InputBindings>
-						<MouseBinding
-							Command="{Binding ViewModel.SelectGroupCommand, ElementName=ShipGroupWinformsControl}"
-							CommandParameter="{Binding}"
-							MouseAction="LeftClick"
-							/>
-					</Border.InputBindings>
 
-					<Border.ContextMenu>
-						<ContextMenu>
-							<MenuItem Command="{Binding ViewModel.AddGroupCommand}" Header="{Binding ViewModel.FormShipGroup.MenuGroup_Add}" />
+				<Border.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AddGroupCommand, ElementName=ShipGroupControl}" Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Add, ElementName=ShipGroupControl}" />
+						<!--
 							<MenuItem
 								Command="{Binding ViewModel.CopyGroupCommand}"
 								CommandParameter="{Binding}"
@@ -72,9 +65,9 @@
 								IsCheckable="True"
 								IsChecked="{Binding ViewModel.ShowStatusBar}"
 								/>
-						</ContextMenu>
-					</Border.ContextMenu>
 					-->
+					</ContextMenu>
+				</Border.ContextMenu>
 				<TextBlock MinWidth="16" Text="{Binding Name}" />
 			</Border>
 		</DataTemplate>
