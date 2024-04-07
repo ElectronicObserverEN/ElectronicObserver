@@ -17,7 +17,11 @@
 
 	<UserControl.DataTemplates>
 		<DataTemplate DataType="shipGroup:ShipGroupItem">
-			<Border Padding="3" BorderThickness="1">
+			<Border
+				Padding="3"
+				BorderThickness="1"
+				Classes="ShipGroup"
+				>
 				<Interaction.Behaviors>
 					<EventTriggerBehavior EventName="PointerPressed">
 						<InvokeCommandAction Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).SelectGroupCommand, ElementName=ShipGroupControl}" CommandParameter="{Binding}" />
@@ -26,11 +30,11 @@
 				</Interaction.Behaviors>
 
 				<Border.Styles>
-					<Style Selector="Border">
+					<Style Selector="Border.ShipGroup">
 						<Setter Property="Background" Value="Transparent" />
 						<Setter Property="BorderBrush" Value="#888888" />
 					</Style>
-					<Style Selector="Border:pointerover">
+					<Style Selector="Border.ShipGroup:pointerover">
 						<Setter Property="Background" Value="Fuchsia" />
 					</Style>
 				</Border.Styles>
