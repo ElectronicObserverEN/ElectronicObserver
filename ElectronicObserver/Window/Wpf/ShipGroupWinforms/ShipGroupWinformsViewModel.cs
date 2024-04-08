@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Forms;
 using Avalonia.Win32.Interoperability;
-using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -15,11 +14,11 @@ using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResour
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
-public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
+public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 {
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
-	public ShipGroupView ShipGroupView { get; }
-	public ShipGroupViewModel ShipGroupViewModel { get; }
+	private ShipGroupView ShipGroupView { get; }
+	private ShipGroupViewModel ShipGroupViewModel { get; }
 
 	public bool AutoUpdate { get; set; }
 	public bool ShowStatusBar { get; set; }
@@ -123,7 +122,6 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		}
 	}
 
-	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
 		ShipGroupViewModel.Items = ((ShipGroupData)group.Group).MembersInstance
@@ -147,7 +145,6 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		PreviousGroup.IsSelected = false;
 	}
 
-	[RelayCommand]
 	private void AddGroup()
 	{
 		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupAddTitle,
@@ -172,7 +169,6 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		ShipGroupViewModel.Groups.Add(new(group));
 	}
 
-	[RelayCommand]
 	private void CopyGroup(ShipGroupItem group)
 	{
 		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupCopyTitle,
@@ -190,7 +186,6 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		ShipGroupViewModel.Groups.Add(new(newGroup));
 	}
 
-	[RelayCommand]
 	private void RenameGroup(ShipGroupItem group)
 	{
 		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupRenameTitle, ShipGroupResources.DialogGroupRenameDescription);
@@ -202,7 +197,6 @@ public sealed partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		}
 	}
 
-	[RelayCommand]
 	private void DeleteGroup(ShipGroupItem group)
 	{
 		if (MessageBox.Show(string.Format(ShipGroupResources.DialogGroupDeleteDescription, group.Name),
