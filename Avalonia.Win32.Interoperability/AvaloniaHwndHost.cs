@@ -77,6 +77,11 @@ public class WpfAvaloniaHost : HwndHost
 
 		if (PresentationSource.FromVisual(this) is HwndSource source)
 		{
+			const int GWL_STYLE = -16;
+			const int WS_CHILD = 0x40000000;
+
+			_ = UnmanagedMethods.SetWindowLong(handle, GWL_STYLE, WS_CHILD);
+
 			_ = UnmanagedMethods.SetParent(handle, source.Handle);
 		}
 
