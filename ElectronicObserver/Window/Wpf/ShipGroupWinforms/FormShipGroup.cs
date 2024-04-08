@@ -350,7 +350,7 @@ public partial class FormShipGroup: Form
 
 	private void APIUpdated(string apiname, dynamic data)
 	{
-		if (ViewModel.AutoUpdate)
+		if (ViewModel.ShipGroupViewModel.AutoUpdate)
 		{
 			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
 		}
@@ -1499,8 +1499,8 @@ public partial class FormShipGroup: Form
 
 	void SystemShuttingDown()
 	{
-		Utility.Configuration.Config.FormShipGroup.AutoUpdate = ViewModel.AutoUpdate;
-		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = ViewModel.ShowStatusBar;
+		Utility.Configuration.Config.FormShipGroup.AutoUpdate = ViewModel.ShipGroupViewModel.AutoUpdate;
+		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = ViewModel.ShipGroupViewModel.ShowStatusBar;
 		Utility.Configuration.Config.FormShipGroup.GroupHeight = ViewModel.GroupHeight.Value;
 	}
 }

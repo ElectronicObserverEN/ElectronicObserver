@@ -57,19 +57,17 @@
 							CommandParameter="{Binding}"
 							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Delete, ElementName=ShipGroupControl}"
 							/>
-						<!--
 						<Separator />
 						<MenuItem
 							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_AutoUpdate, ElementName=ShipGroupControl}"
-							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AutoUpdate, ElementName=ShipGroupControl}"
+							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AutoUpdate, ElementName=ShipGroupControl, Mode=TwoWay}"
 							ToggleType="CheckBox"
 							/>
 						<MenuItem
 							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_ShowStatusBar, ElementName=ShipGroupControl}"
-							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).ShowStatusBar, ElementName=ShipGroupControl}"
+							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).ShowStatusBar, ElementName=ShipGroupControl, Mode=TwoWay}"
 							ToggleType="CheckBox"
 							/>
-						-->
 					</ContextMenu>
 				</Border.ContextMenu>
 
@@ -89,20 +87,17 @@
 			<Border.ContextMenu>
 				<ContextMenu>
 					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
-					<!--
-					todo: ToggleType isn't supported in release versions yet and the beta breaks EO for some reason
 					<Separator />
 					<MenuItem
 						Header="{Binding FormShipGroup.MenuGroup_AutoUpdate}"
-						IsChecked="{Binding AutoUpdate}"
+						IsChecked="{Binding AutoUpdate, Mode=TwoWay}"
 						ToggleType="CheckBox"
 						/>
 					<MenuItem
 						Header="{Binding FormShipGroup.MenuGroup_ShowStatusBar}"
-						IsChecked="{Binding ShowStatusBar}"
+						IsChecked="{Binding ShowStatusBar, Mode=TwoWay}"
 						ToggleType="CheckBox"
 						/>
-					-->
 				</ContextMenu>
 			</Border.ContextMenu>
 

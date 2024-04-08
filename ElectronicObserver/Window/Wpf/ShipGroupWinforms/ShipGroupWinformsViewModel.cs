@@ -18,10 +18,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 {
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
 	private ShipGroupView ShipGroupView { get; }
-	private ShipGroupViewModel ShipGroupViewModel { get; }
-
-	public bool AutoUpdate { get; set; }
-	public bool ShowStatusBar { get; set; }
+	public ShipGroupViewModel ShipGroupViewModel { get; }
 
 	public GridLength GroupHeight { get; set; }
 
@@ -52,8 +49,8 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 
 		Configuration.ConfigurationData config = Configuration.Config;
 
-		AutoUpdate = config.FormShipGroup.AutoUpdate;
-		ShowStatusBar = config.FormShipGroup.ShowStatusBar;
+		ShipGroupViewModel.AutoUpdate = config.FormShipGroup.AutoUpdate;
+		ShipGroupViewModel.ShowStatusBar = config.FormShipGroup.ShowStatusBar;
 		GroupHeight = new(config.FormShipGroup.GroupHeight);
 
 		Loaded();
@@ -115,7 +112,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 
 	private void APIUpdated(string apiname, dynamic data)
 	{
-		if (AutoUpdate)
+		if (ShipGroupViewModel.AutoUpdate)
 		{
 			// todo
 			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
@@ -220,10 +217,8 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 
 	private void SystemShuttingDown()
 	{
-		// todo: not needed for testing
-		/*
-		Configuration.Config.FormShipGroup.AutoUpdate = AutoUpdate;
-		Configuration.Config.FormShipGroup.ShowStatusBar = ShowStatusBar;
+		Configuration.Config.FormShipGroup.AutoUpdate = ShipGroupViewModel.AutoUpdate;
+		Configuration.Config.FormShipGroup.ShowStatusBar = ShipGroupViewModel.ShowStatusBar;
 		Configuration.Config.FormShipGroup.GroupHeight = GroupHeight.Value;
 
 		// update group IDs to match their current order
@@ -232,6 +227,5 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 		{
 			group.GroupID = i + 1;
 		}
-		*/
 	}
 }
