@@ -20,8 +20,6 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 	private ShipGroupView ShipGroupView { get; }
 	public ShipGroupViewModel ShipGroupViewModel { get; }
 
-	public GridLength GroupHeight { get; set; }
-
 	public ShipGroupItem? PreviousGroup { get; private set; }
 	public ShipGroupItem? SelectedGroup { get; set; }
 
@@ -51,7 +49,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 
 		ShipGroupViewModel.AutoUpdate = config.FormShipGroup.AutoUpdate;
 		ShipGroupViewModel.ShowStatusBar = config.FormShipGroup.ShowStatusBar;
-		GroupHeight = new(config.FormShipGroup.GroupHeight);
+		ShipGroupViewModel.GroupHeight = new(config.FormShipGroup.GroupHeight);
 
 		Loaded();
 
@@ -219,7 +217,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 	{
 		Configuration.Config.FormShipGroup.AutoUpdate = ShipGroupViewModel.AutoUpdate;
 		Configuration.Config.FormShipGroup.ShowStatusBar = ShipGroupViewModel.ShowStatusBar;
-		Configuration.Config.FormShipGroup.GroupHeight = GroupHeight.Value;
+		Configuration.Config.FormShipGroup.GroupHeight = ShipGroupViewModel.GroupHeight.Value;
 
 		// update group IDs to match their current order
 		// the serializer saves groups ordered by ID to preserve user reordering

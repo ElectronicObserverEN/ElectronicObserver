@@ -76,7 +76,14 @@
 		</DataTemplate>
 	</UserControl.DataTemplates>
 
-	<Grid RowDefinitions="Auto Auto * Auto">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="{Binding GroupHeight, Mode=TwoWay}" MinHeight="30" />
+			<RowDefinition Height="1" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
 		<Border Grid.Row="0" Background="Transparent">
 			<Interaction.Behaviors>
 				<EventTriggerBehavior EventName="DoubleTapped">
@@ -115,6 +122,12 @@
 				</ItemsControl>
 			</ScrollViewer>
 		</Border>
+
+		<GridSplitter
+			Grid.Row="1"
+			Background="#888888"
+			ResizeDirection="Rows"
+			/>
 
 		<DataGrid
 			x:Name="DataGrid"

@@ -1501,6 +1501,6 @@ public partial class FormShipGroup: Form
 	{
 		Utility.Configuration.Config.FormShipGroup.AutoUpdate = ViewModel.ShipGroupViewModel.AutoUpdate;
 		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = ViewModel.ShipGroupViewModel.ShowStatusBar;
-		Utility.Configuration.Config.FormShipGroup.GroupHeight = ViewModel.GroupHeight.Value;
+		Utility.Configuration.Config.FormShipGroup.GroupHeight = ViewModel.ShipGroupViewModel.GroupHeight.Value;
 	}
 }

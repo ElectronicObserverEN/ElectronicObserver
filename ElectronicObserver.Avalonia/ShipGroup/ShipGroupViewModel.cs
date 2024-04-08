@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -13,6 +14,8 @@ public partial class ShipGroupViewModel : ObservableObject
 	[ObservableProperty] private bool _showStatusBar = true;
 
 	[ObservableProperty] private ObservableCollection<ShipGroupItem> _groups = [];
+
+	[ObservableProperty] private GridLength _groupHeight;
 
 	[ObservableProperty] private ObservableCollection<ShipGroupItemViewModel> _items = [];
 	[ObservableProperty] private string _shipCountText = "";
