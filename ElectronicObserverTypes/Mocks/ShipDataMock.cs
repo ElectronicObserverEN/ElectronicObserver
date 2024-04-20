@@ -67,6 +67,7 @@ public class ShipDataMock : IShipData
 	public int Ammo { get; set; }
 	public int SlotSize { get; set; }
 	public int RepairTime { get; set; }
+	public TimeSpan RepairTimeUnit => TimeSpan.Zero;
 	public int RepairSteel { get; set; }
 	public int RepairFuel { get; set; }
 	public int Condition { get; set; }

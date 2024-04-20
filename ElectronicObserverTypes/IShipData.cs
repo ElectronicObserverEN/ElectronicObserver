@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ElectronicObserverTypes;
 
@@ -152,6 +153,11 @@ public interface IShipData
 	/// 入渠にかかる時間(ミリ秒)
 	/// </summary>
 	int RepairTime { get; }
+
+	/// <summary>
+	/// HP を 1 回復するために必要な入渠時間を求めます。
+	/// </summary>
+	TimeSpan RepairTimeUnit { get; }
 
 	/// <summary>
 	/// 入渠にかかる鋼材
