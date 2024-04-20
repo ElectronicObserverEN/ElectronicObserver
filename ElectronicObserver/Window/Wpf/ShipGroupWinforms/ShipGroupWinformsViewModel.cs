@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using Avalonia.Win32.Interoperability;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -9,6 +11,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserverTypes;
 using MessageBox = System.Windows.Forms.MessageBox;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
@@ -32,6 +35,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 			CopyGroupAction = CopyGroup,
 			RenameGroupAction = RenameGroup,
 			DeleteGroupAction = DeleteGroup,
+			AddToGroupAction = AddToGroup,
 		};
 		ShipGroupView = new()
 		{
@@ -120,6 +124,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 	private void SelectGroup(ShipGroupItem group)
 	{
 		ShipGroupViewModel.Items = ((ShipGroupData)group.Group).MembersInstance
+			.OfType<IShipData>()
 			.Select(s => new ShipGroupItemViewModel(s))
 			.ToObservableCollection();
 
@@ -211,6 +216,30 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 
 		ShipGroupViewModel.Groups.Remove(group);
 		KCDatabase.Instance.ShipGroup.ShipGroups.Remove((ShipGroupData)group.Group);
+	}
+
+	private IEnumerable<int> GetSelectedShipID() => ShipGroupViewModel.SelectedShips
+		.Select(s => s.MasterId);
+
+	private void AddToGroup()
+	{
+		using DialogTextSelect dialog = new(ShipGroupResources.DialogGroupAddToGroupTitle,
+			ShipGroupResources.DialogGroupAddToGroupDescription,
+			KCDatabase.Instance.ShipGroup.ShipGroups.Values.ToArray());
+
+		if (dialog.ShowDialog(App.Current!.MainWindow!) is not DialogResult.OK) return;
+
+		ShipGroupData? group = (ShipGroupData?)dialog.SelectedItem;
+
+		if (group is null) return;
+
+		group.AddInclusionFilter(GetSelectedShipID());
+		
+		if (group.ID == SelectedGroup?.Id)
+		{
+			// refresh datagrid
+			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+		}
 	}
 
 	private void SystemShuttingDown()

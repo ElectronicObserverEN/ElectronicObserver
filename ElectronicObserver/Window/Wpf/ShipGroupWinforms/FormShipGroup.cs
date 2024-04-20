@@ -22,7 +22,7 @@ using ShipGroupResources = ElectronicObserver.Translations.ShipGroupResources;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
-public partial class FormShipGroup: Form
+public partial class FormShipGroup : Form
 {
 	// セル背景色
 	private readonly Color CellColorRed = Color.FromArgb(0xFF, 0xBB, 0xBB);
@@ -1305,193 +1305,176 @@ public partial class FormShipGroup: Form
 
 	private void MenuMember_CSVOutput_Click(object sender, EventArgs e)
 	{
-
-		IEnumerable<ShipData> ships;
-
-		if (ViewModel.SelectedGroup is null)
+		IEnumerable<ShipData> ships = ViewModel.SelectedGroup switch
 		{
-			ships = KCDatabase.Instance.Ships.Values;
-		}
-		else
-		{
-			//*/
-			ships = ShipView.Rows.Cast<DataGridViewRow>().Select(r => KCDatabase.Instance.Ships[(int)r.Cells[ShipView_ID.Index].Value]);
-			/*/
-			var group = KCDatabase.Instance.ShipGroup[(int)SelectedTab.Tag];
-			if ( group == null )
-				ships = KCDatabase.Instance.Ships.Values;
-			else
-				ships = group.MembersInstance;
-			//*/
-		}
+			null => KCDatabase.Instance.Ships.Values,
+			_ => ShipView.Rows
+				.Cast<DataGridViewRow>()
+				.Select(r => KCDatabase.Instance.Ships[(int)r.Cells[ShipView_ID.Index].Value])
+		};
 
-
-		using (var dialog = new DialogShipGroupCSVOutput())
+		using DialogShipGroupCSVOutput dialog = new();
+		if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
-			if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
+			try
 			{
 
-				try
+				using (StreamWriter sw = new StreamWriter(dialog.OutputPath, false, Utility.Configuration.Config.Log.FileEncoding))
 				{
 
-					using (StreamWriter sw = new StreamWriter(dialog.OutputPath, false, Utility.Configuration.Config.Log.FileEncoding))
+					string header = dialog.OutputFormat == DialogShipGroupCSVOutput.OutputFormatConstants.User ? ShipCSVHeaderUser : ShipCSVHeaderData;
+					sw.WriteLine(header);
+
+
+					foreach (ShipData ship in ships.Where(s => s != null))
 					{
 
-						string header = dialog.OutputFormat == DialogShipGroupCSVOutput.OutputFormatConstants.User ? ShipCSVHeaderUser : ShipCSVHeaderData;
-						sw.WriteLine(header);
-
-
-						foreach (ShipData ship in ships.Where(s => s != null))
+						if (dialog.OutputFormat == DialogShipGroupCSVOutput.OutputFormatConstants.User)
 						{
 
-							if (dialog.OutputFormat == DialogShipGroupCSVOutput.OutputFormatConstants.User)
-							{
+							sw.WriteLine(string.Join(",",
+								ship.MasterID,
+								ship.MasterShip.ShipTypeName,
+								ship.MasterShip.NameWithClass,
+								ship.Level,
+								ship.ExpTotal,
+								ship.ExpNext,
+								ship.ExpNextRemodel,
+								ship.HPCurrent,
+								ship.HPMax,
+								ship.Condition,
+								ship.Fuel,
+								ship.Ammo,
+								GetEquipmentString(ship, 0),
+								GetEquipmentString(ship, 1),
+								GetEquipmentString(ship, 2),
+								GetEquipmentString(ship, 3),
+								GetEquipmentString(ship, 4),
+								GetEquipmentString(ship, 5),
+								DateTimeHelper.ToTimeRemainString(DateTimeHelper.FromAPITimeSpan(ship.RepairTime)),
+								ship.FirepowerBase,
+								ship.FirepowerRemain,
+								ship.FirepowerTotal,
+								ship.TorpedoBase,
+								ship.TorpedoRemain,
+								ship.TorpedoTotal,
+								ship.AABase,
+								ship.AARemain,
+								ship.AATotal,
+								ship.ArmorBase,
+								ship.ArmorRemain,
+								ship.ArmorTotal,
+								ship.ASWBase,
+								ship.ASWTotal,
+								ship.EvasionBase,
+								ship.EvasionTotal,
+								ship.LOSBase,
+								ship.LOSTotal,
+								ship.LuckBase,
+								ship.LuckRemain,
+								ship.LuckTotal,
+								Constants.GetRange(ship.Range),
+								Constants.GetSpeed(ship.Speed),
+								ship.IsLocked ? "●" : ship.IsLockedByEquipment ? "■" : "-",
+								ship.SallyArea,
+								ship.MasterShip.SortID,
+								ship.AirBattlePower,
+								ship.ShellingPower,
+								ship.AircraftPower,
+								ship.AntiSubmarinePower,
+								ship.TorpedoPower,
+								ship.NightBattlePower
+							));
 
-								sw.WriteLine(string.Join(",",
-									ship.MasterID,
-									ship.MasterShip.ShipTypeName,
-									ship.MasterShip.NameWithClass,
-									ship.Level,
-									ship.ExpTotal,
-									ship.ExpNext,
-									ship.ExpNextRemodel,
-									ship.HPCurrent,
-									ship.HPMax,
-									ship.Condition,
-									ship.Fuel,
-									ship.Ammo,
-									GetEquipmentString(ship, 0),
-									GetEquipmentString(ship, 1),
-									GetEquipmentString(ship, 2),
-									GetEquipmentString(ship, 3),
-									GetEquipmentString(ship, 4),
-									GetEquipmentString(ship, 5),
-									DateTimeHelper.ToTimeRemainString(DateTimeHelper.FromAPITimeSpan(ship.RepairTime)),
-									ship.FirepowerBase,
-									ship.FirepowerRemain,
-									ship.FirepowerTotal,
-									ship.TorpedoBase,
-									ship.TorpedoRemain,
-									ship.TorpedoTotal,
-									ship.AABase,
-									ship.AARemain,
-									ship.AATotal,
-									ship.ArmorBase,
-									ship.ArmorRemain,
-									ship.ArmorTotal,
-									ship.ASWBase,
-									ship.ASWTotal,
-									ship.EvasionBase,
-									ship.EvasionTotal,
-									ship.LOSBase,
-									ship.LOSTotal,
-									ship.LuckBase,
-									ship.LuckRemain,
-									ship.LuckTotal,
-									Constants.GetRange(ship.Range),
-									Constants.GetSpeed(ship.Speed),
-									ship.IsLocked ? "●" : ship.IsLockedByEquipment ? "■" : "-",
-									ship.SallyArea,
-									ship.MasterShip.SortID,
-									ship.AirBattlePower,
-									ship.ShellingPower,
-									ship.AircraftPower,
-									ship.AntiSubmarinePower,
-									ship.TorpedoPower,
-									ship.NightBattlePower
-								));
+						}
+						else
+						{       //data
 
-							}
-							else
-							{       //data
-
-								sw.WriteLine(string.Join(",",
-									ship.MasterID,
-									(int)ship.MasterShip.ShipType,
-									ship.MasterShip.NameWithClass,
-									ship.ShipID,
-									ship.Level,
-									ship.ExpTotal,
-									ship.ExpNext,
-									ship.ExpNextRemodel,
-									ship.HPCurrent,
-									ship.HPMax,
-									ship.Condition,
-									ship.Fuel,
-									ship.Ammo,
-									GetEquipmentString(ship, 0),
-									GetEquipmentString(ship, 1),
-									GetEquipmentString(ship, 2),
-									GetEquipmentString(ship, 3),
-									GetEquipmentString(ship, 4),
-									GetEquipmentString(ship, 5),
-									ship.Slot[0],
-									ship.Slot[1],
-									ship.Slot[2],
-									ship.Slot[3],
-									ship.Slot[4],
-									ship.ExpansionSlot,
-									ship.Aircraft[0],
-									ship.Aircraft[1],
-									ship.Aircraft[2],
-									ship.Aircraft[3],
-									ship.Aircraft[4],
-									ship.RepairTime,
-									ship.RepairFuel,
-									ship.RepairSteel,
-									ship.FirepowerBase,
-									ship.FirepowerRemain,
-									ship.FirepowerTotal,
-									ship.TorpedoBase,
-									ship.TorpedoRemain,
-									ship.TorpedoTotal,
-									ship.AABase,
-									ship.AARemain,
-									ship.AATotal,
-									ship.ArmorBase,
-									ship.ArmorRemain,
-									ship.ArmorTotal,
-									ship.ASWBase,
-									ship.ASWTotal,
-									ship.EvasionBase,
-									ship.EvasionTotal,
-									ship.LOSBase,
-									ship.LOSTotal,
-									ship.LuckBase,
-									ship.LuckRemain,
-									ship.LuckTotal,
-									ship.Range,
-									ship.Speed,
-									ship.IsLocked ? 1 : ship.IsLockedByEquipment ? 2 : 0,
-									ship.SallyArea,
-									ship.MasterShip.SortID,
-									ship.AirBattlePower,
-									ship.ShellingPower,
-									ship.AircraftPower,
-									ship.AntiSubmarinePower,
-									ship.TorpedoPower,
-									ship.NightBattlePower
-								));
-
-							}
+							sw.WriteLine(string.Join(",",
+								ship.MasterID,
+								(int)ship.MasterShip.ShipType,
+								ship.MasterShip.NameWithClass,
+								ship.ShipID,
+								ship.Level,
+								ship.ExpTotal,
+								ship.ExpNext,
+								ship.ExpNextRemodel,
+								ship.HPCurrent,
+								ship.HPMax,
+								ship.Condition,
+								ship.Fuel,
+								ship.Ammo,
+								GetEquipmentString(ship, 0),
+								GetEquipmentString(ship, 1),
+								GetEquipmentString(ship, 2),
+								GetEquipmentString(ship, 3),
+								GetEquipmentString(ship, 4),
+								GetEquipmentString(ship, 5),
+								ship.Slot[0],
+								ship.Slot[1],
+								ship.Slot[2],
+								ship.Slot[3],
+								ship.Slot[4],
+								ship.ExpansionSlot,
+								ship.Aircraft[0],
+								ship.Aircraft[1],
+								ship.Aircraft[2],
+								ship.Aircraft[3],
+								ship.Aircraft[4],
+								ship.RepairTime,
+								ship.RepairFuel,
+								ship.RepairSteel,
+								ship.FirepowerBase,
+								ship.FirepowerRemain,
+								ship.FirepowerTotal,
+								ship.TorpedoBase,
+								ship.TorpedoRemain,
+								ship.TorpedoTotal,
+								ship.AABase,
+								ship.AARemain,
+								ship.AATotal,
+								ship.ArmorBase,
+								ship.ArmorRemain,
+								ship.ArmorTotal,
+								ship.ASWBase,
+								ship.ASWTotal,
+								ship.EvasionBase,
+								ship.EvasionTotal,
+								ship.LOSBase,
+								ship.LOSTotal,
+								ship.LuckBase,
+								ship.LuckRemain,
+								ship.LuckTotal,
+								ship.Range,
+								ship.Speed,
+								ship.IsLocked ? 1 : ship.IsLockedByEquipment ? 2 : 0,
+								ship.SallyArea,
+								ship.MasterShip.SortID,
+								ship.AirBattlePower,
+								ship.ShellingPower,
+								ship.AircraftPower,
+								ship.AntiSubmarinePower,
+								ship.TorpedoPower,
+								ship.NightBattlePower
+							));
 
 						}
 
 					}
 
-					Utility.Logger.Add(2, string.Format(ShipGroupResources.ExportToCsvSuccess, dialog.OutputPath));
+				}
 
-				}
-				catch (Exception ex)
-				{
-					Utility.ErrorReporter.SendErrorReport(ex, ShipGroupResources.ExportToCsvFail);
-					MessageBox.Show(ShipGroupResources.ExportToCsvFail + "\r\n" + ex.Message, ShipGroupResources.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+				Utility.Logger.Add(2, string.Format(ShipGroupResources.ExportToCsvSuccess, dialog.OutputPath));
 
 			}
-		}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, ShipGroupResources.ExportToCsvFail);
+				MessageBox.Show(ShipGroupResources.ExportToCsvFail + "\r\n" + ex.Message, ShipGroupResources.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 
+		}
 	}
 
 	#endregion

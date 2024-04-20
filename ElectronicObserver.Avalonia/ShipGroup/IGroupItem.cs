@@ -2,5 +2,6 @@
 
 public interface IGroupItem : ICloneable
 {
-	public string Name { get; set; }
+	int GroupID { get; }
+	string Name { get; set; }
 }

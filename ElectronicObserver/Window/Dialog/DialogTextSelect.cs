@@ -9,9 +9,9 @@ public partial class DialogTextSelect : Form
 
 	public int SelectedIndex => TextSelect.SelectedIndex;
 
-	public object SelectedItem => TextSelect.SelectedItem;
+	public object? SelectedItem => TextSelect.SelectedItem;
 
-	public DialogTextSelect()
+	private DialogTextSelect()
 	{
 		InitializeComponent();
 
@@ -25,9 +25,9 @@ public partial class DialogTextSelect : Form
 		Initialize(title, description, items);
 	}
 
-	public void Initialize(string title, string description, object[] items)
+	private void Initialize(string title, string description, object[] items)
 	{
-		this.Text = title;
+		Text = title;
 
 		tableLayoutPanel1.SuspendLayout();
 
@@ -36,23 +36,25 @@ public partial class DialogTextSelect : Form
 		TextSelect.BeginUpdate();
 		TextSelect.Items.Clear();
 		TextSelect.Items.AddRange(items);
+
 		if (TextSelect.Items.Count > 0)
+		{
 			TextSelect.SelectedIndex = 0;
+		}
+
 		TextSelect.EndUpdate();
 
 		tableLayoutPanel1.ResumeLayout();
 
 	}
 
-
 	private void ButtonOK_Click(object sender, EventArgs e)
 	{
-		DialogResult = System.Windows.Forms.DialogResult.OK;
+		DialogResult = DialogResult.OK;
 	}
 
 	private void ButtonCancel_Click(object sender, EventArgs e)
 	{
-		DialogResult = System.Windows.Forms.DialogResult.Cancel;
+		DialogResult = DialogResult.Cancel;
 	}
-
 }

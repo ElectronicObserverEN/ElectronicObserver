@@ -28,21 +28,25 @@ public partial class ShipGroupViewModel : ObservableObject
 	public required Action<ShipGroupItem> RenameGroupAction { get; init; }
 	public required Action<ShipGroupItem> DeleteGroupAction { get; init; }
 
+	public required Action AddToGroupAction { get; init; }
+
+	public List<ShipGroupItemViewModel> SelectedShips { get; private set; }
+
 	[RelayCommand]
 	private void SelectionChanged(IList selectedItems)
 	{
-		List<ShipGroupItemViewModel> selectedShips = selectedItems
+		SelectedShips = selectedItems
 			.OfType<ShipGroupItemViewModel>()
 			.ToList();
 
-		int selectedShipCount = selectedShips.Count;
+		int selectedShipCount = SelectedShips.Count;
 
 		if (selectedShipCount >= 2)
 		{
-			int membersCount = selectedShips.Count;
-			int levelSum = selectedShips.Sum(s => s.Level);
+			int membersCount = SelectedShips.Count;
+			int levelSum = SelectedShips.Sum(s => s.Level);
 			double levelAverage = levelSum / Math.Max(membersCount, 1.0);
-			long expSum = selectedShips.Sum(s => (long)s.ExpTotal);
+			long expSum = SelectedShips.Sum(s => (long)s.ExpTotal);
 			double expAverage = expSum / Math.Max(membersCount, 1.0);
 
 			ShipCountText = string.Format(ShipGroupResources.SelectedShips, selectedShipCount, Items.Count);
@@ -77,4 +81,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[RelayCommand]
 	private void DeleteGroup(ShipGroupItem group) => DeleteGroupAction.Invoke(group);
+
+	[RelayCommand]
+	private void AddToGroup() => AddToGroupAction.Invoke();
 }
