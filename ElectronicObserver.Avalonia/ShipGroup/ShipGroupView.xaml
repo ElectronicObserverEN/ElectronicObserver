@@ -488,6 +488,17 @@
 					Binding="{Binding SallyArea}"
 					Header="{Binding FormShipGroup.ShipView_SallyArea}"
 					/>
+
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding SortId}"
+					Header="{Binding FormShipGroup.SortId}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding RepairTimeUnit}"
+					Header="{Binding FormShipGroup.RepairTimeUnit}"
+					/>
 			</DataGrid.Columns>
 		</DataGrid>
 

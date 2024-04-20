@@ -77,6 +77,9 @@ public class ShipGroupTranslationViewModel : ObservableObject
 	public string ShipView_Locked => GeneralRes.Lock;
 	public string ShipView_SallyArea => ShipGroupResources.ShipView_SallyArea;
 
+	public string SortId => ShipGroupResources.SortId;
+	public string RepairTimeUnit => ShipGroupResources.RepairTimeUnit;
+
 	public string MenuMember_AddToGroup => ShipGroupResources.MenuMember_AddToGroup;
 	public string MenuMember_CreateGroup => ShipGroupResources.MenuMember_CreateGroup;
 	public string MenuMember_Exclude => ShipGroupResources.MenuMember_Exclude;

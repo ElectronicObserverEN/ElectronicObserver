@@ -79,4 +79,7 @@ public class ShipGroupItemViewModel(IShipData ship)
 
 	public bool Locked => Ship.IsLocked;
 	public int SallyArea => Ship.SallyArea;
+
+	public int SortId => Ship.MasterShip.SortID;
+	public TimeSpan RepairTimeUnit => Ship.RepairTimeUnit;
 }
