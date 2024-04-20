@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.Avalonia
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalonia.Win32.Interoperability", "Avalonia.Win32.Interoperability\Avalonia.Win32.Interoperability.csproj", "{36E3FD63-4F9B-4F51-9006-85C25609546B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.Avalonia.Samples", "ElectronicObserver.Avalonia.Samples\ElectronicObserver.Avalonia.Samples.csproj", "{45E46FF6-7931-4B5A-8304-D2882C4B8B07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Browser Debug|Any CPU = Browser Debug|Any CPU
@@ -196,6 +198,18 @@ Global
 		{36E3FD63-4F9B-4F51-9006-85C25609546B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36E3FD63-4F9B-4F51-9006-85C25609546B}.Release|x64.ActiveCfg = Release|Any CPU
 		{36E3FD63-4F9B-4F51-9006-85C25609546B}.Release|x64.Build.0 = Release|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Browser Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Browser Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Browser Debug|x64.ActiveCfg = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Browser Debug|x64.Build.0 = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Debug|x64.Build.0 = Debug|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Release|x64.ActiveCfg = Release|Any CPU
+		{45E46FF6-7931-4B5A-8304-D2882C4B8B07}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

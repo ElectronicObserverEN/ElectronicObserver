@@ -14,6 +14,13 @@ public partial class ShipGroupItem : ObservableObject
 	public List<ColumnModel> Columns { get; set; } = [];
 	public DataGridSortDescriptionCollection SortDescriptions { get; set; } = [];
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+	public ShipGroupItem()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+	{
+		// this should only be used for debug purposes
+	}
+
 	public ShipGroupItem(IGroupItem group)
 	{
 		Group = group;

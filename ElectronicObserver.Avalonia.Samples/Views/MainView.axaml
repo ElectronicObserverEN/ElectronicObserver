@@ -1,0 +1,62 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.Samples.Views.MainView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Avalonia.Behaviors.PersistentColumns;assembly=ElectronicObserver.Avalonia"
+	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.ShipGroup;assembly=ElectronicObserver.Avalonia"
+	xmlns:vm="clr-namespace:ElectronicObserver.Avalonia.Samples.ViewModels"
+	x:Name="MainViewControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="vm:MainViewModel"
+	mc:Ignorable="d"
+	>
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="shipGroup:ShipGroupItem">
+			<Button
+				Command="{Binding ((vm:MainViewModel)DataContext).SelectGroupCommand, ElementName=MainViewControl}"
+				CommandParameter="{Binding}"
+				Content="{Binding Name}"
+				/>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<Grid RowDefinitions="Auto *">
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<ItemsControl ItemsSource="{Binding Groups}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+		</StackPanel>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			CanUserReorderColumns="True"
+			CanUserResizeColumns="True"
+			IsReadOnly="True"
+			ItemsSource="{Binding CollectionView}"
+			>
+			<Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
+			</Interaction.Behaviors>
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					x:DataType="vm:Test"
+					Binding="{Binding Name}"
+					Header="Name"
+					/>
+				<DataGridTextColumn
+					x:DataType="vm:Test"
+					Binding="{Binding Description}"
+					Header="Description"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>
