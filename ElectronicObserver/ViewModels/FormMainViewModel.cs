@@ -1648,7 +1648,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	private void ConfigurationChanged()
 	{
-		var c = Configuration.Config;
+		Configuration.ConfigurationData c = Configuration.Config;
 
 		DebugEnabled = c.Debug.EnableDebugMenu;
 
@@ -1656,11 +1656,15 @@ public partial class FormMainViewModel : ObservableObject
 
 		// Load で TopMost を変更するとバグるため(前述)
 		if (UIUpdateTimer.Enabled)
+		{
 			Topmost = c.Life.TopMost;
-
+		}
 
 		ClockFormat = c.Life.ClockFormat;
 		SetTheme();
+
+		FormShipGroup.ShipGroup.BackColor = System.Drawing.SystemColors.Control;
+		FormShipGroup.ShipGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 
 		LockLayout = c.Life.LockLayout;
 		CanChangeGridSplitterSize = !LockLayout;
@@ -1825,7 +1829,7 @@ public partial class FormMainViewModel : ObservableObject
 			if (maintStartDate > now)
 			{
 				maintTimer = maintStartDate - now;
-			} 
+			}
 			else if (maintEndDate > now)
 			{
 				maintTimer = maintEndDate - now;
