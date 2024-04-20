@@ -15,12 +15,13 @@
 	xmlns:information="clr-namespace:ElectronicObserver.Window.Wpf.InformationView"
 	xmlns:log="clr-namespace:ElectronicObserver.Window.Wpf.Log"
 	xmlns:quest="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
-	xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
+	xmlns:shipGroupAvalonia="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupAvalonia"
+	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
 	xmlns:shipTraining="clr-namespace:ElectronicObserver.Window.Wpf.ShipTrainingPlanner"
 	xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
 	xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
 	xmlns:wpf="clr-namespace:ElectronicObserver.Window.Wpf"
-	xmlns:shipGroupAvalonia="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupAvalonia">
+	>
 
 	<DataTemplate x:Key="FleetTemplate" DataType="{x:Type fleet:FleetViewModel}">
 		<fleet:FleetView ViewModel="{Binding}" />
@@ -28,10 +29,10 @@
 	<DataTemplate x:Key="FleetOverviewTemplate" DataType="{x:Type fleetOverview:FleetOverviewViewModel}">
 		<fleetOverview:FleetOverviewView ViewModel="{Binding}" />
 	</DataTemplate>
-	<DataTemplate x:Key="ShipGroupTemplate" DataType="shipGroup:ShipGroupViewModel">
-		<shipGroup:ShipGroupView ViewModel="{Binding}" />
+	<DataTemplate x:Key="ShipGroupWinformsTemplate" DataType="shipGroupWinforms:ShipGroupWinformsViewModel">
+		<shipGroupWinforms:ShipGroupWinformsView ViewModel="{Binding}" />
 	</DataTemplate>
-	<DataTemplate x:Key="ShipGroupWinformsTemplate" DataType="shipGroupAvalonia:ShipGroupAvaloniaViewModel">
+	<DataTemplate x:Key="ShipGroupAvaloniaTemplate" DataType="shipGroupAvalonia:ShipGroupAvaloniaViewModel">
 		<shipGroupAvalonia:ShipGroupAvaloniaView ViewModel="{Binding}" />
 	</DataTemplate>
 	<DataTemplate x:Key="FleetPresetTemplate" DataType="{x:Type fleetPreset:FleetPresetViewModel}">
@@ -93,7 +94,7 @@
 		Fleet="{StaticResource FleetTemplate}"
 		FleetOverview="{StaticResource FleetOverviewTemplate}"
 		FleetPreset="{StaticResource FleetPresetTemplate}"
-		Group="{StaticResource ShipGroupTemplate}"
+		GroupAvalonia="{StaticResource ShipGroupAvaloniaTemplate}"
 		GroupWinforms="{StaticResource ShipGroupWinformsTemplate}"
 		Headquarters="{StaticResource HeadquartersTemplate}"
 		Information="{StaticResource InformationTemplate}"

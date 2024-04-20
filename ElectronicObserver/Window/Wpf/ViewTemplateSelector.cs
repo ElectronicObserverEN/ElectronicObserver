@@ -15,8 +15,8 @@ using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
-using ElectronicObserver.Window.Wpf.ShipGroup;
 using ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
+using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
 namespace ElectronicObserver.Window.Wpf;
@@ -27,6 +27,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 	public DataTemplate? FleetOverview { get; set; }
 	public DataTemplate? Group { get; set; }
 	public DataTemplate? GroupWinforms { get; set; }
+	public DataTemplate? GroupAvalonia { get; set; }
 	public DataTemplate? FleetPreset { get; set; }
 	public DataTemplate? ShipTrainingPlanViewer { get; set; }
 
@@ -53,8 +54,8 @@ public class ViewTemplateSelector : DataTemplateSelector
 	{
 		FleetViewModel => Fleet,
 		FleetOverviewViewModel => FleetOverview,
-		ShipGroupViewModel => Group,
-		ShipGroupAvaloniaViewModel => GroupWinforms,
+		ShipGroupWinformsViewModel => GroupWinforms,
+		ShipGroupAvaloniaViewModel => GroupAvalonia,
 		FleetPresetViewModel => FleetPreset,
 		ShipTrainingPlanViewerViewModel => ShipTrainingPlanViewer,
 		LogViewModel => Log,

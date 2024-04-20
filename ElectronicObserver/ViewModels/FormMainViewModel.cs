@@ -65,8 +65,8 @@ using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserver.Window.Wpf.Quest;
-using ElectronicObserver.Window.Wpf.ShipGroup;
 using ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
+using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using ElectronicObserverTypes;
@@ -137,8 +137,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	public List<FleetViewModel> Fleets { get; }
 	public FleetOverviewViewModel FleetOverview { get; }
-	public ShipGroupAvaloniaViewModel FormShipGroup { get; }
-	public ShipGroupViewModel ShipGroup { get; }
+	public ShipGroupWinformsViewModel FormShipGroup { get; }
+	public ShipGroupAvaloniaViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewer { get; }
 
@@ -248,8 +248,8 @@ public partial class FormMainViewModel : ObservableObject
 			Views.Add(fleet);
 		}
 		Views.Add(FleetOverview = new FleetOverviewViewModel(Fleets));
-		Views.Add(FormShipGroup = new ShipGroupAvaloniaViewModel());
-		// Views.Add(ShipGroup = new());
+		Views.Add(FormShipGroup = new ShipGroupWinformsViewModel());
+		Views.Add(ShipGroup = new ShipGroupAvaloniaViewModel());
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
 		Views.Add(ShipTrainingPlanViewer);
@@ -543,6 +543,22 @@ public partial class FormMainViewModel : ObservableObject
 		view.Visibility = Visibility.Visible;
 		view.IsSelected = true;
 		view.IsActive = true;
+	}
+
+	[RelayCommand]
+	private void OpenOldShipGroup()
+	{
+		FormShipGroup.Visibility = Visibility.Visible;
+		FormShipGroup.IsSelected = true;
+		FormShipGroup.IsActive = true;
+	}
+
+	[RelayCommand]
+	private void OpenNewShipGroup()
+	{
+		ShipGroup.Visibility = Visibility.Visible;
+		ShipGroup.IsSelected = true;
+		ShipGroup.IsActive = true;
 	}
 
 	[RelayCommand]

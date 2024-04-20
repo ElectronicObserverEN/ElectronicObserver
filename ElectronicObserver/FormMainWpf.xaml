@@ -325,12 +325,15 @@
 				<MenuItem
 					d:Header="Ship Group"
 					Command="{Binding OpenViewCommand}"
-					CommandParameter="{Binding FormShipGroup}"
+					CommandParameter="{Binding ShipGroup}"
 					Header="{Binding FormMain.StripMenu_View_ShipGroup}"
 					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormShipGroup" />
 					</MenuItem.Icon>
+
+					<MenuItem Command="{Binding OpenOldShipGroupCommand}" Header="{Binding FormMain.Old}" />
+					<MenuItem Command="{Binding OpenNewShipGroupCommand}" Header="{Binding FormMain.New}" />
 				</MenuItem>
 				<MenuItem
 					d:Header="Ship Group"
