@@ -68,7 +68,11 @@ public partial class ShipGroupViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void SelectGroup(ShipGroupItem group) => SelectGroupAction.Invoke(group);
+	private void SelectGroup(ShipGroupItem group)
+	{
+		SelectGroupAction.Invoke(group);
+		SelectionChanged(SelectedShips);
+	}
 
 	[RelayCommand]
 	private void AddGroup() => AddGroupAction.Invoke();
