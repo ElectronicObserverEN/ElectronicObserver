@@ -19,9 +19,9 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 {
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
 	private ShipGroupView ShipGroupView { get; }
-	public ShipGroupViewModel ShipGroupViewModel { get; }
+	private ShipGroupViewModel ShipGroupViewModel { get; }
 
-	public ShipGroupItem? PreviousGroup { get; private set; }
+	private ShipGroupItem? PreviousGroup { get; set; }
 	public ShipGroupItem? SelectedGroup { get; set; }
 
 	public ShipGroupAvaloniaViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
