@@ -21,6 +21,7 @@
 				Padding="3"
 				BorderThickness="1"
 				Classes="ShipGroup"
+				Classes.IsSelected="{Binding IsSelected}"
 				>
 				<Interaction.Behaviors>
 					<EventTriggerBehavior EventName="PointerPressed">
@@ -35,7 +36,10 @@
 						<Setter Property="BorderBrush" Value="#888888" />
 					</Style>
 					<Style Selector="Border.ShipGroup:pointerover">
-						<Setter Property="Background" Value="Fuchsia" />
+						<Setter Property="Background" Value="{DynamicResource ButtonBackgroundPointerOver}" />
+					</Style>
+					<Style Selector="Border.IsSelected">
+						<Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundPressed}" />
 					</Style>
 				</Border.Styles>
 

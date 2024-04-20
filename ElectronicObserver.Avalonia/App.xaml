@@ -4,7 +4,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	>
 	<Application.Styles>
-		<FluentTheme />
+		<FluentTheme>
+			<FluentTheme.Palettes>
+				<ColorPaletteResources x:Key="Light" Accent="DodgerBlue" />
+				<ColorPaletteResources x:Key="Dark" Accent="DodgerBlue" />
+			</FluentTheme.Palettes>
+		</FluentTheme>
 		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
 	</Application.Styles>
 </Application>
