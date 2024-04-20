@@ -139,6 +139,7 @@
 			CanUserReorderColumns="True"
 			CanUserResizeColumns="True"
 			ColumnWidth="Auto"
+			GridLinesVisibility="All"
 			IsReadOnly="True"
 			ItemsSource="{Binding Items}"
 			SelectionMode="Extended"
