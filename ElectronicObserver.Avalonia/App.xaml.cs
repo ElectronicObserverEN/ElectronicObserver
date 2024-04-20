@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using ElectronicObserver.Avalonia.ShipGroup;
 
 namespace ElectronicObserver.Avalonia;
@@ -29,8 +30,17 @@ public class App : Application
 		base.OnFrameworkInitializationCompleted();
 	}
 
-	public static string Lang(string itemKey)
+	public void UpdateFont(string fontName, double fontSize)
 	{
-		throw new NotImplementedException();
+		if (Resources.ContainsKey("ContentControlThemeFontFamily"))
+		{
+			FontFamily font = new(fontName);
+			Resources["ContentControlThemeFontFamily"] = font;
+		}
+
+		if (Resources.ContainsKey("ControlContentThemeFontSize"))
+		{
+			Resources["ControlContentThemeFontSize"] = fontSize;
+		}
 	}
 }

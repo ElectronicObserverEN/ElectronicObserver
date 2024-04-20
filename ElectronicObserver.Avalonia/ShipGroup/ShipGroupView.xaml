@@ -144,6 +144,17 @@
 			ItemsSource="{Binding Items}"
 			SelectionMode="Extended"
 			>
+			<DataGrid.Styles>
+				<Style Selector="DataGridRow DataGridCell">
+					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+					<Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+				</Style>
+				<Style Selector="DataGridColumnHeader">
+					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+					<Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+				</Style>
+			</DataGrid.Styles>
+
 			<Interaction.Behaviors>
 				<EventTriggerBehavior EventName="SelectionChanged">
 					<InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItems, ElementName=DataGrid}" />

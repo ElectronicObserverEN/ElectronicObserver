@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Avalonia.App"
 	xmlns="https://github.com/avaloniaui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	>
 	<Application.Styles>
 		<FluentTheme>
@@ -12,4 +13,9 @@
 		</FluentTheme>
 		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
 	</Application.Styles>
+
+	<Application.Resources>
+		<FontFamily x:Key="ContentControlThemeFontFamily">Meiryo UI</FontFamily>
+		<system:Double x:Key="ControlContentThemeFontSize">12</system:Double>
+	</Application.Resources>
 </Application>

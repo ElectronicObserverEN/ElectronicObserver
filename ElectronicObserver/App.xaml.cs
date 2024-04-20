@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Avalonia;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -76,16 +77,19 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
+using Application = System.Windows.Application;
+using ShutdownMode = System.Windows.ShutdownMode;
 
 namespace ElectronicObserver;
 
 public partial class App
 {
-	public new static App? Current => (App)Application.Current;
+	public static new App? Current => (App)Application.Current;
+	private AppBuilder AvaloniaApp { get; }
 
 	public App()
 	{
-		_ = ElectronicObserver.Avalonia.Program
+		AvaloniaApp = Avalonia.Program
 			.BuildAvaloniaApp()
 			.SetupWithoutStarting();
 
@@ -157,10 +161,6 @@ public partial class App
 			System.Windows.Forms.Application.EnableVisualStyles();
 			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-			// hack: needed for running the winforms version
-			// remove this and the Shutdown call when moving to wpf only
-			// ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
 #if !DEBUG
 			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 #endif
@@ -202,8 +202,6 @@ public partial class App
 			ShutdownMode = ShutdownMode.OnMainWindowClose;
 
 			mainWindow.ShowDialog();
-
-			// Shutdown();
 		}
 	}
 
@@ -214,9 +212,17 @@ public partial class App
 			.FirstOrDefault();
 
 		if (overrides is null) return;
+		if (Configuration.Config.UI.MainFont.FontData is null) return;
 
-		overrides.FontFamily = new FontFamily(Configuration.Config.UI.MainFont.FontData.Name);
-		overrides.FontSize = Configuration.Config.UI.MainFont.FontData.ToSize();
+		string fontName = Configuration.Config.UI.MainFont.FontData.Name;
+		double fontSize = Configuration.Config.UI.MainFont.FontData.ToSize();
+
+		overrides.FontFamily = new FontFamily(fontName);
+		overrides.FontSize = fontSize;
+
+		if (AvaloniaApp.Instance is not Avalonia.App app) return;
+
+		app.UpdateFont(fontName, fontSize);
 	}
 
 	private void ConfigureServices()
