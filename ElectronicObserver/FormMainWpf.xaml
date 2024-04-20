@@ -322,12 +322,7 @@
 						<common:IconContentIcon Type="FormFleet" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem
-					d:Header="Ship Group"
-					Command="{Binding OpenViewCommand}"
-					CommandParameter="{Binding ShipGroup}"
-					Header="{Binding FormMain.StripMenu_View_ShipGroup}"
-					>
+				<MenuItem d:Header="Ship Group" Header="{Binding FormMain.StripMenu_View_ShipGroup}">
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormShipGroup" />
 					</MenuItem.Icon>
