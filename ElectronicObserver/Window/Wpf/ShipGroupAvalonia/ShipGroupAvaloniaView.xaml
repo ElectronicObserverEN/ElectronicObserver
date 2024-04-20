@@ -1,15 +1,15 @@
 ﻿<UserControl
-	x:Class="ElectronicObserver.Window.Wpf.ShipGroupWinforms.ShipGroupWinformsView"
+	x:Class="ElectronicObserver.Window.Wpf.ShipGroupAvalonia.ShipGroupAvaloniaView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	x:Name="ShipGroupWinformsControl"
+	x:Name="ShipGroupAvaloniaControl"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
-	<Grid DataContext="{Binding ViewModel, ElementName=ShipGroupWinformsControl}">
+	<Grid DataContext="{Binding ViewModel, ElementName=ShipGroupAvaloniaControl}">
 		<ContentControl Content="{Binding WpfAvaloniaHost}" />
 	</Grid>
 </UserControl>

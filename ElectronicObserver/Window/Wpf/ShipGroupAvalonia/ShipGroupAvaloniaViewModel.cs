@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Forms;
 using Avalonia.Win32.Interoperability;
-using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -15,9 +13,9 @@ using ElectronicObserverTypes;
 using MessageBox = System.Windows.Forms.MessageBox;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
-namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
+namespace ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
 
-public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
+public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 {
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
 	private ShipGroupView ShipGroupView { get; }
@@ -26,7 +24,7 @@ public sealed class ShipGroupWinformsViewModel : AnchorableViewModel
 	public ShipGroupItem? PreviousGroup { get; private set; }
 	public ShipGroupItem? SelectedGroup { get; set; }
 
-	public ShipGroupWinformsViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
+	public ShipGroupAvaloniaViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
 	{
 		ShipGroupViewModel = new()
 		{
