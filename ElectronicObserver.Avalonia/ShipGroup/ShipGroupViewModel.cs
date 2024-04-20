@@ -30,7 +30,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	public required Action AddToGroupAction { get; init; }
 
-	public List<ShipGroupItemViewModel> SelectedShips { get; private set; }
+	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
 
 	[RelayCommand]
 	private void SelectionChanged(IList selectedItems)
