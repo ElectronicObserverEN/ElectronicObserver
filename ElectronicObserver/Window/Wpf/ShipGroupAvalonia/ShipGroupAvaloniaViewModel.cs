@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Avalonia.Win32.Interoperability;
+using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -86,7 +87,20 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		foreach (ShipGroupData g in groups.ShipGroups.Values)
 		{
-			ShipGroupViewModel.Groups.Add(new(g));
+			ShipGroupViewModel.Groups.Add(new(g)
+			{
+				Columns = g.ViewColumns.Values
+					.Select(c => new ColumnModel
+					{
+						DisplayIndex = c.DisplayIndex,
+						Header = c.Name,
+						IsVisible = c.Visible,
+						SortDirection = null,
+						Width = new(c.Width),
+						SortMemberPath = "",
+					})
+					.ToList(),
+			});
 		}
 
 		ConfigurationChanged();

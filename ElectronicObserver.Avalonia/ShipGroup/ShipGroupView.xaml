@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Avalonia.Behaviors.PersistentColumns"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.ShipGroup"
 	Name="ShipGroupControl"
 	d:DesignHeight="300"
@@ -156,6 +157,8 @@
 			</DataGrid.Styles>
 
 			<Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
+
 				<EventTriggerBehavior EventName="SelectionChanged">
 					<InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItems, ElementName=DataGrid}" />
 				</EventTriggerBehavior>

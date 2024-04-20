@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
@@ -21,6 +22,8 @@ public partial class ShipGroupViewModel : ObservableObject
 	[ObservableProperty] private string _shipCountText = "";
 	[ObservableProperty] private string _levelTotalText = "";
 	[ObservableProperty] private string _levelAverageText = "";
+
+	[ObservableProperty] private List<ColumnModel> _columnProperties = [];
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
 	public required Action AddGroupAction { get; init; }
@@ -72,6 +75,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	{
 		SelectGroupAction.Invoke(group);
 		SelectionChanged(SelectedShips);
+		ColumnProperties = group.Columns;
 	}
 
 	[RelayCommand]

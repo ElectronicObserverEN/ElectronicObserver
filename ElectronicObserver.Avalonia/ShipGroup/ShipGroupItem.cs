@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avalonia.Collections;
+using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
@@ -9,6 +11,8 @@ public partial class ShipGroupItem : ObservableObject
 	[ObservableProperty] private int _id;
 	[ObservableProperty] private string _name;
 	[ObservableProperty] private bool _isSelected;
+	public List<ColumnModel> Columns { get; set; } = [];
+	public DataGridSortDescriptionCollection SortDescriptions { get; set; } = [];
 
 	public ShipGroupItem(IGroupItem group)
 	{
