@@ -41,6 +41,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			AddToGroupAction = AddToGroup,
 			CreateGroupAction = CreateGroup,
 			ExcludeFromGroupAction = ExcludeFromGroup,
+			FilterGroupAction = FilterGroup,
 		};
 		ShipGroupView = new()
 		{
@@ -319,6 +320,46 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		group.UpdateMembers();
 
 		SelectGroup(SelectedGroup);
+	}
+
+	private void FilterGroup()
+	{
+		if (SelectedGroup?.Group is not ShipGroupData group)
+		{
+			MessageBox.Show(ShipGroupResources.DialogGroupCanNotBeModifiedDescription, ShipGroupResources.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			return;
+		}
+
+		try
+		{
+			group.Expressions ??= new ExpressionManager();
+
+			using DialogShipGroupFilter dialog = new(group);
+
+			if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
+
+			// replace
+			int id = group.GroupID;
+			group = dialog.ExportGroupData();
+			group.GroupID = id;
+			group.Expressions.Compile();
+
+			KCDatabase.Instance.ShipGroup.ShipGroups.Remove(id);
+			KCDatabase.Instance.ShipGroup.ShipGroups.Add(group);
+
+			int groupIndex = ShipGroupViewModel.Groups.IndexOf(ShipGroupViewModel.Groups.First(g => g.Group.GroupID == id));
+			ShipGroupItem updatedGroup = new(group);
+			ShipGroupViewModel.Groups.RemoveAt(groupIndex);
+			ShipGroupViewModel.Groups.Insert(groupIndex, updatedGroup);
+
+			group.UpdateMembers();
+
+			SelectGroup(updatedGroup);
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, ShipGroupResources.FilterDialogError);
+		}
 	}
 
 	private void SystemShuttingDown()

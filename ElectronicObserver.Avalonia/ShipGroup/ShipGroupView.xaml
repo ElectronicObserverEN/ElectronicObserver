@@ -170,7 +170,7 @@
 					<MenuItem Command="{Binding CreateGroupCommand}" Header="{Binding FormShipGroup.MenuMember_CreateGroup}" />
 					<MenuItem Command="{Binding ExcludeFromGroupCommand}" Header="{Binding FormShipGroup.MenuMember_Exclude}" />
 					<Separator />
-					<MenuItem Header="{Binding FormShipGroup.MenuMember_Filter}" />
+					<MenuItem Command="{Binding FilterGroupCommand}" Header="{Binding FormShipGroup.MenuMember_Filter}" />
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_ColumnFilter}" />
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_SortOrder}" />
 					<Separator />
