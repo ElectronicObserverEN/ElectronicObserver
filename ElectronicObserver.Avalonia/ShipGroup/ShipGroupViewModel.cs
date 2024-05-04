@@ -33,6 +33,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	public required Action AddToGroupAction { get; init; }
 	public required Action CreateGroupAction { get; init; }
+	public required Action ExcludeFromGroupAction { get; init; }
 
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
 
@@ -96,4 +97,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[RelayCommand]
 	private void CreateGroup() => CreateGroupAction.Invoke();
+
+	[RelayCommand]
+	private void ExcludeFromGroup() => ExcludeFromGroupAction.Invoke();
 }

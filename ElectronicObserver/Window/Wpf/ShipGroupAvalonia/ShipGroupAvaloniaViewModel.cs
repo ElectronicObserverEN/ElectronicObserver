@@ -40,6 +40,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			DeleteGroupAction = DeleteGroup,
 			AddToGroupAction = AddToGroup,
 			CreateGroupAction = CreateGroup,
+			ExcludeFromGroupAction = ExcludeFromGroup,
 		};
 		ShipGroupView = new()
 		{
@@ -308,6 +309,16 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupViewModel.Groups.Add(new(group));
 
 		group.UpdateMembers();
+	}
+
+	private void ExcludeFromGroup()
+	{
+		if (SelectedGroup?.Group is not ShipGroupData group) return;
+
+		group.AddExclusionFilter(GetSelectedShipID());
+		group.UpdateMembers();
+
+		SelectGroup(SelectedGroup);
 	}
 
 	private void SystemShuttingDown()
