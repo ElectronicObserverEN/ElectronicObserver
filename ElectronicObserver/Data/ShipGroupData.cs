@@ -254,11 +254,11 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable, IGro
 		Name = "no title";
 		ScrollLockColumnCount = 0;
 		AutoSortEnabled = true;
-		SortOrder = new List<KeyValuePair<string, ListSortDirection>>();
+		SortOrder = [];
 		Expressions = new ExpressionManager();
-		InclusionFilter = new List<int>();
-		ExclusionFilter = new List<int>();
-		Members = new List<int>();
+		InclusionFilter = [];
+		ExclusionFilter = [];
+		Members = [];
 	}
 
 
@@ -266,17 +266,11 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable, IGro
 	/// フィルタに基づいて検索を実行し、Members に結果をセットします。
 	/// </summary>
 	/// <param name="previousOrder">直前の並び替え順。なるべくこの順番を維持するように結果が生成されます。null もしくは 要素数 0 の場合は適当に生成されます。</param>
-	public void UpdateMembers(IEnumerable<int> previousOrder = null)
+	public void UpdateMembers(IEnumerable<int>? previousOrder = null)
 	{
-
-		if (Expressions == null)
-			Expressions = new ExpressionManager();
-
-		if (InclusionFilter == null)
-			InclusionFilter = new List<int>();
-
-		if (ExclusionFilter == null)
-			ExclusionFilter = new List<int>();
+		Expressions ??= new ExpressionManager();
+		InclusionFilter ??= [];
+		ExclusionFilter ??= [];
 
 		ValidateFilter();
 
