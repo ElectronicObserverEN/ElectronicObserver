@@ -167,7 +167,7 @@
 			<DataGrid.ContextMenu>
 				<ContextMenu>
 					<MenuItem Command="{Binding AddToGroupCommand}" Header="{Binding FormShipGroup.MenuMember_AddToGroup}" />
-					<MenuItem Header="{Binding FormShipGroup.MenuMember_CreateGroup}" />
+					<MenuItem Command="{Binding CreateGroupCommand}" Header="{Binding FormShipGroup.MenuMember_CreateGroup}" />
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_Exclude}" />
 					<Separator />
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_Filter}" />

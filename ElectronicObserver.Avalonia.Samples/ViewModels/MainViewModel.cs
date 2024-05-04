@@ -31,8 +31,8 @@ public partial class MainViewModel : ViewModelBase
 			Name = "Group1",
 			Columns =
 			[
-				new() { IsVisible = true, DisplayIndex = 0, },
-				new() { IsVisible = true, DisplayIndex = 1, },
+				new() { Name = "", IsVisible = true, DisplayIndex = 0, },
+				new() { Name = "", IsVisible = true, DisplayIndex = 1, },
 			],
 			SortDescriptions = [],
 		},
@@ -41,8 +41,8 @@ public partial class MainViewModel : ViewModelBase
 			Name = "Group2",
 			Columns =
 			[
-				new() { IsVisible = false },
-				new() { IsVisible = false },
+				new() { Name = "", IsVisible = false },
+				new() { Name = "", IsVisible = false },
 			],
 			SortDescriptions = [],
 		},

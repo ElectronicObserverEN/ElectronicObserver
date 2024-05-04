@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Avalonia.Controls;
 using Avalonia.Win32.Interoperability;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
+using KancolleProgress.Views;
 using MessageBox = System.Windows.Forms.MessageBox;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
@@ -35,6 +39,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			RenameGroupAction = RenameGroup,
 			DeleteGroupAction = DeleteGroup,
 			AddToGroupAction = AddToGroup,
+			CreateGroupAction = CreateGroup,
 		};
 		ShipGroupView = new()
 		{
@@ -92,11 +97,15 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 				Columns = g.ViewColumns.Values
 					.Select(c => new ColumnModel
 					{
+						Name = c.Name,
 						DisplayIndex = c.DisplayIndex,
-						Header = c.Name,
 						IsVisible = c.Visible,
 						SortDirection = null,
-						Width = new(c.Width),
+						Width = new(c.Width, c.AutoSize switch
+						{
+							true => DataGridLengthUnitType.Auto,
+							_ => DataGridLengthUnitType.Pixel,
+						}),
 						SortMemberPath = "",
 					})
 					.ToList(),
@@ -230,8 +239,9 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		KCDatabase.Instance.ShipGroup.ShipGroups.Remove((ShipGroupData)group.Group);
 	}
 
-	private IEnumerable<int> GetSelectedShipID() => ShipGroupViewModel.SelectedShips
-		.Select(s => s.MasterId);
+	private List<int> GetSelectedShipID() => ShipGroupViewModel.SelectedShips
+		.Select(s => s.MasterId)
+		.ToList();
 
 	private void AddToGroup()
 	{
@@ -246,12 +256,58 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		if (group is null) return;
 
 		group.AddInclusionFilter(GetSelectedShipID());
-		
+
 		if (group.ID == SelectedGroup?.Id)
 		{
 			// refresh datagrid
 			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
 		}
+	}
+
+	private void CreateGroup()
+	{
+		if (SelectedGroup is null) return;
+
+		List<int> ships = GetSelectedShipID();
+
+		if (!ships.Any()) return;
+
+		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupAddTitle, ShipGroupResources.DialogGroupAddDescription);
+
+		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
+
+		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
+
+		group.Name = dialog.InputtedText.Trim();
+
+		foreach (ColumnModel column in SelectedGroup.Columns)
+		{
+			ShipGroupData.ViewColumnData newData = new(column.Name)
+			{
+				DisplayIndex = column.DisplayIndex,
+				Visible = column.IsVisible,
+				Width = (int)column.Width.DisplayValue,
+				AutoSize = double.IsNaN(column.Width.Value),
+			};
+
+			if (SelectedGroup == null)
+			{
+				// 初期状態では全行が非表示のため
+				newData.Visible = true;
+			}
+
+			group.ViewColumns.Add(newData.Name, newData);
+		}
+
+		// 艦船ID == 0 を作成(空リストを作る)
+		group.Expressions.Expressions.Add(new ExpressionList(false, true, false));
+		group.Expressions.Expressions[0].Expressions.Add(new ExpressionData(".MasterID", ExpressionData.ExpressionOperator.Equal, 0));
+		group.Expressions.Compile();
+
+		group.AddInclusionFilter(ships);
+		ShipGroupViewModel.Groups.Add(new(group));
+
+		group.UpdateMembers();
 	}
 
 	private void SystemShuttingDown()

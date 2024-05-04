@@ -136,7 +136,10 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		{
 			ColumnProperties.AddRange(Enumerable
 				.Range(0, AssociatedObject.Columns.Count - ColumnProperties.Count)
-				.Select(_ => new ColumnModel()));
+				.Select(i => new ColumnModel
+				{
+					Name = $"UnknownColumn{ColumnProperties.Count + i}",
+				}));
 		}
 
 		foreach ((DataGridColumn column, ColumnModel columnModel) in AssociatedObject.Columns.Zip(ColumnProperties))
