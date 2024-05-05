@@ -71,20 +71,14 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 		if (WasGridInitialized())
 		{
-			foreach ((DataGridColumn? dataGridColumn, ColumnModel? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
+			foreach ((DataGridColumn column, ColumnModel columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
 			{
-				dataGridColumn.Width = columnProperties.Width;
-				dataGridColumn.DisplayIndex = columnProperties.DisplayIndex;
-				dataGridColumn.IsVisible = columnProperties.IsVisible;
+				column.Width = columnProperties.Width;
+				column.DisplayIndex = columnProperties.DisplayIndex;
+				column.IsVisible = columnProperties.IsVisible;
 
-				columnProperties.Header = dataGridColumn.Header switch
-				{
-					string stringHeader => stringHeader,
-					DataGridColumnHeader header => header.Content?.ToString() ?? "",
-					_ => "",
-				};
-
-				columnProperties.SortMemberPath = dataGridColumn.SortMemberPath;
+				columnProperties.Header = GetColumnHeader(column);
+				columnProperties.SortMemberPath = column.SortMemberPath;
 			}
 		}
 
@@ -155,12 +149,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 #pragma warning restore IDE0079 // Remove unnecessary suppression
 			};
 			columnModel.IsVisible = column.IsVisible;
-			columnModel.Header = column.Header switch
-			{
-				string stringHeader => stringHeader,
-				DataGridColumnHeader header => header.Content?.ToString() ?? "",
-				_ => "",
-			};
+			columnModel.Header = GetColumnHeader(column);
 			columnModel.SortMemberPath = column.SortMemberPath;
 		}
 
@@ -174,13 +163,22 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 		UpdatingColumnInfo = true;
 
-		foreach ((DataGridColumn? column, ColumnModel? columnModel) in AssociatedObject.Columns.Zip(columnModels))
+		foreach ((DataGridColumn column, ColumnModel columnModel) in AssociatedObject.Columns.Zip(columnModels))
 		{
 			column.Width = columnModel.Width;
 			column.DisplayIndex = columnModel.DisplayIndex;
 			column.IsVisible = columnModel.IsVisible;
+
+			columnModel.Header = GetColumnHeader(column);
 		}
 
 		UpdatingColumnInfo = false;
 	}
+
+	private static string GetColumnHeader(DataGridColumn column) => column.Header switch
+	{
+		string stringHeader => stringHeader,
+		DataGridColumnHeader header => header.Content?.ToString() ?? "",
+		_ => "",
+	};
 }
