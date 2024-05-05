@@ -188,7 +188,7 @@
 					<!--  todo  -->
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_SortOrder}" IsVisible="False" />
 					<Separator />
-					<MenuItem Header="{Binding FormShipGroup.MenuMember_CSVOutput}" />
+					<MenuItem Command="{Binding ExportCsvCommand}" Header="{Binding FormShipGroup.MenuMember_CSVOutput}" />
 				</ContextMenu>
 			</DataGrid.ContextMenu>
 

@@ -36,6 +36,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	public required Action ExcludeFromGroupAction { get; init; }
 	public required Action FilterGroupAction { get; init; }
 	public required Action FilterColumnsAction { get; init; }
+	public required Action ExportCsvAction { get; init; }
 
 	[ObservableProperty] private bool _anyShipsSelected;
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
@@ -111,4 +112,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[RelayCommand]
 	private void FilterColumns() => FilterColumnsAction.Invoke();
+
+	[RelayCommand]
+	private void ExportCsv() => ExportCsvAction.Invoke();
 }
