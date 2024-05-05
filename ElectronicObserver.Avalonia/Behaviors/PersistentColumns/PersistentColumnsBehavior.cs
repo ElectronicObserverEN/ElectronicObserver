@@ -142,11 +142,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			columnModel.DisplayIndex = column.DisplayIndex switch
 			{
 				-1 => AssociatedObject.Columns.IndexOf(column),
-#pragma warning disable IDE0079 // Remove unnecessary suppression
-#pragma warning disable Roslyn.S2589
 				int i => i,
-#pragma warning restore Roslyn.S2589
-#pragma warning restore IDE0079 // Remove unnecessary suppression
 			};
 			columnModel.IsVisible = column.IsVisible;
 			columnModel.Header = GetColumnHeader(column);
