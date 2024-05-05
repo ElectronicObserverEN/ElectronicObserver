@@ -91,7 +91,10 @@ public partial class DataGridViewModel<T> : ObservableObject
 			}
 
 			// Trigger PropertyChanged "manually"
-			ColumnProperties = new(columns.Select(col => col.ColumnProperties));
+			ColumnProperties = columns
+				.Select(col => col.ColumnProperties)
+				.OfType<ColumnProperties>()
+				.ToList();
 		}
 	}
 
