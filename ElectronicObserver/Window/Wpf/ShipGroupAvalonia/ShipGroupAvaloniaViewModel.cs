@@ -14,7 +14,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
-using KancolleProgress.Views;
 using MessageBox = System.Windows.Forms.MessageBox;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
