@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Win32.Interoperability;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Observer;
@@ -41,6 +42,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			CreateGroupAction = CreateGroup,
 			ExcludeFromGroupAction = ExcludeFromGroup,
 			FilterGroupAction = FilterGroup,
+			FilterColumnsAction = FilterColumns,
 		};
 		ShipGroupView = new()
 		{
@@ -358,6 +360,36 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		catch (Exception ex)
 		{
 			ErrorReporter.SendErrorReport(ex, ShipGroupResources.FilterDialogError);
+		}
+	}
+
+	private void FilterColumns()
+	{
+		if (SelectedGroup is null) return;
+
+		List<ColumnViewModel> columns = ShipGroupViewModel.ColumnProperties
+			.Select(column => new ColumnViewModel(column))
+			.ToList();
+
+		ColumnSelectorView columnSelectionView = new(new(columns));
+
+		if (columnSelectionView.ShowDialog() != true) return;
+
+		foreach (ColumnViewModel column in columns)
+		{
+			column.SaveChanges();
+		}
+
+		SelectedGroup.Columns = columns
+			.Select(col => col.ColumnModel)
+			.OfType<ColumnModel>()
+			.ToList();
+
+		ShipGroupViewModel.SelectGroupCommand.Execute(SelectedGroup);
+
+		foreach ((ShipGroupData.ViewColumnData data, ColumnModel model) in ((ShipGroupData)SelectedGroup.Group).ViewColumns.Values.Zip(SelectedGroup.Columns))
+		{
+			data.Visible = model.IsVisible;
 		}
 	}
 
