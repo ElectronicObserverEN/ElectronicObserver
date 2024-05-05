@@ -106,8 +106,6 @@
 		</PackageReference>
 		<PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
 		<PackageReference Include="Jot" Version="2.1.17" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
-		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.1" />

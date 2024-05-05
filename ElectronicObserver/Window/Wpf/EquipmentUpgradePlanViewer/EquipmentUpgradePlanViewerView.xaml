@@ -10,7 +10,6 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
-	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
 	xmlns:upgradePlanner="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	Width="auto"
 	Height="auto"
@@ -431,6 +430,84 @@
 							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 							Header="{Binding DataContext.Translation.Priority, Source={StaticResource Proxy}}"
 							/>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding NextUpgradeCost.ImprovementMaterial.Required}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							>
+
+							<DataGridTextColumn.Header>
+								<common:UseItemIcon Type="ImproveMaterial" />
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding NextUpgradeCost.DevelopmentMaterial.Required}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							>
+
+							<DataGridTextColumn.Header>
+								<common:UseItemIcon Type="DevelopmentMaterial" />
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding NextUpgradeCost.Fuel.Required}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							>
+
+							<DataGridTextColumn.Header>
+								<common:UseItemIcon Type="Fuel" />
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding NextUpgradeCost.Ammo.Required}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							>
+
+							<DataGridTextColumn.Header>
+								<common:UseItemIcon Type="Ammo" />
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding NextUpgradeCost.Steel.Required}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							>
+
+							<DataGridTextColumn.Header>
+								<common:UseItemIcon Type="Steel" />
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+
+						<DataGridTextColumn
+							Width="Auto"
+							Binding="{Binding NextUpgradeCost.Bauxite.Required}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							>
+
+							<DataGridTextColumn.Header>
+								<common:UseItemIcon Type="Bauxite" />
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
 
 						<DataGridCheckBoxColumn
 							Width="Auto"

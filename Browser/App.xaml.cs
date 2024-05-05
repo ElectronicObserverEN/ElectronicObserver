@@ -11,9 +11,6 @@ using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 using Jot.Storage;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Browser;
@@ -37,10 +34,6 @@ public partial class App : Application
 		// int port = 1;
 		// string culture = "en-US";
 		// FormBrowserHostから起動された時は引数に通信用URLが渡される
-
-#if !DEBUG
-		AppCenter.Start("63423a72-dfe4-45f0-abbd-3d0b67c02f0c",typeof(Analytics), typeof(Crashes));
-#endif
 
 		if (e.Args.Length < 2)
 		{

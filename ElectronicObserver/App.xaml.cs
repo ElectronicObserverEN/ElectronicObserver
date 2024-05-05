@@ -73,9 +73,6 @@ using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
 using Application = System.Windows.Application;
 using ShutdownMode = System.Windows.ShutdownMode;
@@ -160,10 +157,6 @@ public partial class App
 
 			System.Windows.Forms.Application.EnableVisualStyles();
 			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-
-#if !DEBUG
-			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
-#endif
 
 			Task.Run(() =>
 			{

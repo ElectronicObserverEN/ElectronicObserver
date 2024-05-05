@@ -453,4 +453,7 @@
   <data name="MaintenanceEndsIn" xml:space="preserve">
     <value>メンテナンスは{0}で終了</value>
   </data>
+  <data name="MaintenanceHasStarted" xml:space="preserve">
+    <value>メンテナンスを開始しました</value>
+  </data>
 </root>
