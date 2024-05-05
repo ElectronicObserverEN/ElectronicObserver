@@ -290,14 +290,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 				DisplayIndex = column.DisplayIndex,
 				Visible = column.IsVisible,
 				Width = (int)column.Width.DisplayValue,
-				AutoSize = double.IsNaN(column.Width.Value),
+				AutoSize = column.Width.IsAuto,
 			};
-
-			if (SelectedGroup == null)
-			{
-				// 初期状態では全行が非表示のため
-				newData.Visible = true;
-			}
 
 			group.ViewColumns.Add(newData.Name, newData);
 		}
