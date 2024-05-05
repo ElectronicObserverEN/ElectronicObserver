@@ -17,7 +17,7 @@ namespace ElectronicObserver.Data;
 /// </summary>
 [DataContract(Name = "ShipGroupData")]
 [DebuggerDisplay("[{GroupID}] : {Name} ({Members.Count} ships)")]
-public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable, IGroupItem
+public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 {
 
 
