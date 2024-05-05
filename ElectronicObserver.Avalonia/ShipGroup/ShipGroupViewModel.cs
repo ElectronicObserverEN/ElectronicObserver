@@ -36,6 +36,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	public required Action ExcludeFromGroupAction { get; init; }
 	public required Action FilterGroupAction { get; init; }
 
+	[ObservableProperty] private bool _anyShipsSelected;
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
 
 	[RelayCommand]
@@ -44,6 +45,8 @@ public partial class ShipGroupViewModel : ObservableObject
 		SelectedShips = selectedItems
 			.OfType<ShipGroupItemViewModel>()
 			.ToList();
+
+		AnyShipsSelected = SelectedShips.Any();
 
 		int selectedShipCount = SelectedShips.Count;
 

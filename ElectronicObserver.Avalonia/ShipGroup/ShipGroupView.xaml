@@ -137,6 +137,7 @@
 		<DataGrid
 			x:Name="DataGrid"
 			Grid.Row="2"
+			Background="Transparent"
 			CanUserReorderColumns="True"
 			CanUserResizeColumns="True"
 			ColumnWidth="Auto"
@@ -166,9 +167,21 @@
 
 			<DataGrid.ContextMenu>
 				<ContextMenu>
-					<MenuItem Command="{Binding AddToGroupCommand}" Header="{Binding FormShipGroup.MenuMember_AddToGroup}" />
-					<MenuItem Command="{Binding CreateGroupCommand}" Header="{Binding FormShipGroup.MenuMember_CreateGroup}" />
-					<MenuItem Command="{Binding ExcludeFromGroupCommand}" Header="{Binding FormShipGroup.MenuMember_Exclude}" />
+					<MenuItem
+						Command="{Binding AddToGroupCommand}"
+						Header="{Binding FormShipGroup.MenuMember_AddToGroup}"
+						IsEnabled="{Binding AnyShipsSelected}"
+						/>
+					<MenuItem
+						Command="{Binding CreateGroupCommand}"
+						Header="{Binding FormShipGroup.MenuMember_CreateGroup}"
+						IsEnabled="{Binding AnyShipsSelected}"
+						/>
+					<MenuItem
+						Command="{Binding ExcludeFromGroupCommand}"
+						Header="{Binding FormShipGroup.MenuMember_Exclude}"
+						IsEnabled="{Binding AnyShipsSelected}"
+						/>
 					<Separator />
 					<MenuItem Command="{Binding FilterGroupCommand}" Header="{Binding FormShipGroup.MenuMember_Filter}" />
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_ColumnFilter}" />
