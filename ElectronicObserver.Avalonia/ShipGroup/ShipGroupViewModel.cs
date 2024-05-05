@@ -48,9 +48,9 @@ public partial class ShipGroupViewModel : ObservableObject
 			.OfType<ShipGroupItemViewModel>()
 			.ToList();
 
-		AnyShipsSelected = SelectedShips.Any();
-
 		int selectedShipCount = SelectedShips.Count;
+
+		AnyShipsSelected = selectedShipCount > 0;
 
 		if (selectedShipCount >= 2)
 		{
