@@ -185,7 +185,8 @@
 					<Separator />
 					<MenuItem Command="{Binding FilterGroupCommand}" Header="{Binding FormShipGroup.MenuMember_Filter}" />
 					<MenuItem Command="{Binding FilterColumnsCommand}" Header="{Binding FormShipGroup.MenuMember_ColumnFilter}" />
-					<MenuItem Header="{Binding FormShipGroup.MenuMember_SortOrder}" />
+					<!--  todo  -->
+					<MenuItem Header="{Binding FormShipGroup.MenuMember_SortOrder}" IsVisible="False" />
 					<Separator />
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_CSVOutput}" />
 				</ContextMenu>
