@@ -50,7 +50,7 @@ public partial class MainViewModel : ViewModelBase
 
 	[ObservableProperty] private ShipGroupItem? _selectedGroup;
 	[ObservableProperty] private DataGridCollectionView _collectionView = new(new List<Test>());
-	[ObservableProperty] private List<ColumnModel> _columnProperties = [];
+	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
 
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)

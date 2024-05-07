@@ -23,7 +23,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	[ObservableProperty] private string _levelTotalText = "";
 	[ObservableProperty] private string _levelAverageText = "";
 
-	[ObservableProperty] private List<ColumnModel> _columnProperties = [];
+	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
 	public required Action AddGroupAction { get; init; }

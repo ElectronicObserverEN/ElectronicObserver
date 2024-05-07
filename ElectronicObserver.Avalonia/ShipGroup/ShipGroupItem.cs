@@ -1,4 +1,5 @@
-﻿using Avalonia.Collections;
+﻿using System.Collections.ObjectModel;
+using Avalonia.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 
@@ -11,7 +12,7 @@ public partial class ShipGroupItem : ObservableObject
 	[ObservableProperty] private int _id;
 	[ObservableProperty] private string _name;
 	[ObservableProperty] private bool _isSelected;
-	public List<ColumnModel> Columns { get; set; } = [];
+	public ObservableCollection<ColumnModel> Columns { get; set; } = [];
 	public DataGridSortDescriptionCollection SortDescriptions { get; set; } = [];
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.

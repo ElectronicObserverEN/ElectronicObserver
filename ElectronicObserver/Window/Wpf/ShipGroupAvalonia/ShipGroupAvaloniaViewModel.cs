@@ -69,6 +69,17 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		Loaded();
 
+		ShipGroupViewModel.ColumnProperties.CollectionChanged += (s, e) =>
+		{
+			if (SelectedGroup?.Group is not ShipGroupData group) return;
+			if (e.NewItems?.Cast<ColumnModel>() is not IEnumerable<ColumnModel> newColumns) return;
+
+			foreach (ShipGroupData.ViewColumnData newData in newColumns.Select(MakeColumnData))
+			{
+				group.ViewColumns.Add(newData.Name, newData);
+			}
+		};
+
 		SystemEvents.SystemShuttingDown += SystemShuttingDown;
 	}
 
@@ -107,7 +118,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 						}),
 						SortMemberPath = "",
 					})
-					.ToList(),
+					.ToObservableCollection(),
 			});
 		}
 
@@ -279,16 +290,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		group.Name = dialog.InputtedText.Trim();
 
-		foreach (ColumnModel column in SelectedGroup.Columns)
+		foreach (ShipGroupData.ViewColumnData newData in SelectedGroup.Columns.Select(MakeColumnData))
 		{
-			ShipGroupData.ViewColumnData newData = new(column.Name)
-			{
-				DisplayIndex = column.DisplayIndex,
-				Visible = column.IsVisible,
-				Width = (int)column.Width.DisplayValue,
-				AutoSize = column.Width.IsAuto,
-			};
-
 			group.ViewColumns.Add(newData.Name, newData);
 		}
 
@@ -373,7 +376,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		SelectedGroup.Columns = columns
 			.Select(col => col.ColumnModel)
 			.OfType<ColumnModel>()
-			.ToList();
+			.ToObservableCollection();
 
 		ShipGroupViewModel.SelectGroupCommand.Execute(SelectedGroup);
 
@@ -568,6 +571,14 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			_ => ship.ExpansionSlotInstance?.NameWithLevel ?? ShipGroupResources.None,
 		};
 	}
+
+	private static ShipGroupData.ViewColumnData MakeColumnData(ColumnModel column) => new(column.Name)
+	{
+		DisplayIndex = column.DisplayIndex,
+		Visible = column.IsVisible,
+		Width = (int)column.Width.DisplayValue,
+		AutoSize = column.Width.IsAuto,
+	};
 
 	private void SystemShuttingDown()
 	{

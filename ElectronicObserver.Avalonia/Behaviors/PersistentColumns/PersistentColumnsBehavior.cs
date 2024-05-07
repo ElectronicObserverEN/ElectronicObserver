@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
@@ -12,8 +13,8 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	private bool UpdatingColumnInfo { get; set; }
 	private bool InWidthChange { get; set; }
 
-	public static readonly StyledProperty<List<ColumnModel>> ColumnPropertiesProperty =
-		AvaloniaProperty.Register<PersistentColumnsBehavior, List<ColumnModel>>
+	public static readonly StyledProperty<ObservableCollection<ColumnModel>> ColumnPropertiesProperty =
+		AvaloniaProperty.Register<PersistentColumnsBehavior, ObservableCollection<ColumnModel>>
 		(
 			nameof(ColumnProperties),
 			[],
@@ -21,7 +22,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			BindingMode.TwoWay
 		);
 
-	public List<ColumnModel> ColumnProperties
+	public ObservableCollection<ColumnModel> ColumnProperties
 	{
 		get => GetValue(ColumnPropertiesProperty);
 		set => SetValue(ColumnPropertiesProperty, value);
@@ -36,7 +37,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	private void WidthPropertyChangedHandler(object? sender, EventArgs x) => InWidthChange = true;
 	private void VisibilityPropertyChangedHandler(object? sender, EventArgs x) => UpdateColumnInfo();
 
-	private static void ColumnPropertiesChangedCallback(AvaloniaPropertyChangedEventArgs<List<ColumnModel>> obj)
+	private static void ColumnPropertiesChangedCallback(AvaloniaPropertyChangedEventArgs<ObservableCollection<ColumnModel>> obj)
 	{
 		if (obj.Sender is PersistentColumnsBehavior { UpdatingColumnInfo: false } behavior)
 		{
@@ -126,15 +127,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 		UpdatingColumnInfo = true;
 
-		if (AssociatedObject.Columns.Count > ColumnProperties.Count)
-		{
-			ColumnProperties.AddRange(Enumerable
-				.Range(0, AssociatedObject.Columns.Count - ColumnProperties.Count)
-				.Select(i => new ColumnModel
-				{
-					Name = $"UnknownColumn{ColumnProperties.Count + i}",
-				}));
-		}
+		AddMissingColumnData(AssociatedObject, ColumnProperties);
 
 		foreach ((DataGridColumn column, ColumnModel columnModel) in AssociatedObject.Columns.Zip(ColumnProperties))
 		{
@@ -152,12 +145,14 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		UpdatingColumnInfo = false;
 	}
 
-	private void ColumnPropertiesChanged(List<ColumnModel> columnModels)
+	private void ColumnPropertiesChanged(ObservableCollection<ColumnModel> columnModels)
 	{
 		if (AssociatedObject is null) return;
 		if (!WasGridInitialized()) return;
 
 		UpdatingColumnInfo = true;
+
+		AddMissingColumnData(AssociatedObject, columnModels);
 
 		foreach ((DataGridColumn column, ColumnModel columnModel) in AssociatedObject.Columns.Zip(columnModels))
 		{
@@ -169,6 +164,24 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		}
 
 		UpdatingColumnInfo = false;
+	}
+
+	private static void AddMissingColumnData(DataGrid associatedObject, ObservableCollection<ColumnModel> columnProperties)
+	{
+		if (associatedObject.Columns.Count <= columnProperties.Count) return;
+
+		foreach (DataGridColumn column in associatedObject.Columns.Skip(columnProperties.Count))
+		{
+			columnProperties.Add(new()
+			{
+				Name = GetColumnHeader(column),
+				Width = column.Width,
+				DisplayIndex = column.DisplayIndex,
+				Header = GetColumnHeader(column),
+				SortMemberPath = column.SortMemberPath,
+				IsVisible = true,
+			});
+		}
 	}
 
 	private static string GetColumnHeader(DataGridColumn column) => column.Header switch
