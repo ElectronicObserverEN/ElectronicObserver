@@ -18,6 +18,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
 using KancolleProgress.Views;
+using GeneralRes = ElectronicObserver.Avalonia.ShipGroup.GeneralRes;
 using MessageBox = System.Windows.Forms.MessageBox;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
@@ -77,24 +78,15 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		ShipGroupManager groups = KCDatabase.Instance.ShipGroup;
 
-
 		// 空(≒初期状態)の時、おなじみ全所属艦を追加
 		if (groups.ShipGroups.Count == 0)
 		{
-			/*
-			Utility.Logger.Add(3, string.Format(ShipGroupResources.GroupNotFound, ShipGroupManager.DefaultFilePath));
+			Logger.Add(3, string.Format(ShipGroupResources.GroupNotFound, ShipGroupManager.DefaultFilePath));
 
 			ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
 			group.Name = GeneralRes.AllAssignedShips;
 
-			for (int i = 0; i < ShipView.Columns.Count; i++)
-			{
-				ShipGroupData.ViewColumnData newdata = new(ShipView.Columns[i]);
-				if (SelectedGroup == null)
-					newdata.Visible = true;     //初期状態では全行が非表示のため
-				group.ViewColumns.Add(ShipView.Columns[i].Name, newdata);
-			}
-			*/
+			// todo: make sure everything gets initialized correctly when there's no groups
 		}
 
 		foreach (ShipGroupData g in groups.ShipGroups.Values)
@@ -120,7 +112,6 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		}
 
 		ConfigurationChanged();
-
 
 		APIObserver o = APIObserver.Instance;
 
