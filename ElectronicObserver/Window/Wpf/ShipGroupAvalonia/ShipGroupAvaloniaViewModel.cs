@@ -100,26 +100,9 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			// todo: make sure everything gets initialized correctly when there's no groups
 		}
 
-		foreach (ShipGroupData g in groups.ShipGroups.Values)
+		foreach (ShipGroupItem group in groups.ShipGroups.Values.Select(MakeGroupItem))
 		{
-			ShipGroupViewModel.Groups.Add(new(g)
-			{
-				Columns = g.ViewColumns.Values
-					.Select(c => new ColumnModel
-					{
-						Name = c.Name,
-						DisplayIndex = c.DisplayIndex,
-						IsVisible = c.Visible,
-						SortDirection = null,
-						Width = new(c.Width, c.AutoSize switch
-						{
-							true => DataGridLengthUnitType.Auto,
-							_ => DataGridLengthUnitType.Pixel,
-						}),
-						SortMemberPath = "",
-					})
-					.ToObservableCollection(),
-			});
+			ShipGroupViewModel.Groups.Add(group);
 		}
 
 		ConfigurationChanged();
@@ -186,18 +169,15 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
 		group.Name = dialog.InputtedText.Trim();
 
-		/*
-		for (int i = 0; i < ShipGroup.DataGrid.Columns.Count; i++)
+		if (SelectedGroup is not null)
 		{
-			var newdata = new ShipGroupData.ViewColumnData(ShipGroup.DataGrid.Columns[i]);
-			if (SelectedGroup is null)
+			foreach (ShipGroupData.ViewColumnData newData in SelectedGroup.Columns.Select(MakeColumnData))
 			{
-				newdata.Visible = true;     //初期状態では全行が非表示のため
+				group.ViewColumns.Add(newData.Name, newData);
 			}
-			@group.ViewColumns.Add(ShipGroup.DataGrid.Columns[i].Name, newdata);
 		}
-		*/
-		ShipGroupViewModel.Groups.Add(new(group));
+
+		ShipGroupViewModel.Groups.Add(MakeGroupItem(group));
 	}
 
 	private void CopyGroup(ShipGroupItem group)
@@ -214,7 +194,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		KCDatabase.Instance.ShipGroup.ShipGroups.Add(newGroup);
 
-		ShipGroupViewModel.Groups.Add(new(newGroup));
+		ShipGroupViewModel.Groups.Add(MakeGroupItem(newGroup));
 	}
 
 	private void RenameGroup(ShipGroupItem group)
@@ -301,7 +281,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		group.Expressions.Compile();
 
 		group.AddInclusionFilter(ships);
-		ShipGroupViewModel.Groups.Add(new(group));
+		ShipGroupViewModel.Groups.Add(MakeGroupItem(group));
 
 		group.UpdateMembers();
 	}
@@ -342,7 +322,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			KCDatabase.Instance.ShipGroup.ShipGroups.Add(group);
 
 			int groupIndex = ShipGroupViewModel.Groups.IndexOf(ShipGroupViewModel.Groups.First(g => g.Group.GroupID == id));
-			ShipGroupItem updatedGroup = new(group);
+			ShipGroupItem updatedGroup = MakeGroupItem(group);
 			ShipGroupViewModel.Groups.RemoveAt(groupIndex);
 			ShipGroupViewModel.Groups.Insert(groupIndex, updatedGroup);
 
@@ -578,6 +558,25 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		Visible = column.IsVisible,
 		Width = (int)column.Width.DisplayValue,
 		AutoSize = column.Width.IsAuto,
+	};
+
+	private static ShipGroupItem MakeGroupItem(ShipGroupData group) => new(group)
+	{
+		Columns = group.ViewColumns.Values
+			.Select(c => new ColumnModel
+			{
+				Name = c.Name,
+				DisplayIndex = c.DisplayIndex,
+				IsVisible = c.Visible,
+				SortDirection = null,
+				Width = new(c.Width, c.AutoSize switch
+				{
+					true => DataGridLengthUnitType.Auto,
+					_ => DataGridLengthUnitType.Pixel,
+				}),
+				SortMemberPath = "",
+			})
+			.ToObservableCollection(),
 	};
 
 	private void SystemShuttingDown()
