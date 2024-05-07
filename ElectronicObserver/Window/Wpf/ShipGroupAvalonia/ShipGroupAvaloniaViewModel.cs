@@ -137,7 +137,11 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 	private void SelectGroup(ShipGroupItem group)
 	{
-		ShipGroupViewModel.Items = ((ShipGroupData)group.Group).MembersInstance
+		if (group.Group is not ShipGroupData groupData) return;
+
+		groupData.UpdateMembers();
+
+		ShipGroupViewModel.Items = groupData.MembersInstance
 			.OfType<IShipData>()
 			.Select(s => new ShipGroupItemViewModel(s))
 			.ToObservableCollection();
@@ -197,7 +201,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupViewModel.Groups.Add(MakeGroupItem(newGroup));
 	}
 
-	private void RenameGroup(ShipGroupItem group)
+	private static void RenameGroup(ShipGroupItem group)
 	{
 		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupRenameTitle, ShipGroupResources.DialogGroupRenameDescription);
 		dialog.InputtedText = group.Name;
@@ -221,7 +225,6 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		if (SelectedGroup == group)
 		{
-			// ShipGroup.DataGrid.Rows.Clear();
 			SelectedGroup = null;
 		}
 
@@ -249,8 +252,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		if (group.ID == SelectedGroup?.Id)
 		{
-			// refresh datagrid
-			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+			SelectGroup(SelectedGroup);
 		}
 	}
 
@@ -281,9 +283,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		group.Expressions.Compile();
 
 		group.AddInclusionFilter(ships);
-		ShipGroupViewModel.Groups.Add(MakeGroupItem(group));
 
-		group.UpdateMembers();
+		ShipGroupViewModel.Groups.Add(MakeGroupItem(group));
 	}
 
 	private void ExcludeFromGroup()
@@ -291,7 +292,6 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		if (SelectedGroup?.Group is not ShipGroupData group) return;
 
 		group.AddExclusionFilter(GetSelectedShipIds());
-		group.UpdateMembers();
 
 		SelectGroup(SelectedGroup);
 	}
@@ -325,8 +325,6 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			ShipGroupItem updatedGroup = MakeGroupItem(group);
 			ShipGroupViewModel.Groups.RemoveAt(groupIndex);
 			ShipGroupViewModel.Groups.Insert(groupIndex, updatedGroup);
-
-			group.UpdateMembers();
 
 			SelectGroup(updatedGroup);
 		}
