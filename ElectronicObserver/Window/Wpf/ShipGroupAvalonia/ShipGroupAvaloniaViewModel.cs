@@ -249,7 +249,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		KCDatabase.Instance.ShipGroup.ShipGroups.Remove((ShipGroupData)group.Group);
 	}
 
-	private List<int> GetSelectedShipID() => ShipGroupViewModel.SelectedShips
+	private List<int> GetSelectedShipIds() => ShipGroupViewModel.SelectedShips
 		.Select(s => s.MasterId)
 		.ToList();
 
@@ -265,7 +265,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		if (group is null) return;
 
-		group.AddInclusionFilter(GetSelectedShipID());
+		group.AddInclusionFilter(GetSelectedShipIds());
 
 		if (group.ID == SelectedGroup?.Id)
 		{
@@ -278,7 +278,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	{
 		if (SelectedGroup is null) return;
 
-		List<int> ships = GetSelectedShipID();
+		List<int> ships = GetSelectedShipIds();
 
 		if (!ships.Any()) return;
 
@@ -310,7 +310,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	{
 		if (SelectedGroup?.Group is not ShipGroupData group) return;
 
-		group.AddExclusionFilter(GetSelectedShipID());
+		group.AddExclusionFilter(GetSelectedShipIds());
 		group.UpdateMembers();
 
 		SelectGroup(SelectedGroup);
