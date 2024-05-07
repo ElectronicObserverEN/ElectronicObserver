@@ -115,13 +115,13 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		APIObserver o = APIObserver.Instance;
 
-		o.ApiPort_Port.ResponseReceived += APIUpdated;
-		o.ApiGetMember_Ship2.ResponseReceived += APIUpdated;
-		o.ApiGetMember_ShipDeck.ResponseReceived += APIUpdated;
+		o.ApiPort_Port.ResponseReceived += ApiUpdated;
+		o.ApiGetMember_Ship2.ResponseReceived += ApiUpdated;
+		o.ApiGetMember_ShipDeck.ResponseReceived += ApiUpdated;
 
 		// added later - might affect performance
-		o.ApiGetMember_NDock.ResponseReceived += APIUpdated;
-		o.ApiReqHensei_PresetSelect.ResponseReceived += APIUpdated;
+		o.ApiGetMember_NDock.ResponseReceived += ApiUpdated;
+		o.ApiReqHensei_PresetSelect.ResponseReceived += ApiUpdated;
 
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
@@ -131,12 +131,13 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupViewModel.FormShipGroup.OnPropertyChanged("");
 	}
 
-	private void APIUpdated(string apiname, dynamic data)
+	private void ApiUpdated(string apiName, dynamic data)
 	{
+		if (SelectedGroup is null) return;
+
 		if (ShipGroupViewModel.AutoUpdate)
 		{
-			// todo
-			// ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+			SelectGroup(SelectedGroup);
 		}
 	}
 
@@ -402,13 +403,13 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		try
 		{
 			using StreamWriter sw = new(dialog.OutputPath, false, Configuration.Config.Log.FileEncoding);
-			
+
 			string header = dialog.OutputFormat switch
 			{
 				DialogShipGroupCSVOutput.OutputFormatConstants.User => shipCsvHeaderUser,
 				_ => shipCsvHeaderData,
 			};
-			
+
 			sw.WriteLine(header);
 
 			foreach (ShipData ship in ships.OfType<ShipData>())
