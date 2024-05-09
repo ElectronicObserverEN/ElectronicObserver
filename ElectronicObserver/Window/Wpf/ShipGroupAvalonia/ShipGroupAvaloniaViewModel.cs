@@ -441,7 +441,12 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 						ship.LuckTotal,
 						Constants.GetRange(ship.Range),
 						Constants.GetSpeed(ship.Speed),
-						ship.IsLocked ? "●" : ship.IsLockedByEquipment ? "■" : "-",
+						ship switch
+						{
+							{ IsLocked: true } => "●",
+							{ IsLockedByEquipment: true } => "■",
+							_ => "-",
+						},
 						ship.SallyArea,
 						ship.MasterShip.SortID,
 						ship.AirBattlePower,
@@ -511,7 +516,12 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 						ship.LuckTotal,
 						ship.Range,
 						ship.Speed,
-						ship.IsLocked ? 1 : ship.IsLockedByEquipment ? 2 : 0,
+						ship switch
+						{
+							{ IsLocked: true } => 1,
+							{ IsLockedByEquipment: true } => 2,
+							_ => 0,
+						},
 						ship.SallyArea,
 						ship.MasterShip.SortID,
 						ship.AirBattlePower,
