@@ -2,9 +2,9 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-
 using ElectronicObserver.Avalonia.Samples.ViewModels;
 using ElectronicObserver.Avalonia.Samples.Views;
+using HotAvalonia;
 
 namespace ElectronicObserver.Avalonia.Samples;
 
@@ -12,6 +12,7 @@ public partial class App : Application
 {
 	public override void Initialize()
 	{
+		this.EnableHotReload();
 		AvaloniaXamlLoader.Load(this);
 	}
 
