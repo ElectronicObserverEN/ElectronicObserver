@@ -262,7 +262,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		List<int> ships = GetSelectedShipIds();
 
-		if (!ships.Any()) return;
+		if (ships.Count is 0) return;
 
 		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupAddTitle, ShipGroupResources.DialogGroupAddDescription);
 
