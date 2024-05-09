@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Avalonia.Samples.Views.MainView"
 	xmlns="https://github.com/avaloniaui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:behaviors="clr-namespace:ElectronicObserver.Avalonia.Behaviors;assembly=ElectronicObserver.Avalonia"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Avalonia.Behaviors.PersistentColumns;assembly=ElectronicObserver.Avalonia"
@@ -44,7 +45,9 @@
 			>
 			<Interaction.Behaviors>
 				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
+				<behaviors:ColumnAutoSizeBehavior />
 			</Interaction.Behaviors>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					x:DataType="vm:Test"
