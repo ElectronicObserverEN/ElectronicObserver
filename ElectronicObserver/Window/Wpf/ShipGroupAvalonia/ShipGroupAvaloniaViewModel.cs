@@ -364,6 +364,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		}
 	}
 
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void ExportCsv()
 	{
 		// todo: does this need translating?
