@@ -5,6 +5,9 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
 
+// hack: no idea how to do this without reflection hacks
+#pragma warning disable S3011
+
 namespace ElectronicObserver.Avalonia.Behaviors;
 
 public class ColumnAutoSizeBehavior : Behavior<DataGrid>
