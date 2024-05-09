@@ -135,7 +135,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			columnModel.DisplayIndex = column.DisplayIndex switch
 			{
 				-1 => AssociatedObject.Columns.IndexOf(column),
-				int i => i,
+				_ => column.DisplayIndex,
 			};
 			columnModel.IsVisible = column.IsVisible;
 			columnModel.Header = GetColumnHeader(column);
