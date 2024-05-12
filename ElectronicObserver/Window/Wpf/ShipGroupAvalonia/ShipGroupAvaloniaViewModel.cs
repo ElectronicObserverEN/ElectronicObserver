@@ -594,9 +594,14 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		Configuration.Config.FormShipGroup.ShowStatusBar = ShipGroupViewModel.ShowStatusBar;
 		Configuration.Config.FormShipGroup.GroupHeight = ShipGroupViewModel.GroupHeight.Value;
 
+		IEnumerable<ShipGroupData> shipGroups = ShipGroupViewModel.Groups
+			.Select(g => g.Group)
+			.OfType<ShipGroupData>()
+			.Union(KCDatabase.Instance.ShipGroup.ShipGroups.Values);
+
 		// update group IDs to match their current order
 		// the serializer saves groups ordered by ID to preserve user reordering
-		foreach ((ShipGroupData group, int i) in ShipGroupViewModel.Groups.Select((g, i) => ((ShipGroupData)g.Group, i)))
+		foreach ((ShipGroupData group, int i) in shipGroups.Select((g, i) => (g, i)))
 		{
 			group.GroupID = i + 1;
 		}

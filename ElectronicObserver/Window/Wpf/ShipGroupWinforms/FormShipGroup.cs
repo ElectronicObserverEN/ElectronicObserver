@@ -1495,6 +1495,9 @@ public partial class FormShipGroup: Form
 
 	void SystemShuttingDown()
 	{
+		// disabled while testing both winforms and avalonia versions
+		// because if both have this code it corrupts the group file
+		/*
 		Utility.Configuration.Config.FormShipGroup.AutoUpdate = ViewModel.AutoUpdate;
 		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = ViewModel.ShowStatusBar;
 		Utility.Configuration.Config.FormShipGroup.GroupHeight = ViewModel.GroupHeight.Value;
@@ -1505,5 +1508,6 @@ public partial class FormShipGroup: Form
 		{
 			group.GroupID = i + 1;
 		}
+		*/
 	}
 }
