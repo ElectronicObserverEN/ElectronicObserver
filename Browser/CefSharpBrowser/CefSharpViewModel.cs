@@ -284,8 +284,9 @@ public class CefSharpViewModel : BrowserViewModel
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
 
 		IBrowser browser = CefSharp.GetBrowser();
-		IEnumerable<IFrame> frames = browser.GetFrameIdentifiers()
-			.Select(id => browser.GetFrame(id));
+		IEnumerable<IFrame> frames = browser
+			.GetFrameIdentifiers()
+			.Select(id => browser.GetFrameByIdentifier(id));
 
 		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/"));
 	}
@@ -295,8 +296,9 @@ public class CefSharpViewModel : BrowserViewModel
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
 
 		IBrowser browser = CefSharp.GetBrowser();
-		IEnumerable<IFrame> frames = browser.GetFrameIdentifiers()
-			.Select(id => browser.GetFrame(id));
+		IEnumerable<IFrame> frames = browser
+			.GetFrameIdentifiers()
+			.Select(id => browser.GetFrameByIdentifier(id));
 
 		return frames.FirstOrDefault(f => f.Url.Contains(@"/kcs2/index.php"));
 	}

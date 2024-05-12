@@ -773,6 +773,7 @@ public enum ShipId
 	Shirakumo = 964,
 	I36 = 971,
 	I41 = 972,
+	HarusameKaiNi = 975,
 	I36Kai = 976,
 	I41Kai = 977,
 	ColoradoKai = 1496,

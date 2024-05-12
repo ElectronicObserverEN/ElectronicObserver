@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using ElectronicObserver.Common;
+using ElectronicObserver.Data;
 using Microsoft.Xaml.Behaviors;
 
 namespace ElectronicObserver.Behaviors.PersistentColumns;
@@ -172,6 +174,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			Header = c.Header switch
 			{
 				string stringHeader => stringHeader,
+				UseItemIcon icon => icon.Type.NameTranslated(),
 				DataGridColumnHeader header => header.Content?.ToString() ?? "",
 				_ => "",
 			},

@@ -204,4 +204,7 @@
   <data name="HarunaGun" xml:space="preserve">
     <value>35.6k3/4</value>
   </data>
+  <data name="Radar4AaOrMore" xml:space="preserve">
+    <value>Radar (AA &gt;= 4)</value>
+  </data>
 </root>

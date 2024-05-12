@@ -10,8 +10,8 @@ namespace ElectronicObserverTypes.AntiAir;
 [DebuggerDisplay("Id = {Id}")]
 public record AntiAirCutIn
 {
-	private static List<AntiAirCutIn> CutIns { get; } = new()
-	{
+	private static List<AntiAirCutIn> CutIns { get; } =
+	[
 		new()
 		{
 			Id = 0,
@@ -19,7 +19,7 @@ public record AntiAirCutIn
 			VariableBonus = 1,
 			Rate = 1,
 			Priority = 9999,
-			Conditions = new(),
+			Conditions = [],
 		},
 		new()
 		{
@@ -28,18 +28,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.7,
 			Rate = 0.643,
 			Priority = 11,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Akizuki,
-					},
+					],
 					HighAngle = 2,
 					Radar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -48,18 +48,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.7,
 			Rate = 0.574,
 			Priority = 16,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Akizuki,
-					},
+					],
 					HighAngle = 1,
 					Radar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -68,17 +68,17 @@ public record AntiAirCutIn
 			VariableBonus = 1.6,
 			Rate = 0.495,
 			Priority = 26,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Akizuki,
-					},
+					],
 					HighAngle = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -87,8 +87,8 @@ public record AntiAirCutIn
 			VariableBonus = 1.5,
 			Rate = 0.514,
 			Priority = 15,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					MainGunLarge = 1,
@@ -96,7 +96,7 @@ public record AntiAirCutIn
 					AaDirector = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -105,14 +105,14 @@ public record AntiAirCutIn
 			VariableBonus = 1.5,
 			Rate = 0.544,
 			Priority = 27,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					HighAngleDirector = 2,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -121,15 +121,15 @@ public record AntiAirCutIn
 			VariableBonus = 1.45,
 			Rate = 0.396,
 			Priority = 28,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					MainGunLarge = 1,
 					AaShell = 1,
 					AaDirector = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -138,15 +138,15 @@ public record AntiAirCutIn
 			VariableBonus = 1.35,
 			Rate = 0.445,
 			Priority = 36,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					HighAngle = 1,
 					AaDirector = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -155,14 +155,14 @@ public record AntiAirCutIn
 			VariableBonus = 1.4,
 			Rate = 0.495,
 			Priority = 33,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					HighAngleDirector = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -170,15 +170,15 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.3,
 			Rate = 0.396,
-			Priority = 45,
-			Conditions = new()
-			{
+			Priority = 46,
+			Conditions =
+			[
 				new()
 				{
 					HighAngle = 1,
 					AaDirector = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -187,19 +187,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.65,
 			Rate = 0.594,
 			Priority = 6,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.MayaKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGunConcentrated = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -208,18 +208,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.5,
 			Rate = 0.544,
 			Priority = 9,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.MayaKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGunConcentrated = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -228,8 +228,8 @@ public record AntiAirCutIn
 			VariableBonus = 1.25,
 			Rate = 0.445,
 			Priority = 40,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					AaGunConcentrated = 1,
@@ -238,7 +238,7 @@ public record AntiAirCutIn
 					AaGun3Aa = 2,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -247,15 +247,15 @@ public record AntiAirCutIn
 			VariableBonus = 1.35,
 			Rate = 0.346,
 			Priority = 34,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
 					HighAngle = 1,
 					AaGunConcentrated = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -264,19 +264,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.45,
 			Rate = 0.623,
 			Priority = 25,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.IsuzuKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGun = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -285,18 +285,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.3,
 			Rate = 0.534,
 			Priority = 35,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.IsuzuKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGun = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -305,20 +305,20 @@ public record AntiAirCutIn
 			VariableBonus = 1.4,
 			Rate = 0.613,
 			Priority = 24,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KasumiKaiNiB,
 						ShipId.YuubariKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGun = 1,
 					Radar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -326,20 +326,20 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.25,
 			Rate = 0.564,
-			Priority = 42,
-			Conditions = new()
-			{
+			Priority = 43,
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KasumiKaiNiB,
 						ShipId.YuubariKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGun = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -347,18 +347,18 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.2,
 			Rate = 0.584,
-			Priority = 43,
-			Conditions = new()
-			{
+			Priority = 44,
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.SatsukiKaiNi,
-					},
+					],
 					AaGunConcentrated = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -367,18 +367,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.45,
 			Rate = 0.564,
 			Priority = 21,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KinuKaiNi,
-					},
+					],
 					HighAngleWithoutDirector = 1,
 					AaGunConcentrated = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -387,17 +387,17 @@ public record AntiAirCutIn
 			VariableBonus = 1.25,
 			Rate = 0.643,
 			Priority = 37,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KinuKaiNi,
-					},
+					],
 					AaGunConcentrated = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -406,18 +406,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.45,
 			Rate = 0.594,
 			Priority = 22,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.YuraKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -425,18 +425,18 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.2,
 			Rate = 0.643,
-			Priority = 44,
-			Conditions = new()
-			{
+			Priority = 45,
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.FumizukiKaiNi,
-					},
+					],
 					AaGunConcentrated = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -444,19 +444,19 @@ public record AntiAirCutIn
 			FixedBonus = 1,
 			VariableBonus = 1.05,
 			Rate = 0.792,
-			Priority = 46,
-			Conditions = new()
-			{
+			Priority = 47,
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.UIT25,
 						ShipId.I504,
-					},
+					],
 					AaGun3To8Aa = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -465,19 +465,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.25,
 			Rate = 0.613,
 			Priority = 38,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.TenryuuKaiNi,
 						ShipId.TatsutaKaiNi,
-					},
+					],
 					HighAngle = 1,
 					AaGun3To8Aa = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -486,22 +486,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.594,
 			Priority = 10,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
-						ShipId.IseKai,
-						ShipId.IseKaiNi,
-						ShipId.HyuugaKai,
-						ShipId.HyuugaKaiNi,
-					},
+					Ships =
+					[
+						ShipId.IseKai, ShipId.IseKaiNi, ShipId.HyuugaKai, ShipId.HyuugaKaiNi,
+					],
 					AaRocketMod = 1,
 					AntiAirRadar = 1,
 					AaShell = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -510,22 +507,22 @@ public record AntiAirCutIn
 			VariableBonus = 1.4,
 			Rate = 0.554,
 			Priority = 14,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.YamatoKai,
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
 						ShipId.MusashiKai,
 						ShipId.MusashiKaiNi,
-					},
+					],
 					HighAngleMusashi = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -534,19 +531,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.519,
 			Priority = 19,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.OoyodoKai,
-					},
+					],
 					HighAngleMusashi = 1,
 					AaRocketMod = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -555,23 +552,23 @@ public record AntiAirCutIn
 			VariableBonus = 1.4,
 			Rate = 0.554,
 			Priority = 29,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.IseKai,
 						ShipId.IseKaiNi,
 						ShipId.HyuugaKai,
 						ShipId.HyuugaKaiNi,
 						ShipId.MusashiKai,
 						ShipId.MusashiKaiNi,
-					},
+					],
 					AaRocketMod = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -580,19 +577,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.594,
 			Priority = 23,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.IsokazeBKai,
 						ShipId.HamakazeBKai,
-					},
+					],
 					HighAngle = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -601,19 +598,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.3,
 			Rate = 0.495,
 			Priority = 32,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.TenryuuKaiNi,
 						ShipId.GotlandKai,
 						ShipId.Gotlandandra,
-					},
+					],
 					HighAngle = 3,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -622,17 +619,17 @@ public record AntiAirCutIn
 			VariableBonus = 1.25,
 			Rate = 0.495,
 			Priority = 41,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.TenryuuKaiNi,
-					},
+					],
 					HighAngle = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -641,12 +638,12 @@ public record AntiAirCutIn
 			VariableBonus = 1.2,
 			Rate = 0.594,
 			Priority = 39,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KongouKaiNi,
 						ShipId.KongouKaiNiC,
 						ShipId.HieiKaiNi,
@@ -669,14 +666,14 @@ public record AntiAirCutIn
 						ShipId.WarspiteKai,
 						ShipId.ArkRoyal,
 						ShipId.ArkRoyalKai,
-					},
+					],
 					MainGunLargeFcr = 1,
 					AaGunPompom = 1,
 				},
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KongouKaiNi,
 						ShipId.KongouKaiNiC,
 						ShipId.HieiKaiNi,
@@ -699,14 +696,14 @@ public record AntiAirCutIn
 						ShipId.WarspiteKai,
 						ShipId.ArkRoyal,
 						ShipId.ArkRoyalKai,
-					},
+					],
 					AaRocketBritish = 1,
 					AaGunPompom = 1,
 				},
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.KongouKaiNi,
 						ShipId.KongouKaiNiC,
 						ShipId.HieiKaiNi,
@@ -729,10 +726,10 @@ public record AntiAirCutIn
 						ShipId.WarspiteKai,
 						ShipId.ArkRoyal,
 						ShipId.ArkRoyalKai,
-					},
+					],
 					AaRocketBritish = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -741,19 +738,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.35,
 			Rate = 0.415,
 			Priority = 31,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.GotlandKai,
 						ShipId.Gotlandandra,
-					},
+					],
 					HighAngle = 1,
 					AaGun4Aa = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -762,17 +759,17 @@ public record AntiAirCutIn
 			VariableBonus = 1.6,
 			Rate = 0.594,
 			Priority = 12,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmericanGfcs = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -781,27 +778,27 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.544,
 			Priority = 17,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmerican = 1,
 					HighAngleAmericanGfcs = 1,
 				},
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmericanKai = 1,
 					HighAngleAmericanGfcs = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -810,37 +807,37 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.495,
 			Priority = 18,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmerican = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmerican = 1,
 					HighAngleAmericanKai = 1,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmericanKai = 2,
 					RadarGfcs = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -849,17 +846,17 @@ public record AntiAirCutIn
 			VariableBonus = 1.45,
 			Rate = 0.396,
 			Priority = 30,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					ShipClasses = new()
-					{
+					ShipClasses =
+					[
 						ShipClass.Fletcher,
-					},
+					],
 					HighAngleAmericanKai = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -868,18 +865,18 @@ public record AntiAirCutIn
 			VariableBonus = 1.85,
 			Rate = 0.594,
 			Priority = 1,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlantaGfcs = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -888,19 +885,19 @@ public record AntiAirCutIn
 			VariableBonus = 1.7,
 			Rate = 0.55,
 			Priority = 2,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -909,40 +906,40 @@ public record AntiAirCutIn
 			VariableBonus = 1.7,
 			Rate = 0.55,
 			Priority = 3,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlanta = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlantaGfcs = 2,
 					RadarGfcs = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -951,38 +948,38 @@ public record AntiAirCutIn
 			VariableBonus = 1.65,
 			Rate = 0.594,
 			Priority = 5,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlanta = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
 				},
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.Atlanta,
 						ShipId.AtlantaKai,
-					},
+					],
 					HighAngleAtlantaGfcs = 2,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -991,21 +988,21 @@ public record AntiAirCutIn
 			VariableBonus = 1.65,
 			Rate = 0.643,
 			Priority = 4,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
 						ShipId.MusashiKaiNi,
-					},
+					],
 					HighAngleConcentrated = 2,
 					RadarYamato = 1,
 					AaGun6Aa = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -1014,20 +1011,20 @@ public record AntiAirCutIn
 			VariableBonus = 1.6,
 			Rate = 0.594,
 			Priority = 7,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
 						ShipId.MusashiKaiNi,
-					},
+					],
 					HighAngleConcentrated = 2,
 					RadarYamato = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -1036,21 +1033,21 @@ public record AntiAirCutIn
 			VariableBonus = 1.6,
 			Rate = 0.544,
 			Priority = 13,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
 						ShipId.MusashiKaiNi,
-					},
+					],
 					HighAngleConcentrated = 1,
 					RadarYamato = 1,
 					AaGun6Aa = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -1059,20 +1056,20 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.495,
 			Priority = 20,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.YamatoKaiNi,
 						ShipId.YamatoKaiNiJuu,
 						ShipId.MusashiKaiNi,
-					},
+					],
 					HighAngleConcentrated = 1,
 					RadarYamato = 1,
 				},
-			},
+			],
 		},
 		new()
 		{
@@ -1081,36 +1078,84 @@ public record AntiAirCutIn
 			VariableBonus = 1.55,
 			Rate = 0.495,
 			Priority = 8,
-			Conditions = new()
-			{
+			Conditions =
+			[
 				new()
 				{
-					Ships = new()
-					{
+					Ships =
+					[
 						ShipId.HarunaKaiNiB,
-					},
+					],
 					HarunaGun = 1,
 					AaGunConcentrated = 1,
 					AntiAirRadar = 1,
 				},
-			},
+			],
 		},
-	};
+		new()
+		{
+			Id = 47,
+			FixedBonus = 2,
+			VariableBonus = 1.3,
+			Rate = 0.7,
+			Priority = 42,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.ShiratsuyuKaiNi,
+						ShipId.ShigureKaiNi,
+						ShipId.ShigureKaiSan,
+						ShipId.MurasameKaiNi,
+						ShipId.HarusameKaiNi,
+					],
+					HarusameGun = 2,
+				},
+				new()
+				{
+					Ships =
+					[
+						ShipId.ShiratsuyuKaiNi,
+						ShipId.ShigureKaiNi,
+						ShipId.ShigureKaiSan,
+						ShipId.MurasameKaiNi,
+						ShipId.HarusameKaiNi,
+					],
+					HarusameGun = 1,
+					AaGunShigure = 1,
+				},
+				new()
+				{
+					Ships =
+					[
+						ShipId.ShiratsuyuKaiNi,
+						ShipId.ShigureKaiNi,
+						ShipId.ShigureKaiSan,
+						ShipId.MurasameKaiNi,
+						ShipId.HarusameKaiNi,
+					],
+					HarusameGun = 1,
+					Radar4AaOrMore = 1,
+				},
+			],
+		},
+	];
 
-	public static List<AntiAirCutIn> AllCutIns => CutIns
-		.OrderBy(a => a.Priority)
-		.ToList();
+	public static IEnumerable<AntiAirCutIn> AllCutIns => CutIns
+		.OrderBy(a => a.Priority);
 
 	public int Id { get; init; }
-	public int FixedBonus { get; init; }
-	public double VariableBonus { get; init; }
+	public int FixedBonus { get; private init; }
+	public double VariableBonus { get; private init; }
 	private double? Rate { get; init; }
 	private int Priority { get; init; }
 
 	/// <summary>
 	/// Null when unknown
 	/// </summary>
-	public List<AntiAirCutInCondition>? Conditions { get; init; }
+	public required List<AntiAirCutInCondition> Conditions { get; init; }
 
 	public string ValueDisplay => Rate switch
 	{
@@ -1128,6 +1173,7 @@ public record AntiAirCutIn
 		?? new AntiAirCutIn
 		{
 			Id = id,
+			Conditions = [],
 		};
 
 	private bool CanBeActivatedBy(IShipData ship)

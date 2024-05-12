@@ -95,8 +95,15 @@ public static class ShipDataExtensions
 	public static bool HasSurfaceRadar(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsSurfaceRadar is true);
 
-	public static bool HasAirRadar(this IShipData ship, int count = 1) => ship.AllSlotInstance
-		.Count(e => e?.MasterEquipment.IsAirRadar is true) >= count;
+	/// <summary>
+	/// Both min and max are inclusive
+	/// </summary>
+	public static bool HasAirRadar(this IShipData ship, int count = 1, int min = 0, int max = 9999) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsAirRadar is true &&
+			e.MasterEquipment.AA >= min &&
+			e.MasterEquipment.AA <= max)
+		>= count;
+
 	public static bool HasHighAccuracyRadar(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsHighAccuracyRadar is true);
 
@@ -258,6 +265,11 @@ public static class ShipDataExtensions
 			EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi)
 		>= count;
 
+	public static bool HasShigureAaGun(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.AAGun_25mmAntiaircraftMachineGunExtra)
+		>= count;
+
 	public static bool HasHighAngleMusashi(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
 			EquipmentId.SecondaryGun_10cmTwinHighangleGunKai_AdditionalMachineGuns)
@@ -296,6 +308,11 @@ public static class ShipDataExtensions
 		.Count(e => e?.MasterEquipment.EquipmentId is
 			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSan_DazzleCamouflageSpecification or
 			EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon)
+		>= count;
+
+	public static bool HasHarusameGun(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunSmall_12_7cmTwinGunModelCKaiSanH)
 		>= count;
 
 	public static bool HasHighAngleConcentrated(this IShipData ship, int count = 1) => ship.AllSlotInstance
@@ -380,7 +397,7 @@ public static class ShipDataExtensions
 		ShipId.Saratoga or
 		ShipId.TaiyouKaiNi or
 		ShipId.ShinyouKaiNi or
-		ShipId.UnyouKaiNi or 
+		ShipId.UnyouKaiNi or
 		ShipId.KagaKaiNiGo;
 
 	public static bool IsArkRoyal(this IShipData ship) => ship.MasterShip.ShipId switch
@@ -448,7 +465,7 @@ public static class ShipDataExtensions
 			ShipId.ZaraKai or
 			ShipId.ZaraDue or
 			ShipId.Pola or
-			ShipId.PolaKai 
+			ShipId.PolaKai
 				=> Math.Sqrt(ship.AllSlotInstance.Count(e => e?.EquipmentId == EquipmentId.MainGunMedium_203mm53TwinGun)),
 
 			_ => 0,

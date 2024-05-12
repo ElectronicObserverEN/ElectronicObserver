@@ -46,6 +46,18 @@ public class AntiAirCutInCondition
 	/// </summary>
 	public int HarunaGun { get; init; }
 
+	/// <summary>
+	/// 12.7cm連装砲C型改三H
+	/// </summary>
+	public int HarusameGun { get; init; }
+
+	/// <summary>
+	/// 25mm対空機銃増備
+	/// </summary>
+	public int AaGunShigure { get; init; }
+
+	public int Radar4AaOrMore { get; init; }
+
 	public bool CanBeActivatedBy(IShipData ship, AntiAirCutIn antiAirCutIn)
 	{
 		if (ship.MasterShip.ShipClassTyped is ShipClass.Akizuki && antiAirCutIn.Id is 5 or 7 or 8) return false;
@@ -82,6 +94,9 @@ public class AntiAirCutInCondition
 		if (!ship.HasHighAngleConcentrated(HighAngleConcentrated)) return false;
 		if (!ship.HasYamatoRadar(RadarYamato)) return false;
 		if (!ship.HasHarunaGun(HarunaGun)) return false;
+		if (!ship.HasHarusameGun(HarusameGun)) return false;
+		if (!ship.HasShigureAaGun(HarusameGun)) return false;
+		if (!ship.HasAirRadar(Radar4AaOrMore, 4)) return false;
 
 		return true;
 	}

@@ -184,4 +184,7 @@
   <data name="HarunaGun" xml:space="preserve">
     <value>35.6改三/四</value>
   </data>
+  <data name="Radar4AaOrMore" xml:space="preserve">
+    <value>電探(対空4以上)</value>
+  </data>
 </root>

@@ -528,4 +528,7 @@ public enum EquipmentId
 	SecondaryGun_12cmSingleHighangleGun_25mmMachineGun = 524,
 	SpecialAmphibiousTank_SpecialType4AmphibiousTank = 525,
 	SpecialAmphibiousTank_SpecialType4AmphibiousTankKai = 526,
+	RadarLarge_Type281Radar = 527,
+	RadarLarge_Type274FireControlRadar = 528,
+	MainGunSmall_12_7cmTwinGunModelCKaiSanH = 529,
 }

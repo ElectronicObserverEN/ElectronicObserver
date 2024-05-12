@@ -37,7 +37,8 @@ public class CustomRequestHandler : RequestHandler
 	/// <summary>
 	/// 描画プロセスが何らかの理由で落ちた際の処理を行います。
 	/// </summary>
-	protected override void OnRenderProcessTerminated(IWebBrowser browserControl, IBrowser browser, CefTerminationStatus status)
+	protected override void OnRenderProcessTerminated(IWebBrowser chromiumWebBrowser, IBrowser browser, CefTerminationStatus status,
+		int errorCode, string errorMessage)
 	{
 		// note: out of memory (例外コード: 0xe0000008) でクラッシュした場合、このイベントは呼ばれない
 
@@ -52,6 +53,8 @@ public class CustomRequestHandler : RequestHandler
 		ret += Resources.RenderProcessReturnWhenReloaded;
 
 		RenderProcessTerminated?.Invoke(ret);
+
+		base.OnRenderProcessTerminated(chromiumWebBrowser, browser, status, errorCode, errorMessage);
 	}
 
 	protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool iNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)

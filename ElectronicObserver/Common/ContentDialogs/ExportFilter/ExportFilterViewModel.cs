@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
-using ScottPlot.Drawing.Colormaps;
 
 namespace ElectronicObserver.Common.ContentDialogs.ExportFilter;
 

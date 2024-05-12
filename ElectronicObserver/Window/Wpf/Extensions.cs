@@ -112,146 +112,169 @@ public static class Extensions
 
 	private static List<string> EquipmentConditions(this AntiAirCutInCondition condition)
 	{
-		List<string> conditions = new();
+		List<string> conditions = [];
 
 		if (condition.HighAngle > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngle} >= {condition.HighAngle}");
+			conditions.Add($"{AaciResources.HighAngle} >= {condition.HighAngle}");
 		}
 
 		if (condition.HighAngleDirector > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleDirector} >= {condition.HighAngleDirector}");
+			conditions.Add($"{AaciResources.HighAngleDirector} >= {condition.HighAngleDirector}");
 		}
 
 		if (condition.HighAngleWithoutDirector > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleWithoutDirector} >= {condition.HighAngleWithoutDirector}");
+			conditions.Add($"{AaciResources.HighAngleWithoutDirector} >= {condition.HighAngleWithoutDirector}");
 		}
 
 		if (condition.AaDirector > 0)
 		{
-			conditions.Add($"{AaciStrings.AaDirector} >= {condition.AaDirector}");
+			conditions.Add($"{AaciResources.AaDirector} >= {condition.AaDirector}");
 		}
 
 		if (condition.Radar > 0)
 		{
-			conditions.Add($"{AaciStrings.Radar} >= {condition.Radar}");
+			conditions.Add($"{AaciResources.Radar} >= {condition.Radar}");
 		}
 
 		if (condition.AntiAirRadar > 0)
 		{
-			conditions.Add($"{AaciStrings.AntiAirRadar} >= {condition.AntiAirRadar}");
+			conditions.Add($"{AaciResources.AntiAirRadar} >= {condition.AntiAirRadar}");
 		}
 
 		if (condition.MainGunLarge > 0)
 		{
-			conditions.Add($"{AaciStrings.MainGunLarge} >= {condition.MainGunLarge}");
+			conditions.Add($"{AaciResources.MainGunLarge} >= {condition.MainGunLarge}");
 		}
 
 		if (condition.MainGunLargeFcr > 0)
 		{
-			conditions.Add($"{AaciStrings.MainGunLargeFcr} >= {condition.MainGunLargeFcr}");
+			conditions.Add($"{AaciResources.MainGunLargeFcr} >= {condition.MainGunLargeFcr}");
 		}
 
 		if (condition.AaShell > 0)
 		{
-			conditions.Add($"{AaciStrings.AaShell} >= {condition.AaShell}");
+			conditions.Add($"{AaciResources.AaShell} >= {condition.AaShell}");
 		}
 
 		if (condition.AaGun > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGun} >= {condition.AaGun}");
+			conditions.Add($"{AaciResources.AaGun} >= {condition.AaGun}");
 		}
 
 		if (condition.AaGun3Aa > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGun3AaOrMore} >= {condition.AaGun3Aa}");
+			conditions.Add($"{AaciResources.AaGun3AaOrMore} >= {condition.AaGun3Aa}");
 		}
 
 		if (condition.AaGun4Aa > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGun4AaOrMore} >= {condition.AaGun4Aa}");
+			conditions.Add($"{AaciResources.AaGun4AaOrMore} >= {condition.AaGun4Aa}");
 		}
 
 		if (condition.AaGun6Aa > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGun6AaOrMore} >= {condition.AaGun6Aa}");
+			conditions.Add($"{AaciResources.AaGun6AaOrMore} >= {condition.AaGun6Aa}");
 		}
 
 		if (condition.AaGun3To8Aa > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGun3To8Aa} >= {condition.AaGun3To8Aa}");
+			conditions.Add($"{AaciResources.AaGun3To8Aa} >= {condition.AaGun3To8Aa}");
 		}
 
 		if (condition.AaGunConcentrated > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGunConcentrated} >= {condition.AaGunConcentrated}");
+			conditions.Add($"{AaciResources.AaGunConcentrated} >= {condition.AaGunConcentrated}");
 		}
 
 		if (condition.AaGunPompom > 0)
 		{
-			conditions.Add($"{AaciStrings.AaGunPompom} >= {condition.AaGunPompom}");
+			conditions.Add($"{AaciResources.AaGunPompom} >= {condition.AaGunPompom}");
 		}
 
 		if (condition.AaRocketBritish > 0)
 		{
-			conditions.Add($"{AaciStrings.AaRocketBritish} >= {condition.AaRocketBritish}");
+			conditions.Add($"{AaciResources.AaRocketBritish} >= {condition.AaRocketBritish}");
 		}
 
 		if (condition.AaRocketMod > 0)
 		{
-			conditions.Add($"{AaciStrings.AaRocketMod} >= {condition.AaRocketMod}");
+			conditions.Add($"{AaciResources.AaRocketMod} >= {condition.AaRocketMod}");
 		}
 
 		if (condition.HighAngleMusashi > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleMusashi} >= {condition.HighAngleMusashi}");
+			conditions.Add($"{AaciResources.HighAngleMusashi} >= {condition.HighAngleMusashi}");
 		}
 
 		if (condition.HighAngleAmerican > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleAmerican} >= {condition.HighAngleAmerican}");
+			conditions.Add($"{AaciResources.HighAngleAmerican} >= {condition.HighAngleAmerican}");
 		}
 
 		if (condition.HighAngleAmericanKai > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleAmericanKai} >= {condition.HighAngleAmericanKai}");
+			conditions.Add($"{AaciResources.HighAngleAmericanKai} >= {condition.HighAngleAmericanKai}");
 		}
 
 		if (condition.HighAngleAmericanGfcs > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleAmericanGfcs} >= {condition.HighAngleAmericanGfcs}");
+			conditions.Add($"{AaciResources.HighAngleAmericanGfcs} >= {condition.HighAngleAmericanGfcs}");
 		}
 
 		if (condition.RadarGfcs > 0)
 		{
-			conditions.Add($"{AaciStrings.RadarGfcs} >= {condition.RadarGfcs}");
+			conditions.Add($"{AaciResources.RadarGfcs} >= {condition.RadarGfcs}");
 		}
 
 		if (condition.HighAngleAtlanta > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleAtlanta} >= {condition.HighAngleAtlanta}");
+			conditions.Add($"{AaciResources.HighAngleAtlanta} >= {condition.HighAngleAtlanta}");
 		}
 
 		if (condition.HighAngleAtlantaGfcs > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleAtlantaGfcs} >= {condition.HighAngleAtlantaGfcs}");
+			conditions.Add($"{AaciResources.HighAngleAtlantaGfcs} >= {condition.HighAngleAtlantaGfcs}");
 		}
 
 		if (condition.HighAngleConcentrated > 0)
 		{
-			conditions.Add($"{AaciStrings.HighAngleConcentrated} >= {condition.HighAngleConcentrated}");
+			conditions.Add($"{AaciResources.HighAngleConcentrated} >= {condition.HighAngleConcentrated}");
 		}
 
 		if (condition.RadarYamato > 0)
 		{
-			conditions.Add($"{AaciStrings.RadarYamato} >= {condition.RadarYamato}");
+			conditions.Add($"{AaciResources.RadarYamato} >= {condition.RadarYamato}");
 		}
 
 		if (condition.HarunaGun > 0)
 		{
-			conditions.Add($"{AaciStrings.HarunaGun} >= {condition.HarunaGun}");
+			conditions.Add($"{AaciResources.HarunaGun} >= {condition.HarunaGun}");
+		}
+
+		if (condition.HarusameGun > 0)
+		{
+			string harusameGun = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.MainGunSmall_12_7cmTwinGunModelCKaiSanH]
+				.NameEN;
+
+			conditions.Add($"{harusameGun} >= {condition.HarusameGun}");
+		}
+
+		if (condition.AaGunShigure > 0)
+		{
+			string aaGunShigure = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.AAGun_25mmAntiaircraftMachineGunExtra]
+				.NameEN;
+
+			conditions.Add($"{aaGunShigure} >= {condition.AaGunShigure}");
+		}
+
+		if (condition.Radar4AaOrMore > 0)
+		{
+			conditions.Add($"{AaciResources.Radar4AaOrMore} >= {condition.Radar4AaOrMore}");
 		}
 
 		return conditions;

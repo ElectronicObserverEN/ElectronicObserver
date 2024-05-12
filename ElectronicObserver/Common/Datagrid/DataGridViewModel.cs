@@ -7,6 +7,7 @@ using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Common.Datagrid;
 
@@ -104,6 +105,7 @@ public partial class DataGridViewModel<T> : ObservableObject
 		string headerText = columnHeader switch
 		{
 			string stringHeader => stringHeader,
+			UseItemIcon icon => icon.Type.NameTranslated(),
 			_ => "",
 		};
 

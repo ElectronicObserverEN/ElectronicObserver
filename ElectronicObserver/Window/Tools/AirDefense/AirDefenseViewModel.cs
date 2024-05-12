@@ -195,7 +195,7 @@ public class AirDefenseViewModel : WindowViewModelBase
 			.OrderBy(a => a.Id)
 			.ToList(),
 
-		_ => AntiAirCutIn.PossibleCutIns(GetShips())
+		_ => AntiAirCutIn.PossibleCutIns(GetShips()),
 	};
 
 	private void UpdateFormation()

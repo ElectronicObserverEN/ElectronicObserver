@@ -26,9 +26,20 @@ public static class WikiExtensions
 		TorpedoMax = wikiShip._torpedo_max.ToIntValue(),
 		AAMin = wikiShip._aa,
 		AAMax = wikiShip._aa_max.ToIntValue(),
-		ASW = new ParameterMock(wikiShip._asw ?? -1, wikiShip._asw_max.ToIntValue()),
-		Evasion = new ParameterMock(wikiShip._evasion ?? -1, wikiShip._evasion_max ?? -1),
-		LOS = new ParameterMock(wikiShip._los ?? -1, wikiShip._los_max ?? -1),
+		ASW = (ShipId)wikiShip._api_id switch
+		{
+			_ => new ParameterMock(wikiShip._asw ?? -1, wikiShip._asw_max.ToIntValue()),
+		},
+		Evasion = (ShipId)wikiShip._api_id switch
+		{
+			ShipId.MikumaKaiNiToku => new ParameterMock(35, 75),
+			_ => new ParameterMock(wikiShip._evasion ?? -1, wikiShip._evasion_max ?? -1),
+		},
+		LOS = (ShipId)wikiShip._api_id switch
+		{
+			ShipId.MikumaKaiNiToku => new ParameterMock(32, 89),
+			_ => new ParameterMock(wikiShip._los ?? -1, wikiShip._los_max ?? -1),
+		},
 		LuckMin = wikiShip._luck,
 		LuckMax = wikiShip._luck_max,
 		Speed = wikiShip._speed,
