@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Avalonia;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -186,7 +187,10 @@ public partial class App
 			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(0));
 
+			UpdateTheme();
 			UpdateFont();
+
+			Configuration.Instance.ConfigurationChanged += UpdateTheme;
 			Configuration.Instance.ConfigurationChanged += UpdateFont;
 
 			FormMainWpf mainWindow = new();
@@ -196,6 +200,20 @@ public partial class App
 
 			mainWindow.ShowDialog();
 		}
+	}
+
+	private void UpdateTheme()
+	{
+		if (AvaloniaApp.Instance is not Avalonia.App app) return;
+
+		ThemeVariant themeVariant = Configuration.Config.UI.ThemeMode switch
+		{
+			0 => ThemeVariant.Light, // light theme => light theme
+			1 => ThemeVariant.Dark, // dark theme => dark theme
+			_ => ThemeVariant.Dark, // custom theme => dark theme
+		};
+
+		app.UpdateTheme(themeVariant);
 	}
 
 	private void UpdateFont()

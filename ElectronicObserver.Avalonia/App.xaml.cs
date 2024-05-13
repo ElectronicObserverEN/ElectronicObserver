@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Styling;
 using ElectronicObserver.Avalonia.ShipGroup;
 
 namespace ElectronicObserver.Avalonia;
@@ -28,6 +29,11 @@ public class App : Application
 		}
 
 		base.OnFrameworkInitializationCompleted();
+	}
+
+	public void UpdateTheme(ThemeVariant themeVariant)
+	{
+		RequestedThemeVariant = themeVariant;
 	}
 
 	public void UpdateFont(string fontName, double fontSize)

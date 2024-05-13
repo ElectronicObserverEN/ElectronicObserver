@@ -5,7 +5,7 @@
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	>
 	<Application.Styles>
-		<FluentTheme>
+		<FluentTheme DensityStyle="Compact">
 			<FluentTheme.Palettes>
 				<ColorPaletteResources x:Key="Light" Accent="DodgerBlue" />
 				<ColorPaletteResources x:Key="Dark" Accent="DodgerBlue" />
