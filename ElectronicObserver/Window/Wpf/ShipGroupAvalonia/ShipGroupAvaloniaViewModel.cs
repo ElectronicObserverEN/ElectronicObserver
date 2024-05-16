@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Win32.Interoperability;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
@@ -140,6 +141,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		groupData.UpdateMembers();
 
+		DataGridSortDescriptionCollection sortDescriptions = ShipGroupViewModel.CollectionView.SortDescriptions;
+
 		ShipGroupViewModel.Items = groupData.MembersInstance
 			.OfType<IShipData>()
 			.Select(s => new ShipGroupItemViewModel(s))
@@ -151,6 +154,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		SelectedGroup.IsSelected = true;
 
 		if (PreviousGroup is null) return;
+
+		PreviousGroup.SortDescriptions = sortDescriptions;
 
 		if (PreviousGroup == SelectedGroup)
 		{

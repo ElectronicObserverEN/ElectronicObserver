@@ -144,7 +144,7 @@
 			ColumnWidth="Auto"
 			GridLinesVisibility="All"
 			IsReadOnly="True"
-			ItemsSource="{Binding Items}"
+			ItemsSource="{Binding CollectionView}"
 			SelectionMode="Extended"
 			>
 			<DataGrid.Styles>
@@ -196,324 +196,324 @@
 
 			<DataGrid.Columns>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding MasterId}"
 					Header="ID"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ShipTypeName}"
-					Header="{Binding FormShipGroup.ShipView_ShipType}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ShipType, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Name}"
-					Header="{Binding FormShipGroup.ShipView_Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Name, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Level}"
 					Header="Lv"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ExpTotal}"
 					Header="Exp"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ExpNext}"
 					Header="next"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ExpRemodel}"
-					Header="{Binding FormShipGroup.ShipView_NextRemodel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_NextRemodel, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Hp}"
 					Header="HP"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Condition}"
 					Header="Cond"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Fuel}"
-					Header="{Binding FormShipGroup.ShipView_Fuel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Fuel, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Ammo}"
-					Header="{Binding FormShipGroup.ShipView_Ammo}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Ammo, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Slot1.Name}"
-					Header="{Binding FormShipGroup.ShipView_Slot1}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot1, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Slot2.Name}"
-					Header="{Binding FormShipGroup.ShipView_Slot2}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot2, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Slot3.Name}"
-					Header="{Binding FormShipGroup.ShipView_Slot3}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot3, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Slot4.Name}"
-					Header="{Binding FormShipGroup.ShipView_Slot4}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot4, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Slot5.Name}"
-					Header="{Binding FormShipGroup.ShipView_Slot5}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot5, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ExpansionSlot}"
-					Header="{Binding FormShipGroup.ShipView_ExpansionSlot}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ExpansionSlot, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft1}"
-					Header="{Binding FormShipGroup.ShipView_Aircraft1}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft1, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft2}"
-					Header="{Binding FormShipGroup.ShipView_Aircraft2}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft2, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft3}"
-					Header="{Binding FormShipGroup.ShipView_Aircraft3}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft3, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft4}"
-					Header="{Binding FormShipGroup.ShipView_Aircraft4}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft4, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft5}"
-					Header="{Binding FormShipGroup.ShipView_Aircraft5}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft5, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AircraftTotal}"
-					Header="{Binding FormShipGroup.ShipView_AircraftTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AircraftTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Fleet}"
-					Header="{Binding FormShipGroup.ShipView_Fleet}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Fleet, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding RepairTime}"
-					Header="{Binding FormShipGroup.ShipView_RepairTime}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairTime, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding RepairSteel}"
-					Header="{Binding FormShipGroup.ShipView_RepairSteel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairSteel, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding RepairFuel}"
-					Header="{Binding FormShipGroup.ShipView_RepairFuel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairFuel, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Firepower}"
-					Header="{Binding FormShipGroup.ShipView_Firepower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Firepower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding FirepowerRemain}"
-					Header="{Binding FormShipGroup.ShipView_FirepowerRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding FirepowerTotal}"
-					Header="{Binding FormShipGroup.ShipView_FirepowerTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Torpedo}"
-					Header="{Binding FormShipGroup.ShipView_Torpedo}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Torpedo, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding TorpedoRemain}"
-					Header="{Binding FormShipGroup.ShipView_TorpedoRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding TorpedoTotal}"
-					Header="{Binding FormShipGroup.ShipView_TorpedoTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AA}"
-					Header="{Binding FormShipGroup.ShipView_AA}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AA, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AARemain}"
-					Header="{Binding FormShipGroup.ShipView_AARemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AARemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AATotal}"
-					Header="{Binding FormShipGroup.ShipView_AATotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AATotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Armor}"
-					Header="{Binding FormShipGroup.ShipView_Armor}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Armor, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ArmorRemain}"
-					Header="{Binding FormShipGroup.ShipView_ArmorRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ArmorTotal}"
-					Header="{Binding FormShipGroup.ShipView_ArmorTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ASW}"
-					Header="{Binding FormShipGroup.ShipView_ASW}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ASW, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ASWTotal}"
-					Header="{Binding FormShipGroup.ShipView_ASWTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ASWTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Evasion}"
-					Header="{Binding FormShipGroup.ShipView_Evasion}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Evasion, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding EvasionTotal}"
-					Header="{Binding FormShipGroup.ShipView_EvasionTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_EvasionTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LOS}"
-					Header="{Binding FormShipGroup.ShipView_LOS}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LOS, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LOSTotal}"
-					Header="{Binding FormShipGroup.ShipView_LOSTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LOSTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Luck}"
-					Header="{Binding FormShipGroup.ShipView_Luck}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Luck, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LuckRemain}"
-					Header="{Binding FormShipGroup.ShipView_LuckRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LuckTotal}"
-					Header="{Binding FormShipGroup.ShipView_LuckTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding BomberTotal}"
-					Header="{Binding FormShipGroup.ShipView_Luck}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Luck, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Speed}"
-					Header="{Binding FormShipGroup.ShipView_LuckRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Range}"
-					Header="{Binding FormShipGroup.ShipView_LuckTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AirBattlePower}"
-					Header="{Binding FormShipGroup.ShipView_AirBattlePower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AirBattlePower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ShellingPower}"
-					Header="{Binding FormShipGroup.ShipView_ShellingPower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ShellingPower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AircraftPower}"
-					Header="{Binding FormShipGroup.ShipView_AircraftPower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AircraftPower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AntiSubmarinePower}"
-					Header="{Binding FormShipGroup.ShipView_AntiSubmarinePower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AntiSubmarinePower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding TorpedoPower}"
-					Header="{Binding FormShipGroup.ShipView_TorpedoPower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoPower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding NightBattlePower}"
-					Header="{Binding FormShipGroup.ShipView_NightBattlePower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_NightBattlePower, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridCheckBoxColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Locked, Mode=OneWay}"
-					Header="{Binding FormShipGroup.ShipView_Locked}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Locked, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding SallyArea}"
-					Header="{Binding FormShipGroup.ShipView_SallyArea}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_SallyArea, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding SortId}"
-					Header="{Binding FormShipGroup.SortId}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.SortId, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
-					Width="Auto"
+					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding RepairTimeUnit}"
-					Header="{Binding FormShipGroup.RepairTimeUnit}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.RepairTimeUnit, ElementName=ShipGroupControl}"
 					/>
 			</DataGrid.Columns>
 		</DataGrid>

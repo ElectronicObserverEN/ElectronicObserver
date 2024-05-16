@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
@@ -19,11 +21,13 @@ public partial class ShipGroupViewModel : ObservableObject
 	[ObservableProperty] private GridLength _groupHeight;
 
 	[ObservableProperty] private ObservableCollection<ShipGroupItemViewModel> _items = [];
+	[ObservableProperty] private DataGridCollectionView _collectionView = new(new List<ShipGroupItemViewModel>());
 	[ObservableProperty] private string _shipCountText = "";
 	[ObservableProperty] private string _levelTotalText = "";
 	[ObservableProperty] private string _levelAverageText = "";
 
 	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
+	[ObservableProperty] private DataGridSortDescriptionCollection _sortDescriptions = [];
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
 	public required Action AddGroupAction { get; init; }
@@ -40,6 +44,16 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[ObservableProperty] private bool _anyShipsSelected;
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
+
+	partial void OnItemsChanging(ObservableCollection<ShipGroupItemViewModel>? value)
+	{
+		if (value is null) return;
+
+		CollectionView = new(value);
+
+		CollectionView.SortDescriptions.Clear();
+		CollectionView.SortDescriptions.AddRange(SortDescriptions);
+	}
 
 	[RelayCommand]
 	private void SelectionChanged(IList selectedItems)
@@ -81,9 +95,10 @@ public partial class ShipGroupViewModel : ObservableObject
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
+		ColumnProperties = group.Columns;
+		SortDescriptions = group.SortDescriptions;
 		SelectGroupAction.Invoke(group);
 		SelectionChanged(SelectedShips);
-		ColumnProperties = group.Columns;
 	}
 
 	[RelayCommand]
