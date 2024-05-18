@@ -269,4 +269,70 @@
   <data name="RepairTimeUnit" xml:space="preserve">
     <value>HP1あたり</value>
   </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>弾薬</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>艦載機</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>補強</value>
+  </data>
+  <data name="ModRemaining" xml:space="preserve">
+    <value>改修</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>雷装</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>対空</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>装甲</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>対潜</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>回避</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>運</value>
+  </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>爆装</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速力</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>射程</value>
+  </data>
+  <data name="Air" xml:space="preserve">
+    <value>航空</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>砲撃</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>空撃</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>威力</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>ロック</value>
+  </data>
 </root>

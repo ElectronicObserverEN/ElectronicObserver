@@ -283,4 +283,70 @@ This action cannot be undone.</value>
   <data name="RepairTimeUnit" xml:space="preserve">
     <value>1 HP Repair Time</value>
   </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>Ammo</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>Aircraft</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value> Total</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>Expansion</value>
+  </data>
+  <data name="ModRemaining" xml:space="preserve">
+    <value> remaining</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>Firepower</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Armor</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>Evasion</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>LoS</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>Luck</value>
+  </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>Bombers</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Range</value>
+  </data>
+  <data name="Air" xml:space="preserve">
+    <value>Air</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>Shelling</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>Bombing</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value> Power</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>Lock</value>
+  </data>
 </root>

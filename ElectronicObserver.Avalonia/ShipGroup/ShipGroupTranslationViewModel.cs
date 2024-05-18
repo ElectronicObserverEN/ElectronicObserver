@@ -13,68 +13,68 @@ public class ShipGroupTranslationViewModel : ObservableObject
 	public string ShipView_Name => ShipGroupResources.ShipView_Name;
 	public string ShipView_NextRemodel => ShipGroupResources.ShipView_NextRemodel;
 
-	public string ShipView_Fuel => GeneralRes.Fuel;
-	public string ShipView_Ammo => GeneralRes.Ammo;
+	public string ShipView_Fuel => ShipGroupResources.Fuel;
+	public string ShipView_Ammo => ShipGroupResources.Ammo;
 	public string ShipView_Slot1 => ShipGroupResources.ShipView_Slot1;
 	public string ShipView_Slot2 => ShipGroupResources.ShipView_Slot2;
 	public string ShipView_Slot3 => ShipGroupResources.ShipView_Slot3;
 	public string ShipView_Slot4 => ShipGroupResources.ShipView_Slot4;
 	public string ShipView_Slot5 => ShipGroupResources.ShipView_Slot5;
-	public string ShipView_ExpansionSlot => GeneralRes.Expansion;
+	public string ShipView_ExpansionSlot => ShipGroupResources.Expansion;
 
-	public string ShipView_Aircraft1 => GeneralRes.Planes + " 1";
-	public string ShipView_Aircraft2 => GeneralRes.Planes + " 2";
-	public string ShipView_Aircraft3 => GeneralRes.Planes + " 3";
-	public string ShipView_Aircraft4 => GeneralRes.Planes + " 4";
-	public string ShipView_Aircraft5 => GeneralRes.Planes + " 5";
-	public string ShipView_AircraftTotal => GeneralRes.Planes + GeneralRes.Total;
+	public string ShipView_Aircraft1 => ShipGroupResources.Planes + " 1";
+	public string ShipView_Aircraft2 => ShipGroupResources.Planes + " 2";
+	public string ShipView_Aircraft3 => ShipGroupResources.Planes + " 3";
+	public string ShipView_Aircraft4 => ShipGroupResources.Planes + " 4";
+	public string ShipView_Aircraft5 => ShipGroupResources.Planes + " 5";
+	public string ShipView_AircraftTotal => ShipGroupResources.Planes + ShipGroupResources.Total;
 
 	public string ShipView_Fleet => ShipGroupResources.ShipView_Fleet;
 	public string ShipView_RepairTime => ShipGroupResources.ShipView_RepairTime;
 	public string ShipView_RepairSteel => ShipGroupResources.ShipView_RepairSteel;
 	public string ShipView_RepairFuel => ShipGroupResources.ShipView_RepairFuel;
 
-	public string ShipView_Firepower => GeneralRes.Firepower;
-	public string ShipView_FirepowerRemain => GeneralRes.Firepower + GeneralRes.ModRemaining;
-	public string ShipView_FirepowerTotal => GeneralRes.Firepower + GeneralRes.Total;
+	public string ShipView_Firepower => ShipGroupResources.Firepower;
+	public string ShipView_FirepowerRemain => ShipGroupResources.Firepower + ShipGroupResources.ModRemaining;
+	public string ShipView_FirepowerTotal => ShipGroupResources.Firepower + ShipGroupResources.Total;
 
-	public string ShipView_Torpedo => GeneralRes.Torpedo;
-	public string ShipView_TorpedoRemain => GeneralRes.Torpedo + GeneralRes.ModRemaining;
-	public string ShipView_TorpedoTotal => GeneralRes.Torpedo + GeneralRes.Total;
+	public string ShipView_Torpedo => ShipGroupResources.Torpedo;
+	public string ShipView_TorpedoRemain => ShipGroupResources.Torpedo + ShipGroupResources.ModRemaining;
+	public string ShipView_TorpedoTotal => ShipGroupResources.Torpedo + ShipGroupResources.Total;
 
-	public string ShipView_AA => GeneralRes.AntiAir;
-	public string ShipView_AARemain => GeneralRes.AntiAir + GeneralRes.ModRemaining;
-	public string ShipView_AATotal => GeneralRes.AntiAir + GeneralRes.Total;
+	public string ShipView_AA => ShipGroupResources.AntiAir;
+	public string ShipView_AARemain => ShipGroupResources.AntiAir + ShipGroupResources.ModRemaining;
+	public string ShipView_AATotal => ShipGroupResources.AntiAir + ShipGroupResources.Total;
 
-	public string ShipView_Armor => GeneralRes.Armor;
-	public string ShipView_ArmorRemain => GeneralRes.Armor + GeneralRes.ModRemaining;
-	public string ShipView_ArmorTotal => GeneralRes.Armor + GeneralRes.Total;
+	public string ShipView_Armor => ShipGroupResources.Armor;
+	public string ShipView_ArmorRemain => ShipGroupResources.Armor + ShipGroupResources.ModRemaining;
+	public string ShipView_ArmorTotal => ShipGroupResources.Armor + ShipGroupResources.Total;
 
-	public string ShipView_ASW => GeneralRes.ASW;
-	public string ShipView_ASWTotal => GeneralRes.ASW + GeneralRes.Total;
+	public string ShipView_ASW => ShipGroupResources.ASW;
+	public string ShipView_ASWTotal => ShipGroupResources.ASW + ShipGroupResources.Total;
 
-	public string ShipView_Evasion => GeneralRes.Evasion;
-	public string ShipView_EvasionTotal => GeneralRes.Evasion + GeneralRes.Total;
+	public string ShipView_Evasion => ShipGroupResources.Evasion;
+	public string ShipView_EvasionTotal => ShipGroupResources.Evasion + ShipGroupResources.Total;
 
-	public string ShipView_LOS => GeneralRes.LoS;
-	public string ShipView_LOSTotal => GeneralRes.LoS + GeneralRes.Total;
+	public string ShipView_LOS => ShipGroupResources.LoS;
+	public string ShipView_LOSTotal => ShipGroupResources.LoS + ShipGroupResources.Total;
 
-	public string ShipView_Luck => GeneralRes.Luck;
-	public string ShipView_LuckRemain => GeneralRes.Luck + GeneralRes.ModRemaining;
-	public string ShipView_LuckTotal => GeneralRes.Luck + GeneralRes.Total;
+	public string ShipView_Luck => ShipGroupResources.Luck;
+	public string ShipView_LuckRemain => ShipGroupResources.Luck + ShipGroupResources.ModRemaining;
+	public string ShipView_LuckTotal => ShipGroupResources.Luck + ShipGroupResources.Total;
 
-	public string ShipView_BomberTotal => GeneralRes.Bombers + GeneralRes.Total;
-	public string ShipView_Speed => GeneralRes.Speed;
-	public string ShipView_Range => GeneralRes.Range;
+	public string ShipView_BomberTotal => ShipGroupResources.Bombers + ShipGroupResources.Total;
+	public string ShipView_Speed => ShipGroupResources.Speed;
+	public string ShipView_Range => ShipGroupResources.Range;
 
-	public string ShipView_AirBattlePower => GeneralRes.Air + GeneralRes.Power;
-	public string ShipView_ShellingPower => GeneralRes.Shelling + GeneralRes.Power;
-	public string ShipView_AircraftPower => GeneralRes.Bombing + GeneralRes.Power;
-	public string ShipView_AntiSubmarinePower => GeneralRes.ASW + GeneralRes.Power;
-	public string ShipView_TorpedoPower => GeneralRes.Torpedo + GeneralRes.Power;
+	public string ShipView_AirBattlePower => ShipGroupResources.Air + ShipGroupResources.Power;
+	public string ShipView_ShellingPower => ShipGroupResources.Shelling + ShipGroupResources.Power;
+	public string ShipView_AircraftPower => ShipGroupResources.Bombing + ShipGroupResources.Power;
+	public string ShipView_AntiSubmarinePower => ShipGroupResources.ASW + ShipGroupResources.Power;
+	public string ShipView_TorpedoPower => ShipGroupResources.Torpedo + ShipGroupResources.Power;
 	public string ShipView_NightBattlePower => ShipGroupResources.ShipView_NightBattlePower;
 
-	public string ShipView_Locked => GeneralRes.Lock;
+	public string ShipView_Locked => ShipGroupResources.Lock;
 	public string ShipView_SallyArea => ShipGroupResources.ShipView_SallyArea;
 
 	public string SortId => ShipGroupResources.SortId;
