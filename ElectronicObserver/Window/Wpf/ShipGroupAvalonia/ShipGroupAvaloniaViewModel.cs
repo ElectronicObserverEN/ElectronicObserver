@@ -581,13 +581,11 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 				Name = c.Name,
 				DisplayIndex = c.DisplayIndex,
 				IsVisible = c.Visible,
-				SortDirection = null,
 				Width = new(c.Width, c.AutoSize switch
 				{
 					true => DataGridLengthUnitType.Auto,
 					_ => DataGridLengthUnitType.Pixel,
 				}),
-				SortMemberPath = "",
 			})
 			.ToObservableCollection(),
 	};

@@ -79,7 +79,6 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 				column.IsVisible = columnProperties.IsVisible;
 
 				columnProperties.Header = GetColumnHeader(column);
-				columnProperties.SortMemberPath = column.SortMemberPath;
 			}
 		}
 
@@ -139,7 +138,6 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			};
 			columnModel.IsVisible = column.IsVisible;
 			columnModel.Header = GetColumnHeader(column);
-			columnModel.SortMemberPath = column.SortMemberPath;
 		}
 
 		UpdatingColumnInfo = false;
@@ -178,7 +176,6 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 				Width = column.Width,
 				DisplayIndex = column.DisplayIndex,
 				Header = GetColumnHeader(column),
-				SortMemberPath = column.SortMemberPath,
 				IsVisible = true,
 			});
 		}
