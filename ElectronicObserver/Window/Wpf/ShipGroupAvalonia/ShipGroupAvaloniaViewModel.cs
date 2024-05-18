@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Win32.Interoperability;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
@@ -30,8 +29,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	private ShipGroupView ShipGroupView { get; }
 	private ShipGroupViewModel ShipGroupViewModel { get; }
 
-	private ShipGroupItem? PreviousGroup { get; set; }
-	public ShipGroupItem? SelectedGroup { get; set; }
+	private ShipGroupItem? SelectedGroup { get; set; }
 
 	public ShipGroupAvaloniaViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
 	{
@@ -139,40 +137,33 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	{
 		if (group.Group is not ShipGroupData groupData) return;
 
-		groupData.UpdateMembers();
+		if (SelectedGroup is not null)
+		{
+			SelectedGroup.SortDescriptions = ShipGroupViewModel.CollectionView.SortDescriptions;
 
-		DataGridSortDescriptionCollection sortDescriptions = ShipGroupViewModel.CollectionView.SortDescriptions;
+			if (SelectedGroup.Group is ShipGroupData previousGroup)
+			{
+				previousGroup.DataGridSortDescriptionCollection = ShipGroupViewModel.CollectionView.SortDescriptions;
+				previousGroup.ViewColumns = ShipGroupViewModel.ColumnProperties
+					.Select(MakeColumnData)
+					.ToDictionary(c => c.Name, c => c);
+			}
+
+			SelectedGroup.IsSelected = false;
+		}
+
+		SelectedGroup = group;
+		SelectedGroup.IsSelected = true;
+
+		ShipGroupViewModel.ColumnProperties = group.Columns;
+		ShipGroupViewModel.SortDescriptions = group.SortDescriptions;
+
+		groupData.UpdateMembers();
 
 		ShipGroupViewModel.Items = groupData.MembersInstance
 			.OfType<IShipData>()
 			.Select(s => new ShipGroupItemViewModel(s))
 			.ToObservableCollection();
-
-		PreviousGroup = SelectedGroup;
-		SelectedGroup = group;
-
-		SelectedGroup.IsSelected = true;
-
-		if (PreviousGroup is null) return;
-
-		PreviousGroup.SortDescriptions = sortDescriptions;
-
-		if (PreviousGroup.Group is ShipGroupData previousGroup)
-		{
-			previousGroup.DataGridSortDescriptionCollection = sortDescriptions;
-			previousGroup.ViewColumns = PreviousGroup.Columns
-				.Select(MakeColumnData)
-				.ToDictionary(c => c.Name, c => c);
-		}
-
-		if (PreviousGroup == SelectedGroup)
-		{
-			// force DataGrid refresh when clicking the current group
-			OnPropertyChanged(nameof(SelectedGroup));
-			return;
-		}
-
-		PreviousGroup.IsSelected = false;
 	}
 
 	private void AddGroup()

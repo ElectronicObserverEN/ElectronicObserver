@@ -94,8 +94,6 @@ public partial class ShipGroupViewModel : ObservableObject
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
-		ColumnProperties = group.Columns;
-		SortDescriptions = group.SortDescriptions;
 		SelectGroupAction.Invoke(group);
 		SelectionChanged(SelectedShips);
 	}
