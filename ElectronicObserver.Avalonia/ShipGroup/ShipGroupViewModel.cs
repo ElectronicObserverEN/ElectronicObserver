@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
