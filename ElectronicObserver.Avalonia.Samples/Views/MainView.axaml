@@ -33,15 +33,19 @@
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
 			</ItemsControl>
+
+			<TextBlock x:Name="MyTextBlock" />
 		</StackPanel>
 
 		<DataGrid
+			x:Name="MyDataGrid"
 			Grid.Row="1"
 			AutoGenerateColumns="False"
 			CanUserReorderColumns="True"
 			CanUserResizeColumns="True"
 			IsReadOnly="True"
 			ItemsSource="{Binding CollectionView}"
+			SelectionMode="Extended"
 			>
 			<Interaction.Behaviors>
 				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
