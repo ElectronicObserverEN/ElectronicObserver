@@ -450,17 +450,17 @@
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding BomberTotal}"
-					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Luck, ElementName=ShipGroupControl}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_BomberTotal, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Speed}"
-					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckRemain, ElementName=ShipGroupControl}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Speed, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Range}"
-					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckTotal, ElementName=ShipGroupControl}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Range, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
