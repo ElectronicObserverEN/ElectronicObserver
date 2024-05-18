@@ -618,7 +618,7 @@ public static class Calculator
 	}
 
 
-	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new() 
+	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new()
 	{
 		{ EquipmentId.LandingCraft_DaihatsuLC, 0.05 },
 		{ EquipmentId.LandingCraft_TokuDaihatsuLC, 0.05 },
@@ -628,6 +628,8 @@ public static class Calculator
 		{ EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification, 0.02 },
 		{ EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank, 0.02 },
 		{ EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank, 0.01 },
+		{ EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank, 0.04 },
+		{ EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai, 0.05 },
 	};
 
 	/// <summary>
@@ -1447,7 +1449,7 @@ public static class Calculator
 	{
 		double cutinBonus = cutIn.VariableBonus;
 
-		return (int)Math.Floor((adjustedAAValue + adjustedFleetAAValue) * 
+		return (int)Math.Floor((adjustedAAValue + adjustedFleetAAValue) *
 			GetAirDefenseCombinedFleetCoefficient(combinedFleetFlag) * cutinBonus / 10);
 	}
 

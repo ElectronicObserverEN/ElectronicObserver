@@ -40,6 +40,13 @@ note: you need to have [Visual C++ 2019](https://support.microsoft.com/en-us/top
 The Kancolle API is documented (in Japanese only) at the original project's [Other/Information/](https://github.com/andanteyk/ElectronicObserver/tree/develop/ElectronicObserver/Other/Information).
  Use as you wish, but no guarantee of accuracy is made.
 
+## Build
+
+1. Download the latest [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)
+2. In the installer, make sure to enable ".NET desktop development" ![image](https://github.com/ElectronicObserverEN/ElectronicObserver/assets/40002167/748d862c-4c61-4ef6-b147-961b532852c9)
+3. [Clone this repository](https://learn.microsoft.com/en-us/visualstudio/version-control/git-clone-repository)
+4. Click this button or press F5 ![image](https://github.com/ElectronicObserverEN/ElectronicObserver/assets/40002167/dbee165d-8ea9-4f27-9c28-d406e2a9978a)
+
 ## Libraries
 
 * [DynaJson](https://github.com/fujieda/DynaJson) (JSON read/write) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/DynaJson.txt)
