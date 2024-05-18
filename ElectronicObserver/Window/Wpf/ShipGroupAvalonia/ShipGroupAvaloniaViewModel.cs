@@ -157,6 +157,14 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		PreviousGroup.SortDescriptions = sortDescriptions;
 
+		if (PreviousGroup.Group is ShipGroupData previousGroup)
+		{
+			previousGroup.DataGridSortDescriptionCollection = sortDescriptions;
+			previousGroup.ViewColumns = PreviousGroup.Columns
+				.Select(MakeColumnData)
+				.ToDictionary(c => c.Name, c => c);
+		}
+
 		if (PreviousGroup == SelectedGroup)
 		{
 			// force DataGrid refresh when clicking the current group
@@ -588,10 +596,17 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 				}),
 			})
 			.ToObservableCollection(),
+		SortDescriptions = group.DataGridSortDescriptionCollection,
 	};
 
 	private void SystemShuttingDown()
 	{
+		if (SelectedGroup is not null)
+		{
+			// hack: reload the group to save its state
+			SelectGroup(SelectedGroup);
+		}
+
 		Configuration.Config.FormShipGroup.AutoUpdate = ShipGroupViewModel.AutoUpdate;
 		Configuration.Config.FormShipGroup.ShowStatusBar = ShipGroupViewModel.ShowStatusBar;
 		Configuration.Config.FormShipGroup.GroupHeight = ShipGroupViewModel.GroupHeight.Value;

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
+using Avalonia.Collections;
+using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Storage;
@@ -238,15 +241,38 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 		set { Members = value; }
 	}
 
-
-
-	public ShipGroupData(int groupID)
-		: base()
+	[IgnoreDataMember]
+	public DataGridSortDescriptionCollection DataGridSortDescriptionCollection
 	{
-		Initialize();
-		GroupID = groupID;
+		get => [..SortDescriptions.Select(d => DataGridSortDescription.FromPath(d.PropertyPath, d.Direction))];
+		set => SortDescriptions = value
+			.Select(d => new SortDescriptionModel
+			{
+				PropertyPath = d.PropertyPath, 
+				Direction = d.Direction,
+			}).ToList();
 	}
 
+	[DataMember]
+	private List<SortDescriptionModel> SortDescriptions { get; set; }
+
+	public ShipGroupData(int groupId)
+	{
+		Initialize();
+		GroupID = groupId;
+	}
+
+	/// <summary>
+	/// Default values need to be set here so that they don't get overridden when loading values from file.
+	/// </summary>
+	[MemberNotNull(nameof(ViewColumns))]
+	[MemberNotNull(nameof(Name))]
+	[MemberNotNull(nameof(SortOrder))]
+	[MemberNotNull(nameof(Expressions))]
+	[MemberNotNull(nameof(InclusionFilter))]
+	[MemberNotNull(nameof(ExclusionFilter))]
+	[MemberNotNull(nameof(Members))]
+	[MemberNotNull(nameof(SortDescriptions))]
 	public override void Initialize()
 	{
 		GroupID = -1;
@@ -259,6 +285,7 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 		InclusionFilter = [];
 		ExclusionFilter = [];
 		Members = [];
+		SortDescriptions = [];
 	}
 
 
