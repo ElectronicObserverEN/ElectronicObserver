@@ -34,6 +34,8 @@ public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCo
 		APIObserver.Instance.ApiReqKousyou_DestroyShip.ResponseReceived += UpdateOnResponseReceived;
 		APIObserver.Instance.ApiReqKaisou_PowerUp.ResponseReceived += UpdateOnResponseReceived;
 
+		APIObserver.Instance.ApiGetMember_SlotItem.ResponseReceived += UpdateOnResponseReceived;
+
 		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived += UpdateOnResponseReceived;
 		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived += UpdateOnResponseReceived;
 		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived += UpdateOnResponseReceived;
@@ -53,6 +55,8 @@ public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCo
 		APIObserver.Instance.ApiReqKousyou_DestroyItem2.ResponseReceived -= UpdateOnResponseReceived;
 		APIObserver.Instance.ApiReqKousyou_RemodelSlot.ResponseReceived -= UpdateOnResponseReceived;
 		APIObserver.Instance.ApiReqKousyou_GetShip.ResponseReceived -= UpdateOnResponseReceived;
+
+		APIObserver.Instance.ApiGetMember_SlotItem.ResponseReceived -= UpdateOnResponseReceived;
 
 		APIObserver.Instance.ApiReqMember_ItemUse.ResponseReceived -= UpdateOnResponseReceived;
 

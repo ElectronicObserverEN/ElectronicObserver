@@ -349,10 +349,10 @@ public partial class QuestViewModel : AnchorableViewModel
 			QuestItemViewModel row = new(q, questIndex);
 			// row.Height = 21;
 			// Add support for tooltip-based page numbering
-			row.Background = (questIndex / 5 % 2) switch
+			row.Background = (MenuMain_ShowRunningOnly, questIndex / 5 % 2) switch
 			{
-				0 => Configuration.Config.UI.BackColor.ToBrush(),
-				_ => Configuration.Config.UI.SubBackColor.ToBrush()
+				(false, 1) => Configuration.Config.UI.SubBackColor.ToBrush(),
+				_ => Configuration.Config.UI.BackColor.ToBrush(),
 			};
 
 			// row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);

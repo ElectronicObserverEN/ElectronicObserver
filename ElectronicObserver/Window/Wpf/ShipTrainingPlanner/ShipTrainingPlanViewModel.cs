@@ -19,10 +19,10 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public IShipData Ship => KCDatabase.Instance.Ships[Model.ShipId] switch
 	{
 		not null => KCDatabase.Instance.Ships[Model.ShipId],
-		_ => new ShipDataMock(new ShipDataMasterMock())
+		_ => new ShipDataMock(new ShipDataMasterMock()),
 	};
 
-	[ObservableProperty] private bool planFinished;
+	[ObservableProperty] private bool _planFinished;
 
 	public int Priority { get; set; }
 
@@ -65,7 +65,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 
 	/// <summary>
 	/// Targetted amount of luck 
-	/// eg Yukikaze k2 max luck is 120, then i set this value to 120 to target max
+	/// e.g. Yukikaze k2 max luck is 120, then I set this value to 120 to target max
 	/// </summary>
 	public int TargetLuck { get; set; }
 	public int RemainingLuck => TargetLuck - Ship.LuckBase;
@@ -86,6 +86,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		SubscribeToApi();
 
 		PropertyChanged += OnStatPropertyChanged;
+		PropertyChanged += OnTargetRemodelChanged;
 	}
 
 	private void SubscribeToApi()
@@ -137,7 +138,9 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
 
 		if (Model.TargetRemodel is { } shipId)
+		{
 			TargetRemodel = new(KCDatabase.Instance.MasterShips[(int)shipId]);
+		}
 
 		PossibleRemodels.Clear();
 
@@ -155,8 +158,26 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 
 	private void OnStatPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(TargetHPBonus)) OnPropertyChanged(nameof(TargetHP));
-		if (e.PropertyName is nameof(TargetASWBonus)) OnPropertyChanged(nameof(TargetASW));
+		if (e.PropertyName is nameof(TargetHPBonus))
+		{
+			OnPropertyChanged(nameof(TargetHP));
+		}
+
+		if (e.PropertyName is nameof(TargetASWBonus))
+		{
+			OnPropertyChanged(nameof(TargetASW));
+		}
+	}
+
+	private void OnTargetRemodelChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is not nameof(TargetRemodel)) return;
+
+		TargetLevel = TargetRemodel?.Ship.RemodelBeforeShip switch
+		{
+			{ } ship => ship.RemodelAfterLevel,
+			_ => TargetLevel,
+		};
 	}
 
 	public void Save()
