@@ -105,6 +105,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
+		<PackageReference Include="HanumanInstitute.MvvmDialogs.Wpf" Version="2.1.0" />
 		<PackageReference Include="Jot" Version="2.1.17" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.4" />

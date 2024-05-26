@@ -15,10 +15,12 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
+using ElectronicObserver.Dialogs;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.ElectronicObserverApi;
 using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Dialog.ShipPicker;
@@ -83,6 +85,7 @@ namespace ElectronicObserver;
 public partial class App
 {
 	public static new App? Current => (App)Application.Current;
+	public static FormMainViewModel MainViewModel => (FormMainViewModel)Application.Current!.MainWindow!.DataContext;
 	private AppBuilder AvaloniaApp { get; }
 
 	public App()
@@ -240,6 +243,7 @@ public partial class App
 	{
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
+			.AddDialogServices()
 			// config translations
 			.AddSingleton<ConfigurationTranslationViewModel>()
 			.AddSingleton<ConfigurationConnectionTranslationViewModel>()

@@ -29,13 +29,13 @@ public partial class ShipGroupViewModel : ObservableObject
 	[ObservableProperty] private DataGridSortDescriptionCollection _sortDescriptions = [];
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
-	public required Action AddGroupAction { get; init; }
-	public required Action<ShipGroupItem> CopyGroupAction { get; init; }
-	public required Action<ShipGroupItem> RenameGroupAction { get; init; }
+	public required Func<Task> AddGroupAction { get; init; }
+	public required Func<ShipGroupItem, Task> CopyGroupAction { get; init; }
+	public required Func<ShipGroupItem, Task> RenameGroupAction { get; init; }
 	public required Action<ShipGroupItem> DeleteGroupAction { get; init; }
 
 	public required Action AddToGroupAction { get; init; }
-	public required Action CreateGroupAction { get; init; }
+	public required Func<Task> CreateGroupAction { get; init; }
 	public required Action ExcludeFromGroupAction { get; init; }
 	public required Action FilterGroupAction { get; init; }
 	public required Action FilterColumnsAction { get; init; }
@@ -99,13 +99,13 @@ public partial class ShipGroupViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void AddGroup() => AddGroupAction.Invoke();
+	private async Task AddGroup() => await AddGroupAction.Invoke();
 
 	[RelayCommand]
-	private void CopyGroup(ShipGroupItem group) => CopyGroupAction.Invoke(group);
+	private async Task CopyGroup(ShipGroupItem group) => await CopyGroupAction.Invoke(group);
 
 	[RelayCommand]
-	private void RenameGroup(ShipGroupItem group) => RenameGroupAction.Invoke(group);
+	private async Task RenameGroup(ShipGroupItem group) => await RenameGroupAction.Invoke(group);
 
 	[RelayCommand]
 	private void DeleteGroup(ShipGroupItem group) => DeleteGroupAction.Invoke(group);
@@ -114,7 +114,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	private void AddToGroup() => AddToGroupAction.Invoke();
 
 	[RelayCommand]
-	private void CreateGroup() => CreateGroupAction.Invoke();
+	private async Task CreateGroup() =>  await CreateGroupAction.Invoke();
 
 	[RelayCommand]
 	private void ExcludeFromGroup() => ExcludeFromGroupAction.Invoke();
