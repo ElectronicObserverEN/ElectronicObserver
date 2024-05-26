@@ -180,9 +180,9 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			Description = ShipGroupResources.DialogGroupAddDescription,
 		};
 
-		await DialogService.ShowDialogAsync(App.MainViewModel, textInput);
+		bool? result = await DialogService.ShowDialogAsync(App.MainViewModel, textInput);
 
-		if (textInput.DialogResult is not true) return;
+		if (result is not true) return;
 
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
 		group.Name = textInput.Text.Trim();
