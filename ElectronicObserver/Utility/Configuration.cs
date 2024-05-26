@@ -1214,6 +1214,8 @@ public sealed class Configuration
 			public int ShipNameSortMethod { get; set; }
 
 			public double GroupHeight { get; set; }
+			public int ColumnHeaderHeight { get; set; } = 32;
+			public int RowHeight { get; set; } = 32;
 
 			public ConfigFormShipGroup()
 			{

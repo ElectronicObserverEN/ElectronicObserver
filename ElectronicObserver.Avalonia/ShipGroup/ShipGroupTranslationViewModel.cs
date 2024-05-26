@@ -103,4 +103,6 @@ public class ShipGroupTranslationViewModel : ObservableObject
 	public string DialogGroupDeleteDescription => ShipGroupResources.DialogGroupDeleteDescription;
 	public string DialogGroupRenameTitle => ShipGroupResources.DialogGroupRenameTitle;
 	public string DialogGroupRenameDescription => ShipGroupResources.DialogGroupRenameDescription;
+
+	public string DataGridSettings => ShipGroupResources.DataGridSettings;
 }

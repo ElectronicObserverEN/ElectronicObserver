@@ -64,6 +64,7 @@
 							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Delete, ElementName=ShipGroupControl}"
 							/>
 						<Separator />
+						<MenuItem Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).OpenDataGridSettingsCommand, ElementName=ShipGroupControl}" Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.DataGridSettings, ElementName=ShipGroupControl}" />
 						<MenuItem
 							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_AutoUpdate, ElementName=ShipGroupControl}"
 							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AutoUpdate, ElementName=ShipGroupControl, Mode=TwoWay}"
@@ -101,6 +102,7 @@
 				<ContextMenu>
 					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
 					<Separator />
+					<MenuItem Command="{Binding OpenDataGridSettingsCommand}" Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.DataGridSettings, ElementName=ShipGroupControl}" />
 					<MenuItem
 						Header="{Binding FormShipGroup.MenuGroup_AutoUpdate}"
 						IsChecked="{Binding AutoUpdate, Mode=TwoWay}"
@@ -141,10 +143,12 @@
 			Background="Transparent"
 			CanUserReorderColumns="True"
 			CanUserResizeColumns="True"
+			ColumnHeaderHeight="{Binding DataGridSettings.ColumnHeaderHeight}"
 			ColumnWidth="Auto"
 			GridLinesVisibility="All"
 			IsReadOnly="True"
 			ItemsSource="{Binding CollectionView}"
+			RowHeight="{Binding DataGridSettings.RowHeight}"
 			SelectionMode="Extended"
 			>
 			<DataGrid.Styles>
@@ -191,6 +195,7 @@
 					<MenuItem Header="{Binding FormShipGroup.MenuMember_SortOrder}" IsVisible="False" />
 					<Separator />
 					<MenuItem Command="{Binding ExportCsvCommand}" Header="{Binding FormShipGroup.MenuMember_CSVOutput}" />
+					<MenuItem Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).OpenDataGridSettingsCommand, ElementName=ShipGroupControl}" Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.DataGridSettings, ElementName=ShipGroupControl}" />
 				</ContextMenu>
 			</DataGrid.ContextMenu>
 

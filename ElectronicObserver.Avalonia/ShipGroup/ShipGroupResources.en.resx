@@ -349,4 +349,7 @@ This action cannot be undone.</value>
   <data name="Lock" xml:space="preserve">
     <value>Lock</value>
   </data>
+  <data name="DataGridSettings" xml:space="preserve">
+    <value>Data Grid Settings</value>
+  </data>
 </root>

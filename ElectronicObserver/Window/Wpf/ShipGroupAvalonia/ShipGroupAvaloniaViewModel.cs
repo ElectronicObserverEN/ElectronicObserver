@@ -12,6 +12,7 @@ using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
+using ElectronicObserver.Dialogs.DataGridSettings;
 using ElectronicObserver.Dialogs.TextInput;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -52,6 +53,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			FilterGroupAction = FilterGroup,
 			FilterColumnsAction = FilterColumns,
 			ExportCsvAction = ExportCsv,
+			OpenDataGridSettingsAction = OpenDataGridSettings,
 		};
 		ShipGroupView = new()
 		{
@@ -70,6 +72,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupViewModel.AutoUpdate = config.FormShipGroup.AutoUpdate;
 		ShipGroupViewModel.ShowStatusBar = config.FormShipGroup.ShowStatusBar;
 		ShipGroupViewModel.GroupHeight = new(config.FormShipGroup.GroupHeight);
+		ShipGroupViewModel.DataGridSettings.ColumnHeaderHeight = config.FormShipGroup.ColumnHeaderHeight;
+		ShipGroupViewModel.DataGridSettings.RowHeight = config.FormShipGroup.RowHeight;
 
 		Loaded();
 
@@ -590,6 +594,13 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		};
 	}
 
+	private async Task OpenDataGridSettings(DataGridSettingsModel settings)
+	{
+		DataGridSettingsViewModel viewModel = new(settings);
+
+		await DialogService.ShowDialogAsync(App.MainViewModel, viewModel);
+	}
+
 	private static ShipGroupData.ViewColumnData MakeColumnData(ColumnModel column) => new(column.Name)
 	{
 		DisplayIndex = column.DisplayIndex,
@@ -627,6 +638,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		Configuration.Config.FormShipGroup.AutoUpdate = ShipGroupViewModel.AutoUpdate;
 		Configuration.Config.FormShipGroup.ShowStatusBar = ShipGroupViewModel.ShowStatusBar;
 		Configuration.Config.FormShipGroup.GroupHeight = ShipGroupViewModel.GroupHeight.Value;
+		Configuration.Config.FormShipGroup.ColumnHeaderHeight = ShipGroupViewModel.DataGridSettings.ColumnHeaderHeight;
+		Configuration.Config.FormShipGroup.RowHeight = ShipGroupViewModel.DataGridSettings.RowHeight;
 
 		IEnumerable<ShipGroupData> shipGroups = ShipGroupViewModel.Groups
 			.Select(g => g.Group)

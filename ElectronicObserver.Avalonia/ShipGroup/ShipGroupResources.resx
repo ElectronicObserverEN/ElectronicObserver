@@ -335,4 +335,7 @@
   <data name="Lock" xml:space="preserve">
     <value>ロック</value>
   </data>
+  <data name="DataGridSettings" xml:space="preserve">
+    <value>データグリッド設定</value>
+  </data>
 </root>

@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Dialogs.TextInput"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding Title}"
 	Width="800"
@@ -24,13 +25,13 @@
 			<Button
 				Margin="4"
 				Command="{Binding OkCommand}"
-				Content="Ok"
+				Content="{x:Static translations:DialogResources.Ok}"
 				/>
 
 			<Button
 				Margin="4"
 				Command="{Binding CancelCommand}"
-				Content="Cancel"
+				Content="{x:Static translations:DialogResources.Cancel}"
 				/>
 		</StackPanel>
 	</StackPanel>

@@ -12,6 +12,8 @@ public partial class ShipGroupViewModel : ObservableObject
 {
 	public ShipGroupTranslationViewModel FormShipGroup { get; } = new();
 
+	public DataGridSettingsModel DataGridSettings { get; } = new();
+
 	[ObservableProperty] private bool _autoUpdate = true;
 	[ObservableProperty] private bool _showStatusBar = true;
 
@@ -40,6 +42,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	public required Action FilterGroupAction { get; init; }
 	public required Action FilterColumnsAction { get; init; }
 	public required Action ExportCsvAction { get; init; }
+	public required Func<DataGridSettingsModel, Task> OpenDataGridSettingsAction { get; init; }
 
 	[ObservableProperty] private bool _anyShipsSelected;
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
@@ -127,4 +130,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[RelayCommand]
 	private void ExportCsv() => ExportCsvAction.Invoke();
+
+	[RelayCommand]
+	private async Task OpenDataGridSettings() => await OpenDataGridSettingsAction.Invoke(DataGridSettings);
 }
