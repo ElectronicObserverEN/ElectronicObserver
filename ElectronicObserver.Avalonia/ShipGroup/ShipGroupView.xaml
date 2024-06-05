@@ -15,6 +15,12 @@
 	>
 	<UserControl.Resources>
 		<shipGroup:ShipGroupDropHandler x:Key="ShipGroupDropHandler" />
+
+		<shipGroup:BackgroundToForegroundConverter x:Key="BackgroundToForegroundConverter" />
+
+		<shipGroup:HpToBackgroundConverter x:Key="HpToBackgroundConverter" />
+		<shipGroup:ConditionToBackgroundConverter x:Key="ConditionToBackgroundConverter" />
+		<shipGroup:AircraftToBackgroundConverter x:Key="AircraftToBackgroundConverter" />
 	</UserControl.Resources>
 
 	<UserControl.DataTemplates>
@@ -160,6 +166,105 @@
 					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
 					<Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
 				</Style>
+
+				<Style Selector="DataGridCell.CustomBackground">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Foreground">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource BackgroundToForegroundConverter}">
+								<!--
+									when using compiled binding, the intellisense works here,
+									but for some reason the compiler thinks RelativeSource="{RelativeSource Self}"
+									is MultiBinding rather than DataGridCell, causing a compile error,
+									so you need reflection binding
+								-->
+								<ReflectionBinding Path="Background" RelativeSource="{RelativeSource Self}" />
+								<DynamicResource ResourceKey="SystemAltHighColor" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Hp">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding HpRate, Converter={StaticResource HpToBackgroundConverter}}" />
+				</Style>
+
+				<Style Selector="DataGridCell.Condition">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource ConditionToBackgroundConverter}">
+								<Binding Path="Condition" />
+								<Binding ElementName="ShipGroupControl" Path="((shipGroup:ShipGroupViewModel)DataContext).ConditionBorder" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<!--  no idea how to make 1 style for all aircraft cells  -->
+				<Style Selector="DataGridCell.Aircraft1">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
+								<Binding Path="AircraftCurrent1" />
+								<Binding Path="AircraftMax1" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Aircraft2">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
+								<Binding Path="AircraftCurrent2" />
+								<Binding Path="AircraftMax2" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Aircraft3">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
+								<Binding Path="AircraftCurrent3" />
+								<Binding Path="AircraftMax3" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Aircraft4">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
+								<Binding Path="AircraftCurrent4" />
+								<Binding Path="AircraftMax4" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Aircraft5">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
+								<Binding Path="AircraftCurrent5" />
+								<Binding Path="AircraftMax5" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.AircraftTotal">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
+								<Binding Path="AircraftCurrentTotal" />
+								<Binding Path="AircraftMaxTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
 			</DataGrid.Styles>
 
 			<Interaction.Behaviors>
@@ -238,11 +343,14 @@
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Hp}"
+					CellStyleClasses="Hp CustomBackground"
 					Header="HP"
+					SortMemberPath="HpRate"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Condition}"
+					CellStyleClasses="Condition CustomBackground"
 					Header="Cond"
 					/>
 				<DataGridTextColumn
@@ -290,31 +398,37 @@
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft1}"
+					CellStyleClasses="Aircraft1 CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft1, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft2}"
+					CellStyleClasses="Aircraft2 CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft2, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft3}"
+					CellStyleClasses="Aircraft3 CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft3, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft4}"
+					CellStyleClasses="Aircraft4 CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft4, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Aircraft5}"
+					CellStyleClasses="Aircraft5 CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft5, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AircraftTotal}"
+					CellStyleClasses="AircraftTotal CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AircraftTotal, ElementName=ShipGroupControl}"
 					/>
 

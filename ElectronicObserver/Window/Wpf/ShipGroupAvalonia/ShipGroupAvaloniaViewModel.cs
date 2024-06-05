@@ -131,6 +131,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	private void ConfigurationChanged()
 	{
 		ShipGroupViewModel.FormShipGroup.OnPropertyChanged("");
+		ShipGroupViewModel.ConditionBorder = Configuration.Config.Control.ConditionBorder;
 	}
 
 	private void ApiUpdated(string apiName, dynamic data)

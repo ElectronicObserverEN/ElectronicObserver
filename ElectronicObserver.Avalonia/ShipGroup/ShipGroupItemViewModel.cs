@@ -1,4 +1,5 @@
-﻿using ElectronicObserverTypes;
+﻿using System;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
@@ -14,6 +15,7 @@ public class ShipGroupItemViewModel(IShipData ship)
 	public int ExpNext => Ship.ExpNext;
 	public int ExpRemodel => Ship.ExpNextRemodel;
 	public string Hp => $"{Ship.HPCurrent}/{Ship.HPMax}";
+	public double HpRate => Ship.HPRate;
 	public int Condition => Ship.Condition;
 	public int Fuel => Ship.Fuel;
 	public int Ammo => Ship.Ammo;
@@ -25,12 +27,40 @@ public class ShipGroupItemViewModel(IShipData ship)
 	public IEquipmentData? Slot5 => Ship.AllSlotInstance.Skip(4).FirstOrDefault();
 	public string ExpansionSlot => Ship.ExpansionSlotInstance?.NameWithLevel ?? "";
 
-	public string Aircraft1 => $"{Ship.Aircraft[0]}/{Ship.MasterShip.Aircraft[0]}";
-	public string Aircraft2 => $"{Ship.Aircraft[1]}/{Ship.MasterShip.Aircraft[1]}";
-	public string Aircraft3 => $"{Ship.Aircraft[2]}/{Ship.MasterShip.Aircraft[2]}";
-	public string Aircraft4 => $"{Ship.Aircraft[3]}/{Ship.MasterShip.Aircraft[3]}";
-	public string Aircraft5 => $"{Ship.Aircraft[4]}/{Ship.MasterShip.Aircraft[4]}";
-	public string AircraftTotal => $"{Ship.AircraftTotal}/{Ship.MasterShip.AircraftTotal}";
+	public int AircraftCurrent1 => Ship.Aircraft[0];
+	public int AircraftCurrent2 => Ship.Aircraft[1];
+	public int AircraftCurrent3 => Ship.Aircraft[2];
+	public int AircraftCurrent4 => Ship.Aircraft[3];
+	public int AircraftCurrent5 => Ship.Aircraft[4];
+	public int AircraftCurrentTotal => Ship.AircraftTotal;
+
+	public int AircraftMax1 => Ship.MasterShip.Aircraft[0];
+	public int AircraftMax2 => Ship.MasterShip.Aircraft[1];
+	public int AircraftMax3 => Ship.MasterShip.Aircraft[2];
+	public int AircraftMax4 => Ship.MasterShip.Aircraft[3];
+	public int AircraftMax5 => Ship.MasterShip.Aircraft[4];
+	public int AircraftMaxTotal => Ship.MasterShip.AircraftTotal;
+
+	public string Aircraft1 => GetAircraftString(0, AircraftCurrent1, AircraftMax1);
+	public string Aircraft2 => GetAircraftString(1, AircraftCurrent2, AircraftMax2);
+	public string Aircraft3 => GetAircraftString(2, AircraftCurrent3, AircraftMax3);
+	public string Aircraft4 => GetAircraftString(3, AircraftCurrent4, AircraftMax4);
+	public string Aircraft5 => GetAircraftString(4, AircraftCurrent5, AircraftMax5);
+	public string AircraftTotal => $"{AircraftCurrentTotal}/{AircraftMaxTotal}";
+
+	private string GetAircraftString(int index, int current, int max)
+	{
+		if (index >= ship.SlotSize)
+		{
+			return string.Empty;
+		}
+
+		return max switch
+		{
+			0 => string.Empty,
+			_ => $"{current}/{max}",
+		};
+	}
 
 	public string Fleet => Ship.FleetWithIndex;
 	public int RepairTime => Ship.RepairTime;

@@ -14,6 +14,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	public DataGridSettingsModel DataGridSettings { get; } = new();
 
+	[ObservableProperty] private int _conditionBorder;
 	[ObservableProperty] private bool _autoUpdate = true;
 	[ObservableProperty] private bool _showStatusBar = true;
 
