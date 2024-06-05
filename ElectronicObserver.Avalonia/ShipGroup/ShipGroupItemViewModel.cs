@@ -63,7 +63,7 @@ public class ShipGroupItemViewModel(IShipData ship)
 	}
 
 	public string Fleet => Ship.FleetWithIndex;
-	public int RepairTime => Ship.RepairTime;
+	public TimeSpan RepairTime => new(Ship.RepairTime * 10_000L);
 	public int RepairSteel => Ship.RepairSteel;
 	public int RepairFuel => Ship.RepairFuel;
 
