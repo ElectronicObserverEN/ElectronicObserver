@@ -50,7 +50,7 @@ public class ShipGroupItemViewModel(IShipData ship)
 
 	private string GetAircraftString(int index, int current, int max)
 	{
-		if (index >= ship.SlotSize)
+		if (index >= Ship.SlotSize)
 		{
 			return string.Empty;
 		}
