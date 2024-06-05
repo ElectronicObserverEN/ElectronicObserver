@@ -611,7 +611,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding FirepowerRemain}"
+					Binding="{Binding FirepowerRemain, Converter={x:Static shipGroup:Converters.RemainingToTextConverter}}"
 					CellStyleClasses="FirepowerRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerRemain, ElementName=ShipGroupControl}"
 					/>
@@ -630,7 +630,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding TorpedoRemain}"
+					Binding="{Binding TorpedoRemain, Converter={x:Static shipGroup:Converters.RemainingToTextConverter}}"
 					CellStyleClasses="TorpedoRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoRemain, ElementName=ShipGroupControl}"
 					/>
@@ -649,7 +649,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding AARemain}"
+					Binding="{Binding AARemain, Converter={x:Static shipGroup:Converters.RemainingToTextConverter}}"
 					CellStyleClasses="AaRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AARemain, ElementName=ShipGroupControl}"
 					/>
@@ -668,7 +668,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding ArmorRemain}"
+					Binding="{Binding ArmorRemain, Converter={x:Static shipGroup:Converters.RemainingToTextConverter}}"
 					CellStyleClasses="ArmorRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorRemain, ElementName=ShipGroupControl}"
 					/>
@@ -726,7 +726,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding LuckRemain}"
+					Binding="{Binding LuckRemain, Converter={x:Static shipGroup:Converters.RemainingToTextConverter}}"
 					CellStyleClasses="LuckRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckRemain, ElementName=ShipGroupControl}"
 					/>
