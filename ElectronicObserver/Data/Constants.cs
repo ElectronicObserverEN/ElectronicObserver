@@ -368,7 +368,7 @@ public static class Constants
 		117 => "鵜来型",
 		118 => "Ranger級",
 		119 => "特種船M丙型",
-		120 => "第百一号型",
+		120 => "二等輸送艦",
 		121 => "New Orleans級",
 		122 => "Salmon級",
 		123 => "改敷島型",

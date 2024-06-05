@@ -360,6 +360,10 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		await App.Current!.Dispatcher.BeginInvoke(async () =>
 		{
+			ObservableCollection<SortieRecordViewModel> exportData = Sorties;
+
+			if (exportData.Count <= 0) return;
+
 			ExportFilterViewModel? exportFilter = null;
 
 			if (ContentDialogService is not null)
@@ -377,7 +381,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			ExportProgress = new();
 
 			Task<List<TElement>> processDataTask = Task.Run(async () => await
-				processData(SelectedSorties, exportFilter, ExportProgress, cancellationToken), cancellationToken);
+				processData(exportData, exportFilter, ExportProgress, cancellationToken), cancellationToken);
 
 			List<Task> tasks = new() { processDataTask };
 
@@ -404,7 +408,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 				if (ContentDialogService is not null)
 				{
-					await ContentDialogService.ShowNotificationAsync(CsvExportResources.CsvWasSavedSuccessfully);
+					StatusBarText = CsvExportResources.CsvWasSavedSuccessfully;
 				}
 			}
 			catch (Exception e)
