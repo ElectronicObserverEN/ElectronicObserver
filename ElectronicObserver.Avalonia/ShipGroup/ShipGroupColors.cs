@@ -17,7 +17,7 @@ public static class ShipGroupColors
 	private static Color Blue { get; } = Color.FromArgb(0xFF, 173, 216, 230);
 	private static Color Purple { get; } = Color.FromArgb(0xFF, 156, 143, 238);
 	private static Color Cyan { get; } = Color.FromArgb(0xFF, 224, 255, 255);
-	public static Color Transparent { get; } = Colors.Transparent;
+	private static Color Transparent { get; } = Colors.Transparent;
 
 	public static SolidColorBrush WhiteBrush { get; } = new(White);
 	public static SolidColorBrush BlackBrush { get; } = new(Black);
@@ -26,4 +26,8 @@ public static class ShipGroupColors
 	public static SolidColorBrush OrangeBrush { get; } = new(Orange);
 	public static SolidColorBrush YellowBrush { get; } = new(Yellow);
 	public static SolidColorBrush GreenBrush { get; } = new(Green);
+	public static SolidColorBrush BlueBrush { get; } = new(Blue);
+	public static SolidColorBrush PurpleBrush { get; } = new(Purple);
+	public static SolidColorBrush CyanBrush { get; } = new(Cyan);
+	public static SolidColorBrush TransparentBrush { get; } = new(Transparent);
 }

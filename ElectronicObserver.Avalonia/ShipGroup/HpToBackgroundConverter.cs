@@ -6,15 +6,15 @@ namespace ElectronicObserver.Avalonia.ShipGroup;
 
 public class HpToBackgroundConverter : IValueConverter
 {
-	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+	public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
 	{
-		IBrush? brush = value switch
+		IBrush brush = value switch
 		{
 			<= 0.25 => ShipGroupColors.RedBrush,
 			<= 0.50 => ShipGroupColors.OrangeBrush,
 			<= 0.75 => ShipGroupColors.YellowBrush,
 			< 1.00 => ShipGroupColors.GreenBrush,
-			_ => null,
+			_ => ShipGroupColors.TransparentBrush,
 		};
 
 		return brush;

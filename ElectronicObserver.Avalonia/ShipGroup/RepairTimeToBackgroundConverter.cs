@@ -6,11 +6,11 @@ namespace ElectronicObserver.Avalonia.ShipGroup;
 
 public class RepairTimeToBackgroundConverter : IValueConverter
 {
-	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+	public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
 	{
-		IBrush? brush = value switch
+		IBrush brush = value switch
 		{
-			TimeSpan { TotalMilliseconds: < 1 } => null,
+			TimeSpan { TotalMilliseconds: < 1 } => ShipGroupColors.TransparentBrush,
 			TimeSpan { TotalHours: < 1 } => ShipGroupColors.YellowBrush,
 			TimeSpan { TotalHours: < 6 } => ShipGroupColors.OrangeBrush,
 			_ => ShipGroupColors.RedBrush,

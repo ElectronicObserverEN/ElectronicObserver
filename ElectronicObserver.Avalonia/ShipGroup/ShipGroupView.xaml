@@ -22,6 +22,15 @@
 		<shipGroup:ConditionToBackgroundConverter x:Key="ConditionToBackgroundConverter" />
 		<shipGroup:AircraftToBackgroundConverter x:Key="AircraftToBackgroundConverter" />
 		<shipGroup:RepairTimeToBackgroundConverter x:Key="RepairTimeToBackgroundConverter" />
+
+		<shipGroup:ParameterToBackgroundConverter x:Key="FirepowerToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.RedBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="TorpedoToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.BlueBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="AaToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.OrangeBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="ArmorToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.YellowBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="LuckToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.GreenBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="AswToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.PurpleBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="LosToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.CyanBrush}" />
+		<shipGroup:ParameterToBackgroundConverter x:Key="EvasionToBackgroundConverter" ParameterBrush="{x:Static shipGroup:ShipGroupColors.RedBrush}" />
 	</UserControl.Resources>
 
 	<UserControl.DataTemplates>
@@ -270,6 +279,141 @@
 				<Style Selector="DataGridCell.RepairTime">
 					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding RepairTime, Converter={StaticResource RepairTimeToBackgroundConverter}}" />
 				</Style>
+
+				<Style Selector="DataGridCell.Firepower">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource FirepowerToBackgroundConverter}">
+								<Binding Path="FirepowerTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.FirepowerRemain">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource FirepowerToBackgroundConverter}">
+								<Binding Path="FirepowerTotal" />
+								<Binding Path="FirepowerRemain" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Torpedo">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource TorpedoToBackgroundConverter}">
+								<Binding Path="TorpedoTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.TorpedoRemain">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource TorpedoToBackgroundConverter}">
+								<Binding Path="TorpedoTotal" />
+								<Binding Path="TorpedoRemain" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Aa">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AaToBackgroundConverter}">
+								<Binding Path="AATotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.AaRemain">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AaToBackgroundConverter}">
+								<Binding Path="AATotal" />
+								<Binding Path="AARemain" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Armor">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource ArmorToBackgroundConverter}">
+								<Binding Path="ArmorTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.ArmorRemain">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource ArmorToBackgroundConverter}">
+								<Binding Path="ArmorTotal" />
+								<Binding Path="ArmorRemain" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Luck">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource LuckToBackgroundConverter}">
+								<Binding Path="LuckTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.LuckRemain">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource LuckToBackgroundConverter}">
+								<Binding Path="LuckTotal" />
+								<Binding Path="LuckRemain" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Asw">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource AswToBackgroundConverter}">
+								<Binding Path="ASWTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Los">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource LosToBackgroundConverter}">
+								<Binding Path="LOSTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
+
+				<Style Selector="DataGridCell.Evasion">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
+						<Setter.Value>
+							<MultiBinding Converter="{StaticResource EvasionToBackgroundConverter}">
+								<Binding Path="EvasionTotal" />
+							</MultiBinding>
+						</Setter.Value>
+					</Setter>
+				</Style>
 			</DataGrid.Styles>
 
 			<Interaction.Behaviors>
@@ -462,113 +606,134 @@
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Firepower}"
+					CellStyleClasses="Firepower CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Firepower, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding FirepowerRemain}"
+					CellStyleClasses="FirepowerRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding FirepowerTotal}"
+					CellStyleClasses="Firepower CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Torpedo}"
+					CellStyleClasses="Torpedo CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Torpedo, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding TorpedoRemain}"
+					CellStyleClasses="TorpedoRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding TorpedoTotal}"
+					CellStyleClasses="Torpedo CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AA}"
+					CellStyleClasses="Aa CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AA, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AARemain}"
+					CellStyleClasses="AaRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AARemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding AATotal}"
+					CellStyleClasses="Aa CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AATotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Armor}"
+					CellStyleClasses="Armor CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Armor, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ArmorRemain}"
+					CellStyleClasses="ArmorRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ArmorTotal}"
+					CellStyleClasses="Armor CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ASW}"
+					CellStyleClasses="Asw CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ASW, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding ASWTotal}"
+					CellStyleClasses="Asw CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ASWTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Evasion}"
+					CellStyleClasses="Evasion CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Evasion, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding EvasionTotal}"
+					CellStyleClasses="Evasion CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_EvasionTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LOS}"
+					CellStyleClasses="Los CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LOS, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LOSTotal}"
+					CellStyleClasses="Los CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LOSTotal, ElementName=ShipGroupControl}"
 					/>
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Luck}"
+					CellStyleClasses="Luck CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Luck, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LuckRemain}"
+					CellStyleClasses="LuckRemain CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckRemain, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding LuckTotal}"
+					CellStyleClasses="Luck CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckTotal, ElementName=ShipGroupControl}"
 					/>
 

@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 
@@ -21,7 +20,9 @@ public class BackgroundToForegroundConverter : IMultiValueConverter
 			_ => null,
 		};
 
-		if (backgroundBrush is null && themeBackgroundColor == ShipGroupColors.Black)
+		// this is fine for now, we use the same reference for transparent on custom backgrounds
+		// ReSharper disable once PossibleUnintendedReferenceComparison
+		if (backgroundBrush == ShipGroupColors.TransparentBrush && themeBackgroundColor == ShipGroupColors.Black)
 		{
 			return ShipGroupColors.WhiteBrush;
 		}

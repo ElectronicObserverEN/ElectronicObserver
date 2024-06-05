@@ -6,17 +6,17 @@ namespace ElectronicObserver.Avalonia.ShipGroup;
 
 public class ConditionToBackgroundConverter : IMultiValueConverter
 {
-	public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+	public object Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
 	{
 		object? condition = values[0];
 		object? conditionBorder = values[1];
 
-		IBrush? brush = (condition, conditionBorder) switch
+		IBrush brush = (condition, conditionBorder) switch
 		{
 			( <= 20, _) => ShipGroupColors.RedBrush,
 			( <= 30, _) => ShipGroupColors.OrangeBrush,
 			(int c, int b) when c < b => ShipGroupColors.YellowBrush,
-			( < 50, _) => null,
+			( < 50, _) => ShipGroupColors.TransparentBrush,
 			_ => ShipGroupColors.GreenBrush,
 		};
 
