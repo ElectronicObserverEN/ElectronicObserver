@@ -21,6 +21,7 @@
 		<shipGroup:HpToBackgroundConverter x:Key="HpToBackgroundConverter" />
 		<shipGroup:ConditionToBackgroundConverter x:Key="ConditionToBackgroundConverter" />
 		<shipGroup:AircraftToBackgroundConverter x:Key="AircraftToBackgroundConverter" />
+		<shipGroup:RepairTimeToBackgroundConverter x:Key="RepairTimeToBackgroundConverter" />
 	</UserControl.Resources>
 
 	<UserControl.DataTemplates>
@@ -265,6 +266,10 @@
 						</Setter.Value>
 					</Setter>
 				</Style>
+
+				<Style Selector="DataGridCell.RepairTime">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding RepairTime, Converter={StaticResource RepairTimeToBackgroundConverter}}" />
+				</Style>
 			</DataGrid.Styles>
 
 			<Interaction.Behaviors>
@@ -440,6 +445,7 @@
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding RepairTime}"
+					CellStyleClasses="RepairTime CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairTime, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
