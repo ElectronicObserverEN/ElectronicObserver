@@ -52,6 +52,20 @@
 				<behaviors:ColumnAutoSizeBehavior />
 			</Interaction.Behaviors>
 
+			<DataGrid.Resources>
+				<!--  it's used by Avalonia  -->
+				<x:Double x:Key="DataGridSortIconMinWidth">0</x:Double>
+			</DataGrid.Resources>
+
+			<DataGrid.Styles>
+				<Style Selector="DataGridColumnHeader">
+					<Setter Property="Padding" Value="4 0" />
+				</Style>
+				<Style Selector="DataGridCell TextBlock">
+					<Setter Property="Margin" Value="4 0" />
+				</Style>
+			</DataGrid.Styles>
+
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					x:DataType="vm:Test"

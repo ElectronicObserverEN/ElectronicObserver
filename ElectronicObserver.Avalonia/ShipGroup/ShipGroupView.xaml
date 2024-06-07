@@ -167,6 +167,11 @@
 			RowHeight="{Binding DataGridSettings.RowHeight}"
 			SelectionMode="Extended"
 			>
+			<DataGrid.Resources>
+				<!--  it's used by Avalonia  -->
+				<x:Double x:Key="DataGridSortIconMinWidth">0</x:Double>
+			</DataGrid.Resources>
+
 			<DataGrid.Styles>
 				<Style Selector="DataGridRow DataGridCell">
 					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
@@ -175,6 +180,13 @@
 				<Style Selector="DataGridColumnHeader">
 					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
 					<Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+				</Style>
+
+				<Style Selector="DataGridColumnHeader">
+					<Setter Property="Padding" Value="4 0" />
+				</Style>
+				<Style Selector="DataGridCell TextBlock">
+					<Setter Property="Margin" Value="4 0" />
 				</Style>
 
 				<Style Selector="DataGridCell.CustomBackground">
