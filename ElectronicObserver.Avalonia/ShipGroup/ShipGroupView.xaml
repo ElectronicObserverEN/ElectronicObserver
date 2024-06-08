@@ -431,6 +431,7 @@
 			<Interaction.Behaviors>
 				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
 				<behaviors:ColumnAutoSizeBehavior />
+				<behaviors:MultiSelectBehavior />
 
 				<EventTriggerBehavior EventName="SelectionChanged">
 					<InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItems, ElementName=DataGrid}" />

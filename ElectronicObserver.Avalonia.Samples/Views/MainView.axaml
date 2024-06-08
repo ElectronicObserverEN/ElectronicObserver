@@ -50,6 +50,7 @@
 			<Interaction.Behaviors>
 				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
 				<behaviors:ColumnAutoSizeBehavior />
+				<behaviors:MultiSelectBehavior />
 			</Interaction.Behaviors>
 
 			<DataGrid.Resources>
