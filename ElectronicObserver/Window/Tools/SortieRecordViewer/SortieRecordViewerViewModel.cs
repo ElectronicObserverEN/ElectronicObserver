@@ -352,6 +352,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			cancellationToken);
 	}
 
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportBattleRanks(CancellationToken cancellationToken)
+	{
+		await ExportCsv<BattleRanksExportMap, BattleRanksExportModel>(
+			DataExportHelper.BattleRank,
+			ExportRedTorpedoBattleCancelCommand,
+			cancellationToken);
+	}
+
 	private async Task ExportCsv<TMap, TElement>(
 		Func<ObservableCollection<SortieRecordViewModel>, ExportFilterViewModel?, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
 		ICommand cancellationCommand,

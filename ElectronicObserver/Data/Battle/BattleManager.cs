@@ -6,8 +6,10 @@ using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -598,37 +600,9 @@ public class BattleManager : APIWrapper
 		}
 		IncrementSpecialAttack(FirstBattle);
 		IncrementSpecialAttack(SecondBattle);
-
-
-
+		
 		WriteBattleLog();
-
-
-
-		/*//DEBUG
-		if (!IsBaseAirRaid && Utility.Configuration.Config.Log.LogLevel <= 1)
-		{
-			var battle = SecondBattle ?? FirstBattle;
-
-			for (int i = 0; i < battle.Initial.EnemyMaxHPs.Length; i++)
-			{
-				if (battle.Initial.EnemyMaxHPs[i] > 0 && battle.ResultHPs[BattleIndex.Get(BattleSides.EnemyMain, i)] == 0)
-					Utility.Logger.Add(1, "justkill #" + (i + 1));
-			}
-
-		int rank = PredictWinRank(out var friend, out var enemy);
-
-			// SS -> S
-			if (Constants.GetWinRank(rank).Substring(0, 1) != Result.Rank)
-			{
-				Utility.Logger.Add(1, $"勝利ランク予測が誤っています。予想 {Constants.GetWinRank(rank)} -> 実際 {Result.Rank}");
-			}
-		}
-		//*/
-
 	}
-
-
 
 	/// <summary>
 	/// 勝利ランクを予測します。
@@ -637,225 +611,39 @@ public class BattleManager : APIWrapper
 	/// <param name="enemyrate">敵の損害率を出力します。</param>
 	public int PredictWinRank(out double friendrate, out double enemyrate)
 	{
-
-		int friendbefore = 0;
-		int friendafter = 0;
-		int friendcount = 0;
-		int friendsunk = 0;
-
-		int enemybefore = 0;
-		int enemyafter = 0;
-		int enemycount = 0;
-		int enemysunk = 0;
-
 		BattleData activeBattle = SecondBattle ?? FirstBattle;
-		var firstInitial = FirstBattle.Initial;
+		PhaseInitial firstInitial = FirstBattle.Initial;
 
-		var friend = activeBattle.Initial.FriendFleet.MembersWithoutEscaped;
-		var friendescort = activeBattle.Initial.FriendFleetEscort?.MembersWithoutEscaped;
-
-		var resultHPs = activeBattle.ResultHPs;
-
-
-
-		for (int i = 0; i < firstInitial.FriendInitialHPs.Length; i++)
+		List<int> hpsAfter = activeBattle.ResultHPs.ToList();
+		
+		BattleRankPrediction prediction = new()
 		{
-			int initial = firstInitial.FriendInitialHPs[i];
-			if (initial < 0)
-				continue;
+			FriendlyMainFleetBefore = firstInitial.FriendFleet,
+			FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleet, hpsAfter, BattleSides.FriendMain)!,
 
-			int result = resultHPs[BattleIndex.Get(BattleSides.FriendMain, i)];
+			FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort,
+			FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleetEscort, hpsAfter, BattleSides.FriendEscort),
 
-			friendbefore += initial;
-			friendafter += Math.Max(result, 0);
-			friendcount++;
+			EnemyMainFleetBefore = firstInitial.EnemyFleet,
+			EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
+			TargetableEnemyMainFleet = firstInitial.IsEnemyTargetable.ToList(),
 
-			if (result <= 0)
-				friendsunk++;
-		}
+			EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
+			EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleetEscort, hpsAfter, BattleSides.EnemyEscort),
+			TargetableEnemyEscortFleet = firstInitial.IsEnemyTargetableEscort.ToList(),
+		};
 
-		if (firstInitial.FriendInitialHPsEscort != null)
+		BattleRank rank = (BattleMode & BattleModes.BattlePhaseMask) switch
 		{
-			for (int i = 0; i < firstInitial.FriendInitialHPsEscort.Length; i++)
-			{
-				int initial = firstInitial.FriendInitialHPsEscort[i];
-				if (initial < 0)
-					continue;
+			BattleModes.AirRaid or BattleModes.Radar => prediction.PredictRankAirRaid(),
+			_ => prediction.PredictRank(),
+		};
 
-				int result = resultHPs[BattleIndex.Get(BattleSides.FriendEscort, i)];
+		friendrate = prediction.FriendHpRate;
+		enemyrate = prediction.EnemyHpRate;
 
-				friendbefore += initial;
-				friendafter += Math.Max(result, 0);
-				friendcount++;
-
-				if (result <= 0)
-					friendsunk++;
-			}
-		}
-
-		for (int i = 0; i < firstInitial.EnemyInitialHPs.Length; i++)
-		{
-			int initial = firstInitial.EnemyInitialHPs[i];
-			bool isTargetable = true;
-
-			if (firstInitial.IsEnemyTargetable.Length > i)
-			{
-				isTargetable = firstInitial.IsEnemyTargetable[i];
-			}
-
-			if (initial < 0 || !isTargetable)
-				continue;
-
-			int result = resultHPs[BattleIndex.Get(BattleSides.EnemyMain, i)];
-
-			enemybefore += initial;
-			enemyafter += Math.Max(result, 0);
-			enemycount++;
-
-			if (result <= 0)
-				enemysunk++;
-		}
-
-		if (firstInitial.EnemyInitialHPsEscort != null)
-		{
-			for (int i = 0; i < firstInitial.EnemyInitialHPsEscort.Length; i++)
-			{
-				int initial = firstInitial.EnemyInitialHPsEscort[i];
-				bool isTargetable = true;
-
-				if (firstInitial.IsEnemyTargetableEscort.Length > i)
-				{
-					isTargetable = firstInitial.IsEnemyTargetableEscort[i];
-				}
-
-				if (initial < 0 || !isTargetable)
-					continue;
-
-				int result = resultHPs[BattleIndex.Get(BattleSides.EnemyEscort, i)];
-
-				enemybefore += initial;
-				enemyafter += Math.Max(result, 0);
-				enemycount++;
-
-				if (result <= 0)
-					enemysunk++;
-			}
-
-		}
-
-
-		friendrate = (double)(friendbefore - friendafter) / friendbefore;
-		enemyrate = (double)(enemybefore - enemyafter) / enemybefore;
-
-
-		if ((BattleMode & BattleModes.BattlePhaseMask) == BattleModes.AirRaid ||
-			(BattleMode & BattleModes.BattlePhaseMask) == BattleModes.Radar)
-			return GetWinRankAirRaid(friendcount, friendsunk, friendrate);
-		else
-			return GetWinRank(friendcount, enemycount, friendsunk, enemysunk, friendrate, enemyrate,
-				friend[0].HPRate <= 0.25, resultHPs[BattleIndex.EnemyMain1] <= 0);
-
+		return (int)rank;
 	}
-
-
-	/// <summary>
-	/// 勝利ランクを計算します。連合艦隊は情報が少ないので正確ではありません。
-	/// </summary>
-	/// <param name="countFriend">戦闘に参加した自軍艦数。</param>
-	/// <param name="countEnemy">戦闘に参加した敵軍艦数。</param>
-	/// <param name="sunkFriend">撃沈された自軍艦数。</param>
-	/// <param name="sunkEnemy">撃沈した敵軍艦数。</param>
-	/// <param name="friendrate">自軍損害率。</param>
-	/// <param name="enemyrate">敵軍損害率。</param>
-	/// <param name="isfriendFlagshipHeavilyDamaged">自艦隊の旗艦が大破しているか。</param>
-	/// <param name="defeatEnemyFlagship">敵旗艦を撃沈しているか。</param>
-	/// <remarks>thanks: nekopanda</remarks>
-	private static int GetWinRank(
-		int countFriend, int countEnemy,
-		int sunkFriend, int sunkEnemy,
-		double friendrate, double enemyrate,
-		bool isfriendFlagshipHeavilyDamaged, bool defeatEnemyFlagship)
-	{
-
-		int rifriend = (int)(friendrate * 100);
-		int rienemy = (int)(enemyrate * 100);
-
-
-		// 轟沈艦なし
-		if (sunkFriend == 0)
-		{
-
-			// 敵艦全撃沈
-			if (sunkEnemy == countEnemy)
-			{
-				if (friendrate <= 0)
-					return 7;   // SS
-				else
-					return 6;   // S
-
-			}
-			else if (countEnemy > 1 && sunkEnemy >= (int)(countEnemy * 0.7))        // 敵の 70% 以上を撃沈
-				return 5;   // A
-		}
-
-		// 敵旗艦撃沈 かつ 轟沈艦が敵より少ない
-		if (defeatEnemyFlagship && sunkFriend < sunkEnemy)
-			return 4;   // B
-
-		// 自艦隊1隻 かつ 旗艦大破
-		if (countFriend == 1 && isfriendFlagshipHeavilyDamaged)
-			return 2;   // D
-
-		// ゲージが 2.5 倍以上
-		if (rienemy > (2.5 * rifriend))
-			return 4;   // B
-
-		// ゲージが 0.9 倍以上
-		if (rienemy > (0.9 * rifriend))
-			return 3;   // C
-
-		// 轟沈艦あり かつ 残った艦が１隻のみ
-		if (sunkFriend > 0 && (countFriend - sunkFriend) == 1)
-		{
-			return 1;   // E
-		}
-
-		// 残りはD
-		return 2;   // D
-	}
-
-
-	/// <summary>
-	/// 空襲戦における勝利ランクを計算します。
-	/// </summary>
-	/// <param name="countFriend">戦闘に参加した自軍艦数。</param>
-	/// <param name="sunkFriend">撃沈された自軍艦数。</param>
-	/// <param name="friendrate">自軍損害率。</param>
-	private static int GetWinRankAirRaid(int countFriend, int sunkFriend, double friendrate)
-	{
-		int rank;
-
-		if (friendrate <= 0.0)
-			rank = 7;   //SS
-		else if (friendrate < 0.1)
-			rank = 5;   //A
-		else if (friendrate < 0.2)
-			rank = 4;   //B
-		else if (friendrate < 0.5)
-			rank = 3;   //C
-		else if (friendrate < 0.8)
-			rank = 2;   //D
-		else
-			rank = 1;   //E
-
-		/*/// 撃沈艦があってもランクは変わらない(撃沈ありA勝利が確認されている)
-		if ( sunkFriend > 0 )
-			rank--;
-		//*/
-
-		return rank;
-	}
-
 
 	/// <summary>
 	/// 敵連合艦隊戦において、夜戦突入時に敵本隊と戦闘可能な戦況かどうか

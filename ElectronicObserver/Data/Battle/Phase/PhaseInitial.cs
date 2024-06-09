@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -48,6 +49,9 @@ public class PhaseInitial : PhaseBase
 	/// </summary>
 	public IShipDataMaster[]? EnemyMembersEscortInstance { get; private set; }
 
+	public IFleetData EnemyFleet { get; private set; }
+
+	public IFleetData? EnemyFleetEscort { get; private set; }
 
 	/// <summary>
 	/// 敵艦のレベル
@@ -231,18 +235,31 @@ public class PhaseInitial : PhaseBase
 		EnemyParameters = GetArraysOrDefault("api_eParam", mainMemberCount, 4);
 		EnemyParametersEscort = GetArraysOrDefault("api_eParam_combined", escortMemberCount, 4);
 
+		EnemyFleet = new FleetDataMock
 		{
-			var rations = new List<int>();
-			if (RawData.api_combat_ration())
+			MembersInstance = new(EnemyMembersInstance.Select(shipMaster => new ShipDataMock(shipMaster)).Cast<IShipData?>().ToList()),
+		};
+
+		EnemyFleetEscort = EnemyMembersEscortInstance switch
+		{
+			not null => new FleetDataMock()
 			{
-				rations.AddRange(((int[])RawData.api_combat_ration).Select(i => FriendFleet.Members.IndexOf(i)));
-			}
-			if (RawData.api_combat_ration_combined())
-			{
-				rations.AddRange(((int[])RawData.api_combat_ration_combined).Select(i => FriendFleetEscort.Members.IndexOf(i) + 6));
-			}
-			RationIndexes = rations.ToArray();
+				MembersInstance = new(EnemyMembersEscortInstance
+					.Select(shipMaster => new ShipDataMock(shipMaster)).Cast<IShipData?>().ToList()),
+			},
+			_ => null,
+		};
+
+		var rations = new List<int>();
+		if (RawData.api_combat_ration())
+		{
+			rations.AddRange(((int[])RawData.api_combat_ration).Select(i => FriendFleet.Members.IndexOf(i)));
 		}
+		if (RawData.api_combat_ration_combined())
+		{
+			rations.AddRange(((int[])RawData.api_combat_ration_combined).Select(i => FriendFleetEscort.Members.IndexOf(i) + 6));
+		}
+		RationIndexes = rations.ToArray();
 	}
 
 
@@ -274,12 +291,9 @@ public class PhaseInitial : PhaseBase
 		return ret;
 	}
 
-
-
 	public override bool IsAvailable => RawData != null;
 
 	public override void EmulateBattle(int[] hps, int[] damages)
 	{
 	}
-
 }

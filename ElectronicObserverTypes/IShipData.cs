@@ -43,7 +43,7 @@ public interface IShipData
 	/// <summary>
 	/// 耐久現在値
 	/// </summary>
-	int HPCurrent { get; }
+	int HPCurrent { get; set; }
 
 	/// <summary>
 	/// 耐久最大値
