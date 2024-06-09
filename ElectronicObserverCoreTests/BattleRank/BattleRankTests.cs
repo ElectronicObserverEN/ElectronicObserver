@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
@@ -13,6 +14,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using System;
 
 namespace ElectronicObserverCoreTests.BattleRank;
 
@@ -70,7 +72,7 @@ public class BattleRankTests
 		return sortieDetails;
 	}
 
-	[Fact(DisplayName = "Battle against untargetable enemy, rank should be A")]
+	[Fact(DisplayName = "Battle against untargetable enemy, rank should be S")]
 	public async Task SortieDetailTest1()
 	{
 		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest01.json");
@@ -79,9 +81,24 @@ public class BattleRankTests
 		Assert.True(sortieDetails[0].Nodes.Count > 1);
 
 		// Early Spring 2023 - Edge 15  
-		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
+		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[4];
 
+		BattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
+			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
 
+			FriendlyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EscortFleet,
+			FriendlyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EscortFleet,
+
+			EnemyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.S, prediction.PredictRank());
 	}
 
 	[Fact(DisplayName = "Battle against untargetable enemy, rank should be SS")]
@@ -93,22 +110,23 @@ public class BattleRankTests
 		Assert.True(sortieDetails[0].Nodes.Count > 1);
 
 		// Early Spring 2023 - Edge 15  
-		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
+		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[4];
 
-		Assert.NotNull(battle.SecondBattle);
+		BattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
+			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
 
-		IShipData zuihouAfterFirstBattle = battle.FirstBattle.FleetsAfterBattle
-			.SortieShips()
-			.OfType<IShipData>()
-			.First(s => s.MasterShip.ShipId is ShipId.ZuihouKaiNiB);
+			FriendlyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EscortFleet,
+			FriendlyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EscortFleet,
 
-		Assert.Equal(32, zuihouAfterFirstBattle.HPCurrent);
+			EnemyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyFleet!,
 
-		IShipData zuihouBeforeSecondBattle = battle.SecondBattle.FleetsBeforeBattle
-			.SortieShips()
-			.OfType<IShipData>()
-			.First(s => s.MasterShip.ShipId is ShipId.ZuihouKaiNiB);
+			EnemyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+		};
 
-		Assert.Equal(32, zuihouBeforeSecondBattle.HPCurrent);
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.SS, prediction.PredictRank());
 	}
 }
