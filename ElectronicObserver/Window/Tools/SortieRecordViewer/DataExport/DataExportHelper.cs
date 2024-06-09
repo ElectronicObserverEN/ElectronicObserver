@@ -872,11 +872,9 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 				EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
 				EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
-				TargetableEnemyMainFleet = targetableMainFleet,
 
 				EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
 				EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
-				TargetableEnemyEscortFleet = targetableEscortFleet,
 			};
 
 			BattleRank rank = node.FirstBattle switch

@@ -231,6 +231,12 @@ public class PhaseInitial : PhaseBase
 						})
 						.Cast<IEquipmentData?>()
 						.ToList(),
+					CanBeTargeted = t.Hp switch
+					{
+						JsonElement { ValueKind: JsonValueKind.Number } => true,
+						JsonElement { ValueKind: JsonValueKind.String } => false,
+						_ => throw new NotImplementedException(),
+					},
 				},
 				_ => null,
 			})

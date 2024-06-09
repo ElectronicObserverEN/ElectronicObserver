@@ -235,20 +235,7 @@ public class PhaseInitial : PhaseBase
 		EnemyParameters = GetArraysOrDefault("api_eParam", mainMemberCount, 4);
 		EnemyParametersEscort = GetArraysOrDefault("api_eParam_combined", escortMemberCount, 4);
 
-		EnemyFleet = new FleetDataMock
-		{
-			MembersInstance = new(EnemyMembersInstance.Select(shipMaster => new ShipDataMock(shipMaster)).Cast<IShipData?>().ToList()),
-		};
-
-		EnemyFleetEscort = EnemyMembersEscortInstance switch
-		{
-			not null => new FleetDataMock()
-			{
-				MembersInstance = new(EnemyMembersEscortInstance
-					.Select(shipMaster => new ShipDataMock(shipMaster)).Cast<IShipData?>().ToList()),
-			},
-			_ => null,
-		};
+		InitializeEnemyFleets();
 
 		var rations = new List<int>();
 		if (RawData.api_combat_ration())
@@ -262,7 +249,41 @@ public class PhaseInitial : PhaseBase
 		RationIndexes = rations.ToArray();
 	}
 
+	private void InitializeEnemyFleets()
+	{
+		EnemyFleet = new FleetDataMock
+		{
+			MembersInstance = new(EnemyMembersInstance.Select(shipMaster => new ShipDataMock(shipMaster)).Cast<IShipData?>().ToList()),
+		};
 
+		for (int index = 0; index < EnemyMembersInstance.Length; index++)
+		{
+			if (EnemyFleet.MembersInstance[index] is ShipDataMock ship)
+			{
+				ship.CanBeTargeted = IsEnemyTargetable[index];
+			}
+		}
+
+		EnemyFleetEscort = null;
+		
+		if (EnemyMembersEscortInstance is not null)
+		{
+			EnemyFleetEscort = new FleetDataMock()
+			{
+				MembersInstance = new(EnemyMembersEscortInstance
+					.Select(shipMaster => new ShipDataMock(shipMaster))
+					.Cast<IShipData?>().ToList()),
+			};
+
+			for (int index = 0; index < EnemyMembersEscortInstance.Length; index++)
+			{
+				if (EnemyFleetEscort.MembersInstance[index] is ShipDataMock ship)
+				{
+					ship.CanBeTargeted = IsEnemyTargetableEscort[index];
+				}
+			}
+		}
+	}
 
 	public IShipData GetFriendShip(int index)
 	{
