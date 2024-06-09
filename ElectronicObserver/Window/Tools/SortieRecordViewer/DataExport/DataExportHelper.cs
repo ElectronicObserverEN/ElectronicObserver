@@ -849,19 +849,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		{
 			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
 			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
-
-			List<bool> targetableMainFleet = node.FirstBattle.FleetsBeforeBattle.EnemyFleet.MembersInstance
-					.Select(ship => ship?.HPCurrent is not -2)
-					.ToList();
-
-			List<bool> targetableEscortFleet = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet switch
-			{
-				{ } escort => escort.MembersInstance
-					.Select(ship => ship?.HPCurrent is not -2)
-					.ToList(),
-				_ => [],
-			};
-
+			
 			BattleRankPrediction prediction = new()
 			{
 				FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
