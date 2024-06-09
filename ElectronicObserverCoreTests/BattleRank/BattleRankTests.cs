@@ -78,9 +78,9 @@ public class BattleRankTests
 		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest01.json");
 
 		Assert.Single(sortieDetails);
-		Assert.True(sortieDetails[0].Nodes.Count > 1);
+		Assert.True(sortieDetails[0].Nodes.Count > 4);
 
-		// Early Spring 2023 - Edge 15  
+		// Early Spring 2023 - E1-H2  
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[4];
 
 		BattleRankPrediction prediction = new()
@@ -107,9 +107,9 @@ public class BattleRankTests
 		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest02.json");
 
 		Assert.Single(sortieDetails);
-		Assert.True(sortieDetails[0].Nodes.Count > 1);
+		Assert.True(sortieDetails[0].Nodes.Count > 4);
 
-		// Early Spring 2023 - Edge 15  
+		// Early Spring 2023 - E1-H2 
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[4];
 
 		BattleRankPrediction prediction = new()
@@ -128,5 +128,54 @@ public class BattleRankTests
 		};
 
 		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.SS, prediction.PredictRank());
+	}
+
+	[Fact(DisplayName = "Battle after retreating ship, rank should be SS on second node and S on last one")]
+	public async Task SortieDetailTest3()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest03.json");
+
+		Assert.Single(sortieDetails);
+		Assert.True(sortieDetails[0].Nodes.Count > 1);
+
+		// Early Spring 2023 - E2-O
+		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
+
+		BattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
+			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
+
+			FriendlyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EscortFleet,
+			FriendlyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EscortFleet,
+
+			EnemyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.SS, prediction.PredictRank());
+
+		// Early Spring 2023 - E2-O
+		battle = (BattleNode)sortieDetails[0].Nodes.Last();
+
+		prediction = new()
+		{
+			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
+			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
+
+			FriendlyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EscortFleet,
+			FriendlyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EscortFleet,
+
+			EnemyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.S, prediction.PredictRank());
 	}
 }
