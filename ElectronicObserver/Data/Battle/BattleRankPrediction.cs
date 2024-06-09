@@ -20,9 +20,6 @@ public class BattleRankPrediction
 
 	public IFleetData? EnemyEscortFleetBefore { get; init; }
 	public IFleetData? EnemyEscortFleetAfter { get; init; }
-
-	public required List<bool> TargetableEnemyMainFleet { get; init; }
-	public required List<bool> TargetableEnemyEscortFleet { get; init; }
 	
 	public int FriendlyShipCount { get; private set; }
 	public int FriendlyShipSunk { get; private set; }
@@ -108,15 +105,18 @@ public class BattleRankPrediction
 	{
 		for (int index = 0; index < EnemyMainFleetBefore.MembersInstance.Count; index++)
 		{
-			if (TargetableEnemyMainFleet.Count > index && !TargetableEnemyMainFleet[index]) continue;
+			IShipData? ship = EnemyMainFleetBefore.MembersInstance[index];
 
-			int? hpBefore = EnemyMainFleetBefore.MembersInstance[index]?.HPCurrent;
-			if (hpBefore is null or < 0) continue;
+			if (ship is null) continue;
+			if (!ship.CanBeTargeted) continue;
+
+			int hpBefore = ship.HPCurrent;
+			if (hpBefore < 0) continue;
 
 			int? hpAfter = EnemyMainFleetAfter.MembersInstance[index]?.HPCurrent;
 			if (hpAfter is null) continue;
 
-			EnemyHpBefore += (int)hpBefore;
+			EnemyHpBefore += hpBefore;
 			EnemyHpAfter += Math.Max((int)hpAfter, 0);
 			EnemyShipCount++;
 
@@ -134,15 +134,18 @@ public class BattleRankPrediction
 
 		for (int index = 0; index < EnemyEscortFleetBefore.MembersInstance.Count; index++)
 		{
-			if (TargetableEnemyEscortFleet.Count > index && !TargetableEnemyEscortFleet[index]) continue;
+			IShipData? ship = EnemyEscortFleetBefore.MembersInstance[index];
 
-			int? hpBefore = EnemyEscortFleetBefore.MembersInstance[index]?.HPCurrent;
-			if (hpBefore is null or < 0) continue;
+			if (ship is null) continue;
+			if (!ship.CanBeTargeted) continue;
+
+			int hpBefore = ship.HPCurrent;
+			if (hpBefore < 0) continue;
 
 			int? hpAfter = EnemyEscortFleetAfter.MembersInstance[index]?.HPCurrent;
 			if (hpAfter is null) continue;
 
-			EnemyHpBefore += (int)hpBefore;
+			EnemyHpBefore += hpBefore;
 			EnemyHpAfter += Math.Max((int)hpAfter, 0);
 			EnemyShipCount++;
 

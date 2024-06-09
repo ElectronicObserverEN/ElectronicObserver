@@ -160,6 +160,7 @@ public class ShipDataMock : IShipData
 	public int SpecialEffectItemEvasion { get; set; }
 	public bool IsLocked { get; set; }
 	public bool IsLockedByEquipment { get; set; }
+	public bool CanBeTargeted { get; set; } = true;
 
 	public ShipDataMock(IShipDataMaster ship)
 	{

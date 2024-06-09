@@ -1459,6 +1459,8 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 		}
 	}
 
+	public bool CanBeTargeted { get; set; } = true;
+
 
 	/// <summary>
 	/// 発動可能なダメコンのID -1=なし, 42=要員, 43=女神

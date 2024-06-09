@@ -626,11 +626,9 @@ public class BattleManager : APIWrapper
 
 			EnemyMainFleetBefore = firstInitial.EnemyFleet,
 			EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
-			TargetableEnemyMainFleet = firstInitial.IsEnemyTargetable.ToList(),
 
 			EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
 			EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleetEscort, hpsAfter, BattleSides.EnemyEscort),
-			TargetableEnemyEscortFleet = firstInitial.IsEnemyTargetableEscort.ToList(),
 		};
 
 		BattleRank rank = (BattleMode & BattleModes.BattlePhaseMask) switch

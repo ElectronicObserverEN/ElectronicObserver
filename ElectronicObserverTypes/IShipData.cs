@@ -551,6 +551,8 @@ public interface IShipData
 	/// </summary>
 	bool CanAttackAtNight { get; }
 
+	bool CanBeTargeted { get; }
+
 	/// <summary>
 	/// 発動可能なダメコンのID -1=なし, 42=要員, 43=女神
 	/// </summary>
