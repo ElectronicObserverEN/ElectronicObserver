@@ -27,6 +27,7 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		Debug.Assert(AssociatedObject is not null);
 
 		AssociatedObject.LoadingRow += DataGrid_LoadingRow;
+		AssociatedObject.UnloadingRow += DataGrid_UnloadingRow;
 		AssociatedObject.PointerMoved += DataGrid_PointerMoved;
 		AssociatedObject.PointerReleased += DataGrid_PointerReleased;
 	}
@@ -39,6 +40,7 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		AssociatedObject.Unloaded -= DataGridUnloaded;
 
 		AssociatedObject.LoadingRow -= DataGrid_LoadingRow;
+		AssociatedObject.UnloadingRow -= DataGrid_UnloadingRow;
 		AssociatedObject.PointerMoved -= DataGrid_PointerMoved;
 		AssociatedObject.PointerReleased -= DataGrid_PointerReleased;
 	}
@@ -48,6 +50,11 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		e.Row.AddHandler(InputElement.PointerPressedEvent, Row_PointerPressed, RoutingStrategies.Tunnel);
 	}
 
+	private void DataGrid_UnloadingRow(object? sender, DataGridRowEventArgs e)
+	{
+		e.Row.RemoveHandler(InputElement.PointerPressedEvent, Row_PointerPressed);
+	}
+
 	private void Row_PointerPressed(object? sender, PointerPressedEventArgs e)
 	{
 		Debug.Assert(AssociatedObject is not null);
@@ -55,8 +62,14 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		if (sender is not DataGridRow row) return;
 
 		IsDragging = true;
+
 		AssociatedObject.SelectedItems.Clear();
 		AssociatedObject.SelectedItems.Add(row.DataContext);
+	}
+
+	private void DataGrid_PointerReleased(object? sender, PointerReleasedEventArgs e)
+	{
+		IsDragging = false;
 	}
 
 	private void DataGrid_PointerMoved(object? sender, PointerEventArgs e)
@@ -68,14 +81,55 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		DataGridRow? row = GetDataGridRowUnderPointer(e);
 
 		if (row is null) return;
+
+		ScrollIfNeeded(AssociatedObject, e, row);
+
 		if (AssociatedObject.SelectedItems.Contains(row.DataContext)) return;
 
 		AssociatedObject.SelectedItems.Add(row.DataContext);
 	}
 
-	private void DataGrid_PointerReleased(object? sender, PointerReleasedEventArgs e)
+	private static void ScrollIfNeeded(DataGrid dataGrid, PointerEventArgs e, DataGridRow row)
 	{
-		IsDragging = false;
+		Point mousePosition = e.GetPosition(dataGrid);
+
+		double scrollMargin = dataGrid.RowHeight switch
+		{
+			double.NaN => 32,
+			_ => dataGrid.RowHeight,
+		};
+
+		double columnHeaderHeight = dataGrid.ColumnHeaderHeight switch
+		{
+			double.NaN => 32,
+			_ => dataGrid.ColumnHeaderHeight,
+		};
+
+		if (mousePosition.Y < scrollMargin + columnHeaderHeight)
+		{
+			// scroll up
+			ScrollIntoView(dataGrid, row.DataContext, -1);
+		}
+		else if (mousePosition.Y > dataGrid.Bounds.Height - scrollMargin)
+		{
+			// scroll down
+			ScrollIntoView(dataGrid, row.DataContext, 1);
+		}
+	}
+
+	private static void ScrollIntoView(DataGrid dataGrid, object? item, int scrollAmount)
+	{
+		int index = dataGrid.ItemsSource
+			.OfType<object>()
+			.TakeWhile(i => i != item)
+			.Count();
+
+		object? nextItem = dataGrid.ItemsSource
+			.OfType<object>()
+			.Skip(index + scrollAmount)
+			.FirstOrDefault();
+
+		dataGrid.ScrollIntoView(nextItem, null);
 	}
 
 	private DataGridRow? GetDataGridRowUnderPointer(PointerEventArgs e)

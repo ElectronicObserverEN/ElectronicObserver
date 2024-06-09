@@ -16,13 +16,7 @@ public class Test
 
 public partial class MainViewModel : ViewModelBase
 {
-	private List<Test> Data { get; } =
-	[
-		new() { Name = "Test1", Description = "TestDescription1" },
-		new() { Name = "Test2", Description = "TestDescription2" },
-		new() { Name = "Test3", Description = "TestDescription3" },
-		new() { Name = "Test4", Description = "TestDescription4" },
-	];
+	private List<Test> Data { get; } = [];
 
 	public ObservableCollection<ShipGroupItem> Groups { get; set; } =
 	[
@@ -51,6 +45,18 @@ public partial class MainViewModel : ViewModelBase
 	[ObservableProperty] private ShipGroupItem? _selectedGroup;
 	[ObservableProperty] private DataGridCollectionView _collectionView = new(new List<Test>());
 	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
+
+	public MainViewModel()
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			Data.Add(new()
+			{
+				Name = $"Test{i + 1}",
+				Description = $"TestDescription{i + 1}",
+			});
+		}
+	}
 
 	[RelayCommand]
 	private void SelectGroup(ShipGroupItem group)
