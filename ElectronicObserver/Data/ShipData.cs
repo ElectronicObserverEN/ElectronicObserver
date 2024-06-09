@@ -60,7 +60,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 耐久現在値
 	/// </summary>
-	public int HPCurrent { get; internal set; }
+	public int HPCurrent { get; set; }
 
 	/// <summary>
 	/// 耐久最大値

@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+using ElectronicObserver.Observer.kcsapi.api_req_battle_midnight;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
@@ -19,6 +22,12 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
+using BattleAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleAirRaid;
+using BattleCombinedAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleCombinedAirRaid;
+using BattleCombinedRadar = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleCombinedRadar;
+using BattleData = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleData;
+using BattleIndex = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleIndex;
+using BattleNormalRadar = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleNormalRadar;
 using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 using NightAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.NightAttack;
 
@@ -819,6 +828,75 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			},
 			Defender = MakeShip(attackDisplay?.Defender ?? defender, attackDisplay?.DefenderIndex ?? defenderIndex, attackDisplay?.DefenderHpBeforeAttack ?? defenderHpBeforeAttack, null),
 		};
+
+	public async Task<List<BattleRanksExportModel>> BattleRank(
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
+	{
+		return await ProcessData(BattleRank, sorties, exportFilter, exportProgress, cancellationToken);
+	}
+
+	private static List<BattleRanksExportModel> BattleRank(
+		int? admiralLevel,
+		SortieDetailViewModel sortieDetail,
+		ExportFilterViewModel? exportFilter)
+	{
+		List<BattleRanksExportModel> rankData = [];
+
+		foreach (BattleNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true).OfType<BattleNode>())
+		{
+			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
+			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
+
+			List<bool> targetableMainFleet = node.FirstBattle.FleetsBeforeBattle.EnemyFleet.MembersInstance
+					.Select(ship => ship?.HPCurrent is not -2)
+					.ToList();
+
+			List<bool> targetableEscortFleet = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet switch
+			{
+				{ } escort => escort.MembersInstance
+					.Select(ship => ship?.HPCurrent is not -2)
+					.ToList(),
+				_ => [],
+			};
+
+			BattleRankPrediction prediction = new()
+			{
+				FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
+				FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
+
+				FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet,
+				FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
+
+				EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
+				EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
+				TargetableEnemyMainFleet = targetableMainFleet,
+
+				EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+				EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+				TargetableEnemyEscortFleet = targetableEscortFleet,
+			};
+
+			BattleRank rank = node.FirstBattle switch
+			{
+				BattleAirRaid or BattleCombinedAirRaid or BattleNormalRadar or BattleCombinedRadar => prediction.PredictRankAirRaid(),
+				_ => prediction.PredictRank(),
+			};
+
+			rankData.Add(new ()
+			{
+				Date = sortieDetail.StartTime!.Value.ToLocalTime(),
+				World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
+				Square = SquareString(sortieDetail, node),
+				ActualRank = node.RealWinRank ?? "???",
+				ExpectedRank = Constants.GetWinRank((int)rank),
+			});
+		}
+
+		return rankData;
+	}
 
 	/// <summary>
 	/// Makes data that's common between all csv exports.
