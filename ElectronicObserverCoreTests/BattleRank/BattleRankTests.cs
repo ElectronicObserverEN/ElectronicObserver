@@ -130,7 +130,7 @@ public class BattleRankTests
 		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.SS, prediction.PredictRank());
 	}
 
-	[Fact(DisplayName = "Battle after retreating ship, rank should be SS on second node and S on last one")]
+	[Fact(DisplayName = "Battle with enemies sank by opening torpedo, rank should be SS on second node and S on last one")]
 	public async Task SortieDetailTest3()
 	{
 		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest03.json");
@@ -177,5 +177,34 @@ public class BattleRankTests
 		};
 
 		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.S, prediction.PredictRank());
+	}
+
+	[Fact(DisplayName = "Air raid with only escort getting damaged, rank should be A")]
+	public async Task SortieDetailTest4()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest04.json");
+
+		Assert.Single(sortieDetails);
+		Assert.True(sortieDetails[0].Nodes.Count > 2);
+
+		// Early Spring 2023 - E3-O
+		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[2];
+
+		BattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
+			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
+
+			FriendlyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EscortFleet,
+			FriendlyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EscortFleet,
+
+			EnemyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.A, prediction.PredictRankAirRaid());
 	}
 }
