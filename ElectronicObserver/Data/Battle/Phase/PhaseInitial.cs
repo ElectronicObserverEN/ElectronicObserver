@@ -36,7 +36,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ
 	/// </summary>
-	public IShipDataMaster[] EnemyMembersInstance { get; private set; }
+	public IShipDataMaster?[] EnemyMembersInstance { get; private set; }
 
 
 	/// <summary>
@@ -47,7 +47,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
 	/// </summary>
-	public IShipDataMaster[]? EnemyMembersEscortInstance { get; private set; }
+	public IShipDataMaster?[]? EnemyMembersEscortInstance { get; private set; }
 
 	public IFleetData EnemyFleet { get; private set; }
 
@@ -253,10 +253,14 @@ public class PhaseInitial : PhaseBase
 	{
 		EnemyFleet = new FleetDataMock
 		{
-			MembersInstance = new(EnemyMembersInstance.Select(shipMaster => new ShipDataMock(shipMaster)).Cast<IShipData?>().ToList()),
+			MembersInstance = new(EnemyMembersInstance
+				.OfType<IShipDataMaster>()
+				.Select(shipMaster => new ShipDataMock(shipMaster))
+				.Cast<IShipData?>()
+				.ToList()),
 		};
 
-		for (int index = 0; index < EnemyMembersInstance.Length; index++)
+		for (int index = 0; index < EnemyFleet.MembersInstance.Count; index++)
 		{
 			if (EnemyFleet.MembersInstance[index] is ShipDataMock ship)
 			{
@@ -271,11 +275,13 @@ public class PhaseInitial : PhaseBase
 			EnemyFleetEscort = new FleetDataMock()
 			{
 				MembersInstance = new(EnemyMembersEscortInstance
+					.OfType<IShipDataMaster>()
 					.Select(shipMaster => new ShipDataMock(shipMaster))
-					.Cast<IShipData?>().ToList()),
+					.Cast<IShipData?>()
+					.ToList()),
 			};
 
-			for (int index = 0; index < EnemyMembersEscortInstance.Length; index++)
+			for (int index = 0; index < EnemyFleetEscort.MembersInstance.Count; index++)
 			{
 				if (EnemyFleetEscort.MembersInstance[index] is ShipDataMock ship)
 				{
