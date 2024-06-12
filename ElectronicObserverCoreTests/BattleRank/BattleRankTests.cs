@@ -5,25 +5,26 @@ using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ElectronicObserver.Data.Battle;
-using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Database;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-using System;
 
 namespace ElectronicObserverCoreTests.BattleRank;
 
-public class BattleRankTests
+[Collection(DatabaseCollection.Name)]
+public class BattleRankTests(DatabaseFixture dataBase)
 {
 	private static string DirectoryName => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
 	private static string RelativePath => "BattleRank";
 	private static string BasePath => Path.Join(DirectoryName, RelativePath);
-
+	
 	private static async Task<T> GetDataFromFile<T>(string fileName) where T : new()
 	{
 		string path = Path.Join(BasePath, fileName);
@@ -235,5 +236,235 @@ public class BattleRankTests
 		};
 
 		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.SS, prediction.PredictRank());
+	}
+
+	/// <summary>
+	/// https://x.com/nao_truk/status/1765961898955284520/photo/1
+	/// </summary>
+	/// <returns></returns>
+	[Fact(DisplayName = "Twitter report, rank should be C")]
+	public void SortieDetailTest6()
+	{
+		BattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = new FleetDataMock()
+			{
+				MembersInstance = new([
+					new ShipDataMock(dataBase.MasterShips[ShipId.NisshinA])
+					{
+						HPCurrent = 55,
+						HPMaxModernized = 55,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.MakigumoKaiNi])
+					{
+						HPCurrent = 38,
+						HPMaxModernized = 38,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.KasumiKaiNi])
+					{
+						HPCurrent = 37,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.UmikazeKaiNi])
+					{
+						HPCurrent = 37,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.KawakazeKaiNi])
+					{
+						HPCurrent = 37,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.YuraKaiNi])
+					{
+						HPCurrent = 10,
+						HPMaxModernized = 51,
+					},
+				]),
+				EscapedShipList = new([5]), // Yura escaped
+			},
+			FriendlyMainFleetAfter = new FleetDataMock()
+			{
+				MembersInstance = new([
+					new ShipDataMock(dataBase.MasterShips[ShipId.NisshinA])
+					{
+						HPCurrent = 55,
+						HPMaxModernized = 55,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.MakigumoKaiNi])
+					{
+						HPCurrent = 38,
+						HPMaxModernized = 38,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.KasumiKaiNi])
+					{
+						HPCurrent = 16,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.UmikazeKaiNi])
+					{
+						HPCurrent = 37,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.KawakazeKaiNi])
+					{
+						HPCurrent = 9,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.YuraKaiNi])
+					{
+						HPCurrent = 10,
+						HPMaxModernized = 51,
+					},
+				]),
+				EscapedShipList = new([5]), // Yura escaped
+			},
+
+			FriendlyEscortFleetBefore = new FleetDataMock()
+			{
+				MembersInstance = new([
+					new ShipDataMock(dataBase.MasterShips[ShipId.YuubariKaiNiToku])
+					{
+						HPCurrent = 10,
+						HPMaxModernized = 47,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.AbukumaKaiNi])
+					{
+						HPCurrent = 51,
+						HPMaxModernized = 51,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.HatsushimoKaiNi])
+					{
+						HPCurrent = 17,
+						HPMaxModernized = 39,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.AmatsukazeKaiNi])
+					{
+						HPCurrent = 40,
+						HPMaxModernized = 40,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.KawakazeKaiNi])
+					{
+						HPCurrent = 37,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.YuraKaiNi])
+					{
+						HPCurrent = 43,
+						HPMaxModernized = 43,
+					},
+				]),
+				EscapedShipList = new([3]), // Amatsukaze escaped
+			},
+			FriendlyEscortFleetAfter = new FleetDataMock()
+			{
+				MembersInstance = new([
+					new ShipDataMock(dataBase.MasterShips[ShipId.YuubariKaiNiToku])
+					{
+						HPCurrent = 10,
+						HPMaxModernized = 47,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.AbukumaKaiNi])
+					{
+						HPCurrent = 7,
+						HPMaxModernized = 51,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.HatsushimoKaiNi])
+					{
+						HPCurrent = 8,
+						HPMaxModernized = 39,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.AmatsukazeKaiNi])
+					{
+						HPCurrent = 40,
+						HPMaxModernized = 40,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.KawakazeKaiNi])
+					{
+						HPCurrent = 34,
+						HPMaxModernized = 37,
+					},
+					new ShipDataMock(dataBase.MasterShips[ShipId.YuraKaiNi])
+					{
+						HPCurrent = 43,
+						HPMaxModernized = 43,
+					},
+				]),
+				EscapedShipList = new([3]), // Amatsukaze escaped
+			},
+
+			EnemyMainFleetBefore = new FleetDataMock()
+			{
+				MembersInstance = new([
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ri-Class Flagship
+					{
+						HPCurrent = 76,
+						HPMaxModernized = 76,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ri-Class Flagship
+					{
+						HPCurrent = 76,
+						HPMaxModernized = 76,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1591]) // Tsu-Class 
+					{
+						HPCurrent = 48,
+						HPMaxModernized = 48,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ni-Class Late Model
+					{
+						HPCurrent = 40,
+						HPMaxModernized = 40,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ni-Class Late Model
+					{
+						HPCurrent = 40,
+						HPMaxModernized = 40,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ni-Class Late Model
+					{
+						HPCurrent = 40,
+						HPMaxModernized = 40,
+					},
+				]),
+			},
+			EnemyMainFleetAfter = new FleetDataMock()
+			{
+				MembersInstance = new([
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ri-Class Flagship
+					{
+						HPCurrent = 44,
+						HPMaxModernized = 76,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ri-Class Flagship
+					{
+						HPCurrent = 32,
+						HPMaxModernized = 76,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1591]) // Tsu-Class 
+					{
+						HPCurrent = 35,
+						HPMaxModernized = 48,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ni-Class Late Model
+					{
+						HPCurrent = 0,
+						HPMaxModernized = 40,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ni-Class Late Model
+					{
+						HPCurrent = 0,
+						HPMaxModernized = 40,
+					},
+					new ShipDataMock(dataBase.MasterShips[(ShipId)1527]) // Ni-Class Late Model
+					{
+						HPCurrent = 0,
+						HPMaxModernized = 40,
+					},
+				]),
+			},
+		};
+
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.C, prediction.PredictRank());
 	}
 }
