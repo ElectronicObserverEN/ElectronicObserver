@@ -224,7 +224,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3Jet is not null)
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, FleetsAfterPhase.Fleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, FleetsAfterPhase.EnemyFleet,
 				stage3Jet.ApiEraiFlag,
 				stage3Jet.ApiEbakFlag,
 				stage3Jet.ApiEclFlag,
@@ -242,7 +242,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (stage3JetCombined is { ApiEraiFlag: not null, ApiEbakFlag: not null, ApiEclFlag: not null, ApiEdam: not null })
 		{
-			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, FleetsAfterPhase.EscortFleet,
+			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 6, FleetsAfterPhase.EnemyEscortFleet,
 				stage3JetCombined.ApiEraiFlag,
 				stage3JetCombined.ApiEbakFlag,
 				stage3JetCombined.ApiEclFlag,

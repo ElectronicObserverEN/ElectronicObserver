@@ -61,6 +61,9 @@
 	  <None Update="BattleRank\BattleRankTest04.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="BattleRank\BattleRankTest05.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
