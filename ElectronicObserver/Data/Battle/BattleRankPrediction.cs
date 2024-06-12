@@ -50,6 +50,7 @@ public class BattleRankPrediction
 	{
 		ResetValues();
 		CalculeFriendlyMainFleetHp();
+		CalculeFriendlyEscortFleetHp();
 
 		double friendrate = (double)(FriendlyHpBefore - FriendlyHpAfter) / FriendlyHpBefore;
 
