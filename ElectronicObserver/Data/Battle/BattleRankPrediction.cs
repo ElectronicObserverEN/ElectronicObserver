@@ -59,12 +59,15 @@ public class BattleRankPrediction
 	
 	private void CalculeFriendlyMainFleetHp()
 	{
-		for (int index = 0; index < FriendlyMainFleetBefore.MembersInstance.Count; index++)
+		if (FriendlyMainFleetBefore.MembersWithoutEscaped is null) return;
+		if (FriendlyMainFleetAfter.MembersWithoutEscaped is null) return;
+
+		for (int index = 0; index < FriendlyMainFleetBefore.MembersWithoutEscaped.Count; index++)
 		{
-			int? hpBefore = FriendlyMainFleetBefore.MembersInstance[index]?.HPCurrent;
+			int? hpBefore = FriendlyMainFleetBefore.MembersWithoutEscaped[index]?.HPCurrent;
 			if (hpBefore is null or < 0) continue;
 
-			int? hpAfter = FriendlyMainFleetAfter.MembersInstance[index]?.HPCurrent;
+			int? hpAfter = FriendlyMainFleetAfter.MembersWithoutEscaped[index]?.HPCurrent;
 			if (hpAfter is null) continue;
 
 			FriendlyHpBefore += (int)hpBefore;
@@ -80,15 +83,15 @@ public class BattleRankPrediction
 
 	private void CalculeFriendlyEscortFleetHp()
 	{
-		if (FriendlyEscortFleetBefore is null) return;
-		if (FriendlyEscortFleetAfter is null) return;
+		if (FriendlyEscortFleetBefore?.MembersWithoutEscaped is null) return;
+		if (FriendlyEscortFleetAfter?.MembersWithoutEscaped is null) return;
 
-		for (int index = 0; index < FriendlyEscortFleetBefore.MembersInstance.Count; index++)
+		for (int index = 0; index < FriendlyEscortFleetBefore.MembersWithoutEscaped.Count; index++)
 		{
-			int? hpBefore = FriendlyEscortFleetBefore.MembersInstance[index]?.HPCurrent;
+			int? hpBefore = FriendlyEscortFleetBefore.MembersWithoutEscaped[index]?.HPCurrent;
 			if (hpBefore is null or < 0) continue;
 
-			int? hpAfter = FriendlyEscortFleetAfter.MembersInstance[index]?.HPCurrent;
+			int? hpAfter = FriendlyEscortFleetAfter.MembersWithoutEscaped[index]?.HPCurrent;
 			if (hpAfter is null) continue;
 
 			FriendlyHpBefore += (int)hpBefore;
