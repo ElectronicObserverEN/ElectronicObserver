@@ -207,4 +207,33 @@ public class BattleRankTests
 
 		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.A, prediction.PredictRankAirRaid());
 	}
+
+	[Fact(DisplayName = "Everythign dies in opening + jets, rank should be SS")]
+	public async Task SortieDetailTest5()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest05.json");
+
+		Assert.Single(sortieDetails);
+		Assert.True(sortieDetails[0].Nodes.Count >1);
+
+		// 1-1 Boss
+		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
+
+		BattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
+			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
+
+			FriendlyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EscortFleet,
+			FriendlyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EscortFleet,
+
+			EnemyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		Assert.Equal(ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank.SS, prediction.PredictRank());
+	}
 }
