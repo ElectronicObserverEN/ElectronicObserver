@@ -242,7 +242,7 @@ public class BattleRankTests(DatabaseFixture dataBase)
 	/// https://x.com/nao_truk/status/1765961898955284520/photo/1
 	/// </summary>
 	/// <returns></returns>
-	[Fact(DisplayName = "Twitter report, rank should be C")]
+	[Fact(DisplayName = "Case with retreated ships affecting the HP rates, rank should be C")]
 	public void SortieDetailTest6()
 	{
 		BattleRankPrediction prediction = new()
