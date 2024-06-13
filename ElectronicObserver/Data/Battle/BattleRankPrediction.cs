@@ -136,10 +136,6 @@ public class BattleRankPrediction
 	/// <summary>
 	/// Create a copy of the fleet with their HP after the battle
 	/// </summary>
-	/// <param name="fleet"></param>
-	/// <param name="resultHp"></param>
-	/// <param name="battleSide"></param>
-	/// <returns></returns>
 	public static IFleetData? SimulateFleetAfterBattle(IFleetData? fleet, List<int> resultHp, BattleSides battleSide)
 	{
 		if (fleet is null) return null;
@@ -153,9 +149,6 @@ public class BattleRankPrediction
 	/// <summary>
 	/// Create a copy of the fleet with their HP after the battle
 	/// </summary>
-	/// <param name="fleet"></param>
-	/// <param name="resultHp"></param>
-	/// <returns></returns>
 	public static IFleetData SimulateFleetAfterBattle(IFleetData fleet, List<int> resultHp)
 	{
 		IFleetData fleetClone = fleet.DeepClone();
@@ -179,10 +172,8 @@ public class BattleRankPrediction
 		int rifriend = (int)(FriendHpRate * 100);
 		int rienemy = (int)(EnemyHpRate * 100);
 
-		// 轟沈艦なし
 		if (FriendlyShipSunk == 0)
 		{
-			// 敵艦全撃沈
 			if (EnemyShipSunk == EnemyShipCount)
 			{
 				return FriendHpRate switch
@@ -192,56 +183,45 @@ public class BattleRankPrediction
 				};
 			}
 			
-			if (EnemyShipCount > 1 && EnemyShipSunk >= (int)(EnemyShipCount * 0.7)) // 敵の 70% 以上を撃沈
+			if (EnemyShipCount > 1 && EnemyShipSunk >= (int)(EnemyShipCount * 0.7))
 			{
-				return BattleRank.A;   // A
+				return BattleRank.A;
 			}
 		}
 
 		bool defeatEnemyFlagship = EnemyMainFleetAfter.MembersInstance[0]?.HPCurrent <= 0;
 
-		// 敵旗艦撃沈 かつ 轟沈艦が敵より少ない
 		if (defeatEnemyFlagship && FriendlyShipSunk < EnemyShipSunk)
-			return BattleRank.B;   // B
+			return BattleRank.B;
 
 		bool isfriendFlagshipHeavilyDamaged = FriendlyMainFleetAfter.MembersInstance[0]?.HPRate <= 0.25;
 
-		// 自艦隊1隻 かつ 旗艦大破
 		if (FriendlyShipCount == 1 && isfriendFlagshipHeavilyDamaged)
-			return BattleRank.D;   // D
+			return BattleRank.D;
 
-		// ゲージが 2.5 倍以上
 		if (rienemy > (2.5 * rifriend))
-			return BattleRank.B;   // B
+			return BattleRank.B;
 
-		// ゲージが 0.9 倍以上
 		if (rienemy > (0.9 * rifriend))
-			return BattleRank.C;   // C
+			return BattleRank.C;
 
 		return FriendlyShipSunk switch
 		{
-			// 轟沈艦あり かつ 残った艦が１隻のみ
 			> 0 when (FriendlyShipCount - FriendlyShipSunk) == 1 => BattleRank.E,
 			_ => BattleRank.D,
 		};
-
-		// 残りはD
 	}
 
 	/// <summary>
 	/// 空襲戦における勝利ランクを計算します。
 	/// </summary>
-	/// <param name="friendrate">自軍損害率。</param>
-	private static BattleRank GetWinRankAirRaid(double friendrate)
+	private static BattleRank GetWinRankAirRaid(double friendrate) => friendrate switch
 	{
-		return friendrate switch
-		{
-			<= 0.0 => BattleRank.SS,
-			< 0.1 => BattleRank.A,
-			< 0.2 => BattleRank.B,
-			< 0.5 => BattleRank.C,
-			< 0.8 => BattleRank.D,
-			_ => BattleRank.E,
-		};
-	}
+		<= 0.0 => BattleRank.SS,
+		< 0.1 => BattleRank.A,
+		< 0.2 => BattleRank.B,
+		< 0.5 => BattleRank.C,
+		< 0.8 => BattleRank.D,
+		_ => BattleRank.E,
+	};
 }
