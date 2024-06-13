@@ -37,11 +37,19 @@ public class BattleRankPrediction
 	{
 		ResetValues();
 
-		CalculeFriendlyMainFleetHp();
-		CalculeFriendlyEscortFleetHp();
+		CalculeFriendlyFleetHp(FriendlyMainFleetBefore, FriendlyMainFleetAfter);
 
-		CalculateEnemyMainFleetHp();
-		CalculateEnemyEscortFleetHp();
+		if (FriendlyEscortFleetBefore is not null && FriendlyEscortFleetAfter is not null)
+		{
+			CalculeFriendlyFleetHp(FriendlyEscortFleetBefore, FriendlyEscortFleetAfter);
+		}
+
+		CalculateEnemyFleetHp(EnemyMainFleetBefore, EnemyMainFleetAfter);
+
+		if (FriendlyEscortFleetBefore is not null && FriendlyEscortFleetAfter is not null)
+		{
+			CalculateEnemyFleetHp(FriendlyEscortFleetBefore, FriendlyEscortFleetAfter);
+		}
 
 		return GetWinRank();
 	}
@@ -49,25 +57,30 @@ public class BattleRankPrediction
 	public BattleRank PredictRankAirRaid()
 	{
 		ResetValues();
-		CalculeFriendlyMainFleetHp();
-		CalculeFriendlyEscortFleetHp();
+
+		CalculeFriendlyFleetHp(FriendlyMainFleetBefore, FriendlyMainFleetAfter);
+
+		if (FriendlyEscortFleetBefore is not null && FriendlyEscortFleetAfter is not null)
+		{
+			CalculeFriendlyFleetHp(FriendlyEscortFleetBefore, FriendlyEscortFleetAfter);
+		}
 
 		double friendrate = (double)(FriendlyHpBefore - FriendlyHpAfter) / FriendlyHpBefore;
 
 		return GetWinRankAirRaid(friendrate);
 	}
 	
-	private void CalculeFriendlyMainFleetHp()
+	private void CalculeFriendlyFleetHp(IFleetData fleetBefore, IFleetData fleetAfter)
 	{
-		if (FriendlyMainFleetBefore.MembersWithoutEscaped is null) return;
-		if (FriendlyMainFleetAfter.MembersWithoutEscaped is null) return;
+		if (fleetBefore.MembersWithoutEscaped is null) return;
+		if (fleetAfter.MembersWithoutEscaped is null) return;
 
-		for (int index = 0; index < FriendlyMainFleetBefore.MembersWithoutEscaped.Count; index++)
+		for (int index = 0; index < fleetBefore.MembersWithoutEscaped.Count; index++)
 		{
-			int? hpBefore = FriendlyMainFleetBefore.MembersWithoutEscaped[index]?.HPCurrent;
+			int? hpBefore = fleetBefore.MembersWithoutEscaped[index]?.HPCurrent;
 			if (hpBefore is null or < 0) continue;
 
-			int? hpAfter = FriendlyMainFleetAfter.MembersWithoutEscaped[index]?.HPCurrent;
+			int? hpAfter = fleetAfter.MembersWithoutEscaped[index]?.HPCurrent;
 			if (hpAfter is null) continue;
 
 			FriendlyHpBefore += (int)hpBefore;
@@ -81,35 +94,11 @@ public class BattleRankPrediction
 		}
 	}
 
-	private void CalculeFriendlyEscortFleetHp()
+	private void CalculateEnemyFleetHp(IFleetData fleetBefore, IFleetData fleetAfter)
 	{
-		if (FriendlyEscortFleetBefore?.MembersWithoutEscaped is null) return;
-		if (FriendlyEscortFleetAfter?.MembersWithoutEscaped is null) return;
-
-		for (int index = 0; index < FriendlyEscortFleetBefore.MembersWithoutEscaped.Count; index++)
+		for (int index = 0; index < fleetBefore.MembersInstance.Count; index++)
 		{
-			int? hpBefore = FriendlyEscortFleetBefore.MembersWithoutEscaped[index]?.HPCurrent;
-			if (hpBefore is null or < 0) continue;
-
-			int? hpAfter = FriendlyEscortFleetAfter.MembersWithoutEscaped[index]?.HPCurrent;
-			if (hpAfter is null) continue;
-
-			FriendlyHpBefore += (int)hpBefore;
-			FriendlyHpAfter += Math.Max((int)hpAfter, 0);
-			FriendlyShipCount++;
-
-			if (hpAfter <= 0)
-			{
-				FriendlyShipSunk++;
-			}
-		}
-	}
-
-	private void CalculateEnemyMainFleetHp()
-	{
-		for (int index = 0; index < EnemyMainFleetBefore.MembersInstance.Count; index++)
-		{
-			IShipData? ship = EnemyMainFleetBefore.MembersInstance[index];
+			IShipData? ship = fleetBefore.MembersInstance[index];
 
 			if (ship is null) continue;
 			if (!ship.CanBeTargeted) continue;
@@ -117,36 +106,7 @@ public class BattleRankPrediction
 			int hpBefore = ship.HPCurrent;
 			if (hpBefore < 0) continue;
 
-			int? hpAfter = EnemyMainFleetAfter.MembersInstance[index]?.HPCurrent;
-			if (hpAfter is null) continue;
-
-			EnemyHpBefore += hpBefore;
-			EnemyHpAfter += Math.Max((int)hpAfter, 0);
-			EnemyShipCount++;
-
-			if (hpAfter <= 0)
-			{
-				EnemyShipSunk++;
-			}
-		}
-	}
-
-	private void CalculateEnemyEscortFleetHp()
-	{
-		if (EnemyEscortFleetBefore is null) return;
-		if (EnemyEscortFleetAfter is null) return;
-
-		for (int index = 0; index < EnemyEscortFleetBefore.MembersInstance.Count; index++)
-		{
-			IShipData? ship = EnemyEscortFleetBefore.MembersInstance[index];
-
-			if (ship is null) continue;
-			if (!ship.CanBeTargeted) continue;
-
-			int hpBefore = ship.HPCurrent;
-			if (hpBefore < 0) continue;
-
-			int? hpAfter = EnemyEscortFleetAfter.MembersInstance[index]?.HPCurrent;
+			int? hpAfter = fleetAfter.MembersInstance[index]?.HPCurrent;
 			if (hpAfter is null) continue;
 
 			EnemyHpBefore += hpBefore;
