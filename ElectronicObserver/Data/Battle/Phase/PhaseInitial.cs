@@ -184,7 +184,7 @@ public class PhaseInitial : PhaseBase
 			return ret;
 		}
 
-		int[]? HandleTargetability(int[]? hps, IShipDataMaster[]? ships, bool[] isTargetable)
+		int[]? HandleTargetability(int[]? hps, IShipDataMaster?[]? ships, bool[] isTargetable)
 		{
 			if (hps is null) return null;
 			if (ships is null) return null;
@@ -192,9 +192,10 @@ public class PhaseInitial : PhaseBase
 			for (int i = 0; i < hps.Length; i++)
 			{
 				if (hps[i] is not -2) continue;
+				if (ships[i] is not {} ship) continue;
 
 				isTargetable[i] = false;
-				hps[i] = ships[i].HPMax;
+				hps[i] = ship.HPMax;
 			}
 
 			return hps;
