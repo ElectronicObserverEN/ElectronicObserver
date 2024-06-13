@@ -12,7 +12,6 @@ using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
-using ElectronicObserver.Observer.kcsapi.api_req_battle_midnight;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -845,7 +844,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		List<BattleRanksExportModel> rankData = [];
 
-		foreach (BattleNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true).OfType<BattleNode>())
+		foreach (BattleNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true).OfType<BattleNode>().Where(n => n.RealWinRank is not null))
 		{
 			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
 			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
@@ -881,7 +880,9 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			});
 		}
 
-		return rankData;
+		return rankData
+			.Where(rank => rank.ActualRank != rank.ExpectedRank)
+			.ToList();
 	}
 
 	/// <summary>
