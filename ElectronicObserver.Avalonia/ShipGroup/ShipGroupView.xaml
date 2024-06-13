@@ -161,6 +161,7 @@
 			CanUserResizeColumns="True"
 			ColumnHeaderHeight="{Binding DataGridSettings.ColumnHeaderHeight}"
 			ColumnWidth="Auto"
+			FrozenColumnCount="{Binding FrozenColumns}"
 			GridLinesVisibility="All"
 			IsReadOnly="True"
 			ItemsSource="{Binding CollectionView}"

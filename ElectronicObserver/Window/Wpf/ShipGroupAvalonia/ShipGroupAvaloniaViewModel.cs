@@ -175,6 +175,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			.OfType<IShipData>()
 			.Select(s => new ShipGroupItemViewModel(s))
 			.ToObservableCollection();
+
+		ShipGroupViewModel.FrozenColumns = groupData.ScrollLockColumnCount;
 	}
 
 	private async Task AddGroup()
@@ -376,13 +378,22 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			.Select(column => new ColumnViewModel(column))
 			.ToList();
 
-		ColumnSelectorView columnSelectionView = new(new(columns));
+		ColumnSelectorView columnSelectionView = new(new()
+		{
+			Columns = columns,
+			FrozenColumns = SelectedGroup.FrozenColumns,
+		});
 
 		if (columnSelectionView.ShowDialog() != true) return;
 
 		foreach (ColumnViewModel column in columns)
 		{
 			column.SaveChanges();
+		}
+
+		if (columnSelectionView.ViewModel.FrozenColumns is int frozenColumns)
+		{
+			SelectedGroup.FrozenColumns = frozenColumns;
 		}
 
 		SelectedGroup.Columns = columns

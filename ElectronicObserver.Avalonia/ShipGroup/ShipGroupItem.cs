@@ -12,6 +12,7 @@ public partial class ShipGroupItem : ObservableObject
 	[ObservableProperty] private int _id;
 	[ObservableProperty] private string _name;
 	[ObservableProperty] private bool _isSelected;
+	[ObservableProperty] private int _frozenColumns;
 	public required ObservableCollection<ColumnModel> Columns { get; set; }
 	public DataGridSortDescriptionCollection SortDescriptions { get; set; } = [];
 
@@ -27,12 +28,20 @@ public partial class ShipGroupItem : ObservableObject
 		Group = group;
 		Id = group.GroupID;
 		Name = group.Name;
+		FrozenColumns = group.ScrollLockColumnCount;
 
 		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(Name)) return;
 
 			Group.Name = Name;
+		};
+
+		PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(FrozenColumns)) return;
+
+			Group.ScrollLockColumnCount = FrozenColumns;
 		};
 	}
 }

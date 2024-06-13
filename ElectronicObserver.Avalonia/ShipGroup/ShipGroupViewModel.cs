@@ -30,6 +30,7 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
 	[ObservableProperty] private DataGridSortDescriptionCollection _sortDescriptions = [];
+	[ObservableProperty] private int _frozenColumns;
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
 	public required Func<Task> AddGroupAction { get; init; }

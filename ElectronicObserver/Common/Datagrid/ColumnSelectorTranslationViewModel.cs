@@ -9,4 +9,5 @@ public class ColumnSelectorTranslationViewModel : TranslationBaseViewModel
 	public string Ok => "OK";
 	public string Cancel => GeneralRes.Cancel;
 	public string ColumnsSelection => ColumnSelector.ColumnsSelection;
+	public string ColumnFreezeNumber => ShipGroupColumnFilterResources.ColumnFreezeNumber;
 }

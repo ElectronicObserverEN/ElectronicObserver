@@ -81,7 +81,7 @@ public partial class DataGridViewModel<T> : ObservableObject
 			.Select(column => new ColumnViewModel(column))
 			.ToList();
 
-		ColumnSelectorView columnSelectionView = new(new(columns));
+		ColumnSelectorView columnSelectionView = new(new() { Columns = columns });
 
 		if (columnSelectionView.ShowDialog() == true)
 		{
