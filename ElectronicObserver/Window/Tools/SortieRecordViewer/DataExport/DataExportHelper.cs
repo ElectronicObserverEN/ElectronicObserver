@@ -844,7 +844,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	{
 		List<BattleRanksExportModel> rankData = [];
 
-		foreach (BattleNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true).OfType<BattleNode>().Where(n => n.RealWinRank is not null))
+		foreach (BattleNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true).OfType<BattleNode>())
 		{
 			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
 			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
@@ -880,9 +880,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			});
 		}
 
-		return rankData
-			.Where(rank => rank.ActualRank != rank.ExpectedRank)
-			.ToList();
+		return rankData;
 	}
 
 	/// <summary>
