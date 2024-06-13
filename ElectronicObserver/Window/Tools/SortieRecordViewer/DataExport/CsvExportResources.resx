@@ -589,12 +589,12 @@
     <value>基地航空隊(防空)</value>
   </data>
   <data name="ActualRank" xml:space="preserve">
-    <value>実際の順位</value>
+    <value>実際ランク</value>
   </data>
   <data name="ExpectedRank" xml:space="preserve">
-    <value>予想順位</value>
+    <value>予想ランク</value>
   </data>
   <data name="CombatRankPrediction" xml:space="preserve">
-    <value>戦闘ランク予想</value>
+    <value>戦闘評価</value>
   </data>
 </root>
