@@ -46,9 +46,9 @@ public class BattleRankPrediction
 
 		CalculateEnemyFleetHp(EnemyMainFleetBefore, EnemyMainFleetAfter);
 
-		if (FriendlyEscortFleetBefore is not null && FriendlyEscortFleetAfter is not null)
+		if (EnemyEscortFleetBefore is not null && EnemyEscortFleetAfter is not null)
 		{
-			CalculateEnemyFleetHp(FriendlyEscortFleetBefore, FriendlyEscortFleetAfter);
+			CalculateEnemyFleetHp(EnemyEscortFleetBefore, EnemyEscortFleetAfter);
 		}
 
 		return GetWinRank();

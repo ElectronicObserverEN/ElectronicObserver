@@ -252,7 +252,8 @@ public class BattleRankTests(DatabaseFixture database)
 		{
 			FriendlyMainFleetBefore = new FleetDataMock()
 			{
-				MembersInstance = new([
+				MembersInstance = new(
+				[
 					new ShipDataMock(Database.MasterShips[ShipId.NisshinA])
 					{
 						HPCurrent = 55,
@@ -288,7 +289,8 @@ public class BattleRankTests(DatabaseFixture database)
 			},
 			FriendlyMainFleetAfter = new FleetDataMock()
 			{
-				MembersInstance = new([
+				MembersInstance = new(
+				[
 					new ShipDataMock(Database.MasterShips[ShipId.NisshinA])
 					{
 						HPCurrent = 55,
@@ -325,7 +327,8 @@ public class BattleRankTests(DatabaseFixture database)
 
 			FriendlyEscortFleetBefore = new FleetDataMock()
 			{
-				MembersInstance = new([
+				MembersInstance = new(
+				[
 					new ShipDataMock(Database.MasterShips[ShipId.YuubariKaiNiToku])
 					{
 						HPCurrent = 10,
@@ -361,7 +364,8 @@ public class BattleRankTests(DatabaseFixture database)
 			},
 			FriendlyEscortFleetAfter = new FleetDataMock()
 			{
-				MembersInstance = new([
+				MembersInstance = new(
+				[
 					new ShipDataMock(Database.MasterShips[ShipId.YuubariKaiNiToku])
 					{
 						HPCurrent = 10,
@@ -398,7 +402,8 @@ public class BattleRankTests(DatabaseFixture database)
 
 			EnemyMainFleetBefore = new FleetDataMock()
 			{
-				MembersInstance = new([
+				MembersInstance = new(
+				[
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ri-Class Flagship
 					{
 						HPCurrent = 76,
@@ -433,7 +438,8 @@ public class BattleRankTests(DatabaseFixture database)
 			},
 			EnemyMainFleetAfter = new FleetDataMock()
 			{
-				MembersInstance = new([
+				MembersInstance = new(
+				[
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ri-Class Flagship
 					{
 						HPCurrent = 44,
