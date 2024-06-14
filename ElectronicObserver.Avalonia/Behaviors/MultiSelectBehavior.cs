@@ -64,6 +64,9 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 	{
 		Debug.Assert(AssociatedObject is not null);
 
+		// don't do anything when ctrl or shift are pressed
+		if ((e.KeyModifiers & KeyModifiers.Control) is not KeyModifiers.None) return;
+		if ((e.KeyModifiers & KeyModifiers.Shift) is not KeyModifiers.None) return;
 		if (sender is not DataGridRow row) return;
 
 		PointerPoint point = e.GetCurrentPoint(row);
