@@ -74,6 +74,7 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		if (!point.Properties.IsLeftButtonPressed) return;
 
 		IsDragging = true;
+		First = row.DataContext;
 
 		AssociatedObject.SelectedItems.Clear();
 		AssociatedObject.SelectedItems.Add(row.DataContext);
@@ -104,6 +105,9 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 			object? first = AssociatedObject.SelectedItems[0];
 			object? last = AssociatedObject.SelectedItems[^1];
 
+			// when selecting up, the items will be added at the start
+			// probably to match the data grid order
+			// which is the main reason for all the logic here
 			if (First == first)
 			{
 				// was dragging down to select rows, and is dragging back up now
@@ -116,25 +120,7 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 			}
 		}
 
-		// when selecting up, the items will be added at the start
-		// probably to match the data grid order
-		// which is the main reason for all the logic in this function
 		AssociatedObject.SelectedItems.Add(row.DataContext);
-
-		// you can only get here when the dragging logic starts
-		// so 2 is the minimum number of items you can have here
-		if (AssociatedObject.SelectedItems.Count is 2)
-		{
-			object? first = AssociatedObject.SelectedItems[0];
-			object? last = AssociatedObject.SelectedItems[^1];
-
-			// the first item was the one that we're not currently over
-			First = (first == row.DataContext) switch
-			{
-				true => last,
-				_ => first,
-			};
-		}
 	}
 
 	private static void ScrollIfNeeded(DataGrid dataGrid, PointerEventArgs e, DataGridRow row)
