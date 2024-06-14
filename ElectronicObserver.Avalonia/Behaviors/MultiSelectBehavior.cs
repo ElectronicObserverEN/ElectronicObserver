@@ -118,7 +118,7 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 		// which is the main reason for all the logic in this function
 		AssociatedObject.SelectedItems.Add(row.DataContext);
 
-		// this function only gets called when the dragging logic starts
+		// you can only get here when the dragging logic starts
 		// so 2 is the minimum number of items you can have here
 		if (AssociatedObject.SelectedItems.Count is 2)
 		{
