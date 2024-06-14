@@ -61,6 +61,10 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 
 		if (sender is not DataGridRow row) return;
 
+		PointerPoint point = e.GetCurrentPoint(row);
+
+		if (!point.Properties.IsLeftButtonPressed) return;
+
 		IsDragging = true;
 
 		AssociatedObject.SelectedItems.Clear();
