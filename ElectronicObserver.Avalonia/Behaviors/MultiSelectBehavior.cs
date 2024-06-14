@@ -12,6 +12,11 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 {
 	private bool IsDragging { get; set; }
 
+	/// <summary>
+	/// The row where the dragging operation started.
+	/// </summary>
+	private object? First { get; set; }
+
 	protected override void OnAttached()
 	{
 		base.OnAttached();
@@ -74,6 +79,7 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 	private void DataGrid_PointerReleased(object? sender, PointerReleasedEventArgs e)
 	{
 		IsDragging = false;
+		First = null;
 	}
 
 	private void DataGrid_PointerMoved(object? sender, PointerEventArgs e)
@@ -88,9 +94,44 @@ public class MultiSelectBehavior : Behavior<DataGrid>
 
 		ScrollIfNeeded(AssociatedObject, e, row);
 
-		if (AssociatedObject.SelectedItems.Contains(row.DataContext)) return;
+		if (AssociatedObject.SelectedItems.Contains(row.DataContext))
+		{
+			if (AssociatedObject.SelectedItems.Count is 1) return;
 
+			object? first = AssociatedObject.SelectedItems[0];
+			object? last = AssociatedObject.SelectedItems[^1];
+
+			if (First == first)
+			{
+				// was dragging down to select rows, and is dragging back up now
+				AssociatedObject.SelectedItems.Remove(last);
+			}
+			else if (First == last)
+			{
+				// was dragging up to select rows, and is dragging back down now
+				AssociatedObject.SelectedItems.Remove(first);
+			}
+		}
+
+		// when selecting up, the items will be added at the start
+		// probably to match the data grid order
+		// which is the main reason for all the logic in this function
 		AssociatedObject.SelectedItems.Add(row.DataContext);
+
+		// this function only gets called when the dragging logic starts
+		// so 2 is the minimum number of items you can have here
+		if (AssociatedObject.SelectedItems.Count is 2)
+		{
+			object? first = AssociatedObject.SelectedItems[0];
+			object? last = AssociatedObject.SelectedItems[^1];
+
+			// the first item was the one that we're not currently over
+			First = (first == row.DataContext) switch
+			{
+				true => last,
+				_ => first,
+			};
+		}
 	}
 
 	private static void ScrollIfNeeded(DataGrid dataGrid, PointerEventArgs e, DataGridRow row)
