@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi;
 
-public class ElectronicObserverApiService
+public class ElectronicObserverApiService(ElectronicObserverApiTranslationViewModel translations)
 {
-	private HttpClient Client { get; } = new();
+	private HttpClient Client { get; } = new()
+	{
+		DefaultRequestHeaders =
+		{
+			UserAgent = { new("ElectronicObserverEN", SoftwareInformation.VersionEnglish) },
+		},
+	};
 
-	private string Url => Configuration.Config.Debug.ElectronicObserverApiUrl;
+	private string Url => "https://localhost:44344/"; // Configuration.Config.Debug.ElectronicObserverApiUrl;
 
-	private ElectronicObserverApiTranslationViewModel Translations { get; }
+	private ElectronicObserverApiTranslationViewModel Translations { get; } = translations;
 
 	public bool IsEnabled => !string.IsNullOrEmpty(Url);
-
-	public ElectronicObserverApiService(ElectronicObserverApiTranslationViewModel translations)
-	{
-		Translations = translations;
-	}
 
 	public async Task PostJson<T>(string route, T data)
 	{

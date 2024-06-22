@@ -184,7 +184,7 @@ public partial class App
 			Configuration.Instance.Load();
 
 			ConfigureServices();
-
+			
 			ToolTipService.ShowDurationProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
@@ -200,6 +200,8 @@ public partial class App
 
 			MainWindow = mainWindow;
 			ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+			throw new NotImplementedException("Test for the API");
 
 			mainWindow.ShowDialog();
 		}
@@ -332,9 +334,12 @@ public partial class App
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
-			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<SortieRecordMigrationService>()
-			//.ActivateSingleton<DataAndTranslationIssueReporter>() todo uncomment and test with .net 8 
+			// issue reporter
+			.AddSingleton<DataAndTranslationIssueReporter>()
+			.AddSingleton<FitBonusIssueReporter>()
+			.AddSingleton<WrongUpgradesIssueReporter>()
+			.AddSingleton<SoftwareIssueReporter>()
 			// external
 			.AddSingleton(JotTracker())
 
@@ -342,7 +347,7 @@ public partial class App
 
 		Ioc.Default.ConfigureServices(services);
 
-		Ioc.Default.GetRequiredService<DataAndTranslationIssueReporter>(); // todo remove with .net 8 if the above test is successful
+		Ioc.Default.GetRequiredService<DataAndTranslationIssueReporter>();
 	}
 
 	private static Tracker JotTracker()

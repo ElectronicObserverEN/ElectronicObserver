@@ -35,7 +35,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 				ExpectedUpgrades = expectedUpgrades.Select(upgrade => upgrade.EquipmentId).ToList(),
 				Day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek,
 				SoftwareVersion = SoftwareInformation.VersionEnglish,
-				HelperId = (int)helper.MasterShip.ShipId
+				HelperId = (int)helper.MasterShip.ShipId,
 			};
 
 #pragma warning disable CS4014
