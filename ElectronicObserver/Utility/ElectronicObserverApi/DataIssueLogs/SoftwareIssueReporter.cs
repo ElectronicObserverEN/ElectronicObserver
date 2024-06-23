@@ -15,8 +15,17 @@ public class SoftwareIssueReporter(ElectronicObserverApiService api)
 			SoftwareVersion = SoftwareInformation.VersionEnglish,
 			Exception = BuildIssue(exception),
 		};
-		
-		Task.Run(async () => await ReportIssue(issue)).Wait();
+
+		if (e.IsTerminating)
+		{
+			Task.Run(async () => await ReportIssue(issue)).Wait();
+		}
+		else
+		{
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+			ReportIssue(issue);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+		}
 	}
 
 	private async Task ReportIssue(SoftwareIssueModel issue)
