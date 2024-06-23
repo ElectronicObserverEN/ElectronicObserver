@@ -303,6 +303,12 @@ public class SoftwareUpdater
 			var appVersion = (string)dataJson.ver;
 			var downloadUrl = (string)dataJson.url;
 
+			string apiServerUrl = dataJson.ApiServer() switch
+			{
+				true => (string)dataJson.ApiServer,
+				_ => "",
+			};
+
 			var eqVersion = (string)translationJson.equipment;
 			var expedVersion = (string)translationJson.expedition;
 			string destVersion = dataJson.nodes.ToString();
@@ -314,20 +320,20 @@ public class SoftwareUpdater
 			int fitBonusesVersion = dataJson.FitBonuses() switch
 			{
 				true => (int)dataJson.FitBonuses,
-				_ => 0
+				_ => 0,
 			};
 
 			int questTrackersVersion = dataJson.QuestTrackers() switch
 			{
 				true => (int)dataJson.QuestTrackers,
-				_ => 0
+				_ => 0,
 			};
 			int eventLocksVersion = (int)dataJson.Locks;
 
 			int equipmentUpgradesVersion = dataJson.EquipmentUpgrades() switch
 			{
 				true => (int)dataJson.EquipmentUpgrades,
-				_ => 0
+				_ => 0,
 			};
 
 			DateTime maintenanceStartDate = DateTimeHelper.CSVStringToTime(dataJson.MaintStart);
@@ -346,6 +352,7 @@ public class SoftwareUpdater
 				BuildDate = buildDate,
 				AppVersion = appVersion,
 				AppDownloadUrl = downloadUrl,
+				AppApiServerUrl = apiServerUrl,
 				Equipment = eqVersion,
 				Expedition = expedVersion,
 				Destination = destVersion,
@@ -411,6 +418,7 @@ public class UpdateData
 	public DateTime BuildDate { get; set; }
 	public string AppVersion { get; set; } = "0.0.0.0";
 	public string AppDownloadUrl { get; set; } = "";
+	public string AppApiServerUrl { get; set; } = "";
 	public string Equipment { get; set; } = "";
 	public string Expedition { get; set; } = "";
 	public string Destination { get; set; } = "";

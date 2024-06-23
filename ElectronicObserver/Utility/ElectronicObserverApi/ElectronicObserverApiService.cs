@@ -16,15 +16,19 @@ public class ElectronicObserverApiService(ElectronicObserverApiTranslationViewMo
 		},
 	};
 
-	private string Url => "https://localhost:44344/"; // Configuration.Config.Debug.ElectronicObserverApiUrl;
+	private string Url => Configuration.Config.Debug.ElectronicObserverApiUrl switch
+	{
+		{ Length: >0 } => Configuration.Config.Debug.ElectronicObserverApiUrl,
+		_ => SoftwareUpdater.CurrentVersion.AppApiServerUrl,
+	};
 
 	private ElectronicObserverApiTranslationViewModel Translations { get; } = translations;
 
-	public bool IsEnabled => !string.IsNullOrEmpty(Url);
-
+	public bool IsServerAvailable => !string.IsNullOrEmpty(Url);
+	
 	public async Task PostJson<T>(string route, T data)
 	{
-		if (!IsEnabled) return;
+		if (!IsServerAvailable) return;
 
 		try
 		{

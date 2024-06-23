@@ -14,7 +14,7 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 
 	public void ProcessShipDataChanged(string _, dynamic data)
 	{
-		if (!api.IsEnabled) return;
+		if (!api.IsServerAvailable) return;
 
 		foreach (dynamic elem in data.api_ship_data)
 		{

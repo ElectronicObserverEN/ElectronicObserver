@@ -201,8 +201,6 @@ public partial class App
 			MainWindow = mainWindow;
 			ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-			throw new NotImplementedException("Test for the API");
-
 			mainWindow.ShowDialog();
 		}
 	}

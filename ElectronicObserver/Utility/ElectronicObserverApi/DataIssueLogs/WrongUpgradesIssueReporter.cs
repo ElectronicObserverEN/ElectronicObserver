@@ -15,7 +15,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 {
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
-		if (!api.IsEnabled) return;
+		if (!api.IsServerAvailable) return;
 
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
