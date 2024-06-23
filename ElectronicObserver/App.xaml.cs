@@ -184,7 +184,7 @@ public partial class App
 			Configuration.Instance.Load();
 
 			ConfigureServices();
-			
+
 			ToolTipService.ShowDurationProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
