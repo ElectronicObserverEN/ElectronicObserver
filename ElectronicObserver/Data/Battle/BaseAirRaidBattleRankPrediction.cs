@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -23,6 +25,32 @@ public class BaseAirRaidBattleRankPrediction : BattleRankPrediction
 			FriendlyHpAfter += Math.Max((int)hpAfter, 0);
 			FriendlyShipCount++;
 		}
+	}
+
+	protected override void CalculateEnemyFleetHp()
+	{
+		CalculateEnemyFleetHp(EnemyMainFleetBefore, EnemyMainFleetAfter);
+
+		if (EnemyEscortFleetBefore is not null && EnemyEscortFleetAfter is not null)
+		{
+			CalculateEnemyFleetHp(EnemyEscortFleetBefore, EnemyEscortFleetAfter);
+		}
+	}
+
+	public static IEnumerable<AirBaseBeforeAfter> SimulateBaseAfterBattle(List<int> hpBefore, List<int> hpAfter)
+	{
+		int index = 0;
+
+		return hpBefore.Zip(hpAfter, (before, after) =>
+			new AirBaseBeforeAfter(index++,
+				new BaseAirCorpsDataMock()
+				{
+					HPCurrent = before,
+				}, new BaseAirCorpsDataMock()
+				{
+					HPCurrent = after,
+				})
+		);
 	}
 
 	/// <summary>

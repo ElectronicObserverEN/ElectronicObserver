@@ -478,7 +478,7 @@ public class BattleRankTests(DatabaseFixture database)
 		Assert.Equal(BattleRanks.C, prediction.PredictRank());
 	}
 
-	[Fact(DisplayName = "LBAS raid")]
+	[Fact(DisplayName = "LBAS raid - no damage")]
 	public async Task SortieDetailTest7()
 	{
 		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest06.json");
@@ -502,5 +502,9 @@ public class BattleRankTests(DatabaseFixture database)
 		};
 
 		prediction.PredictRank();
+
+		Assert.Equal(600, prediction.FriendlyHpBefore);
+		Assert.Equal(600, prediction.FriendlyHpAfter);
+		Assert.Equal(0, prediction.FriendHpRate);
 	}
 }

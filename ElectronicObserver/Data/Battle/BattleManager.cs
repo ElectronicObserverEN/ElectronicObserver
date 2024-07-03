@@ -9,7 +9,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -634,12 +633,7 @@ public class BattleManager : APIWrapper
 			},
 			BattleModes.BaseAirRaid => new BaseAirRaidBattleRankPrediction()
 			{
-				/*FriendlyMainFleetBefore = firstInitial.FriendFleet,
-				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleet, hpsAfter, BattleSides.FriendMain)!,
-
-				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort,
-				FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleetEscort, hpsAfter, BattleSides.FriendEscort),*/
-				AirBaseBeforeAfter = [],// TODO
+				AirBaseBeforeAfter = BaseAirRaidBattleRankPrediction.SimulateBaseAfterBattle(firstInitial.FriendInitialHPs.ToList(), hpsAfter),
 
 				EnemyMainFleetBefore = firstInitial.EnemyFleet,
 				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
