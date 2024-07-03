@@ -15,6 +15,7 @@ using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
 using Microsoft.EntityFrameworkCore;
 using BattleRanks = ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank;
+using BattleBaseAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleBaseAirRaid;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.BattleRank;
@@ -87,7 +88,7 @@ public class BattleRankTests(DatabaseFixture database)
 		// Early Spring 2023 - E1-H2  
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[4];
 
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = new NormalBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
 			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
@@ -116,7 +117,7 @@ public class BattleRankTests(DatabaseFixture database)
 		// Early Spring 2023 - E1-H2 
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[4];
 
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = new NormalBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
 			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
@@ -145,7 +146,7 @@ public class BattleRankTests(DatabaseFixture database)
 		// Early Spring 2023 - E2-O
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
 
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = new NormalBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
 			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
@@ -165,7 +166,7 @@ public class BattleRankTests(DatabaseFixture database)
 		// Early Spring 2023 - E2-O
 		battle = (BattleNode)sortieDetails[0].Nodes.Last();
 
-		prediction = new()
+		prediction = new NormalBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
 			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
@@ -194,7 +195,7 @@ public class BattleRankTests(DatabaseFixture database)
 		// Early Spring 2023 - E3-O
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[2];
 
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = new AirRaidBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
 			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
@@ -209,7 +210,7 @@ public class BattleRankTests(DatabaseFixture database)
 			EnemyEscortFleetAfter = battle.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
 		};
 
-		Assert.Equal(BattleRanks.A, prediction.PredictRankAirRaid());
+		Assert.Equal(BattleRanks.A, prediction.PredictRank());
 	}
 
 	[Fact(DisplayName = "Everythign dies in opening + jets, rank should be SS")]
@@ -223,7 +224,7 @@ public class BattleRankTests(DatabaseFixture database)
 		// 1-1 Boss
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
 
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = new NormalBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = battle.FirstBattle.FleetsBeforeBattle.Fleet,
 			FriendlyMainFleetAfter = battle.LastBattle.FleetsAfterBattle.Fleet,
@@ -248,7 +249,7 @@ public class BattleRankTests(DatabaseFixture database)
 	[Fact(DisplayName = "Case with retreated ships affecting the HP rates, rank should be C")]
 	public void SortieDetailTest6()
 	{
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = new NormalBattleRankPrediction()
 		{
 			FriendlyMainFleetBefore = new FleetDataMock()
 			{
@@ -475,5 +476,31 @@ public class BattleRankTests(DatabaseFixture database)
 		};
 
 		Assert.Equal(BattleRanks.C, prediction.PredictRank());
+	}
+
+	[Fact(DisplayName = "LBAS raid")]
+	public async Task SortieDetailTest7()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest06.json");
+
+		Assert.Single(sortieDetails);
+		Assert.True(sortieDetails[0].Nodes.Count > 2);
+		Assert.NotNull(sortieDetails[0].Nodes[2].AirBaseRaid);
+
+		// Raid on 3rd node
+		BattleBaseAirRaid battle = sortieDetails[0].Nodes[2].AirBaseRaid!;
+
+		BattleRankPrediction prediction = new BaseAirRaidBattleRankPrediction()
+		{
+			AirBaseBeforeAfter = battle.AirBaseBeforeAfter,
+
+			EnemyMainFleetBefore = battle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		prediction.PredictRank();
 	}
 }

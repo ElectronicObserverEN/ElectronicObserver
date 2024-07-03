@@ -7,24 +7,18 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle;
 
-public class BattleRankPrediction
+public abstract class BattleRankPrediction
 {
-	public required IFleetData FriendlyMainFleetBefore { get; init; }
-	public required IFleetData FriendlyMainFleetAfter { get; init; }
-
-	public IFleetData? FriendlyEscortFleetBefore { get; init; }
-	public IFleetData? FriendlyEscortFleetAfter { get; init; }
-
 	public required IFleetData EnemyMainFleetBefore { get; init; }
 	public required IFleetData EnemyMainFleetAfter { get; init; }
 
 	public IFleetData? EnemyEscortFleetBefore { get; init; }
 	public IFleetData? EnemyEscortFleetAfter { get; init; }
 	
-	public int FriendlyShipCount { get; private set; }
-	public int FriendlyShipSunk { get; private set; }
-	public int FriendlyHpBefore { get; private set; }
-	public int FriendlyHpAfter { get; private set; }
+	public int FriendlyShipCount { get; protected set; }
+	public int FriendlyShipSunk { get; protected set; }
+	public int FriendlyHpBefore { get; protected set; }
+	public int FriendlyHpAfter { get; protected set; }
 	public double FriendHpRate => (double)(FriendlyHpBefore - FriendlyHpAfter) / FriendlyHpBefore;
 
 	public int EnemyShipCount { get; private set; }
@@ -37,40 +31,18 @@ public class BattleRankPrediction
 	{
 		ResetValues();
 
-		CalculeFriendlyFleetHp(FriendlyMainFleetBefore, FriendlyMainFleetAfter);
+		CalculateFriendlyFleetHp();
 
-		if (FriendlyEscortFleetBefore is not null && FriendlyEscortFleetAfter is not null)
-		{
-			CalculeFriendlyFleetHp(FriendlyEscortFleetBefore, FriendlyEscortFleetAfter);
-		}
-
-		CalculateEnemyFleetHp(EnemyMainFleetBefore, EnemyMainFleetAfter);
-
-		if (EnemyEscortFleetBefore is not null && EnemyEscortFleetAfter is not null)
-		{
-			CalculateEnemyFleetHp(EnemyEscortFleetBefore, EnemyEscortFleetAfter);
-		}
+		CalculateEnemyFleetHp();
 
 		return GetWinRank();
 	}
 
-	public BattleRank PredictRankAirRaid()
-	{
-		ResetValues();
+	protected abstract void CalculateFriendlyFleetHp();
+	protected abstract void CalculateEnemyFleetHp();
+	protected abstract BattleRank GetWinRank();
 
-		CalculeFriendlyFleetHp(FriendlyMainFleetBefore, FriendlyMainFleetAfter);
-
-		if (FriendlyEscortFleetBefore is not null && FriendlyEscortFleetAfter is not null)
-		{
-			CalculeFriendlyFleetHp(FriendlyEscortFleetBefore, FriendlyEscortFleetAfter);
-		}
-
-		double friendrate = (double)(FriendlyHpBefore - FriendlyHpAfter) / FriendlyHpBefore;
-
-		return GetWinRankAirRaid(friendrate);
-	}
-	
-	private void CalculeFriendlyFleetHp(IFleetData fleetBefore, IFleetData fleetAfter)
+	protected void CalculeFriendlyFleetHp(IFleetData fleetBefore, IFleetData fleetAfter)
 	{
 		if (fleetBefore.MembersWithoutEscaped is null) return;
 		if (fleetAfter.MembersWithoutEscaped is null) return;
@@ -94,7 +66,7 @@ public class BattleRankPrediction
 		}
 	}
 
-	private void CalculateEnemyFleetHp(IFleetData fleetBefore, IFleetData fleetAfter)
+	protected void CalculateEnemyFleetHp(IFleetData fleetBefore, IFleetData fleetAfter)
 	{
 		for (int index = 0; index < fleetBefore.MembersInstance.Count; index++)
 		{
@@ -166,62 +138,4 @@ public class BattleRankPrediction
 
 		return fleetClone;
 	}
-	
-	private BattleRank GetWinRank()
-	{
-		int rifriend = (int)(FriendHpRate * 100);
-		int rienemy = (int)(EnemyHpRate * 100);
-
-		if (FriendlyShipSunk == 0)
-		{
-			if (EnemyShipSunk == EnemyShipCount)
-			{
-				return FriendHpRate switch
-				{
-					<= 0 => BattleRank.SS,
-					_ => BattleRank.S,
-				};
-			}
-			
-			if (EnemyShipCount > 1 && EnemyShipSunk >= (int)(EnemyShipCount * 0.7))
-			{
-				return BattleRank.A;
-			}
-		}
-
-		bool defeatEnemyFlagship = EnemyMainFleetAfter.MembersInstance[0]?.HPCurrent <= 0;
-
-		if (defeatEnemyFlagship && FriendlyShipSunk < EnemyShipSunk)
-			return BattleRank.B;
-
-		bool isfriendFlagshipHeavilyDamaged = FriendlyMainFleetAfter.MembersInstance[0]?.HPRate <= 0.25;
-
-		if (FriendlyShipCount == 1 && isfriendFlagshipHeavilyDamaged)
-			return BattleRank.D;
-
-		if (rienemy > (2.5 * rifriend))
-			return BattleRank.B;
-
-		if (rienemy > (0.9 * rifriend))
-			return BattleRank.C;
-
-		return FriendlyShipSunk switch
-		{
-			> 0 when (FriendlyShipCount - FriendlyShipSunk) == 1 => BattleRank.E,
-			_ => BattleRank.D,
-		};
-	}
-
-	/// <summary>
-	/// 空襲戦における勝利ランクを計算します。
-	/// </summary>
-	private static BattleRank GetWinRankAirRaid(double friendrate) => friendrate switch
-	{
-		<= 0.0 => BattleRank.SS,
-		< 0.1 => BattleRank.A,
-		< 0.2 => BattleRank.B,
-		< 0.5 => BattleRank.C,
-		< 0.8 => BattleRank.D,
-		_ => BattleRank.E,
-	};
 }

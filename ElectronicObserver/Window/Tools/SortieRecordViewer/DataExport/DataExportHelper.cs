@@ -849,7 +849,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
 			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
 			
-			BattleRankPrediction prediction = new()
+			NormalBattleRankPrediction prediction = new()
 			{
 				FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
 				FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
