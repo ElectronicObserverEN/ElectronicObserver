@@ -856,11 +856,11 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 				{
 					FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
 					FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
-
-					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet,
+					
+					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet, 
 					FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
-
-					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
+					
+					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet, 
 					EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
 
 					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
