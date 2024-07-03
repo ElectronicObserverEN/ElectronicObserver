@@ -645,14 +645,14 @@ public class BattleManager : APIWrapper
 			{
 				FriendlyMainFleetBefore = firstInitial.FriendFleet,
 				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleet, hpsAfter, BattleSides.FriendMain)!,
-
-				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort,
+				
+				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort, 
 				FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleetEscort, hpsAfter, BattleSides.FriendEscort),
-
-				EnemyMainFleetBefore = firstInitial.EnemyFleet,
+				
+				EnemyMainFleetBefore = firstInitial.EnemyFleet, 
 				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
-
-				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
+				
+				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort, 
 				EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleetEscort, hpsAfter, BattleSides.EnemyEscort),
 			},
 		};
