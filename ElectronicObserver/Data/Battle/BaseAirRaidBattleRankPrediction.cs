@@ -25,16 +25,6 @@ public class BaseAirRaidBattleRankPrediction : BattleRankPrediction
 		}
 	}
 
-	protected override void CalculateEnemyFleetHp()
-	{
-		CalculateEnemyFleetHp(EnemyMainFleetBefore, EnemyMainFleetAfter);
-
-		if (EnemyEscortFleetBefore is not null && EnemyEscortFleetAfter is not null)
-		{
-			CalculateEnemyFleetHp(EnemyEscortFleetBefore, EnemyEscortFleetAfter);
-		}
-	}
-
 	/// <summary>
 	/// No battle rank for air base raid (TODO ? have special ranks for this (light damage/heavy/no damage))
 	/// </summary>

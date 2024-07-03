@@ -4,11 +4,6 @@ namespace ElectronicObserver.Data.Battle;
 
 public class AirRaidBattleRankPrediction : NormalBattleRankPrediction
 {
-	protected override void CalculateEnemyFleetHp()
-	{
-		// No need to calculate enemy HP for air raid
-	}
-
 	protected override BattleRank GetWinRank() => FriendHpRate switch
 	{
 		<= 0.0 => BattleRank.SS,
