@@ -40,8 +40,9 @@ public class BaseAirRaidBattleRankPrediction : BattleRankPrediction
 	public static IEnumerable<AirBaseBeforeAfter> SimulateBaseAfterBattle(List<int> hpBefore, List<int> hpAfter)
 	{
 		int index = 0;
+		int baseCount = hpBefore.Count(hp => hp != -1);
 
-		return hpBefore.Zip(hpAfter, (before, after) =>
+		return hpBefore.Take(baseCount).Zip(hpAfter.Take(baseCount), (before, after) =>
 			new AirBaseBeforeAfter(index++,
 				new BaseAirCorpsDataMock()
 				{
