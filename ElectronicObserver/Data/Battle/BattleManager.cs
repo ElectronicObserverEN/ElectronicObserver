@@ -634,8 +634,8 @@ public class BattleManager : APIWrapper
 			BattleModes.BaseAirRaid => new BaseAirRaidBattleRankPrediction()
 			{
 				AirBaseBeforeAfter = BaseAirRaidBattleRankPrediction.SimulateBaseAfterBattle(firstInitial.FriendInitialHPs.ToList(), hpsAfter),
-
-				EnemyMainFleetBefore = firstInitial.EnemyFleet,
+				
+				EnemyMainFleetBefore = firstInitial.EnemyFleet, 
 				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
 
 				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
