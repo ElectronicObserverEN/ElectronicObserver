@@ -507,4 +507,34 @@ public class BattleRankTests(DatabaseFixture database)
 		Assert.Equal(600, prediction.FriendlyHpAfter);
 		Assert.Equal(0, prediction.FriendHpRate);
 	}
+
+	[Fact(DisplayName = "LBAS raid - with damage")]
+	public async Task SortieDetailTest8()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest07.json");
+
+		Assert.Single(sortieDetails);
+		Assert.True(sortieDetails[0].Nodes.Count > 2);
+		Assert.NotNull(sortieDetails[0].Nodes[2].AirBaseRaid);
+
+		// Raid on 3rd node
+		BattleBaseAirRaid battle = sortieDetails[0].Nodes[2].AirBaseRaid!;
+
+		BattleRankPrediction prediction = new BaseAirRaidBattleRankPrediction()
+		{
+			AirBaseBeforeAfter = battle.AirBaseBeforeAfter,
+
+			EnemyMainFleetBefore = battle.FleetsBeforeBattle.EnemyFleet!,
+			EnemyMainFleetAfter = battle.FleetsAfterBattle.EnemyFleet!,
+
+			EnemyEscortFleetBefore = battle.FleetsBeforeBattle.EnemyEscortFleet,
+			EnemyEscortFleetAfter = battle.FleetsAfterBattle.EnemyEscortFleet,
+		};
+
+		prediction.PredictRank();
+
+		Assert.Equal(600, prediction.FriendlyHpBefore);
+		Assert.Equal(406, prediction.FriendlyHpAfter);
+		Assert.Equal(0.32, prediction.FriendHpRate, 2);
+	}
 }

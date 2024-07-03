@@ -54,7 +54,8 @@ public class BaseAirRaidBattleRankPrediction : BattleRankPrediction
 	}
 
 	/// <summary>
-	/// No battle rank for air base raid (TODO ? have special ranks for this (light damage/heavy/no damage))
+	/// No battle rank for air base raid
+	/// TODO ? have special ranks for this (light damage/heavy/no damage)
 	/// </summary>
 	/// <returns></returns>
 	protected override BattleRank GetWinRank() => BattleRank.Any;
