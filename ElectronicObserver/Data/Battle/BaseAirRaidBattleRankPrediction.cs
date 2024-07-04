@@ -15,14 +15,11 @@ public class BaseAirRaidBattleRankPrediction : BattleRankPrediction
 	{
 		foreach (AirBaseBeforeAfter airBase in AirBaseBeforeAfter)
 		{
-			int? hpBefore = airBase.Before?.HPCurrent;
-			if (hpBefore is null) continue;
-
-			int? hpAfter = airBase.After?.HPCurrent;
-			if (hpAfter is null) continue;
-
-			FriendlyHpBefore += (int)hpBefore;
-			FriendlyHpAfter += Math.Max((int)hpAfter, 0);
+			if (airBase.Before?.HPCurrent is not int hpBefore) continue;
+			if (airBase.After?.HPCurrent is not int hpAfter) continue;
+			
+			FriendlyHpBefore += hpBefore;
+			FriendlyHpAfter += Math.Max(hpAfter, 0);
 			FriendlyShipCount++;
 		}
 	}
