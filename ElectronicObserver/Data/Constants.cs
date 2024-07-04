@@ -630,34 +630,20 @@ public static class Constants
 	/// <summary>
 	/// 陣形を表す文字列(短縮版)を取得します。
 	/// </summary>
-	public static string GetFormationShort(int id)
+	public static string GetFormationShort(FormationType formationType) => formationType switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.LineAheadShort;
-			case 2:
-				return ConstantsRes.DoubleLineShort;
-			case 3:
-				return ConstantsRes.DiamondShort;
-			case 4:
-				return ConstantsRes.EchelonShort;
-			case 5:
-				return ConstantsRes.LineAbreastShort;
-			case 6:
-				return ConstantsRes.VanguardShort;
-			case 11:
-				return ConstantsRes.FirstPatrolFormationShort;
-			case 12:
-				return ConstantsRes.SecondPatrolFormationShort;
-			case 13:
-				return ConstantsRes.ThirdPatrolFormationShort;
-			case 14:
-				return ConstantsRes.FourthPatrolFormationShort;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		FormationType.LineAhead => ConstantsRes.LineAheadShort,
+		FormationType.DoubleLine => ConstantsRes.DoubleLineShort,
+		FormationType.Diamond => ConstantsRes.DiamondShort,
+		FormationType.Echelon => ConstantsRes.EchelonShort,
+		FormationType.LineAbreast => ConstantsRes.LineAbreastShort,
+		FormationType.Vanguard => ConstantsRes.VanguardShort,
+		FormationType.FirstPatrolFormation => ConstantsRes.FirstPatrolFormationShort,
+		FormationType.SecondPatrolFormation=> ConstantsRes.SecondPatrolFormationShort,
+		FormationType.ThirdPatrolFormation => ConstantsRes.ThirdPatrolFormationShort,
+		FormationType.FourthPatrolFormation => ConstantsRes.FourthPatrolFormationShort,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
@@ -718,31 +704,16 @@ public static class Constants
 	/// <summary>
 	/// 索敵結果を表す文字列(短縮版)を取得します。
 	/// </summary>
-	public static string GetSearchingResultShort(int id)
+	public static string GetSearchingResultShort(DetectionType id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Success;
-			case 2:
-				return ConstantsRes.Success + "△";
-			case 3:
-				return ConstantsRes.NoReturn;
-			case 4:
-				return ConstantsRes.Failure;
-			case 5:
-				return ConstantsRes.Success;
-			case 6:
-				return ConstantsRes.Failure;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
-
-	/// <summary>
-	/// 制空戦の結果を表す文字列を取得します。
-	/// </summary>
-	public static string GetAirSuperiority(int id) => GetAirSuperiority((AirState)id);
+		DetectionType.Success => ConstantsRes.Success,
+		DetectionType.SuccessNoReturn => ConstantsRes.Success + "△",
+		DetectionType.NoReturn => ConstantsRes.NoReturn,
+		DetectionType.Failure => ConstantsRes.Failure,
+		DetectionType.SuccessNoPlane => ConstantsRes.Success,
+		DetectionType.FailureNoPlane => ConstantsRes.Failure,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 制空戦の結果を表す文字列を取得します。

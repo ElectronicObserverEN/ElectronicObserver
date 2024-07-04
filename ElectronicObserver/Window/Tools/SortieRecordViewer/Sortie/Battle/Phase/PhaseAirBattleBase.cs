@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
@@ -11,7 +13,7 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseAirBattleBase : PhaseBase
+public class PhaseAirBattleBase : PhaseBase, IPhaseAirBattle
 {
 	public override string Title => BattleRes.BattlePhaseAirBattle;
 
@@ -24,26 +26,43 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public AirState AirState { get; }
 
-	public int Stage1FLostcount { get; }
-	public int Stage1FCount { get; }
-	public int Stage1ELostcount { get; }
-	public int Stage1ECount { get; }
+	public int AircraftLostStage1Friend { get; }
+	public int AircraftTotalStage1Friend { get; }
+	public int AircraftLostStage1Enemy { get; }
+	public int AircraftTotalStage1Enemy { get; }
 
-	public int Stage2FLostcount { get; private set; }
-	public int Stage2FCount { get; private set; }
-	public int Stage2ELostcount { get; private set; }
-	public int Stage2ECount { get; private set; }
+	public int AircraftLostStage2Friend { get; private set; }
+	public int AircraftTotalStage2Friend { get; private set; }
+	public int AircraftLostStage2Enemy { get; private set; }
+	public int AircraftTotalStage2Enemy { get; private set; }
+
+	[MemberNotNullWhen(true, nameof(ApiAirFire))]
+	public bool IsAACutinAvailable => ApiAirFire is not null;
+
+	public int AACutInIndex => ApiAirFire?.ApiIdx ?? -1;
+	public string? AACutInShipName => IsAACutinAvailable switch
+	{
+		true => FleetsAfterPhase?.GetShip(new(ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
+		_ => null,
+	};
+	public int AACutInKind => ApiAirFire?.ApiKind ?? -1;
 
 	/// <summary>
 	/// AACI
 	/// </summary>
 	public ApiAirFire? ApiAirFire { get; private set; }
 
+	[MemberNotNullWhen(true, nameof(Stage1))]
+	public bool IsStage1Available => Stage1 is not null;
+
 	private ApiStage1? Stage1 => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage1,
 		_ => null,
 	};
+
+	[MemberNotNullWhen(true, nameof(Stage2))]
+	public bool IsStage2Available => Stage2 is not null;
 
 	private ApiStage2? Stage2 => AirBattleData switch
 	{
@@ -93,7 +112,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-		[EquipmentId id and > 0, ..] => KcDatabase.MasterEquipments[(int)id].NameEN,
+	[EquipmentId id and > 0, ..] => KcDatabase.MasterEquipments[(int)id].NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
@@ -104,7 +123,7 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-		[_, EquipmentId id and > 0, ..] => KcDatabase.MasterEquipments[(int)id].NameEN,
+	[_, EquipmentId id and > 0, ..] => KcDatabase.MasterEquipments[(int)id].NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
@@ -124,18 +143,18 @@ public class PhaseAirBattleBase : PhaseBase
 		if (airBattleData.ApiStage1 is not null)
 		{
 			AirState = airBattleData.ApiStage1.ApiDispSeiku;
-			Stage1FLostcount = airBattleData.ApiStage1.ApiFLostcount;
-			Stage1FCount = airBattleData.ApiStage1.ApiFCount;
-			Stage1ELostcount = airBattleData.ApiStage1.ApiELostcount;
-			Stage1ECount = airBattleData.ApiStage1.ApiECount;
+			AircraftLostStage1Friend = airBattleData.ApiStage1.ApiFLostcount;
+			AircraftTotalStage1Friend = airBattleData.ApiStage1.ApiFCount;
+			AircraftLostStage1Enemy = airBattleData.ApiStage1.ApiELostcount;
+			AircraftTotalStage1Enemy = airBattleData.ApiStage1.ApiECount;
 
 			Stage1Display = GetStage1Display
 			(
 				AirState,
-				Stage1FLostcount,
-				Stage1FCount,
-				Stage1ELostcount,
-				Stage1ECount
+				AircraftLostStage1Friend,
+				AircraftTotalStage1Friend,
+				AircraftLostStage1Enemy,
+				AircraftTotalStage1Enemy
 			);
 		}
 
@@ -143,26 +162,27 @@ public class PhaseAirBattleBase : PhaseBase
 		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 1);
 	}
 
-	protected PhaseAirBattleBase(IApiJetAirBattle airBattleData, int waveIndex = 0)
+	protected PhaseAirBattleBase(IKCDatabase kcDatabase, IApiJetAirBattle airBattleData, int waveIndex = 0)
 	{
+		KcDatabase = kcDatabase;
 		AirBattleData = airBattleData;
 		WaveIndex = waveIndex;
 
 		if (airBattleData.ApiStage1 is not null)
 		{
 			AirState = AirState.Unknown;
-			Stage1FLostcount = airBattleData.ApiStage1.ApiFLostcount;
-			Stage1FCount = airBattleData.ApiStage1.ApiFCount;
-			Stage1ELostcount = airBattleData.ApiStage1.ApiELostcount;
-			Stage1ECount = airBattleData.ApiStage1.ApiECount;
+			AircraftLostStage1Friend = airBattleData.ApiStage1.ApiFLostcount;
+			AircraftTotalStage1Friend = airBattleData.ApiStage1.ApiFCount;
+			AircraftLostStage1Enemy = airBattleData.ApiStage1.ApiELostcount;
+			AircraftTotalStage1Enemy = airBattleData.ApiStage1.ApiECount;
 
 			Stage1Display = GetStage1Display
 			(
 				AirState,
-				Stage1FLostcount,
-				Stage1FCount,
-				Stage1ELostcount,
-				Stage1ECount
+				AircraftLostStage1Friend,
+				AircraftTotalStage1Friend,
+				AircraftLostStage1Enemy,
+				AircraftTotalStage1Enemy
 			);
 		}
 
@@ -177,18 +197,18 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (Stage2 is { } stage2)
 		{
-			Stage2FLostcount = stage2.ApiFLostcount;
-			Stage2FCount = stage2.ApiFCount;
-			Stage2ELostcount = stage2.ApiELostcount;
-			Stage2ECount = stage2.ApiECount;
+			AircraftLostStage2Friend = stage2.ApiFLostcount;
+			AircraftTotalStage2Friend = stage2.ApiFCount;
+			AircraftLostStage2Enemy = stage2.ApiELostcount;
+			AircraftTotalStage2Enemy = stage2.ApiECount;
 			ApiAirFire = stage2.ApiAirFire;
 		}
 		else if (Stage2Jet is { } stage2Jet)
 		{
-			Stage2FLostcount = stage2Jet.ApiFLostcount;
-			Stage2FCount = stage2Jet.ApiFCount;
-			Stage2ELostcount = stage2Jet.ApiELostcount;
-			Stage2ECount = stage2Jet.ApiECount;
+			AircraftLostStage2Friend = stage2Jet.ApiFLostcount;
+			AircraftTotalStage2Friend = stage2Jet.ApiFCount;
+			AircraftLostStage2Enemy = stage2Jet.ApiELostcount;
+			AircraftTotalStage2Enemy = stage2Jet.ApiECount;
 		}
 
 		StringBuilder sb = new();
@@ -203,8 +223,8 @@ public class PhaseAirBattleBase : PhaseBase
 		}
 
 		sb.AppendLine();
-		sb.AppendLine($"　{BattleRes.Friendly}: -{Stage2FLostcount}/{Stage2FCount}");
-		sb.Append($"　{BattleRes.Enemy}: -{Stage2ELostcount}/{Stage2ECount}");
+		sb.AppendLine($"　{BattleRes.Friendly}: -{AircraftLostStage2Friend}/{AircraftTotalStage2Friend}");
+		sb.Append($"　{BattleRes.Enemy}: -{AircraftLostStage2Enemy}/{AircraftTotalStage2Enemy}");
 
 		Stage2Display = sb.ToString();
 

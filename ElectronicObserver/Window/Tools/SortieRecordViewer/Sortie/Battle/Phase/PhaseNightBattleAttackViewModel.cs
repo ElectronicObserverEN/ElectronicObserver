@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -16,6 +17,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 	public IShipData Defender { get; }
 	public List<int> DefenderHpBeforeAttacks { get; } = new();
 
+	public NightAttackKind AttackType { get; }
 	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	public List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
@@ -28,6 +30,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 		Attacker = fleets.GetShip(AttackerIndex)!;
 		DefenderIndex = defenderIndex;
 		Defender = fleets.GetShip(DefenderIndex)!;
+		AttackType = attack.AttackType;
 		Attacks = attack.Defenders
 			.Where(d => d.Defender == DefenderIndex)
 			.Select(d => new NightAttack

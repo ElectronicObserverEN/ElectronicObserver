@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -21,15 +22,44 @@ public class PhaseInitial : PhaseBase
 
 	private IKCDatabase KcDatabase { get; }
 
+	/// <summary>
+	/// 自軍艦隊ID
+	/// </summary>
+	public int FriendFleetID { get; private set; }
+
 	public bool IsEnemyCombinedFleet { get; }
-	private bool IsBossDamaged { get; }
+	public bool IsBossDamaged { get; }
 	public List<int>? ApiCombatRation { get; }
 	public List<int>? ApiCombatRationCombined { get; }
-	private List<int> FriendInitialHPs { get; }
-	private List<int> FriendMaxHPs { get; }
+	public List<int> FriendInitialHPs { get; }
+	public List<int> FriendMaxHPs { get; }
+	public List<int>? FriendInitialHPsEscort { get; }
+	public List<int>? FriendMaxHPsEscort { get; }
 
-	private List<IShipData?> EnemyMembersInstance { get; }
-	private List<IShipData?>? EnemyMembersEscortInstance { get; }
+	public List<IShipData?> EnemyMembersInstance { get; }
+	public List<IShipData?>? EnemyMembersEscortInstance { get; }
+
+	public int[] EnemyMembers => EnemyMembersInstance.Select(s => s?.MasterShip.ShipID ?? -1).ToArray();
+	public int[] EnemyLevels => EnemyMembersInstance.Select(s => s?.Level ?? -1).ToArray();
+	public List<int> EnemyInitialHPs => EnemyMembersInstance.Select(s => s?.HPCurrent ?? -1).ToList();
+	public int[] EnemyMaxHPs => EnemyMembersInstance.Select(s => s?.HPMax ?? -1).ToArray();
+	public List<List<int>> EnemyParameters { get; }
+	public int[][] EnemySlots => EnemyMembersInstance.Select(s => s?.SlotInstance.Select(e => e.EquipmentID).ToArray() ?? []).ToArray();
+
+	[MemberNotNullWhen(true, nameof(EnemyMembersEscort))]
+	[MemberNotNullWhen(true, nameof(EnemyLevelsEscort))]
+	[MemberNotNullWhen(true, nameof(EnemyMaxHPsEscort))]
+	[MemberNotNullWhen(true, nameof(EnemyParametersEscort))]
+	[MemberNotNullWhen(true, nameof(EnemySlotsEscort))]
+	public bool IsEnemyCombined => EnemyMembersEscortInstance is not null;
+
+	public int[]? EnemyMembersEscort => EnemyMembersEscortInstance?.Select(s => s?.MasterShip.ShipID ?? -1).ToArray();
+	public int[]? EnemyLevelsEscort => EnemyMembersEscortInstance?.Select(s => s?.Level ?? -1).ToArray();
+	public List<int>? EnemyInitialHPsEscort => EnemyMembersEscortInstance?.Select(s => s?.HPCurrent ?? -1).ToList();
+	public int[]? EnemyMaxHPsEscort => EnemyMembersEscortInstance?.Select(s => s?.HPMax ?? -1).ToArray();
+	public List<List<int>>? EnemyParametersEscort { get; }
+	public int[][]? EnemySlotsEscort => EnemyMembersEscortInstance?.Select(s => s?.SlotInstance.Select(e => e.EquipmentID).ToArray() ?? []).ToArray();
+
 
 	private string PlayerMainFleetTitle => FleetsAfterPhase?.EscortFleet switch
 	{
@@ -169,6 +199,7 @@ public class PhaseInitial : PhaseBase
 	{
 		KcDatabase = kcDatabase;
 		FleetsBeforePhase = fleets;
+		FriendFleetID = battle.ApiDeckId;
 
 		if (battle is IAirBaseBattle { ApiAirBaseAttack: not null } abb)
 		{
@@ -206,6 +237,8 @@ public class PhaseInitial : PhaseBase
 		}
 
 		Escape(fleets.Fleet, battle.ApiEscapeIdx);
+
+		EnemyParameters = battle.ApiEParam;
 
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
@@ -249,6 +282,9 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IPlayerCombinedFleetBattle battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
+		FriendInitialHPsEscort = battle.ApiFNowhpsCombined;
+		FriendMaxHPsEscort = battle.ApiFMaxhpsCombined;
+
 		ApiCombatRationCombined = battle.ApiCombatRationCombined;
 		SetEscortFleetHp(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
@@ -265,6 +301,9 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
+		FriendInitialHPsEscort = battle.ApiFNowhpsCombined;
+		FriendMaxHPsEscort = battle.ApiFMaxhpsCombined;
+
 		ApiCombatRationCombined = battle.ApiCombatRationCombined;
 		SetEscortFleetHp(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);

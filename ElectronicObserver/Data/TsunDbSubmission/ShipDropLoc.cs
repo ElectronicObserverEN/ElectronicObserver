@@ -50,6 +50,6 @@ public class ShipDropLoc : TsunDbEntity
 		}
 
 		Difficulty = mapInfoData.EventDifficulty > 0 ? mapInfoData.EventDifficulty : 0;
-		Ship = db.Battle.Result.DroppedShipID > 0 ? db.Battle.Result.DroppedShipID : -1;
+		Ship = db.Battle.Result.DroppedShipId > 0 ? (int)db.Battle.Result.DroppedShipId : -1;
 	}
 }

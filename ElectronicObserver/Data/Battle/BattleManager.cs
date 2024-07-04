@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ElectronicObserver.Data.Battle.Detail;
-using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
@@ -38,17 +42,17 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 昼戦データ
 	/// </summary>
-	public BattleDay BattleDay { get; private set; }
+	public FirstBattleData BattleDay { get; private set; }
 
 	/// <summary>
 	/// 夜戦データ
 	/// </summary>
-	public BattleNight BattleNight { get; private set; }
+	public BattleData? BattleNight { get; private set; }
 
 	/// <summary>
 	/// 戦闘結果データ
 	/// </summary>
-	public BattleResultData Result { get; private set; }
+	public BattleResult Result { get; private set; }
 
 	/// <summary>
 	/// The battle result api doesn't report SS, so we need to evaluate it manually.
@@ -126,18 +130,18 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 1回目の戦闘
 	/// </summary>
-	public BattleData FirstBattle => HeavyBaseAirRaids switch
+	public FirstBattleData FirstBattle => HeavyBaseAirRaids switch
 	{
 		// first battle gets used for things like engagement
 		// remove this part if heavy air raids get moved to BattleDay
 		{ Count: > 0 } => HeavyBaseAirRaids.Last(),
-		_ => StartsFromDayBattle ? BattleDay : BattleNight
+		_ => StartsFromDayBattle ? BattleDay : (FirstBattleData)BattleNight!
 	};
 
 	/// <summary>
 	/// 2回目の戦闘
 	/// </summary>
-	public BattleData SecondBattle => StartsFromDayBattle ? (BattleData)BattleNight : BattleDay;
+	public BattleData? SecondBattle => StartsFromDayBattle ? (BattleData)BattleNight : BattleDay;
 
 
 	/// <summary>
@@ -153,7 +157,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 出撃中に入手したアイテム - ID と 個数 のペア
 	/// </summary>
-	public Dictionary<int, int> DroppedItemCount { get; internal set; }
+	public Dictionary<int, int> DroppedItemCount { get; } = [];
 
 
 	/// <summary>
@@ -180,21 +184,24 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 特殊攻撃発動回数
 	/// </summary>
-	public Dictionary<int, int> SpecialAttackCount { get; private set; }
+	public Dictionary<int, int> SpecialAttackCount { get; } = [];
 
 	/// <summary>
 	/// 記録する特殊攻撃
 	/// </summary>
-	private int[] TracedSpecialAttack { get; } = { 100, 101, 102, 103, 104, 300, 301, 302, 400, 401 };
+	private List<int> TracedSpecialAttack { get; } = [100, 101, 102, 103, 104, 300, 301, 302, 400, 401];
 
-
-
-	public BattleManager()
+	public override void LoadFromRequest(string apiname, Dictionary<string, string> data)
 	{
-		DroppedItemCount = new Dictionary<int, int>();
-		SpecialAttackCount = new Dictionary<int, int>();
-	}
+		switch (apiname)
+		{
+			case "api_req_sortie/battle":
+				ResupplyUsed = data.ContainsKey("api_supply_flag") && data["api_supply_flag"] == "1";
+				RationUsed = data.ContainsKey("api_ration_flag") && data["api_ration_flag"] == "1";
+				break;
+		}
 
+	}
 
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
@@ -204,6 +211,7 @@ public class BattleManager : APIWrapper
 
 		switch (apiname)
 		{
+			/*
 			case "api_req_map/start":
 			case "api_req_map/next":
 				BattleDay = null;
@@ -375,6 +383,7 @@ public class BattleManager : APIWrapper
 				Result.LoadFromResponse(apiname, data);
 				BattleFinished();
 				break;
+			*/
 
 			case "api_port/port":
 				Compass = null;
@@ -393,19 +402,6 @@ public class BattleManager : APIWrapper
 				break;
 
 		}
-
-	}
-
-	public override void LoadFromRequest(string apiname, Dictionary<string, string> data)
-	{
-		switch (apiname)
-		{
-			case "api_req_sortie/battle":
-				ResupplyUsed = data.ContainsKey("api_supply_flag") && data["api_supply_flag"] == "1";
-				RationUsed = data.ContainsKey("api_ration_flag") && data["api_ration_flag"] == "1";
-				break;
-		}
-
 	}
 
 	/// <summary>
@@ -430,29 +426,30 @@ public class BattleManager : APIWrapper
 		}
 		else if (IsBaseAirRaid)
 		{
-			if (BattleDay is BattleBaseAirRaid { BaseAirRaid: { } airraid })
+			if (BattleDay is BattleBaseAirRaid raid)
 			{
-				var initialHPs = BattleDay.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0);
-				var damage = initialHPs.Zip(BattleDay.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
+				PhaseBaseAirRaid? airraid = raid.BaseAirRaid;
+				List<int> initialHPs = BattleDay.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
+				int damage = initialHPs.Zip(BattleDay.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
 
 				Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedBaseAirRaid,
 					Compass.MapAreaID, Compass.MapInfoID, Compass.CellDisplay,
-					Constants.GetAirSuperiority(airraid.IsAvailable ? airraid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
+					Constants.GetAirSuperiority(airraid?.AirState ?? AirState.Unknown), damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
 			}
 
 			foreach (BattleBaseAirRaid battleBaseAirRaid in HeavyBaseAirRaids)
 			{
 				List<int> initialHPs = battleBaseAirRaid.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
 				int damage = initialHPs.Zip(battleBaseAirRaid.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
-				PhaseBaseAirRaid baseAirRaid = battleBaseAirRaid.BaseAirRaid;
+				PhaseBaseAirRaid? baseAirRaid = battleBaseAirRaid.BaseAirRaid;
 
-				int airRaidDamageKind = (int)battleBaseAirRaid.RawData.api_lost_kind;
+				int airRaidDamageKind = baseAirRaid?.ApiLostKind ?? 0;
 
 				Utility.Logger.Add(2,
 					string.Format(BattleRes.BattleFinishedBaseAirRaid,
 						Compass.MapAreaID, Compass.MapInfoID, Compass.CellDisplay,
-						Constants.GetAirSuperiority(baseAirRaid.IsAvailable ? baseAirRaid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(airRaidDamageKind)));
+						Constants.GetAirSuperiority(baseAirRaid?.AirState ?? AirState.Unknown), damage, Constants.GetAirRaidDamage(airRaidDamageKind)));
 			}
 		}
 		else
@@ -466,14 +463,14 @@ public class BattleManager : APIWrapper
 		// Level up
 		if (!IsBaseAirRaid)
 		{
-			var exps = Result.ExpList;
-			var lvup = Result.LevelUpList;
-			for (int i = 0; i < lvup.Length; i++)
+			List<int> exps = Result.ExpList;
+			List<List<int>> lvup = Result.LevelUpList;
+			for (int i = 0; i < lvup.Count; i++)
 			{
-				if (lvup[i].Length >= 2 && i < exps.Length && lvup[i][0] + exps[i] >= lvup[i][1])
+				if (lvup[i].Count >= 2 && i < exps.Count && lvup[i][0] + exps[i] >= lvup[i][1])
 				{
-					var ship = FirstBattle.Initial.FriendFleet.MembersInstance[i];
-					int increment = Math.Max(lvup[i].Length - 2, 1);
+					IShipData ship = FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[i]!;
+					int increment = Math.Max(lvup[i].Count - 2, 1);
 
 					ShipLevelUp?.Invoke(ship, ship.Level + increment);
 					Utility.Logger.Add(2, string.Format(BattleRes.HasLeveledUp, ship.Name, ship.Level + increment));
@@ -482,14 +479,15 @@ public class BattleManager : APIWrapper
 
 			if (IsCombinedBattle)
 			{
-				exps = Result.ExpListCombined;
-				lvup = Result.LevelUpListCombined;
-				for (int i = 0; i < lvup.Length; i++)
+				exps = Result.ExpListCombined!;
+				lvup = Result.LevelUpListCombined!;
+
+				for (int i = 0; i < lvup.Count; i++)
 				{
-					if (lvup[i].Length >= 2 && i < exps.Length && lvup[i][0] + exps[i] >= lvup[i][1])
+					if (lvup[i].Count >= 2 && i < exps.Count && lvup[i][0] + exps[i] >= lvup[i][1])
 					{
-						var ship = FirstBattle.Initial.FriendFleetEscort.MembersInstance[i];
-						int increment = Math.Max(lvup[i].Length - 2, 1);
+						IShipData ship = FirstBattle.FleetsBeforeBattle.EscortFleet!.MembersInstance[i]!;
+						int increment = Math.Max(lvup[i].Count - 2, 1);
 
 						ShipLevelUp?.Invoke(ship, ship.Level + increment);
 						Utility.Logger.Add(2, string.Format(BattleRes.HasLeveledUp, ship.Name, ship.Level + increment));
@@ -503,18 +501,17 @@ public class BattleManager : APIWrapper
 		//ドロップ艦記録
 		if (!IsPractice && !IsBaseAirRaid)
 		{
-
 			//checkme: とてもアレな感じ
 
-			int shipID = Result.DroppedShipID;
-			int itemID = Result.DroppedItemID;
-			int eqID = Result.DroppedEquipmentID;
+			int shipID = (int?)Result.DroppedShipId ?? -1;
+			int itemID = Result.DroppedItemId ?? -1;
+			int eqID = Result.DroppedEquipmentId ?? -1;
 			bool showLog = Utility.Configuration.Config.Log.ShowSpoiler;
 
 			if (shipID != -1)
 			{
 
-				IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
+				IShipDataMaster ship = KCDatabase.Instance.MasterShips[(int)shipID];
 				DroppedShipCount++;
 
 				IEnumerable<IEquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch
@@ -536,22 +533,19 @@ public class BattleManager : APIWrapper
 
 			if (itemID != -1)
 			{
-
-				if (!DroppedItemCount.ContainsKey(itemID))
-					DroppedItemCount.Add(itemID, 0);
+				DroppedItemCount.TryAdd(itemID, 0);
 				DroppedItemCount[itemID]++;
 
 				if (showLog)
 				{
-					var item = KCDatabase.Instance.UseItems[itemID];
-					var itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
+					IUseItem? item = KCDatabase.Instance.UseItems[itemID];
+					IUseItemMaster? itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
 					Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemmaster?.NameTranslated ?? (BattleRes.UnknownItem + itemID), (item?.Count ?? 0) + DroppedItemCount[itemID]));
 				}
 			}
 
 			if (eqID != -1)
 			{
-
 				IEquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
 				if (eq.UsesSlotSpace())
 				{
@@ -577,30 +571,50 @@ public class BattleManager : APIWrapper
 		}
 
 
-		void IncrementSpecialAttack(BattleData bd)
+		void IncrementSpecialAttack(BattleData? bd)
 		{
-			if (bd == null)
-				return;
+			if (bd == null) return;
 
-			foreach (var phase in bd.GetPhases())
+			foreach (PhaseBase phase in bd.Phases)
 			{
-				foreach (var detail in phase.BattleDetails)
+				switch (phase)
 				{
-					int kind = detail.AttackType;
-
-					if (detail.AttackerIndex.IsFriend && TracedSpecialAttack.Contains(kind))
+					case PhaseShelling shelling:
 					{
-						if (SpecialAttackCount.ContainsKey(kind))
-							SpecialAttackCount[kind]++;
-						else
-							SpecialAttackCount.Add(kind, 1);
+						foreach (PhaseShellingAttackViewModel attack in shelling.AttackDisplays
+							.Where(a => a.AttackerIndex.FleetFlag is FleetFlag.Player)
+							.Where(a => TracedSpecialAttack.Contains((int)a.AttackType)))
+						{
+							if (!SpecialAttackCount.TryAdd((int)attack.AttackType, 1))
+							{
+								SpecialAttackCount[(int)attack.AttackType]++;
+							}
+						}
+
+						break;
+					}
+
+					case PhaseNightBattle night:
+					{
+						foreach (PhaseNightBattleAttackViewModel attack in night.AttackDisplays
+							.Where(a => a.AttackerIndex.FleetFlag is FleetFlag.Player)
+							.Where(a => TracedSpecialAttack.Contains((int)a.AttackType)))
+						{
+							if (!SpecialAttackCount.TryAdd((int)attack.AttackType, 1))
+							{
+								SpecialAttackCount[(int)attack.AttackType]++;
+							}
+						}
+
+						break;
 					}
 				}
 			}
 		}
+
 		IncrementSpecialAttack(FirstBattle);
 		IncrementSpecialAttack(SecondBattle);
-		
+
 		WriteBattleLog();
 	}
 
@@ -612,23 +626,23 @@ public class BattleManager : APIWrapper
 	public int PredictWinRank(out double friendrate, out double enemyrate)
 	{
 		BattleData activeBattle = SecondBattle ?? FirstBattle;
-		PhaseInitial firstInitial = FirstBattle.Initial;
+		BattleFleets fleetsBefore = activeBattle.FleetsBeforeBattle;
 
 		List<int> hpsAfter = activeBattle.ResultHPs.ToList();
-		
+
 		BattleRankPrediction prediction = new()
 		{
-			FriendlyMainFleetBefore = firstInitial.FriendFleet,
-			FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleet, hpsAfter, BattleSides.FriendMain)!,
+			FriendlyMainFleetBefore = fleetsBefore.Fleet,
+			FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.Fleet, hpsAfter, BattleSides.FriendMain)!,
 
-			FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort,
-			FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleetEscort, hpsAfter, BattleSides.FriendEscort),
+			FriendlyEscortFleetBefore = fleetsBefore.EscortFleet,
+			FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EscortFleet, hpsAfter, BattleSides.FriendEscort),
 
-			EnemyMainFleetBefore = firstInitial.EnemyFleet,
-			EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
+			EnemyMainFleetBefore = fleetsBefore.EnemyFleet!,
+			EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyFleet!, hpsAfter, BattleSides.EnemyMain)!,
 
-			EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
-			EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleetEscort, hpsAfter, BattleSides.EnemyEscort),
+			EnemyEscortFleetBefore = fleetsBefore.EnemyEscortFleet,
+			EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyEscortFleet, hpsAfter, BattleSides.EnemyEscort),
 		};
 
 		BattleRank rank = (BattleMode & BattleModes.BattlePhaseMask) switch
@@ -652,11 +666,11 @@ public class BattleManager : APIWrapper
 		{
 			var initial = BattleDay.Initial;
 			int score = 0;
-			for (int i = 0; i < initial.EnemyInitialHPsEscort.Length; i++)
+			for (int i = 0; i < initial.EnemyInitialHPsEscort.Count; i++)
 			{
-				if (initial.EnemyMembersEscort[i] > 0)
+				if (initial.EnemyMembersEscort.ToList()[i] > 0)
 				{
-					double rate = (double)BattleDay.ResultHPs[BattleIndex.Get(BattleSides.EnemyEscort, i)] / initial.EnemyMaxHPsEscort[i];
+					double rate = (double)BattleDay.ResultHPs.ToList()[BattleIndex.Get(BattleSides.EnemyEscort, i)] / initial.EnemyMaxHPsEscort.ToList()[i];
 
 					if (rate > 0.5)
 					{
@@ -702,7 +716,7 @@ public class BattleManager : APIWrapper
 
 			using (var sw = new StreamWriter(path, false, Utility.Configuration.Config.Log.FileEncoding))
 			{
-				sw.Write(BattleDetailDescriptor.GetBattleDetail(this));
+				// todo sw.Write(BattleDetailDescriptor.GetBattleDetail(this));
 			}
 
 		}

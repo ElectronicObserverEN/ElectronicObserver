@@ -49,7 +49,7 @@ public sealed class BattleNode(IKCDatabase kcDatabase, int world, int map, int c
 			_ => new(result),
 		};
 
-		ResultRank = string.Format(ConstantsRes.BattleDetail_ResultRank, BattleResult.WinRank);
+		ResultRank = string.Format(ConstantsRes.BattleDetail_ResultRank, BattleResult.Rank);
 
 		ResultMvpMain = BattleResult.MvpIndex switch
 		{
@@ -107,10 +107,10 @@ public sealed class BattleNode(IKCDatabase kcDatabase, int world, int map, int c
 
 		bool damageTaken = hpBeforeBattle > hpAfterBattle;
 
-		return (BattleResult?.WinRank, damageTaken) switch
+		return (WinRank: BattleResult?.Rank, damageTaken) switch
 		{
 			("S", false) => "SS",
-			_ => BattleResult?.WinRank,
+			_ => BattleResult?.Rank,
 		};
 	}
 

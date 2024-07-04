@@ -22,7 +22,7 @@ public class PhaseSupport : PhaseBase
 	public int? Stage2FLostcount { get; }
 	public int? Stage2FCount { get; }
 
-	private SupportType ApiSupportFlag { get; }
+	public SupportType SupportFlag { get; }
 	private bool IsNightSupport { get; }
 
 	private List<double> Damages { get; }
@@ -35,9 +35,9 @@ public class PhaseSupport : PhaseBase
 	private List<PhaseSupportAttack> Attacks { get; } = new();
 	public List<PhaseSupportAttackViewModel> AttackDisplays { get; } = new();
 
-	public PhaseSupport(SupportType apiSupportFlag, ApiSupportInfo apiSupportInfo, bool isNightSupport)
+	public PhaseSupport(SupportType supportFlag, ApiSupportInfo apiSupportInfo, bool isNightSupport)
 	{
-		ApiSupportFlag = apiSupportFlag;
+		SupportFlag = supportFlag;
 		IsNightSupport = isNightSupport;
 
 		static object? SupportAttack(SupportType apiSupportFlag, ApiSupportInfo apiSupportInfo) => apiSupportFlag switch
@@ -47,7 +47,7 @@ public class PhaseSupport : PhaseBase
 			_ => null,
 		};
 
-		Damages = SupportAttack(apiSupportFlag, apiSupportInfo) switch
+		Damages = SupportAttack(supportFlag, apiSupportInfo) switch
 		{
 			ApiSupportAiratack attack when attack.ApiStageFlag[2] is not 0
 				=> attack.ApiStage3.ApiEdam,
@@ -57,7 +57,7 @@ public class PhaseSupport : PhaseBase
 			_ => new(),
 		};
 
-		Criticals = SupportAttack(apiSupportFlag, apiSupportInfo) switch
+		Criticals = SupportAttack(supportFlag, apiSupportInfo) switch
 		{
 			ApiSupportAiratack attack when attack.ApiStageFlag[2] is not 0
 				=> attack.ApiStage3.ApiEclFlag.Select(h => h switch
@@ -71,7 +71,7 @@ public class PhaseSupport : PhaseBase
 			_ => new(),
 		};
 
-		SupportFleetId = SupportAttack(apiSupportFlag, apiSupportInfo) switch
+		SupportFleetId = SupportAttack(supportFlag, apiSupportInfo) switch
 		{
 			ApiSupportAiratack attack => attack.ApiDeckId,
 			ApiSupportHourai attack => attack.ApiDeckId,
@@ -107,7 +107,7 @@ public class PhaseSupport : PhaseBase
 		{
 			Attacks.Add(new()
 			{
-				AttackType = ApiSupportFlag,
+				AttackType = SupportFlag,
 				Defenders = new()
 				{
 					new()
@@ -130,7 +130,7 @@ public class PhaseSupport : PhaseBase
 			{
 				Attacks.Add(new()
 				{
-					AttackType = ApiSupportFlag,
+					AttackType = SupportFlag,
 					Defenders = new()
 					{
 						new()

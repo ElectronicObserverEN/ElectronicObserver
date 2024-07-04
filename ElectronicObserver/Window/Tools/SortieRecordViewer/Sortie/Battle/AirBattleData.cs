@@ -1,16 +1,17 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public abstract class AirBattleData : FirstBattleData
+public abstract class AirBattleData : FirstBattleData, IBaseAirAttack, IAirBattle
 {
 	protected PhaseJetBaseAirAttack? JetBaseAirAttack { get; }
-	protected PhaseJetAirBattle? JetAirBattle { get; }
-	protected PhaseBaseAirAttack? BaseAirAttack { get; }
+	public PhaseJetAirBattle? JetAirBattle { get; }
+	public PhaseBaseAirAttack? BaseAirAttack { get; }
 	protected PhaseFriendlySupportInfo? FriendlySupportInfo { get; }
 	protected PhaseFriendlyAirBattle? FriendlyAirBattle { get; }
-	protected PhaseAirBattle? AirBattle { get; }
+	public PhaseAirBattle? AirBattle { get; }
 
 	protected AirBattleData(PhaseFactory phaseFactory, BattleFleets fleets, IAirBattleApiResponse battle, bool isMultiAirBattle = false)
 		: base(phaseFactory, fleets, battle)

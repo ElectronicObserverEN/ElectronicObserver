@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -18,7 +17,7 @@ public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 	public IShipData Defender { get; }
 	public List<int> DefenderHpBeforeAttacks { get; } = new();
 
-	private DayAttackKind AttackType { get; }
+	public DayAttackKind AttackType { get; }
 	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	public List<DayAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }

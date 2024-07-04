@@ -5,7 +5,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public abstract class NightOnlyBattleData : NightBattleData
 {
-	protected PhaseSupport? NightSupport { get; }
+	public PhaseSupport? NightSupport { get; }
 
 	protected NightOnlyBattleData(PhaseFactory phaseFactory, BattleFleets fleets, INightBattleApiResponse battle)
 		: base(phaseFactory, fleets, battle)

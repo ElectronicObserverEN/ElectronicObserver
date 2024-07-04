@@ -9,7 +9,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
 public class BattleResult
 {
-	public string WinRank { get; }
+	public string Rank { get; }
 	public int AdmiralExp { get; }
 	public int MvpIndex { get; }
 	public int? MvpIndexCombined { get; }
@@ -37,7 +37,7 @@ public class BattleResult
 
 	public BattleResult(ISortieBattleResultApi result)
 	{
-		WinRank = result.ApiWinRank;
+		Rank = result.ApiWinRank;
 		AdmiralExp = result.ApiGetExp;
 		MvpIndex = result.ApiMvp - 1;
 		BaseExp = result.ApiGetBaseExp;

@@ -36,8 +36,8 @@ public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
 		Display = sb.ToString();
 	}
 
-	public PhaseBaseAirAttackUnit(ApiAirBaseInjection airBattleData, int waveIndex)
-		: base(airBattleData, waveIndex)
+	public PhaseBaseAirAttackUnit(IKCDatabase kcDatabase, ApiAirBaseInjection airBattleData, int waveIndex)
+		: base(kcDatabase, airBattleData, waveIndex)
 	{
 		Squadrons = airBattleData.ApiAirBaseData.Select(b => new BattleBaseAirCorpsSquadron
 		{

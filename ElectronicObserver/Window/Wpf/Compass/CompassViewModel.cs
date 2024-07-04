@@ -13,6 +13,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Wpf.Compass.ViewModels;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -384,7 +385,7 @@ public class CompassViewModel : AnchorableViewModel
 			}
 			else if (Db.Battle.HeavyBaseAirRaids.Any())
 			{
-				int apiLostKind = (int)Db.Battle.HeavyBaseAirRaids.Last().RawData.api_lost_kind;
+				int apiLostKind = Db.Battle.HeavyBaseAirRaids.Last().BaseAirRaid?.ApiLostKind ?? 0;
 
 				TextEventKindIcon = EquipmentIconType.CarrierBasedBomber;
 				TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(apiLostKind);
@@ -450,7 +451,7 @@ public class CompassViewModel : AnchorableViewModel
 		.Select(f => new EnemyFleetElementViewModel
 		{
 			EnemyFleetCandidate = f.First(),
-			Formations = f.Select(fleet => fleet.Formation).ToList()
+			Formations = f.Select(fleet => (FormationType)fleet.Formation).ToList(),
 		})
 		.ToList();
 
@@ -561,13 +562,14 @@ public class CompassViewModel : AnchorableViewModel
 		CurrentViewModel = BattleViewModel;
 
 		BattleManager bm = KCDatabase.Instance.Battle;
-		BattleData bd = bm.FirstBattle;
 
-		int[] enemies = bd.Initial.EnemyMembers;
-		int[][] slots = bd.Initial.EnemySlots;
-		int[] levels = bd.Initial.EnemyLevels;
-		int[][] parameters = bd.Initial.EnemyParameters;
-		int[] hps = bd.Initial.EnemyMaxHPs;
+		if (bm.FirstBattle is not FirstBattleData bd) return;
+
+		int[] enemies = bd.Initial.EnemyMembers.ToArray();
+		int[][] slots = bd.Initial.EnemySlots.ToArray();
+		int[] levels = bd.Initial.EnemyLevels.ToArray();
+		List<List<int>> parameters = bd.Initial.EnemyParameters;
+		int[] hps = bd.Initial.EnemyMaxHPs.ToArray();
 
 		_enemyFleetCandidate = null;
 
@@ -583,7 +585,7 @@ public class CompassViewModel : AnchorableViewModel
 			TextEventDetailToolTip = GeneralRes.EnemyFleetID + ": " + efcurrent.FleetID.ToString("x16");
 		}
 
-		TextFormationText = Constants.GetFormationShort(bd.Searching.FormationEnemy);
+		TextFormationText = Constants.GetFormationShort(bd.Searching.EnemyFormationType);
 
 		{
 			int air = Calculator.GetAirSuperiority(enemies, slots);

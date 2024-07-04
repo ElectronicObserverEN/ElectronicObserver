@@ -4,18 +4,18 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseSearching : PhaseBase
+public class PhaseSearching(IFirstBattleApiResponse battle) : PhaseBase
 {
 	public override string Title => BattleRes.PhaseSearching;
 
-	public FormationType PlayerFormationType { get; }
-	public FormationType EnemyFormationType { get; }
-	public EngagementType EngagementType { get; }
+	public FormationType PlayerFormationType { get; } = (FormationType)battle.ApiFormation[0];
+	public FormationType EnemyFormationType { get; } = (FormationType)battle.ApiFormation[1];
+	public EngagementType EngagementType { get; } = (EngagementType)battle.ApiFormation[2];
 
 	public DetectionType PlayerDetectionType { get; }
 	public DetectionType EnemyDetectionType { get; }
 
-	public int? SmokeCount { get; }
+	public int? SmokeCount { get; } = battle.ApiSmokeType;
 
 	public string Display => $"""
 		{BattleRes.Formation}: {Constants.GetFormation(PlayerFormationType)} / {BattleRes.EnemyFormation}: {Constants.GetFormation(EnemyFormationType)}
@@ -28,15 +28,6 @@ public class PhaseSearching : PhaseBase
 		> 0 => $"\r\n{BattleRes.SmokeScreen} x{SmokeCount}",
 		_ => "",
 	};
-
-	public PhaseSearching(IFirstBattleApiResponse battle)
-	{
-		PlayerFormationType = (FormationType)battle.ApiFormation[0];
-		EnemyFormationType = (FormationType)battle.ApiFormation[1];
-		EngagementType = (EngagementType)battle.ApiFormation[2];
-
-		SmokeCount = battle.ApiSmokeType;
-	}
 
 	public PhaseSearching(IDaySearch battle) : this((IFirstBattleApiResponse)battle)
 	{

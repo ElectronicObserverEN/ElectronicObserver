@@ -23,13 +23,13 @@ public class PhaseNightInitial : PhaseBase
 
 	public int FlareIndexFriend { get; }
 	public int FlareIndexEnemy { get; }
-	private IShipData? FlareFriend { get; }
-	private IShipData? FlareEnemy { get; }
+	public IShipData? FlareFriend { get; }
+	public IShipData? FlareEnemy { get; }
 
 	public int SearchlightIndexFriend { get; }
 	public int SearchlightIndexEnemy { get; }
 	private IShipData? SearchlightFriend { get; }
-	private IShipData? SearchlightEnemy { get; }
+	public IShipData? SearchlightEnemy { get; }
 	public IEquipmentData? SearchlightEquipmentFriend => GetSearchlight(SearchlightFriend);
 	public IEquipmentData? SearchlightEquipmentEnemy => GetSearchlight(SearchlightEnemy);
 

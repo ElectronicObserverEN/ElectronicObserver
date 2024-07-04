@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -9,9 +10,9 @@ public class PhaseJetBaseAirAttack : PhaseBase
 
 	public List<PhaseBaseAirAttackUnit> Units { get; } = new();
 
-	public PhaseJetBaseAirAttack(ApiAirBaseInjection apiAirBaseInjection)
+	public PhaseJetBaseAirAttack(IKCDatabase kcDatabase, ApiAirBaseInjection apiAirBaseInjection)
 	{
-		Units.Add(new(apiAirBaseInjection, 0));
+		Units.Add(new(kcDatabase, apiAirBaseInjection, 0));
 	}
 
 	public override BattleFleets EmulateBattle(BattleFleets battleFleets)

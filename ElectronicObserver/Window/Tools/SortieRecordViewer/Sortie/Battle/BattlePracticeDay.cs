@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
 using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
@@ -9,12 +10,12 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 /// 演習 昼戦 <br />
 /// api_req_practice/battle
 /// </summary>
-public sealed class BattlePracticeDay : FirstBattleData
+public sealed class BattlePracticeDay : FirstBattleData, IAirBattle
 {
 	public override string Title => ConstantsRes.Title_PracticeDay;
 
-	private PhaseJetAirBattle? JetAirBattle { get; }
-	private PhaseAirBattle? AirBattle { get; }
+	public PhaseJetAirBattle? JetAirBattle { get; }
+	public PhaseAirBattle? AirBattle { get; }
 	private PhaseOpeningAsw? OpeningAsw { get; }
 	private PhaseOpeningTorpedo? OpeningTorpedo { get; }
 	private PhaseShelling? Shelling1 { get; }

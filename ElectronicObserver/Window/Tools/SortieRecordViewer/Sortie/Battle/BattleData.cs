@@ -14,7 +14,16 @@ public abstract class BattleData
 	protected PhaseFactory PhaseFactory { get; }
 
 	public BattleFleets FleetsBeforeBattle => Initial.FleetsAfterPhase!;
-	public BattleFleets FleetsAfterBattle { get; protected set; }
+	public BattleFleets FleetsAfterBattle { get; private set; }
+
+	public bool IsPractice => this is BattlePracticeDay or BattlePracticeNight;
+	public bool IsFriendCombined => FleetsBeforeBattle.EscortFleet is not null;
+	public bool IsEnemyCombined => FleetsBeforeBattle.EnemyEscortFleet is not null;
+	public bool IsBaseAirRaid => this is BattleBaseAirRaid;
+
+	public IEnumerable<int> ResultHPs => FleetsAfterBattle
+		.SortieShips()
+		.Select(s => s?.HPCurrent ?? 0);
 
 	public IEnumerable<AirBaseBeforeAfter> AirBaseBeforeAfter => FleetsBeforeBattle.AirBases
 		.Zip(FleetsAfterBattle.AirBases, (before, after) => (Before: before, After: after))
