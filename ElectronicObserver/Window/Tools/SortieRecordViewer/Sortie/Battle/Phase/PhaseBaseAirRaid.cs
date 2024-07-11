@@ -159,7 +159,7 @@ public class PhaseBaseAirRaid : PhaseBase, IPhaseAirBattle
 		Display = sb.ToString();
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;

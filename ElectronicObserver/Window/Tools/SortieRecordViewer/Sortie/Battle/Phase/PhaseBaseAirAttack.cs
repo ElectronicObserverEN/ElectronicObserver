@@ -20,14 +20,14 @@ public class PhaseBaseAirAttack : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
 
 		foreach (PhaseBaseAirAttackUnit attackUnit in Units)
 		{
-			FleetsAfterPhase = attackUnit.EmulateBattle(FleetsAfterPhase);
+			FleetsAfterPhase = attackUnit.EmulateBattle(FleetsAfterPhase, damages);
 		}
 
 		return FleetsAfterPhase.Clone();

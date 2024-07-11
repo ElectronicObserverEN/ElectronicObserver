@@ -14,7 +14,7 @@ public abstract class PhaseBase
 	public BattleFleets? FleetsBeforePhase { get; protected set; }
 	public BattleFleets? FleetsAfterPhase { get; protected set; }
 
-	public virtual BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public virtual BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;

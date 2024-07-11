@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
@@ -21,9 +22,18 @@ public abstract class BattleData
 	public bool IsEnemyCombined => FleetsBeforeBattle.EnemyEscortFleet is not null;
 	public bool IsBaseAirRaid => this is BattleBaseAirRaid;
 
-	public IEnumerable<int> ResultHPs => FleetsAfterBattle
-		.SortieShips()
-		.Select(s => s?.HPCurrent ?? 0);
+	public IEnumerable<int> ResultHPs => GetHpList(FleetsAfterBattle.Fleet)
+		.Concat(GetHpList(FleetsAfterBattle.EscortFleet))
+		.Take(12)
+		.Concat(GetHpList(FleetsAfterBattle.EnemyFleet))
+		.Concat(GetHpList(FleetsAfterBattle.EnemyEscortFleet));
+
+	private static IEnumerable<int> GetHpList(IFleetData? fleet) =>
+		fleet?.MembersInstance
+			.Select(s => s?.HPCurrent ?? 0)
+			.Concat(Enumerable.Repeat(0, 6))
+			.Take(Math.Max(fleet.MembersInstance.Count, 6))
+		?? Enumerable.Repeat(0, 6);
 
 	public IEnumerable<AirBaseBeforeAfter> AirBaseBeforeAfter => FleetsBeforeBattle.AirBases
 		.Zip(FleetsAfterBattle.AirBases, (before, after) => (Before: before, After: after))
@@ -48,6 +58,7 @@ public abstract class BattleData
 	public PhaseInitial Initial { get; }
 
 	public IEnumerable<PhaseBase> Phases => AllPhases().OfType<PhaseBase>();
+	public List<int> AttackDamages { get; } = [.. Enumerable.Repeat(0, 24)];
 
 	protected BattleData(PhaseFactory phaseFactory, BattleFleets fleets, IBattleApiResponse battle)
 	{
@@ -62,7 +73,7 @@ public abstract class BattleData
 	{
 		foreach (PhaseBase phase in Phases)
 		{
-			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
+			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle, AttackDamages);
 		}
 	}
 }

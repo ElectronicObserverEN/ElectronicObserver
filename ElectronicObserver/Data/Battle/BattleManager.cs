@@ -1,8 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Text.Json;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.KancolleApi.Types;
+using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.BattleWater;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
@@ -12,6 +39,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 
@@ -203,17 +231,40 @@ public class BattleManager : APIWrapper
 
 	}
 
+	private BattleFactory BattleFactory => Ioc.Default.GetRequiredService<BattleFactory>();
+
+	private BattleFleets Fleets
+	{
+		get
+		{
+			IFleetData fleet = KCDatabase.Instance.Fleet.Fleets.Values
+				.First(f => f.IsInSortie);
+
+			return new(fleet)
+			{
+				FleetId = fleet.FleetID,
+				CombinedFlag = KCDatabase.Instance.Fleet.CombinedFlag,
+				NodeSupportFleetId = KCDatabase.Instance.Fleet.NodeSupportFleet ?? 0,
+				BossSupportFleetId = KCDatabase.Instance.Fleet.BossSupportFleet ?? 0,
+			};
+		}
+	}
+
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
+		IKCDatabase db = KCDatabase.Instance;
+
 		//base.LoadFromResponse( apiname, data );	//不要
+
+		object? apiData = DeserializeResponse(apiname, data.ToString());
 
 		HeavyBaseAirRaids.Clear();
 
 		switch (apiname)
 		{
-			/*
 			case "api_req_map/start":
 			case "api_req_map/next":
+			{
 				BattleDay = null;
 				BattleNight = null;
 				Result = null;
@@ -221,16 +272,17 @@ public class BattleManager : APIWrapper
 				Compass = new CompassData();
 				Compass.LoadFromResponse(apiname, data);
 
-				if (Compass.HasAirRaid)
+				if (apiData is ApiReqMapNextResponse { ApiDestructionBattle: { } battle })
 				{
 					BattleMode = BattleModes.BaseAirRaid;
-					BattleDay = new BattleBaseAirRaid();
-					BattleDay.LoadFromResponse(apiname, Compass.AirRaidData);
+					BattleDay = BattleFactory.CreateBattle(battle, Fleets);
 					BattleFinished();
 				}
-				break;
-
+			}
+			break;
+			/*
 			case "api_req_map/air_raid":
+			{
 				BattleMode = BattleModes.BaseAirRaid;
 				// BattleDay = new BattleHeavyBaseAirRaid();
 				// BattleDay.LoadFromResponse(apiname, data.api_destruction_battle[0]);
@@ -241,20 +293,27 @@ public class BattleManager : APIWrapper
 					HeavyBaseAirRaids.Add(raid);
 				}
 				BattleFinished();
-				break;
-
+			}
+			break;
+			*/
 			case "api_req_sortie/battle":
+			{
+				if (apiData is not ApiReqSortieBattleResponse battle) break;
+
 				BattleMode = BattleModes.Normal;
-				BattleDay = new BattleNormalDay();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_battle_midnight/battle":
-				BattleNight = new BattleNormalNight();
-				BattleNight.TakeOverParameters(BattleDay);
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqBattleMidnightBattleResponse battle) break;
 
+				BattleNight = BattleFactory.CreateBattle(battle, BattleDay.FleetsAfterBattle);
+			}
+			break;
+
+			/*
 			case "api_req_battle_midnight/sp_midnight":
 				BattleMode = BattleModes.NightOnly;
 				BattleDay = null;
@@ -375,15 +434,22 @@ public class BattleManager : APIWrapper
 				BattleNight.TakeOverParameters(BattleDay);
 				BattleNight.LoadFromResponse(apiname, data);
 				break;
+			*/
 
 			case "api_req_sortie/battleresult":
 			case "api_req_combined_battle/battleresult":
 			case "api_req_practice/battle_result":
-				Result = new BattleResultData();
-				Result.LoadFromResponse(apiname, data);
+			{
+				if (apiData is not ISortieBattleResultApi result) break;
+
+				Result = result switch
+				{
+					ApiReqCombinedBattleBattleresultResponse r => new(r),
+					_ => new(result),
+				};
 				BattleFinished();
 				break;
-			*/
+			}
 
 			case "api_port/port":
 				Compass = null;
@@ -403,6 +469,40 @@ public class BattleManager : APIWrapper
 
 		}
 	}
+
+	private static object? DeserializeResponse(string apiName, string json) => apiName switch
+	{
+		"api_req_map/start" => JsonSerializer.Deserialize<ApiReqMapStartResponse>(json),
+
+		"api_req_sortie/battle" => JsonSerializer.Deserialize<ApiReqSortieBattleResponse>(json),
+		"api_req_battle_midnight/sp_midnight" => JsonSerializer.Deserialize<ApiReqBattleMidnightSpMidnightResponse>(json),
+		"api_req_sortie/airbattle" => JsonSerializer.Deserialize<ApiReqSortieAirbattleResponse>(json),
+		"api_req_sortie/ld_airbattle" => JsonSerializer.Deserialize<ApiReqSortieLdAirbattleResponse>(json),
+		"api_req_sortie/night_to_day" => throw new NotImplementedException(),
+		"api_req_sortie/ld_shooting" => JsonSerializer.Deserialize<ApiReqSortieLdShootingResponse>(json),
+		"api_req_combined_battle/battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleBattleResponse>(json),
+		"api_req_combined_battle/sp_midnight" => JsonSerializer.Deserialize<ApiReqCombinedBattleSpMidnightResponse>(json),
+		"api_req_combined_battle/airbattle" => throw new NotImplementedException(),
+		"api_req_combined_battle/battle_water" => JsonSerializer.Deserialize<ApiReqCombinedBattleBattleWaterResponse>(json),
+		"api_req_combined_battle/ld_airbattle" => JsonSerializer.Deserialize<ApiReqCombinedBattleLdAirbattleResponse>(json),
+		"api_req_combined_battle/ec_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcBattleResponse>(json),
+		"api_req_combined_battle/ec_night_to_day" => throw new NotImplementedException(),
+		"api_req_combined_battle/each_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEachBattleResponse>(json),
+		"api_req_combined_battle/each_battle_water" => JsonSerializer.Deserialize<ApiReqCombinedBattleEachBattleWaterResponse>(json),
+		"api_req_combined_battle/ld_shooting" => JsonSerializer.Deserialize<ApiReqCombinedBattleLdShootingResponse>(json),
+
+		"api_req_battle_midnight/battle" => JsonSerializer.Deserialize<ApiReqBattleMidnightBattleResponse>(json),
+		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleMidnightBattleResponse>(json),
+		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleResponse>(json),
+
+		"api_req_sortie/battleresult" => JsonSerializer.Deserialize<ApiReqSortieBattleresultResponse>(json),
+		"api_req_combined_battle/battleresult" => JsonSerializer.Deserialize<ApiReqCombinedBattleBattleresultResponse>(json),
+
+		"api_req_practice/battle" => JsonSerializer.Deserialize<ApiReqPracticeBattleResponse>(json),
+		"api_req_practice/battle_result" => JsonSerializer.Deserialize<ApiReqPracticeBattleResultResponse>(json),
+
+		_ => null,
+	};
 
 	/// <summary>
 	/// 戦闘終了時に各種データの収集を行います。

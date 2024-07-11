@@ -81,7 +81,7 @@ public class PhaseShelling : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -102,6 +102,7 @@ public class PhaseShelling : PhaseBase
 
 					AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
 					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+					damages[comboAttack.Attacker.ToFlatIndex()] += comboAttack.Defenders.Sum(d => d.Damage);
 				}
 			}
 			else
@@ -110,6 +111,7 @@ public class PhaseShelling : PhaseBase
 				{
 					AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, atk));
 					AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+					damages[atk.Attacker.ToFlatIndex()] += defs.Sum(d => d.Damage);
 				}
 			}
 		}

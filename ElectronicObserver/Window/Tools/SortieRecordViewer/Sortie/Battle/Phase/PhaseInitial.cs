@@ -44,7 +44,7 @@ public class PhaseInitial : PhaseBase
 	public List<int> EnemyInitialHPs => EnemyMembersInstance.Select(s => s?.HPCurrent ?? -1).ToList();
 	public int[] EnemyMaxHPs => EnemyMembersInstance.Select(s => s?.HPMax ?? -1).ToArray();
 	public List<List<int>> EnemyParameters { get; }
-	public int[][] EnemySlots => EnemyMembersInstance.Select(s => s?.SlotInstance.Select(e => e.EquipmentID).ToArray() ?? []).ToArray();
+	public int[][] EnemySlots => EnemyMembersInstance.Select(s => s?.SlotInstance.Select(e => e?.EquipmentID ?? -1).ToArray() ?? []).ToArray();
 
 	[MemberNotNullWhen(true, nameof(EnemyMembersEscort))]
 	[MemberNotNullWhen(true, nameof(EnemyLevelsEscort))]
@@ -58,7 +58,7 @@ public class PhaseInitial : PhaseBase
 	public List<int>? EnemyInitialHPsEscort => EnemyMembersEscortInstance?.Select(s => s?.HPCurrent ?? -1).ToList();
 	public int[]? EnemyMaxHPsEscort => EnemyMembersEscortInstance?.Select(s => s?.HPMax ?? -1).ToArray();
 	public List<List<int>>? EnemyParametersEscort { get; }
-	public int[][]? EnemySlotsEscort => EnemyMembersEscortInstance?.Select(s => s?.SlotInstance.Select(e => e.EquipmentID).ToArray() ?? []).ToArray();
+	public int[][]? EnemySlotsEscort => EnemyMembersEscortInstance?.Select(s => s?.SlotInstance.Select(e => e?.EquipmentID ?? -1).ToArray() ?? []).ToArray();
 
 
 	private string PlayerMainFleetTitle => FleetsAfterPhase?.EscortFleet switch
@@ -238,7 +238,10 @@ public class PhaseInitial : PhaseBase
 
 		Escape(fleets.Fleet, battle.ApiEscapeIdx);
 
-		EnemyParameters = battle.ApiEParam;
+		EnemyParameters = battle.ApiEParam
+			.Concat(Enumerable.Repeat(0, 6).Select(_ => new List<int> { 0, 0, 0, 0 }))
+			.Take(6)
+			.ToList();
 
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
@@ -273,7 +276,8 @@ public class PhaseInitial : PhaseBase
 				},
 				_ => null,
 			})
-			.Cast<IShipData?>()
+			.Concat(Enumerable.Repeat((IShipData?)null, 6))
+			.Take(6)
 			.ToList();
 
 		SetEnemyRange(EnemyMembersInstance);
@@ -296,6 +300,11 @@ public class PhaseInitial : PhaseBase
 		IsEnemyCombinedFleet = true;
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 		SetEnemyRange(EnemyMembersEscortInstance);
+
+		EnemyParametersEscort = battle.ApiEParamCombined
+			.Concat(Enumerable.Repeat(0, 6).Select(_ => new List<int> { 0, 0, 0, 0 }))
+			.Take(6)
+			.ToList();
 	}
 
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedBattleApiResponse battle)
@@ -311,6 +320,11 @@ public class PhaseInitial : PhaseBase
 		IsEnemyCombinedFleet = true;
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 		SetEnemyRange(EnemyMembersEscortInstance);
+
+		EnemyParametersEscort = battle.ApiEParamCombined
+			.Concat(Enumerable.Repeat(0, 6).Select(_ => new List<int> { 0, 0, 0, 0 }))
+			.Take(6)
+			.ToList();
 	}
 
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedNightBattleApiResponse battle)
@@ -330,6 +344,11 @@ public class PhaseInitial : PhaseBase
 
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;
+
+		EnemyParameters = battle.ApiEParam
+			.Concat(Enumerable.Repeat(0, 6).Select(_ => new List<int> { 0, 0, 0, 0 }))
+			.Take(6)
+			.ToList();
 
 		EnemyMembersInstance = battle.ApiShipKe
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
@@ -358,7 +377,8 @@ public class PhaseInitial : PhaseBase
 				},
 				_ => null,
 			})
-			.Cast<IShipData?>()
+			.Concat(Enumerable.Repeat((IShipData?)null, 6))
+			.Take(6)
 			.ToList();
 	}
 
@@ -422,10 +442,11 @@ public class PhaseInitial : PhaseBase
 			},
 			_ => null,
 		})
-		.Cast<IShipData?>()
+		.Concat(Enumerable.Repeat((IShipData?)null, 6))
+		.Take(6)
 		.ToList();
 
-	private void SetEnemyRange(List<IShipData?> ships)
+	private static void SetEnemyRange(List<IShipData?> ships)
 	{
 		foreach (IShipData? ship in ships)
 		{
@@ -434,12 +455,12 @@ public class PhaseInitial : PhaseBase
 			s.Range = Math.Max(s.MasterShip.Range, s.AllSlotInstance switch
 			{
 				[] => 0,
-				_ => s.AllSlotInstance.Max(s => s?.MasterEquipment.Range ?? 0),
+				_ => s.AllSlotInstance.Max(e => e?.MasterEquipment.Range ?? 0),
 			});
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		battleFleets = FleetsBeforePhase!.Clone();
 		FleetsAfterPhase = battleFleets;

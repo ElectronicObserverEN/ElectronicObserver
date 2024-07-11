@@ -73,7 +73,7 @@ public class PhaseNightBattle : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -107,6 +107,7 @@ public class PhaseNightBattle : PhaseBase
 
 					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
 					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+					damages[comboAttack.Attacker.ToFlatIndex()] += comboAttack.Defenders.Sum(d => d.Damage);
 				}
 			}
 			else
@@ -115,6 +116,7 @@ public class PhaseNightBattle : PhaseBase
 				{
 					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, atk, atk.Defenders.First().Defender));
 					AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+					damages[atk.Attacker.ToFlatIndex()] += defs.Sum(d => d.Damage);
 				}
 			}
 		}

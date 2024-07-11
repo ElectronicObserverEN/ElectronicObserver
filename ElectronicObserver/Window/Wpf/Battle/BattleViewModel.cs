@@ -1002,12 +1002,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		var initial = bd.Initial;
 		var resultHPs = bd.ResultHPs.ToList();
-		// var attackDamages = bd.AttackDamages;
-
-		/*
-		foreach (var bar in HPBars)
-			bar.SuspendUpdate();
-		*/
+		List<int> attackDamages = bd.AttackDamages;
 
 		void EnableHPBar(int index, int initialHP, int resultHP, int maxHP, bool isTargetable)
 		{
@@ -1073,9 +1068,10 @@ public partial class BattleViewModel : AnchorableViewModel
 					Math.Max(bar.Value, 0),
 					bar.MaximumValue,
 					bar.Value - bar.PrevValue,
-					Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, isLandBase, isEscaped)
-				// todo attackDamages[refindex]
-				// todo bd.GetBattleDetail(refindex)
+					Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, isLandBase, isEscaped),
+					attackDamages[refindex],
+					""
+					// todo bd.GetBattleDetail(refindex)
 				);
 
 				bar.BackColor = isEscaped switch
@@ -1114,7 +1110,8 @@ public partial class BattleViewModel : AnchorableViewModel
 						Math.Max(bar.Value, 0),
 						bar.MaximumValue,
 						bar.Value - bar.PrevValue,
-						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase)
+						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase),
+						""
 					// todo bd.GetBattleDetail(refindex)
 					);
 			}
@@ -1150,8 +1147,9 @@ public partial class BattleViewModel : AnchorableViewModel
 						Math.Max(bar.Value, 0),
 						bar.MaximumValue,
 						bar.Value - bar.PrevValue,
-						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase, isEscaped)
-					// todo attackDamages[refindex]
+						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase, isEscaped),
+						attackDamages[refindex],
+						""
 					// todo bd.GetBattleDetail(refindex)
 					);
 
@@ -1208,8 +1206,9 @@ public partial class BattleViewModel : AnchorableViewModel
 							Math.Max(bar.Value, 0),
 							bar.MaximumValue,
 							bar.Value - bar.PrevValue,
-							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase)
-						// todo bd.GetBattleDetail(refindex)
+							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase),
+							""
+							// todo bd.GetBattleDetail(refindex)
 						);
 				}
 				else
