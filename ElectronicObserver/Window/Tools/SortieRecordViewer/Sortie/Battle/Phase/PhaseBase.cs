@@ -129,4 +129,9 @@ public abstract class PhaseBase
 			.Select(i => i - 1)
 			.ToList()
 			?? new();
+
+	public string GetBattleDetail(int index = -1)
+	{
+		return "Test";
+	}
 }

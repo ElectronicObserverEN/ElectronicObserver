@@ -108,7 +108,7 @@ public class PhaseBaseAirRaid : PhaseBase, IPhaseAirBattle
 	public List<AirHitType> EnemyHitFlags { get; set; } = new();
 	public List<double> EnemyDamage { get; set; } = new();
 
-	private List<BattleBaseAirCorpsSquadron> Squadrons { get; }
+	public List<BattleBaseAirCorpsSquadron> Squadrons { get; }
 
 	public string Display { get; }
 

@@ -28,7 +28,7 @@ public class PhaseSupport : PhaseBase
 	private List<double> Damages { get; }
 	private List<HitType> Criticals { get; }
 	private int SupportFleetId { get; }
-	private IFleetData? SupportFleet { get; set; }
+	public IFleetData? SupportFleet { get; private set; }
 
 	public string? SupportFleetDisplay => CreateDisplay();
 

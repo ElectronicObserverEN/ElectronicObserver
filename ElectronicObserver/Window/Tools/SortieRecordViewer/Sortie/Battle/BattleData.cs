@@ -76,4 +76,10 @@ public abstract class BattleData
 			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle, AttackDamages);
 		}
 	}
+
+	public string GetBattleDetail(int index)
+	{
+		return string.Join(",", Phases
+			.Select(p => p.GetBattleDetail(index)));
+	}
 }

@@ -28,7 +28,7 @@ public class PhaseNightInitial : PhaseBase
 
 	public int SearchlightIndexFriend { get; }
 	public int SearchlightIndexEnemy { get; }
-	private IShipData? SearchlightFriend { get; }
+	public IShipData? SearchlightFriend { get; }
 	public IShipData? SearchlightEnemy { get; }
 	public IEquipmentData? SearchlightEquipmentFriend => GetSearchlight(SearchlightFriend);
 	public IEquipmentData? SearchlightEquipmentEnemy => GetSearchlight(SearchlightEnemy);

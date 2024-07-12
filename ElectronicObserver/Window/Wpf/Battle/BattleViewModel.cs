@@ -229,7 +229,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		BattleDetailView dialog = new(new BattleDetailViewModel
 		{
-			BattleDetailText = "", // todo BattleDetailDescriptor.GetBattleDetail(bm),
+			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm),
 		});
 
 		dialog.Show(App.Current!.MainWindow!);
@@ -1070,8 +1070,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					bar.Value - bar.PrevValue,
 					Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, isLandBase, isEscaped),
 					attackDamages[refindex],
-					""
-					// todo bd.GetBattleDetail(refindex)
+					bd.GetBattleDetail(refindex)
 				);
 
 				bar.BackColor = isEscaped switch
@@ -1111,8 +1110,7 @@ public partial class BattleViewModel : AnchorableViewModel
 						bar.MaximumValue,
 						bar.Value - bar.PrevValue,
 						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase),
-						""
-					// todo bd.GetBattleDetail(refindex)
+						bd.GetBattleDetail(refindex)
 					);
 			}
 			else
@@ -1149,8 +1147,7 @@ public partial class BattleViewModel : AnchorableViewModel
 						bar.Value - bar.PrevValue,
 						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase, isEscaped),
 						attackDamages[refindex],
-						""
-					// todo bd.GetBattleDetail(refindex)
+						bd.GetBattleDetail(refindex)
 					);
 
 					bar.BackColor = isEscaped switch
@@ -1207,8 +1204,7 @@ public partial class BattleViewModel : AnchorableViewModel
 							bar.MaximumValue,
 							bar.Value - bar.PrevValue,
 							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase),
-							""
-							// todo bd.GetBattleDetail(refindex)
+							bd.GetBattleDetail(refindex)
 						);
 				}
 				else
@@ -1251,7 +1247,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					_ => EquipmentIconType.Unknown,
 				};
 
-				FleetFriendToolTip = FormBattle.SupportExpedition + "\r\n"; // todo + support.GetBattleDetail();
+				FleetFriendToolTip = FormBattle.SupportExpedition + "\r\n" + support.GetBattleDetail();
 
 				FleetFriendText = ((isFriendCombined || hasFriend7thShip) && isEnemyCombined) switch
 				{

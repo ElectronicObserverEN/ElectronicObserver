@@ -45,6 +45,7 @@ public class PhaseInitial : PhaseBase
 	public int[] EnemyMaxHPs => EnemyMembersInstance.Select(s => s?.HPMax ?? -1).ToArray();
 	public List<List<int>> EnemyParameters { get; }
 	public int[][] EnemySlots => EnemyMembersInstance.Select(s => s?.SlotInstance.Select(e => e?.EquipmentID ?? -1).ToArray() ?? []).ToArray();
+	public IEquipmentData?[][] EnemySlotsInstance => EnemyMembersInstance.Select(s => s?.SlotInstance.ToArray() ?? []).ToArray();
 
 	[MemberNotNullWhen(true, nameof(EnemyMembersEscort))]
 	[MemberNotNullWhen(true, nameof(EnemyLevelsEscort))]
@@ -59,6 +60,7 @@ public class PhaseInitial : PhaseBase
 	public int[]? EnemyMaxHPsEscort => EnemyMembersEscortInstance?.Select(s => s?.HPMax ?? -1).ToArray();
 	public List<List<int>>? EnemyParametersEscort { get; }
 	public int[][]? EnemySlotsEscort => EnemyMembersEscortInstance?.Select(s => s?.SlotInstance.Select(e => e?.EquipmentID ?? -1).ToArray() ?? []).ToArray();
+	public IEquipmentData?[][]? EnemySlotsEscortInstance => EnemyMembersEscortInstance?.Select(s => s?.SlotInstance.ToArray() ?? []).ToArray();
 
 
 	private string PlayerMainFleetTitle => FleetsAfterPhase?.EscortFleet switch

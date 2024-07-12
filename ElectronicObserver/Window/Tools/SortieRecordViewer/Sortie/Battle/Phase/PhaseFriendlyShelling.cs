@@ -18,15 +18,15 @@ public class PhaseFriendlyShelling : PhaseBase
 	private ApiFriendlyBattle ApiFriendlyBattle { get; }
 	private ApiHougeki ShellingData => ApiFriendlyBattle.ApiHougeki;
 
-	private int FlareIndexFriend { get; set; }
-	private int FlareIndexEnemy { get; set; }
-	private IShipData? FlareFriend { get; set; }
-	private IShipData? FlareEnemy { get; set; }
+	public int FlareIndexFriend { get; private set; }
+	public int FlareIndexEnemy { get; private set; }
+	public IShipData? FlareFriend { get; private set; }
+	public IShipData? FlareEnemy { get; private set; }
 
-	private int SearchlightIndexFriend { get; set; }
-	private int SearchlightIndexEnemy { get; set; }
-	private IShipData? SearchlightFriend { get; set; }
-	private IShipData? SearchlightEnemy { get; set; }
+	public int SearchlightIndexFriend { get; private set; }
+	public int SearchlightIndexEnemy { get; private set; }
+	public IShipData? SearchlightFriend { get; private set; }
+	public IShipData? SearchlightEnemy { get; private set; }
 
 	public string InitialDisplay => GetDisplay();
 
