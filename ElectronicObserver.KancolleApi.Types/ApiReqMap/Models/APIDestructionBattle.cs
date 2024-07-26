@@ -58,6 +58,9 @@ public class ApiDestructionBattle : IFirstBattleApiResponse
 	[JsonPropertyName("api_formation")]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_balloon_cell")]
+	public int? ApiBalloonCell { get; set; }
+
 	[JsonPropertyName("api_lost_kind")]
 	public int ApiLostKind { get; set; }
 

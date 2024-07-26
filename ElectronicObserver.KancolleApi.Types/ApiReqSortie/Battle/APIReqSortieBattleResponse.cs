@@ -69,6 +69,9 @@ public class ApiReqSortieBattleResponse : IDayBattleApiResponse
 	[JsonPropertyName("api_formation")]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_balloon_cell")]
+	public int? ApiBalloonCell { get; set; }
+
 	[JsonPropertyName("api_hougeki1")]
 	public ApiHougeki1? ApiHougeki1 { get; set; }
 

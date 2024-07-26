@@ -597,4 +597,19 @@
   <data name="CombatRankPrediction" xml:space="preserve">
     <value>戦闘評価</value>
   </data>
+  <data name="SmokeType" xml:space="preserve">
+    <value>煙幕レベル</value>
+  </data>
+  <data name="BalloonCell" xml:space="preserve">
+    <value>阻塞気球マス</value>
+  </data>
+  <data name="PlayerBalloons" xml:space="preserve">
+    <value>自気球隻数</value>
+  </data>
+  <data name="EnemyBalloons" xml:space="preserve">
+    <value>敵気球隻数</value>
+  </data>
+  <data name="ArmorBreak" xml:space="preserve">
+    <value>装甲破砕</value>
+  </data>
 </root>

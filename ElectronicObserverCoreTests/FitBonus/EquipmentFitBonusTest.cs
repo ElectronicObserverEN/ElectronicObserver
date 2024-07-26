@@ -57,8 +57,8 @@ public class EquipmentFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Level = 151,
 			SlotInstance = new List<IEquipmentData?>
 			{
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD]),
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD])
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector])
 				{
 					Level = 4
 				},
@@ -97,11 +97,11 @@ public class EquipmentFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Level = 151,
 			SlotInstance = new List<IEquipmentData?>
 			{
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD])
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector])
 				{
 					Level = 10
 				},
-				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleGun_AAFD])
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector])
 				{
 					Level = 10
 				},

@@ -186,7 +186,7 @@ public class PhaseNightInitial : PhaseBase
 
 		if (TouchAircraftEnemy is not null)
 		{
-			values.Add(ConstantsRes.BattleDetail_EnemyNightContact+TouchAircraftEnemy.NameEN);
+			values.Add(ConstantsRes.BattleDetail_EnemyNightContact + TouchAircraftEnemy.NameEN);
 		}
 
 		if (SearchlightFriend is not null)

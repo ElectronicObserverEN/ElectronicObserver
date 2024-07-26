@@ -22,5 +22,8 @@ public sealed class RedTorpedoBattleExportMap : ClassMap<TorpedoBattleExportMode
 		References<RedShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
 		Map(m => m.FleetType).Name(CsvExportResources.FleetType);
 		Map(m => m.EnemyFleetType).Name(CsvExportResources.EnemyFleetType);
+		Map(m => m.SmokeType).Name(CsvExportResources.SmokeType);
+		References<BalloonExportMap>(s => s.Balloon);
+		Map(m => m.ArmorBreak).Name(CsvExportResources.ArmorBreak);
 	}
 }

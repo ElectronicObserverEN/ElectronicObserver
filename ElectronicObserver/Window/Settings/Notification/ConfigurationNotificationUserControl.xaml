@@ -85,7 +85,7 @@
 			Margin="2"
 			Command="{Binding OpenNotificationConfigDialogCommand}"
 			CommandParameter="{Binding Training}"
-			Content="{Binding Translation.Notification_RemodelLevel}"
+			Content="{Binding Translation.Notification_Training}"
 			/>
 	</WrapPanel>
 </UserControl>

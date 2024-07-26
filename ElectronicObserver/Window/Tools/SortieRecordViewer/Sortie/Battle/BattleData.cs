@@ -22,6 +22,12 @@ public abstract class BattleData
 	public bool IsEnemyCombined => FleetsBeforeBattle.EnemyEscortFleet is not null;
 	public bool IsBaseAirRaid => this is BattleBaseAirRaid;
 
+	public IEnumerable<int> InitialHPs => GetHpList(FleetsBeforeBattle.Fleet)
+		.Concat(GetHpList(FleetsBeforeBattle.EscortFleet))
+		.Take(12)
+		.Concat(GetHpList(FleetsBeforeBattle.EnemyFleet))
+		.Concat(GetHpList(FleetsBeforeBattle.EnemyEscortFleet));
+
 	public IEnumerable<int> ResultHPs => GetHpList(FleetsAfterBattle.Fleet)
 		.Concat(GetHpList(FleetsAfterBattle.EscortFleet))
 		.Take(12)

@@ -126,7 +126,7 @@ public enum EquipmentId
 	MainGunMedium_14cmTwinGun = 119,
 	AADirector_Type91AAFD = 120,
 	AADirector_Type94AAFD = 121,
-	MainGunSmall_10cmTwinHighangleGun_AAFD = 122,
+	MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector = 122,
 	MainGunMedium_SKC3420_3cmTwinGun = 123,
 	RadarLarge_FuMO25RADAR = 124,
 	Torpedo_61cmTriple_OxygenTorpedo = 125,
@@ -531,4 +531,8 @@ public enum EquipmentId
 	RadarLarge_Type281Radar = 527,
 	RadarLarge_Type274FireControlRadar = 528,
 	MainGunSmall_12_7cmTwinGunModelCKaiSanH = 529,
+	MainGunLarge_35_6cmTwinGunMountKaiSanC = 530,
+	CommandFacility_FleetCommunicationAntenna = 531,
+	CommandFacility_CommunicationEquipment_Personnel = 532,
+	MainGunSmall_10cmTwinHighangleMountKai_AntiAircraftFireDirectorKai = 533,
 }

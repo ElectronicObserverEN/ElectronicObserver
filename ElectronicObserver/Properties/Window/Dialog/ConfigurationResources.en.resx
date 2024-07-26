@@ -772,4 +772,7 @@ For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_co
   <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
     <value>URL for the Electronic Observer API used to report data issues.</value>
   </data>
+  <data name="Notification_Training" xml:space="preserve">
+    <value>Training plan completed</value>
+  </data>
 </root>

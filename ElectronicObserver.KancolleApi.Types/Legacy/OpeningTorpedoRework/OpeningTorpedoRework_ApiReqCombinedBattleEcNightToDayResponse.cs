@@ -14,6 +14,9 @@ public class OpeningTorpedoRework_ApiReqCombinedBattleEcNightToDayResponse : IOp
 	[JsonPropertyName("api_formation")]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_balloon_cell")]
+	public int? ApiBalloonCell { get; set; }
+
 	[JsonPropertyName("api_f_nowhps")]
 	public List<int> ApiFNowhps { get; set; } = new();
 

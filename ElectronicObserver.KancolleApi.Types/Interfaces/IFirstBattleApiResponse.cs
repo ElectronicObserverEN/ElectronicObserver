@@ -15,4 +15,9 @@ public interface IFirstBattleApiResponse : IBattleApiResponse
 	///  <br />
 	/// </summary>
 	List<int> ApiFormation { get; set; }
+
+	/// <summary>
+	/// null for old data, 0 if it's not a balloon cell, 1 if it is
+	/// </summary>
+	int? ApiBalloonCell { get; }
 }

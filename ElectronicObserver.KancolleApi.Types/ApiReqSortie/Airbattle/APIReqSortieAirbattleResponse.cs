@@ -63,6 +63,9 @@ public class ApiReqSortieAirbattleResponse : IAirBattleApiResponse
 	[JsonPropertyName("api_formation")]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_balloon_cell")]
+	public int? ApiBalloonCell { get; set; }
+
 	[JsonPropertyName("api_injection_kouku")]
 	public ApiInjectionKouku? ApiInjectionKouku { get; set; }
 

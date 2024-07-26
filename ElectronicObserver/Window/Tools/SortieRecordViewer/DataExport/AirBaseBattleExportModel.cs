@@ -32,4 +32,5 @@ public sealed record AirBaseBattleExportModel : IExportModel
 	public required int Damage { get; init; }
 	public required int Protected { get; init; }
 	public required ShipExportModel Defender { get; init; }
+	public required int? ArmorBreak { get; init; }
 }

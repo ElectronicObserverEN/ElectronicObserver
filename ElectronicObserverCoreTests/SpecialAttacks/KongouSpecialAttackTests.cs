@@ -237,4 +237,40 @@ public class KongouSpecialAttackTests
 		Assert.Equal(Math.Floor(143 * 2.4), fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
 		Assert.Equal(Math.Floor(145 * 2.4), fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
 	}
+
+	[Fact(DisplayName = "Damage - Gun bonus")]
+	public void KongouSpecialAttackDamage2()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.KongouKaiNiC])
+				{
+					SlotInstance = [
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon]),
+					],
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.HieiKaiNiC])
+				{
+					SlotInstance = [
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC]),
+					],
+				},
+			})
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(2.66, specialAttacksHits[0].PowerModifier, 2);
+		Assert.Equal(2.76, specialAttacksHits[1].PowerModifier, 2);
+
+		// TODO : the damage value is not checked against any other tools yet
+	}
 }

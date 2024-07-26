@@ -75,6 +75,9 @@ public class ApiReqCombinedBattleEcBattleResponse : ICombinedDayBattleApiRespons
 	[JsonPropertyName("api_formation")]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_balloon_cell")]
+	public int? ApiBalloonCell { get; set; }
+
 	[JsonPropertyName("api_friendly_kouku")]
 	public ApiKouku? ApiFriendlyKouku { get; set; }
 

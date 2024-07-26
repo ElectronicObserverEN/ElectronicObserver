@@ -38,7 +38,7 @@ public class ElectronicObserverApiService(ElectronicObserverApiTranslationViewMo
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, Translations.ElectronicObserverApi);
+			Utility.Logger.Add(1, string.Format($"{Translations.ElectronicObserverApi} {ex.Message}"));
 		}
 	}
 }

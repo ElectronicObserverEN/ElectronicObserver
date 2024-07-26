@@ -775,7 +775,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>韓国語</value>
   </data>
   <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="FormBrowser_EO_URL" xml:space="preserve">
     <value>https://electronicobserveren.github.io/cache</value>
@@ -795,5 +795,8 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   </data>
   <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
     <value>データ問題を報告するために使用される七四式EN APIのURL</value>
+  </data>
+  <data name="Notification_Training" xml:space="preserve">
+    <value>艦娘訓練終了</value>
   </data>
 </root>

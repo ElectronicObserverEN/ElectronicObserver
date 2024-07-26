@@ -38,13 +38,13 @@ public record KongouSpecialAttack : SpecialAttack
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1.25,
-				PowerModifier = 2.4,
+				PowerModifier = GetPowerModifier(0),
 			},
 			new()
 			{
 				ShipIndex = 1,
 				AccuracyModifier = 1.25,
-				PowerModifier = 2.4,
+				PowerModifier = GetPowerModifier(1),
 			},
 		};
 
@@ -96,6 +96,25 @@ public record KongouSpecialAttack : SpecialAttack
 
 		return Math.Max(0, Math.Floor(rate)) / 100;
 	}
+
+	private double GetPowerModifier(int shipIndex)
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? ship = ships[shipIndex];
+		if (ship is null) return 1;
+
+		int bonusEquipments = ship.AllSlotInstance.Count(IsBonusGun);
+
+		return bonusEquipments switch
+		{
+			0 => 2.4,
+			1 => 2.66,
+			_ => 2.76,
+		};
+	}
+
+	private static bool IsBonusGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
 
 	private static bool IsKongouClassThirdRemodel(ShipId id) => id is
 		ShipId.KongouKaiNiC or

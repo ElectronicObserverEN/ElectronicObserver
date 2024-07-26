@@ -60,6 +60,9 @@ public class ApiReqBattleMidnightSpMidnightResponse : INightOnlyBattleApiRespons
 	[JsonPropertyName("api_formation")]
 	public List<int> ApiFormation { get; set; } = new();
 
+	[JsonPropertyName("api_balloon_cell")]
+	public int? ApiBalloonCell { get; set; }
+
 	[JsonPropertyName("api_hougeki")]
 	public ApiHougeki? ApiHougeki { get; set; }
 

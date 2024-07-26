@@ -33,5 +33,6 @@ public sealed class NightBattleExportMap : ClassMap<NightBattleExportModel>
 		Map(m => m.PlayerSearchlightEquipmentId).Name(CsvExportResources.PlayerSearchlightEquipmentId);
 		Map(m => m.EnemySearchlightShipIndex).Name(CsvExportResources.EnemySearchlightShipIndex);
 		Map(m => m.EnemySearchlightEquipmentId).Name(CsvExportResources.EnemySearchlightEquipmentId);
+		Map(m => m.ArmorBreak).Name(CsvExportResources.ArmorBreak);
 	}
 }

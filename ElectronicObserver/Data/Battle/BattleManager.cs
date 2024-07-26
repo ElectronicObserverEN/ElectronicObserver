@@ -41,7 +41,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -728,28 +727,52 @@ public class BattleManager : APIWrapper
 		BattleData activeBattle = SecondBattle ?? FirstBattle;
 		BattleFleets fleetsBefore = activeBattle.FleetsBeforeBattle;
 
+		List<int> hpsBefore = activeBattle.InitialHPs.ToList();
 		List<int> hpsAfter = activeBattle.ResultHPs.ToList();
 
-		BattleRankPrediction prediction = new()
+		BattleRankPrediction prediction = (BattleMode & BattleModes.BattlePhaseMask) switch
 		{
-			FriendlyMainFleetBefore = fleetsBefore.Fleet,
-			FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.Fleet, hpsAfter, BattleSides.FriendMain)!,
+			BattleModes.AirRaid or BattleModes.Radar => new AirRaidBattleRankPrediction()
+			{
+				FriendlyMainFleetBefore = fleetsBefore.Fleet,
+				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.Fleet, hpsAfter, BattleSides.FriendMain)!,
 
-			FriendlyEscortFleetBefore = fleetsBefore.EscortFleet,
-			FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EscortFleet, hpsAfter, BattleSides.FriendEscort),
+				FriendlyEscortFleetBefore = fleetsBefore.EscortFleet,
+				FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EscortFleet, hpsAfter, BattleSides.FriendEscort),
 
-			EnemyMainFleetBefore = fleetsBefore.EnemyFleet!,
-			EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyFleet!, hpsAfter, BattleSides.EnemyMain)!,
+				EnemyMainFleetBefore = fleetsBefore.EnemyFleet,
+				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
 
-			EnemyEscortFleetBefore = fleetsBefore.EnemyEscortFleet,
-			EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyEscortFleet, hpsAfter, BattleSides.EnemyEscort),
+				EnemyEscortFleetBefore = fleetsBefore.EnemyEscortFleet,
+				EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyEscortFleet, hpsAfter, BattleSides.EnemyEscort),
+			},
+			BattleModes.BaseAirRaid => new BaseAirRaidBattleRankPrediction()
+			{
+				AirBaseBeforeAfter = BaseAirRaidBattleRankPrediction.SimulateBaseAfterBattle(hpsBefore, hpsAfter),
+
+				EnemyMainFleetBefore = fleetsBefore.EnemyFleet,
+				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
+
+				EnemyEscortFleetBefore = fleetsBefore.EnemyEscortFleet,
+				EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyEscortFleet, hpsAfter, BattleSides.EnemyEscort),
+			},
+			_ => new NormalBattleRankPrediction()
+			{
+				FriendlyMainFleetBefore = fleetsBefore.Fleet,
+				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.Fleet, hpsAfter, BattleSides.FriendMain)!,
+
+				FriendlyEscortFleetBefore = fleetsBefore.EscortFleet,
+				FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EscortFleet, hpsAfter, BattleSides.FriendEscort),
+
+				EnemyMainFleetBefore = fleetsBefore.EnemyFleet,
+				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
+
+				EnemyEscortFleetBefore = fleetsBefore.EnemyEscortFleet,
+				EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyEscortFleet, hpsAfter, BattleSides.EnemyEscort),
+			},
 		};
 
-		BattleRank rank = (BattleMode & BattleModes.BattlePhaseMask) switch
-		{
-			BattleModes.AirRaid or BattleModes.Radar => prediction.PredictRankAirRaid(),
-			_ => prediction.PredictRank(),
-		};
+		BattleRank rank = prediction.PredictRank();
 
 		friendrate = prediction.FriendHpRate;
 		enemyrate = prediction.EnemyHpRate;

@@ -29,4 +29,5 @@ public sealed record NightBattleExportModel : IExportModel
 	public required int? PlayerSearchlightEquipmentId { get; init; }
 	public required int? EnemySearchlightShipIndex { get; init; }
 	public required int? EnemySearchlightEquipmentId { get; init; }
+	public required int? ArmorBreak { get; init; }
 }

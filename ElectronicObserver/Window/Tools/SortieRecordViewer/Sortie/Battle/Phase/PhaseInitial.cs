@@ -28,7 +28,8 @@ public class PhaseInitial : PhaseBase
 	public int FriendFleetID { get; private set; }
 
 	public bool IsEnemyCombinedFleet { get; }
-	public bool IsBossDamaged { get; }
+	public int? ApiXal01 { get; }
+	public bool IsBossDamaged => ApiXal01 > 0;
 	public List<int>? ApiCombatRation { get; }
 	public List<int>? ApiCombatRationCombined { get; }
 	public List<int> FriendInitialHPs { get; }
@@ -226,7 +227,7 @@ public class PhaseInitial : PhaseBase
 			}
 		}
 
-		IsBossDamaged = battle.ApiXal01 > 0;
+		ApiXal01 = battle.ApiXal01;
 		ApiCombatRation = battle.ApiCombatRation;
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;
