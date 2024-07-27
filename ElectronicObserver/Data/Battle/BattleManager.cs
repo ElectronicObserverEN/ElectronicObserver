@@ -216,7 +216,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 記録する特殊攻撃
 	/// </summary>
-	private List<int> TracedSpecialAttack { get; } = [100, 101, 102, 103, 104, 300, 301, 302, 400, 401];
+	private List<int> TracedSpecialAttack { get; } = [100, 101, 102, 103, 104, 105, 300, 301, 302, 400, 401];
 
 	public override void LoadFromRequest(string apiname, Dictionary<string, string> data)
 	{

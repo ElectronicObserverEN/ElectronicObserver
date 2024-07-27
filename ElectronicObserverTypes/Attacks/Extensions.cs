@@ -11,6 +11,7 @@ public static class Extensions
 		DayAttackKind.SpecialMutsu or
 		DayAttackKind.SpecialColorado or
 		DayAttackKind.SpecialKongo or
+		DayAttackKind.SpecialRichelieu or
 		DayAttackKind.SpecialSubmarineTender23 or
 		DayAttackKind.SpecialSubmarineTender34 or
 		DayAttackKind.SpecialSubmarineTender24 or
@@ -24,6 +25,7 @@ public static class Extensions
 		NightAttackKind.SpecialMutsu or
 		NightAttackKind.SpecialColorado or
 		NightAttackKind.SpecialKongou or
+		NightAttackKind.SpecialRichelieu or
 		NightAttackKind.SpecialSubmarineTender23 or
 		NightAttackKind.SpecialSubmarineTender34 or
 		NightAttackKind.SpecialSubmarineTender24 or
@@ -77,7 +79,8 @@ public static class Extensions
 
 			DayAttackKind.SpecialNagato or
 			DayAttackKind.SpecialMutsu or
-			DayAttackKind.SpecialYamato2Ships => [0, 0, 1],
+			DayAttackKind.SpecialYamato2Ships or
+			DayAttackKind.SpecialRichelieu => [0, 0, 1],
 
 			DayAttackKind.SpecialColorado or
 			DayAttackKind.SpecialYamato3Ships => [0, 1, 2],
@@ -96,7 +99,8 @@ public static class Extensions
 
 			NightAttackKind.SpecialNagato or
 			NightAttackKind.SpecialMutsu or
-			NightAttackKind.SpecialYamato2Ships => [0, 0, 1],
+			NightAttackKind.SpecialYamato2Ships or
+			NightAttackKind.SpecialRichelieu => [0, 0, 1],
 
 			NightAttackKind.SpecialKongou => [0, 1],
 

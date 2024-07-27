@@ -26,11 +26,11 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<Button
-			Grid.Row="0"
-			Command="{Binding ToggleAllDestinationsCommand}"
-			Content="{x:Static translations:ExportFilterResources.All}"
-			/>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<Button Command="{Binding ToggleAllDestinationsCommand}" Content="{x:Static translations:ExportFilterResources.All}" />
+
+			<CheckBox Content="{x:Static translations:ExportFilterResources.IgnoreFilters}" IsChecked="{Binding IgnoreFilters}" />
+		</StackPanel>
 
 		<ListBox
 			Grid.Row="1"

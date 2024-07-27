@@ -1332,23 +1332,19 @@ public class ShipParameterRecord : RecordBase
 		remodelingShipID = -1;
 	}
 
-
-
-	void QuestRewardReceived(string apiname, dynamic data)
+	private void QuestRewardReceived(string apiname, dynamic data)
 	{
 		questRewardShipID = -1;
 
-		if (data.api_bounus())
-		{
-			foreach (var b in data.api_bounus)
-			{
-				if ((int)b.api_type == 11 && b.api_item() && b.api_item != null)
-				{
-					if (b.api_item.api_ship_id())
-					{
-						questRewardShipID = (int)b.api_item.api_ship_id;
+		if (!data.api_bounus()) return;
 
-					}
+		foreach (var bonus in data.api_bounus)
+		{
+			if (bonus?.api_item is { } && (int)bonus.api_type == 11 && bonus.api_item())
+			{
+				if (bonus.api_item.api_ship_id())
+				{
+					questRewardShipID = (int)bonus.api_item.api_ship_id;
 				}
 			}
 		}

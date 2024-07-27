@@ -264,4 +264,7 @@
   <data name="NightZuiunCutinZuiunZuiunRadar" xml:space="preserve">
     <value>CI (Zuiun x2 + Radar)</value>
   </data>
+  <data name="SpecialRichelieu" xml:space="preserve">
+    <value>Richelieu Touch</value>
+  </data>
 </root>

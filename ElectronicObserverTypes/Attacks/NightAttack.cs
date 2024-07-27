@@ -272,6 +272,7 @@ public record NightAttack : Attack
 		NightAttackKind.SpecialMutsu => AttackResources.SpecialMutsu,
 		NightAttackKind.SpecialColorado => AttackResources.SpecialColorado,
 		NightAttackKind.SpecialKongou => AttackResources.SpecialKongou,
+		NightAttackKind.SpecialRichelieu => AttackResources.SpecialRichelieu,
 
 		NightAttackKind.CutinZuiun => AttackResources.CutinZuiun,
 

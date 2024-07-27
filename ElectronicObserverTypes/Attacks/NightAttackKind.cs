@@ -69,6 +69,9 @@ public enum NightAttackKind
 	/// <summary> 僚艦夜戦突撃 </summary>
 	SpecialKongou = 104,
 
+	/// <summary> Richelieuよ！圧倒しなさいっ！ </summary>
+	SpecialRichelieu = 105,
+
 
 	/// <summary> 夜間瑞雲カットイン </summary>
 	CutinZuiun = 200,

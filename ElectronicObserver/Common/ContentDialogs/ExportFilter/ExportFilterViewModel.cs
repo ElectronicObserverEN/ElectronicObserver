@@ -13,6 +13,8 @@ public partial class ExportFilterViewModel : ObservableObject
 	private object Map { get; }
 	private static string All { get; } = "*";
 	public List<DestinationItemViewModel> Destinations { get; private set; }
+	
+	[ObservableProperty] private bool _ignoreFilters;
 
 	public ExportFilterViewModel(object world, object map)
 	{
@@ -24,6 +26,8 @@ public partial class ExportFilterViewModel : ObservableObject
 
 	public bool MatchesFilter(SortieNode node)
 	{
+		if (IgnoreFilters) return true;
+
 		return Destinations
 			.Where(d => d.IsChecked)
 			.SelectMany(d => d.CellIds)

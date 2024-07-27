@@ -103,4 +103,7 @@
   <data name="All" xml:space="preserve">
     <value>全</value>
   </data>
+  <data name="IgnoreFilters" xml:space="preserve">
+    <value>フィルターを無視する</value>
+  </data>
 </root>

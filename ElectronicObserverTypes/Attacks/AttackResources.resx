@@ -264,4 +264,7 @@
   <data name="NightZuiunCutinZuiunZuiunRadar" xml:space="preserve">
     <value>夜間瑞雲夜戦カットイン(瑞瑞電)</value>
   </data>
+  <data name="SpecialRichelieu" xml:space="preserve">
+    <value>Richelieuよ！圧倒しなさいっ！</value>
+  </data>
 </root>

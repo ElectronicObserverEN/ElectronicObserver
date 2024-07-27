@@ -32,6 +32,7 @@ public record DayAttack
 		DayAttackKind.SpecialMutsu => AttackResources.SpecialMutsu,
 		DayAttackKind.SpecialColorado => AttackResources.SpecialColorado,
 		DayAttackKind.SpecialKongo => AttackResources.SpecialKongou,
+		DayAttackKind.SpecialRichelieu => AttackResources.SpecialRichelieu,
 		DayAttackKind.ZuiunMultiAngle => AttackResources.ZuiunMultiAngle,
 		DayAttackKind.SeaAirMultiAngle => AttackResources.SeaAirMultiAngle,
 		DayAttackKind.SpecialSubmarineTender23 => AttackResources.SpecialSubmarineTender23,
