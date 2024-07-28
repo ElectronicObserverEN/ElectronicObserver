@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
@@ -9,27 +8,34 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 {
-	public BattleIndex AttackerIndex { get; }
+	public override BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
 	public int AttackerHpBeforeAttack { get; }
+	public override string AttackerDisplay { get; }
 
-	public BattleIndex DefenderIndex { get; }
+	public override BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public List<int> DefenderHpBeforeAttacks { get; } = new();
+	public List<int> DefenderHpBeforeAttacks { get; } = [];
+	public override string DefenderDisplay { get; }
 
 	public NightAttackKind AttackType { get; }
 	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	public List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
-	public string DamageDisplay { get; }
+
+	public override string DamageDisplay { get; }
 
 	public PhaseNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack,
 		BattleIndex defenderIndex)
 	{
 		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
+		AttackerDisplay = $"{Attacker.Name} {AttackerIndex.Display}";
+
 		DefenderIndex = defenderIndex;
 		Defender = fleets.GetShip(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		AttackType = attack.AttackType;
 		Attacks = attack.Defenders
 			.Where(d => d.Defender == DefenderIndex)

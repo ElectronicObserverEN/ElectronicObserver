@@ -10,7 +10,7 @@ using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseFriendlyShelling : PhaseBase
+public class PhaseFriendlyShelling : AttackPhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseFriendlyShelling;
 
@@ -30,8 +30,8 @@ public class PhaseFriendlyShelling : PhaseBase
 
 	public string InitialDisplay => GetDisplay();
 
-	private List<PhaseNightBattleAttack> Attacks { get; } = new();
-	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseNightBattleAttack> Attacks { get; } = [];
+	public override List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseFriendlyShelling(IKCDatabase kcDatabase, ApiFriendlyBattle apiFriendlyBattle)
 	{
@@ -141,7 +141,7 @@ public class PhaseFriendlyShelling : PhaseBase
 
 	private string GetDisplay()
 	{
-		List<string> values = new();
+		List<string> values = [];
 
 		if (SearchlightFriend is not null)
 		{

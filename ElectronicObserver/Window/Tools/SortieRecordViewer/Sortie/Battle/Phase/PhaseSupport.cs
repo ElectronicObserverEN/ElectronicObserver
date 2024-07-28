@@ -8,7 +8,7 @@ using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseSupport : PhaseBase
+public class PhaseSupport : AttackPhaseBase
 {
 	public override string Title => IsNightSupport switch
 	{
@@ -32,8 +32,8 @@ public class PhaseSupport : PhaseBase
 
 	public string? SupportFleetDisplay => CreateDisplay();
 
-	private List<PhaseSupportAttack> Attacks { get; } = new();
-	public List<PhaseSupportAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseSupportAttack> Attacks { get; } = [];
+	public override List<PhaseSupportAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseSupport(SupportType supportFlag, ApiSupportInfo apiSupportInfo, bool isNightSupport)
 	{
@@ -54,7 +54,7 @@ public class PhaseSupport : PhaseBase
 
 			ApiSupportHourai attack => attack.ApiDamage,
 
-			_ => new(),
+			_ => [],
 		};
 
 		Criticals = SupportAttack(supportFlag, apiSupportInfo) switch
@@ -68,7 +68,7 @@ public class PhaseSupport : PhaseBase
 
 			ApiSupportHourai attack => attack.ApiClList,
 
-			_ => new(),
+			_ => [],
 		};
 
 		SupportFleetId = SupportAttack(supportFlag, apiSupportInfo) switch
@@ -108,15 +108,15 @@ public class PhaseSupport : PhaseBase
 			Attacks.Add(new()
 			{
 				AttackType = SupportFlag,
-				Defenders = new()
-				{
+				Defenders =
+				[
 					new()
 					{
 						Defender = new(i, FleetFlag.Enemy),
 						RawDamage = Damages[i],
 						CriticalFlag = Criticals[i],
 					},
-				},
+				],
 			});
 		}
 
@@ -131,15 +131,15 @@ public class PhaseSupport : PhaseBase
 				Attacks.Add(new()
 				{
 					AttackType = SupportFlag,
-					Defenders = new()
-					{
+					Defenders =
+					[
 						new()
 						{
 							Defender = new(i + 6, FleetFlag.Enemy),
 							RawDamage = Damages[i + 6],
 							CriticalFlag = Criticals[i + 6],
 						},
-					},
+					],
 				});
 			}
 		}

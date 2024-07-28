@@ -101,8 +101,8 @@ public abstract class PhaseBase
 
 					_ => AirAttack.None,
 				},
-				Defenders = new List<AirBattleDefender>
-				{
+				Defenders =
+				[
 					new()
 					{
 						Defender = new BattleIndex(t.Index, fleetFlag),
@@ -117,9 +117,9 @@ public abstract class PhaseBase
 						},
 						RawDamage = t.Damage,
 					},
-				},
+				],
 			}).ToList()
-			?? new();
+			?? [];
 
 	protected static List<int> GetLaunchedShipIndex(List<List<int>?> apiPlaneFrom, int index)
 		=> apiPlaneFrom
@@ -128,10 +128,5 @@ public abstract class PhaseBase
 			?.Where(i => i > 0)
 			.Select(i => i - 1)
 			.ToList()
-			?? new();
-
-	public string GetBattleDetail(int index = -1)
-	{
-		return "Test";
-	}
+			?? [];
 }

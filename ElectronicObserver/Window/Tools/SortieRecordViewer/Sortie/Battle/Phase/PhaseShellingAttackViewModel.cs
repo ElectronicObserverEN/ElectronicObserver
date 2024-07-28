@@ -9,26 +9,32 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 {
-	public BattleIndex AttackerIndex { get; }
+	public override BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
 	public int AttackerHpBeforeAttack { get; }
+	public override string AttackerDisplay { get; }
 
-	public BattleIndex DefenderIndex { get; }
+	public override BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public List<int> DefenderHpBeforeAttacks { get; } = new();
+	public List<int> DefenderHpBeforeAttacks { get; } = [];
+	public override string DefenderDisplay { get; }
 
 	public DayAttackKind AttackType { get; }
 	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	public List<DayAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
-	public string DamageDisplay { get; }
+	public override string DamageDisplay { get; }
 
 	public PhaseShellingAttackViewModel(BattleFleets fleets, PhaseShellingAttack attack)
 	{
 		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
+		AttackerDisplay = $"{Attacker.Name} {AttackerIndex.Display}";
+
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		AttackType = ProcessAttack(Attacker, Defender, attack.AttackType);
 		Attacks = attack.Defenders
 			.Select(d => new DayAttack

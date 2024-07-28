@@ -6,9 +6,9 @@ using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public abstract class PhaseTorpedo : PhaseBase
+public abstract class PhaseTorpedo : AttackPhaseBase
 {
-	public List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = [];
+	public override List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = [];
 
 	protected static PhaseTorpedoAttack MakeAttack(int attackerIndex, int targetIndex, FleetFlag fleetFlag,
 		List<int> targets, List<double> damages, List<int> attackDamages, List<int> criticalFlags)

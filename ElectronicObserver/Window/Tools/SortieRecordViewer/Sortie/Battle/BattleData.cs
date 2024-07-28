@@ -83,9 +83,16 @@ public abstract class BattleData
 		}
 	}
 
-	public string GetBattleDetail(int index)
-	{
-		return string.Join(",", Phases
-			.Select(p => p.GetBattleDetail(index)));
-	}
+	public string GetBattleDetail(int index) => string.Join("\r\n", Phases
+		.OfType<AttackPhaseBase>()
+		.Select(p => p.GetBattleDetail(index) switch
+		{
+			string detail => $"""
+				== {p.Title} ==
+				{detail}
+				""",
+
+			_ => null,
+		})
+		.Where(d => !string.IsNullOrEmpty(d)));
 }

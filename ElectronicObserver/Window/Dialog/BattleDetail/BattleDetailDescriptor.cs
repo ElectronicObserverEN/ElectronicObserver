@@ -314,20 +314,20 @@ public static class BattleDetailDescriptor
 					}
 				}
 
-					if (p.FlareFriend is not null)
-					{
-						sb.AppendFormat(ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n",
-							p.FlareFriend.NameWithLevel, p.FlareIndexFriend + 1);
-					}
+				if (p.FlareFriend is not null)
+				{
+					sb.AppendFormat(ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n",
+						p.FlareFriend.NameWithLevel, p.FlareIndexFriend + 1);
+				}
 
-					if (p.FlareEnemy is not null)
-					{
-						sb.AppendFormat(ConstantsRes.BattleDetail_EnemyStarshell + "\r\n",
-							p.FlareEnemy.MasterShip.NameWithClass, p.FlareIndexEnemy + 1);
-					}
+				if (p.FlareEnemy is not null)
+				{
+					sb.AppendFormat(ConstantsRes.BattleDetail_EnemyStarshell + "\r\n",
+						p.FlareEnemy.MasterShip.NameWithClass, p.FlareIndexEnemy + 1);
+				}
 
-					sb.AppendLine();
-					break;
+				sb.AppendLine();
+				break;
 
 
 				case PhaseSearching p:
@@ -396,11 +396,13 @@ public static class BattleDetailDescriptor
 					GetBattleDetailPhaseAirBattle(sb, p);
 
 					break;
+
+				case AttackPhaseBase attackPhase:
+
+					sb.AppendLine(attackPhase.GetBattleDetail());
+
+					break;
 			}
-
-
-			if (!(phase is PhaseBaseAirAttack || phase is PhaseJetBaseAirAttack))       // 通常出力と重複するため
-				sb.Append(phase.GetBattleDetail());
 
 			if (sb.Length > 0)
 			{
@@ -412,7 +414,7 @@ public static class BattleDetailDescriptor
 		{
 			sbmaster.AppendLine(ConstantsRes.BattleDetail_BattleEnd);
 
-			IFleetData? friend = battle.FleetsAfterBattle.FriendFleet;
+			IFleetData? friend = battle.FleetsAfterBattle.Fleet;
 			IFleetData? friendescort = battle.FleetsAfterBattle.EscortFleet;
 			List<IShipData?> enemy = battle.Initial.EnemyMembersInstance;
 			List<IShipData?>? enemyescort = battle.Initial.EnemyMembersEscortInstance;
@@ -745,14 +747,14 @@ public static class BattleDetailDescriptor
 		if (bm.IsCombinedBattle)
 		{
 			sb.AppendFormat(ConstantsRes.BattleDetail_ResultMVPMain + "\r\n",
-				result.MvpIndex == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.FriendFleet.MembersInstance[result.MvpIndex - 1].NameWithLevel);
+				result.MvpIndex == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[result.MvpIndex].NameWithLevel);
 			sb.AppendFormat(ConstantsRes.BattleDetail_ResultMVPEscort + "\r\n",
-				result.MvpIndexCombined == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.EscortFleet.MembersInstance[result.MvpIndexCombined.Value - 1].NameWithLevel);
+				result.MvpIndexCombined == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.EscortFleet.MembersInstance[result.MvpIndexCombined.Value].NameWithLevel);
 		}
 		else
 		{
 			sb.AppendFormat("MVP: {0}\r\n",
-				result.MvpIndex == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.FriendFleet.MembersInstance[result.MvpIndex - 1].NameWithLevel);
+				result.MvpIndex == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[result.MvpIndex].NameWithLevel);
 		}
 
 		sb.AppendFormat(ConstantsRes.BattleDetail_AdmiralExp + "\r\n", result.AdmiralExp);

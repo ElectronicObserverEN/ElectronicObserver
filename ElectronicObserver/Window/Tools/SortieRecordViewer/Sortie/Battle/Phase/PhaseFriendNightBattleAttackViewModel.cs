@@ -8,25 +8,31 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 {
-	public BattleIndex AttackerIndex { get; }
+	public override BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
 	public int AttackerHpBeforeAttack { get; }
+	public override string AttackerDisplay { get; }
 
-	public BattleIndex DefenderIndex { get; }
+	public override BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public List<int> DefenderHpBeforeAttacks { get; } = new();
+	private List<int> DefenderHpBeforeAttacks { get; } = [];
+	public override string DefenderDisplay { get; }
 
 	private List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
-	public string DamageDisplay { get; }
+	public override string DamageDisplay { get; }
 
 	public PhaseFriendNightBattleAttackViewModel(BattleFleets fleets, BattleIndex attacker,
 		BattleIndex defender, NightAttackKind attackType, List<PhaseNightBattleDefender> defenders)
 	{
 		AttackerIndex = attacker;
 		Attacker = fleets.GetFriendShip(AttackerIndex)!;
+		AttackerDisplay = $"{Attacker.Name} {AttackerIndex.Display}";
+
 		DefenderIndex = defender;
 		Defender = fleets.GetFriendShip(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		Attacks = defenders
 			.Select(d => new NightAttack
 			{

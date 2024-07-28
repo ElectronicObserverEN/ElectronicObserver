@@ -9,24 +9,26 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 {
 	public int WaveIndex { get; }
 
-	public BattleIndex DefenderIndex { get; }
-	public IShipData Defender { get; }
-	public int DefenderHpBeforeAttack { get; }
-
-	public int Damage { get; }
-	public HitType HitType { get; }
-	public AirAttack AttackType { get; }
-	private IEquipmentData? UsedDamecon { get; }
-	public string DamageDisplay { get; }
-	public bool GuardsFlagship { get; }
-
-	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
+	public override BattleIndex? AttackerIndex => null;
+	public override string AttackerDisplay => (WaveIndex, DefenderIndex.FleetFlag) switch
 	{
 		( > 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
 		(_, FleetFlag.Player) => BattleRes.EnemyAirSquadron,
 		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
 		_ => "???",
 	};
+
+	public override BattleIndex DefenderIndex { get; }
+	public IShipData Defender { get; }
+	public int DefenderHpBeforeAttack { get; }
+	public override string DefenderDisplay { get; }
+
+	public int Damage { get; }
+	public HitType HitType { get; }
+	public AirAttack AttackType { get; }
+	private IEquipmentData? UsedDamecon { get; }
+	public override string DamageDisplay { get; }
+	public bool GuardsFlagship { get; }
 
 	public string AttackKind => GetAttackKind(AttackType);
 
@@ -38,6 +40,8 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		AttackType = attack.AttackType;
 		GuardsFlagship = attack.Defenders.First().GuardsFlagship;
 

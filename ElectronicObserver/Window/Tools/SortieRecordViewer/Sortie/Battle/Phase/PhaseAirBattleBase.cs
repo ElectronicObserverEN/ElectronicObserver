@@ -13,7 +13,7 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseAirBattleBase : PhaseBase, IPhaseAirBattle
+public class PhaseAirBattleBase : AttackPhaseBase, IPhaseAirBattle
 {
 	public override string Title => BattleRes.BattlePhaseAirBattle;
 
@@ -105,8 +105,8 @@ public class PhaseAirBattleBase : PhaseBase, IPhaseAirBattle
 	public List<int> LaunchedShipIndexFriend { get; }
 	public List<int> LaunchedShipIndexEnemy { get; }
 
-	private List<AirBattleAttack> Attacks { get; } = new();
-	public List<AirBattleAttackViewModel> AttackDisplays { get; } = new();
+	private List<AirBattleAttack> Attacks { get; } = [];
+	public override List<AirBattleAttackViewModel> AttackDisplays { get; } = [];
 
 	public string? Stage1Display { get; }
 

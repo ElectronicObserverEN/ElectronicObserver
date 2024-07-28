@@ -9,13 +9,13 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseNightBattle : PhaseBase
+public class PhaseNightBattle : AttackPhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseNightBattle;
 
 	private IKCDatabase KcDatabase { get; }
-	private List<PhaseNightBattleAttack> Attacks { get; } = new();
-	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseNightBattleAttack> Attacks { get; } = [];
+	public override List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseNightBattle(IKCDatabase kcDatabase, List<FleetFlag> apiAtEflag, List<int> apiAtList,
 		List<List<HitType>> apiClList, List<List<double>> apiDamage, List<List<int>> apiDfList,
@@ -102,7 +102,7 @@ public class PhaseNightBattle : PhaseBase
 							2 => new(attackerIndex + 6, FleetFlag.Player),
 							_ => new(attackerIndex, FleetFlag.Player),
 						},
-						Defenders = new() { atk.Defenders[i] },
+						Defenders = [atk.Defenders[i]],
 					};
 
 					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));

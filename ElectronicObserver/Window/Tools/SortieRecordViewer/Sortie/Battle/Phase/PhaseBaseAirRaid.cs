@@ -13,7 +13,7 @@ using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseBaseAirRaid : PhaseBase, IPhaseAirBattle
+public class PhaseBaseAirRaid : AttackPhaseBase, IPhaseAirBattle
 {
 	public override string Title => BattleRes.BattlePhaseAirBaseRaid;
 
@@ -69,8 +69,8 @@ public class PhaseBaseAirRaid : PhaseBase, IPhaseAirBattle
 	public List<int> LaunchedShipIndexFriend { get; }
 	public List<int> LaunchedShipIndexEnemy { get; }
 
-	private List<AirBattleAttack> Attacks { get; } = new();
-	public List<AirBaseRaidAttackViewModel> AttackDisplays { get; } = new();
+	private List<AirBattleAttack> Attacks { get; } = [];
+	public override List<AirBaseRaidAttackViewModel> AttackDisplays { get; } = [];
 
 	public string? Stage1Display { get; }
 
@@ -98,15 +98,15 @@ public class PhaseBaseAirRaid : PhaseBase, IPhaseAirBattle
 
 	public string? Stage2Display { get; protected set; }
 
-	public List<int> PlayerTorpedoFlags { get; set; } = new();
-	public List<int> PlayerBomberFlags { get; set; } = new();
-	public List<AirHitType> PlayerHitFlags { get; set; } = new();
-	public List<double> PlayerDamage { get; set; } = new();
+	public List<int> PlayerTorpedoFlags { get; set; } = [];
+	public List<int> PlayerBomberFlags { get; set; } = [];
+	public List<AirHitType> PlayerHitFlags { get; set; } = [];
+	public List<double> PlayerDamage { get; set; } = [];
 
-	public List<int> EnemyTorpedoFlags { get; set; } = new();
-	public List<int> EnemyBomberFlags { get; set; } = new();
-	public List<AirHitType> EnemyHitFlags { get; set; } = new();
-	public List<double> EnemyDamage { get; set; } = new();
+	public List<int> EnemyTorpedoFlags { get; set; } = [];
+	public List<int> EnemyBomberFlags { get; set; } = [];
+	public List<AirHitType> EnemyHitFlags { get; set; } = [];
+	public List<double> EnemyDamage { get; set; } = [];
 
 	public List<BattleBaseAirCorpsSquadron> Squadrons { get; }
 
@@ -146,7 +146,7 @@ public class PhaseBaseAirRaid : PhaseBase, IPhaseAirBattle
 				Equipment = KCDatabase.Instance.MasterEquipments[(int)b.ApiMstId],
 				AircraftCount = b.ApiCount,
 			}).ToList()
-			?? new();
+			?? [];
 
 		StringBuilder sb = new();
 
