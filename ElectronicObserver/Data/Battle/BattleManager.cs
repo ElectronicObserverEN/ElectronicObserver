@@ -9,6 +9,7 @@ using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.BattleWater;
@@ -16,6 +17,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcNightToDay;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
@@ -25,11 +27,13 @@ using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.NightToDay;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
@@ -50,7 +54,7 @@ namespace ElectronicObserver.Data.Battle;
 public class BattleManager : APIWrapper
 {
 
-	public static readonly string BattleLogPath = "BattleLog";
+	public static string BattleLogPath => "BattleLog";
 
 	public delegate void ShipLevelUpHandler(IShipData ship, int nextLevel);
 
@@ -59,17 +63,17 @@ public class BattleManager : APIWrapper
 	/// </summary>
 	/// <param name="ship"></param>
 	/// <param name="nextLevel"></param>
-	public event ShipLevelUpHandler ShipLevelUp;
+	public event ShipLevelUpHandler? ShipLevelUp;
 
 	/// <summary>
 	/// 羅針盤データ
 	/// </summary>
-	public CompassData Compass { get; private set; }
+	public CompassData? Compass { get; private set; }
 
 	/// <summary>
 	/// 昼戦データ
 	/// </summary>
-	public FirstBattleData BattleDay { get; private set; }
+	public FirstBattleData? BattleDay { get; private set; }
 
 	/// <summary>
 	/// 夜戦データ
@@ -79,17 +83,17 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 戦闘結果データ
 	/// </summary>
-	public BattleResult Result { get; private set; }
+	public BattleResult? Result { get; private set; }
 
 	/// <summary>
 	/// The battle result api doesn't report SS, so we need to evaluate it manually.
 	/// </summary>
-	public string PredictedBattleRank { get; set; }
+	public string? PredictedBattleRank { get; set; }
 
 	// In the api, heavy base air raid is implemented as 3 different air raid battles
 	// If we decide to collapse it down into 1 battle, this should be deleted
 	// and heavy base air raid moved to BattleDay like regular BattleBaseAirRaid
-	public List<BattleBaseAirRaid> HeavyBaseAirRaids { get; } = new();
+	public List<BattleBaseAirRaid> HeavyBaseAirRaids { get; } = [];
 
 	[Flags]
 	public enum BattleModes
@@ -113,7 +117,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 戦闘種別
 	/// </summary>
-	public BattleModes BattleMode { get; private set; }
+	public BattleModes BattleMode { get; }
 
 
 	/// <summary>
@@ -168,7 +172,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 2回目の戦闘
 	/// </summary>
-	public BattleData? SecondBattle => StartsFromDayBattle ? (BattleData)BattleNight : BattleDay;
+	public BattleData? SecondBattle => StartsFromDayBattle ? BattleNight : BattleDay;
 
 
 	/// <summary>
@@ -267,13 +271,11 @@ public class BattleManager : APIWrapper
 				BattleDay = null;
 				BattleNight = null;
 				Result = null;
-				BattleMode = BattleModes.Undefined;
 				Compass = new CompassData();
 				Compass.LoadFromResponse(apiname, data);
 
 				if (apiData is ApiReqMapNextResponse { ApiDestructionBattle: { } battle })
 				{
-					BattleMode = BattleModes.BaseAirRaid;
 					BattleDay = BattleFactory.CreateBattle(battle, Fleets);
 					BattleFinished();
 				}
@@ -299,7 +301,6 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqSortieBattleResponse battle) break;
 
-				BattleMode = BattleModes.Normal;
 				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
@@ -308,114 +309,149 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqBattleMidnightBattleResponse battle) break;
 
-				BattleNight = BattleFactory.CreateBattle(battle, BattleDay.FleetsAfterBattle);
+				BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
 			}
 			break;
 
-			/*
 			case "api_req_battle_midnight/sp_midnight":
-				BattleMode = BattleModes.NightOnly;
-				BattleDay = null;
-				BattleNight = new BattleNightOnly();
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqBattleMidnightSpMidnightResponse battle) break;
+
+				BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_sortie/airbattle":
-				BattleMode = BattleModes.AirBattle;
-				BattleDay = new BattleAirBattle();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqSortieAirbattleResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_sortie/ld_airbattle":
-				BattleMode = BattleModes.AirRaid;
-				BattleDay = new BattleAirRaid();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqSortieLdAirbattleResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_sortie/night_to_day":
-				BattleMode = BattleModes.NightDay;
-				BattleNight = new BattleNormalDayFromNight();
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqSortieNightToDayResponse battle) break;
+
+				// todo
+				// BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_sortie/ld_shooting":
-				BattleMode = BattleModes.Radar;
-				BattleDay = new BattleNormalRadar();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqSortieLdShootingResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/battle":
-				BattleMode = BattleModes.Normal | BattleModes.CombinedTaskForce;
-				BattleDay = new BattleCombinedNormalDay();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleBattleResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/midnight_battle":
-				BattleNight = new BattleCombinedNormalNight();
-				//BattleNight.TakeOverParameters( BattleDay );		//checkme: 連合艦隊夜戦では昼戦での与ダメージがMVPに反映されない仕様？
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleMidnightBattleResponse battle) break;
+
+				BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+			}
+			break;
 
 			case "api_req_combined_battle/sp_midnight":
-				BattleMode = BattleModes.NightOnly | BattleModes.CombinedMask;
+			{
+				if (apiData is not ApiReqCombinedBattleSpMidnightResponse battle) break;
+
 				BattleDay = null;
-				BattleNight = new BattleCombinedNightOnly();
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+				BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/airbattle":
-				BattleMode = BattleModes.AirBattle | BattleModes.CombinedTaskForce;
-				BattleDay = new BattleCombinedAirBattle();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleAirbattleResponse battle) break;
+
+				// todo
+				// BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/battle_water":
-				BattleMode = BattleModes.Normal | BattleModes.CombinedSurface;
-				BattleDay = new BattleCombinedWater();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleBattleWaterResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/ld_airbattle":
-				BattleMode = BattleModes.AirRaid | BattleModes.CombinedTaskForce;
-				BattleDay = new BattleCombinedAirRaid();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleLdAirbattleResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/ec_battle":
-				BattleMode = BattleModes.Normal | BattleModes.EnemyCombinedFleet;
-				BattleDay = new BattleEnemyCombinedDay();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleEcBattleResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/ec_midnight_battle":
-				BattleNight = new BattleEnemyCombinedNight();
-				BattleNight.TakeOverParameters(BattleDay);
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleEcMidnightBattleResponse battle) break;
+
+				BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+			}
+			break;
 
 			case "api_req_combined_battle/ec_night_to_day":
-				BattleMode = BattleModes.NightDay | BattleModes.EnemyCombinedFleet;
-				BattleNight = new BattleEnemyCombinedDayFromNight();
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleEcNightToDayResponse battle) break;
+
+				// todo
+				// BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/each_battle":
-				BattleMode = BattleModes.Normal | BattleModes.CombinedTaskForce | BattleModes.EnemyCombinedFleet;
-				BattleDay = new BattleCombinedEachDay();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleEachBattleResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/each_battle_water":
-				BattleMode = BattleModes.Normal | BattleModes.CombinedSurface | BattleModes.EnemyCombinedFleet;
-				BattleDay = new BattleCombinedEachWater();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleEachBattleWaterResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_combined_battle/ld_shooting":
-				BattleMode = BattleModes.Radar | BattleModes.CombinedTaskForce;
-				BattleDay = new BattleCombinedRadar();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqCombinedBattleLdShootingResponse battle) break;
+
+				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_member/get_practice_enemyinfo":
 				EnemyAdmiralName = data.api_nickname;
@@ -423,17 +459,22 @@ public class BattleManager : APIWrapper
 				break;
 
 			case "api_req_practice/battle":
-				BattleMode = BattleModes.Practice;
-				BattleDay = new BattlePracticeDay();
-				BattleDay.LoadFromResponse(apiname, data);
-				break;
+			{
+				if (apiData is not ApiReqPracticeBattleResponse battle) break;
+
+				// todo
+				// BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+			}
+			break;
 
 			case "api_req_practice/midnight_battle":
-				BattleNight = new BattlePracticeNight();
-				BattleNight.TakeOverParameters(BattleDay);
-				BattleNight.LoadFromResponse(apiname, data);
-				break;
-			*/
+			{
+				if (apiData is not ApiReqPracticeMidnightBattleResponse battle) break;
+
+				// todo
+				// BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+			}
+			break;
 
 			case "api_req_sortie/battleresult":
 			case "api_req_combined_battle/battleresult":
@@ -455,7 +496,6 @@ public class BattleManager : APIWrapper
 				BattleDay = null;
 				BattleNight = null;
 				Result = null;
-				BattleMode = BattleModes.Undefined;
 				PredictedBattleRank = "";
 				DroppedShipCount = DroppedEquipmentCount = 0;
 				DroppedItemCount.Clear();
@@ -785,34 +825,34 @@ public class BattleManager : APIWrapper
 	/// </summary>
 	public bool WillNightBattleWithMainFleet()
 	{
-		if (StartsFromDayBattle && IsEnemyCombined)
+		if (!IsEnemyCombined) return false; // ? true?
+
+		var initial = BattleDay.Initial;
+		int score = 0;
+		for (int i = 0; i < initial.EnemyInitialHPsEscort.Count; i++)
 		{
-			var initial = BattleDay.Initial;
-			int score = 0;
-			for (int i = 0; i < initial.EnemyInitialHPsEscort.Count; i++)
+			if (initial.EnemyMembersEscort.ToList()[i] > 0)
 			{
-				if (initial.EnemyMembersEscort.ToList()[i] > 0)
+				double rate = (double)BattleDay.ResultHPs.ToList()[BattleIndex.Get(BattleSides.EnemyEscort, i)] /
+					initial.EnemyMaxHPsEscort.ToList()[i];
+
+				if (rate > 0.5)
 				{
-					double rate = (double)BattleDay.ResultHPs.ToList()[BattleIndex.Get(BattleSides.EnemyEscort, i)] / initial.EnemyMaxHPsEscort.ToList()[i];
+					score += 10;
+				}
+				else if (rate > 0.25)
+				{
+					score += 7;
+				}
 
-					if (rate > 0.5)
-					{
-						score += 10;
-					}
-					else if (rate > 0.25)
-					{
-						score += 7;
-					}
-
-					if (i == 0 && rate > 0)
-					{
-						score += 10;
-					}
+				if (i == 0 && rate > 0)
+				{
+					score += 10;
 				}
 			}
-			return score < 30;
 		}
-		else return false;          // ? true?
+
+		return score < 30;
 	}
 
 
