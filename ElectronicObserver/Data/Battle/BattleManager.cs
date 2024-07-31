@@ -115,28 +115,28 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 出撃中に入手した艦船数
 	/// </summary>
-	public int DroppedShipCount { get; internal set; }
+	public int DroppedShipCount { get; private set; }
 
 	/// <summary>
 	/// 出撃中に入手した装備数
 	/// </summary>
-	public int DroppedEquipmentCount { get; internal set; }
+	public int DroppedEquipmentCount { get; private set; }
 
 	/// <summary>
 	/// 出撃中に入手したアイテム - ID と 個数 のペア
 	/// </summary>
-	public Dictionary<int, int> DroppedItemCount { get; } = [];
+	private Dictionary<int, int> DroppedItemCount { get; } = [];
 
 
 	/// <summary>
 	/// 演習の敵提督名
 	/// </summary>
-	public string EnemyAdmiralName { get; internal set; }
+	private string? EnemyAdmiralName { get; set; }
 
 	/// <summary>
 	/// 演習の敵提督階級
 	/// </summary>
-	public string EnemyAdmiralRank { get; internal set; }
+	private string? EnemyAdmiralRank { get; set; }
 
 	/// <summary>
 	/// True if Resupply was used before the battle
