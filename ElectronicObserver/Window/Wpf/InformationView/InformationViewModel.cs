@@ -154,7 +154,7 @@ public class InformationViewModel : AnchorableViewModel
 			break;
 
 			case "api_req_practice/battle":
-				_inSortie = [ KCDatabase.Instance.Battle.BattleDay.Initial.FriendFleetID ];
+				_inSortie = [ KCDatabase.Instance.Battle.FirstBattle.Initial.FriendFleetID ];
 				break;
 
 		}

@@ -225,7 +225,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	{
 		BattleManager? bm = KCDatabase.Instance.Battle;
 
-		if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined) return;
+		if (bm.FirstBattle is null) return;
 
 		BattleDetailView dialog = new(new BattleDetailViewModel
 		{
@@ -267,8 +267,8 @@ public partial class BattleViewModel : AnchorableViewModel
 				SetFormation(bm);
 				ClearSearchingResult();
 				ClearBaseAirAttack();
-				SetAerialWarfare(null, ((BattleBaseAirRaid)bm.BattleDay).BaseAirRaid);
-				SetHPBar(bm.BattleDay);
+				SetAerialWarfare(null, ((BattleBaseAirRaid)bm.FirstBattle).BaseAirRaid);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				ViewVisible = !hideDuringBattle;
@@ -300,19 +300,19 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 
 				SetFormation(bm);
-				SetSearchingResult(bm.BattleDay);
+				SetSearchingResult(bm.FirstBattle);
 
-				if (bm.BattleDay is IBaseAirAttack baa)
+				if (bm.FirstBattle is IBaseAirAttack baa)
 				{
 					SetBaseAirAttack(baa.BaseAirAttack);
 				}
 
-				if (bm.BattleDay is IAirBattle ab)
+				if (bm.FirstBattle is IAirBattle ab)
 				{
 					SetAerialWarfare(ab.JetAirBattle, ab.AirBattle);
 				}
 
-				SetHPBar(bm.BattleDay);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -324,10 +324,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			case "api_req_battle_midnight/battle":
 			case "api_req_practice/midnight_battle":
 			{
-				if (bm.BattleNight is not INightInitial b) return;
+				if (bm.SecondBattle is not INightInitial b) return;
 
 				SetNightBattleEvent(b.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetHPBar(bm.SecondBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -338,14 +338,14 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_battle_midnight/sp_midnight":
 			{
-				if (bm.BattleNight is not INightInitial b) return;
+				if (bm.FirstBattle is not INightInitial b) return;
 
 				SetFormation(bm);
 				ClearBaseAirAttack();
 				ClearAerialWarfare();
 				ClearSearchingResult();
 				SetNightBattleEvent(b.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -356,7 +356,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_sortie/airbattle":
 			{
-				if (bm.BattleDay is not BattleAirBattle bab) return;
+				if (bm.FirstBattle is not BattleAirBattle bab) return;
 
 				SetFormation(bm);
 				SetSearchingResult(bab);
@@ -373,7 +373,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_sortie/night_to_day":
 			{
-				if (bm.BattleNight is not BattleNormalDayFromNight battle) return;
+				if (bm.FirstBattle is not BattleNormalDayFromNight battle) return;
 
 				SetFormation(bm);
 				ClearAerialWarfare();
@@ -388,7 +388,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					SetAerialWarfare(battle.JetAirBattle, battle.AirBattle);
 				}
 
-				SetHPBar(bm.BattleDay);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -407,19 +407,19 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 
 				SetFormation(bm);
-				SetSearchingResult(bm.BattleDay);
+				SetSearchingResult(bm.FirstBattle);
 
-				if (bm.BattleDay is IBaseAirAttack baa)
+				if (bm.FirstBattle is IBaseAirAttack baa)
 				{
 					SetBaseAirAttack(baa.BaseAirAttack);
 				}
 
-				if (bm.BattleDay is IAirBattle ab)
+				if (bm.FirstBattle is IAirBattle ab)
 				{
 					SetAerialWarfare(ab.JetAirBattle, ab.AirBattle);
 				}
 
-				SetHPBar(bm.BattleDay);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -430,7 +430,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_combined_battle/airbattle":
 			{
-				if (bm.BattleDay is not BattleCombinedAirBattle bcab) return;
+				if (bm.FirstBattle is not BattleCombinedAirBattle bcab) return;
 
 				SetFormation(bm);
 				SetSearchingResult(bcab);
@@ -448,10 +448,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			case "api_req_combined_battle/midnight_battle":
 			case "api_req_combined_battle/ec_midnight_battle":
 			{
-				if (bm.BattleNight is not INightInitial b) break;
+				if (bm.SecondBattle is not INightInitial b) break;
 
 				SetNightBattleEvent(b.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetHPBar(bm.SecondBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -462,14 +462,14 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_combined_battle/sp_midnight":
 			{
-				if (bm.BattleNight is not INightInitial b) break;
+				if (bm.FirstBattle is not INightInitial b) break;
 
 				SetFormation(bm);
 				ClearAerialWarfare();
 				ClearSearchingResult();
 				ClearBaseAirAttack();
 				SetNightBattleEvent(b.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetHPBar(bm.SecondBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -480,13 +480,13 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_combined_battle/ec_night_to_day":
 			{
-				var battle = bm.BattleNight as DayFromNightBattleData;
+				if (bm.FirstBattle is not DayFromNightBattleData battle) break;
 
 				SetFormation(bm);
 				ClearAerialWarfare();
 				ClearSearchingResult();
 				ClearBaseAirAttack();
-				SetNightBattleEvent(battle!.NightInitial);
+				SetNightBattleEvent(battle.NightInitial);
 
 				if (battle.NextToDay)
 				{
@@ -546,7 +546,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 
 
-		if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
+		if (bm.IsEnemyCombined)
 		{
 			// highlights for the fleet you'll fight in night battle
 			// todo: this should probably go to config
@@ -602,9 +602,9 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 索敵結果を設定します。
 	/// </summary>
-	private void SetSearchingResult(BattleData bd)
+	private void SetSearchingResult(FirstBattleData bd)
 	{
-		if (bd is not FirstBattleData { Searching: { } searching }) return;
+		if (bd is not { Searching: { } searching }) return;
 
 		DetectionType search = searching.PlayerDetectionType;
 
@@ -1452,7 +1452,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	{
 		bool isCombined = bm.IsCombinedBattle;
 
-		BattleData bd = bm.BattleNight ?? bm.BattleDay;
+		BattleData bd = bm.SecondBattle ?? bm.FirstBattle;
 		BattleResult br = bm.Result;
 
 		IFleetData friend = bd.FleetsBeforeBattle.Fleet;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
@@ -61,5 +62,16 @@ public class BattleResult
 		MvpIndexCombined = result.ApiMvpCombined - 1;
 		ExpListCombined = result.ApiGetShipExpCombined;
 		LevelUpListCombined = result.ApiGetExpLvupCombined;
+	}
+
+	public BattleResult(ApiReqPracticeBattleResultResponse result)
+	{
+		Rank = result.ApiWinRank;
+		AdmiralExp = result.ApiGetExp;
+		MvpIndex = result.ApiMvp - 1;
+		BaseExp = result.ApiGetBaseExp;
+		ExpList = result.ApiGetShipExp;
+		LevelUpList = result.ApiGetExpLvup;
+		EnemyFleetName = result.ApiEnemyInfo.ApiDeckName;
 	}
 }

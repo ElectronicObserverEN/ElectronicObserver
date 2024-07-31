@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
@@ -22,7 +20,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
-using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
@@ -38,7 +35,6 @@ using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
@@ -73,12 +69,12 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 昼戦データ
 	/// </summary>
-	public FirstBattleData? BattleDay { get; private set; }
+	public FirstBattleData? FirstBattle { get; private set; }
 
 	/// <summary>
 	/// 夜戦データ
 	/// </summary>
-	public BattleData? BattleNight { get; private set; }
+	public BattleData? SecondBattle { get; private set; }
 
 	/// <summary>
 	/// 戦闘結果データ
@@ -121,23 +117,6 @@ public class BattleManager : APIWrapper
 
 
 	/// <summary>
-	/// 昼戦から開始する戦闘かどうか
-	/// </summary>
-	public bool StartsFromDayBattle => !StartsFromNightBattle;
-
-	/// <summary>
-	/// 夜戦から開始する戦闘かどうか
-	/// </summary>
-	public bool StartsFromNightBattle
-	{
-		get
-		{
-			var phase = BattleMode & BattleModes.BattlePhaseMask;
-			return phase == BattleModes.NightOnly || phase == BattleModes.NightDay;
-		}
-	}
-
-	/// <summary>
 	/// 連合艦隊戦かどうか
 	/// </summary>
 	public bool IsCombinedBattle => (BattleMode & BattleModes.CombinedMask) != 0;
@@ -145,7 +124,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 演習かどうか
 	/// </summary>
-	public bool IsPractice => (BattleMode & BattleModes.BattlePhaseMask) == BattleModes.Practice;
+	public bool IsPractice => FirstBattle is BattlePracticeDay;
 
 	/// <summary>
 	/// 敵が連合艦隊かどうか
@@ -156,24 +135,6 @@ public class BattleManager : APIWrapper
 	/// 基地空襲戦かどうか
 	/// </summary>
 	public bool IsBaseAirRaid => (BattleMode & BattleModes.BattlePhaseMask) == BattleModes.BaseAirRaid;
-
-
-	/// <summary>
-	/// 1回目の戦闘
-	/// </summary>
-	public FirstBattleData FirstBattle => HeavyBaseAirRaids switch
-	{
-		// first battle gets used for things like engagement
-		// remove this part if heavy air raids get moved to BattleDay
-		{ Count: > 0 } => HeavyBaseAirRaids.Last(),
-		_ => StartsFromDayBattle ? BattleDay : (FirstBattleData)BattleNight!
-	};
-
-	/// <summary>
-	/// 2回目の戦闘
-	/// </summary>
-	public BattleData? SecondBattle => StartsFromDayBattle ? BattleNight : BattleDay;
-
 
 	/// <summary>
 	/// 出撃中に入手した艦船数
@@ -268,23 +229,23 @@ public class BattleManager : APIWrapper
 			case "api_req_map/start":
 			case "api_req_map/next":
 			{
-				BattleDay = null;
-				BattleNight = null;
+				FirstBattle = null;
+				SecondBattle = null;
 				Result = null;
 				Compass = new CompassData();
 				Compass.LoadFromResponse(apiname, data);
 
 				if (apiData is ApiReqMapNextResponse { ApiDestructionBattle: { } battle })
 				{
-					BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+					FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 					BattleFinished();
 				}
 			}
 			break;
-			/*
+
 			case "api_req_map/air_raid":
 			{
-				BattleMode = BattleModes.BaseAirRaid;
+				/* todo
 				// BattleDay = new BattleHeavyBaseAirRaid();
 				// BattleDay.LoadFromResponse(apiname, data.api_destruction_battle[0]);
 				foreach (dynamic airraid in data.api_destruction_battle)
@@ -294,14 +255,15 @@ public class BattleManager : APIWrapper
 					HeavyBaseAirRaids.Add(raid);
 				}
 				BattleFinished();
+				*/
 			}
 			break;
-			*/
+
 			case "api_req_sortie/battle":
 			{
 				if (apiData is not ApiReqSortieBattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -309,7 +271,9 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqBattleMidnightBattleResponse battle) break;
 
-				BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+				Debug.Assert(FirstBattle is not null);
+
+				SecondBattle = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
 			}
 			break;
 
@@ -317,7 +281,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqBattleMidnightSpMidnightResponse battle) break;
 
-				BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -325,7 +289,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqSortieAirbattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -333,7 +297,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqSortieLdAirbattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -350,7 +314,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqSortieLdShootingResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -358,7 +322,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleBattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -366,7 +330,9 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleMidnightBattleResponse battle) break;
 
-				BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+				Debug.Assert(FirstBattle is not null);
+
+				SecondBattle = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
 			}
 			break;
 
@@ -374,8 +340,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleSpMidnightResponse battle) break;
 
-				BattleDay = null;
-				BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -392,7 +357,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleBattleWaterResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -400,7 +365,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleLdAirbattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -408,7 +373,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleEcBattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -416,7 +381,9 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleEcMidnightBattleResponse battle) break;
 
-				BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+				Debug.Assert(FirstBattle is not null);
+
+				SecondBattle = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
 			}
 			break;
 
@@ -433,7 +400,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleEachBattleResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -441,7 +408,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleEachBattleWaterResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -449,7 +416,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleLdShootingResponse battle) break;
 
-				BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -462,8 +429,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqPracticeBattleResponse battle) break;
 
-				// todo
-				// BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -471,8 +437,9 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqPracticeMidnightBattleResponse battle) break;
 
-				// todo
-				// BattleNight = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
+				Debug.Assert(FirstBattle is not null);
+
+				SecondBattle = BattleFactory.CreateBattle(battle, FirstBattle.FleetsAfterBattle);
 			}
 			break;
 
@@ -480,12 +447,12 @@ public class BattleManager : APIWrapper
 			case "api_req_combined_battle/battleresult":
 			case "api_req_practice/battle_result":
 			{
-				if (apiData is not ISortieBattleResultApi result) break;
-
-				Result = result switch
+				Result = apiData switch
 				{
-					ApiReqCombinedBattleBattleresultResponse r => new(r),
-					_ => new(result),
+					ApiReqCombinedBattleBattleresultResponse c => new(c),
+					ISortieBattleResultApi s => new(s),
+					ApiReqPracticeBattleResultResponse p => new(p),
+					_ => null,
 				};
 				BattleFinished();
 				break;
@@ -493,8 +460,8 @@ public class BattleManager : APIWrapper
 
 			case "api_port/port":
 				Compass = null;
-				BattleDay = null;
-				BattleNight = null;
+				FirstBattle = null;
+				SecondBattle = null;
 				Result = null;
 				PredictedBattleRank = "";
 				DroppedShipCount = DroppedEquipmentCount = 0;
@@ -565,11 +532,11 @@ public class BattleManager : APIWrapper
 		}
 		else if (IsBaseAirRaid)
 		{
-			if (BattleDay is BattleBaseAirRaid raid)
+			if (FirstBattle is BattleBaseAirRaid raid)
 			{
 				PhaseBaseAirRaid? airraid = raid.BaseAirRaid;
-				List<int> initialHPs = BattleDay.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
-				int damage = initialHPs.Zip(BattleDay.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
+				List<int> initialHPs = FirstBattle.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
+				int damage = initialHPs.Zip(FirstBattle.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
 
 				Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedBaseAirRaid,
@@ -827,13 +794,13 @@ public class BattleManager : APIWrapper
 	{
 		if (!IsEnemyCombined) return false; // ? true?
 
-		var initial = BattleDay.Initial;
+		var initial = FirstBattle.Initial;
 		int score = 0;
 		for (int i = 0; i < initial.EnemyInitialHPsEscort.Count; i++)
 		{
 			if (initial.EnemyMembersEscort.ToList()[i] > 0)
 			{
-				double rate = (double)BattleDay.ResultHPs.ToList()[BattleIndex.Get(BattleSides.EnemyEscort, i)] /
+				double rate = (double)FirstBattle.ResultHPs.ToList()[BattleIndex.Get(BattleSides.EnemyEscort, i)] /
 					initial.EnemyMaxHPsEscort.ToList()[i];
 
 				if (rate > 0.5)

@@ -11,6 +11,8 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
@@ -91,5 +93,11 @@ public class BattleFactory(PhaseFactory phaseFactory)
 		=> new(PhaseFactory, fleets, battle);
 
 	public BattleCombinedEachWater CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattlePracticeDay CreateBattle(ApiReqPracticeBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattlePracticeNight CreateBattle(ApiReqPracticeMidnightBattleResponse battle, BattleFleets fleets)
 		=> new(PhaseFactory, fleets, battle);
 }
