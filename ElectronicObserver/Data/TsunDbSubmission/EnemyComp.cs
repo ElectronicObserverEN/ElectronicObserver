@@ -93,6 +93,6 @@ public class EnemyComp : TsunDbEntity
 			EquipsEscort = initial.EnemySlotsEscort.Take(shipCount).ToList();
 		}
 
-		IsAirRaid = db.Battle.BattleMode == Data.Battle.BattleManager.BattleModes.AirRaid;
+		IsAirRaid = db.Battle.IsAirRaid;
 	}
 }

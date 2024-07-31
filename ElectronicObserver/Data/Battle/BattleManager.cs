@@ -49,7 +49,6 @@ namespace ElectronicObserver.Data.Battle;
 /// </summary>
 public class BattleManager : APIWrapper
 {
-
 	public static string BattleLogPath => "BattleLog";
 
 	public delegate void ShipLevelUpHandler(IShipData ship, int nextLevel);
@@ -91,50 +90,27 @@ public class BattleManager : APIWrapper
 	// and heavy base air raid moved to BattleDay like regular BattleBaseAirRaid
 	public List<BattleBaseAirRaid> HeavyBaseAirRaids { get; } = [];
 
-	[Flags]
-	public enum BattleModes
-	{
-		Undefined,                      // 未定義
-		Normal,                         // 昼夜戦(通常戦闘)
-		NightOnly,                      // 夜戦
-		NightDay,                       // 夜昼戦
-		AirBattle,                      // 航空戦
-		AirRaid,                        // 長距離空襲戦
-		Radar,                          // レーダー射撃
-		Practice,                       // 演習
-		BaseAirRaid,                    // 基地空襲戦
-		BattlePhaseMask = 0xFF,         // 戦闘形態マスク
-		CombinedTaskForce = 0x100,      // 機動部隊
-		CombinedSurface = 0x200,        // 水上部隊
-		CombinedMask = 0xFF00,          // 連合艦隊仕様
-		EnemyCombinedFleet = 0x10000,   // 敵連合艦隊
-	}
-
-	/// <summary>
-	/// 戦闘種別
-	/// </summary>
-	public BattleModes BattleMode { get; }
-
-
 	/// <summary>
 	/// 連合艦隊戦かどうか
 	/// </summary>
-	public bool IsCombinedBattle => (BattleMode & BattleModes.CombinedMask) != 0;
+	public bool IsCombinedBattle => FirstBattle is { IsCombined: true };
 
 	/// <summary>
 	/// 演習かどうか
 	/// </summary>
-	public bool IsPractice => FirstBattle is BattlePracticeDay;
+	public bool IsPractice => FirstBattle is { IsPractice: true };
 
 	/// <summary>
 	/// 敵が連合艦隊かどうか
 	/// </summary>
-	public bool IsEnemyCombined => (BattleMode & BattleModes.EnemyCombinedFleet) != 0;
+	public bool IsEnemyCombined => FirstBattle is { IsEnemyCombined: true };
 
 	/// <summary>
 	/// 基地空襲戦かどうか
 	/// </summary>
-	public bool IsBaseAirRaid => (BattleMode & BattleModes.BattlePhaseMask) == BattleModes.BaseAirRaid;
+	public bool IsBaseAirRaid => FirstBattle is { IsBaseAirRaid: true };
+
+	public bool IsAirRaid => FirstBattle is { IsAirRaid: true };
 
 	/// <summary>
 	/// 出撃中に入手した艦船数
@@ -731,15 +707,24 @@ public class BattleManager : APIWrapper
 	/// <param name="enemyrate">敵の損害率を出力します。</param>
 	public int PredictWinRank(out double friendrate, out double enemyrate)
 	{
-		BattleData activeBattle = SecondBattle ?? FirstBattle;
+		BattleData? activeBattle = SecondBattle ?? FirstBattle;
+
+		// should never happen
+		if (activeBattle is null)
+		{
+			friendrate = 0;
+			enemyrate = 0;
+			return -1;
+		}
+
 		BattleFleets fleetsBefore = activeBattle.FleetsBeforeBattle;
 
 		List<int> hpsBefore = activeBattle.InitialHPs.ToList();
 		List<int> hpsAfter = activeBattle.ResultHPs.ToList();
 
-		BattleRankPrediction prediction = (BattleMode & BattleModes.BattlePhaseMask) switch
+		BattleRankPrediction prediction = activeBattle switch
 		{
-			BattleModes.AirRaid or BattleModes.Radar => new AirRaidBattleRankPrediction()
+			{ IsAirRaid: true } or { IsRadar: true } => new AirRaidBattleRankPrediction()
 			{
 				FriendlyMainFleetBefore = fleetsBefore.Fleet,
 				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.Fleet, hpsAfter, BattleSides.FriendMain)!,
@@ -753,7 +738,7 @@ public class BattleManager : APIWrapper
 				EnemyEscortFleetBefore = fleetsBefore.EnemyEscortFleet,
 				EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(fleetsBefore.EnemyEscortFleet, hpsAfter, BattleSides.EnemyEscort),
 			},
-			BattleModes.BaseAirRaid => new BaseAirRaidBattleRankPrediction()
+			{ IsBaseAirRaid: true } => new BaseAirRaidBattleRankPrediction()
 			{
 				AirBaseBeforeAfter = BaseAirRaidBattleRankPrediction.SimulateBaseAfterBattle(hpsBefore, hpsAfter),
 

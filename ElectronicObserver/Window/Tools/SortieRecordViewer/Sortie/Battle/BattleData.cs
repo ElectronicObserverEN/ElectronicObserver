@@ -20,7 +20,10 @@ public abstract class BattleData
 	public bool IsPractice => this is BattlePracticeDay or BattlePracticeNight;
 	public bool IsFriendCombined => FleetsBeforeBattle.EscortFleet is not null;
 	public bool IsEnemyCombined => FleetsBeforeBattle.EnemyEscortFleet is not null;
+	public bool IsCombined => IsFriendCombined || IsEnemyCombined;
 	public bool IsBaseAirRaid => this is BattleBaseAirRaid;
+	public bool IsRadar => this is BattleNormalRadar or BattleCombinedRadar;
+	public bool IsAirRaid => this is BattleAirRaid or BattleCombinedAirRaid;
 
 	public IEnumerable<int> InitialHPs => GetHpList(FleetsBeforeBattle.Fleet)
 		.Concat(GetHpList(FleetsBeforeBattle.EscortFleet))
