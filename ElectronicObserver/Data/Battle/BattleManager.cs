@@ -190,12 +190,9 @@ public class BattleManager : APIWrapper
 		}
 	}
 
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
-		IKCDatabase db = KCDatabase.Instance;
-
-		//base.LoadFromResponse( apiname, data );	//不要
-
 		object? apiData = DeserializeResponse(apiname, data.ToString());
 
 		HeavyBaseAirRaids.Clear();
