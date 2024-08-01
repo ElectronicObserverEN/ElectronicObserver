@@ -53,7 +53,7 @@ public class PhaseFriendlyShelling : AttackPhaseBase
 		List<List<int>> defenders = ShellingData.ApiDfList!.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 		List<List<int>> attackEquipments = ShellingData.ApiSiList!.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticals = ShellingData.ApiClList!.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
-		List<List<double>> rawDamages = ShellingData.ApiDamage!.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<List<double>> rawDamages = ShellingData.ApiDamage!.Select(elem => elem.Where(e => e >= 0).ToList()).ToList();
 
 		for (int i = 0; i < attackers.Count; i++)
 		{
@@ -63,7 +63,8 @@ public class PhaseFriendlyShelling : AttackPhaseBase
 				NightAirAttackFlag = nightAirAttackFlags[i] == -1,
 				AttackType = attackTypes[i],
 				DisplayEquipments = attackEquipments[i]
-					.Select(i => KcDatabase.MasterEquipments[i])
+					.Select(id => KcDatabase.MasterEquipments[id])
+					.OfType<IEquipmentDataMaster>()
 					.ToList(),
 			};
 
