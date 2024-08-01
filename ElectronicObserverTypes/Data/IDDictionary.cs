@@ -71,7 +71,9 @@ public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData :
 
 	public IEnumerable<TData> Values => dict.Values;
 
+#pragma warning disable CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
 	public TData? this[int key] => dict.ContainsKey(key) ? dict[key] : null;
+#pragma warning restore CS8766 // Nullability of reference types in return type doesn't match implicitly implemented member (possibly because of nullability attributes).
 
 	public int Count => dict.Count;
 

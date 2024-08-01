@@ -114,7 +114,7 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 「気のせいだった」セルにおける特殊メッセージ　なければ null
 	/// </summary>
-	public string FlavorText
+	public string? FlavorText
 	{
 		get
 		{
@@ -159,7 +159,7 @@ public class CompassData : ResponseWrapper
 				yield break;
 
 			// item.IsArray だと参照できないため
-			if (!(((dynamic)item).IsArray))
+			if (!(item.IsArray))
 			{
 				yield return new GetItemData((int)item.api_usemst, (int)item.api_id, (int)item.api_getcount);
 
@@ -255,7 +255,9 @@ public class CompassData : ResponseWrapper
 	{
 		get
 		{
-			var nodes = new string[RouteChoices.Count];
+			if (RouteChoices is null) return [];
+
+			string[] nodes = new string[RouteChoices.Count];
 			for (int i = 0; i < RouteChoices.Count; i++)
 			{
 				nodes[i] = KCDatabase.Instance.Translation.Destination.CellDisplay(MapAreaID, MapInfoID, RouteChoices[i]);
@@ -314,7 +316,7 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 基地空襲戦データ
 	/// </summary>
-	public dynamic AirRaidData => HasAirRaid ? RawData.api_destruction_battle : null;
+	public dynamic? AirRaidData => HasAirRaid ? RawData.api_destruction_battle : null;
 
 
 

@@ -99,7 +99,7 @@ public class CompassViewModel : AnchorableViewModel
 
 	private void Updated(string apiname, dynamic data)
 	{
-		System.Drawing.Color GetColorFromEventKind(int kind) => kind switch
+		static System.Drawing.Color GetColorFromEventKind(int kind) => kind switch
 		{
 			//夜戦・夜昼戦
 			2 or 3 => Utility.Configuration.Config.UI.Compass_ColorTextEventKind3,
