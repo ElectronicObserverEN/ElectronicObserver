@@ -18,6 +18,7 @@ namespace ElectronicObserver.Window.Dialog.BattleDetail;
 
 public static class BattleDetailDescriptor
 {
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	public static string GetBattleDetail(BattleManager bm)
 	{
 		StringBuilder sb = new();
@@ -34,7 +35,7 @@ public static class BattleDetailDescriptor
 			sb.AppendFormat("{0} ({1}-{2})", bm.Compass.MapInfo.NameEN, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
 			if (bm.Compass.MapInfo.EventDifficulty > 0)
 				sb.AppendFormat(" [{0}]", Constants.GetDifficulty(bm.Compass.MapInfo.EventDifficulty));
-			sb.Append(ConstantsRes.BattleDetail_Node).Append(bm.Compass.CellId.ToString());
+			sb.Append(ConstantsRes.BattleDetail_Node).Append(bm.Compass.CellId);
 			if (bm.Compass.EventID == 5)
 				sb.Append(ConstantsRes.BattleDetail_Boss);
 			sb.AppendLine();
@@ -88,7 +89,7 @@ public static class BattleDetailDescriptor
 		return sb.ToString();
 	}
 
-
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	public static string GetBattleDetail(BattleData battle)
 	{
 		StringBuilder sbmaster = new();
@@ -103,7 +104,7 @@ public static class BattleDetailDescriptor
 				case PhaseBaseAirRaid p:
 
 					sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-					sb.Append("　").AppendLine(string.Join(", ",
+					sb.Append('　').AppendLine(string.Join(", ",
 						p.Squadrons.Where(sq => sq.Equipment != null).Select(sq => sq.ToString())
 							.DefaultIfEmpty(BattleRes.Empty)));
 
@@ -124,7 +125,7 @@ public static class BattleDetailDescriptor
 						sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", a.WaveIndex + 1);
 
 						sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-						sb.Append("　").AppendLine(string.Join(", ",
+						sb.Append('　').AppendLine(string.Join(", ",
 							a.Squadrons.Where(sq => sq.Equipment != null).Select(sq => sq.ToString())));
 
 						GetBattleDetailPhaseAirBattle(sb, a);
@@ -145,7 +146,7 @@ public static class BattleDetailDescriptor
 						sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", a.WaveIndex + 1);
 
 						sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-						sb.Append("　").AppendLine(string.Join(", ",
+						sb.Append('　').AppendLine(string.Join(", ",
 							a.Squadrons.Where(sq => sq.Equipment != null).Select(sq => sq.ToString())));
 
 						GetBattleDetailPhaseAirBattle(sb, a);
@@ -569,7 +570,6 @@ public static class BattleDetailDescriptor
 			sb.AppendLine();
 	}
 
-
 	private static void GetBattleDetailPhaseAirBattle(StringBuilder sb, PhaseBaseAirRaid p)
 	{
 
@@ -604,7 +604,6 @@ public static class BattleDetailDescriptor
 			sb.AppendLine();
 	}
 
-
 	private static void OutputFriendData(StringBuilder sb, IFleetData fleet, List<int> initialHPs, List<int> maxHPs)
 	{
 
@@ -627,7 +626,7 @@ public static class BattleDetailDescriptor
 				ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase,
 				fleet.EscapedShipList.Contains(ship.MasterID) ? $" ({BattleRes.Escaped})" : "");
 
-			sb.Append("　");
+			sb.Append('　');
 			sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Zip(
 				ship.ExpansionSlot > 0 ? ship.Aircraft.Concat(new[] { 0 }) : ship.Aircraft,
 				(eq, aircraft) => eq == null ? null : ((eq.MasterEquipment.IsAircraft ? $"[{aircraft}] " : "") + eq.NameWithLevel)
@@ -670,7 +669,7 @@ public static class BattleDetailDescriptor
 				ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 				ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
 
-			sb.Append("　");
+			sb.Append('　');
 			sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Where(eq => eq != null)));
 		}
 
@@ -700,7 +699,7 @@ public static class BattleDetailDescriptor
 				ship.HPCurrent, ship.HPMax,
 				ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
 
-			sb.Append("　");
+			sb.Append('　');
 			sb.AppendLine(string.Join(", ", ship.AllSlotInstance
 				.OfType<IEquipmentData>()
 				.Select(eq => eq.MasterEquipment.NameEN)));
@@ -731,11 +730,10 @@ public static class BattleDetailDescriptor
 					parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3]);
 			}
 
-			sb.AppendLine().Append("　");
+			sb.AppendLine().Append('　');
 			sb.AppendLine(string.Join(", ", slots[i].Where(eq => eq != null)));
 		}
 	}
-
 
 	private static void OutputResultData(StringBuilder sb, int index, string name, int initialHP, int resultHP, int maxHP)
 	{
@@ -747,7 +745,7 @@ public static class BattleDetailDescriptor
 			resultHP - initialHP);
 	}
 
-
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private static string GetBattleResult(BattleManager bm)
 	{
 		Debug.Assert(bm.Result is not null);
@@ -809,7 +807,7 @@ public static class BattleDetailDescriptor
 			IUseItemMaster? item = KCDatabase.Instance.MasterUseItems[result.DroppedItemId ?? -1];
 			if (item != null)
 			{
-				sb.Append("　").AppendLine(item.NameTranslated);
+				sb.Append('　').AppendLine(item.NameTranslated);
 			}
 
 			if (length == sb.Length)
@@ -821,6 +819,4 @@ public static class BattleDetailDescriptor
 
 		return sb.ToString();
 	}
-
 }
-
