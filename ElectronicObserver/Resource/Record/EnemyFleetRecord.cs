@@ -169,7 +169,7 @@ public class EnemyFleetRecord : RecordBase
 		/// <summary>
 		/// 現在の状態からインスタンスを生成します。
 		/// </summary>
-		public static EnemyFleetElement CreateFromCurrentState()
+		public static EnemyFleetElement? CreateFromCurrentState()
 		{
 
 			var battle = KCDatabase.Instance.Battle;
