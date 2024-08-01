@@ -204,7 +204,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqPractice_MidnightBattle.ResponseReceived += Updated;
 		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(CompactMode)) return;
 
@@ -223,7 +223,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void ShowBattleDetail()
 	{
-		BattleManager? bm = KCDatabase.Instance.Battle;
+		BattleManager bm = KCDatabase.Instance.Battle;
 
 		if (bm.FirstBattle is null) return;
 
@@ -242,6 +242,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		PlayerFleetVisible = true;
 	}
 
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void Updated(string apiname, dynamic data)
 	{
 		KCDatabase db = KCDatabase.Instance;
@@ -258,7 +259,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_map/start":
 			case "api_req_map/next":
-				if (!bm.Compass.HasAirRaid)
+				if (bm.FirstBattle is null)
 				{
 					ViewVisible = false;
 					break;
@@ -538,7 +539,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetFormation(BattleManager bm)
 	{
-		if (bm.FirstBattle is not FirstBattleData { Searching: { } searching }) return;
+		if (bm.FirstBattle is not { Searching: { } searching }) return;
 
 		FormationFriendText = Constants.GetFormationShort(searching.PlayerFormationType);
 		FormationEnemyText = Constants.GetFormationShort(searching.EnemyFormationType);
@@ -602,7 +603,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 索敵結果を設定します。
 	/// </summary>
-	private void SetSearchingResult(FirstBattleData bd)
+	private void SetSearchingResult(FirstBattleData? bd)
 	{
 		if (bd is not { Searching: { } searching }) return;
 
@@ -989,8 +990,10 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 両軍のHPゲージを設定します。
 	/// </summary>
-	private void SetHPBar(BattleData bd)
+	private void SetHPBar(BattleData? bd)
 	{
+		if (bd is null) return;
+
 		bool isPractice = bd.IsPractice;
 		bool isFriendCombined = bd.IsFriendCombined;
 		bool isEnemyCombined = bd.IsEnemyCombined;
@@ -1054,7 +1057,7 @@ public partial class BattleViewModel : AnchorableViewModel
 				}
 				else
 				{
-					IShipData ship = bd.FleetsBeforeBattle.Fleet.MembersInstance[i];
+					IShipData ship = bd.FleetsBeforeBattle.Fleet.MembersInstance[i]!;
 					name = ship.NameWithLevel;
 					isEscaped = bd.FleetsBeforeBattle.Fleet.EscapedShipList.Contains(ship.MasterID);
 					isLandBase = ship.MasterShip.IsLandBase;
@@ -1094,7 +1097,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			if (initial.EnemyInitialHPs[i] != -1)
 			{
-				IShipData ship = bd.Initial.EnemyMembersInstance[i];
+				IShipData ship = bd.Initial.EnemyMembersInstance[i]!;
 				EnableHPBar(refindex, ship.HPCurrent, resultHPs[refindex], ship.HPMax, ship.CanBeTargeted);
 
 				var bar = HPBars[refindex];
@@ -1292,7 +1295,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 	}
 
-	private bool _hpBarMoved = false;
+	private bool _hpBarMoved;
 	/// <summary>
 	/// 味方遊撃部隊７人目のHPゲージ（通常時は連合艦隊第二艦隊旗艦のHPゲージ）を移動します。
 	/// </summary>
@@ -1336,9 +1339,13 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (bm.IsBaseAirRaid)
 		{
-			int kind = bm.Compass.AirRaidDamageKind;
+			int kind = bm.Compass!.AirRaidDamageKind;
 			WinRankText = Constants.GetAirRaidDamageShort(kind);
-			WinRankForeColor = (1 <= kind && kind <= 3) ? WinRankColor_Lose : WinRankColor_Win;
+			WinRankForeColor = kind switch
+			{
+				>= 1 and <= 3 => WinRankColor_Lose,
+				_ => WinRankColor_Win,
+			};
 		}
 		else
 		{
@@ -1350,9 +1357,11 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 夜戦における各種表示を設定します。
 	/// </summary>
-	private void SetNightBattleEvent(PhaseNightInitial pd)
+	private void SetNightBattleEvent(PhaseNightInitial? pd)
 	{
-		IFleetData fleet = pd.FleetsBeforePhase!.Fleet;
+		if (pd?.FleetsBeforePhase is null) return;
+
+		IFleetData fleet = pd.FleetsBeforePhase.Fleet;
 
 		//味方探照灯判定
 		{
@@ -1452,8 +1461,11 @@ public partial class BattleViewModel : AnchorableViewModel
 	{
 		bool isCombined = bm.IsCombinedBattle;
 
-		BattleData bd = bm.SecondBattle ?? bm.FirstBattle;
-		BattleResult br = bm.Result;
+		BattleData? bd = bm.SecondBattle ?? bm.FirstBattle;
+		BattleResult? br = bm.Result;
+
+		if (bd is null) return;
+		if (br is null) return;
 
 		IFleetData friend = bd.FleetsBeforeBattle.Fleet;
 		IFleetData? escort = isCombined switch
@@ -1462,7 +1474,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			_ => bd.FleetsBeforeBattle.EscortFleet,
 		};
 
-		for (int i = 0; i < friend.Members.Count; i++)
+		for (int i = 0; i < friend.Members!.Count; i++)
 		{
 			if (friend.EscapedShipList.Contains(friend.Members[i]))
 			{
@@ -1480,7 +1492,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (escort != null)
 		{
-			for (int i = 0; i < escort.Members.Count; i++)
+			for (int i = 0; i < escort.Members!.Count; i++)
 			{
 				if (escort.EscapedShipList.Contains(escort.Members[i]))
 				{
