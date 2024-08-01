@@ -253,35 +253,7 @@ public class PhaseInitial : PhaseBase
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
 			.Zip(battle.ApiESlot, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
 			.Zip(battle.ApiENowhps, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
-			.Select(t => t.Id switch
-			{
-				> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
-				{
-					HPCurrent = t.Hp switch
-					{
-						JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
-						JsonElement { ValueKind: JsonValueKind.String } => KcDatabase.MasterShips[t.Id].HPMin,
-						_ => throw new NotImplementedException(),
-					},
-					Level = t.Level,
-					Condition = 49,
-					SlotInstance = t.Equipment
-						.Select(id => id switch
-						{
-							> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
-							_ => null,
-						})
-						.Cast<IEquipmentData?>()
-						.ToList(),
-					CanBeTargeted = t.Hp switch
-					{
-						JsonElement { ValueKind: JsonValueKind.Number } => true,
-						JsonElement { ValueKind: JsonValueKind.String } => false,
-						_ => throw new NotImplementedException(),
-					},
-				},
-				_ => null,
-			})
+			.Select(t => MakeShip(KcDatabase, t.Id, t.Level, t.Equipment, t.Hp))
 			.Concat(Enumerable.Repeat((IShipData?)null, 6))
 			.Take(6)
 			.ToList();
@@ -360,29 +332,7 @@ public class PhaseInitial : PhaseBase
 			.Zip(battle.ApiShipLv, (id, level) => (Id: id, Level: level))
 			.Zip(battle.ApiESlot, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
 			.Zip(battle.ApiENowhps, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
-			.Select(t => t.Id switch
-			{
-				> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
-				{
-					HPCurrent = t.Hp switch
-					{
-						JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
-						JsonElement { ValueKind: JsonValueKind.String } => KcDatabase.MasterShips[t.Id].HPMin,
-						_ => throw new NotImplementedException(),
-					},
-					Level = t.Level,
-					Condition = 49,
-					SlotInstance = t.Equipment
-						.Select(id => id switch
-						{
-							> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
-							_ => null,
-						})
-						.Cast<IEquipmentData?>()
-						.ToList(),
-				},
-				_ => null,
-			})
+			.Select(t => MakeShip(KcDatabase, t.Id, t.Level, t.Equipment, t.Hp))
 			.Concat(Enumerable.Repeat((IShipData?)null, 6))
 			.Take(6)
 			.ToList();
@@ -430,27 +380,47 @@ public class PhaseInitial : PhaseBase
 		.Zip(battle.ApiShipLvCombined, (id, level) => (Id: id, Level: level))
 		.Zip(battle.ApiESlotCombined, (t, equipment) => (t.Id, t.Level, Equipment: equipment))
 		.Zip(battle.ApiENowhpsCombined, (t, hp) => (t.Id, t.Level, t.Equipment, Hp: hp))
-		.Select(t => t.Id switch
-		{
-			> 0 => new ShipDataMock(KcDatabase.MasterShips[t.Id])
-			{
-				HPCurrent = t.Hp,
-				Level = t.Level,
-				Condition = 49,
-				SlotInstance = t.Equipment
-					.Select(id => id switch
-					{
-						> 0 => new EquipmentDataMock(KcDatabase.MasterEquipments[id]),
-						_ => null,
-					})
-					.Cast<IEquipmentData?>()
-					.ToList(),
-			},
-			_ => null,
-		})
+		.Select(t => MakeShip(KcDatabase, t.Id, t.Level, t.Equipment, t.Hp))
 		.Concat(Enumerable.Repeat((IShipData?)null, 6))
 		.Take(6)
 		.ToList();
+
+	private static ShipDataMock? MakeShip(IKCDatabase db, int shipId, int level, List<int> equipmentIds, object hp)
+	{
+		if (shipId <= 0) return null;
+
+		IShipDataMaster? ship = db.MasterShips[shipId];
+
+		if(ship is null) return null;
+
+		ShipDataMock mock = new ShipDataMock(ship)
+		{
+			HPCurrent = hp switch
+			{
+				int i => i,
+				JsonElement { ValueKind: JsonValueKind.Number } n => n.GetInt32(),
+				JsonElement { ValueKind: JsonValueKind.String } => ship.HPMin,
+				_ => throw new NotImplementedException(),
+			},
+			Level = level,
+			Condition = 49,
+			SlotInstance = equipmentIds
+				.Select(id => id switch
+				{
+					> 0 => db.MasterEquipments[id] switch
+					{
+						IEquipmentDataMaster eq => new EquipmentDataMock(eq),
+						_ => null,
+					},
+					_ => null,
+				})
+				.Cast<IEquipmentData?>()
+				.ToList(),
+			CanBeTargeted = hp is not JsonElement { ValueKind: JsonValueKind.String },
+		};
+
+		return mock;
+	}
 
 	private static void SetEnemyRange(List<IShipData?> ships)
 	{
