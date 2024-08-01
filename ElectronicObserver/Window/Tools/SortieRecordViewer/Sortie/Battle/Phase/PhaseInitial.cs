@@ -391,9 +391,9 @@ public class PhaseInitial : PhaseBase
 
 		IShipDataMaster? ship = db.MasterShips[shipId];
 
-		if(ship is null) return null;
+		if (ship is null) return null;
 
-		ShipDataMock mock = new ShipDataMock(ship)
+		return new(ship)
 		{
 			HPCurrent = hp switch
 			{
@@ -418,8 +418,6 @@ public class PhaseInitial : PhaseBase
 				.ToList(),
 			CanBeTargeted = hp is not JsonElement { ValueKind: JsonValueKind.String },
 		};
-
-		return mock;
 	}
 
 	private static void SetEnemyRange(List<IShipData?> ships)
@@ -430,7 +428,7 @@ public class PhaseInitial : PhaseBase
 
 			s.Range = Math.Max(s.MasterShip.Range, s.AllSlotInstance switch
 			{
-				[] => 0,
+			[] => 0,
 				_ => s.AllSlotInstance.Max(e => e?.MasterEquipment.Range ?? 0),
 			});
 		}
