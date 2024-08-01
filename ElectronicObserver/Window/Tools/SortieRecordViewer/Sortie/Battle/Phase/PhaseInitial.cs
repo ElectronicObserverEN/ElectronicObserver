@@ -55,7 +55,7 @@ public class PhaseInitial : PhaseBase
 	[MemberNotNullWhen(true, nameof(EnemyMaxHPsEscort))]
 	[MemberNotNullWhen(true, nameof(EnemyParametersEscort))]
 	[MemberNotNullWhen(true, nameof(EnemySlotsEscort))]
-	[MemberNotNullWhen(true, nameof(EnemySlotsInstance))]
+	[MemberNotNullWhen(true, nameof(EnemySlotsEscortInstance))]
 	public bool IsEnemyCombined => EnemyMembersEscortInstance is not null;
 
 	public int[]? EnemyMembersEscort => EnemyMembersEscortInstance?.Select(s => s?.MasterShip.ShipID ?? -1).ToArray();
