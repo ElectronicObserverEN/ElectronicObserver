@@ -40,6 +40,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.Battle;
@@ -510,7 +511,7 @@ public class BattleManager : APIWrapper
 			{
 				PhaseBaseAirRaid? airraid = raid.BaseAirRaid;
 				List<int> initialHPs = FirstBattle.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
-				int damage = initialHPs.Zip(FirstBattle.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
+				int damage = initialHPs.Zip(FirstBattle.ResultHPs.Take(initialHPs.Count), (initial, result) => initial - result).Sum();
 
 				Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedBaseAirRaid,
@@ -521,7 +522,7 @@ public class BattleManager : APIWrapper
 			foreach (BattleBaseAirRaid battleBaseAirRaid in HeavyBaseAirRaids)
 			{
 				List<int> initialHPs = battleBaseAirRaid.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
-				int damage = initialHPs.Zip(battleBaseAirRaid.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
+				int damage = initialHPs.Zip(battleBaseAirRaid.ResultHPs.Take(initialHPs.Count), (initial, result) => initial - result).Sum();
 				PhaseBaseAirRaid? baseAirRaid = battleBaseAirRaid.BaseAirRaid;
 
 				int airRaidDamageKind = baseAirRaid?.ApiLostKind ?? 0;
@@ -669,13 +670,14 @@ public class BattleManager : APIWrapper
 				{
 					case PhaseShelling shelling:
 					{
-						foreach (PhaseShellingAttackViewModel attack in shelling.AttackDisplays
+						foreach (DayAttackKind attackType in shelling.AttackDisplays
 							.Where(a => a.AttackerIndex.FleetFlag is FleetFlag.Player)
-							.Where(a => TracedSpecialAttack.Contains((int)a.AttackType)))
+							.Select(a => a.AttackType)
+							.Where(a => TracedSpecialAttack.Contains((int)a)))
 						{
-							if (!SpecialAttackCount.TryAdd((int)attack.AttackType, 1))
+							if (!SpecialAttackCount.TryAdd((int)attackType, 1))
 							{
-								SpecialAttackCount[(int)attack.AttackType]++;
+								SpecialAttackCount[(int)attackType]++;
 							}
 						}
 
@@ -684,13 +686,14 @@ public class BattleManager : APIWrapper
 
 					case PhaseNightBattle night:
 					{
-						foreach (PhaseNightBattleAttackViewModel attack in night.AttackDisplays
+						foreach (NightAttackKind attackType in night.AttackDisplays
 							.Where(a => a.AttackerIndex.FleetFlag is FleetFlag.Player)
-							.Where(a => TracedSpecialAttack.Contains((int)a.AttackType)))
+							.Select(a => a.AttackType)
+							.Where(a => TracedSpecialAttack.Contains((int)a)))
 						{
-							if (!SpecialAttackCount.TryAdd((int)attack.AttackType, 1))
+							if (!SpecialAttackCount.TryAdd((int)attackType, 1))
 							{
-								SpecialAttackCount[(int)attack.AttackType]++;
+								SpecialAttackCount[(int)attackType]++;
 							}
 						}
 
