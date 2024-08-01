@@ -8,7 +8,7 @@ namespace ElectronicObserverTypes.Data;
 /// IDを持つデータのリストを保持します。
 /// </summary>
 /// <typeparam name="TData"></typeparam>
-public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData : class?, IIdentifiable?
+public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData : class, IIdentifiable
 {
 
 	private readonly IDictionary<int, TData> dict;
@@ -71,7 +71,7 @@ public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData :
 
 	public IEnumerable<TData> Values => dict.Values;
 
-	public TData this[int key] => dict.ContainsKey(key) ? dict[key] : null;
+	public TData? this[int key] => dict.ContainsKey(key) ? dict[key] : null;
 
 	public int Count => dict.Count;
 
