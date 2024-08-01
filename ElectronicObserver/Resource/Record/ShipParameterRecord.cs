@@ -275,12 +275,12 @@ public class ShipParameterRecord : RecordBase
 		/// <summary>
 		/// 初期装備
 		/// </summary>
-		public int[] DefaultSlot { get; internal set; }
+		public int[]? DefaultSlot { get; internal set; }
 
 		/// <summary>
 		/// 搭載機数
 		/// </summary>
-		public int[] Aircraft { get; internal set; }
+		public int[]? Aircraft { get; internal set; }
 
 
 		/// <summary>

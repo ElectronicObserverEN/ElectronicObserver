@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
@@ -28,6 +29,8 @@ public static class BattleDetailDescriptor
 		}
 		else
 		{
+			Debug.Assert(bm.Compass is not null);
+
 			sb.AppendFormat("{0} ({1}-{2})", bm.Compass.MapInfo.NameEN, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
 			if (bm.Compass.MapInfo.EventDifficulty > 0)
 				sb.AppendFormat(" [{0}]", Constants.GetDifficulty(bm.Compass.MapInfo.EventDifficulty));
@@ -69,6 +72,8 @@ public static class BattleDetailDescriptor
 		}
 		else
 		{
+			Debug.Assert(bm.FirstBattle is not null);
+
 			sb.AppendFormat("◆ {0} ◆\r\n", bm.FirstBattle.Title).AppendLine(GetBattleDetail(bm.FirstBattle));
 			if (bm.SecondBattle != null)
 				sb.AppendFormat("◆ {0} ◆\r\n", bm.SecondBattle.Title).AppendLine(GetBattleDetail(bm.SecondBattle));
@@ -161,7 +166,7 @@ public static class BattleDetailDescriptor
 					void AppendFleetInfo(IFleetData fleet)
 					{
 						sb.Append($" {BattleRes.AirSuperiority} ");
-						sb.Append(GetRangeString(Calculator.GetAirSuperiority(fleet, false),
+						sb.Append(GetRangeString(Calculator.GetAirSuperiority(fleet),
 							Calculator.GetAirSuperiority(fleet, true)));
 
 						static double Truncate2(double value) => Math.Floor(value * 100) / 100;
@@ -261,6 +266,8 @@ public static class BattleDetailDescriptor
 
 					if (battle.Phases.Any(ph => ph is PhaseBaseAirAttack or PhaseBaseAirRaid))
 					{
+						Debug.Assert(KCDatabase.Instance.Battle.Compass is not null);
+						
 						sb.AppendLine(ConstantsRes.BattleDetail_AirBase);
 						GetBattleDetailBaseAirCorps(sb, KCDatabase.Instance.Battle.Compass.MapAreaID); // :(
 						sb.AppendLine();
@@ -414,7 +421,7 @@ public static class BattleDetailDescriptor
 		{
 			sbmaster.AppendLine(ConstantsRes.BattleDetail_BattleEnd);
 
-			IFleetData? friend = battle.FleetsAfterBattle.Fleet;
+			IFleetData friend = battle.FleetsAfterBattle.Fleet;
 			IFleetData? friendescort = battle.FleetsAfterBattle.EscortFleet;
 			List<IShipData?> enemy = battle.Initial.EnemyMembersInstance;
 			List<IShipData?>? enemyescort = battle.Initial.EnemyMembersEscortInstance;
@@ -440,11 +447,11 @@ public static class BattleDetailDescriptor
 			}
 			else
 			{
-				for (int i = 0; i < friend.Members.Count(); i++)
+				Debug.Assert(friend.Members is not null);
+
+				for (int i = 0; i < friend.Members.Count; i++)
 				{
-					var ship = friend.MembersInstance[i];
-					if (ship == null)
-						continue;
+					if (friend.MembersInstance[i] is not IShipData ship) continue;
 
 					OutputResultData(sbmaster, i, ship.Name,
 						battle.Initial.FriendInitialHPs[i], resultHps[i], battle.Initial.FriendMaxHPs[i]);
@@ -453,9 +460,13 @@ public static class BattleDetailDescriptor
 
 			if (friendescort != null)
 			{
+				Debug.Assert(friendescort.Members is not null);
+				Debug.Assert(battle.Initial.FriendInitialHPsEscort is not null);
+				Debug.Assert(battle.Initial.FriendMaxHPsEscort is not null);
+
 				sbmaster.AppendLine().AppendLine(ConstantsRes.BattleDetail_FriendEscortFleet);
 
-				for (int i = 0; i < friendescort.Members.Count(); i++)
+				for (int i = 0; i < friendescort.Members.Count; i++)
 				{
 					var ship = friendescort.MembersInstance[i];
 					if (ship == null)
@@ -487,13 +498,14 @@ public static class BattleDetailDescriptor
 
 			if (enemyescort != null)
 			{
+				Debug.Assert(battle.Initial.EnemyInitialHPsEscort is not null);
+				Debug.Assert(battle.Initial.EnemyMaxHPsEscort is not null);
+
 				sbmaster.AppendLine().AppendLine(ConstantsRes.BattleDetail_EnemyEscortFleet);
 
 				for (int i = 0; i < enemyescort.Count; i++)
 				{
-					IShipData? ship = enemyescort[i];
-					if (ship == null)
-						continue;
+					if (enemyescort[i] is not IShipData ship) continue;
 
 					OutputResultData(sbmaster, i + 6, ship.MasterShip.NameWithClass,
 						battle.Initial.EnemyInitialHPsEscort[i], resultHps[i + 18], battle.Initial.EnemyMaxHPsEscort[i]);
@@ -514,10 +526,12 @@ public static class BattleDetailDescriptor
 		{
 			sb.AppendFormat("{0} [{1}] " + BattleRes.AirSuperiority + " {2}\r\n　{3}\r\n",
 				corps.Name, Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
-				GetRangeString(Calculator.GetAirSuperiority(corps, false), Calculator.GetAirSuperiority(corps, true)),
+				GetRangeString(Calculator.GetAirSuperiority(corps), Calculator.GetAirSuperiority(corps, true)),
 				string.Join(", ", corps.Squadrons.Values
-					.Where(sq => sq.State == 1 && sq.EquipmentInstance != null)
-					.Select(sq => sq.EquipmentInstance.NameWithLevel)));
+					.Where(sq => sq.State == 1)
+					.Select(sq => sq.EquipmentInstance)
+					.OfType<IEquipmentData>()
+					.Select(eq => eq.NameWithLevel)));
 		}
 	}
 
@@ -664,6 +678,7 @@ public static class BattleDetailDescriptor
 
 	private static void OutputFriendlySupportData(StringBuilder sb, PhaseFriendlySupportInfo p)
 	{
+		Debug.Assert(p.FleetsBeforePhase?.FriendFleet is not null);
 
 		for (int i = 0; i < p.FleetsBeforePhase.FriendFleet.MembersInstance.Count; i++)
 		{
@@ -697,13 +712,12 @@ public static class BattleDetailDescriptor
 
 		for (int i = 0; i < members.Count; i++)
 		{
-			if (members[i] == null)
-				continue;
+			if (members[i] is not IShipData ship) continue;
 
 			sb.AppendFormat("#{0}: ID:{1} {2} {3} Lv. {4} HP: {5} / {6}",
 				i + 1,
-				members[i].ShipID,
-				members[i].MasterShip.ShipTypeName, members[i].MasterShip.NameWithClass,
+				ship.ShipID,
+				ship.MasterShip.ShipTypeName, ship.MasterShip.NameWithClass,
 				levels[i],
 				initialHPs[i], maxHPs[i]);
 
@@ -736,6 +750,9 @@ public static class BattleDetailDescriptor
 
 	private static string GetBattleResult(BattleManager bm)
 	{
+		Debug.Assert(bm.Result is not null);
+		Debug.Assert(bm.FirstBattle is not null);
+
 		BattleResult result = bm.Result;
 
 		StringBuilder sb = new();
@@ -746,15 +763,25 @@ public static class BattleDetailDescriptor
 
 		if (bm.IsCombinedBattle)
 		{
-			sb.AppendFormat(ConstantsRes.BattleDetail_ResultMVPMain + "\r\n",
-				result.MvpIndex == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[result.MvpIndex].NameWithLevel);
-			sb.AppendFormat(ConstantsRes.BattleDetail_ResultMVPEscort + "\r\n",
-				result.MvpIndexCombined == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.EscortFleet.MembersInstance[result.MvpIndexCombined.Value].NameWithLevel);
+			sb.AppendFormat(ConstantsRes.BattleDetail_ResultMVPMain + "\r\n", result.MvpIndex switch
+			{
+				-1 => "(なし)",
+				_ => bm.FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[result.MvpIndex]?.NameWithLevel,
+			});
+
+			sb.AppendFormat(ConstantsRes.BattleDetail_ResultMVPEscort + "\r\n", result.MvpIndexCombined switch
+			{
+				-1 or null => "(なし)",
+				int index => bm.FirstBattle.FleetsBeforeBattle.EscortFleet!.MembersInstance[index]?.NameWithLevel,
+			});
 		}
 		else
 		{
-			sb.AppendFormat("MVP: {0}\r\n",
-				result.MvpIndex == -1 ? "(なし)" : bm.FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[result.MvpIndex].NameWithLevel);
+			sb.AppendFormat("MVP: {0}\r\n", result.MvpIndex switch
+			{
+				-1 => "(なし)",
+				_ => bm.FirstBattle.FleetsBeforeBattle.Fleet.MembersInstance[result.MvpIndex]?.NameWithLevel,
+			});
 		}
 
 		sb.AppendFormat(ConstantsRes.BattleDetail_AdmiralExp + "\r\n", result.AdmiralExp);
