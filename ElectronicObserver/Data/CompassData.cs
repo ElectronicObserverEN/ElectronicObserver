@@ -233,7 +233,7 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 能動分岐の選択肢
 	/// </summary>
-	public ReadOnlyCollection<int> RouteChoices
+	public ReadOnlyCollection<int>? RouteChoices
 	{
 		get
 		{

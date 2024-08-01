@@ -216,7 +216,7 @@ public class EnemyFleetRecord : RecordBase
 	}
 
 
-	public EnemyFleetElement this[ulong i]
+	public EnemyFleetElement? this[ulong i]
 	{
 		get
 		{
