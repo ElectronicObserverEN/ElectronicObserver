@@ -45,22 +45,22 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	public DateTime ExpeditionTime { get; internal set; }
 
 
-	private int[]? _members;
+	private int[] _members;
 	/// <summary>
 	/// 艦隊メンバー(艦船ID)
 	/// </summary>
-	public ReadOnlyCollection<int> Members => Array.AsReadOnly(_members ?? []);
+	public ReadOnlyCollection<int> Members => Array.AsReadOnly(_members);
 
 	/// <summary>
 	/// 艦隊メンバー(艦船データ)
 	/// </summary>
-	public ReadOnlyCollection<IShipData?>? MembersInstance
+	public ReadOnlyCollection<IShipData>? MembersInstance
 	{
 		get
 		{
 			if (_members == null) return null;
 
-			IShipData?[] ships = new IShipData[_members.Length];
+			IShipData[] ships = new IShipData[_members.Length];
 			for (int i = 0; i < ships.Length; i++)
 			{
 				ships[i] = KCDatabase.Instance.Ships[_members[i]];
