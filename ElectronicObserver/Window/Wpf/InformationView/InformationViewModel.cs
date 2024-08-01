@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -70,7 +73,7 @@ public class InformationViewModel : AnchorableViewModel
 
 				if (_inSortie != null)
 				{
-					Text = GetConsumptionResource(data);
+					Text = GetConsumptionResource();
 				}
 				_inSortie = null;
 
@@ -94,7 +97,7 @@ public class InformationViewModel : AnchorableViewModel
 				break;
 
 			case "api_get_member/mapinfo":
-				Text = GetMapGauge(data);
+				Text = GetMapGauge();
 				break;
 
 			case "api_get_member/mission":
@@ -154,7 +157,7 @@ public class InformationViewModel : AnchorableViewModel
 			break;
 
 			case "api_req_practice/battle":
-				_inSortie = [ KCDatabase.Instance.Battle.FirstBattle.Initial.FriendFleetID ];
+				_inSortie = [ KCDatabase.Instance.Battle.FirstBattle!.Initial.FriendFleetID ];
 				break;
 
 		}
@@ -186,38 +189,50 @@ public class InformationViewModel : AnchorableViewModel
 
 
 			// 練巡ボーナス計算 - きたない
-			var fleet = KCDatabase.Instance.Fleet[1];
-			if (fleet.MembersInstance.Any(s => s != null && s.MasterShip.ShipType == ShipTypes.TrainingCruiser))
+			FleetData fleet = KCDatabase.Instance.Fleet[1];
+
+			Debug.Assert(fleet.MembersInstance is not null);
+
+			if (fleet.MembersInstance.Any(s => s is { MasterShip.ShipType: ShipTypes.TrainingCruiser }))
 			{
-				var members = fleet.MembersInstance;
-				var subCT = members.Skip(1).Where(s => s != null && s.MasterShip.ShipType == ShipTypes.TrainingCruiser);
+				ReadOnlyCollection<IShipData?>? members = fleet.MembersInstance;
+				List<IShipData> subCT = members
+					.Skip(1)
+					.OfType<IShipData>()
+					.Where(s => s is { MasterShip.ShipType: ShipTypes.TrainingCruiser })
+					.ToList();
 
 				double bonus;
 
 				// 旗艦が練巡
-				if (members[0] != null && members[0].MasterShip.ShipType == ShipTypes.TrainingCruiser)
+				if (members[0] is { MasterShip.ShipType: ShipTypes.TrainingCruiser} ship)
 				{
 
-					int level = members[0].Level;
+					int level = ship.Level;
 
-					if (subCT != null && subCT.Any())
+					if (subCT.Any())
 					{
-						// 旗艦+随伴
-						if (level < 10) bonus = 1.10;
-						else if (level < 30) bonus = 1.13;
-						else if (level < 60) bonus = 1.16;
-						else if (level < 100) bonus = 1.20;
-						else bonus = 1.25;
-
+						bonus = level switch
+						{
+							// 旗艦+随伴
+							< 10 => 1.10,
+							< 30 => 1.13,
+							< 60 => 1.16,
+							< 100 => 1.20,
+							_ => 1.25,
+						};
 					}
 					else
 					{
-						// 旗艦のみ
-						if (level < 10) bonus = 1.05;
-						else if (level < 30) bonus = 1.08;
-						else if (level < 60) bonus = 1.12;
-						else if (level < 100) bonus = 1.15;
-						else bonus = 1.20;
+						bonus = level switch
+						{
+							// 旗艦のみ
+							< 10 => 1.05,
+							< 30 => 1.08,
+							< 60 => 1.12,
+							< 100 => 1.15,
+							_ => 1.20,
+						};
 					}
 
 				}
@@ -226,24 +241,29 @@ public class InformationViewModel : AnchorableViewModel
 
 					int level = subCT.Max(s => s.Level);
 
-					if (subCT.Count() > 1)
+					if (subCT.Count > 1)
 					{
-						// 随伴複数
-						if (level < 10) bonus = 1.04;
-						else if (level < 30) bonus = 1.06;
-						else if (level < 60) bonus = 1.08;
-						else if (level < 100) bonus = 1.12;
-						else bonus = 1.175;
-
+						bonus = level switch
+						{
+							// 随伴複数
+							< 10 => 1.04,
+							< 30 => 1.06,
+							< 60 => 1.08,
+							< 100 => 1.12,
+							_ => 1.175,
+						};
 					}
 					else
 					{
-						// 随伴単艦
-						if (level < 10) bonus = 1.03;
-						else if (level < 30) bonus = 1.05;
-						else if (level < 60) bonus = 1.07;
-						else if (level < 100) bonus = 1.10;
-						else bonus = 1.15;
+						bonus = level switch
+						{
+							// 随伴単艦
+							< 10 => 1.03,
+							< 30 => 1.05,
+							< 60 => 1.07,
+							< 100 => 1.10,
+							_ => 1.15,
+						};
 					}
 				}
 
@@ -257,18 +277,17 @@ public class InformationViewModel : AnchorableViewModel
 	}
 	private string GetAlbumInfo(dynamic data)
 	{
+		StringBuilder sb = new();
 
-		StringBuilder sb = new StringBuilder();
-
-		if (data != null && data.api_list() && data.api_list != null)
+		if (data != null && data!.api_list() && data!.api_list != null)
 		{
 
-			if (data.api_list[0].api_yomi())
+			if (data!.api_list[0].api_yomi())
 			{
 				//艦娘図鑑
 				const int bound = 70;       // 図鑑1ページあたりの艦船数
 				int startIndex = (((int)data.api_list[0].api_index_no - 1) / bound) * bound + 1;
-				bool[] flags = Enumerable.Repeat<bool>(false, bound).ToArray();
+				bool[] flags = Enumerable.Repeat(false, bound).ToArray();
 
 				sb.AppendLine(GeneralRes.DamagedArtUnseen);
 
@@ -310,7 +329,7 @@ public class InformationViewModel : AnchorableViewModel
 				//装備図鑑
 				const int bound = 70;       // 図鑑1ページあたりの装備数
 				int startIndex = (((int)data.api_list[0].api_index_no - 1) / bound) * bound + 1;
-				bool[] flags = Enumerable.Repeat<bool>(false, bound).ToArray();
+				bool[] flags = Enumerable.Repeat(false, bound).ToArray();
 
 				foreach (dynamic elem in data.api_list)
 				{
@@ -323,7 +342,7 @@ public class InformationViewModel : AnchorableViewModel
 				{
 					if (!flags[i])
 					{
-						IEquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
+						IEquipmentDataMaster? eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
 						if (eq != null)
 						{
 							sb.AppendLine(eq.NameEN);
@@ -336,34 +355,9 @@ public class InformationViewModel : AnchorableViewModel
 		return sb.ToString();
 	}
 
-
-	private string GetCreateItemInfo(dynamic data)
+	private string GetMapGauge()
 	{
-
-		if ((int)data.api_create_flag == 0)
-		{
-
-			StringBuilder sb = new StringBuilder();
-			sb.AppendLine(GeneralRes.DevelopmentFailed);
-			sb.AppendLine(data.api_fdata);
-
-			IEquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse(((string)data.api_fdata).Split(",".ToCharArray())[1])];
-			if (eqm != null)
-				sb.AppendLine(eqm.NameEN);
-
-
-			return sb.ToString();
-
-		}
-		else
-			return "";
-	}
-
-
-	private string GetMapGauge(dynamic data)
-	{
-
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new();
 		sb.AppendLine(GeneralRes.MapGauges);
 
 		string rpcMapInfo = "";
@@ -418,7 +412,9 @@ public class InformationViewModel : AnchorableViewModel
 
 	private enum MissionState
 	{
+		// ReSharper disable once UnusedMember.Local
 		New,
+		// ReSharper disable once UnusedMember.Local
 		NotCompleted,
 		Completed
 	}
@@ -494,11 +490,10 @@ public class InformationViewModel : AnchorableViewModel
 	}
 
 
-	private string GetConsumptionResource(dynamic data)
+	private string GetConsumptionResource()
 	{
-
 		StringBuilder sb = new StringBuilder();
-		var material = KCDatabase.Instance.Material;
+		MaterialData material = KCDatabase.Instance.Material;
 
 
 		int fuel_diff = material.Fuel - _prevResource[0],
@@ -506,11 +501,13 @@ public class InformationViewModel : AnchorableViewModel
 			steel_diff = material.Steel - _prevResource[2],
 			bauxite_diff = material.Bauxite - _prevResource[3];
 
+		Debug.Assert(_inSortie is not null);
 
-		var ships = KCDatabase.Instance.Fleet.Fleets.Values
+		List<IShipData> ships = KCDatabase.Instance.Fleet.Fleets.Values
 			.Where(f => _inSortie.Contains(f.FleetID))
-			.SelectMany(f => f.MembersInstance)
-			.Where(s => s != null);
+			.SelectMany(f => f.MembersInstance!)
+			.OfType<IShipData>()
+			.ToList();
 
 		int fuel_supply = ships.Sum(s => s.SupplyFuel);
 		int ammo = ships.Sum(s => s.SupplyAmmo);
@@ -530,21 +527,26 @@ public class InformationViewModel : AnchorableViewModel
 	}
 
 
+	[SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 	private void CheckSallyArea()
 	{
 		// only check if there's any event maps
 		// this function shouldn't get called outside of events so the check should be pointless
 		// if (KCDatabase.Instance.MapArea.Values.Any(m => m.ID > 20)) return;
 
-		IEnumerable<IEnumerable<IShipData>> group;
+		IEnumerable<IEnumerable<IShipData>> group = KCDatabase.Instance.Fleet.CombinedFlag switch
+		{
+			0 => KCDatabase.Instance.Fleet.Fleets.Values
+				.Where(f => f.ExpeditionState == 0)
+				.Select(f => f.MembersInstance!.OfType<IShipData>()),
 
-		if (KCDatabase.Instance.Fleet.CombinedFlag != 0)
-			group = new[] { KCDatabase.Instance.Fleet[1].MembersInstance.Concat(KCDatabase.Instance.Fleet[2].MembersInstance).Where(s => s != null) };
-		else
-			group = KCDatabase.Instance.Fleet.Fleets.Values
-				.Where(f => f?.ExpeditionState == 0)
-				.Select(f => f.MembersInstance.Where(s => s != null));
-
+			_ =>
+			[
+				KCDatabase.Instance.Fleet[1].MembersInstance!
+					.Concat(KCDatabase.Instance.Fleet[2].MembersInstance!)
+					.OfType<IShipData>()
+			],
+		};
 
 		group = group.Where(ss =>
 			ss.All(s => s.RepairingDockID == -1) &&
@@ -553,21 +555,28 @@ public class InformationViewModel : AnchorableViewModel
 
 		if (group.Any())
 		{
-			var freeShips = group.SelectMany(f => f).Where(s => s.SallyArea == 0);
+			IEnumerable<IShipData> freeShips = group
+				.SelectMany(f => f)
+				.Where(s => s.SallyArea == 0);
 
 			Text = InformationResources.FleetTagWarning + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
 
 			if (Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog)
+			{
 				MessageBox.Show(InformationResources.FleetTagAlertDialogText, InformationResources.FleetTagAlertDialogCaption,
 					MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
 		}
 	}
 
 	private void CheckExpedition(int missionID, int fleetID)
 	{
-		var fleet = KCDatabase.Instance.Fleet[fleetID];
-		var result = MissionClearCondition.Check(missionID, fleet);
-		var mission = KCDatabase.Instance.Mission[missionID];
+		FleetData fleet = KCDatabase.Instance.Fleet[fleetID];
+		MissionClearCondition.MissionClearConditionResult result = MissionClearCondition.Check(missionID, fleet);
+		MissionData? mission = KCDatabase.Instance.Mission[missionID];
+
+		Debug.Assert(fleet.MembersInstance is not null);
+		Debug.Assert(mission is not null);
 
 		if (!result.IsSuceeded)
 		{
@@ -591,10 +600,5 @@ public class InformationViewModel : AnchorableViewModel
 		_prevResource[1] = material.Ammo;
 		_prevResource[2] = material.Steel;
 		_prevResource[3] = material.Bauxite;
-	}
-
-	protected string GetPersistString()
-	{
-		return "Information";
 	}
 }
