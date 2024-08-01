@@ -76,7 +76,7 @@ public class PhaseBaseAirRaid : AttackPhaseBase, IPhaseAirBattle
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-	[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id]?.NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
@@ -87,7 +87,7 @@ public class PhaseBaseAirRaid : AttackPhaseBase, IPhaseAirBattle
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-	[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id]?.NameEN,
 		_ => null,
 	};
 	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
