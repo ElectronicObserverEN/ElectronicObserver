@@ -631,7 +631,7 @@ public static class BattleDetailDescriptor
 
 			sb.Append('　');
 			sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Zip(
-				ship.ExpansionSlot > 0 ? ship.Aircraft.Concat(new[] { 0 }) : ship.Aircraft,
+				ship.ExpansionSlot > 0 ? ship.Aircraft.Concat([0]) : ship.Aircraft,
 				(eq, aircraft) => eq == null ? null : ((eq.MasterEquipment.IsAircraft ? $"[{aircraft}] " : "") + eq.NameWithLevel)
 			).Where(str => str != null)));
 		}
