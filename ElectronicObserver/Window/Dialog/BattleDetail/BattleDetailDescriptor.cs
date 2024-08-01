@@ -156,7 +156,7 @@ public static class BattleDetailDescriptor
 					break;
 
 				case PhaseInitial p:
-
+					Debug.Assert(p.FleetsBeforePhase is not null);
 
 					if (p.FleetsBeforePhase.EscortFleet != null)
 						sb.Append(ConstantsRes.BattleDetail_FriendMainFleet);
@@ -192,6 +192,9 @@ public static class BattleDetailDescriptor
 
 					if (p.FleetsBeforePhase.EscortFleet != null)
 					{
+						Debug.Assert(p.FriendInitialHPsEscort is not null);
+						Debug.Assert(p.FriendMaxHPsEscort is not null);
+
 						sb.AppendLine();
 						sb.Append(ConstantsRes.BattleDetail_FriendEscortFleet);
 						AppendFleetInfo(p.FleetsBeforePhase.EscortFleet);
@@ -251,7 +254,7 @@ public static class BattleDetailDescriptor
 						p.EnemySlotsInstance, p.EnemyParameters);
 
 
-					if (p.EnemyMembersEscort != null)
+					if (p.IsEnemyCombined)
 					{
 						sb.AppendLine();
 						sb.AppendLine(ConstantsRes.BattleDetail_EnemyEscortFleet);
@@ -387,7 +390,7 @@ public static class BattleDetailDescriptor
 					if (p.FlareFriend is not null)
 					{
 						sb.AppendFormat(ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n",
-							p.FlareEnemy.MasterShip.NameWithClass, p.FlareIndexFriend + 1);
+							p.FlareFriend.MasterShip.NameWithClass, p.FlareIndexFriend + 1);
 					}
 
 					if (p.FlareEnemy is not null)
