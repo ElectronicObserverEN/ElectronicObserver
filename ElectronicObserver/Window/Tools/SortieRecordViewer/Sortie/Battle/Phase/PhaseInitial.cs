@@ -49,7 +49,9 @@ public class PhaseInitial : PhaseBase
 	public IEquipmentData?[][] EnemySlotsInstance => EnemyMembersInstance.Select(s => s?.SlotInstance.ToArray() ?? []).ToArray();
 
 	[MemberNotNullWhen(true, nameof(EnemyMembersEscort))]
+	[MemberNotNullWhen(true, nameof(EnemyMembersEscortInstance))]
 	[MemberNotNullWhen(true, nameof(EnemyLevelsEscort))]
+	[MemberNotNullWhen(true, nameof(EnemyInitialHPsEscort))]
 	[MemberNotNullWhen(true, nameof(EnemyMaxHPsEscort))]
 	[MemberNotNullWhen(true, nameof(EnemyParametersEscort))]
 	[MemberNotNullWhen(true, nameof(EnemySlotsEscort))]

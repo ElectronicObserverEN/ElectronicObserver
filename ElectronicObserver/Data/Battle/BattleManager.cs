@@ -34,12 +34,12 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.NightToDay;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Dialog.BattleDetail;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.Battle;
@@ -51,13 +51,13 @@ public class BattleManager : APIWrapper
 {
 	public static string BattleLogPath => "BattleLog";
 
-	public delegate void ShipLevelUpHandler(IShipData ship, int nextLevel);
-
 	/// <summary>
 	/// Ship will have the level before level up
 	/// </summary>
 	/// <param name="ship"></param>
 	/// <param name="nextLevel"></param>
+	public delegate void ShipLevelUpHandler(IShipData ship, int nextLevel);
+
 	public event ShipLevelUpHandler? ShipLevelUp;
 
 	/// <summary>
@@ -278,8 +278,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqSortieNightToDayResponse battle) break;
 
-				// todo
-				// BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -321,8 +320,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleAirbattleResponse battle) break;
 
-				// todo
-				// BattleDay = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -364,8 +362,7 @@ public class BattleManager : APIWrapper
 			{
 				if (apiData is not ApiReqCombinedBattleEcNightToDayResponse battle) break;
 
-				// todo
-				// BattleNight = BattleFactory.CreateBattle(battle, Fleets);
+				FirstBattle = BattleFactory.CreateBattle(battle, Fleets);
 			}
 			break;
 
@@ -488,23 +485,27 @@ public class BattleManager : APIWrapper
 	/// </summary>
 	private void BattleFinished()
 	{
-
 		//敵編成記録
-		EnemyFleetRecord.EnemyFleetElement enemyFleetData = EnemyFleetRecord.EnemyFleetElement.CreateFromCurrentState();
+		EnemyFleetRecord.EnemyFleetElement? enemyFleetData = EnemyFleetRecord.EnemyFleetElement.CreateFromCurrentState();
 
 		if (enemyFleetData != null)
+		{
 			RecordManager.Instance.EnemyFleet.Update(enemyFleetData);
-
+		}
 
 		// ロギング
 		if (IsPractice)
 		{
+			Debug.Assert(Result is not null);
+
 			Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedPractice,
 					EnemyAdmiralName, EnemyAdmiralRank, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
 		}
 		else if (IsBaseAirRaid)
 		{
+			Debug.Assert(Compass is not null);
+
 			if (FirstBattle is BattleBaseAirRaid raid)
 			{
 				PhaseBaseAirRaid? airraid = raid.BaseAirRaid;
@@ -533,6 +534,9 @@ public class BattleManager : APIWrapper
 		}
 		else
 		{
+			Debug.Assert(Compass is not null);
+			Debug.Assert(Result is not null);
+
 			Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedSortie,
 					Compass.MapAreaID, Compass.MapInfoID, Compass.CellDisplay, KCDatabase.Instance.Translation.Operation.FleetName(Result.EnemyFleetName), Result.Rank, Result.AdmiralExp, Result.BaseExp));
@@ -542,6 +546,9 @@ public class BattleManager : APIWrapper
 		// Level up
 		if (!IsBaseAirRaid)
 		{
+			Debug.Assert(FirstBattle is not null);
+			Debug.Assert(Result is not null);
+
 			List<int> exps = Result.ExpList;
 			List<List<int>> lvup = Result.LevelUpList;
 			for (int i = 0; i < lvup.Count; i++)
@@ -580,23 +587,24 @@ public class BattleManager : APIWrapper
 		//ドロップ艦記録
 		if (!IsPractice && !IsBaseAirRaid)
 		{
+			Debug.Assert(Compass is not null);
+			Debug.Assert(Result is not null);
+
 			//checkme: とてもアレな感じ
 
-			int shipID = (int?)Result.DroppedShipId ?? -1;
-			int itemID = Result.DroppedItemId ?? -1;
-			int eqID = Result.DroppedEquipmentId ?? -1;
+			int shipId = (int?)Result.DroppedShipId ?? -1;
+			int itemId = Result.DroppedItemId ?? -1;
+			int eqId = Result.DroppedEquipmentId ?? -1;
 			bool showLog = Utility.Configuration.Config.Log.ShowSpoiler;
 
-			if (shipID != -1)
+			if (KCDatabase.Instance.MasterShips[shipId] is IShipDataMaster ship)
 			{
-
-				IShipDataMaster ship = KCDatabase.Instance.MasterShips[(int)shipID];
 				DroppedShipCount++;
 
 				IEnumerable<IEquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch
 				{
 					< 1 => null,
-					_ => KCDatabase.Instance.MasterEquipments[i]
+					_ => KCDatabase.Instance.MasterEquipments[i],
 				});
 
 				if (defaultSlot != null)
@@ -610,22 +618,21 @@ public class BattleManager : APIWrapper
 					Utility.Logger.Add(2, string.Format(LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass));
 			}
 
-			if (itemID != -1)
+			if (itemId != -1)
 			{
-				DroppedItemCount.TryAdd(itemID, 0);
-				DroppedItemCount[itemID]++;
+				DroppedItemCount.TryAdd(itemId, 0);
+				DroppedItemCount[itemId]++;
 
 				if (showLog)
 				{
-					IUseItem? item = KCDatabase.Instance.UseItems[itemID];
-					IUseItemMaster? itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
-					Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemmaster?.NameTranslated ?? (BattleRes.UnknownItem + itemID), (item?.Count ?? 0) + DroppedItemCount[itemID]));
+					IUseItem? item = KCDatabase.Instance.UseItems[itemId];
+					IUseItemMaster? itemMaster = KCDatabase.Instance.MasterUseItems[itemId];
+					Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemMaster?.NameTranslated ?? (BattleRes.UnknownItem + itemId), (item?.Count ?? 0) + DroppedItemCount[itemId]));
 				}
 			}
 
-			if (eqID != -1)
+			if (KCDatabase.Instance.MasterEquipments[eqId] is IEquipmentDataMaster eq)
 			{
-				IEquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
 				if (eq.UsesSlotSpace())
 				{
 					DroppedEquipmentCount++;
@@ -639,14 +646,16 @@ public class BattleManager : APIWrapper
 
 
 			// 満員判定
-			if (shipID == -1 && (
+			if (shipId == -1 && (
 				KCDatabase.Instance.Admiral.MaxShipCount - (KCDatabase.Instance.Ships.Count + DroppedShipCount) <= 0 ||
 				KCDatabase.Instance.Admiral.MaxEquipmentCount - (KCDatabase.Instance.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace()) + DroppedEquipmentCount) <= 0))
 			{
-				shipID = -2;
+				shipId = -2;
 			}
 
-			RecordManager.Instance.ShipDrop.Add(shipID, itemID, eqID, Compass.MapAreaID, Compass.MapInfoID, Compass.CellId, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level);
+			Debug.Assert(enemyFleetData is not null);
+
+			RecordManager.Instance.ShipDrop.Add(shipId, itemId, eqId, Compass.MapAreaID, Compass.MapInfoID, Compass.CellId, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level);
 		}
 
 
@@ -700,17 +709,17 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 勝利ランクを予測します。
 	/// </summary>
-	/// <param name="friendrate">味方の損害率を出力します。</param>
-	/// <param name="enemyrate">敵の損害率を出力します。</param>
-	public int PredictWinRank(out double friendrate, out double enemyrate)
+	/// <param name="friendRate">味方の損害率を出力します。</param>
+	/// <param name="enemyRate">敵の損害率を出力します。</param>
+	public int PredictWinRank(out double friendRate, out double enemyRate)
 	{
 		BattleData? activeBattle = SecondBattle ?? FirstBattle;
 
 		// should never happen
 		if (activeBattle is null)
 		{
-			friendrate = 0;
-			enemyrate = 0;
+			friendRate = 0;
+			enemyRate = 0;
 			return -1;
 		}
 
@@ -718,6 +727,8 @@ public class BattleManager : APIWrapper
 
 		List<int> hpsBefore = activeBattle.InitialHPs.ToList();
 		List<int> hpsAfter = activeBattle.ResultHPs.ToList();
+
+		Debug.Assert(fleetsBefore.EnemyFleet is not null);
 
 		BattleRankPrediction prediction = activeBattle switch
 		{
@@ -763,8 +774,8 @@ public class BattleManager : APIWrapper
 
 		BattleRank rank = prediction.PredictRank();
 
-		friendrate = prediction.FriendHpRate;
-		enemyrate = prediction.EnemyHpRate;
+		friendRate = prediction.FriendHpRate;
+		enemyRate = prediction.EnemyHpRate;
 
 		return (int)rank;
 	}
@@ -775,15 +786,17 @@ public class BattleManager : APIWrapper
 	public bool WillNightBattleWithMainFleet()
 	{
 		if (!IsEnemyCombined) return false; // ? true?
+		if (FirstBattle?.Initial is not { IsEnemyCombined: true } initial) return false; // ? true?
 
-		var initial = FirstBattle.Initial;
 		int score = 0;
+		List<int> resultHps = FirstBattle.ResultHPs.ToList();
+
 		for (int i = 0; i < initial.EnemyInitialHPsEscort.Count; i++)
 		{
-			if (initial.EnemyMembersEscort.ToList()[i] > 0)
+			if (initial.EnemyMembersEscort[i] > 0)
 			{
-				double rate = (double)FirstBattle.ResultHPs.ToList()[BattleIndex.Get(BattleSides.EnemyEscort, i)] /
-					initial.EnemyMaxHPsEscort.ToList()[i];
+				double rate = (double)resultHps[BattleIndex.Get(BattleSides.EnemyEscort, i)] /
+					initial.EnemyMaxHPsEscort[i];
 
 				if (rate > 0.5)
 				{
@@ -807,36 +820,31 @@ public class BattleManager : APIWrapper
 
 	private void WriteBattleLog()
 	{
-
-		if (!Utility.Configuration.Config.Log.SaveBattleLog)
-			return;
+		if (!Utility.Configuration.Config.Log.SaveBattleLog) return;
 
 		try
 		{
 			string parent = BattleLogPath;
 
-			if (!Directory.Exists(parent))
-				Directory.CreateDirectory(parent);
+			Directory.CreateDirectory(parent);
 
-			string info;
-			if (IsPractice)
-				info = "practice";
-			else
-				info = $"{Compass.MapAreaID}-{Compass.MapInfoID}-{Compass.CellId}";
+			string info = (IsPractice, Compass) switch
+			{
+				(true, _) => "practice",
+				(_, not null) => $"{Compass.MapAreaID}-{Compass.MapInfoID}-{Compass.CellId}",
+
+				// should never happen
+				_ => "???",
+			};
 
 			string path = $"{parent}\\{DateTimeHelper.GetTimeStamp()}@{info}.txt";
 
-			using (var sw = new StreamWriter(path, false, Utility.Configuration.Config.Log.FileEncoding))
-			{
-				// todo sw.Write(BattleDetailDescriptor.GetBattleDetail(this));
-			}
-
+			using StreamWriter sw = new(path, false, Utility.Configuration.Config.Log.FileEncoding);
+			sw.Write(BattleDetailDescriptor.GetBattleDetail(this));
 		}
 		catch (Exception ex)
 		{
-
 			Utility.ErrorReporter.SendErrorReport(ex, "戦闘ログの出力に失敗しました。");
 		}
 	}
-
 }
