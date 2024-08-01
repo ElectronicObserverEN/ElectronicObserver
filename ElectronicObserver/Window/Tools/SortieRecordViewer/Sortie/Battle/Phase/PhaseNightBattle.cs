@@ -37,7 +37,7 @@ public class PhaseNightBattle : AttackPhaseBase
 		List<List<int>> defenders = apiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 		List<List<int>> attackEquipments = apiSiList.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticals = apiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
-		List<List<double>> rawDamages = apiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<List<double>> rawDamages = apiDamage.Select(elem => elem.Where(e => e >= 0).ToList()).ToList();
 
 		for (int i = 0; i < attackers.Count; i++)
 		{
@@ -47,7 +47,8 @@ public class PhaseNightBattle : AttackPhaseBase
 				NightAirAttackFlag = nightAirAttackFlags[i] == -1,
 				AttackType = attackTypes[i],
 				DisplayEquipments = attackEquipments[i]
-					.Select(i => KcDatabase.MasterEquipments[i])
+					.Select(id => KcDatabase.MasterEquipments[id])
+					.OfType<IEquipmentDataMaster>()
 					.ToList(),
 			};
 
