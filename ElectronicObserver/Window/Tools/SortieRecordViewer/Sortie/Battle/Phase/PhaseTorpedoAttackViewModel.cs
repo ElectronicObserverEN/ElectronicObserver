@@ -19,6 +19,7 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 	private List<int> DefenderHpBeforeAttacks { get; } = [];
 	public override string DefenderDisplay { get; }
 
+	public override double Damage { get; }
 	private DayAttackKind AttackType { get; }
 	public List<DayAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
@@ -46,6 +47,7 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+		Damage = Attacks.Sum(a => a.Damage);
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
@@ -55,7 +57,7 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - dayAttack.Damage));
 		}
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{

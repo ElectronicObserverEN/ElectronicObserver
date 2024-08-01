@@ -23,7 +23,7 @@ public sealed class AirBaseRaidAttackViewModel : AttackViewModelBase
 	private int DefenderHpBeforeAttack { get; }
 	public override string DefenderDisplay { get; }
 
-	private double Damage { get; }
+	public override double Damage { get; }
 	private HitType HitType { get; }
 	private AirAttack AttackType { get; }
 	public override string DamageDisplay { get; }

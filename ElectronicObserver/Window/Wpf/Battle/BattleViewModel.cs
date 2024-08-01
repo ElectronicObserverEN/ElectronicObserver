@@ -774,6 +774,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <param name="phaseJet">噴式航空戦のデータ。発生していなければ null</param>
 	/// <param name="phase1">第一次航空戦（通常航空戦）のデータ。</param>
 	/// <param name="phase2">第二次航空戦のデータ。発生していなければ null</param>
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void SetAerialWarfare(IPhaseAirBattle? phaseJet, IPhaseAirBattle? phase1, IPhaseAirBattle? phase2)
 	{
 		List<AerialWarfareFormatter> phases = new()
@@ -990,6 +991,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 両軍のHPゲージを設定します。
 	/// </summary>
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void SetHPBar(BattleData? bd)
 	{
 		if (bd is null) return;
@@ -1278,20 +1280,18 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (!isBaseAirRaid)
 		{
-			/* todo
-			foreach (int i in bd.MVPShipIndexes)
+			foreach (int i in bd.MvpShipIndexes())
 			{
 				HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 			}
 
 			if (isFriendCombined)
 			{
-				foreach (int i in bd.MVPShipCombinedIndexes)
+				foreach (int i in bd.MvpShipCombinedIndexes())
 				{
 					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 				}
 			}
-			*/
 		}
 	}
 
@@ -1457,6 +1457,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// 戦闘終了後に、MVP艦の表示を更新します。
 	/// </summary>
 	/// <param name="bm">戦闘データ。</param>
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void SetMVPShip(BattleManager bm)
 	{
 		bool isCombined = bm.IsCombinedBattle;

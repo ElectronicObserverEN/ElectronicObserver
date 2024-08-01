@@ -641,7 +641,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 									HitType.Critical => 1,
 									_ => 0,
 								},
-								Damage = attackDisplay?.Damage ?? 0,
+								Damage = (int?)attackDisplay?.Damage ?? 0,
 								Protected = attackDisplay?.GuardsFlagship switch
 								{
 									true => 1,
@@ -830,7 +830,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 				HitType.Critical => 1,
 				_ => 0,
 			},
-			Damage = attackDisplay?.Damage ?? 0,
+			Damage = (int?)attackDisplay?.Damage ?? 0,
 			Protected = attackDisplay?.GuardsFlagship switch
 			{
 				true => 1,

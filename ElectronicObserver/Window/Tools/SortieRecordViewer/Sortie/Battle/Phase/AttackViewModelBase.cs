@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 
@@ -14,6 +15,8 @@ public abstract class AttackViewModelBase
 
 	public abstract BattleIndex DefenderIndex { get; }
 	public abstract string DefenderDisplay { get; }
+
+	public abstract double Damage { get; }
 
 	// \u2192 = →
 	public string AttackerDefenderDisplay => $"{AttackerDisplay} \u2192 {DefenderDisplay}";

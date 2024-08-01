@@ -23,7 +23,7 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 	public int DefenderHpBeforeAttack { get; }
 	public override string DefenderDisplay { get; }
 
-	public int Damage { get; }
+	public override double Damage { get; }
 	public HitType HitType { get; }
 	public AirAttack AttackType { get; }
 	private IEquipmentData? UsedDamecon { get; }
@@ -47,7 +47,7 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 
 		DefenderHpBeforeAttack = Defender.HPCurrent;
 
-		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Damage);
+		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - (int)Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{

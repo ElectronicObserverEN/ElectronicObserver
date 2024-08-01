@@ -18,6 +18,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 	public List<int> DefenderHpBeforeAttacks { get; } = [];
 	public override string DefenderDisplay { get; }
 
+	public override double Damage { get; }
 	public NightAttackKind AttackType { get; }
 	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	public List<NightAttack> Attacks { get; }
@@ -50,6 +51,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 			})
 			.ToList();
 		DisplayEquipment = attack.DisplayEquipments;
+		Damage = Attacks.Sum(a => a.Damage);
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
@@ -59,7 +61,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - nightAttack.Damage));
 		}
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{

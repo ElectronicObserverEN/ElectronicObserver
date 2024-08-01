@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
@@ -43,6 +44,52 @@ public abstract class BattleData
 			.Concat(Enumerable.Repeat(0, 6))
 			.Take(Math.Max(fleet.MembersInstance.Count, 6))
 		?? Enumerable.Repeat(0, 6);
+
+	public IEnumerable<int> MvpShipIndexes()
+	{
+		if (FleetsBeforeBattle.Fleet.Members is null) return [0];
+
+		List<(int? Index, int Damage)> damages = Phases
+			.OfType<AttackPhaseBase>()
+			.SelectMany(p => p.AttackDisplays)
+			.Where(a => a.AttackerIndex?.FleetFlag is FleetFlag.Player)
+			.Where(a => a.AttackerIndex?.Index < FleetsBeforeBattle.Fleet.Members.Count)
+			.GroupBy(a => a.AttackerIndex?.Index)
+			.Select(g => (g.Key, (int)g.Sum(a => a.Damage)))
+			.ToList();
+
+		int max = damages.Select(d => d.Damage).Max();
+
+		if (max is 0) return [0];
+
+		return damages
+			.Where(d => d.Damage == max)
+			.Select(d => d.Index)
+			.OfType<int>();
+	}
+
+	public IEnumerable<int> MvpShipCombinedIndexes()
+	{
+		if (FleetsBeforeBattle.EscortFleet?.Members is null) return [0];
+
+		List<(int? Index, int Damage)> damages = Phases
+			.OfType<AttackPhaseBase>()
+			.SelectMany(p => p.AttackDisplays)
+			.Where(a => a.AttackerIndex?.FleetFlag is FleetFlag.Player)
+			.Where(a => a.AttackerIndex?.Index > 5)
+			.GroupBy(a => a.AttackerIndex?.Index)
+			.Select(g => (g.Key, (int)g.Sum(a => a.Damage)))
+			.ToList();
+
+		int max = damages.Select(d => d.Damage).Max();
+
+		if (max is 0) return [0];
+
+		return damages
+			.Where(d => d.Damage == max)
+			.Select(d => d.Index - 6)
+			.OfType<int>();
+	}
 
 	public IEnumerable<AirBaseBeforeAfter> AirBaseBeforeAfter => FleetsBeforeBattle.AirBases
 		.Zip(FleetsAfterBattle.AirBases, (before, after) => (Before: before, After: after))

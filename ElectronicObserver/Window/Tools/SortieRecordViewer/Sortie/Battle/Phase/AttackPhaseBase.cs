@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserver.Window.Dialog.BattleDetail;
 using System.Linq;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
