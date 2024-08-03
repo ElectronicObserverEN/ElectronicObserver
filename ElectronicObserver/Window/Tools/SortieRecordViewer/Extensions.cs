@@ -429,6 +429,12 @@ public static class Extensions
 		"api_req_map/start" or
 		"api_req_map/next";
 
+	private static Func<ElectronicObserverContext, List<int>, IAsyncEnumerable<SortieRecord>> SortieQuery { get; }
+		= EF.CompileAsyncQuery((ElectronicObserverContext db, List<int> idsToLoad)
+			=> db.Sorties
+				.Include(s => s.ApiFiles)
+				.Where(s => idsToLoad.Contains(s.Id)));
+
 	public static async Task<List<SortieRecord>> WithApiFiles(this IEnumerable<SortieRecord> sorties,
 		ElectronicObserverContext db, CancellationToken cancellationToken = default)
 	{
@@ -445,9 +451,7 @@ public static class Extensions
 		{
 			{ Count: 0 } => [],
 
-			_ => await db.Sorties
-				.Include(s => s.ApiFiles)
-				.Where(s => idsToLoad.Contains(s.Id))
+			_ => await SortieQuery(db, idsToLoad)
 				.ToListAsync(cancellationToken),
 		};
 
