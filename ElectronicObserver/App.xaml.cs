@@ -162,13 +162,6 @@ public partial class App
 			System.Windows.Forms.Application.EnableVisualStyles();
 			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-			Task.Run(() =>
-			{
-				// pre-load ef model to avoid performance hits later
-				using ElectronicObserverContext db = new();
-				_ = db.Model;
-			});
-
 			try
 			{
 				Directory.CreateDirectory(@"Settings\Layout");

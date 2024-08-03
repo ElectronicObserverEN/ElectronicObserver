@@ -130,6 +130,17 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		DataGridViewModel.ItemsSource.Clear();
 	}
 
+	private static Func<ElectronicObserverContext, int?, int?, DateTime, DateTime, IAsyncEnumerable<SortieRecordViewModel>> SortieQuery { get; }
+		= EF.CompileAsyncQuery((ElectronicObserverContext db, int? world, int? map, DateTime begin, DateTime end)
+			=> db.Sorties
+				.Where(s => world == null || s.World == world)
+				.Where(s => map == null || s.Map == map)
+				.OrderByDescending(s => s.Id)
+				.Select(s => new { SortieRecord = s, s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp, })
+				.Where(s => s.TimeStamp > begin)
+				.Where(s => s.TimeStamp < end)
+				.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp)));
+
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task Search(CancellationToken ct)
 	{
@@ -138,15 +149,13 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		try
 		{
-			List<SortieRecordViewModel> sorties = await Task.Run(async () => await Db.Sorties
-				.Where(s => World as string == AllRecords || s.World == World as int?)
-				.Where(s => Map as string == AllRecords || s.Map == Map as int?)
-				.OrderByDescending(s => s.Id)
-				.Select(s => new { SortieRecord = s, s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp, })
-				.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
-				.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
-				.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp))
-				.ToListAsync(ct), ct);
+			int? world = World as int?;
+			int? map = Map as int?;
+			DateTime begin = DateTimeBegin.ToUniversalTime();
+			DateTime end = DateTimeEnd.ToUniversalTime();
+
+			List<SortieRecordViewModel> sorties = await Task.Run(async () =>
+				await SortieQuery(Db, world, map, begin, end).ToListAsync(ct), ct);
 
 			Sorties.Clear();
 
