@@ -107,7 +107,7 @@ public sealed class BattleNode(IKCDatabase kcDatabase, int world, int map, int c
 
 		bool damageTaken = hpBeforeBattle > hpAfterBattle;
 
-		return (WinRank: BattleResult?.Rank, damageTaken) switch
+		return (BattleResult?.Rank, damageTaken) switch
 		{
 			("S", false) => "SS",
 			_ => BattleResult?.Rank,
