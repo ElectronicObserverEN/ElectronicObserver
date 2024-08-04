@@ -344,8 +344,9 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 
 	private double GetQuestSenka(ApiFile apiFile) => apiFile.Name switch
 	{
-		"api_req_quest/clearitemget" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestClearitemgetResponse>>(apiFile.Content)?.ApiData.ApiBounus
-			.FirstOrDefault(b => b.ApiType == UseItemId.Senka)
+		"api_req_quest/clearitemget" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestClearitemgetResponse>>(apiFile.Content)
+			?.ApiData.ApiBounus
+			?.FirstOrDefault(b => b.ApiType == UseItemId.Senka)
 			?.ApiCount ?? 0,
 
 		_ => 0,
