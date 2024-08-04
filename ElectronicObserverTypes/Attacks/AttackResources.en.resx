@@ -265,6 +265,9 @@
     <value>CI (Zuiun x2 + Radar)</value>
   </data>
   <data name="SpecialRichelieu" xml:space="preserve">
-    <value>Richelieu Touch</value>
+    <value>French Touch</value>
+  </data>
+  <data name="SpecialQueenElizabeth" xml:space="preserve">
+    <value>Queen Elizabeth-class Special Attack</value>
   </data>
 </root>

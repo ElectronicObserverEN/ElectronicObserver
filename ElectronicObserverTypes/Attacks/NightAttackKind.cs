@@ -72,6 +72,8 @@ public enum NightAttackKind
 	/// <summary> Richelieuよ！圧倒しなさいっ！ </summary>
 	SpecialRichelieu = 105,
 
+	/// <summary> Queen Elizabeth Class special attack </summary>
+	SpecialQueenElizabethClass = 106,
 
 	/// <summary> 夜間瑞雲カットイン </summary>
 	CutinZuiun = 200,

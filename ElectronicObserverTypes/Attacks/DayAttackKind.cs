@@ -51,6 +51,9 @@ public enum DayAttackKind
 	/// <summary> Richelieuよ！圧倒しなさいっ！ </summary>
 	SpecialRichelieu = 105,
 
+	/// <summary> Queen Elizabeth Class special attack </summary>
+	SpecialQueenElizabethClass = 106,
+
 	/// <summary> 瑞雲立体攻撃 </summary>
 	ZuiunMultiAngle = 200,
 

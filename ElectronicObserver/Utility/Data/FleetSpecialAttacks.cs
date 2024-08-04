@@ -9,8 +9,8 @@ public static class FleetSpecialAttacks
 {
 	public static List<SpecialAttack> GetSpecialAttacks(this IFleetData fleet)
 	{
-		List<SpecialAttack> attacks = new List<SpecialAttack>()
-		{
+		List<SpecialAttack> attacks =
+		[
 			new NelsonSpecialAttack(fleet),
 			new NagatoSpecialAttack(fleet),
 			new ColoradoSpecialAttack(fleet),
@@ -18,7 +18,8 @@ public static class FleetSpecialAttacks
 			new Yamato12SpecialAttack(fleet),
 			new KongouSpecialAttack(fleet),
 			new SubmarineSpecialAttack(fleet),
-		};	
+			new RichelieuSpecialAttack(fleet),
+		];	
 
 		return attacks
 			.Where(attack => attack.CanTrigger())
