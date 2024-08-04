@@ -132,5 +132,7 @@ public record Yamato12SpecialAttack : SpecialAttack
 		ShipId.IowaKai or
 		ShipId.BismarckDrei or
 		ShipId.RichelieuKai or
+		ShipId.RichelieuDeux or
+		ShipId.JeanBartKai or
 		ShipId.MusashiKaiNi;
 }
