@@ -4,9 +4,9 @@ using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Attacks.Specials;
 
-public record QueenElizabethClassSpecialAttack : SpecialAttack
+public record QueenElizabethSpecialAttack : SpecialAttack
 {
-	public QueenElizabethClassSpecialAttack(IFleetData fleet) : base(fleet)
+	public QueenElizabethSpecialAttack(IFleetData fleet) : base(fleet)
 	{
 	}
 

@@ -19,7 +19,7 @@ public static class FleetSpecialAttacks
 			new KongouSpecialAttack(fleet),
 			new SubmarineSpecialAttack(fleet),
 			new RichelieuSpecialAttack(fleet),
-			new QueenElizabethClassSpecialAttack(fleet),
+			new QueenElizabethSpecialAttack(fleet),
 		];	
 
 		return attacks
