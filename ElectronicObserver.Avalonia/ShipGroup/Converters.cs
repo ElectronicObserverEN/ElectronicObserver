@@ -10,4 +10,7 @@ public static class Converters
 			0 => "MAX",
 			_ => r.ToString(),
 		});
+
+	public static FuncValueConverter<TimeSpan, string> RepairTimeDisplayConverter { get; } =
+		new(t => $"{(int)t.TotalHours:00}:{t.Minutes:00}:{t.Seconds:00}");
 }

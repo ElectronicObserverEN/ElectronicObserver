@@ -22,13 +22,9 @@ public class ContentDialogService
 
 		ExportFilterContentDialog.ExportFilter = exportFilter;
 
-		ExportFilterViewModel? result = await ExportFilterContentDialog.ShowAsync(ContentDialogPlacement.InPlace) switch
-		{
-			ContentDialogResult.Primary => exportFilter,
-			_ => null,
-		};
+		_ = await ExportFilterContentDialog.ShowAsync(ContentDialogPlacement.InPlace);
 
-		return result;
+		return exportFilter;
 	}
 
 	public async Task<bool> ShowExportProgressAsync(ExportProgressViewModel exportProgress)

@@ -1,5 +1,4 @@
-﻿using System;
-using ElectronicObserverTypes;
+﻿using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
@@ -63,7 +62,7 @@ public class ShipGroupItemViewModel(IShipData ship)
 	}
 
 	public string Fleet => Ship.FleetWithIndex;
-	public TimeSpan RepairTime => new(Ship.RepairTime * 10_000L);
+	public TimeSpan RepairTime => TimeSpan.FromMilliseconds(Ship.RepairTime);
 	public int RepairSteel => Ship.RepairSteel;
 	public int RepairFuel => Ship.RepairFuel;
 

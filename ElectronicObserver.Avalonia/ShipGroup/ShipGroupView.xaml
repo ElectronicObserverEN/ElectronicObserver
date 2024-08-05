@@ -603,7 +603,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding RepairTime}"
+					Binding="{Binding RepairTime, Mode=OneWay, Converter={x:Static shipGroup:Converters.RepairTimeDisplayConverter}}"
 					CellStyleClasses="RepairTime CustomBackground"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairTime, ElementName=ShipGroupControl}"
 					/>
@@ -817,7 +817,7 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding RepairTimeUnit}"
+					Binding="{Binding RepairTimeUnit, Mode=OneWay, Converter={x:Static shipGroup:Converters.RepairTimeDisplayConverter}}"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.RepairTimeUnit, ElementName=ShipGroupControl}"
 					/>
 			</DataGrid.Columns>

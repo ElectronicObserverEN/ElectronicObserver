@@ -150,6 +150,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
+							if (exportFilter?.IgnoreMisses is true && attack.CriticalFlag is HitType.Miss) continue;
+
 							int actualAttackIndex = attackIndex;
 
 							if (attack.AttackKind.IsSpecialAttack())
@@ -278,6 +280,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 						foreach ((NightAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
+							if (exportFilter?.IgnoreMisses is true && attack.CriticalFlag is HitType.Miss) continue;
+
 							int actualAttackIndex = attackIndex;
 
 							if (attack.AttackKind.IsSpecialAttack())
@@ -413,6 +417,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
+							if (exportFilter?.IgnoreMisses is true && attack.CriticalFlag is HitType.Miss) continue;
+
 							torpedoData.Add(new()
 							{
 								CommonData = MakeCommonData(battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
@@ -503,6 +509,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 						AirBattleAttackViewModel? attackDisplay = airBattle.AttackDisplays
 							.FirstOrDefault(a => a.DefenderIndex == defenderIndex);
 
+						if (exportFilter?.IgnoreMisses is true && attackDisplay?.HitType is HitType.Miss) continue;
+
 						airBattleData.Add(MakeAirBattleExport(node,
 							sortieDetail, admiralLevel, airBattle, initial, searching, attackerFleet,
 							attackDisplay, ship, defenderIndex, ship.HPCurrent, fleets));
@@ -579,6 +587,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 							BattleIndex defenderIndex = new(index + indexOffset, fleetFlag);
 							AirBattleAttackViewModel? attackDisplay = airAttackUnit.AttackDisplays
 								.FirstOrDefault(a => a.DefenderIndex == defenderIndex);
+
+							if (exportFilter?.IgnoreMisses is true && attackDisplay?.HitType is HitType.Miss) continue;
 
 							airBattleData.Add(new()
 							{
@@ -862,18 +872,18 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		{
 			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
 			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
-			
+
 			BattleRankPrediction prediction = node.FirstBattle switch
 			{
 				BattleAirRaid or BattleCombinedAirRaid or BattleNormalRadar or BattleCombinedRadar => new AirRaidBattleRankPrediction()
 				{
 					FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
 					FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
-					
-					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet, 
+
+					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet,
 					FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
-					
-					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet, 
+
+					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
 					EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
 
 					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
@@ -890,22 +900,22 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 					EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
 				},
 				_ => new NormalBattleRankPrediction()
-				{ 
-					FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet, 
+				{
+					FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
 					FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
-					
-					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet, 
+
+					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet,
 					FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
-					
-					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet, 
+
+					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
 					EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
-					
-					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet, 
+
+					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
 					EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
 				},
 			};
 
-			rankData.Add(new ()
+			rankData.Add(new()
 			{
 				Date = sortieDetail.StartTime!.Value.ToLocalTime(),
 				World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",

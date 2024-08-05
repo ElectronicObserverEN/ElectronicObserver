@@ -71,6 +71,7 @@ public static class UseItemExtensions
 	    UseItemId.TeruTeruBozu => HeadquartersResources.TeruTeruBozu,
 	    UseItemId.SeaColoredRibbon => HeadquartersResources.SeaColoredRibbon,
 	    UseItemId.WhiteSash => HeadquartersResources.WhiteSash,
+	    UseItemId.LatestOverseasWarshipTechnology => HeadquartersResources.LatestOverseasWarshipTechnology,
 	    _ => ConstantsRes.Unknown,
     };
 

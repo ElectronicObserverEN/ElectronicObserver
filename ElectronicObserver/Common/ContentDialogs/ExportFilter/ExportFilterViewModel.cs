@@ -9,14 +9,16 @@ namespace ElectronicObserver.Common.ContentDialogs.ExportFilter;
 
 public partial class ExportFilterViewModel : ObservableObject
 {
-	private object World { get; }
-	private object Map { get; }
 	private static string All { get; } = "*";
-	public List<DestinationItemViewModel> Destinations { get; private set; }
-	
-	[ObservableProperty] private bool _ignoreFilters;
+	private object World { get; set; } = All;
+	private object Map { get; set; } = All;
+	public List<DestinationItemViewModel> Destinations { get; private set; } = [];
 
-	public ExportFilterViewModel(object world, object map)
+	[ObservableProperty] private bool _ignoreCellFilters;
+
+	[ObservableProperty] private bool _ignoreMisses;
+
+	public void Initialize(object world, object map)
 	{
 		World = world;
 		Map = map;
@@ -26,7 +28,7 @@ public partial class ExportFilterViewModel : ObservableObject
 
 	public bool MatchesFilter(SortieNode node)
 	{
-		if (IgnoreFilters) return true;
+		if (IgnoreCellFilters) return true;
 
 		return Destinations
 			.Where(d => d.IsChecked)
@@ -42,7 +44,7 @@ public partial class ExportFilterViewModel : ObservableObject
 		Destinations = MakeDestinations(newState);
 	}
 
-	private List<DestinationItemViewModel> MakeDestinations(bool isChecked) => 
+	private List<DestinationItemViewModel> MakeDestinations(bool isChecked) =>
 		KCDatabase.Instance.Translation.Destination.DestinationList.Values
 			.Where(d => World as string == All || World as int? == d.MapAreaId)
 			.Where(d => Map as string == All || Map as int? == d.MapInfoId)

@@ -120,6 +120,23 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 		OnPropertyChanged(nameof(World));
 	}
 
+	private static Func<ElectronicObserverContext, List<int>, DateTime, DateTime, IAsyncEnumerable<ExpeditionRecordViewModel>> ExpeditionQuery { get; }
+		= EF.CompileAsyncQuery((ElectronicObserverContext db, List<int> expeditionIds, DateTime begin, DateTime end)
+			=> db.Expeditions
+				.Include(e => e.ApiFiles)
+				.Where(e => expeditionIds.Contains(e.Expedition))
+				.Select(s => new
+				{
+					Expedition = s,
+					s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp,
+				})
+				.Where(s => s.TimeStamp > begin)
+				.Where(s => s.TimeStamp < end)
+				.Where(s => s.Expedition.ApiFiles.Count > 0)
+				.OrderByDescending(s => s.Expedition.Id)
+				.Select(s => new ExpeditionRecordViewModel(s.Expedition, s.TimeStamp)));
+
+
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task Search(CancellationToken ct)
 	{
@@ -134,20 +151,11 @@ public partial class ExpeditionRecordViewerViewModel : WindowViewModelBase
 				.Select(m => m.ID)
 				.ToList();
 
-			List<ExpeditionRecordViewModel> expeditions = await Task.Run(() => Db.Expeditions
-				.Include(e => e.ApiFiles)
-				.Where(e => expeditionIds.Contains(e.Expedition))
-				.Select(s => new
-				{
-					Expedition = s,
-					s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp,
-				})
-				.Where(s => s.TimeStamp > DateTimeBegin.ToUniversalTime())
-				.Where(s => s.TimeStamp < DateTimeEnd.ToUniversalTime())
-				.Where(s => s.Expedition.ApiFiles.Count > 0)
-				.OrderByDescending(s => s.Expedition.Id)
-				.Select(s => new ExpeditionRecordViewModel(s.Expedition, s.TimeStamp))
-				.ToListAsync(ct), ct);
+			DateTime begin = DateTimeBegin.ToUniversalTime();
+			DateTime end = DateTimeEnd.ToUniversalTime();
+
+			List<ExpeditionRecordViewModel> expeditions = await Task.Run(async () =>
+				await ExpeditionQuery(Db, expeditionIds, begin, end).ToListAsync(ct), ct);
 
 			Expeditions.Clear();
 

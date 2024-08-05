@@ -26,18 +26,20 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="0" HorizontalAlignment="Left">
 			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
 			<TextBlock
@@ -91,8 +93,17 @@
 			<Button
 				Grid.Row="1"
 				Grid.Column="2"
+				Margin="2"
 				Command="{Binding SearchCommand}"
 				Content="{Binding SenkaViewer.ButtonRun}"
+				/>
+
+			<Button
+				Grid.Row="1"
+				Grid.Column="3"
+				Margin="2"
+				Command="{Binding SearchCancelCommand}"
+				Content="{Binding SenkaViewer.Cancel}"
 				/>
 		</Grid>
 
@@ -162,5 +173,11 @@
 				<DataGridTextColumn Binding="{Binding QuestSenkaGains, StringFormat={}{0:+0.##}}" Header="{Binding DataContext.SenkaViewer.QuestSenka, Source={StaticResource Proxy}}" />
 			</DataGrid.Columns>
 		</DataGrid>
+
+		<StatusBar Grid.Row="3">
+			<StatusBarItem>
+				<TextBlock Text="{Binding StatusBarText}" />
+			</StatusBarItem>
+		</StatusBar>
 	</Grid>
 </common:WindowBase>

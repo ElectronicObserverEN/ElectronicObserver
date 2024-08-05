@@ -9,6 +9,7 @@ public class SenkaViewerTranslationViewModel : TranslationBaseViewModel
 	public string Start => DropRecordViewerResources.Start;
 	public string End => DropRecordViewerResources.End;
 	public string ButtonRun => DropRecordViewerResources.ButtonRun;
+	public string Cancel => GeneralRes.Cancel;
 
 	public string Senka => SenkaViewerResources.Senka;
 	public string NormalSenka => SenkaViewerResources.NormalSenka;

@@ -23,17 +23,24 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Orientation="Horizontal">
+		<CheckBox
+			Grid.Row="0"
+			Content="{x:Static translations:ExportFilterResources.IgnoreMisses}"
+			IsChecked="{Binding IgnoreMisses}"
+			/>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal">
 			<Button Command="{Binding ToggleAllDestinationsCommand}" Content="{x:Static translations:ExportFilterResources.All}" />
 
-			<CheckBox Content="{x:Static translations:ExportFilterResources.IgnoreFilters}" IsChecked="{Binding IgnoreFilters}" />
+			<CheckBox Content="{x:Static translations:ExportFilterResources.IgnoreCellFilters}" IsChecked="{Binding IgnoreCellFilters}" />
 		</StackPanel>
 
 		<ListBox
-			Grid.Row="1"
+			Grid.Row="2"
 			ItemsSource="{Binding Destinations}"
 			VirtualizingStackPanel.IsVirtualizing="True"
 			VirtualizingStackPanel.VirtualizationMode="Recycling"

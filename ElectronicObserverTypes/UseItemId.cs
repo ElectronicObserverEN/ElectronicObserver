@@ -72,4 +72,5 @@ public enum UseItemId
 	TeruTeruBozu = 97,
 	SeaColoredRibbon = 98,
 	WhiteSash = 99,
+	LatestOverseasWarshipTechnology = 100,
 }

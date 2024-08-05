@@ -389,4 +389,7 @@ Monthly: {2:+##;-##;±0}</value>
   <data name="SenkaMonth" xml:space="preserve">
     <value>Monthly pt</value>
   </data>
+  <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
+    <value>Latest Overseas Warship Technology</value>
+  </data>
 </root>

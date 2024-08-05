@@ -18,7 +18,12 @@ using CellModel = ElectronicObserver.Database.MapData.CellModel;
 
 namespace ElectronicObserver.Database;
 
-// Add-Migration <name> -Context ElectronicObserverContext -OutputDir Database/Migrations
+/// <summary>
+/// Compiled models - didn't notice any difference for our model:
+/// dotnet ef dbcontext optimize --project ElectronicObserver --output-dir Database/CompiledModels --namespace ElectronicObserver.Database.CompiledModels
+///
+/// Performance issues might be because of https://github.com/dotnet/efcore/issues/18884
+/// </summary>
 public class ElectronicObserverContext(bool inMemory = false) : DbContext
 {
 	public DbSet<EventLockPlannerModel> EventLockPlans => Set<EventLockPlannerModel>();
@@ -119,7 +124,7 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new
 	(
-		list => JsonSerializer.Serialize(list, (JsonSerializerOptions?)null),
+		list => JsonSerializer.Serialize(list, JsonSerializerOptions.Default),
 		s => FromJson<T>(s)
 	);
 

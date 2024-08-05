@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -18,6 +20,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 using ElectronicObserver.KancolleApi.Types.ApiReqQuest.Clearitemget;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,92 +57,143 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public DataGridViewModel<SenkaRecord> DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<SenkaRecord> DataGridViewModel { get; } = new();
+
+	private DateTime SearchStartTime { get; set; }
+	public string? StatusBarText { get; private set; }
+
+	private static Func<ElectronicObserverContext, Task<DateTime>> MinDateQuery { get; } = EF
+		.CompileAsyncQuery((ElectronicObserverContext db) => db.ApiFiles.Min(f => f.TimeStamp));
 
 	public SenkaViewerViewModel()
 	{
 		SenkaViewer = Ioc.Default.GetRequiredService<SenkaViewerTranslationViewModel>();
 		ResourceRecord = RecordManager.Instance.Resource;
 
-		MinDate = Db.ApiFiles.Min(f => f.TimeStamp);
+		MinDate = new(DateTime.Now.Year, DateTime.Now.Month, 1);
 		MaxDate = DateTime.Now.AddDays(1);
 
 		DateBegin = MinDate.Date;
 		DateEnd = MaxDate.Date;
+
+		Task.Run(async () =>
+		{
+			ElectronicObserverContext db = new();
+
+			DateTime minDate = await MinDateQuery(db);
+
+			if (MinDate < minDate)
+			{
+				minDate = MinDate;
+			}
+
+			await App.Current!.Dispatcher.BeginInvoke(() =>
+			{
+				MinDate = minDate;
+			});
+		});
 	}
 
-	[RelayCommand]
-	private void Search()
+	private static Func<ElectronicObserverContext, DateTime, DateTime, IAsyncEnumerable<ApiFile>> ApiFilesQuery { get; }
+		= EF.CompileAsyncQuery((ElectronicObserverContext db, DateTime begin, DateTime end)
+			=> db.ApiFiles
+				.AsNoTracking()
+				.Where(f => f.ApiFileType == ApiFileType.Response)
+				.Where(f => f.TimeStamp > begin)
+				.Where(f => f.TimeStamp < end)
+				.Where(f =>
+					f.Name == "api_req_sortie/battleresult" ||
+					f.Name == "api_req_combined_battle/battleresult" ||
+					f.Name == "api_req_practice/battle_result" ||
+					f.Name == "api_req_mission/result" ||
+					f.Name == "api_req_map/next" ||
+					f.Name == "api_req_quest/clearitemget"));
+
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task Search(CancellationToken ct)
 	{
-		List<ApiFile> apiFiles = Db.ApiFiles
-			.AsNoTracking()
-			.Where(f => f.ApiFileType == ApiFileType.Response)
-			.Where(f => f.TimeStamp > DateTimeBegin.ToUniversalTime())
-			.Where(f => f.TimeStamp < DateTimeEnd.ToUniversalTime())
-			.Where(f =>
-				f.Name == "api_req_sortie/battleresult" ||
-				f.Name == "api_req_combined_battle/battleresult" ||
-				f.Name == "api_req_practice/battle_result" ||
-				f.Name == "api_req_mission/result" ||
-				f.Name == "api_req_map/next" ||
-				f.Name == "api_req_quest/clearitemget")
-			.ToList();
+		SearchStartTime = DateTime.UtcNow;
+		StatusBarText = EncycloRes.SearchingNow;
 
-		if (!apiFiles.Any()) return;
-
-		DateTime start = DateTimeBegin.ToUniversalTime();
-		DateTime end = DateTimeEnd.ToUniversalTime();
-
-		if (end > DateTime.UtcNow)
+		try
 		{
-			end = DateTime.UtcNow;
+			List<ApiFile> apiFiles = await Task.Run(async () =>
+			{
+				DateTime begin = DateTimeBegin.ToUniversalTime();
+				DateTime end = DateTimeEnd.ToUniversalTime();
+
+				return await ApiFilesQuery(Db, begin, end).ToListAsync(ct);
+			}, ct);
+
+			if (!apiFiles.Any()) return;
+
+			DateTime start = DateTimeBegin.ToUniversalTime();
+			DateTime end = DateTimeEnd.ToUniversalTime();
+
+			if (end > DateTime.UtcNow)
+			{
+				end = DateTime.UtcNow;
+			}
+
+			List<SenkaRecord> senkaRecords = GenerateSenkaRecords(start, end);
+
+			foreach (SenkaRecord senkaRecord in senkaRecords)
+			{
+				int? startHqExp = ResourceRecord.GetRecord(senkaRecord.Start.ToLocalTime())?.HQExp;
+				int? endHqExp = ResourceRecord.GetRecord(senkaRecord.End.ToLocalTime())?.HQExp;
+
+				startHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
+				endHqExp ??= KCDatabase.Instance.Admiral switch
+				{
+					{ IsAvailable: true } a => a.Exp,
+					_ => ResourceRecord.Record.LastOrDefault()?.HQExp,
+				};
+
+
+				senkaRecord.EstimatedHqExpSenkaGains = (startHqExp, endHqExp) switch
+				{
+					(int s, int e) => (e - s) * 7 / 10000.0,
+					_ => 0,
+				};
+
+				// todo: some values are still off compared to EstimatedHqExpSenkaGains even with full data
+				// the conditions probably aren't complete here
+				/*
+				senkaRecord.HqExpSenkaGains = apiFiles
+					.GroupBy(f => f.SortieRecordId)
+					.Where(g => g.Key is null || (g.Max(f => f.TimeStamp > senkaRecord.Start) && g.Max(f => f.TimeStamp < senkaRecord.End)))
+					.SelectMany(g => g.Select(f => f))
+					.Where(f => f.SortieRecordId is not null || f.TimeStamp > senkaRecord.Start)
+					.Where(f => f.SortieRecordId is not null || f.TimeStamp < senkaRecord.End)
+					.Sum(GetHqExp) * 7 / 10000;
+				*/
+				senkaRecord.ExtraOperationSenkaGains = apiFiles
+					.Where(f => f.TimeStamp > senkaRecord.Start)
+					.Where(f => f.TimeStamp < senkaRecord.End)
+					.Sum(GetExtraOperationSenka);
+
+				senkaRecord.QuestSenkaGains = apiFiles
+					.Where(f => f.TimeStamp > senkaRecord.Start)
+					.Where(f => f.TimeStamp < senkaRecord.End)
+					.Sum(GetQuestSenka);
+			}
+
+			DataGridViewModel.ItemsSource.Clear();
+			DataGridViewModel.AddRange(senkaRecords);
+
+			int searchTime = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
+
+			StatusBarText = $"{EncycloRes.SearchComplete} ({searchTime} ms)";
 		}
-
-		List<SenkaRecord> senkaRecords = GenerateSenkaRecords(start, end);
-
-		foreach (SenkaRecord senkaRecord in senkaRecords)
+		catch (OperationCanceledException)
 		{
-			int? startHqExp = ResourceRecord.GetRecord(senkaRecord.Start.ToLocalTime())?.HQExp;
-			int? endHqExp = ResourceRecord.GetRecord(senkaRecord.End.ToLocalTime())?.HQExp;
-			
-			startHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
-			endHqExp ??= KCDatabase.Instance.Admiral switch
-			{
-				{ IsAvailable: true } a => a.Exp,
-				_ => ResourceRecord.Record.LastOrDefault()?.HQExp,
-			};
-
-
-			senkaRecord.EstimatedHqExpSenkaGains = (startHqExp, endHqExp) switch
-			{
-				(int s, int e) => (e - s) * 7 / 10000.0,
-				_ => 0,
-			};
-
-			// todo: some values are still off compared to EstimatedHqExpSenkaGains even with full data
-			// the conditions probably aren't complete here
-			/*
-			senkaRecord.HqExpSenkaGains = apiFiles
-				.GroupBy(f => f.SortieRecordId)
-				.Where(g => g.Key is null || (g.Max(f => f.TimeStamp > senkaRecord.Start) && g.Max(f => f.TimeStamp < senkaRecord.End)))
-				.SelectMany(g => g.Select(f => f))
-				.Where(f => f.SortieRecordId is not null || f.TimeStamp > senkaRecord.Start)
-				.Where(f => f.SortieRecordId is not null || f.TimeStamp < senkaRecord.End)
-				.Sum(GetHqExp) * 7 / 10000;
-			*/
-			senkaRecord.ExtraOperationSenkaGains = apiFiles
-				.Where(f => f.TimeStamp > senkaRecord.Start)
-				.Where(f => f.TimeStamp < senkaRecord.End)
-				.Sum(GetExtraOperationSenka);
-
-			senkaRecord.QuestSenkaGains = apiFiles
-				.Where(f => f.TimeStamp > senkaRecord.Start)
-				.Where(f => f.TimeStamp < senkaRecord.End)
-				.Sum(GetQuestSenka);
+			StatusBarText = EncycloRes.SearchCancelled;
 		}
-
-		DataGridViewModel.ItemsSource.Clear();
-		DataGridViewModel.AddRange(senkaRecords);
+		catch (Exception e)
+		{
+			Logger.Add(2, $"Unknown error while loading data: {e.Message}{e.StackTrace}");
+		}
 	}
 
 	public static DateTime GetSessionStart(DateTime time)
@@ -290,8 +344,10 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 
 	private double GetQuestSenka(ApiFile apiFile) => apiFile.Name switch
 	{
-		"api_req_quest/clearitemget" => JsonSerializer.Deserialize<ApiResponse<ApiReqQuestClearitemgetResponse>>(apiFile.Content)?.ApiData.ApiBounus
-			.FirstOrDefault(b => b.ApiType == UseItemId.Senka)
+		"api_req_quest/clearitemget" => JsonSerializer
+			.Deserialize<ApiResponse<ApiReqQuestClearitemgetResponse>>(apiFile.Content)
+			?.ApiData.ApiBounus
+			.FirstOrDefault(b => b?.ApiType is UseItemId.Senka)
 			?.ApiCount ?? 0,
 
 		_ => 0,

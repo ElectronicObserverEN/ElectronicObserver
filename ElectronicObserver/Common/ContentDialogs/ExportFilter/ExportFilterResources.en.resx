@@ -123,7 +123,10 @@
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="IgnoreFilters" xml:space="preserve">
-    <value>Ignore filters</value>
+  <data name="IgnoreCellFilters" xml:space="preserve">
+    <value>Ignore cell filters</value>
+  </data>
+  <data name="IgnoreMisses" xml:space="preserve">
+    <value>Ignore misses</value>
   </data>
 </root>

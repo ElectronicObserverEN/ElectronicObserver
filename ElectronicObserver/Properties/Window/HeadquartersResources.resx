@@ -440,4 +440,7 @@
   <data name="SenkaMonth" xml:space="preserve">
     <value>今月戦果</value>
   </data>
+  <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
+    <value>海外艦最新技術</value>
+  </data>
 </root>
