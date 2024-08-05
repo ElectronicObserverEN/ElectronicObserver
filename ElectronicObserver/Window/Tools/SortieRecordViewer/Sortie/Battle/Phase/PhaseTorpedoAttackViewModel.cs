@@ -9,25 +9,32 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 {
-	public BattleIndex AttackerIndex { get; }
+	public override BattleIndex AttackerIndex { get; }
 	public IShipData Attacker { get; }
 	public int AttackerHpBeforeAttack { get; }
+	public override string AttackerDisplay { get; }
 
-	public BattleIndex DefenderIndex { get; }
+	public override BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public List<int> DefenderHpBeforeAttacks { get; } = new();
+	private List<int> DefenderHpBeforeAttacks { get; } = [];
+	public override string DefenderDisplay { get; }
 
+	public override double Damage { get; }
 	private DayAttackKind AttackType { get; }
 	public List<DayAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
-	public string DamageDisplay { get; }
+	public override string DamageDisplay { get; }
 
 	public PhaseTorpedoAttackViewModel(BattleFleets fleets, PhaseTorpedoAttack attack)
 	{
 		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetShip(AttackerIndex)!;
+		AttackerDisplay = $"{Attacker.Name} {AttackerIndex.Display}";
+
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		AttackType = ProcessAttack(Attacker, Defender, attack.AttackType);
 		Attacks = attack.Defenders
 			.Select(d => new DayAttack
@@ -40,6 +47,7 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+		Damage = Attacks.Sum(a => a.Damage);
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
@@ -49,7 +57,7 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - dayAttack.Damage));
 		}
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{

@@ -237,7 +237,7 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 			{
 				bauxite += battleNode.FirstBattle.Phases
 					.OfType<PhaseAirBattleBase>()
-					.Sum(b => b.Stage1FLostcount + b.Stage2FLostcount) * 5;
+					.Sum(b => b.AircraftLostStage1Friend + b.AircraftLostStage2Friend) * 5;
 
 				if (battleNode.BattleResult is null) continue;
 

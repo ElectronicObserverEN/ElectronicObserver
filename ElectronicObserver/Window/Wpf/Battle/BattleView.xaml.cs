@@ -27,9 +27,6 @@ public partial class BattleView : UserControl
 	// not really sure how to do this mvvm style
 	private void FrameworkElement_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
 	{
-		var bm = KCDatabase.Instance.Battle;
-
-		if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined)
-			e.Handled = true;
+		e.Handled = KCDatabase.Instance.Battle.FirstBattle is null;
 	}
 }

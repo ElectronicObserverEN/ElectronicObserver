@@ -182,10 +182,10 @@ public class NotifierDamage : NotifierBase
 		var list = new List<string>();
 
 		var battle = bm.SecondBattle ?? bm.FirstBattle;
-		list.AddRange(GetDamagedShips(battle.Initial.FriendFleet, battle.ResultHPs.ToArray()));
+		list.AddRange(GetDamagedShips(battle.FleetsBeforeBattle.Fleet, battle.ResultHPs.ToArray()));
 
 		if (bm.IsCombinedBattle)
-			list.AddRange(GetDamagedShips(battle.Initial.FriendFleetEscort, battle.ResultHPs.Skip(6).ToArray()));
+			list.AddRange(GetDamagedShips(battle.FleetsBeforeBattle.EscortFleet!, battle.ResultHPs.Skip(6).ToArray()));
 
 
 		if (list.Count > 0)
@@ -211,7 +211,7 @@ public class NotifierDamage : NotifierBase
 		return ships.Where(s => IsShipDamaged(s, s?.HPCurrent ?? 0)).Select(s => $"{s.NameWithLevel} ({s.HPCurrent}/{s.HPMax})").ToArray();
 	}
 
-	private string[] GetDamagedShips(FleetData fleet, int[] hps)
+	private string[] GetDamagedShips(IFleetData fleet, int[] hps)
 	{
 
 		LinkedList<string> list = new LinkedList<string>();

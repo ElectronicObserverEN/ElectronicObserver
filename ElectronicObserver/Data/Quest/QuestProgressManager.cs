@@ -1286,7 +1286,7 @@ public sealed class QuestProgressManager : DataStorage
 		var bm = KCDatabase.Instance.Battle;
 		var battle = bm.SecondBattle ?? bm.FirstBattle;
 
-		var hps = battle.ResultHPs;
+		var hps = battle.ResultHPs.ToList();
 		if (hps == null)
 			return;
 
@@ -1304,17 +1304,17 @@ public sealed class QuestProgressManager : DataStorage
 					continue;
 
 				foreach (var p in slaughterList)
-					p.Increment(ship.ShipType);
+					p.Increment(ship.MasterShip.ShipType);
 			}
 
 			if (bm.IsEnemyCombined && hps[Battle.BattleIndex.Get(Battle.BattleSides.EnemyEscort, i)] <= 0)
 			{
-				var ship = battle.Initial.EnemyMembersEscortInstance[i];
+				var ship = battle.Initial.EnemyMembersEscortInstance?[i];
 				if (ship == null)
 					continue;
 
 				foreach (var p in slaughterList)
-					p.Increment(ship.ShipType);
+					p.Increment(ship.MasterShip.ShipType);
 			}
 		}
 

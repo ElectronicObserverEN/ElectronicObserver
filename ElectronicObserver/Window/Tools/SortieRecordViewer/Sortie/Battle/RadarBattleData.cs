@@ -1,12 +1,13 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public abstract class RadarBattleData : FirstBattleData
+public abstract class RadarBattleData : FirstBattleData, IBaseAirAttack
 {
 	protected PhaseJetBaseAirAttack? JetBaseAirAttack { get; }
-	protected PhaseBaseAirAttack? BaseAirAttack { get; }
+	public PhaseBaseAirAttack? BaseAirAttack { get; }
 	protected PhaseRadar? Shelling1 { get; }
 
 	protected RadarBattleData(PhaseFactory phaseFactory, BattleFleets fleets, IRadarBattleApiResponse battle)

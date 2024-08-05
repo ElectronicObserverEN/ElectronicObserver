@@ -93,7 +93,7 @@ public class TsunDbBattleData : TsunDbEntity
 		Fleet = new TsunDbFleetsAndAirBaseData();
 
 		ResupplyUsed = Database.Battle.ResupplyUsed;
-		Formation = Database.Battle.FirstBattle.Searching.FormationFriend;
+		Formation = (int)Database.Battle.FirstBattle.Searching.PlayerFormationType;
 		AmountOfNodes = TsunDbSubmissionManager.CurrentMapAmountOfNodes;
 
 		RawApi = JsonSerializer.Deserialize<object?>(rawApi.ToString());

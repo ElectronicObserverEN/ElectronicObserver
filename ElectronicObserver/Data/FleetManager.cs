@@ -97,10 +97,10 @@ public class FleetManager : APIWrapper
 				{
 					int index = ii - 1;
 
-					if (index < battle.FirstBattle.Initial.FriendFleet.Members.Count)
-						battle.FirstBattle.Initial.FriendFleet.Escape(index);
+					if (index < battle.FirstBattle.FleetsBeforeBattle.Fleet.Members.Count)
+						battle.FirstBattle.FleetsBeforeBattle.Fleet.Escape(index);
 					else
-						battle.FirstBattle.Initial.FriendFleetEscort.Escape(index - 6);
+						battle.FirstBattle.FleetsBeforeBattle.EscortFleet!.Escape(index - 6);
 				}
 			}
 			break;
