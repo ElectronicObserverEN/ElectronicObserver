@@ -57,6 +57,10 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 			},
 		};
 
+	/// <summary>
+	/// todo : find source for the mods
+	/// </summary>
+	/// <returns></returns>
 	private double GetPowerModifier()
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
