@@ -124,7 +124,7 @@ public class SortieCostViewModel : ObservableObject
 		TotalCost -= (ResourceGain + SinkingResourceGain);
 
 		DamageStateCounts = repairCostCalculator.DamageStateCounts(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
-		ConsumedItems = GetConsumedItems(sortie.Model);
+		ConsumedItems = GetConsumedItems(db, sortie.Model, toolService);
 	}
 
 	private void Configuration_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -198,15 +198,18 @@ public class SortieCostViewModel : ObservableObject
 		_ => (UseItemId)item.ApiUsemst,
 	};
 
-	private static List<ConsumableItem> GetConsumedItems(SortieRecord sortie)
+	private static List<ConsumableItem> GetConsumedItems(ElectronicObserverContext db,
+		SortieRecord sortie, ToolService toolService)
 	{
-		// todo: calculate
-		if (sortie.FleetAfterSortieData is null) return [];
+		if (sortie.FleetAfterSortieData is null)
+		{
+			return CalculateConsumedItems(db, sortie, toolService);
+		}
 
 		List<ConsumableItem> consumedItems = [];
 
-		List<ConsumableItem> itemsBefore = GetConsumableItems(sortie.FleetData);
-		List<ConsumableItem> itemsAfter = GetConsumableItems(sortie.FleetAfterSortieData);
+		List<ConsumableItem> itemsBefore = GetConsumableItems(sortie.FleetData.MakeFleets());
+		List<ConsumableItem> itemsAfter = GetConsumableItems(sortie.FleetAfterSortieData.MakeFleets());
 
 		foreach ((ConsumableItem before, ConsumableItem after) in itemsBefore.Zip(itemsAfter))
 		{
@@ -220,7 +223,71 @@ public class SortieCostViewModel : ObservableObject
 		return consumedItems;
 	}
 
-	private static List<ConsumableItem> GetConsumableItems(SortieFleetData fleetData)
+	// cheat so analyzers don't complain
+	private static bool Flag => true;
+
+	// todo: this relies on a rework made in https://github.com/ElectronicObserverEN/ElectronicObserver/pull/484
+	private static List<ConsumableItem> CalculateConsumedItems(ElectronicObserverContext db,
+		SortieRecord model, ToolService toolService)
+	{
+		if (Flag)
+		{
+			return [];
+		}
+
+		if (model.CalculatedSortieCost.ConsumedItems is not null)
+		{
+			return model.CalculatedSortieCost.ConsumedItems;
+		}
+
+		SortieDetailViewModel? sortieDetails = toolService.GenerateSortieDetailViewModel(db, model);
+
+		if (sortieDetails is null) return [];
+
+		List<IFleetData?>? fleetsBefore = sortieDetails.FleetsBeforeSortie.Fleets;
+		List<IFleetData?>? fleetsAfter = GetFleetsAfter(sortieDetails);
+
+		if (fleetsBefore is null) return [];
+		if (fleetsAfter is null) return [];
+
+		List<ConsumableItem> consumedItems = [];
+
+		List<ConsumableItem> itemsBefore = GetConsumableItems(fleetsBefore);
+		List<ConsumableItem> itemsAfter = GetConsumableItems(fleetsAfter);
+
+		foreach ((ConsumableItem before, ConsumableItem after) in itemsBefore.Zip(itemsAfter))
+		{
+			Debug.Assert(before.Id == after.Id);
+
+			if (before.Count == after.Count) continue;
+
+			consumedItems.Add(new(before.Equipment, before.Count - after.Count));
+		}
+
+		model.CalculatedSortieCost.ConsumedItems = consumedItems;
+
+		db.Sorties.Update(model);
+		db.SaveChanges();
+
+		return model.CalculatedSortieCost.ConsumedItems;
+	}
+
+	private static List<IFleetData?>? GetFleetsAfter(SortieDetailViewModel sortieDetails)
+	{
+		List<IFleetData?>? fleetsAfterLastBattle = sortieDetails.Nodes
+			.OfType<BattleNode>()
+			.Select(n => n.LastBattle.FleetsAfterBattle)
+			.LastOrDefault()
+			?.Fleets;
+
+		if (fleetsAfterLastBattle is null) return null;
+
+		// todo: might need extra processing here
+
+		return fleetsAfterLastBattle;
+	}
+
+	private static List<ConsumableItem> GetConsumableItems(List<IFleetData?> fleets)
 	{
 		List<EquipmentId> trackedEquipmentIds =
 		[
@@ -228,8 +295,7 @@ public class SortieCostViewModel : ObservableObject
 			EquipmentId.DamageControl_EmergencyRepairGoddess,
 		];
 
-		return fleetData
-			.MakeFleets()
+		return fleets
 			.OfType<IFleetData>()
 			.SelectMany(f => f.MembersInstance)
 			.OfType<IShipData>()

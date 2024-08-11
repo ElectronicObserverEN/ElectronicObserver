@@ -27,4 +27,7 @@ public class CalculatedSortieCost
 
 	[JsonPropertyName("DamageStateCounts")]
 	public Dictionary<DamageState, int>? DamageStateCounts { get; set; }
+
+	[JsonPropertyName("ConsumedItems")]
+	public List<ConsumableItem>? ConsumedItems { get; set; }
 }

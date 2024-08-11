@@ -262,6 +262,8 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		ApiDataCache.Clear();
 	}
 
+	// todo: remove used damecon from fleet, this needs UsedDamecon to be exposed from attacks
+	// blocked by https://github.com/ElectronicObserverEN/ElectronicObserver/pull/484
 	private static void CleanFleet(IFleetData? fleetData)
 	{
 		if (fleetData is not FleetDataMock fleet) return;

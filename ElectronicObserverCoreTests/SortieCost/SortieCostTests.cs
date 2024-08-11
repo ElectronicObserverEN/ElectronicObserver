@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using ElectronicObserverTypes;
 using Xunit;
@@ -220,23 +221,39 @@ public sealed class SortieCostTests : SortieCostTestBase
 	public async Task SortieCostTest14()
 	{
 		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest14");
+		List<SortieCostViewModel> calculatedSortieCosts = await MakeSortieCosts("SortieCostTest14", true);
 
-		Assert.Single(sortieCosts);
+		AssertSortieCosts(sortieCosts);
+		// todo AssertSortieCosts(calculatedSortieCosts);
+		return;
 
-		Assert.Single(sortieCosts[0].ConsumedItems);
-		Assert.Equal(EquipmentId.DamageControl_EmergencyRepairPersonnel, sortieCosts[0].ConsumedItems[0].Id);
-		Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
+		static void AssertSortieCosts(List<SortieCostViewModel> sortieCosts)
+		{
+			Assert.Single(sortieCosts);
+
+			Assert.Single(sortieCosts[0].ConsumedItems);
+			Assert.Equal(EquipmentId.DamageControl_EmergencyRepairPersonnel, sortieCosts[0].ConsumedItems[0].Id);
+			Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
+		}
 	}
 
 	[Fact(DisplayName = "consumed items test 2")]
 	public async Task SortieCostTest15()
 	{
 		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest15");
+		List<SortieCostViewModel> calculatedSortieCosts = await MakeSortieCosts("SortieCostTest15", true);
 
-		Assert.Single(sortieCosts);
+		AssertSortieCosts(sortieCosts);
+		// todo AssertSortieCosts(calculatedSortieCosts);
+		return;
 
-		Assert.Single(sortieCosts[0].ConsumedItems);
-		Assert.Equal(EquipmentId.DamageControl_EmergencyRepairGoddess, sortieCosts[0].ConsumedItems[0].Id);
-		Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
+		static void AssertSortieCosts(List<SortieCostViewModel> sortieCosts)
+		{
+			Assert.Single(sortieCosts);
+
+			Assert.Single(sortieCosts[0].ConsumedItems);
+			Assert.Equal(EquipmentId.DamageControl_EmergencyRepairGoddess, sortieCosts[0].ConsumedItems[0].Id);
+			Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
+		}
 	}
 }
