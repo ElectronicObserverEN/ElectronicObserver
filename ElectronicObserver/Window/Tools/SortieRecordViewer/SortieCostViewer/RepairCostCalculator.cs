@@ -166,13 +166,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 			switch (before, after)
 			{
 				case ({ DamageState: DamageState.Healthy }, { DamageState: < DamageState.Healthy }):
-					damageStateCounts[after.DamageState]++;
-					continue;
-
 				case ({ DamageState: >= DamageState.Light }, { DamageState: < DamageState.Light }):
-					damageStateCounts[after.DamageState]++;
-					continue;
-
 				case ({ DamageState: >= DamageState.Medium }, { DamageState: < DamageState.Medium }):
 					damageStateCounts[after.DamageState]++;
 					continue;
