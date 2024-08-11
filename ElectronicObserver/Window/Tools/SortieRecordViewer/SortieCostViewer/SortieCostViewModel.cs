@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
+using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
@@ -43,6 +45,7 @@ public class SortieCostViewModel : ObservableObject
 
 	public SortieCostModel TotalCost { get; }
 	private Dictionary<DamageState, int> DamageStateCounts { get; }
+	public List<ConsumableItem> ConsumedItems { get; }
 
 	public int LightDamage => DamageStateCounts[DamageState.Light];
 	public int MediumDamage => DamageStateCounts[DamageState.Medium];
@@ -121,6 +124,7 @@ public class SortieCostViewModel : ObservableObject
 		TotalCost -= (ResourceGain + SinkingResourceGain);
 
 		DamageStateCounts = repairCostCalculator.DamageStateCounts(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
+		ConsumedItems = GetConsumedItems(sortie.Model);
 	}
 
 	private void Configuration_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -193,4 +197,47 @@ public class SortieCostViewModel : ObservableObject
 
 		_ => (UseItemId)item.ApiUsemst,
 	};
+
+	private static List<ConsumableItem> GetConsumedItems(SortieRecord sortie)
+	{
+		// todo: calculate
+		if (sortie.FleetAfterSortieData is null) return [];
+
+		List<ConsumableItem> consumedItems = [];
+
+		List<ConsumableItem> itemsBefore = GetConsumableItems(sortie.FleetData);
+		List<ConsumableItem> itemsAfter = GetConsumableItems(sortie.FleetAfterSortieData);
+
+		foreach ((ConsumableItem before, ConsumableItem after) in itemsBefore.Zip(itemsAfter))
+		{
+			Debug.Assert(before.Id == after.Id);
+
+			if (before.Count == after.Count) continue;
+
+			consumedItems.Add(new(before.Equipment, before.Count - after.Count));
+		}
+
+		return consumedItems;
+	}
+
+	private static List<ConsumableItem> GetConsumableItems(SortieFleetData fleetData)
+	{
+		List<EquipmentId> trackedEquipmentIds =
+		[
+			EquipmentId.DamageControl_EmergencyRepairPersonnel,
+			EquipmentId.DamageControl_EmergencyRepairGoddess,
+		];
+
+		return fleetData
+			.MakeFleets()
+			.OfType<IFleetData>()
+			.SelectMany(f => f.MembersInstance)
+			.OfType<IShipData>()
+			.SelectMany(s => s.AllSlotInstance)
+			.OfType<IEquipmentData>()
+			.Where(e => trackedEquipmentIds.Contains(e.EquipmentId))
+			.GroupBy(e => e.EquipmentId)
+			.Select(g => new ConsumableItem(g.First(), g.Count()))
+			.ToList();
+	}
 }

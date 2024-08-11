@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
+using ElectronicObserverTypes;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.SortieCost;
@@ -23,6 +24,8 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest11")]
 	[InlineData("SortieCostTest12")]
 	[InlineData("SortieCostTest13")]
+	[InlineData("SortieCostTest14")]
+	[InlineData("SortieCostTest15", Skip = "todo")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -211,5 +214,29 @@ public sealed class SortieCostTests : SortieCostTestBase
 		Assert.Equal(SortieCostModel.Zero, sortieCosts[0].TotalRepairCost);
 		Assert.Equal(resourceGain, sortieCosts[0].ResourceGain);
 		Assert.Equal(sinkResourceGain, sortieCosts[0].SinkingResourceGain);
+	}
+
+	[Fact(DisplayName = "consumed items test 1")]
+	public async Task SortieCostTest14()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest14");
+
+		Assert.Single(sortieCosts);
+
+		Assert.Single(sortieCosts[0].ConsumedItems);
+		Assert.Equal(EquipmentId.DamageControl_EmergencyRepairPersonnel, sortieCosts[0].ConsumedItems[0].Id);
+		Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
+	}
+
+	[Fact(DisplayName = "consumed items test 2")]
+	public async Task SortieCostTest15()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest15");
+
+		Assert.Single(sortieCosts);
+
+		Assert.Single(sortieCosts[0].ConsumedItems);
+		Assert.Equal(EquipmentId.DamageControl_EmergencyRepairGoddess, sortieCosts[0].ConsumedItems[0].Id);
+		Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
 	}
 }

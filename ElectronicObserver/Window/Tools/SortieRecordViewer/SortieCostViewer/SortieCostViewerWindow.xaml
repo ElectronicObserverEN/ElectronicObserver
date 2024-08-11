@@ -46,6 +46,14 @@
 				</common1:ImageTextControl>
 			</UniformGrid>
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type local:ConsumableItem}">
+			<common1:ImageTextControl Text="{Binding Count}" ToolTip="{Binding Equipment.Name}">
+				<common1:ImageTextControl.Image>
+					<common:EquipmentIcon Type="{Binding Equipment.MasterEquipment.IconTypeTyped}" />
+				</common1:ImageTextControl.Image>
+			</common1:ImageTextControl>
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid>
@@ -164,6 +172,14 @@
 							<common:IconContentIcon Type="ItemInstantRepair" />
 						</common1:ImageTextControl.Image>
 					</common1:ImageTextControl>
+
+					<ItemsControl ItemsSource="{Binding ConsumedItems}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
 				</StackPanel>
 			</StatusBarItem>
 		</StatusBar>

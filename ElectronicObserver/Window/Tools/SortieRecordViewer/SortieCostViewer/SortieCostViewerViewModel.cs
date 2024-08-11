@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
@@ -28,10 +29,11 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 	public int MediumDamage => SortieCosts.Sum(s => s.MediumDamage);
 	public int HeavyDamage => SortieCosts.Sum(s => s.HeavyDamage);
 	public int Buckets => SortieCosts.Sum(s => s.Buckets);
+	public List<ConsumableItem> ConsumedItems { get; private set; } = [];
 
 	public string? Progress { get; set; }
 
-	private CancellationTokenSource CancellationTokenSource { get; set; } = new();
+	private CancellationTokenSource CancellationTokenSource { get; } = new();
 
 	public SortieCostViewerViewModel(ElectronicObserverContext db, ToolService toolService,
 		SortieRecordMigrationService sortieRecordMigrationService, ObservableCollection<SortieRecordViewModel> sorties,
@@ -98,6 +100,12 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 		SortieCostSummary = SortieCosts
 			.Select(c => c.TotalCost)
 			.Sum();
+
+		ConsumedItems = SortieCosts
+			.SelectMany(c => c.ConsumedItems)
+			.GroupBy(c => c.Id)
+			.Select(g => new ConsumableItem(g.First().Equipment, g.Sum(c => c.Count)))
+			.ToList();
 
 		OnPropertyChanged(nameof(LightDamage));
 		OnPropertyChanged(nameof(MediumDamage));
