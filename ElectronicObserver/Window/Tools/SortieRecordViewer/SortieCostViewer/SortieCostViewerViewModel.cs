@@ -93,24 +93,24 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 
 					index++;
 					Progress = $"{index}/{total}";
+
+					SortieCostSummary = SortieCosts
+						.Select(c => c.TotalCost)
+						.Sum();
+
+					ConsumedItems = SortieCosts
+						.SelectMany(c => c.ConsumedItems)
+						.GroupBy(c => c.Id)
+						.Select(g => new ConsumableItem(g.First().Equipment, g.Sum(c => c.Count)))
+						.ToList();
+
+					OnPropertyChanged(nameof(LightDamage));
+					OnPropertyChanged(nameof(MediumDamage));
+					OnPropertyChanged(nameof(HeavyDamage));
+					OnPropertyChanged(nameof(Buckets));
 				});
 			}
 		}, cancellationToken);
-
-		SortieCostSummary = SortieCosts
-			.Select(c => c.TotalCost)
-			.Sum();
-
-		ConsumedItems = SortieCosts
-			.SelectMany(c => c.ConsumedItems)
-			.GroupBy(c => c.Id)
-			.Select(g => new ConsumableItem(g.First().Equipment, g.Sum(c => c.Count)))
-			.ToList();
-
-		OnPropertyChanged(nameof(LightDamage));
-		OnPropertyChanged(nameof(MediumDamage));
-		OnPropertyChanged(nameof(HeavyDamage));
-		OnPropertyChanged(nameof(Buckets));
 
 		Progress = null;
 	}
