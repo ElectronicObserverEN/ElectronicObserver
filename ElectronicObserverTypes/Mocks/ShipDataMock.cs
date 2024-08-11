@@ -19,6 +19,7 @@ public class ShipDataMock : IShipData
 		_ => $"{MasterShip.NameWithClass} Lv. {Level}",
 	};
 	public double HPRate => (double)HPCurrent / HPMax;
+	public DamageState DamageState => this.GetDamageState();
 	public int FuelMax { get; set; }
 	public int AmmoMax { get; set; }
 	public double FuelRate => (double)Fuel / FuelMax;

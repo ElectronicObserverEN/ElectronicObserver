@@ -75,6 +75,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	private ExportFilterViewModel ExportFilter { get; } = new();
 	public ContentDialogService? ContentDialogService { get; set; }
 
+	private SortieCostConfigurationViewModel SortieCostConfiguration { get; } = new();
+
 	public SortieRecordViewerViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
@@ -465,7 +467,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSorties.Count <= 0) return;
 
-		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties);
+		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties, SortieCostConfiguration);
 
 		new SortieCostViewerWindow(sortieCost).Show();
 	}

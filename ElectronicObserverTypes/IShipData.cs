@@ -438,6 +438,8 @@ public interface IShipData
 	/// </summary>
 	double HPRate { get; }
 
+	DamageState DamageState { get; }
+
 	/// <summary>
 	/// 最大搭載燃料
 	/// </summary>

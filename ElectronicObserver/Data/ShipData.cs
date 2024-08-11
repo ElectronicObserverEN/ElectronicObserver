@@ -557,7 +557,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// </summary>
 	public double HPRate => HPMax > 0 ? (double)HPCurrent / HPMax : 0;
 
-
+	public DamageState DamageState => this.GetDamageState();
 
 	/// <summary>
 	/// 最大搭載燃料

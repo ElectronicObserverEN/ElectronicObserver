@@ -15,6 +15,7 @@ public class SortieCostViewerTranslationViewModel : TranslationBaseViewModel
 	public string Ammo => ConstantsRes.Ammo;
 	public string Steel => ConstantsRes.Steel;
 	public string Baux => ConstantsRes.Baux;
+	public string Bucket => ConstantsRes.Bucket;
 
 	public string SortieSupply => SortieCostViewerResources.SortieSupply;
 	public string SortieRepair => SortieCostViewerResources.SortieRepair;
@@ -27,4 +28,8 @@ public class SortieCostViewerTranslationViewModel : TranslationBaseViewModel
 	public object SinkingResourceGain => SortieCostViewerResources.Sinking;
 
 	public string TotalSortieCost => SortieCostViewerResources.TotalSortieCost;
+
+	public string LightDamage => ConstantsRes.LightDamage;
+	public string MediumDamage => ConstantsRes.ModerateDamage;
+	public string HeavyDamage => ConstantsRes.CriticalDamage;
 }

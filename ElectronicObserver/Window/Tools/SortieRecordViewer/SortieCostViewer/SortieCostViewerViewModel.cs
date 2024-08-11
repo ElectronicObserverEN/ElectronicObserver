@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,15 +19,23 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 	private ToolService ToolService { get; }
 	private SortieRecordMigrationService SortieRecordMigrationService { get; }
 	private ObservableCollection<SortieRecordViewModel> Sorties { get; }
+
+	public SortieCostConfigurationViewModel Configuration { get; }
 	public ObservableCollection<SortieCostViewModel> SortieCosts { get; } = [];
 
 	public SortieCostModel? SortieCostSummary { get; private set; }
+	public int LightDamage => SortieCosts.Sum(s => s.LightDamage);
+	public int MediumDamage => SortieCosts.Sum(s => s.MediumDamage);
+	public int HeavyDamage => SortieCosts.Sum(s => s.HeavyDamage);
+	public int Buckets => SortieCosts.Sum(s => s.Buckets);
+
 	public string? Progress { get; set; }
 
 	private CancellationTokenSource CancellationTokenSource { get; set; } = new();
 
 	public SortieCostViewerViewModel(ElectronicObserverContext db, ToolService toolService,
-		SortieRecordMigrationService sortieRecordMigrationService, ObservableCollection<SortieRecordViewModel> sorties)
+		SortieRecordMigrationService sortieRecordMigrationService, ObservableCollection<SortieRecordViewModel> sorties,
+		SortieCostConfigurationViewModel configuration)
 	{
 		Translation = Ioc.Default.GetRequiredService<SortieCostViewerTranslationViewModel>();
 
@@ -34,6 +43,14 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 		ToolService = toolService;
 		SortieRecordMigrationService = sortieRecordMigrationService;
 		Sorties = sorties;
+		Configuration = configuration;
+
+		Configuration.PropertyChanged += ConfigurationOnPropertyChanged;
+	}
+
+	private void ConfigurationOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+	{
+		OnPropertyChanged(nameof(Buckets));
 	}
 
 	public override void Loaded()
@@ -66,7 +83,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 					break;
 				}
 
-				SortieCostViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, sortie);
+				SortieCostViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, sortie, Configuration);
 
 				App.Current!.Dispatcher.Invoke(() =>
 				{
@@ -81,6 +98,11 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 		SortieCostSummary = SortieCosts
 			.Select(c => c.TotalCost)
 			.Sum();
+
+		OnPropertyChanged(nameof(LightDamage));
+		OnPropertyChanged(nameof(MediumDamage));
+		OnPropertyChanged(nameof(HeavyDamage));
+		OnPropertyChanged(nameof(Buckets));
 
 		Progress = null;
 	}

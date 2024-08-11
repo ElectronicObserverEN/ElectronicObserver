@@ -56,6 +56,18 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<TextBlock
+				Margin="4"
+				VerticalAlignment="Center"
+				Text="{Binding Translation.Bucket}"
+				/>
+
+			<CheckBox Content="{Binding Translation.LightDamage}" IsChecked="{Binding Configuration.IsShouhaBucket}" />
+			<CheckBox Content="{Binding Translation.MediumDamage}" IsChecked="{Binding Configuration.IsChuuhaBucket}" />
+			<CheckBox Content="{Binding Translation.HeavyDamage}" IsChecked="{Binding Configuration.IsTaihaBucket}" />
+		</StackPanel>
+
 		<DataGrid
 			Grid.Row="1"
 			AutoGenerateColumns="False"
@@ -72,6 +84,7 @@
 				<DataGridTextColumn Binding="{Binding TotalCost.Ammo}" Header="{Binding DataContext.Translation.Ammo, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding TotalCost.Steel}" Header="{Binding DataContext.Translation.Steel, Source={StaticResource Proxy}}" />
 				<DataGridTextColumn Binding="{Binding TotalCost.Bauxite}" Header="{Binding DataContext.Translation.Baux, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Buckets}" Header="{Binding DataContext.Translation.Bucket, Source={StaticResource Proxy}}" />
 			</DataGrid.Columns>
 
 			<DataGrid.RowDetailsTemplate>
@@ -143,7 +156,15 @@
 					</Style>
 				</StatusBarItem.Style>
 
-				<ContentControl Content="{Binding SortieCostSummary}" />
+				<StackPanel Orientation="Horizontal">
+					<ContentControl Content="{Binding SortieCostSummary}" />
+
+					<common1:ImageTextControl Text="{Binding Buckets}">
+						<common1:ImageTextControl.Image>
+							<common:IconContentIcon Type="ItemInstantRepair" />
+						</common1:ImageTextControl.Image>
+					</common1:ImageTextControl>
+				</StackPanel>
 			</StatusBarItem>
 		</StatusBar>
 	</Grid>

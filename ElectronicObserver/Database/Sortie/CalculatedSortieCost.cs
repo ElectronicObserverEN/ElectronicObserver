@@ -1,5 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Database.Sortie;
 
@@ -22,4 +24,7 @@ public class CalculatedSortieCost
 
 	[JsonPropertyName("TotalAirBaseSupplyCost")]
 	public SortieCostModel? TotalAirBaseSupplyCost { get; set; }
+
+	[JsonPropertyName("DamageStateCounts")]
+	public Dictionary<DamageState, int>? DamageStateCounts { get; set; }
 }

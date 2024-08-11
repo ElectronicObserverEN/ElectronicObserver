@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
@@ -11,8 +12,10 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
-public class SortieCostViewModel
+public class SortieCostViewModel : ObservableObject
 {
+	private SortieCostConfigurationViewModel Configuration { get; }
+
 	public DateTime Time { get; }
 	public int World { get; }
 	public int Map { get; }
@@ -39,10 +42,45 @@ public class SortieCostViewModel
 	public SortieCostModel SinkingResourceGain { get; }
 
 	public SortieCostModel TotalCost { get; }
+	private Dictionary<DamageState, int> DamageStateCounts { get; }
+
+	public int LightDamage => DamageStateCounts[DamageState.Light];
+	public int MediumDamage => DamageStateCounts[DamageState.Medium];
+	public int HeavyDamage => DamageStateCounts[DamageState.Heavy];
+
+	public int Buckets
+	{
+		get
+		{
+			int buckets = 0;
+
+			if (Configuration.IsShouhaBucket)
+			{
+				buckets += LightDamage;
+			}
+
+			if (Configuration.IsChuuhaBucket)
+			{
+				buckets += MediumDamage;
+			}
+
+			if (Configuration.IsTaihaBucket)
+			{
+				buckets += HeavyDamage;
+			}
+
+			return buckets;
+		}
+	}
 
 	public SortieCostViewModel(ElectronicObserverContext db, ToolService toolService,
-		SortieRecordMigrationService sortieRecordMigrationService, SortieRecordViewModel sortie)
+		SortieRecordMigrationService sortieRecordMigrationService, SortieRecordViewModel sortie,
+		SortieCostConfigurationViewModel configuration)
 	{
+		Configuration = configuration;
+
+		Configuration.PropertyChanged += Configuration_PropertyChanged;
+
 		Time = sortie.SortieStart.ToUniversalTime();
 		World = sortie.World;
 		Map = sortie.Map;
@@ -81,6 +119,13 @@ public class SortieCostViewModel
 
 		TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
 		TotalCost -= (ResourceGain + SinkingResourceGain);
+
+		DamageStateCounts = repairCostCalculator.DamageStateCounts(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
+	}
+
+	private void Configuration_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		OnPropertyChanged(nameof(Buckets));
 	}
 
 	private static SortieCostModel GetSinkingResourceGain(ElectronicObserverContext db, ToolService toolService, SortieRecordViewModel sortie)
