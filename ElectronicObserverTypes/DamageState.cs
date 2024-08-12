@@ -2,6 +2,7 @@
 
 public enum DamageState
 {
+	Sunk,
 	Heavy,
 	Medium,
 	Light,

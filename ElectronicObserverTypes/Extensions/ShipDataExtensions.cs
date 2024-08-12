@@ -625,6 +625,7 @@ public static class ShipDataExtensions
 		> 0.75 => DamageState.Healthy,
 		> 0.5 => DamageState.Light,
 		> 0.25 => DamageState.Medium,
-		_ => DamageState.Heavy,
+		> 0 => DamageState.Heavy,
+		_ => DamageState.Sunk,
 	};
 }
