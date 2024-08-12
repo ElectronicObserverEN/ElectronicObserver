@@ -163,6 +163,8 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 			if (before is null) continue;
 			if (after is null) continue;
 
+			if (after.DamageState is DamageState.Sunk) continue;
+
 			switch (before, after)
 			{
 				case ({ DamageState: DamageState.Healthy }, { DamageState: < DamageState.Healthy }):

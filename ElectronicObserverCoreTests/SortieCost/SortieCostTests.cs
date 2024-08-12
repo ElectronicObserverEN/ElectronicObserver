@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using ElectronicObserverTypes;
 using Xunit;
@@ -27,6 +26,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest13")]
 	[InlineData("SortieCostTest14")]
 	[InlineData("SortieCostTest15", Skip = "todo")]
+	[InlineData("SortieCostTest16", Skip = "todo")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -254,6 +254,23 @@ public sealed class SortieCostTests : SortieCostTestBase
 			Assert.Single(sortieCosts[0].ConsumedItems);
 			Assert.Equal(EquipmentId.DamageControl_EmergencyRepairGoddess, sortieCosts[0].ConsumedItems[0].Id);
 			Assert.Equal(1, sortieCosts[0].ConsumedItems[0].Count);
+		}
+	}
+
+	[Fact(DisplayName = "bucket cost test - sunk ships")]
+	public async Task SortieCostTest16()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest16");
+		List<SortieCostViewModel> calculatedSortieCosts = await MakeSortieCosts("SortieCostTest16", true);
+
+		AssertSortieCosts(sortieCosts);
+		AssertSortieCosts(calculatedSortieCosts);
+		return;
+
+		static void AssertSortieCosts(List<SortieCostViewModel> sortieCosts)
+		{
+			Assert.Single(sortieCosts);
+			Assert.Equal(3, sortieCosts[0].Buckets);
 		}
 	}
 }
