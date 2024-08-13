@@ -305,6 +305,7 @@
 				<Setter Property="Margin" Value="4 0" />
 				<Setter Property="Padding" Value="2 0" />
 				<Setter Property="MinWidth" Value="0" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
 			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
