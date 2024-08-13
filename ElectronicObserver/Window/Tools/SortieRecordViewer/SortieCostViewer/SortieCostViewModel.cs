@@ -211,13 +211,18 @@ public class SortieCostViewModel : ObservableObject
 		List<ConsumableItem> itemsBefore = GetConsumableItems(sortie.FleetData.MakeFleets());
 		List<ConsumableItem> itemsAfter = GetConsumableItems(sortie.FleetAfterSortieData.MakeFleets());
 
-		foreach ((ConsumableItem before, ConsumableItem after) in itemsBefore.Zip(itemsAfter))
+		foreach (ConsumableItem before in itemsBefore)
 		{
-			Debug.Assert(before.Id == after.Id);
+			ConsumableItem? after = itemsAfter.FirstOrDefault(i => i.Id == before.Id);
 
-			if (before.Count == after.Count) continue;
-
-			consumedItems.Add(new(before.Equipment, before.Count - after.Count));
+			if (after is null)
+			{
+				consumedItems.Add(new(before.Equipment, before.Count));
+			}
+			else if (before.Count != after.Count)
+			{
+				consumedItems.Add(new(before.Equipment, before.Count - after.Count));
+			}
 		}
 
 		return consumedItems;

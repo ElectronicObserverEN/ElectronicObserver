@@ -27,6 +27,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest14")]
 	[InlineData("SortieCostTest15", Skip = "todo")]
 	[InlineData("SortieCostTest16", Skip = "todo")]
+	[InlineData("SortieCostTest17", Skip = "todo")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -271,6 +272,26 @@ public sealed class SortieCostTests : SortieCostTestBase
 		{
 			Assert.Single(sortieCosts);
 			Assert.Equal(3, sortieCosts[0].Buckets);
+		}
+	}
+
+	[Fact(DisplayName = "consumed items test 3")]
+	public async Task SortieCostTest17()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest17");
+		List<SortieCostViewModel> calculatedSortieCosts = await MakeSortieCosts("SortieCostTest17", true);
+
+		AssertSortieCosts(sortieCosts);
+		// todo AssertSortieCosts(calculatedSortieCosts);
+		return;
+
+		static void AssertSortieCosts(List<SortieCostViewModel> sortieCosts)
+		{
+			Assert.Single(sortieCosts); 
+			
+			Assert.Single(sortieCosts[0].ConsumedItems);
+			Assert.Equal(EquipmentId.DamageControl_EmergencyRepairGoddess, sortieCosts[0].ConsumedItems[0].Id);
+			Assert.Equal(8, sortieCosts[0].Buckets);
 		}
 	}
 }
