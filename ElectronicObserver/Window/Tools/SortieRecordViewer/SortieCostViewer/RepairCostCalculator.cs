@@ -7,7 +7,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
@@ -48,9 +47,35 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 	}
 
 	private static SortieCostModel RepairCost(IEnumerable<IShipData?> before, IEnumerable<IShipData?> after)
-		=> before
-			.Zip(after, RepairCost)
-			.Sum();
+	{
+		List<IShipData?> beforeList = before.ToList();
+		List<IShipData?> afterList = after.ToList();
+
+		if (beforeList.Count == afterList.Count)
+		{
+			return beforeList
+				.Zip(afterList, RepairCost)
+				.Sum();
+		}
+
+		List<SortieCostModel> costs = [];
+		int afterIndex = 0;
+
+		foreach (IShipData shipBefore in beforeList.OfType<IShipData>())
+		{
+			if (afterIndex >= afterList.Count) break;
+
+			IShipData? shipAfter = afterList[afterIndex];
+
+			if (shipBefore.ShipID != shipAfter?.ShipID) continue;
+
+			costs.Add(RepairCost(shipBefore, shipAfter));
+
+			afterIndex++;
+		}
+
+		return costs.Sum();
+	}
 
 	private static SortieCostModel RepairCost(IShipData? before, IShipData? after) => (before, after) switch
 	{
@@ -77,10 +102,9 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 		if (SortieDetails is null) return SortieCostModel.Zero;
 
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
-		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
 		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
-		List<IShipData?>? shipsAfter = GetShipsAfter(SortieDetails, fleetsAfter);
+		List<IShipData>? shipsAfter = GetShipsAfter(SortieDetails);
 
 		if (shipsAfter is null) return SortieCostModel.Zero;
 
@@ -140,10 +164,9 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 		if (SortieDetails is null) return damageStateCounts;
 
 		BattleFleets fleetsBefore = SortieDetails.FleetsBeforeSortie;
-		BattleFleets fleetsAfter = fleetsBefore.Clone();
 
 		List<IShipData?> shipsBefore = fleetsBefore.SortieShips();
-		List<IShipData?>? shipsAfter = GetShipsAfter(SortieDetails, fleetsAfter);
+		List<IShipData>? shipsAfter = GetShipsAfter(SortieDetails);
 
 		if (shipsAfter is null) return damageStateCounts;
 
@@ -180,26 +203,17 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 		return damageStateCounts;
 	}
 
-	private static List<IShipData?>? GetShipsAfter(SortieDetailViewModel sortieDetails, BattleFleets fleetsAfter)
+	private static List<IShipData>? GetShipsAfter(SortieDetailViewModel sortieDetails)
 	{
-		List<IShipData?> shipsAfter = fleetsAfter.SortieShips();
-
-		List<IShipData?>? membersAfterFinalBattle = sortieDetails.Nodes
+		List<IShipData>? membersAfterFinalBattle = sortieDetails.Nodes
 			.OfType<BattleNode>()
 			.Select(n => n.LastBattle.FleetsAfterBattle)
 			.LastOrDefault()
-			?.SortieShips();
+			?.SortieShips()
+			.OfType<IShipData>()
+			.Where(s => s.HPCurrent > 0)
+			.ToList();
 
-		if (membersAfterFinalBattle is null) return null;
-
-		foreach ((IShipData? before, IShipData? after) in shipsAfter.Zip(membersAfterFinalBattle))
-		{
-			if (before is not ShipDataMock ship) continue;
-			if (after is null) continue;
-
-			ship.HPCurrent = after.HPCurrent;
-		}
-
-		return shipsAfter;
+		return membersAfterFinalBattle;
 	}
 }

@@ -26,7 +26,7 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest13")]
 	[InlineData("SortieCostTest14")]
 	[InlineData("SortieCostTest15", Skip = "goddess resupply doesn't get calculated correctly")]
-	[InlineData("SortieCostTest16", Skip = "todo")]
+	[InlineData("SortieCostTest16")]
 	[InlineData("SortieCostTest17", Skip = "todo")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
