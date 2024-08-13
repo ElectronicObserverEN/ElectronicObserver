@@ -147,4 +147,7 @@
   <data name="Sinking" xml:space="preserve">
     <value>Sinking</value>
   </data>
+  <data name="NormalDamage" xml:space="preserve">
+    <value>Scratch Damage</value>
+  </data>
 </root>

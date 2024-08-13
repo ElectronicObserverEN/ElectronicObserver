@@ -71,6 +71,7 @@
 				Text="{Binding Translation.Bucket}"
 				/>
 
+			<CheckBox Content="{Binding Translation.NormalDamage}" IsChecked="{Binding Configuration.IsNormalDamageBucket}" />
 			<CheckBox Content="{Binding Translation.LightDamage}" IsChecked="{Binding Configuration.IsShouhaBucket}" />
 			<CheckBox Content="{Binding Translation.MediumDamage}" IsChecked="{Binding Configuration.IsChuuhaBucket}" />
 			<CheckBox Content="{Binding Translation.HeavyDamage}" IsChecked="{Binding Configuration.IsTaihaBucket}" />

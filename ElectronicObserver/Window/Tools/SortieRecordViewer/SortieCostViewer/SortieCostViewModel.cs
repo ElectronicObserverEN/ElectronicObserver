@@ -47,6 +47,7 @@ public class SortieCostViewModel : ObservableObject
 	private Dictionary<DamageState, int> DamageStateCounts { get; }
 	public List<ConsumableItem> ConsumedItems { get; }
 
+	public int NormalDamage => DamageStateCounts[DamageState.Healthy];
 	public int LightDamage => DamageStateCounts[DamageState.Light];
 	public int MediumDamage => DamageStateCounts[DamageState.Medium];
 	public int HeavyDamage => DamageStateCounts[DamageState.Heavy];
@@ -56,6 +57,11 @@ public class SortieCostViewModel : ObservableObject
 		get
 		{
 			int buckets = 0;
+
+			if (Configuration.IsNormalDamageBucket)
+			{
+				buckets += NormalDamage;
+			}
 
 			if (Configuration.IsShouhaBucket)
 			{

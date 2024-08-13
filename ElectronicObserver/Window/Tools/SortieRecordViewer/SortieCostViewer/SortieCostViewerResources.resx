@@ -127,4 +127,7 @@
   <data name="Sinking" xml:space="preserve">
     <value>撃沈</value>
   </data>
+  <data name="NormalDamage" xml:space="preserve">
+    <value>通常</value>
+  </data>
 </root>

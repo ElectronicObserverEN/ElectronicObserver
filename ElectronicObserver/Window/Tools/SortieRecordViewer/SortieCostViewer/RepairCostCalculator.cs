@@ -97,6 +97,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 	{
 		Dictionary<DamageState, int> damageStateCounts = new()
 		{
+			{ DamageState.Healthy, 0 },
 			{ DamageState.Light, 0 },
 			{ DamageState.Medium, 0 },
 			{ DamageState.Heavy, 0 },
@@ -167,6 +168,7 @@ public class RepairCostCalculator(ElectronicObserverContext db, ToolService tool
 
 			switch (before, after)
 			{
+				case ({ HPRate: 1 }, { HPRate: < 1 }):
 				case ({ DamageState: DamageState.Healthy }, { DamageState: < DamageState.Healthy }):
 				case ({ DamageState: >= DamageState.Light }, { DamageState: < DamageState.Light }):
 				case ({ DamageState: >= DamageState.Medium }, { DamageState: < DamageState.Medium }):

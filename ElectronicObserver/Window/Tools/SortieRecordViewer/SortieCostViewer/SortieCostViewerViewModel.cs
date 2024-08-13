@@ -25,6 +25,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 	public ObservableCollection<SortieCostViewModel> SortieCosts { get; } = [];
 
 	public SortieCostModel? SortieCostSummary { get; private set; }
+	public int NormalDamage => SortieCosts.Sum(s => s.NormalDamage);
 	public int LightDamage => SortieCosts.Sum(s => s.LightDamage);
 	public int MediumDamage => SortieCosts.Sum(s => s.MediumDamage);
 	public int HeavyDamage => SortieCosts.Sum(s => s.HeavyDamage);
@@ -104,6 +105,7 @@ public class SortieCostViewerViewModel : WindowViewModelBase
 						.Select(g => new ConsumableItem(g.First().Equipment, g.Sum(c => c.Count)))
 						.ToList();
 
+					OnPropertyChanged(nameof(NormalDamage));
 					OnPropertyChanged(nameof(LightDamage));
 					OnPropertyChanged(nameof(MediumDamage));
 					OnPropertyChanged(nameof(HeavyDamage));

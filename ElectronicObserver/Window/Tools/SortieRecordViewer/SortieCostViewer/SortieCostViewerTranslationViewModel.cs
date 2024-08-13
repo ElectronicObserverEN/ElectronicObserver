@@ -29,6 +29,7 @@ public class SortieCostViewerTranslationViewModel : TranslationBaseViewModel
 
 	public string TotalSortieCost => SortieCostViewerResources.TotalSortieCost;
 
+	public string NormalDamage => SortieCostViewerResources.NormalDamage;
 	public string LightDamage => ConstantsRes.LightDamage;
 	public string MediumDamage => ConstantsRes.ModerateDamage;
 	public string HeavyDamage => ConstantsRes.CriticalDamage;
