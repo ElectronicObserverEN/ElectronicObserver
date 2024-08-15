@@ -172,10 +172,10 @@ public class ShipDataMock : IShipData
 	public int ASWMax { get; }
 	public int LOSMax { get; }
 	public List<SpecialEffectItem> SpecialEffectItems { get; set; } = [];
-	public int SpecialEffectItemFirepower { get; set; }
-	public int SpecialEffectItemTorpedo { get; set; }
-	public int SpecialEffectItemArmor { get; set; }
-	public int SpecialEffectItemEvasion { get; set; }
+	public int SpecialEffectItemFirepower => SpecialEffectItems.Sum(i => i.Firepower);
+	public int SpecialEffectItemTorpedo => SpecialEffectItems.Sum(i => i.Torpedo); 
+	public int SpecialEffectItemArmor => SpecialEffectItems.Sum(i => i.Armor);
+	public int SpecialEffectItemEvasion => SpecialEffectItems.Sum(i => i.Evasion);
 	public bool IsLocked { get; }
 	public bool IsLockedByEquipment { get; }
 	public bool CanBeTargeted { get; set; } = true;

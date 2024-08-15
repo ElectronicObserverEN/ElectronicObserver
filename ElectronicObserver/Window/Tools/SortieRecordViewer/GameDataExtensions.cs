@@ -59,11 +59,7 @@ public static class GameDataExtensions
 			Ammo = shipData.Ammo,
 			Range = shipData.Range,
 			Speed = shipData.Speed,
-			SpecialEffectItemFirepower = shipData.SpecialEffectItems?.Sum(i => i.Firepower) ?? 0,
-			SpecialEffectItemTorpedo = shipData.SpecialEffectItems?.Sum(i => i.Torpedo) ?? 0,
-			SpecialEffectItemArmor = shipData.SpecialEffectItems?.Sum(i => i.Armor) ?? 0,
-			SpecialEffectItemEvasion = shipData.SpecialEffectItems?.Sum(i => i.Evasion) ?? 0,
-			SpecialEffectItems = shipData.SpecialEffectItems ?? new(),
+			SpecialEffectItems = shipData.SpecialEffectItems ?? [],
 		};
 
 		if (shipData.Aircraft is not null)
