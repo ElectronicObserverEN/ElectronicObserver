@@ -59,7 +59,6 @@ public static class GameDataExtensions
 			Ammo = shipData.Ammo,
 			Range = shipData.Range,
 			Speed = shipData.Speed,
-			Kyouka = [.. shipData.Kyouka],
 			SpecialEffectItemFirepower = shipData.SpecialEffectItems?.Sum(i => i.Firepower) ?? 0,
 			SpecialEffectItemTorpedo = shipData.SpecialEffectItems?.Sum(i => i.Torpedo) ?? 0,
 			SpecialEffectItemArmor = shipData.SpecialEffectItems?.Sum(i => i.Armor) ?? 0,

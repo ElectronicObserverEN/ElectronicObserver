@@ -72,7 +72,7 @@ public class ShipDataMock : IShipData
 	public int RepairSteel { get; set; }
 	public int RepairFuel { get; set; }
 	public int Condition { get; set; }
-	public int[] Kyouka { get; set; }
+	public int[] Kyouka { get; }
 	public int FirepowerModernized => Kyouka[0];
 	public int TorpedoModernized => Kyouka[1];
 	public int AAModernized => Kyouka[2];
