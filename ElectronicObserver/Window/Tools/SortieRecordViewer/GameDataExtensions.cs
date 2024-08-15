@@ -47,7 +47,7 @@ public static class GameDataExtensions
 	{
 		if (shipData is null) return null;
 
-		ShipDataMock ship = new(KcDatabase.MasterShips[(int)shipData.Id])
+		ShipDataMock ship = new(KcDatabase.MasterShips[(int)shipData.Id], shipData.Kyouka)
 		{
 			MasterID = shipData.DropId ?? 0,
 			Level = shipData.Level,
@@ -59,9 +59,7 @@ public static class GameDataExtensions
 			Ammo = shipData.Ammo,
 			Range = shipData.Range,
 			Speed = shipData.Speed,
-			LuckModernized = shipData.Kyouka.Skip(4).FirstOrDefault(),
-			HPMaxModernized = shipData.Kyouka.Skip(5).FirstOrDefault(),
-			ASWModernized = shipData.Kyouka.Skip(6).FirstOrDefault(),
+			Kyouka = [.. shipData.Kyouka],
 			SpecialEffectItemFirepower = shipData.SpecialEffectItems?.Sum(i => i.Firepower) ?? 0,
 			SpecialEffectItemTorpedo = shipData.SpecialEffectItems?.Sum(i => i.Torpedo) ?? 0,
 			SpecialEffectItemArmor = shipData.SpecialEffectItems?.Sum(i => i.Armor) ?? 0,
@@ -200,6 +198,10 @@ public static class GameDataExtensions
 			Ammo = ship.Ammo,
 			Range = ship.Range,
 			Speed = ship.Speed,
+			FirepowerBase = ship.FirepowerBase,
+			TorpedoBase = ship.TorpedoBase,
+			AABase = ship.AABase,
+			ArmorBase = ship.ArmorBase,
 			LuckModernized = ship.LuckModernized,
 			HPMaxModernized = ship.HPMaxModernized,
 			ASWModernized = ship.ASWModernized,

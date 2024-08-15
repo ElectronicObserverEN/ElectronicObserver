@@ -49,12 +49,11 @@ public class PhaseFriendlySupportInfo : PhaseBase
 					})
 					.Cast<IEquipmentData?>()
 					.ToList(),
+				FirepowerBase = apiFriendlyInfo.ApiParam[i][0],
+				TorpedoBase = apiFriendlyInfo.ApiParam[i][1],
+				AABase = apiFriendlyInfo.ApiParam[i][2],
+				ArmorBase = apiFriendlyInfo.ApiParam[i][3],
 			};
-
-			ship.FirepowerModernized += apiFriendlyInfo.ApiParam[i][0] - ship.FirepowerBase;
-			ship.TorpedoModernized += apiFriendlyInfo.ApiParam[i][1] - ship.TorpedoBase;
-			ship.AAModernized += apiFriendlyInfo.ApiParam[i][2] - ship.AABase;
-			ship.ArmorModernized += apiFriendlyInfo.ApiParam[i][3] - ship.ArmorBase;
 			
 			Ships.Add(ship);
 		}

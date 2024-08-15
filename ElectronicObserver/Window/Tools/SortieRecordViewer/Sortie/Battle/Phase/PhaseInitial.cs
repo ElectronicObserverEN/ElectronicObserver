@@ -199,12 +199,7 @@ public class PhaseInitial : PhaseBase
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;
 
-		foreach ((IShipData? ship, int i) in fleets.Fleet.MembersInstance.Select((s, i) => (s, i)))
-		{
-			if (ship is not ShipDataMock s) continue;
-
-			s.HPCurrent = FriendInitialHPs[i];
-		}
+		SetShipParameters(fleets.Fleet.MembersInstance, FriendInitialHPs, battle.ApiFParam);
 
 		Escape(fleets.Fleet, battle.ApiEscapeIdx);
 
@@ -251,7 +246,7 @@ public class PhaseInitial : PhaseBase
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
 		ApiCombatRationCombined = battle.ApiCombatRationCombined;
-		SetEscortFleetHp(fleets, battle);
+		SetEscortFleetParameters(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
 	}
 
@@ -267,7 +262,7 @@ public class PhaseInitial : PhaseBase
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
 		ApiCombatRationCombined = battle.ApiCombatRationCombined;
-		SetEscortFleetHp(fleets, battle);
+		SetEscortFleetParameters(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
 
 		IsEnemyCombinedFleet = true;
@@ -278,7 +273,7 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, ICombinedNightBattleApiResponse battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
-		SetEscortFleetHp(fleets, battle);
+		SetEscortFleetParameters(fleets, battle);
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 		SetEnemyRange(EnemyMembersEscortInstance);
 	}
@@ -324,30 +319,33 @@ public class PhaseInitial : PhaseBase
 			.ToList();
 	}
 
-	private static void SetEscortFleetHp(BattleFleets fleets, IPlayerCombinedFleetBattle battle)
+	private static void SetEscortFleetParameters(BattleFleets fleets, IPlayerCombinedFleetBattle battle)
 	{
 		if (fleets.EscortFleet is null) return;
 
-		SetEscortFleetHp(fleets, battle.ApiFNowhpsCombined);
+		SetShipParameters(fleets.EscortFleet.MembersInstance, battle.ApiFNowhpsCombined, battle.ApiFParamCombined);
 	}
 
-	private static void SetEscortFleetHp(BattleFleets fleets, ICombinedNightBattleApiResponse battle)
+	private static void SetEscortFleetParameters(BattleFleets fleets, ICombinedNightBattleApiResponse battle)
 	{
 		if (fleets.EscortFleet is null) return;
 		if (battle.ApiFNowhpsCombined is null) return;
+		if (battle.ApiFParamCombined is null) return;
 
-		SetEscortFleetHp(fleets, battle.ApiFNowhpsCombined);
+		SetShipParameters(fleets.EscortFleet.MembersInstance, battle.ApiFNowhpsCombined, battle.ApiFParamCombined);
 	}
 
-	private static void SetEscortFleetHp(BattleFleets fleets, List<int> hpNowList)
+	private static void SetShipParameters(IEnumerable<IShipData?> ships, List<int> hpNowList, List<List<int>> param)
 	{
-		if (fleets.EscortFleet is null) return;
-
-		foreach ((IShipData? ship, int i) in fleets.EscortFleet.MembersInstance.Select((s, i) => (s, i)))
+		foreach ((IShipData? ship, int i) in ships.Select((s, i) => (s, i)))
 		{
 			if (ship is not ShipDataMock s) continue;
 
 			s.HPCurrent = hpNowList[i];
+			s.FirepowerBase = param[i][0];
+			s.TorpedoBase = param[i][1];
+			s.AABase = param[i][2];
+			s.ArmorBase = param[i][3];
 		}
 	}
 

@@ -258,32 +258,26 @@ public class BattleRankTests(DatabaseFixture database)
 					new ShipDataMock(Database.MasterShips[ShipId.NisshinA])
 					{
 						HPCurrent = 55,
-						HPMaxModernized = 55,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.MakigumoKaiNi])
 					{
 						HPCurrent = 38,
-						HPMaxModernized = 38,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.KasumiKaiNi])
 					{
 						HPCurrent = 37,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.UmikazeKaiNi])
 					{
 						HPCurrent = 37,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.KawakazeKaiNi])
 					{
 						HPCurrent = 37,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.YuraKaiNi])
 					{
 						HPCurrent = 10,
-						HPMaxModernized = 51,
 					},
 				]),
 				EscapedShipList = new([5]), // Yura escaped
@@ -295,32 +289,26 @@ public class BattleRankTests(DatabaseFixture database)
 					new ShipDataMock(Database.MasterShips[ShipId.NisshinA])
 					{
 						HPCurrent = 55,
-						HPMaxModernized = 55,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.MakigumoKaiNi])
 					{
 						HPCurrent = 38,
-						HPMaxModernized = 38,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.KasumiKaiNi])
 					{
 						HPCurrent = 16,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.UmikazeKaiNi])
 					{
 						HPCurrent = 37,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.KawakazeKaiNi])
 					{
 						HPCurrent = 9,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.YuraKaiNi])
 					{
 						HPCurrent = 10,
-						HPMaxModernized = 51,
 					},
 				]),
 				EscapedShipList = new([5]), // Yura escaped
@@ -333,32 +321,26 @@ public class BattleRankTests(DatabaseFixture database)
 					new ShipDataMock(Database.MasterShips[ShipId.YuubariKaiNiToku])
 					{
 						HPCurrent = 10,
-						HPMaxModernized = 47,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.AbukumaKaiNi])
 					{
 						HPCurrent = 51,
-						HPMaxModernized = 51,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.HatsushimoKaiNi])
 					{
 						HPCurrent = 17,
-						HPMaxModernized = 39,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.AmatsukazeKaiNi])
 					{
 						HPCurrent = 40,
-						HPMaxModernized = 40,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.KawakazeKaiNi])
 					{
 						HPCurrent = 37,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.YuraKaiNi])
 					{
 						HPCurrent = 43,
-						HPMaxModernized = 43,
 					},
 				]),
 				EscapedShipList = new([3]), // Amatsukaze escaped
@@ -370,32 +352,26 @@ public class BattleRankTests(DatabaseFixture database)
 					new ShipDataMock(Database.MasterShips[ShipId.YuubariKaiNiToku])
 					{
 						HPCurrent = 10,
-						HPMaxModernized = 47,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.AbukumaKaiNi])
 					{
 						HPCurrent = 7,
-						HPMaxModernized = 51,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.HatsushimoKaiNi])
 					{
 						HPCurrent = 8,
-						HPMaxModernized = 39,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.AmatsukazeKaiNi])
 					{
 						HPCurrent = 40,
-						HPMaxModernized = 40,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.KawakazeKaiNi])
 					{
 						HPCurrent = 34,
-						HPMaxModernized = 37,
 					},
 					new ShipDataMock(Database.MasterShips[ShipId.YuraKaiNi])
 					{
 						HPCurrent = 43,
-						HPMaxModernized = 43,
 					},
 				]),
 				EscapedShipList = new([3]), // Amatsukaze escaped
@@ -408,32 +384,26 @@ public class BattleRankTests(DatabaseFixture database)
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ri-Class Flagship
 					{
 						HPCurrent = 76,
-						HPMaxModernized = 76,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ri-Class Flagship
 					{
 						HPCurrent = 76,
-						HPMaxModernized = 76,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1591]) // Tsu-Class 
 					{
 						HPCurrent = 48,
-						HPMaxModernized = 48,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ni-Class Late Model
 					{
 						HPCurrent = 40,
-						HPMaxModernized = 40,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ni-Class Late Model
 					{
 						HPCurrent = 40,
-						HPMaxModernized = 40,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ni-Class Late Model
 					{
 						HPCurrent = 40,
-						HPMaxModernized = 40,
 					},
 				]),
 			},
@@ -444,32 +414,26 @@ public class BattleRankTests(DatabaseFixture database)
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ri-Class Flagship
 					{
 						HPCurrent = 44,
-						HPMaxModernized = 76,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ri-Class Flagship
 					{
 						HPCurrent = 32,
-						HPMaxModernized = 76,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1591]) // Tsu-Class 
 					{
 						HPCurrent = 35,
-						HPMaxModernized = 48,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ni-Class Late Model
 					{
 						HPCurrent = 0,
-						HPMaxModernized = 40,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ni-Class Late Model
 					{
 						HPCurrent = 0,
-						HPMaxModernized = 40,
 					},
 					new ShipDataMock(Database.MasterShips[(ShipId)1527]) // Ni-Class Late Model
 					{
 						HPCurrent = 0,
-						HPMaxModernized = 40,
 					},
 				]),
 			},

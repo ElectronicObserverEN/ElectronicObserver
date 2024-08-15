@@ -73,13 +73,29 @@ public class ShipDataMock : IShipData
 	public int RepairFuel { get; set; }
 	public int Condition { get; set; }
 	public int[] Kyouka { get; set; }
-	public int FirepowerModernized { get; set; }
-	public int TorpedoModernized { get; set; }
-	public int AAModernized { get; set; }
-	public int ArmorModernized { get; set; }
-	public int LuckModernized { get; set; }
-	public int HPMaxModernized { get; set; }
-	public int ASWModernized { get; set; }
+	public int FirepowerModernized => Kyouka[0];
+	public int TorpedoModernized => Kyouka[1];
+	public int AAModernized => Kyouka[2];
+	public int ArmorModernized => Kyouka[3];
+
+	public int LuckModernized
+	{
+		get => Kyouka[4];
+		set => Kyouka[4] = value;
+	}
+
+	public int HPMaxModernized
+	{
+		get => Kyouka[5];
+		set => Kyouka[5] = value;
+	}
+
+	public int ASWModernized
+	{
+		get => Kyouka[6];
+		set => Kyouka[6] = value;
+	}
+
 	public int FirepowerRemain { get; set; }
 	public int TorpedoRemain { get; set; }
 	public int AARemain { get; set; }
@@ -109,10 +125,10 @@ public class ShipDataMock : IShipData
 	public int ExpeditionASWTotal => this.ExpeditionAswTotal();
 	public int ExpeditionLOSTotal => this.ExpeditionLosTotal();
 	public int ExpeditionAATotal => this.ExpeditionAaTotal();
-	public int FirepowerBase => Math.Min(MasterShip.FirepowerMin + FirepowerModernized, MasterShip.FirepowerMax);
-	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
-	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
-	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
+	public int FirepowerBase { get; set; }
+	public int TorpedoBase { get; set; }
+	public int AABase { get; set; }
+	public int ArmorBase { get; set; }
 	public int EvasionBase => MasterShip.Evasion.IsDetermined switch
 	{
 		true => MasterShip.Evasion.GetParameter(Level),
@@ -148,7 +164,7 @@ public class ShipDataMock : IShipData
 	public int LuckBase
 	{
 		get => Math.Min(MasterShip.LuckMin + LuckModernized, MasterShip.LuckMax);
-		set => LuckModernized = value - MasterShip.LuckMin;
+		set => Kyouka[4] = value - MasterShip.LuckMin;
 	}
 
 	public int EvasionMax { get; set; }
@@ -163,7 +179,7 @@ public class ShipDataMock : IShipData
 	public bool IsLockedByEquipment { get; set; }
 	public bool CanBeTargeted { get; set; } = true;
 
-	public ShipDataMock(IShipDataMaster ship)
+	public ShipDataMock(IShipDataMaster ship, List<int>? kyouka = null)
 	{
 		MasterShip = ship;
 
@@ -177,13 +193,26 @@ public class ShipDataMock : IShipData
 		Ammo = ship.Ammo;
 		AmmoMax = ship.Ammo;
 
-		FirepowerModernized = MasterShip.FirepowerMax - MasterShip.FirepowerMin;
-		TorpedoModernized = MasterShip.TorpedoMax - MasterShip.TorpedoMin;
-		AAModernized = MasterShip.AAMax - MasterShip.AAMin;
-		ArmorModernized = MasterShip.ArmorMax - MasterShip.ArmorMin;
-		LuckModernized = 0;
-		HPMaxModernized = 0;
-		ASWModernized = 0;
+		Kyouka = kyouka switch
+		{
+			null =>
+			[
+				MasterShip.FirepowerMax - MasterShip.FirepowerMin,
+				MasterShip.TorpedoMax - MasterShip.TorpedoMin,
+				MasterShip.AAMax - MasterShip.AAMin,
+				MasterShip.ArmorMax - MasterShip.ArmorMin,
+				0,
+				0,
+				0,
+			],
+
+			_ => [.. kyouka]
+		};
+
+		FirepowerBase = MasterShip.FirepowerMin + FirepowerModernized;
+		TorpedoBase = MasterShip.TorpedoMin + TorpedoModernized;
+		AABase = MasterShip.AAMin + AAModernized;
+		ArmorBase = MasterShip.ArmorMin + ArmorModernized;
 
 		Speed = ship.Speed;
 	}
@@ -203,4 +232,6 @@ public class ShipDataMock : IShipData
 		// todo: copy all values
 		ID = ID,
 	};
+
+	public override string ToString() => NameWithLevel;
 }

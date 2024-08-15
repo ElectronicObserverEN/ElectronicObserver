@@ -95,4 +95,60 @@ public class SortieDetailTests
 
 		Assert.Equal(32, zuihouBeforeSecondBattle.HPCurrent);
 	}
+
+	[Fact(DisplayName = "special effect item bonuses should be included in base stats")]
+	public async Task SortieDetailTest2()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("SortieDetailTest2.json");
+
+		Assert.Single(sortieDetails);
+
+		IShipData kamikaze = sortieDetails[0].Fleets
+			.SortieShips()
+			.OfType<IShipData>()
+			.First(s => s.MasterShip.ShipId is ShipId.KamikazeKai);
+
+		Assert.Equal(70, kamikaze.TorpedoBase);
+		Assert.Equal(78, kamikaze.TorpedoTotal);
+	}
+
+	[Fact(DisplayName = "special effect item bonuses should be included in base stats")]
+	public async Task SortieDetailTest3()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("SortieDetailTest3.json");
+
+		Assert.Single(sortieDetails);
+
+		IShipData momochi = sortieDetails[0].Fleets
+			.SortieShips()
+			.OfType<IShipData>()
+			.First(s => s.MasterShip.ShipId is ShipId.No101LandingShipKai);
+
+		Assert.Equal(20, momochi.FirepowerBase);
+		Assert.Equal(26, momochi.FirepowerTotal);
+	}
+
+	[Fact(DisplayName = "stat change from level up should be included in base stats")]
+	public async Task SortieDetailTest4()
+	{
+		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("SortieDetailTest4.json");
+
+		Assert.Single(sortieDetails);
+
+		IShipData mogadorBeforeSortie = sortieDetails[0].FleetsBeforeSortie
+			.SortieShips()
+			.OfType<IShipData>()
+			.First(s => s.MasterShip.ShipId is ShipId.MogadorKai);
+
+		Assert.Equal(49, mogadorBeforeSortie.FirepowerBase);
+		Assert.Equal(78, mogadorBeforeSortie.FirepowerTotal);
+
+		IShipData mogadorAfterFinalBattle = sortieDetails[0].Fleets
+			.SortieShips()
+			.OfType<IShipData>()
+			.First(s => s.MasterShip.ShipId is ShipId.MogadorKai);
+
+		Assert.Equal(51, mogadorAfterFinalBattle.FirepowerBase);
+		Assert.Equal(80, mogadorAfterFinalBattle.FirepowerTotal);
+	}
 }
