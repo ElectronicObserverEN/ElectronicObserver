@@ -23,7 +23,6 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
