@@ -78,6 +78,13 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 	private SortieCostConfigurationViewModel SortieCostConfiguration { get; } = new();
 
+	public bool IsDebug =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
+
 	public SortieRecordViewerViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
@@ -476,6 +483,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private async Task OpenLocalApiLoader()
 	{
+		if (!IsDebug) return;
 		if (SelectedSortie is null) return;
 
 		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
