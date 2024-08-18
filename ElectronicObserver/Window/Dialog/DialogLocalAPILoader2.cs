@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
@@ -18,12 +17,16 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace ElectronicObserver.Window.Dialog;
 
 public partial class DialogLocalAPILoader2 : Form
 {
+	private JsonSerializerOptions JsonSerializerOptions { get; } = new()
+	{
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+	};
+
 	private SortieRecord? SortieRecord { get; }
 	private List<ApiFile> ApiFilesBeforeSortie { get; set; } = [];
 
@@ -327,12 +330,7 @@ public partial class DialogLocalAPILoader2 : Form
 					.OfType<FleetDataDto>()
 					.ToList();
 
-				JsonSerializerOptions options = new()
-				{
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-				};
-
-				apiFile.Content = JsonSerializer.Serialize(apiFilePortResponse, options);
+				apiFile.Content = JsonSerializer.Serialize(apiFilePortResponse, JsonSerializerOptions);
 			}
 
 			// apiFile.Content = apiFile.Content.Replace("\"api_plane_info\":null,", "");
