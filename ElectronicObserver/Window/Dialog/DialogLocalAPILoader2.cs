@@ -189,7 +189,7 @@ public partial class DialogLocalAPILoader2 : Form
 
 	private void LoadSortieRecordFiles(SortieRecord sortieRecord)
 	{
-		if (!sortieRecord.ApiFiles.Any()) return;
+		if (sortieRecord.ApiFiles.Count is 0) return;
 
 		APIView.Rows.Clear();
 
@@ -332,8 +332,6 @@ public partial class DialogLocalAPILoader2 : Form
 
 				apiFile.Content = JsonSerializer.Serialize(apiFilePortResponse, JsonSerializerOptions);
 			}
-
-			// apiFile.Content = apiFile.Content.Replace("\"api_plane_info\":null,", "");
 		}
 
 		switch (apiFileType)
