@@ -23,6 +23,8 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.ViewModels;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using Microsoft.EntityFrameworkCore;
@@ -470,5 +472,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties, SortieCostConfiguration);
 
 		new SortieCostViewerWindow(sortieCost).Show();
+	}
+
+	[RelayCommand]
+	private async Task OpenLocalApiLoader()
+	{
+		if (SelectedSortie is null) return;
+
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
+
+		new DialogLocalAPILoader2(SelectedSortie.Model).Show();
 	}
 }
