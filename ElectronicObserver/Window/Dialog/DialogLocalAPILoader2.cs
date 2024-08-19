@@ -530,14 +530,14 @@ public partial class DialogLocalAPILoader2 : Form
 		}
 	}
 
-	private string? LoadApiResponse(string apiName)
+	private static string? LoadApiResponse(string apiName)
 	{
-		Configuration.ConfigurationData Config = Configuration.Config;
+		Configuration.ConfigurationData config = Configuration.Config;
 
-		if (string.IsNullOrEmpty(Config.Connection.SaveDataPath)) return null;
-		if (!Directory.Exists(Config.Connection.SaveDataPath)) return null;
+		if (string.IsNullOrEmpty(config.Connection.SaveDataPath)) return null;
+		if (!Directory.Exists(config.Connection.SaveDataPath)) return null;
 
-		string filePath = Path.Combine(Config.Connection.SaveDataPath, "kcsapi", apiName);
+		string filePath = Path.Combine(config.Connection.SaveDataPath, "kcsapi", apiName);
 
 		if (!File.Exists(filePath)) return null;
 
