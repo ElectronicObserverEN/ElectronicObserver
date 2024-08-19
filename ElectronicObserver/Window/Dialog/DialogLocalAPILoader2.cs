@@ -358,7 +358,7 @@ public partial class DialogLocalAPILoader2 : Form
 		Action<string> act = SortieRecord switch
 		{
 			null => ExecuteAPI,
-			_ => ExecuteSortieRecordApi
+			_ => ExecuteSortieRecordApi,
 		};
 
 		foreach (string? file in files)
