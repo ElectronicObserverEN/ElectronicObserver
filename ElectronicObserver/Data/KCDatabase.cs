@@ -211,43 +211,31 @@ public sealed class KCDatabase : IKCDatabase
 #if DEBUG
 		// data needed for loading old event battles via local api loader
 		// the values don't really matter, they just need to exist
-		AddWorld("""{"api_id":56,"api_name":"","api_type":1}""");
-		AddWorld("""{"api_id":57,"api_name":"","api_type":1}""");
-		AddWorld("""{"api_id":58,"api_name":"","api_type":1}""");
-
-		AddMap("""{"api_id":561,"api_maparea_id":56,"api_no":1,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":562,"api_maparea_id":56,"api_no":2,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":563,"api_maparea_id":56,"api_no":3,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":564,"api_maparea_id":56,"api_no":4,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":565,"api_maparea_id":56,"api_no":5,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":566,"api_maparea_id":56,"api_no":6,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		
-		AddMap("""{"api_id":571,"api_maparea_id":57,"api_no":1,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":572,"api_maparea_id":57,"api_no":2,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":573,"api_maparea_id":57,"api_no":3,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":574,"api_maparea_id":57,"api_no":4,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":575,"api_maparea_id":57,"api_no":5,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":576,"api_maparea_id":57,"api_no":6,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":577,"api_maparea_id":57,"api_no":7,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		
-		AddMap("""{"api_id":581,"api_maparea_id":58,"api_no":1,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":582,"api_maparea_id":58,"api_no":2,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":583,"api_maparea_id":58,"api_no":3,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
-		AddMap("""{"api_id":584,"api_maparea_id":58,"api_no":4,"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""");
+		for (int i = 56; i <= 59; i++)
+		{
+			AddWorld(i);
+		}
 #endif
 	}
 
-	private void AddWorld(string json)
+	private void AddWorld(int world)
 	{
+		string json = $$"""{"api_id":{{world}},"api_name":"","api_type":1}""";
 		dynamic elem = JsonObject.Parse(json);
 
 		MapAreaData item = new();
 		item.LoadFromResponse("api_start2/getData", elem);
 		MapArea.Add(item);
+
+		for (int i = 1; i <= 7; i++)
+		{
+			AddMap(world, i);
+		}
 	}
 
-	private void AddMap(string json)
+	private void AddMap(int world, int map)
 	{
+		string json = $$"""{"api_id":{{world}}{{map}},"api_maparea_id":{{world}},"api_no":{{map}},"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""";
 		dynamic elem = JsonObject.Parse(json);
 
 		MapInfoData item = new();
