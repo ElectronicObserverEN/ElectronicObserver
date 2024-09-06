@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.Models;
 
-public class ApiEnemyInfo
+public class ApiPracticeEnemyInfo
 {
 	[JsonPropertyName("api_deck_name")]
 	public string ApiDeckName { get; set; } = "";

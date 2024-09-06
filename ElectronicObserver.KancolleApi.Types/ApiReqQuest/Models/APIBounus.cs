@@ -8,7 +8,7 @@ public class ApiBounus
 	public int ApiCount { get; set; }
 
 	[JsonPropertyName("api_item")]
-	public ApiItem? ApiItem { get; set; }
+	public ApiQuestItem? ApiItem { get; set; }
 
 	[JsonPropertyName("api_type")]
 	public UseItemId ApiType { get; set; }

@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqQuest.Models;
 
-public class ApiItem
+public class ApiQuestItem
 {
 	[JsonPropertyName("api_id")]
 	public UseItemId? ApiId { get; set; }

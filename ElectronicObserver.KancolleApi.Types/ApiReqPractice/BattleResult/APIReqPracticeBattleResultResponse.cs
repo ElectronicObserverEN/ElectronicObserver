@@ -5,7 +5,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqPractice.BattleResult;
 public class ApiReqPracticeBattleResultResponse
 {
 	[JsonPropertyName("api_enemy_info")]
-	public ApiEnemyInfo ApiEnemyInfo { get; set; } = new();
+	public ApiPracticeEnemyInfo ApiEnemyInfo { get; set; } = new();
 
 	[JsonPropertyName("api_get_base_exp")]
 	public int ApiGetBaseExp { get; set; }

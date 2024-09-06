@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKousyou.Models;
 
-public class ApiGetItem
+public class ApiKousyouSlotitem
 {
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }
