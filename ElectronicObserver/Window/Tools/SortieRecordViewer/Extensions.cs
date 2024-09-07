@@ -22,6 +22,7 @@ using ElectronicObserver.KancolleApi.Types.ApiGetMember.PictureBook;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Practice;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.PresetDeck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.PresetSlot;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.Questlist;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Record;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.SortieConditions;
@@ -139,6 +140,7 @@ public static class Extensions
 	public static object? GetRequestApiData(this ApiFile file) => file.Name switch
 	{
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiDmmPaymentPaycheckRequest>(file.Content),
+		
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiGetMemberBasicRequest>(file.Content),
 		"api_get_member/deck" => JsonSerializer.Deserialize<ApiGetMemberDeckRequest>(file.Content),
 		"api_get_member/kdock" => JsonSerializer.Deserialize<ApiGetMemberKdockRequest>(file.Content),
@@ -151,10 +153,12 @@ public static class Extensions
 		"api_get_member/practice" => JsonSerializer.Deserialize<ApiGetMemberPracticeRequest>(file.Content),
 		"api_get_member/preset_deck" => JsonSerializer.Deserialize<ApiGetMemberPresetDeckRequest>(file.Content),
 		"api_get_member/preset_slot" => JsonSerializer.Deserialize<ApiGetMemberPresetSlotRequest>(file.Content),
+		"api_get_member/questlist" => JsonSerializer.Deserialize<ApiGetMemberQuestlistRequest>(file.Content),
 		"api_get_member/record" => JsonSerializer.Deserialize<ApiGetMemberRecordRequest>(file.Content),
 		"api_get_member/ship_deck" => JsonSerializer.Deserialize<ApiGetMemberShipDeckRequest>(file.Content),
 		"api_get_member/sortie_conditions" => JsonSerializer.Deserialize<ApiGetMemberSortieConditionsRequest>(file.Content),
 		"api_get_member/useitem" => JsonSerializer.Deserialize<ApiGetMemberUseitemRequest>(file.Content),
+		
 		"api_port/port" => JsonSerializer.Deserialize<ApiPortPortRequest>(file.Content),
 		"api_req_air_corps/change_deployment_base" => JsonSerializer.Deserialize<ApiReqAirCorpsChangeDeploymentBaseRequest>(file.Content),
 		"api_req_air_corps/set_action" => JsonSerializer.Deserialize<ApiReqAirCorpsSetActionRequest>(file.Content),
@@ -271,6 +275,7 @@ public static class Extensions
 		"api_req_practice/battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqPracticeBattleResponse>>(file.Content).GetApiData(),
 
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiResponse<ApiDmmPaymentPaycheckResponse>>(file.Content).GetApiData(),
+		
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberBasicResponse>>(file.Content).GetApiData(),
 		"api_get_member/deck" => JsonSerializer.Deserialize<ApiResponseList<FleetDataDto>>(file.Content).GetApiData(),
 		"api_get_member/kdock" => JsonSerializer.Deserialize<ApiResponseList<ApiGetMemberKdockResponse>>(file.Content).GetApiData(),
@@ -283,10 +288,12 @@ public static class Extensions
 		"api_get_member/practice" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberPracticeResponse>>(file.Content).GetApiData(),
 		"api_get_member/preset_deck" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberPresetDeckResponse>>(file.Content).GetApiData(),
 		"api_get_member/preset_slot" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberPresetSlotResponse>>(file.Content).GetApiData(),
+		"api_get_member/questlist" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberQuestlistResponse>>(file.Content).GetApiData(),
 		"api_get_member/record" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberRecordResponse>>(file.Content).GetApiData(),
 		"api_get_member/ship_deck" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberShipDeckResponse>>(file.Content).GetApiData(),
 		"api_get_member/sortie_conditions" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberSortieConditionsResponse>>(file.Content).GetApiData(),
 		"api_get_member/useitem" => JsonSerializer.Deserialize<ApiResponseList<ApiGetMemberUseitemResponse>>(file.Content).GetApiData(),
+		
 		"api_port/port" => JsonSerializer.Deserialize<ApiResponse<ApiPortPortResponse>>(file.Content).GetApiData(),
 		"api_req_air_corps/change_deployment_base" => JsonSerializer.Deserialize<ApiResponse<ApiReqAirCorpsChangeDeploymentBaseResponse>>(file.Content).GetApiData(),
 		"api_req_air_corps/set_action" => JsonSerializer.Deserialize<ApiResponse<ApiReqAirCorpsSetActionResponse>>(file.Content).GetApiData(),
