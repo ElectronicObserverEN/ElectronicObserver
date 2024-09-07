@@ -132,7 +132,7 @@ dmmPayment.MapPost("/paycheck", (ApiDmmPaymentPaycheckRequest _) => new ApiRespo
 RouteGroupBuilder getMember = app.MapGroup("/api_get_member").WithTags("api_get_member");
 getMember.MapPost("/basic", (ApiGetMemberBasicRequest _) => new ApiResponse<ApiGetMemberBasicResponse>());
 getMember.MapPost("/deck", (ApiGetMemberDeckRequest _) => new ApiResponseList<FleetDataDto>());
-getMember.MapPost("/furniture", (ApiGetMemberFurnitureRequest _) => new ApiGetMemberFurnitureResponse()); // todo
+getMember.MapPost("/furniture", (ApiGetMemberFurnitureRequest _) => new ApiGetMemberFurnitureResponse()); // todo - no idea if this even exists anymore
 getMember.MapPost("/kdock", (ApiGetMemberKdockRequest _) => new ApiResponseList<ApiGetMemberKdockResponse>());
 getMember.MapPost("/mapinfo", (ApiGetMemberMapinfoRequest _) => new ApiResponse<ApiGetMemberMapinfoResponse>());
 getMember.MapPost("/material", (ApiGetMemberMaterialRequest _) => new ApiResponseList<ApiGetMemberMaterialResponse>());
@@ -185,13 +185,13 @@ reqCombinedBattle.MapPost("/sp_midnight", (ApiReqCombinedBattleSpMidnightRequest
 
 RouteGroupBuilder reqFurniture = app.MapGroup("/api_req_furniture").WithTags("api_req_furniture");
 reqFurniture.MapPost("/buy", (ApiReqFurnitureBuyRequest _) => new ApiResponse<ApiReqFurnitureBuyResponse>());
-reqFurniture.MapPost("/change", (ApiReqFurnitureChangeRequest _) => new ApiReqFurnitureChangeResponse()); // todo
+reqFurniture.MapPost("/change", (ApiReqFurnitureChangeRequest _) => new ApiReqFurnitureChangeResponse());
 
 RouteGroupBuilder reqHensei = app.MapGroup("/api_req_hensei").WithTags("api_req_hensei");
 reqHensei.MapPost("/change", (ApiReqHenseiChangeRequest _) => new ApiResponse<ApiReqHenseiChangeResponse>());
 reqHensei.MapPost("/combined", (ApiReqHenseiCombinedRequest _) => new ApiResponse<ApiReqHenseiCombinedResponse>());
 reqHensei.MapPost("/lock", (ApiReqHenseiLockRequest _) => new ApiResponse<ApiReqHenseiLockResponse>());
-reqHensei.MapPost("/preset_delete", (ApiReqHenseiPresetDeleteRequest _) => new ApiReqHenseiPresetDeleteResponse()); // todo
+reqHensei.MapPost("/preset_delete", (ApiReqHenseiPresetDeleteRequest _) => new ApiReqHenseiPresetDeleteResponse());
 reqHensei.MapPost("/preset_register", (ApiReqHenseiPresetRegisterRequest _) => new ApiResponse<ApiReqHenseiPresetRegisterResponse>());
 reqHensei.MapPost("/preset_select", (ApiReqHenseiPresetSelectRequest _) => new ApiResponse<FleetDataDto>());
 
@@ -277,6 +277,6 @@ reqSortie.MapPost("/ld_shooting", (ApiReqSortieLdShootingRequest _) => new ApiRe
 reqSortie.MapPost("/night_to_day", (/* todo */) => new ApiResponse<ApiReqSortieNightToDayResponse>());
 
 RouteGroupBuilder start2 = app.MapGroup("/api_start2").WithTags("api_start2");
-start2.MapPost("/get_data", (ApiStart2GetDataRequest _) => new ApiStart2GetDataResponse()); // todo
+start2.MapPost("/getData", (ApiStart2GetDataRequest _) => new ApiResponse<ApiStart2GetDataResponse>());
 
 app.Run();
