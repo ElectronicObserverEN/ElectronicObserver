@@ -116,6 +116,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument();
 
 WebApplication app = builder.Build();
