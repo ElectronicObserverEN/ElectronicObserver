@@ -39,7 +39,7 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	[JsonPropertyName("api_event_id")]
 	public int ApiEventId { get; set; }
 
-	/// <inheritdoc />apihap
+	/// <inheritdoc />
 	[JsonPropertyName("api_event_kind")]
 	public int ApiEventKind { get; set; }
 
