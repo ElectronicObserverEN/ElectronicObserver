@@ -534,6 +534,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.remodel_slotlist ApiReqKousyou_RemodelSlotList { get; } = new();
 
 	/// <summary>
+	/// Akashi arsenal upgrade cost detail after selecting the equipment to upgrade <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L798" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.remodel_slotlist_detail ApiReqKousyou_RemodelSlotListDetail { get; } = new();
+
+	/// <summary>
 	/// FCF <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3368" />
 	/// </summary>
@@ -675,6 +681,7 @@ public sealed class APIObserver
 			ApiGetMember_Record,
 			ApiGetMember_PayItem,
 			ApiReqKousyou_RemodelSlotList,
+			ApiReqKousyou_RemodelSlotListDetail,
 			ApiReqSortie_LdAirBattle,
 			ApiReqCombinedBattle_LdAirBattle,
 			ApiGetMember_RequireInfo,

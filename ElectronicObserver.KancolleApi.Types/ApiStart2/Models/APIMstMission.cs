@@ -39,10 +39,10 @@ public class ApiMstMission
 	public int ApiTime { get; set; }
 
 	[JsonPropertyName("api_use_bull")]
-	public int ApiUseBull { get; set; }
+	public double ApiUseBull { get; set; }
 
 	[JsonPropertyName("api_use_fuel")]
-	public int ApiUseFuel { get; set; }
+	public double ApiUseFuel { get; set; }
 
 	[JsonPropertyName("api_win_item1")]
 	public List<int> ApiWinItem1 { get; set; } = new();

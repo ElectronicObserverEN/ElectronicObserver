@@ -18,8 +18,20 @@ public class ApiReqKousyouRemodelSlotlistDetailResponse
 	public int ApiReqRemodelkit { get; set; }
 
 	[JsonPropertyName("api_req_slot_id")]
-	public int ApiReqSlotId { get; set; }
+	public int? ApiReqSlotId { get; set; }
 
 	[JsonPropertyName("api_req_slot_num")]
-	public int ApiReqSlotNum { get; set; }
+	public int? ApiReqSlotNum { get; set; }
+
+	[JsonPropertyName("api_req_useitem_id")]
+	public int? ApiReqUseItemId { get; set; }
+
+	[JsonPropertyName("api_req_useitem_num")]
+	public int? ApiReqUseItemNum { get; set; }
+
+	[JsonPropertyName("api_req_useitem_id2")]
+	public int? ApiReqUseItemId2 { get; set; }
+
+	[JsonPropertyName("api_req_useitem_num2")]
+	public int? ApiReqUseItemNum2 { get; set; }
 }

@@ -330,6 +330,7 @@ public partial class App
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
 			.AddSingleton<WrongUpgradesIssueReporter>()
+			.AddSingleton<WrongUpgradesCostIssueReporter>()
 			.AddSingleton<SoftwareIssueReporter>()
 			// external
 			.AddSingleton(JotTracker())

@@ -174,4 +174,7 @@
   <data name="FromLevel9" xml:space="preserve">
     <value>9 ～</value>
   </data>
+  <data name="Always" xml:space="preserve">
+    <value>??? (Always)</value>
+  </data>
 </root>
