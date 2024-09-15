@@ -26,11 +26,11 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		if (!api.IsServerAvailable) return;
 		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
 
+		RessourcePerEquipment.Clear();
+
 		List<APIReqKousyouRemodelSlotlistResponse>? response = JsonSerializer.Deserialize<List<APIReqKousyouRemodelSlotlistResponse>>(data.ToString());
 
 		if (response is null) return;
-
-		RessourcePerEquipment.Clear();
 
 		foreach (APIReqKousyouRemodelSlotlistResponse upgrade in response)
 		{
@@ -43,16 +43,17 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		if (!api.IsServerAvailable) return;
 		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
 
-		ApiReqKousyouRemodelSlotlistDetailRequest? request = JsonSerializer.Deserialize<ApiReqKousyouRemodelSlotlistDetailRequest>(data.ToString());
+		Ship = null;
+		Equipment = null;
 
-		if (request is null) return;
+		int slotId = int.Parse(data["api_slot_id"].ToString());
 
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
 		if (helperId <= 0) return;
 		IShipData helper = KCDatabase.Instance.Ships[helperId];
 
-		IEquipmentData? equipment = KCDatabase.Instance.Equipments[request.ApiSlotId];
+		IEquipmentData? equipment = KCDatabase.Instance.Equipments[slotId];
 
 		if (equipment is null) return;
 
@@ -84,6 +85,13 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		EquipmentUpgradePlanCostModel expectedCostSlider = Equipment.CalculateNextUpgradeCost(KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList, Ship, SliderUpgradeLevel.Always);
 		EquipmentUpgradePlanCostModel expectedCostNoSlider = Equipment.CalculateNextUpgradeCost(KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList, Ship, SliderUpgradeLevel.Never);
 		
+		// cost not found -> only report cost if the equipment has no upgrade known
+		// this is to avoid reporting cost when the issue is just that the ship can upgrade something, but the upgrade data hasn't been updated yet
+		if (expectedCostNoSlider.Ammo is 0 && expectedCostNoSlider.Fuel is 0 && expectedCostNoSlider.Bauxite is 0 && expectedCostNoSlider.Steel is 0)
+		{
+			if (KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList.Any(upgrade => upgrade.EquipmentId == Equipment.EquipmentID)) return;
+		}
+
 		if (HasIssue(expectedCostSlider, expectedCostNoSlider, response, baseCostResponse))
 		{
 #pragma warning disable CS4014
