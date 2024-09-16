@@ -3,10 +3,10 @@
 public class ApiReqKousyouRemodelSlotlistDetailRequest
 {
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; }
+	public string ApiId { get; set; } = "";
 
 	[JsonPropertyName("api_slot_id")]
-	public int ApiSlotId { get; set; }
+	public string ApiSlotId { get; set; } = "";
 
 	[JsonPropertyName("api_verno")]
 	public string ApiVerno { get; set; } = "";
