@@ -41,8 +41,8 @@ public record NelsonSpecialAttack : SpecialAttack
 		IShipData? secondHelper = ships[4];
 		if (secondHelper is null) return 0;
 
-		// https://twitter.com/dewydrops/status/1181520911444271105?s=20
-		return (Math.Sqrt(flagship.Level) + Math.Sqrt(firstHelper.Level) + Math.Sqrt(secondHelper.Level) + flagship.LuckTotal * 0.24 + 25) / 100;
+		// https://x.com/Divinity_123/status/1820114418904002935
+		return (1.1 * Math.Sqrt(flagship.Level) + Math.Sqrt(firstHelper.Level) + Math.Sqrt(secondHelper.Level) + Math.Sqrt(flagship.LuckTotal) * 1.4 + 25) / 100;
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()
