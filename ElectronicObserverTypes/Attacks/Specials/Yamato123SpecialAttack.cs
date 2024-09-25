@@ -153,7 +153,10 @@ public record Yamato123SpecialAttack : SpecialAttack
 	{
 		ShipId.KongouKaiNiC => secondHelper is ShipId.HieiKaiNiC or ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC,
 
-		ShipId.HieiKaiNiC or
+		ShipId.HieiKaiNiC => secondHelper is ShipId.KongouKaiNiC or ShipId.KirishimaKaiNiC,
+
+		ShipId.KirishimaKaiNiC => secondHelper is ShipId.HieiKaiNiC,
+
 		ShipId.HarunaKaiNiC or 
 		ShipId.HarunaKaiNiB => secondHelper is ShipId.KongouKaiNiC,
 
