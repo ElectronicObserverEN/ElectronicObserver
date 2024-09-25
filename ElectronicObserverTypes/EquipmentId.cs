@@ -535,4 +535,16 @@ public enum EquipmentId
 	CommandFacility_FleetCommunicationAntenna = 531,
 	CommandFacility_CommunicationEquipment_Personnel = 532,
 	MainGunSmall_10cmTwinHighangleMountKai_AntiAircraftFireDirectorKai = 533,
+	MainGunSmall_13_8cmTwinGun = 534,
+	MainGunSmall_13_8cmTwinGunKai = 535,
+	MainGunMedium_15_2cmTripleMainGun = 536,
+	MainGunMedium_15_2cmTripleMainGunKai = 537,
+	SeaplaneRecon_Loire130MKai_Skilled = 538,
+	SeaplaneRecon_SOCSeagullLateModel_Skilled = 539,
+	SeaplaneRecon_Type0ReconnaissanceSeaplaneModel11AKaiNi = 540,
+	CarrierBasedBomber_SBD_YellowWings = 541,
+	CarrierBasedTorpedo_TBD_YellowWings = 542,
+	CarrierBasedRecon_SBDVS2_ReconnaissanceSquadron = 543,
+	CarrierBasedBomber_SBDVB2_BomberSquadron = 544,
+	CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar = 545
 }

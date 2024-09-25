@@ -67,17 +67,18 @@ public record KongouSpecialAttack : SpecialAttack
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
-		// https://docs.google.com/spreadsheets/d/1xO0krWBDnevmp0zrqDs1MKek7YD-ly3B6av5R2GRpho/edit#gid=0
-		double rate = 4 * Math.Sqrt(flagship.Level) + 4 * Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) - 45;
+		// https://x.com/Divinity_123/status/1820114427619709288
+		double rate = 3.5 * Math.Sqrt(flagship.Level) + 3.5 * Math.Sqrt(helper.Level) + 1.1 * Math.Sqrt(flagship.LuckTotal) + 1.1 * Math.Sqrt(helper.LuckTotal) - 33;
 
 		if (flagship.AllSlotInstance.Any(e => e?.MasterEquipment is { IsSurfaceRadar: true, LOS: >= 8 }))
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
-				ShipId.KongouKaiNiC or
-				ShipId.HarunaKaiNiB or
-				ShipId.HarunaKaiNiC => 31,
+				ShipId.KongouKaiNiC => 30,
+				ShipId.HarunaKaiNiB => 15,
+				ShipId.HarunaKaiNiC => 20,
 				ShipId.HieiKaiNiC => 10,
+				ShipId.KirishimaKaiNiC => 0, // TODO : Unknown for now
 				_ => 0,
 			};
 		}
@@ -86,10 +87,9 @@ public record KongouSpecialAttack : SpecialAttack
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
-				ShipId.KongouKaiNiC or
-				ShipId.HarunaKaiNiB or
-				ShipId.HarunaKaiNiC => 10,
-				ShipId.HieiKaiNiC => 31,
+				ShipId.KongouKaiNiC => 10,
+				ShipId.HieiKaiNiC => 30,
+				ShipId.KirishimaKaiNiC => 0, // TODO : Unknown for now
 				_ => 0,
 			};
 		}
@@ -120,7 +120,8 @@ public record KongouSpecialAttack : SpecialAttack
 		ShipId.KongouKaiNiC or
 		ShipId.HieiKaiNiC or
 		ShipId.HarunaKaiNiB or
-		ShipId.HarunaKaiNiC;
+		ShipId.HarunaKaiNiC or 
+		ShipId.KirishimaKaiNiC;
 
 	private static bool IsValidPair(ShipId flagship, ShipId helper) => flagship switch
 	{
@@ -136,13 +137,17 @@ public record KongouSpecialAttack : SpecialAttack
 
 		ShipId.HieiKaiNiC => helper is
 			ShipId.KirishimaKaiNi or
+			ShipId.KirishimaKaiNiC or
 			ShipId.HarunaKaiNiB or
 			ShipId.HarunaKaiNiC or
 			ShipId.KongouKaiNiC,
 
-		ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC => helper is
+		ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC => IsKongouClassThirdRemodel(helper),
+
+		ShipId.KirishimaKaiNiC => helper is
+			ShipId.KongouKaiNiC or
 			ShipId.HieiKaiNiC or
-			ShipId.KongouKaiNiC,
+			ShipId.SouthDakotaKai,
 
 		_ => false,
 	};
