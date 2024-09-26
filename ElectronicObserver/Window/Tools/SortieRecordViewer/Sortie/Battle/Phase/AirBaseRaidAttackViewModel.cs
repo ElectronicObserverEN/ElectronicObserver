@@ -9,22 +9,24 @@ public sealed class AirBaseRaidAttackViewModel : AttackViewModelBase
 {
 	private int WaveIndex { get; }
 
-	public BattleIndex DefenderIndex { get; }
-	public IBaseAirCorpsData Defender { get; }
-	public int DefenderHpBeforeAttack { get; }
-
-	private double Damage { get; }
-	private HitType HitType { get; }
-	private AirAttack AttackType { get; }
-	public string DamageDisplay { get; }
-
-	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
+	public override BattleIndex? AttackerIndex => null;
+	public override string AttackerDisplay => (WaveIndex, DefenderIndex.FleetFlag) switch
 	{
-		(> 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
+		( > 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
 		(_, FleetFlag.Player) => BattleRes.EnemyAirSquadron,
 		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
 		_ => "???",
 	};
+
+	public override BattleIndex DefenderIndex { get; }
+	public IBaseAirCorpsData Defender { get; }
+	private int DefenderHpBeforeAttack { get; }
+	public override string DefenderDisplay { get; }
+
+	public override double Damage { get; }
+	private HitType HitType { get; }
+	private AirAttack AttackType { get; }
+	public override string DamageDisplay { get; }
 
 	public AirBaseRaidAttackViewModel(BattleFleets fleets, int waveIndex, AirBattleAttack attack)
 	{
@@ -34,6 +36,8 @@ public sealed class AirBaseRaidAttackViewModel : AttackViewModelBase
 
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetAirBase(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		AttackType = attack.AttackType;
 
 		DamageDisplay =

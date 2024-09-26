@@ -5,7 +5,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public abstract class FirstBattleData : BattleData
 {
-	protected PhaseSearching Searching { get; }
+	public PhaseSearching Searching { get; }
 
 	protected FirstBattleData(PhaseFactory phaseFactory, BattleFleets fleets, IFirstBattleApiResponse battle)
 		: base(phaseFactory, fleets, battle)

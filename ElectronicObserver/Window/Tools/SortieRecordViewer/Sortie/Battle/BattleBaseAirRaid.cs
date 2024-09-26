@@ -12,7 +12,7 @@ public sealed class BattleBaseAirRaid : FirstBattleData
 {
 	public override string Title => ConstantsRes.Title_BaseAirRaid;
 
-	private PhaseBaseAirRaid? BaseAirRaid { get; }
+	public PhaseBaseAirRaid? BaseAirRaid { get; }
 
 	public BattleBaseAirRaid(PhaseFactory phaseFactory, BattleFleets fleets, ApiDestructionBattle battle)
 		: base(phaseFactory, fleets, battle)

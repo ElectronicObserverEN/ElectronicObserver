@@ -140,7 +140,7 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 			.FirstOrDefault()
 			?.Units
 			.DistinctBy(u => u.AirBaseId)
-			.Select(u => u.Stage1FCount);
+			.Select(u => u.AircraftTotalStage1Friend);
 
 		if (aircraftInBattle is null) return 0;
 
@@ -168,11 +168,11 @@ public class AirBaseCostCalculator(ElectronicObserverContext db, ToolService too
 		.SelectMany(n => n.AllPhases)
 		.Sum(p => p switch
 		{
-			PhaseBaseAirRaid r => r.Stage1FLostcount + r.Stage2FLostcount,
+			PhaseBaseAirRaid r => r.AircraftLostStage1Friend + r.AircraftLostStage2Friend,
 			PhaseBaseAirAttack r => r.Units
 				.Select((u, i) => (i % 2) switch
 				{
-					1 => u.Stage1FLostcount + u.Stage2FLostcount,
+					1 => u.AircraftLostStage1Friend + u.AircraftLostStage2Friend,
 					_ => 0,
 				})
 				.Sum(),
