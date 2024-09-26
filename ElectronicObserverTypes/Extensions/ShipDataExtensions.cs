@@ -619,4 +619,13 @@ public static class ShipDataExtensions
 
 	private static bool HasDamecon(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl);
+
+	public static DamageState GetDamageState(this IShipData ship) => ship.HPRate switch
+	{
+		> 0.75 => DamageState.Healthy,
+		> 0.5 => DamageState.Light,
+		> 0.25 => DamageState.Medium,
+		> 0 => DamageState.Heavy,
+		_ => DamageState.Sunk,
+	};
 }

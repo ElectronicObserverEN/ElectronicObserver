@@ -130,7 +130,9 @@ public record KongouSpecialAttack : SpecialAttack
 			ShipId.HarunaKaiNiB or
 			ShipId.HarunaKaiNiC or
 			ShipId.Warspite or
-			ShipId.WarspiteKai,
+			ShipId.WarspiteKai or
+			ShipId.Valiant or
+			ShipId.ValiantKai,
 
 		ShipId.HieiKaiNiC => helper is
 			ShipId.KirishimaKaiNi or

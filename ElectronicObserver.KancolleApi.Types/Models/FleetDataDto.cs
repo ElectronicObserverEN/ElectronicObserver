@@ -2,6 +2,7 @@
 
 /// <summary>
 /// api_get_member/deck <br />
+/// api_get_member/ship2 <br />
 /// api_req_hensei/preset_select
 /// </summary>
 public class FleetDataDto

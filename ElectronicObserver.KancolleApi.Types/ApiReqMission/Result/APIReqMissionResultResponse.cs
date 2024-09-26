@@ -17,10 +17,10 @@ public class ApiReqMissionResultResponse
 	public List<List<int>> ApiGetExpLvup { get; set; } = new();
 
 	[JsonPropertyName("api_get_item1")]
-	public ApiGetItem? ApiGetItem1 { get; set; }
+	public ApiMissionGetItem? ApiGetItem1 { get; set; }
 
 	[JsonPropertyName("api_get_item2")]
-	public ApiGetItem? ApiGetItem2 { get; set; }
+	public ApiMissionGetItem? ApiGetItem2 { get; set; }
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="List{T}"/> of <see cref="int"/>s.

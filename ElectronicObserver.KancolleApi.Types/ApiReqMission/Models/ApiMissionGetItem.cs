@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqMission.Models;
 
-public class ApiGetItem
+public class ApiMissionGetItem
 {
 	[JsonPropertyName("api_useitem_count")]
 	public int ApiUseitemCount { get; set; }

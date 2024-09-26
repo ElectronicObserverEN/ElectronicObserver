@@ -267,4 +267,7 @@
   <data name="SpecialRichelieu" xml:space="preserve">
     <value>Richelieu Touch</value>
   </data>
+  <data name="SpecialQueenElizabeth" xml:space="preserve">
+    <value>Queen Elizabeth Touch</value>
+  </data>
 </root>

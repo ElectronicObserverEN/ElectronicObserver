@@ -19,6 +19,7 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	[JsonPropertyName("api_cell_flavor")]
 	public ApiCellFlavor? ApiCellFlavor { get; set; }
 
+	/// <inheritdoc />
 	[JsonPropertyName("api_color_no")]
 	public CellType ApiColorNo { get; set; }
 
@@ -34,9 +35,11 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	[JsonPropertyName("api_destruction_battle")]
 	public ApiDestructionBattle? ApiDestructionBattle { get; set; }
 
+	/// <inheritdoc />
 	[JsonPropertyName("api_event_id")]
 	public int ApiEventId { get; set; }
 
+	/// <inheritdoc />
 	[JsonPropertyName("api_event_kind")]
 	public int ApiEventKind { get; set; }
 
@@ -46,6 +49,7 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	[JsonPropertyName("api_get_eo_rate")]
 	public int? ApiGetEoRate { get; set; }
 
+	/// <inheritdoc />
 	[JsonPropertyName("api_happening")]
 	public ApiHappening? ApiHappening { get; set; }
 
@@ -70,6 +74,7 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	[JsonPropertyName("api_next")]
 	public int ApiNext { get; set; }
 
+	/// <inheritdoc />
 	[JsonPropertyName("api_no")]
 	public int ApiNo { get; set; }
 

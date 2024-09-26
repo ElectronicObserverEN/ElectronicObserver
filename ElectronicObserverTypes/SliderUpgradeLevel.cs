@@ -3,6 +3,10 @@
 namespace ElectronicObserverTypes;
 public enum SliderUpgradeLevel
 {
+	/// <summary>Always</summary>
+	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "Always")]
+	Always = 0,
+
 	/// <summary>Starting from level 5</summary>
 	[Display(ResourceType = typeof(Properties.UpgradeLevel), Name = "FromLevel5")]
 	FromLevel5 = 5,

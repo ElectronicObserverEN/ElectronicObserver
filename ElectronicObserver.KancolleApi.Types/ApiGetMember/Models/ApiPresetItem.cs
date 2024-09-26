@@ -18,7 +18,7 @@ public class ApiPresetItem
 	public int ApiSlotExFlag { get; set; }
 
 	[JsonPropertyName("api_slot_item")]
-	public List<ApiSlotItem> ApiSlotItem { get; set; } = new();
+	public List<ApiPresetSlotItem> ApiSlotItem { get; set; } = new();
 
 	[JsonPropertyName("api_slot_item_ex")]
 	public ApiSlotItemEx? ApiSlotItemEx { get; set; }

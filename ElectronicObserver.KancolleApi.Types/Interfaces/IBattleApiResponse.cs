@@ -37,12 +37,14 @@ public interface IBattleApiResponse
 	List<int> ApiShipLv { get; set; }
 
 	/// <summary>
-	/// 敵の現在HP [艦船数]
+	/// 敵の現在HP [艦船数] <br />
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	List<object> ApiENowhps { get; set; }
 
 	/// <summary>
-	/// 敵の最大HP [艦船数]
+	/// 敵の最大HP [艦船数] <br />
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
 	/// </summary>
 	List<object> ApiEMaxhps { get; set; }
 

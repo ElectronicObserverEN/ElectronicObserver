@@ -4,22 +4,24 @@ using Avalonia.Media;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
-public class AircraftToBackgroundConverter : IMultiValueConverter
+public class AircraftToBackgroundConverter : IValueConverter
 {
-	public object Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+	public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
 	{
-		int current = (int)values[0]!;
-		int max = (int)values[1]!;
+		if (value is not Fraction { Max: > 0 } fraction) return ShipGroupColors.TransparentBrush;
 
-		if (max is 0) return ShipGroupColors.TransparentBrush;
-
-		IBrush brush = current switch
+		IBrush brush = fraction switch
 		{
-			0 => ShipGroupColors.RedBrush,
-			_ when current < max => ShipGroupColors.YellowBrush,
+			{ Current: 0 } => ShipGroupColors.RedBrush,
+			{ Rate: < 1 } => ShipGroupColors.YellowBrush,
 			_ => ShipGroupColors.TransparentBrush,
 		};
 
 		return brush;
+	}
+
+	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+	{
+		throw new NotImplementedException();
 	}
 }

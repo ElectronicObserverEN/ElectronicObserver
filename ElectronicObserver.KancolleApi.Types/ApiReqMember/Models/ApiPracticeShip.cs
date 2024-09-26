@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.Models;
 
-public class ApiShip
+public class ApiPracticeShip
 {
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }

@@ -13,7 +13,7 @@ public class ApiReqMemberGetPracticeEnemyinfoResponse
 	public string ApiCmtId { get; set; } = "";
 
 	[JsonPropertyName("api_deck")]
-	public ApiDeck ApiDeck { get; set; } = new();
+	public ApiPracticeDeck ApiDeck { get; set; } = new();
 
 	[JsonPropertyName("api_deckname")]
 	public string ApiDeckname { get; set; } = "";

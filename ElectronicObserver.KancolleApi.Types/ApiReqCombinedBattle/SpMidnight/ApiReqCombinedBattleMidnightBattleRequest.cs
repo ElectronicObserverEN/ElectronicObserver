@@ -16,6 +16,7 @@ public class ApiReqCombinedBattleSpMidnightRequest : IBattleApiRequest
 	[JsonPropertyName("api_recovery_type")]
 	public string ApiRecoveryType { get; set; } = string.Empty;
 
+	/// <inheritdoc />
 	[JsonPropertyName("api_smoke_flag")]
 	public string? ApiSmokeFlag { get; set; }
 }

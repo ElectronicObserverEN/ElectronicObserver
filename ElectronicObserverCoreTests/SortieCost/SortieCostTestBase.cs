@@ -74,7 +74,7 @@ public abstract class SortieCostTestBase
 
 		foreach (SortieRecordViewModel sortie in sorties)
 		{
-			sortieCosts.Add(new(db, toolService, sortieRecordMigrationService, sortie));
+			sortieCosts.Add(new(db, toolService, sortieRecordMigrationService, sortie, new()));
 		}
 
 		return sortieCosts;

@@ -23,6 +23,7 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using Microsoft.EntityFrameworkCore;
@@ -74,6 +75,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	private ExportProgressViewModel? ExportProgress { get; set; }
 	private ExportFilterViewModel ExportFilter { get; } = new();
 	public ContentDialogService? ContentDialogService { get; set; }
+
+	private SortieCostConfigurationViewModel SortieCostConfiguration { get; } = new();
+
+	public bool IsDebug =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
 
 	public SortieRecordViewerViewModel()
 	{
@@ -465,8 +475,19 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		if (SelectedSorties.Count <= 0) return;
 
-		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties);
+		SortieCostViewerViewModel sortieCost = new(Db, ToolService, SortieRecordMigrationService, SelectedSorties, SortieCostConfiguration);
 
 		new SortieCostViewerWindow(sortieCost).Show();
+	}
+
+	[RelayCommand]
+	private async Task OpenLocalApiLoader()
+	{
+		if (!IsDebug) return;
+		if (SelectedSortie is null) return;
+
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
+
+		new DialogLocalAPILoader2(SelectedSortie.Model).Show();
 	}
 }

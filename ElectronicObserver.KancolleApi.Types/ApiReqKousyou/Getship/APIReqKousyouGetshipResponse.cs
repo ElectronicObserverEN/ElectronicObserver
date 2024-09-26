@@ -19,5 +19,5 @@ public class ApiReqKousyouGetshipResponse
 	public int ApiShipId { get; set; }
 
 	[JsonPropertyName("api_slotitem")]
-	public List<ApiSlotitem> ApiSlotitem { get; set; } = new();
+	public List<ApiKousyouSlotitem> ApiSlotitem { get; set; } = new();
 }

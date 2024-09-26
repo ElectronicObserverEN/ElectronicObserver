@@ -70,8 +70,8 @@ public static class Extensions
 		ship.HPMaxModernized = deckBuilderShip.Hp - ship.HPMax;
 
 		IEnumerable<IEquipmentDataMaster> equip = ship.AllSlotInstance
-			.Where(e => e is not null)
-			.Select(e => e!.MasterEquipment);
+			.OfType<IEquipmentData>()
+			.Select(e => e.MasterEquipment);
 
 		ship.FirepowerFit = deckBuilderShip.Firepower - ship.FirepowerBase - equip.Sum(e => e.Firepower);
 		ship.TorpedoFit = deckBuilderShip.Torpedo - ship.TorpedoBase - equip.Sum(e => e.Torpedo);

@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Data.Battle;
+﻿using DynaJson;
+using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
@@ -206,8 +207,41 @@ public sealed class KCDatabase : IKCDatabase
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
 		Translation = new DataAndTranslationManager();
+
+#if DEBUG
+		// data needed for loading old event battles via local api loader
+		// the values don't really matter, they just need to exist
+		for (int i = 56; i <= 59; i++)
+		{
+			AddWorld(i);
+		}
+#endif
 	}
 
+	private void AddWorld(int world)
+	{
+		string json = $$"""{"api_id":{{world}},"api_name":"","api_type":1}""";
+		dynamic elem = JsonObject.Parse(json);
+
+		MapAreaData item = new();
+		item.LoadFromResponse("api_start2/getData", elem);
+		MapArea.Add(item);
+
+		for (int i = 1; i <= 7; i++)
+		{
+			AddMap(world, i);
+		}
+	}
+
+	private void AddMap(int world, int map)
+	{
+		string json = $$"""{"api_id":{{world}}{{map}},"api_maparea_id":{{world}},"api_no":{{map}},"api_name":"","api_level":6,"api_opetext":"","api_infotext":"","api_item":[32,34,0,0],"api_max_maphp":300,"api_required_defeat_count":null,"api_sally_flag":[1,0,0]}""";
+		dynamic elem = JsonObject.Parse(json);
+
+		MapInfoData item = new();
+		item.LoadFromResponse("api_start2/getData", elem);
+		MapInfo.Add(item);
+	}
 
 	public void Load()
 	{

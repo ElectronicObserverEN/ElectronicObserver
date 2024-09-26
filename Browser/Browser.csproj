@@ -25,9 +25,9 @@
 		<Copyright>Copyright ©  2015 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.3.6.0</AssemblyVersion>
-		<FileVersion>5.3.6.0</FileVersion>
-		<Version>5.3.6.0</Version>
+		<AssemblyVersion>5.3.7.0</AssemblyVersion>
+		<FileVersion>5.3.7.0</FileVersion>
+		<Version>5.3.7.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -43,18 +43,18 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.62.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.65.0" />
 		<PackageReference Include="Jot" Version="2.1.17" />
 		<PackageReference Include="log4net" Version="2.0.17" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
-		<PackageReference Include="MessagePack" Version="2.5.140" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.5.140" />
+		<PackageReference Include="MessagePack" Version="2.5.172" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.5.172" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2478.35" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2592.51" />
 		<PackageReference Include="Microsoft.Web.WebView2.DevToolsProtocolExtension" Version="1.0.2271" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />

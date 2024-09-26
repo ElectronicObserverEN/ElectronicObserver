@@ -68,9 +68,12 @@ public class TsunDbFleetsAndAirBaseData : TsunDbEntity
 		}
 
 		// --- Support fleet 
-		if (db.Battle.Compass.IsBossNode && db.Fleet.BossSupportFleetInstance != null)
+		if (db.Battle.Compass.IsBossNode)
 		{
-			SupportFleet = PrepareFleet(db.Fleet.BossSupportFleetInstance);
+			if (db.Fleet.BossSupportFleetInstance != null)
+			{
+				SupportFleet = PrepareFleet(db.Fleet.BossSupportFleetInstance);
+			}
 		}
 		else if (db.Fleet.NodeSupportFleetInstance != null)
 		{

@@ -534,6 +534,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.remodel_slotlist ApiReqKousyou_RemodelSlotList { get; } = new();
 
 	/// <summary>
+	/// Akashi arsenal upgrade cost detail after selecting the equipment to upgrade <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L798" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.remodel_slotlist_detail ApiReqKousyou_RemodelSlotListDetail { get; } = new();
+
+	/// <summary>
 	/// FCF <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3368" />
 	/// </summary>
@@ -675,6 +681,7 @@ public sealed class APIObserver
 			ApiGetMember_Record,
 			ApiGetMember_PayItem,
 			ApiReqKousyou_RemodelSlotList,
+			ApiReqKousyou_RemodelSlotListDetail,
 			ApiReqSortie_LdAirBattle,
 			ApiReqCombinedBattle_LdAirBattle,
 			ApiGetMember_RequireInfo,
@@ -768,7 +775,7 @@ public sealed class APIObserver
 		{
 			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, Configuration.Config.FormBrowser.UseHttps);
 			Proxy.AddEndPoint(Endpoint);
-			
+
 			ExternalProxy? upstreamProxy = c switch
 			{
 				{ UseUpstreamProxy: true } => new(c.UpstreamProxyAddress, c.UpstreamProxyPort),
@@ -808,8 +815,12 @@ public sealed class APIObserver
 	private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)
 	{
 		e.HttpClient.Request.KeepBody = true;
-		// need to read the request body here so it's available in ProxyOnBeforeResponse
-		await e.GetRequestBodyAsString();
+
+		if (e.HttpClient.Request.RequestUri.AbsoluteUri.Contains("/kcsapi/"))
+		{
+			// need to read the request body here so it's available in ProxyOnBeforeResponse
+			await e.GetRequestBodyAsString();
+		}
 	}
 
 	private async Task ProxyOnBeforeResponse(object sender, SessionEventArgs e)

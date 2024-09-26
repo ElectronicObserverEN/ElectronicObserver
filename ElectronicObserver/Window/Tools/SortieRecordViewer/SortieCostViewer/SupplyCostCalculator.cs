@@ -52,9 +52,35 @@ public class SupplyCostCalculator(ElectronicObserverContext db, ToolService tool
 	}
 
 	private static SortieCostModel SupplyCost(IEnumerable<IShipData?> before, IEnumerable<IShipData?> after)
-		=> before
-			.Zip(after, SupplyCost)
-			.Sum();
+	{
+		List<IShipData?> beforeList = before.ToList();
+		List<IShipData?> afterList = after.ToList();
+
+		if (beforeList.Count == afterList.Count)
+		{
+			return beforeList
+				.Zip(afterList, SupplyCost)
+				.Sum();
+		}
+
+		List<SortieCostModel> costs = [];
+		int afterIndex = 0;
+
+		foreach (IShipData shipBefore in beforeList.OfType<IShipData>())
+		{
+			if (afterIndex >= afterList.Count) break;
+
+			IShipData? shipAfter = afterList[afterIndex];
+
+			if (shipBefore.ShipID != shipAfter?.ShipID) continue;
+
+			costs.Add(SupplyCost(shipBefore, shipAfter));
+
+			afterIndex++;
+		}
+
+		return costs.Sum();
+	}
 
 	private static SortieCostModel SupplyCost(IShipData? before, IShipData? after) => (before, after) switch
 	{

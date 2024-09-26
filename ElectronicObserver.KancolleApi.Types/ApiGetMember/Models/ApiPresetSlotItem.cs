@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiGetMember.Models;
 
-public class ApiSlotItem
+public class ApiPresetSlotItem
 {
 	[JsonPropertyName("api_id")]
 	public int ApiId { get; set; }

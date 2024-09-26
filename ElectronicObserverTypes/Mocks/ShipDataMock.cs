@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes.Extensions;
+// ReSharper disable UnassignedGetOnlyAutoProperty
 
 namespace ElectronicObserverTypes.Mocks;
 
 public class ShipDataMock : IShipData
 {
-	public int ExpNextRemodel { get; set; }
+	public int ExpNextRemodel { get; }
 	public string Name => MasterShip.IsAbyssalShip switch
 	{
 		false => MasterShip.NameEN,
@@ -19,28 +20,29 @@ public class ShipDataMock : IShipData
 		_ => $"{MasterShip.NameWithClass} Lv. {Level}",
 	};
 	public double HPRate => (double)HPCurrent / HPMax;
-	public int FuelMax { get; set; }
-	public int AmmoMax { get; set; }
+	public DamageState DamageState => this.GetDamageState();
+	public int FuelMax { get; }
+	public int AmmoMax { get; }
 	public double FuelRate => (double)Fuel / FuelMax;
 	public double AmmoRate => (double)Ammo / AmmoMax;
-	public int SupplyFuel { get; set; }
-	public int SupplyAmmo { get; set; }
-	public IList<double> AircraftRate { get; set; }
-	public double AircraftTotalRate { get; set; }
+	public int SupplyFuel { get; }
+	public int SupplyAmmo { get; }
+	public IList<double> AircraftRate { get; } = [];
+	public double AircraftTotalRate { get; }
 	public bool IsExpansionSlotAvailable { get; set; }
-	public int AirBattlePower { get; set; }
-	public IList<int> AirBattlePowers { get; set; }
-	public int ShellingPower { get; set; }
-	public int AircraftPower { get; set; }
-	public int AntiSubmarinePower { get; set; }
-	public int TorpedoPower { get; set; }
-	public int NightBattlePower { get; set; }
-	public bool CanAttackSubmarine { get; set; }
-	public bool CanOpeningASW { get; set; }
+	public int AirBattlePower { get; }
+	public IList<int> AirBattlePowers { get; } = [];
+	public int ShellingPower { get; }
+	public int AircraftPower { get; }
+	public int AntiSubmarinePower { get; }
+	public int TorpedoPower { get; }
+	public int NightBattlePower { get; }
+	public bool CanAttackSubmarine { get; }
+	public bool CanOpeningASW { get; }
 	public int Level { get; set; }
-	public int ExpTotal { get; set; }
-	public int ExpNext { get; set; }
-	public double ExpNextPercentage { get; set; }
+	public int ExpTotal { get; }
+	public int ExpNext { get; }
+	public double ExpNextPercentage { get; }
 	public int HPCurrent { get; set; }
 	public int HPMax => IsMarried switch
 	{
@@ -49,43 +51,59 @@ public class ShipDataMock : IShipData
 	};
 	public int Speed { get; set; }
 	public int Range { get; set; }
-	public IList<int> Slot { get; set; }
-	public IList<int> SlotMaster { get; set; }
-	public IList<IEquipmentData?> SlotInstance { get; set; } = new List<IEquipmentData?>();
-	public IList<IEquipmentDataMaster> SlotInstanceMaster { get; set; }
-	public int ExpansionSlot { get; set; }
-	public int ExpansionSlotMaster { get; set; }
+	public IList<int> Slot { get; } = [];
+	public IList<int> SlotMaster { get; } = [];
+	public IList<IEquipmentData?> SlotInstance { get; set; } = [];
+	public IList<IEquipmentDataMaster?> SlotInstanceMaster { get; } = [];
+	public int ExpansionSlot { get; }
+	public int ExpansionSlotMaster { get; }
 	public IEquipmentData? ExpansionSlotInstance { get; set; }
-	public IEquipmentDataMaster ExpansionSlotInstanceMaster { get; set; }
-	public IList<int> AllSlot { get; set; }
-	public IList<int> AllSlotMaster { get; set; }
-	public IList<int> AllSlotMasterReplay { get; set; }
+	public IEquipmentDataMaster? ExpansionSlotInstanceMaster { get; }
+	public IList<int> AllSlot { get; } = [];
+	public IList<int> AllSlotMaster { get; } = [];
+	public IList<int> AllSlotMasterReplay { get; } = [];
 	public IList<IEquipmentDataMaster?> AllSlotInstanceMaster => AllSlotInstance.Select(e => e?.MasterEquipment).ToList();
 	public IList<int> Aircraft { get; set; }
-	public int AircraftTotal { get; set; }
+	public int AircraftTotal { get; }
 	public int Fuel { get; set; }
 	public int Ammo { get; set; }
-	public int SlotSize { get; set; }
-	public int RepairTime { get; set; }
+	public int SlotSize { get; }
+	public int RepairTime { get; }
 	public TimeSpan RepairTimeUnit => TimeSpan.Zero;
-	public int RepairSteel { get; set; }
-	public int RepairFuel { get; set; }
+	public int RepairSteel { get; }
+	public int RepairFuel { get; }
 	public int Condition { get; set; }
-	public int[] Kyouka { get; set; }
-	public int FirepowerModernized { get; set; }
-	public int TorpedoModernized { get; set; }
-	public int AAModernized { get; set; }
-	public int ArmorModernized { get; set; }
-	public int LuckModernized { get; set; }
-	public int HPMaxModernized { get; set; }
-	public int ASWModernized { get; set; }
-	public int FirepowerRemain { get; set; }
-	public int TorpedoRemain { get; set; }
-	public int AARemain { get; set; }
-	public int ArmorRemain { get; set; }
-	public int LuckRemain { get; set; }
-	public int HPMaxRemain { get; set; }
-	public int ASWRemain { get; set; }
+	public int[] Kyouka { get; }
+	public int FirepowerModernized => Kyouka[0];
+	public int TorpedoModernized => Kyouka[1];
+	public int AAModernized => Kyouka[2];
+	public int ArmorModernized => Kyouka[3];
+
+	public int LuckModernized
+	{
+		get => Kyouka[4];
+		set => Kyouka[4] = value;
+	}
+
+	public int HPMaxModernized
+	{
+		get => Kyouka[5];
+		set => Kyouka[5] = value;
+	}
+
+	public int ASWModernized
+	{
+		get => Kyouka[6];
+		set => Kyouka[6] = value;
+	}
+
+	public int FirepowerRemain { get; }
+	public int TorpedoRemain { get; }
+	public int AARemain { get; }
+	public int ArmorRemain { get; }
+	public int LuckRemain { get; }
+	public int HPMaxRemain { get; }
+	public int ASWRemain { get; }
 	public int FirepowerFit { get; set; }
 	public int TorpedoFit { get; set; }
 	public int AaFit { get; set; }
@@ -108,10 +126,10 @@ public class ShipDataMock : IShipData
 	public int ExpeditionASWTotal => this.ExpeditionAswTotal();
 	public int ExpeditionLOSTotal => this.ExpeditionLosTotal();
 	public int ExpeditionAATotal => this.ExpeditionAaTotal();
-	public int FirepowerBase => Math.Min(MasterShip.FirepowerMin + FirepowerModernized, MasterShip.FirepowerMax);
-	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
-	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
-	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
+	public int FirepowerBase { get; set; }
+	public int TorpedoBase { get; set; }
+	public int AABase { get; set; }
+	public int ArmorBase { get; set; }
 	public int EvasionBase => MasterShip.Evasion.IsDetermined switch
 	{
 		true => MasterShip.Evasion.GetParameter(Level),
@@ -121,19 +139,19 @@ public class ShipDataMock : IShipData
 	public int MasterID { get; set; }
 	public int SortID { get; set; }
 	public int SallyArea { get; set; }
-	public IShipDataMaster MasterShip { get; set; }
+	public IShipDataMaster MasterShip { get; }
 	public int RepairingDockID { get; set; } = -1;
 	public int Fleet { get; set; }
-	public string FleetWithIndex { get; set; }
+	public string FleetWithIndex { get; } = string.Empty;
 	public bool IsMarried => Level > 99;
 	public IList<IEquipmentData?> AllSlotInstance => SlotInstance.Append(ExpansionSlotInstance).ToList();
-	public bool CanNoSonarOpeningAsw { get; set; }
-	public bool CanAttackAtNight { get; set; }
-	public int DamageControlID { get; set; }
+	public bool CanNoSonarOpeningAsw { get; }
+	public bool CanAttackAtNight { get; }
+	public int DamageControlID { get; }
 	public int ID { get; set; }
-	public Dictionary<string, string> RequestData { get; set; }
-	public dynamic RawData { get; set; }
-	public bool IsAvailable { get; set; }
+	public Dictionary<string, string> RequestData { get; } = [];
+	public dynamic RawData { get; } = null!;
+	public bool IsAvailable { get; }
 	public int ASWBase => MasterShip.ASW.IsDetermined switch
 	{
 		true => MasterShip.ASW.GetParameter(Level),
@@ -147,22 +165,22 @@ public class ShipDataMock : IShipData
 	public int LuckBase
 	{
 		get => Math.Min(MasterShip.LuckMin + LuckModernized, MasterShip.LuckMax);
-		set => LuckModernized = value - MasterShip.LuckMin;
+		set => Kyouka[4] = value - MasterShip.LuckMin;
 	}
 
-	public int EvasionMax { get; set; }
-	public int ASWMax { get; set; }
-	public int LOSMax { get; set; }
-	public List<SpecialEffectItem> SpecialEffectItems { get; set; } = new();
-	public int SpecialEffectItemFirepower { get; set; }
-	public int SpecialEffectItemTorpedo { get; set; }
-	public int SpecialEffectItemArmor { get; set; }
-	public int SpecialEffectItemEvasion { get; set; }
-	public bool IsLocked { get; set; }
-	public bool IsLockedByEquipment { get; set; }
+	public int EvasionMax { get; }
+	public int ASWMax { get; }
+	public int LOSMax { get; }
+	public List<SpecialEffectItem> SpecialEffectItems { get; set; } = [];
+	public int SpecialEffectItemFirepower => SpecialEffectItems.Sum(i => i.Firepower);
+	public int SpecialEffectItemTorpedo => SpecialEffectItems.Sum(i => i.Torpedo); 
+	public int SpecialEffectItemArmor => SpecialEffectItems.Sum(i => i.Armor);
+	public int SpecialEffectItemEvasion => SpecialEffectItems.Sum(i => i.Evasion);
+	public bool IsLocked { get; }
+	public bool IsLockedByEquipment { get; }
 	public bool CanBeTargeted { get; set; } = true;
 
-	public ShipDataMock(IShipDataMaster ship)
+	public ShipDataMock(IShipDataMaster ship, List<int>? kyouka = null)
 	{
 		MasterShip = ship;
 
@@ -176,25 +194,38 @@ public class ShipDataMock : IShipData
 		Ammo = ship.Ammo;
 		AmmoMax = ship.Ammo;
 
-		FirepowerModernized = MasterShip.FirepowerMax - MasterShip.FirepowerMin;
-		TorpedoModernized = MasterShip.TorpedoMax - MasterShip.TorpedoMin;
-		AAModernized = MasterShip.AAMax - MasterShip.AAMin;
-		ArmorModernized = MasterShip.ArmorMax - MasterShip.ArmorMin;
-		LuckModernized = 0;
-		HPMaxModernized = 0;
-		ASWModernized = 0;
+		Kyouka = kyouka switch
+		{
+			null =>
+			[
+				MasterShip.FirepowerMax - MasterShip.FirepowerMin,
+				MasterShip.TorpedoMax - MasterShip.TorpedoMin,
+				MasterShip.AAMax - MasterShip.AAMin,
+				MasterShip.ArmorMax - MasterShip.ArmorMin,
+				0,
+				0,
+				0,
+			],
+
+			_ => [.. kyouka]
+		};
+
+		FirepowerBase = MasterShip.FirepowerMin + FirepowerModernized;
+		TorpedoBase = MasterShip.TorpedoMin + TorpedoModernized;
+		AABase = MasterShip.AAMin + AAModernized;
+		ArmorBase = MasterShip.ArmorMin + ArmorModernized;
 
 		Speed = ship.Speed;
 	}
 
 	public void LoadFromResponse(string apiname, dynamic data)
 	{
-		throw new System.NotImplementedException();
+		throw new NotImplementedException();
 	}
 
 	public void LoadFromRequest(string apiname, Dictionary<string, string> data)
 	{
-		throw new System.NotImplementedException();
+		throw new NotImplementedException();
 	}
 
 	public ShipDataMock Clone() => new(MasterShip)
@@ -202,4 +233,6 @@ public class ShipDataMock : IShipData
 		// todo: copy all values
 		ID = ID,
 	};
+
+	public override string ToString() => NameWithLevel;
 }

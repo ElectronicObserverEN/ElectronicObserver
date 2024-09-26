@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes.Extensions;
 
@@ -16,6 +17,25 @@ public record NagatoSpecialAttack : SpecialAttack
 		{ MasterShip.ShipId: ShipId.MutsuKaiNi } => AttackResources.SpecialMutsu,
 		_ => "???"
 	};
+
+	/// <summary>
+	/// https://docs.google.com/spreadsheets/d/1kd3t0wjLdpJZJSea7heivd-WByXHFEe1xWoUE3Kmkrg
+	/// </summary>
+	/// <returns></returns>
+	public override double GetTriggerRate()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? flagship = ships.First();
+		if (flagship is null) return 0;
+
+		IShipData? helper = ships[1];
+		if (helper is null) return 0;
+
+		double rate =  Math.Sqrt(flagship.Level) + 1.5 * Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level) + 1.5 * Math.Sqrt(helper.LuckTotal);
+
+		return (Math.Floor(rate) + 25) / 100;
+	}
 
 	public override bool CanTrigger()
 	{

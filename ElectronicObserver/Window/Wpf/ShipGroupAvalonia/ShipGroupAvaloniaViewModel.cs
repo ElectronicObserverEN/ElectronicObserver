@@ -40,6 +40,9 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	{
 		DialogService = Ioc.Default.GetRequiredService<IDialogService>();
 
+		ShipGroupViewModel.SpeedToDisplayConverter = new(Constants.GetSpeed);
+		ShipGroupViewModel.RangeToDisplayConverter = new(Constants.GetRange);
+
 		ShipGroupViewModel = new()
 		{
 			SelectGroupAction = SelectGroup,
@@ -621,6 +624,13 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		AutoSize = column.Width.IsAuto,
 	};
 
+	private static int ProcessWidth(int width) => width switch
+	{
+		// winforms version set the value to min for auto size
+		int.MinValue => 0,
+		_ => width,
+	};
+
 	private static ShipGroupItem MakeGroupItem(ShipGroupData group) => new(group)
 	{
 		Columns = group.ViewColumns.Values
@@ -629,7 +639,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 				Name = c.Name,
 				DisplayIndex = c.DisplayIndex,
 				IsVisible = c.Visible,
-				Width = new(c.Width, c.AutoSize switch
+				Width = new(ProcessWidth(c.Width), c.AutoSize switch
 				{
 					true => DataGridLengthUnitType.Auto,
 					_ => DataGridLengthUnitType.Pixel,

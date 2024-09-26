@@ -122,7 +122,7 @@ public interface IShipData
 	/// <summary>
 	/// 全てのスロット(装備マスターデータ)
 	/// </summary>
-	IList<IEquipmentDataMaster> AllSlotInstanceMaster { get; }
+	IList<IEquipmentDataMaster?> AllSlotInstanceMaster { get; }
 
 	/// <summary>
 	/// 各スロットの航空機搭載量
@@ -437,6 +437,8 @@ public interface IShipData
 	/// HP/HPmax
 	/// </summary>
 	double HPRate { get; }
+
+	DamageState DamageState { get; }
 
 	/// <summary>
 	/// 最大搭載燃料

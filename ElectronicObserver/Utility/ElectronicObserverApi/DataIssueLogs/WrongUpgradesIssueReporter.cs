@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using ElectronicObserver.Data;
@@ -16,6 +17,8 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
 		if (!api.IsServerAvailable) return;
+		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
+		DayOfWeek day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
 
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
@@ -24,7 +27,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 
 		List<APIReqKousyouRemodelSlotlistResponse>? parsedResponse = ParseResponse(data);
 
-		List<EquipmentUpgradeDataModel> expectedUpgrades = EquipmentsThatCanBeUpgradedByCurrentHelper(helper.MasterShip);
+		List<EquipmentUpgradeDataModel> expectedUpgrades = EquipmentsThatCanBeUpgradedByCurrentHelper(helper.MasterShip, day);
 
 		if (CheckForIssue(parsedResponse, expectedUpgrades))
 		{
@@ -33,7 +36,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 				DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
 				ActualUpgrades = parsedResponse.Select(apiData => apiData.ApiSlotId).ToList(),
 				ExpectedUpgrades = expectedUpgrades.Select(upgrade => upgrade.EquipmentId).ToList(),
-				Day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek,
+				Day = day,
 				SoftwareVersion = SoftwareInformation.VersionEnglish,
 				HelperId = (int)helper.MasterShip.ShipId,
 			};
@@ -66,11 +69,11 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 		return JsonSerializer.Deserialize<List<APIReqKousyouRemodelSlotlistResponse>>(data.ToString());
 	}
 
-	private List<EquipmentUpgradeDataModel> EquipmentsThatCanBeUpgradedByCurrentHelper(IShipDataMaster helper)
+	private List<EquipmentUpgradeDataModel> EquipmentsThatCanBeUpgradedByCurrentHelper(IShipDataMaster helper, DayOfWeek day)
 	{
 		KCDatabase db = KCDatabase.Instance;
 
-		return helper.CanUpgradeEquipments(DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek,
+		return helper.CanUpgradeEquipments(day,
 				db.Translation.EquipmentUpgrade.UpgradeList)
 			.ToList();
 	}

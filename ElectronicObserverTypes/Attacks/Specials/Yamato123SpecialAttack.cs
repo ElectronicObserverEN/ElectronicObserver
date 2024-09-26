@@ -166,11 +166,16 @@ public record Yamato123SpecialAttack : SpecialAttack
 		ShipId.SouthDakotaKai => secondHelper is ShipId.WashingtonKai,
 		ShipId.WashingtonKai => secondHelper is ShipId.SouthDakotaKai,
 
-		ShipId.WarspiteKai => secondHelper is ShipId.NelsonKai,
-		ShipId.NelsonKai => secondHelper is ShipId.WarspiteKai,
+		ShipId.WarspiteKai => secondHelper is ShipId.ValiantKai or ShipId.NelsonKai,
+		ShipId.NelsonKai => secondHelper is ShipId.WarspiteKai or ShipId.RodneyKai,
+		ShipId.RodneyKai => secondHelper is ShipId.NelsonKai,
+		ShipId.ValiantKai => secondHelper is ShipId.WarspiteKai,
 
 		ShipId.ColoradoKai => secondHelper is ShipId.MarylandKai,
 		ShipId.MarylandKai => secondHelper is ShipId.ColoradoKai,
+
+		ShipId.RichelieuKai or ShipId.RichelieuDeux => secondHelper is ShipId.JeanBartKai,
+		ShipId.JeanBartKai => secondHelper is ShipId.RichelieuKai or ShipId.RichelieuDeux,
 
 		_ => IsMusashiAndNagatoClassPair(firstHelper, secondHelper) || IsNagatoClassPair(firstHelper, secondHelper) || IsIseClassPair(firstHelper, secondHelper),
 	};

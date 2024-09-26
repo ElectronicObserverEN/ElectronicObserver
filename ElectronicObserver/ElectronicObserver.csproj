@@ -29,9 +29,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.3.6.1</AssemblyVersion>
-		<FileVersion>5.3.6.1</FileVersion>
-		<Version>5.3.6.1</Version>
+		<AssemblyVersion>5.3.7.0</AssemblyVersion>
+		<FileVersion>5.3.7.0</FileVersion>
+		<Version>5.3.7.0</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -97,7 +97,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="CsvHelper" Version="32.0.2" />
+		<PackageReference Include="CsvHelper" Version="33.0.1" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.72.1" />
 		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
 		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.5.4">
@@ -114,7 +114,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
@@ -127,13 +127,13 @@
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.62.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.65.0" />
 		<PackageReference Include="log4net" Version="2.0.17" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
-		<PackageReference Include="MessagePack" Version="2.5.140" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.5.140" />
+		<PackageReference Include="MessagePack" Version="2.5.172" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.5.172" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />

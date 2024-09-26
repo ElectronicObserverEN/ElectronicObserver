@@ -8,7 +8,7 @@ public class ApiReqKousyouCreateitemResponse
 	public int ApiCreateFlag { get; set; }
 
 	[JsonPropertyName("api_get_items")]
-	public List<ApiGetItem> ApiGetItems { get; set; } = new();
+	public List<ApiKousyouGetItem> ApiGetItems { get; set; } = new();
 
 	[JsonPropertyName("api_material")]
 	public List<int> ApiMaterial { get; set; } = new();

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Data.Converters;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
@@ -48,6 +49,10 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	[ObservableProperty] private bool _anyShipsSelected;
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
+
+	// hacky way cause the logic is in the EO project
+	public static FuncValueConverter<int, string>? SpeedToDisplayConverter { get; set; }
+	public static FuncValueConverter<int, string>? RangeToDisplayConverter { get; set; }
 
 	partial void OnItemsChanging(ObservableCollection<ShipGroupItemViewModel>? value)
 	{

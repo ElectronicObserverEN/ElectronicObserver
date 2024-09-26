@@ -4,15 +4,31 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
+using ElectronicObserver.Database;
+using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Database.Sortie;
+using ElectronicObserver.KancolleApi.Types;
+using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Window.Dialog;
 
 public partial class DialogLocalAPILoader2 : Form
 {
+	private JsonSerializerOptions JsonSerializerOptions { get; } = new()
+	{
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+	};
 
+	private SortieRecord? SortieRecord { get; }
+	private List<ApiFile> ApiFilesBeforeSortie { get; set; } = [];
 
 	private string CurrentPath { get; set; }
 
@@ -22,6 +38,11 @@ public partial class DialogLocalAPILoader2 : Form
 		InitializeComponent();
 
 		Translate();
+	}
+
+	public DialogLocalAPILoader2(SortieRecord sortieRecord) : this()
+	{
+		SortieRecord = sortieRecord;
 	}
 
 	public void Translate()
@@ -44,7 +65,14 @@ public partial class DialogLocalAPILoader2 : Form
 
 	private void DialogLocalAPILoader2_Load(object sender, EventArgs e)
 	{
-		LoadFiles(Utility.Configuration.Config.Connection.SaveDataPath);
+		if (SortieRecord is null)
+		{
+			LoadFiles(Utility.Configuration.Config.Connection.SaveDataPath);
+		}
+		else
+		{
+			LoadSortieRecordFiles(SortieRecord);
+		}
 	}
 
 
@@ -101,14 +129,19 @@ public partial class DialogLocalAPILoader2 : Form
 
 	private void ButtonExecuteNext_Click(object sender, EventArgs e)
 	{
-
 		if (APIView.SelectedRows.Count == 1)
 		{
-
-			var row = APIView.SelectedRows[0];
+			DataGridViewRow row = APIView.SelectedRows[0];
 			int index = APIView.SelectedRows[0].Index;
 
-			ExecuteAPI((string)row.Cells[APIView_FileName.Index].Value);
+			if (SortieRecord is null)
+			{
+				ExecuteAPI((string)row.Cells[APIView_FileName.Index].Value);
+			}
+			else
+			{
+				ExecuteSortieRecordApi((string)row.Cells[APIView_FileName.Index].Value);
+			}
 
 			APIView.ClearSelection();
 			if (index < APIView.Rows.Count - 1)
@@ -150,6 +183,45 @@ public partial class DialogLocalAPILoader2 : Form
 		}
 
 		APIView.Rows.AddRange(rows.ToArray());
+		APIView.Sort(APIView_FileName, ListSortDirection.Ascending);
+
+	}
+
+	private void LoadSortieRecordFiles(SortieRecord sortieRecord)
+	{
+		if (sortieRecord.ApiFiles.Count is 0) return;
+
+		APIView.Rows.Clear();
+
+		List<DataGridViewRow> rows = [];
+
+		int firstSortieApiFileId = sortieRecord.ApiFiles.MinBy(f => f.Id)!.Id;
+
+		ElectronicObserverContext db = new();
+		db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		int lastPortFileIdBeforeSortieId = db.ApiFiles
+			.Where(f => f.Id < firstSortieApiFileId)
+			.Where(f => f.Name == "api_port/port")
+			.OrderByDescending(f => f.Id)
+			.First()
+			.Id;
+
+		ApiFilesBeforeSortie = db.ApiFiles
+			.Where(f => f.Id < firstSortieApiFileId)
+			.Where(f => f.Id >= lastPortFileIdBeforeSortieId)
+			.ToList();
+
+		foreach (string file in ApiFilesBeforeSortie.Concat(sortieRecord.ApiFiles).Select(f => $"{f.Id} {f.ApiFileType} {f.Name}"))
+		{
+			DataGridViewRow row = new();
+			row.CreateCells(APIView);
+
+			row.SetValues(file);
+			rows.Add(row);
+		}
+
+		APIView.Rows.AddRange([.. rows]);
 		APIView.Sort(APIView_FileName, ListSortDirection.Ascending);
 
 	}
@@ -211,15 +283,85 @@ public partial class DialogLocalAPILoader2 : Form
 
 	}
 
+	private void ExecuteSortieRecordApi(string filename)
+	{
+		Debug.Assert(SortieRecord is not null);
 
+		string[] values = filename.Split(" ");
+
+		int recordId = int.Parse(values[0]);
+		ApiFileType apiFileType = Enum.Parse<ApiFileType>(values[1]);
+		string apiName = values[2];
+
+		if (!APIObserver.Instance.APIList.ContainsKey(apiName)) return;
+
+		ApiFile apiFile = ApiFilesBeforeSortie.Concat(SortieRecord.ApiFiles).First(f => f.Id == recordId);
+
+		if (apiFile.Name is "api_port/port")
+		{
+			string? savedPortResponseJson = LoadApiResponse("api_port/port");
+
+			if (savedPortResponseJson is not null)
+			{
+				ApiResponse<ApiPortPortResponse> savedPortResponse = JsonSerializer
+					.Deserialize<ApiResponse<ApiPortPortResponse>>(savedPortResponseJson[7..])
+					?? throw new NotImplementedException();
+
+				ApiResponse<ApiPortPortResponse> apiFilePortResponse = JsonSerializer
+					.Deserialize<ApiResponse<ApiPortPortResponse>>(apiFile.Content)
+					?? throw new NotImplementedException();
+
+				apiFilePortResponse.ApiData.ApiShip = savedPortResponse.ApiData.ApiShip;
+				apiFilePortResponse.ApiData.ApiLog = savedPortResponse.ApiData.ApiLog;
+				apiFilePortResponse.ApiData.ApiNdock = savedPortResponse.ApiData.ApiNdock;
+
+				apiFilePortResponse.ApiData.ApiDeckPort = SortieRecord.FleetData.Fleets
+					.Select((f, i) => f switch
+					{
+						null => null,
+
+						_ => new FleetDataDto
+						{
+							ApiId = i + 1,
+							ApiShip = f.Ships.Select(s => s.DropId ?? 0).ToList(),
+							ApiMission = [0, 0, 0, 0],
+						},
+					})
+					.OfType<FleetDataDto>()
+					.ToList();
+
+				apiFile.Content = JsonSerializer.Serialize(apiFilePortResponse, JsonSerializerOptions);
+			}
+		}
+
+		switch (apiFileType)
+		{
+			case ApiFileType.Request:
+				Dictionary<string, string> queryParameters = JsonSerializer
+					.Deserialize<Dictionary<string, string>>(apiFile.Content)
+					?? throw new NotImplementedException();
+
+				string queryString = string.Join("&", queryParameters.Select(kvp => $"{kvp.Key}={kvp.Value}"));
+				APIObserver.Instance.LoadRequest("/kcsapi/" + apiName, queryString);
+				break;
+
+			case ApiFileType.Response:
+				APIObserver.Instance.LoadResponse("/kcsapi/" + apiName, $"svdata={apiFile.Content}");
+				break;
+		}
+	}
 
 	private void APICaller_DoWork(object sender, DoWorkEventArgs e)
 	{
+		if (e.Argument is not IEnumerable<string?> files) return;
 
-		var files = e.Argument as IOrderedEnumerable<string>;
-		var act = new Action<string>(ExecuteAPI);
+		Action<string> act = SortieRecord switch
+		{
+			null => ExecuteAPI,
+			_ => ExecuteSortieRecordApi,
+		};
 
-		foreach (var file in files)
+		foreach (string? file in files)
 		{
 			Invoke(act, file);
 			System.Threading.Thread.Sleep(10);      //ゆるして
@@ -375,7 +517,7 @@ public partial class DialogLocalAPILoader2 : Form
 	{
 		try
 		{
-			ProcessStartInfo psi = new ProcessStartInfo
+			ProcessStartInfo psi = new()
 			{
 				FileName = CurrentPath + "\\" + APIView.SelectedCells.OfType<DataGridViewCell>().First().Value,
 				UseShellExecute = true
@@ -386,5 +528,19 @@ public partial class DialogLocalAPILoader2 : Form
 		{
 			Utility.Logger.Add(1, string.Format(LocalAPILoader2Resources.FailedToStart, ex.GetType().Name, ex.Message));
 		}
+	}
+
+	private static string? LoadApiResponse(string apiName)
+	{
+		Configuration.ConfigurationData config = Configuration.Config;
+
+		if (string.IsNullOrEmpty(config.Connection.SaveDataPath)) return null;
+		if (!Directory.Exists(config.Connection.SaveDataPath)) return null;
+
+		string filePath = Path.Combine(config.Connection.SaveDataPath, "kcsapi", apiName);
+
+		if (!File.Exists(filePath)) return null;
+
+		return File.ReadAllText(filePath);
 	}
 }

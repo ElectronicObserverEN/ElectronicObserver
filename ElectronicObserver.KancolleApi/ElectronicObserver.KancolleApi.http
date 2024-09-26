@@ -1,0 +1,14 @@
+@ElectronicObserver.KancolleApi_HostAddress = http://localhost:5270
+
+POST {{ElectronicObserver.KancolleApi_HostAddress}}/api_port/port
+Accept: application/json
+Content-Type: application/json
+
+{
+	"api_port": "string",
+	"api_sort_key": "string",
+	"api_verno": "string",
+	"spi_sort_order": "string"
+}
+
+###

@@ -12,4 +12,6 @@ public class ColumnModel
 	public DataGridLength Width { get; set; } = DataGridLength.Auto;
 	public int DisplayIndex { get; set; }
 	public bool IsVisible { get; set; }
+
+	public override string ToString() => $"[{DisplayIndex}] {Header}";
 }

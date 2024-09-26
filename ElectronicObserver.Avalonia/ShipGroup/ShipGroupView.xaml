@@ -209,7 +209,8 @@
 				</Style>
 
 				<Style Selector="DataGridCell.Hp">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding HpRate, Converter={StaticResource HpToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding Hp.Rate, Converter={StaticResource HpToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Hp.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.Condition">
@@ -225,69 +226,33 @@
 
 				<!--  no idea how to make 1 style for all aircraft cells  -->
 				<Style Selector="DataGridCell.Aircraft1">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
-						<Setter.Value>
-							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
-								<Binding Path="AircraftCurrent1" />
-								<Binding Path="AircraftMax1" />
-							</MultiBinding>
-						</Setter.Value>
-					</Setter>
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding Aircraft1, Converter={StaticResource AircraftToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Aircraft1.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.Aircraft2">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
-						<Setter.Value>
-							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
-								<Binding Path="AircraftCurrent2" />
-								<Binding Path="AircraftMax2" />
-							</MultiBinding>
-						</Setter.Value>
-					</Setter>
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding Aircraft2, Converter={StaticResource AircraftToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Aircraft2.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.Aircraft3">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
-						<Setter.Value>
-							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
-								<Binding Path="AircraftCurrent3" />
-								<Binding Path="AircraftMax3" />
-							</MultiBinding>
-						</Setter.Value>
-					</Setter>
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding Aircraft3, Converter={StaticResource AircraftToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Aircraft3.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.Aircraft4">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
-						<Setter.Value>
-							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
-								<Binding Path="AircraftCurrent4" />
-								<Binding Path="AircraftMax4" />
-							</MultiBinding>
-						</Setter.Value>
-					</Setter>
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding Aircraft4, Converter={StaticResource AircraftToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Aircraft4.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.Aircraft5">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
-						<Setter.Value>
-							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
-								<Binding Path="AircraftCurrent5" />
-								<Binding Path="AircraftMax5" />
-							</MultiBinding>
-						</Setter.Value>
-					</Setter>
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding Aircraft5, Converter={StaticResource AircraftToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Aircraft5.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.AircraftTotal">
-					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background">
-						<Setter.Value>
-							<MultiBinding Converter="{StaticResource AircraftToBackgroundConverter}">
-								<Binding Path="AircraftCurrentTotal" />
-								<Binding Path="AircraftMaxTotal" />
-							</MultiBinding>
-						</Setter.Value>
-					</Setter>
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Background" Value="{Binding AircraftTotal, Converter={StaticResource AircraftToBackgroundConverter}}" />
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding AircraftTotal.Rate, StringFormat=P2}" />
 				</Style>
 
 				<Style Selector="DataGridCell.RepairTime">
@@ -428,6 +393,14 @@
 						</Setter.Value>
 					</Setter>
 				</Style>
+
+				<Style Selector="DataGridCell.Fuel">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Fuel.Rate, StringFormat=P2}" />
+				</Style>
+
+				<Style Selector="DataGridCell.Ammo">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Ammo.Rate, StringFormat=P2}" />
+				</Style>
 			</DataGrid.Styles>
 
 			<Interaction.Behaviors>
@@ -509,7 +482,6 @@
 					Binding="{Binding Hp}"
 					CellStyleClasses="Hp CustomBackground"
 					Header="HP"
-					SortMemberPath="HpRate"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
@@ -520,11 +492,13 @@
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Fuel}"
+					CellStyleClasses="Fuel"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Fuel, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
 					Binding="{Binding Ammo}"
+					CellStyleClasses="Ammo"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Ammo, ElementName=ShipGroupControl}"
 					/>
 
@@ -759,12 +733,12 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding Speed}"
+					Binding="{Binding Speed, Mode=OneWay, Converter={x:Static shipGroup:ShipGroupViewModel.SpeedToDisplayConverter}}"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Speed, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding Range}"
+					Binding="{Binding Range, Mode=OneWay, Converter={x:Static shipGroup:ShipGroupViewModel.RangeToDisplayConverter}}"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Range, ElementName=ShipGroupControl}"
 					/>
 

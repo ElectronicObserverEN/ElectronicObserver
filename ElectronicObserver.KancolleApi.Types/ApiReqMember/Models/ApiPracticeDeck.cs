@@ -1,7 +1,7 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqMember.Models;
 
-public class ApiDeck
+public class ApiPracticeDeck
 {
 	[JsonPropertyName("api_ships")]
-	public List<ApiShip> ApiShips { get; set; } = new();
+	public List<ApiPracticeShip> ApiShips { get; set; } = new();
 }
