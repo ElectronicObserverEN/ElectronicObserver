@@ -66,7 +66,6 @@ using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
-using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using ElectronicObserverTypes;
@@ -76,6 +75,8 @@ using Microsoft.EntityFrameworkCore;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
+using ElectronicObserver.Avalonia.ExpeditionCalculator;
+
 #if DEBUG
 using System.Text.Encodings.Web;
 #endif
@@ -867,6 +868,12 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenTelegram()
 	{
 		new TelegramWindow().Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenExpeditionCalculator()
+	{
+		new ExpeditionCalculatorWindow(new()).Show();
 	}
 
 	[RelayCommand]

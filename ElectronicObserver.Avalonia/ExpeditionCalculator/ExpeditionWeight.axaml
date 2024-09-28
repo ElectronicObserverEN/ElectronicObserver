@@ -1,0 +1,34 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.ExpeditionCalculator.ExpeditionWeight"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:expeditionCalculator="clr-namespace:ElectronicObserver.Avalonia.ExpeditionCalculator"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="ExpeditionWeightUserControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="expeditionCalculator:ExpeditionWeight"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<expeditionCalculator:UseItemIdConverter x:Key="UseItemIdConverter" />
+	</UserControl.Resources>
+
+	<Grid Margin="4 0" ColumnDefinitions="Auto Auto">
+		<TextBlock
+			Grid.Column="0"
+			Margin="2 0"
+			VerticalAlignment="Center"
+			Text="{Binding UseItemId, Converter={StaticResource UseItemIdConverter}, ElementName=ExpeditionWeightUserControl}"
+			/>
+
+		<NumericUpDown
+			Grid.Column="1"
+			MinWidth="100"
+			Increment="1"
+			Minimum="0"
+			Value="{Binding Weight, ElementName=ExpeditionWeightUserControl}"
+			/>
+	</Grid>
+</UserControl>

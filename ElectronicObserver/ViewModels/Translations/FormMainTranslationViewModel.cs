@@ -1,4 +1,5 @@
-﻿using KancolleProgress.Translations;
+﻿using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using KancolleProgress.Translations;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -85,6 +86,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string EventLockPlannerTitle => EventLockPlannerResources.Title;
 	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title; 
 	public string AutoRefreshTitle => AutoRefreshResources.Title;
+	public string ExpeditionCalculatorTitle => ExpeditionCalculatorResources.Title;
 	public string Telegram => TelegramResources.Title;
 
 	public string StripMenu_Debug => MainResources.Debug.Replace("_", "__").Replace("&", "_");
