@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
 
-namespace ElectronicObserver.Avalonia.Samples.ViewModels;
+namespace ElectronicObserver.Avalonia.Samples.ShipGroup;
 
 public class Test
 {
@@ -14,7 +14,7 @@ public class Test
 	public required string Description { get; set; }
 }
 
-public partial class MainViewModel : ViewModelBase
+public partial class ShipGroupSampleViewModel : ObservableObject
 {
 	private List<Test> Data { get; } = [];
 
@@ -46,7 +46,7 @@ public partial class MainViewModel : ViewModelBase
 	[ObservableProperty] private DataGridCollectionView _collectionView = new(new List<Test>());
 	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
 
-	public MainViewModel()
+	public ShipGroupSampleViewModel()
 	{
 		for (int i = 0; i < 100; i++)
 		{

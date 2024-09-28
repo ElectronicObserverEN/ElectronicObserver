@@ -1,9 +1,9 @@
-﻿using Avalonia;
+﻿using System.Globalization;
+using System.Threading;
+using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using ElectronicObserver.Avalonia.Samples.ViewModels;
-using ElectronicObserver.Avalonia.Samples.Views;
 using HotAvalonia;
 
 namespace ElectronicObserver.Avalonia.Samples;
@@ -12,6 +12,10 @@ public partial class App : Application
 {
 	public override void Initialize()
 	{
+		CultureInfo ci = new("ja-JP");
+		Thread.CurrentThread.CurrentCulture = ci;
+		Thread.CurrentThread.CurrentUICulture = ci;
+
 		this.EnableHotReload();
 		AvaloniaXamlLoader.Load(this);
 	}
