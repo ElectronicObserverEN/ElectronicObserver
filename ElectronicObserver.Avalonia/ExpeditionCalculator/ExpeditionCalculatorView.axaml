@@ -43,6 +43,7 @@
 				<NumericUpDown
 					VerticalAlignment="Center"
 					FormatString="0"
+					Maximum="6"
 					Minimum="0"
 					Value="{Binding FleetInfo.SparkleCount}"
 					/>
