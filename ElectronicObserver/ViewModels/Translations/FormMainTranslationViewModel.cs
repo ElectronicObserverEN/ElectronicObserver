@@ -34,7 +34,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Configuration => MainResources.File_Configuration.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Close => MainResources.File_Close.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_View => MainResources.View.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View => MainResources.View;
 	public string StripMenu_View_Fleet => MainResources.View_Fleet.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Fleet_1 => MainResources.View_Fleet_1.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Fleet_2 => MainResources.View_Fleet_2.Replace("_", "__").Replace("&", "_");
