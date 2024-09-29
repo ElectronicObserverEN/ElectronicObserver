@@ -123,32 +123,24 @@ public record KongouSpecialAttack : SpecialAttack
 		ShipId.HarunaKaiNiC or 
 		ShipId.KirishimaKaiNiC;
 
-	private static bool IsValidPair(ShipId flagship, ShipId helper) => flagship switch
+	private static bool IsValidPair(ShipId flagship, ShipId helper)
 	{
-		ShipId.KongouKaiNiC => helper is
-			ShipId.HieiKaiNiC or
-			ShipId.HarunaKaiNi or
-			ShipId.HarunaKaiNiB or
-			ShipId.HarunaKaiNiC or
-			ShipId.Warspite or
-			ShipId.WarspiteKai or
-			ShipId.Valiant or
-			ShipId.ValiantKai,
+		if (IsKongouClassThirdRemodel(helper)) return true;
 
-		ShipId.HieiKaiNiC => helper is
-			ShipId.KirishimaKaiNi or
-			ShipId.KirishimaKaiNiC or
-			ShipId.HarunaKaiNiB or
-			ShipId.HarunaKaiNiC or
-			ShipId.KongouKaiNiC,
+		return flagship switch
+		{
+			ShipId.KongouKaiNiC => helper is
+				ShipId.HarunaKaiNi or
+				ShipId.Warspite or
+				ShipId.WarspiteKai or
+				ShipId.Valiant or
+				ShipId.ValiantKai,
 
-		ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC => IsKongouClassThirdRemodel(helper),
+			ShipId.HieiKaiNiC => helper is ShipId.KirishimaKaiNi,
 
-		ShipId.KirishimaKaiNiC => helper is
-			ShipId.KongouKaiNiC or
-			ShipId.HieiKaiNiC or
-			ShipId.SouthDakotaKai,
+			ShipId.KirishimaKaiNiC => helper is ShipId.SouthDakotaKai,
 
-		_ => false,
-	};
+			_ => false,
+		};
+	}
 }
