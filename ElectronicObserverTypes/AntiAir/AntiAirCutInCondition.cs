@@ -57,6 +57,7 @@ public class AntiAirCutInCondition
 	public int AaGunShigure { get; init; }
 
 	public int Radar4AaOrMore { get; init; }
+	public int AkizukiGunKai { get; init; }
 
 	public bool CanBeActivatedBy(IShipData ship, AntiAirCutIn antiAirCutIn)
 	{
@@ -97,6 +98,7 @@ public class AntiAirCutInCondition
 		if (!ship.HasHarusameGun(HarusameGun)) return false;
 		if (!ship.HasShigureAaGun(HarusameGun)) return false;
 		if (!ship.HasAirRadar(Radar4AaOrMore, 4)) return false;
+		if (!ship.HasAkizukiGunKai(AkizukiGunKai)) return false;
 
 		return true;
 	}

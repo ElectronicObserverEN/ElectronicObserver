@@ -288,7 +288,7 @@ Are you sure?</value>
     <value>Resource &amp;Chart</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>&amp;View</value>
+    <value>_View</value>
   </data>
   <data name="View_Arsenal" xml:space="preserve">
     <value>&amp;Arsenal</value>

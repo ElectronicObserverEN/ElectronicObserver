@@ -187,4 +187,7 @@
   <data name="Radar4AaOrMore" xml:space="preserve">
     <value>電探(対空4以上)</value>
   </data>
+  <data name="AkizukiGunKai" xml:space="preserve">
+    <value>秋月砲改</value>
+  </data>
 </root>

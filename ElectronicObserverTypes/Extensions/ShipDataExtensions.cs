@@ -315,6 +315,11 @@ public static class ShipDataExtensions
 			EquipmentId.MainGunSmall_12_7cmTwinGunModelCKaiSanH)
 		>= count;
 
+	public static bool HasAkizukiGunKai(this IShipData ship, int count) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.EquipmentId is
+			EquipmentId.MainGunSmall_10cmTwinHighangleMountKai_AntiAircraftFireDirectorKai)
+		>= count;
+
 	public static bool HasHighAngleConcentrated(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.EquipmentId is
 			EquipmentId.SecondaryGun_10cmTwinHighangleGunMountBatteryConcentratedDeployment)

@@ -10,6 +10,58 @@ namespace ElectronicObserverTypes.AntiAir;
 [DebuggerDisplay("Id = {Id}")]
 public record AntiAirCutIn
 {
+	private static List<int> ActivationPriorities { get; } =
+	[
+		38,
+		39,
+		40,
+		42,
+		41,
+		10,
+		43,
+		46,
+		11,
+		25,
+		48,
+		1,
+		34,
+		44,
+		26,
+		4,
+		2,
+		35,
+		36,
+		27,
+		45,
+		19,
+		21,
+		29,
+		16,
+		14,
+		3,
+		5,
+		6,
+		28,
+		37,
+		33,
+		30,
+		8,
+		13,
+		15,
+		7,
+		20,
+		24,
+		32,
+		12,
+		31,
+		47,
+		17,
+		18,
+		22,
+		9,
+		23,
+	];
+
 	private static List<AntiAirCutIn> CutIns { get; } =
 	[
 		new()
@@ -18,7 +70,6 @@ public record AntiAirCutIn
 			FixedBonus = 0,
 			VariableBonus = 1,
 			Rate = 1,
-			Priority = 9999,
 			Conditions = [],
 		},
 		new()
@@ -27,7 +78,6 @@ public record AntiAirCutIn
 			FixedBonus = 7,
 			VariableBonus = 1.7,
 			Rate = 0.643,
-			Priority = 11,
 			Conditions =
 			[
 				new()
@@ -47,7 +97,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.7,
 			Rate = 0.574,
-			Priority = 16,
 			Conditions =
 			[
 				new()
@@ -67,7 +116,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.6,
 			Rate = 0.495,
-			Priority = 26,
 			Conditions =
 			[
 				new()
@@ -86,7 +134,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.5,
 			Rate = 0.514,
-			Priority = 15,
 			Conditions =
 			[
 				new()
@@ -104,7 +151,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.5,
 			Rate = 0.544,
-			Priority = 27,
 			Conditions =
 			[
 				new()
@@ -120,7 +166,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.45,
 			Rate = 0.396,
-			Priority = 28,
 			Conditions =
 			[
 				new()
@@ -137,7 +182,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.35,
 			Rate = 0.445,
-			Priority = 36,
 			Conditions =
 			[
 				new()
@@ -154,7 +198,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.4,
 			Rate = 0.495,
-			Priority = 33,
 			Conditions =
 			[
 				new()
@@ -170,7 +213,6 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.3,
 			Rate = 0.396,
-			Priority = 46,
 			Conditions =
 			[
 				new()
@@ -186,7 +228,6 @@ public record AntiAirCutIn
 			FixedBonus = 8,
 			VariableBonus = 1.65,
 			Rate = 0.594,
-			Priority = 6,
 			Conditions =
 			[
 				new()
@@ -207,7 +248,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.5,
 			Rate = 0.544,
-			Priority = 9,
 			Conditions =
 			[
 				new()
@@ -227,7 +267,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.25,
 			Rate = 0.445,
-			Priority = 40,
 			Conditions =
 			[
 				new()
@@ -246,7 +285,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.35,
 			Rate = 0.346,
-			Priority = 34,
 			Conditions =
 			[
 				new()
@@ -263,7 +301,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.45,
 			Rate = 0.623,
-			Priority = 25,
 			Conditions =
 			[
 				new()
@@ -284,7 +321,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.3,
 			Rate = 0.534,
-			Priority = 35,
 			Conditions =
 			[
 				new()
@@ -304,7 +340,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.4,
 			Rate = 0.613,
-			Priority = 24,
 			Conditions =
 			[
 				new()
@@ -326,7 +361,6 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.25,
 			Rate = 0.564,
-			Priority = 43,
 			Conditions =
 			[
 				new()
@@ -347,7 +381,6 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.2,
 			Rate = 0.584,
-			Priority = 44,
 			Conditions =
 			[
 				new()
@@ -366,7 +399,6 @@ public record AntiAirCutIn
 			FixedBonus = 5,
 			VariableBonus = 1.45,
 			Rate = 0.564,
-			Priority = 21,
 			Conditions =
 			[
 				new()
@@ -386,7 +418,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.25,
 			Rate = 0.643,
-			Priority = 37,
 			Conditions =
 			[
 				new()
@@ -405,7 +436,6 @@ public record AntiAirCutIn
 			FixedBonus = 5,
 			VariableBonus = 1.45,
 			Rate = 0.594,
-			Priority = 22,
 			Conditions =
 			[
 				new()
@@ -425,7 +455,6 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.2,
 			Rate = 0.643,
-			Priority = 45,
 			Conditions =
 			[
 				new()
@@ -444,7 +473,6 @@ public record AntiAirCutIn
 			FixedBonus = 1,
 			VariableBonus = 1.05,
 			Rate = 0.792,
-			Priority = 47,
 			Conditions =
 			[
 				new()
@@ -464,7 +492,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.25,
 			Rate = 0.613,
-			Priority = 38,
 			Conditions =
 			[
 				new()
@@ -485,7 +512,6 @@ public record AntiAirCutIn
 			FixedBonus = 7,
 			VariableBonus = 1.55,
 			Rate = 0.594,
-			Priority = 10,
 			Conditions =
 			[
 				new()
@@ -506,7 +532,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.4,
 			Rate = 0.554,
-			Priority = 14,
 			Conditions =
 			[
 				new()
@@ -530,7 +555,6 @@ public record AntiAirCutIn
 			FixedBonus = 5,
 			VariableBonus = 1.55,
 			Rate = 0.519,
-			Priority = 19,
 			Conditions =
 			[
 				new()
@@ -551,7 +575,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.4,
 			Rate = 0.554,
-			Priority = 29,
 			Conditions =
 			[
 				new()
@@ -576,7 +599,6 @@ public record AntiAirCutIn
 			FixedBonus = 5,
 			VariableBonus = 1.55,
 			Rate = 0.594,
-			Priority = 23,
 			Conditions =
 			[
 				new()
@@ -597,7 +619,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.3,
 			Rate = 0.495,
-			Priority = 32,
 			Conditions =
 			[
 				new()
@@ -618,7 +639,6 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.25,
 			Rate = 0.495,
-			Priority = 41,
 			Conditions =
 			[
 				new()
@@ -637,7 +657,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.2,
 			Rate = 0.594,
-			Priority = 39,
 			Conditions =
 			[
 				new()
@@ -737,7 +756,6 @@ public record AntiAirCutIn
 			FixedBonus = 3,
 			VariableBonus = 1.35,
 			Rate = 0.415,
-			Priority = 31,
 			Conditions =
 			[
 				new()
@@ -758,7 +776,6 @@ public record AntiAirCutIn
 			FixedBonus = 7,
 			VariableBonus = 1.6,
 			Rate = 0.594,
-			Priority = 12,
 			Conditions =
 			[
 				new()
@@ -777,7 +794,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.55,
 			Rate = 0.544,
-			Priority = 17,
 			Conditions =
 			[
 				new()
@@ -806,7 +822,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.55,
 			Rate = 0.495,
-			Priority = 18,
 			Conditions =
 			[
 				new()
@@ -845,7 +860,6 @@ public record AntiAirCutIn
 			FixedBonus = 4,
 			VariableBonus = 1.45,
 			Rate = 0.396,
-			Priority = 30,
 			Conditions =
 			[
 				new()
@@ -864,7 +878,6 @@ public record AntiAirCutIn
 			FixedBonus = 10,
 			VariableBonus = 1.85,
 			Rate = 0.594,
-			Priority = 1,
 			Conditions =
 			[
 				new()
@@ -884,7 +897,6 @@ public record AntiAirCutIn
 			FixedBonus = 10,
 			VariableBonus = 1.7,
 			Rate = 0.55,
-			Priority = 2,
 			Conditions =
 			[
 				new()
@@ -905,7 +917,6 @@ public record AntiAirCutIn
 			FixedBonus = 10,
 			VariableBonus = 1.7,
 			Rate = 0.55,
-			Priority = 3,
 			Conditions =
 			[
 				new()
@@ -947,7 +958,6 @@ public record AntiAirCutIn
 			FixedBonus = 9,
 			VariableBonus = 1.65,
 			Rate = 0.594,
-			Priority = 5,
 			Conditions =
 			[
 				new()
@@ -987,7 +997,6 @@ public record AntiAirCutIn
 			FixedBonus = 10,
 			VariableBonus = 1.65,
 			Rate = 0.643,
-			Priority = 4,
 			Conditions =
 			[
 				new()
@@ -1010,7 +1019,6 @@ public record AntiAirCutIn
 			FixedBonus = 8,
 			VariableBonus = 1.6,
 			Rate = 0.594,
-			Priority = 7,
 			Conditions =
 			[
 				new()
@@ -1032,7 +1040,6 @@ public record AntiAirCutIn
 			FixedBonus = 6,
 			VariableBonus = 1.6,
 			Rate = 0.544,
-			Priority = 13,
 			Conditions =
 			[
 				new()
@@ -1055,7 +1062,6 @@ public record AntiAirCutIn
 			FixedBonus = 5,
 			VariableBonus = 1.55,
 			Rate = 0.495,
-			Priority = 20,
 			Conditions =
 			[
 				new()
@@ -1077,7 +1083,6 @@ public record AntiAirCutIn
 			FixedBonus = 8,
 			VariableBonus = 1.55,
 			Rate = 0.495,
-			Priority = 8,
 			Conditions =
 			[
 				new()
@@ -1098,7 +1103,6 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.3,
 			Rate = 0.7,
-			Priority = 42,
 			Conditions =
 			[
 				new()
@@ -1141,6 +1145,30 @@ public record AntiAirCutIn
 				},
 			],
 		},
+		new()
+		{
+			Id = 48,
+			FixedBonus = 8,
+			VariableBonus = 1.75,
+			Rate = 0.643,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.AkizukiKai,
+						ShipId.TeruzukiKai,
+						ShipId.SuzutsukiKai,
+						ShipId.HatsuzukiKai,
+						ShipId.HatsuzukiKaiNi,
+						ShipId.FuyutsukiKai,
+					],
+					AkizukiGunKai = 2,
+					Radar4AaOrMore = 1,
+				},
+			],
+		},
 	];
 
 	public static IEnumerable<AntiAirCutIn> AllCutIns => CutIns
@@ -1150,7 +1178,11 @@ public record AntiAirCutIn
 	public int FixedBonus { get; private init; }
 	public double VariableBonus { get; private init; }
 	private double? Rate { get; init; }
-	private int Priority { get; init; }
+	private int Priority => Id switch
+	{
+		0 => 9999,
+		_ => ActivationPriorities.IndexOf(Id),
+	};
 
 	/// <summary>
 	/// Null when unknown

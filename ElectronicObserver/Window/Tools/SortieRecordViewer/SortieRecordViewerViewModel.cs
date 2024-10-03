@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CsvHelper;
@@ -77,6 +78,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public ContentDialogService? ContentDialogService { get; set; }
 
 	private SortieCostConfigurationViewModel SortieCostConfiguration { get; } = new();
+	[ObservableProperty] private bool _showQuickExport;
 
 	public bool IsDebug =>
 #if DEBUG

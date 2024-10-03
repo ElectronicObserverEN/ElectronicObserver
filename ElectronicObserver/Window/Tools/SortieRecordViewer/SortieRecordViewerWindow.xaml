@@ -32,6 +32,7 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 				<RowDefinition />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
@@ -40,9 +41,69 @@
 				<MenuItem Header="{Binding SortieRecordViewer.File}">
 					<MenuItem Command="{Binding LoadSortieDataCommand}" Header="{Binding SortieRecordViewer.LoadSortieData}" />
 				</MenuItem>
+
+				<MenuItem Header="{Binding SortieRecordViewer.View}">
+					<MenuItem
+						Header="{Binding SortieRecordViewer.ShowQuickExport}"
+						IsCheckable="True"
+						IsChecked="{Binding ShowQuickExport}"
+						/>
+				</MenuItem>
 			</Menu>
 
-			<Grid Grid.Row="1">
+			<WrapPanel
+				Grid.Row="1"
+				Margin="4"
+				Visibility="{Binding ShowQuickExport, Converter={StaticResource BooleanToVisibilityConverter}}"
+				>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportShellingBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.ShellingBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportNightBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.NightBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportTorpedoBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.TorpedoBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportAirBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.AirBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportAirBaseBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.AirBaseBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportRedShellingBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.RedShellingBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportRedNightBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.RedNightBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportRedTorpedoBattleCommand}"
+					Content="{x:Static translations:CsvExportResources.RedTorpedoBattle}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding ExportAirBaseAirDefenseCommand}"
+					Content="{x:Static translations:CsvExportResources.AirBaseAirDefense}"
+					/>
+			</WrapPanel>
+
+			<Grid Grid.Row="2">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
@@ -145,7 +206,7 @@
 				so might as well set min height to avoid extra rendering
 			-->
 			<DataGrid
-				Grid.Row="2"
+				Grid.Row="3"
 				AutoGenerateColumns="False"
 				HeadersVisibility="Column"
 				IsReadOnly="True"
@@ -254,7 +315,7 @@
 				</DataGrid.Columns>
 			</DataGrid>
 
-			<StatusBar Grid.Row="3">
+			<StatusBar Grid.Row="4">
 				<StatusBarItem>
 					<TextBlock Text="{Binding StatusBarText}" />
 				</StatusBarItem>

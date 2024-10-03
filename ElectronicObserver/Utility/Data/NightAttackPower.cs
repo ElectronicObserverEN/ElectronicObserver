@@ -146,6 +146,7 @@ public static class NightAttackPower
 			EquipmentTypes.MainGunMedium or
 			EquipmentTypes.MainGunLarge or
 			EquipmentTypes.Torpedo or
+			EquipmentTypes.AAShell or
 			EquipmentTypes.APShell or
 			EquipmentTypes.LandingCraft or
 			EquipmentTypes.Searchlight or

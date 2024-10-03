@@ -165,4 +165,7 @@
   <data name="Fleet" xml:space="preserve">
     <value>Fleet</value>
   </data>
+  <data name="ShowQuickExport" xml:space="preserve">
+    <value>Show quick export</value>
+  </data>
 </root>

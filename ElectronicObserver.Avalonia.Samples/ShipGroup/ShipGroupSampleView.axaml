@@ -1,23 +1,23 @@
 <UserControl
-	x:Class="ElectronicObserver.Avalonia.Samples.Views.MainView"
+	x:Class="ElectronicObserver.Avalonia.Samples.ShipGroup.ShipGroupSampleView"
 	xmlns="https://github.com/avaloniaui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:behaviors="clr-namespace:ElectronicObserver.Avalonia.Behaviors;assembly=ElectronicObserver.Avalonia"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Samples.ShipGroup"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Avalonia.Behaviors.PersistentColumns;assembly=ElectronicObserver.Avalonia"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.ShipGroup;assembly=ElectronicObserver.Avalonia"
-	xmlns:vm="clr-namespace:ElectronicObserver.Avalonia.Samples.ViewModels"
-	x:Name="MainViewControl"
+	x:Name="ShipGroupSampleControl"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
-	x:DataType="vm:MainViewModel"
+	x:DataType="local:ShipGroupSampleViewModel"
 	mc:Ignorable="d"
 	>
 	<UserControl.DataTemplates>
 		<DataTemplate DataType="shipGroup:ShipGroupItem">
 			<Button
-				Command="{Binding ((vm:MainViewModel)DataContext).SelectGroupCommand, ElementName=MainViewControl}"
+				Command="{Binding ((local:ShipGroupSampleViewModel)DataContext).SelectGroupCommand, ElementName=ShipGroupSampleControl}"
 				CommandParameter="{Binding}"
 				Content="{Binding Name}"
 				/>
@@ -69,12 +69,12 @@
 
 			<DataGrid.Columns>
 				<DataGridTextColumn
-					x:DataType="vm:Test"
+					x:DataType="local:Test"
 					Binding="{Binding Name}"
 					Header="Name"
 					/>
 				<DataGridTextColumn
-					x:DataType="vm:Test"
+					x:DataType="local:Test"
 					Binding="{Binding Description}"
 					Header="Description"
 					/>

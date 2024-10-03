@@ -68,7 +68,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
@@ -306,7 +305,6 @@ public partial class App
 			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
-			.AddSingleton<TelegramTranslationViewModel>()
 			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,97 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HighAngle" xml:space="preserve">
-    <value>High-Angle Gun</value>
+  <data name="Fuel" xml:space="preserve">
+    <value>燃料</value>
   </data>
-  <data name="HighAngleDirector" xml:space="preserve">
-    <value>High-Angle Gun+AAFD</value>
+  <data name="Ammo" xml:space="preserve">
+    <value>弾薬</value>
   </data>
-  <data name="HighAngleWithoutDirector" xml:space="preserve">
-    <value>High-Angle Gun (without AAFD)</value>
+  <data name="Steel" xml:space="preserve">
+    <value>鋼材</value>
   </data>
-  <data name="AaDirector" xml:space="preserve">
-    <value>AA Fire Director</value>
+  <data name="Bauxite" xml:space="preserve">
+    <value>ボーキサイト</value>
   </data>
-  <data name="Radar" xml:space="preserve">
-    <value>Radar</value>
+  <data name="InstantRepair" xml:space="preserve">
+    <value>高速修復材</value>
   </data>
-  <data name="AntiAirRadar" xml:space="preserve">
-    <value>AA Radar</value>
+  <data name="InstantConstruction" xml:space="preserve">
+    <value>高速建造材</value>
   </data>
-  <data name="MainGunLarge" xml:space="preserve">
-    <value>Large Caliber Gun</value>
+  <data name="DevelopmentMaterial" xml:space="preserve">
+    <value>開発資材</value>
   </data>
-  <data name="MainGunLargeFcr" xml:space="preserve">
-    <value>Nelson gun FCR</value>
+  <data name="ImproveMaterial" xml:space="preserve">
+    <value>改修資材</value>
   </data>
-  <data name="AaShell" xml:space="preserve">
-    <value>Type 3 Shell</value>
+  <data name="FurnitureBoxSmall" xml:space="preserve">
+    <value>家具箱（小）</value>
   </data>
-  <data name="AaGun" xml:space="preserve">
-    <value>AA Gun</value>
+  <data name="FurnitureBoxMedium" xml:space="preserve">
+    <value>家具箱（中）</value>
   </data>
-  <data name="AaGun3AaOrMore" xml:space="preserve">
-    <value>AA Gun (AA &gt;= 3)</value>
+  <data name="FurnitureBoxLarge" xml:space="preserve">
+    <value>家具箱（大）</value>
   </data>
-  <data name="AaGun6AaOrMore" xml:space="preserve">
-    <value>AA Gun (AA &gt;= 6)</value>
+  <data name="MoraleFoodIrako" xml:space="preserve">
+    <value>給糧艦「伊良湖」</value>
   </data>
-  <data name="AaGun3To8Aa" xml:space="preserve">
-    <value>AA Gun (3~8 AA)</value>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>大成功</value>
   </data>
-  <data name="AaGunConcentrated" xml:space="preserve">
-    <value>AA Gun (AA &gt;= 9)</value>
+  <data name="Score" xml:space="preserve">
+	  <value>スコア</value>
   </data>
-  <data name="AaGunPompom" xml:space="preserve">
-    <value>Pompom</value>
+  <data name="Duration" xml:space="preserve">
+	  <value>遠征時間</value>
   </data>
-  <data name="AaRocketBritish" xml:space="preserve">
-    <value>British Rocket Launchers</value>
+  <data name="Item1" xml:space="preserve">
+	  <value>アイテム1</value>
   </data>
-  <data name="AaRocketMod" xml:space="preserve">
-    <value>Rocket Launcher Kai Ni</value>
+  <data name="Item2" xml:space="preserve">
+	  <value>アイテム2</value>
   </data>
-  <data name="HighAngleMusashi" xml:space="preserve">
-    <value>HA Mount Kai</value>
+  <data name="AllSparkled" xml:space="preserve">
+	  <value>全キラ</value>
   </data>
-  <data name="RadarGfcs" xml:space="preserve">
-    <value>GFCS Mk.37</value>
+  <data name="SparkleCount" xml:space="preserve">
+	  <value>キラ艦隻数</value>
   </data>
-  <data name="HighAngleAmerican" xml:space="preserve">
-    <value>Fletcher gun</value>
+  <data name="DrumCount" xml:space="preserve">
+	  <value>ドラム缶個数</value>
   </data>
-  <data name="HighAngleAmericanKai" xml:space="preserve">
-    <value>Fletcher gun kai</value>
+  <data name="FlagshipLevel" xml:space="preserve">
+	  <value>旗艦レベル</value>
   </data>
-  <data name="HighAngleAmericanGfcs" xml:space="preserve">
-    <value>Fletcher gun GFCS</value>
-  </data>
-  <data name="HighAngleAtlanta" xml:space="preserve">
-    <value>Atlanta gun</value>
-  </data>
-  <data name="HighAngleAtlantaGfcs" xml:space="preserve">
-    <value>Atlanta gun GFCS</value>
-  </data>
-  <data name="HighAngleConcentrated" xml:space="preserve">
-    <value>HA Mount Concentrated Deployment</value>
-  </data>
-  <data name="RadarYamato" xml:space="preserve">
-    <value>Yamato radar</value>
-  </data>
-  <data name="AaGun4AaOrMore" xml:space="preserve">
-    <value>AA Gun (AA &gt;= 4)</value>
-  </data>
-  <data name="FailedAntiAirCutIn" xml:space="preserve">
-    <value>Failed</value>
-  </data>
-  <data name="HarunaGun" xml:space="preserve">
-    <value>35.6k3/4</value>
-  </data>
-  <data name="Radar4AaOrMore" xml:space="preserve">
-    <value>Radar (AA &gt;= 4)</value>
-  </data>
-  <data name="AkizukiGunKai" xml:space="preserve">
-    <value>Akizuki gun kai</value>
+  <data name="Title" xml:space="preserve">
+    <value>遠征計算機</value>
   </data>
 </root>

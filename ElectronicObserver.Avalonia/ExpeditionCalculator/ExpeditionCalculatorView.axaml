@@ -1,0 +1,117 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.ExpeditionCalculator.ExpeditionCalculatorView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.ExpeditionCalculator"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="local:ExpeditionCalculatorViewModel"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<local:UseItemIdConverter x:Key="UseItemIdConverter" />
+	</UserControl.Resources>
+
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="local:ExpeditionReward">
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Orientation="Horizontal"
+				>
+				<TextBlock Text="{Binding Amount}" />
+				<TextBlock Text="x" />
+				<!--  todo: icons  -->
+				<TextBlock Margin="4 0" Text="{Binding Type, Converter={StaticResource UseItemIdConverter}}" />
+			</StackPanel>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<Grid RowDefinitions="Auto Auto *">
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ExpeditionCalculatorResources.AllSparkled}"
+				IsChecked="{Binding FleetInfo.AllSparkled}"
+				/>
+
+			<StackPanel Margin="4 0" Orientation="Horizontal">
+				<TextBlock VerticalAlignment="Center" Text="{x:Static local:ExpeditionCalculatorResources.SparkleCount}" />
+
+				<NumericUpDown
+					VerticalAlignment="Center"
+					FormatString="0"
+					Maximum="6"
+					Minimum="0"
+					Value="{Binding FleetInfo.SparkleCount}"
+					/>
+			</StackPanel>
+
+			<StackPanel Margin="4 0" Orientation="Horizontal">
+				<TextBlock VerticalAlignment="Center" Text="{x:Static local:ExpeditionCalculatorResources.DrumCount}" />
+
+				<NumericUpDown
+					VerticalAlignment="Center"
+					FormatString="0"
+					Minimum="0"
+					Value="{Binding FleetInfo.DrumCount}"
+					/>
+			</StackPanel>
+
+			<StackPanel Margin="4 0" Orientation="Horizontal">
+				<TextBlock VerticalAlignment="Center" Text="{x:Static local:ExpeditionCalculatorResources.FlagshipLevel}" />
+
+				<NumericUpDown
+					VerticalAlignment="Center"
+					FormatString="0"
+					Minimum="1"
+					Value="{Binding FleetInfo.FlagshipLevel}"
+					/>
+			</StackPanel>
+		</StackPanel>
+
+		<WrapPanel Grid.Row="1">
+			<local:ExpeditionWeight UseItemId="Fuel" Weight="{Binding ExpeditionScoreWeights.Fuel, Mode=TwoWay}" />
+			<local:ExpeditionWeight UseItemId="Ammo" Weight="{Binding ExpeditionScoreWeights.Ammo, Mode=TwoWay}" />
+			<local:ExpeditionWeight UseItemId="Steel" Weight="{Binding ExpeditionScoreWeights.Steel, Mode=TwoWay}" />
+			<local:ExpeditionWeight UseItemId="Bauxite" Weight="{Binding ExpeditionScoreWeights.Bauxite, Mode=TwoWay}" />
+			<local:ExpeditionWeight UseItemId="InstantRepair" Weight="{Binding ExpeditionScoreWeights.InstantRepair, Mode=TwoWay}" />
+		</WrapPanel>
+
+		<DataGrid
+			Grid.Row="2"
+			IsReadOnly="True"
+			ItemsSource="{Binding Expeditions}"
+			>
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Score}" Header="{x:Static local:ExpeditionCalculatorResources.Score}" />
+				<DataGridTextColumn Binding="{Binding DisplayId}" Header="ID" />
+				<DataGridTextColumn Binding="{Binding Duration, StringFormat=hh\\:mm}" Header="{x:Static local:ExpeditionCalculatorResources.Duration}" />
+				<DataGridTextColumn Binding="{Binding Fuel}" Header="{x:Static local:ExpeditionCalculatorResources.Fuel}" />
+				<DataGridTextColumn Binding="{Binding Ammo}" Header="{x:Static local:ExpeditionCalculatorResources.Ammo}" />
+				<DataGridTextColumn Binding="{Binding Steel}" Header="{x:Static local:ExpeditionCalculatorResources.Steel}" />
+				<DataGridTextColumn Binding="{Binding Bauxite}" Header="{x:Static local:ExpeditionCalculatorResources.Bauxite}" />
+
+				<DataGridTemplateColumn Header="{x:Static local:ExpeditionCalculatorResources.Item1}">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate DataType="local:ExpeditionViewModel">
+							<ContentControl Content="{Binding Item1}" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="{x:Static local:ExpeditionCalculatorResources.Item2}">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate DataType="local:ExpeditionViewModel">
+							<ContentControl Content="{Binding Item2}" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTextColumn Binding="{Binding GreatSuccessRate, StringFormat={}{0:p2}}" Header="{x:Static local:ExpeditionCalculatorResources.GreatSuccess}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

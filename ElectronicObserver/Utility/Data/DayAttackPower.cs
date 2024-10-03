@@ -72,6 +72,7 @@ public static class DayAttackPower
 	{
 		EquipmentTypes.MainGunSmall or
 		EquipmentTypes.MainGunMedium or
+		EquipmentTypes.AAShell or
 		EquipmentTypes.APShell or
 		EquipmentTypes.AADirector or
 		EquipmentTypes.Searchlight or

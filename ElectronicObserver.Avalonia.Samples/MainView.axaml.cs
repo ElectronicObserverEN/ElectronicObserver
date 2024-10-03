@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace ElectronicObserver.Avalonia.Samples.Views;
+namespace ElectronicObserver.Avalonia.Samples;
 
 public partial class MainView : UserControl
 {

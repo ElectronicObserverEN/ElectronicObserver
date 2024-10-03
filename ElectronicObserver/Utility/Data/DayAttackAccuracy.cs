@@ -70,6 +70,7 @@ public static class DayAttackAccuracy
 		EquipmentTypes.MainGunLarge or
 		EquipmentTypes.MainGunLarge2 or
 		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.AAShell or
 		EquipmentTypes.APShell or
 		EquipmentTypes.AADirector or
 		EquipmentTypes.Searchlight or

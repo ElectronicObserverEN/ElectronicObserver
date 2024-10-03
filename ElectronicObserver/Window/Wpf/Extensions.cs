@@ -129,6 +129,11 @@ public static class Extensions
 			conditions.Add($"{AaciResources.HighAngleWithoutDirector} >= {condition.HighAngleWithoutDirector}");
 		}
 
+		if (condition.AkizukiGunKai > 0)
+		{
+			conditions.Add($"{AaciResources.AkizukiGunKai} >= {condition.AkizukiGunKai}");
+		}
+
 		if (condition.AaDirector > 0)
 		{
 			conditions.Add($"{AaciResources.AaDirector} >= {condition.AaDirector}");

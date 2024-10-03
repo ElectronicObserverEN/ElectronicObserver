@@ -154,7 +154,14 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 		AddMissingColumnData(AssociatedObject, columnModels);
 
-		foreach ((DataGridColumn column, ColumnModel columnModel) in AssociatedObject.Columns.Zip(columnModels))
+		// need to order by column model display index here
+		// I think avalonia uses some insert logic to adjust display indexes
+		// which can override display indexes if you're not updating from lowest to highest?
+		IOrderedEnumerable<(DataGridColumn First, ColumnModel Second)> columnZip = AssociatedObject.Columns
+			.Zip(columnModels)
+			.OrderBy(t => t.Second.DisplayIndex);
+
+		foreach ((DataGridColumn column, ColumnModel columnModel) in columnZip)
 		{
 			column.Width = columnModel.Width;
 			column.DisplayIndex = columnModel.DisplayIndex;

@@ -46,8 +46,8 @@ public static class NightAttackAccuracy
 		EquipmentTypes.RadarSmall or
 		EquipmentTypes.RadarLarge or
 		EquipmentTypes.RadarLarge2 or
-		EquipmentTypes.APShell or
 		EquipmentTypes.AAShell or
+		EquipmentTypes.APShell or
 		EquipmentTypes.LandingCraft or
 		EquipmentTypes.SpecialAmphibiousTank or
 		EquipmentTypes.ArmyInfantry or

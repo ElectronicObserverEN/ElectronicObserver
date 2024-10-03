@@ -1,0 +1,14 @@
+<Window
+	x:Class="ElectronicObserver.Avalonia.ExpeditionCalculator.ExpeditionCalculatorWindow"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.ExpeditionCalculator"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="{x:Static local:ExpeditionCalculatorResources.Title}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<local:ExpeditionCalculatorView />
+</Window>

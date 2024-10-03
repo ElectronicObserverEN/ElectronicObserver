@@ -1,4 +1,5 @@
-﻿using KancolleProgress.Translations;
+﻿using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using KancolleProgress.Translations;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -33,7 +34,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Configuration => MainResources.File_Configuration.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Close => MainResources.File_Close.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_View => MainResources.View.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View => MainResources.View;
 	public string StripMenu_View_Fleet => MainResources.View_Fleet.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Fleet_1 => MainResources.View_Fleet_1.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Fleet_2 => MainResources.View_Fleet_2.Replace("_", "__").Replace("&", "_");
@@ -85,7 +86,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string EventLockPlannerTitle => EventLockPlannerResources.Title;
 	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title; 
 	public string AutoRefreshTitle => AutoRefreshResources.Title;
-	public string Telegram => TelegramResources.Title;
+	public string ExpeditionCalculatorTitle => ExpeditionCalculatorResources.Title;
 
 	public string StripMenu_Debug => MainResources.Debug.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadAPIFromFile => MainResources.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");
