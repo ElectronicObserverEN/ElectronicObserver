@@ -104,17 +104,25 @@ public record KongouSpecialAttack : SpecialAttack
 		IShipData? ship = ships[shipIndex];
 		if (ship is null) return 1;
 
-		int bonusEquipments = ship.AllSlotInstance.Count(IsBonusGun);
-
-		return bonusEquipments switch
+		// https://docs.google.com/spreadsheets/d/16tTtSVntB5MmlaxkZcLuFoH3A69bVPRpqXjNgo7f_a0/edit?gid=0#gid=0
+		double equipmentMods = ship.AllSlotInstance.Count(IsKaiSanOrKaiYonGun) switch
 		{
-			0 => 2.4,
-			1 => 2.66,
-			_ => 2.76,
+			0 => 1,
+			1 => 1.11,
+			_ => 1.15,
 		};
+
+		// https://x.com/yukicacoon/status/1839167149317009709
+		if (ship.AllSlotInstance.Any(IsKaiNiGun))
+		{
+			equipmentMods += 0.05;
+		}
+
+		return equipmentMods * 2.4;
 	}
 
-	private static bool IsBonusGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
+	private static bool IsKaiSanOrKaiYonGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
+	private static bool IsKaiNiGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiNi;
 
 	private static bool IsKongouClassThirdRemodel(ShipId id) => id is
 		ShipId.KongouKaiNiC or
