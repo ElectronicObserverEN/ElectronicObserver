@@ -64,11 +64,11 @@ public record KongouSpecialAttack : SpecialAttack
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
 
+		// TODO : Kirishima Kai Ni C's trigger rate mods are unknown for now
+		if (flagship.MasterShip.ShipId is ShipId.KirishimaKaiNiC) return 0;
+
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
-
-		// TODO : Kirishima Kai Ni C's trigger rate mods are unknown for now
-		if (helper.MasterShip.ShipId is ShipId.KirishimaKaiNiC) return 0;
 
 		// https://x.com/Divinity_123/status/1820114427619709288
 		double rate = 3.5 * Math.Sqrt(flagship.Level) + 3.5 * Math.Sqrt(helper.Level) + 1.1 * Math.Sqrt(flagship.LuckTotal) + 1.1 * Math.Sqrt(helper.LuckTotal) - 33;
