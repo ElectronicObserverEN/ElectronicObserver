@@ -67,6 +67,9 @@ public record KongouSpecialAttack : SpecialAttack
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
+		// TODO : Kirishima Kai Ni C's trigger rate mods are unknown for now
+		if (helper.MasterShip.ShipId is ShipId.KirishimaKaiNiC) return 0;
+
 		// https://x.com/Divinity_123/status/1820114427619709288
 		double rate = 3.5 * Math.Sqrt(flagship.Level) + 3.5 * Math.Sqrt(helper.Level) + 1.1 * Math.Sqrt(flagship.LuckTotal) + 1.1 * Math.Sqrt(helper.LuckTotal) - 33;
 
@@ -78,7 +81,6 @@ public record KongouSpecialAttack : SpecialAttack
 				ShipId.HarunaKaiNiB => 15,
 				ShipId.HarunaKaiNiC => 20,
 				ShipId.HieiKaiNiC => 10,
-				ShipId.KirishimaKaiNiC => 0, // TODO : Unknown for now
 				_ => 0,
 			};
 		}
@@ -89,7 +91,6 @@ public record KongouSpecialAttack : SpecialAttack
 			{
 				ShipId.KongouKaiNiC => 10,
 				ShipId.HieiKaiNiC => 30,
-				ShipId.KirishimaKaiNiC => 0, // TODO : Unknown for now
 				_ => 0,
 			};
 		}
