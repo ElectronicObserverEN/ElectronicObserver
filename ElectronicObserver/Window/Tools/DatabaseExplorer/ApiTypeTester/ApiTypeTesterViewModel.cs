@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Web;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Database;
@@ -15,6 +17,10 @@ namespace ElectronicObserver.Window.Tools.DatabaseExplorer.ApiTypeTester;
 public partial class ApiTypeTesterViewModel
 {
 	private ElectronicObserverContext Db { get; } = new();
+	private JsonSerializerOptions Options { get; } = new()
+	{
+		UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip,
+	};
 
 	public ObservableCollection<string> ParsingErrors { get; } = new();
 
@@ -32,12 +38,15 @@ public partial class ApiTypeTesterViewModel
 			switch (file.ApiFileType)
 			{
 				case ApiFileType.Request:
-					NameValueCollection query = HttpUtility.ParseQueryString(file.Content);
+					if (!file.Content.StartsWith('{'))
+					{
+						NameValueCollection query = HttpUtility.ParseQueryString(file.Content);
 
-					Dictionary<string, string> dictionary = query.AllKeys
-						.ToDictionary(k => k, k => query[k]);
+						Dictionary<string, string> dictionary = query.AllKeys
+							.ToDictionary(k => k, k => query[k]);
 
-					file.Content = JsonSerializer.Serialize(dictionary);
+						file.Content = JsonSerializer.Serialize(dictionary);
+					}
 
 					ParseRequest(file);
 					break;
@@ -60,16 +69,11 @@ public partial class ApiTypeTesterViewModel
 	{
 		try
 		{
-			_ = file.GetRequestApiData();
+			_ = file.GetRequestApiData(Options);
 		}
 		catch (Exception e)
 		{
-			string error = $"{file.Name}: {e.Message}";
-
-			if (!ParsingErrors.Contains(error))
-			{
-				ParsingErrors.Add(error);
-			}
+			AddError(file, e);
 		}
 	}
 
@@ -77,16 +81,32 @@ public partial class ApiTypeTesterViewModel
 	{
 		try
 		{
-			_ = file.GetResponseApiData();
+			_ = file.GetResponseApiData(Options);
 		}
 		catch (Exception e)
 		{
-			string error = $"{file.Name}: {e.Message}";
+			AddError(file, e);
+		}
+	}
 
-			if (!ParsingErrors.Contains(error))
-			{
-				ParsingErrors.Add(error);
-			}
+	private void AddError(Database.KancolleApi.ApiFile file, Exception e)
+	{
+		try
+		{
+			// ignore invalid json values
+			// can happen if there are connection issues
+			JsonDocument.Parse(file.Content);
+		}
+		catch
+		{
+			return;
+		}
+
+		string error = $"{file.TimeStamp} {file.ApiFileType} {file.Name}: {e.Message}";
+
+		if (!ParsingErrors.Contains(error))
+		{
+			ParsingErrors.Add(error);
 		}
 	}
 }
