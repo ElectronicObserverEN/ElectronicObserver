@@ -62,7 +62,7 @@ public class QuestTrackerManagerTests
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				new ShipDataMock(Db.MasterShips[ShipId.YamatoKaiNiJuu]),
 				new ShipDataMock(Db.MasterShips[ShipId.GambierBayMkII]),
@@ -102,7 +102,7 @@ public class QuestTrackerManagerTests
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				new ShipDataMock(Db.MasterShips[ShipId.KamikazeKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.AsakazeKai]),
@@ -149,7 +149,7 @@ public class QuestTrackerManagerTests
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				new ShipDataMock(Db.MasterShips[ShipId.ShimushuKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.FletcherKaiMod2]),
@@ -161,7 +161,7 @@ public class QuestTrackerManagerTests
 
 		fleet = new()
 		{
-			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII]),
@@ -173,11 +173,41 @@ public class QuestTrackerManagerTests
 
 		fleet = new()
 		{
-			MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII]),
 				new ShipDataMock(Db.MasterShips[ShipId.Johnston]),
+			}),
+		};
+
+		Assert.True(group.ConditionMet(fleet));
+	}
+
+	[Fact(DisplayName = "ship position condition - min remodel")]
+	public void QuestTrackerManagerTest1()
+	{
+		ShipPositionConditionModel zuihouCondition = new()
+		{
+			Id = ShipId.ZuihouKaiNi,
+			Position = 1,
+			RemodelComparisonType = RemodelComparisonType.AtLeast,
+		};
+
+		GroupConditionViewModel group = new(new()
+		{
+			GroupOperator = Operator.And,
+			Conditions = new ObservableCollection<ICondition?>(new()
+			{
+				zuihouCondition,
+			}),
+		});
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.ZuihouKaiNiB]),
 			}),
 		};
 

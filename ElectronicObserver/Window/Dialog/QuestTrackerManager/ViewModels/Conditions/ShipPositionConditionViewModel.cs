@@ -122,14 +122,16 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 		IShipDataMaster? conditionShip = KCDatabase.Instance.MasterShips.Values
 			.First(s => s.ShipId == Model.Id);
 
-		while (conditionShip != null)
+		IShipDataMaster? masterShip = ship.MasterShip;
+
+		while (masterShip is not null)
 		{
-			if (ship.MasterShip.ShipId == conditionShip.ShipId)
+			if (masterShip.ShipId == conditionShip.ShipId)
 			{
 				return true;
 			}
 
-			conditionShip = conditionShip.RemodelBeforeShip;
+			masterShip = masterShip.RemodelBeforeShip;
 		}
 
 		return false;

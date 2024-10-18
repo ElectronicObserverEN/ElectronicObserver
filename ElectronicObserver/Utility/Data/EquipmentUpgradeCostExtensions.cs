@@ -9,6 +9,9 @@ namespace ElectronicObserver.Utility.Data;
 public static class EquipmentUpgradeCostExtensions
 {
 	public static EquipmentUpgradePlanCostModel CalculateUpgradeCost(this IEquipmentData equipment, List<EquipmentUpgradeDataModel> upgradesData, IShipDataMaster? helper, UpgradeLevel targetedLevel, SliderUpgradeLevel sliderLevel)
+		=> equipment.CalculateUpgradeCost(upgradesData, helper, targetedLevel, sliderLevel, null);
+
+	public static EquipmentUpgradePlanCostModel CalculateUpgradeCost(this IEquipmentData equipment, List<EquipmentUpgradeDataModel> upgradesData, IShipDataMaster? helper, UpgradeLevel targetedLevel, SliderUpgradeLevel sliderLevel, DayOfWeek? day)
 	{
 		EquipmentUpgradePlanCostModel cost = new();
 
@@ -18,7 +21,7 @@ public static class EquipmentUpgradeCostExtensions
 
 		if (upgradeData is null) return cost;
 
-		EquipmentUpgradeImprovementModel? improvementModel = GetImprovementModelDependingOnHelper(upgradeData.Improvement, helper);
+		EquipmentUpgradeImprovementModel? improvementModel = GetImprovementModelDependingOnHelperAndDay(upgradeData.Improvement, helper, day);
 
 		if (improvementModel is null) return cost;
 
@@ -37,6 +40,9 @@ public static class EquipmentUpgradeCostExtensions
 
 	public static EquipmentUpgradePlanCostModel CalculateNextUpgradeCost(this IEquipmentData equipment, List<EquipmentUpgradeDataModel> upgradesData, IShipDataMaster? helper, SliderUpgradeLevel sliderLevel)
 		=> CalculateUpgradeCost(equipment, upgradesData, helper, equipment.UpgradeLevel.GetNextLevel(), sliderLevel);
+
+	public static EquipmentUpgradePlanCostModel CalculateNextUpgradeCost(this IEquipmentData equipment, List<EquipmentUpgradeDataModel> upgradesData, IShipDataMaster? helper, SliderUpgradeLevel sliderLevel, DayOfWeek? day)
+		=> CalculateUpgradeCost(equipment, upgradesData, helper, equipment.UpgradeLevel.GetNextLevel(), sliderLevel, day);
 
 	public static EquipmentUpgradePlanCostModel CalculateUpgradeLevelCost(this EquipmentUpgradeImprovementModel improvementModel, UpgradeLevel level, bool useSlider)
 	{
@@ -84,11 +90,11 @@ public static class EquipmentUpgradeCostExtensions
 	/// <param name="improvements"></param>
 	/// <param name="helper"></param>
 	/// <returns></returns>
-	private static EquipmentUpgradeImprovementModel? GetImprovementModelDependingOnHelper(List<EquipmentUpgradeImprovementModel> improvements, IShipDataMaster? helper)
+	private static EquipmentUpgradeImprovementModel? GetImprovementModelDependingOnHelperAndDay(List<EquipmentUpgradeImprovementModel> improvements, IShipDataMaster? helper, DayOfWeek? day)
 	{
 		if (helper is null) return improvements.FirstOrDefault();
 
-		return improvements.FirstOrDefault(imp => imp.Helpers.SelectMany(helpers => helpers.ShipIds).ToList().Contains(helper.ShipID));
+		return improvements.FirstOrDefault(imp => imp.Helpers.Any(helpers => helpers.ShipIds.Contains(helper.ShipID) && (day is not { } dayNotNull || helpers.CanHelpOnDays.Contains(dayNotNull))));
 	}
 
 	/// <summary>
