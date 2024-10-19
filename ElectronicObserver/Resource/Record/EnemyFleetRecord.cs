@@ -169,7 +169,7 @@ public class EnemyFleetRecord : RecordBase
 		/// <summary>
 		/// 現在の状態からインスタンスを生成します。
 		/// </summary>
-		public static EnemyFleetElement CreateFromCurrentState()
+		public static EnemyFleetElement? CreateFromCurrentState()
 		{
 
 			var battle = KCDatabase.Instance.Battle;
@@ -187,9 +187,9 @@ public class EnemyFleetRecord : RecordBase
 				battle.Compass.MapInfoID,
 				battle.IsBaseAirRaid ? -1 : battle.Compass.CellId,
 				battle.Compass.MapInfo.EventDifficulty,
-				battle.FirstBattle.Searching.FormationEnemy,
-				battle.IsEnemyCombined ? initial.EnemyMembers.Take(6).Concat(initial.EnemyMembersEscort).ToArray() : initial.EnemyMembers,
-				battle.IsEnemyCombined ? initial.EnemyLevels.Take(6).Concat(initial.EnemyLevelsEscort).ToArray() : initial.EnemyLevels,
+				(int)battle.FirstBattle.Searching.EnemyFormationType,
+				battle.IsEnemyCombined ? initial.EnemyMembers.Take(6).Concat(initial.EnemyMembersEscort).ToArray() : initial.EnemyMembers.ToArray(),
+				battle.IsEnemyCombined ? initial.EnemyLevels.Take(6).Concat(initial.EnemyLevelsEscort).ToArray() : initial.EnemyLevels.ToArray(),
 				baseExp);
 
 		}
@@ -216,7 +216,7 @@ public class EnemyFleetRecord : RecordBase
 	}
 
 
-	public EnemyFleetElement this[ulong i]
+	public EnemyFleetElement? this[ulong i]
 	{
 		get
 		{

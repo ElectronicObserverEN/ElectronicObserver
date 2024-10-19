@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
 public abstract class DayBattleData : AirBattleData
 {
-	protected PhaseSupport? Support { get; }
+	public PhaseSupport? Support { get; }
 	protected PhaseOpeningAsw? OpeningAsw { get; }
 	protected PhaseOpeningTorpedo? OpeningTorpedo { get; }
 	protected PhaseShelling? Shelling1 { get; }
