@@ -209,7 +209,7 @@ public sealed class KCDatabase : IKCDatabase
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
 		Translation = new DataAndTranslationManager();
-		PoiDbSubmission = new();
+		PoiDbSubmission = new(this);
 
 #if DEBUG
 		// data needed for loading old event battles via local api loader

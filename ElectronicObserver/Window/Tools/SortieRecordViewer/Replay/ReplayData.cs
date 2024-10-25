@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
 
@@ -27,7 +28,7 @@ public class ReplayData
 	public int Fleetnum { get; set; }
 
 	[JsonPropertyName("combined")]
-	public int Combined { get; set; }
+	public FleetType Combined { get; set; }
 	
 	[JsonPropertyName("fleet1")]
 	public List<ReplayShip>? Fleet1 { get; set; }

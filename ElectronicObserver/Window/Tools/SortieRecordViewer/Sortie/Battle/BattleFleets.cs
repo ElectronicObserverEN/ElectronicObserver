@@ -32,7 +32,7 @@ public class BattleFleets(
 	public required int FleetId { get; set; }
 	public required int NodeSupportFleetId { get; set; }
 	public required int BossSupportFleetId { get; set; }
-	public required int CombinedFlag { get; set; }
+	public required FleetType CombinedFlag { get; set; }
 
 	private static int CombinedFleetMainFleetShipCount => 6;
 

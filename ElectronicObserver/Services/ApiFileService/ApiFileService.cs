@@ -318,15 +318,15 @@ public class ApiFileService : ObservableObject
 		await db.SaveChangesAsync();
 	}
 
-	private static bool ShouldIncludeFleet(IFleetData fleet, int combinedFlag, int fleetId,
+	private static bool ShouldIncludeFleet(IFleetData fleet, FleetType combinedFlag, int fleetId,
 		int nodeSupportFleetId, int bossSupportFleetId) =>
 		fleet.ID == fleetId ||
-		fleet.ID == 2 && combinedFlag != 0 ||
+		fleet.ID == 2 && combinedFlag is not FleetType.Single ||
 		fleet.ID == nodeSupportFleetId ||
 		fleet.ID == bossSupportFleetId;
 
 	public static SortieFleetData MakeSortieFleet(IEnumerable<IFleetData?> fleets,
-		IEnumerable<IBaseAirCorpsData> airBases, int combinedFlag, int fleetId, int nodeSupportFleetId,
+		IEnumerable<IBaseAirCorpsData> airBases, FleetType combinedFlag, int fleetId, int nodeSupportFleetId,
 		int bossSupportFleetId, int world) => new()
 	{
 		FleetId = fleetId,
@@ -424,8 +424,8 @@ public class ApiFileService : ObservableObject
 		Name = a.Name,
 		ActionKind = a.ActionKind,
 		AirCorpsId = a.AirCorpsID,
-		BaseDistance = a.Base_Distance,
-		BonusDistance = a.Bonus_Distance,
+		BaseDistance = a.BaseDistance,
+		BonusDistance = a.BonusDistance,
 		MapAreaId = a.MapAreaID,
 		Squadrons = a.Squadrons.Values
 			.Select(MakeSortieAirBaseSquadron)
