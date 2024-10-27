@@ -252,11 +252,11 @@ public class PoiDbBattleSubmissionService(
 			Type = kcDatabase.Fleet.CombinedFlag,
 			Main = fleet.MembersWithoutEscaped
 				!.OfType<IShipData>()
-				.Select(MakeShip)
+				.Select(Extensions.MakeShip)
 				.ToList(),
 			Escort = escortFleet?.MembersWithoutEscaped
 				!.OfType<IShipData>()
-				.Select(MakeShip)
+				.Select(Extensions.MakeShip)
 				.ToList(),
 			Lbac = kcDatabase.BaseAirCorps.Values
 				.Where(a => a.MapAreaID == world)
@@ -287,11 +287,11 @@ public class PoiDbBattleSubmissionService(
 		{
 			Main = fleet.MembersWithoutEscaped
 				!.OfType<IShipData>()
-				.Select(MakeShip)
+				.Select(Extensions.MakeShip)
 				.ToList(),
 			Escort = escortFleet?.MembersWithoutEscaped
 				!.OfType<IShipData>()
-				.Select(MakeShip)
+				.Select(Extensions.MakeShip)
 				.ToList(),
 			Lbac = kcDatabase.BaseAirCorps.Values
 				.Where(a => a.MapAreaID == world)
@@ -325,11 +325,4 @@ public class PoiDbBattleSubmissionService(
 		ApiSquadronId = s.SquadronID,
 		ApiState = s.State,
 	};
-
-	private static JsonNode MakeShip(IShipData ship)
-	{
-		string rawData = ship.RawData.ToString();
-
-		return JsonNode.Parse(rawData)!;
-	}
 }

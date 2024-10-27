@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.KancolleApi.Types.ApiGetMember.Ndock;
+﻿using ElectronicObserver.KancolleApi.Types.ApiGetMember.Material;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.Ndock;
 using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiPort.Port;
@@ -23,11 +24,14 @@ public class ApiPortPortResponse
 	[JsonPropertyName("api_event_object")]
 	public ApiEventObject? ApiEventObject { get; set; }
 
+	[JsonPropertyName("api_friendly_setting")]
+	public ApiFriendlySetting? ApiFriendlySetting { get; set; }
+
 	[JsonPropertyName("api_log")]
 	public List<ApiLog> ApiLog { get; set; } = new();
 
 	[JsonPropertyName("api_material")]
-	public List<ApiMaterial> ApiMaterial { get; set; } = new();
+	public List<ApiGetMemberMaterialResponse> ApiMaterial { get; set; } = new();
 
 	[JsonPropertyName("api_ndock")]
 	public List<ApiGetMemberNdockResponse> ApiNdock { get; set; } = new();
