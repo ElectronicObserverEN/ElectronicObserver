@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,7 +14,6 @@ using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
-using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.Utility;
@@ -153,17 +153,16 @@ public class ApiFileService : ObservableObject
 
 		try
 		{
-			ApiResponse<ApiPortPortResponse>? response = JsonSerializer
-				.Deserialize<ApiResponse<ApiPortPortResponse>>(responseBody);
+			JsonNode? portResponse = JsonNode.Parse(responseBody);
 
-			if (response?.ApiData is not null)
+			if (portResponse?["api_data"] is not null)
 			{
-				response.ApiData.ApiShip = new();
-				response.ApiData.ApiDeckPort = new();
-				response.ApiData.ApiLog = new();
-				response.ApiData.ApiNdock = new();
+				portResponse["api_data"]!["api_ship"] = new JsonArray();
+				portResponse["api_data"]!["api_deck_port"] = new JsonArray();
+				portResponse["api_data"]!["api_log"] = new JsonArray();
+				portResponse["api_data"]!["api_ndock"] = new JsonArray();
 
-				responseBody = JsonSerializer.Serialize(response);
+				responseBody = JsonSerializer.Serialize(portResponse);
 			}
 			else
 			{
