@@ -195,7 +195,7 @@ public class PoiDbSubmissionService
 		APIObserver.Instance.ApiReqMap_Start.ResponseReceived -= friendFleetSubmissionService.ApiReqMap_Start_ResponseReceived;
 
 		APIObserver.Instance.ApiReqMap_Next.ResponseReceived -= friendFleetSubmissionService.ApiReqMap_NextOnResponseReceived;
-		
+
 		APIObserver.Instance.ApiReqSortie_Battle.ResponseReceived -= friendFleetSubmissionService.ProcessFirstBattle;
 		APIObserver.Instance.ApiReqBattleMidnight_SpMidnight.ResponseReceived -= friendFleetSubmissionService.ProcessFirstBattle;
 		APIObserver.Instance.ApiReqSortie_AirBattle.ResponseReceived -= friendFleetSubmissionService.ProcessFirstBattle;
@@ -212,7 +212,7 @@ public class PoiDbSubmissionService
 		APIObserver.Instance.ApiReqCombinedBattle_EachBattle.ResponseReceived -= friendFleetSubmissionService.ProcessFirstBattle;
 		APIObserver.Instance.ApiReqCombinedBattle_EachBattleWater.ResponseReceived -= friendFleetSubmissionService.ProcessFirstBattle;
 		APIObserver.Instance.ApiReqCombinedBattle_LdShooting.ResponseReceived -= friendFleetSubmissionService.ProcessFirstBattle;
-		
+
 		APIObserver.Instance.ApiReqBattleMidnight_Battle.ResponseReceived -= friendFleetSubmissionService.ProcessSecondBattle;
 		APIObserver.Instance.ApiReqCombinedBattle_MidnightBattle.ResponseReceived -= friendFleetSubmissionService.ProcessSecondBattle;
 		APIObserver.Instance.ApiReqCombinedBattle_EcMidnightBattle.ResponseReceived -= friendFleetSubmissionService.ProcessSecondBattle;
