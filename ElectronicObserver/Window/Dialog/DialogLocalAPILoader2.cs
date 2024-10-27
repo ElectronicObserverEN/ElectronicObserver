@@ -29,6 +29,7 @@ public partial class DialogLocalAPILoader2 : Form
 
 	private SortieRecord? SortieRecord { get; }
 	private List<ApiFile> ApiFilesBeforeSortie { get; set; } = [];
+	private List<ApiFile> ApiFilesAfterSortie { get; set; } = [];
 
 	private string CurrentPath { get; set; }
 
@@ -196,6 +197,7 @@ public partial class DialogLocalAPILoader2 : Form
 		List<DataGridViewRow> rows = [];
 
 		int firstSortieApiFileId = sortieRecord.ApiFiles.MinBy(f => f.Id)!.Id;
+		int lastSortieApiFileId = sortieRecord.ApiFiles.MaxBy(f => f.Id)!.Id;
 
 		ElectronicObserverContext db = new();
 		db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -212,7 +214,24 @@ public partial class DialogLocalAPILoader2 : Form
 			.Where(f => f.Id >= lastPortFileIdBeforeSortieId)
 			.ToList();
 
-		foreach (string file in ApiFilesBeforeSortie.Concat(sortieRecord.ApiFiles).Select(f => $"{f.Id} {f.ApiFileType} {f.Name}"))
+		int portFileIdAfterSortieId = db.ApiFiles
+			.Where(f => f.Id > firstSortieApiFileId)
+			.Where(f => f.Name == "api_port/port")
+			.Where(f => f.ApiFileType == ApiFileType.Response)
+			.OrderBy(f => f.Id)
+			.First()
+			.Id;
+
+		ApiFilesAfterSortie = db.ApiFiles
+			.Where(f => f.Id > lastSortieApiFileId)
+			.Where(f => f.Id <= portFileIdAfterSortieId)
+			.ToList();
+
+		IEnumerable<ApiFile> apiFiles = ApiFilesBeforeSortie
+			.Concat(sortieRecord.ApiFiles)
+			.Concat(ApiFilesAfterSortie);
+
+		foreach (string file in apiFiles.Select(f => $"{f.Id} {f.ApiFileType} {f.Name}"))
 		{
 			DataGridViewRow row = new();
 			row.CreateCells(APIView);
@@ -295,9 +314,12 @@ public partial class DialogLocalAPILoader2 : Form
 
 		if (!APIObserver.Instance.APIList.ContainsKey(apiName)) return;
 
-		ApiFile apiFile = ApiFilesBeforeSortie.Concat(SortieRecord.ApiFiles).First(f => f.Id == recordId);
+		ApiFile apiFile = ApiFilesBeforeSortie
+			.Concat(SortieRecord.ApiFiles)
+			.Concat(ApiFilesAfterSortie)
+			.First(f => f.Id == recordId);
 
-		if (apiFile.Name is "api_port/port")
+		if (apiFile is { Name: "api_port/port", ApiFileType: ApiFileType.Response })
 		{
 			string? savedPortResponseJson = LoadApiResponse("api_port/port");
 
