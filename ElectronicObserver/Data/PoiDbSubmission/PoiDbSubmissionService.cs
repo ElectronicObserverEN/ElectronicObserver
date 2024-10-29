@@ -4,6 +4,7 @@ using ElectronicObserver.Data.PoiDbSubmission.PoiDbAirDefenseSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbFriendFleetSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbQuestSubmission;
+using ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
 
@@ -18,6 +19,7 @@ public class PoiDbSubmissionService
 	private PoiDbBattleSubmissionService? BattleSubmissionService { get; set; }
 	private PoiDbFriendFleetSubmissionService? FriendFleetSubmissionService { get; set; }
 	private PoiDbAirDefenseSubmissionService? AirDefenseSubmissionService { get; set; }
+	private PoiDbRouteSubmissionService? RouteSubmissionService { get; set; }
 
 	public PoiDbSubmissionService(KCDatabase kcDatabase)
 	{
@@ -49,6 +51,7 @@ public class PoiDbSubmissionService
 		BattleSubmissionService ??= MakeBattleSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
 		FriendFleetSubmissionService ??= MakeFriendFleetSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
 		AirDefenseSubmissionService ??= MakeAirDefenseSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
+		RouteSubmissionService ??= MakeRouteSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
 	}
 
 	private void UnsubscribeFromApis()
@@ -75,6 +78,12 @@ public class PoiDbSubmissionService
 		{
 			UnsubscribeFromAirDefenseApis(AirDefenseSubmissionService);
 			AirDefenseSubmissionService = null;
+		}
+
+		if (RouteSubmissionService is not null)
+		{
+			UnsubscribeFromRouteApis(RouteSubmissionService);
+			RouteSubmissionService = null;
 		}
 	}
 
@@ -246,6 +255,33 @@ public class PoiDbSubmissionService
 		APIObserver.Instance.ApiReqMap_Start.ResponseReceived -= airDefenseSubmissionService.ApiReqMap_Start_ResponseReceived;
 
 		APIObserver.Instance.ApiReqMap_Next.ResponseReceived -= airDefenseSubmissionService.ApiReqMap_NextOnResponseReceived;
+	}
+
+	private static PoiDbRouteSubmissionService MakeRouteSubmissionService(KCDatabase kcDatabase,
+		string version, Func<HttpClient> makeHttpClient, Action<Exception> logError)
+	{
+		PoiDbRouteSubmissionService routeSubmissionService = new(kcDatabase, version, makeHttpClient, logError);
+
+		APIObserver.Instance.ApiGetMember_MapInfo.ResponseReceived += routeSubmissionService.ApiGetMember_MapInfo_ResponseReceived;
+
+		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += routeSubmissionService.ApiReqMap_Start_ResponseReceived;
+
+		APIObserver.Instance.ApiReqMap_Next.ResponseReceived += routeSubmissionService.ApiReqMap_NextOnResponseReceived;
+
+		APIObserver.Instance.ApiPort_Port.ResponseReceived += routeSubmissionService.ApiPort_Port_ResponseReceived;
+
+		return routeSubmissionService;
+	}
+
+	private static void UnsubscribeFromRouteApis(PoiDbRouteSubmissionService routeSubmissionService)
+	{
+		APIObserver.Instance.ApiGetMember_MapInfo.ResponseReceived -= routeSubmissionService.ApiGetMember_MapInfo_ResponseReceived;
+
+		APIObserver.Instance.ApiReqMap_Start.ResponseReceived -= routeSubmissionService.ApiReqMap_Start_ResponseReceived;
+
+		APIObserver.Instance.ApiReqMap_Next.ResponseReceived -= routeSubmissionService.ApiReqMap_NextOnResponseReceived;
+
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= routeSubmissionService.ApiPort_Port_ResponseReceived;
 	}
 
 	private static HttpClient MakeHttpClient() => new()

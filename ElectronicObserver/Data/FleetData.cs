@@ -381,12 +381,14 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 		}
 	}
 
+	public double GetSearchingAbility() => GetSearchingAbility(1);
+
 	/// <summary>
 	/// 現在の設定に応じて、索敵能力を取得します。
 	/// </summary>
-	public double GetSearchingAbility()
+	public double GetSearchingAbility(int branchWeight)
 	{
-		return Calculator.GetSearchingAbility_New33(this, 1);
+		return Calculator.GetSearchingAbility_New33(this, branchWeight);
 	}
 
 	/// <summary>

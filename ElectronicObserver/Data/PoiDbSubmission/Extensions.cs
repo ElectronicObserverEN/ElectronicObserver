@@ -11,4 +11,11 @@ public static class Extensions
 
 		return JsonNode.Parse(rawData)!;
 	}
+
+	public static JsonNode MakeEquipment(this IEquipmentData equipment)
+	{
+		string rawData = equipment.RawData.ToString();
+
+		return JsonNode.Parse(rawData)!;
+	}
 }
