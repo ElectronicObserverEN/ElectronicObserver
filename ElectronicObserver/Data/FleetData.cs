@@ -26,7 +26,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// </summary>
 	public string Name { get; internal set; }
 
-	public FleetType FleetType => (FleetType)KCDatabase.Instance.Fleet.CombinedFlag;
+	public FleetType FleetType => KCDatabase.Instance.Fleet.CombinedFlag;
 
 	/// <summary>
 	/// 遠征状態
