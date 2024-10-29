@@ -36,7 +36,7 @@ public static class GameDataExtensions
 		{ } => new FleetDataMock
 		{
 			Name = fleet.Name,
-			FleetType = (FleetType)combinedFlag,
+			FleetType = combinedFlag,
 			MembersInstance = new ReadOnlyCollection<IShipData?>(fleet.Ships.Select(MakeShip).ToList()),
 		},
 		_ => null,
