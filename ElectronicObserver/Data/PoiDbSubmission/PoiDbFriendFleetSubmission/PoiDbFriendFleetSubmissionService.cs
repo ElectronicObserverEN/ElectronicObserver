@@ -73,7 +73,6 @@ public class PoiDbFriendFleetSubmissionService(
 			.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
 		ProcessFriendFleet(json);
-		return;
 
 		static bool RelevantKey(string key) => key is
 			"api_ship_ke" or
