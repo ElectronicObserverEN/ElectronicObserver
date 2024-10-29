@@ -107,7 +107,7 @@ public class PoiDbQuestSubmissionService(
 				.Where(i => !OldQuestIds.Contains(i))
 				.ToList();
 
-			if (!newlyUnlockedQuestIds.Any())
+			if (newlyUnlockedQuestIds.Count is 0)
 			{
 				ClearState();
 				return;
