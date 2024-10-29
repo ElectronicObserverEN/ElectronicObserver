@@ -12,7 +12,12 @@ namespace ElectronicObserver.Data.PoiDbSubmission;
 
 public class PoiDbSubmissionService
 {
-	private static string Version => $"七四式EN-{SoftwareInformation.VersionEnglish}";
+	private static string Version =>
+#if DEBUG
+		$"七四式EN-DEBUG-{SoftwareInformation.VersionEnglish}";
+#else
+		$"七四式EN-{SoftwareInformation.VersionEnglish}";
+#endif
 
 	private KCDatabase KcDatabase { get; }
 	private PoiDbQuestSubmissionService? QuestSubmissionService { get; set; }
