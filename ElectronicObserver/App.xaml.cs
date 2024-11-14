@@ -28,6 +28,7 @@ using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.DataSubmission;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.Notification;
@@ -261,6 +262,7 @@ public partial class App
 			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
 			.AddSingleton<ConfigurationJsonTranslationViewModel>()
 			.AddSingleton<ConfigurationShipTrainingTranslationViewModel>()
+			.AddSingleton<ConfigurationDataSubmissionTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

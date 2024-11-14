@@ -1894,7 +1894,8 @@ public sealed class Configuration
 		[DataMember]
 		public ConfigFleetImageGenerator FleetImageGenerator { get; private set; }
 
-
+		[DataMember]
+		public ConfigDataSubmission DataSubmission { get; private set; }
 
 		public class ConfigWhitecap : ConfigPartBase
 		{
@@ -1982,6 +1983,7 @@ public sealed class Configuration
 
 			BGMPlayer = new ConfigBGMPlayer();
 			FleetImageGenerator = new ConfigFleetImageGenerator();
+			DataSubmission = new ConfigDataSubmission();
 			Whitecap = new ConfigWhitecap();
 
 			VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);

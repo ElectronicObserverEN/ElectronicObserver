@@ -37,10 +37,7 @@ public class PoiDbSubmissionService
 
 	private void OnConfigurationChanged()
 	{
-		// todo: config
-		bool poiSubmissionEnabled = true;
-
-		if (poiSubmissionEnabled)
+		if (Configuration.Config.DataSubmission.SendDataToPoiPreview)
 		{
 			SubscribeToApis();
 		}

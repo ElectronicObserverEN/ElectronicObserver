@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +11,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.DataSubmission;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.Notification;
@@ -34,6 +34,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	public ConfigurationSubWindowViewModel SubWindow { get; }
 	public ConfigurationNotificationViewModel Notification { get; }
 	public ConfigurationBGMViewModel BGM { get; }
+	public ConfigurationDataSubmissionViewModel DataSubmission { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -46,6 +47,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		yield return SubWindow;
 		yield return Notification;
 		yield return BGM;
+		yield return DataSubmission;
 	}
 
 	private Timer Timer { get; } = new();
@@ -68,6 +70,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		SubWindow = new(Configuration.Config);
 		Notification = new(Configuration.Config);
 		BGM = new(Configuration.Config.BGMPlayer);
+		DataSubmission = new(Configuration.Config.DataSubmission);
 
 		ShownTime = DateTime.Now;
 		PlayTimeCache = Configuration.Config.Log.PlayTime;
@@ -105,7 +108,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 			string errorMessage = string.Join("\n", errors);
 
 			MessageBox.Show(App.Current!.MainWindow!, errorMessage, caption, MessageBoxButton.OK, MessageBoxImage.Error);
-			
+
 			return false;
 		}
 
