@@ -133,6 +133,7 @@ public class CefSharpViewModel : BrowserViewModel
 		}
 
 		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
+		CefSharpSettings.RuntimeStyle = CefRuntimeStyle.Chrome;
 		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
 
 		CustomRequestHandler requestHandler = new(Configuration);

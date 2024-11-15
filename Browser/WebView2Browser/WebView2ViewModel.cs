@@ -221,8 +221,10 @@ public class WebView2ViewModel : BrowserViewModel
 
 		var corewebviewoptions = new CoreWebView2EnvironmentOptions
 		{
-			AdditionalBrowserArguments = string.Join(" ", browserArgs)
+			AdditionalBrowserArguments = string.Join(" ", browserArgs),
+			AreBrowserExtensionsEnabled = true,
 		};
+
 		var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder: BrowserCachePath, options: corewebviewoptions);
 
 		Environment = env;

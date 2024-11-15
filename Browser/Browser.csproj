@@ -39,7 +39,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="CefSharp.WinForms.NETCore" Version="124.3.50" />
+		<PackageReference Include="CefSharp.WinForms.NETCore" Version="130.1.90" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
@@ -94,5 +94,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="124.3.5" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="CefSharpBrowser\Extensions\" />
 	</ItemGroup>
 </Project>
