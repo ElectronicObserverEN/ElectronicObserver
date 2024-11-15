@@ -78,6 +78,9 @@ public class FormBrowserTranslationViewModel
 	public string Forward => Resources.Forward;
 	public string DmmPoints => Resources.DmmPoints;
 	public string AkashiList => Resources.AkashiList;
+	public string ExtensionManager => Resources.ExtensionManager;
+	public string AddExtension => Resources.AddExtension;
+	public string RemoveExtension => Resources.RemoveExtension;
 
 	public string WebView2NotFound => Resources.WebView2NotFound;
 	public string WebView2DownloadComplete => Resources.WebView2DownloadComplete;

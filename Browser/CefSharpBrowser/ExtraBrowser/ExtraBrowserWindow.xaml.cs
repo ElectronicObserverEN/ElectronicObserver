@@ -45,6 +45,12 @@ public partial class ExtraBrowserWindow
 		Browser.Load(Address.Text);
 	}
 
+	private void ExtensionButtonClick(object sender, RoutedEventArgs e)
+	{
+		Address.Text = "chrome://extensions";
+		Browser.Load(Address.Text);
+	}
+
 	private void ShowDevToolsMenuItemClick(object sender, RoutedEventArgs e)
 	{
 		Browser.ShowDevTools();
