@@ -21,7 +21,7 @@ public class CustomRequestHandler : RequestHandler
 	{
 		BrowserConfiguration = browserConfiguration;
 	}
-	
+
 	/// <summary>
 	/// 戻る/進む操作をブロックします。
 	/// </summary>

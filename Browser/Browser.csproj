@@ -95,7 +95,4 @@
 	<ItemGroup>
 	  <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="124.3.5" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="CefSharpBrowser\Extensions\" />
-	</ItemGroup>
 </Project>
