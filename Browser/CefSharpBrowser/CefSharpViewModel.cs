@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms.Integration;
@@ -110,6 +111,10 @@ public class CefSharpViewModel : BrowserViewModel
 
 		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 		settings.CefCommandLineArgs.Add("enable-features", "EnableDrDc");
+
+		// This should work, but it doesn't, game seems to load main.js, then user settings, then hungs up with no error in console
+		settings.CefCommandLineArgs.Add("--unsafely-treat-insecure-origin-as-secure", "http://dmm.com,http://osapi.dmm.com,http://203.104.209.23,http://203.104.209.7,http://203.104.209.71,http://203.104.209.87,http://125.6.184.215,http://203.104.209.183,http://203.104.209.150,http://203.104.209.134,http://203.104.209.167,http://203.104.209.199,http://125.6.189.7,http://125.6.189.39,http://125.6.189.71,http://125.6.189.103,http://125.6.189.135,http://125.6.189.167,http://125.6.189.215,http://125.6.189.247,http://203.104.209.23,http://203.104.209.39,http://203.104.209.55,http://203.104.209.102");
+		
 		// prevent CEF from taking over media keys
 		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
 		{
