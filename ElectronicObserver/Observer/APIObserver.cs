@@ -544,13 +544,12 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3368" />
 	/// </summary>
 	public kcsapi.api_req_combined_battle.goback_port ApiReqCombinedBattle_GoBackPort { get; } = new();
-
+	
 	/// <summary>
-	/// Ranking list before 2016/08/01 (?) <br />
-	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1252" />
+	/// Ranking list <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1265" />
 	/// </summary>
-	[Obsolete]
-	public kcsapi.api_req_ranking.getlist ApiReqRanking_GetList { get; } = new();
+	public kcsapi.api_req_ranking.mxltvkpyuklh ApiReqRanking_Mxltvkpyuklh { get; } = new();
 
 	/// <summary>
 	/// FCF single fleet <br />
@@ -672,7 +671,7 @@ public sealed class APIObserver
 			ApiReqKousyou_RemodelSlot,
 			ApiGetMember_Material,
 			ApiReqMission_Result,
-			ApiReqRanking_GetList,
+			ApiReqRanking_Mxltvkpyuklh,
 			ApiReqSortie_AirBattle,
 			ApiGetMember_ShipDeck,
 			ApiReqKaisou_Marriage,
@@ -1059,12 +1058,6 @@ public sealed class APIObserver
 			{
 				ResponseReceived(shortpath, json);
 				APIList.OnResponseReceived(shortpath, json);
-			}
-			else if (shortpath.Contains("api_req_ranking"))
-			{
-				shortpath = "api_req_ranking/getlist";
-				ResponseReceived(shortpath, json.api_data);
-				APIList.OnResponseReceived(shortpath, json.api_data);
 			}
 			else if (json.IsDefined("api_data"))
 			{

@@ -5,7 +5,7 @@ using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_ranking;
 
-public class getlist : APIBase
+public class mxltvkpyuklh : APIBase
 {
 	public override void OnResponseReceived(dynamic data)
 	{
@@ -18,20 +18,23 @@ public class getlist : APIBase
 		try
 		{
 			string rankData = regex.Match(data.ToString()).Value;
-			if (string.IsNullOrEmpty(rankData)) return;
-			rankData = rankData.Split(',')[0].Split(':')[1].Replace('"', '\0');
-			db.Admiral.Senka = int.Parse(rankData);
+
+			if (!string.IsNullOrEmpty(rankData))
+			{
+				rankData = rankData.Split(',')[0].Split(':')[1].Replace('"', '\0');
+				db.Admiral.Senka = int.Parse(rankData);
+			}
 		}
 		catch (Exception ex)
-		{   //ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
-
+		{   
+			//ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
 			Utility.Logger.Add(3, LoggerRes.FailedSaveAPI + ex.Message);
 		}
 
 		base.OnResponseReceived((object)data);
 	}
 
-	public override string APIName => "api_req_ranking/getlist";
+	public override string APIName => "api_req_ranking/mxltvkpyuklh";
 
 	public override bool IsResponseSupported => true;
 }
