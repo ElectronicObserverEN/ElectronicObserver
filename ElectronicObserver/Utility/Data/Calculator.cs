@@ -2035,20 +2035,23 @@ public static class Calculator
 			expbase = 500.0 + Math.Sqrt(expbase - 500.0);
 		}
 
-		expbase = (int)expbase;
+		return GetExerciseExp(fleet, (int)expbase);
+	}
 
+	public static ExerciseExp GetExerciseExp(IFleetData fleet, int expbase)
+	{
 		ExerciseExp exp = new()
 		{
-			BaseA = (int)expbase,
-			BaseS = (int)(expbase * 1.2),
+			BaseA = expbase,
+			BaseS = expbase * 1.2,
 		};
 
 		if (TrainingCruiserModifier(fleet) is (double surfaceModifier, double submarineModifier))
 		{
-			exp.TrainingCruiserSurfaceA = (int)(expbase * surfaceModifier);
-			exp.TrainingCruiserSurfaceS = (int)((int)(expbase * 1.2) * surfaceModifier);
-			exp.TrainingCruiserSubmarineA = (int)(expbase * submarineModifier);
-			exp.TrainingCruiserSubmarineS = (int)((int)(expbase * 1.2) * submarineModifier);
+			exp.TrainingCruiserSurfaceA = expbase * surfaceModifier;
+			exp.TrainingCruiserSurfaceS = (int)(expbase * 1.2) * surfaceModifier;
+			exp.TrainingCruiserSubmarineA = expbase * submarineModifier;
+			exp.TrainingCruiserSubmarineS = (int)(expbase * 1.2) * submarineModifier;
 		}
 
 		return exp;
@@ -2107,7 +2110,7 @@ public static class Calculator
 
 			case ShipId.Asahi when subCT.Count is 0:
 			{
-				double bonus = KatoriClassModifier(true, 1, flagship.Level);
+				double bonus = KatoriClassModifier(true, 0, flagship.Level);
 
 				return (bonus * asahiSurfaceModifier, bonus * asahiSubmarineModifier);
 			}

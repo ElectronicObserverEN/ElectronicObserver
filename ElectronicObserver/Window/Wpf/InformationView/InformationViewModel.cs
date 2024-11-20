@@ -173,12 +173,12 @@ public class InformationViewModel : AnchorableViewModel
 
 		ExerciseExp exp = Calculator.GetExerciseExp(fleet, ship1lv, ship2lv);
 
-		sb.Append($"{GeneralRes.BaseExp}: {exp.BaseA} / {InformationResources.SRank}: {exp.BaseS}");
+		sb.Append($"{GeneralRes.BaseExp}: {(int)exp.BaseA} / {InformationResources.SRank}: {(int)exp.BaseS}");
 
-		if (exp.TrainingCruiserSurfaceA is not null)
+		if (exp.TrainingCruiserSubmarineA is not null && exp.TrainingCruiserSubmarineS is not null)
 		{
 			sb.AppendLine();
-			sb.AppendFormat(InformationResources.CTBonus, exp.TrainingCruiserSurfaceA, exp.TrainingCruiserSurfaceS);
+			sb.AppendFormat(InformationResources.CTBonus, (int)exp.TrainingCruiserSubmarineA, (int)exp.TrainingCruiserSubmarineS);
 		}
 
 		return sb.ToString();
