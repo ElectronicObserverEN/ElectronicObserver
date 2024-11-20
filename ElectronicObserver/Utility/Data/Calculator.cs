@@ -2054,6 +2054,9 @@ public static class Calculator
 		return exp;
 	}
 
+	/// <summary>
+	/// <see href="https://docs.google.com/document/d/1iiQpAyVQvnhVG-j-zx-Am41RPiZRISaL6FdHTKhYZaU"/>
+	/// </summary>
 	private static (double? SurfaceModifier, double? SubmarineModifier) TrainingCruiserModifier(IFleetData fleet)
 	{
 		if (!fleet.MembersInstance.Any(s => s?.MasterShip.ShipType is ShipTypes.TrainingCruiser))
