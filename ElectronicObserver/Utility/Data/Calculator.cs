@@ -2058,7 +2058,7 @@ public static class Calculator
 	}
 
 	/// <summary>
-	/// <see href="https://docs.google.com/document/d/1iiQpAyVQvnhVG-j-zx-Am41RPiZRISaL6FdHTKhYZaU"/>
+	/// <see href="https://docs.google.com/document/d/1iiQpAyVQvnhVG-j-zx-Am41RPiZRISaL6FdHTKhYZaU" />
 	/// </summary>
 	private static (double? SurfaceModifier, double? SubmarineModifier) TrainingCruiserModifier(IFleetData fleet)
 	{

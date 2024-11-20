@@ -6,6 +6,9 @@ using Xunit;
 
 namespace ElectronicObserverCoreTests;
 
+/// <summary>
+/// Tests without display name are from the picture in <see href="https://docs.google.com/document/d/1iiQpAyVQvnhVG-j-zx-Am41RPiZRISaL6FdHTKhYZaU" />
+/// </summary>
 [Collection(DatabaseCollection.Name)]
 public class ExerciseExpTests(DatabaseFixture db)
 {
