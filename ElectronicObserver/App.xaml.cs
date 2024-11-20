@@ -72,6 +72,7 @@ using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Bonodere;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.RankingLeaderboard;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -325,7 +326,7 @@ public partial class App
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<SortieRecordMigrationService>()
-			.AddSingleton<BonodereSubmissionManager>()
+			.AddSingleton<RankingLeaderboardViewModel>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
@@ -340,7 +341,7 @@ public partial class App
 		Ioc.Default.ConfigureServices(services);
 
 		Ioc.Default.GetRequiredService<DataAndTranslationIssueReporter>();
-		Ioc.Default.GetRequiredService<BonodereSubmissionManager>();
+		Ioc.Default.GetRequiredService<RankingLeaderboardViewModel>();
 	}
 
 	private static Tracker JotTracker()

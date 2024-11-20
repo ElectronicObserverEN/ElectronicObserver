@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Window.Wpf.Bonodere;
+﻿namespace ElectronicObserver.Window.Wpf.RankingLeaderboard;
 
 public record RankingEntryModel
 {
