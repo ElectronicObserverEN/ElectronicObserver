@@ -2088,8 +2088,8 @@ public static class Calculator
 			return (katoriClassModifier, katoriClassModifier);
 		}
 
-		double asahiSurfaceModifier = 0.6;
-		double asahiSubmarineModifier = 1.3;
+		const double asahiSurfaceModifier = 0.6;
+		const double asahiSubmarineModifier = 1.3;
 
 		switch (flagship.MasterShip)
 		{
