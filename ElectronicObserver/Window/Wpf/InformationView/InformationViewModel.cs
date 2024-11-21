@@ -175,10 +175,29 @@ public class InformationViewModel : AnchorableViewModel
 
 		sb.Append($"{GeneralRes.BaseExp}: {(int)exp.BaseA} / {InformationResources.SRank}: {(int)exp.BaseS}");
 
-		if (exp.TrainingCruiserSubmarineA is not null && exp.TrainingCruiserSubmarineS is not null)
+		if (exp.TrainingCruiserSurfaceA is not null && exp.TrainingCruiserSurfaceS is not null)
 		{
-			sb.AppendLine();
-			sb.AppendFormat(InformationResources.CTBonus, (int)exp.TrainingCruiserSubmarineA, (int)exp.TrainingCruiserSubmarineS);
+			int trainingCruiserSurfaceA = (int)exp.TrainingCruiserSurfaceA;
+			int trainingCruiserSurfaceS = (int)exp.TrainingCruiserSurfaceS;
+
+			if (exp.TrainingCruiserSubmarineA is not null && exp.TrainingCruiserSubmarineS is not null)
+			{
+				int trainingCruiserSubmarineA = (int)exp.TrainingCruiserSubmarineA;
+				int trainingCruiserSubmarineS = (int)exp.TrainingCruiserSubmarineS;
+
+				sb.AppendLine();
+
+				if (trainingCruiserSurfaceA == trainingCruiserSubmarineA)
+				{
+					sb.AppendFormat(InformationResources.CTBonus, trainingCruiserSurfaceA, trainingCruiserSurfaceS);
+				}
+				else
+				{
+					sb.AppendFormat(InformationResources.CtBonusSurface, trainingCruiserSurfaceA, trainingCruiserSurfaceS);
+					sb.AppendLine();
+					sb.AppendFormat(InformationResources.CtBonusSubmarine, trainingCruiserSubmarineA, trainingCruiserSubmarineS);
+				}
+			}
 		}
 
 		return sb.ToString();
