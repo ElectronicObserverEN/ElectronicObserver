@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Control.Paging;
 
 namespace ElectronicObserver.Window.Wpf.RankingLeaderboard;
 
@@ -22,19 +25,54 @@ public partial class RankingLeaderboardViewModel : UserControlViewModelBase
 	[ObservableProperty]
 	private List<RankingEntryModel> _rankingData;
 
+	[ObservableProperty] 
+	private RankingCutoffKind _currentRankingCutoffKind;
+
+	private PagingControlViewModel PagingViewModel { get; }
+
 	public RankingLeaderboardViewModel()
 	{
 		APIObserver.Instance.ApiReqRanking_Mxltvkpyuklh.ResponseReceived += HandleData;
 
 		TimeChangeService timeChangeService = Ioc.Default.GetRequiredService<TimeChangeService>();
-		timeChangeService.RankingLeaderboardUpdate += OnRankingCutoffChanged;
+		timeChangeService.HourChanged += () => CurrentRankingCutoffKind = GetRankingCutoffKind();
 
 		RankingData = NewLeaderboard();
+		CurrentRankingCutoffKind = GetRankingCutoffKind();
+
+		PropertyChanged += OnRankingCutoffChanged;
+
+		PagingViewModel = new();
+		Update();
 	}
 
-	private void OnRankingCutoffChanged()
+	private void Update()
 	{
+		PagingViewModel.Items = RankingData.Cast<object>().ToList();
+	}
+
+	private void OnRankingCutoffChanged(object? sender, PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is not nameof(CurrentRankingCutoffKind)) return;
+
 		RankingData = NewLeaderboard();
+		Update();
+	}
+
+	private RankingCutoffKind GetRankingCutoffKind()
+	{
+		DateTime time = DateTime.Now;
+
+		if ((time.Day == DateTime.DaysInMonth(time.Year, time.Month) && time.Hour > 22) || (time.Day is 1 && time.Hour < 3))
+		{
+			return RankingCutoffKind.NewMonth;
+		}
+
+		return time.TimeOfDay switch
+		{
+			{ Hours: >= 15 or < 3 } => RankingCutoffKind.MidDay,
+			_ => RankingCutoffKind.NewDay,
+		};
 	}
 
 	private List<RankingEntryModel> NewLeaderboard()
@@ -55,7 +93,8 @@ public partial class RankingLeaderboardViewModel : UserControlViewModelBase
 	{
 		try
 		{
-			ApiReqRankingMxltvkpyuklhResponse parsedData = JsonSerializer.Deserialize<ApiReqRankingMxltvkpyuklhResponse>(data.ToString());
+			ApiReqRankingMxltvkpyuklhResponse parsedData =
+				JsonSerializer.Deserialize<ApiReqRankingMxltvkpyuklhResponse>(data.ToString());
 
 			// Ignore if page is outside T500
 			if (parsedData.ApiDispPage > 50) return;
@@ -73,6 +112,10 @@ public partial class RankingLeaderboardViewModel : UserControlViewModelBase
 		catch (Exception ex)
 		{
 			// TODO
+		}
+		finally
+		{
+			Update();
 		}
 	}
 

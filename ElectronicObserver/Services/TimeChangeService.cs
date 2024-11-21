@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ElectronicObserver.Data;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Services;
@@ -9,46 +8,26 @@ namespace ElectronicObserver.Services;
 /// <summary>
 /// Service that triggers events on time change (day changed, ...)
 /// </summary>
-public class TimeChangeService : ObservableObject, IDisposable
+public class TimeChangeService : ObservableObject
 {
 	public DayOfWeek CurrentDayOfWeekJST { get; private set; }
-	public RankingCutoffKind RankingLeaderboardCutoffKind { get; private set; }
+	private int CurrentHour { get; set; }
 
 	public event Action DayChanged = delegate { };
-	public event Action RankingLeaderboardUpdate = delegate { };
-
-	private Timer Timer { get; }
+	public event Action HourChanged = delegate { };
 
 	public TimeChangeService()
 	{
 		PropertyChanged += TimeChangeService_PropertyChanged;
 
-		OnTimer(null);
-
-		TimeSpan now = DateTime.Now.TimeOfDay;
-		TimeSpan nextHour = new TimeSpan(now.Hours + 1, 0, 0);
-
-		TimeSpan timeBeforeNextHour = nextHour - now;
-		Timer = new(OnTimer, null, (int)timeBeforeNextHour.TotalMilliseconds, 60 * 60 * 1000);
+		SystemEvents.UpdateTimerTick += OnTick;
 	}
 
-	private void OnTimer(object? sender)
+	private void OnTick()
 	{
 		DateTime time = DateTimeHelper.GetJapanStandardTimeNow();
 		CurrentDayOfWeekJST = time.DayOfWeek;
-
-		if ((time.Day == DateTime.DaysInMonth(time.Year, time.Month) && time.Hour > 22) || (time.Day is 1 && time.Hour < 3))
-		{
-			RankingLeaderboardCutoffKind = RankingCutoffKind.NewMonth;
-		}
-		else
-		{
-			RankingLeaderboardCutoffKind = time.TimeOfDay switch
-			{
-				{ Hours: >= 15 or < 3 } => RankingCutoffKind.MidDay,
-				_ => RankingCutoffKind.NewDay,
-			};
-		}
+		CurrentHour = time.Hour;
 	}
 
 	private void TimeChangeService_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -58,15 +37,9 @@ public class TimeChangeService : ObservableObject, IDisposable
 			DayChanged();
 		}
 
-		if (e.PropertyName == nameof(RankingLeaderboardCutoffKind))
+		if (e.PropertyName == nameof(CurrentHour))
 		{
-			RankingLeaderboardUpdate();
+			HourChanged();
 		}
-	}
-
-	/// <inheritdoc />
-	public void Dispose()
-	{
-		Timer.Dispose();
 	}
 }

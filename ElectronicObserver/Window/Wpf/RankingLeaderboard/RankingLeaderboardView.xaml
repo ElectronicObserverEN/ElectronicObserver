@@ -7,6 +7,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.RankingLeaderboard"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:paging="clr-namespace:ElectronicObserver.Window.Control.Paging"
 	d:DataContext="{d:DesignInstance Type=local:RankingLeaderboardViewModel}"
 	d:DesignHeight="250"
 	d:DesignWidth="130"
@@ -17,6 +18,7 @@
 	mc:Ignorable="d"
 	>
 	<Grid>
+		<paging:PagingControlView ViewModel="{Binding}" />
 		<DataGrid ItemsSource="{Binding RankingData}" />
 	</Grid>
 </common:UserControlBase>

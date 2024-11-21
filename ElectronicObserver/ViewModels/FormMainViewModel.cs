@@ -1024,6 +1024,7 @@ public partial class FormMainViewModel : ObservableObject
 			await LoadAPIResponse("api_start2/getData");
 			await LoadAPIResponse("api_get_member/require_info");
 			await LoadAPIResponse("api_port/port");
+			await LoadAPIResponse("api_req_member/get_practice_enemyinfo"); 
 			await LoadAPIResponse("api_get_member/questlist");
 			await LoadAPIResponse("api_req_ranking/mxltvkpyuklh");
 			/*await LoadAPIResponse("api_get_member/mapinfo");
