@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Common;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;
 using ElectronicObserver.Observer;
@@ -12,14 +13,11 @@ using ElectronicObserver.Services;
 
 namespace ElectronicObserver.Window.Wpf.RankingLeaderboard;
 
-public partial class RankingLeaderboardViewModel : ObservableObject
+public partial class RankingLeaderboardViewModel : UserControlViewModelBase
 {
 	private int[] PossibleRank { get; } = [8931, 1201, 1156, 5061, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6586];
 
 	private List<int> PossibleUserKey { get; } = [];
-
-	[ObservableProperty]
-	private List<RankingEntryModel> _previousCutoffRankingData;
 
 	[ObservableProperty]
 	private List<RankingEntryModel> _rankingData;
@@ -32,13 +30,10 @@ public partial class RankingLeaderboardViewModel : ObservableObject
 		timeChangeService.RankingLeaderboardUpdate += OnRankingCutoffChanged;
 
 		RankingData = NewLeaderboard();
-		PreviousCutoffRankingData = NewLeaderboard();
 	}
 
 	private void OnRankingCutoffChanged()
 	{
-		PreviousCutoffRankingData = RankingData;
-
 		RankingData = NewLeaderboard();
 	}
 
