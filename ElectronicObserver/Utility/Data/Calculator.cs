@@ -2091,35 +2091,35 @@ public static class Calculator
 		double asahiSurfaceModifier = 0.6;
 		double asahiSubmarineModifier = 1.3;
 
-		switch (flagship.MasterShip.ShipId)
+		switch (flagship.MasterShip)
 		{
-			// Asahi gets ignored if a training cruiser isn't flagship
-			case ShipId when !isTrainingCruiserFlagship:
-			{
-				double bonus = KatoriClassModifier(isTrainingCruiserFlagship, subCT.Count - 1, level);
-
-				return (bonus, bonus);
-			}
-
-			case ShipId.Asahi when subCT.Count is 2:
+			case { ShipId: ShipId.Asahi } when subCT.Count is 2:
 			{
 				double bonus = KatoriClassModifier(true, 1, flagship.Level);
 
 				return (bonus * (asahiSurfaceModifier + 0.45), bonus * (asahiSubmarineModifier + 0.15));
 			}
 
-			case ShipId.Asahi when subCT.Count is 0:
+			case { ShipId: ShipId.Asahi } when subCT.Count is 0:
 			{
 				double bonus = KatoriClassModifier(true, 0, flagship.Level);
 
 				return (bonus * asahiSurfaceModifier, bonus * asahiSubmarineModifier);
 			}
 
-			default:
+			case { ShipType: ShipTypes.TrainingCruiser }:
 			{
 				double bonus = KatoriClassModifier(true, 0, level);
 
 				return (bonus * (asahiSurfaceModifier + 0.45), bonus * (asahiSubmarineModifier + 0.15));
+			}
+
+			// Asahi gets ignored if a training cruiser isn't flagship
+			default:
+			{
+				double bonus = KatoriClassModifier(isTrainingCruiserFlagship, subCT.Count - 1, level);
+
+				return (bonus, bonus);
 			}
 		}
 	}
