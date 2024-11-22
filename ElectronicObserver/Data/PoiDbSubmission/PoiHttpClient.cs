@@ -13,7 +13,7 @@ public class PoiHttpClient
 {
 	private static HttpClient MakeHttpClient() => new()
 	{
-		BaseAddress = new("http://report2.kcwiki.org:17027/"),
+		BaseAddress = new("http://report2.kcwiki.org:17027/api/report/"),
 	};
 
 	public async Task Quest(PoiDbQuestSubmissionData submission)
@@ -36,7 +36,7 @@ public class PoiHttpClient
 	{
 		using HttpClient client = MakeHttpClient();
 
-		HttpResponseMessage response = await client.PostAsJsonAsync("/pet", submission);
+		HttpResponseMessage response = await client.PostAsJsonAsync("/friendly_info", submission);
 		response.EnsureSuccessStatusCode();
 	}
 
