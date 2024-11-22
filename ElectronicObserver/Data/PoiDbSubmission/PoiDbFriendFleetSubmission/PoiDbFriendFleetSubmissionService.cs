@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -169,6 +170,7 @@ public class PoiDbFriendFleetSubmissionService(
 		Enemy = null;
 	}
 
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "<Pending>")]
 	private void SubmitData()
 	{
 		if (EscapeList is null) return;
