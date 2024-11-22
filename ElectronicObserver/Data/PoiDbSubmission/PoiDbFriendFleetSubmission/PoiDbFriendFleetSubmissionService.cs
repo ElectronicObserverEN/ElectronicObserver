@@ -41,6 +41,7 @@ public class PoiDbFriendFleetSubmissionService(
 	private List<int>? EscapeList { get; set; }
 	private JsonNode? ApiFriendlyInfo { get; set; }
 	private JsonNode? ApiFriendlyBattle { get; set; }
+	private int? PlayerFormation { get; set; }
 	private Dictionary<string, JsonNode?>? Enemy { get; set; }
 
 	public void ApiGetMember_MapInfo_ResponseReceived(string apiname, dynamic data)
@@ -94,9 +95,12 @@ public class PoiDbFriendFleetSubmissionService(
 		if (battle is null) return;
 		if (battle["api_friendly_info"] is not JsonNode friendlyInfo) return;
 		if (battle["api_friendly_battle"] is not JsonNode friendlyBattle) return;
+		if (battle["api_formation"] is not JsonArray formation) return;
+		if (formation.GetValues<int?>().FirstOrDefault() is not int playerFormation) return;
 
 		ApiFriendlyInfo = friendlyInfo;
 		ApiFriendlyBattle = friendlyBattle;
+		PlayerFormation = playerFormation;
 
 		FleetData? fleet = KcDatabase.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
 
@@ -153,6 +157,7 @@ public class PoiDbFriendFleetSubmissionService(
 	private void ClearState()
 	{
 		EventDifficulty = null;
+		PlayerFormation = null;
 		World = null;
 		Map = null;
 		Cell = null;
@@ -175,6 +180,7 @@ public class PoiDbFriendFleetSubmissionService(
 		if (Map is not int map) return;
 		if (Cell is not int cell) return;
 		if (EventDifficulty is not int eventDifficulty) return;
+		if (PlayerFormation is not int playerFormation) return;
 		if (FriendFleetRequestType is not { } friendFleetRequestType) return;
 		if (FriendFleetRequestFlag is not { } friendFleetRequestFlag) return;
 		if (ApiMapInfo?.FirstOrDefault(m => m.ApiId == 10 * world + map) is not { } mapInfo) return;
@@ -201,7 +207,7 @@ public class PoiDbFriendFleetSubmissionService(
 					},
 					ApiFriendlyBattle = ApiFriendlyBattle,
 					EscapeList = EscapeList,
-					Formation = 0, // todo: ??
+					Formation = playerFormation,
 					Enemy = Enemy,
 					Deck1 = Deck1,
 					Deck2 = Deck2,
