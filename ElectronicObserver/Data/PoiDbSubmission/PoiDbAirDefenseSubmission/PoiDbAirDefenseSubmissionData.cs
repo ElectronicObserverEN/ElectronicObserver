@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbAirDefenseSubmission;
 
-public class PoiDbAirDefenseSubmission
+public class PoiDbAirDefenseSubmissionData
 {
 	[JsonPropertyName("maparea_id")]
 	public required int World { get; init; }

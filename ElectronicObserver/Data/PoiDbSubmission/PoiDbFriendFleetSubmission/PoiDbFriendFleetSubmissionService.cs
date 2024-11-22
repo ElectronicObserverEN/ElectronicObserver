@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -19,12 +17,12 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbFriendFleetSubmission;
 public class PoiDbFriendFleetSubmissionService(
 	KCDatabase kcDatabase,
 	string version,
-	Func<HttpClient> makeHttpClient,
+	PoiHttpClient poiHttpClient,
 	Action<Exception> logError)
 {
 	private KCDatabase KcDatabase { get; } = kcDatabase;
 	private string Version { get; } = version;
-	private Func<HttpClient> MakeHttpClient { get; } = makeHttpClient;
+	private PoiHttpClient PoiHttpClient { get; } = poiHttpClient;
 	private Action<Exception> LogError { get; } = logError;
 
 	// don't need to clear these
@@ -183,7 +181,7 @@ public class PoiDbFriendFleetSubmissionService(
 
 		try
 		{
-			PoiDbFriendFleetSubmission submission = new()
+			PoiDbFriendFleetSubmissionData submissionData = new()
 			{
 				Body = new()
 				{
@@ -212,7 +210,7 @@ public class PoiDbFriendFleetSubmissionService(
 			};
 
 			Dictionary<string, Dictionary<string, JsonNode?>> dictionarySubmission = JsonSerializer
-				.Deserialize<Dictionary<string, Dictionary<string, JsonNode?>>>(JsonSerializer.Serialize(submission))!;
+				.Deserialize<Dictionary<string, Dictionary<string, JsonNode?>>>(JsonSerializer.Serialize(submissionData))!;
 
 			foreach ((string key, JsonNode? value) in ApiFriendlyInfo.AsObject())
 			{
@@ -221,11 +219,9 @@ public class PoiDbFriendFleetSubmissionService(
 
 			Task.Run(async () =>
 			{
-				using HttpClient client = MakeHttpClient();
-
 				try
 				{
-					_ = await client.PostAsJsonAsync("/pet", dictionarySubmission);
+					await PoiHttpClient.FriendFleet(dictionarySubmission);
 				}
 				catch (Exception e)
 				{

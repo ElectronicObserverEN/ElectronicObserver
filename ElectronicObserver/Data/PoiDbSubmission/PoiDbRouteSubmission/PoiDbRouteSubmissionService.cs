@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -16,12 +14,12 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 public class PoiDbRouteSubmissionService(
 	KCDatabase kcDatabase,
 	string version,
-	Func<HttpClient> makeHttpClient,
+	PoiHttpClient poiHttpClient,
 	Action<Exception> logError)
 {
 	private KCDatabase KcDatabase { get; } = kcDatabase;
 	private string Version { get; } = version;
-	private Func<HttpClient> MakeHttpClient { get; } = makeHttpClient;
+	private PoiHttpClient PoiHttpClient { get; } = poiHttpClient;
 	private Action<Exception> LogError { get; } = logError;
 
 	private int? CellCount { get; set; }
@@ -165,7 +163,7 @@ public class PoiDbRouteSubmissionService(
 
 		try
 		{
-			PoiDbRouteSubmission submission = new()
+			PoiDbRouteSubmissionData submissionData = new()
 			{
 				Form = new()
 				{
@@ -204,11 +202,9 @@ public class PoiDbRouteSubmissionService(
 
 			Task.Run(async () =>
 			{
-				using HttpClient client = MakeHttpClient();
-
 				try
 				{
-					_ = await client.PostAsJsonAsync("/next_way_v2", submission);
+					await PoiHttpClient.Route(submissionData);
 				}
 				catch (Exception e)
 				{

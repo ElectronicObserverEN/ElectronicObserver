@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -48,12 +46,12 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 public class PoiDbBattleSubmissionService(
 	KCDatabase kcDatabase,
 	string version,
-	Func<HttpClient> makeHttpClient,
+	PoiHttpClient poiHttpClient,
 	Action<Exception> logError)
 {
 	private KCDatabase KcDatabase { get; } = kcDatabase;
 	private string Version { get; } = version;
-	private Func<HttpClient> MakeHttpClient { get; } = makeHttpClient;
+	private PoiHttpClient PoiHttpClient { get; } = poiHttpClient;
 	private Action<Exception> LogError { get; } = logError;
 
 	// map state (stays the same for the whole sortie)
@@ -185,7 +183,7 @@ public class PoiDbBattleSubmissionService(
 
 		try
 		{
-			PoiDbBattleSubmission submission = new()
+			PoiDbBattleSubmissionData submissionData = new()
 			{
 				Body = new()
 				{
@@ -210,11 +208,9 @@ public class PoiDbBattleSubmissionService(
 
 			Task.Run(async () =>
 			{
-				using HttpClient client = MakeHttpClient();
-
 				try
 				{
-					_ = await client.PostAsJsonAsync("/battle", submission);
+					await PoiHttpClient.Battle(submissionData);
 				}
 				catch (Exception e)
 				{

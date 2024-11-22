@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbAirDefenseSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbFriendFleetSubmission;
@@ -20,6 +19,7 @@ public class PoiDbSubmissionService
 #endif
 
 	private KCDatabase KcDatabase { get; }
+	private PoiHttpClient PoiHttpClient { get; } = new();
 	private PoiDbQuestSubmissionService? QuestSubmissionService { get; set; }
 	private PoiDbBattleSubmissionService? BattleSubmissionService { get; set; }
 	private PoiDbFriendFleetSubmissionService? FriendFleetSubmissionService { get; set; }
@@ -49,11 +49,11 @@ public class PoiDbSubmissionService
 
 	private void SubscribeToApis()
 	{
-		QuestSubmissionService ??= MakeQuestSubmissionService(Version, MakeHttpClient, LogError);
-		BattleSubmissionService ??= MakeBattleSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
-		FriendFleetSubmissionService ??= MakeFriendFleetSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
-		AirDefenseSubmissionService ??= MakeAirDefenseSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
-		RouteSubmissionService ??= MakeRouteSubmissionService(KcDatabase, Version, MakeHttpClient, LogError);
+		QuestSubmissionService ??= MakeQuestSubmissionService(Version, PoiHttpClient, LogError);
+		BattleSubmissionService ??= MakeBattleSubmissionService(KcDatabase, Version, PoiHttpClient, LogError);
+		FriendFleetSubmissionService ??= MakeFriendFleetSubmissionService(KcDatabase, Version, PoiHttpClient, LogError);
+		AirDefenseSubmissionService ??= MakeAirDefenseSubmissionService(KcDatabase, Version, PoiHttpClient, LogError);
+		RouteSubmissionService ??= MakeRouteSubmissionService(KcDatabase, Version, PoiHttpClient, LogError);
 	}
 
 	private void UnsubscribeFromApis()
@@ -90,9 +90,9 @@ public class PoiDbSubmissionService
 	}
 
 	private static PoiDbQuestSubmissionService MakeQuestSubmissionService(string version,
-		Func<HttpClient> makeHttpClient, Action<Exception> logError)
+		PoiHttpClient poiHttpClient, Action<Exception> logError)
 	{
-		PoiDbQuestSubmissionService questSubmissionService = new(version, makeHttpClient, logError);
+		PoiDbQuestSubmissionService questSubmissionService = new(version, poiHttpClient, logError);
 
 		APIObserver.Instance.ApiReqQuest_ClearItemGet.RequestReceived += questSubmissionService.ApiReqQuest_ClearItemGetOnRequestReceived;
 		APIObserver.Instance.ApiGetMember_QuestList.ResponseReceived += questSubmissionService.ApiGetMember_QuestListOnResponseReceived;
@@ -107,9 +107,9 @@ public class PoiDbSubmissionService
 	}
 
 	private static PoiDbBattleSubmissionService MakeBattleSubmissionService(KCDatabase kcDatabase,
-		string version, Func<HttpClient> makeHttpClient, Action<Exception> logError)
+		string version, PoiHttpClient poiHttpClient, Action<Exception> logError)
 	{
-		PoiDbBattleSubmissionService battleSubmissionService = new(kcDatabase, version, makeHttpClient, logError);
+		PoiDbBattleSubmissionService battleSubmissionService = new(kcDatabase, version, poiHttpClient, logError);
 
 		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += battleSubmissionService.ApiReqMap_Start_ResponseReceived;
 
@@ -172,9 +172,9 @@ public class PoiDbSubmissionService
 	}
 
 	private static PoiDbFriendFleetSubmissionService MakeFriendFleetSubmissionService(KCDatabase kcDatabase,
-		string version, Func<HttpClient> makeHttpClient, Action<Exception> logError)
+		string version, PoiHttpClient poiHttpClient, Action<Exception> logError)
 	{
-		PoiDbFriendFleetSubmissionService friendFleetSubmissionService = new(kcDatabase, version, makeHttpClient, logError);
+		PoiDbFriendFleetSubmissionService friendFleetSubmissionService = new(kcDatabase, version, poiHttpClient, logError);
 
 		APIObserver.Instance.ApiGetMember_MapInfo.ResponseReceived += friendFleetSubmissionService.ApiGetMember_MapInfo_ResponseReceived;
 
@@ -241,9 +241,9 @@ public class PoiDbSubmissionService
 	}
 
 	private static PoiDbAirDefenseSubmissionService MakeAirDefenseSubmissionService(KCDatabase kcDatabase,
-		string version, Func<HttpClient> makeHttpClient, Action<Exception> logError)
+		string version, PoiHttpClient poiHttpClient, Action<Exception> logError)
 	{
-		PoiDbAirDefenseSubmissionService airDefenseSubmissionService = new(kcDatabase, version, makeHttpClient, logError);
+		PoiDbAirDefenseSubmissionService airDefenseSubmissionService = new(kcDatabase, version, poiHttpClient, logError);
 
 		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += airDefenseSubmissionService.ApiReqMap_Start_ResponseReceived;
 
@@ -260,9 +260,9 @@ public class PoiDbSubmissionService
 	}
 
 	private static PoiDbRouteSubmissionService MakeRouteSubmissionService(KCDatabase kcDatabase,
-		string version, Func<HttpClient> makeHttpClient, Action<Exception> logError)
+		string version, PoiHttpClient poiHttpClient, Action<Exception> logError)
 	{
-		PoiDbRouteSubmissionService routeSubmissionService = new(kcDatabase, version, makeHttpClient, logError);
+		PoiDbRouteSubmissionService routeSubmissionService = new(kcDatabase, version, poiHttpClient, logError);
 
 		APIObserver.Instance.ApiGetMember_MapInfo.ResponseReceived += routeSubmissionService.ApiGetMember_MapInfo_ResponseReceived;
 
@@ -285,11 +285,6 @@ public class PoiDbSubmissionService
 
 		APIObserver.Instance.ApiPort_Port.ResponseReceived -= routeSubmissionService.ApiPort_Port_ResponseReceived;
 	}
-
-	private static HttpClient MakeHttpClient() => new()
-	{
-		BaseAddress = new("http://report2.kcwiki.org:17027/"),
-	};
 
 	private static void LogError(Exception e)
 	{

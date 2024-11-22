@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbQuestSubmission;
+namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 
-public class PoiDbQuestSubmission
+public class PoiDbRouteSubmissionData
 {
 	[JsonPropertyName("form")]
 	public required Form Form { get; init; }

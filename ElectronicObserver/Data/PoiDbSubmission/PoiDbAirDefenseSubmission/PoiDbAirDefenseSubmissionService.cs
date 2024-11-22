@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -13,12 +11,12 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbAirDefenseSubmission;
 public class PoiDbAirDefenseSubmissionService(
 	KCDatabase kcDatabase,
 	string version,
-	Func<HttpClient> makeHttpClient,
+	PoiHttpClient poiHttpClient,
 	Action<Exception> logError)
 {
 	private KCDatabase KcDatabase { get; } = kcDatabase;
 	private string Version { get; } = version;
-	private Func<HttpClient> MakeHttpClient { get; } = makeHttpClient;
+	private PoiHttpClient PoiHttpClient { get; } = poiHttpClient;
 	private Action<Exception> LogError { get; } = logError;
 
 	private int? EventDifficulty { get; set; }
@@ -74,7 +72,7 @@ public class PoiDbAirDefenseSubmissionService(
 
 		try
 		{
-			PoiDbAirDefenseSubmission submission = new()
+			PoiDbAirDefenseSubmissionData submissionData = new()
 			{
 				World = world,
 				Map = map,
@@ -84,7 +82,7 @@ public class PoiDbAirDefenseSubmissionService(
 			};
 
 			Dictionary<string, JsonNode?> dictionarySubmission = JsonSerializer
-				.Deserialize<Dictionary<string, JsonNode?>>(JsonSerializer.Serialize(submission))!;
+				.Deserialize<Dictionary<string, JsonNode?>>(JsonSerializer.Serialize(submissionData))!;
 
 			foreach ((string key, JsonNode? value) in apiDestructionBattle.AsObject())
 			{
@@ -93,11 +91,9 @@ public class PoiDbAirDefenseSubmissionService(
 
 			Task.Run(async () =>
 			{
-				using HttpClient client = MakeHttpClient();
-
 				try
 				{
-					_ = await client.PostAsJsonAsync("/air_base_attack", dictionarySubmission);
+					await PoiHttpClient.AirDefense(dictionarySubmission);
 				}
 				catch (Exception e)
 				{
