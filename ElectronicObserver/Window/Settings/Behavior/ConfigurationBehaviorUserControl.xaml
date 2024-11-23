@@ -288,7 +288,5 @@
 				Content="{Binding Translation.Control_ForceUpdate}"
 				/>
 		</Grid>
-
-		<CheckBox Content="{Binding Translation.Control_EnableTsunDbSubmission}" IsChecked="{Binding SubmitDataToTsunDb}" />
 	</StackPanel>
 </UserControl>

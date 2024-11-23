@@ -10,4 +10,6 @@ public class ConfigurationDataSubmissionTranslationViewModel : TranslationBaseVi
 	public string Logout => ConfigurationResources.DataSubmission_Logout;
 	public string Password => ConfigurationResources.DataSubmission_Password;
 	public string Username => ConfigurationResources.DataSubmission_Username;
+
+	public string EnableTsunDbSubmission => ConfigurationResources.Control_EnableTsunDbSubmission;
 }

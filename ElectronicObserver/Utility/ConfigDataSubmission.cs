@@ -6,4 +6,6 @@ public sealed class ConfigDataSubmission : Configuration.ConfigurationData.Confi
 
     public string BonodereUserId { get; set; } = "";
     public string BonodereToken { get; set; } = "";
+
+    public bool? SubmitDataToTsunDb { get; set; }
 }

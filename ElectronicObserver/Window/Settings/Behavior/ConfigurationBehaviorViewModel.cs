@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Utility;
-using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Settings.Behavior;
@@ -39,30 +37,12 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 
 	public bool UseFlagshipIconForRPC { get; set; }
 
-	public bool? SubmitDataToTsunDb { get; set; }
-
 	public ConfigurationBehaviorViewModel(Configuration.ConfigurationData.ConfigControl config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBehaviorTranslationViewModel>();
 
 		Config = config;
 		Load(config);
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(SubmitDataToTsunDb)) return;
-			if (SubmitDataToTsunDb is false) return;
-
-			// --- ask for confirmation
-			DialogTsunDb dialogTsunDb = new();
-			dialogTsunDb.FormClosed += (sender, e) =>
-			{
-				if (sender is not DialogTsunDb dialog) return;
-
-				SubmitDataToTsunDb = dialog.DialogResult == System.Windows.Forms.DialogResult.Yes;
-			};
-			dialogTsunDb.ShowDialog(App.Current!.MainWindow!);
-		};
 	}
 
 	private void Load(Configuration.ConfigurationData.ConfigControl config)
@@ -79,7 +59,6 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		DiscordRPCApplicationId = config.DiscordRPCApplicationId;
 		UpdateRepoURL = config.UpdateRepoURL;
 		UseFlagshipIconForRPC = config.UseFlagshipIconForRPC;
-		SubmitDataToTsunDb = config.SubmitDataToTsunDb;
 	}
 
 	public override void Save()
@@ -96,7 +75,6 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		Config.DiscordRPCApplicationId = DiscordRPCApplicationId;
 		Config.UpdateRepoURL = UpdateRepoURL;
 		Config.UseFlagshipIconForRPC = UseFlagshipIconForRPC;
-		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
 	}
 
 	[RelayCommand]

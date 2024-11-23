@@ -1891,6 +1891,7 @@ public sealed class Configuration
 				BackgroundColor = "#FF000000";
 			}
 		}
+
 		[DataMember]
 		public ConfigFleetImageGenerator FleetImageGenerator { get; private set; }
 
@@ -1949,7 +1950,6 @@ public sealed class Configuration
 
 		public override void Initialize()
 		{
-
 			Connection = new ConfigConnection();
 			UI = new ConfigUI();
 			Log = new ConfigLog();
@@ -1987,7 +1987,6 @@ public sealed class Configuration
 			Whitecap = new ConfigWhitecap();
 
 			VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
-
 		}
 	}
 	private static ConfigurationData _config;
@@ -2013,6 +2012,7 @@ public sealed class Configuration
 	public void Load()
 	{
 		var temp = (ConfigurationData)_config.Load(SaveFileName);
+
 		if (temp != null)
 		{
 			// hack: set defaults for players that have a configuration before language was added
@@ -2706,6 +2706,8 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2020/06/07 23:00:00"))
 			Update460_AddSallyAreaColorScheme();
 
+		if (dt <= DateTimeHelper.CSVStringToTime("2024/11/24 20:00:00"))
+			Update538_ChangeTsunDbConfig();
 
 		Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 	}
@@ -2963,5 +2965,10 @@ public sealed class Configuration
 			Config.FormFleet.SallyAreaColorScheme = Config.FormFleet.DefaultSallyAreaColorScheme.ToList();
 			Utility.Logger.Add(1, "<= ver. 4.6.0 移行処理: カラースキームの追加が完了しました。");
 		}
+	}
+
+	private void Update538_ChangeTsunDbConfig()
+	{
+		Config.DataSubmission.SubmitDataToTsunDb = Config.Control.SubmitDataToTsunDb;
 	}
 }

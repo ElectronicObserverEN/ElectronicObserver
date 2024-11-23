@@ -44,6 +44,4 @@ public class ConfigurationBehaviorTranslationViewModel : TranslationBaseViewMode
 	public string TranslationURL => ConfigurationResources.TranslationURL;
 	public string Control_translationURLToolTip => ConfigurationResources.Control_translationURLToolTip;
 	public string Control_ForceUpdate => ConfigurationResources.Control_ForceUpdate;
-
-	public string Control_EnableTsunDbSubmission => ConfigurationResources.Control_EnableTsunDbSubmission;
 }

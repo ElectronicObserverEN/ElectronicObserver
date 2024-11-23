@@ -11,6 +11,8 @@
 	mc:Ignorable="d"
 	>
 	<StackPanel>
+		<CheckBox Content="{Binding Translation.EnableTsunDbSubmission}" IsChecked="{Binding SubmitDataToTsunDb}" />
+
 		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
 
 		<StackPanel Orientation="Horizontal">
