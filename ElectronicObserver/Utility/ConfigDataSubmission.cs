@@ -4,6 +4,6 @@ public sealed class ConfigDataSubmission : Configuration.ConfigurationData.Confi
 {
 	public bool SendDataToPoiPreview { get; set; } = true;
 
-    public string BonodereLogin { get; set; } = "";
+    public string BonodereUsername { get; set; } = "";
     public string BonoderePassword { get; set; } = "";
 }

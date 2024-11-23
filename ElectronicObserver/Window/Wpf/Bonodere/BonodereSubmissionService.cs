@@ -15,16 +15,35 @@ public class BonodereSubmissionService
 
 	public string Username { get; set; } = "";
 
+	public bool IsReady => BonodereClient.IsReady;
+
 	public BonodereSubmissionService(BonodereSubmissionTranslationViewModel translations)
 	{
 		BonodereSubmission = translations;
 
-		if (!string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereLogin))
+		if (!string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereUsername))
 		{
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-			Login(Configuration.Config.DataSubmission.BonodereLogin, Configuration.Config.DataSubmission.BonoderePassword);
+			AfterConfigChange();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 		}
+
+		Configuration.Instance.ConfigurationChanged += async () => await AfterConfigChange();
+	}
+
+	public async Task AfterConfigChange()
+	{
+		if (string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereUsername))
+		{
+			if (BonodereClient.IsReady)
+			{
+				await BonodereClient.Logout();
+			}
+
+			return;
+		}
+
+		await Login(Configuration.Config.DataSubmission.BonodereUsername, Configuration.Config.DataSubmission.BonoderePassword);
 	}
 
 	public async Task Login(string login, string password)

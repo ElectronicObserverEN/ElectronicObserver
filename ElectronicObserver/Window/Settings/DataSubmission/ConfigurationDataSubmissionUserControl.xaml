@@ -12,5 +12,22 @@
 	>
 	<StackPanel>
 		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock><Run Text="{Binding Translation.BonodereIntegration}" /><Run Text=":" /></TextBlock>
+
+			<StackPanel Orientation="Horizontal" Visibility="{Binding BonodereSubmissionService.IsReady, Converter={BoolToVisibilityConverter}}">
+				<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereSubmissionService.Username, Mode=OneWay}" /></TextBlock>
+				<Button Command="{Binding BonodereLogoutCommand}" Content="{Binding Translation.Logout, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Visibility="{Binding BonodereSubmissionService.IsReady, Converter={InverseBoolToVisibilityConverter}}">
+				<TextBlock Text="{Binding Translation.Username, Mode=OneWay}" />
+				<TextBox Text="{Binding BonodereUsername}" />
+				<TextBox Text="{Binding Translation.Password, Mode=OneWay}" />
+				<PasswordBox Password="{Binding BonoderePassword}" />
+				<Button Command="{Binding BonodereLoginCommand}" Content="{Binding Translation.Login, Mode=OneWay}" />
+			</StackPanel>
+		</StackPanel>
 	</StackPanel>
 </UserControl>

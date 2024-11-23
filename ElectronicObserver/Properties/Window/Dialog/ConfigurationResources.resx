@@ -799,4 +799,22 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Notification_Training" xml:space="preserve">
     <value>艦娘訓練終了</value>
   </data>
+  <data name="DataSubmission_BonodereIntegration" xml:space="preserve">
+    <value>??? (Bonodere integration)</value>
+  </data>
+  <data name="DataSubmission_LoggedInAs" xml:space="preserve">
+    <value>??? (Logged in as)</value>
+  </data>
+  <data name="DataSubmission_Login" xml:space="preserve">
+    <value>??? (Login)</value>
+  </data>
+  <data name="DataSubmission_Logout" xml:space="preserve">
+    <value>??? (Logout)</value>
+  </data>
+  <data name="DataSubmission_Password" xml:space="preserve">
+    <value>??? (Password)</value>
+  </data>
+  <data name="DataSubmission_Username" xml:space="preserve">
+    <value>??? (Username)</value>
+  </data>
 </root>
