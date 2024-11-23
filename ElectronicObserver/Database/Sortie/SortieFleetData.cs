@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Database.Sortie;
 
@@ -18,7 +19,7 @@ public class SortieFleetData
 	public int BossSupportFleetId { get; set; }
 
 	[JsonPropertyName("CombinedFlag")]
-	public int CombinedFlag { get; set; }
+	public FleetType CombinedFlag { get; set; }
 
 	[JsonPropertyName("Fleets")]
 	public List<SortieFleet?> Fleets { get; set; } = new();

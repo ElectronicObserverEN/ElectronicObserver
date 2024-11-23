@@ -8,8 +8,8 @@ public class BaseAirCorpsDataMock : IBaseAirCorpsData
 	public int AirCorpsID { get; set; }
 	public string Name { get; set; }
 	public int Distance { get; set; }
-	public int Bonus_Distance { get; set; }
-	public int Base_Distance { get; set; }
+	public int BonusDistance { get; set; }
+	public int BaseDistance { get; set; }
 	public AirBaseActionKind ActionKind { get; set; }
 	public List<int> StrikePoints { get; set; }
 	public IDictionary<int, IBaseAirCorpsSquadron> Squadrons { get; set; }

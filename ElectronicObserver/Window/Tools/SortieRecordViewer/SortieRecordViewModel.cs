@@ -20,10 +20,10 @@ public class SortieRecordViewModel
 		Model = sortie;
 		SortieStart = sortieStart.ToLocalTime();
 
-		int combinedFlag = sortie.FleetData.FleetId switch
+		FleetType combinedFlag = sortie.FleetData.FleetId switch
 		{
 			1 => sortie.FleetData.CombinedFlag,
-			_ => 0,
+			_ => FleetType.Single,
 		};
 
 		Fleet = (sortie.FleetData.Fleets.Count >= sortie.FleetData.FleetId) switch

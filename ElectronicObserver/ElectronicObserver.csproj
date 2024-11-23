@@ -96,7 +96,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview1" />
 		<PackageReference Include="CsvHelper" Version="33.0.1" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.72.1" />
 		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />

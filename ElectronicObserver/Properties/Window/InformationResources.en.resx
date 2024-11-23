@@ -124,7 +124,7 @@
     <value>S-rank</value>
   </data>
   <data name="CTBonus" xml:space="preserve">
-    <value>(incl. CT Bonus: {0} / S-rank: {1})</value>
+    <value>incl. CT bonus: {0} / S-rank: {1}</value>
   </data>
   <data name="Defeated" xml:space="preserve">
     <value> defeated</value>
@@ -167,5 +167,11 @@ Please recheck before sortieing.
 Unsupplied
 
 (This warning can be disabled via Configuration -&gt; Behavior)</value>
+  </data>
+  <data name="CtBonusSurface" xml:space="preserve">
+    <value>incl. CT bonus surface ships: {0} / S-rank: {1}</value>
+  </data>
+  <data name="CtBonusSubmarine" xml:space="preserve">
+    <value>incl. CT bonus submarines: {0} / S-rank: {1}</value>
   </data>
 </root>

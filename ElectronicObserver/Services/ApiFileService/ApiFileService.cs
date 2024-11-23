@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,7 +14,6 @@ using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
-using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.Utility;
@@ -153,17 +153,16 @@ public class ApiFileService : ObservableObject
 
 		try
 		{
-			ApiResponse<ApiPortPortResponse>? response = JsonSerializer
-				.Deserialize<ApiResponse<ApiPortPortResponse>>(responseBody);
+			JsonNode? portResponse = JsonNode.Parse(responseBody);
 
-			if (response?.ApiData is not null)
+			if (portResponse?["api_data"] is not null)
 			{
-				response.ApiData.ApiShip = new();
-				response.ApiData.ApiDeckPort = new();
-				response.ApiData.ApiLog = new();
-				response.ApiData.ApiNdock = new();
+				portResponse["api_data"]!["api_ship"] = new JsonArray();
+				portResponse["api_data"]!["api_deck_port"] = new JsonArray();
+				portResponse["api_data"]!["api_log"] = new JsonArray();
+				portResponse["api_data"]!["api_ndock"] = new JsonArray();
 
-				responseBody = JsonSerializer.Serialize(response);
+				responseBody = JsonSerializer.Serialize(portResponse);
 			}
 			else
 			{
@@ -318,15 +317,15 @@ public class ApiFileService : ObservableObject
 		await db.SaveChangesAsync();
 	}
 
-	private static bool ShouldIncludeFleet(IFleetData fleet, int combinedFlag, int fleetId,
+	private static bool ShouldIncludeFleet(IFleetData fleet, FleetType combinedFlag, int fleetId,
 		int nodeSupportFleetId, int bossSupportFleetId) =>
 		fleet.ID == fleetId ||
-		fleet.ID == 2 && combinedFlag != 0 ||
+		fleet.ID == 2 && combinedFlag is not FleetType.Single ||
 		fleet.ID == nodeSupportFleetId ||
 		fleet.ID == bossSupportFleetId;
 
 	public static SortieFleetData MakeSortieFleet(IEnumerable<IFleetData?> fleets,
-		IEnumerable<IBaseAirCorpsData> airBases, int combinedFlag, int fleetId, int nodeSupportFleetId,
+		IEnumerable<IBaseAirCorpsData> airBases, FleetType combinedFlag, int fleetId, int nodeSupportFleetId,
 		int bossSupportFleetId, int world) => new()
 	{
 		FleetId = fleetId,
@@ -424,8 +423,8 @@ public class ApiFileService : ObservableObject
 		Name = a.Name,
 		ActionKind = a.ActionKind,
 		AirCorpsId = a.AirCorpsID,
-		BaseDistance = a.Base_Distance,
-		BonusDistance = a.Bonus_Distance,
+		BaseDistance = a.BaseDistance,
+		BonusDistance = a.BonusDistance,
 		MapAreaId = a.MapAreaID,
 		Squadrons = a.Squadrons.Values
 			.Select(MakeSortieAirBaseSquadron)

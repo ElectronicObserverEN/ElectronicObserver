@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port;
 
@@ -57,7 +58,7 @@ public class port : APIBase
 
 		//api_deck_port
 		db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
-		db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
+		db.Fleet.CombinedFlag = data.api_combined_flag() ? (FleetType)data.api_combined_flag : 0;
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{

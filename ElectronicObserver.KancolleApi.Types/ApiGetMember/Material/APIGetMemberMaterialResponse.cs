@@ -3,7 +3,7 @@
 public class ApiGetMemberMaterialResponse
 {
 	[JsonPropertyName("api_id")]
-	public int ApiId { get; set; }
+	public ApiGetMemberMaterialId ApiId { get; set; }
 
 	[JsonPropertyName("api_member_id")]
 	public int ApiMemberId { get; set; }

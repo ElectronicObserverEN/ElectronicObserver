@@ -1,5 +1,6 @@
 ﻿using DynaJson;
 using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
@@ -159,6 +160,7 @@ public sealed class KCDatabase : IKCDatabase
 
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
 	public DataAndTranslationManager Translation { get; private set; }
+	public PoiDbSubmissionService PoiDbSubmission { get; private set; }
 
 	/// <summary>
 	/// Current server
@@ -207,6 +209,7 @@ public sealed class KCDatabase : IKCDatabase
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
 		Translation = new DataAndTranslationManager();
+		PoiDbSubmission = new(this);
 
 #if DEBUG
 		// data needed for loading old event battles via local api loader

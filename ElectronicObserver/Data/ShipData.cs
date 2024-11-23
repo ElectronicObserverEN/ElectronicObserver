@@ -912,19 +912,19 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 		switch (KCDatabase.Instance.Fleet.CombinedFlag)
 		{
-			case 1:     //機動部隊
+			case FleetType.Carrier:
 				if (fleet == 1)
 					return +2;
 				else
 					return +10;
 
-			case 2:     //水上部隊
+			case FleetType.Surface:
 				if (fleet == 1)
 					return +10;
 				else
 					return -5;
 
-			case 3:     //輸送部隊
+			case FleetType.Transport:
 				if (fleet == 1)
 					return -5;
 				else

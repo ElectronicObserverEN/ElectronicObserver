@@ -7,13 +7,13 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:dataSubmission="clr-namespace:ElectronicObserver.Window.Settings.DataSubmission"
 	xmlns:debugging="clr-namespace:ElectronicObserver.Window.Settings.Debugging"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
 	xmlns:log="clr-namespace:ElectronicObserver.Window.Settings.Log"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:notification="clr-namespace:ElectronicObserver.Window.Settings.Notification"
 	xmlns:subWindow="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
-	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:ui1="clr-namespace:ElectronicObserver.Window.Settings.UI"
 	xmlns:window="clr-namespace:ElectronicObserver.Window.Settings.Window"
@@ -77,6 +77,10 @@
 		<DataTemplate DataType="{x:Type bgm:ConfigurationBGMViewModel}">
 			<bgm:ConfigurationBGMUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type dataSubmission:ConfigurationDataSubmissionViewModel}">
+			<dataSubmission:ConfigurationDataSubmissionUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="10">
@@ -95,6 +99,7 @@
 			<TabItem Content="{Binding SubWindow}" Header="{Binding Translation.SubWindow}" />
 			<TabItem Content="{Binding Notification}" Header="{Binding Translation.Notification}" />
 			<TabItem Content="{Binding BGM}" Header="{Binding Translation.BGM}" />
+			<TabItem Content="{Binding DataSubmission}" Header="{Binding Translation.Data}" />
 		</TabControl>
 
 		<Grid Grid.Row="1">

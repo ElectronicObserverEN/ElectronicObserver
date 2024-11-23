@@ -15,6 +15,7 @@ public class ConfigurationTranslationViewModel : TranslationBaseViewModel
 	public string SubWindow => ConfigurationResources.Window;
 	public string Notification => ConfigRes.Notification;
 	public string BGM => "BGM";
+	public string Data => ConfigRes.Data;
 
 	public string Log_PlayTime => ConfigurationResources.Log_PlayTime;
 

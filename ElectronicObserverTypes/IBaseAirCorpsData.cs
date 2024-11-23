@@ -27,12 +27,12 @@ public interface IBaseAirCorpsData
 	///<summary>
 	///LBAS bonus distance
 	///</summary>
-	int Bonus_Distance { get; }
+	int BonusDistance { get; }
 
 	///<summary>
 	///LBAS base distance
 	///</summary>
-	int Base_Distance { get; }
+	int BaseDistance { get; }
 
 	/// <summary>
 	/// 行動指示

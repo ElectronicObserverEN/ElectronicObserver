@@ -36,14 +36,15 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 	public int Distance { get; private set; }
 
 	///<summary>
-	///LBAS bonus distance
+	/// bonus distance
 	///</summary>
-	public int Bonus_Distance { get; private set; }
+	public int BonusDistance { get; private set; }
 
 	///<summary>
-	///LBAS base distance
+	/// base distance
 	///</summary>
-	public int Base_Distance { get; private set; }
+	public int BaseDistance { get; private set; }
+
 	/// <summary>
 	/// 行動指示
 	/// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
@@ -118,15 +119,15 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 				Name = (string)data.api_name;
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
 				ActionKind = (AirBaseActionKind)data.api_action_kind;
-				Base_Distance = (int)data.api_distance.api_base;
-				Bonus_Distance = (int)data.api_distance.api_bonus;
+				BaseDistance = (int)data.api_distance.api_base;
+				BonusDistance = (int)data.api_distance.api_bonus;
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
 
 			case "api_req_air_corps/change_deployment_base":
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-				Base_Distance = (int)data.api_distance.api_base;
-				Bonus_Distance = (int)data.api_distance.api_bonus;
+				BaseDistance = (int)data.api_distance.api_base;
+				BonusDistance = (int)data.api_distance.api_bonus;
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
 
@@ -146,8 +147,8 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 				}
 
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-				Base_Distance = (int)data.api_distance.api_base;
-				Bonus_Distance = (int)data.api_distance.api_bonus;
+				BaseDistance = (int)data.api_distance.api_base;
+				BonusDistance = (int)data.api_distance.api_bonus;
 			}
 			break;
 

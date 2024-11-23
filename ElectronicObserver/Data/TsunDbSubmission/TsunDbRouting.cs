@@ -95,7 +95,7 @@ public class TsunDbRouting : TsunDbEntity
 			.Min();
 
 		// Get the fleet type, if first fleet => flag of the combined fleet, else 0 (single fleet & strike force)
-		FleetType = SortiedFleet == 1 ? db.Fleet.CombinedFlag : 0;
+		FleetType = SortiedFleet == 1 ? (int)db.Fleet.CombinedFlag : 0;
 
 		// Sets amount of nodes value in NodeInfo
 		object[] cellData = apiData["api_cell_data"];
