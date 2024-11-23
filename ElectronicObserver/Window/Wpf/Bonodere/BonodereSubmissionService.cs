@@ -39,7 +39,7 @@ public class BonodereSubmissionService
 
 		try
 		{
-			BonodereLoginResponse? loginResponse = await BonodereClient.LoginFromToken(Configuration.Config.DataSubmission.BonodereToken, Configuration.Config.DataSubmission.BonodereUserId);
+			BonodereUserDataResponse? loginResponse = await BonodereClient.LoginFromToken(Configuration.Config.DataSubmission.BonodereToken, Configuration.Config.DataSubmission.BonodereUserId);
 
 			if (loginResponse is not null)
 			{

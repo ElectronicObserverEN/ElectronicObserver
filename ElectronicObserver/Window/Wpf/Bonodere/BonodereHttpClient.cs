@@ -61,25 +61,24 @@ public class BonodereHttpClient
 		return responseParsed;
 	}
 
-	public async Task<BonodereLoginResponse?> LoginFromToken(string token, string userId)
+	public async Task<BonodereUserDataResponse?> LoginFromToken(string token, string userId)
 	{
+		CurrentClient?.Dispose();
+		CurrentClient = null;
+
 		CurrentClient = MakeHttpClient();
 		CurrentClient.DefaultRequestHeaders.Add("x-access-token", token);
 
-		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync($"user/data/{userId}", new object());
-
-		response.EnsureSuccessStatusCode();
-
-		BonodereLoginResponse? responseParsed = await response.Content.ReadFromJsonAsync<BonodereLoginResponse>();
-
-		if (responseParsed is null)
+		BonodereUserDataResponse? response = await CurrentClient.GetFromJsonAsync<BonodereUserDataResponse>($"user/data/{userId}");
+		
+		if (response is null)
 		{
 			CurrentClient.Dispose();
 			CurrentClient = null;
 			return null;
 		}
 
-		return responseParsed;
+		return response;
 	}
 
 	public async Task Logout()

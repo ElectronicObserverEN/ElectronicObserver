@@ -19,7 +19,7 @@
 			<TextBlock><Run Text="{Binding Translation.BonodereIntegration, Mode=OneWay}" /><Run Text=":" /></TextBlock>
 
 			<StackPanel Orientation="Horizontal" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}">
-				<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereSubmissionService.Username, Mode=OneWay}" /></TextBlock>
+				<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereUsername, Mode=OneWay}" /></TextBlock>
 				<Button Command="{Binding BonodereLogoutCommand}" Content="{Binding Translation.Logout, Mode=OneWay}" />
 			</StackPanel>
 
