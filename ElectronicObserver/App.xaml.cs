@@ -69,6 +69,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Wpf;
+using ElectronicObserver.Window.Wpf.Bonodere;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
@@ -307,6 +308,7 @@ public partial class App
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
+			.AddSingleton<BonodereSubmissionTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
@@ -326,6 +328,7 @@ public partial class App
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<SortieRecordMigrationService>()
 			.AddSingleton<SenkaLeaderboardManager>()
+			.AddSingleton<BonodereSubmissionService>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
