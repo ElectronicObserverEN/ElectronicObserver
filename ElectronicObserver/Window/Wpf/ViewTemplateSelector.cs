@@ -15,6 +15,7 @@ using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
+using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
@@ -30,6 +31,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 	public DataTemplate? GroupAvalonia { get; set; }
 	public DataTemplate? FleetPreset { get; set; }
 	public DataTemplate? ShipTrainingPlanViewer { get; set; }
+	public DataTemplate? SenkaLeaderboardViewer { get; set; }
 
 	public DataTemplate? Dock { get; set; }
 	public DataTemplate? Arsenal { get; set; }
@@ -67,6 +69,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		HeadquartersViewModel => Headquarters,
 		QuestViewModel => Quest,
 		ExpeditionCheckViewModel => ExpeditionCheck,
+		SenkaLeaderboardViewModel => SenkaLeaderboardViewer,
 
 		CompassViewModel => Compass,
 		BattleViewModel => Battle,

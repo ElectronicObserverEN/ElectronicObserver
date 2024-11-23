@@ -1,8 +1,19 @@
-﻿namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
+﻿using System.Windows;
+
+namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
 public partial class SenkaLeaderboardView
 {
-	public SenkaLeaderboardView(SenkaLeaderboardViewModel viewModel) : base(viewModel)
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+		"ViewModel", typeof(SenkaLeaderboardViewModel), typeof(SenkaLeaderboardView), new PropertyMetadata(default(SenkaLeaderboardViewModel)));
+
+	public SenkaLeaderboardViewModel ViewModel
+	{
+		get => (SenkaLeaderboardViewModel)GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
+
+	public SenkaLeaderboardView()
 	{
 		InitializeComponent();
 	}

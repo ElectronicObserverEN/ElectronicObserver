@@ -1,4 +1,4 @@
-﻿<common:UserControlBase
+﻿<UserControl
 	x:Class="ElectronicObserver.Window.Wpf.SenkaLeaderboard.SenkaLeaderboardView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -11,15 +11,11 @@
 	d:DataContext="{d:DesignInstance Type=local:SenkaLeaderboardViewModel}"
 	d:DesignHeight="250"
 	d:DesignWidth="130"
-	x:TypeArguments="local:SenkaLeaderboardViewModel"
-	TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
-	TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
-	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 	mc:Ignorable="d"
 	>
-	<Grid>
-		<paging:PagingControlView ViewModel="{Binding}" />
-		<DataGrid ItemsSource="{Binding RankingData}" />
-		<TextBlock><Run Text="Loaded entries :" /><Run Text="{Binding RankingData.Count}" /></TextBlock>
-	</Grid>
-</common:UserControlBase>
+	<StackPanel>
+		<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
+		<DataGrid IsReadOnly="True" ItemsSource="{Binding PagingViewModel.DisplayedItems}" />
+		<TextBlock><Run Text="Loaded entries: " /><Run Text="{Binding LoadedEntriesCount, Mode=OneWay}" /></TextBlock>
+	</StackPanel>
+</UserControl>

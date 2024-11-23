@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ElectronicObserver.Common;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
@@ -18,7 +17,9 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	[ObservableProperty]
 	private List<SenkaEntryModel> _rankingData;
 
-	private PagingControlViewModel PagingViewModel { get; }
+	public PagingControlViewModel PagingViewModel { get; }
+
+	public int LoadedEntriesCount => RankingData.Count(entry => entry.Points > 0);
 
 	public SenkaLeaderboardViewModel() : base("Senka leaderboard", "SenkaLeaderboard", null)
 	{
@@ -88,7 +89,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 		}
 
 		if (PossibleUserKey.Count is 0) return;
-		if (PossibleUserKey.Count < entry.ApiMxltvkpyuklh) return;
+		if (RankingData.Count < entry.ApiMxltvkpyuklh) return;
 
 		RankingData[entry.ApiMxltvkpyuklh - 1] = new SenkaEntryModel
 		{
@@ -98,5 +99,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 			Points = (int)Math.Floor(entry.ApiWuhnhojjxmke / key / PossibleUserKey.Last()) - 91,
 			Position = entry.ApiMxltvkpyuklh,
 		};
+
+		OnPropertyChanged(nameof(LoadedEntriesCount));
 	}
 }

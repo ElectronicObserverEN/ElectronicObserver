@@ -15,6 +15,7 @@
 	xmlns:information="clr-namespace:ElectronicObserver.Window.Wpf.InformationView"
 	xmlns:log="clr-namespace:ElectronicObserver.Window.Wpf.Log"
 	xmlns:quest="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
+	xmlns:senkaLeaderboard="clr-namespace:ElectronicObserver.Window.Wpf.SenkaLeaderboard"
 	xmlns:shipGroupAvalonia="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupAvalonia"
 	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
 	xmlns:shipTraining="clr-namespace:ElectronicObserver.Window.Wpf.ShipTrainingPlanner"
@@ -40,6 +41,9 @@
 	</DataTemplate>
 	<DataTemplate x:Key="ShipTrainingTemplate" DataType="{x:Type shipTraining:ShipTrainingPlanViewerViewModel}">
 		<shipTraining:ShipTrainingPlanViewerView ViewModel="{Binding}" />
+	</DataTemplate>
+	<DataTemplate x:Key="SenkaLeaderboardTemplate" DataType="{x:Type senkaLeaderboard:SenkaLeaderboardViewModel}">
+		<senkaLeaderboard:SenkaLeaderboardView ViewModel="{Binding}" />
 	</DataTemplate>
 
 	<DataTemplate x:Key="DockTemplate" DataType="{x:Type dock:DockViewModel}">
@@ -100,6 +104,7 @@
 		Information="{StaticResource InformationTemplate}"
 		Log="{StaticResource LogTemplate}"
 		Quest="{StaticResource QuestTemplate}"
+		SenkaLeaderboardViewer="{StaticResource SenkaLeaderboardTemplate}"
 		ShipTrainingPlanViewer="{StaticResource ShipTrainingTemplate}"
 		WinformsHost="{StaticResource WinformsHostTemplate}"
 		/>

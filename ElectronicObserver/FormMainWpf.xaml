@@ -363,6 +363,16 @@
 						<common:UseItemIcon Type="ActionReport" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem
+					d:Header="Senka leaderboard"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding SenkaLeaderboardViewer}"
+					Header="Senka leaderboard"
+					>
+					<MenuItem.Icon>
+						<common:UseItemIcon Type="ActionReport" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
 				<MenuItem
 					d:Header="Dock"
