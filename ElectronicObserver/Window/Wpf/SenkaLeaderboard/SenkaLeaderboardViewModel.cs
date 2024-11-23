@@ -26,15 +26,15 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	public PagingControlViewModel PagingViewModel { get; }
 
-	public int LoadedEntriesCount => SenkaData.Count(entry => entry.Points > 0);
+	[ObservableProperty]
+	[NotifyCanExecuteChangedFor(nameof(SubmitDataCommand))]
+	public partial int LoadedEntriesCount { get; set; }
 
 	public BonodereSubmissionService BonodereSubmissionService { get; }
 
 	public SenkaLeaderboardTranslationViewModel Translation { get; }
 
 	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken);
-
-	public bool IsDataReadyToBeSubmitted => LoadedEntriesCount is 500;
 
 	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.ItemActionReport)
 	{
@@ -62,7 +62,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	{
 		SenkaData = NewLeaderboard();
 		Update();
-		OnPropertyChanged(nameof(LoadedEntriesCount));
+		UpdateEntryCount();
 	}
 
 	private List<SenkaEntryModel> NewLeaderboard()
@@ -126,10 +126,17 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 			Position = entry.ApiMxltvkpyuklh,
 		};
 
-		OnPropertyChanged(nameof(LoadedEntriesCount));
+		UpdateEntryCount();
 
 		PagingViewModel.DisplayPageFromElementKey(entry.ApiMxltvkpyuklh - 1);
 	}
+
+	private void UpdateEntryCount()
+	{
+		LoadedEntriesCount = SenkaData.Count(entry => entry.Points > 0);
+	}
+
+	public bool IsDataReadyToBeSubmitted() => LoadedEntriesCount is 500;
 
 	[RelayCommand(CanExecute = nameof(IsDataReadyToBeSubmitted))]
 	private async Task SubmitData()
