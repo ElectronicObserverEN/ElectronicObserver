@@ -13,7 +13,7 @@ public class mxltvkpyuklh : APIBase
 
 
 		string pattern = new StringBuilder("\"api_.{12}\":[0-9]*,\"api_.{12}\":\"").AppendFormat("{0}\"", db.Admiral.AdmiralName).ToString();
-		Regex regex = new Regex(pattern);
+		Regex regex = new Regex(pattern, RegexOptions.None, TimeSpan.FromMilliseconds(1000));
 
 		try
 		{
