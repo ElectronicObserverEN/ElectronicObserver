@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading.Tasks;
 using ElectronicObserver.Utility;
@@ -35,10 +37,10 @@ public class BonodereHttpClient
 	{
 		CurrentClient = MakeHttpClient();
 
-		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("/auth/login", new BonodereLoginRequest
+		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("auth/login", new BonodereLoginRequest
 		{
 			Key = login,
-			Password = password,
+			Password = SecureStringToString(password),
 			Duration = 1500000000,
 		});
 
@@ -64,7 +66,7 @@ public class BonodereHttpClient
 		CurrentClient = MakeHttpClient();
 		CurrentClient.DefaultRequestHeaders.Add("x-access-token", token);
 
-		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync($"/user/data/{userId}", new object());
+		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync($"user/data/{userId}", new object());
 
 		response.EnsureSuccessStatusCode();
 
@@ -84,7 +86,7 @@ public class BonodereHttpClient
 	{
 		if (CurrentClient is null) return;
 
-		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("/auth/logout", new object());
+		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("auth/logout", new object());
 		response.EnsureSuccessStatusCode();
 
 		CurrentClient.Dispose();
@@ -95,11 +97,26 @@ public class BonodereHttpClient
 	{
 		if (CurrentClient is null) return;
 
-		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("/senka/submit", new BonodereSubmissionRequest()
+		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("senka/submit", new BonodereSubmissionRequest()
 		{
 			Data = data,
 		});
 
 		response.EnsureSuccessStatusCode();
+	}
+
+	private string SecureStringToString(SecureString value)
+	{
+		IntPtr valuePtr = IntPtr.Zero;
+
+		try
+		{
+			valuePtr = Marshal.SecureStringToGlobalAllocUnicode(value);
+			return Marshal.PtrToStringUni(valuePtr) ?? "";
+		}
+		finally
+		{
+			Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);
+		}
 	}
 }
