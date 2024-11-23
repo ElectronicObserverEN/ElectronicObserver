@@ -49,6 +49,7 @@
 			<DataGrid.ContextMenu>
 				<ContextMenu>
 					<MenuItem Command="{Binding DataContext.CopyContentCommand, Source={StaticResource Proxy}}" Header="Copy" />
+					<MenuItem Command="{Binding DataContext.OpenApiLoaderCommand, Source={StaticResource Proxy}}" Header="Open API Loader" />
 				</ContextMenu>
 			</DataGrid.ContextMenu>
 
