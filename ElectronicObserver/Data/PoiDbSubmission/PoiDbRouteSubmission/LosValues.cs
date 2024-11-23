@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 
-public class Saku
+public class LosValues
 {
 	[JsonPropertyName("sakuOne25")]
 	public required double? SakuOne25 { get; set; }

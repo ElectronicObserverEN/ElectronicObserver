@@ -38,7 +38,7 @@ public class Form
 	public required int AdmiralLevel { get; init; }
 
 	[JsonPropertyName("saku")]
-	public required Saku Saku { get; init; }
+	public required LosValues LosValues { get; init; }
 
 	/// <summary>
 	/// Cell count of the current map.

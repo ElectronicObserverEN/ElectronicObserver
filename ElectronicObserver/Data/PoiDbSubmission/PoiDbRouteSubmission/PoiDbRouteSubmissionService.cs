@@ -182,7 +182,7 @@ public class PoiDbRouteSubmissionService(
 						Map = map,
 					},
 					AdmiralLevel = KcDatabase.Admiral.Level,
-					Saku = new()
+					LosValues = new()
 					{
 						SakuOne25 = null,
 						SakuOne25a = null,
