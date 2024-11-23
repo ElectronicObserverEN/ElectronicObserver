@@ -15,7 +15,7 @@
 	>
 	<StackPanel>
 		<StackPanel Orientation="Horizontal">
-			<Button Content="Submit data" Visibility="{Binding}" />
+			<Button Content="Submit data" Visibility="{Binding BonodereSubmissionService.IsReady, Converter={BoolToVisibilityConverter}}" />
 			<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
 		</StackPanel>
 		<DataGrid IsReadOnly="True" ItemsSource="{Binding PagingViewModel.DisplayedItems}" />

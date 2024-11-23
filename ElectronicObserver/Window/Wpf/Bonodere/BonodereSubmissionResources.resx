@@ -120,13 +120,4 @@
   <data name="InconsistantDataDetected" xml:space="preserve">
     <value>??? (Inconsistant data detected)</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>??? (Login)</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>??? (Logout)</value>
-  </data>
-  <data name="SubmitData" xml:space="preserve">
-    <value>??? (Submit data)</value>
-  </data>
 </root>
