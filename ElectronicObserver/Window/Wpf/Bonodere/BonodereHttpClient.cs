@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Security;
 using System.Threading.Tasks;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
@@ -22,15 +23,15 @@ public class BonodereHttpClient
 			UserAgent =
 			{
 #if DEBUG
-				new ProductInfoHeaderValue($"七四式EN-DEBUG-{SoftwareInformation.VersionEnglish}"),
+				new ProductInfoHeaderValue($"ElectronicObserverEN-DEBUG", SoftwareInformation.VersionEnglish),
 #else
-				new ProductInfoHeaderValue($"七四式EN-{SoftwareInformation.VersionEnglish}"),
+				new ProductInfoHeaderValue($"ElectronicObserverEN", SoftwareInformation.VersionEnglish),
 #endif
 			},
 		},
 	};
 
-	public async Task<BonodereLoginResponse?> Login(string login, string password)
+	public async Task<BonodereLoginResponse?> Login(string login, SecureString password)
 	{
 		CurrentClient = MakeHttpClient();
 
@@ -54,6 +55,28 @@ public class BonodereHttpClient
 
 		CurrentClient = MakeHttpClient();
 		CurrentClient.DefaultRequestHeaders.Add("x-access-token", responseParsed.Token);
+
+		return responseParsed;
+	}
+
+	public async Task<BonodereLoginResponse?> LoginFromToken(string token, string userId)
+	{
+		CurrentClient = MakeHttpClient();
+		CurrentClient.DefaultRequestHeaders.Add("x-access-token", token);
+
+		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync($"/user/data/{userId}", new object());
+
+		response.EnsureSuccessStatusCode();
+
+		BonodereLoginResponse? responseParsed = await response.Content.ReadFromJsonAsync<BonodereLoginResponse>();
+
+		if (responseParsed is null)
+		{
+			CurrentClient.Dispose();
+			CurrentClient = null;
+			return null;
+		}
+
 		return responseParsed;
 	}
 

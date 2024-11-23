@@ -367,7 +367,7 @@
 					d:Header="Senka leaderboard"
 					Command="{Binding OpenViewCommand}"
 					CommandParameter="{Binding SenkaLeaderboardViewer}"
-					Header="Senka leaderboard"
+					Header="{Binding FormMain.SenkaLeaderboard}"
 					>
 					<MenuItem.Icon>
 						<common:UseItemIcon Type="ActionReport" />

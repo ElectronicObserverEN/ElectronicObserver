@@ -6,4 +6,5 @@ public class SenkaLeaderboardTranslationViewModel : TranslationBaseViewModel
 {
 	public string LoadedEntries => SenkaLeaderboardResources.LoadedEntries;
 	public string SubmitData => SenkaLeaderboardResources.SubmitData;
+	public string Title => SenkaLeaderboardResources.Title;
 }

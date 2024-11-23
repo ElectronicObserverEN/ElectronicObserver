@@ -4,6 +4,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Wpf.Bonodere;
@@ -16,33 +17,44 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	private List<int> PossibleUserKey { get; } = [];
 
-	[ObservableProperty]
-	private List<SenkaEntryModel> _rankingData;
+	[ObservableProperty] 
+	private partial List<SenkaEntryModel> SenkaData { get; set; }
 
 	public PagingControlViewModel PagingViewModel { get; }
 
-	public int LoadedEntriesCount => RankingData.Count(entry => entry.Points > 0);
+	public int LoadedEntriesCount => SenkaData.Count(entry => entry.Points > 0);
 
 	public BonodereSubmissionService BonodereSubmissionService { get; }
 
-	public SenkaLeaderboardViewModel() : base("Senka leaderboard", "SenkaLeaderboard", null)
+	public SenkaLeaderboardTranslationViewModel Translation { get; }
+
+	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken);
+
+	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", null)
 	{
-		RankingData = NewLeaderboard();
+		Translation = Ioc.Default.GetRequiredService<SenkaLeaderboardTranslationViewModel>();
+
+		Title = Translation.Title;
+		Translation.PropertyChanged += (_, _) => Title = Translation.Title;
+
+		SenkaData = NewLeaderboard();
 
 		BonodereSubmissionService = Ioc.Default.GetRequiredService<BonodereSubmissionService>();
 
 		PagingViewModel = new();
 		Update();
+
+		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged(nameof(IsBonodereReady));
 	}
 
 	public void Update()
 	{
-		PagingViewModel.Items = RankingData.Cast<object>().ToList();
+		PagingViewModel.Items = SenkaData.Cast<object>().ToList();
 	}
 
 	public void Reset()
 	{
-		RankingData = NewLeaderboard();
+		SenkaData = NewLeaderboard();
 		Update();
 	}
 
@@ -96,9 +108,9 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 		}
 
 		if (PossibleUserKey.Count is 0) return;
-		if (RankingData.Count < entry.ApiMxltvkpyuklh) return;
+		if (SenkaData.Count < entry.ApiMxltvkpyuklh) return;
 
-		RankingData[entry.ApiMxltvkpyuklh - 1] = new SenkaEntryModel
+		SenkaData[entry.ApiMxltvkpyuklh - 1] = new SenkaEntryModel
 		{
 			AdmiralName = entry.ApiMtjmdcwtvhdr,
 			Comment = entry.ApiItbrdpdbkynm,

@@ -14,20 +14,28 @@
 		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
 
 		<StackPanel Orientation="Horizontal">
-			<TextBlock><Run Text="{Binding Translation.BonodereIntegration}" /><Run Text=":" /></TextBlock>
+			<TextBlock><Run Text="{Binding Translation.BonodereIntegration, Mode=OneWay}" /><Run Text=":" /></TextBlock>
 
-			<StackPanel Orientation="Horizontal" Visibility="{Binding BonodereSubmissionService.IsReady, Converter={BoolToVisibilityConverter}}">
+			<StackPanel Orientation="Horizontal" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}">
 				<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereSubmissionService.Username, Mode=OneWay}" /></TextBlock>
 				<Button Command="{Binding BonodereLogoutCommand}" Content="{Binding Translation.Logout, Mode=OneWay}" />
 			</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Visibility="{Binding BonodereSubmissionService.IsReady, Converter={InverseBoolToVisibilityConverter}}">
-				<TextBlock Text="{Binding Translation.Username, Mode=OneWay}" />
-				<TextBox Text="{Binding BonodereUsername}" />
-				<TextBox Text="{Binding Translation.Password, Mode=OneWay}" />
-				<PasswordBox Password="{Binding BonoderePassword}" />
-				<Button Command="{Binding BonodereLoginCommand}" Content="{Binding Translation.Login, Mode=OneWay}" />
+			<StackPanel Visibility="{Binding IsBonodereReady, Converter={InverseBoolToVisibilityConverter}}">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="{Binding Translation.Username, Mode=OneWay}" />
+					<TextBox Width="200" Text="{Binding BonodereUsername}" />
+					<TextBlock Text="{Binding Translation.Password, Mode=OneWay}" />
+					<PasswordBox Width="200" PasswordChanged="BonoderePasswordBox_OnPasswordChanged" />
+					<Button
+						Name="BonodereLoginButton"
+						Command="{Binding BonodereLoginCommand}"
+						Content="{Binding Translation.Login, Mode=OneWay}"
+						/>
+				</StackPanel>
 			</StackPanel>
 		</StackPanel>
+
+		<TextBlock Text="{Binding LoginError}" />
 	</StackPanel>
 </UserControl>

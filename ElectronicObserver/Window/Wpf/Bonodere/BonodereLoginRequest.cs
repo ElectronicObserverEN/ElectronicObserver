@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Security;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Window.Wpf.Bonodere;
 
@@ -8,7 +9,7 @@ public class BonodereLoginRequest
 	public required string Key { get; set; }
 
 	[JsonPropertyName("password")]
-	public required string Password { get; set; }
+	public required SecureString Password { get; set; }
 
 	[JsonPropertyName("duration")]
 	public required int Duration { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
@@ -14,44 +15,36 @@ public class BonodereSubmissionService
 	private BonodereHttpClient BonodereClient { get; } = new();
 
 	public string Username { get; set; } = "";
-
-	public bool IsReady => BonodereClient.IsReady;
-
+	
 	public BonodereSubmissionService(BonodereSubmissionTranslationViewModel translations)
 	{
 		BonodereSubmission = translations;
 
-		if (!string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereUsername))
-		{
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-			AfterConfigChange();
+		LoginFromSavedToken();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-		}
 
-		Configuration.Instance.ConfigurationChanged += async () => await AfterConfigChange();
+		Configuration.Instance.ConfigurationChanged += async () => await LoginFromSavedToken();
+	}
+	
+	public async Task<BonodereLoginResponse?> Login(string login, SecureString password)
+	{
+		return await BonodereClient.Login(login, password);
 	}
 
-	public async Task AfterConfigChange()
+	public async Task LoginFromSavedToken()
 	{
-		if (string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereUsername))
-		{
-			if (BonodereClient.IsReady)
-			{
-				await BonodereClient.Logout();
-			}
 
-			return;
-		}
+		if (string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken)) return;
 
-		await Login(Configuration.Config.DataSubmission.BonodereUsername, Configuration.Config.DataSubmission.BonoderePassword);
-	}
-
-	public async Task Login(string login, string password)
-	{
 		try
 		{
-			BonodereLoginResponse? loginResponse = await BonodereClient.Login(login, password);
-			Username = loginResponse?.Username ?? "";
+			BonodereLoginResponse? loginResponse = await BonodereClient.LoginFromToken(Configuration.Config.DataSubmission.BonodereToken, Configuration.Config.DataSubmission.BonodereUserId);
+
+			if (loginResponse is not null)
+			{
+				Username = loginResponse.User.UserInfo.Username;
+			}
 		}
 		catch (Exception ex)
 		{
@@ -61,6 +54,8 @@ public class BonodereSubmissionService
 
 	public async Task Logout()
 	{
+		if (!BonodereClient.IsReady) return;
+
 		try
 		{
 			await BonodereClient.Logout();
