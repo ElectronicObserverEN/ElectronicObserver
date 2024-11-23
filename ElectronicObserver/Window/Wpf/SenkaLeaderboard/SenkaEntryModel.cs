@@ -1,6 +1,6 @@
-﻿namespace ElectronicObserver.Window.Wpf.RankingLeaderboard;
+﻿namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
-public record RankingEntryModel
+public record SenkaEntryModel
 {
 	public required int Position { get; set; }
 	public required string AdmiralName { get; set; }

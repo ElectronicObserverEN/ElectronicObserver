@@ -75,7 +75,7 @@ using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
-using ElectronicObserver.Window.Wpf.RankingLeaderboard;
+using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -142,7 +142,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ShipGroupAvaloniaViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewer { get; }
-	public RankingLeaderboardView RankingLeaderboardViewer { get; }
+	public SenkaLeaderboardViewModel SenkaLeaderboardViewer { get; }
 
 	public DockViewModel Dock { get; }
 	public ArsenalViewModel Arsenal { get; }
@@ -256,7 +256,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
 		Views.Add(ShipTrainingPlanViewer);
-		Views.Add(RankingLeaderboardViewer);
+		SenkaLeaderboardViewer = Ioc.Default.GetRequiredService<SenkaLeaderboardManager>().CurrentCutoffData;
+		Views.Add(SenkaLeaderboardViewer);
 
 		Views.Add(Dock = new DockViewModel());
 		Views.Add(Arsenal = new ArsenalViewModel());
