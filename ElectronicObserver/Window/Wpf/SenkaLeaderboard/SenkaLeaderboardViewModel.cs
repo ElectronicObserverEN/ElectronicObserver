@@ -120,5 +120,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 		};
 
 		OnPropertyChanged(nameof(LoadedEntriesCount));
+
+		PagingViewModel.DisplayPageFromElementKey(entry.ApiMxltvkpyuklh - 1);
 	}
 }

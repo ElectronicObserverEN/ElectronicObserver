@@ -311,6 +311,7 @@ public partial class App
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
 			.AddSingleton<BonodereSubmissionTranslationViewModel>()
+			.AddSingleton<SenkaLeaderboardTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()

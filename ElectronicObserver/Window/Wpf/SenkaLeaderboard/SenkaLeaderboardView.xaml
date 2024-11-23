@@ -13,10 +13,10 @@
 	>
 	<StackPanel>
 		<StackPanel Orientation="Horizontal">
-			<Button Content="{Binding Translation.SubmitData}" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}" />
+			<Button Content="{Binding Translation.SubmitData, Mode=OneWay}" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}" />
 			<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
 		</StackPanel>
 		<DataGrid IsReadOnly="True" ItemsSource="{Binding PagingViewModel.DisplayedItems}" />
-		<TextBlock><Run Text="{Binding Translation.LoadedEntries}" /><Run Text="{Binding LoadedEntriesCount, Mode=OneWay}" /></TextBlock>
+		<TextBlock><Run Text="{Binding Translation.LoadedEntries, Mode=OneWay}" /><Run Text="{Binding LoadedEntriesCount, Mode=OneWay}" /></TextBlock>
 	</StackPanel>
 </UserControl>

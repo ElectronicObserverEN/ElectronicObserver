@@ -27,6 +27,15 @@ public partial class PagingControlViewModel : ObservableObject
 		UpdateCollection();
 	}
 
+	public void DisplayPageFromElementKey(int elementKey)
+	{
+		int page = elementKey / ItemsPerPage;
+
+		if (page > LastPage) return;
+
+		CurrentPage = page + 1;
+	}
+
 	private void OnPagerUpdate2(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is nameof(CurrentPage) or nameof(LastPage)) return;
