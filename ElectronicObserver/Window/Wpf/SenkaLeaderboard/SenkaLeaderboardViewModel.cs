@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Common;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
+using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
@@ -30,7 +32,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken);
 
-	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", null)
+	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.ItemActionReport)
 	{
 		Translation = Ioc.Default.GetRequiredService<SenkaLeaderboardTranslationViewModel>();
 

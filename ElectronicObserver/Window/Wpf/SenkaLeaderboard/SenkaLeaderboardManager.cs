@@ -7,6 +7,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
@@ -17,7 +18,7 @@ public partial class SenkaLeaderboardManager : ObservableObject
 	private TimeChangeService TimeChangeService { get; }
 
 	[ObservableProperty]
-	private RankingCutoffKind _currentRankingCutoffKind;
+	private partial RankingCutoffKind CurrentRankingCutoffKind { get; set; }
 
 	public SenkaLeaderboardManager(TimeChangeService timeChangeService)
 	{
@@ -73,13 +74,11 @@ public partial class SenkaLeaderboardManager : ObservableObject
 		}
 		catch (Exception ex)
 		{
-			// TODO
+			Logger.Add(2, "Bonodere error", ex);
 		}
 		finally
 		{
 			CurrentCutoffData.Update();
 		}
 	}
-
-	
 }

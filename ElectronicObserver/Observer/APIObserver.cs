@@ -544,7 +544,7 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3368" />
 	/// </summary>
 	public kcsapi.api_req_combined_battle.goback_port ApiReqCombinedBattle_GoBackPort { get; } = new();
-	
+
 	/// <summary>
 	/// Ranking list <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1265" />
