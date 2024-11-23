@@ -14,7 +14,10 @@
 	mc:Ignorable="d"
 	>
 	<StackPanel>
-		<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
+		<StackPanel Orientation="Horizontal">
+			<Button Content="Submit data" Visibility="{Binding}" />
+			<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
+		</StackPanel>
 		<DataGrid IsReadOnly="True" ItemsSource="{Binding PagingViewModel.DisplayedItems}" />
 		<TextBlock><Run Text="Loaded entries: " /><Run Text="{Binding LoadedEntriesCount, Mode=OneWay}" /></TextBlock>
 	</StackPanel>

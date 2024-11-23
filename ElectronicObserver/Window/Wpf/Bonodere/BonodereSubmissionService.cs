@@ -7,13 +7,25 @@ using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
 namespace ElectronicObserver.Window.Wpf.Bonodere;
 
-public class BonodereSubmissionService(BonodereSubmissionTranslationViewModel translations)
+public class BonodereSubmissionService
 {
-	private BonodereSubmissionTranslationViewModel BonodereSubmission { get; } = translations;
+	private BonodereSubmissionTranslationViewModel BonodereSubmission { get; }
 
 	private BonodereHttpClient BonodereClient { get; } = new();
 
 	public string Username { get; set; } = "";
+
+	public BonodereSubmissionService(BonodereSubmissionTranslationViewModel translations)
+	{
+		BonodereSubmission = translations;
+
+		if (!string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereLogin))
+		{
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+			Login(Configuration.Config.DataSubmission.BonodereLogin, Configuration.Config.DataSubmission.BonoderePassword);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+		}
+	}
 
 	public async Task Login(string login, string password)
 	{

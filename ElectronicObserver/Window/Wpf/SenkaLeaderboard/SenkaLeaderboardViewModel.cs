@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
+using ElectronicObserver.Window.Wpf.Bonodere;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
@@ -21,9 +23,13 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	public int LoadedEntriesCount => RankingData.Count(entry => entry.Points > 0);
 
+	public BonodereSubmissionService BonodereSubmissionService { get; }
+
 	public SenkaLeaderboardViewModel() : base("Senka leaderboard", "SenkaLeaderboard", null)
 	{
 		RankingData = NewLeaderboard();
+
+		BonodereSubmissionService = Ioc.Default.GetRequiredService<BonodereSubmissionService>();
 
 		PagingViewModel = new();
 		Update();
@@ -53,6 +59,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 			})
 			.ToList();
 	}
+
 	private bool CheckRate(int key, int userKey, decimal rate)
 	{
 		decimal points = rate / key / userKey - 91;
