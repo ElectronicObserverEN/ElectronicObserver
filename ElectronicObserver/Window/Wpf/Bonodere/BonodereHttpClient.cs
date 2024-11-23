@@ -69,16 +69,24 @@ public class BonodereHttpClient
 		CurrentClient = MakeHttpClient();
 		CurrentClient.DefaultRequestHeaders.Add("x-access-token", token);
 
-		BonodereUserDataResponse? response = await CurrentClient.GetFromJsonAsync<BonodereUserDataResponse>($"user/data/{userId}");
-		
-		if (response is null)
+		HttpResponseMessage response = await CurrentClient.GetAsync($"user/data/{userId}");
+
+		if (!response.IsSuccessStatusCode)
+		{
+			await HandleErrorResponse(response);
+			return null;
+		}
+
+		BonodereUserDataResponse? responseParsed = await response.Content.ReadFromJsonAsync<BonodereUserDataResponse>();
+
+		if (responseParsed is null)
 		{
 			CurrentClient.Dispose();
 			CurrentClient = null;
 			return null;
 		}
 
-		return response;
+		return responseParsed;
 	}
 
 	public async Task Logout()
@@ -86,7 +94,11 @@ public class BonodereHttpClient
 		if (CurrentClient is null) return;
 
 		HttpResponseMessage response = await CurrentClient.PostAsJsonAsync("auth/logout", new object());
-		response.EnsureSuccessStatusCode();
+
+		if (!response.IsSuccessStatusCode)
+		{
+			await HandleErrorResponse(response);
+		}
 
 		CurrentClient.Dispose();
 		CurrentClient = null;
@@ -101,7 +113,32 @@ public class BonodereHttpClient
 			Data = data,
 		});
 
-		response.EnsureSuccessStatusCode();
+		if (!response.IsSuccessStatusCode)
+		{
+			await HandleErrorResponse(response);
+		}
+		else
+		{
+			Logger.Add(2, "Bonodere submission : Success");
+		}
+	}
+
+	private async Task HandleErrorResponse(HttpResponseMessage response)
+	{
+		BonodereError? errorData = await response.Content.ReadFromJsonAsync<BonodereError>();
+
+		if (errorData is not null && !string.IsNullOrEmpty(errorData.Message))
+		{
+			Logger.Add(2, errorData switch
+			{
+				{ Code: >0 } => $"Bonodere error : {errorData.Message} ({errorData.Code})",
+				 _ => $"Bonodere error : {errorData.Message}",
+			});
+		}
+		else
+		{
+			response.EnsureSuccessStatusCode();
+		}
 	}
 
 	private string SecureStringToString(SecureString value)
