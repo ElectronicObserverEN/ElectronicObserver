@@ -13,7 +13,11 @@
 	>
 	<StackPanel>
 		<StackPanel Orientation="Horizontal">
-			<Button Content="{Binding Translation.SubmitData, Mode=OneWay}" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}" />
+			<Button
+				Command="{Binding SubmitDataCommand}"
+				Content="{Binding Translation.SubmitData, Mode=OneWay}"
+				Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}"
+				/>
 			<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
 		</StackPanel>
 		<DataGrid IsReadOnly="True" ItemsSource="{Binding PagingViewModel.DisplayedItems}" />

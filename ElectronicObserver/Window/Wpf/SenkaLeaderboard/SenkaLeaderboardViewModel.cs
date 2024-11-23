@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.Resource;
@@ -32,6 +34,8 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken);
 
+	public bool IsDataReadyToBeSubmitted => LoadedEntriesCount is 500;
+
 	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.ItemActionReport)
 	{
 		Translation = Ioc.Default.GetRequiredService<SenkaLeaderboardTranslationViewModel>();
@@ -58,6 +62,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	{
 		SenkaData = NewLeaderboard();
 		Update();
+		OnPropertyChanged(nameof(LoadedEntriesCount));
 	}
 
 	private List<SenkaEntryModel> NewLeaderboard()
@@ -124,5 +129,11 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 		OnPropertyChanged(nameof(LoadedEntriesCount));
 
 		PagingViewModel.DisplayPageFromElementKey(entry.ApiMxltvkpyuklh - 1);
+	}
+
+	[RelayCommand(CanExecute = nameof(IsDataReadyToBeSubmitted))]
+	private async Task SubmitData()
+	{
+		await BonodereSubmissionService.SubmitData(SenkaData);
 	}
 }
