@@ -11,7 +11,12 @@
 	d:DesignWidth="130"
 	mc:Ignorable="d"
 	>
-	<StackPanel>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
 		<StackPanel Orientation="Horizontal">
 			<Button
 				Command="{Binding SubmitDataCommand}"
@@ -19,8 +24,13 @@
 				Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}"
 				/>
 			<paging:PagingControlView ViewModel="{Binding PagingViewModel}" />
+			<TextBlock Margin="5 0" VerticalAlignment="Center"><Run Text="{Binding Translation.LoadedEntries, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding LoadedEntriesCount, Mode=OneWay}" /></TextBlock>
 		</StackPanel>
-		<DataGrid IsReadOnly="True" ItemsSource="{Binding PagingViewModel.DisplayedItems}" />
-		<TextBlock><Run Text="{Binding Translation.LoadedEntries, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding LoadedEntriesCount, Mode=OneWay}" /></TextBlock>
-	</StackPanel>
+		<DataGrid
+			Grid.Row="1"
+			IsReadOnly="True"
+			ItemsSource="{Binding PagingViewModel.DisplayedItems}"
+			VerticalScrollBarVisibility="Visible"
+			/>
+	</Grid>
 </UserControl>
