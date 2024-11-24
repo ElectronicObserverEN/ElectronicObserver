@@ -199,6 +199,8 @@ public partial class DialogLocalAPILoader2 : Form
 
 	private void LoadSortieRecordFiles(SortieRecord sortieRecord)
 	{
+		if (sortieRecord.ApiFiles.Count is 0) return;
+
 		int firstSortieApiFileId = sortieRecord.ApiFiles.MinBy(f => f.Id)!.Id;
 		int lastSortieApiFileId = sortieRecord.ApiFiles.MaxBy(f => f.Id)!.Id;
 
@@ -246,7 +248,7 @@ public partial class DialogLocalAPILoader2 : Form
 
 		ElectronicObserverContext db = new();
 		db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-		
+
 		foreach (string file in files.Select(f => $"{f.Id} {f.ApiFileType} {f.Name}"))
 		{
 			DataGridViewRow row = new();
@@ -316,7 +318,7 @@ public partial class DialogLocalAPILoader2 : Form
 		}
 
 	}
-	
+
 	private void ExecuteDatabaseSavedRecordApi(string filename)
 	{
 		string[] values = filename.Split(" ");
