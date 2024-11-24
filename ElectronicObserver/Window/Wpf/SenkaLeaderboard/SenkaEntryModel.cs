@@ -18,4 +18,7 @@ public record SenkaEntryModel
 
 	[JsonPropertyName("comment")]
 	public required string Comment { get; set; }
+
+	[JsonIgnore]
+	public required bool IsKnown { get; set; }
 }

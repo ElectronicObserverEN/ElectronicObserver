@@ -87,9 +87,10 @@ public class BonodereSubmissionService
 
 	private bool IsDataValid(List<SenkaEntryModel> data)
 	{
-		if (data.Any(entry => entry.Points == 0)) return false;
+		if (data.Any(entry => entry.Points < 0)) return false;
 		if (data.Any(entry => entry.Position > 500)) return false;
 		if (data.Any(entry => entry.Position <= 0)) return false;
+		if (data.Any(entry => !entry.IsKnown)) return false;
 
 		return true;
 	}

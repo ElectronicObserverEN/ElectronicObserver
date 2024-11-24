@@ -12,8 +12,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-using Jot;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
@@ -80,6 +78,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 				MedalCount = 0,
 				Points = 0,
 				Position = position + 1,
+				IsKnown = false,
 			})
 			.ToList();
 	}
@@ -129,6 +128,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 			MedalCount = entry.ApiItslcqtmrxtf / (key + 1853) - 157,
 			Points = (int)Math.Floor(entry.ApiWuhnhojjxmke / key / PossibleUserKey.Last()) - 91,
 			Position = entry.ApiMxltvkpyuklh,
+			IsKnown = true,
 		};
 
 		UpdateEntryCount();
@@ -138,7 +138,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	private void UpdateEntryCount()
 	{
-		LoadedEntriesCount = SenkaData.Count(entry => entry.Points > 0);
+		LoadedEntriesCount = SenkaData.Count(entry => entry.IsKnown);
 	}
 
 	public bool IsDataReadyToBeSubmitted() => LoadedEntriesCount is 500;
