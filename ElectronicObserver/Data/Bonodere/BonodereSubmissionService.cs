@@ -20,9 +20,7 @@ public class BonodereSubmissionService
 	{
 		BonodereSubmission = translations;
 
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-		LoginFromSavedToken();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+		_ = LoginFromSavedToken();
 
 		Configuration.Instance.ConfigurationChanged += async () => await LoginFromSavedToken();
 	}
