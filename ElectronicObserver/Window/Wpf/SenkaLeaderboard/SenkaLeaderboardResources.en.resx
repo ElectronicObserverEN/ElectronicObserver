@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Admiral" xml:space="preserve">
+    <value>Admiral</value>
+  </data>
+  <data name="AdmiralComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
   <data name="LoadedEntries" xml:space="preserve">
     <value>Loaded entries:</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Rank</value>
   </data>
   <data name="SubmitData" xml:space="preserve">
     <value>Submit data</value>

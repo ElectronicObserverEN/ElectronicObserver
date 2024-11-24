@@ -11,6 +11,11 @@
 	d:DesignWidth="130"
 	mc:Ignorable="d"
 	>
+
+	<UserControl.Resources>
+		<local:SenkaLeaderboardViewModelProxy x:Key="Proxy" DataContext="{Binding}" />
+	</UserControl.Resources>
+
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -28,9 +33,18 @@
 		</StackPanel>
 		<DataGrid
 			Grid.Row="1"
+			AutoGenerateColumns="False"
 			IsReadOnly="True"
 			ItemsSource="{Binding PagingViewModel.DisplayedItems}"
 			VerticalScrollBarVisibility="Visible"
-			/>
+			>
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Position}" Header="{Binding DataContext.Translation.Rank, Mode=OneWay, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding AdmiralName}" Header="{Binding DataContext.Translation.Admiral, Mode=OneWay, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Comment}" Header="{Binding DataContext.Translation.AdmiralComment, Mode=OneWay, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding MedalCount}" Header="{Binding DataContext.Translation.Medal, Mode=OneWay, Source={StaticResource Proxy}}" />
+				<DataGridTextColumn Binding="{Binding Points}" Header="{Binding DataContext.Translation.Senka, Mode=OneWay, Source={StaticResource Proxy}}" />
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </UserControl>
