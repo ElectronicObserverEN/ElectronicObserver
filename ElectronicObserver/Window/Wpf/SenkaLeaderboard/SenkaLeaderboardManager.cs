@@ -42,9 +42,9 @@ public partial class SenkaLeaderboardManager : ObservableObject
 		CurrentCutoffData.Reset();
 	}
 
-	private SenkaCutoffKind GetSankaLeaderboardCutoffKind() => DateTimeHelper.GetJapanStandardTimeNow().TimeOfDay switch
+	private SenkaCutoffKind GetSankaLeaderboardCutoffKind() => DateTimeHelper.GetJapanStandardTimeNow() switch
 	{
-		{ Hours: >= 15 or < 3 } => SenkaCutoffKind.MidDay,
+		{ Hour: >= 15 or < 3 } => SenkaCutoffKind.MidDay,
 		_ => SenkaCutoffKind.NewDay,
 	};
 
