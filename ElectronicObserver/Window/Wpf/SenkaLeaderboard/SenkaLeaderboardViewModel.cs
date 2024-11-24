@@ -52,7 +52,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 		BonodereSubmissionService = Ioc.Default.GetRequiredService<BonodereSubmissionService>();
 
 		PagingViewModel = new();
-		DataGridViewModel = new(new());
+		DataGridViewModel = new([]);
 		Update();
 
 		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged(nameof(IsBonodereReady));

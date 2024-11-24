@@ -2,13 +2,11 @@
 using System.Diagnostics;
 using System.Security;
 using System.Threading.Tasks;
-using System.Windows.Navigation;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.DataSubmission;
 

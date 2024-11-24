@@ -13,7 +13,7 @@ public partial class PagingControlViewModel : ObservableObject
 
 	public List<object> Items { get; set; } = new();
 
-	public ObservableCollection<object> DisplayedItems { get; private set; } = new();
+	public ObservableCollection<object> DisplayedItems { get; } = [];
 
 	public int ItemsPerPage { get; set; } = 10;
 

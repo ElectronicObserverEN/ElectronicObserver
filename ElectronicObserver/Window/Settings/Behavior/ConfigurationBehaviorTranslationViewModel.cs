@@ -33,7 +33,6 @@ public class ConfigurationBehaviorTranslationViewModel : TranslationBaseViewMode
 	public string Control_DiscordRPCShowFCM => ConfigurationResources.Control_DiscordRPCShowFCM;
 	public string Control_DiscordRPCShowFCMToolTip => ConfigurationResources.Control_DiscordRPCShowFCMToolTip;
 	public string CheckBoxUseSecretaryIconForRPC => ConfigurationResources.checkBoxUseSecretaryIconForRPC;
-	public string CheckBoxUseSecretaryIconForRPCToolTip => ConfigurationResources.checkBoxUseSecretaryIconForRPC;
 
 	public string DiscordRPCMessage => ConfigurationResources.DiscordRPCMessage;
 	public string Control_DiscordRPCMessageToolTip => ConfigurationResources.Control_DiscordRPCMessageToolTip;

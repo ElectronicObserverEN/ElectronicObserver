@@ -224,11 +224,7 @@
 				ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
 				/>
 
-			<CheckBox
-				Content="{Binding Translation.CheckBoxUseSecretaryIconForRPC}"
-				IsChecked="{Binding UseFlagshipIconForRPC}"
-				ToolTip="{Binding Translation.CheckBoxUseSecretaryIconForRPCToolTip}"
-				/>
+			<CheckBox Content="{Binding Translation.CheckBoxUseSecretaryIconForRPC}" IsChecked="{Binding UseFlagshipIconForRPC}" />
 		</StackPanel>
 
 		<Grid>
