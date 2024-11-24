@@ -363,16 +363,6 @@
 						<common:UseItemIcon Type="ActionReport" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem
-					d:Header="Senka leaderboard"
-					Command="{Binding OpenViewCommand}"
-					CommandParameter="{Binding SenkaLeaderboardViewer}"
-					Header="{Binding FormMain.SenkaLeaderboard}"
-					>
-					<MenuItem.Icon>
-						<common:UseItemIcon Type="ActionReport" />
-					</MenuItem.Icon>
-				</MenuItem>
 				<Separator />
 				<MenuItem
 					d:Header="Dock"
@@ -422,6 +412,16 @@
 					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormHeadQuarters" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Senka leaderboard"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding SenkaLeaderboardViewer}"
+					Header="{Binding FormMain.SenkaLeaderboard}"
+					>
+					<MenuItem.Icon>
+						<common:IconContentIcon Type="FormResourceChart" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem

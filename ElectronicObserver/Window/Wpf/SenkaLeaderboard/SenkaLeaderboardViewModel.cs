@@ -35,7 +35,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken);
 
-	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.ItemActionReport)
+	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.FormResourceChart)
 	{
 		Translation = Ioc.Default.GetRequiredService<SenkaLeaderboardTranslationViewModel>();
 
