@@ -31,7 +31,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 	public bool IsBonodereReady => !string.IsNullOrEmpty(BonodereToken);
 
 	[ObservableProperty]
-	public partial bool EnableBonodereIntegration { get; set; }
+	public partial bool BonodereIntegrationEnabled { get; set; }
 
 	[ObservableProperty]
 	public partial string LoginError { get; set; } = "";
@@ -54,7 +54,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		BonodereUserId = Config.BonodereUserId;
 		BonodereToken = Config.BonodereToken;
 		BonodereUsername = BonodereSubmissionService.Username;
-		EnableBonodereIntegration = !string.IsNullOrEmpty(Config.BonodereToken);
+		BonodereIntegrationEnabled = Config.BonodereIntegrationEnabled;
 
 		SubmitDataToTsunDb = Config.SubmitDataToTsunDb;
 	}
@@ -65,6 +65,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		Config.BonodereUserId = BonodereUserId;
 		Config.BonodereToken = BonodereToken;
 		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
+		Config.BonodereIntegrationEnabled = BonodereIntegrationEnabled;
 	}
 
 	[RelayCommand]

@@ -41,7 +41,7 @@
 		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
 
 		<StackPanel Orientation="Horizontal">
-			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding EnableBonodereIntegration}" />
+			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding BonodereIntegrationEnabled}" />
 
 			<TextBlock>
 				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://bonodere.famluro.es/participate">
@@ -53,12 +53,17 @@
 		<StackPanel
 			Margin="10 0 0 0"
 			Orientation="Horizontal"
-			Visibility="{Binding EnableBonodereIntegration, Converter={BoolToVisibilityConverter}}"
+			Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}"
 			>
-			<StackPanel Orientation="Horizontal" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}">
-				<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereUsername, Mode=OneWay}" /></TextBlock>
-				<Button Command="{Binding BonodereLogoutCommand}" Content="{Binding Translation.Logout, Mode=OneWay}" />
-			</StackPanel>
+			<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereUsername, Mode=OneWay}" /></TextBlock>
+			<Button Command="{Binding BonodereLogoutCommand}" Content="{Binding Translation.Logout, Mode=OneWay}" />
+		</StackPanel>
+
+		<StackPanel
+			Margin="10 0 0 0"
+			Orientation="Horizontal"
+			Visibility="{Binding BonodereIntegrationEnabled, Converter={BoolToVisibilityConverter}}"
+			>
 
 			<Grid Visibility="{Binding IsBonodereReady, Converter={InverseBoolToVisibilityConverter}}">
 
