@@ -951,6 +951,7 @@
 												<markup:Case Label="{x:Static resource:IconContent.FormQuest}" Value="{StaticResource Form.Quest}" />
 												<markup:Case Label="{x:Static resource:IconContent.FormShipGroup}" Value="{StaticResource Form.ShipGroup}" />
 												<markup:Case Label="{x:Static resource:IconContent.FormWindowCapture}" Value="{StaticResource Form.WindowCapture}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormResourceChart}" Value="{StaticResource Form.ResourceChart}" />
 
 												<markup:Case Label="{x:Static resource:IconContent.FleetAnchorageRepairing}" Value="{StaticResource Fleet.AnchorageRepairing}" />
 												<markup:Case Label="{x:Static resource:IconContent.FleetCombined}" Value="{StaticResource Fleet.Combined}" />
