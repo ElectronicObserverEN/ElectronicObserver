@@ -70,7 +70,7 @@ public partial class SenkaLeaderboardManager : ObservableObject
 		}
 		catch (Exception ex)
 		{
-			Logger.Add(2, "Bonodere error", ex);
+			Logger.Add(2, BonodereSubmissionResources.BonodereError, ex);
 		}
 		finally
 		{

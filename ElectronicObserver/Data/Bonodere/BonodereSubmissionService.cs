@@ -12,13 +12,14 @@ public class BonodereSubmissionService
 {
 	private BonodereSubmissionTranslationViewModel BonodereSubmission { get; }
 
-	private BonodereHttpClient BonodereClient { get; } = new();
+	private BonodereHttpClient BonodereClient { get; }
 
 	public string Username { get; set; } = "";
 	
 	public BonodereSubmissionService(BonodereSubmissionTranslationViewModel translations)
 	{
 		BonodereSubmission = translations;
+		BonodereClient = new(BonodereSubmission);
 
 		_ = LoginFromSavedToken();
 
@@ -71,7 +72,7 @@ public class BonodereSubmissionService
 
 		if (!IsDataValid(data))
 		{
-			Logger.Add(2, $"Bonodere error: {BonodereSubmission.InconsistantDataDetected}");
+			Logger.Add(2, $"{BonodereSubmission.Error}: {BonodereSubmission.InconsistantDataDetected}");
 			return;
 		}
 
@@ -95,8 +96,8 @@ public class BonodereSubmissionService
 		return true;
 	}
 
-	private static void LogError(Exception e)
+	private void LogError(Exception e)
 	{
-		Logger.Add(2, "Bonodere error", e);
+		Logger.Add(2, BonodereSubmission.Error, e);
 	}
 }

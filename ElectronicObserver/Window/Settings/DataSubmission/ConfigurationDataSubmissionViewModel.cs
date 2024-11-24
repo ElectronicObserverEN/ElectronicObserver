@@ -92,7 +92,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		{
 			LoginError = ex.Message;
 
-			Logger.Add(2, "Bonodere error", ex);
+			Logger.Add(2, BonodereSubmissionResources.BonodereError, ex);
 		}
 	}
 

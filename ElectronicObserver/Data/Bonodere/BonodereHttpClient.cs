@@ -11,11 +11,13 @@ using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
 namespace ElectronicObserver.Data.Bonodere;
 
-public class BonodereHttpClient
+public class BonodereHttpClient(BonodereSubmissionTranslationViewModel translations)
 {
 	private HttpClient? CurrentClient { get; set; }
 
 	public bool IsReady => CurrentClient is not null;
+
+	private BonodereSubmissionTranslationViewModel Translations { get; } = translations;
 
 	private static HttpClient MakeHttpClient() => new()
 	{
@@ -119,7 +121,7 @@ public class BonodereHttpClient
 		}
 		else
 		{
-			Logger.Add(2, "Bonodere submission : Success");
+			Logger.Add(2, Translations.Success);
 		}
 	}
 
@@ -131,8 +133,8 @@ public class BonodereHttpClient
 		{
 			Logger.Add(2, errorData switch
 			{
-				{ Code: >0 } => $"Bonodere error : {errorData.Message} ({errorData.Code})",
-				 _ => $"Bonodere error : {errorData.Message}",
+				{ Code: >0 } => $"{BonodereSubmissionResources.BonodereError} : {errorData.Message} ({errorData.Code})",
+				 _ => $"{BonodereSubmissionResources.BonodereError} {errorData.Message}",
 			});
 		}
 		else
