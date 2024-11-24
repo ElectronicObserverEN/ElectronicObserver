@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Security;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.Utility;
-using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.DataSubmission;
@@ -32,9 +33,12 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 	public bool IsBonodereReady => !string.IsNullOrEmpty(BonodereToken);
 
 	[ObservableProperty]
+	public partial bool EnableBonodereIntegration { get; set; }
+
+	[ObservableProperty]
 	public partial string LoginError { get; set; } = "";
 
-	public bool? SubmitDataToTsunDb { get; set; }
+	public bool SubmitDataToTsunDb { get; set; }
 
 	public ConfigurationDataSubmissionViewModel(ConfigDataSubmission config)
 	{
@@ -43,23 +47,6 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 
 		Config = config;
 		Load();
-
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(SubmitDataToTsunDb)) return;
-			if (SubmitDataToTsunDb is false) return;
-
-			// --- ask for confirmation
-			DialogTsunDb dialogTsunDb = new();
-			dialogTsunDb.FormClosed += (sender, e) =>
-			{
-				if (sender is not DialogTsunDb dialog) return;
-
-				SubmitDataToTsunDb = dialog.DialogResult == System.Windows.Forms.DialogResult.Yes;
-			};
-			dialogTsunDb.ShowDialog(App.Current!.MainWindow!);
-		};
 	}
 
 	private void Load()
@@ -69,6 +56,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		BonodereUserId = Config.BonodereUserId;
 		BonodereToken = Config.BonodereToken;
 		BonodereUsername = BonodereSubmissionService.Username;
+		EnableBonodereIntegration = !string.IsNullOrEmpty(Config.BonodereToken);
 
 		SubmitDataToTsunDb = Config.SubmitDataToTsunDb;
 	}
@@ -117,5 +105,17 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		BonodereUsername = "";
 
 		OnPropertyChanged(nameof(IsBonodereReady));
+	}
+
+	[RelayCommand]
+	private void OpenHyperlink(string uri)
+	{
+		ProcessStartInfo psi = new()
+		{
+			FileName = uri,
+			UseShellExecute = true,
+		};
+
+		Process.Start(psi);
 	}
 }

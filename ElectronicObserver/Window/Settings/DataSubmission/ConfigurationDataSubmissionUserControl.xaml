@@ -10,32 +10,100 @@
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
+
+	<UserControl.Resources>
+		<Style TargetType="TextBlock">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+			<Setter Property="Margin" Value="4 4" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+	</UserControl.Resources>
+
 	<StackPanel>
-		<CheckBox Content="{Binding Translation.EnableTsunDbSubmission}" IsChecked="{Binding SubmitDataToTsunDb}" />
+		<StackPanel Orientation="Horizontal">
+			<CheckBox Content="{Binding Translation.EnableTsunDbSubmission}" IsChecked="{Binding SubmitDataToTsunDb}" />
+
+			<TextBlock>
+				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://github.com/Jebzou/ElectronicObserver/wiki/Privacy-policy">
+					<Run Text="{Binding Translation.PrivacyPolicy, Mode=OneWay}" />
+				</Hyperlink>
+			</TextBlock>
+		</StackPanel>
 
 		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
 
 		<StackPanel Orientation="Horizontal">
-			<TextBlock><Run Text="{Binding Translation.BonodereIntegration, Mode=OneWay}" /><Run Text=":" /></TextBlock>
+			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding EnableBonodereIntegration}" />
 
+			<TextBlock>
+				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://bonodere.famluro.es/ranking/analysis">
+					<Run Text="{Binding Translation.DataSubmissionFAQ, Mode=OneWay}" />
+				</Hyperlink>
+			</TextBlock>
+		</StackPanel>
+
+		<StackPanel
+			Margin="10 0 0 0"
+			Orientation="Horizontal"
+			Visibility="{Binding EnableBonodereIntegration, Converter={BoolToVisibilityConverter}}"
+			>
 			<StackPanel Orientation="Horizontal" Visibility="{Binding IsBonodereReady, Converter={BoolToVisibilityConverter}}">
 				<TextBlock><Run Text="{Binding Translation.LoggedInAs, Mode=OneWay}" /><Run Text=" " /><Run Text="{Binding BonodereUsername, Mode=OneWay}" /></TextBlock>
 				<Button Command="{Binding BonodereLogoutCommand}" Content="{Binding Translation.Logout, Mode=OneWay}" />
 			</StackPanel>
 
-			<StackPanel Visibility="{Binding IsBonodereReady, Converter={InverseBoolToVisibilityConverter}}">
-				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="{Binding Translation.Username, Mode=OneWay}" />
-					<TextBox Width="200" Text="{Binding BonodereUsername}" />
-					<TextBlock Text="{Binding Translation.Password, Mode=OneWay}" />
-					<PasswordBox Width="200" PasswordChanged="BonoderePasswordBox_OnPasswordChanged" />
-					<Button
-						Name="BonodereLoginButton"
-						Command="{Binding BonodereLoginCommand}"
-						Content="{Binding Translation.Login, Mode=OneWay}"
-						/>
-				</StackPanel>
-			</StackPanel>
+			<Grid Visibility="{Binding IsBonodereReady, Converter={InverseBoolToVisibilityConverter}}">
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Text="{Binding Translation.Username, Mode=OneWay}" />
+
+				<TextBox
+					Grid.Row="0"
+					Grid.Column="1"
+					Width="200"
+					Margin="0 2"
+					Text="{Binding BonodereUsername}"
+					/>
+
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Text="{Binding Translation.Password, Mode=OneWay}"
+					/>
+
+				<PasswordBox
+					Grid.Row="1"
+					Grid.Column="1"
+					Width="200"
+					PasswordChanged="BonoderePasswordBox_OnPasswordChanged"
+					/>
+
+				<Button
+					Name="BonodereLoginButton"
+					Grid.Row="2"
+					Grid.Column="1"
+					HorizontalAlignment="Right"
+					Command="{Binding BonodereLoginCommand}"
+					Content="{Binding Translation.Login, Mode=OneWay}"
+					/>
+			</Grid>
 		</StackPanel>
 
 		<TextBlock Text="{Binding LoginError}" />

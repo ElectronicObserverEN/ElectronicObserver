@@ -2969,6 +2969,6 @@ public sealed class Configuration
 
 	private void Update538_ChangeTsunDbConfig()
 	{
-		Config.DataSubmission.SubmitDataToTsunDb = Config.Control.SubmitDataToTsunDb;
+		Config.DataSubmission.SubmitDataToTsunDb = Config.Control.SubmitDataToTsunDb is true;
 	}
 }

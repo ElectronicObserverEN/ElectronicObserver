@@ -35,7 +35,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	/// <param name="data">api_data or RawData</param>
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
-		if (Configuration.Config.Control.SubmitDataToTsunDb != true) return;
+		if (Configuration.Config.DataSubmission.SubmitDataToTsunDb != true) return;
 
 		KCDatabase db = KCDatabase.Instance;
 

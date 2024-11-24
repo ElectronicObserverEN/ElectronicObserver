@@ -689,11 +689,11 @@ It only works if automatic refresh is enabled. May increase processing load.</va
     <value>The proxy auto-config script has been saved.
 The file path was copied to clipboard, paste it to the proxy settings in Internet Explorer.</value>
   </data>
-  <data name="FailedToSavePac" xml:space="preserve">
-    <value>Failed to save proxy auto-config script.</value>
-  </data>
   <data name="PacSavedTitle" xml:space="preserve">
     <value>PAC Script Saved</value>
+  </data>
+  <data name="FailedToSavePac" xml:space="preserve">
+    <value>Failed to save proxy auto-config script.</value>
   </data>
   <data name="PlayerVolumeWillBeSet" xml:space="preserve">
     <value>BGM player volume will be set to {0}.
@@ -711,14 +711,14 @@ Are you sure?</value>
   <data name="Language_Japanese" xml:space="preserve">
     <value>Japanese</value>
   </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>Use Gadget Redirect *</value>
+  </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>You should restart EO after changing the theme or language.</value>
   </data>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>Language:</value>
-  </data>
-  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
-    <value>Use Gadget Redirect *</value>
   </data>
   <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
     <value>Redirect the gadget api call to bypass the foreigner block.
@@ -792,5 +792,11 @@ For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_co
   </data>
   <data name="DataSubmission_Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="DataSubmission_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
+    <value>Data submission FAQ</value>
   </data>
 </root>
