@@ -134,7 +134,7 @@ public class BonodereHttpClient(BonodereSubmissionTranslationViewModel translati
 			Logger.Add(2, errorData switch
 			{
 				{ Code: >0 } => $"{Translations.Error} : {errorData.Message} ({errorData.Code})",
-				 _ => $"{Translations.Error} {errorData.Message}",
+				 _ => $"{Translations.Error} : {errorData.Message}",
 			});
 		}
 		else
