@@ -797,27 +797,27 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>艦娘訓練終了</value>
   </data>
   <data name="DataSubmission_BonodereIntegration" xml:space="preserve">
-    <value>??? (Bonodere integration)</value>
+    <value>Bonodere統合</value>
   </data>
   <data name="DataSubmission_LoggedInAs" xml:space="preserve">
-    <value>??? (Logged in as)</value>
+    <value>ログイン名</value>
   </data>
   <data name="DataSubmission_Login" xml:space="preserve">
-    <value>??? (Login)</value>
+    <value>ログイン</value>
   </data>
   <data name="DataSubmission_Logout" xml:space="preserve">
-    <value>??? (Logout)</value>
+    <value>ログアウト</value>
   </data>
   <data name="DataSubmission_Password" xml:space="preserve">
-    <value>??? (Password)</value>
+    <value>パスワード</value>
   </data>
   <data name="DataSubmission_Username" xml:space="preserve">
-    <value>??? (Username)</value>
+    <value>ユーザー名</value>
   </data>
   <data name="DataSubmission_PrivacyPolicy" xml:space="preserve">
-    <value>??? (Privacy policy)</value>
+    <value>プライバシーポリシー</value>
   </data>
   <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
-    <value>??? (Data submission FAQ)</value>
+    <value>データ提出に関するFAQ</value>
   </data>
 </root>

@@ -124,15 +124,15 @@
     <value>提督コメント</value>
   </data>
   <data name="LoadedEntries" xml:space="preserve">
-    <value>??? (Loaded entries:)</value>
+    <value>ロードされたエントリー：</value>
   </data>
   <data name="Rank" xml:space="preserve">
     <value>順位</value>
   </data>
   <data name="SubmitData" xml:space="preserve">
-    <value>??? (Submit data)</value>
+    <value>データ提出</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>??? (Senka Leaderboard)</value>
+    <value>ランキング</value>
   </data>
 </root>

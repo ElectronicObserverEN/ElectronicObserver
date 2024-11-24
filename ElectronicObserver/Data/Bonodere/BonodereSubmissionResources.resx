@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BonodereError" xml:space="preserve">
-    <value>Bonodere エラー</value>
+    <value>Bonodereエラー</value>
   </data>
   <data name="BonodereSubmissionSuccess" xml:space="preserve">
-    <value>??? (Bonodere submission : Success)</value>
+    <value>Bonodere提出：成功</value>
   </data>
   <data name="InconsistantDataDetected" xml:space="preserve">
-    <value>??? (Inconsistant data detected)</value>
+    <value>不整合データ検出</value>
   </data>
 </root>
