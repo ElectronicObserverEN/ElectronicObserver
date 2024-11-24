@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
+using Jot;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
@@ -25,6 +28,8 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	public PagingControlViewModel PagingViewModel { get; }
 
+	public DataGridViewModel<SenkaEntryModel> DataGridViewModel { get; }
+
 	[ObservableProperty]
 	[NotifyCanExecuteChangedFor(nameof(SubmitDataCommand))]
 	public partial int LoadedEntriesCount { get; set; }
@@ -32,7 +37,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	public BonodereSubmissionService BonodereSubmissionService { get; }
 
 	public SenkaLeaderboardTranslationViewModel Translation { get; }
-
+	
 	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken);
 
 	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.FormResourceChart)
@@ -47,6 +52,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 		BonodereSubmissionService = Ioc.Default.GetRequiredService<BonodereSubmissionService>();
 
 		PagingViewModel = new();
+		DataGridViewModel = new(new());
 		Update();
 
 		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged(nameof(IsBonodereReady));

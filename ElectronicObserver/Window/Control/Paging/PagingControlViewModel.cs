@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,7 +13,7 @@ public partial class PagingControlViewModel : ObservableObject
 
 	public List<object> Items { get; set; } = new();
 
-	public List<object> DisplayedItems { get; private set; } = new();
+	public ObservableCollection<object> DisplayedItems { get; private set; } = new();
 
 	public int ItemsPerPage { get; set; } = 10;
 
@@ -55,15 +56,19 @@ public partial class PagingControlViewModel : ObservableObject
 	{
 		CurrentPage = Math.Clamp(CurrentPage, 1, LastPage);
 
-		DisplayedItems = Items switch
-		{
-			{ Count: > 0 } => Items
-				.Skip(ItemsPerPage * (CurrentPage - 1))
-				.Take(ItemsPerPage)
-				.ToList(),
+		DisplayedItems.Clear();
 
-			_ => new(),
-		};
+		if (Items.Count > 0)
+		{
+			IEnumerable<object> items = Items
+				.Skip(ItemsPerPage * (CurrentPage - 1))
+				.Take(ItemsPerPage);
+
+			foreach (object item in items)
+			{
+				DisplayedItems.Add(item);
+			}
+		}
 
 		OnPropertyChanged(nameof(LastPage));
 	}

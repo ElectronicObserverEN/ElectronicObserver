@@ -477,6 +477,12 @@ public partial class App
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
 
+		tracker
+			.Configure<SenkaLeaderboardManager>()
+			.Property(w => w.CurrentCutoffData.DataGridViewModel.ColumnProperties)
+			.Property(w => w.CurrentCutoffData.DataGridViewModel.SortDescriptions)
+			.Property(w => w.CurrentCutoffData.PagingViewModel.ItemsPerPage);
+
 		return tracker;
 	}
 }

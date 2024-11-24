@@ -1,8 +1,7 @@
 ﻿namespace ElectronicObserver.Data;
 
-public enum SenkaCutoffKind
+public enum SenkaLeaderboardRefreshKind
 {
 	NewDay,
 	MidDay,
-	NewMonth,
 }

@@ -9,6 +9,7 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
+using Jot;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
@@ -17,35 +18,39 @@ public partial class SenkaLeaderboardManager : ObservableObject
 	public SenkaLeaderboardViewModel CurrentCutoffData { get; } = new();
 
 	private TimeChangeService TimeChangeService { get; }
+	private Tracker Tracker { get; }
 
 	[ObservableProperty]
-	private partial SenkaCutoffKind CurrentSenkaCutoffKind { get; set; }
+	private partial SenkaLeaderboardRefreshKind CurrentSenkaLeaderboardRefreshKind { get; set; }
 
-	public SenkaLeaderboardManager(TimeChangeService timeChangeService)
+	public SenkaLeaderboardManager(TimeChangeService timeChangeService, Tracker tracker)
 	{
 		APIObserver.Instance.ApiReqRanking_Mxltvkpyuklh.ResponseReceived += HandleData;
 
 		TimeChangeService = timeChangeService;
-		TimeChangeService.HourChanged += () => CurrentSenkaCutoffKind = GetSankaLeaderboardCutoffKind();
+		TimeChangeService.HourChanged += () => CurrentSenkaLeaderboardRefreshKind = GetSankaLeaderboardRefreshKind();
 
-		CurrentSenkaCutoffKind = GetSankaLeaderboardCutoffKind();
+		Tracker = tracker;
 
-		PropertyChanged += OnSenkaLeaderboardCutoffChanged;
+		CurrentSenkaLeaderboardRefreshKind = GetSankaLeaderboardRefreshKind();
+
+		PropertyChanged += OnSenkaLeaderboardRefreshKindChanged;
 
 		CurrentCutoffData.Update();
+		StartJotTracking();
 	}
 
-	private void OnSenkaLeaderboardCutoffChanged(object? sender, PropertyChangedEventArgs e)
+	private void OnSenkaLeaderboardRefreshKindChanged(object? sender, PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is not nameof(CurrentSenkaCutoffKind)) return;
+		if (e.PropertyName is not nameof(CurrentSenkaLeaderboardRefreshKind)) return;
 
 		CurrentCutoffData.Reset();
 	}
 
-	private SenkaCutoffKind GetSankaLeaderboardCutoffKind() => DateTimeHelper.GetJapanStandardTimeNow() switch
+	private SenkaLeaderboardRefreshKind GetSankaLeaderboardRefreshKind() => DateTimeHelper.GetJapanStandardTimeNow() switch
 	{
-		{ Hour: >= 15 or < 3 } => SenkaCutoffKind.MidDay,
-		_ => SenkaCutoffKind.NewDay,
+		{ Hour: >= 15 or < 3 } => SenkaLeaderboardRefreshKind.MidDay,
+		_ => SenkaLeaderboardRefreshKind.NewDay,
 	};
 
 	private void HandleData(string apiname, dynamic data)
@@ -71,5 +76,10 @@ public partial class SenkaLeaderboardManager : ObservableObject
 		{
 			CurrentCutoffData.Update();
 		}
+	}
+
+	private void StartJotTracking()
+	{
+		Tracker.Track(this);
 	}
 }
