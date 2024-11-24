@@ -42,21 +42,11 @@ public partial class SenkaLeaderboardManager : ObservableObject
 		CurrentCutoffData.Reset();
 	}
 
-	private SenkaCutoffKind GetSankaLeaderboardCutoffKind()
+	private SenkaCutoffKind GetSankaLeaderboardCutoffKind() => DateTimeHelper.GetJapanStandardTimeNow().TimeOfDay switch
 	{
-		DateTime time = DateTimeHelper.GetJapanStandardTimeNow();
-
-		if ((time.Day == DateTime.DaysInMonth(time.Year, time.Month) && time.Hour > 22) || (time.Day is 1 && time.Hour < 3))
-		{
-			return SenkaCutoffKind.NewMonth;
-		}
-
-		return time.TimeOfDay switch
-		{
-			{ Hours: >= 15 or < 3 } => SenkaCutoffKind.MidDay,
-			_ => SenkaCutoffKind.NewDay,
-		};
-	}
+		{ Hours: >= 15 or < 3 } => SenkaCutoffKind.MidDay,
+		_ => SenkaCutoffKind.NewDay,
+	};
 
 	private void HandleData(string apiname, dynamic data)
 	{
