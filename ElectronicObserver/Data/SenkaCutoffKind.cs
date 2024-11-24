@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.Data;
 
-public enum RankingCutoffKind
+public enum SenkaCutoffKind
 {
 	NewDay,
 	MidDay,

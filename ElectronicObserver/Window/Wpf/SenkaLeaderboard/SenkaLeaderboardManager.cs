@@ -8,6 +8,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
@@ -18,42 +19,42 @@ public partial class SenkaLeaderboardManager : ObservableObject
 	private TimeChangeService TimeChangeService { get; }
 
 	[ObservableProperty]
-	private partial RankingCutoffKind CurrentRankingCutoffKind { get; set; }
+	private partial SenkaCutoffKind CurrentSenkaCutoffKind { get; set; }
 
 	public SenkaLeaderboardManager(TimeChangeService timeChangeService)
 	{
 		APIObserver.Instance.ApiReqRanking_Mxltvkpyuklh.ResponseReceived += HandleData;
 
 		TimeChangeService = timeChangeService;
-		TimeChangeService.HourChanged += () => CurrentRankingCutoffKind = GetRankingCutoffKind();
+		TimeChangeService.HourChanged += () => CurrentSenkaCutoffKind = GetSankaLeaderboardCutoffKind();
 
-		CurrentRankingCutoffKind = GetRankingCutoffKind();
+		CurrentSenkaCutoffKind = GetSankaLeaderboardCutoffKind();
 
-		PropertyChanged += OnRankingCutoffChanged;
+		PropertyChanged += OnSenkaLeaderboardCutoffChanged;
 
 		CurrentCutoffData.Update();
 	}
 
-	private void OnRankingCutoffChanged(object? sender, PropertyChangedEventArgs e)
+	private void OnSenkaLeaderboardCutoffChanged(object? sender, PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is not nameof(CurrentRankingCutoffKind)) return;
+		if (e.PropertyName is not nameof(CurrentSenkaCutoffKind)) return;
 
 		CurrentCutoffData.Reset();
 	}
 
-	private RankingCutoffKind GetRankingCutoffKind()
+	private SenkaCutoffKind GetSankaLeaderboardCutoffKind()
 	{
-		DateTime time = DateTime.Now;
+		DateTime time = DateTimeHelper.GetJapanStandardTimeNow();
 
 		if ((time.Day == DateTime.DaysInMonth(time.Year, time.Month) && time.Hour > 22) || (time.Day is 1 && time.Hour < 3))
 		{
-			return RankingCutoffKind.NewMonth;
+			return SenkaCutoffKind.NewMonth;
 		}
 
 		return time.TimeOfDay switch
 		{
-			{ Hours: >= 15 or < 3 } => RankingCutoffKind.MidDay,
-			_ => RankingCutoffKind.NewDay,
+			{ Hours: >= 15 or < 3 } => SenkaCutoffKind.MidDay,
+			_ => SenkaCutoffKind.NewDay,
 		};
 	}
 
