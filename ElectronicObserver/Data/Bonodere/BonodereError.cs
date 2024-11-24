@@ -8,5 +8,5 @@ public class BonodereError
 	public string Message { get; set; } = "";
 
 	[JsonPropertyName("code")]
-	public int Code;
+	public int Code { get; set; }
 }
