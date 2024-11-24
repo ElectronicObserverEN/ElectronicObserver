@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
-namespace ElectronicObserver.Window.Wpf.Bonodere;
+namespace ElectronicObserver.Data.Bonodere;
 
 public class BonodereHttpClient
 {

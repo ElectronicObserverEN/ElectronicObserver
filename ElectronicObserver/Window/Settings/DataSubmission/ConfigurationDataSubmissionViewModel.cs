@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Wpf.Bonodere;
 
 namespace ElectronicObserver.Window.Settings.DataSubmission;
 

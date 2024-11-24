@@ -1,6 +1,6 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
 
-namespace ElectronicObserver.Window.Wpf.Bonodere;
+namespace ElectronicObserver.Data.Bonodere;
 
 public class BonodereSubmissionTranslationViewModel : TranslationBaseViewModel
 {

@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Common;
+using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
-using ElectronicObserver.Window.Wpf.Bonodere;
 
 namespace ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 

@@ -1,7 +1,6 @@
-﻿using System.Security;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace ElectronicObserver.Window.Wpf.Bonodere;
+namespace ElectronicObserver.Data.Bonodere;
 
 public class BonodereLoginRequest
 {

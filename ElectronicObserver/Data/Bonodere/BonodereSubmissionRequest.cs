@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
-namespace ElectronicObserver.Window.Wpf.Bonodere;
+namespace ElectronicObserver.Data.Bonodere;
 
 public class BonodereSubmissionRequest
 {
