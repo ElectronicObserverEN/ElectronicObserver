@@ -44,7 +44,7 @@
 			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding EnableBonodereIntegration}" />
 
 			<TextBlock>
-				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://bonodere.famluro.es/ranking/analysis">
+				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://bonodere.famluro.es/participate">
 					<Run Text="{Binding Translation.DataSubmissionFAQ, Mode=OneWay}" />
 				</Hyperlink>
 			</TextBlock>
