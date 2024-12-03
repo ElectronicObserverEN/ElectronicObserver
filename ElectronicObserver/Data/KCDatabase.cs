@@ -4,6 +4,7 @@ using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
+using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
@@ -162,10 +163,7 @@ public sealed class KCDatabase : IKCDatabase
 	public DataAndTranslationManager Translation { get; private set; }
 	public PoiDbSubmissionService PoiDbSubmission { get; private set; }
 
-	/// <summary>
-	/// Current server
-	/// </summary>
-	public KCServer Server { get; set; }
+	public ServerManager ServerManager { get; } = new();
 
 	/// <summary>
 	/// 艦隊編成プリセットデータ

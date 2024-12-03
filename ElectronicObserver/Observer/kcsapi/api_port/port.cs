@@ -9,8 +9,6 @@ namespace ElectronicObserver.Observer.kcsapi.api_port;
 
 public class port : APIBase
 {
-
-
 	public override void OnResponseReceived(dynamic data)
 	{
 
@@ -75,9 +73,9 @@ public class port : APIBase
 			dataForWS.ImageKey = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
 			dataForWS.CurrentShipId = db.Fleet[1].MembersInstance[0].ShipID;
 
-			if (db.Admiral.Senka != null && db.Server?.Name != null)
+			if (db.Admiral.Senka != null && db.ServerManager.CurrentServer is not null)
 			{
-				dataForWS.BottomDisplayText.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.Server.Name));
+				dataForWS.BottomDisplayText.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.ServerManager.CurrentServer.Name));
 			}
 
 			if (!string.IsNullOrEmpty(dataForWS.MapInfo))

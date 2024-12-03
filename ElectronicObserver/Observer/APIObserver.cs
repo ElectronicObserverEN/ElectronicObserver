@@ -8,8 +8,10 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using DynaJson;
 using ElectronicObserver.Data;
+using ElectronicObserver.Services;
 using ElectronicObserver.Services.ApiFileService;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
@@ -854,20 +856,25 @@ public sealed class APIObserver
 			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
-		//debug
-		//Utility.Logger.Add( 1, baseurl );
+		if (baseurl.Contains("/gadget_html5/js/kcs_const.js"))
+		{
+			string body = await e.GetResponseBodyAsString();
+			KCDatabase.Instance.ServerManager.LoadServerList(body);
+		}
 
 		if (baseurl == ("/gadgets/makeRequest"))
 		{
-			KCDatabase db = KCDatabase.Instance;
-			if (db.Server is null)
-			{
-				string body = await e.GetResponseBodyAsString();
-				string url = body.Split('/')[2];
-				url = url.Split('\\')[0];
+			string body = await e.GetResponseBodyAsString();
+			string url = body.Split('/')[2];
+			url = url.Split('\\')[0];
 
-				db.Server = Constants.getKCServer(url);
-			}
+			KCDatabase.Instance.ServerManager.CurrentServer = KCDatabase.Instance.ServerManager.Servers.FirstOrDefault(server => server.Ip == url) ?? new()
+			{
+				Ip = url,
+				Jp = "",
+				Name = "",
+				Num = 0,
+			};
 		}
 
 		//response
