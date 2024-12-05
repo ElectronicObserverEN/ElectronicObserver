@@ -856,25 +856,19 @@ public sealed class APIObserver
 			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
-		if (baseurl.Contains("/gadget_html5/js/kcs_const.js"))
+		if (KCDatabase.Instance.ServerManager.CurrentServer is null)
 		{
-			string body = await e.GetResponseBodyAsString();
-			KCDatabase.Instance.ServerManager.LoadServerList(body);
-		}
-
-		if (baseurl == ("/gadgets/makeRequest"))
-		{
-			string body = await e.GetResponseBodyAsString();
-			string url = body.Split('/')[2];
-			url = url.Split('\\')[0];
-
-			KCDatabase.Instance.ServerManager.CurrentServer = KCDatabase.Instance.ServerManager.Servers.FirstOrDefault(server => server.Ip == url) ?? new()
+			if (baseurl.Contains("/gadget_html5/js/kcs_const.js"))
 			{
-				Ip = url,
-				Jp = "",
-				Name = "",
-				Num = 0,
-			};
+				string body = await e.GetResponseBodyAsString();
+				KCDatabase.Instance.ServerManager.LoadServerList(body);
+			}
+
+			if (baseurl.Contains("/gadgets/makeRequest"))
+			{
+				string body = await e.GetResponseBodyAsString();
+				KCDatabase.Instance.ServerManager.LoadCurrentServer(body);
+			}
 		}
 
 		//response

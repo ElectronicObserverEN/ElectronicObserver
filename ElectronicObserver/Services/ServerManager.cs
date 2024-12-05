@@ -9,28 +9,44 @@ public partial class ServerManager
 {
 	public List<KCServer> Servers { get; set; } = [];
 
-	public KCServer? CurrentServer { get; set; }
+	public KCServer? CurrentServer { get; private set; }
 
 	[GeneratedRegex("ConstServerInfo.World_([0-9]+)[ ]+ = \"(.+)\"", RegexOptions.Multiline)]
 	private static partial Regex ServerRegex();
 
 	public void LoadServerList(string constBody)
 	{
+		Servers.Clear();
+
 		MatchCollection matches = ServerRegex().Matches(constBody);
 
-		foreach (Match match in matches.Where(m => m.Success))
+		foreach (GroupCollection groups in matches.Where(m => m.Success).Select(m => m.Groups))
 		{
-			if (int.TryParse(match.Groups[1].Value, out int num))
+			if (int.TryParse(groups[1].Value, out int num))
 			{
 				Servers.Add(new()
 				{
 					Num = num,
-					Ip = match.Groups[2].Value,
+					Ip = groups[2].Value,
 					Jp = GetJapaneseName(num),
 					Name = GetEnglishName(num),
 				});
 			}
 		}
+	}
+
+	public void LoadCurrentServer(string body)
+	{
+		string url = body.Split('/')[2];
+		url = url.Split('\\')[0];
+
+		CurrentServer = Servers.FirstOrDefault(server => server.Ip == url) ?? new()
+		{
+			Ip = url,
+			Jp = "",
+			Name = "",
+			Num = 0,
+		};
 	}
 
 	private string GetJapaneseName(int num) => num switch
