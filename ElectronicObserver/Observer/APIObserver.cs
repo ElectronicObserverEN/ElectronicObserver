@@ -8,10 +8,8 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using DynaJson;
 using ElectronicObserver.Data;
-using ElectronicObserver.Services;
 using ElectronicObserver.Services.ApiFileService;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
@@ -856,19 +854,16 @@ public sealed class APIObserver
 			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
-		if (KCDatabase.Instance.ServerManager.CurrentServer is null)
+		if (KCDatabase.Instance.ServerManager.CurrentServer is null && baseurl.Contains("/gadget_html5/js/kcs_const.js"))
 		{
-			if (baseurl.Contains("/gadget_html5/js/kcs_const.js"))
-			{
-				string body = await e.GetResponseBodyAsString();
-				KCDatabase.Instance.ServerManager.LoadServerList(body);
-			}
+			string body = await e.GetResponseBodyAsString();
 
-			if (baseurl.Contains("/gadgets/makeRequest"))
+			_ = Task.Run(() =>
 			{
-				string body = await e.GetResponseBodyAsString();
-				KCDatabase.Instance.ServerManager.LoadCurrentServer(body);
-			}
+				KCDatabase.Instance.ServerManager.LoadServerList(body);
+			});
+
+			return;
 		}
 
 		//response
@@ -980,6 +975,7 @@ public sealed class APIObserver
 		if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 		{
 			ServerAddress = e.HttpClient.Request.Host;
+			KCDatabase.Instance.ServerManager.LoadCurrentServer(ServerAddress);
 		}
 	}
 

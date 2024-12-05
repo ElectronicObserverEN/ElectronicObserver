@@ -14,6 +14,8 @@ public partial class ServerManager
 	[GeneratedRegex("ConstServerInfo.World_([0-9]+)[ ]+ = \"(.+)\"", RegexOptions.Multiline)]
 	private static partial Regex ServerRegex();
 
+	private string? ServerUrl { get; set; }
+
 	public void LoadServerList(string constBody)
 	{
 		Servers.Clear();
@@ -33,20 +35,30 @@ public partial class ServerManager
 				});
 			}
 		}
+
+		if (!string.IsNullOrEmpty(ServerUrl))
+		{
+			LoadCurrentServer(ServerUrl);
+			ServerUrl = null;
+		}
 	}
 
-	public void LoadCurrentServer(string body)
+	public void LoadCurrentServer(string serverUrl)
 	{
-		string url = body.Split('/')[2];
-		url = url.Split('\\')[0];
-
-		CurrentServer = Servers.FirstOrDefault(server => server.Ip == url) ?? new()
+		if (Servers.Count is 0)
 		{
-			Ip = url,
-			Jp = "",
-			Name = "",
-			Num = 0,
-		};
+			ServerUrl = serverUrl;
+		}
+		else
+		{
+			CurrentServer = Servers.FirstOrDefault(server => server.Ip.Contains(serverUrl)) ?? new()
+			{
+				Ip = serverUrl,
+				Jp = "",
+				Name = "",
+				Num = 0,
+			};
+		}
 	}
 
 	private string GetJapaneseName(int num) => num switch
