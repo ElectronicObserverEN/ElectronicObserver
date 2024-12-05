@@ -975,7 +975,11 @@ public sealed class APIObserver
 		if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 		{
 			ServerAddress = e.HttpClient.Request.Host;
-			KCDatabase.Instance.ServerManager.LoadCurrentServer(ServerAddress);
+
+			if (!string.IsNullOrEmpty(ServerAddress))
+			{
+				KCDatabase.Instance.ServerManager.LoadCurrentServer(ServerAddress);
+			}
 		}
 	}
 
