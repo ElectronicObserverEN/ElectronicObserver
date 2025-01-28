@@ -39,7 +39,7 @@ public class TsunDbBattleLBASData : TsunDbEntity
 	/// Array of plane morale for each plane in the base pre-sortie
 	/// </summary>
 	[JsonPropertyName("morale")]
-	public List<int> PlaneMorale { get; }
+	public List<AirBaseCondition> PlaneMorale { get; }
 
 	/// <summary>
 	/// Array of int[2] of edges targeted by the land base

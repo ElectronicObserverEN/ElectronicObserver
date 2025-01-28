@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Database.Sortie;
 
@@ -11,7 +12,7 @@ public class SortieAirBaseSquadron
 	public int State { get; set; }
 
 	[JsonPropertyName("Condition")]
-	public int Condition { get; set; }
+	public AirBaseCondition Condition { get; set; }
 
 	[JsonPropertyName("EquipmentSlot")]
 	public SortieEquipmentSlot EquipmentSlot { get; set; } = new();

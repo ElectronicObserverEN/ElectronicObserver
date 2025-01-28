@@ -13,7 +13,7 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 	public IEquipmentDataMaster? EquipmentInstanceMaster { get; set; }
 	public int AircraftCurrent { get; set; }
 	public int AircraftMax { get; set; }
-	public int Condition { get; set; } = 49;
+	public AirBaseCondition Condition { get; set; } = AirBaseCondition.Normal;
 	public DateTime RelocatedTime { get; set; }
 	public int ID { get; set; }
 	public bool IsAvailable { get; set; }

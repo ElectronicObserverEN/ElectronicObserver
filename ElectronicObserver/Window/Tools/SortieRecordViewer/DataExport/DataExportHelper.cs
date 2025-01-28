@@ -1081,7 +1081,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		Name = squadron?.EquipmentInstance?.Name,
 		Level = squadron?.EquipmentInstance?.Level,
 		AircraftLevel = squadron?.EquipmentInstance?.AircraftLevel,
-		Condition = AirBaseCondition(squadron?.Condition),
+		Condition = AirBaseConditionDisplay(squadron?.Condition),
 		Aircraft = squadron?.AircraftCurrent,
 	};
 
@@ -1292,12 +1292,12 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		_ => $"不明({kind})",
 	};
 
-	private static string? AirBaseCondition(int? condition) => condition switch
+	private static string? AirBaseConditionDisplay(AirBaseCondition? condition) => condition switch
 	{
 		null => null,
-		1 => "通常",
-		2 => "橙疲労",
-		3 => "赤疲労",
-		int cond => $"不明({cond})",
+		AirBaseCondition.Normal => "通常",
+		AirBaseCondition.Tired => "橙疲労",
+		AirBaseCondition.VeryTired => "赤疲労",
+		AirBaseCondition cond => $"不明({(int)cond})",
 	};
 }

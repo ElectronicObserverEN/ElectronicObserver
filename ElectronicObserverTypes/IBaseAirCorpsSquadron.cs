@@ -49,7 +49,7 @@ public interface IBaseAirCorpsSquadron
 	/// コンディション
 	/// 1=通常、2=橙疲労、3=赤疲労
 	/// </summary>
-	int Condition { get; }
+	AirBaseCondition Condition { get; }
 
 	/// <summary>
 	/// 配置転換を開始した時刻

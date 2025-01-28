@@ -94,14 +94,18 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 			.ToList();
 
 		bool isNotReplenished = squadrons.Any(s => s.State == 1 && s.AircraftCurrent < s.AircraftMax);
-		bool isTired = squadrons.Any(s => s is { State: 1, Condition: 2 });
-		bool isVeryTired = squadrons.Any(s => s is { State: 1, Condition: 3 });
+		bool isTired = squadrons.Any(s => s is { State: 1, Condition: AirBaseCondition.Tired });
+		bool isVeryTired = squadrons.Any(s => s is { State: 1, Condition: AirBaseCondition.VeryTired });
+		bool isAllSparkled = squadrons.Any() && squadrons
+			.Where(s => s.State is 1)
+			.All(s => s.Condition is AirBaseCondition.Sparkled);
 
 		Icon = true switch
 		{
 			_ when isNotReplenished => IconContent.FleetNotReplenished,
 			_ when isVeryTired => IconContent.ConditionVeryTired,
 			_ when isTired => IconContent.ConditionTired,
+			_ when isAllSparkled => IconContent.ConditionSparkle,
 			_ => IconContent.FormBaseAirCorps,
 		};
 	}

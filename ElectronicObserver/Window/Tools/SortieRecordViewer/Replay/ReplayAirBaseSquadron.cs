@@ -21,5 +21,5 @@ public class ReplayAirBaseSquadron
 	public int State { get; set; }
 
 	[JsonPropertyName("morale")]
-	public int Morale { get; set; }
+	public AirBaseCondition Morale { get; set; }
 }

@@ -154,7 +154,7 @@ public class NotifierBaseAirCorps : NotifierBase
 		{
 			if (NotifiesNotSupplied && corps.Squadrons.Values.Any(sq => sq.State == 1 && sq.AircraftCurrent < sq.AircraftMax))
 				messages.AddLast(FleetRes.SupplyNeeded);
-			if (NotifiesTired && corps.Squadrons.Values.Any(sq => sq.State == 1 && sq.Condition > 1))
+			if (NotifiesTired && corps.Squadrons.Values.Any(sq => sq is { State: 1, Condition: > AirBaseCondition.Normal }))
 				messages.AddLast(FleetRes.Fatigued);
 			if (NotifiesNotOrganized)
 			{
