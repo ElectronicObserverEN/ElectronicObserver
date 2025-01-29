@@ -96,7 +96,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		bool isNotReplenished = squadrons.Any(s => s.State == 1 && s.AircraftCurrent < s.AircraftMax);
 		bool isTired = squadrons.Any(s => s is { State: 1, Condition: AirBaseCondition.Tired });
 		bool isVeryTired = squadrons.Any(s => s is { State: 1, Condition: AirBaseCondition.VeryTired });
-		bool isAllSparkled = squadrons.Any() && squadrons
+		bool isAllSparkled = squadrons.Count > 0 && squadrons
 			.Where(s => s.State is 1)
 			.All(s => s.Condition is AirBaseCondition.Sparkled);
 
