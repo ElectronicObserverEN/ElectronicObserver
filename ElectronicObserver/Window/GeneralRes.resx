@@ -844,4 +844,7 @@
   <data name="NextAsw" xml:space="preserve">
     <value>次の対潜</value>
   </data>
+  <data name="MaximumMorale" xml:space="preserve">
+    <value>士気最大</value>
+  </data>
 </root>

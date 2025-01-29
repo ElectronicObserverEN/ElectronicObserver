@@ -91,14 +91,14 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 			// state
 
 			// 疲労
-			AirBaseCondition tired = corps.Squadrons.Values.Any(s => s.State is 1) switch
+			AirBaseCondition condition = corps.Squadrons.Values.Any(s => s.State is 1) switch
 			{
 				true => corps.Squadrons.Values
 					.Max(sq => sq?.Condition ?? AirBaseCondition.Sparkled),
 				_ => AirBaseCondition.Normal,
 			};
 
-			Name.ConditionIcon = tired switch
+			Name.ConditionIcon = condition switch
 			{
 				AirBaseCondition.VeryTired => IconContent.ConditionVeryTired,
 				AirBaseCondition.Tired => IconContent.ConditionTired,
@@ -106,10 +106,10 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 				_ => null,
 			};
 
-			switch (tired)
+			switch (condition)
 			{
 				case AirBaseCondition.Sparkled:
-					// todo I guess?
+					sb.AppendLine(GeneralRes.MaximumMorale);
 					break;
 
 				case AirBaseCondition.Tired:
@@ -252,15 +252,15 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 					switch (squadron.Condition)
 					{
 						case AirBaseCondition.Sparkled:
-							// todo I guess?
+							sb.Append($"[{GeneralRes.MaximumMorale}] ");
 							break;
 
 						case AirBaseCondition.Tired:
-							sb.Append("[" + GeneralRes.Tired + "] ");
+							sb.Append($"[{GeneralRes.Tired}] ");
 							break;
 
 						case AirBaseCondition.VeryTired:
-							sb.Append("[" + GeneralRes.VeryTired + "] ");
+							sb.Append($"[{GeneralRes.VeryTired}] ");
 							break;
 
 						case AirBaseCondition.Normal:
