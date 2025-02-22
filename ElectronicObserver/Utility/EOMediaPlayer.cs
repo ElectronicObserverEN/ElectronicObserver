@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
 
@@ -92,22 +91,13 @@ public class EOMediaPlayer
 	{
 		get
 		{
-			MMDeviceEnumerator deviceEnumerator = new();
-			MMDevice device = deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-
-			return device.AudioEndpointVolume?.Mute ?? false;
+			uint id = (uint)Environment.ProcessId;
+			return BrowserLibCore.VolumeManager.GetApplicationMute(id);
 		}
 		set
 		{
-			MMDeviceEnumerator deviceEnumerator = new();
-			MMDevice device = deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-
-			if (device.AudioEndpointVolume is null)
-			{
-				return;
-			}
-
-			device.AudioEndpointVolume.Mute = value;
+			uint id = (uint)Environment.ProcessId;
+			BrowserLibCore.VolumeManager.SetApplicationMute(id, value);
 		}
 	}
 
