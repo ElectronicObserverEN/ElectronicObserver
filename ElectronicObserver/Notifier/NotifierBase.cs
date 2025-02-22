@@ -222,7 +222,7 @@ public abstract class NotifierBase
 
 	void Sound_MediaEnded()
 	{
-		if (Sound.Playlist.Any() && !LoopsSound)
+		if (Sound.Playlist.Count > 0 && !LoopsSound)
 		{
 			Sound.Next();
 		}

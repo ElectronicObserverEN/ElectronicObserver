@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserverTypes.Data;
 
@@ -89,7 +88,7 @@ public sealed class SyncBGMPlayer
 		ImprovementArsenal,
 	}
 
-	private IDDictionary<SoundHandle> Handles { get; set; } = new();
+	private IDDictionary<SoundHandle> Handles { get; set; } = [];
 	private bool Enabled { get; set; }
 	public bool IsMute
 	{
