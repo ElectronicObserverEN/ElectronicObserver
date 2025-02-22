@@ -89,20 +89,20 @@ public sealed class SyncBGMPlayer
 		ImprovementArsenal,
 	}
 
-	public IDDictionary<SoundHandle> Handles { get; internal set; }
-	public bool Enabled { get; set; }
+	private IDDictionary<SoundHandle> Handles { get; set; } = new();
+	private bool Enabled { get; set; }
 	public bool IsMute
 	{
-		get { return MediaPlayer.IsMute; }
-		set { MediaPlayer.IsMute = value; }
+		get => MediaPlayer.IsMute;
+		set => MediaPlayer.IsMute = value;
 	}
 
 	private EOMediaPlayer MediaPlayer { get; }
-	private SoundHandleID _currentSoundHandleID;
-	private bool _isBoss;
+	private SoundHandleID CurrentSoundHandleId { get; set; } = (SoundHandleID)(-1);
+	private bool IsBoss { get; set; }
 
 
-	public SyncBGMPlayer()
+	private SyncBGMPlayer()
 	{
 
 		MediaPlayer = new EOMediaPlayer
@@ -111,17 +111,10 @@ public sealed class SyncBGMPlayer
 			IsShuffle = true
 		};
 
-		_currentSoundHandleID = (SoundHandleID)(-1);
-		_isBoss = false;
-
-
-		Enabled = false;
-		Handles = new IDDictionary<SoundHandle>();
-
-		foreach (SoundHandleID id in Enum.GetValues(typeof(SoundHandleID)))
+		foreach (SoundHandleID id in Enum.GetValues<SoundHandleID>())
+		{
 			Handles.Add(new SoundHandle(id));
-
-
+		}
 
 		#region API register
 		APIObserver o = APIObserver.Instance;
@@ -191,7 +184,7 @@ public sealed class SyncBGMPlayer
 
 		// 設定変更を適用するためいったん閉じる
 		MediaPlayer.Close();
-		_currentSoundHandleID = (SoundHandleID)(-1);
+		CurrentSoundHandleId = (SoundHandleID)(-1);
 	}
 
 	void SystemEvents_SystemShuttingDown()
@@ -212,19 +205,19 @@ public sealed class SyncBGMPlayer
 
 	void PlayPort(string apiname, dynamic data)
 	{
-		_isBoss = false;
+		IsBoss = false;
 		Play(Handles[(int)SoundHandleID.Port]);
 	}
 
 	void PlaySortie(string apiname, dynamic data)
 	{
 		Play(Handles[(int)SoundHandleID.Sortie]);
-		_isBoss = (int)data.api_event_id == 5;
+		IsBoss = (int)data.api_event_id == 5;
 	}
 
 	void PlayBattleDay(string apiname, dynamic data)
 	{
-		if (_isBoss)
+		if (IsBoss)
 			Play(Handles[(int)SoundHandleID.BattleBoss]);
 		else
 			Play(Handles[(int)SoundHandleID.BattleDay]);
@@ -232,7 +225,7 @@ public sealed class SyncBGMPlayer
 
 	void PlayBattleNight(string apiname, dynamic data)
 	{
-		if (_isBoss)
+		if (IsBoss)
 			Play(Handles[(int)SoundHandleID.BattleBoss]);
 		else
 			Play(Handles[(int)SoundHandleID.BattleNight]);
@@ -240,7 +233,7 @@ public sealed class SyncBGMPlayer
 
 	void PlayBattleAir(string apiname, dynamic data)
 	{
-		if (_isBoss)
+		if (IsBoss)
 			Play(Handles[(int)SoundHandleID.BattleBoss]);
 		else
 			Play(Handles[(int)SoundHandleID.BattleAir]);
@@ -264,7 +257,7 @@ public sealed class SyncBGMPlayer
 			case "S":
 			case "A":
 			case "B":
-				if (_isBoss)
+				if (IsBoss)
 					Play(Handles[(int)SoundHandleID.ResultBossWin]);
 				else
 					Play(Handles[(int)SoundHandleID.ResultWin]);
@@ -308,7 +301,7 @@ public sealed class SyncBGMPlayer
 			sh != null &&
 			sh.Enabled &&
 			!string.IsNullOrWhiteSpace(sh.Path) &&
-			sh.HandleID != _currentSoundHandleID)
+			sh.HandleID != CurrentSoundHandleId)
 		{
 
 
@@ -330,7 +323,7 @@ public sealed class SyncBGMPlayer
 				return;
 			}
 
-			_currentSoundHandleID = sh.HandleID;
+			CurrentSoundHandleId = sh.HandleID;
 
 			MediaPlayer.IsLoop = sh.IsLoop;
 			MediaPlayer.LoopHeadPosition = TimeSpan.FromSeconds(sh.LoopHeadPosition);

@@ -190,8 +190,10 @@ public abstract class NotifierBase
 			{
 				if (Sound.PlayState == PlayState.Playing)
 				{       //playing
-					if (Sound.GetPlaylist().Any())
+					if (Sound.Playlist.Any())
+					{
 						Sound.Next();
+					}
 
 					Sound.Stop();
 				}
@@ -220,8 +222,10 @@ public abstract class NotifierBase
 
 	void Sound_MediaEnded()
 	{
-		if (Sound.GetPlaylist().Any() && !LoopsSound)
+		if (Sound.Playlist.Any() && !LoopsSound)
+		{
 			Sound.Next();
+		}
 	}
 
 

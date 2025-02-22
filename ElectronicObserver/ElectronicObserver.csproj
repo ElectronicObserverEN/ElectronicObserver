@@ -117,6 +117,7 @@
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
+		<PackageReference Include="NAudio" Version="2.2.1" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="ScottPlot" Version="4.1.70" />

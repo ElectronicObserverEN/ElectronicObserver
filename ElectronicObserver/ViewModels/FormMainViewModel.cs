@@ -104,6 +104,7 @@ public partial class FormMainViewModel : ObservableObject
 	private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
 	private string IntegratePath => Path.ChangeExtension(LayoutPath, ".Integrate.json");
 
+	private int VolumeUpdateState { get; set; }
 	public bool NotificationsSilenced { get; set; }
 	private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 	public FontFamily Font { get; set; }
@@ -1680,6 +1681,11 @@ public partial class FormMainViewModel : ObservableObject
 		};
 		SetAnchorableProperties();
 		Topmost = c.Life.TopMost;
+
+		if (!c.Control.UseSystemVolume)
+		{
+			VolumeUpdateState = -1;
+		}
 	}
 
 	private void SetAnchorableProperties()
@@ -1789,36 +1795,35 @@ public partial class FormMainViewModel : ObservableObject
 			break;
 		}
 
-		/*
+		// todo: I'm not sure if that's still an issue, but I don't want to figure it out right now
 		// WMP コントロールによって音量が勝手に変えられてしまうため、前回終了時の音量の再設定を試みる。
 		// 10回試行してダメなら諦める(例外によるラグを防ぐため)
 		// 起動直後にやらないのはちょっと待たないと音量設定が有効にならないから
-		if (_volumeUpdateState != -1 && _volumeUpdateState < 10 && Utility.Configuration.Config.Control.UseSystemVolume)
+		if (VolumeUpdateState != -1 && VolumeUpdateState < 10 && Configuration.Config.Control.UseSystemVolume)
 		{
-
 			try
 			{
-				uint id = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
-				float volume = Utility.Configuration.Config.Control.LastVolume;
-				bool mute = Utility.Configuration.Config.Control.LastIsMute;
+				uint id = (uint)Environment.ProcessId;
+				float volume = Configuration.Config.Control.LastVolume;
+				bool mute = Configuration.Config.Control.LastIsMute;
 
 				BrowserLibCore.VolumeManager.SetApplicationVolume(id, volume);
 				BrowserLibCore.VolumeManager.SetApplicationMute(id, mute);
 
 				SyncBGMPlayer.Instance.SetInitialVolume((int)(volume * 100));
-				foreach (var not in NotifierManager.Instance.GetNotifiers())
-					not.SetInitialVolume((int)(volume * 100));
+				foreach (NotifierBase not in NotifierManager.Instance.GetNotifiers())
+				{
+					not.Sound.Volume = ((int)(volume * 100));
+				}
 
-				_volumeUpdateState = -1;
+				VolumeUpdateState = -1;
 
 			}
 			catch (Exception)
 			{
-
-				_volumeUpdateState++;
+				VolumeUpdateState++;
 			}
 		}
-		*/
 	}
 
 	private static string GetMaintenanceText(FormMainTranslationViewModel formMain, DateTime now)
@@ -1932,19 +1937,16 @@ public partial class FormMainViewModel : ObservableObject
 		// SaveLayout(Configuration.Config.Life.LayoutFilePath);
 
 		// 音量の保存
+		try
 		{
-			try
-			{
-				uint id = (uint)Process.GetCurrentProcess().Id;
-				Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
-				Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
+			uint id = (uint)Environment.ProcessId;
+			Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
+			Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
 
-			}
-			catch (Exception)
-			{
-				/* ぷちっ */
-			}
-
+		}
+		catch (Exception)
+		{
+			/* ぷちっ */
 		}
 	}
 
