@@ -1,5 +1,5 @@
 # Electronic Observer (七四式電子観測儀)
-<p align="center"><a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/master/README.md">English</a> | <b>简体中文</b></p>
+<p align="center"><a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/README.md">English</a> | <b>简体中文</b></p>
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ElectronicObserverEN_ElectronicObserver&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ElectronicObserverEN_ElectronicObserver)
 
@@ -10,7 +10,7 @@ Electronic Observer 是一个帮助提督管理自己舰队的浏览器类工具
 ## 主要功能
 各功能模块均以独立窗口呈现，支持自由停靠、移动与个性化排布。
 
-简介如下，**请查看 [Wiki](https://github.com/RyuuKitsune/ElectronicObserver/wiki) 寻找更多信息**。
+简介如下，**请查看 [Wiki](https://github.com/ElectronicObserverEN/ElectronicObserver/wiki) 寻找更多信息**。
 
 * 内置浏览器 (包括截图、禁音和缩放功能)
 * 舰队显示 (状态 [如远征中、需要补给等], 制空, LoS)
@@ -34,7 +34,7 @@ Electronic Observer 是一个帮助提督管理自己舰队的浏览器类工具
 
 ## 下载
 
-最新版 Electronic Observer 可以在 [**Releases**](https://github.com/gre4bee/ElectronicObserver/releases/latest) 页下载。
+最新版 Electronic Observer 可以在 [**Releases**](https://github.com/ElectronicObserverEN/ElectronicObserver/releases/latest) 页下载。
 
 注意: 你需要安装 [Visual C++ 2019](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0) [(direct link)](https://aka.ms/vs/16/release/vc_redist.x64.exe)，更早的 Windows 版本 (7, 8) 可能还需要安装 [KB2533623](https://support.microsoft.com/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot)
 
@@ -53,15 +53,15 @@ Electronic Observer 是一个帮助提督管理自己舰队的浏览器类工具
 
 ## 相关库
 
-* [DynaJson](https://github.com/fujieda/DynaJson) (JSON 读写) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/DynaJson.txt)
-* [DockPanel Suite](http://dockpanelsuite.com/) (窗口布局) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/DockPanelSuite.txt)
-* [Nekoxy](https://github.com/veigr/Nekoxy) (网络抓包) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Nekoxy.txt)
-    * [TrotiNet](http://trotinet.sourceforge.net/) - [GNU Lesser General Public License v3.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/LGPL.txt)
-        * [log4net](https://logging.apache.org/log4net/) - [Apache License version 2.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Apache.txt)
+* [DynaJson](https://github.com/fujieda/DynaJson) (JSON 读写) - [MIT License](https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/Licenses/DynaJson.txt)
+* [DockPanel Suite](http://dockpanelsuite.com/) (窗口布局) - [MIT License](https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/Licenses/DockPanelSuite.txt)
+* [Nekoxy](https://github.com/veigr/Nekoxy) (网络抓包) - [MIT License](https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/Licenses/Nekoxy.txt)
+    * [TrotiNet](http://trotinet.sourceforge.net/) - [GNU Lesser General Public License v3.0](https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/Licenses/LGPL.txt)
+        * [log4net](https://logging.apache.org/log4net/) - [Apache License version 2.0](https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/Licenses/Apache.txt)
 
 ## 许可证
 
-本仓库使用 MIT License，详情查看 [LICENSE](https://github.com/andanteyk/ElectronicObserver/blob/master/LICENSE)
+本仓库使用 MIT License，详情查看 [LICENSE](https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/LICENSE)
 
 ## 联系
 
