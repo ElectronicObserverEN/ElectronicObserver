@@ -64,7 +64,7 @@ This project is licensed under the MIT License, for more information, see [LICEN
 
 ## Contacts
 
-Please open a new [**issue**](https://github.com/silfumus/ElectronicObserver/issues) at Github if you have any problem, question, or suggestion.
+Please open a new [**issue**](https://github.com/ElectronicObserverEN/ElectronicObserver/issues) at Github if you have any problem, question, or suggestion.
 
 Thank you for using Electronic Observer.
 * Translator: [silfumus](https://github.com/silfumus)

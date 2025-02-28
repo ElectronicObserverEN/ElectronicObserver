@@ -65,7 +65,7 @@ Electronic Observer 是一个帮助提督管理自己舰队的浏览器类工具
 
 ## 联系
 
-如遇问题、疑问或有建议，请在 GitHub 提交 [**issue**](https://github.com/silfumus/ElectronicObserver/issues)。
+如遇问题、疑问或有建议，请在 GitHub 提交 [**issue**](https://github.com/ElectronicObserverEN/ElectronicObserver/issues)。
 
 感谢使用 Electronic Observer。
 * 翻译: [silfumus](https://github.com/silfumus)
