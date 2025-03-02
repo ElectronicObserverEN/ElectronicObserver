@@ -66,6 +66,8 @@ public class EOMediaPlayer
 		{
 			if (AudioFile?.FileName != value && !string.IsNullOrEmpty(value))
 			{
+				Close();
+
 				AudioFile = new(value)
 				{
 					Volume = NormalizedInternalVolume
