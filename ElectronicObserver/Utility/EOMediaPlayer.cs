@@ -67,11 +67,25 @@ public class EOMediaPlayer
 			if (AudioFile?.FileName != value && !string.IsNullOrEmpty(value))
 			{
 				AudioFile = new(value);
+				AudioFile.Volume = NormalizedInternalVolume;
 				MediaPlayer.Init(AudioFile);
 			}
 		}
 	}
 
+	/// <summary>
+	/// Mute sets volume to 0, this property tracks the actual volume.
+	/// </summary>
+	private int InternalVolume { get; set; }
+
+	/// <summary>
+	/// For setting the AudioFile volume value.
+	/// </summary>
+	private float NormalizedInternalVolume => IsMute switch
+	{
+		true => 0,
+		_ => (float)InternalVolume / 100,
+	};
 
 	/// <summary>
 	/// 音量
@@ -80,8 +94,16 @@ public class EOMediaPlayer
 	/// </summary>
 	public int Volume
 	{
-		get => (int)(MediaPlayer.Volume * 100);
-		set => MediaPlayer.Volume = (float)value / 100;
+		get => InternalVolume;
+		set
+		{
+			InternalVolume = value;
+
+			if (AudioFile is not null)
+			{
+				AudioFile.Volume = NormalizedInternalVolume;
+			}
+		}
 	}
 
 	/// <summary>
@@ -89,31 +111,14 @@ public class EOMediaPlayer
 	/// </summary>
 	public bool IsMute
 	{
-		get
-		{
-			try
-			{
-
-				uint id = (uint)Environment.ProcessId;
-				return BrowserLibCore.VolumeManager.GetApplicationMute(id);
-			}
-			catch
-			{
-				// this logic needs to get reworked anyway
-			}
-
-			return false;
-		}
+		get;
 		set
 		{
-			try
+			field = value;
+
+			if (AudioFile is not null)
 			{
-				uint id = (uint)Environment.ProcessId;
-				BrowserLibCore.VolumeManager.SetApplicationMute(id, value);
-			}
-			catch
-			{
-				// this logic needs to get reworked anyway
+				AudioFile.Volume = NormalizedInternalVolume;
 			}
 		}
 	}

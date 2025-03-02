@@ -143,7 +143,6 @@ public abstract class NotifierBase
 	{
 		try
 		{
-
 			DisposeSound();
 
 			if (File.Exists(path))
