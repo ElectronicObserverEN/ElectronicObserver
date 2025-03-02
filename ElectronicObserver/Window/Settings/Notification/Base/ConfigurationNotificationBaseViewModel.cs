@@ -41,14 +41,14 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateImagePath))]
-	public partial string ImagePath { get; set; }
+	public partial string ImagePath { get; set; } = "";
 
 	public bool DrawsImage { get; set; }
 
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
-	public partial string SoundPath { get; set; }
+	public partial string SoundPath { get; set; } = "";
 
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
