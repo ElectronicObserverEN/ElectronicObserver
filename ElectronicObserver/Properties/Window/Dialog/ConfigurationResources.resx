@@ -823,4 +823,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Language_SimplifiedChinese" xml:space="preserve">
     <value>簡体中国語</value>
   </data>
+  <data name="Language_Spanish" xml:space="preserve">
+    <value>スペイン語</value>
+  </data>
 </root>

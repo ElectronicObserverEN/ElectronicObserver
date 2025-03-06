@@ -802,4 +802,7 @@ For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_co
   <data name="Language_SimplifiedChinese" xml:space="preserve">
     <value>Chinese (Simplified)</value>
   </data>
+  <data name="Language_Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
 </root>
