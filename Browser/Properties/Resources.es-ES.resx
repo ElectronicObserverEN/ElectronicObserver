@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Alignment_Bottom" xml:space="preserve">
+    <value>&amp;Bottom</value>
+  </data>
+  <data name="Alignment_Invisible" xml:space="preserve">
+    <value>&amp;Invisible</value>
+  </data>
+  <data name="Alignment_Left" xml:space="preserve">
+    <value>&amp;Left</value>
+  </data>
+  <data name="Alignment_Right" xml:space="preserve">
+    <value>&amp;Right</value>
+  </data>
+  <data name="Alignment_Top" xml:space="preserve">
+    <value>&amp;Top</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>More Options</value>
+  </data>
+  <data name="Other_Zoom_Current_Fit" xml:space="preserve">
+    <value>Zoom: To Fit</value>
+  </data>
+  <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
+    <value>&amp;Copy</value>
+  </data>
+  <data name="Strip_Mute" xml:space="preserve">
+    <value>Mute</value>
+  </data>
+  <data name="Strip_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Strip_ScreenShot" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Strip_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Type 74 Electronic Observation Device Browser</value>
+  </data>
+  <data name="RefreshIgnoreCache" xml:space="preserve">
+    <value>&amp;Hard Refresh</value>
+  </data>
+  <data name="NavigateToLogInPage" xml:space="preserve">
+    <value>Go to Login Page</value>
+  </data>
+  <data name="Other_Zoom_Current" xml:space="preserve">
+    <value>Zoom:</value>
+  </data>
+  <data name="FailedToApplyStylesheet" xml:space="preserve">
+    <value>Failed to apply stylesheet.</value>
+  </data>
+  <data name="LoginDialog" xml:space="preserve">
+    <value>This will return to the login page.
+Are you sure?</value>
+  </data>
+  <data name="ReloadDialog" xml:space="preserve">
+    <value>This will reload the page.
+Are you sure?</value>
+  </data>
+  <data name="FrameScript" xml:space="preserve">
+    <value>
+try {{
+var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);
+node = document.createElement('div');
+node.innerHTML = 'F&lt;style id=\'{0}\'&gt;body {{ visibility: hidden; }} \
+#flashWrap {{ position: fixed; left: 0; top: 0; width: 100% !important; height: 100% !important; }} \
+#htmlWrap {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
+document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+}}
+catch(e) {{
+ alert("フレームCSS適用に失敗しました: "+e);
+}}</value>
+  </data>
+  <data name="PageScript" xml:space="preserve">
+    <value>
+try {{
+var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);
+node = document.createElement('div');
+node.innerHTML = 'P&lt;style id=\'{0}\'&gt;body {{ visibility: hidden; overflow: hidden; }} \
+div #block_background {{ visibility: visible; }} \
+div #alert {{ visibility: visible; overflow: scroll; overflow-x: hidden; top: 3% !important; left: 3% !important; width: 94% !important; height: 94%; padding: 2%; box-sizing: border-box;}} \
+div.dmm-ntgnavi {{ display: none; }} \
+#area-game {{ position: fixed; left: 0; top: 0; width: 100%; height: 100%; }} \
+#game_frame {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
+document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+}}
+catch(e) {{
+ alert("ページCSS適用に失敗しました: "+e);
+}}</value>
+  </data>
+  <data name="ScreenshotError" xml:space="preserve">
+    <value>Failed to take screenshot.</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="ReloadHardDialog" xml:space="preserve">
+    <value>This will refresh cache and reload the page.
+Are you sure?</value>
+  </data>
+  <data name="ShowToolMenu" xml:space="preserve">
+    <value>Display Tool Menu</value>
+  </data>
+  <data name="OpenDevTool" xml:space="preserve">
+    <value>Developer Tools</value>
+  </data>
+  <data name="Zoom_to_Fit" xml:space="preserve">
+    <value>Fit Window</value>
+  </data>
+  <data name="ClearCache" xml:space="preserve">
+    <value>Clear Cache</value>
+  </data>
+  <data name="RenderProcessTerminatedBy" xml:space="preserve">
+    <value>The browser rendering process </value>
+  </data>
+  <data name="RenderProcessAbnormalTermination" xml:space="preserve">
+    <value>does not end properly.</value>
+  </data>
+  <data name="RenderProcessProcessWasKilled" xml:space="preserve">
+    <value>was terminated by another process.</value>
+  </data>
+  <data name="RenderProcessProcessCrashed" xml:space="preserve">
+    <value>has crashed.</value>
+  </data>
+  <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
+    <value>was terminated unexpectedly.</value>
+  </data>
+  <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
+    <value> The process will start after being reloaded.</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>Browser Restart Confirmation</value>
+  </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>Are you sure you want to clear your cache?</value>
+  </data>
+  <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
+    <value>&amp;Screenshot</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
+    <value>&amp;Previous Screenshot</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
+    <value>&amp;Open Screenshot Folder</value>
+  </data>
+  <data name="ToolMenu_Other_Volume" xml:space="preserve">
+    <value>&amp;Volume</value>
+  </data>
+  <data name="ToolMenu_Other_Mute" xml:space="preserve">
+    <value>&amp;Mute</value>
+  </data>
+  <data name="ToolMenu_Other_Refresh" xml:space="preserve">
+    <value>&amp;Refresh</value>
+  </data>
+  <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
+    <value>&amp;Go to &amp;Login Page</value>
+  </data>
+  <data name="ToolMenu_Other_Navigate" xml:space="preserve">
+    <value>Go to...</value>
+  </data>
+  <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
+    <value>Apply Stylesheet</value>
+  </data>
+  <data name="ToolMenu_Other_Alignment" xml:space="preserve">
+    <value>&amp;Alignment</value>
+  </data>
+  <data name="NoScreenshotYet" xml:space="preserve">
+    <value>No screenshot yet.</value>
+  </data>
+  <data name="InstallVisualCpp" xml:space="preserve">
+    <value>The browser component could not be loaded.
+Microsoft Visual C++ 2019 Redistributable is required.
+Open the download page?
+(Please install vc_redist.x64.exe)</value>
+  </data>
+  <data name="CefSharpLoadErrorTitle" xml:space="preserve">
+    <value>CefSharp Load Error</value>
+  </data>
+  <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
+    <value>Failed to hide DMM refresh dialog.</value>
+  </data>
+  <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
+    <value>KanColle is not loaded, unable to take screenshots.</value>
+  </data>
+  <data name="ScreenshotSavedTo" xml:space="preserve">
+    <value>Screenshot saved to {0}.</value>
+  </data>
+  <data name="FailedToSaveScreenshot" xml:space="preserve">
+    <value>Failed to save screenshot.</value>
+  </data>
+  <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>Screenshot copied to clipboard.</value>
+  </data>
+  <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
+    <value>Failed to copy screenshot to clipboard.</value>
+  </data>
+  <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>Screenshot {0} copied to clipboard.</value>
+  </data>
+  <data name="ToolMenu_Other_Zoom" xml:space="preserve">
+    <value>&amp;Zoom</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="DmmPoints" xml:space="preserve">
+    <value>DMM Points</value>
+  </data>
+  <data name="AkashiList" xml:space="preserve">
+    <value>Akashi List</value>
+  </data>
+  <data name="WebView2NotFound" xml:space="preserve">
+    <value>WebView2 not found. Starting download.</value>
+  </data>
+  <data name="WebView2DownloadComplete" xml:space="preserve">
+    <value>WebView2 download complete. Starting installation.</value>
+  </data>
+  <data name="WebView2InstallationComplete" xml:space="preserve">
+    <value>WebView2 installation complete.</value>
+  </data>
+  <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
+    <value>Unable to apply vulkan workaround due to missing permissions. Run Electronic Observer as administrator for the workaround to work.</value>
+  </data>
+  <data name="OlderBrowserVersionDetected" xml:space="preserve">
+    <value>An older version of WebView2 was detected. Downloading the latest version.</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>An error occurred while trying to install WebView2. Please install WebView2 manually.</value>
+  </data>
+  <data name="CacheCleared" xml:space="preserve">
+    <value>Cache has been cleared.</value>
+  </data>
+  <data name="AutoRefreshNotification" xml:space="preserve">
+    <value>You are about to advance to a cell forbidden by a rule in the auto refresh tool.
+Would you like to refresh?</value>
+  </data>
+  <data name="FailedToApplyBrowserFont" xml:space="preserve">
+    <value>Failed to apply browser font.</value>
+  </data>
+</root>
