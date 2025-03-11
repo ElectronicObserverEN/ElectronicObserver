@@ -98,6 +98,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			FleetData fleet2 = KCDatabase.Instance.Fleet[2];
 
 			int tp = Calculator.GetTpDamage(fleet1) + Calculator.GetTpDamage(fleet2);
+			int tankTp = Calculator.GetTankGaugeDamage(fleet1) + Calculator.GetTankGaugeDamage(fleet2);
 
 			List<IShipData> members = fleet1.MembersWithoutEscaped!
 				.Concat(fleet2.MembersWithoutEscaped!)
@@ -123,8 +124,9 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				transport.Count(i => i> 0),
-				landing.Count(i => i > 0)
-
+				landing.Count(i => i > 0),
+				tankTp,
+				(int)Math.Floor(tankTp * 0.7)
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();
