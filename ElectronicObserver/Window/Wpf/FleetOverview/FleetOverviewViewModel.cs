@@ -97,7 +97,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			FleetData fleet1 = KCDatabase.Instance.Fleet[1];
 			FleetData fleet2 = KCDatabase.Instance.Fleet[2];
 
-			int tp = Calculator.GetTPDamage(fleet1) + Calculator.GetTPDamage(fleet2);
+			int tp = Calculator.GetTpDamage(fleet1) + Calculator.GetTpDamage(fleet2);
 
 			List<IShipData> members = fleet1.MembersWithoutEscaped!
 				.Concat(fleet2.MembersWithoutEscaped!)
