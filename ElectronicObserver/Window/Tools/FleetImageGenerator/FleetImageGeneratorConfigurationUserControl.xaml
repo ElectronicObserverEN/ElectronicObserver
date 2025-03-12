@@ -110,6 +110,8 @@
 							/>
 					</StackPanel>
 
+					<CheckBox Content="{Binding DialogFleetImageGenerator.ShowTankTp}" IsChecked="{Binding ShowTankTp}" />
+
 					<CheckBox
 						Content="{Binding DialogFleetImageGenerator.QuickConfigurationAccess}"
 						IsChecked="{Binding QuickConfigAccess}"

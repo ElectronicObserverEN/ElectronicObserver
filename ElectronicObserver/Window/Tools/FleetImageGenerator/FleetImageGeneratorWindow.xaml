@@ -91,6 +91,7 @@
 								</ItemsPanelTemplate>
 							</ItemsControl.ItemsPanel>
 						</ItemsControl>
+
 						<common:EquipmentIcon VerticalAlignment="Center" Type="TransportContainer" />
 						<TextBlock
 							VerticalAlignment="Bottom"
@@ -106,7 +107,7 @@
 						<TextBlock
 							VerticalAlignment="Center"
 							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
-							Text="{Binding TPValueS}"
+							Text="{Binding TpValueS}"
 							/>
 						<TextBlock
 							VerticalAlignment="Bottom"
@@ -117,13 +118,53 @@
 						<TextBlock
 							VerticalAlignment="Center"
 							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
-							Text="{Binding TPValueA}"
+							Text="{Binding TpValueA}"
 							/>
 						<TextBlock
 							VerticalAlignment="Bottom"
 							FontSize="10"
 							Text="A"
 							/>
+
+						<StackPanel
+							Margin="10 0"
+							Orientation="Horizontal"
+							Visibility="{Binding ViewModel.ShowTankTp, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							>
+							<common:EquipmentIcon VerticalAlignment="Center" Type="SpecialAmphibiousTank" />
+							<TextBlock
+								VerticalAlignment="Bottom"
+								FontSize="10"
+								Text="TP"
+								/>
+							<TextBlock
+								Margin="2"
+								VerticalAlignment="Bottom"
+								FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								Text=":"
+								/>
+							<TextBlock
+								VerticalAlignment="Center"
+								FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								Text="{Binding TankTpValueS}"
+								/>
+							<TextBlock
+								VerticalAlignment="Bottom"
+								FontSize="10"
+								Text="S"
+								/>
+							<TextBlock FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}" Text=" / " />
+							<TextBlock
+								VerticalAlignment="Center"
+								FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								Text="{Binding TankTpValueA}"
+								/>
+							<TextBlock
+								VerticalAlignment="Bottom"
+								FontSize="10"
+								Text="A"
+								/>
+						</StackPanel>
 					</StackPanel>
 				</Grid>
 

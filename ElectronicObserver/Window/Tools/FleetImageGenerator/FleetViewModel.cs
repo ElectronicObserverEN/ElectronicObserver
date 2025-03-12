@@ -3,36 +3,30 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
 public class FleetViewModel : ObservableObject
 {
-	private IKCDatabase Db { get; }
+	public IFleetData? Model { get; private set; }
 
-	public IFleetData? Model { get; set; }
-
-	public int Id { get; set; }
+	public int Id { get; private set; }
 	public bool Visible => Model is not null;
 
-	public string Name { get; set; } = "";
+	public string Name { get; private set; } = "";
 
-	public int AirPower { get; set; }
+	public int AirPower { get; private set; }
 
-	public List<LosValue> LosValues { get; set; } = new();
+	public List<LosValue> LosValues { get; private set; } = [];
 
-	public ObservableCollection<ShipViewModel> Ships { get; set; } = new();
-	public int TPValueA { get; set; }
-	public int TPValueS { get; set; }
-	public FleetViewModel()
-	{
-		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
-	}
+	public ObservableCollection<ShipViewModel> Ships { get; private set; } = [];
+	public int TpValueA { get; private set; }
+	public int TpValueS { get; private set; }
+	public int TankTpValueA { get; private set; }
+	public int TankTpValueS { get; private set; }
 
 	public FleetViewModel Initialize(IFleetData? fleet, int fleetId, ImageType imageType)
 	{
@@ -51,8 +45,13 @@ public class FleetViewModel : ObservableObject
 		LosValues = Enumerable.Range(1, 4)
 			.Select(w => new LosValue(w, Math.Round(Calculator.GetSearchingAbility_New33(fleet, w), 2, MidpointRounding.ToNegativeInfinity)))
 			.ToList();
-		TPValueS = Calculator.GetTpDamage(fleet);
-		TPValueA = (int)(Calculator.GetTpDamage(fleet) * 0.7);
+
+		TpValueS = Calculator.GetTpDamage(fleet);
+		TpValueA = (int)(TpValueS * 0.7);
+
+		TankTpValueS = Calculator.GetTankGaugeDamage(fleet);
+		TankTpValueA = (int)(TankTpValueS * 0.7);
+
 		Ships = FilterStrikingForce(fleet.MembersInstance)
 			.Select(s => imageType switch
 			{
@@ -67,9 +66,9 @@ public class FleetViewModel : ObservableObject
 		return this;
 	}
 
-	private IEnumerable<IShipData?> FilterStrikingForce(IEnumerable<IShipData?> ships)
+	private static IEnumerable<IShipData?> FilterStrikingForce(ReadOnlyCollection<IShipData?> ships)
 	{
-		if (ships.Count() <= 6) return ships;
+		if (ships.Count <= 6) return ships;
 		if (ships.Last() is not null) return ships;
 
 		return ships.Take(6);

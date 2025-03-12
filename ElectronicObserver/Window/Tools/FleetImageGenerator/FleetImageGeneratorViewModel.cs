@@ -65,6 +65,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public SolidColorBrush Background => new(BackgroundColor);
 	public string? BackgroundImagePath { get; set; }
 	public bool BackgroundImageExists => File.Exists(BackgroundImagePath);
+	public bool ShowTankTp { get; set; }
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -294,6 +295,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		ForegroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.ForegroundColor);
 		BackgroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.BackgroundColor);
 		BackgroundImagePath = Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath;
+		ShowTankTp = Configuration.Config.FleetImageGenerator.ShowTankTp;
 	}
 
 	private void SaveConfig()
@@ -343,6 +345,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.ForegroundColor = ForegroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.BackgroundColor = BackgroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath = BackgroundImagePath ?? "";
+		Configuration.Config.FleetImageGenerator.ShowTankTp = ShowTankTp;
 	}
 
 	public override void Closed()

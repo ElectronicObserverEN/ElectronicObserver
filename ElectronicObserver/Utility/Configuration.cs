@@ -1870,6 +1870,7 @@ public sealed class Configuration
 			public bool UseCustomTheme { get; set; }
 			public string ForegroundColor { get; set; }
 			public string BackgroundColor { get; set; }
+			public bool ShowTankTp { get; set; } = true;
 
 			public ConfigFleetImageGenerator()
 				: base()
