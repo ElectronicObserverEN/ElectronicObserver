@@ -275,7 +275,13 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Stop()
 	{
-		IsManualStop = true;
+		// the flag only gets wiped on media ended
+		// so if you set the flag when there's no media playing, it never gets wiped
+		if (MediaPlayer.PlaybackState is PlaybackState.Playing)
+		{
+			IsManualStop = true;
+		}
+
 		MediaPlayer.Stop();
 	}
 
