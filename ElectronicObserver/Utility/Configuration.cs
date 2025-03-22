@@ -689,7 +689,6 @@ public sealed class Configuration
 			/// <summary>
 			/// Discord RPC message to display
 			/// Use {{secretary}} to insert secretary name
-			/// Use {{ship}} to insert selected ship name <see cref="ShipUsedForRpcIcon"/>
 			/// </summary>
 			public string DiscordRPCMessage { get; set; }
 

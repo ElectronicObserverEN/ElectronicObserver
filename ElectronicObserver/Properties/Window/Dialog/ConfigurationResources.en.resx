@@ -254,8 +254,7 @@ Disable this setting to hide the information.</value>
   </data>
   <data name="Control_DiscordRPCMessageToolTip" xml:space="preserve">
     <value>Allows you to choose what message to display on discord. 
-Use {{secretary}} to add your secretary's name in the message.
-Use {{ship}} to add the name of the ship used for icon display in the message.</value>
+Use {{secretary}} to add your secretary's name in the message.</value>
   </data>
   <data name="Control_ShowExpeditionAlertDialog" xml:space="preserve">
     <value>Warn when sending expedition w/ unmet requirements</value>
