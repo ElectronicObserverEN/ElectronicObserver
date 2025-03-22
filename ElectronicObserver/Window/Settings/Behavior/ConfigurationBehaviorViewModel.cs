@@ -37,15 +37,15 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	public string DiscordRPCApplicationId { get; set; }
 
 	public Uri UpdateRepoURL { get; set; }
-	
-	public int RpcIconKindIndex { get; set; }
+
+	public RpcIconKind RpcIconKind { get; set; }
 
 	public IShipDataMaster? ShipUsedForRpcIcon { get; set; }
 	public ShipPickerViewModel ShipPickerViewModel { get; }
 
 	public string SelectedShipName => ShipUsedForRpcIcon switch
 	{
-		{} => ShipUsedForRpcIcon.NameEN,
+		{ } => ShipUsedForRpcIcon.NameEN,
 		_ => Translation.Control_DiscordRpc_NoShip,
 	};
 
@@ -74,9 +74,9 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		ShipUsedForRpcIcon = config.ShipUsedForRpcIcon switch
 		{
 			ShipId id => KCDatabase.Instance.MasterShips[(int)id],
-			 _ => null,
+			_ => null,
 		};
-		RpcIconKindIndex = (int)config.RpcIconKind;
+		RpcIconKind = config.RpcIconKind;
 	}
 
 	public override void Save()
@@ -92,7 +92,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		Config.DiscordRPCShowFCM = DiscordRPCShowFCM;
 		Config.DiscordRPCApplicationId = DiscordRPCApplicationId;
 		Config.UpdateRepoURL = UpdateRepoURL;
-		Config.RpcIconKind = (RpcIconKind)RpcIconKindIndex;
+		Config.RpcIconKind = RpcIconKind;
 		Config.ShipUsedForRpcIcon = ShipUsedForRpcIcon?.ShipId;
 	}
 
@@ -119,9 +119,17 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	}
 
 	[RelayCommand]
+	private void SelectRpcIconKind(RpcIconKind? kind)
+	{
+		if (kind is not { } kindNotNull) return;
+
+		RpcIconKind = kindNotNull;
+	}
+
+	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		RpcIconKindIndex = (int)RpcIconKind.Ship;
+		RpcIconKind = RpcIconKind.Ship;
 
 		ShipPickerView shipPicker = new(ShipPickerViewModel);
 

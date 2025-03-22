@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:discordRpc="clr-namespace:ElectronicObserver.Data.DiscordRPC"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Behavior"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -277,16 +278,72 @@
 					ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
 					/>
 
-				<controls:RadioButtons Header="{Binding Translation.Control_DiscordRpc_Icon}" SelectedIndex="{Binding RpcIconKindIndex}">
-					<TextBlock Text="{Binding DataContext.Translation.Control_DiscordRpc_Default, Source={StaticResource Proxy}}" />
-					<TextBlock Text="{Binding DataContext.Translation.Control_DiscordRpc_Secretary, Source={StaticResource Proxy}}" />
-					<RadioButton>
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="{Binding DataContext.Translation.Control_DiscordRpc_Ship, Source={StaticResource Proxy}}" />
-							<Button Command="{Binding DataContext.OpenShipPickerCommand, Source={StaticResource Proxy}}" Content="{Binding DataContext.SelectedShipName, Source={StaticResource Proxy}, Mode=OneWay}" />
-						</StackPanel>
+				<TextBlock Text="{Binding Translation.Control_DiscordRpc_Icon}" />
+
+				<RadioButton Command="{Binding SelectRpcIconKindCommand}" Content="{Binding Translation.Control_DiscordRpc_Default}">
+					<RadioButton.CommandParameter>
+						<discordRpc:RpcIconKind>Default</discordRpc:RpcIconKind>
+					</RadioButton.CommandParameter>
+
+					<RadioButton.Style>
+						<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+							<Setter Property="IsChecked" Value="False" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding RpcIconKind}">
+									<DataTrigger.Value>
+										<discordRpc:RpcIconKind>Default</discordRpc:RpcIconKind>
+									</DataTrigger.Value>
+									<Setter Property="IsChecked" Value="True" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RadioButton.Style>
+				</RadioButton>
+
+				<RadioButton Command="{Binding SelectRpcIconKindCommand}" Content="{Binding Translation.Control_DiscordRpc_Secretary}">
+					<RadioButton.CommandParameter>
+						<discordRpc:RpcIconKind>Secretary</discordRpc:RpcIconKind>
+					</RadioButton.CommandParameter>
+
+					<RadioButton.Style>
+						<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+							<Setter Property="IsChecked" Value="False" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding RpcIconKind}">
+									<DataTrigger.Value>
+										<discordRpc:RpcIconKind>Secretary</discordRpc:RpcIconKind>
+									</DataTrigger.Value>
+									<Setter Property="IsChecked" Value="True" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RadioButton.Style>
+				</RadioButton>
+
+				<StackPanel Orientation="Horizontal">
+					<RadioButton Command="{Binding SelectRpcIconKindCommand}" Content="{Binding Translation.Control_DiscordRpc_Ship}">
+						<RadioButton.CommandParameter>
+							<discordRpc:RpcIconKind>Ship</discordRpc:RpcIconKind>
+						</RadioButton.CommandParameter>
+
+						<RadioButton.Style>
+							<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+								<Setter Property="IsChecked" Value="False" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding RpcIconKind}">
+										<DataTrigger.Value>
+											<discordRpc:RpcIconKind>Ship</discordRpc:RpcIconKind>
+										</DataTrigger.Value>
+										<Setter Property="IsChecked" Value="True" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</RadioButton.Style>
 					</RadioButton>
-				</controls:RadioButtons>
+
+					<Button Command="{Binding DataContext.OpenShipPickerCommand, Source={StaticResource Proxy}}" Content="{Binding DataContext.SelectedShipName, Source={StaticResource Proxy}, Mode=OneWay}" />
+				</StackPanel>
+
 			</StackPanel>
 		</StackPanel>
 	</StackPanel>
