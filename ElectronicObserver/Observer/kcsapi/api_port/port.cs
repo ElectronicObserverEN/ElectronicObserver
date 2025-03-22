@@ -69,7 +69,7 @@ public class port : APIBase
 				_ => null,
 			};
 
-			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{ship}}", selectedShip?.NameEN ?? "???");
+			dataForWS.TopDisplayText = dataForWS.TopDisplayText.Replace("{{ship}}", selectedShip?.NameEN ?? "???");
 
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
