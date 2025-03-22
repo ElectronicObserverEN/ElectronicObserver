@@ -80,7 +80,7 @@ public class port : APIBase
 
 			dataForWS.ImageKey = Utility.Configuration.Config.Control.RpcIconKind switch
 			{
-				RpcIconKind.Secretary or RpcIconKind.Ship => selectedShip?.ToString() ?? "???",
+				RpcIconKind.Secretary or RpcIconKind.Ship => selectedShip?.ShipID.ToString() ?? "???",
 				_ => "kc_logo_512x512",
 			};
 
