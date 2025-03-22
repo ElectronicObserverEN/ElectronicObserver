@@ -63,6 +63,14 @@ public class port : APIBase
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.GetRPCData();
 			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
+			IShipDataMaster? selectedShip = Utility.Configuration.Config.Control.ShipUsedForRpcIcon switch
+			{
+				{} => db.MasterShips[(int)Utility.Configuration.Config.Control.ShipUsedForRpcIcon],
+				_ => null,
+			};
+
+			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{ship}}", selectedShip?.NameEN ?? "???");
+
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
 				dataForWS.TopDisplayText = string.Format(ObserverRes.RepairingShips, (db.Fleet[1].MembersInstance.Count(s => s != null) - 1).ToString());
@@ -73,7 +81,7 @@ public class port : APIBase
 			dataForWS.ImageKey = Utility.Configuration.Config.Control.RpcIconKind switch
 			{
 				RpcIconKind.Secretary => db.Fleet[1].MembersInstance[0].ShipID.ToString(),
-				RpcIconKind.Ship => ((int?)Utility.Configuration.Config.Control.ShipUsedForRpcIcon)?.ToString(),
+				RpcIconKind.Ship => selectedShip?.ToString() ?? "???",
 				_ => "kc_logo_512x512",
 			};
 
