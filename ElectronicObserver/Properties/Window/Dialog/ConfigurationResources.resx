@@ -652,9 +652,6 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Log_PlayTime" xml:space="preserve">
     <value>プレイ時間</value>
   </data>
-  <data name="checkBoxUseSecretaryIconForRPC" xml:space="preserve">
-    <value>秘書のアイコンをゲーム画像として使用</value>
-  </data>
   <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
     <value>TsunDb送信を有効にする</value>
   </data>
@@ -825,5 +822,14 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   </data>
   <data name="Language_Spanish" xml:space="preserve">
     <value>スペイン語</value>
+  </data>
+  <data name="Control_DiscordRPC_Icon" xml:space="preserve">
+    <value>??? (Discord RPC icon :)</value>
+  </data>
+  <data name="Control_DiscordRPC_Default" xml:space="preserve">
+    <value>??? (Default)</value>
+  </data>
+  <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
+    <value>??? (Secretary)</value>
   </data>
 </root>

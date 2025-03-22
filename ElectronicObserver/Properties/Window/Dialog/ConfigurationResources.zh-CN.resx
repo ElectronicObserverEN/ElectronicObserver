@@ -117,152 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Language_English" xml:space="preserve">
-    <value>英语</value>
-  </data>
-  <data name="Control_PowerEngagementForm_HeadOn" xml:space="preserve">
-    <value>反航战</value>
-  </data>
-  <data name="Control_PowerEngagementForm_Parallel" xml:space="preserve">
-    <value>同航战</value>
-  </data>
-  <data name="Control_PowerEngagementForm_RedT" xml:space="preserve">
-    <value>T不利</value>
-  </data>
-  <data name="Control_PowerEngagementForm_GreenT" xml:space="preserve">
-    <value>T有利</value>
-  </data>
-  <data name="Language_Japanese" xml:space="preserve">
-    <value>日本语</value>
-  </data>
-  <data name="DialogCaptionErrorTitle" xml:space="preserve">
-    <value>错误</value>
-  </data>
-  <data name="Theme_Dark" xml:space="preserve">
-    <value>黑暗</value>
-  </data>
-  <data name="Theme_Custom" xml:space="preserve">
-    <value>自定义</value>
-  </data>
-  <data name="Theme_Light" xml:space="preserve">
-    <value>光</value>
-  </data>
-  <data name="UI_LanguageLabel" xml:space="preserve">
-    <value>语言：</value>
-  </data>
-  <data name="AB" xml:space="preserve">
-    <value>基地航空队</value>
-  </data>
-  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
-    <value>74EO-EN版 API URL</value>
-  </data>
-  <data name="Language_Korean" xml:space="preserve">
-    <value>韩语</value>
-  </data>
-  <data name="Life_ClockFormat_QuestReset" xml:space="preserve">
-    <value>更新任务为止</value>
-  </data>
-  <data name="Life_ClockFormat_PvpReset" xml:space="preserve">
-    <value>更新演习为止</value>
-  </data>
-  <data name="PleaseStartKancolle" xml:space="preserve">
-    <value>请先启动砍口垒。</value>
-  </data>
-  <data name="FormBaseAirCorps_ShowEventMapOnlyToolTip" xml:space="preserve">
-    <value>活动期间隐藏普通图的陆航。</value>
-  </data>
-  <data name="SaveDataPathDoesNotExist" xml:space="preserve">
-    <value>指定的文件夹不存在。</value>
-  </data>
-  <data name="SavePacFileAs" xml:space="preserve">
-    <value>保存自动代理配置脚本（PAC）</value>
-  </data>
-  <data name="Notification_BaseAirCorps" xml:space="preserve">
-    <value>陆航通知设定…</value>
-  </data>
-  <data name="ProxyAutoConfigSaved" xml:space="preserve">
-    <value>代理自动配置脚本已保存。
-文件路径已复制到剪贴板，将其粘贴到 Internet Explorer 中的代理设置中。</value>
-  </data>
-  <data name="PacSavedTitle" xml:space="preserve">
-    <value>PAC脚本已保存</value>
-  </data>
-  <data name="FormJson_AutoUpdate" xml:space="preserve">
-    <value>自动刷新（更新）？</value>
-  </data>
-  <data name="Connection_UseUpstreamProxy" xml:space="preserve">
-    <value>使用上游（本地？）代理：</value>
-  </data>
-  <data name="UpdateFilter" xml:space="preserve">
-    <value>自动更新过滤器：</value>
-  </data>
-  <data name="Log_PlayTime" xml:space="preserve">
-    <value>游玩时间</value>
-  </data>
-  <data name="FormBrowser_ScreenShotSaveMode_Both" xml:space="preserve">
-    <value>保存两者</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
-    <value>自定义小工具缓存 URL</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>如何保存：</value>
-  </data>
-  <data name="Notification_RemodelLevel" xml:space="preserve">
-    <value>改造等级</value>
-  </data>
-  <data name="APIListBrowser" xml:space="preserve">
-    <value>打开API列表文件</value>
-  </data>
-  <data name="Notification_SilencioToolTip" xml:space="preserve">
-    <value>隐藏/停止所有通知和通知声音</value>
-  </data>
-  <data name="Connection_DownstreamProxyLabel" xml:space="preserve">
-    <value>下游代理（适用于高级用户）：</value>
-  </data>
-  <data name="Connection_UseSystemProxy" xml:space="preserve">
-    <value>使用系统代理</value>
-  </data>
-  <data name="Connection_UseUpstreamProxyToolTip" xml:space="preserve">
-    <value>使用本地代理服务器。
-如果您想通过第三方应用程序（例如：MyFleetGirls）路由连接，请启用。</value>
-  </data>
-  <data name="Connection_SaveDataPathSearch" xml:space="preserve">
-    <value>浏览……</value>
-  </data>
-  <data name="UI_DisableOtherTranslations" xml:space="preserve">
-    <value>禁用其他翻译</value>
-  </data>
-  <data name="UI_JapaneseEquipmentTypes" xml:space="preserve">
-    <value>禁用装备种类翻译</value>
-  </data>
-  <data name="UI_JapaneseShipTypes" xml:space="preserve">
-    <value>禁用舰种翻译</value>
-  </data>
-  <data name="Theme" xml:space="preserve">
-    <value>主题:</value>
-  </data>
-  <data name="Fleet" xml:space="preserve">
-    <value>舰队</value>
-  </data>
-  <data name="UI_RenderingTestToolTip" xml:space="preserve">
-    <value>这是预览。
-使用下面的滑块调整数值。</value>
-  </data>
-  <data name="UI_IsLayoutFixedToolTip" xml:space="preserve">
-    <value>启用后，无论字体如何，每个 UI 列都将具有大致相同的高度（与之前的版本 2.6.2 一样）。
-禁用时，列高根据字体而变化（可能比启用时更大）。
-如果禁用，操作可能会稍微变慢。</value>
-  </data>
-  <data name="Log_SaveLogImmediately" xml:space="preserve">
-    <value>立即写入日志</value>
-  </data>
-  <data name="Log_SaveBattleLog" xml:space="preserve">
-    <value>保存战斗日志</value>
-  </data>
-  <data name="Log_ShowSpoiler" xml:space="preserve">
-    <value>显示剧透</value>
-  </data>
   <data name="NetworkSettingsNote" xml:space="preserve">
     <value>*网络设置重启后生效</value>
   </data>
@@ -270,39 +124,76 @@
     <value>指定上行代理的地址。
 默认值为 127.0.0.1。</value>
   </data>
+  <data name="Connection_DownstreamProxyLabel" xml:space="preserve">
+    <value>下游代理（适用于高级用户）：</value>
+  </data>
   <data name="Connection_DownstreamProxyToolTip" xml:space="preserve">
     <value>指定下游代理设置。
 此设置将覆盖上游代理设置。
 仅适用于高级用户。</value>
   </data>
-  <data name="Connection_RegisterAsSystemProxy" xml:space="preserve">
-    <value>注册为系统代理</value>
+  <data name="Connection_UseSystemProxy" xml:space="preserve">
+    <value>使用系统代理</value>
   </data>
   <data name="Connection_UpstreamProxyPortToolTip" xml:space="preserve">
     <value>指定本地代理服务器的端口号。</value>
   </data>
+  <data name="Connection_UseUpstreamProxyToolTip" xml:space="preserve">
+    <value>使用本地代理服务器。
+如果您想通过第三方应用程序（例如：MyFleetGirls）路由连接，请启用。</value>
+  </data>
+  <data name="Connection_RegisterAsSystemProxy" xml:space="preserve">
+    <value>注册为系统代理</value>
+  </data>
+  <data name="Connection_SaveDataPathSearch" xml:space="preserve">
+    <value>浏览……</value>
+  </data>
   <data name="Connection_SaveReceivedData" xml:space="preserve">
     <value>保存API数据</value>
+  </data>
+  <data name="UI_JapaneseEquipmentTypes" xml:space="preserve">
+    <value>禁用装备种类翻译</value>
   </data>
   <data name="UI_JapaneseEquipmentNames" xml:space="preserve">
     <value>禁用装备名称翻译</value>
   </data>
+  <data name="UI_JapaneseShipTypes" xml:space="preserve">
+    <value>禁用舰种翻译</value>
+  </data>
   <data name="UI_JapaneseShipNames" xml:space="preserve">
     <value>禁用艆名翻译</value>
   </data>
+  <data name="UI_DisableOtherTranslations" xml:space="preserve">
+    <value>禁用其他翻译</value>
+  </data>
   <data name="UI_DisableOtherTranslationsToolTip" xml:space="preserve">
     <value>远征，出击，任务</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>主题:</value>
   </data>
   <data name="ThemeToolTip" xml:space="preserve">
     <value>使用指定的颜色主题。
 更改将在重启后生效。
 自定义选项将使用 Settings\ColorScheme.json 中的颜色值</value>
   </data>
+  <data name="UI_RenderingTestToolTip" xml:space="preserve">
+    <value>这是预览。
+使用下面的滑块调整数值。</value>
+  </data>
   <data name="UI_IsLayoutFixed" xml:space="preserve">
     <value>使用固定字体高度</value>
   </data>
+  <data name="UI_IsLayoutFixedToolTip" xml:space="preserve">
+    <value>启用后，无论字体如何，每个 UI 列都将具有大致相同的高度（与之前的版本 2.6.2 一样）。
+禁用时，列高根据字体而变化（可能比启用时更大）。
+如果禁用，操作可能会稍微变慢。</value>
+  </data>
   <data name="UI_BarColorMorphingToolTip" xml:space="preserve">
     <value>像砍口垒UI一样在颜色条上使用渐变，如HP条，资源条。</value>
+  </data>
+  <data name="Log_SaveLogImmediately" xml:space="preserve">
+    <value>立即写入日志</value>
   </data>
   <data name="Log_SaveLogImmediatelyToolTip" xml:space="preserve">
     <value>指定添加日志的同时是否写入日志文件。
@@ -310,9 +201,15 @@
 如果启用，即使发生强制终止等问题，您也可以留下日志，但可能会在一定程度上减慢进程速度。
 请注意，如果禁用“将日志保存到文件”，则此规范将无效。</value>
   </data>
+  <data name="Log_SaveBattleLog" xml:space="preserve">
+    <value>保存战斗日志</value>
+  </data>
   <data name="Log_SaveBattleLogToolTip" xml:space="preserve">
     <value>指定是否保存战斗日志。
 战斗日志保存在BattleLog文件夹中。</value>
+  </data>
+  <data name="Log_ShowSpoiler" xml:space="preserve">
+    <value>显示剧透</value>
   </data>
   <data name="Log_ShowSpoilerToolTip" xml:space="preserve">
     <value>在日志中显示已开发的物品和掉落的船只。
@@ -373,6 +270,12 @@
     <value>当没有贴条的舰娘出击时是否显示警告框
 由于获取的信息不完整，可能会出现误判。注意。</value>
   </data>
+  <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
+    <value>设置计算力量（战斗中的攻击力）时的标准交战模式。</value>
+  </data>
+  <data name="FormationModifier" xml:space="preserve">
+    <value>攻击力表示交战形态:</value>
+  </data>
   <data name="Control_UseSystemVolume" xml:space="preserve">
     <value>使用系统设置通知/BGM 音量</value>
   </data>
@@ -419,6 +322,12 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="Life_ClockFormat_ServerTime" xml:space="preserve">
     <value>服务器时间：</value>
   </data>
+  <data name="Life_ClockFormat_PvpReset" xml:space="preserve">
+    <value>更新演习为止</value>
+  </data>
+  <data name="Life_ClockFormat_QuestReset" xml:space="preserve">
+    <value>更新任务为止</value>
+  </data>
   <data name="Life_ShowStatusBar" xml:space="preserve">
     <value>显示状态栏</value>
   </data>
@@ -433,6 +342,9 @@ API列表的格式和使用方法请参见在线帮助。</value>
   </data>
   <data name="Window" xml:space="preserve">
     <value>子窗口</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>舰队</value>
   </data>
   <data name="FormFleet_AppliesSallyAreaColor" xml:space="preserve">
     <value>按出击海域对舰娘名称进行颜色编码</value>
@@ -474,17 +386,12 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="FormFleet_ReflectAnchorageRepairHealingToolTip" xml:space="preserve">
     <value>如果启用，恢复的血量将在泊地修理20分钟后显示在HP栏上。</value>
   </data>
-  <data name="HQ" xml:space="preserve">
-    <value>司令部</value>
+  <data name="FormFleet_ShowAirSuperiorityRange" xml:space="preserve">
+    <value>显示制空范围</value>
   </data>
-  <data name="Combat" xml:space="preserve">
-    <value>战斗</value>
-  </data>
-  <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
-    <value>设置计算力量（战斗中的攻击力）时的标准交战模式。</value>
-  </data>
-  <data name="FormationModifier" xml:space="preserve">
-    <value>攻击力表示交战形态:</value>
+  <data name="FormFleet_ShowAirSuperiorityRangeToolTip" xml:space="preserve">
+    <value>指定是否将制空权范围显示为“最小到最大内部熟练度”。
+通常，空中优势被计算为具有最低的内部熟练程度。</value>
   </data>
   <data name="FormFleet_ShowAircraftLevelByNumber" xml:space="preserve">
     <value>以数字方式显示舰载机熟练程度</value>
@@ -504,6 +411,12 @@ API列表的格式和使用方法请参见在线帮助。</value>
   </data>
   <data name="EquipmentLevelVisibility_OverlayProficiency" xml:space="preserve">
     <value>叠加熟练度</value>
+  </data>
+  <data name="FormFleet_EquipmentLevelVisibilityToolTip" xml:space="preserve">
+    <value>指定装备改装等级和舰载机熟练度的显示。
+如果设置为“隐藏”则不会显示。
+在“优先”的情况下，当双方均为Lv.1以上时，将优先显示。
+如果选择“显示两者”，则始终显示两者。</value>
   </data>
   <data name="EquipmentLevelDisplay" xml:space="preserve">
     <value>装备信息显示：</value>
@@ -556,6 +469,9 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="FormArsenal_ShowShipName" xml:space="preserve">
     <value>显示艆名</value>
   </data>
+  <data name="HQ" xml:space="preserve">
+    <value>司令部</value>
+  </data>
   <data name="OtherItem" xml:space="preserve">
     <value>其他项目：</value>
   </data>
@@ -567,6 +483,9 @@ API列表的格式和使用方法请参见在线帮助。</value>
   </data>
   <data name="FormShipGroup_ShowStatusBar" xml:space="preserve">
     <value>显示状态栏</value>
+  </data>
+  <data name="Combat" xml:space="preserve">
+    <value>战斗</value>
   </data>
   <data name="FormBattle_Display7thAsSingleLine" xml:space="preserve">
     <value>在同一行显示第 7 艘船</value>
@@ -633,11 +552,11 @@ API列表的格式和使用方法请参见在线帮助。</value>
 注意：如果需要使用窗口捕获，请禁用此设置。
 * 更改将在应用程序重新启动后生效。</value>
   </data>
-  <data name="FormBrowser_IsDMMreloadDialogDestroyableToolTip" xml:space="preserve">
-    <value>隐藏浏览器窗口中出现的 DMM 页面重新加载弹出对话框。</value>
-  </data>
   <data name="FormBrowser_IsDMMreloadDialogDestroyable" xml:space="preserve">
     <value>隐藏弹出的重新加载窗口</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyableToolTip" xml:space="preserve">
+    <value>隐藏浏览器窗口中出现的 DMM 页面重新加载弹出对话框。</value>
   </data>
   <data name="FormBrowser_ConfirmAtRefresh" xml:space="preserve">
     <value>重新加载时检查</value>
@@ -648,11 +567,17 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="Screenshot" xml:space="preserve">
     <value>截屏</value>
   </data>
+  <data name="Output" xml:space="preserve">
+    <value>如何保存：</value>
+  </data>
   <data name="FormBrowser_ScreenShotSaveMode_ToFile" xml:space="preserve">
     <value>保存到文件</value>
   </data>
   <data name="FormBrowser_ScreenShotSaveMode_ToClipboard" xml:space="preserve">
     <value>复制到剪贴板</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_Both" xml:space="preserve">
+    <value>保存两者</value>
   </data>
   <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration" xml:space="preserve">
     <value>避免 Twitter 图像压缩</value>
@@ -664,8 +589,17 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="Zoom" xml:space="preserve">
     <value>缩放倍率：</value>
   </data>
+  <data name="AB" xml:space="preserve">
+    <value>基地航空队</value>
+  </data>
   <data name="FormBaseAirCorps_ShowEventMapOnly" xml:space="preserve">
     <value>仅显示活动海域内的陆航</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnlyToolTip" xml:space="preserve">
+    <value>活动期间隐藏普通图的陆航。</value>
+  </data>
+  <data name="FormJson_AutoUpdate" xml:space="preserve">
+    <value>自动刷新（更新）？</value>
   </data>
   <data name="FormJson_AutoUpdateToolTip" xml:space="preserve">
     <value>指定发送和接收 API 时是否自动更新显示。
@@ -686,11 +620,20 @@ API列表的格式和使用方法请参见在线帮助。</value>
     <value>这是一个过滤器，用于选择自动更新期间要加载的 API。
 正则表达式也可用。</value>
   </data>
+  <data name="UpdateFilter" xml:space="preserve">
+    <value>自动更新过滤器：</value>
+  </data>
   <data name="silenceFullscreen" xml:space="preserve">
     <value>全屏时静音</value>
   </data>
   <data name="Notification_Silencio" xml:space="preserve">
     <value>将所有通知静音</value>
+  </data>
+  <data name="Notification_SilencioToolTip" xml:space="preserve">
+    <value>隐藏/停止所有通知和通知声音</value>
+  </data>
+  <data name="Notification_RemodelLevel" xml:space="preserve">
+    <value>改造等级</value>
   </data>
   <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
     <value>同步静音</value>
@@ -698,14 +641,63 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="BGMPlayer_SyncBrowserMuteToolTip" xml:space="preserve">
     <value>指定是否与浏览器静音联动。</value>
   </data>
-  <data name="checkBoxUseSecretaryIconForRPC" xml:space="preserve">
-    <value>使用秘书舰图标作为游戏图像</value>
+  <data name="APIListBrowser" xml:space="preserve">
+    <value>打开API列表文件</value>
+  </data>
+  <data name="Log_PlayTime" xml:space="preserve">
+    <value>游玩时间</value>
   </data>
   <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
     <value>启用 TsunDb 发送</value>
   </data>
+  <data name="Notification_BaseAirCorps" xml:space="preserve">
+    <value>陆航通知设定…</value>
+  </data>
   <data name="Notification_BattleEnd" xml:space="preserve">
     <value>战斗结束通知</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>光</value>
+  </data>
+  <data name="Theme_Dark" xml:space="preserve">
+    <value>黑暗</value>
+  </data>
+  <data name="Theme_Custom" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="Control_PowerEngagementForm_Parallel" xml:space="preserve">
+    <value>同航战</value>
+  </data>
+  <data name="Control_PowerEngagementForm_HeadOn" xml:space="preserve">
+    <value>反航战</value>
+  </data>
+  <data name="Control_PowerEngagementForm_GreenT" xml:space="preserve">
+    <value>T有利</value>
+  </data>
+  <data name="Control_PowerEngagementForm_RedT" xml:space="preserve">
+    <value>T不利</value>
+  </data>
+  <data name="Connection_UseUpstreamProxy" xml:space="preserve">
+    <value>使用上游（本地？）代理：</value>
+  </data>
+  <data name="SaveDataPathDoesNotExist" xml:space="preserve">
+    <value>指定的文件夹不存在。</value>
+  </data>
+  <data name="DialogCaptionErrorTitle" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="PleaseStartKancolle" xml:space="preserve">
+    <value>请先启动砍口垒。</value>
+  </data>
+  <data name="SavePacFileAs" xml:space="preserve">
+    <value>保存自动代理配置脚本（PAC）</value>
+  </data>
+  <data name="ProxyAutoConfigSaved" xml:space="preserve">
+    <value>代理自动配置脚本已保存。
+文件路径已复制到剪贴板，将其粘贴到 Internet Explorer 中的代理设置中。</value>
+  </data>
+  <data name="PacSavedTitle" xml:space="preserve">
+    <value>PAC脚本已保存</value>
   </data>
   <data name="FailedToSavePac" xml:space="preserve">
     <value>无法保存自动代理配置脚本。</value>
@@ -714,14 +706,26 @@ API列表的格式和使用方法请参见在线帮助。</value>
     <value>BGM 播放器音量将设置为 {0}。
 您确定吗？</value>
   </data>
+  <data name="ConfirmSetting" xml:space="preserve">
+    <value>总音量设置</value>
+  </data>
   <data name="UseLetterForNodes" xml:space="preserve">
     <value>使用字母进行节点分配</value>
+  </data>
+  <data name="Language_English" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="Language_Japanese" xml:space="preserve">
+    <value>日本语</value>
   </data>
   <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
     <value>使用小工具重定向 *</value>
   </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>更改主题或语言后，请重新启动七四EO。</value>
+  </data>
+  <data name="UI_LanguageLabel" xml:space="preserve">
+    <value>语言：</value>
   </data>
   <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
     <value>重定向小工具 api 调用以绕过阻止外国人的墙。
@@ -738,12 +742,6 @@ API列表的格式和使用方法请参见在线帮助。</value>
   </data>
   <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
     <value>右键单击浏览器可显示上下文菜单。</value>
-  </data>
-  <data name="FormBrowser_EO_URL" xml:space="preserve">
-    <value>https://electronicobserveren.github.io/cache</value>
-  </data>
-  <data name="FormBrowser_Wiki_URL" xml:space="preserve">
-    <value>https://kcwiki.github.io/cache</value>
   </data>
   <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
     <value>端口和上游代理端口值必须不同。</value>
@@ -762,12 +760,27 @@ API列表的格式和使用方法请参见在线帮助。</value>
     <value>禁用后，将仅显示与地图屏幕预览匹配的合成。
 启用后，预览将被忽略并显示所有合成。</value>
   </data>
+  <data name="Language_Korean" xml:space="preserve">
+    <value>韩语</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
+    <value>自定义小工具缓存 URL</value>
+  </data>
+  <data name="FormBrowser_EO_URL" xml:space="preserve">
+    <value>https://electronicobserveren.github.io/cache</value>
+  </data>
+  <data name="FormBrowser_Wiki_URL" xml:space="preserve">
+    <value>https://kcwiki.github.io/cache</value>
+  </data>
   <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
     <value>仅输入缓存服务器 URL 的开头部分，即“/gadget_html5/”子目录之前的所有内容。
 例如，如果尝试使用“http://luckyjervis.com/gadget_html5/js/kcs_const.js”，则需要在字段中输入“http://luckyjervis.com/”。</value>
   </data>
   <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
     <value>网址格式无效。</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>74EO-EN版 API URL</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
     <value>用于报告数据问题的 74 Electronic Observer API 的 URL。</value>
@@ -798,22 +811,6 @@ API列表的格式和使用方法请参见在线帮助。</value>
   </data>
   <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
     <value>数据提交常见问题解答</value>
-  </data>
-  <data name="ConfirmSetting" xml:space="preserve">
-    <value>总音量设置</value>
-  </data>
-  <data name="FormFleet_EquipmentLevelVisibilityToolTip" xml:space="preserve">
-    <value>指定装备改装等级和舰载机熟练度的显示。
-如果设置为“隐藏”则不会显示。
-在“优先”的情况下，当双方均为Lv.1以上时，将优先显示。
-如果选择“显示两者”，则始终显示两者。</value>
-  </data>
-  <data name="FormFleet_ShowAirSuperiorityRangeToolTip" xml:space="preserve">
-    <value>指定是否将制空权范围显示为“最小到最大内部熟练度”。
-通常，空中优势被计算为具有最低的内部熟练程度。</value>
-  </data>
-  <data name="FormFleet_ShowAirSuperiorityRange" xml:space="preserve">
-    <value>显示制空范围</value>
   </data>
   <data name="Language_SimplifiedChinese" xml:space="preserve">
     <value>简体中文语</value>

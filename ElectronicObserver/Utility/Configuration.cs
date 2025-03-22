@@ -11,10 +11,12 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility;
 
@@ -705,10 +707,22 @@ public sealed class Configuration
 			public Uri UpdateRepoURL { get; set; }
 
 			/// <summary>
-			/// Should RPC use the icon of your flagship or not
+			/// Here for backward compatibility
+			/// Replaced by <see cref="RpcIconKind"/>
 			/// </summary>
 			public bool UseFlagshipIconForRPC { get; set; }
 
+			/// <summary>
+			/// What kind of icon RPC should use
+			/// </summary>
+			public RpcIconKind RpcIconKind { get; set; }
+
+			public ShipId? ShipUsedForRpcIcon { get; set; }
+
+			/// <summary>
+			/// Here for backward compatibility
+			/// Replaced by <see cref="ConfigDataSubmission.SubmitDataToTsunDb"/>
+			/// </summary>
 			public bool? SubmitDataToTsunDb { get; set; }
 
 			public ConfigControl()
@@ -728,6 +742,7 @@ public sealed class Configuration
 				DiscordRPCApplicationId = "";
 				UpdateRepoURL = new Uri("https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/");
 				UseFlagshipIconForRPC = false;
+				RpcIconKind = RpcIconKind.Default;
 				SubmitDataToTsunDb = null;
 			}
 		}
@@ -2710,6 +2725,9 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2024/11/24 20:00:00"))
 			Update538_ChangeTsunDbConfig();
 
+		if (dt <= DateTimeHelper.CSVStringToTime("2025/03/22 20:00:00"))
+			Update5_3_12_ChangeRpcIconProperty();
+
 		Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 	}
 
@@ -2971,5 +2989,10 @@ public sealed class Configuration
 	private void Update538_ChangeTsunDbConfig()
 	{
 		Config.DataSubmission.SubmitDataToTsunDb = Config.Control.SubmitDataToTsunDb is true;
+	}
+
+	private void Update5_3_12_ChangeRpcIconProperty()
+	{
+		Config.Control.RpcIconKind = Config.Control.UseFlagshipIconForRPC ? RpcIconKind.Secretary : RpcIconKind.Default;
 	}
 }

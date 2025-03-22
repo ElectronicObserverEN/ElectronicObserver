@@ -12,6 +12,15 @@
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<local:ConfigurationBehaviorViewModelProxy x:Key="Proxy" DataContext="{Binding}" />
+	</UserControl.Resources>
+
 	<StackPanel Margin="4">
 		<StackPanel Orientation="Horizontal">
 			<TextBlock Text="{Binding Translation.MoraleBorder}" />
@@ -211,78 +220,74 @@
 				/>
 		</StackPanel>
 
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.TranslationURL}" ToolTip="{Binding Translation.Control_translationURLToolTip}" />
+			<TextBox Text="{Binding UpdateRepoURL}" />
+			<Button Command="{Binding ForceUpdateCommand}" Content="{Binding Translation.Control_ForceUpdate}" />
+		</StackPanel>
+
 		<CheckBox
 			Content="{Binding Translation.Control_EnableDiscordRPC}"
 			IsChecked="{Binding EnableDiscordRPC}"
 			ToolTip="{Binding Translation.Control_EnableDiscordRPCToolTip}"
 			/>
 
-		<StackPanel Orientation="Horizontal">
-			<CheckBox
-				Content="{Binding Translation.Control_DiscordRPCShowFCM}"
-				IsChecked="{Binding DiscordRPCShowFCM}"
-				ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
-				/>
+		<StackPanel Visibility="{Binding EnableDiscordRPC, Converter={BoolToVisibilityConverter}}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="300" />
+				</Grid.ColumnDefinitions>
 
-			<CheckBox Content="{Binding Translation.CheckBoxUseSecretaryIconForRPC}" IsChecked="{Binding UseFlagshipIconForRPC}" />
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="0"
+					Text="{Binding Translation.ApplicationId}"
+					ToolTip="{Binding Translation.Control_ApplicationIDToolTip}"
+					/>
+
+				<TextBox
+					Grid.Row="0"
+					Grid.Column="1"
+					Text="{Binding DiscordRPCApplicationId}"
+					/>
+
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Text="{Binding Translation.DiscordRPCMessage}"
+					ToolTip="{Binding Translation.Control_DiscordRPCMessageToolTip}"
+					/>
+				<TextBox
+					Grid.Row="1"
+					Grid.Column="1"
+					Text="{Binding DiscordRPCMessage}"
+					/>
+			</Grid>
+
+			<StackPanel Orientation="Vertical">
+				<CheckBox
+					Content="{Binding Translation.Control_DiscordRPCShowFCM}"
+					IsChecked="{Binding DiscordRPCShowFCM}"
+					ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
+					/>
+
+				<controls:RadioButtons Header="{Binding Translation.Control_DiscordRpc_Icon}" SelectedIndex="{Binding RpcIconKindIndex}">
+					<TextBlock Text="{Binding DataContext.Translation.Control_DiscordRpc_Default, Source={StaticResource Proxy}}" />
+					<TextBlock Text="{Binding DataContext.Translation.Control_DiscordRpc_Secretary, Source={StaticResource Proxy}}" />
+					<RadioButton>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding DataContext.Translation.Control_DiscordRpc_Ship, Source={StaticResource Proxy}}" />
+							<Button Command="{Binding DataContext.OpenShipPickerCommand, Source={StaticResource Proxy}}" Content="{Binding DataContext.SelectedShipName, Source={StaticResource Proxy}, Mode=OneWay}" />
+						</StackPanel>
+					</RadioButton>
+				</controls:RadioButtons>
+			</StackPanel>
 		</StackPanel>
-
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
-
-			<TextBlock
-				Grid.Row="0"
-				Grid.Column="0"
-				Text="{Binding Translation.DiscordRPCMessage}"
-				ToolTip="{Binding Translation.Control_DiscordRPCMessageToolTip}"
-				/>
-			<TextBox
-				Grid.Row="0"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Text="{Binding DiscordRPCMessage}"
-				/>
-
-			<TextBlock
-				Grid.Row="1"
-				Grid.Column="0"
-				Text="{Binding Translation.ApplicationId}"
-				ToolTip="{Binding Translation.Control_ApplicationIDToolTip}"
-				/>
-			<TextBox
-				Grid.Row="1"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Text="{Binding DiscordRPCApplicationId}"
-				/>
-
-			<TextBlock
-				Grid.Row="2"
-				Grid.Column="0"
-				Text="{Binding Translation.TranslationURL}"
-				ToolTip="{Binding Translation.Control_translationURLToolTip}"
-				/>
-			<TextBox
-				Grid.Row="2"
-				Grid.Column="1"
-				Text="{Binding UpdateRepoURL}"
-				/>
-			<Button
-				Grid.Row="2"
-				Grid.Column="2"
-				Command="{Binding ForceUpdateCommand}"
-				Content="{Binding Translation.Control_ForceUpdate}"
-				/>
-		</Grid>
 	</StackPanel>
 </UserControl>
