@@ -288,6 +288,8 @@
 					<RadioButton.Style>
 						<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
 							<Setter Property="IsChecked" Value="False" />
+							<Setter Property="MinWidth" Value="0" />
+							<Setter Property="Margin" Value="4 0" />
 							<Style.Triggers>
 								<DataTrigger Binding="{Binding RpcIconKind}">
 									<DataTrigger.Value>
@@ -308,6 +310,8 @@
 					<RadioButton.Style>
 						<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
 							<Setter Property="IsChecked" Value="False" />
+							<Setter Property="MinWidth" Value="0" />
+							<Setter Property="Margin" Value="4 0" />
 							<Style.Triggers>
 								<DataTrigger Binding="{Binding RpcIconKind}">
 									<DataTrigger.Value>
@@ -329,6 +333,8 @@
 						<RadioButton.Style>
 							<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
 								<Setter Property="IsChecked" Value="False" />
+								<Setter Property="MinWidth" Value="0" />
+								<Setter Property="Margin" Value="4 0" />
 								<Style.Triggers>
 									<DataTrigger Binding="{Binding RpcIconKind}">
 										<DataTrigger.Value>
