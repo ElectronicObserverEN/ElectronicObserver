@@ -2726,7 +2726,7 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2024/11/24 20:00:00"))
 			Update538_ChangeTsunDbConfig();
 
-		if (dt <= DateTimeHelper.CSVStringToTime("2025/03/22 20:00:00"))
+		if (dt <= DateTimeHelper.CSVStringToTime("2025/03/22 11:00:00"))
 			Update5_3_12_ChangeRpcIconProperty();
 
 		Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);

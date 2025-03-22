@@ -58,10 +58,11 @@ public class port : APIBase
 		db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
 		db.Fleet.CombinedFlag = data.api_combined_flag() ? (FleetType)data.api_combined_flag : 0;
 
-		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+		if (Utility.Configuration.Config.Control.EnableDiscordRPC && db.Fleet[1].MembersInstance?[0] is {} flagship)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.GetRPCData();
-			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
+			
+			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", flagship.Name);
 
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
@@ -72,7 +73,7 @@ public class port : APIBase
 
 			IShipDataMaster? selectedShip = Utility.Configuration.Config.Control.RpcIconKind switch
 			{
-				RpcIconKind.Secretary => db.Fleet[1].MembersInstance[0].MasterShip,
+				RpcIconKind.Secretary => flagship.MasterShip,
 				RpcIconKind.Ship when Utility.Configuration.Config.Control.ShipUsedForRpcIcon is { }
 					=> db.MasterShips[(int)Utility.Configuration.Config.Control.ShipUsedForRpcIcon],
 				_ => null,
