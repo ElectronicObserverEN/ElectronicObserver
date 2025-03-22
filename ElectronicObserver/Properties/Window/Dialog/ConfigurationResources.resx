@@ -824,12 +824,12 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>スペイン語</value>
   </data>
   <data name="Control_DiscordRPC_Icon" xml:space="preserve">
-    <value>??? (Discord RPC icon :)</value>
+    <value>Discord RPCアイコン：</value>
   </data>
   <data name="Control_DiscordRPC_Default" xml:space="preserve">
-    <value>??? (Default)</value>
+    <value>デフォルト</value>
   </data>
   <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
-    <value>??? (Secretary)</value>
+    <value>秘書艦</value>
   </data>
 </root>
