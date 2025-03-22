@@ -46,14 +46,14 @@ public class DiscordRpcManager
 			string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
 			CurrentClient = new EoToDiscordRpcClient(clientID);
 		}
-		else if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
-		{
-			CurrentClient = new EoToDiscordRpcClient(null);
-		}
-		else
+		else if (Utility.Configuration.Config.Control.RpcIconKind is RpcIconKind.Default)
 		{
 			// default application
 			CurrentClient = new EoToDiscordRpcClient("391369077991538698");
+		}
+		else
+		{
+			CurrentClient = new EoToDiscordRpcClient(null);
 		}
 
 		StartRPCUpdate();
@@ -73,11 +73,7 @@ public class DiscordRpcManager
 				string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
 				CurrentClient.ChangeClientId(clientID);
 			}
-			else if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
-			{
-				// nothing, SetActivity should update the app id
-			}
-			else 
+			else if (Utility.Configuration.Config.Control.RpcIconKind is RpcIconKind.Default)
 			{
 				// default application
 				CurrentClient.ChangeClientId("391369077991538698");
@@ -89,7 +85,7 @@ public class DiscordRpcManager
 
 	private void SetActivity()
 	{
-		if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
+		if (Utility.Configuration.Config.Control.RpcIconKind is RpcIconKind.Secretary or RpcIconKind.Ship)
 		{
 			int shipID = CurrentClient.CurrentRpcData.CurrentShipId;
 			int clientId = Math.Abs((shipID - 1) / 150);
