@@ -35,7 +35,7 @@ public class ConfigurationBehaviorTranslationViewModel : TranslationBaseViewMode
 
 	public string Control_DiscordRpc_Icon => ConfigurationResources.Control_DiscordRPC_Icon;
 	public string Control_DiscordRpc_Ship => $"{GeneralRes.ShipGirl}:";
-	public string Control_DiscordRpc_Default => ConfigurationResources.Control_DiscordRPC_Icon;
+	public string Control_DiscordRpc_Default => ConfigurationResources.Control_DiscordRPC_Default;
 	public string Control_DiscordRpc_Secretary => ConfigurationResources.Control_DiscordRPC_Secretary;
 	public string Control_DiscordRpc_NoShip => ShipGroupResources.None;
 
