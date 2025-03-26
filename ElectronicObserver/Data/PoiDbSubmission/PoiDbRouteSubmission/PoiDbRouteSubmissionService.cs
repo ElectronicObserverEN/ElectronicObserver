@@ -34,6 +34,7 @@ public class PoiDbRouteSubmissionService(
 	private Dictionary<int, string>? MapLevels { get; set; }
 	private int? World { get; set; }
 	private int? Map { get; set; }
+	private FleetType? CombinedFlag { get; set; }
 	private FleetData? Fleet1 { get; set; }
 	private FleetData? Fleet2 { get; set; }
 	private List<int>? EscapeList { get; set; }
@@ -67,9 +68,9 @@ public class PoiDbRouteSubmissionService(
 
 		Fleet1 = fleet;
 		EscapeList = [];
+		CombinedFlag = KcDatabase.Fleet.CombinedFlag;
 
-		bool isCombinedFleetSortie = fleet.FleetID is 1 &&
-			KcDatabase.Fleet.CombinedFlag is not FleetType.Single;
+		bool isCombinedFleetSortie = fleet.FleetID is 1 && CombinedFlag is not FleetType.Single;
 
 		if (isCombinedFleetSortie)
 		{
@@ -88,11 +89,22 @@ public class PoiDbRouteSubmissionService(
 		string json = data.ToString();
 		ApiReqMapNextResponse response = JsonSerializer.Deserialize<ApiReqMapNextResponse>(json)!;
 
-		EscapeList = Fleet1?.EscapedShipList.ToList();
+		EscapeList = [];
 
-		if (EscapeList is not null && Fleet2 is not null)
+		if (Fleet1 is not null)
 		{
-			EscapeList.AddRange(Fleet2.EscapedShipList);
+			foreach (int escapedShipDropId in Fleet1.EscapedShipList)
+			{
+				EscapeList.Add(Fleet1.Members.IndexOf(escapedShipDropId) + 1);
+			}
+		}
+
+		if (Fleet2 is not null)
+		{
+			foreach (int escapedShipDropId in Fleet2.EscapedShipList)
+			{
+				EscapeList.Add(Fleet2.Members.IndexOf(escapedShipDropId) + 6 + 1);
+			}
 		}
 
 		CellIds.Add(response.ApiNo);
@@ -132,6 +144,7 @@ public class PoiDbRouteSubmissionService(
 		MapLevels = null;
 		World = null;
 		Map = null;
+		CombinedFlag = null;
 		Fleet1 = null;
 		Fleet2 = null;
 		EscapeList = null;
@@ -145,6 +158,7 @@ public class PoiDbRouteSubmissionService(
 		if (EscapeList is null) return;
 		if (CellIds is null) return;
 		if (MapLevels is null) return;
+		if (CombinedFlag is not FleetType fleetType) return;
 		if (CellCount is not int cellCount) return;
 		if (World is not int world) return;
 		if (Map is not int map) return;
@@ -177,6 +191,7 @@ public class PoiDbRouteSubmissionService(
 		{
 			PoiDbRouteSubmissionData submissionData = new()
 			{
+				FleetType = fleetType,
 				Deck1 = deck1,
 				Deck2 = deck2,
 				EscapeList = EscapeList,

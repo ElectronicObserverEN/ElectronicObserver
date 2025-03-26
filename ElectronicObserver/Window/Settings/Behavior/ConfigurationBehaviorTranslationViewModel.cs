@@ -32,7 +32,12 @@ public class ConfigurationBehaviorTranslationViewModel : TranslationBaseViewMode
 
 	public string Control_DiscordRPCShowFCM => ConfigurationResources.Control_DiscordRPCShowFCM;
 	public string Control_DiscordRPCShowFCMToolTip => ConfigurationResources.Control_DiscordRPCShowFCMToolTip;
-	public string CheckBoxUseSecretaryIconForRPC => ConfigurationResources.checkBoxUseSecretaryIconForRPC;
+
+	public string Control_DiscordRpc_Icon => ConfigurationResources.Control_DiscordRPC_Icon;
+	public string Control_DiscordRpc_Ship => $"{GeneralRes.ShipGirl}:";
+	public string Control_DiscordRpc_Default => ConfigurationResources.Control_DiscordRPC_Default;
+	public string Control_DiscordRpc_Secretary => ConfigurationResources.Control_DiscordRPC_Secretary;
+	public string Control_DiscordRpc_NoShip => ShipGroupResources.None;
 
 	public string DiscordRPCMessage => ConfigurationResources.DiscordRPCMessage;
 	public string Control_DiscordRPCMessageToolTip => ConfigurationResources.Control_DiscordRPCMessageToolTip;

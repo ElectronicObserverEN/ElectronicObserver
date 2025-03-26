@@ -637,9 +637,6 @@ It only works if automatic refresh is enabled. May increase processing load.</va
   <data name="Log_PlayTime" xml:space="preserve">
     <value>Play time</value>
   </data>
-  <data name="checkBoxUseSecretaryIconForRPC" xml:space="preserve">
-    <value>Use secretary icon as game picture</value>
-  </data>
   <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
     <value>Enable TsunDb submission</value>
   </data>
@@ -804,5 +801,14 @@ For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_co
   </data>
   <data name="Language_Spanish" xml:space="preserve">
     <value>Spanish</value>
+  </data>
+  <data name="Control_DiscordRPC_Icon" xml:space="preserve">
+    <value>Discord RPC icon:</value>
+  </data>
+  <data name="Control_DiscordRPC_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
+    <value>Secretary</value>
   </data>
 </root>

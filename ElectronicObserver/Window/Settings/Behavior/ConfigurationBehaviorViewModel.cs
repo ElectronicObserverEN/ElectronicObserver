@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Settings.Behavior;
@@ -35,11 +38,21 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 
 	public Uri UpdateRepoURL { get; set; }
 
-	public bool UseFlagshipIconForRPC { get; set; }
+	public RpcIconKind RpcIconKind { get; set; }
+
+	public IShipDataMaster? ShipUsedForRpcIcon { get; set; }
+	public ShipPickerViewModel ShipPickerViewModel { get; }
+
+	public string SelectedShipName => ShipUsedForRpcIcon switch
+	{
+		{ } => ShipUsedForRpcIcon.NameEN,
+		_ => Translation.Control_DiscordRpc_NoShip,
+	};
 
 	public ConfigurationBehaviorViewModel(Configuration.ConfigurationData.ConfigControl config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBehaviorTranslationViewModel>();
+		ShipPickerViewModel = Ioc.Default.GetRequiredService<ShipPickerViewModel>();
 
 		Config = config;
 		Load(config);
@@ -58,7 +71,12 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		DiscordRPCShowFCM = config.DiscordRPCShowFCM;
 		DiscordRPCApplicationId = config.DiscordRPCApplicationId;
 		UpdateRepoURL = config.UpdateRepoURL;
-		UseFlagshipIconForRPC = config.UseFlagshipIconForRPC;
+		ShipUsedForRpcIcon = config.ShipUsedForRpcIcon switch
+		{
+			ShipId id => KCDatabase.Instance.MasterShips[(int)id],
+			_ => null,
+		};
+		RpcIconKind = config.RpcIconKind;
 	}
 
 	public override void Save()
@@ -74,7 +92,8 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		Config.DiscordRPCShowFCM = DiscordRPCShowFCM;
 		Config.DiscordRPCApplicationId = DiscordRPCApplicationId;
 		Config.UpdateRepoURL = UpdateRepoURL;
-		Config.UseFlagshipIconForRPC = UseFlagshipIconForRPC;
+		Config.RpcIconKind = RpcIconKind;
+		Config.ShipUsedForRpcIcon = ShipUsedForRpcIcon?.ShipId;
 	}
 
 	[RelayCommand]
@@ -97,5 +116,26 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	private async Task ForceUpdate()
 	{
 		await SoftwareUpdater.CheckUpdateAsync();
+	}
+
+	[RelayCommand]
+	private void SelectRpcIconKind(RpcIconKind? kind)
+	{
+		if (kind is not { } kindNotNull) return;
+
+		RpcIconKind = kindNotNull;
+	}
+
+	[RelayCommand]
+	private void OpenShipPicker()
+	{
+		RpcIconKind = RpcIconKind.Ship;
+
+		ShipPickerView shipPicker = new(ShipPickerViewModel);
+
+		if (shipPicker.ShowDialog() is true)
+		{
+			ShipUsedForRpcIcon = shipPicker.PickedShip;
+		}
 	}
 }

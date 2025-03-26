@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 
 public class PoiDbRouteSubmissionData
 {
+	[JsonPropertyName("combined_type")]
+	public required FleetType FleetType { get; init; }
+
 	[JsonPropertyName("deck1")]
 	public required List<PoiDbRouteShip> Deck1 { get; init; }
 

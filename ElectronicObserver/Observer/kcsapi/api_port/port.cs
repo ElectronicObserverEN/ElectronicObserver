@@ -58,10 +58,11 @@ public class port : APIBase
 		db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
 		db.Fleet.CombinedFlag = data.api_combined_flag() ? (FleetType)data.api_combined_flag : 0;
 
-		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+		if (Utility.Configuration.Config.Control.EnableDiscordRPC && db.Fleet[1].MembersInstance?[0] is {} flagship)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.GetRPCData();
-			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
+			
+			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", flagship.Name);
 
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
@@ -70,8 +71,21 @@ public class port : APIBase
 
 			dataForWS.BottomDisplayText = new List<string>();
 
-			dataForWS.ImageKey = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
-			dataForWS.CurrentShipId = db.Fleet[1].MembersInstance[0].ShipID;
+			IShipDataMaster? selectedShip = Utility.Configuration.Config.Control.RpcIconKind switch
+			{
+				RpcIconKind.Secretary => flagship.MasterShip,
+				RpcIconKind.Ship when Utility.Configuration.Config.Control.ShipUsedForRpcIcon is { }
+					=> db.MasterShips[(int)Utility.Configuration.Config.Control.ShipUsedForRpcIcon],
+				_ => null,
+			};
+
+			dataForWS.ImageKey = Utility.Configuration.Config.Control.RpcIconKind switch
+			{
+				RpcIconKind.Secretary or RpcIconKind.Ship => selectedShip?.ShipID.ToString() ?? "???",
+				_ => "kc_logo_512x512",
+			};
+
+			dataForWS.CurrentShipId = selectedShip?.ShipID ?? 0;
 
 			if (db.Admiral.Senka != null && db.ServerManager.CurrentServer is not null)
 			{

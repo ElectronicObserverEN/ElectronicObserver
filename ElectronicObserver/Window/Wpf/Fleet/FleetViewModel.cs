@@ -320,7 +320,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		FleetData fleet = db.Fleet[FleetId];
 		if (fleet == null) return;
 
-		sb.AppendFormat(FormFleet.CopyFleetText + "\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTPDamage(fleet));
+		sb.AppendFormat(FormFleet.CopyFleetText + "\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTpDamage(fleet));
 		for (int i = 0; i < fleet.Members.Count; i++)
 		{
 			if (fleet[i] == -1)

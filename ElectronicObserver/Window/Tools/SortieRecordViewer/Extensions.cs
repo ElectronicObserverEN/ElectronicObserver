@@ -114,6 +114,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.GoBackPort;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
+using ElectronicObserver.KancolleApi.Types.ApiStart2.GetOptionSetting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.KancolleApi.Types.Models;
@@ -145,7 +146,9 @@ public static class Extensions
 	public static object? GetRequestApiData(this ApiFile file, JsonSerializerOptions? options = null) => file.Name switch
 	{
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiDmmPaymentPaycheckRequest>(file.Content, options),
-		
+
+		"api_start2/get_option_setting" => JsonSerializer.Deserialize<ApiStart2GetOptionSettingRequest>(file.Content, options),
+
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiGetMemberBasicRequest>(file.Content, options),
 		"api_get_member/deck" => JsonSerializer.Deserialize<ApiGetMemberDeckRequest>(file.Content, options),
 		"api_get_member/kdock" => JsonSerializer.Deserialize<ApiGetMemberKdockRequest>(file.Content, options),
@@ -256,7 +259,7 @@ public static class Extensions
 		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleMidnightBattleRequest>(file.Content, options),
 		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleRequest>(file.Content, options),
 
-		_ => throw new NotImplementedException(),
+		_ => throw new NotImplementedException($"Unknown kancolle api: {file.Name}"),
 	};
 
 	private static object? GetApiData<T>(this ApiResponse<T>? response) where T : class, new()
@@ -285,7 +288,9 @@ public static class Extensions
 		"api_req_practice/battle" when file.TimeStamp < OpeningTorpedoRework => JsonSerializer.Deserialize<ApiResponse<OpeningTorpedoRework_ApiReqPracticeBattleResponse>>(file.Content, options).GetApiData(),
 
 		"api_dmm_payment/paycheck" => JsonSerializer.Deserialize<ApiResponse<ApiDmmPaymentPaycheckResponse>>(file.Content, options).GetApiData(),
-		
+
+		"api_start2/get_option_setting" => JsonSerializer.Deserialize<ApiResponse<ApiStart2GetOptionSettingResponse>>(file.Content, options).GetApiData(),
+
 		"api_get_member/basic" => JsonSerializer.Deserialize<ApiResponse<ApiGetMemberBasicResponse>>(file.Content, options).GetApiData(),
 		"api_get_member/deck" => JsonSerializer.Deserialize<ApiResponseList<FleetDataDto>>(file.Content, options).GetApiData(),
 		"api_get_member/kdock" => JsonSerializer.Deserialize<ApiResponseList<ApiGetMemberKdockResponse>>(file.Content, options).GetApiData(),
@@ -409,7 +414,7 @@ public static class Extensions
 		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleMidnightBattleResponse>>(file.Content, options).GetApiData(),
 		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content, options).GetApiData(),
 
-		_ => throw new NotImplementedException(),
+		_ => throw new NotImplementedException($"Unknown kancolle api: {file.Name}"),
 	};
 
 	// normal battle - day

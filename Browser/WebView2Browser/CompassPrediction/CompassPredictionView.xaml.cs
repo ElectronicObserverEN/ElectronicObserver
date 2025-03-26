@@ -60,5 +60,6 @@ public partial class CompassPredictionView
 		base.OnClosing(e);
 
 		Browser.Dispose();
+		ViewModel.ExecuteScriptAsync = null;
 	}
 }

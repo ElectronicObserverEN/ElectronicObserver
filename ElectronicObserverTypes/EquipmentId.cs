@@ -546,5 +546,16 @@ public enum EquipmentId
 	CarrierBasedTorpedo_TBD_YellowWings = 542,
 	CarrierBasedRecon_SBDVS2_ReconnaissanceSquadron = 543,
 	CarrierBasedBomber_SBDVB2_BomberSquadron = 544,
-	CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar = 545
+	CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar = 545,
+	Interceptor_PrototypeShinden_LandbasedFighter = 546,
+	ASPatrol_Type3CommandLiaisonAircraftKaiNi = 549,
+	CarrierBasedBomber_PrototypeMyoujou_AdditionalPrototypeAircraft = 550,
+	CarrierBasedBomber_MyoujouKai = 551,
+	CarrierBasedBomber_Type99TrainingBomberModel22Kai_NightEquipmentTestAircraft = 552,
+	MainGunSmall_10cmTwinHighAngleGunKai = 553,
+	CarrierBasedTorpedo_Type97TorpedoBomber_NortheasternAirGroup = 554,
+	MainGunMedium_18cm57TripleMainGunMount = 555,
+	SecondaryGun_10cm56SingleHighangleGun_ConcentratedDeployment = 556,
+	CarrierBasedBomber_Type0FighterModel62Kai_NightFighterbomber = 557,
+	CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber = 558,
 }

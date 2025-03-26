@@ -34,10 +34,11 @@ public class Data
 	public required string Version { get; init; }
 
 	/// <summary>
-	/// Not used.
+	/// Unix microseconds at the time of submission.
+	/// All battles in a sortie need to have the same group id so the analysis tools know which battles belong together.
 	/// </summary>
 	[JsonPropertyName("groupId")]
-	public string GroupId { get; init; } = "0";
+	public string GroupId { get; set; } = "0";
 
 	/// <summary>
 	/// Cell count of the current map.

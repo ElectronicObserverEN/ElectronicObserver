@@ -226,6 +226,11 @@
 						Command="{Binding SaveLayoutAsCommand}"
 						Header="{Binding FormMain.StripMenu_File_Layout_Change}"
 						/>
+					<MenuItem
+						d:Header="Reset floating windows"
+						Command="{Binding ResetFloatingWindowsCommand}"
+						Header="{Binding FormMain.ResetFloatingWindows}"
+						/>
 					<Separator />
 					<MenuItem Header="{Binding FormMain.Adjustment}">
 						<MenuItem

@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:discordRpc="clr-namespace:ElectronicObserver.Data.DiscordRPC"
 	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Behavior"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -12,6 +13,15 @@
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<local:ConfigurationBehaviorViewModelProxy x:Key="Proxy" DataContext="{Binding}" />
+	</UserControl.Resources>
+
 	<StackPanel Margin="4">
 		<StackPanel Orientation="Horizontal">
 			<TextBlock Text="{Binding Translation.MoraleBorder}" />
@@ -211,78 +221,136 @@
 				/>
 		</StackPanel>
 
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.TranslationURL}" ToolTip="{Binding Translation.Control_translationURLToolTip}" />
+			<TextBox Text="{Binding UpdateRepoURL}" />
+			<Button Command="{Binding ForceUpdateCommand}" Content="{Binding Translation.Control_ForceUpdate}" />
+		</StackPanel>
+
 		<CheckBox
 			Content="{Binding Translation.Control_EnableDiscordRPC}"
 			IsChecked="{Binding EnableDiscordRPC}"
 			ToolTip="{Binding Translation.Control_EnableDiscordRPCToolTip}"
 			/>
 
-		<StackPanel Orientation="Horizontal">
-			<CheckBox
-				Content="{Binding Translation.Control_DiscordRPCShowFCM}"
-				IsChecked="{Binding DiscordRPCShowFCM}"
-				ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
-				/>
+		<StackPanel Visibility="{Binding EnableDiscordRPC, Converter={BoolToVisibilityConverter}}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="300" />
+				</Grid.ColumnDefinitions>
 
-			<CheckBox Content="{Binding Translation.CheckBoxUseSecretaryIconForRPC}" IsChecked="{Binding UseFlagshipIconForRPC}" />
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="0"
+					Text="{Binding Translation.ApplicationId}"
+					ToolTip="{Binding Translation.Control_ApplicationIDToolTip}"
+					/>
+
+				<TextBox
+					Grid.Row="0"
+					Grid.Column="1"
+					Text="{Binding DiscordRPCApplicationId}"
+					/>
+
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Text="{Binding Translation.DiscordRPCMessage}"
+					ToolTip="{Binding Translation.Control_DiscordRPCMessageToolTip}"
+					/>
+				<TextBox
+					Grid.Row="1"
+					Grid.Column="1"
+					Text="{Binding DiscordRPCMessage}"
+					/>
+			</Grid>
+
+			<StackPanel Orientation="Vertical">
+				<CheckBox
+					Content="{Binding Translation.Control_DiscordRPCShowFCM}"
+					IsChecked="{Binding DiscordRPCShowFCM}"
+					ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
+					/>
+
+				<TextBlock Text="{Binding Translation.Control_DiscordRpc_Icon}" />
+
+				<RadioButton Command="{Binding SelectRpcIconKindCommand}" Content="{Binding Translation.Control_DiscordRpc_Default}">
+					<RadioButton.CommandParameter>
+						<discordRpc:RpcIconKind>Default</discordRpc:RpcIconKind>
+					</RadioButton.CommandParameter>
+
+					<RadioButton.Style>
+						<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+							<Setter Property="IsChecked" Value="False" />
+							<Setter Property="MinWidth" Value="0" />
+							<Setter Property="Margin" Value="4 0" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding RpcIconKind}">
+									<DataTrigger.Value>
+										<discordRpc:RpcIconKind>Default</discordRpc:RpcIconKind>
+									</DataTrigger.Value>
+									<Setter Property="IsChecked" Value="True" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RadioButton.Style>
+				</RadioButton>
+
+				<RadioButton Command="{Binding SelectRpcIconKindCommand}" Content="{Binding Translation.Control_DiscordRpc_Secretary}">
+					<RadioButton.CommandParameter>
+						<discordRpc:RpcIconKind>Secretary</discordRpc:RpcIconKind>
+					</RadioButton.CommandParameter>
+
+					<RadioButton.Style>
+						<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+							<Setter Property="IsChecked" Value="False" />
+							<Setter Property="MinWidth" Value="0" />
+							<Setter Property="Margin" Value="4 0" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding RpcIconKind}">
+									<DataTrigger.Value>
+										<discordRpc:RpcIconKind>Secretary</discordRpc:RpcIconKind>
+									</DataTrigger.Value>
+									<Setter Property="IsChecked" Value="True" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</RadioButton.Style>
+				</RadioButton>
+
+				<StackPanel Orientation="Horizontal">
+					<RadioButton Command="{Binding SelectRpcIconKindCommand}" Content="{Binding Translation.Control_DiscordRpc_Ship}">
+						<RadioButton.CommandParameter>
+							<discordRpc:RpcIconKind>Ship</discordRpc:RpcIconKind>
+						</RadioButton.CommandParameter>
+
+						<RadioButton.Style>
+							<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+								<Setter Property="IsChecked" Value="False" />
+								<Setter Property="MinWidth" Value="0" />
+								<Setter Property="Margin" Value="4 0" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding RpcIconKind}">
+										<DataTrigger.Value>
+											<discordRpc:RpcIconKind>Ship</discordRpc:RpcIconKind>
+										</DataTrigger.Value>
+										<Setter Property="IsChecked" Value="True" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</RadioButton.Style>
+					</RadioButton>
+
+					<Button Command="{Binding DataContext.OpenShipPickerCommand, Source={StaticResource Proxy}}" Content="{Binding DataContext.SelectedShipName, Source={StaticResource Proxy}, Mode=OneWay}" />
+				</StackPanel>
+
+			</StackPanel>
 		</StackPanel>
-
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
-
-			<TextBlock
-				Grid.Row="0"
-				Grid.Column="0"
-				Text="{Binding Translation.DiscordRPCMessage}"
-				ToolTip="{Binding Translation.Control_DiscordRPCMessageToolTip}"
-				/>
-			<TextBox
-				Grid.Row="0"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Text="{Binding DiscordRPCMessage}"
-				/>
-
-			<TextBlock
-				Grid.Row="1"
-				Grid.Column="0"
-				Text="{Binding Translation.ApplicationId}"
-				ToolTip="{Binding Translation.Control_ApplicationIDToolTip}"
-				/>
-			<TextBox
-				Grid.Row="1"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Text="{Binding DiscordRPCApplicationId}"
-				/>
-
-			<TextBlock
-				Grid.Row="2"
-				Grid.Column="0"
-				Text="{Binding Translation.TranslationURL}"
-				ToolTip="{Binding Translation.Control_translationURLToolTip}"
-				/>
-			<TextBox
-				Grid.Row="2"
-				Grid.Column="1"
-				Text="{Binding UpdateRepoURL}"
-				/>
-			<Button
-				Grid.Row="2"
-				Grid.Column="2"
-				Command="{Binding ForceUpdateCommand}"
-				Content="{Binding Translation.Control_ForceUpdate}"
-				/>
-		</Grid>
 	</StackPanel>
 </UserControl>

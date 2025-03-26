@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,33 +18,41 @@ public class EOMediaPlayer
 	public List<string> Playlist { get; private set; } = [];
 	private List<string> RealPlayList { get; set; } = [];
 
+	/// <summary>
+	/// Flag to prevent looping. <br />
+	/// When the song ends, if looping is enabled, the song will be restarted. <br />
+	/// A song can end in 2 different ways: <br />
+	/// - Actual end of the song (this property should be false and the song should loop) <br />
+	/// - <see cref="Stop"/> gets called (this property should be true and the song should not loop)
+	/// </summary>
+	private bool IsManualStop { get; set; }
 
 	/// <summary>
 	/// 対応している拡張子リスト
 	/// </summary>
-	public static readonly ReadOnlyCollection<string> SupportedExtensions =
-		new(
-		[
-			"asf",
-			"wma",
-			"mp2",
-			"mp3",
-			"mid",
-			"midi",
-			"rmi",
-			"aif",
-			"aifc",
-			"aiff",
-			"au",
-			"snd",
-			"wav",
-			"m4a",
-			"aac",
-			"flac",
-			"mka",
-		]);
+	public static List<string> SupportedExtensions { get; } =
+	[
+		"asf",
+		"wma",
+		"mp2",
+		"mp3",
+		"mid",
+		"midi",
+		"rmi",
+		"aif",
+		"aifc",
+		"aiff",
+		"au",
+		"snd",
+		"wav",
+		"m4a",
+		"aac",
+		"flac",
+		"mka",
+	];
 
-	private static readonly Regex SupportedFileName = new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled, TimeSpan.FromSeconds(30));
+	private static Regex SupportedFileName { get; } =
+		new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled, TimeSpan.FromSeconds(30));
 
 
 	public EOMediaPlayer()
@@ -268,6 +275,13 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Stop()
 	{
+		// the flag only gets wiped on media ended
+		// so if you set the flag when there's no media playing, it never gets wiped
+		if (MediaPlayer.PlaybackState is PlaybackState.Playing)
+		{
+			IsManualStop = true;
+		}
+
 		MediaPlayer.Stop();
 	}
 
@@ -336,10 +350,12 @@ public class EOMediaPlayer
 
 	private void WMP_MediaEnded(object? sender, EventArgs e)
 	{
-		if (IsLoop && AudioFile is not null)
+		if (IsLoop && !IsManualStop && AudioFile is not null)
 		{
 			AudioFile.CurrentTime = CurrentPosition;
 			CurrentPosition = LoopHeadPosition;
+			MediaPlayer.Play();
+			return;
 		}
 
 		PlayState = PlayState.None;
@@ -355,11 +371,6 @@ public class EOMediaPlayer
 		{
 			Next();
 		}
-
-		if (IsLoop)
-		{
-			MediaPlayer.Play();
-		}
 	}
 
 
@@ -368,5 +379,6 @@ public class EOMediaPlayer
 	{
 		await Task.Delay(10);
 		MediaEnded();
+		IsManualStop = false;
 	}
 }

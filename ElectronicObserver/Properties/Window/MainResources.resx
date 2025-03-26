@@ -456,4 +456,7 @@
   <data name="MaintenanceHasStarted" xml:space="preserve">
     <value>メンテナンスを開始しました</value>
   </data>
+  <data name="ResetFloatingWindows" xml:space="preserve">
+    <value>フローティングウィンドウをリセット</value>
+  </data>
 </root>

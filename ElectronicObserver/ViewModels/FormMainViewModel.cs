@@ -76,6 +76,9 @@ using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
+using AvalonDock.Controls;
+using MahApps.Metro.Controls;
+
 
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -522,6 +525,21 @@ public partial class FormMainViewModel : ObservableObject
 
 		Configuration.Config.Life.LayoutFilePath = newLayoutPath;
 		SaveLayout(Window);
+	}
+
+	/// <summary>
+	/// It seems like when you try to open a view and nothing happens,
+	/// it's because the view is already open but located far off-screen? (left = 3000+)
+	/// Seems like windows can get randomly moved all over the place after turning your monitor on.
+	/// </summary>
+	[RelayCommand]
+	private void ResetFloatingWindows()
+	{
+		foreach (LayoutFloatingWindowControl window in DockingManager.FloatingWindows)
+		{
+			window.Left = 0;
+			window.Top = 0;
+		}
 	}
 
 	[RelayCommand]
@@ -1026,6 +1044,7 @@ public partial class FormMainViewModel : ObservableObject
 			await LoadAPIResponse("api_start2/getData");
 			await LoadAPIResponse("api_get_member/require_info");
 			await LoadAPIResponse("api_port/port");
+			await LoadAPIResponse("api_get_member/mapinfo");
 			await LoadAPIResponse("api_get_member/questlist");
 		}
 		catch (Exception ex)

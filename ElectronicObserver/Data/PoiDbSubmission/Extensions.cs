@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
@@ -10,6 +11,15 @@ namespace ElectronicObserver.Data.PoiDbSubmission;
 
 public static class Extensions
 {
+	private static DateTimeOffset UnixEpoch { get; } = new(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
+
+	public static long ToUnixTimeMicroseconds(this DateTimeOffset timestamp)
+	{
+		TimeSpan duration = timestamp - UnixEpoch;
+		// There are 10 ticks per microsecond.
+		return duration.Ticks / 10;
+	}
+
 	public static JsonNode MakeShip(this IShipData ship)
 	{
 		string rawData = ship.RawData.ToString();

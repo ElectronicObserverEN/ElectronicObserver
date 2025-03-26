@@ -53,6 +53,11 @@ public class PoiDbBattleSubmissionService(
 	private PoiHttpClient PoiHttpClient { get; } = poiHttpClient;
 	private Action<Exception> LogError { get; } = logError;
 
+	// cache all the battle data and send it all at the same time when
+	// - you get back to port if no AB is used
+	// - you get to the sortie screen (api_get_member/mapinfo) if AB is used
+	private List<PoiDbBattleSubmissionData> SubmissionCache { get; } = [];
+
 	// map state (stays the same for the whole sortie)
 	private int? EventDifficulty { get; set; }
 	private int? SortieFleetId { get; set; }
@@ -132,7 +137,13 @@ public class PoiDbBattleSubmissionService(
 
 		FleetAfterBattle = MakeFleetAfter(KcDatabase, world);
 
-		SubmitData();
+		PoiDbBattleSubmissionData? submissionData = MakeSubmissionData();
+
+		if (submissionData is not null)
+		{
+			SubmissionCache.Add(submissionData);
+		}
+
 		ClearBattleState();
 
 		Cell = response.ApiNo;
@@ -144,10 +155,44 @@ public class PoiDbBattleSubmissionService(
 		if (FleetBeforeBattle is not null && World is int world)
 		{
 			FleetAfterBattle = MakeFleetAfter(KcDatabase, world);
-			SubmitData();
+
+			PoiDbBattleSubmissionData? submissionData = MakeSubmissionData();
+
+			if (submissionData is not null)
+			{
+				SubmissionCache.Add(submissionData);
+
+				// if AB is used we need to wait until we get the final AB state before submitting data
+				// this happens when you go to the sortie screen (api_get_member/mapinfo)
+				if (submissionData.Data.Fleet.Lbac.Count is 0)
+				{
+					SubmitData();
+				}
+			}
 		}
 
 		ClearState();
+	}
+
+	/// <summary>
+	/// This is when you get the AB state after the last sortie battle.
+	/// </summary>
+	public void ApiGetMember_MapInfo_ResponseReceived(string apiname, dynamic data)
+	{
+		if (SubmissionCache.Count is 0) return;
+		if (World is not int world) return;
+
+		List<PoiAirBase> airBases = KcDatabase.BaseAirCorps.Values
+			.Where(a => a.MapAreaID == world)
+			.Select(MakeAirBase)
+			.ToList();
+
+		PoiDbBattleSubmissionData lastSubmissionData = SubmissionCache[^1];
+
+		lastSubmissionData.Data.FleetAfter.Lbac.Clear();
+		lastSubmissionData.Data.FleetAfter.Lbac.AddRange(airBases);
+
+		SubmitData();
 	}
 
 	private void ClearState()
@@ -156,8 +201,6 @@ public class PoiDbBattleSubmissionService(
 		SortieFleetId = null;
 		FleetType = null;
 		CellCount = null;
-		World = null;
-		Map = null;
 
 		ClearBattleState();
 	}
@@ -174,15 +217,49 @@ public class PoiDbBattleSubmissionService(
 
 	private void SubmitData()
 	{
-		if (FleetBeforeBattle is null) return;
-		if (FleetAfterBattle is null) return;
-		if (FirstBattleData is null) return;
-		if (CellCount is not int cellCount) return;
-		if (World is not int world) return;
-		if (Map is not int map) return;
-		if (Cell is not int cell) return;
-		if (EventDifficulty is not int eventDifficulty) return;
-		if (IsBossNode is not bool isBossNode) return;
+		try
+		{
+			string groupId = DateTimeOffset.UtcNow.ToUnixTimeMicroseconds().ToString();
+
+			foreach (PoiDbBattleSubmissionData submissionData in SubmissionCache)
+			{
+				submissionData.Data.GroupId = groupId;
+
+				Task.Run(async () =>
+				{
+					try
+					{
+						await PoiHttpClient.Battle(submissionData);
+					}
+					catch (Exception e)
+					{
+						LogError(e);
+					}
+				});
+			}
+		}
+		catch (Exception e)
+		{
+			LogError(e);
+			ClearState();
+		}
+
+		World = null;
+		Map = null;
+		SubmissionCache.Clear();
+	}
+
+	private PoiDbBattleSubmissionData? MakeSubmissionData()
+	{
+		if (FleetBeforeBattle is null) return null;
+		if (FleetAfterBattle is null) return null;
+		if (FirstBattleData is null) return null;
+		if (CellCount is not int cellCount) return null;
+		if (World is not int world) return null;
+		if (Map is not int map) return null;
+		if (Cell is not int cell) return null;
+		if (EventDifficulty is not int eventDifficulty) return null;
+		if (IsBossNode is not bool isBossNode) return null;
 
 		List<JsonNode> battleData = [FirstBattleData];
 
@@ -191,45 +268,27 @@ public class PoiDbBattleSubmissionService(
 			battleData.Add(SecondBattleData);
 		}
 
-		try
+		PoiDbBattleSubmissionData submissionData = new()
 		{
-			PoiDbBattleSubmissionData submissionData = new()
+			Data = new()
 			{
-				Data = new()
+				Fleet = FleetBeforeBattle,
+				FleetAfter = FleetAfterBattle,
+				Map = [world, map, cell],
+				Packet = battleData,
+				Type = isBossNode switch
 				{
-					Fleet = FleetBeforeBattle,
-					FleetAfter = FleetAfterBattle,
-					Map = [world, map, cell],
-					Packet = battleData,
-					Type = isBossNode switch
-					{
-						true => "Boss",
-						_ => "Normal",
-					},
-					Version = Version,
-					ApiCellData = cellCount,
-					MapLevel = eventDifficulty,
-					Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
-				}
-			};
+					true => "Boss",
+					_ => "Normal",
+				},
+				Version = Version,
+				ApiCellData = cellCount,
+				MapLevel = eventDifficulty,
+				Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+			}
+		};
 
-			Task.Run(async () =>
-			{
-				try
-				{
-					await PoiHttpClient.Battle(submissionData);
-				}
-				catch (Exception e)
-				{
-					LogError(e);
-				}
-			});
-		}
-		catch (Exception e)
-		{
-			LogError(e);
-			ClearState();
-		}
+		return submissionData;
 	}
 
 	private Fleet? MakeFleet(KCDatabase kcDatabase)
@@ -253,11 +312,11 @@ public class PoiDbBattleSubmissionService(
 		return new()
 		{
 			Type = kcDatabase.Fleet.CombinedFlag,
-			Main = fleet.MembersWithoutEscaped
+			Main = fleet.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
-			Escort = escortFleet?.MembersWithoutEscaped
+			Escort = escortFleet?.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
@@ -288,11 +347,11 @@ public class PoiDbBattleSubmissionService(
 
 		return new()
 		{
-			Main = fleet.MembersWithoutEscaped
+			Main = fleet.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
-			Escort = escortFleet?.MembersWithoutEscaped
+			Escort = escortFleet?.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),

@@ -48,9 +48,9 @@ public partial class DialogLocalAPILoader2 : Form
 		SortieRecord = sortieRecord;
 	}
 
-	public DialogLocalAPILoader2(List<ApiFile> fileses) : this()
+	public DialogLocalAPILoader2(List<ApiFile> files) : this()
 	{
-		ApiFilesToLoad = fileses;
+		ApiFilesToLoad = files;
 	}
 
 	public void Translate()
@@ -219,17 +219,18 @@ public partial class DialogLocalAPILoader2 : Form
 			.Where(f => f.Id >= lastPortFileIdBeforeSortieId)
 			.ToList();
 
-		int portFileIdAfterSortieId = db.ApiFiles
+		int mapinfoFileIdAfterSortieId = db.ApiFiles
 			.Where(f => f.Id > firstSortieApiFileId)
-			.Where(f => f.Name == "api_port/port")
+			.Where(f => f.Name == "api_get_member/mapinfo")
 			.Where(f => f.ApiFileType == ApiFileType.Response)
 			.OrderBy(f => f.Id)
 			.First()
 			.Id;
 
 		ApiFilesAfterSortie = db.ApiFiles
+			.Where(f => f.Name != "api_req_hokyu/charge")
 			.Where(f => f.Id > lastSortieApiFileId)
-			.Where(f => f.Id <= portFileIdAfterSortieId)
+			.Where(f => f.Id <= mapinfoFileIdAfterSortieId)
 			.ToList();
 
 		ApiFilesToLoad = ApiFilesBeforeSortie

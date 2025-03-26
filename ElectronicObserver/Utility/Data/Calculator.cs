@@ -520,103 +520,193 @@ public static class Calculator
 
 		return probs;
 	}
-
-
+	
 	/// <summary>
 	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
 	/// (S勝利時のもの。A勝利時は int( value * 0.7 ) )
 	/// </summary>
 	/// <param name="fleet">対象の艦隊。</param>
 	/// <returns>減少TP。</returns>
-	public static int GetTPDamage(IFleetData fleet)
+	public static int GetTpDamage(IFleetData fleet)
 	{
+		if (fleet.MembersWithoutEscaped is null) return 0;
 
+		return fleet.MembersWithoutEscaped
+			.OfType<IShipData>()
+			.Where(s => s.HPRate > 0.25)
+			.Sum(ship => GetEquipmentTpDamage(ship) + GetShipTpDamage(ship));
+	}
+
+	/// <summary>
+	/// Used/introduced for Spring 2025 E2
+	/// </summary>
+	/// <param name="fleet">対象の艦隊。</param>
+	/// <returns>減少TP。</returns>
+	public static int GetTankGaugeDamage(IFleetData fleet)
+	{
+		if (fleet.MembersWithoutEscaped is null) return 0;
+
+		return (int)fleet.MembersWithoutEscaped
+			.OfType<IShipData>()
+			.Where(s => s.HPRate > 0.25)
+			.Sum(ship => GetLandingEquipmentTpDamage(ship) + GetLandingShipTpDamage(ship));
+	}
+
+	private static int GetShipTpDamage(IShipData ship)
+	{
 		int tp = 0;
 
-		foreach (var ship in fleet.MembersWithoutEscaped.Where(s => s != null && s.HPRate > 0.25))
+		// 艦種ボーナス
+		switch (ship.MasterShip.ShipType)
 		{
 
-			// 装備ボーナス
-			foreach (var eq in ship.AllSlotInstanceMaster.Where(q => q != null))
-			{
+			case ShipTypes.Destroyer:
+				tp += 5;
+				break;
 
-				switch (eq.CategoryType)
-				{
+			case ShipTypes.LightCruiser:
+				tp += 2;
+				if (ship.ShipID == 487) // 鬼怒改二
+					tp += 8;
+				break;
 
-					case EquipmentTypes.LandingCraft:
-						//if ( eq.EquipmentID == 166 )	// 陸戦隊
-						//	tp += 13;
-						//else
-						tp += 8;
-						break;
+			case ShipTypes.AviationCruiser:
+				tp += 4;
+				break;
 
-					case EquipmentTypes.TransportContainer:
-						tp += 5;
-						break;
+			case ShipTypes.AviationBattleship:
+				tp += 7;
+				break;
 
-					case EquipmentTypes.Ration:
-						tp += 1;
-						break;
+			case ShipTypes.SeaplaneTender:
+				tp += 9;
+				break;
 
-					case EquipmentTypes.SpecialAmphibiousTank:
-						tp += 2;
-						break;
-				}
-			}
+			case ShipTypes.AmphibiousAssaultShip:
+				tp += 12;
+				break;
 
+			case ShipTypes.SubmarineTender:
+				tp += 7;
+				break;
 
-			// 艦種ボーナス
-			switch (ship.MasterShip.ShipType)
-			{
+			case ShipTypes.TrainingCruiser:
+				tp += 6;
+				break;
 
-				case ShipTypes.Destroyer:
-					tp += 5;
-					break;
+			case ShipTypes.FleetOiler:
+				tp += 15;
+				break;
 
-				case ShipTypes.LightCruiser:
-					tp += 2;
-					if (ship.ShipID == 487) // 鬼怒改二
-						tp += 8;
-					break;
-
-				case ShipTypes.AviationCruiser:
-					tp += 4;
-					break;
-
-				case ShipTypes.AviationBattleship:
-					tp += 7;
-					break;
-
-				case ShipTypes.SeaplaneTender:
-					tp += 9;
-					break;
-
-				case ShipTypes.AmphibiousAssaultShip:
-					tp += 12;
-					break;
-
-				case ShipTypes.SubmarineTender:
-					tp += 7;
-					break;
-
-				case ShipTypes.TrainingCruiser:
-					tp += 6;
-					break;
-
-				case ShipTypes.FleetOiler:
-					tp += 15;
-					break;
-
-				case ShipTypes.SubmarineAircraftCarrier:
-					tp += 1;
-					break;
-			}
+			case ShipTypes.SubmarineAircraftCarrier:
+				tp += 1;
+				break;
 		}
-
 
 		return tp;
 	}
 
+	/// <summary>
+	/// We're using https://docs.google.com/spreadsheets/d/1ynon3m-qL7XBtDgi1kOSluVEMUen_zx1a6Bi_f4JTc4 as source
+	/// </summary>
+	/// <param name="ship"></param>
+	/// <returns></returns>
+	private static double GetLandingShipTpDamage(IShipData ship)
+	{
+		return ship.MasterShip.ShipType switch
+		{
+			ShipTypes.Destroyer => 3.25,
+			ShipTypes.LightCruiser when ship.MasterShip.ShipId is ShipId.KinuKaiNi => 9.3,
+			ShipTypes.LightCruiser => 1.3,
+			ShipTypes.SeaplaneTender => 5.85,
+			ShipTypes.AviationCruiser => 2.6,
+			ShipTypes.AviationBattleship => 4.55,
+
+			ShipTypes.TrainingCruiser => 3.9,
+			ShipTypes.FleetOiler => 9.75,
+			ShipTypes.AmphibiousAssaultShip => 7.8,
+			ShipTypes.SubmarineAircraftCarrier => 0.65,
+			ShipTypes.SubmarineTender => 4.55,
+
+			_ => 0,
+		};
+	}
+
+	private static int GetEquipmentTpDamage(IShipData ship)
+	{
+		int tp = 0;
+
+		// 装備ボーナス
+		foreach (var eq in ship.AllSlotInstanceMaster.OfType<IEquipmentDataMaster>())
+		{
+			switch (eq.CategoryType)
+			{
+
+				case EquipmentTypes.LandingCraft:
+					//if ( eq.EquipmentID == 166 )	// 陸戦隊
+					//	tp += 13;
+					//else
+					tp += 8;
+					break;
+
+				case EquipmentTypes.TransportContainer:
+					tp += 5;
+					break;
+
+				case EquipmentTypes.Ration:
+					tp += 1;
+					break;
+
+				case EquipmentTypes.SpecialAmphibiousTank:
+					tp += 2;
+					break;
+			}
+		}
+
+		return tp;
+	}
+
+	/// <summary>
+	/// We're using https://docs.google.com/spreadsheets/d/1ynon3m-qL7XBtDgi1kOSluVEMUen_zx1a6Bi_f4JTc4 as source
+	/// </summary>
+	/// <param name="ship"></param>
+	/// <returns></returns>
+	private static double GetLandingEquipmentTpDamage(IShipData ship)
+	{
+		double tp = 0;
+
+		foreach (IEquipmentDataMaster eq in ship.AllSlotInstanceMaster.OfType<IEquipmentDataMaster>())
+		{
+			tp += eq.EquipmentId switch
+			{
+				EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 46.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank => 40.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ => 32.2,
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 28.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 27.2,
+				EquipmentId.LandingCraft_M4A1DD => 24.2,
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 22.2,
+				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 21.2,
+				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 14.2,
+
+				EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 38,
+				EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 23,
+				EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 17,
+				EquipmentId.ArmyInfantry_ArmyInfantryUnit => 15,
+
+				EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank => 9.3,
+				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 6.3,
+				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 8.3,
+
+				_ when eq.CategoryType is EquipmentTypes.LandingCraft => 5.2,
+				_ when eq.CategoryType is EquipmentTypes.Ration => 0.65,
+				_ when eq.CategoryType is EquipmentTypes.TransportContainer => 3.25,
+				_ => 0,
+			};
+		}
+
+		return tp;
+	}
 
 	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new()
 	{

@@ -138,6 +138,8 @@ public class PoiDbSubmissionService
 
 		APIObserver.Instance.ApiPort_Port.ResponseReceived += battleSubmissionService.ApiPort_Port_ResponseReceived;
 
+		APIObserver.Instance.ApiGetMember_MapInfo.ResponseReceived += battleSubmissionService.ApiGetMember_MapInfo_ResponseReceived;
+
 		return battleSubmissionService;
 	}
 
@@ -169,6 +171,8 @@ public class PoiDbSubmissionService
 		APIObserver.Instance.ApiReqCombinedBattle_EcMidnightBattle.ResponseReceived -= battleSubmissionService.ProcessSecondBattle;
 
 		APIObserver.Instance.ApiPort_Port.ResponseReceived -= battleSubmissionService.ApiPort_Port_ResponseReceived;
+
+		APIObserver.Instance.ApiGetMember_MapInfo.ResponseReceived -= battleSubmissionService.ApiGetMember_MapInfo_ResponseReceived;
 	}
 
 	private static PoiDbFriendFleetSubmissionService MakeFriendFleetSubmissionService(KCDatabase kcDatabase,
