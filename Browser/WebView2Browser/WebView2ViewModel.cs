@@ -499,7 +499,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 		if (ignoreCache)
 		{
-			DevToolsHelper.Page.ReloadAsync(true);
+			await DevToolsHelper.Page.ReloadAsync(true);
 		}
 	}
 
