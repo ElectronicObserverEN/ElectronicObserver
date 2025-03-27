@@ -486,20 +486,21 @@ public class WebView2ViewModel : BrowserViewModel
 	/// ブラウザを再読み込みします。
 	/// </summary>
 	/// <param name="ignoreCache">キャッシュを無視するか。</param>
-	protected override void RefreshBrowser(bool ignoreCache)
+	protected override async void RefreshBrowser(bool ignoreCache)
 	{
 		if (WebView2 is null) return;
+		if (DevToolsHelper is null) return;
+
+		IsRefreshing = true;
+
+		string address = WebView2.CoreWebView2.Source;
+		await DevToolsHelper.Page.NavigateAsync("about:blank");
+		await DevToolsHelper.Page.NavigateAsync(address);
 
 		if (ignoreCache)
 		{
 			DevToolsHelper.Page.ReloadAsync(true);
 		}
-		else
-		{
-			WebView2.CoreWebView2.Reload();
-		}
-
-		IsRefreshing = true;
 	}
 
 	/// <summary>

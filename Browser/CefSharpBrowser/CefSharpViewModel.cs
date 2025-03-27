@@ -373,9 +373,18 @@ public class CefSharpViewModel : BrowserViewModel
 
 	protected override void RefreshBrowser() => RefreshBrowser(false);
 
-	protected override void RefreshBrowser(bool ignoreCache)
+	protected override async void RefreshBrowser(bool ignoreCache)
 	{
-		CefSharp?.Reload(ignoreCache);
+		if (CefSharp is null) return;
+
+		string address = CefSharp.Address;
+		await CefSharp.LoadUrlAsync("about:blank");
+		await CefSharp.LoadUrlAsync(address);
+
+		if (ignoreCache)
+		{
+			CefSharp.Reload(ignoreCache);
+		}
 	}
 
 	protected override void Exit()
