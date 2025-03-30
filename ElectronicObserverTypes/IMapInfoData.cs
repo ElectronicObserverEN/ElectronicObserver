@@ -87,6 +87,4 @@ public interface IMapInfoData : IIdentifiable
 	public void LoadFromResponse(string apiname, dynamic data);
 
 	public void LoadFromRequest(string apiname, Dictionary<string, string> data);
-
-	public int ID => MapID;
 }

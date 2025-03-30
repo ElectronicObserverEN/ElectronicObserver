@@ -43,7 +43,7 @@ public class ShipDropLoc : TsunDbEntity
 		Node = db.Battle.Compass.CellId;
 		Rank = apidata.api_win_rank;
 
-		IMapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
+		IMapInfoData? mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
 
 		if (mapInfoData is null)
 		{

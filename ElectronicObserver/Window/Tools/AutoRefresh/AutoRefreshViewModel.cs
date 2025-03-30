@@ -17,12 +17,12 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 {
 	public AutoRefreshTranslationViewModel AutoRefresh { get; }
 
-	public List<MapAreaData> Areas { get; set; } = new();
-	public List<IMapInfoData> Infos { get; set; } = new();
+	public List<MapAreaData> Areas { get; set; } = [];
+	public List<IMapInfoData> Infos { get; set; } = [];
 
-	public List<MapInfoModel> Maps { get; set; } = new();
+	public List<MapInfoModel> Maps { get; set; } = [];
 	public MapInfoModel? SelectedMap { get; set; }
-	public ObservableCollection<AutoRefreshRuleViewModel> Rules { get; } = new();
+	public ObservableCollection<AutoRefreshRuleViewModel> Rules { get; } = [];
 
 	private List<AutoRefreshRuleViewModel> EnabledRules => Rules
 		.Where(r => r.IsEnabled)
