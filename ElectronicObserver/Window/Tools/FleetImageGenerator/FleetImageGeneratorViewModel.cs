@@ -66,7 +66,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public string? BackgroundImagePath { get; set; }
 	public bool BackgroundImageExists => File.Exists(BackgroundImagePath);
 	public TpGauge TankTpGauge { get; set; }
-	public IEnumerable<TpGauge> TankTpGauges { get; } = Enum.GetValues<TpGauge>();
+	public IEnumerable<TpGauge> TankTpGauges { get; } = Enum.GetValues<TpGauge>().Where(gauge => gauge is not TpGauge.Normal);
 	public bool ShowTankTp => TankTpGauge > TpGauge.None;
 
 	public int FleetNameFontSize => ImageType switch
