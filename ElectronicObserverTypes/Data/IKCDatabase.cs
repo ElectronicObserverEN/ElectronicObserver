@@ -96,12 +96,14 @@ public interface IKCDatabase
 	/// 海域カテゴリデータ
 	/// </summary>
 	IDDictionary<MapAreaData> MapArea { get; }
+	*/
 
 	/// <summary>
 	/// 海域データ
 	/// </summary>
-	IDDictionary<MapInfoData> MapInfo { get; }
+	IDDictionary<IMapInfoData> MapInfo { get; }
 
+	/*
 	/// <summary>
 	/// 遠征データ
 	/// </summary>

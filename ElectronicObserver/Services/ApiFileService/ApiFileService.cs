@@ -241,7 +241,7 @@ public class ApiFileService : ObservableObject
 		if (response is null) return;
 		if (!int.TryParse(request.ApiDeckId, out int fleetId)) return;
 
-		MapInfoData? map = KcDatabase.MapInfo.Values
+		IMapInfoData? map = KcDatabase.MapInfo.Values
 			.Where(m => m.MapAreaID == response.ApiData.ApiMapareaId)
 			.FirstOrDefault(m => m.MapInfoID == response.ApiData.ApiMapinfoNo);
 

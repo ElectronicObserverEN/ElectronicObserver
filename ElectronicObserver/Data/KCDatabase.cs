@@ -134,7 +134,7 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// 海域データ
 	/// </summary>
-	public IDDictionary<MapInfoData> MapInfo { get; private set; }
+	public IDDictionary<IMapInfoData> MapInfo { get; private set; }
 
 
 	/// <summary>
@@ -199,7 +199,7 @@ public sealed class KCDatabase : IKCDatabase
 		QuestProgress = new QuestProgressManager();
 		Battle = new BattleManager();
 		MapArea = new IDDictionary<MapAreaData>();
-		MapInfo = new IDDictionary<MapInfoData>();
+		MapInfo = new IDDictionary<IMapInfoData>();
 		Mission = new IDDictionary<MissionData>();
 		ShipGroup = new ShipGroupManager();
 		BaseAirCorps = new IDDictionary<BaseAirCorpsData>();

@@ -83,7 +83,9 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 			int tp = Calculator.GetTpDamage(fleet);
-			int tankTp = Calculator.GetTankGaugeDamage(fleet);
+			int tankTpE2 = TankTpGauge.Spring25E2.GetTp(fleet);
+			int tankTpE5 = TankTpGauge.Spring25E5.GetTp(fleet);
+
 			bool hasZeroSlotAircraft = fleet.MembersInstance!
 				.Where(s => s is not null)
 				.Any(s => s.HasZeroSlotAircraft());
@@ -127,8 +129,10 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				zeroSlotWarning,
-				tankTp,
-				(int)(tankTp * 0.7)
+				tankTpE2,
+				(int)(tankTpE2 * 0.7),
+				tankTpE5,
+				(int)(tankTpE5 * 0.7)
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();

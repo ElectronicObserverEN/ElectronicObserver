@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
@@ -25,10 +26,11 @@ public class FleetViewModel : ObservableObject
 	public ObservableCollection<ShipViewModel> Ships { get; private set; } = [];
 	public int TpValueA { get; private set; }
 	public int TpValueS { get; private set; }
+
 	public int TankTpValueA { get; private set; }
 	public int TankTpValueS { get; private set; }
 
-	public FleetViewModel Initialize(IFleetData? fleet, int fleetId, ImageType imageType)
+	public FleetViewModel Initialize(IFleetData? fleet, int fleetId, ImageType imageType, TankTpGauge tankTpGauge)
 	{
 		Model = fleet;
 
@@ -49,7 +51,7 @@ public class FleetViewModel : ObservableObject
 		TpValueS = Calculator.GetTpDamage(fleet);
 		TpValueA = (int)(TpValueS * 0.7);
 
-		TankTpValueS = Calculator.GetTankGaugeDamage(fleet);
+		TankTpValueS = tankTpGauge.GetTp(fleet);
 		TankTpValueA = (int)(TankTpValueS * 0.7);
 
 		Ships = FilterStrikingForce(fleet.MembersInstance)

@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.FleetImageGenerator"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -110,7 +111,14 @@
 							/>
 					</StackPanel>
 
-					<CheckBox Content="{Binding DialogFleetImageGenerator.ShowTankTp}" IsChecked="{Binding ShowTankTp}" />
+					<TextBlock Text="{Binding DialogFleetImageGenerator.ShowTankTp}" />
+					<ComboBox ItemsSource="{Binding TankTpGauges}" SelectedValue="{Binding TankTpGauge}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type electronicObserverTypes:TankTpGauge}">
+								<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
 
 					<CheckBox
 						Content="{Binding DialogFleetImageGenerator.QuickConfigurationAccess}"

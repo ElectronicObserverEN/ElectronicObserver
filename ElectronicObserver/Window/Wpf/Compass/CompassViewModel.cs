@@ -151,7 +151,7 @@ public class CompassViewModel : AnchorableViewModel
 
 			// map HP, touch trigger tooltip
 			{
-				MapInfoData mapinfo = compass.MapInfo;
+				IMapInfoData mapinfo = compass.MapInfo;
 				StringBuilder sb = new();
 
 				if (mapinfo.RequiredDefeatedCount != -1 &&

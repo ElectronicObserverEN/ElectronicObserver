@@ -9,6 +9,7 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.AutoRefresh;
 
@@ -17,7 +18,7 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 	public AutoRefreshTranslationViewModel AutoRefresh { get; }
 
 	public List<MapAreaData> Areas { get; set; } = new();
-	public List<MapInfoData> Infos { get; set; } = new();
+	public List<IMapInfoData> Infos { get; set; } = new();
 
 	public List<MapInfoModel> Maps { get; set; } = new();
 	public MapInfoModel? SelectedMap { get; set; }
