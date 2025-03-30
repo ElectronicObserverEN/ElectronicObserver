@@ -400,6 +400,6 @@ Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.<
     <value>Custom theme</value>
   </data>
   <data name="ShowTankTp" xml:space="preserve">
-    <value>Show tank TP</value>
+    <value>Tank TP</value>
   </data>
 </root>
