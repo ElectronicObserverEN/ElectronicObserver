@@ -30,7 +30,7 @@ public class FleetViewModel : ObservableObject
 	public int TankTpValueA { get; private set; }
 	public int TankTpValueS { get; private set; }
 
-	public FleetViewModel Initialize(IFleetData? fleet, int fleetId, ImageType imageType, TankTpGauge tankTpGauge)
+	public FleetViewModel Initialize(IFleetData? fleet, int fleetId, ImageType imageType, TpGauge tpGauge)
 	{
 		Model = fleet;
 
@@ -51,7 +51,7 @@ public class FleetViewModel : ObservableObject
 		TpValueS = Calculator.GetTpDamage(fleet);
 		TpValueA = (int)(TpValueS * 0.7);
 
-		TankTpValueS = tankTpGauge.GetTp(fleet);
+		TankTpValueS = tpGauge.GetTp(fleet);
 		TankTpValueA = (int)(TankTpValueS * 0.7);
 
 		Ships = FilterStrikingForce(fleet.MembersInstance)

@@ -115,7 +115,7 @@
 						<TextBlock Text="{Binding DialogFleetImageGenerator.ShowTankTp}" />
 						<ComboBox ItemsSource="{Binding TankTpGauges}" SelectedValue="{Binding TankTpGauge}">
 							<ComboBox.ItemTemplate>
-								<DataTemplate DataType="{x:Type electronicObserverTypes:TankTpGauge}">
+								<DataTemplate DataType="{x:Type electronicObserverTypes:TpGauge}">
 									<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>

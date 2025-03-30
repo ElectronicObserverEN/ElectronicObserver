@@ -65,9 +65,9 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public SolidColorBrush Background => new(BackgroundColor);
 	public string? BackgroundImagePath { get; set; }
 	public bool BackgroundImageExists => File.Exists(BackgroundImagePath);
-	public TankTpGauge TankTpGauge { get; set; }
-	public IEnumerable<TankTpGauge> TankTpGauges { get; } = Enum.GetValues<TankTpGauge>();
-	public bool ShowTankTp => TankTpGauge > TankTpGauge.None;
+	public TpGauge TankTpGauge { get; set; }
+	public IEnumerable<TpGauge> TankTpGauges { get; } = Enum.GetValues<TpGauge>();
+	public bool ShowTankTp => TankTpGauge > TpGauge.None;
 
 	public int FleetNameFontSize => ImageType switch
 	{

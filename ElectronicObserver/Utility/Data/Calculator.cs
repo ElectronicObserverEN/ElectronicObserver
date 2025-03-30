@@ -520,111 +520,14 @@ public static class Calculator
 
 		return probs;
 	}
-	
+
 	/// <summary>
 	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
 	/// (S勝利時のもの。A勝利時は int( value * 0.7 ) )
 	/// </summary>
 	/// <param name="fleet">対象の艦隊。</param>
 	/// <returns>減少TP。</returns>
-	public static int GetTpDamage(IFleetData fleet)
-	{
-		if (fleet.MembersWithoutEscaped is null) return 0;
-
-		return fleet.MembersWithoutEscaped
-			.OfType<IShipData>()
-			.Where(s => s.HPRate > 0.25)
-			.Sum(ship => GetEquipmentTpDamage(ship) + GetShipTpDamage(ship));
-	}
-
-	private static int GetShipTpDamage(IShipData ship)
-	{
-		int tp = 0;
-
-		// 艦種ボーナス
-		switch (ship.MasterShip.ShipType)
-		{
-
-			case ShipTypes.Destroyer:
-				tp += 5;
-				break;
-
-			case ShipTypes.LightCruiser:
-				tp += 2;
-				if (ship.ShipID == 487) // 鬼怒改二
-					tp += 8;
-				break;
-
-			case ShipTypes.AviationCruiser:
-				tp += 4;
-				break;
-
-			case ShipTypes.AviationBattleship:
-				tp += 7;
-				break;
-
-			case ShipTypes.SeaplaneTender:
-				tp += 9;
-				break;
-
-			case ShipTypes.AmphibiousAssaultShip:
-				tp += 12;
-				break;
-
-			case ShipTypes.SubmarineTender:
-				tp += 7;
-				break;
-
-			case ShipTypes.TrainingCruiser:
-				tp += 6;
-				break;
-
-			case ShipTypes.FleetOiler:
-				tp += 15;
-				break;
-
-			case ShipTypes.SubmarineAircraftCarrier:
-				tp += 1;
-				break;
-		}
-
-		return tp;
-	}
-
-
-	private static int GetEquipmentTpDamage(IShipData ship)
-	{
-		int tp = 0;
-
-		// 装備ボーナス
-		foreach (var eq in ship.AllSlotInstanceMaster.OfType<IEquipmentDataMaster>())
-		{
-			switch (eq.CategoryType)
-			{
-
-				case EquipmentTypes.LandingCraft:
-					//if ( eq.EquipmentID == 166 )	// 陸戦隊
-					//	tp += 13;
-					//else
-					tp += 8;
-					break;
-
-				case EquipmentTypes.TransportContainer:
-					tp += 5;
-					break;
-
-				case EquipmentTypes.Ration:
-					tp += 1;
-					break;
-
-				case EquipmentTypes.SpecialAmphibiousTank:
-					tp += 2;
-					break;
-			}
-		}
-
-		return tp;
-	}
+	public static int GetTpDamage(IFleetData fleet) => TpGauge.Normal.GetTp(fleet);
 
 	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new()
 	{
