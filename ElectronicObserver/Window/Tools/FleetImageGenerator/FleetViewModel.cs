@@ -10,7 +10,7 @@ using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
-public class FleetViewModel : ObservableObject
+public partial class FleetViewModel : ObservableObject
 {
 	public IFleetData? Model { get; private set; }
 
@@ -27,8 +27,12 @@ public class FleetViewModel : ObservableObject
 	public int TpValueA { get; private set; }
 	public int TpValueS { get; private set; }
 
-	public int TankTpValueA { get; private set; }
-	public int TankTpValueS { get; private set; }
+	[ObservableProperty]
+	public partial TpGauge TankTpGauge { get; set; }
+	[ObservableProperty]
+	public partial int TankTpValueA { get; private set; }
+	[ObservableProperty]
+	public partial int TankTpValueS { get; private set; }
 
 	public FleetViewModel Initialize(IFleetData? fleet, int fleetId, ImageType imageType, TpGauge tpGauge)
 	{
@@ -51,8 +55,15 @@ public class FleetViewModel : ObservableObject
 		TpValueS = Calculator.GetTpDamage(fleet);
 		TpValueA = (int)(TpValueS * 0.7);
 
-		TankTpValueS = tpGauge.GetTp(fleet);
-		TankTpValueA = (int)(TankTpValueS * 0.7);
+		PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(TankTpGauge)) return;
+
+			TankTpValueS = TankTpGauge.GetTp(fleet);
+			TankTpValueA = (int)(TankTpValueS * 0.7);
+		};
+
+		TankTpGauge = tpGauge;
 
 		Ships = FilterStrikingForce(fleet.MembersInstance)
 			.Select(s => imageType switch

@@ -11,6 +11,13 @@ public static class TpGaugeExtensions
 		_ => "",
 	};
 
+	public static string GetShortGaugeName(this TpGauge gauge) => gauge switch
+	{
+		TpGauge.Spring25E2 => "E2TP",
+		TpGauge.Spring25E5 => "E5TP",
+		_ => "",
+	};
+
 	public static int GetTp(this TpGauge gauge, IFleetData fleet) => gauge switch
 	{
 		TpGauge.Normal => GetNormalTpDamage(fleet),

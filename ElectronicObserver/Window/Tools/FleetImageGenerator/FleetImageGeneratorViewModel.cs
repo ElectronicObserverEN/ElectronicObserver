@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -13,6 +14,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
@@ -65,9 +67,14 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public SolidColorBrush Background => new(BackgroundColor);
 	public string? BackgroundImagePath { get; set; }
 	public bool BackgroundImageExists => File.Exists(BackgroundImagePath);
-	public TpGauge TankTpGauge { get; set; }
+
+	[NotifyPropertyChangedFor(nameof(ShowTankTp))]
+	[NotifyPropertyChangedFor(nameof(TankTpGaugeName))]
+	[ObservableProperty]
+	public partial TpGauge TankTpGauge { get; set; }
 	public IEnumerable<TpGauge> TankTpGauges { get; } = Enum.GetValues<TpGauge>().Where(gauge => gauge is not TpGauge.Normal);
 	public bool ShowTankTp => TankTpGauge > TpGauge.None;
+	public string TankTpGaugeName => TankTpGauge.GetShortGaugeName();
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -151,7 +158,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		PropertyChanged += (sender, args) =>
 		{
-			if (args.PropertyName is not nameof(ImageType) and not nameof(TankTpGauge)) return;
+			if (args.PropertyName is not nameof(ImageType)) return;
 
 			LoadFleets(ImageDataModel);
 		};
@@ -265,6 +272,31 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 			if (args.PropertyName is not nameof(DownloadMissingShipImage)) return;
 
 			Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
+		};
+
+		PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(TankTpGauge)) return;
+
+			if (Fleet1 is not null)
+			{
+				Fleet1.TankTpGauge = TankTpGauge;
+			}
+
+			if (Fleet2 is not null)
+			{
+				Fleet2.TankTpGauge = TankTpGauge;
+			}
+
+			if (Fleet3 is not null)
+			{
+				Fleet3.TankTpGauge = TankTpGauge;
+			}
+
+			if (Fleet4 is not null)
+			{
+				Fleet4.TankTpGauge = TankTpGauge;
+			}
 		};
 
 		LoadModel(ImageDataModel);
@@ -491,7 +523,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	{
 		string newImagePath = FileService.OpenImagePath(BackgroundImagePath);
 
-		if(newImagePath is null) return;
+		if (newImagePath is null) return;
 
 		BackgroundImagePath = newImagePath;
 	}
