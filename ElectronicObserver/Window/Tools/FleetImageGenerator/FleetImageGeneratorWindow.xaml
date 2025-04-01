@@ -18,10 +18,6 @@
 	mc:Ignorable="d"
 	>
 	<Window.Resources>
-		<Style TargetType="TextBlock">
-			<Setter Property="Foreground" Value="{Binding Foreground}" />
-		</Style>
-
 		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
 			<Setter Property="Margin" Value="4 0" />
 			<Setter Property="Padding" Value="2 0" />
