@@ -386,6 +386,6 @@
     <value>カスタムテーマ</value>
   </data>
   <data name="ShowTankTp" xml:space="preserve">
-    <value>戦車輸送量示す</value>
+    <value>戦車輸送量</value>
   </data>
 </root>
