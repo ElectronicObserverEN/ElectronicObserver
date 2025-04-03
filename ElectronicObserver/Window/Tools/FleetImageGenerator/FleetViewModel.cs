@@ -59,7 +59,7 @@ public partial class FleetViewModel : ObservableObject
 		{
 			if (args.PropertyName is not nameof(TankTpGauge)) return;
 
-			TankTpValueS = TankTpGauge.GetTp(fleet);
+			TankTpValueS = TankTpGauge.GetTp([fleet]);
 			TankTpValueA = (int)(TankTpValueS * 0.7);
 		};
 

@@ -527,7 +527,7 @@ public static class Calculator
 	/// </summary>
 	/// <param name="fleet">対象の艦隊。</param>
 	/// <returns>減少TP。</returns>
-	public static int GetTpDamage(IFleetData fleet) => TpGauge.Normal.GetTp(fleet);
+	public static int GetTpDamage(IFleetData fleet) => TpGauge.Normal.GetTp([fleet]);
 
 	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new()
 	{

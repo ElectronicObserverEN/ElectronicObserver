@@ -97,9 +97,9 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			FleetData fleet1 = KCDatabase.Instance.Fleet[1];
 			FleetData fleet2 = KCDatabase.Instance.Fleet[2];
 
-			int tp = Calculator.GetTpDamage(fleet1) + Calculator.GetTpDamage(fleet2);
-			int tankTpE2 = TpGauge.Spring25E2.GetTp(fleet1) + TpGauge.Spring25E2.GetTp(fleet2);
-			int tankTpE5 = TpGauge.Spring25E5.GetTp(fleet1) + TpGauge.Spring25E5.GetTp(fleet2);
+			int tp = TpGauge.Normal.GetTp([fleet1, fleet2]);
+			int tankTpE2 = TpGauge.Spring25E2.GetTp([fleet1, fleet2]);
+			int tankTpE5 = TpGauge.Spring25E5.GetTp([fleet1, fleet2]);
 
 			List<IShipData> members = fleet1.MembersWithoutEscaped!
 				.Concat(fleet2.MembersWithoutEscaped!)

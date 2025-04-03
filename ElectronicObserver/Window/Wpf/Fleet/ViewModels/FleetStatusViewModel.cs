@@ -83,8 +83,8 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 			int tp = Calculator.GetTpDamage(fleet);
-			int tankTpE2 = TpGauge.Spring25E2.GetTp(fleet);
-			int tankTpE5 = TpGauge.Spring25E5.GetTp(fleet);
+			int tankTpE2 = TpGauge.Spring25E2.GetTp([fleet]);
+			int tankTpE5 = TpGauge.Spring25E5.GetTp([fleet]);
 
 			bool hasZeroSlotAircraft = fleet.MembersInstance!
 				.Where(s => s is not null)
