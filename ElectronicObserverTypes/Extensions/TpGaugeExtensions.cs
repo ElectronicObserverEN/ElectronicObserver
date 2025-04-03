@@ -118,22 +118,7 @@ public static class TpGaugeExtensions
 	/// <see href="https://docs.google.com/spreadsheets/d/1ynon3m-qL7XBtDgi1kOSluVEMUen_zx1a6Bi_f4JTc4" />
 	/// </summary>
 	private static double GetSpring25E2LandingShipTpDamage(IShipData ship)
-		=> ship.MasterShip.ShipType switch
-		{
-			ShipTypes.Destroyer => 3.25,
-			ShipTypes.LightCruiser => 1.3,
-			ShipTypes.SeaplaneTender => 5.85,
-			ShipTypes.AviationCruiser => 2.6,
-			ShipTypes.AviationBattleship => 4.55,
-
-			ShipTypes.TrainingCruiser => 3.9,
-			ShipTypes.FleetOiler => 9.75,
-			ShipTypes.AmphibiousAssaultShip => 7.8,
-			ShipTypes.SubmarineAircraftCarrier => 0.65,
-			ShipTypes.SubmarineTender => 4.55,
-
-			_ => 0,
-		};
+		=> GetShipTpDamage(ship) * 0.65;
 
 	/// <summary>
 	/// <see href="https://docs.google.com/spreadsheets/d/1ynon3m-qL7XBtDgi1kOSluVEMUen_zx1a6Bi_f4JTc4" />
