@@ -4,6 +4,7 @@ using System.Linq;
 using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserverTypes.Extensions;
+
 public static class TpGaugeExtensions
 {
 	public static string GetGaugeName(this TpGauge gauge, IKCDatabase db) => gauge switch
