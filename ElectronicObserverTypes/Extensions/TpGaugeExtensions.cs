@@ -42,6 +42,7 @@ public static class TpGaugeExtensions
 	private static bool HasKinuK2(List<IFleetData> fleets) => fleets
 		.SelectMany(f => (f.MembersWithoutEscaped ?? new ReadOnlyCollection<IShipData?>([])))
 		.OfType<IShipData>()
+		.Where(s => s.HPRate > 0.25)
 		.Any(s => s.MasterShip.ShipId is ShipId.KinuKaiNi);
 
 	private static int GetNormalTpDamage(List<IFleetData> fleets)
