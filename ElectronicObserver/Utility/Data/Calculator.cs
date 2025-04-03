@@ -521,14 +521,6 @@ public static class Calculator
 		return probs;
 	}
 
-	/// <summary>
-	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
-	/// (S勝利時のもの。A勝利時は int( value * 0.7 ) )
-	/// </summary>
-	/// <param name="fleet">対象の艦隊。</param>
-	/// <returns>減少TP。</returns>
-	public static int GetTpDamage(IFleetData fleet) => TpGauge.Normal.GetTp([fleet]);
-
 	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new()
 	{
 		{ EquipmentId.LandingCraft_DaihatsuLC, 0.05 },

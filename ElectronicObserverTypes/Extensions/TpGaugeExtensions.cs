@@ -20,6 +20,10 @@ public static class TpGaugeExtensions
 		_ => "",
 	};
 
+	/// <summary>
+	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
+	/// (S勝利時のもの。A勝利時は int(value * 0.7))
+	/// </summary>
 	public static int GetTp(this TpGauge gauge, List<IFleetData> fleets) => gauge switch
 	{
 		TpGauge.Normal => GetNormalTpDamage(fleets) + GetKinuBonus(fleets),

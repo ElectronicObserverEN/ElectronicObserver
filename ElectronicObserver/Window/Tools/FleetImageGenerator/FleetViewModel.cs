@@ -52,7 +52,7 @@ public partial class FleetViewModel : ObservableObject
 			.Select(w => new LosValue(w, Math.Round(Calculator.GetSearchingAbility_New33(fleet, w), 2, MidpointRounding.ToNegativeInfinity)))
 			.ToList();
 
-		TpValueS = Calculator.GetTpDamage(fleet);
+		TpValueS = TpGauge.Normal.GetTp([fleet]);
 		TpValueA = (int)(TpValueS * 0.7);
 
 		PropertyChanged += (_, args) =>
