@@ -924,8 +924,10 @@ public static class Calculator
 
 		}
 
-		if (attackerShipID == 545 || attackerShipID == 599 || attackerShipID == 610)      // Saratoga Mk.II/赤城改二戊/加賀改二戊
+		if ((ShipId)attackerShipID is ShipId.SaratogaMkII or ShipId.AkagiKaiNiE or ShipId.KagaKaiNiE or ShipId.ShimaneMaruKai or ShipId.RyuuhouKaiNiE) // Todo : remove base
+		{
 			nightPersonnelCount++;
+		}
 
 
 		if (includeSpecialAttack)

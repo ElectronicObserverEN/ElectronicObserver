@@ -180,6 +180,7 @@ public static class ShipDataExtensions
 			ShipId.SaratogaMkII or
 			ShipId.AkagiKaiNiE or
 			ShipId.KagaKaiNiE or
+			ShipId.ShimaneMaruKai or
 			ShipId.RyuuhouKaiNiE;
 
 	private static bool HasNightAviationPersonnel(this IShipData ship) => ship.AllSlotInstance
