@@ -176,12 +176,7 @@ public static class ShipDataExtensions
 
 	public static bool IsNightCarrier(this IShipData ship) =>
 		ship.HasNightAviationPersonnel() ||
-		ship.MasterShip.ShipId is
-			ShipId.SaratogaMkII or
-			ShipId.AkagiKaiNiE or
-			ShipId.KagaKaiNiE or
-			ShipId.ShimaneMaruKai or
-			ShipId.RyuuhouKaiNiE;
+		ship.MasterShip.ShipId.IsNightCarrier();
 
 	private static bool HasNightAviationPersonnel(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsNightAviationPersonnel == true);
