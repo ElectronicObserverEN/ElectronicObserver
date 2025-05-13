@@ -924,7 +924,7 @@ public static class Calculator
 
 		}
 
-		if ((ShipId)attackerShipID is ShipId.SaratogaMkII or ShipId.AkagiKaiNiE or ShipId.KagaKaiNiE or ShipId.ShimaneMaruKai or ShipId.RyuuhouKaiNiE) // Todo : remove base
+		if ((ShipId)attackerShipID is ShipId.SaratogaMkII or ShipId.AkagiKaiNiE or ShipId.KagaKaiNiE or ShipId.ShimaneMaruKai or ShipId.RyuuhouKaiNiE)
 		{
 			nightPersonnelCount++;
 		}
