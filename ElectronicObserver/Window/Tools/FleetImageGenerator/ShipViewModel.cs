@@ -101,7 +101,7 @@ public class ShipViewModel : ObservableObject
 		_ => throw new NotImplementedException(),
 	};
 
-	private async Task LoadImage()
+	private void LoadImage()
 	{
 		foreach (string resourceType in RequiredImageResourceTypes())
 		{
