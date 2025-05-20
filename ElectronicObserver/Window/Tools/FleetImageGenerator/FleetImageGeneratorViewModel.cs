@@ -156,6 +156,8 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		ImageDataModel = model;
 
+		LoadConfig();
+
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(ImageType)) return;
@@ -298,9 +300,6 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 				Fleet4.TankTpGauge = TankTpGauge;
 			}
 		};
-
-		LoadModel(ImageDataModel);
-		LoadConfig();
 	}
 
 	private void LoadConfig()
@@ -380,6 +379,14 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.BackgroundColor = BackgroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath = BackgroundImagePath ?? "";
 		Configuration.Config.FleetImageGenerator.TankTpGauge = TankTpGauge;
+	}
+
+	/// <inheritdoc />
+	public override void Loaded()
+	{
+		base.Loaded();
+
+		LoadModel(ImageDataModel);
 	}
 
 	public override void Closed()
@@ -521,7 +528,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void SelectBackgroundImage()
 	{
-		string newImagePath = FileService.OpenImagePath(BackgroundImagePath);
+		string? newImagePath = FileService.OpenImagePath(BackgroundImagePath);
 
 		if (newImagePath is null) return;
 

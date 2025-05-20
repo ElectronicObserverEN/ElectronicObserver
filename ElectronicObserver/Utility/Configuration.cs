@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
@@ -49,7 +50,7 @@ public sealed class Configuration
 		/// <summary>
 		/// 通信の設定を扱います。
 		/// </summary>
-		public class ConfigConnection : ConfigPartBase
+		public class ConfigConnection : ConfigPartBase, IConfigurationConnection
 		{
 
 			/// <summary>
