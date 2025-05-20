@@ -10,6 +10,20 @@ public class ImageLoadService(GameResourceHelper gameResourceHelper, GameAssetDo
 	private GameAssetDownloaderService GameAssetDownloader { get; } = gameAssetDownloader;
 	private static ConcurrentDictionary<(ShipId, string), Lazy<Task>> Cache { get; } = new();
 
+	static ImageLoadService()
+	{
+		Task.Run(async () =>
+		{
+			while (true)
+			{
+				await Task.Delay(TimeSpan.FromMinutes(5));
+
+				Cache.Clear();
+			}
+			// ReSharper disable once FunctionNeverReturns
+		});
+	}
+
 	public async Task<Bitmap?> GetShipImage(ShipId shipId, string resourceType)
 	{
 		Bitmap? shipImage = GetShipImageFromDisk(shipId, resourceType);
@@ -31,15 +45,5 @@ public class ImageLoadService(GameResourceHelper gameResourceHelper, GameAssetDo
 		Bitmap? shipImage = GameResourceHelper.LoadShipImage(shipId, false, resourceType);
 
 		return shipImage;
-	}
-
-	static ImageLoadService()
-	{
-		Task.Run(async () =>
-		{
-			await Task.Delay(TimeSpan.FromMinutes(5));
-
-			Cache.Clear();
-		});
 	}
 }
