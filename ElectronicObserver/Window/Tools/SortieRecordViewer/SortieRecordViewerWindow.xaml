@@ -292,18 +292,18 @@
 					<DataGridTemplateColumn Header="{Binding DataContext.SortieRecordViewer.Fleet, Source={StaticResource Proxy}}">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<ItemsControl ItemsSource="{Binding Fleet.MembersInstance}">
+								<ItemsControl ItemsSource="{Binding Fleet.Ships}">
 									<ItemsControl.ItemsPanel>
 										<ItemsPanelTemplate>
 											<StackPanel Orientation="Horizontal" />
 										</ItemsPanelTemplate>
 									</ItemsControl.ItemsPanel>
 									<ItemsControl.ItemTemplate>
-										<DataTemplate DataType="{x:Type mocks:ShipDataMock}">
+										<DataTemplate DataType="{x:Type local:SortieRecordShipViewModel}">
 											<Image
 												Width="100"
 												Margin="2 0"
-												Source="{Binding MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+												Source="{Binding ShipImageSource, IsAsync=True}"
 												Stretch="Uniform"
 												/>
 										</DataTemplate>
