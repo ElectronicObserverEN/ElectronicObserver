@@ -1892,7 +1892,7 @@ public sealed class Configuration
 			public ConfigFleetImageGenerator()
 				: base()
 			{
-				Argument = FleetImageArgument.GetDefaultInstance();
+				Argument = new();
 				ImageType = 0;
 				OutputType = 0;
 				OpenImageAfterOutput = false;
