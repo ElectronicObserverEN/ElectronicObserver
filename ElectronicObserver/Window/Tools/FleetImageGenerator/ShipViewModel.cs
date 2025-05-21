@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media.Imaging;
 using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,7 +14,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using CroppedBitmap = System.Windows.Media.Imaging.CroppedBitmap;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
