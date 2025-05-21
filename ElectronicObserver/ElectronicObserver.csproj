@@ -144,7 +144,6 @@
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
 		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
-		<PackageReference Include="WanaKana-net" Version="1.0.0" />
 		<PackageReference Include="WpfExtensions.Xaml" Version="1.2.0" />
 	</ItemGroup>
 	

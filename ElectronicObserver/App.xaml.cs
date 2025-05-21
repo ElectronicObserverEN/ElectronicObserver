@@ -238,6 +238,7 @@ public partial class App
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
 			.AddSingleton<IConfigurationConnection>(Configuration.Config.Connection)
+			.AddSingleton<IConfigurationUi>(Configuration.Config.UI)
 			.AddDialogServices()
 			// config translations
 			.AddSingleton<ConfigurationTranslationViewModel>()

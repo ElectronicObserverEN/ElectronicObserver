@@ -144,7 +144,7 @@ public sealed class Configuration
 		public ConfigConnection Connection { get; private set; }
 
 
-		public class ConfigUI : ConfigPartBase
+		public class ConfigUI : ConfigPartBase, IConfigurationUi
 		{
 
 			/// <summary>

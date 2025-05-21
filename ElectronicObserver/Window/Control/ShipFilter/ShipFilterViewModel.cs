@@ -4,12 +4,12 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Services;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using WanaKanaNet;
+
 namespace ElectronicObserver.Window.Control.ShipFilter;
 
 public partial class ShipFilterViewModel : ObservableObject
@@ -81,7 +81,7 @@ public partial class ShipFilterViewModel : ObservableObject
 		if (CanEquipBulge && !ship.MasterShip.EquippableCategoriesTyped.Intersect(BulgeTypes).Any()) return false;
 		if (CanEquipSeaplaneFighter && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SeaplaneFighter)) return false;
 		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
-		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
+		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter)) return false;
 		// other filters
 
 		return true;
