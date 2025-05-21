@@ -117,11 +117,11 @@ public class ShipViewModel : ObservableObject
 
 				if (resourceType == KCResourceHelper.ResourceTypeShipName)
 				{
-					NameImageSource = image.ToCroppedImageSource();
+					NameImageSource = image.ToShipNameBitmapImage();
 				}
 				else
 				{
-					ShipImageSource = image.ToImageSource();
+					ShipImageSource = image.ToBitmapImage();
 				}
 			});
 		}

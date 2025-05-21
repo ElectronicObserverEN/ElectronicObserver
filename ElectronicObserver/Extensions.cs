@@ -8,7 +8,7 @@ namespace ElectronicObserver;
 
 public static class Extensions
 {
-	public static BitmapImage ToImageSource(this Bitmap bitmap)
+	public static BitmapImage ToBitmapImage(this Bitmap bitmap)
 	{
 		using MemoryStream memoryStream = new();
 		bitmap.Save(memoryStream);
@@ -23,7 +23,10 @@ public static class Extensions
 		return bitmapImage;
 	}
 
-	public static CroppedBitmap ToCroppedImageSource(this Bitmap bitmap)
+	/// <summary>
+	/// Used for the album_status image to remove the "No." text and some useless whitespace.
+	/// </summary>
+	public static CroppedBitmap ToShipNameBitmapImage(this Bitmap bitmap)
 	{
 		using MemoryStream memoryStream = new();
 		bitmap.Save(memoryStream);

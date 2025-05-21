@@ -39,7 +39,7 @@ public class SortieRecordShipViewModel(IShipData ship, ImageLoadService imageLoa
 
 		await App.Current!.Dispatcher.BeginInvoke(() =>
 		{
-			ShipImageSource = bitmap?.ToImageSource();
+			ShipImageSource = bitmap?.ToBitmapImage();
 		});
 
 		OnPropertyChanged(nameof(ShipImageSource));
