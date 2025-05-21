@@ -1,4 +1,4 @@
-using System.Drawing;
+ï»¿using System.Drawing;
 using System.Linq;
 using System.Runtime.Serialization;
 using ElectronicObserver.Utility.Storage;
@@ -6,56 +6,56 @@ using ElectronicObserver.Utility.Storage;
 namespace ElectronicObserver.Utility;
 
 /// <summary>
-/// FleetImageGenerator ƒNƒ‰ƒX‚Ìƒƒ\ƒbƒh‚É—^‚¦‚éƒpƒ‰ƒ[ƒ^ŒQ‚ğ•Û‚µ‚Ü‚·B
+/// FleetImageGenerator ã‚¯ãƒ©ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ä¸ãˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤ã‚’ä¿æŒã—ã¾ã™ã€‚
 /// </summary>
 [DataContract(Name = "FleetImageArgument")]
 public class FleetImageArgument
 {
 
-	/// <summary> ‘ÎÛ‚Æ‚È‚éŠÍ‘àID‚ÌƒŠƒXƒg </summary>
+	/// <summary> å¯¾è±¡ã¨ãªã‚‹è‰¦éšŠIDã®ãƒªã‚¹ãƒˆ </summary>
 	[DataMember]
 	public int[] FleetIDs;
 
-	/// <summary> ŠÍ‘à‚ğ‰¡‚É•À‚×‚éÅ‘å” </summary>
+	/// <summary> è‰¦éšŠã‚’æ¨ªã«ä¸¦ã¹ã‚‹æœ€å¤§æ•° </summary>
 	[DataMember]
 	public int HorizontalFleetCount;
 
-	/// <summary> ŠÍ‘D‚ğ‰¡‚É•À‚×‚éÅ‘å” </summary>
+	/// <summary> è‰¦èˆ¹ã‚’æ¨ªã«ä¸¦ã¹ã‚‹æœ€å¤§æ•° </summary>
 	[DataMember]
 	public int HorizontalShipCount;
 
 
-	/// <summary> HP ‚É‰‚¶‚Ä’†”jƒOƒ‰ƒtƒBƒbƒN‚ğ“K—p‚·‚é‚© </summary>
+	/// <summary> HP ã«å¿œã˜ã¦ä¸­ç ´ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’é©ç”¨ã™ã‚‹ã‹ </summary>
 	[DataMember]
 	public bool ReflectDamageGraphic;
 
-	/// <summary> Twitter ‚Ì‰æ‘œˆ³k‚ğ‰ñ”ğ‚·‚éî•ñ‚ğ–„‚ß‚Ş‚© </summary>
+	/// <summary> Twitter ã®ç”»åƒåœ§ç¸®ã‚’å›é¿ã™ã‚‹æƒ…å ±ã‚’åŸ‹ã‚è¾¼ã‚€ã‹ </summary>
 	[DataMember]
 	public bool AvoidTwitterDeterioration;
 
 
 
-	/// <summary> ƒ^ƒCƒgƒ‹‚ÌƒtƒHƒ“ƒg </summary>
+	/// <summary> ã‚¿ã‚¤ãƒˆãƒ«ã®ãƒ•ã‚©ãƒ³ãƒˆ </summary>
 	[IgnoreDataMember]
 	public Font TitleFont;
 
-	/// <summary> ‘å‚«‚¢•¶š‚ÌƒtƒHƒ“ƒg(ŠÍ‘à–¼‚È‚Ç) </summary>
+	/// <summary> å¤§ãã„æ–‡å­—ã®ãƒ•ã‚©ãƒ³ãƒˆ(è‰¦éšŠåãªã©) </summary>
 	[IgnoreDataMember]
 	public Font LargeFont;
 
-	/// <summary> ’Êí‚Ì•¶š‚ÌƒtƒHƒ“ƒg(ŠÍ‘DE‘•”õ‚È‚Ç) </summary>
+	/// <summary> é€šå¸¸ã®æ–‡å­—ã®ãƒ•ã‚©ãƒ³ãƒˆ(è‰¦èˆ¹ãƒ»è£…å‚™ãªã©) </summary>
 	[IgnoreDataMember]
 	public Font MediumFont;
 
-	/// <summary> ¬‚³‚È•¶š‚ÌƒtƒHƒ“ƒg() </summary>
+	/// <summary> å°ã•ãªæ–‡å­—ã®ãƒ•ã‚©ãƒ³ãƒˆ() </summary>
 	[IgnoreDataMember]
 	public Font SmallFont;
 
-	/// <summary> ’Êí‚Ì‰p”šƒtƒHƒ“ƒg(Lv‚È‚Ç) </summary>
+	/// <summary> é€šå¸¸ã®è‹±æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆ(Lvãªã©) </summary>
 	[IgnoreDataMember]
 	public Font MediumDigitFont;
 
-	/// <summary> ¬‚³‚È‰p”šƒtƒHƒ“ƒg(“‹Ú‹@”‚È‚Ç) </summary>
+	/// <summary> å°ã•ãªè‹±æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆ(æ­è¼‰æ©Ÿæ•°ãªã©) </summary>
 	[IgnoreDataMember]
 	public Font SmallDigitFont;
 
@@ -98,16 +98,16 @@ public class FleetImageArgument
 	}
 
 
-	/// <summary> ”wŒi‰æ‘œƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX(‹ó”’‚Ìê‡•`‰æ‚³‚ê‚Ü‚¹‚ñ) </summary>
+	/// <summary> èƒŒæ™¯ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹(ç©ºç™½ã®å ´åˆæç”»ã•ã‚Œã¾ã›ã‚“) </summary>
 	[DataMember]
 	public string BackgroundImagePath;
 
 
-	/// <summary> ƒ†[ƒUw’è‚Ìƒ^ƒCƒgƒ‹ </summary>
+	/// <summary> ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ã‚¿ã‚¤ãƒˆãƒ« </summary>
 	[DataMember]
 	public string Title;
 
-	/// <summary> ƒ†[ƒUw’è‚ÌƒRƒƒ“ƒg </summary>
+	/// <summary> ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ã‚³ãƒ¡ãƒ³ãƒˆ </summary>
 	[DataMember]
 	public string Comment;
 
