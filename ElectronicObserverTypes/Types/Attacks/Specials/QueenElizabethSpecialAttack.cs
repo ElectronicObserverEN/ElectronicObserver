@@ -15,11 +15,11 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (ships.Count is 0) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 		if (flagship.MasterShip.ShipId is not ShipId.WarspiteKai and not ShipId.ValiantKai) return false;
 
@@ -27,7 +27,7 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return false;
 		if (helper.MasterShip.ShipId is not ShipId.WarspiteKai and not ShipId.ValiantKai) return false;
 		if (helper.HPRate <= 0.25) return false;
@@ -64,9 +64,9 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 	/// <returns></returns>
 	private double GetPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 1;
 
 		return 1.2 * GetEquipmentPowerModifier(helper);

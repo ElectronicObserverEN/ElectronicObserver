@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Core.Types.Attacks.Specials;
 
@@ -15,11 +14,11 @@ public record ColoradoSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 		if (flagship.MasterShip.ShipClassTyped is not ShipClass.Colorado) return false;
 
@@ -55,12 +54,12 @@ public record ColoradoSpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships[0];
+		IShipData? flagship = ships[0];
 		if (flagship is null) return 1;
 
-		var mod = 1.5;
+		double mod = 1.5;
 
 		mod *= GetEquipmentPowerModifier(flagship);
 
@@ -69,12 +68,12 @@ public record ColoradoSpecialAttack : SpecialAttack
 
 	private double GetFirstHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		var firstHelper = ships[1];
+		IShipData? firstHelper = ships[1];
 		if (firstHelper is null) return 1;
 
-		var mod = 1.3;
+		double mod = 1.3;
 
 		if (firstHelper.IsBigSeven()) mod *= 1.15;
 		mod *= GetEquipmentPowerModifier(firstHelper);
@@ -84,12 +83,12 @@ public record ColoradoSpecialAttack : SpecialAttack
 
 	private double GetSecondHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		var secondHelper = ships[2];
+		IShipData? secondHelper = ships[2];
 		if (secondHelper is null) return 1;
 
-		var mod = 1.3;
+		double mod = 1.3;
 
 		if (secondHelper.IsBigSeven()) mod *= 1.17;
 		mod *= GetEquipmentPowerModifier(secondHelper);

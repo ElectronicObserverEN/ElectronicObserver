@@ -6,7 +6,7 @@ public static class NumberExtensions
 {
 	public static double RoundDown(this double value, int precision = 0)
 	{
-		var power = Math.Pow(10, precision);
+		double power = Math.Pow(10, precision);
 		return Math.Floor(value * power) / power;
 	}
 }

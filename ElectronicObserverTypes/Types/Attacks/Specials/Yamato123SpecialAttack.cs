@@ -15,11 +15,11 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 
 		if (flagship.MasterShip.ShipId is not ShipId.YamatoKaiNiJuu and not ShipId.YamatoKaiNi) return false;
@@ -58,20 +58,20 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
 
-		var firstHelper = ships[1];
+		IShipData? firstHelper = ships[1];
 		if (firstHelper is null) return 1;
-		var firstHelperId = firstHelper.MasterShip.ShipId;
+		ShipId firstHelperId = firstHelper.MasterShip.ShipId;
 
-		var secondHelper = ships[2];
+		IShipData? secondHelper = ships[2];
 		if (secondHelper is null) return 1;
-		var secondHelperId = secondHelper.MasterShip.ShipId;
+		ShipId secondHelperId = secondHelper.MasterShip.ShipId;
 
-		var mod = 1.5;
+		double mod = 1.5;
 
 		if (IsMusashiAndNagatoClassPair(firstHelperId, secondHelperId)) mod *= 1.1;
 		if (IsNagatoClassPair(firstHelperId, secondHelperId)) mod *= 1.1;
@@ -84,17 +84,17 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private double GetFirstHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var firstHelper = ships[1];
+		IShipData? firstHelper = ships[1];
 		if (firstHelper is null) return 1;
-		var firstHelperId = firstHelper.MasterShip.ShipId;
+		ShipId firstHelperId = firstHelper.MasterShip.ShipId;
 
-		var secondHelper = ships[2];
+		IShipData? secondHelper = ships[2];
 		if (secondHelper is null) return 1;
-		var secondHelperId = secondHelper.MasterShip.ShipId;
+		ShipId secondHelperId = secondHelper.MasterShip.ShipId;
 
-		var mod = 1.5;
+		double mod = 1.5;
 
 		if (IsMusashiAndNagatoClassPair(firstHelperId, secondHelperId)) mod *= 1.2;
 		if (IsNagatoClassPair(firstHelperId, secondHelperId)) mod *= 1.1;
@@ -107,12 +107,12 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private double GetSecondHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var secondHelper = ships[2];
+		IShipData? secondHelper = ships[2];
 		if (secondHelper is null) return 1;
 
-		var mod = 1.65;
+		double mod = 1.65;
 
 		mod *= GetEquipmentPowerModifier(secondHelper, false);
 

@@ -43,7 +43,7 @@ public class ParameterMock : IParameter
 		if (!IsDetermined) return null;
 		if (Maximum <= Minimum) return null;
 
-		var target = (current ?? GetParameter(level)) + 1;
+		int target = (current ?? GetParameter(level)) + 1;
 
 		return (int)Math.Ceiling((target - Minimum) * 99.0 / (Maximum - Minimum));
 	}

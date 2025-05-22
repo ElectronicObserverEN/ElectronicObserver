@@ -15,17 +15,17 @@ public record KongouSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 
 		if (!IsKongouClassThirdRemodel(flagship.MasterShip.ShipId)) return false;
 		if (flagship.HPRate <= 0.5) return false;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return false;
 		if (helper.HPRate <= 0.5) return false;
 
@@ -35,18 +35,8 @@ public record KongouSpecialAttack : SpecialAttack
 	public override List<SpecialAttackHit> GetAttacks()
 		=> new()
 		{
-			new()
-			{
-				ShipIndex = 0,
-				AccuracyModifier = 1.25,
-				PowerModifier = GetPowerModifier(0),
-			},
-			new()
-			{
-				ShipIndex = 1,
-				AccuracyModifier = 1.25,
-				PowerModifier = GetPowerModifier(1),
-			},
+			new() { ShipIndex = 0, AccuracyModifier = 1.25, PowerModifier = GetPowerModifier(0), },
+			new() { ShipIndex = 1, AccuracyModifier = 1.25, PowerModifier = GetPowerModifier(1), },
 		};
 
 	public override bool CanTriggerOnDay => false;
@@ -60,19 +50,20 @@ public record KongouSpecialAttack : SpecialAttack
 
 	public override double GetTriggerRate()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
 
 		// TODO : Kirishima Kai Ni C's trigger rate mods are unknown for now
 		if (flagship.MasterShip.ShipId is ShipId.KirishimaKaiNiC) return 0;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
 		// https://x.com/Divinity_123/status/1820114427619709288
-		var rate = 3.5 * Math.Sqrt(flagship.Level) + 3.5 * Math.Sqrt(helper.Level) + 1.1 * Math.Sqrt(flagship.LuckTotal) + 1.1 * Math.Sqrt(helper.LuckTotal) - 33;
+		double rate = 3.5 * Math.Sqrt(flagship.Level) + 3.5 * Math.Sqrt(helper.Level) +
+			1.1 * Math.Sqrt(flagship.LuckTotal) + 1.1 * Math.Sqrt(helper.LuckTotal) - 33;
 
 		if (flagship.AllSlotInstance.Any(e => e?.MasterEquipment is { IsSurfaceRadar: true, LOS: >= 8 }))
 		{
@@ -86,7 +77,8 @@ public record KongouSpecialAttack : SpecialAttack
 			};
 		}
 
-		if (flagship.AllSlotInstance.Any(e => e?.MasterEquipment?.EquipmentId is EquipmentId.SearchlightLarge_Type96150cmSearchlight))
+		if (flagship.AllSlotInstance.Any(e =>
+			    e?.MasterEquipment?.EquipmentId is EquipmentId.SearchlightLarge_Type96150cmSearchlight))
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
@@ -101,13 +93,13 @@ public record KongouSpecialAttack : SpecialAttack
 
 	private double GetPowerModifier(int shipIndex)
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		var ship = ships[shipIndex];
+		IShipData? ship = ships[shipIndex];
 		if (ship is null) return 1;
 
 		// https://docs.google.com/spreadsheets/d/16tTtSVntB5MmlaxkZcLuFoH3A69bVPRpqXjNgo7f_a0/edit?gid=0#gid=0
-		var equipmentMods = ship.AllSlotInstance.Count(IsKaiSanOrKaiYonGun) switch
+		double equipmentMods = ship.AllSlotInstance.Count(IsKaiSanOrKaiYonGun) switch
 		{
 			0 => 1,
 			1 => 1.11,
@@ -123,8 +115,12 @@ public record KongouSpecialAttack : SpecialAttack
 		return equipmentMods * 2.4;
 	}
 
-	private static bool IsKaiSanOrKaiYonGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
-	private static bool IsKaiNiGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiNi;
+	private static bool IsKaiSanOrKaiYonGun(IEquipmentData? eq) =>
+		eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon
+			or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
+
+	private static bool IsKaiNiGun(IEquipmentData? eq) =>
+		eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiNi;
 
 	private static bool IsKongouClassThirdRemodel(ShipId id) => id is
 		ShipId.KongouKaiNiC or

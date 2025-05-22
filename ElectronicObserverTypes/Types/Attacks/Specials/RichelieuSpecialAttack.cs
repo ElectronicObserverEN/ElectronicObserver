@@ -15,11 +15,11 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (ships.Count is 0) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 		if (flagship.MasterShip.ShipId is not ShipId.RichelieuKai and not ShipId.RichelieuDeux and not ShipId.JeanBartKai) return false;
 
@@ -27,7 +27,7 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return false;
 		if (helper.MasterShip.ShipId is not ShipId.RichelieuKai and not ShipId.RichelieuDeux and not ShipId.JeanBartKai) return false;
 		if (helper.HPRate <= 0.25) return false;
@@ -60,12 +60,12 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
 
-		var baseRate = 1.24;
+		double baseRate = 1.24;
 
 		if (flagship.MasterShip.ShipId is ShipId.RichelieuKai or ShipId.RichelieuDeux)
 		{
@@ -77,9 +77,9 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 	private double GetHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 1;
 
 		return 1.24 * GetEquipmentPowerModifier(helper);

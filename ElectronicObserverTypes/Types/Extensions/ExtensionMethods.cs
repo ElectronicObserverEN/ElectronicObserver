@@ -22,22 +22,22 @@ public static class ExtensionMethods
 	// todo: not tested
 	public static string Display(this Enum enumValue, CultureInfo cultureInfo)
 	{
-		var attribute = enumValue.GetType()
+		DisplayAttribute? attribute = enumValue.GetType()
 			.GetMember(enumValue.ToString())
 			.First()?
 			.GetCustomAttribute<DisplayAttribute>();
 
 		if (attribute is null) return enumValue.ToString();
 
-		var resourceType = attribute.ResourceType;
-		var resourceKey = attribute.Name;
+		Type? resourceType = attribute.ResourceType;
+		string? resourceKey = attribute.Name;
 
 		if (resourceType is null) return enumValue.ToString();
 		if (resourceKey is null) return enumValue.ToString();
 
-		var resourceManagerMethodInfo = resourceType.GetProperty(nameof(ResourceManager), BindingFlags.Public | BindingFlags.Static);
+		PropertyInfo? resourceManagerMethodInfo = resourceType.GetProperty(nameof(ResourceManager), BindingFlags.Public | BindingFlags.Static);
 
-		var resourceManager = (ResourceManager?)resourceManagerMethodInfo?.GetValue(null);
+		ResourceManager? resourceManager = (ResourceManager?)resourceManagerMethodInfo?.GetValue(null);
 
 		return resourceManager?.GetString(resourceKey, cultureInfo) ?? enumValue.ToString();
 	}

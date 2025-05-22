@@ -41,9 +41,9 @@ public class IDDictionary<TData> : IReadOnlyDictionary<int, TData> where TData :
 
 	public int RemoveAll(Predicate<TData> predicate)
 	{
-		var removekeys = dict.Values.Where(elem => predicate(elem)).Select(elem => elem.ID).ToArray();
+		int[] removekeys = dict.Values.Where(elem => predicate(elem)).Select(elem => elem.ID).ToArray();
 
-		foreach (var key in removekeys)
+		foreach (int key in removekeys)
 		{
 			dict.Remove(key);
 		}

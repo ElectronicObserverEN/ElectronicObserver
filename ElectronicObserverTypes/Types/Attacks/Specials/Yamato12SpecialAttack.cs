@@ -16,11 +16,11 @@ public record Yamato12SpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 
 		if (flagship.MasterShip.ShipId is not ShipId.YamatoKaiNiJuu and not ShipId.YamatoKaiNi and not ShipId.MusashiKaiNi) return false;
@@ -28,7 +28,7 @@ public record Yamato12SpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return false;
 
 		if (flagship.MasterShip.ShipId is ShipId.MusashiKaiNi && helper.MasterShip.ShipId is not ShipId.YamatoKaiNiJuu and not ShipId.YamatoKaiNi) return false;
@@ -64,16 +64,16 @@ public record Yamato12SpecialAttack : SpecialAttack
 
 	public override double GetTriggerRate()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
 		// https://twitter.com/chang1124414276/status/1634896670575198209?s=20
-		var rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) + 40;
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) + 40;
 
 		if (flagship.MasterShip.ShipId is ShipId.YamatoKaiNi or ShipId.YamatoKaiNiJuu) rate += 2;
 		if (flagship.HasSurfaceRadar()) rate += 10;
@@ -84,15 +84,15 @@ public record Yamato12SpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 1;
 
-		var mod = 1.4;
+		double mod = 1.4;
 
 		if (helper.MasterShip.ShipId is ShipId.YamatoKaiNiJuu or ShipId.YamatoKaiNi or ShipId.MusashiKaiNi) mod *= 1.1;
 
@@ -103,12 +103,12 @@ public record Yamato12SpecialAttack : SpecialAttack
 
 	private double GetHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 1;
 
-		var mod = 1.55;
+		double mod = 1.55;
 
 		if (helper.MasterShip.ShipId is ShipId.YamatoKaiNiJuu) mod *= 1.255;
 		if (helper.MasterShip.ShipId is ShipId.YamatoKaiNi or ShipId.MusashiKaiNi) mod *= 1.2;

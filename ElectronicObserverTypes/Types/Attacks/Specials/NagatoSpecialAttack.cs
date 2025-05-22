@@ -25,26 +25,26 @@ public record NagatoSpecialAttack : SpecialAttack
 	/// <returns></returns>
 	public override double GetTriggerRate()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
-		var rate = Math.Sqrt(flagship.Level) + 1.5 * Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level) + 1.5 * Math.Sqrt(helper.LuckTotal);
+		double rate = Math.Sqrt(flagship.Level) + 1.5 * Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level) + 1.5 * Math.Sqrt(helper.LuckTotal);
 
 		return (rate + 25) / 100;
 	}
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 		if (flagship.MasterShip.ShipId is not ShipId.NagatoKaiNi and not ShipId.MutsuKaiNi) return false;
 
@@ -52,7 +52,7 @@ public record NagatoSpecialAttack : SpecialAttack
 
 		if (Fleet.NumberOfSurfaceShipNotRetreatedNotSunk() < 6) return false;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return false;
 		if (helper.MasterShip.ShipType is not ShipTypes.Battleship and not ShipTypes.Battlecruiser and not ShipTypes.AviationBattleship) return false;
 		if (helper.HPRate <= 0.25) return false;
@@ -85,15 +85,15 @@ public record NagatoSpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 1;
 
-		var mod = 1.4;
+		double mod = 1.4;
 
 		if (helper.MasterShip.ShipId is ShipId.NagatoKaiNi or ShipId.MutsuKaiNi) mod *= 1.2;
 		if (flagship.MasterShip.ShipId is ShipId.NagatoKaiNi && helper.MasterShip.ShipId is ShipId.MutsuKai) mod *= 1.15;
@@ -106,15 +106,15 @@ public record NagatoSpecialAttack : SpecialAttack
 
 	private double GetHelperPowerModifier()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
 
-		var helper = ships[1];
+		IShipData? helper = ships[1];
 		if (helper is null) return 1;
 
-		var mod = 1.2;
+		double mod = 1.2;
 
 		if (helper.MasterShip.ShipId is ShipId.NagatoKaiNi or ShipId.MutsuKaiNi) mod *= 1.4;
 		if (flagship.MasterShip.ShipId is ShipId.NagatoKaiNi && helper.MasterShip.ShipId is ShipId.MutsuKai) mod *= 1.35;

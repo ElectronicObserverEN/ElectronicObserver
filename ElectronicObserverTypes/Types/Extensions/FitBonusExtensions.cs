@@ -21,7 +21,7 @@ public static class FitBonusExtensions
 			Range = ship.MasterShip.Range,
 		};
 
-		foreach (var eq in ship.AllSlotInstanceMaster.OfType<IEquipmentDataMaster>())
+		foreach (IEquipmentDataMaster eq in ship.AllSlotInstanceMaster.OfType<IEquipmentDataMaster>())
 		{
 			bonus.Firepower -= eq.Firepower;
 			bonus.Torpedo -= eq.Torpedo;
@@ -75,18 +75,18 @@ public static class FitBonusExtensions
 	{
 		IList<IEquipmentData> equipments = ship.AllSlotInstance.Where(eq => eq != null).ToList()!;
 
-		var distinctEquipments = equipments
+		List<EquipmentId> distinctEquipments = equipments
 			.Select(equipment => equipment.MasterEquipment.EquipmentId)
 			.Distinct()
 			.ToList();
 
-		var distinctEquipmentTypes = equipments
+		List<EquipmentTypes> distinctEquipmentTypes = equipments
 			.Select(equipment => equipment.MasterEquipment.CategoryType)
 			.Distinct()
 			.ToList();
 
 		// Keep only the rules that can be applied depending on equip ids or type before cheking them one by one
-		var fitBonusThatApplies = bonusList
+		List<FitBonusPerEquipment> fitBonusThatApplies = bonusList
 			.Where(fitCondition =>
 				distinctEquipments.Any(equipment => fitCondition.EquipmentIds?.Contains(equipment) == true)
 				||
@@ -101,11 +101,11 @@ public static class FitBonusExtensions
 	{
 		List<List<FitBonusValue>> finalBonuses = new();
 
-		foreach (var fitPerEquip in fitBonusThatApplies)
+		foreach (FitBonusPerEquipment fitPerEquip in fitBonusThatApplies)
 		{
-			foreach (var fitData in fitPerEquip.Bonuses)
+			foreach (FitBonusData fitData in fitPerEquip.Bonuses)
 			{
-				var result = GetFitBonusResultFromFitData(ship, equipments, fitPerEquip, fitData);
+				List<FitBonusValue> result = GetFitBonusResultFromFitData(ship, equipments, fitPerEquip, fitData);
 
 				finalBonuses.Add(result);
 			}
@@ -119,7 +119,7 @@ public static class FitBonusExtensions
 	{
 		List<FitBonusValue> fitBonusValues = [];
 
-		var bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
+		int bonusMultiplier = NumberOfTimeBonusApplies(fitPerEquip, fitData, ship.MasterShip, equipments);
 
 		if (bonusMultiplier <= 0) return fitBonusValues;
 
@@ -156,18 +156,18 @@ public static class FitBonusExtensions
 
 		if (fitBonusData.EquipmentRequired != null)
 		{
-			var count = GetRequiredEquipmentsFittingRequirements(fitBonusData, equipments).Count;
+			int count = GetRequiredEquipmentsFittingRequirements(fitBonusData, equipments).Count;
 
 			if ((fitBonusData.NumberOfEquipmentsRequired ?? 1) > count) return 0;
 		}
 
 		if (fitBonusData.EquipmentTypesRequired != null)
 		{
-			var count = equipments.Count(eq => fitBonusData.EquipmentTypesRequired.Contains(eq.MasterEquipment.CategoryType));
+			int count = equipments.Count(eq => fitBonusData.EquipmentTypesRequired.Contains(eq.MasterEquipment.CategoryType));
 			if ((fitBonusData.NumberOfEquipmentTypesRequired ?? 1) > count) return 0;
 		}
 
-		var equipmentsThatMatches = GetEquipmentsFittingRequirements(fitPerEquip, fitBonusData, equipments);
+		List<IEquipmentData> equipmentsThatMatches = GetEquipmentsFittingRequirements(fitPerEquip, fitBonusData, equipments);
 
 		if (fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters != null && fitBonusData.NumberOfEquipmentsRequiredAfterOtherFilters > equipmentsThatMatches.Count) return 0;
 

@@ -21,9 +21,9 @@ public record SubmarineSpecialAttack : SpecialAttack
 
 	public List<int> GetHelperSubmarineIndexes()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var validSubmarines = ships
+		List<IShipData> validSubmarines = ships
 			.Skip(1)
 			.Take(3)
 			.Where(ship => ship is not null && ship.MasterShip.IsSubmarine && ship.HPRate > 0.5)
@@ -40,11 +40,11 @@ public record SubmarineSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 
 		if (flagship.MasterShip.ShipType is not ShipTypes.SubmarineTender) return false;
@@ -56,7 +56,7 @@ public record SubmarineSpecialAttack : SpecialAttack
 
 	public override List<SpecialAttackHit> GetAttacks()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		List<SpecialAttackHit> attacks = new()
 		{

@@ -10,7 +10,7 @@ public static class FleetDataExtensions
 
 	public static SupportType GetSupportType(this IFleetData fleet)
 	{
-		var destroyers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int destroyers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.Destroyer);
 
 		if (destroyers < 2) return SupportType.None;
@@ -35,21 +35,21 @@ public static class FleetDataExtensions
 
 	private static bool IsAirSupport(IFleetData fleet)
 	{
-		var carriers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int carriers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.AircraftCarrier or
 			ShipTypes.ArmoredAircraftCarrier or
 			ShipTypes.LightAircraftCarrier);
 
-		var carrierSupportA = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int carrierSupportA = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.SeaplaneTender or
 			ShipTypes.AmphibiousAssaultShip);
 
-		var carrierSupportB = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int carrierSupportB = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.AviationBattleship or
 			ShipTypes.AviationCruiser or
 			ShipTypes.FleetOiler);
 
-		var gunboats = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int gunboats = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.Battleship or
 			ShipTypes.Battlecruiser or
 			ShipTypes.HeavyCruiser);
@@ -75,16 +75,16 @@ public static class FleetDataExtensions
 	/// </summary>
 	private static bool IsAntiSubmarineSupport(IFleetData fleet)
 	{
-		var antiSubmarineAircraftCarriers = fleet.MembersInstance
+		List<IShipData> antiSubmarineAircraftCarriers = fleet.MembersInstance
 			.Where(s => s is not null)
 			.Cast<IShipData>()
 			.Where(s => s.HasAntiSubmarineAircraft())
 			.ToList();
 
-		var lightCarriers = antiSubmarineAircraftCarriers
+		int lightCarriers = antiSubmarineAircraftCarriers
 			.Count(s => s.MasterShip.ShipType is ShipTypes.LightAircraftCarrier);
 
-		var escorts = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int escorts = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.Escort);
 
 		return lightCarriers > 0 && (antiSubmarineAircraftCarriers.Count > 1 || escorts > 1);
@@ -92,14 +92,14 @@ public static class FleetDataExtensions
 
 	private static bool IsShellingSupport(IFleetData fleet)
 	{
-		var battleships = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int battleships = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.Battleship or
 			ShipTypes.Battlecruiser or
 			ShipTypes.AviationBattleship);
 
 		if (battleships >= 2) return true;
 
-		var heavyCruisers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+		int heavyCruisers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
 			ShipTypes.HeavyCruiser or
 			ShipTypes.AviationCruiser);
 
@@ -124,38 +124,38 @@ public static class FleetDataExtensions
 	{
 		if (fleets.Count is 0) return [];
 
-		var flagship = fleets[0].MembersWithoutEscaped?.First();
+		IShipData? flagship = fleets[0].MembersWithoutEscaped?.First();
 
 		if (flagship is null) return [];
 
-		var ships = fleets
+		List<IShipData> ships = fleets
 			.SelectMany(fleet => fleet.MembersWithoutEscaped ?? new([]))
 			.OfType<IShipData>()
 			.ToList();
 
-		var smokeGenerators = ships
+		List<IEquipmentData> smokeGenerators = ships
 			.SelectMany(ship => ship.AllSlotInstance)
 			.Where(e => e?.MasterEquipment.EquipmentId is EquipmentId.SurfaceShipEquipment_SmokeGenerator_SmokeScreen)
 			.Cast<IEquipmentData>()
 			.ToList();
 
-		var smokeGeneratorsKai = ships
+		List<IEquipmentData> smokeGeneratorsKai = ships
 			.SelectMany(ship => ship.AllSlotInstance)
 			.Where(e => e?.MasterEquipment.EquipmentId is EquipmentId.SurfaceShipEquipment_SmokeGeneratorKai_SmokeScreen)
 			.Cast<IEquipmentData>()
 			.ToList();
 
 		// https://twitter.com/yukicacoon/status/1739480992090632669
-		var smokeGeneratorCount = smokeGenerators.Count + smokeGeneratorsKai.Count * 2;
-		var upgradeModifier = 0.3 * smokeGenerators.Sum(eq => eq.Level) + 0.5 * smokeGeneratorsKai.Sum(eq => eq.Level);
-		var modifier = Math.Ceiling(Math.Sqrt(flagship.LuckTotal) + upgradeModifier);
-		var triggerRate = 1 - Math.Max(3.2 - 0.2 * modifier - smokeGeneratorCount, 0);
+		int smokeGeneratorCount = smokeGenerators.Count + smokeGeneratorsKai.Count * 2;
+		double upgradeModifier = 0.3 * smokeGenerators.Sum(eq => eq.Level) + 0.5 * smokeGeneratorsKai.Sum(eq => eq.Level);
+		double modifier = Math.Ceiling(Math.Sqrt(flagship.LuckTotal) + upgradeModifier);
+		double triggerRate = 1 - Math.Max(3.2 - 0.2 * modifier - smokeGeneratorCount, 0);
 
 		if (smokeGeneratorCount >= 3)
 		{
-			var tripleTrigger = Math.Min(3 * Math.Ceiling(5 * smokeGeneratorCount + 1.5 * Math.Sqrt(flagship.LuckTotal) + upgradeModifier - 15) + 1, 100);
-			var doubleTrigger = 30 - (tripleTrigger > 70 ? tripleTrigger - 70 : 0);
-			var singleTrigger = Math.Max(100 - tripleTrigger - doubleTrigger, 0);
+			double tripleTrigger = Math.Min(3 * Math.Ceiling(5 * smokeGeneratorCount + 1.5 * Math.Sqrt(flagship.LuckTotal) + upgradeModifier - 15) + 1, 100);
+			double doubleTrigger = 30 - (tripleTrigger > 70 ? tripleTrigger - 70 : 0);
+			double singleTrigger = Math.Max(100 - tripleTrigger - doubleTrigger, 0);
 
 			return
 			[
@@ -179,8 +179,8 @@ public static class FleetDataExtensions
 
 		if (smokeGeneratorCount == 2)
 		{
-			var doubleTrigger = Math.Min(3 * Math.Ceiling(5 * smokeGeneratorCount + 1.5 * Math.Sqrt(flagship.LuckTotal) + upgradeModifier - 5) + 1, 100);
-			var singleTrigger = Math.Max(100 - doubleTrigger, 0);
+			double doubleTrigger = Math.Min(3 * Math.Ceiling(5 * smokeGeneratorCount + 1.5 * Math.Sqrt(flagship.LuckTotal) + upgradeModifier - 5) + 1, 100);
+			double singleTrigger = Math.Max(100 - doubleTrigger, 0);
 
 			return
 			[

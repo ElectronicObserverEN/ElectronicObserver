@@ -14,11 +14,11 @@ public record NelsonSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
 		if (flagship.MasterShip.ShipClassTyped is not ShipClass.Nelson) return false;
 
@@ -31,15 +31,15 @@ public record NelsonSpecialAttack : SpecialAttack
 
 	public override double GetTriggerRate()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
-		var flagship = ships.First();
+		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
 
-		var firstHelper = ships[2];
+		IShipData? firstHelper = ships[2];
 		if (firstHelper is null) return 0;
 
-		var secondHelper = ships[4];
+		IShipData? secondHelper = ships[4];
 		if (secondHelper is null) return 0;
 
 		// https://x.com/Divinity_123/status/1820114418904002935
@@ -82,7 +82,7 @@ public record NelsonSpecialAttack : SpecialAttack
 
 	private double GetHelperPowerModifier(int shipIndex)
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		if (ships[shipIndex]?.MasterShip.ShipClassTyped is ShipClass.Nelson)
 		{
@@ -94,7 +94,7 @@ public record NelsonSpecialAttack : SpecialAttack
 
 	private int GetNumberOfNelsonClass()
 	{
-		var ships = Fleet.MembersInstance.ToList();
+		List<IShipData> ships = Fleet.MembersInstance.ToList();
 
 		List<IShipData?> touchShips = new() { ships[0], ships[2], ships[4] };
 

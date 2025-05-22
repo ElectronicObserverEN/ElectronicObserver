@@ -9,7 +9,7 @@ public static class ShipDataExtensions
 {
 	public static IShipDataMaster BaseShip(this IShipDataMaster ship)
 	{
-		var temp = ship;
+		IShipDataMaster? temp = ship;
 
 		while (temp.RemodelBeforeShip != null)
 		{
@@ -36,8 +36,8 @@ public static class ShipDataExtensions
 
 	public static int NextAccuracyLevel(this IShipData ship, int? currentAccuracy = null)
 	{
-		var targetAccuracy = (currentAccuracy ?? (int)ship.Accuracy()) + 1;
-		var luckPart = 1.5 * Math.Sqrt(ship.LuckTotal);
+		int targetAccuracy = (currentAccuracy ?? (int)ship.Accuracy()) + 1;
+		double luckPart = 1.5 * Math.Sqrt(ship.LuckTotal);
 
 		return (int)Math.Ceiling(Math.Pow((targetAccuracy - luckPart) / 2, 2));
 	}
@@ -440,14 +440,14 @@ public static class ShipDataExtensions
 			return 0;
 		}
 
-		var single = ship.AllSlotInstance.Count(e => e?.EquipmentId switch
+		int single = ship.AllSlotInstance.Count(e => e?.EquipmentId switch
 		{
 			EquipmentId.MainGunMedium_14cmSingleGun => true,
 			EquipmentId.SecondaryGun_15_2cmSingleGun => true,
 			_ => false
 		});
 
-		var twin = ship.AllSlotInstance.Count(e => e?.EquipmentId switch
+		int twin = ship.AllSlotInstance.Count(e => e?.EquipmentId switch
 		{
 			EquipmentId.MainGunMedium_14cmTwinGun => true,
 			EquipmentId.MainGunMedium_15_2cmTwinGun => true,
@@ -590,7 +590,7 @@ public static class ShipDataExtensions
 
 	private static bool HyuugaK2OpeningAswCondition(this IShipData ship)
 	{
-		var eqs = ship.AllSlotInstance
+		List<IEquipmentData> eqs = ship.AllSlotInstance
 			.Where(eq => eq is not null)
 			.ToList();
 
