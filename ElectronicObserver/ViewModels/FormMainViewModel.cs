@@ -479,7 +479,7 @@ public partial class FormMainViewModel : ObservableObject
 				// couldn't get position, keep the default
 			}
 		}
-		
+
 		window.Top = Position.Top;
 		window.Left = Position.Left;
 		window.Width = Position.Width;
@@ -1859,7 +1859,7 @@ public partial class FormMainViewModel : ObservableObject
 			if (maintStartDate > now)
 			{
 				maintTimer = maintStartDate - now;
-			} 
+			}
 			else if (maintEndDate > now && maintEndDate is { } end)
 			{
 				maintTimer = end - now;
