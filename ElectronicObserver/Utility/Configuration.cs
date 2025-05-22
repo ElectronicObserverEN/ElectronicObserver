@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;
@@ -49,7 +50,7 @@ public sealed class Configuration
 		/// <summary>
 		/// 通信の設定を扱います。
 		/// </summary>
-		public class ConfigConnection : ConfigPartBase
+		public class ConfigConnection : ConfigPartBase, IConfigurationConnection
 		{
 
 			/// <summary>
@@ -1891,7 +1892,7 @@ public sealed class Configuration
 			public ConfigFleetImageGenerator()
 				: base()
 			{
-				Argument = FleetImageArgument.GetDefaultInstance();
+				Argument = new();
 				ImageType = 0;
 				OutputType = 0;
 				OpenImageAfterOutput = false;

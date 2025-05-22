@@ -39,7 +39,7 @@ public class SerializableFont
 		set { FontData = StringToFont(value); }
 	}
 
-
+	// todo: this should probably never get or return null
 	public static implicit operator Font?(SerializableFont? value)
 	{
 		if (value == null) return null;

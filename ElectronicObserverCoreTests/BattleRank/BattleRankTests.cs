@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
@@ -53,7 +54,7 @@ public class BattleRankTests(DatabaseFixture database)
 
 		List<SortieRecordViewModel> sorties = await db.Sorties
 			.Include(s => s.ApiFiles)
-			.Select(s => new SortieRecordViewModel(s, s.ApiFiles.Select(f => f.TimeStamp).Min()))
+			.Select(s => new SortieRecordViewModel(s, s.ApiFiles.Select(f => f.TimeStamp).Min(), null!))
 			.ToListAsync();
 
 		return sorties;

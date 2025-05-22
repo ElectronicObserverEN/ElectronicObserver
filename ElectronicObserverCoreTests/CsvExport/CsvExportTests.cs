@@ -247,7 +247,7 @@ public class CsvExportTests
 		Assert.NotNull(sortieRecords);
 
 		ObservableCollection<SortieRecordViewModel> sorties = sortieRecords
-			.Select(s => new SortieRecordViewModel(s, DateTime.UtcNow))
+			.Select(s => new SortieRecordViewModel(s, DateTime.UtcNow, null!))
 			.ToObservableCollection();
 
 		List<TElement> dayShelling = await processData(sorties, null, new(), default);

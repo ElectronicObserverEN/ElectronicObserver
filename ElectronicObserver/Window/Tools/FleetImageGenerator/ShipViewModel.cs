@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
@@ -18,10 +19,13 @@ namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
 public class ShipViewModel : ObservableObject
 {
-	private KCDatabase Db { get; }
+	private static ImageLoadService ImageLoadService => Ioc.Default.GetRequiredService<ImageLoadService>();
+	private KCDatabase Db { get; } = KCDatabase.Instance;
 	private IShipData? Model { get; set; }
 
 	public ShipId Id { get; set; }
+	public BitmapSource? ShipImageSource { get; private set; }
+	public BitmapSource? NameImageSource { get; private set; }
 	public string Name { get; set; } = "";
 	public int Level { get; set; }
 
@@ -39,13 +43,8 @@ public class ShipViewModel : ObservableObject
 	public int Los { get; set; }
 	public int Luck { get; set; }
 
-	public ObservableCollection<EquipmentSlotViewModel> Slots { get; set; } = new();
+	public ObservableCollection<EquipmentSlotViewModel> Slots { get; set; } = [];
 	public EquipmentSlotViewModel? ExpansionSlot { get; set; }
-
-	public ShipViewModel()
-	{
-		Db = KCDatabase.Instance;
-	}
 
 	public virtual ShipViewModel Initialize(IShipData? ship)
 	{
@@ -85,51 +84,43 @@ public class ShipViewModel : ObservableObject
 			_ => null,
 		};
 
-		if (Configuration.Config.FleetImageGenerator.DownloadMissingShipImage)
-		{
-			Task.Run(DownloadImage);
-		}
+		Task.Run(LoadImage);
 
 		return this;
 	}
 
-	private async void DownloadImage()
+	private List<string> RequiredImageResourceTypes() => this switch
 	{
-		IEnumerable<string> RequiredImageResourceTypes() => this switch
-		{
-			CardShipViewModel => new List<string> { KCResourceHelper.ResourceTypeShipCard },
-			CutInShipViewModel => new List<string> { KCResourceHelper.ResourceTypeShipName, KCResourceHelper.ResourceTypeShipCutin },
-			BannerShipViewModel => new List<string> { KCResourceHelper.ResourceTypeShipBanner },
+		CardShipViewModel => [KCResourceHelper.ResourceTypeShipCard],
+		CutInShipViewModel => [KCResourceHelper.ResourceTypeShipName, KCResourceHelper.ResourceTypeShipCutin],
+		BannerShipViewModel => [KCResourceHelper.ResourceTypeShipBanner],
 
-			_ => throw new NotImplementedException(),
-		};
+		_ => throw new NotImplementedException(),
+	};
 
-		int? shipId = (int)Id;
-
-		if (shipId is not int id) return;
-
+	private void LoadImage()
+	{
 		foreach (string resourceType in RequiredImageResourceTypes())
 		{
-			try
+			_ = App.Current!.Dispatcher.InvokeAsync(async () =>
 			{
-				string? imageUri = KCResourceHelper.GetShipImagePath(id, false, resourceType);
+				using Bitmap? image = Configuration.Config.FleetImageGenerator.DownloadMissingShipImage switch
+				{
+					true => await ImageLoadService.GetShipImage(Id, resourceType),
+					_ => ImageLoadService.GetShipImageFromDisk(Id, resourceType),
+				};
 
-				if (File.Exists(imageUri)) return;
+				if (image is null) return;
 
-				await Ioc.Default
-					.GetRequiredService<GameAssetDownloaderService>()
-					.DownloadImage(id, resourceType);
-
-				Logger.Add(2, string.Format(FleetImageGeneratorResources.SuccessfullyDownloadedImage, resourceType, Name));
-
-				// in xaml the image source binding is set to Id
-				// so after the image has been downloaded, this will force the image to reload
-				OnPropertyChanged(nameof(Id));
-			}
-			catch
-			{
-				Logger.Add(2, string.Format(FleetImageGeneratorResources.FailedToDownloadImage, resourceType, Name));
-			}
+				if (resourceType == KCResourceHelper.ResourceTypeShipName)
+				{
+					NameImageSource = image.ToShipNameBitmapImage();
+				}
+				else
+				{
+					ShipImageSource = image.ToBitmapImage();
+				}
+			});
 		}
 	}
 }

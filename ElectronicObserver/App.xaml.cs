@@ -4,18 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Bonodere;
-using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Dialogs;
 using ElectronicObserver.Services;
@@ -238,6 +237,7 @@ public partial class App
 	{
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
+			.AddSingleton<IConfigurationConnection>(Configuration.Config.Connection)
 			.AddDialogServices()
 			// config translations
 			.AddSingleton<ConfigurationTranslationViewModel>()
@@ -322,7 +322,9 @@ public partial class App
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.AddSingleton<TransliterationService>()
+			.AddSingleton<GameResourceHelper>()
 			.AddSingleton<GameAssetDownloaderService>()
+			.AddSingleton<ImageLoadService>()
 			.AddSingleton<FileService>()
 			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()

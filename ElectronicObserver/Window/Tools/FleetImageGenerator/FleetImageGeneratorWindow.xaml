@@ -217,7 +217,7 @@
 						Grid.Column="0"
 						Width="160"
 						Margin="2"
-						Source="{Binding Id, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+						Source="{Binding ShipImageSource, IsAsync=True}"
 						Stretch="Uniform"
 						/>
 
@@ -306,7 +306,7 @@
 						Visibility="Collapsed"
 						/>
 
-					<Image Grid.Column="0" Source="{Binding Id, Converter={StaticResource ShipToAlbumStatusConverter}, IsAsync=True}">
+					<Image Grid.Column="0" Source="{Binding NameImageSource, IsAsync=True}">
 						<Image.Resources>
 							<Style TargetType="Image">
 								<Setter Property="Visibility" Value="Visible" />
@@ -328,7 +328,7 @@
 							<Style TargetType="TextBlock">
 								<Setter Property="Visibility" Value="Collapsed" />
 								<Style.Triggers>
-									<DataTrigger Binding="{Binding Id, Converter={StaticResource ShipToAlbumStatusConverter}, IsAsync=True}" Value="{x:Null}">
+									<DataTrigger Binding="{Binding ShipImageSource}" Value="{x:Null}">
 										<Setter Property="Visibility" Value="Visible" />
 									</DataTrigger>
 									<DataTrigger Binding="{Binding ViewModel.UseAlbumStatusName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}" Value="False">
@@ -406,7 +406,7 @@
 						Width="665"
 						Height="121"
 						HorizontalAlignment="Left"
-						Source="{Binding Id, Converter={StaticResource ShipToCutInImageConverter}, IsAsync=True}"
+						Source="{Binding ShipImageSource, IsAsync=True}"
 						Stretch="Uniform"
 						>
 						<Image.OpacityMask>
@@ -638,7 +638,7 @@
 					Grid.Column="1"
 					Width="218"
 					Margin="2"
-					Source="{Binding Id, Converter={StaticResource ShipToCardImageConverter}, IsAsync=True}"
+					Source="{Binding ShipImageSource, IsAsync=True}"
 					Stretch="Uniform"
 					/>
 			</Grid>

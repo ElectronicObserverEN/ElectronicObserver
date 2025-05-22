@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -7,21 +6,6 @@ namespace ElectronicObserver.Resource;
 
 public static class KCResourceHelper
 {
-
-	public static readonly Size ShipNameSize = new Size(654, 95);
-	public static readonly Size ShipBannerSize = new Size(240, 60);
-	public static readonly Size ShipCardSize = new Size(327, 450);
-	public static readonly Size ShipAlbumSize = new Size(431, 645);     // note: w=430の画像も存在する
-	public static readonly Size ShipCutinSize = new Size(998, 182);
-	public static readonly Size ShipSupplySize = new Size(711, 71);
-
-	public static readonly Size EquipmentCardSize = new Size(390, 390);
-	public static readonly Size EquipmentCardSmallSize = new Size(160, 160);
-	public static readonly Size EquipmentAlbumSize = new Size(430, 645);
-	public static readonly Size EquipmentSpecSize = new Size(301, 183);
-	public static readonly Size EquipmentNameSize = new Size(654, 94);
-
-
 	public static readonly string ResourceTypeShipName = "album_status";
 	public static readonly string ResourceTypeShipBanner = "banner";
 	public static readonly string ResourceTypeShipCard = "card";
@@ -109,29 +93,4 @@ public static class KCResourceHelper
 	public static string? GetEquipmentImagePath(int equipmentID, string resourceType)
 		=> GetLatestResourcePath(GetEquipmentResourcePath(equipmentID, resourceType))
 		?? GetLatestResourcePath(GetEquipmentResourcePath(equipmentID, resourceType, true));
-
-	public static bool HasShipImage(int shipID, bool isDamaged, string resourceType)
-		=> GetShipImagePath(shipID, isDamaged, resourceType) != null;
-
-	public static bool HasEquipmentImage(int equipmentID, string resourceType)
-		=> GetEquipmentImagePath(equipmentID, resourceType) != null;
-
-
-	/// <summary>
-	/// 艦船の画像を読み込みます。
-	/// </summary>
-	/// <param name="shipID">艦船ID。</param>
-	/// <param name="isDamaged">中破しているかどうか。</param>
-	/// <param name="resourceType">画像種別。同クラスの定数を使用します。</param>
-	/// <returns>成功した場合は艦船画像。失敗した場合は null。</returns>
-	public static Bitmap? LoadShipImage(int shipID, bool isDamaged, string resourceType)
-	{
-		string resourcepath = GetShipResourcePath(shipID, isDamaged, resourceType);
-		string? realpath = GetLatestResourcePath(resourcepath);
-
-		if (realpath == null)
-			return null;
-
-		return new Bitmap(realpath);
-	}
 }
