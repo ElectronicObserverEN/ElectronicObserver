@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Core.Types.Attacks;
-
-namespace ElectronicObserver.Core.Types.Attacks.Specials;
+﻿namespace ElectronicObserver.Core.Types.Attacks.Specials;
 
 public record SpecialAttackHit : Attack
 {

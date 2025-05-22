@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Core.Types.Attacks;
-
-namespace ElectronicObserver.Core.Types.Attacks;
+﻿namespace ElectronicObserver.Core.Types.Attacks;
 
 public sealed record CvnciAttack : NightAttack
 {
