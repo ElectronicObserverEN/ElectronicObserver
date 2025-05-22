@@ -24,7 +24,7 @@ public record NagatoSpecialAttack : SpecialAttack
 	/// <returns></returns>
 	public override double GetTriggerRate()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
@@ -39,7 +39,7 @@ public record NagatoSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		if (!ships.Any()) return false;
 
@@ -84,7 +84,7 @@ public record NagatoSpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
@@ -105,7 +105,7 @@ public record NagatoSpecialAttack : SpecialAttack
 
 	private double GetHelperPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;

@@ -14,7 +14,7 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		if (ships.Count is 0) return false;
 
@@ -59,7 +59,7 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
@@ -76,7 +76,7 @@ public record RichelieuSpecialAttack : SpecialAttack
 
 	private double GetHelperPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? helper = ships[1];
 		if (helper is null) return 1;

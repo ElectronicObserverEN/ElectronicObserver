@@ -14,7 +14,7 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		if (ships.Count is 0) return false;
 
@@ -63,7 +63,7 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 	/// <returns></returns>
 	private double GetPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? helper = ships[1];
 		if (helper is null) return 1;

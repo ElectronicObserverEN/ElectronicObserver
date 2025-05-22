@@ -12,15 +12,15 @@ public record SubmarineSpecialAttack : SpecialAttack
 
 	public override string GetDisplay() => GetHelperSubmarineIndexes() switch
 	{
-	[1, 3] => AttackResources.SpecialSubmarineTender24,
-	[1, 2] => AttackResources.SpecialSubmarineTender23,
-	[2, 3] => AttackResources.SpecialSubmarineTender34,
+		[1, 3] => AttackResources.SpecialSubmarineTender24,
+		[1, 2] => AttackResources.SpecialSubmarineTender23,
+		[2, 3] => AttackResources.SpecialSubmarineTender34,
 		_ => "???",
 	};
 
 	public List<int> GetHelperSubmarineIndexes()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		List<IShipData> validSubmarines = ships
 			.Skip(1)
@@ -39,9 +39,9 @@ public record SubmarineSpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		if (!ships.Any()) return false;
+		if (ships.Count is 0) return false;
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
@@ -50,12 +50,12 @@ public record SubmarineSpecialAttack : SpecialAttack
 		if (flagship.Level < 30) return false;
 		if (flagship.HPRate <= 0.25) return false;
 
-		return GetHelperSubmarineIndexes().Any();
+		return GetHelperSubmarineIndexes().Count > 0;
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		List<SpecialAttackHit> attacks = new()
 		{

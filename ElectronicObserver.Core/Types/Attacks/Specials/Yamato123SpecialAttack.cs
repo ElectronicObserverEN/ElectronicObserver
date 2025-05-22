@@ -14,9 +14,9 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	public override bool CanTrigger()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		if (!ships.Any()) return false;
+		if (ships.Count is 0) return false;
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return false;
@@ -57,7 +57,7 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private double GetFlagshipPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 1;
@@ -83,7 +83,7 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private double GetFirstHelperPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? firstHelper = ships[1];
 		if (firstHelper is null) return 1;
@@ -106,7 +106,7 @@ public record Yamato123SpecialAttack : SpecialAttack
 
 	private double GetSecondHelperPowerModifier()
 	{
-		List<IShipData> ships = Fleet.MembersInstance.ToList();
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
 		IShipData? secondHelper = ships[2];
 		if (secondHelper is null) return 1;

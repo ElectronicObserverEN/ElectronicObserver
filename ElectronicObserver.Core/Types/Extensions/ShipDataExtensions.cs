@@ -9,7 +9,7 @@ public static class ShipDataExtensions
 {
 	public static IShipDataMaster BaseShip(this IShipDataMaster ship)
 	{
-		IShipDataMaster? temp = ship;
+		IShipDataMaster temp = ship;
 
 		while (temp.RemodelBeforeShip != null)
 		{
@@ -590,7 +590,7 @@ public static class ShipDataExtensions
 
 	private static bool HyuugaK2OpeningAswCondition(this IShipData ship)
 	{
-		List<IEquipmentData> eqs = ship.AllSlotInstance
+		List<IEquipmentData?> eqs = ship.AllSlotInstance
 			.Where(eq => eq is not null)
 			.ToList();
 
