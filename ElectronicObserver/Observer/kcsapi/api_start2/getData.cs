@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Observer.kcsapi.api_start2;
 

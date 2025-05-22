@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
+using ElectronicObserver.Core.Types.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;

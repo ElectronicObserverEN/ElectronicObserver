@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
 /// <summary>

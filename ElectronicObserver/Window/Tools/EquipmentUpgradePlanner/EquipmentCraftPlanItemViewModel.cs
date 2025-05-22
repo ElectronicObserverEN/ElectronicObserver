@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 

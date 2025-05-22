@@ -67,7 +67,6 @@ using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
-using ElectronicObserverTypes;
 using Jot;
 using MessagePack;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +77,8 @@ using ElectronicObserver.Avalonia.ExpeditionCalculator;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using AvalonDock.Controls;
 using MahApps.Metro.Controls;
+using ElectronicObserver.Core.Types;
+
 
 
 #if DEBUG
@@ -478,7 +479,7 @@ public partial class FormMainViewModel : ObservableObject
 				// couldn't get position, keep the default
 			}
 		}
-
+		
 		window.Top = Position.Top;
 		window.Left = Position.Left;
 		window.Width = Position.Width;

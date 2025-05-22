@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 

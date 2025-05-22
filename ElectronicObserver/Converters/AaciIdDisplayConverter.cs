@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using ElectronicObserverTypes.AntiAir;
+using ElectronicObserver.Core.Types.AntiAir;
 
 namespace ElectronicObserver.Converters;
 

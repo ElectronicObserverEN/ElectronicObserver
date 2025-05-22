@@ -8,14 +8,14 @@ using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using KancolleProgress.Models;
 using KancolleProgress.Translations;
 using Microsoft.Win32;
 using ShipTypeGroup = KancolleProgress.Models.ShipTypeGroup;
-using ShipTypes = ElectronicObserverTypes.ShipTypes;
+using ShipTypes = ElectronicObserver.Core.Types.ShipTypes;
 
 namespace KancolleProgress.ViewModels;
 

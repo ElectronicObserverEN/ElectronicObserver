@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Serialization.AirControlSimulator;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
+using ElectronicObserver.Core.Types.Serialization.EventLockPlanner;
+using ElectronicObserver.Core.Types.Serialization.FleetAnalysis;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.AirControlSimulator;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
-using ElectronicObserverTypes.Serialization.EventLockPlanner;
-using ElectronicObserverTypes.Serialization.FleetAnalysis;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
+using ElectronicObserver.Core.Types.Serialization.EventLockPlanner;
+using ElectronicObserver.Core.Types.Serialization.FleetAnalysis;
 
 namespace ElectronicObserver.Services;
 

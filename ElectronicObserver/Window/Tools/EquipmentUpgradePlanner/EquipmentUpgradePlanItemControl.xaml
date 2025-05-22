@@ -7,7 +7,7 @@
 	xmlns:helpers="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:types="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:types="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	d:DataContext="{d:DesignInstance local:EquipmentUpgradePlanItemViewModel}"
 	mc:Ignorable="d"

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.Quest;
 

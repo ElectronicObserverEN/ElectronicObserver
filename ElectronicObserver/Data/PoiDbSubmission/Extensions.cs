@@ -4,8 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission;
 

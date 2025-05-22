@@ -11,12 +11,12 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility;
 

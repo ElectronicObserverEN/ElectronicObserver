@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DynaJson;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Translation;
 

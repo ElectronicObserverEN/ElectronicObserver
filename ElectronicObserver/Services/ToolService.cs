@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
@@ -25,9 +28,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
 using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
 namespace ElectronicObserver.Services;
@@ -400,7 +400,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 			Constants.GetFormation(searching.EnemyFormationType),
 			Constants.GetEngagementForm(searching.EngagementType),
 			phaseTitle,
-			ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(attack.AttackKind),
+			Core.Types.Attacks.DayAttack.AttackDisplay(attack.AttackKind),
 			(AttackerIndex(attackDisplay).Index + 1).ToString(),
 			attack.Attacker.Name,
 			(DefenderIndex(attackDisplay).Index + 1).ToString(),

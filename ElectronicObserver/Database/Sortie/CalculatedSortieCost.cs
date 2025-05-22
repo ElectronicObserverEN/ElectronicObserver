@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Database.Sortie;
 

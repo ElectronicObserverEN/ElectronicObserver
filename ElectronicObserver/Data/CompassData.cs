@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using DynaJson;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 

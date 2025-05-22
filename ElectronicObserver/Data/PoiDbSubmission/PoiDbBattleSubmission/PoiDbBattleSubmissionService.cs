@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 
@@ -301,7 +301,7 @@ public class PoiDbBattleSubmissionService(
 		if (fleet is null) return null;
 
 		bool isCombinedFleetSortie = fleet.FleetID is 1 &&
-			FleetType is not ElectronicObserverTypes.FleetType.Single;
+			FleetType is not Core.Types.FleetType.Single;
 
 		FleetData? escortFleet = isCombinedFleetSortie switch
 		{
@@ -337,7 +337,7 @@ public class PoiDbBattleSubmissionService(
 		if (fleet is null) return null;
 
 		bool isCombinedFleetSortie = fleet.FleetID is 1 &&
-			FleetType is not ElectronicObserverTypes.FleetType.Single;
+			FleetType is not Core.Types.FleetType.Single;
 
 		FleetData? escortFleet = isCombinedFleetSortie switch
 		{

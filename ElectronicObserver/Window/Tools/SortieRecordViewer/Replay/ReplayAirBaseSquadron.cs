@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
 

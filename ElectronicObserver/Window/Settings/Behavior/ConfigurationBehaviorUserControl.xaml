@@ -5,7 +5,7 @@
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:discordRpc="clr-namespace:ElectronicObserver.Data.DiscordRPC"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Behavior"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	d:DataContext="{d:DesignInstance local:ConfigurationBehaviorViewModel}"

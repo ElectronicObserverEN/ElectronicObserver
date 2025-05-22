@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port;
 

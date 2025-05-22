@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types.AntiAir;
 
 namespace ElectronicObserver.Window.Wpf;
 

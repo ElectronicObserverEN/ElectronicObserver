@@ -1,6 +1,6 @@
-﻿using ElectronicObserver.ViewModels;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.EquipmentPicker;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Services;
 

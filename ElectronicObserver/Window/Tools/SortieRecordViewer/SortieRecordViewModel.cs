@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 

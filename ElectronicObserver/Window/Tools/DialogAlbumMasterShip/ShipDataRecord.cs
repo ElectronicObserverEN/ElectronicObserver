@@ -5,6 +5,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
@@ -14,7 +15,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 
@@ -469,8 +469,8 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	public string AirPower => Calculator.GetAirSuperiority(Ship).ToString();
-	public string DayAttack => ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
-	public string NightAttack => ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(Calculator.GetNightAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
+	public string DayAttack => Core.Types.Attacks.DayAttack.AttackDisplay(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
+	public string NightAttack => Core.Types.Attacks.NightAttack.AttackDisplay(Calculator.GetNightAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
 
 	#endregion
 

@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
 namespace ElectronicObserver.Services;
 

@@ -6,10 +6,10 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Converters;
 

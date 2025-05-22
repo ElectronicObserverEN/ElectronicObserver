@@ -1,4 +1,6 @@
 ﻿using DynaJson;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
@@ -6,8 +8,6 @@ using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;

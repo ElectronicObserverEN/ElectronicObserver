@@ -3,9 +3,9 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Control.ShipFilter;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.ShipDataPicker;
 

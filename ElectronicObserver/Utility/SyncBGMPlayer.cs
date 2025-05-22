@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Utility;
 

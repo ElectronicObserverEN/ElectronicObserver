@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Common;
 

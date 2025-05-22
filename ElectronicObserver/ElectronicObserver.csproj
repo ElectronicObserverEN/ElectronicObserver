@@ -87,7 +87,7 @@
 		<ProjectReference Include="..\ElectronicObserver.Avalonia\ElectronicObserver.Avalonia.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.KancolleApi.Types\ElectronicObserver.KancolleApi.Types.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserver.Core.csproj" />
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
 	</ItemGroup>
 	
