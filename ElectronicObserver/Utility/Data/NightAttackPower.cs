@@ -4,7 +4,6 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Core.Types.Attacks.Specials;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 

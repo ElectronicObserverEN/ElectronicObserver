@@ -15,9 +15,6 @@ using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
-using ElectronicObserver.Core.Types.Serialization.EventLockPlanner;
-using ElectronicObserver.Core.Types.Serialization.FleetAnalysis;
 
 namespace ElectronicObserver.Services;
 

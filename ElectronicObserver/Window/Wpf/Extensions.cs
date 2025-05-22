@@ -10,7 +10,6 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data;
-using ElectronicObserver.Core.Types.AntiAir;
 
 namespace ElectronicObserver.Window.Wpf;
 

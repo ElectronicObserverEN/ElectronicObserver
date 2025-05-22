@@ -6,7 +6,6 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks.Specials;
 using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Core.Types.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.SpecialAttacks;

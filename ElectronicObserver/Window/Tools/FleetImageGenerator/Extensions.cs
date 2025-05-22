@@ -6,7 +6,6 @@ using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
-using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

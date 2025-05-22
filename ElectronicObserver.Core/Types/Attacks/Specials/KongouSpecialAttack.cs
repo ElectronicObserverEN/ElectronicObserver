@@ -16,7 +16,7 @@ public record KongouSpecialAttack : SpecialAttack
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		if (!ships.Any()) return false;
+		if (ships.Count is 0) return false;
 
 		IShipData? flagship = ships.First();
 		if (flagship is null) return false;

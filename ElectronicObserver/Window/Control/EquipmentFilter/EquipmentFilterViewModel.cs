@@ -7,7 +7,6 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Services;
-using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Window.Control.EquipmentFilter;
 

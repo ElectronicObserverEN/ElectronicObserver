@@ -2,7 +2,6 @@
 using System.Linq;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks.Specials;
-using ElectronicObserver.Core.Types.Attacks.Specials;
 
 namespace ElectronicObserver.Utility.Data;
 
