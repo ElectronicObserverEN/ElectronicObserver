@@ -26,7 +26,7 @@
 		<Configuration />
 		<Company />
 		<Product>ElectronicObserver</Product>
-		<Copyright>Copyright ©  2014 Andante</Copyright>
+		<Copyright>Copyright Â©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
 		<AssemblyVersion>5.3.12.0</AssemblyVersion>
@@ -87,7 +87,7 @@
 		<ProjectReference Include="..\ElectronicObserver.Avalonia\ElectronicObserver.Avalonia.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.KancolleApi.Types\ElectronicObserver.KancolleApi.Types.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserver.Core.csproj" />
+		<ProjectReference Include="..\ElectronicObserver.Core\ElectronicObserver.Core.csproj" />
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
 	</ItemGroup>
 	

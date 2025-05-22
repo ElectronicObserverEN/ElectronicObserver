@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserver.Core.csproj" />
+		<ProjectReference Include="..\ElectronicObserver.Core\ElectronicObserver.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
