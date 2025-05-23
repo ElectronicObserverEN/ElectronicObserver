@@ -12,6 +12,7 @@ using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Bonodere;

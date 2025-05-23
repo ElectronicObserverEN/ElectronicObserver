@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
 using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;

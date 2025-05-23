@@ -1,7 +1,9 @@
-﻿using ElectronicObserver.Core.Types;
+﻿using System;
+using System.Collections.Generic;
+using ElectronicObserver.Core.Types;
 using WanaKanaShaapu;
 
-namespace ElectronicObserver.Avalonia.Services;
+namespace ElectronicObserver.Core.Services;
 
 public class TransliterationService(IConfigurationUi configurationUi)
 {

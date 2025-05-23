@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Avalonia.Services;
+﻿namespace ElectronicObserver.Core.Services;
 
 public interface IConfigurationUi
 {
