@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.ShipPicker;
 

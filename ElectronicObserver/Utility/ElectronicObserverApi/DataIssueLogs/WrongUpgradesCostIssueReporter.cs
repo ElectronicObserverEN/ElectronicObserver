@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlistDetail;
@@ -9,8 +11,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models.UpgradeCosts;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 

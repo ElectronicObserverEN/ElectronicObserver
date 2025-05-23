@@ -1,4 +1,4 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
 using System.Text.Json;
 
 namespace ElectronicObserver.TestData.AirControlSimulator;

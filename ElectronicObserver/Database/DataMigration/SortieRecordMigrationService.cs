@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Database.DataMigration;
 

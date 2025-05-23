@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 

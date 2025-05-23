@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using Avalonia.Data.Converters;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Avalonia.ExpeditionCalculator;
 

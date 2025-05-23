@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 

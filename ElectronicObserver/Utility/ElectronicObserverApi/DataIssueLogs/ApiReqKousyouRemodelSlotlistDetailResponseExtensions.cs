@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlistDetail;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 

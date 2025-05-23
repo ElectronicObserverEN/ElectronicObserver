@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 

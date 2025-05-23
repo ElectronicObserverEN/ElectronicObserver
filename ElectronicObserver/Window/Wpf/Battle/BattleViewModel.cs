@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Battle.Detail;
@@ -18,8 +20,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.BattleDetail;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle;

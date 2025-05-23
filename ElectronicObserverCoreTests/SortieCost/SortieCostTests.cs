@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
-using ElectronicObserverTypes;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.SortieCost;

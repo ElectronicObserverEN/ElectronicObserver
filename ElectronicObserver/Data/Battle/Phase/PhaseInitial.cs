@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 

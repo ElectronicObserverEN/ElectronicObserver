@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

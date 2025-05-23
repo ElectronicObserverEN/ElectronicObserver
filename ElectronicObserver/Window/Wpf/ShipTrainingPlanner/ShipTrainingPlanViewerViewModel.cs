@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
@@ -11,7 +12,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.ShipDataPicker;
-using ElectronicObserverTypes;
 using Jot;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;

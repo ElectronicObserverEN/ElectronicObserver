@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Data.Battle.Detail;
 

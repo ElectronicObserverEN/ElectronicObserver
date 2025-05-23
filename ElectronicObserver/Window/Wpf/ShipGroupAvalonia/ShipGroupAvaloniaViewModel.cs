@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Dialogs.DataGridSettings;
@@ -20,7 +21,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
-using ElectronicObserverTypes;
 using HanumanInstitute.MvvmDialogs;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 

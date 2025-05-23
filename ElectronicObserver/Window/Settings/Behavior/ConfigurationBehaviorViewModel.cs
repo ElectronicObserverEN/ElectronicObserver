@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Dialog.ShipPicker;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Settings.Behavior;
 

@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.Interfaces;
 

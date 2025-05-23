@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using DynaJson;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data.TsunDbSubmission.Battle;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 

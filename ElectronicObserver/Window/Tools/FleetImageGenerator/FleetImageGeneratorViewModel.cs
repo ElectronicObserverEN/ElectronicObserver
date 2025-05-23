@@ -9,13 +9,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

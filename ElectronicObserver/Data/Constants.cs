@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 

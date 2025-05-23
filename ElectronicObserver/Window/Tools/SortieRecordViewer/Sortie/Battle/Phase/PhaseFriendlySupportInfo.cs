@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

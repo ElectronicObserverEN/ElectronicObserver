@@ -1,4 +1,4 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
 

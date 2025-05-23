@@ -6,10 +6,10 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.AutoRefresh;
 

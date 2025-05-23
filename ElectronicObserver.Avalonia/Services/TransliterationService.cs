@@ -1,4 +1,4 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
 using WanaKanaShaapu;
 
 namespace ElectronicObserver.Avalonia.Services;

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
@@ -14,8 +16,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Compass.ViewModels;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass;
 

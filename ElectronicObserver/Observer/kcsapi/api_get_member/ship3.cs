@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.FitBonus;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Observer.kcsapi.api_get_member;
 

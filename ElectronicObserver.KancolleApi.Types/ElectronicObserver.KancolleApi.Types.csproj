@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+		<ProjectReference Include="..\ElectronicObserver.Core\ElectronicObserver.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

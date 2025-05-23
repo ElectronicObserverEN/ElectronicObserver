@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Observer;
@@ -11,7 +12,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.InformationView;
 

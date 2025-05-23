@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 

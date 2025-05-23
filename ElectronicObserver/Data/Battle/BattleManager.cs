@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.Battle;
 

@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Window.Tools.DropRecordViewer;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog.ShipPicker;
 /// <summary>

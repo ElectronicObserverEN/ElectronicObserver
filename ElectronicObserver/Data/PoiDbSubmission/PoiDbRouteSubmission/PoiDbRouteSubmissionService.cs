@@ -4,13 +4,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 

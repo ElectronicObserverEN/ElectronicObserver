@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 

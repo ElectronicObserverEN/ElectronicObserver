@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Notifier;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map;
 

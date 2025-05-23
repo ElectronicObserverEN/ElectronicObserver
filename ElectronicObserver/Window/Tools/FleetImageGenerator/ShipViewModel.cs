@@ -8,12 +8,12 @@ using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

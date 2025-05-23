@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

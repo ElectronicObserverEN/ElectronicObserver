@@ -10,7 +10,7 @@
 	xmlns:exportProgress="clr-namespace:ElectronicObserver.Common.ContentDialogs.ExportProgress"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:mocks="clr-namespace:ElectronicObserverTypes.Mocks;assembly=ElectronicObserverTypes"
+	xmlns:mocks="clr-namespace:ElectronicObserver.Core.Types.Mocks;assembly=ElectronicObserver.Core"
 	xmlns:notification="clr-namespace:ElectronicObserver.Common.ContentDialogs.Notification"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:translations="clr-namespace:ElectronicObserver.Translations"

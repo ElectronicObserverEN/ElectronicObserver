@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

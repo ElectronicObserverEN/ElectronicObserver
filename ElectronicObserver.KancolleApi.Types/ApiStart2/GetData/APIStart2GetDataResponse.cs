@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiStart2.GetData;
 

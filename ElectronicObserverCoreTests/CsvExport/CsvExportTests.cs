@@ -19,7 +19,7 @@ using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Translations;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserverCoreTests.CsvExport;
 

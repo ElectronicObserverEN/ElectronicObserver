@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.Battle.Detail;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 

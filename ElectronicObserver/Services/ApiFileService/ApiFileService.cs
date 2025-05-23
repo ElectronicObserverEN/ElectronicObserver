@@ -8,6 +8,7 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Expedition;
@@ -17,7 +18,6 @@ using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Services.ApiFileService;

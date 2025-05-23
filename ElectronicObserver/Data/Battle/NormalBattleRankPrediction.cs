@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 
 namespace ElectronicObserver.Data.Battle;
 

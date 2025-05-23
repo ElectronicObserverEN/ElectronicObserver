@@ -16,14 +16,14 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
-using ElectronicObserverTypes;
 using ElectronicObserver.Database;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using System.Drawing;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
-using ElectronicObserverTypes.Attacks.Specials;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Attacks.Specials;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 

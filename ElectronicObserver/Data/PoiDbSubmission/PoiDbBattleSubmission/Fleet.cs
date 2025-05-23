@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 

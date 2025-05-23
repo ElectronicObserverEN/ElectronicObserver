@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Arsenal;
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

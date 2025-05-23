@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Dialog.ShipPicker;
 

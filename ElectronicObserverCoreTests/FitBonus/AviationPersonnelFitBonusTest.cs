@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes.Serialization.FitBonus;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using Xunit;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.FitBonus;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserverCoreTests.FitBonus;
 

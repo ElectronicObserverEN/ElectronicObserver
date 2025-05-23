@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Utility.Data;
 

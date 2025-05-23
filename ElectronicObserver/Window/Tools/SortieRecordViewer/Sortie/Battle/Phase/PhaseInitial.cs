@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

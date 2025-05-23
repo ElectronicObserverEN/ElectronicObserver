@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;

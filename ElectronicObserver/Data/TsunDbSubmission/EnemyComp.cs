@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 

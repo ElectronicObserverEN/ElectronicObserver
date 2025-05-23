@@ -5,6 +5,9 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Services;
@@ -13,10 +16,7 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 

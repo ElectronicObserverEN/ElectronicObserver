@@ -1,6 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Media.Imaging;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Avalonia.Services;
 

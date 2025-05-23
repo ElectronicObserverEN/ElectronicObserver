@@ -5,13 +5,13 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 

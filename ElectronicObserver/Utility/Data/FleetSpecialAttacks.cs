@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks.Specials;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks.Specials;
 
 namespace ElectronicObserver.Utility.Data;
 

@@ -2,7 +2,7 @@
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Avalonia.Services;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 

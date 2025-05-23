@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
@@ -18,7 +19,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
-using ElectronicObserverTypes;
 
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 

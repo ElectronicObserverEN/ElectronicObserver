@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserverTypes.Serialization.FitBonus;
+using ElectronicObserver.Core.Types.Serialization.FitBonus;
 
 namespace ElectronicObserver.Data.Translation;
 

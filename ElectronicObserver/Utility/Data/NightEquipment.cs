@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility.Data;
 

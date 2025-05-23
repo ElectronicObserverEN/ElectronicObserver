@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrowserLibCore", "BrowserLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserverCoreTests", "ElectronicObserverCoreTests\ElectronicObserverCoreTests.csproj", "{93519D27-F710-406F-9CAC-C4BC8698D50D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserverTypes", "ElectronicObserverTypes\ElectronicObserverTypes.csproj", "{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.Core", "ElectronicObserver.Core\ElectronicObserver.Core.csproj", "{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KancolleProgress", "KancolleProgress\KancolleProgress.csproj", "{A3AAE51F-A61E-46ED-B84B-6F3AFD183BB5}"
 EndProject
@@ -108,10 +108,10 @@ Global
 		{93519D27-F710-406F-9CAC-C4BC8698D50D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93519D27-F710-406F-9CAC-C4BC8698D50D}.Release|x64.ActiveCfg = Release|Any CPU
 		{93519D27-F710-406F-9CAC-C4BC8698D50D}.Release|x64.Build.0 = Release|Any CPU
-		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|x64.ActiveCfg = Debug|Any CPU
-		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|x64.Build.0 = Debug|Any CPU
+		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|Any CPU.Build.0 = Release|Any CPU
+		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|x64.ActiveCfg = Release|Any CPU
+		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Browser Debug|x64.Build.0 = Release|Any CPU
 		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}.Debug|x64.ActiveCfg = Debug|Any CPU

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
@@ -12,7 +13,6 @@ using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
