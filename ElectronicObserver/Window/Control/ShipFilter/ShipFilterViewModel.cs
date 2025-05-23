@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Dialog.ShipPicker;
