@@ -7,7 +7,6 @@ using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Core.Services;
