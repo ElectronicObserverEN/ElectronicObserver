@@ -166,105 +166,61 @@
 						</Border>
 					</Grid>
 
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition SharedSizeGroup="header" />
-							<ColumnDefinition SharedSizeGroup="devmatcost" />
-							<ColumnDefinition SharedSizeGroup="screwcost" />
-							<ColumnDefinition SharedSizeGroup="itemcost" />
-						</Grid.ColumnDefinitions>
+					<ItemsControl ItemsSource="{Binding RequiredItemsPerLevel}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition SharedSizeGroup="header" />
+										<ColumnDefinition SharedSizeGroup="devmatcost" />
+										<ColumnDefinition SharedSizeGroup="screwcost" />
+										<ColumnDefinition SharedSizeGroup="itemcost" />
+									</Grid.ColumnDefinitions>
 
-						<Border
-							Grid.Column="0"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<TextBlock Text="{Binding EquipmentUpgradeTranslation.ZeroToFive}" />
-						</Border>
-						<Border
-							Grid.Column="1"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<TextBlock>
-								<Run Text="{Binding EquipmentUpgradeCost.Cost0To5.DevmatCost}" />
-								<Run Text="/" />
-								<Run Text="{Binding EquipmentUpgradeCost.Cost0To5.SliderDevmatCost}" />
-							</TextBlock>
-						</Border>
-						<Border
-							Grid.Column="2"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<TextBlock>
-								<Run Text="{Binding EquipmentUpgradeCost.Cost0To5.ImproveMatCost}" />
-								<Run Text="/" />
-								<Run Text="{Binding EquipmentUpgradeCost.Cost0To5.SliderImproveMatCost}" />
-							</TextBlock>
-						</Border>
-						<Border
-							Grid.Column="3"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<ContentControl Content="{Binding RequiredItems0To5}" ContentTemplate="{StaticResource ItemCostTemplate}" />
-						</Border>
-					</Grid>
-
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition SharedSizeGroup="header" />
-							<ColumnDefinition SharedSizeGroup="devmatcost" />
-							<ColumnDefinition SharedSizeGroup="screwcost" />
-							<ColumnDefinition SharedSizeGroup="itemcost" />
-						</Grid.ColumnDefinitions>
-
-						<Border
-							Grid.Column="0"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<TextBlock Text="{Binding EquipmentUpgradeTranslation.SixToNine}" />
-						</Border>
-						<Border
-							Grid.Column="1"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<TextBlock>
-								<Run Text="{Binding EquipmentUpgradeCost.Cost6To9.DevmatCost}" />
-								<Run Text="/" />
-								<Run Text="{Binding EquipmentUpgradeCost.Cost6To9.SliderDevmatCost}" />
-							</TextBlock>
-						</Border>
-						<Border
-							Grid.Column="2"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<TextBlock>
-								<Run Text="{Binding EquipmentUpgradeCost.Cost6To9.ImproveMatCost}" />
-								<Run Text="/" />
-								<Run Text="{Binding EquipmentUpgradeCost.Cost6To9.SliderImproveMatCost}" />
-							</TextBlock>
-						</Border>
-						<Border
-							Grid.Column="3"
-							Padding="2"
-							BorderBrush="Gray"
-							BorderThickness="1"
-							>
-							<ContentControl Content="{Binding RequiredItems6To9}" ContentTemplate="{StaticResource ItemCostTemplate}" />
-						</Border>
-					</Grid>
+									<Border
+										Grid.Column="0"
+										Padding="2"
+										BorderBrush="Gray"
+										BorderThickness="1"
+										>
+										<TextBlock Text="{Binding UpgradeLevelsDisplay}" />
+									</Border>
+									<Border
+										Grid.Column="1"
+										Padding="2"
+										BorderBrush="Gray"
+										BorderThickness="1"
+										>
+										<TextBlock>
+											<Run Text="{Binding EquipmentUpgradeCost.DevmatCost}" />
+											<Run Text="/" />
+											<Run Text="{Binding EquipmentUpgradeCost.SliderDevmatCost}" />
+										</TextBlock>
+									</Border>
+									<Border
+										Grid.Column="2"
+										Padding="2"
+										BorderBrush="Gray"
+										BorderThickness="1"
+										>
+										<TextBlock>
+											<Run Text="{Binding EquipmentUpgradeCost.ImproveMatCost}" />
+											<Run Text="/" />
+											<Run Text="{Binding EquipmentUpgradeCost.SliderImproveMatCost}" />
+										</TextBlock>
+									</Border>
+									<Border
+										Grid.Column="3"
+										Padding="2"
+										BorderBrush="Gray"
+										BorderThickness="1"
+										>
+										<ContentControl Content="{Binding RequiredItems}" ContentTemplate="{StaticResource ItemCostTemplate}" />
+									</Border>
+								</Grid>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
 
 					<ItemsControl ItemsSource="{Binding ConversionViewModel}">
 						<ItemsControl.ItemTemplate>

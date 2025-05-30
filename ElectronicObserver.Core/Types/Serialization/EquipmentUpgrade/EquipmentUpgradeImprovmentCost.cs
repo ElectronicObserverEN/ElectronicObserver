@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 
@@ -33,4 +34,10 @@ public class EquipmentUpgradeImprovementCost
 	/// </summary>
 	[JsonPropertyName("conv")]
 	public EquipmentUpgradeImprovementCostDetail? CostMax { get; set; } = null;
+
+	/// <summary>
+	/// Extra costs
+	/// </summary>
+	[JsonPropertyName("extra")]
+	public List<EquipmentUpgradeExtraCostModel>? ExtraCost { get; set; }
 }

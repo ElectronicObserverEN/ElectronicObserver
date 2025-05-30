@@ -5,6 +5,7 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
@@ -20,9 +21,8 @@ public class AlbumMasterEquipmentUpgradeViewModel
 	/// Equipment upgrade cost, its the first cost found for this equipment so it's accurate for fuel, ammo, ... and devmats/screws for 0 -> 9 upgrades
 	/// </summary>
 	public EquipmentUpgradeImprovementCost EquipmentUpgradeCost { get; private set; } = new();
-	
-	public EquipmentUpgradeItemCostViewModel? RequiredItems0To5 { get; private set; }
-	public EquipmentUpgradeItemCostViewModel? RequiredItems6To9 { get; private set; }
+
+	public List<AlbumMasterEquipmentUpgradeLevelViewModel> RequiredItemsPerLevel { get; set; } = [];
 
 	public List<EquipmentUpgradeConversionViewModel> ConversionViewModel { get; private set; } = new();
 
@@ -56,8 +56,7 @@ public class AlbumMasterEquipmentUpgradeViewModel
 			.Select(helperGroup => new EquipmentUpgradeHelpersViewModel(helperGroup))
 			.ToList();
 
-		RequiredItems0To5 = new(EquipmentUpgradeCost.Cost0To5);
-		RequiredItems6To9 = new(EquipmentUpgradeCost.Cost6To9);
+		InitializeCostPerLevel();
 
 		ConversionViewModel = UpgradeData
 			.Improvement
@@ -67,12 +66,19 @@ public class AlbumMasterEquipmentUpgradeViewModel
 			.ToList();
 	}
 
+	private void InitializeCostPerLevel()
+	{
+		RequiredItemsPerLevel = EquipmentUpgradeCost
+			.GetCostPerLevelRange()
+			.Where(range => range.StartLevel != UpgradeLevel.Conversion)
+			.Select(range => new AlbumMasterEquipmentUpgradeLevelViewModel(range))
+			.ToList();
+	}
+
 	public void UnsubscribeFromApis()
 	{
 		ConversionViewModel.ForEach(viewModel => viewModel.UnsubscribeFromApis());
 		Helpers.ForEach(viewModel => viewModel.UnsubscribeFromApis());
-
-		RequiredItems0To5?.UnsubscribeFromApis();
-		RequiredItems6To9?.UnsubscribeFromApis();
+		RequiredItemsPerLevel.ForEach(viewModel => viewModel.UnsubscribeFromApis());
 	}
 }
