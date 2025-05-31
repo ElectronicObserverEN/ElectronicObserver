@@ -8,7 +8,7 @@ public class AlbumMasterEquipmentUpgradeLevelViewModel
 	public UpgradeLevel StartLevel { get; set; }
 	public UpgradeLevel EndLevel { get; set; }
 
-	public string UpgradeLevelsDisplay => $"{(int)StartLevel - 1} ～ {(int)EndLevel - 1}";
+	public string UpgradeLevelsDisplay => StartLevel == EndLevel ? ((int)StartLevel).ToString() : $"{(int)StartLevel - 1} ～ {(int)EndLevel - 1}";
 
 	public EquipmentUpgradeImprovementCostDetail EquipmentUpgradeCost { get; set; } = new();
 	

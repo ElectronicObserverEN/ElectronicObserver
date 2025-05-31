@@ -129,12 +129,7 @@ public static class EquipmentUpgradeCostExtensions
 
 		foreach (UpgradeLevel level in levels)
 		{
-			EquipmentUpgradeImprovementCostDetail? detail = level switch
-			{
-				< UpgradeLevel.Six => costs.Cost0To5,
-				< UpgradeLevel.Conversion => costs.Cost6To9,
-				_ => costs.CostMax,
-			};
+			EquipmentUpgradeImprovementCostDetail? detail = costs.GetImprovementCostDetailFromLevel(level);
 
 			if (detail is { })
 			{
@@ -202,18 +197,27 @@ public static class EquipmentUpgradeCostExtensions
 
 		foreach (EquipmentUpgradeCostPerLevel cost in costs.GetCostPerLevel())
 		{
-			if (result.LastOrDefault() is { } previousRange && cost.UpgradeLevel != UpgradeLevel.Conversion)
-			{
-				previousRange.EndLevel = cost.UpgradeLevel;
-				cost.UpgradeLevel++;
-			}
-
 			if (!cost.Equals(previousCost) || cost.UpgradeLevel is UpgradeLevel.Conversion)
 			{
 				result.Add(new(cost));
 			}
 
 			previousCost = cost;
+		}
+
+		for (int index = 0; index < result.Count; index++)
+		{
+			if (index < result.Count - 1)
+			{
+				EquipmentUpgradeCostRange range = result[index];
+				EquipmentUpgradeCostRange nextRange = result[index + 1];
+
+				range.EndLevel = nextRange.StartLevel switch
+				{
+					UpgradeLevel.Conversion => UpgradeLevel.Max,
+					_ => nextRange.StartLevel - 1,
+				};
+			}
 		}
 
 		return result;
