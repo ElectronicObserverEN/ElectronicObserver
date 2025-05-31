@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 
-public class EquipmentUpgradeImprovementCostItemDetail : IEquatable<EquipmentUpgradeImprovementCostItemDetail>
+public sealed class EquipmentUpgradeImprovementCostItemDetail : IEquatable<EquipmentUpgradeImprovementCostItemDetail>
 {
 	/// <summary>
 	/// Id of the item

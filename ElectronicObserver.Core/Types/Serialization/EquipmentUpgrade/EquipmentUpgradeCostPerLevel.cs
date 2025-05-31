@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 
-public class EquipmentUpgradeCostPerLevel(UpgradeLevel level, EquipmentUpgradeImprovementCostDetail baseDetail) : IEquatable<EquipmentUpgradeCostPerLevel>
+public sealed class EquipmentUpgradeCostPerLevel(UpgradeLevel level, EquipmentUpgradeImprovementCostDetail baseDetail) : IEquatable<EquipmentUpgradeCostPerLevel>
 {
 	public UpgradeLevel UpgradeLevel { get; set; } = level;
 
