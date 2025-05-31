@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
-using ElectronicObserver.Observer.kcsapi.api_req_mission;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 namespace ElectronicObserver.Utility.Data;
