@@ -574,4 +574,100 @@ public class UpgradeCostTests
 
 		Assert.Equal(expectedCost, cost);
 	}
+
+	[Fact(DisplayName = "Ju87C Kai 6 -> 7 doesn't eat oversea mats")]
+	public void ExtraUpgradeCostTest1()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.CarrierBasedBomber_Ju87CKai,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.GrafZeppelinKai,
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Six,
+		};
+
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateNextUpgradeCost(UpgradeData.UpgradeList, helper, plan.SliderLevel);
+
+		EquipmentUpgradePlanCostModel expectedCost = new()
+		{
+			Fuel = 190,
+			Ammo = 280,
+			Steel = 0,
+			Bauxite = 290,
+
+			DevelopmentMaterial = 8,
+			ImprovementMaterial = 3,
+
+			RequiredEquipments = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.CarrierBasedBomber_Type99DiveBomberModel22,
+					Required = 1,
+				},
+			]
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
+
+	[Fact(DisplayName = "Ju87C Kai 8 -> 9 eats oversea mats")]
+	public void ExtraUpgradeCostTest2()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.CarrierBasedBomber_Ju87CKai,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.GrafZeppelinKai,
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Eight,
+		};
+
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateNextUpgradeCost(UpgradeData.UpgradeList, helper, plan.SliderLevel);
+
+		EquipmentUpgradePlanCostModel expectedCost = new()
+		{
+			Fuel = 190,
+			Ammo = 280,
+			Steel = 0,
+			Bauxite = 290,
+
+			DevelopmentMaterial = 8,
+			ImprovementMaterial = 3,
+
+			RequiredEquipments = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.CarrierBasedBomber_Type99DiveBomberModel22,
+					Required = 1,
+				},
+			],
+
+			RequiredConsumables = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)UseItemId.LatestOverseasWarshipTechnology,
+					Required = 1,
+				},
+			],
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
 }

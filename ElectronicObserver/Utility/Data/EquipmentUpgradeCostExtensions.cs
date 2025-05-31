@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
+using ElectronicObserver.Observer.kcsapi.api_req_mission;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 namespace ElectronicObserver.Utility.Data;
@@ -58,7 +59,7 @@ public static class EquipmentUpgradeCostExtensions
 	public static EquipmentUpgradePlanCostModel CalculateUpgradeLevelCost(
 		this EquipmentUpgradeImprovementModel improvementModel, UpgradeLevel level, bool useSlider)
 	{
-		EquipmentUpgradeImprovementCostDetail? costDetail =
+		EquipmentUpgradeCostPerLevel? costDetail =
 			improvementModel.Costs.GetImprovementCostDetailFromLevel(level);
 
 		// Shouldn't happen ...
@@ -81,14 +82,18 @@ public static class EquipmentUpgradeCostExtensions
 	}
 
 
-	public static EquipmentUpgradeImprovementCostDetail? GetImprovementCostDetailFromLevel(
-		this EquipmentUpgradeImprovementCost costDetail, UpgradeLevel level)
-		=> level switch
-		{
-			UpgradeLevel.Conversion => costDetail.CostMax,
-			> UpgradeLevel.Six => costDetail.Cost6To9,
-			_ => costDetail.Cost0To5,
-		};
+	public static EquipmentUpgradeCostPerLevel? GetImprovementCostDetailFromLevel(this EquipmentUpgradeImprovementCost costDetail, UpgradeLevel level)
+	{
+		EquipmentUpgradeImprovementCostDetail? detail = costDetail.GetCostPerLevelWithoutExtra(level);
+
+		if (detail is null) return null;
+
+		EquipmentUpgradeCostPerLevel levelCost = new(level, detail);
+
+		ApplyExtraCost(costDetail, level, levelCost);
+
+		return levelCost;
+	}
 
 	/// <summary>
 	/// Return an improvement model depending on the flagship
@@ -118,7 +123,15 @@ public static class EquipmentUpgradeCostExtensions
 		return ++currentLevel;
 	}
 
-	public static List<EquipmentUpgradeCostPerLevel> GetCostPerLevel(this EquipmentUpgradeImprovementCost costs)
+	private static EquipmentUpgradeImprovementCostDetail? GetCostPerLevelWithoutExtra(this EquipmentUpgradeImprovementCost costDetail, UpgradeLevel level)
+		=> level switch
+		{
+			UpgradeLevel.Conversion => costDetail.CostMax,
+			> UpgradeLevel.Six => costDetail.Cost6To9,
+			_ => costDetail.Cost0To5,
+		};
+
+	private static List<EquipmentUpgradeCostPerLevel> GetCostPerLevel(this EquipmentUpgradeImprovementCost costs)
 	{
 		List<UpgradeLevel> levels = Enum.GetValues<UpgradeLevel>()
 			.Skip(1)
@@ -129,15 +142,11 @@ public static class EquipmentUpgradeCostExtensions
 
 		foreach (UpgradeLevel level in levels)
 		{
-			EquipmentUpgradeImprovementCostDetail? detail = costs.GetImprovementCostDetailFromLevel(level);
+			EquipmentUpgradeCostPerLevel? detail = costs.GetImprovementCostDetailFromLevel(level);
 
 			if (detail is { })
 			{
-				EquipmentUpgradeCostPerLevel levelCost = new(level, detail);
-
-				ApplyExtraCost(costs, level, levelCost);
-
-				result.Add(levelCost);
+				result.Add(detail);
 			}
 		}
 
@@ -153,7 +162,7 @@ public static class EquipmentUpgradeCostExtensions
 			foreach (EquipmentUpgradeImprovementCostItemDetail extraConsumable in extraCost.Consumables)
 			{
 				if (levelCost.ConsumableDetail.Find(consumable => consumable.Id == extraConsumable.Id) is
-				    { } foundDetail)
+					{ } foundDetail)
 				{
 					foundDetail.Count += extraConsumable.Count;
 				}
