@@ -131,7 +131,11 @@ public static class Extensions
 
 		if (condition.HatsuzukiGun > 0)
 		{
-			conditions.Add($"{AaciResources.HatsuzukiGun} >= {condition.HatsuzukiGun}");
+			string hatsuzukiGun = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.MainGunSmall_10cmTwinHighangleMountKai_AntiAircraftFireDirectorKai]
+				.NameEN;
+
+			conditions.Add($"{hatsuzukiGun} >= {condition.HatsuzukiGun}");
 		}
 
 		if (condition.AaDirector > 0)

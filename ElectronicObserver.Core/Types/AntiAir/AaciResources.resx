@@ -187,9 +187,6 @@
   <data name="Radar4AaOrMore" xml:space="preserve">
     <value>電探(対空4以上)</value>
   </data>
-  <data name="HatsuzukiGun" xml:space="preserve">
-    <value>秋月砲改</value>
-  </data>
   <data name="AaGun5AaOrMore" xml:space="preserve">
     <value>対空機銃(対空5以上)</value>
   </data>
