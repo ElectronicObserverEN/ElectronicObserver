@@ -1199,7 +1199,7 @@ public record AntiAirCutIn
 	public int Id { get; init; }
 	public int FixedBonus { get; private init; }
 	public double VariableBonus { get; private init; }
-	private double? Rate { get; init; }
+	public double? Rate { get; private init; }
 	private int Priority => Id switch
 	{
 		0 => 9999,

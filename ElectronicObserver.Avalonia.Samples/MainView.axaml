@@ -7,12 +7,17 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Samples"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.Samples.ShipGroup"
+	xmlns:antiAirCutInUpdater="clr-namespace:ElectronicObserver.Avalonia.Samples.AntiAirCutInUpdater"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	x:DataType="local:MainViewModel"
 	mc:Ignorable="d"
 	>
 	<TabControl>
+		<TabItem Header="AACI">
+			<antiAirCutInUpdater:AntiAirCutInView DataContext="{Binding AntiAirCutInUpdater}" />
+		</TabItem>
+
 		<TabItem Header="Expedition">
 			<expeditionCalculator:ExpeditionCalculatorView DataContext="{Binding ExpeditionCalculator}" />
 		</TabItem>
