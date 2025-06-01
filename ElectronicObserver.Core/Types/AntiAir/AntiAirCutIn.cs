@@ -33,7 +33,10 @@ public record AntiAirCutIn
 		36,
 		27,
 		45,
+		50,
 		49,
+		51,
+		52,
 		19,
 		21,
 		29,
@@ -1167,7 +1170,7 @@ public record AntiAirCutIn
 						ShipId.HatsuzukiKaiNi,
 						ShipId.FuyutsukiKai,
 					],
-					AkizukiGunKai = 2,
+					HatsuzukiGun = 2,
 					Radar4AaOrMore = 1,
 				},
 			],
@@ -1184,10 +1187,81 @@ public record AntiAirCutIn
 				{
 					Ships =
 					[
+						ShipId.FubukiKaiNi,
+						ShipId.ShirayukiKaiNi,
 						ShipId.FujinamiKaiNi,
 					],
 					HighAngleDirector = 2,
 					Radar4AaOrMore = 1,
+				},
+			],
+		},
+		new()
+		{
+			Id = 50,
+			FixedBonus = 7,
+			VariableBonus = 1.5,
+			Rate = null,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.FubukiKaiNi,
+						ShipId.ShirayukiKaiNi,
+						ShipId.FujinamiKaiNi,
+					],
+					ShipClasses =
+					[
+						ShipClass.Akizuki,
+					],
+					AkizukiGunKai = 2,
+					Radar4AaOrMore = 1,
+					Aafd94 = 1,
+				},
+			],
+		},
+		new()
+		{
+			Id = 51,
+			FixedBonus = 5,
+			VariableBonus = 1.35,
+			Rate = null,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.FubukiKaiNi,
+						ShipId.ShirayukiKaiNi,
+						ShipId.FujinamiKaiNi,
+					],
+					AkizukiGunKai = 1,
+					Radar4AaOrMore = 1,
+					AaGun5Aa = 1,
+				},
+			],
+		},
+		new()
+		{
+			Id = 52,
+			FixedBonus = 4,
+			VariableBonus = 1.4,
+			Rate = null,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.FubukiKaiNi,
+						ShipId.ShirayukiKaiNi,
+						ShipId.FujinamiKaiNi,
+					],
+					AkizukiPotatoGun = 2,
+					Aafd94 = 1,
 				},
 			],
 		},
@@ -1206,9 +1280,6 @@ public record AntiAirCutIn
 		_ => ActivationPriorities.IndexOf(Id),
 	};
 
-	/// <summary>
-	/// Null when unknown
-	/// </summary>
 	public required List<AntiAirCutInCondition> Conditions { get; init; }
 
 	public string ValueDisplay => Rate switch

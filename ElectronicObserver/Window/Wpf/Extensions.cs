@@ -129,9 +129,9 @@ public static class Extensions
 			conditions.Add($"{AaciResources.HighAngleWithoutDirector} >= {condition.HighAngleWithoutDirector}");
 		}
 
-		if (condition.AkizukiGunKai > 0)
+		if (condition.HatsuzukiGun > 0)
 		{
-			conditions.Add($"{AaciResources.AkizukiGunKai} >= {condition.AkizukiGunKai}");
+			conditions.Add($"{AaciResources.HatsuzukiGun} >= {condition.HatsuzukiGun}");
 		}
 
 		if (condition.AaDirector > 0)
@@ -177,6 +177,11 @@ public static class Extensions
 		if (condition.AaGun4Aa > 0)
 		{
 			conditions.Add($"{AaciResources.AaGun4AaOrMore} >= {condition.AaGun4Aa}");
+		}
+
+		if (condition.AaGun5Aa > 0)
+		{
+			conditions.Add($"{AaciResources.AaGun5AaOrMore} >= {condition.AaGun5Aa}");
 		}
 
 		if (condition.AaGun6Aa > 0)
@@ -280,6 +285,29 @@ public static class Extensions
 		if (condition.Radar4AaOrMore > 0)
 		{
 			conditions.Add($"{AaciResources.Radar4AaOrMore} >= {condition.Radar4AaOrMore}");
+		}
+
+		if (condition.AkizukiGunKai > 0)
+		{
+			conditions.Add($"{AaciResources.AkizukiGunKai} >= {condition.AkizukiGunKai}");
+		}
+
+		if (condition.AkizukiPotatoGun > 0)
+		{
+			string akizukiPotatoGun = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.MainGunSmall_10cmTwinHighAngleGunKai]
+				.NameEN;
+
+			conditions.Add($"{akizukiPotatoGun} >= {condition.AkizukiPotatoGun}");
+		}
+
+		if (condition.Aafd94 > 0)
+		{
+			string aafd94 = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.AADirector_Type94AAFD]
+				.NameEN;
+
+			conditions.Add($"{aafd94} >= {condition.Aafd94}");
 		}
 
 		return conditions;
