@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Core.Types.Mocks;
@@ -78,5 +79,25 @@ public class AntiAirCutInTests(DatabaseFixture db)
 		Assert.Equal(5, cutins[3].Id);
 		Assert.Equal(8, cutins[4].Id);
 		Assert.Equal(0, cutins[5].Id);
+	}
+
+	[Fact(DisplayName = "Ship and ship class condition - Hatsuzuki k2")]
+	public void AntiAirCutInTest4()
+	{
+		ShipDataMock hatsuzuki = new(Db.MasterShips[ShipId.HatsuzukiKaiNi])
+		{
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighAngleGunKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMountKai_AntiAircraftFireDirectorKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_Type21AirRadarKaiNi]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AADirector_Type94AAFD]),
+			],
+		};
+
+		List<AntiAirCutIn> cutins = AntiAirCutIn.PossibleCutIns(hatsuzuki);
+
+		Assert.Equal(6, cutins.Count);
+		Assert.Equal([1, 2, 50, 3, 9, 0], cutins.Select(c => c.Id));
 	}
 }
