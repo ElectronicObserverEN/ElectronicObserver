@@ -7,26 +7,21 @@ using Xunit;
 namespace ElectronicObserverCoreTests;
 
 [Collection(DatabaseCollection.Name)]
-public class AntiAirCutInTests
+public class AntiAirCutInTests(DatabaseFixture db)
 {
-	private DatabaseFixture Db { get; }
-
-	public AntiAirCutInTests(DatabaseFixture db)
-	{
-		Db = db;
-	}
+	private DatabaseFixture Db { get; } = db;
 
 	[Fact(DisplayName = "Regular destroyer")]
 	public void AntiAirCutInTest1()
 	{
 		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_Type13AirRadarKai_LateModel]),
-			},
+			],
 		};
 
 		List<AntiAirCutIn> cutins = AntiAirCutIn.PossibleCutIns(kamikaze);
@@ -42,12 +37,12 @@ public class AntiAirCutInTests
 	{
 		ShipDataMock isokaze = new(Db.MasterShips[ShipId.IsokazeBKai])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_10cmTwinHighangleMount_AntiAircraftFireDirector]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_Type13AirRadarKai_LateModel]),
-			},
+			],
 		};
 
 		List<AntiAirCutIn> cutins = AntiAirCutIn.PossibleCutIns(isokaze);
@@ -65,12 +60,12 @@ public class AntiAirCutInTests
 	{
 		ShipDataMock atlanta = new(Db.MasterShips[ShipId.AtlantaKai])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_GFCSMk_37_5inchTwinDualpurposeGunMount_ConcentratedDeployment]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_GFCSMk_37_5inchTwinDualpurposeGunMount_ConcentratedDeployment]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_GFCSMk_37]),
-			},
+			],
 		};
 
 		List<AntiAirCutIn> cutins = AntiAirCutIn.PossibleCutIns(atlanta);
