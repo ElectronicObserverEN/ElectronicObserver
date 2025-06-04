@@ -167,6 +167,11 @@
 						/>
 
 					<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}" IsChecked="{Binding MustBeFlagship}" />
+
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Lv" />
+						<controls:NumberBox Minimum="0" Value="{Binding Model.Level}" />
+					</StackPanel>
 				</StackPanel>
 			</StackPanel>
 		</Border>

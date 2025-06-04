@@ -22,10 +22,17 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 
 	public bool MustBeFlagship { get; set; }
 
-	public string Display => $"({CountConditionDisplay}) {ComparisonTypeDisplay} {Model.Count}{FlagshipConditionDisplay}";
+	public string Display =>
+		$"({CountConditionDisplay}{LevelDisplay}) {ComparisonTypeDisplay} {Model.Count}{FlagshipConditionDisplay}";
 
 	private string CountConditionDisplay => string.Join($" {QuestTrackerManagerResources.Operator_Or} ",
 		Model.Types.Select(s => s.Display()));
+
+	private string LevelDisplay => Model.Level switch
+	{
+		> 0 => $" Lv {Model.Level}+",
+		_ => "",
+	};
 
 	private string ComparisonTypeDisplay => ComparisonType.Display();
 
@@ -45,24 +52,24 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 		AllTypes = Enum.GetValues<ShipTypes>().Where(t => t is not ShipTypes.Unknown);
 		ComparisonTypes = Enum.GetValues<ComparisonType>();
 
-		Model.PropertyChanged += (sender, args) =>
+		Model.PropertyChanged += (_, _) =>
 		{
 			OnPropertyChanged(nameof(Display));
 		};
 
-		Model.Types.CollectionChanged += (sender, args) =>
+		Model.Types.CollectionChanged += (_, _) =>
 		{
 			OnPropertyChanged(nameof(Display));
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(MustBeFlagship)) return;
 
 			Model.MustBeFlagship = MustBeFlagship;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(ComparisonType)) return;
 
@@ -84,28 +91,32 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		List<IShipData> ships = fleet.MembersInstance.Where(s => s is not null).ToList();
+		List<IShipData> ships = fleet.MembersInstance.OfType<IShipData>().ToList();
 
 		bool flagshipCondition = !Model.MustBeFlagship ||
 			Model.Types.Contains(ships[0].MasterShip.ShipType);
 
-		int shipCount = Model.Types.Contains(ShipTypes.All) switch
+		IEnumerable<IShipData> validShips = Model.Types.Contains(ShipTypes.All) switch
 		{
-			true => ships.Count,
-			_ => ships.Count(s => Model.Types.Contains(s.MasterShip.ShipType)),
+			true => ships,
+			_ => ships.Where(s => Model.Types.Contains(s.MasterShip.ShipType)),
 		};
 
-		bool countCondition = Compare(shipCount, Model.Count, Model.ComparisonType);
+		if (Model.Level > 0)
+		{
+			validShips = ships.Where(s => s.Level >= Model.Level);
+		}
+
+		bool countCondition = Compare(validShips.Count(), Model.Count, Model.ComparisonType);
 
 		return flagshipCondition && countCondition;
 	}
 
-	private static bool Compare(IComparable a, IComparable b, ComparisonType comparisonType) =>
+	private static bool Compare(int a, int b, ComparisonType comparisonType) =>
 		comparisonType switch
 		{
-			ComparisonType.Equal => a.CompareTo(b) == 0,
-			ComparisonType.LessOrEqual => a.CompareTo(b) <= 0,
-
-			_ => a.CompareTo(b) >= 0
+			ComparisonType.Equal => a == b,
+			ComparisonType.LessOrEqual => a <= b,
+			_ => a >= b
 		};
 }
