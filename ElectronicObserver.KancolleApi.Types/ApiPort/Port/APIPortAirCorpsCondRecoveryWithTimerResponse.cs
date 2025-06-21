@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 
-public class APIPortAirCorpsCondRecoveryWithTimerResponse
+public class ApiPortAirCorpsCondRecoveryWithTimerResponse
 {
 	[JsonPropertyName("api_plane_info")]
 	public ApiPortPlaneInfo? ApiPlaneInfo { get; set; }

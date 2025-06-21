@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 
-public class APIPortAirCorpsCondRecoveryWithTimerRequest
+public class ApiPortAirCorpsCondRecoveryWithTimerRequest
 {
 	[JsonPropertyName("api_area_id")]
 	public string ApiAreaId { get; set; } = "";
