@@ -18,6 +18,8 @@ public class airCorpsCondRecoveryWithTimer : APIBase
 
 	public override void OnResponseReceived(dynamic data)
 	{
+		if (data is null) return;
+
 		if (KCDatabase.Instance.BaseAirCorps.TryGetValue(AirCorpsId, out BaseAirCorpsData corps))
 		{
 			corps.LoadFromResponse(APIName, data);
