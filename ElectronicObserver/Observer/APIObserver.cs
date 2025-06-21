@@ -98,6 +98,11 @@ public sealed class APIObserver
 	public kcsapi.api_port.port ApiPort_Port { get; } = new();
 
 	/// <summary>
+	/// Air base morale refresh call
+	/// </summary>
+	public kcsapi.api_port.airCorpsCondRecoveryWithTimer ApiPort_AirCorpsCondRecoveryWithTimer { get; } = new();
+
+	/// <summary>
 	/// 艦船情報 (?) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2382" />
 	/// </summary>
@@ -635,6 +640,7 @@ public sealed class APIObserver
 			ApiGetMember_UseItem,
 			ApiGetMember_KDock,
 			ApiPort_Port,
+			ApiPort_AirCorpsCondRecoveryWithTimer,
 			ApiGetMember_Ship2,
 			ApiGetMember_QuestList,
 			ApiGetMember_NDock,

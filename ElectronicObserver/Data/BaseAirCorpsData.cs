@@ -156,6 +156,9 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
 
+			case "api_port/airCorpsCondRecoveryWithTimer":
+				SetSquadrons(apiname, data.api_plane_info);
+				break;
 
 			case "api_port/port":
 				// Reset Strike points after the sortie
@@ -174,9 +177,9 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 
 			if (!Squadrons.ContainsKey(id))
 			{
-				var a = new BaseAirCorpsSquadron();
-				a.LoadFromResponse(apiname, elem);
-				Squadrons.Add(id, a);
+				var squadron = new BaseAirCorpsSquadron();
+				squadron.LoadFromResponse(apiname, elem);
+				Squadrons.Add(id, squadron);
 
 			}
 			else
