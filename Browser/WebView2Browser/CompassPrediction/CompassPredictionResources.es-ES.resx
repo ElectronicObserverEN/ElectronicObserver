@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DataRefresh" xml:space="preserve">
-    <value> Actualización de datos</value>
+    <value>Actualización de datos</value>
   </data>
   <data name="SynchronizeMap" xml:space="preserve">
     <value>Synchronize current map</value>
