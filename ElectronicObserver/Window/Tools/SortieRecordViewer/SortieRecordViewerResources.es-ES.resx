@@ -117,4 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="World" xml:space="preserve">
+    <value>Mundo</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Flota</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Mundo</value>
+  </data>
+  <data name="DuplicateShipError" xml:space="preserve">
+    <value>Error de duplicado: no se pudo identificar correctamente el barco.</value>
+  </data>
+  <data name="FailedToParseApiData" xml:space="preserve">
+    <value>Error al analizar los datos de la API.</value>
+  </data>
+  <data name="ShowQuickExport" xml:space="preserve">
+    <value>Mostrar exportación rápida</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Registro de salidas</value>
+  </data>
+  <data name="FleetImage" xml:space="preserve">
+    <value>Exportar imagen de la flota</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="SortieDetail" xml:space="preserve">
+    <value>Detalles de la salida </value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Elementos seleccionados: {0} / {1}</value>
+  </data>
+  <data name="CopySortieData" xml:space="preserve">
+    <value>Copiar datos de salida</value>
+  </data>
+  <data name="LoadSortieData" xml:space="preserve">
+    <value>Cargar datos de salida</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>Copiar enlace</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="Replay" xml:space="preserve">
+    <value>Repetición</value>
+  </data>
+  <data name="CopyData" xml:space="preserve">
+    <value>Copiar datos</value>
+  </data>
 </root>

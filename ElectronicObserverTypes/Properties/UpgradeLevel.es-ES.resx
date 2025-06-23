@@ -117,4 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Conversion" xml:space="preserve">
+    <value>Conversión</value>
+  </data>
+  <data name="Eight" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="Five" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Four" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Nine" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Seven" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="Six" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Two" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Zero" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="FromLevel5" xml:space="preserve">
+    <value>5 ～</value>
+  </data>
+  <data name="FromLevel6" xml:space="preserve">
+    <value>6 ～</value>
+  </data>
+  <data name="FromLevel7" xml:space="preserve">
+    <value>7 ～</value>
+  </data>
+  <data name="FromLevel8" xml:space="preserve">
+    <value>8 ～</value>
+  </data>
+  <data name="FromLevel9" xml:space="preserve">
+    <value>9 ～</value>
+  </data>
+  <data name="Always" xml:space="preserve">
+    <value>Siempre</value>
+  </data>
 </root>

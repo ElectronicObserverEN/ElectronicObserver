@@ -117,4 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="YearFirst" xml:space="preserve">
+    <value>Este Año</value>
+  </data>
+  <data name="WeekFirst" xml:space="preserve">
+    <value>Esta semana</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="Menu_File_SaveImage" xml:space="preserve">
+    <value>Guardar Como (&amp;S)</value>
+  </data>
+  <data name="Menu_Graph" xml:space="preserve">
+    <value>&amp;Ver</value>
+  </data>
+  <data name="Menu_Graph_Resource" xml:space="preserve">
+    <value>&amp;Recursos</value>
+  </data>
+  <data name="Menu_Graph_ResourceDiff" xml:space="preserve">
+    <value>&amp;Recursos - delta</value>
+  </data>
+  <data name="Menu_Graph_Material" xml:space="preserve">
+    <value>&amp;Materiales</value>
+  </data>
+  <data name="Menu_Graph_Experience" xml:space="preserve">
+    <value>&amp;Experiencia</value>
+  </data>
+  <data name="Menu_Graph_ExperienceDiff" xml:space="preserve">
+    <value>&amp;Experiencia - delta</value>
+  </data>
+  <data name="Menu_Span" xml:space="preserve">
+    <value>Alcanze (&amp;S)</value>
+  </data>
+  <data name="Menu_Option_ShowAllData" xml:space="preserve">
+    <value>Mostrar todos los datos</value>
+  </data>
+  <data name="Menu_Option_DivideByDay" xml:space="preserve">
+    <value>Mostrar promedio diario</value>
+  </data>
+  <data name="MonthFirst" xml:space="preserve">
+    <value>Desde el inicio del mes</value>
+  </data>
+  <data name="SeasonFirst" xml:space="preserve">
+    <value>Desde el inicio de la temporada</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>Guardar gráfico como</value>
+  </data>
+  <data name="FailedToSaveResourceChartImage" xml:space="preserve">
+    <value>Error al guardar la imagen del gráfico de recursos</value>
+  </data>
+  <data name="Menu_Graph_MaterialDiff" xml:space="preserve">
+    <value>Materiales (diferencia)</value>
+  </data>
 </root>

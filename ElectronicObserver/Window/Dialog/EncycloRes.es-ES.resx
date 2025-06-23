@@ -117,4 +117,287 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntiAir" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="WithEquipValue" xml:space="preserve">
+    <value>Armado</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Alcanze</value>
+  </data>
+  <data name="EquipName" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
+  </data>
+  <data name="AfterRemodel" xml:space="preserve">
+    <value>Después</value>
+  </data>
+  <data name="AircraftCostHint" xml:space="preserve">
+    <value>Bauxita necesaria para el despliegue</value>
+  </data>
+  <data name="AirPower" xml:space="preserve">
+    <value>Poder aéreo</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(Desconocido)</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>(Todo)</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>Antibombardero</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(ninguno)</value>
+  </data>
+  <data name="Drop" xml:space="preserve">
+    <value>(Drop)</value>
+  </data>
+  <data name="FullPort" xml:space="preserve">
+    <value>(Lleno)</value>
+  </data>
+  <data name="SkillLevel" xml:space="preserve">
+    <value>XP</value>
+  </data>
+  <data name="RightClickForMore" xml:space="preserve">
+    <value>(Haz clic derecho para la enciclopedia)</value>
+  </data>
+  <data name="ParameterView_Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="LandBase" xml:space="preserve">
+    <value>Base terrestre</value>
+  </data>
+  <data name="ResourceVoiceVersion" xml:space="preserve">
+    <value>Voice ver.</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="EquipType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Tries" xml:space="preserve">
+    <value>Intentos</value>
+  </data>
+  <data name="CountAll" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>Veces</value>
+  </data>
+  <data name="EncyclopediaNumber" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>Evasión</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="ResourceGraphicVersion" xml:space="preserve">
+    <value>Graphic ver.</value>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>Intercepción</value>
+  </data>
+  <data name="ParameterView_Key" xml:space="preserve">
+    <value>Llave</value>
+  </data>
+  <data name="StarLevel" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>LoS</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>Suerte</value>
+  </data>
+  <data name="Rarity" xml:space="preserve">
+    <value>Rareza</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>Receta</value>
+  </data>
+  <data name="Resource" xml:space="preserve">
+    <value>Recursos:</value>
+  </data>
+  <data name="EquipScrap" xml:space="preserve">
+    <value>Desechar</value>
+  </data>
+  <data name="ConstructionTime" xml:space="preserve">
+    <value>Tiempo de construcción</value>
+  </data>
+  <data name="EditShipParameterHint" xml:space="preserve">
+    <value>※Solo para quienes entiendan su propósito.  
+Algunos elementos pueden no aplicarse.</value>
+  </data>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>&amp;Editar</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Buscando...</value>
+  </data>
+  <data name="SearchComplete" xml:space="preserve">
+    <value>Búsqueda completada.</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>Búsqueda cancelada.</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>Buque insignia</value>
+  </data>
+  <data name="PrototypeCatapult" xml:space="preserve">
+    <value>Catapulta prototipo</value>
+  </data>
+  <data name="InterruptSearch" xml:space="preserve">
+    <value> ¿Deseas interrumpir la búsqueda?</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Actualizar (&amp;U)...</value>
+  </data>
+  <data name="Blueprint" xml:space="preserve">
+    <value>Plano de remodelación</value>
+  </data>
+  <data name="Initial" xml:space="preserve">
+    <value>Base</value>
+  </data>
+  <data name="BaseValue" xml:space="preserve">
+    <value>Base</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Velocidad</value>
+  </data>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>Coste de Despliegue</value>
+  </data>
+  <data name="DayAttack" xml:space="preserve">
+    <value>Ataque diurno</value>
+  </data>
+  <data name="TitleBomber" xml:space="preserve">
+    <value>Bombardeo</value>
+  </data>
+  <data name="EquipListCSVFormat" xml:space="preserve">
+    <value>固有ID,装備ID,装備名,改修Lv,艦載機Lv,ロック,装備艦ID,装備艦</value>
+  </data>
+  <data name="EquipCSVUserFormat" xml:space="preserve">
+    <value>装備ID,図鑑番号,装備種,装備名,装備種1,装備種2,装備種3,装備種4,装備種5,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄</value>
+  </data>
+  <data name="EquipCSVDataFormat" xml:space="preserve">
+    <value>装備ID,図鑑番号,装備名,装備種1,装備種2,装備種3,装備種4,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄燃料,廃棄弾薬,廃棄鋼材,廃棄ボーキ,図鑑文章,戦闘行動半径,配置コスト</value>
+  </data>
+  <data name="OutputCSVData" xml:space="preserve">
+    <value>Exportar CSV (&amp;para datos)</value>
+  </data>
+  <data name="NightAttack" xml:space="preserve">
+    <value>Ataque nocturno</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>Mejora</value>
+  </data>
+  <data name="SearchingNow" xml:space="preserve">
+    <value>Buscando...</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Efectos</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>Poder de fuego</value>
+  </data>
+  <data name="LevelTooltip" xml:space="preserve">
+    <value>Establece un nivel para mostrar sus valores aquí.</value>
+  </data>
+  <data name="FailedToOutputCSV" xml:space="preserve">
+    <value>Error al exportar la enciclopedia a CSV.</value>
+  </data>
+  <data name="DiveBomb" xml:space="preserve">
+    <value>Bombardeo en picado</value>
+  </data>
+  <data name="Dismantling" xml:space="preserve">
+    <value>Desguace</value>
+  </data>
+  <data name="Consumption" xml:space="preserve">
+    <value>Consumo</value>
+  </data>
+  <data name="BeforeRemodel" xml:space="preserve">
+    <value>Antes</value>
+  </data>
+  <data name="OutputCSVUser" xml:space="preserve">
+    <value>Exportar CSV (para &amp;uso)</value>
+  </data>
+  <data name="RepairTooltip" xml:space="preserve">
+    <value>Costos de reparación: Por 1 HP: {0:F2} Acero / {1:F2} Combustible Máximo: {2} Acero / {3} Combustible</value>
+  </data>
+  <data name="EditShipParameter" xml:space="preserve">
+    <value>Editar parámetros del barco</value>
+  </data>
+  <data name="ResourcePortVoiceVersion" xml:space="preserve">
+    <value>Voz de puerto ver.</value>
+  </data>
+  <data name="ResourceName" xml:space="preserve">
+    <value>Nombre del recurso</value>
+  </data>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>Radio de acción de combate</value>
+  </data>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>&amp;Editar parámetros...</value>
+  </data>
+  <data name="InitiallyEquippedShips" xml:space="preserve">
+    <value>Barcos con equipamiento inicial:</value>
+  </data>
+  <data name="FailedOutputEquipCSV" xml:space="preserve">
+    <value>Error al exportar CSV de la enciclopedia de equipamiento</value>
+  </data>
+  <data name="FailedOutputEqListCSV" xml:space="preserve">
+    <value>Error al exportar CSV de la lista de equipamiento</value>
+  </data>
+  <data name="EquipStats" xml:space="preserve">
+    <value>Estadísticas</value>
+  </data>
+  <data name="EquippedShips" xml:space="preserve">
+    <value>Barcos equipados</value>
+  </data>
+  <data name="EquippableShips" xml:space="preserve">
+    <value>Barcos compatibles:</value>
+  </data>
+  <data name="EquipmentList" xml:space="preserve">
+    <value>Lista de equipamiento</value>
+  </data>
+  <data name="EquipmentEncyclopedia" xml:space="preserve">
+    <value>Enciclopedia de equipamiento</value>
+  </data>
+  <data name="CountExtra" xml:space="preserve">
+    <value>Cantidad extra</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>ID del barco:</value>
+  </data>
+  <data name="ShipEncyclopedia" xml:space="preserve">
+    <value>Enciclopedia de barcos</value>
+  </data>
 </root>

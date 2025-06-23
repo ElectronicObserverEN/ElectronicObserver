@@ -117,4 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="None" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Flota</value>
+  </data>
+  <data name="AirBase" xml:space="preserve">
+    <value>AB</value>
+  </data>
+  <data name="Ships" xml:space="preserve">
+    <value>Barcos</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Equipamiento</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Simulador de Control Aéreo</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="IncludeUnlocked" xml:space="preserve">
+    <value>Incluir barcos no bloqueados</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Navegador</value>
+  </data>
+  <data name="MaxProficiency" xml:space="preserve">
+    <value>Competencia máxima</value>
+  </data>
+  <data name="DataSelection" xml:space="preserve">
+    <value>Selección de datos</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Datos</value>
+  </data>
 </root>

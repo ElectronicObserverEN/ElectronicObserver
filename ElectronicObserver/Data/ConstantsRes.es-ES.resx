@@ -117,4 +117,982 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AAGun" xml:space="preserve">
+    <value>Arma AA</value>
+  </data>
+  <data name="AADirector" xml:space="preserve">
+    <value>AA Director de fuego</value>
+  </data>
+  <data name="Anchorage" xml:space="preserve">
+    <value>Anclaje</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>Munición</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Abril</value>
+  </data>
+  <data name="Aqua" xml:space="preserve">
+    <value>Agua</value>
+  </data>
+  <data name="ASWFormation" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Agosto</value>
+  </data>
+  <data name="Battle" xml:space="preserve">
+    <value>Batalla</value>
+  </data>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
+  <data name="Yura" xml:space="preserve">
+    <value>&lt;Yura&gt;</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Retirar</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>Bombardeo</value>
+  </data>
+  <data name="ShellingSupport" xml:space="preserve">
+    <value>Soporte Bombardeo</value>
+  </data>
+  <data name="ABNoAirRaid" xml:space="preserve">
+    <value>Sin ataque aéreo</value>
+  </data>
+  <data name="ABNoDamage" xml:space="preserve">
+    <value>No Dañado</value>
+  </data>
+  <data name="ABPlanesDamaged" xml:space="preserve">
+    <value>Escuadrón aéreo dañado</value>
+  </data>
+  <data name="ABResources_AndPlanesDamaged" xml:space="preserve">
+    <value>Recursos y escuadrón aéreo dañados</value>
+  </data>
+  <data name="ABResourcesDamaged" xml:space="preserve">
+    <value>Recursos dañados</value>
+  </data>
+  <data name="ABShortNoDamage" xml:space="preserve">
+    <value>No Dañado</value>
+  </data>
+  <data name="Baux" xml:space="preserve">
+    <value>Bauxita</value>
+  </data>
+  <data name="Construction" xml:space="preserve">
+    <value>Arsenal</value>
+  </data>
+  <data name="NoNode" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="Type3" xml:space="preserve">
+    <value>Type 3 Shell</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>Barcos</value>
+  </data>
+  <data name="FirstPatrolFormationShort" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="RosaK2" xml:space="preserve">
+    <value>Lanzacohetes Kai Ni</value>
+  </data>
+  <data name="AirParity" xml:space="preserve">
+    <value>AP</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>AS</value>
+  </data>
+  <data name="BattleForm" xml:space="preserve">
+    <value>Batalla</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Avanzar</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Más Opciones</value>
+  </data>
+  <data name="ABShortResources" xml:space="preserve">
+    <value>Recursos dañados</value>
+  </data>
+  <data name="QuestOneTime" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
+  <data name="AirIncapability" xml:space="preserve">
+    <value>AI-</value>
+  </data>
+  <data name="AirSupremacy" xml:space="preserve">
+    <value>AS+</value>
+  </data>
+  <data name="AirDenialNew" xml:space="preserve">
+    <value>AI</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="CutIn" xml:space="preserve">
+    <value>Cut-in</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="Bucket" xml:space="preserve">
+    <value>Reparación instantánea</value>
+  </data>
+  <data name="Common" xml:space="preserve">
+    <value>Común</value>
+  </data>
+  <data name="Damaged" xml:space="preserve">
+    <value>Dañado</value>
+  </data>
+  <data name="DayBattle" xml:space="preserve">
+    <value>Batalla diurna</value>
+  </data>
+  <data name="CriticalDamage" xml:space="preserve">
+    <value>Daño crítico</value>
+  </data>
+  <data name="Commander" xml:space="preserve">
+    <value>Comandante</value>
+  </data>
+  <data name="Captain" xml:space="preserve">
+    <value>Capitán</value>
+  </data>
+  <data name="BigGun" xml:space="preserve">
+    <value>Cañón de gran calibre</value>
+  </data>
+  <data name="AirBattle" xml:space="preserve">
+    <value>Batalla aérea</value>
+  </data>
+  <data name="AirAttack" xml:space="preserve">
+    <value>Ataque aéreo</value>
+  </data>
+  <data name="Admiral" xml:space="preserve">
+    <value>Almirante</value>
+  </data>
+  <data name="ABShortPlanes" xml:space="preserve">
+    <value>Base Dañada</value>
+  </data>
+  <data name="ABShortResourcesPlanes" xml:space="preserve">
+    <value>Base y recursos</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>Defensa aérea</value>
+  </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>Bombardeo aéreo</value>
+  </data>
+  <data name="ViceLtCmdr" xml:space="preserve">
+    <value>Vice comandante teniente</value>
+  </data>
+  <data name="ViceAdmiral" xml:space="preserve">
+    <value>Vice Almirante</value>
+  </data>
+  <data name="VeryLong" xml:space="preserve">
+    <value>Muy Largo</value>
+  </data>
+  <data name="Vanguard" xml:space="preserve">
+    <value>Vanguardia</value>
+  </data>
+  <data name="VanguardShort" xml:space="preserve">
+    <value>Van</value>
+  </data>
+  <data name="AntiSubmarineSupport" xml:space="preserve">
+    <value>Apoyo antisubmarino</value>
+  </data>
+  <data name="Akizuki" xml:space="preserve">
+    <value>&lt;Akizuki&gt;</value>
+  </data>
+  <data name="AirstrikeSupport" xml:space="preserve">
+    <value>Apoyo de ataque aéreo</value>
+  </data>
+  <data name="Unselected" xml:space="preserve">
+    <value>No seleccionado</value>
+  </data>
+  <data name="DepthChargeAttack" xml:space="preserve">
+    <value>Ataque con cargas de profundidad</value>
+  </data>
+  <data name="Destroyed" xml:space="preserve">
+    <value>Destruido</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>Material de desarrollo</value>
+  </data>
+  <data name="Diamond" xml:space="preserve">
+    <value>Formación diamante</value>
+  </data>
+  <data name="Disorder" xml:space="preserve">
+    <value>Desorden</value>
+  </data>
+  <data name="DoubleAttack" xml:space="preserve">
+    <value>Ataque doble</value>
+  </data>
+  <data name="DoubleLine" xml:space="preserve">
+    <value>Formación doble en línea</value>
+  </data>
+  <data name="Echelon" xml:space="preserve">
+    <value>Formación en echelon</value>
+  </data>
+  <data name="EXHolo" xml:space="preserve">
+    <value>EX-Holo</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>Expedición</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Fallo</value>
+  </data>
+  <data name="FailureNoPlane" xml:space="preserve">
+    <value>Fallo (sin aviones exploradores)</value>
+  </data>
+  <data name="Fast" xml:space="preserve">
+    <value>Rápido</value>
+  </data>
+  <data name="FirstPatrolFormation" xml:space="preserve">
+    <value>Primera formación de patrulla</value>
+  </data>
+  <data name="Flamethrower" xml:space="preserve">
+    <value>Lanzallamas (material de construcción rápida)</value>
+  </data>
+  <data name="FleetAdmiral" xml:space="preserve">
+    <value>Almirante de flota</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>Formación</value>
+  </data>
+  <data name="SpecialYamato12" xml:space="preserve">
+    <value>Yamato touch (1, 2)</value>
+  </data>
+  <data name="SpecialYamato123" xml:space="preserve">
+    <value>Yamato touch (1, 2, 3)</value>
+  </data>
+  <data name="QuestYearly" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="FourStarAdmiral" xml:space="preserve">
+    <value>Almirante</value>
+  </data>
+  <data name="Maelstrom" xml:space="preserve">
+    <value>Maelstrom</value>
+  </data>
+  <data name="LtCmdr" xml:space="preserve">
+    <value>Teniente Comandante</value>
+  </data>
+  <data name="Long" xml:space="preserve">
+    <value>Largo</value>
+  </data>
+  <data name="LineAhead" xml:space="preserve">
+    <value>En línea</value>
+  </data>
+  <data name="LineAbreast" xml:space="preserve">
+    <value>En línea transversal</value>
+  </data>
+  <data name="LightDamage" xml:space="preserve">
+    <value>Daño leve</value>
+  </data>
+  <data name="Laser" xml:space="preserve">
+    <value>Ataque láser</value>
+  </data>
+  <data name="LargeResourceNode" xml:space="preserve">
+    <value>Nodo de recursos grande</value>
+  </data>
+  <data name="Land" xml:space="preserve">
+    <value>Base aérea</value>
+  </data>
+  <data name="Irregular" xml:space="preserve">
+    <value>Irregular</value>
+  </data>
+  <data name="Injured" xml:space="preserve">
+    <value>Herido</value>
+  </data>
+  <data name="Indigo" xml:space="preserve">
+    <value>Irregular</value>
+  </data>
+  <data name="ImpMat" xml:space="preserve">
+    <value>Material de mejora</value>
+  </data>
+  <data name="Imagination" xml:space="preserve">
+    <value>Sólo fue mi imaginación</value>
+  </data>
+  <data name="Idle" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
+  <data name="Hourly" xml:space="preserve">
+    <value>Cada hora</value>
+  </data>
+  <data name="Holo" xml:space="preserve">
+    <value>Holo</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>Sano</value>
+  </data>
+  <data name="HeadOn" xml:space="preserve">
+    <value>Combate frontal</value>
+  </data>
+  <data name="HAGun" xml:space="preserve">
+    <value>Cañón de alto ángulo</value>
+  </data>
+  <data name="HAAAD" xml:space="preserve">
+    <value>Cañón de alto ángulo + Dispositivo antiaéreo</value>
+  </data>
+  <data name="HA2" xml:space="preserve">
+    <value>Cañón de alto ángulo x2</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>Gran éxito</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Oro</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Combustible</value>
+  </data>
+  <data name="FourthPatrolFormation" xml:space="preserve">
+    <value>Cuarta formación de patrulla</value>
+  </data>
+  <data name="Main3" xml:space="preserve">
+    <value>(Cañón principal x3)</value>
+  </data>
+  <data name="MainAP" xml:space="preserve">
+    <value>(Cañón principal / Proyectil AP)</value>
+  </data>
+  <data name="MainMain" xml:space="preserve">
+    <value>(Cañón principal / Cañón principal)</value>
+  </data>
+  <data name="MainMainSec" xml:space="preserve">
+    <value>(Cañón principal x2 / Cañón secundario)</value>
+  </data>
+  <data name="MainRadar" xml:space="preserve">
+    <value>(Cañón principal / Radar)</value>
+  </data>
+  <data name="MainSecondary" xml:space="preserve">
+    <value>(Cañón principal / Cañón secundario)</value>
+  </data>
+  <data name="MainTorp" xml:space="preserve">
+    <value>(Cañón principal / Torpedo)</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medio</value>
+  </data>
+  <data name="ModerateDamage" xml:space="preserve">
+    <value>Daño moderado</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>Modernización</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Mensual</value>
+  </data>
+  <data name="NightBattle" xml:space="preserve">
+    <value>Batalla nocturna</value>
+  </data>
+  <data name="NightDayBattle" xml:space="preserve">
+    <value>Batalla noche→día</value>
+  </data>
+  <data name="NoBattle" xml:space="preserve">
+    <value>Sin combate</value>
+  </data>
+  <data name="NoReturn" xml:space="preserve">
+    <value>Aviones no regresaron</value>
+  </data>
+  <data name="NoviceCommander" xml:space="preserve">
+    <value>Comandante novato</value>
+  </data>
+  <data name="NoviceLtCmdr" xml:space="preserve">
+    <value>Teniente comandante novato</value>
+  </data>
+  <data name="Parallel" xml:space="preserve">
+    <value>Paralelo</value>
+  </data>
+  <data name="Practice" xml:space="preserve">
+    <value>Práctica</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="Radar" xml:space="preserve">
+    <value>Radar</value>
+  </data>
+  <data name="Rainbow" xml:space="preserve">
+    <value>Holo</value>
+  </data>
+  <data name="Rare" xml:space="preserve">
+    <value>Raro</value>
+  </data>
+  <data name="RearAdmiral" xml:space="preserve">
+    <value>Contraalmirante</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Rojo</value>
+  </data>
+  <data name="Retreated" xml:space="preserve">
+    <value>Retirado</value>
+  </data>
+  <data name="Ring" xml:space="preserve">
+    <value>Tercera patrulla de vigilancia</value>
+  </data>
+  <data name="RocketAttack" xml:space="preserve">
+    <value>Ataque con cohetes</value>
+  </data>
+  <data name="Sakura" xml:space="preserve">
+    <value>Sakura</value>
+  </data>
+  <data name="SecondPatrolFormation" xml:space="preserve">
+    <value>Segunda formación de patrulla</value>
+  </data>
+  <data name="TorpTorp" xml:space="preserve">
+    <value> (Torpedo x2)</value>
+  </data>
+  <data name="SHolo" xml:space="preserve">
+    <value>S-Holo</value>
+  </data>
+  <data name="Short" xml:space="preserve">
+    <value>Corto</value>
+  </data>
+  <data name="Silver" xml:space="preserve">
+    <value>Plata</value>
+  </data>
+  <data name="Slow" xml:space="preserve">
+    <value>Lento</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>Misión</value>
+  </data>
+  <data name="SRainbow" xml:space="preserve">
+    <value>S-Holo</value>
+  </data>
+  <data name="SSHolo" xml:space="preserve">
+    <value>SS-Holo</value>
+  </data>
+  <data name="StartNode" xml:space="preserve">
+    <value>Nodo inicial</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>Acero</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="SuccessNoPlane" xml:space="preserve">
+    <value>Éxito (sin avión de reconocimiento)</value>
+  </data>
+  <data name="SuccessNoReturn" xml:space="preserve">
+    <value>Éxito (con aviones no retornados)</value>
+  </data>
+  <data name="Sunk" xml:space="preserve">
+    <value>Hundido</value>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>Suministro</value>
+  </data>
+  <data name="TAdvantage" xml:space="preserve">
+    <value>T verde</value>
+  </data>
+  <data name="TDisadvantage" xml:space="preserve">
+    <value>T rojo</value>
+  </data>
+  <data name="ThirdPatrolFormation" xml:space="preserve">
+    <value>Tercera formación de patrulla</value>
+  </data>
+  <data name="TorpedoAttack" xml:space="preserve">
+    <value>Ataque con torpedos</value>
+  </data>
+  <data name="Unhurt" xml:space="preserve">
+    <value>Ileso</value>
+  </data>
+  <data name="EasyDifficulty" xml:space="preserve">
+    <value>Fácil</value>
+  </data>
+  <data name="HardDifficulty" xml:space="preserve">
+    <value>Difícil</value>
+  </data>
+  <data name="MediumDifficulty" xml:space="preserve">
+    <value>Intermedio</value>
+  </data>
+  <data name="LandNode" xml:space="preserve">
+    <value>Nodo de desembarco</value>
+  </data>
+  <data name="TransportFleet" xml:space="preserve">
+    <value>Flota de transporte</value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>Resultado de expedición</value>
+  </data>
+  <data name="NoResources" xml:space="preserve">
+    <value>Sin recursos obtenidos</value>
+  </data>
+  <data name="BGM_BattleAir" xml:space="preserve">
+    <value>Batalla aérea</value>
+  </data>
+  <data name="BGM_BattleBoss" xml:space="preserve">
+    <value>Batalla contra jefe</value>
+  </data>
+  <data name="BGM_BattleDay" xml:space="preserve">
+    <value>Batalla diurna</value>
+  </data>
+  <data name="BGM_BattleNight" xml:space="preserve">
+    <value>Batalla nocturna</value>
+  </data>
+  <data name="BGM_Sortie" xml:space="preserve">
+    <value>En misión</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>Moneda de mobiliario</value>
+  </data>
+  <data name="SpecialIdle" xml:space="preserve">
+    <value>Inactivo especial</value>
+  </data>
+  <data name="SSHoloPlus" xml:space="preserve">
+    <value>SS-Holo+</value>
+  </data>
+  <data name="QuestOther" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="DaihatsuAttack" xml:space="preserve">
+    <value>Ataque anfibio (Daihatsu)</value>
+  </data>
+  <data name="TankAttack" xml:space="preserve">
+    <value>Ataque anfibio (Tanque)</value>
+  </data>
+  <data name="Rest" xml:space="preserve">
+    <value>Descanso</value>
+  </data>
+  <data name="Standby" xml:space="preserve">
+    <value>En espera</value>
+  </data>
+  <data name="TakeCover" xml:space="preserve">
+    <value>Cubrirse</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Misión</value>
+  </data>
+  <data name="BombingAttack" xml:space="preserve">
+    <value>Ataque de bombardeo</value>
+  </data>
+  <data name="TorpBombingAttack" xml:space="preserve">
+    <value>Ataque de torpedo + bombardeo</value>
+  </data>
+  <data name="BattleDetail_Node" xml:space="preserve">
+    <value>Nodo:</value>
+  </data>
+  <data name="BattleDetail_Boss" xml:space="preserve">
+    <value>(Jefe)</value>
+  </data>
+  <data name="BattleDetail_AirAttackWave" xml:space="preserve">
+    <value>-- Ola {0} --</value>
+  </data>
+  <data name="BattleDetail_FriendMainFleet" xml:space="preserve">
+    <value>- Flota principal -</value>
+  </data>
+  <data name="BattleDetail_FriendFleet" xml:space="preserve">
+    <value>- Flota -</value>
+  </data>
+  <data name="BattleDetail_FriendEscortFleet" xml:space="preserve">
+    <value>- Flota de escolta -</value>
+  </data>
+  <data name="BattleDetail_EnemyMainFleet" xml:space="preserve">
+    <value>- Flota principal enemiga -</value>
+  </data>
+  <data name="BattleDetail_EnemyEscortFleet" xml:space="preserve">
+    <value>- Flota de escolta enemiga -</value>
+  </data>
+  <data name="BattleDetail_EnemyFleet" xml:space="preserve">
+    <value>- Flota enemiga -</value>
+  </data>
+  <data name="BattleDetail_AirAttackUnits" xml:space="preserve">
+    <value>Escuadrones aéreos aliados:</value>
+  </data>
+  <data name="BattleDetail_AirBase" xml:space="preserve">
+    <value>- Base aérea -</value>
+  </data>
+  <data name="BattleDetail_FormationFriend" xml:space="preserve">
+    <value>Formación aliada:</value>
+  </data>
+  <data name="BattleDetail_FormationEnemy" xml:space="preserve">
+    <value>/ Formación enemiga:</value>
+  </data>
+  <data name="BattleDetail_EngagementForm" xml:space="preserve">
+    <value>Forma de enfrentamiento:</value>
+  </data>
+  <data name="BattleDetail_SearchingFriend" xml:space="preserve">
+    <value>Reconocimiento aliado:</value>
+  </data>
+  <data name="BattleDetail_SearchingEnemy" xml:space="preserve">
+    <value>/ Reconocimiento enemigo:</value>
+  </data>
+  <data name="EnemyCombinedFleet" xml:space="preserve">
+    <value>Flota combinada enemiga</value>
+  </data>
+  <data name="BattleDetail_TitleBrackets" xml:space="preserve">
+    <value>== {0} ==</value>
+  </data>
+  <data name="BattleDetail_BattleEnd" xml:space="preserve">
+    <value>== Fin de la batalla ==</value>
+  </data>
+  <data name="BattleDetail_Base" xml:space="preserve">
+    <value>Base {0}</value>
+  </data>
+  <data name="BattleDetail_AirBaseFriendlyContact" xml:space="preserve">
+    <value>Contacto aliado</value>
+  </data>
+  <data name="BattleDetail_AirBaseEnemyContact" xml:space="preserve">
+    <value>Contacto enemigo</value>
+  </data>
+  <data name="BattleDetail_ShipStats" xml:space="preserve">
+    <value>#{0}: {1} {2} HP: {3} / {4} - FP:{5}, Torp:{6}, AA:{7}, Blindaje:{8}</value>
+  </data>
+  <data name="BattleDetail_EnemyStats" xml:space="preserve">
+    <value>- FP:{0}, Torp:{1}, AA:{2}, Blindaje:{3}</value>
+  </data>
+  <data name="BattleDetail_Result" xml:space="preserve">
+    <value>◆ Resultado de la batalla ◆</value>
+  </data>
+  <data name="BattleDetail_ResultRank" xml:space="preserve">
+    <value>Rango: {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPMain" xml:space="preserve">
+    <value>MVP (Flota principal): {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPEscort" xml:space="preserve">
+    <value>MVP (Flota de escolta): {0}</value>
+  </data>
+  <data name="BattleDetail_ShipExp" xml:space="preserve">
+    <value>EXP de barco: +{0}</value>
+  </data>
+  <data name="BattleDetail_AdmiralExp" xml:space="preserve">
+    <value>EXP del almirante: +{0}</value>
+  </data>
+  <data name="BattleDetail_Drop" xml:space="preserve">
+    <value>Recompensa:</value>
+  </data>
+  <data name="BattleDetail_EnemyStarshell" xml:space="preserve">
+    <value>Bengala enemiga: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_EnemySearchlight" xml:space="preserve">
+    <value>Reflector enemigo: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyStarshell" xml:space="preserve">
+    <value>Bengala: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlySearchlight" xml:space="preserve">
+    <value>Reflector: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyNightContact" xml:space="preserve">
+    <value>Contacto nocturno:</value>
+  </data>
+  <data name="BattleDetail_EnemyNightContact" xml:space="preserve">
+    <value>Contacto nocturno enemigo:</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>Detección</value>
+  </data>
+  <data name="Title_NormalFleetAirBattle" xml:space="preserve">
+    <value>Batalla aérea</value>
+  </data>
+  <data name="Title_NormalFleetAirRaid" xml:space="preserve">
+    <value>Ataque aéreo</value>
+  </data>
+  <data name="Title_CombinedFleetAirRaid" xml:space="preserve">
+    <value>Ataque aéreo (flota combinada)</value>
+  </data>
+  <data name="Title_CombinedFleetAirBattle" xml:space="preserve">
+    <value>Batalla aérea (flota combinada)</value>
+  </data>
+  <data name="Title_BaseAirRaid" xml:space="preserve">
+    <value>Ataque aéreo a base</value>
+  </data>
+  <data name="Title_CombinedEachWater" xml:space="preserve">
+    <value>Batalla diurna - Flota combinada (escuadra de superficie)</value>
+  </data>
+  <data name="Title_CombinedNightOnly" xml:space="preserve">
+    <value>Combate nocturno inicial (flota combinada)</value>
+  </data>
+  <data name="Title_PracticeNight" xml:space="preserve">
+    <value>Batalla nocturna de práctica</value>
+  </data>
+  <data name="Title_PracticeDay" xml:space="preserve">
+    <value>Batalla diurna de práctica</value>
+  </data>
+  <data name="Title_NormalNight" xml:space="preserve">
+    <value>Batalla nocturna</value>
+  </data>
+  <data name="Title_NormalDay" xml:space="preserve">
+    <value>Batalla diurna</value>
+  </data>
+  <data name="Title_NightOnly" xml:space="preserve">
+    <value>Batalla nocturna inicial</value>
+  </data>
+  <data name="Title_EnemyCombinedDay" xml:space="preserve">
+    <value>Batalla diurna contra flota combinada</value>
+  </data>
+  <data name="Title_EnemyCombinedNight" xml:space="preserve">
+    <value>Batalla nocturna contra flota combinada</value>
+  </data>
+  <data name="Title_CombinedNormalDay" xml:space="preserve">
+    <value>Batalla diurna - Flota combinada (escuadra móvil)</value>
+  </data>
+  <data name="Title_CombinedEachDay" xml:space="preserve">
+    <value>Batalla diurna - Flota combinada (escuadra móvil vs combinada)</value>
+  </data>
+  <data name="BattleDetail_Stage2AACI" xml:space="preserve">
+    <value>Corte antiaéreo tipo #{2} ({0}, {1})</value>
+  </data>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>CI de destructor (Torpedo x2 + Vigía)</value>
+  </data>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>CI de destructor (Torpedo + bidón + Vigía)</value>
+  </data>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>Mutsu Touch</value>
+  </data>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>Ataque nocturno de escuadra (Kongou)</value>
+  </data>
+  <data name="FastPlus" xml:space="preserve">
+    <value>Rápido+</value>
+  </data>
+  <data name="Fastest" xml:space="preserve">
+    <value>Rapidísimo</value>
+  </data>
+  <data name="SSPlusPlus" xml:space="preserve">
+    <value>SS++</value>
+  </data>
+  <data name="NoEvent" xml:space="preserve">
+    <value>Sin evento</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Recursos</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value>Jefe</value>
+  </data>
+  <data name="RadarAmbush" xml:space="preserve">
+    <value>Emboscada por radar</value>
+  </data>
+  <data name="CasualDifficulty" xml:space="preserve">
+    <value>Casual</value>
+  </data>
+  <data name="LineAheadShort" xml:space="preserve">
+    <value>LA</value>
+  </data>
+  <data name="DoubleLineShort" xml:space="preserve">
+    <value>DL</value>
+  </data>
+  <data name="DiamondShort" xml:space="preserve">
+    <value>Rin</value>
+  </data>
+  <data name="EchelonShort" xml:space="preserve">
+    <value>Ech</value>
+  </data>
+  <data name="LineAbreastShort" xml:space="preserve">
+    <value>LAb</value>
+  </data>
+  <data name="SecondPatrolFormationShort" xml:space="preserve">
+    <value>For</value>
+  </data>
+  <data name="ThirdPatrolFormationShort" xml:space="preserve">
+    <value>Rin</value>
+  </data>
+  <data name="FourthPatrolFormationShort" xml:space="preserve">
+    <value>Btl</value>
+  </data>
+  <data name="GreenT" xml:space="preserve">
+    <value>T verde</value>
+  </data>
+  <data name="RedT" xml:space="preserve">
+    <value>T rojo</value>
+  </data>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>Ataque normal</value>
+  </data>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>Ataque láser</value>
+  </data>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>Disparo doble</value>
+  </data>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>CI (CP + CS)</value>
+  </data>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>CI (CP + Radar)</value>
+  </data>
+  <data name="CutinMainAP" xml:space="preserve">
+    <value>CI (CP + AP)</value>
+  </data>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>CI (CP + CP)</value>
+  </data>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>CI (Portaaviones)</value>
+  </data>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>Nelson Touch</value>
+  </data>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>Nagato Touch</value>
+  </data>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>Colorado Touch</value>
+  </data>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>CI (Suisei)</value>
+  </data>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>Ataque anfibio (Daihatsu)</value>
+  </data>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>Ataque anfibio (Toku Daihatsu)</value>
+  </data>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>Ataque anfibio (Daihatsu + Tanque)</value>
+  </data>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>Ataque anfibio (Toku Daihatsu + Tanque)</value>
+  </data>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>CI (CP + Torpedo)</value>
+  </data>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>CI (Torpedo x2)</value>
+  </data>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>CI nocturno (CP x2 + CS)</value>
+  </data>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>CI nocturno (CP x3)</value>
+  </data>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>CI de destructor (CP + Torpedo + Radar)</value>
+  </data>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>CI de destructor (Torpedo + Vigía + Radar)</value>
+  </data>
+  <data name="Maya" xml:space="preserve">
+    <value>&lt;Maya&gt;</value>
+  </data>
+  <data name="Isuzu" xml:space="preserve">
+    <value>&lt;Isuzu&gt;</value>
+  </data>
+  <data name="Kasumi" xml:space="preserve">
+    <value>&lt;Kasumi&gt;</value>
+  </data>
+  <data name="Satsuki" xml:space="preserve">
+    <value>&lt;Satsuki&gt;</value>
+  </data>
+  <data name="NonPiercing" xml:space="preserve">
+    <value>(Sin perforación)</value>
+  </data>
+  <data name="Kinu" xml:space="preserve">
+    <value>&lt;Kinu&gt;</value>
+  </data>
+  <data name="Fumizuki" xml:space="preserve">
+    <value>Fumizuki</value>
+  </data>
+  <data name="Unconcentrated" xml:space="preserve">
+    <value> (Unconcentrated) </value>
+  </data>
+  <data name="UIT25" xml:space="preserve">
+    <value>&lt;UIT-25&gt;</value>
+  </data>
+  <data name="Tatsuta" xml:space="preserve">
+    <value>&lt;Tatsuta&gt;</value>
+  </data>
+  <data name="Musashi" xml:space="preserve">
+    <value>&lt;Musashi&gt;</value>
+  </data>
+  <data name="Ise" xml:space="preserve">
+    <value>&lt;Ise&gt;</value>
+  </data>
+  <data name="Hamakaze" xml:space="preserve">
+    <value>&lt;Hamakaze&gt;</value>
+  </data>
+  <data name="Tenryuu" xml:space="preserve">
+    <value>&lt;Tenryuu&gt;</value>
+  </data>
+  <data name="BriishAACI" xml:space="preserve">
+    <value>Lanzacohetes x2 o FCR/Cañón Pom-pom o Lanzacohetes/Cañón Pom-pom (RU)</value>
+  </data>
+  <data name="FletcherGun" xml:space="preserve">
+    <value>Cañón individual de 5 pulgadas Mk.30 Kai</value>
+  </data>
+  <data name="AtlantaGun" xml:space="preserve">
+    <value>Cañón Atlanta</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Enero</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Febrero</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Marzo</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Mayo</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Junio</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Julio</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Septiembre</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Octubre</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Noviembre</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Diciembre</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="NormalFleet" xml:space="preserve">
+    <value>Flota normal</value>
+  </data>
+  <data name="CarrierTF" xml:space="preserve">
+    <value>Fuerza de tarea de portaaviones</value>
+  </data>
+  <data name="SurfaceTF" xml:space="preserve">
+    <value>Fuerza de tarea de superficie</value>
+  </data>
+  <data name="SpecialSubmarineTender23" xml:space="preserve">
+    <value>Ataque de flota submarina (2, 3)</value>
+  </data>
+  <data name="SpecialSubmarineTender34" xml:space="preserve">
+    <value>Ataque de flota submarina (3, 4)</value>
+  </data>
+  <data name="SpecialSubmarineTender24" xml:space="preserve">
+    <value>Ataque de flota submarina (2, 4)</value>
+  </data>
+  <data name="TorpedoSupport" xml:space="preserve">
+    <value>Apoyo de torpedos</value>
+  </data>
+  <data name="Title_NormalDayFromNight" xml:space="preserve">
+    <value>Batalla noche→Batalla día </value>
+  </data>
+  <data name="Title_NormalRadar" xml:space="preserve">
+    <value>Flota normal Emboscada por radar</value>
+  </data>
 </root>

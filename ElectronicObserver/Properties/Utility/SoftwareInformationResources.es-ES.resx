@@ -117,4 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="YouAreUsingTheLatestVersion" xml:space="preserve">
+    <value>Actualmente está utilizando la última versión (versión {0}).</value>
+  </data>
+  <data name="UpdaterDownloadFinished" xml:space="preserve">
+    <value>Descarga del actualizador finalizada.</value>
+  </data>
+  <data name="TranslationFilesUpdated" xml:space="preserve">
+    <value>Archivos de traducción actualizados.</value>
+  </data>
+  <data name="DownloadFinished" xml:space="preserve">
+    <value>Descarga finalizada.</value>
+  </data>
+  <data name="FailedToUpdateFile" xml:space="preserve">
+    <value>Error al actualizar los datos de {0}. {1}</value>
+  </data>
+  <data name="FailedToParseUpdateData" xml:space="preserve">
+    <value> Error al analizar los datos de actualización:</value>
+  </data>
+  <data name="FailedToDownloadElectronicObserver" xml:space="preserve">
+    <value>Error al descargar EO.</value>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Descargando actualización...</value>
+  </data>
+  <data name="FailedToDownloadUpdater" xml:space="preserve">
+    <value>Error al descargar el actualizador.</value>
+  </data>
+  <data name="FileUpdated" xml:space="preserve">
+    <value>El archivo {0} ha sido actualizado.</value>
+  </data>
+  <data name="CloseElectronicObserverToCompleteTheUpdate" xml:space="preserve">
+    <value>Cierra Electronic Observer para completar el proceso de actualización. Se reiniciará automáticamente.</value>
+  </data>
+  <data name="StartedDownloadingUpdate" xml:space="preserve">
+    <value>Se comenzó a descargar la actualización. {0}</value>
+  </data>
+  <data name="InvalidUpdateUrl" xml:space="preserve">
+    <value>URL de actualización no válida.</value>
+  </data>
+  <data name="FailedToObtainUpdateData" xml:space="preserve">
+    <value>Error al obtener los datos de actualización.</value>
+  </data>
 </root>

@@ -120,4 +120,136 @@
   <data name="AA" xml:space="preserve">
     <value>AA</value>
   </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="AutoOrganizeSortie" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="AutoRange" xml:space="preserve">
+    <value>Alcanze</value>
+  </data>
+  <data name="AutoOrganizeAirDefense" xml:space="preserve">
+    <value>Auto AD</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Alcanze</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>AS</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
+  </data>
+  <data name="AirBaseOne" xml:space="preserve">
+    <value>AB #1</value>
+  </data>
+  <data name="AirBaseThree" xml:space="preserve">
+    <value>AB #3</value>
+  </data>
+  <data name="AirBaseTwo" xml:space="preserve">
+    <value>AB #2</value>
+  </data>
+  <data name="Aircraft" xml:space="preserve">
+    <value>Aeronave</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>AD</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(Desconocido)</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>Antibombardero</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(vacío)</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torp</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="TitleTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ClearAirBaseOrganizations" xml:space="preserve">
+    <value>"Esto borrará todas las configuraciones de la base aérea.
+¿Estás seguro?"</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>Evasión</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>Intercepción</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="TopMenu_Settings_HighAltitude" xml:space="preserve">
+    <value>Alta altitud (&amp;H)</value>
+  </data>
+  <data name="FailedToLoadAirBaseInfoTitle" xml:space="preserve">
+    <value>Error al leer datos de base aérea</value>
+  </data>
+  <data name="EventMap" xml:space="preserve">
+    <value>Mapa de evento</value>
+  </data>
+  <data name="Dupes" xml:space="preserve">
+    <value>Duplicados</value>
+  </data>
+  <data name="ClearAirBaseOrganizationsTitle" xml:space="preserve">
+    <value>Limpiar organización</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>FP</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Costo</value>
+  </data>
+  <data name="Bomber" xml:space="preserve">
+    <value>Bomb</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Simulador de Base Aérea</value>
+  </data>
+  <data name="TopMenu_Settings" xml:space="preserve">
+    <value>Configurar (&amp;S)</value>
+  </data>
+  <data name="TopMenu_Edit_Clear" xml:space="preserve">
+    <value>Limpiar (&amp;C)</value>
+  </data>
+  <data name="TopMenu_Edit_ImportOrganization" xml:space="preserve">
+    <value>&amp;Importar configuración actual</value>
+  </data>
+  <data name="TopMenu_Edit" xml:space="preserve">
+    <value>Editar (&amp;E)</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>Espacio</value>
+  </data>
+  <data name="OrganizationCost" xml:space="preserve">
+    <value>Despliegue</value>
+  </data>
+  <data name="FailedToLoadAirBaseInfo" xml:space="preserve">
+    <value>No se encontraron datos de base aérea.  
+Por favor, abre el menú de salida en el juego para obtener los datos.</value>
+  </data>
+  <data name="OptimizationFailedTitle" xml:space="preserve">
+    <value>Error en la optimización</value>
+  </data>
+  <data name="OptimizationFailed" xml:space="preserve">
+    <value>Error en la optimización.  
+Los requisitos son demasiado altos o no hay suficientes aviones.</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>Superioridad aérea de salida</value>
+  </data>
 </root>

@@ -117,4 +117,105 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ASWBonus" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="ASWCurrent" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="AddShip" xml:space="preserve">
+    <value>Agregar barco</value>
+  </data>
+  <data name="Exp" xml:space="preserve">
+    <value>exp.</value>
+  </data>
+  <data name="HPBonus" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="LevelCurrent" xml:space="preserve">
+    <value>Nivel (Actual)</value>
+  </data>
+  <data name="LevelTarget" xml:space="preserve">
+    <value>Nivel (Objetivo)</value>
+  </data>
+  <data name="LuckCurrent" xml:space="preserve">
+    <value>Suerte (actual)</value>
+  </data>
+  <data name="LuckRemaining" xml:space="preserve">
+    <value>Suerte restante</value>
+  </data>
+  <data name="LuckTarget" xml:space="preserve">
+    <value>Suerte (objetivo)</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Prioridad</value>
+  </data>
+  <data name="PlanCompletedNotification" xml:space="preserve">
+    <value>El entrenamiento de {0} ha sido completado.</value>
+  </data>
+  <data name="ASWTarget" xml:space="preserve">
+    <value>Objetivo antisubmarino (ASW)</value>
+  </data>
+  <data name="ASWBonusTarget" xml:space="preserve">
+    <value>Bonificación ASW (objetivo)</value>
+  </data>
+  <data name="ASWBonusCurrent" xml:space="preserve">
+    <value>Bonificación ASW (actual)</value>
+  </data>
+  <data name="HPBonusCurrent" xml:space="preserve">
+    <value>Bonificación de HP (actual)</value>
+  </data>
+  <data name="NotifyAnyRemodelReadyToolTip" xml:space="preserve">
+    <value>Ejemplo: si deseas remodelar a Kamikaze desde nivel 1 hasta Kamikaze Kai Ni.  
+Si está desactivado, solo recibirás aviso cuando pueda remodelarse directamente a Kamikaze Kai Ni.  
+Si está activado, se notificará tanto cuando pueda convertirse en Kamikaze Kai como en Kamikaze Kai Ni.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Entrenamiento de barcos</value>
+  </data>
+  <data name="ASWRemaining" xml:space="preserve">
+    <value>ASW (restante)</value>
+  </data>
+  <data name="RemainingExp" xml:space="preserve">
+    <value>Exp restante</value>
+  </data>
+  <data name="HPTarget" xml:space="preserve">
+    <value>HP (objetivo)</value>
+  </data>
+  <data name="HPCurrent" xml:space="preserve">
+    <value>HP (actual)</value>
+  </data>
+  <data name="HPBonusTarget" xml:space="preserve">
+    <value>Mejora de HP (objetivo)</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="RemovePlan" xml:space="preserve">
+    <value>Eliminar plan</value>
+  </data>
+  <data name="RemoveFinishedPlans" xml:space="preserve">
+    <value>Eliminar planes finalizados</value>
+  </data>
+  <data name="NotifyAnyRemodelReady" xml:space="preserve">
+    <value>Notificar cuando cualquier remodelación esté lista</value>
+  </data>
+  <data name="EditPlan" xml:space="preserve">
+    <value>Editar plan</value>
+  </data>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>Mostrar completado</value>
+  </data>
+  <data name="RemodelGoal" xml:space="preserve">
+    <value>Remodelación</value>
+  </data>
+  <data name="HPRemaining" xml:space="preserve">
+    <value>HP (restante)</value>
+  </data>
+  <data name="PlanCompleted" xml:space="preserve">
+    <value>Entrenamiento de barco completado</value>
+  </data>
 </root>

@@ -117,4 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SRank" xml:space="preserve">
+    <value>S-rank</value>
+  </data>
+  <data name="EnemyWasWeakened" xml:space="preserve">
+    <value>¡Hemos confirmado el debilitamiento de las fuerzas enemigas!</value>
+  </data>
+  <data name="FleetTagAlertDialogCaption" xml:space="preserve">
+    <value>Advertencia de despliegue incorrecto</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>tiempos</value>
+  </data>
+  <data name="ExpeditionFailureFuelAmmo" xml:space="preserve">
+    <value>La expedición {2}:{3} de la flota #{0} {1} puede fallar.
+
+No reabastecido
+
+(Esta advertencia puede desactivarse en Configuración → Comportamiento)</value>
+  </data>
+  <data name="GimmickRelease" xml:space="preserve">
+    <value>＊Mecánica liberada＊</value>
+  </data>
+  <data name="UnfinishedMonthlyExpeditions" xml:space="preserve">
+    <value>Expediciones mensuales sin completar</value>
+  </data>
+  <data name="FleetTagWarning" xml:space="preserve">
+    <value> [Advertencia de salida errónea]  
+Barcos sin etiqueta:
+</value>
+  </data>
+  <data name="CtBonusSubmarine" xml:space="preserve">
+    <value>Incl. submarinos con bonificación CT: {0} / Victoria S: {1}</value>
+  </data>
+  <data name="CtBonusSurface" xml:space="preserve">
+    <value>Incl. buques de superficie con bonificación CT: {0} / Victoria S: {1}</value>
+  </data>
+  <data name="FleetTagAlertDialogText" xml:space="preserve">
+    <value>Una nave sin etiqueta de flota está en la formación.  
+Por favor, verifíquelo antes de salir en misión.  
+(Esta advertencia se puede desactivar desde Configuración → Comportamiento)</value>
+  </data>
+  <data name="ChangesInEventMapDetected" xml:space="preserve">
+    <value>¡Se detectaron cambios en el mapa del evento!</value>
+  </data>
+  <data name="BattleResultRank" xml:space="preserve">
+    <value>Resultado: rango {0}</value>
+  </data>
+  <data name="Defeated" xml:space="preserve">
+    <value>Derrotado</value>
+  </data>
+  <data name="CTBonus" xml:space="preserve">
+    <value>Bono CT: {0} / Victoria S: {1}</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Información</value>
+  </data>
 </root>

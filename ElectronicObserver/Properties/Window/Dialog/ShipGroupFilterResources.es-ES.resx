@@ -117,4 +117,177 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConstFilterView_Name" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="ClearConstFilter" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="Expression_Add" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="Expression_Delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="label1" xml:space="preserve">
+    <value>Esta es la lista de barcos que se incluirán o excluirán, independientemente del contenido del filtro.
+Puedes agregarlos desde el menú contextual (clic derecho) en el propio grupo.</value>
+  </data>
+  <data name="OptimizeConstFilter" xml:space="preserve">
+    <value>Optimizar</value>
+  </data>
+  <data name="tabPage1" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>(Descripción)</value>
+  </data>
+  <data name="ConvertToExpression" xml:space="preserve">
+    <value>Convertir a fórmula</value>
+  </data>
+  <data name="ExpressionDetailView_LeftOperand" xml:space="preserve">
+    <value>Operando izquierdo</value>
+  </data>
+  <data name="ExpressionDetailView_Operator" xml:space="preserve">
+    <value>Operador</value>
+  </data>
+  <data name="ExpressionDetailView_RightOperand" xml:space="preserve">
+    <value>Operando derecho</value>
+  </data>
+  <data name="ExpressionDetail_Add" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="ExpressionDetail_Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="ExpressionDetail_Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="ExpressionView_Expression" xml:space="preserve">
+    <value>Fórmula</value>
+  </data>
+  <data name="ExpressionView_ExternalAndOr" xml:space="preserve">
+    <value>Condición externa</value>
+  </data>
+  <data name="ExpressionView_InternalAndOr" xml:space="preserve">
+    <value>Condición interna</value>
+  </data>
+  <data name="ExpressionView_Inverse" xml:space="preserve">
+    <value>Inverso</value>
+  </data>
+  <data name="tabPage2" xml:space="preserve">
+    <value>Lista de inclusión/exclusión</value>
+  </data>
+  <data name="ExpressionView_Enabled" xml:space="preserve">
+    <value>Habilitar/Deshabilitar</value>
+  </data>
+  <data name="ExpressionView_Inverse_ToolTip" xml:space="preserve">
+    <value>Invertir las condiciones</value>
+  </data>
+  <data name="ExpressionView_Up" xml:space="preserve">
+    <value>↑</value>
+  </data>
+  <data name="ExpressionView_Up_ToolTip" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="ClearFilterWarning" xml:space="preserve">
+    <value>¿Estás seguro de que deseas reiniciar {0}?</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExpressionView_Down" xml:space="preserve">
+    <value>↓</value>
+  </data>
+  <data name="ExpressionDetailView_Enabled" xml:space="preserve">
+    <value>○</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="SelectExpressionRow" xml:space="preserve">
+    <value>Selecciona la fila de la expresión (a la izquierda) que deseas usar.  
+Si no existe, agrégala.</value>
+  </data>
+  <data name="SelectSequence" xml:space="preserve">
+    <value>Selecciona la secuencia objetivo (lado izquierdo).</value>
+  </data>
+  <data name="SelectARow" xml:space="preserve">
+    <value>Selecciona la fila que deseas eliminar.</value>
+  </data>
+  <data name="SelectTargetRow" xml:space="preserve">
+    <value>Selecciona la fila que deseas utilizar como objetivo.</value>
+  </data>
+  <data name="ExpressionView_Down_ToolTip" xml:space="preserve">
+    <value>Hacia abajo</value>
+  </data>
+  <data name="ExpressionDetailView_Enabled_ToolTip" xml:space="preserve">
+    <value>Habilitar/Deshabilitar</value>
+  </data>
+  <data name="OptimizeConstFilter_ToolTip" xml:space="preserve">
+    <value>Eliminar naves inexistentes de la lista</value>
+  </data>
+  <data name="ClearConstFilter_ToolTip" xml:space="preserve">
+    <value>Eliminar todo el contenido de la lista</value>
+  </data>
+  <data name="ConvertToExpression_ToolTip" xml:space="preserve">
+    <value>Convertir listas de inclusión/exclusión en expresiones.
+Tenga en cuenta que no es posible revertir la conversión.</value>
+  </data>
+  <data name="ConstFilterSelector_InclusionList" xml:space="preserve">
+    <value>Lista de inclusión</value>
+  </data>
+  <data name="ConstFilterSelector_ExclusionList" xml:space="preserve">
+    <value>Lista de exclusión</value>
+  </data>
+  <data name="ButtonMenu" xml:space="preserve">
+    <value>Menú ▼</value>
+  </data>
+  <data name="FilterWasExported" xml:space="preserve">
+    <value>El filtro se exportó al portapapeles. Puede importarlo con "Importar filtro" o pegarlo en un bloc de notas para guardarlo.</value>
+  </data>
+  <data name="ImportFilterFromClipboard" xml:space="preserve">
+    <value> Se importará un filtro desde el portapapeles. El filtro actual se descartará. (Los filtros de inclusión/exclusión se conservarán) ¿Desea continuar?</value>
+  </data>
+  <data name="ImportFilterFromClipboardTitle" xml:space="preserve">
+    <value>Confirmar importación de filtro</value>
+  </data>
+  <data name="ClipboardIsEmpty" xml:space="preserve">
+    <value>El portapapeles está vacío. Copie los datos del filtro y vuelva a intentarlo.</value>
+  </data>
+  <data name="CanNotImport" xml:space="preserve">
+    <value>No se puede importar</value>
+  </data>
+  <data name="FormatCanNotBeImported" xml:space="preserve">
+    <value>Este formato de datos no se puede importar</value>
+  </data>
+  <data name="FilterExportFailed" xml:space="preserve">
+    <value>Error al exportar el filtro.</value>
+  </data>
+  <data name="FilterImportFailed" xml:space="preserve">
+    <value>Error al importar el filtro.</value>
+  </data>
+  <data name="ExportingFilterTitle" xml:space="preserve">
+    <value>Exportar filtro</value>
+  </data>
+  <data name="SubMenu_ImportFilter" xml:space="preserve">
+    <value>&amp;Importar filtro</value>
+  </data>
+  <data name="SubMenu_ExportFilter" xml:space="preserve">
+    <value>&amp;Exportar filtro</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Configuración de filtros</value>
+  </data>
+  <data name="CanNotExport" xml:space="preserve">
+    <value>No se puede exportar</value>
+  </data>
+  <data name="ClearFilterWarningTitle" xml:space="preserve">
+    <value>Confirmación de reinicio</value>
+  </data>
+  <data name="ConvertToExpressionWarning" xml:space="preserve">
+    <value>Convertirá la lista de inclusión/exclusión actual en una expresión.
+No se puede deshacer esta conversión.
+¿Desea continuar?</value>
+  </data>
 </root>

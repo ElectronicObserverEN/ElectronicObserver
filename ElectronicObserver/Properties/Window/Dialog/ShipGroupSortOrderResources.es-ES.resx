@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EnabledView_SortDirection" xml:space="preserve">
+    <value>Orden</value>
+  </data>
+  <data name="EnabledView_SortDirectionToolTip" xml:space="preserve">
+    <value>Ordenar la columna en orden ascendente o descendente.</value>
+  </data>
+  <data name="AutoSortFlag" xml:space="preserve">
+    <value>Vacío</value>
+  </data>
+  <data name="ButtonLeftAll" xml:space="preserve">
+    <value>&lt;&lt; Todo</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Orden personalizado</value>
+  </data>
+  <data name="ButtonRightAll" xml:space="preserve">
+    <value>Todo &gt;&gt;</value>
+  </data>
+  <data name="DisabledView_Name" xml:space="preserve">
+    <value>Columna</value>
+  </data>
+  <data name="EnabledView_Name" xml:space="preserve">
+    <value>Nombre de columna</value>
+  </data>
 </root>

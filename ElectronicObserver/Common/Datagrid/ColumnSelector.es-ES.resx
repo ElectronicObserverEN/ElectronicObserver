@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Visible" xml:space="preserve">
+    <value>&amp;Visible</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>Columna</value>
+  </data>
+  <data name="ColumnsSelection" xml:space="preserve">
+    <value>Selección de columnas</value>
+  </data>
 </root>

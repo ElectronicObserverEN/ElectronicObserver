@@ -117,4 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="All" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="ConvertTo" xml:space="preserve">
+    <value>Refrescar</value>
+  </data>
+  <data name="AddEquipmentFromLibrary" xml:space="preserve">
+    <value>Agregar equipo desde la biblioteca</value>
+  </data>
+  <data name="UpgradeLevel" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="UpgradeTree" xml:space="preserve">
+    <value>Árbol</value>
+  </data>
+  <data name="AddOwnedEquipment" xml:space="preserve">
+    <value>Agregar equipo en posesión</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUpgrade" xml:space="preserve">
+    <value>Agregar plan y asignar equipo para mejorar</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUse" xml:space="preserve">
+    <value>Agregar plan y asignar equipo para consumir</value>
+  </data>
+  <data name="UseSliderFromLevel" xml:space="preserve">
+    <value>Usar el control deslizante desde el nivel</value>
+  </data>
+  <data name="AlreadyOwned" xml:space="preserve">
+    <value>Ya en posesión</value>
+  </data>
+  <data name="UnassignEquipment" xml:space="preserve">
+    <value>Desasignar equipamiento</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>No asignado</value>
+  </data>
+  <data name="TotalCost" xml:space="preserve">
+    <value>Coste total</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hoy ({0})</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>Modo compacto</value>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>Meta</value>
+  </data>
+  <data name="Helper" xml:space="preserve">
+    <value>Ayudante</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Prioridad</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Requerido:</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Costo</value>
+  </data>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>Mostrar completados</value>
+  </data>
+  <data name="AssignEquipmentToUse" xml:space="preserve">
+    <value>Asignar como equipo a consumir</value>
+  </data>
+  <data name="AssignEquipmentToUpgrade" xml:space="preserve">
+    <value>Assign equipment to upgrade Asignar equipo para mejora</value>
+  </data>
+  <data name="EditUpgradePlan" xml:space="preserve">
+    <value>Editar plan de mejora</value>
+  </data>
+  <data name="IsFinished" xml:space="preserve">
+    <value>Completado</value>
+  </data>
+  <data name="NotOwned" xml:space="preserve">
+    <value>No poseído</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Planificador de mejora de equipamiento</value>
+  </data>
+  <data name="EquipmentUpgradePlan" xml:space="preserve">
+    <value>Plan de mejora de equipamiento</value>
+  </data>
+  <data name="RemoveUpgradePlan" xml:space="preserve">
+    <value>Eliminar plan de mejora</value>
+  </data>
+  <data name="CreateUpgradePlan" xml:space="preserve">
+    <value>Agregar plan de mejora</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>En posesión:</value>
+  </data>
 </root>

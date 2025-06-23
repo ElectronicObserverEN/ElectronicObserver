@@ -118,34 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Alignment_Bottom" xml:space="preserve">
-    <value>&amp;Bottom</value>
+    <value>&amp;ParteInferior</value>
   </data>
   <data name="Alignment_Invisible" xml:space="preserve">
     <value>&amp;Invisible</value>
   </data>
   <data name="Alignment_Left" xml:space="preserve">
-    <value>&amp;Left</value>
+    <value>&amp;Izquierda</value>
   </data>
   <data name="Alignment_Right" xml:space="preserve">
-    <value>&amp;Right</value>
+    <value>&amp;Derecha</value>
   </data>
   <data name="Alignment_Top" xml:space="preserve">
-    <value>&amp;Top</value>
+    <value>&amp;Arriba</value>
   </data>
   <data name="Other" xml:space="preserve">
-    <value>More Options</value>
+    <value>Más Opciones</value>
   </data>
   <data name="Other_Zoom_Current_Fit" xml:space="preserve">
-    <value>Zoom: To Fit</value>
+    <value>Zoom: Para Encajar</value>
   </data>
   <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
-    <value>&amp;Copy</value>
+    <value>&amp;Copiar</value>
   </data>
   <data name="Strip_Mute" xml:space="preserve">
     <value>Mute</value>
   </data>
   <data name="Strip_Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Refrescar</value>
   </data>
   <data name="Strip_ScreenShot" xml:space="preserve">
     <value>Screenshot</value>
@@ -157,24 +157,24 @@
     <value>Type 74 Electronic Observation Device Browser</value>
   </data>
   <data name="RefreshIgnoreCache" xml:space="preserve">
-    <value>&amp;Hard Refresh</value>
+    <value>&amp;Forzar Refrescar</value>
   </data>
   <data name="NavigateToLogInPage" xml:space="preserve">
-    <value>Go to Login Page</value>
+    <value>Ir a la página de inicio de sesión</value>
   </data>
   <data name="Other_Zoom_Current" xml:space="preserve">
     <value>Zoom:</value>
   </data>
   <data name="FailedToApplyStylesheet" xml:space="preserve">
-    <value>Failed to apply stylesheet.</value>
+    <value>Error al aplicar la hoja de estilos.</value>
   </data>
   <data name="LoginDialog" xml:space="preserve">
-    <value>This will return to the login page.
-Are you sure?</value>
+    <value>Volverá a la página de inicio de sesión.
+¿Está usted seguro?</value>
   </data>
   <data name="ReloadDialog" xml:space="preserve">
-    <value>This will reload the page.
-Are you sure?</value>
+    <value>Esto recargará la página.
+¿Seguro?</value>
   </data>
   <data name="FrameScript" xml:space="preserve">
     <value>
@@ -210,125 +210,125 @@ catch(e) {{
 }}</value>
   </data>
   <data name="ScreenshotError" xml:space="preserve">
-    <value>Failed to take screenshot.</value>
+    <value>No se ha podido hacer la captura de pantalla.</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
-    <value>Confirmation</value>
+    <value>Confirmación</value>
   </data>
   <data name="ReloadHardDialog" xml:space="preserve">
-    <value>This will refresh cache and reload the page.
-Are you sure?</value>
+    <value>Esto refrescará la caché y recargará la página.
+¿Está usted seguro?</value>
   </data>
   <data name="ShowToolMenu" xml:space="preserve">
-    <value>Display Tool Menu</value>
+    <value>Mostrar menú de herramientas</value>
   </data>
   <data name="OpenDevTool" xml:space="preserve">
-    <value>Developer Tools</value>
+    <value>Herramientas para desarrolladores</value>
   </data>
   <data name="Zoom_to_Fit" xml:space="preserve">
-    <value>Fit Window</value>
+    <value>Encajar en Ventana</value>
   </data>
   <data name="ClearCache" xml:space="preserve">
-    <value>Clear Cache</value>
+    <value>Limpiar Cache</value>
   </data>
   <data name="RenderProcessTerminatedBy" xml:space="preserve">
-    <value>The browser rendering process </value>
+    <value>El proceso de renderización del navegador</value>
   </data>
   <data name="RenderProcessAbnormalTermination" xml:space="preserve">
-    <value>does not end properly.</value>
+    <value>no termina correctamente.</value>
   </data>
   <data name="RenderProcessProcessWasKilled" xml:space="preserve">
-    <value>was terminated by another process.</value>
+    <value>fue terminado por otro proceso.</value>
   </data>
   <data name="RenderProcessProcessCrashed" xml:space="preserve">
     <value>has crashed.</value>
   </data>
   <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
-    <value>was terminated unexpectedly.</value>
+    <value>se terminó inesperadamente.</value>
   </data>
   <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
-    <value> The process will start after being reloaded.</value>
+    <value> El proceso comenzará después de recargarse.</value>
   </data>
   <data name="ClearCacheTitle" xml:space="preserve">
-    <value>Browser Restart Confirmation</value>
+    <value>Confirmación de reinicio del navegador</value>
   </data>
   <data name="ClearCacheMessage" xml:space="preserve">
-    <value>Are you sure you want to clear your cache?</value>
+    <value>¿Seguro que quieres borrar la memoria caché?</value>
   </data>
   <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
     <value>&amp;Screenshot</value>
   </data>
   <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
-    <value>&amp;Previous Screenshot</value>
+    <value>&amp;Anterior Screenshot</value>
   </data>
   <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
-    <value>&amp;Open Screenshot Folder</value>
+    <value>&amp;Abrir Carpeta de Screenshots</value>
   </data>
   <data name="ToolMenu_Other_Volume" xml:space="preserve">
-    <value>&amp;Volume</value>
+    <value>&amp;Volumen</value>
   </data>
   <data name="ToolMenu_Other_Mute" xml:space="preserve">
     <value>&amp;Mute</value>
   </data>
   <data name="ToolMenu_Other_Refresh" xml:space="preserve">
-    <value>&amp;Refresh</value>
+    <value>&amp;Refrescar</value>
   </data>
   <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
-    <value>&amp;Go to &amp;Login Page</value>
+    <value>&amp;Ir a &amp;Página de acceso</value>
   </data>
   <data name="ToolMenu_Other_Navigate" xml:space="preserve">
-    <value>Go to...</value>
+    <value>Ir a...</value>
   </data>
   <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
-    <value>Apply Stylesheet</value>
+    <value>Aplicar hoja de estilo</value>
   </data>
   <data name="ToolMenu_Other_Alignment" xml:space="preserve">
-    <value>&amp;Alignment</value>
+    <value>&amp;Aliniamiento</value>
   </data>
   <data name="NoScreenshotYet" xml:space="preserve">
-    <value>No screenshot yet.</value>
+    <value>Aún no hay captura de pantalla.</value>
   </data>
   <data name="InstallVisualCpp" xml:space="preserve">
-    <value>The browser component could not be loaded.
-Microsoft Visual C++ 2019 Redistributable is required.
-Open the download page?
-(Please install vc_redist.x64.exe)</value>
+    <value>No se pudo cargar el componente del navegador.
+Se requiere Microsoft Visual C++ 2019 Redistributable.
+¿Abrir la página de descarga?
+(Instale vc_redist.x64.exe)</value>
   </data>
   <data name="CefSharpLoadErrorTitle" xml:space="preserve">
     <value>CefSharp Load Error</value>
   </data>
   <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
-    <value>Failed to hide DMM refresh dialog.</value>
+    <value>No se ha podido ocultar el cuadro de diálogo de actualización de DMM.</value>
   </data>
   <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
-    <value>KanColle is not loaded, unable to take screenshots.</value>
+    <value>KanColle no está cargado, no se pueden hacer capturas de pantalla.</value>
   </data>
   <data name="ScreenshotSavedTo" xml:space="preserve">
-    <value>Screenshot saved to {0}.</value>
+    <value>Captura de pantalla guardada en {0}.</value>
   </data>
   <data name="FailedToSaveScreenshot" xml:space="preserve">
-    <value>Failed to save screenshot.</value>
+    <value>No se ha podido guardar la captura de pantalla.</value>
   </data>
   <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
-    <value>Screenshot copied to clipboard.</value>
+    <value>Captura de pantalla copiada al portapapeles.</value>
   </data>
   <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
-    <value>Failed to copy screenshot to clipboard.</value>
+    <value>No se pudo copiar la captura de pantalla al portapapeles.</value>
   </data>
   <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
-    <value>Screenshot {0} copied to clipboard.</value>
+    <value>Captura de pantalla {0} copiada al portapapeles.</value>
   </data>
   <data name="ToolMenu_Other_Zoom" xml:space="preserve">
     <value>&amp;Zoom</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>_File</value>
+    <value>_Archivo</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Atrás</value>
   </data>
   <data name="Forward" xml:space="preserve">
-    <value>Forward</value>
+    <value>Adelante</value>
   </data>
   <data name="DmmPoints" xml:space="preserve">
     <value>DMM Points</value>
@@ -337,19 +337,19 @@ Open the download page?
     <value>Akashi List</value>
   </data>
   <data name="WebView2NotFound" xml:space="preserve">
-    <value>WebView2 not found. Starting download.</value>
+    <value>No se encuentra WebView2. Iniciando descarga.</value>
   </data>
   <data name="WebView2DownloadComplete" xml:space="preserve">
-    <value>WebView2 download complete. Starting installation.</value>
+    <value>Descarga de WebView2 completada. Iniciando la instalación.</value>
   </data>
   <data name="WebView2InstallationComplete" xml:space="preserve">
-    <value>WebView2 installation complete.</value>
+    <value>Instalación de WebView2 completada.</value>
   </data>
   <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
-    <value>Unable to apply vulkan workaround due to missing permissions. Run Electronic Observer as administrator for the workaround to work.</value>
+    <value>No se puede aplicar la solución alternativa de Vulkan debido a la falta de permisos. Ejecute Electronic Observer como administrador para que la solución alternativa funcione.</value>
   </data>
   <data name="OlderBrowserVersionDetected" xml:space="preserve">
-    <value>An older version of WebView2 was detected. Downloading the latest version.</value>
+    <value>Se ha detectado una versión antigua de WebView2. Descargando la última versión.</value>
   </data>
   <data name="InstallationFailed" xml:space="preserve">
     <value>An error occurred while trying to install WebView2. Please install WebView2 manually.</value>
@@ -358,8 +358,8 @@ Open the download page?
     <value>Cache has been cleared.</value>
   </data>
   <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>You are about to advance to a cell forbidden by a rule in the auto refresh tool.
-Would you like to refresh?</value>
+    <value>Estás a punto de avanzar a una celda prohibida por una regla en la herramienta de actualización automática.
+¿Te gustaría refrescar?</value>
   </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>Failed to apply browser font.</value>

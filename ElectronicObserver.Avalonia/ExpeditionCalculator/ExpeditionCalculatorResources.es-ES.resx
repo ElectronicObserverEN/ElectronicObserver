@@ -117,4 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Ammo" xml:space="preserve">
+    <value>Munición</value>
+  </data>
+  <data name="Bauxite" xml:space="preserve">
+    <value>Bauxita</value>
+  </data>
+  <data name="AllSparkled" xml:space="preserve">
+    <value>Todo brillante</value>
+  </data>
+  <data name="InstantConstruction" xml:space="preserve">
+    <value>Lanzallamas (material de construcción rápida)</value>
+  </data>
+  <data name="InstantRepair" xml:space="preserve">
+    <value>Reparación instantánea</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Puntuación</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>Gran éxito</value>
+  </data>
+  <data name="ImproveMaterial" xml:space="preserve">
+    <value>Material de mejora</value>
+  </data>
+  <data name="Item1" xml:space="preserve">
+    <value>Item 1</value>
+  </data>
+  <data name="Item2" xml:space="preserve">
+    <value>Item 2</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>Acero</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="DevelopmentMaterial" xml:space="preserve">
+    <value>Material de desarrollo</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Calculadora de expedición</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Mensual</value>
+  </data>
+  <data name="FlagshipLevel" xml:space="preserve">
+    <value>Nivel del buque insignia</value>
+  </data>
+  <data name="FurnitureBoxSmall" xml:space="preserve">
+    <value>Caja de muebles (pequeña)</value>
+  </data>
+  <data name="FurnitureBoxMedium" xml:space="preserve">
+    <value>Caja de muebles (mediana)</value>
+  </data>
+  <data name="FurnitureBoxLarge" xml:space="preserve">
+    <value>Caja de muebles (grande)</value>
+  </data>
+  <data name="MoraleFoodIrako" xml:space="preserve">
+    <value>Comida de moral 'Irako'</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duración</value>
+  </data>
+  <data name="SparkleCount" xml:space="preserve">
+    <value>Barcos con brillo</value>
+  </data>
+  <data name="DrumCount" xml:space="preserve">
+    <value>Número de bidones</value>
+  </data>
 </root>

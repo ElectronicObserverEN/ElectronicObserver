@@ -117,4 +117,730 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AACITooltip" xml:space="preserve">
+    <value>AA Cut-in: {0}
+Tipo de Cut-in: {1} ({2})</value>
+  </data>
+  <data name="AACutIn" xml:space="preserve">
+    <value>AA Cut-in</value>
+  </data>
+  <data name="AAPower" xml:space="preserve">
+    <value>Defensa AA</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="AntiAirPower" xml:space="preserve">
+    <value>Flota AA
+  LA: {0:0.0}
+  DL: {1:0.0}
+  Anillo: {2:0.0}</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>Munición</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="Arsenal" xml:space="preserve">
+    <value>Arsenal</value>
+  </data>
+  <data name="ArsenalLog" xml:space="preserve">
+    <value>El secretario {7} ha comenzado la construcción de {1} en el muelle n.º {0} con {2}/{3}/{4}/{5}-{6}.</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="Battle" xml:space="preserve">
+    <value>Batalla</value>
+  </data>
+  <data name="BattleComplete" xml:space="preserve">
+    <value>Batalla Completada</value>
+  </data>
+  <data name="BattleDetail" xml:space="preserve">
+    <value>Detalles de Batalla</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>&amp;Año</value>
+  </data>
+  <data name="WinRank" xml:space="preserve">
+    <value>Rango de batalla</value>
+  </data>
+  <data name="WindowCaptureInst" xml:space="preserve">
+    <value>Arrastra y suelta este icono en la ventana que deseas capturar.</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>Captura de ventana</value>
+  </data>
+  <data name="WhyDidThisHappen" xml:space="preserve">
+    <value>¿Por qué ocurrió esto?</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>&amp;Semana</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>Bombardeo</value>
+  </data>
+  <data name="ShipAADefense" xml:space="preserve">
+    <value>Aj AA: {0} (Rate: {1:p2})</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Flota</value>
+  </data>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>Barcos</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Mundo</value>
+  </data>
+  <data name="QuestName" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Alcanze</value>
+  </data>
+  <data name="Baux" xml:space="preserve">
+    <value>Bauxita</value>
+  </data>
+  <data name="ShowOther" xml:space="preserve">
+    <value>Más Opciones</value>
+  </data>
+  <data name="DetailOpeningASW" xml:space="preserve">
+    <value>Apertura ASW</value>
+  </data>
+  <data name="TypeFilter" xml:space="preserve">
+    <value>Tipo (\&amp;T)</value>
+  </data>
+  <data name="UniqueID" xml:space="preserve">
+    <value>ID único</value>
+  </data>
+  <data name="UnseenEquips" xml:space="preserve">
+    <value>[Equipo no visto]</value>
+  </data>
+  <data name="UnseenShips" xml:space="preserve">
+    <value>[Barcos no vistos]</value>
+  </data>
+  <data name="AllData" xml:space="preserve">
+    <value>Todos los datos (\&amp;A)</value>
+  </data>
+  <data name="Bucket" xml:space="preserve">
+    <value>Reparación instantánea</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Día (\&amp;D)</value>
+  </data>
+  <data name="ToRemodel" xml:space="preserve">
+    <value>Para remodelar: {0} niveles / {1} exp.</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="TotalExperienceGained" xml:space="preserve">
+    <value>Ganancia de XP</value>
+  </data>
+  <data name="TotalLoS" xml:space="preserve">
+    <value>Total LoS</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>Material de desarrollo</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>(diferencia)</value>
+  </data>
+  <data name="ShowWeekly" xml:space="preserve">
+    <value>Semanal (\&amp;W)</value>
+  </data>
+  <data name="SortiePlace" xml:space="preserve">
+    <value>Ubicación de salida</value>
+  </data>
+  <data name="SpecifySelectGroup" xml:space="preserve">
+    <value>Selecciona el grupo al que deseas agregar:</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Velocidad</value>
+  </data>
+  <data name="AddFleetToGroupMenu" xml:space="preserve">
+    <value>Agregar la flota actual al grupo (\&amp;G)...</value>
+  </data>
+  <data name="Air" xml:space="preserve">
+    <value>Aire</value>
+  </data>
+  <data name="AdmiralXP" xml:space="preserve">
+    <value>Experiencia del almirante</value>
+  </data>
+  <data name="AerialRecon" xml:space="preserve">
+    <value>Reconocimiento aéreo</value>
+  </data>
+  <data name="AirPower" xml:space="preserve">
+    <value>Superioridad aérea</value>
+  </data>
+  <data name="VeryTired" xml:space="preserve">
+    <value>Moral muy baja</value>
+  </data>
+  <data name="AllComplete" xml:space="preserve">
+    <value>(¡Todas las misiones completadas!)</value>
+  </data>
+  <data name="AllAssignedShips" xml:space="preserve">
+    <value>Todos los barcos asignados</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>Superioridad</value>
+  </data>
+  <data name="EndNode" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="HighAltitudeAirState" xml:space="preserve">
+    <value>Altitud alta：Superioridad aérea {0}
+Asegurada: {1}
+Ventaja: {2}
+Equilibrio: {3}
+Desventaja: {4}</value>
+  </data>
+  <data name="ExpeditionFailureWarningMessage" xml:space="preserve">
+    <value>La expedición {2} de la flota #{0} {1} puede fallar debido a:
+
+{4}
+
+   (Este aviso se puede desactivar en Configuración &gt; Comportamiento)
+</value>
+  </data>
+  <data name="BaseAirCorps" xml:space="preserve">
+    <value>Base aérea #{1}</value>
+  </data>
+  <data name="Encyclopedia" xml:space="preserve">
+    <value>(Haz clic derecho para la enciclopedia)</value>
+  </data>
+  <data name="NoFleetCandidates" xml:space="preserve">
+    <value>(Sin flotas enemigas candidatas)</value>
+  </data>
+  <data name="EnemyUnknown" xml:space="preserve">
+    <value>(No identificado)</value>
+  </data>
+  <data name="BaseUnassigned" xml:space="preserve">
+    <value>(No asignada)</value>
+  </data>
+  <data name="BaseNotOpen" xml:space="preserve">
+    <value>(No disponible)</value>
+  </data>
+  <data name="BaseUnknown" xml:space="preserve">
+    <value>(Ubicación desconocida)</value>
+  </data>
+  <data name="NoSecondAirStage" xml:space="preserve">
+    <value>(La segunda fase aérea no se activó)</value>
+  </data>
+  <data name="DamagedArtUnseen" xml:space="preserve">
+    <value>[Ilustración dañada no vista]</value>
+  </data>
+  <data name="Flamethrower" xml:space="preserve">
+    <value>Construcción instantánea</value>
+  </data>
+  <data name="EscortFleet" xml:space="preserve">
+    <value>Escolta</value>
+  </data>
+  <data name="TotalShips" xml:space="preserve">
+    <value>Total: {0} barcos</value>
+  </data>
+  <data name="ChangeTooltip" xml:space="preserve">
+    <value>Hoy:  {0:+##;-##;±0}
+Esta semana: {1:+##;-##;±0}
+Este mes: {2:+##;-##;±0}</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>Veces</value>
+  </data>
+  <data name="ToHeavy" xml:space="preserve">
+    <value>Hasta daño crítico: {0}</value>
+  </data>
+  <data name="ToX" xml:space="preserve">
+    <value>Hasta nivel {0}: {1}</value>
+  </data>
+  <data name="To99" xml:space="preserve">
+    <value>Hasta nivel 99: {0}</value>
+  </data>
+  <data name="ToMidAndHeavy" xml:space="preserve">
+    <value>Hasta daño moderado: {0} Hasta daño crítico: {1}</value>
+  </data>
+  <data name="ToNextLevel" xml:space="preserve">
+    <value>Hasta el siguiente nivel: {0}</value>
+  </data>
+  <data name="InitializeQuestData" xml:space="preserve">
+    <value>Esto restablecerá los datos de misiones.
+¿Estás seguro?
+</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value> Total</value>
+  </data>
+  <data name="MapGauges" xml:space="preserve">
+    <value>[Medidores del mapa]</value>
+  </data>
+  <data name="PracticeReport" xml:space="preserve">
+    <value>[Informe de práctica]</value>
+  </data>
+  <data name="FleetReturned" xml:space="preserve">
+    <value>[Flota regresada]</value>
+  </data>
+  <data name="ResupplyComplete" xml:space="preserve">
+    <value>[Reabastecimiento completo]</value>
+  </data>
+  <data name="ExpeditionReturned" xml:space="preserve">
+    <value>[Expedición regresada]</value>
+  </data>
+  <data name="DevelopmentFailed" xml:space="preserve">
+    <value>[Desarrollo fallido]</value>
+  </data>
+  <data name="CompassShipTooltip" xml:space="preserve">
+    <value>{0} {1}{2}  
+HP: {3}  
+Fuego: {4}/{5}  
+Torpedo: {6}/{7}  
+AA: {8}/{9}  
+Blindaje: {10}/{11}  
+ASW: {12}/{13}  
+Evasión: {14}/{15}  
+Detección: {16}/{17}  
+Suerte: {18}/{19}  
+Alcance: {20} / Velocidad: {21}  
+(Haz clic derecho para ver en la enciclopedia)</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>Evasión</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Opción</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>Gran éxito</value>
+  </data>
+  <data name="EnemyFleetID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ImpMat" xml:space="preserve">
+    <value>Material de mejora</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>LoS</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>Suerte</value>
+  </data>
+  <data name="Tired" xml:space="preserve">
+    <value>Baja moral</value>
+  </data>
+  <data name="NightBattle" xml:space="preserve">
+    <value>Batalla nocturna</value>
+  </data>
+  <data name="DetailNightBattle" xml:space="preserve">
+    <value>Batalla nocturna</value>
+  </data>
+  <data name="NightContact" xml:space="preserve">
+    <value>Contacto nocturno:</value>
+  </data>
+  <data name="Quest" xml:space="preserve">
+    <value>Misiones</value>
+  </data>
+  <data name="NoBuildData" xml:space="preserve">
+    <value> No hay datos de construcción.</value>
+  </data>
+  <data name="BaseWave" xml:space="preserve">
+    <value>Ataque aéreo #{0}</value>
+  </data>
+  <data name="DetailAirRaid" xml:space="preserve">
+    <value>Ataque aéreo</value>
+  </data>
+  <data name="DetailShelling1" xml:space="preserve">
+    <value>Bombardeo, 1ª ronda</value>
+  </data>
+  <data name="DetailAirBattle1" xml:space="preserve">
+    <value>1ª batalla aérea</value>
+  </data>
+  <data name="DetailShelling3" xml:space="preserve">
+    <value>Bombardeo, 3ª ronda</value>
+  </data>
+  <data name="DetailShelling2" xml:space="preserve">
+    <value>Bombardeo, 2ª ronda</value>
+  </data>
+  <data name="DetailAirBattle2" xml:space="preserve">
+    <value>2ª batalla aérea</value>
+  </data>
+  <data name="DetailAirBattle" xml:space="preserve">
+    <value>Ataque aéreo de apertura</value>
+  </data>
+  <data name="DetailOpeningTorpedo" xml:space="preserve">
+    <value>Torpedo de apertura</value>
+  </data>
+  <data name="DetailTorpedo" xml:space="preserve">
+    <value>Torpedo de cierre</value>
+  </data>
+  <data name="ThreeMonths" xml:space="preserve">
+    <value>3 Meses (&amp;S)</value>
+  </data>
+  <data name="Over50" xml:space="preserve">
+    <value>Más del 50%</value>
+  </data>
+  <data name="Over80" xml:space="preserve">
+    <value>Más del 80%</value>
+  </data>
+  <data name="CreateGroup" xml:space="preserve">
+    <value>Crear grupo</value>
+  </data>
+  <data name="CategoryFilter" xml:space="preserve">
+    <value>Categoría (&amp;C)</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>Bloqueo</value>
+  </data>
+  <data name="IsTaiha" xml:space="preserve">
+    <value>¡Daño crítico!</value>
+  </data>
+  <data name="InProgressFilter" xml:space="preserve">
+    <value>Activos (&amp;S)</value>
+  </data>
+  <data name="InitQuestTitle" xml:space="preserve">
+    <value>Confirmar reinicio de misión</value>
+  </data>
+  <data name="EncounterType" xml:space="preserve">
+    <value>Encuentro</value>
+  </data>
+  <data name="Initialize" xml:space="preserve">
+    <value>&amp;Reiniciar</value>
+  </data>
+  <data name="EnemyFleet" xml:space="preserve">
+    <value>Flota enemiga</value>
+  </data>
+  <data name="EnemyFleetName" xml:space="preserve">
+    <value>Nombre de la flota enemiga</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="FriendlyScout" xml:space="preserve">
+    <value>Reconocimiento aliado</value>
+  </data>
+  <data name="FriendlyFormation" xml:space="preserve">
+    <value>Formación aliada</value>
+  </data>
+  <data name="FriendlyFleet" xml:space="preserve">
+    <value>Flota aliada</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>Formación enemiga</value>
+  </data>
+  <data name="EnemyScout" xml:space="preserve">
+    <value>Reconocimiento enemigo</value>
+  </data>
+  <data name="FailedToCreateCSV" xml:space="preserve">
+    <value>Error al exportar el grupo de barcos a CSV.</value>
+  </data>
+  <data name="Practice" xml:space="preserve">
+    <value>Práctica</value>
+  </data>
+  <data name="FatigueRestoreTime" xml:space="preserve">
+    <value>Aprox. {0:D2}:{1:D2} para recuperación completa de moral.</value>
+  </data>
+  <data name="Contacting" xml:space="preserve">
+    <value>Contacto establecido</value>
+  </data>
+  <data name="DayBattle" xml:space="preserve">
+    <value>Batalla diurna</value>
+  </data>
+  <data name="DamagePct" xml:space="preserve">
+    <value>% de daño</value>
+  </data>
+  <data name="DamageDone" xml:space="preserve">
+    <value>Daño infligido</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar (&amp;D)</value>
+  </data>
+  <data name="CurrentHealth" xml:space="preserve">
+    <value>Vida actual</value>
+  </data>
+  <data name="Defeated" xml:space="preserve">
+    <value>Derrotado</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>Progreso</value>
+  </data>
+  <data name="DockTime" xml:space="preserve">
+    <value>Tiempo de reparación</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Completo</value>
+  </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>¿Eliminar el grupo [{0}]? Esta acción no se puede deshacer.</value>
+  </data>
+  <data name="DontScrollNames" xml:space="preserve">
+    <value>No desplazar nombres de barcos (&amp;S)</value>
+  </data>
+  <data name="Compass" xml:space="preserve">
+    <value>Brújula</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Limpiar (&amp;C)</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>Acero</value>
+  </data>
+  <data name="NoMasterData" xml:space="preserve">
+    <value>No hay datos maestros</value>
+  </data>
+  <data name="ModRemaining" xml:space="preserve">
+    <value>Mejoras restantes</value>
+  </data>
+  <data name="NoDropData" xml:space="preserve">
+    <value>No hay datos de drops</value>
+  </data>
+  <data name="ProgressFilter" xml:space="preserve">
+    <value>Progreso (&amp;P)</value>
+  </data>
+  <data name="NightContacting" xml:space="preserve">
+    <value>Contacto nocturno realizado</value>
+  </data>
+  <data name="FilterBy" xml:space="preserve">
+    <value>Filtro de columnas (&amp;C)</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>Aeronaves</value>
+  </data>
+  <data name="DecrementByOne" xml:space="preserve">
+    <value>Progreso -1 (&amp;D)</value>
+  </data>
+  <data name="MaxHealth" xml:space="preserve">
+    <value>Salud máxima</value>
+  </data>
+  <data name="MysteriousItem" xml:space="preserve">
+    <value>Ítem misterioso</value>
+  </data>
+  <data name="NameFilter" xml:space="preserve">
+    <value>Nombre de misión (&amp;N)</value>
+  </data>
+  <data name="NextNode" xml:space="preserve">
+    <value>Nodo</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="ShowDaily" xml:space="preserve">
+    <value>Diariamente (&amp;D)</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>Bombardeo</value>
+  </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>Bombarderos</value>
+  </data>
+  <data name="BaseExp" xml:space="preserve">
+    <value>Exp Base</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Resultados</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>Poder de fuego</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="CannotDeleteGroup" xml:space="preserve">
+    <value>No se puede eliminar este grupo.</value>
+  </data>
+  <data name="CannotChangeGroup" xml:space="preserve">
+    <value>No se puede cambiar el nombre de este grupo.</value>
+  </data>
+  <data name="RemainingExpeds" xml:space="preserve">
+    <value>Quedan {0} expediciones efectivas</value>
+  </data>
+  <data name="TimeToCompletion" xml:space="preserve">
+    <value>Hora de finalización</value>
+  </data>
+  <data name="RenameGroupMenu" xml:space="preserve">
+    <value>Cambiar nombre del grupo (&amp;R)...</value>
+  </data>
+  <data name="Retreating" xml:space="preserve">
+    <value>Retirada</value>
+  </data>
+  <data name="SVictory" xml:space="preserve">
+    <value>Victoria S</value>
+  </data>
+  <data name="StarShellUsed" xml:space="preserve">
+    <value>Bengala utilizada</value>
+  </data>
+  <data name="SawNoEnemy" xml:space="preserve">
+    <value>No se detectó enemigo.</value>
+  </data>
+  <data name="Scouting" xml:space="preserve">
+    <value>Exploración</value>
+  </data>
+  <data name="SearchlightUsed" xml:space="preserve">
+    <value>Foco utilizado</value>
+  </data>
+  <data name="SecondStage" xml:space="preserve">
+    <value>Fase 2</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>ID del barco</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>Tipo de barco</value>
+  </data>
+  <data name="ShipXP" xml:space="preserve">
+    <value>Exp de barco</value>
+  </data>
+  <data name="ShotDown" xml:space="preserve">
+    <value>Derribado</value>
+  </data>
+  <data name="ShowInProgressOnly" xml:space="preserve">
+    <value>Mostrar solo en curso (&amp;R)</value>
+  </data>
+  <data name="ShowMonthly" xml:space="preserve">
+    <value>Mostrar misiones mensuales (&amp;M)</value>
+  </data>
+  <data name="ShowOneTime" xml:space="preserve">
+    <value>Mostrar misiones únicas (&amp;O)</value>
+  </data>
+  <data name="MaximumMorale" xml:space="preserve">
+    <value>Moral máxima</value>
+  </data>
+  <data name="NextAsw" xml:space="preserve">
+    <value>Siguiente ASW</value>
+  </data>
+  <data name="NextEvasion" xml:space="preserve">
+    <value>Siguiente evasión</value>
+  </data>
+  <data name="NextAccuracy" xml:space="preserve">
+    <value>Siguiente puntería</value>
+  </data>
+  <data name="ExpeditionFailureWarningTitle" xml:space="preserve">
+    <value>Requisitos de expedición</value>
+  </data>
+  <data name="BrowserProcessClickStart" xml:space="preserve">
+    <value>El proceso del navegador no se está ejecutando.
+Haz clic aquí para iniciarlo.</value>
+  </data>
+  <data name="EnemyAdmiral" xml:space="preserve">
+    <value>Almirante enemigo</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title" xml:space="preserve">
+    <value>Transferencia de aeronaves</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail" xml:space="preserve">
+    <value>No hay equipos en proceso de transferencia.</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
+    <value>Ver equipos en transferencia (&amp;R)</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleResult" xml:space="preserve">
+    <value>Mostrar detalles de la batalla temporalmente (&amp;V)</value>
+  </data>
+  <data name="ResupplyString" xml:space="preserve">
+    <value>Fuel: {0:+0;-0} ( regen {1:+0;-0} - resurtido {2} - reparación {3} )  
+Munición: {4:+0;-0} ( regen {5:+0;-0} - resurtido {6} )  
+Acero: {7:+0;-0} ( regen {8:+0;-0} - reparación {9} )  
+Bauxita: {10:+0;-0} ( regen {11:+0;-0} - resurtido {12} ( {13} aviones ) )</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experiencia</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Materiales</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mes (&amp;M)</value>
+  </data>
+  <data name="ResourceChart" xml:space="preserve">
+    <value>Gráfico de recursos</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Fallo</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>Expansión</value>
+  </data>
+  <data name="EnemyName" xml:space="preserve">
+    <value>Nombre del enemigo: {0}</value>
+  </data>
+  <data name="EnemyCandidate" xml:space="preserve">
+    <value>Fuerza enemiga posible</value>
+  </data>
+  <data name="BauxiteUsage" xml:space="preserve">
+    <value>Bauxita: {0} ( {1} aviones )</value>
+  </data>
+  <data name="ClearBaseAirAttack" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Eliminar (&amp;E)</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: Se ha producido un error en el cuadro de diálogo de ordenación automática.</value>
+  </data>
+  <data name="CopyGroupText" xml:space="preserve">
+    <value>Introduce el nombre del grupo deseado:</value>
+  </data>
+  <data name="CopyGroupTitle" xml:space="preserve">
+    <value>Copiar grupo</value>
+  </data>
+  <data name="KancolleMustBeLoaded" xml:space="preserve">
+    <value>Por favor, carga KanColle antes de abrir los registros.</value>
+  </data>
+  <data name="NoDevData" xml:space="preserve">
+    <value>No hay datos de desarrollo.</value>
+  </data>
+  <data name="IncrementByOne" xml:space="preserve">
+    <value>Progreso +1 (&amp;I)</value>
+  </data>
+  <data name="BaseRedeployment" xml:space="preserve">
+    <value>Reubicación en curso</value>
+  </data>
+  <data name="BaseRelocate" xml:space="preserve">
+    <value>Reubicando (Hora de inicio: {0})</value>
+  </data>
+  <data name="BaseTooltip" xml:space="preserve">
+    <value>Supremacía: {0}  
+Superioridad: {1}  
+Paridad: {2}  
+Negación: {3}</value>
+  </data>
+  <data name="NotResupplied" xml:space="preserve">
+    <value>Requiere reabastecimiento</value>
+  </data>
+  <data name="EnemyAir" xml:space="preserve">
+    <value>Enemigo</value>
+  </data>
+  <data name="FriendlyAir" xml:space="preserve">
+    <value>Aliado</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Potencia</value>
+  </data>
+  <data name="ASTooltip" xml:space="preserve">
+    <value>AS+: {0}  
+AS: {1}  
+AP: {2}  
+AI: {3}  
+({4}: {5})</value>
+  </data>
+  <data name="AutoAdjustColumns" xml:space="preserve">
+    <value>Ajustar columnas automáticamente (&amp;D)</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleDetail" xml:space="preserve">
+    <value>Mostrar detalles del combate... (&amp;D)</value>
+  </data>
 </root>

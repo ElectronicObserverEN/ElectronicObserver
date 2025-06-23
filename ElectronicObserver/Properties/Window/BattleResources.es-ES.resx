@@ -117,4 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AACI" xml:space="preserve">
+    <value>AACI</value>
+  </data>
+  <data name="AACIType" xml:space="preserve">
+    <value>Tipo AACI </value>
+  </data>
+  <data name="WinRank" xml:space="preserve">
+    <value>Rango de batalla</value>
+  </data>
+  <data name="ABText" xml:space="preserve">
+    <value>AB</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>Defensa AA</value>
+  </data>
+  <data name="AerialPhase1" xml:space="preserve">
+    <value>1º:</value>
+  </data>
+  <data name="AerialPhase2" xml:space="preserve">
+    <value>2º:</value>
+  </data>
+  <data name="AerialPhaseJet" xml:space="preserve">
+    <value>Jet: </value>
+  </data>
+  <data name="AirBase" xml:space="preserve">
+    <value>Base {0}</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(ninguno)</value>
+  </data>
+  <data name="DidNotActivate" xml:space="preserve">
+    <value>(No se activó)</value>
+  </data>
+  <data name="FleetFriendEscort" xml:space="preserve">
+    <value>Escolta</value>
+  </data>
+  <data name="FleetEnemyEscort" xml:space="preserve">
+    <value>Escolta</value>
+  </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>_Modo compacto</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="FleetEnemy" xml:space="preserve">
+    <value>Flota enemiga</value>
+  </data>
+  <data name="FleetFriend" xml:space="preserve">
+    <value>Flota aliada</value>
+  </data>
+  <data name="SupportExpedition" xml:space="preserve">
+    <value>Expedición de apoyo</value>
+  </data>
+  <data name="FleetFriendShort" xml:space="preserve">
+    <value>Aliado</value>
+  </data>
 </root>

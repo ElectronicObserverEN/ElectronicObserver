@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Battleships" xml:space="preserve">
+    <value>BB</value>
+  </data>
+  <data name="Carriers" xml:space="preserve">
+    <value>CV</value>
+  </data>
+  <data name="Destroyers" xml:space="preserve">
+    <value>DD</value>
+  </data>
+  <data name="Escorts" xml:space="preserve">
+    <value>DE</value>
+  </data>
+  <data name="HeavyCruisers" xml:space="preserve">
+    <value>CA</value>
+  </data>
+  <data name="LightCruisers" xml:space="preserve">
+    <value>CL</value>
+  </data>
+  <data name="Submarines" xml:space="preserve">
+    <value>SS</value>
+  </data>
+  <data name="Auxiliaries" xml:space="preserve">
+    <value>XX</value>
+  </data>
 </root>

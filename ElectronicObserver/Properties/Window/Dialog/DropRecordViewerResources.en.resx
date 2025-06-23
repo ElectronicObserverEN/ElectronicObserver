@@ -244,4 +244,7 @@
   <data name="IgnoreCommonDrops" xml:space="preserve">
     <value>Ignore common drops</value>
   </data>
+  <data name="StatusInfo" xml:space="preserve">
+    <value>-</value>
+  </data>
 </root>

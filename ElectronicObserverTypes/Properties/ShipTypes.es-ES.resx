@@ -117,4 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AircraftCarrier" xml:space="preserve">
+    <value>CV</value>
+  </data>
+  <data name="AmphibiousAssaultShip" xml:space="preserve">
+    <value>LHA</value>
+  </data>
+  <data name="ArmoredAircraftCarrier" xml:space="preserve">
+    <value>CVB</value>
+  </data>
+  <data name="AviationBattleship" xml:space="preserve">
+    <value>BBV</value>
+  </data>
+  <data name="AviationCruiser" xml:space="preserve">
+    <value>CAV</value>
+  </data>
+  <data name="Battlecruiser" xml:space="preserve">
+    <value>BC</value>
+  </data>
+  <data name="Battleship" xml:space="preserve">
+    <value>BB</value>
+  </data>
+  <data name="Destroyer" xml:space="preserve">
+    <value>DD</value>
+  </data>
+  <data name="Escort" xml:space="preserve">
+    <value>DE</value>
+  </data>
+  <data name="FleetOiler" xml:space="preserve">
+    <value>AO</value>
+  </data>
+  <data name="HeavyCruiser" xml:space="preserve">
+    <value>CA</value>
+  </data>
+  <data name="LightAircraftCarrier" xml:space="preserve">
+    <value>CVL</value>
+  </data>
+  <data name="LightCruiser" xml:space="preserve">
+    <value>CL</value>
+  </data>
+  <data name="RepairShip" xml:space="preserve">
+    <value>AR</value>
+  </data>
+  <data name="SeaplaneTender" xml:space="preserve">
+    <value>AV</value>
+  </data>
+  <data name="Submarine" xml:space="preserve">
+    <value>SS</value>
+  </data>
+  <data name="SubmarineAircraftCarrier" xml:space="preserve">
+    <value>SSV</value>
+  </data>
+  <data name="SubmarineTender" xml:space="preserve">
+    <value>AS</value>
+  </data>
+  <data name="SuperDreadnoughts" xml:space="preserve">
+    <value>BB</value>
+  </data>
+  <data name="TorpedoCruiser" xml:space="preserve">
+    <value>CLT</value>
+  </data>
+  <data name="TrainingCruiser" xml:space="preserve">
+    <value>CT</value>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>AP</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Todos</value>
+  </data>
 </root>

@@ -117,4 +117,99 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Unknown" xml:space="preserve">
+    <value>(Desconocido)</value>
+  </data>
+  <data name="AllQuestsAreTranslated" xml:space="preserve">
+    <value>Todas las misiones están traducidas.</value>
+  </data>
+  <data name="OtherQuests" xml:space="preserve">
+    <value>(Otra misión x {0})</value>
+  </data>
+  <data name="SizeAdjustment" xml:space="preserve">
+    <value>Ajuste de tamaño</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Página</value>
+  </data>
+  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
+    <value>+KanColle</value>
+  </data>
+  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
+    <value>Buscar en DuckDuckGo "{0}" (&amp;G)</value>
+  </data>
+  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
+    <value>Buscar en _Startpage "{0}"</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>Fila</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Encabezado</value>
+  </data>
+  <data name="ShowQuestCode" xml:space="preserve">
+    <value>Mostrar código de misión</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Completo!</value>
+  </data>
+  <data name="LookUpQuestOnStartpage" xml:space="preserve">
+    <value> Buscar el nombre del equipamiento en _Startpage</value>
+  </data>
+  <data name="ModifyProgress" xml:space="preserve">
+    <value>_Modificar progreso</value>
+  </data>
+  <data name="FailedToSearchOnStartpage" xml:space="preserve">
+    <value>Error al buscar el nombre de la misión en Startpage.</value>
+  </data>
+  <data name="ManuMain_QuestTranslate" xml:space="preserve">
+    <value>Copiar datos de misiones no traducidas</value>
+  </data>
+  <data name="ManuMain_QuestDescription" xml:space="preserve">
+    <value>Copiar &amp;descripción de misión</value>
+  </data>
+  <data name="ManuMain_QuestTitle" xml:space="preserve">
+    <value>Copiar &amp;título de misión</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
+    <value>Error al abrir la página de la wiki de Kancolle.</value>
+  </data>
+  <data name="SearchOnWikiQuery" xml:space="preserve">
+    <value>site:es.kcwiki.org</value>
+  </data>
+  <data name="SearchLinkWiki" xml:space="preserve">
+    <value>https://es.kcwiki.org/wiki/Misiones#{0}</value>
+  </data>
+  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
+    <value>Error al buscar el nombre de la misión en DuckDuckGo.</value>
+  </data>
+  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
+    <value>Buscar nombre de misión en la wik  "{0}"</value>
+  </data>
+  <data name="QuestResetConfirmationCaption" xml:space="preserve">
+    <value>Confirmar reinicio de misión</value>
+  </data>
+  <data name="QuestResetConfirmationText" xml:space="preserve">
+    <value>Se eliminará la misión {0} de la lista y se restablecerá su progreso.
+¿Estás seguro?
+(Se actualizará correctamente al abrir la pantalla de misiones del juego.)</value>
+  </data>
+  <data name="FailedToChangeQuestProgress" xml:space="preserve">
+    <value>No se pudo cambiar el progreso de la misión 『{0}』</value>
+  </data>
+  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
+    <value>Buscar nombre de misión en la &amp;KancolleWiki</value>
+  </data>
+  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
+    <value>Buscar nombre de misión en DuckDuckGo(&amp;G)</value>
+  </data>
+  <data name="MenuMain_QuestFilter" xml:space="preserve">
+    <value>&amp;Filtrar por</value>
+  </data>
+  <data name="MenuProgress_Reset" xml:space="preserve">
+    <value>&amp;Reiniciar progreso</value>
+  </data>
 </root>

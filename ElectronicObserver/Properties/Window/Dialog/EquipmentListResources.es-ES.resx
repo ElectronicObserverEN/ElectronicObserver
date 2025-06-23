@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TopMenu_File" xml:space="preserve">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>_Ver</value>
+  </data>
+  <data name="TopMenu_File_Update" xml:space="preserve">
+    <value>&amp;Refrescar</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TopMenu_File_CSVOutput" xml:space="preserve">
+    <value>Guardar CSV como... (&amp;C)</value>
+  </data>
+  <data name="SaveCSVDialog" xml:space="preserve">
+    <value>Guardar como</value>
+  </data>
+  <data name="TopMenu_File_CopyToFleetAnalysis" xml:space="preserve">
+    <value>Copiar lista de equipo (análisis de flota) (&amp;A)</value>
+  </data>
+  <data name="ShowLockedEquipmentOnly" xml:space="preserve">
+    <value>Mostrar solo el equipo _bloqueado</value>
+  </data>
 </root>

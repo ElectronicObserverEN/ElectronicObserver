@@ -117,4 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Unorganized" xml:space="preserve">
+    <value>Desorganizado</value>
+  </data>
+  <data name="Standby" xml:space="preserve">
+    <value>En espera</value>
+  </data>
+  <data name="Resting" xml:space="preserve">
+    <value>En descanso</value>
+  </data>
+  <data name="RelocationCompleted" xml:space="preserve">
+    <value>La reubicación ha sido completada. Vuelve a entrar al puerto para actualizar.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Informe de la base aérea</value>
+  </data>
+  <data name="NotReadyToSortie" xml:space="preserve">
+    <value>No está listo para salir:</value>
+  </data>
 </root>

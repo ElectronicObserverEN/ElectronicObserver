@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ClearSorting" xml:space="preserve">
+    <value> Restablecer orden</value>
+  </data>
+  <data name="OpenColumnSelector" xml:space="preserve">
+    <value>Abrir selector de columnas</value>
+  </data>
+  <data name="HideColumn" xml:space="preserve">
+    <value>Ocultar columna</value>
+  </data>
 </root>

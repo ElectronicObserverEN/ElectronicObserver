@@ -117,4 +117,81 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="Ship" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
+  </data>
+  <data name="AswApproximated" xml:space="preserve">
+    <value>＊Dado que el valor de ASW sigue siendo una aproximación, el cálculo puede no ser exacto.</value>
+  </data>
+  <data name="AswUnknown" xml:space="preserve">
+    <value>Se aplicará tras reiniciar</value>
+  </data>
+  <data name="LuckOffset" xml:space="preserve">
+    <value>Mejora de suerte</value>
+  </data>
+  <data name="ShipsUnavailable" xml:space="preserve">
+    <value>No hay barcos disponibles</value>
+  </data>
+  <data name="GroupExp" xml:space="preserve">
+    <value>Exp necesaria</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Calculadora de experiencia</value>
+  </data>
+  <data name="ExpUnitToolTip" xml:space="preserve">
+    <value>Introduce la experiencia ganada por salida para calcular el número de salidas necesarias.</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>Mejora actual</value>
+  </data>
+  <data name="LuckOffsetToolTip" xml:space="preserve">
+    <value>Modifica la suerte actual en una cantidad especificada.</value>
+  </data>
+  <data name="ShowAllASWEquipmentsToolTip" xml:space="preserve">
+    <value>Mostrar todas las combinaciones de equipamiento ASW</value>
+  </data>
+  <data name="ShowAllLevel" xml:space="preserve">
+    <value>Todos Niveles</value>
+  </data>
+  <data name="ShowAllLevelToolTip" xml:space="preserve">
+    <value>Cuando está activado, se muestra desde el nivel 1.  
+Cuando está desactivado, se muestra desde el siguiente nivel.</value>
+  </data>
+  <data name="AswOffset" xml:space="preserve">
+    <value>Modificador de ASW</value>
+  </data>
+  <data name="ASWModernizationToolTip" xml:space="preserve">
+    <value>Modifica el valor ASW actual en una cantidad especificada.</value>
+  </data>
+  <data name="ColumnSortieCount" xml:space="preserve">
+    <value>Número de salidas</value>
+  </data>
+  <data name="ColumnEquipment" xml:space="preserve">
+    <value>Equipo ASW</value>
+  </data>
+  <data name="NoShipsAvailable" xml:space="preserve">
+    <value>No hay barcos disponibles.  
+Por favor, vuelve a la pantalla del puerto principal.</value>
+  </data>
+  <data name="ShowAllASWEquipments" xml:space="preserve">
+    <value>Mostrar todos los equipos ASW</value>
+  </data>
+  <data name="SortieExp" xml:space="preserve">
+    <value>EXP por salida</value>
+  </data>
+  <data name="SearchInFleetToolTip" xml:space="preserve">
+    <value>Mostrar solo los barcos de las flotas actuales.</value>
+  </data>
+  <data name="SearchInFleet" xml:space="preserve">
+    <value>Buscar en flota</value>
+  </data>
+  <data name="DisplayCriteria" xml:space="preserve">
+    <value>Criterios de visualización</value>
+  </data>
 </root>

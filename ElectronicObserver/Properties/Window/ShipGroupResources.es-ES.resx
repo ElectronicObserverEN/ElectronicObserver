@@ -117,4 +117,170 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ShipView_Name" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="ShipView_Fleet" xml:space="preserve">
+    <value>Flota</value>
+  </data>
+  <data name="DialogGroupDeleteTitle" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(ninguno)</value>
+  </data>
+  <data name="MenuGroup_Copy" xml:space="preserve">
+    <value>&amp;Copiar...</value>
+  </data>
+  <data name="MenuGroup_Delete" xml:space="preserve">
+    <value>&amp;Eliminar</value>
+  </data>
+  <data name="MenuGroup_AutoUpdate" xml:space="preserve">
+    <value>Actualizar automáticamente</value>
+  </data>
+  <data name="ShipView_ShipType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ShipView_Slot1" xml:space="preserve">
+    <value>Eq 1</value>
+  </data>
+  <data name="ShipView_Slot2" xml:space="preserve">
+    <value>Eq 2</value>
+  </data>
+  <data name="ShipView_Slot3" xml:space="preserve">
+    <value>Eq 3</value>
+  </data>
+  <data name="ShipView_Slot4" xml:space="preserve">
+    <value>Eq 4</value>
+  </data>
+  <data name="ShipView_Slot5" xml:space="preserve">
+    <value>Eq 5</value>
+  </data>
+  <data name="DialogCouldNotRenameGroupDescription" xml:space="preserve">
+    <value>No se pudo cambiar el nombre del grupo.</value>
+  </data>
+  <data name="MenuGroup_ShowStatusBar" xml:space="preserve">
+    <value>Mostrar barra de estado</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="DialogGroupCopyDescription" xml:space="preserve">
+    <value>Nombre del Grupo</value>
+  </data>
+  <data name="DialogGroupAddDescription" xml:space="preserve">
+    <value>Nombre del Grupo</value>
+  </data>
+  <data name="DialogGroupRenameDescription" xml:space="preserve">
+    <value>Nombre del Grupo</value>
+  </data>
+  <data name="ShipView_NextRemodel" xml:space="preserve">
+    <value>Remodelación</value>
+  </data>
+  <data name="SelectedShips" xml:space="preserve">
+    <value>Seleccionados: {0} / {1} barcos</value>
+  </data>
+  <data name="ShipView_RepairSteel" xml:space="preserve">
+    <value>Coste de acero para reparación</value>
+  </data>
+  <data name="SortId" xml:space="preserve">
+    <value>ID de orden</value>
+  </data>
+  <data name="MenuMember_CSVOutput" xml:space="preserve">
+    <value>&amp;Exportar CSV</value>
+  </data>
+  <data name="RepairTimeUnit" xml:space="preserve">
+    <value>Tiempo de reparación por 1 HP</value>
+  </data>
+  <data name="ExportToCsvFail" xml:space="preserve">
+    <value>Error al exportar el CSV del grupo de barcos.</value>
+  </data>
+  <data name="DialogGroupAddToGroupDescription" xml:space="preserve">
+    <value>Seleccione el grupo al que desea añadir:  </value>
+  </data>
+  <data name="DialogGroupAddToGroupTitle" xml:space="preserve">
+    <value>Seleccionar grupo</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: se produjo un error en el cuadro de diálogo de ordenación automática.  </value>
+  </data>
+  <data name="FilterDialogError" xml:space="preserve">
+    <value>ShipGroup: se produjo un error en el cuadro de diálogo del filtro.</value>
+  </data>
+  <data name="ColumnSettingError" xml:space="preserve">
+    <value>ShipGroup: se produjo un error en el cuadro de diálogo de configuración de columnas.  </value>
+  </data>
+  <data name="DialogGroupCanNotBeModifiedDescription" xml:space="preserve">
+    <value>Este grupo no se puede modificar.  </value>
+  </data>
+  <data name="DialogGroupRenameTitle" xml:space="preserve">
+    <value>Cambiar nombre del grupo</value>
+  </data>
+  <data name="DialogCouldNotDeleteGroupDescription" xml:space="preserve">
+    <value>No se pudo eliminar el grupo.</value>
+  </data>
+  <data name="DialogGroupDeleteDescription" xml:space="preserve">
+    <value>¿Desea eliminar el grupo [{0}]?
+Esta acción no se puede deshacer.</value>
+  </data>
+  <data name="DialogGroupCopyTitle" xml:space="preserve">
+    <value>Copiar grupo</value>
+  </data>
+  <data name="DialogGroupAddTitle" xml:space="preserve">
+    <value>Añadir grupo</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>En dique</value>
+  </data>
+  <data name="GroupDoesNotExist" xml:space="preserve">
+    <value>Error: se intentó acceder a un grupo inexistente. Por favor, contacte con el desarrollador.  </value>
+  </data>
+  <data name="TotalAndAverageExp" xml:space="preserve">
+    <value>Exp: Total {0:N0} / Promedio {1:N2}  </value>
+  </data>
+  <data name="TotalAndAverageLevel" xml:space="preserve">
+    <value>Niveles: Total {0:N0} / Promedio {1:N2} </value>
+  </data>
+  <data name="MenuGroup_Rename" xml:space="preserve">
+    <value>&amp;Cambiar nombre del grupo</value>
+  </data>
+  <data name="MenuGroup_Add" xml:space="preserve">
+    <value>&amp;Agregar grupo</value>
+  </data>
+  <data name="MenuMember_SortOrder" xml:space="preserve">
+    <value>Configurar orden automático &amp;dort</value>
+  </data>
+  <data name="MenuMember_ColumnFilter" xml:space="preserve">
+    <value>Configuración de columnas &amp;columns...</value>
+  </data>
+  <data name="MenuMember_Filter" xml:space="preserve">
+    <value>&amp;Configurar filtro</value>
+  </data>
+  <data name="MenuMember_Exclude" xml:space="preserve">
+    <value>&amp;Excluir</value>
+  </data>
+  <data name="MenuMember_CreateGroup" xml:space="preserve">
+    <value>Crear nuevo grupo &amp;new group ...</value>
+  </data>
+  <data name="MenuMember_AddToGroup" xml:space="preserve">
+    <value>&amp;Agregar al grupo</value>
+  </data>
+  <data name="ShipView_SallyArea" xml:space="preserve">
+    <value>Etiqueta de flota</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>Asignadas: {0} barcos</value>
+  </data>
+  <data name="ShipView_NightBattlePower" xml:space="preserve">
+    <value>Poder en batalla nocturna</value>
+  </data>
+  <data name="ShipView_RepairFuel" xml:space="preserve">
+    <value>Coste de combustible para reparación</value>
+  </data>
+  <data name="ShipView_RepairTime" xml:space="preserve">
+    <value>Tiempo de reparación</value>
+  </data>
 </root>

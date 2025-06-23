@@ -117,4 +117,291 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ClearBackgroundPath" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Flota</value>
+  </data>
+  <data name="UseAlbumStatusName" xml:space="preserve">
+    <value>Usar el nombre de estado del álbum</value>
+  </data>
+  <data name="ApplyGeneralFontToolTip" xml:space="preserve">
+    <value>Aplicar la siguiente configuración a la configuración de fuente individual a continuación.</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(vacío)</value>
+  </data>
+  <data name="QuickConfigurationAccessToolTip" xml:space="preserve">
+    <value>Al activar, la configuración se mostrará en la ventana de salida de flota, encima de la vista previa de la flota.</value>
+  </data>
+  <data name="SearchOutputPath" xml:space="preserve">
+    <value>Examinar...</value>
+  </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>HA</value>
+  </data>
+  <data name="ButtonClearFontToolTip" xml:space="preserve">
+    <value>Restablecer la configuración de fuente a los valores predeterminados.</value>
+  </data>
+  <data name="ReflectDamageGraphic" xml:space="preserve">
+    <value>Aplicar gráfico dañado</value>
+  </data>
+  <data name="AutoSetFileNameToDate" xml:space="preserve">
+    <value>Usar la fecha y hora actuales como nombre de archivo</value>
+  </data>
+  <data name="FleetTitle" xml:space="preserve">
+    <value>Título:</value>
+  </data>
+  <data name="FontSmall" xml:space="preserve">
+    <value>S (text):</value>
+  </data>
+  <data name="FontMedium" xml:space="preserve">
+    <value>M (text):</value>
+  </data>
+  <data name="FontLarge" xml:space="preserve">
+    <value>L (text):</value>
+  </data>
+  <data name="DigitMedium" xml:space="preserve">
+    <value>M (digit):</value>
+  </data>
+  <data name="ImageTypeCutin" xml:space="preserve">
+    <value>Cut-in (M)</value>
+  </data>
+  <data name="SynchronizeTitleAndFileName" xml:space="preserve">
+    <value>Sincronizar título e imagen con el nombre del archivo</value>
+  </data>
+  <data name="SynchronizeTitleAndFileNameToolTip" xml:space="preserve">
+    <value>Usar automáticamente el título de la imagen como nombre de archivo y viceversa.</value>
+  </data>
+  <data name="DigitSmall" xml:space="preserve">
+    <value>S (dígito)</value>
+  </data>
+  <data name="OverwriteExistingFile" xml:space="preserve">
+    <value>"{0} ya existe.
+¿Deseas reemplazarlo?</value>
+  </data>
+  <data name="FailedToDownloadImage" xml:space="preserve">
+    <value>Error al descargar la imagen tipo {0} para {1}.</value>
+  </data>
+  <data name="SuccessfullyDownloadedImage" xml:space="preserve">
+    <value>Imagen tipo {0} de {1} descargada con éxito.</value>
+  </data>
+  <data name="ImageWillBeExportedToClipboard" xml:space="preserve">
+    <value>La imagen de la flota se exportará al portapapeles.  
+Desmarca “Copiar al portapapeles” en la pestaña de detalles para exportarla como archivo.</value>
+  </data>
+  <data name="SortieFleet" xml:space="preserve">
+    <value>Salir con esta flota</value>
+  </data>
+  <data name="ClearBackgroundPathToolTip" xml:space="preserve">
+    <value>Borrar la ruta de la imagen de fondo actual.</value>
+  </data>
+  <data name="OpenOrganizeAndViewDetails" xml:space="preserve">
+    <value>Abrir el menú 'Organizar' en KanColle y ver los detalles de cada barco</value>
+  </data>
+  <data name="InvalidSettings" xml:space="preserve">
+    <value>La configuración de guardado de imágenes de barcos no es válida (ver detalles...)</value>
+  </data>
+  <data name="ExportFailure" xml:space="preserve">
+    <value>Error al exportar</value>
+  </data>
+  <data name="FailedToExportFleetImage" xml:space="preserve">
+    <value>Error al exportar la imagen de la flota</value>
+  </data>
+  <data name="OpenOrganize" xml:space="preserve">
+    <value>Abrir el menú 'Organizar' en KanColle</value>
+  </data>
+  <data name="ShipImageNotFound" xml:space="preserve">
+    <value>Faltan imágenes de barcos (ver detalles...)</value>
+  </data>
+  <data name="MaxEquipmentNameWidth" xml:space="preserve">
+    <value>Ancho máximo del nombre del equipo</value>
+  </data>
+  <data name="OpenOrganize2" xml:space="preserve">
+    <value>Mostrar las imágenes necesarias en KanColle</value>
+  </data>
+  <data name="EnableShipImageSaving" xml:space="preserve">
+    <value>Es necesario habilitar la opción de guardar imágenes de barcos para exportar la imagen de la flota. ¿Deseas habilitarla?
+</value>
+  </data>
+  <data name="InvalidSettingsTitle" xml:space="preserve">
+    <value>Configuración inválida</value>
+  </data>
+  <data name="ShowTankTp" xml:space="preserve">
+    <value>Mostrar TP de tanques</value>
+  </data>
+  <data name="Basic" xml:space="preserve">
+    <value>Básico</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="ButtonClearFont" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comentario:</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema </value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>Tema personalizado </value>
+  </data>
+  <data name="ClearConfirmation" xml:space="preserve">
+    <value>Confirmación de borrado </value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copiar </value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>Cargar</value>
+  </data>
+  <data name="DownloadMissingShipImage" xml:space="preserve">
+    <value>Descargar imagen de barco faltante</value>
+  </data>
+  <data name="SaveImageToFile" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="QuickConfigurationAccess" xml:space="preserve">
+    <value>Acceso rápido a configuración</value>
+  </data>
+  <data name="ResetFontSettings" xml:space="preserve">
+    <value>¿Deseas restablecer la configuración de fuente a los valores predeterminados?  </value>
+  </data>
+  <data name="ShipImageMissing" xml:space="preserve">
+    <value>Falta imagen del barco</value>
+  </data>
+  <data name="FleetImageExportedSuccessfully" xml:space="preserve">
+    <value>Imagen de la flota exportada correctamente</value>
+  </data>
+  <data name="HorizontalShipCountToolTip" xml:space="preserve">
+    <value>Especifica cuántos barcos se muestran por fila. Si hay más, se hará un salto de línea. </value>
+  </data>
+  <data name="HorizontalFleetCountToolTip" xml:space="preserve">
+    <value>Especifica cuántas flotas se muestran por fila. Si hay más, se hará un salto de línea.</value>
+  </data>
+  <data name="FleetColumn" xml:space="preserve">
+    <value>Columnas de flota:  </value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Fuente  </value>
+  </data>
+  <data name="OpenDialogToSpecifyFontSetting" xml:space="preserve">
+    <value>Abrir diálogo para especificar la fuente  </value>
+  </data>
+  <data name="ChangeAll" xml:space="preserve">
+    <value>Cambiar todo:</value>
+  </data>
+  <data name="OpenImageDialog" xml:space="preserve">
+    <value>Seleccionar imagen de fondo </value>
+  </data>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>Guardar como  </value>
+  </data>
+  <data name="MissingImages" xml:space="preserve">
+    <value>Faltan datos de imagen de algunos barcos actuales para exportar la flota.
+
+Elimina la caché y vuelve a cargar el juego.
+{0}
+Se guardarán los datos de imagen del barco.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Exportar imagen de flota</value>
+  </data>
+  <data name="FontConversionFailed" xml:space="preserve">
+    <value>Error al convertir la fuente  </value>
+  </data>
+  <data name="SelectFleetToExport" xml:space="preserve">
+    <value>No se ha seleccionado ninguna flota para exportar.</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>Error de entrada </value>
+  </data>
+  <data name="FleetMustContainShip" xml:space="preserve">
+    <value>La flota debe contener al menos un barco.</value>
+  </data>
+  <data name="EnterDestinationPath" xml:space="preserve">
+    <value>No se ha especificado la ruta de destino.</value>
+  </data>
+  <data name="PathContainsInvalidCharacters" xml:space="preserve">
+    <value>La ruta de destino contiene caracteres no válidos.</value>
+  </data>
+  <data name="OverwriteConfirmation" xml:space="preserve">
+    <value>Confirmación de sobrescritura</value>
+  </data>
+  <data name="SpecifiedFontDoesNotExist" xml:space="preserve">
+    <value>El nombre de la fuente no es válido. </value>
+  </data>
+  <data name="ShipColumn" xml:space="preserve">
+    <value>Columnas de barcos:</value>
+  </data>
+  <data name="ImageTypeBanner" xml:space="preserve">
+    <value>Banner (pequeño)</value>
+  </data>
+  <data name="ImageTypeCard" xml:space="preserve">
+    <value>Carta (grande)</value>
+  </data>
+  <data name="AutoSetFileNameToDateToolTip" xml:space="preserve">
+    <value>Asignar automáticamente el nombre del archivo con la fecha y hora actual.</value>
+  </data>
+  <data name="OutputToClipboard" xml:space="preserve">
+    <value>Copiar al portapapeles</value>
+  </data>
+  <data name="OutputToClipboardToolTip" xml:space="preserve">
+    <value>Exportar la imagen al portapapeles. Se ignorarán las opciones de archivo.</value>
+  </data>
+  <data name="DisableOverwritePrompt" xml:space="preserve">
+    <value>Permitir sobrescritura siempre</value>
+  </data>
+  <data name="DisableOverwritePromptToolTip" xml:space="preserve">
+    <value>Desactivar la comprobación de sobrescritura y permitirla siempre.</value>
+  </data>
+  <data name="OpenImageAfterOutput" xml:space="preserve">
+    <value>Abrir después de guardar</value>
+  </data>
+  <data name="OpenImageAfterOutputToolTip" xml:space="preserve">
+    <value>Si se guarda en archivo, especifica si se debe abrir la imagen exportada con el visor predeterminado.
+</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>Imagen de fondo</value>
+  </data>
+  <data name="SearchBackgroundImagePathToolTip" xml:space="preserve">
+    <value>Abrir un diálogo para buscar y seleccionar la imagen de fondo.</value>
+  </data>
+  <data name="BackgroundImagePathToolTip" xml:space="preserve">
+    <value>Especificar la ruta del archivo para la imagen de fondo.
+Si se deja en blanco, la imagen se generará sin fondo.</value>
+  </data>
+  <data name="Layout" xml:space="preserve">
+    <value>Diseño</value>
+  </data>
+  <data name="AvoidTwitterDeterioration" xml:space="preserve">
+    <value>Evitar la compresión de imágenes en Twitter</value>
+  </data>
+  <data name="AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>"Al subir imágenes en formato PNG a Twitter, se convierten automáticamente a JPEG, lo que reduce su calidad.
+Esta opción permite insertar datos para evitar esa conversión.</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Modo de salida</value>
+  </data>
+  <data name="ReflectDamageGraphicToolTip" xml:space="preserve">
+    <value>"Especificar si se debe usar la imagen dañada de la nave
+cuando está moderadamente dañada o peor.</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Texto personalizado</value>
+  </data>
+  <data name="OutputPathToolTip" xml:space="preserve">
+    <value>Especificar el nombre del archivo de salida para la imagen de la flota.</value>
+  </data>
+  <data name="SearchOutputPathToolTip" xml:space="preserve">
+    <value>Abre un diálogo para buscar y especificar el archivo de destino de salida.</value>
+  </data>
+  <data name="GroupOutputPath" xml:space="preserve">
+    <value>Ruta de salida</value>
+  </data>
 </root>

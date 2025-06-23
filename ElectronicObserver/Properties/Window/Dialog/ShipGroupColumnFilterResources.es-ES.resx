@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColumnView_Width" xml:space="preserve">
+    <value>Ancho</value>
+  </data>
+  <data name="ColumnView_VisibleToolTip" xml:space="preserve">
+    <value>Selecciona para habilitar la columna especificada.</value>
+  </data>
+  <data name="ColumnView_AutoSizeToolTip" xml:space="preserve">
+    <value>Selecciona para ajustar automáticamente el tamaño de la columna especificada.</value>
+  </data>
+  <data name="ColumnView_Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="ColumnView_Name" xml:space="preserve">
+    <value>Columna</value>
+  </data>
+  <data name="ColumnView_AutoSize" xml:space="preserve">
+    <value>Ajustar tamaño automáticamente</value>
+  </data>
+  <data name="ColumnFreezeNumber" xml:space="preserve">
+    <value>Congelar número de columnas:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Seleccionar columnas</value>
+  </data>
 </root>

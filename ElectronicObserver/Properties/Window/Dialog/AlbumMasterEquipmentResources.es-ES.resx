@@ -117,4 +117,148 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="EquipmentType" xml:space="preserve">
+    <value>Autogiro</value>
+  </data>
+  <data name="TitleAA" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="TitleArmor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="TitleASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="StripMenu_View" xml:space="preserve">
+    <value>&amp;Ver</value>
+  </data>
+  <data name="EquipmentView_Name" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="TitleRange" xml:space="preserve">
+    <value>Alcanze</value>
+  </data>
+  <data name="UpgradeLevel" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>Antibombardero</value>
+  </data>
+  <data name="UpgradeCost" xml:space="preserve">
+    <value>Coste de mejora</value>
+  </data>
+  <data name="StripMenu_View_ShowAppearingArea" xml:space="preserve">
+    <value>&amp;Buscar en receta/barcos</value>
+  </data>
+  <data name="Equippable" xml:space="preserve">
+    <value>Equipable</value>
+  </data>
+  <data name="EquipmentUpgrades" xml:space="preserve">
+    <value>Mejoras de equipamiento</value>
+  </data>
+  <data name="RightClickToCopy" xml:space="preserve">
+    <value>(Haz clic derecho para copiar)</value>
+  </data>
+  <data name="TitleTorpedo" xml:space="preserve">
+    <value>Torp</value>
+  </data>
+  <data name="EquipmentView_Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="FailedToFindShipOrRecipe" xml:space="preserve">
+    <value>No se encontró un barco o receta que tenga {0}.</value>
+  </data>
+  <data name="TitleEvasion" xml:space="preserve">
+    <value>Evasión</value>
+  </data>
+  <data name="DialogTitleError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Helpers" xml:space="preserve">
+    <value>Ayudantes</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>Intercepción</value>
+  </data>
+  <data name="RequiredItems" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="TitleLOS" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>Receta</value>
+  </data>
+  <data name="KancolleSpecifier" xml:space="preserve">
+    <value>+KanColle</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Enciclopedia de Equipamiento</value>
+  </data>
+  <data name="StripMenu_Edit_GoogleEquipmentName" xml:space="preserve">
+    <value>Buscar el nombre del equipo en DuckDuckGo (&amp;G)</value>
+  </data>
+  <data name="TitleFirepower" xml:space="preserve">
+    <value>FP</value>
+  </data>
+  <data name="Owned" xml:space="preserve">
+    <value>En posesión</value>
+  </data>
+  <data name="ShipOrRecipeCaption" xml:space="preserve">
+    <value>Búsqueda por barco/método de obtención</value>
+  </data>
+  <data name="FailedToExportCsv" xml:space="preserve">
+    <value>Error al exportar la enciclopedia de equipamiento a CSV </value>
+  </data>
+  <data name="ExpansionSlot" xml:space="preserve">
+    <value>Slot de expansión</value>
+  </data>
+  <data name="Excluding" xml:space="preserve">
+    <value>Excluyendo </value>
+  </data>
+  <data name="SaveCSVDialog" xml:space="preserve">
+    <value>Exportar a CSV</value>
+  </data>
+  <data name="TitleAccuracy" xml:space="preserve">
+    <value>Puntería</value>
+  </data>
+  <data name="FailedToSearchOnWeb" xml:space="preserve">
+    <value>Error al buscar en DuckDuckGo.</value>
+  </data>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>&amp;Editar</value>
+  </data>
+  <data name="TitleSpeed" xml:space="preserve">
+    <value>Velocidad</value>
+  </data>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>Coste de Despliegue</value>
+  </data>
+  <data name="TitleBomber" xml:space="preserve">
+    <value>Bomb.</value>
+  </data>
+  <data name="StripMenu_File_OutputCSVData" xml:space="preserve">
+    <value>Exportar CSV (&amp;data use)...</value>
+  </data>
+  <data name="StripMenu_File_OutputCSVUser" xml:space="preserve">
+    <value>Exportar CSV  (reference &amp;use...</value>
+  </data>
+  <data name="StripMenu_Edit_CopyEquipmentName" xml:space="preserve">
+    <value>Copiar nombre del equipo &amp;name</value>
+  </data>
+  <data name="StripMenu_Edit_CopyEquipmentData" xml:space="preserve">
+    <value>Copiar datos del equipo &amp;data</value>
+  </data>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>Radio de acción de combate</value>
+  </data>
+  <data name="InitialEquipmentShip" xml:space="preserve">
+    <value>Buque con equipamiento inicial:</value>
+  </data>
+  <data name="LibraryId" xml:space="preserve">
+    <value>Library ID</value>
+  </data>
 </root>

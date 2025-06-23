@@ -117,4 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnchorageRepair" xml:space="preserve">
+    <value>Anclaje de Reparación</value>
+  </data>
+  <data name="AnchorageRepairFinished" xml:space="preserve">
+    <value>Han pasado 20 minutos desde el inicio de la reparación del anclaje.</value>
+  </data>
+  <data name="AdmiralExp" xml:space="preserve">
+    <value>Experiencia del almirante+</value>
+  </data>
+  <data name="AirBaseResupplyCost" xml:space="preserve">
+    <value>「{1}」 de la Base Aérea nº {0} ha sido reabastecida. Costo: Combustible×{2}, Bauxita×{3}</value>
+  </data>
+  <data name="DamagedTitle" xml:space="preserve">
+    <value>¡Advertencia de daño crítico!</value>
+  </data>
+  <data name="ExpeditionText" xml:space="preserve">
+    <value>La flota {0} [{1}] ha regresado de la expedición [{2}: {3}]</value>
+  </data>
+  <data name="ConditionText" xml:space="preserve">
+    <value>La moral de todas las chicas barco en la flota {0} [{1}] se ha recuperado.</value>
+  </data>
+  <data name="HasSortiedTo" xml:space="preserve">
+    <value>#{0} 「{1}」 ha salido a la misión 「{2}-{3} {4}」.</value>
+  </data>
+  <data name="HasBeenSentToExpedition" xml:space="preserve">
+    <value>#{0} 「{1}」 ha sido enviada a la expedición 「{2}: {3}」.</value>
+  </data>
+  <data name="BucketUsed" xml:space="preserve">
+    <value>Reparación instantánea x1</value>
+  </data>
+  <data name="ShipSuccessfullyRemodeled" xml:space="preserve">
+    <value>{0} se ha remodelado con éxito al nivel {1}.</value>
+  </data>
+  <data name="ShipLevelUp" xml:space="preserve">
+    <value>{0} ha alcanzado el nivel {1}.</value>
+  </data>
+  <data name="DamagedText" xml:space="preserve">
+    <value>¡{0} está gravemente dañada!</value>
+  </data>
+  <data name="ExpansionSlotOpened" xml:space="preserve">
+    <value>La ranura de expansión de {0} ha sido desbloqueada</value>
+  </data>
+  <data name="ShipHasBeenScrapped" xml:space="preserve">
+    <value>{0} ha sido desguazada y eliminada de la lista naval.</value>
+  </data>
+  <data name="ConstructionText" xml:space="preserve">
+    <value>La construcción de {1} en el astillero #{0} está completa.</value>
+  </data>
+  <data name="ConstructionTitle" xml:space="preserve">
+    <value>Construcción completada</value>
+  </data>
+  <data name="EquipmentHasBenScrapped" xml:space="preserve">
+    <value>{0}{1} ha sido desechado.</value>
+  </data>
+  <data name="RemodelText" xml:space="preserve">
+    <value> {0} ahora se puede remodelar a {1}.</value>
+  </data>
+  <data name="SortieingTo" xml:space="preserve">
+    <value>⚓ Saliendo a {0}-{1}-{2}: {3}</value>
+  </data>
+  <data name="ETA" xml:space="preserve">
+    <value>Hora estimada de finalización:</value>
+  </data>
+  <data name="StartedRepairingShip" xml:space="preserve">
+    <value>Se comenzó a reparar {1} ({2}/{3}) en el dique #{0}. (Fuel×{4}, Acero×{5}, {6})</value>
+  </data>
+  <data name="ConditionTitle" xml:space="preserve">
+    <value>Moral recuperada </value>
+  </data>
+  <data name="ShipsResupplied" xml:space="preserve">
+    <value>Reabastecimiento completado. Coste: </value>
+  </data>
+  <data name="NoResourcesGained" xml:space="preserve">
+    <value>No se obtuvieron recursos  </value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>Resultado de expedición -  </value>
+  </data>
+  <data name="ShipExp" xml:space="preserve">
+    <value>Exp de barco + </value>
+  </data>
+  <data name="RepairTitle" xml:space="preserve">
+    <value>Reparación completa </value>
+  </data>
+  <data name="RepairText" xml:space="preserve">
+    <value>Reparación de {1} en el dique #{0} completada.</value>
+  </data>
+  <data name="RemodelTitle" xml:space="preserve">
+    <value>Remodelación disponible  </value>
+  </data>
+  <data name="FailedToLoadSound" xml:space="preserve">
+    <value>Sistema de notificaciones: error al cargar el archivo de sonido {0}. </value>
+  </data>
+  <data name="FailedToLoadImage" xml:space="preserve">
+    <value>Sistema de notificaciones: error al cargar la imagen {0}. </value>
+  </data>
+  <data name="FailedPlaySound" xml:space="preserve">
+    <value>Sistema de notificaciones: error al reproducir el archivo de sonido. </value>
+  </data>
+  <data name="ExpeditionTitle" xml:space="preserve">
+    <value>Expedición regresada </value>
+  </data>
 </root>

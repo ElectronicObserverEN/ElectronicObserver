@@ -117,4 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Ship" xml:space="preserve">
+    <value>Barco:</value>
+  </data>
+  <data name="RecordView_Name" xml:space="preserve">
+    <value>Barcos</value>
+  </data>
+  <data name="NameAny" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="Until" xml:space="preserve">
+    <value>Hasta:</value>
+  </data>
+  <data name="Tries" xml:space="preserve">
+    <value>Intentos</value>
+  </data>
+  <data name="RecordView_Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="MergeRows" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="IsLargeConstruction" xml:space="preserve">
+    <value>LSC</value>
+  </data>
+  <data name="RecordView_Recipe" xml:space="preserve">
+    <value>Receta</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>Receta:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Registro de construcción</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>Material de desarrollo</value>
+  </data>
+  <data name="RecordView_SecretaryShip" xml:space="preserve">
+    <value>Buque insignia</value>
+  </data>
+  <data name="DevMats" xml:space="preserve">
+    <value>Materiales de desarrollo:</value>
+  </data>
+  <data name="EmptyDocks" xml:space="preserve">
+    <value>Diques disponibles:</value>
+  </data>
+  <data name="ButtonRun" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>FS:</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Desde:</value>
+  </data>
+  <data name="Hull" xml:space="preserve">
+    <value>Casco:</value>
+  </data>
 </root>

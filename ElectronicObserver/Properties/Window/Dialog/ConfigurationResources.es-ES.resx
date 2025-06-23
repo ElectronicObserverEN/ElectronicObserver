@@ -123,4 +123,698 @@
   <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
     <value>AllEquip</value>
   </data>
+  <data name="AB" xml:space="preserve">
+    <value>AB</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zoom:</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>Subventana</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Flota</value>
+  </data>
+  <data name="HQ" xml:space="preserve">
+    <value>FCF</value>
+  </data>
+  <data name="Combat" xml:space="preserve">
+    <value>Batalla</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Language_Japanese" xml:space="preserve">
+    <value>Japonés</value>
+  </data>
+  <data name="DataSubmission_BonodereIntegration" xml:space="preserve">
+    <value>La integración en Bonodere</value>
+  </data>
+  <data name="FormBrowser_ConfirmAtRefresh" xml:space="preserve">
+    <value>Confirmación de actualización</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyableToolTip" xml:space="preserve">
+    <value>Ocultar el cuadro de diálogo emergente de recarga de página de DMM para que no aparezca en la ventana del navegador.</value>
+  </data>
+  <data name="FormBrowser_SavesBrowserLog" xml:space="preserve">
+    <value>Guardar registro de errores del navegador\*</value>
+  </data>
+  <data name="UpstreamProxyToolTip" xml:space="preserve">
+    <value>Especifica la dirección del proxy ascendente.
+El valor predeterminado es 127.0.0.1.</value>
+  </data>
+  <data name="UseLetterForNodes" xml:space="preserve">
+    <value>Usar letra para la asignación de nodos</value>
+  </data>
+  <data name="ApplicationId" xml:space="preserve">
+    <value>Aplicación ID</value>
+  </data>
+  <data name="APIListBrowser" xml:space="preserve">
+    <value>Abrir archivo de lista de API</value>
+  </data>
+  <data name="UpdateFilter" xml:space="preserve">
+    <value>Filtro de actualización:</value>
+  </data>
+  <data name="UI_RestartHint" xml:space="preserve">
+    <value>Debes reiniciar EO después de cambiar el tema o el idioma.</value>
+  </data>
+  <data name="Log_SaveLogImmediately" xml:space="preserve">
+    <value>Guardar registro inmediatamente</value>
+  </data>
+  <data name="Log_SaveLogImmediatelyToolTip" xml:space="preserve">
+    <value>Especifica si se escribe en el archivo de registro al añadir el registro.
+Si está desactivado, se escribirá todo al salir del programa.
+Si está activado, el registro se guarda inmediatamente, incluso si hay un cierre forzado, pero puede ralentizar un poco el proceso.
+Nota: si "Guardar registro en archivo" está desactivado, esta opción no tendrá efecto.</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
+    <value>Al desactivar, solo se mostrarán las composiciones que coincidan con la vista previa de la pantalla del mapa.
+Al activar, se ignorará la vista previa y se mostrarán todas las composiciones.</value>
+  </data>
+  <data name="Control_ShowSallyAreaAlertDialog" xml:space="preserve">
+    <value>Advertir antes de enviar un barco sin etiqueta de salida.</value>
+  </data>
+  <data name="Control_ShowExpeditionAlertDialog" xml:space="preserve">
+    <value>Advertir al enviar una expedición con requisitos no cumplidos.</value>
+  </data>
+  <data name="Connection_DownstreamProxyLabel" xml:space="preserve">
+    <value>Proxy descendente</value>
+  </data>
+  <data name="FormBattle_ShowShipTypeInHPBarToolTip" xml:space="preserve">
+    <value>Especifica si se muestra la abreviatura del tipo de barco (por ejemplo: DD) en lugar del texto "HP". Las abreviaturas largas pueden superponerse.</value>
+  </data>
+  <data name="NetworkSettingsNote" xml:space="preserve">
+    <value>* La configuración de red se aplicará tras reiniciar</value>
+  </data>
+  <data name="RestartNotice" xml:space="preserve">
+    <value>* Las configuraciones marcadas se aplicarán tras reiniciar</value>
+  </data>
+  <data name="Connection_SaveDataPathSearch" xml:space="preserve">
+    <value>Examinar...</value>
+  </data>
+  <data name="ConfirmSetting" xml:space="preserve">
+    <value>Confirmar configuración</value>
+  </data>
+  <data name="Language_Korean" xml:space="preserve">
+    <value>Coreano</value>
+  </data>
+  <data name="FormBattle_ShowHPBarToolTip" xml:space="preserve">
+    <value>Desactivar esta opción ocultará la barra de HP y ahorrará espacio vertical.</value>
+  </data>
+  <data name="Connection_UseSystemProxy" xml:space="preserve">
+    <value>Usar proxy del sistema</value>
+  </data>
+  <data name="Connection_RegisterAsSystemProxy" xml:space="preserve">
+    <value>Registrar como proxy del sistema.</value>
+  </data>
+  <data name="Life_LockLayoutToolTip" xml:space="preserve">
+    <value>Prevenir cambios en el diseño de pestañas y el tamaño de la ventana.</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
+    <value>URL de caché de gadget personalizado</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
+    <value>Solución alternativa para Vulkan *</value>
+  </data>
+  <data name="Control_UseSystemVolume" xml:space="preserve">
+    <value>Usar configuración de volumen del sistema para notificaciones y BGM</value>
+  </data>
+  <data name="ThemeToolTip" xml:space="preserve">
+    <value>"Usa el tema de color especificado.
+Los cambios tendrán efecto después de reiniciar.
+La opción personalizada usará los valores de color de Settings\ColorScheme.json."</value>
+  </data>
+  <data name="DataSubmission_Username" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="Connection_UseUpstreamProxy" xml:space="preserve">
+    <value>Usar proxy local:</value>
+  </data>
+  <data name="Connection_UseUpstreamProxyToolTip" xml:space="preserve">
+    <value>Usar servidor proxy local.  
+Actívalo si deseas enrutar la conexión a través de  
+una aplicación de terceros (por ejemplo: MyFleetGirls).</value>
+  </data>
+  <data name="UI_JapaneseEquipmentNames" xml:space="preserve">
+    <value>Usar nombres de equipamiento en japonés</value>
+  </data>
+  <data name="UI_JapaneseEquipmentTypes" xml:space="preserve">
+    <value>Usar tipos de equipamiento en japonés</value>
+  </data>
+  <data name="UI_JapaneseShipNames" xml:space="preserve">
+    <value>Usar nombres de barcos en japonés</value>
+  </data>
+  <data name="UI_JapaneseShipTypes" xml:space="preserve">
+    <value>Usar tipos de barcos en japonés</value>
+  </data>
+  <data name="FormBrowser_HardwareAccelerationEnabledToolTip" xml:space="preserve">
+    <value>"Usar aceleración por hardware si está disponible.
+Nota: Desactiva esta opción si necesitas capturar la ventana 
+para grabación o transmisión.
+* Los cambios se aplicarán tras reiniciar la aplicación."</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>Usar redirección de gadget *</value>
+  </data>
+  <data name="FormFleet_AppliesSallyAreaColorToolTip" xml:space="preserve">
+    <value>Usar el color de etiqueta de flota como fondo del nombre de cada barco.
+Los colores pueden no coincidir con los de cada evento.</value>
+  </data>
+  <data name="FormFleet_AppliesSallyAreaColor" xml:space="preserve">
+    <value>Usar color de etiqueta de flota</value>
+  </data>
+  <data name="UI_IsLayoutFixed" xml:space="preserve">
+    <value>Usar altura de fuente fija</value>
+  </data>
+  <data name="UI_BarColorMorphingToolTip" xml:space="preserve">
+    <value>Usar gradiente de color en barras como HP, recursos, etc.</value>
+  </data>
+  <data name="Notification_Training" xml:space="preserve">
+    <value>Entrenamiento completado</value>
+  </data>
+  <data name="TranslationURL" xml:space="preserve">
+    <value>URL de traducción</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_ToClipboard" xml:space="preserve">
+    <value>Al portapapeles</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_ToFile" xml:space="preserve">
+    <value>Guardar en archivo</value>
+  </data>
+  <data name="DialogCaptionErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Control_PowerEngagementForm_RedT" xml:space="preserve">
+    <value>T rojo</value>
+  </data>
+  <data name="Control_PowerEngagementForm_GreenT" xml:space="preserve">
+    <value>T verde</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenu" xml:space="preserve">
+    <value>Mostrar menú contextual</value>
+  </data>
+  <data name="FormFleet_IsScrollable" xml:space="preserve">
+    <value>Mostrar barra de desplazamiento</value>
+  </data>
+  <data name="FormShipGroup_ShowStatusBar" xml:space="preserve">
+    <value>Mostrar barra de estado</value>
+  </data>
+  <data name="Life_ShowStatusBar" xml:space="preserve">
+    <value>Mostrar barra de estado</value>
+  </data>
+  <data name="Theme_Dark" xml:space="preserve">
+    <value>Oscuro</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
+    <value>Si no está marcado, al agregar un nuevo plan de entrenamiento, la lista mostrará solo barcos sin plan asignado.  
+Si está marcado, no se aplicará ningún filtro.</value>
+  </data>
+  <data name="Control_PowerEngagementForm_HeadOn" xml:space="preserve">
+    <value>Combate frontal</value>
+  </data>
+  <data name="UI_LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="OtherItem" xml:space="preserve">
+    <value>Otro Item</value>
+  </data>
+  <data name="Control_PowerEngagementForm_Parallel" xml:space="preserve">
+    <value>Paralelo</value>
+  </data>
+  <data name="DataSubmission_Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Log_LogLevelToolTip" xml:space="preserve">
+    <value> Especifica el nivel de registro del programa. Un número menor significa un registro más detallado.  
+1: Depuración  
+2: Normal (recomendado)  
+3: Solo errores</value>
+  </data>
+  <data name="Control_ForceUpdate" xml:space="preserve">
+    <value>Forzar Actualización</value>
+  </data>
+  <data name="FormFleet_ShowNextExpToolTip" xml:space="preserve">
+    <value>Mostrar la experiencia necesaria para subir de nivel.  
+Desactiva esta opción para ahorrar espacio horizontal.</value>
+  </data>
+  <data name="AutoUpdateCouldIncreaseLoad" xml:space="preserve">
+    <value>※Habilitar la actualización automática puede aumentar la carga de procesamiento.</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_SingleStatus" xml:space="preserve">
+    <value>Mostrar solo un estado</value>
+  </data>
+  <data name="FormBattle_Display7thAsSingleLine" xml:space="preserve">
+    <value>Mostrar el séptimo barco en la misma línea</value>
+  </data>
+  <data name="FormJson_UpdatesTreeToolTip" xml:space="preserve">
+    <value>Actualizar automáticamente el contenido del árbol al enviar/recibir datos de la API.  
+Solo funciona si la actualización automática está activada. Puede aumentar la carga de procesamiento.</value>
+  </data>
+  <data name="FormJson_AutoUpdateToolTip" xml:space="preserve">
+    <value>Actualizar automáticamente los datos de la API mostrados.  
+Puede aumentar la carga de procesamiento.</value>
+  </data>
+  <data name="Language_English" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
+    <value>Redirige la llamada API del gadget para evitar el bloqueo regional.  
+Si vives en Japón o usas una VPN japonesa, puedes dejar esta opción desactivada.</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
+    <value>Elimina los archivos WebView2 necesarios para la representación por software con Vulkan, que pueden causar alta carga de CPU en hardware antiguo.</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
+    <value>El clic derecho en el navegador mostrará un menú contextual.</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
+    <value>Permitir añadir múltiples planes de entrenamiento para la misma chica barco</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
+    <value>Mostrar todas las composiciones enemigas posibles</value>
+  </data>
+  <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
+    <value>Los valores del puerto y del puerto del proxy ascendente deben ser diferentes.</value>
+  </data>
+  <data name="PlayerVolumeWillBeSet" xml:space="preserve">
+    <value>El volumen del reproductor BGM se establecerá en {0}.  
+¿Estás seguro?</value>
+  </data>
+  <data name="FailedToSavePac" xml:space="preserve">
+    <value>Error al guardar el script de configuración automática de proxy.</value>
+  </data>
+  <data name="PacSavedTitle" xml:space="preserve">
+    <value>Script PAC guardado</value>
+  </data>
+  <data name="Log_PlayTime" xml:space="preserve">
+    <value>Tiempo de juego</value>
+  </data>
+  <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
+    <value>Habilitar envío a TsunDb</value>
+  </data>
+  <data name="Notification_BaseAirCorps" xml:space="preserve">
+    <value>Configurar notificaciones de la base aérea</value>
+  </data>
+  <data name="Notification_BattleEnd" xml:space="preserve">
+    <value>Notificación de fin de batalla</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="Theme_Custom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="SaveDataPathDoesNotExist" xml:space="preserve">
+    <value>La carpeta especificada no existe.</value>
+  </data>
+  <data name="PleaseStartKancolle" xml:space="preserve">
+    <value>Por favor, inicia KanColle primero.</value>
+  </data>
+  <data name="SavePacFileAs" xml:space="preserve">
+    <value>Guardar archivo PAC como</value>
+  </data>
+  <data name="ProxyAutoConfigSaved" xml:space="preserve">
+    <value>El script de configuración automática de proxy ha sido guardado.  
+La ruta del archivo se ha copiado al portapapeles, pégala en la configuración de proxy de Internet Explorer.</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
+    <value>Solo introduce la parte inicial de la URL del servidor caché, todo antes del subdirectorio "/gadget_html5/".  
+Por ejemplo, si usas "http://luckyjervis.com/gadget_html5/js/kcs_const.js", debes ingresar "http://luckyjervis.com/". </value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
+    <value>Formato de URL no válido.</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>URL de la API de Electronic Observe</value>
+  </data>
+  <data name="DataSubmission_LoggedInAs" xml:space="preserve">
+    <value>Conectado como</value>
+  </data>
+  <data name="Notification_Silencio" xml:space="preserve">
+    <value>Silenciar todas las notificaciones</value>
+  </data>
+  <data name="Notification_SilencioToolTip" xml:space="preserve">
+    <value>Oculta/detiene todas las notificaciones y sonidos de notificación.  
+“¡Silencio! ¡Cállate!”</value>
+  </data>
+  <data name="Notification_RemodelLevel" xml:space="preserve">
+    <value>Nivel de remodelación</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>Sincronizar silencio</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMuteToolTip" xml:space="preserve">
+    <value>Especifica si sincronizar el silencio con el navegador.</value>
+  </data>
+  <data name="silenceFullscreen" xml:space="preserve">
+    <value>Silenciar en pantalla completa</value>
+  </data>
+  <data name="FormJson_AutoUpdateFilterToolTip" xml:space="preserve">
+    <value>Filtro que selecciona qué datos de la API se leerán durante la actualización automática.  
+Admite expresiones regulares.</value>
+  </data>
+  <data name="FormJson_UpdatesTree" xml:space="preserve">
+    <value>También actualizar vista en árbol JSON</value>
+  </data>
+  <data name="FormJson_AutoUpdate" xml:space="preserve">
+    <value>Actualizar automáticamente</value>
+  </data>
+  <data name="FormBrowser_SavesBrowserLogTooltip" xml:space="preserve">
+    <value>Guardar el registro de errores del navegador en BrowserLog.log.  
+Puede reducir el rendimiento.</value>
+  </data>
+  <data name="FormBrowser_ForceColorProfile" xml:space="preserve">
+    <value>Fijar perfil de color en sRGB *</value>
+  </data>
+  <data name="FormBrowser_ForceColorProfileToolTip" xml:space="preserve">
+    <value>Activa esta opción si los colores del navegador se ven incorrectos.  
+* Los cambios surtirán efecto tras reiniciar la aplicación.</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBuffer" xml:space="preserve">
+    <value>Preservar búfer de dibujo *</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBufferToolTip" xml:space="preserve">
+    <value>Activar puede resolver problemas de visualización.  
+Desactivarlo puede mejorar el rendimiento.  
+* El cambio se aplicará tras reiniciar.</value>
+  </data>
+  <data name="FormBrowser_HardwareAccelerationEnabled" xml:space="preserve">
+    <value> Habilitar aceleración por hardware *</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyable" xml:space="preserve">
+    <value>Ocultar ventana emergente de recarga de página de DMM</value>
+  </data>
+  <data name="FormBrowser_ConfirmAtRefreshToolTip" xml:space="preserve">
+    <value>Muestra una confirmación antes de actualizar la página.  
+Útil para evitar clics accidentales.</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Método de guardado:</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_Both" xml:space="preserve">
+    <value>Guardar ambos</value>
+  </data>
+  <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration" xml:space="preserve">
+    <value>Evitar compresión en Twitter</value>
+  </data>
+  <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>Aplicar modificaciones a las imágenes para evitar que Twitter las convierta automáticamente en JPEG.</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnlyToolTip" xml:space="preserve">
+    <value>Oculta las bases aéreas asignadas a mapas normales durante eventos.  
+Fuera del evento se mostrarán todas.</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnly" xml:space="preserve">
+    <value>Mostrar solo bases en mapas de evento</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Navegador</value>
+  </data>
+  <data name="FormBattle_HideDuringBattle" xml:space="preserve">
+    <value>Ocultar hasta que termine la batalla</value>
+  </data>
+  <data name="FormFleet_FixShipNameWidthToolTip" xml:space="preserve">
+    <value>Especifica un ancho fijo para la columna de nombres de barcos.  
+Puede ahorrar espacio horizontal, pero puede cortar nombres largos.</value>
+  </data>
+  <data name="FormFleet_IsScrollableToolTip" xml:space="preserve">
+    <value>Muestra una barra de desplazamiento si el contenido no cabe.  
+No se mostrará si todo cabe en pantalla.</value>
+  </data>
+  <data name="FormFleet_ShowAircraft" xml:space="preserve">
+    <value>Mostrar cantidad de aviones embarcados</value>
+  </data>
+  <data name="NameWidth" xml:space="preserve">
+    <value>Ancho máximo del nombre del barco:</value>
+  </data>
+  <data name="FormArsenal_MaxShipNameWidthToolTip" xml:space="preserve">
+    <value>Especifica el ancho máximo para mostrar nombres de barcos.</value>
+  </data>
+  <data name="FormBattle_HideDuringBattleToolTip" xml:space="preserve">
+    <value>Evita spoilers ocultando la predicción de batalla.  
+Puedes mostrarla temporalmente con clic derecho en la ventana de combate.</value>
+  </data>
+  <data name="FormArsenal_ShowShipName" xml:space="preserve">
+    <value>Mostrar nombre del barco</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Configurar visibilidad:</value>
+  </data>
+  <data name="ShipNameSortMethod_GameSort" xml:space="preserve">
+    <value>Orden según base naval</value>
+  </data>
+  <data name="FormBattle_Display7thAsSingleLineToolTip" xml:space="preserve">
+    <value>Especifica dónde mostrar el 7.º barco en formaciones de 7 barcos.  
+Si está activado, se muestra debajo del 6.º; si está desactivado, se muestra como líder de la flota de escolta.  
+Desactivarlo puede ahorrar espacio vertical.</value>
+  </data>
+  <data name="FormBattle_ShowShipTypeInHPBar" xml:space="preserve">
+    <value>Mostrar abreviatura del tipo de barco en la barra de HP</value>
+  </data>
+  <data name="FormBattle_ShowHPBar" xml:space="preserve">
+    <value>Mostrar barra de HP</value>
+  </data>
+  <data name="DataSubmission_Login" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="DataSubmission_Logout" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="DataSubmission_PrivacyPolicy" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
+    <value>Preguntas frecuentes sobre el envío de datos</value>
+  </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>Chino (simplificado)</value>
+  </data>
+  <data name="Control_DiscordRPC_Icon" xml:space="preserve">
+    <value>Icono de Discord RPC:</value>
+  </data>
+  <data name="Control_DiscordRPC_Default" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
+    <value>Secretaria</value>
+  </data>
+  <data name="FormFleet_FixShipNameWidth" xml:space="preserve">
+    <value>Fijar ancho del nombre del barco</value>
+  </data>
+  <data name="FormFleet_ShortenHPBar" xml:space="preserve">
+    <value>Barra de HP reducida</value>
+  </data>
+  <data name="FormFleet_AirSuperiorityMethod_Disabled" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="DiscordRPCMessage" xml:space="preserve">
+    <value>Mensaje de Discord RPC</value>
+  </data>
+  <data name="Control_DiscordRPCMessageToolTip" xml:space="preserve">
+    <value>Permite elegir qué mensaje mostrar en Discord. Usa {{secretary}} para incluir el nombre de tu secretaria.</value>
+  </data>
+  <data name="Control_ShowExpeditionAlertDialogTooltip" xml:space="preserve">
+    <value>Mostrar advertencia si una flota que no cumple los requisitos intenta salir en expedición.</value>
+  </data>
+  <data name="Control_ShowSallyAreaAlertDialogTooltip" xml:space="preserve">
+    <value>Mostrar advertencia si una flota que no cumple los requisitos intenta salir en expedición.</value>
+  </data>
+  <data name="FormFleet_ShowConditionIconToolTip" xml:space="preserve">
+    <value>Especifica si se muestra el ícono de fatiga.  
+Si no se muestra, se diferenciará por color de fondo.</value>
+  </data>
+  <data name="EquipmentLevelVisibility_OverlayProficiency" xml:space="preserve">
+    <value>Mostrar superposición de experiencia</value>
+  </data>
+  <data name="FormFleet_ShowConditionIcon" xml:space="preserve">
+    <value>Mostrar ícono de fatiga</value>
+  </data>
+  <data name="FormFleet_FixedShipNameWidthToolTip" xml:space="preserve">
+    <value>Especifica el ancho cuando el nombre de barco está fijado.</value>
+  </data>
+  <data name="FormFleet_ShowAircraftLevelByNumberToolTip" xml:space="preserve">
+    <value>Mostrar la experiencia del avión con números (1, 2, 3) en lugar de símbolos (|, ||, &gt;&gt;).</value>
+  </data>
+  <data name="FormFleet_ShowAircraftLevelByNumber" xml:space="preserve">
+    <value>Mostrar nivel de avión en números</value>
+  </data>
+  <data name="FormFleet_ShowAirSuperiorityRangeToolTip" xml:space="preserve">
+    <value>Mostrar el valor AS (superioridad aérea) en un rango desde proficiencia mínima a máxima.  
+Por defecto, se calcula con el nivel más bajo.</value>
+  </data>
+  <data name="FormFleet_ShowAirSuperiorityRange" xml:space="preserve">
+    <value>Mostrar rango de AS</value>
+  </data>
+  <data name="FormFleet_ShowAnchorageRepairingTimer" xml:space="preserve">
+    <value>Mostrar temporizador de reparación en fondeadero</value>
+  </data>
+  <data name="EquipmentLevelDisplay" xml:space="preserve">
+    <value>Mostrar información del equipo:</value>
+  </data>
+  <data name="FormFleet_EquipmentLevelVisibilityToolTip" xml:space="preserve">
+    <value>Especifica el modo de visualización del nivel de mejora y experiencia de los equipos.  
+Modo "Oculto": no muestra nada.  
+Modo "Prioridad": muestra uno u otro si ambos tienen nivel.  
+Modo "Ambos": muestra siempre ambos.</value>
+  </data>
+  <data name="Debug_EnableDebugMenu" xml:space="preserve">
+    <value>Mostrar menú de depuración</value>
+  </data>
+  <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
+    <value>Habilita el menú [Debug] en la barra principal.  
+Función de uso avanzado, no recomendado para usuarios comunes.  
+Usar bajo tu propia responsabilidad.</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
+    <value>Permitir cerrar ventanas flotantes incluso si el diseño está bloqueado.  
+Útil para quienes abren temporalmente dichas ventanas.</value>
+  </data>
+  <data name="Life_LockLayout" xml:space="preserve">
+    <value>Bloquear diseño actual</value>
+  </data>
+  <data name="ClockMode" xml:space="preserve">
+    <value>Modo de reloj:</value>
+  </data>
+  <data name="Life_ClockFormat_ServerTime" xml:space="preserve">
+    <value>Hora del servidor</value>
+  </data>
+  <data name="Life_ClockFormat_PvpReset" xml:space="preserve">
+    <value>Reinicio de PVP</value>
+  </data>
+  <data name="Life_ClockFormat_QuestReset" xml:space="preserve">
+    <value>Reinicio de misiones</value>
+  </data>
+  <data name="Life_CheckUpdateInformation" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="Life_TopMost" xml:space="preserve">
+    <value>Mantener al frente</value>
+  </data>
+  <data name="Life_ConfirmOnClosing" xml:space="preserve">
+    <value>Confirmar al salir</value>
+  </data>
+  <data name="FleetStatus" xml:space="preserve">
+    <value>Estado de la flota:</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_CollapseAll" xml:space="preserve">
+    <value>Colapsar todo</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_CollapseMultiple" xml:space="preserve">
+    <value>Colapsar múltiples</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_ExpandAll" xml:space="preserve">
+    <value>Expandir todo</value>
+  </data>
+  <data name="FormFleet_EmphasizesSubFleetInPort" xml:space="preserve">
+    <value>Resaltar flota en puerto sin misión</value>
+  </data>
+  <data name="FormFleet_EmphasizesSubFleetInPortToolTip" xml:space="preserve">
+    <value>Resalta las flotas 2-4 cuando están en puerto</value>
+  </data>
+  <data name="FormFleet_BlinkAtDamaged" xml:space="preserve">
+    <value>Parpadear en daño crítico</value>
+  </data>
+  <data name="FormFleet_BlinkAtDamagedToolTip" xml:space="preserve">
+    <value>Parpadea en el puerto si hay barcos críticamente dañados.  
+Siempre parpadeará al salir a combate.</value>
+  </data>
+  <data name="FormFleet_ReflectAnchorageRepairHealingToolTip" xml:space="preserve">
+    <value>Reflejar recuperación de HP por reparación en fondeadero</value>
+  </data>
+  <data name="FormFleet_ReflectAnchorageRepairHealing" xml:space="preserve">
+    <value> HP recuperada</value>
+  </data>
+  <data name="Debug_LoadAPIListOnLoadToolTip" xml:space="preserve">
+    <value>Cargar la siguiente lista de API al iniciar.  
+Consulta la ayuda en línea para conocer el formato y uso de la lista.</value>
+  </data>
+  <data name="FormFleet_AirSuperiorityMethod_Enabled" xml:space="preserve">
+    <value>Incluir proficiencia</value>
+  </data>
+  <data name="FormFleet_ShowAnchorageRepairingTimerToolTip" xml:space="preserve">
+    <value>Especifica si mostrar el temporizador de reparación en fondeadero en la lista de flotas.</value>
+  </data>
+  <data name="Debug_LoadAPIListOnLoad" xml:space="preserve">
+    <value>Cargar lista de API al iniciar</value>
+  </data>
+  <data name="LogFrequency" xml:space="preserve">
+    <value>Frecuencia de guardado del registro:</value>
+  </data>
+  <data name="ProgressAutoSaving_Immediately" xml:space="preserve">
+    <value>Inmediatamente</value>
+  </data>
+  <data name="Control_UseSystemVolumeToolTip" xml:space="preserve">
+    <value>Desactiva la configuración de volumen individual para notificaciones y BGM.  
+Debes usar el mezclador de volumen de Windows para ajustar el volumen.
+</value>
+  </data>
+  <data name="FormationModifier" xml:space="preserve">
+    <value>Modificador de formación:</value>
+  </data>
+  <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
+    <value>Establece la formación de combate base para calcular el poder de ataque.</value>
+  </data>
+  <data name="Control_EnableDiscordRPCToolTip" xml:space="preserve">
+    <value>Habilita Discord Rich Presence</value>
+  </data>
+  <data name="Control_EnableDiscordRPC" xml:space="preserve">
+    <value>Habilitar Discord RPC</value>
+  </data>
+  <data name="Control_DiscordRPCShowFCM" xml:space="preserve">
+    <value>Mostrar número de medallas de primera clase</value>
+  </data>
+  <data name="Control_translationURLToolTip" xml:space="preserve">
+    <value>Especifica el repositorio para actualizar las traducciones.</value>
+  </data>
+  <data name="Control_ApplicationIDToolTip" xml:space="preserve">
+    <value>ID de aplicación para usar con Discord Rich Presence</value>
+  </data>
+  <data name="TabPage4" xml:space="preserve">
+    <value>Comportamiento</value>
+  </data>
+  <data name="Log_ShowSpoilerToolTip" xml:space="preserve">
+    <value>Muestra objetos desarrollados y barcos obtenidos en el registro.  
+Desactívalo si prefieres no ver spoilers.</value>
+  </data>
+  <data name="Log_ShowSpoiler" xml:space="preserve">
+    <value> Permitir spoilers</value>
+  </data>
+  <data name="Log_SaveBattleLogToolTip" xml:space="preserve">
+    <value>Especifica si se guarda el historial de batalla como archivo de texto.  
+Los historiales se guardan en la subcarpeta BattleLog.</value>
+  </data>
+  <data name="Log_SaveBattleLog" xml:space="preserve">
+    <value>Guardar historial de batalla</value>
+  </data>
+  <data name="UI_IsLayoutFixedToolTip" xml:space="preserve">
+    <value>Aplica la misma altura a todas las fuentes de UI.  
+Si se desactiva, la altura puede variar por fuente y ralentizar la interfaz.</value>
+  </data>
+  <data name="UI_RenderingTestToolTip" xml:space="preserve">
+    <value>Esto es una vista previa.  
+Usa el control deslizante inferior para ajustar el valor.</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema:</value>
+  </data>
+  <data name="UI_DisableOtherTranslationsToolTip" xml:space="preserve">
+    <value>Expediciones, mapas de salida y misiones.</value>
+  </data>
+  <data name="UI_DisableOtherTranslations" xml:space="preserve">
+    <value>Desactivar otras traducciones</value>
+  </data>
+  <data name="Control_DiscordRPCShowFCMToolTip" xml:space="preserve">
+    <value>Marca para mostrar el número de medallas de primera clase en Discord Rich Presence.</value>
+  </data>
+  <data name="Connection_SaveReceivedData" xml:space="preserve">
+    <value>Guardar datos de la API</value>
+  </data>
+  <data name="Connection_UpstreamProxyPortToolTip" xml:space="preserve">
+    <value> Especifica el número de puerto del servidor proxy local.</value>
+  </data>
+  <data name="Connection_DownstreamProxyToolTip" xml:space="preserve">
+    <value>Especifica la configuración del proxy descendente.  
+Esta configuración sobrescribirá la del proxy ascendente.  
+Solo para usuarios avanzados.</value>
+  </data>
 </root>

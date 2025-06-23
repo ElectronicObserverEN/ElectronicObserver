@@ -117,4 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnchorageRepairing" xml:space="preserve">
+    <value>Reparación en el Anclaje</value>
+  </data>
+  <data name="Repairing" xml:space="preserve">
+    <value>Reparación en el Anclaje</value>
+  </data>
+  <data name="Docking" xml:space="preserve">
+    <value>Reparación en el Anclaje</value>
+  </data>
+  <data name="CriticalDamageAdvance" xml:space="preserve">
+    <value>¡¡Avanzando con daño crítico!!</value>
+  </data>
+  <data name="RepairTimeDetail" xml:space="preserve">
+    <value>#{0} : {1} @ {2} x -{3} HP</value>
+  </data>
+  <data name="HasReturned" xml:space="preserve">
+    <value>#{0} 「{1}」 ha regresado.</value>
+  </data>
+  <data name="ExpeditionToolTip" xml:space="preserve">
+    <value>{0}: {1}  
+Hora de finalización: {2}</value>
+  </data>
+  <data name="SparkledTooltip" xml:space="preserve">
+    <value>Moral más baja: {0}  
+Quedan {1} expediciones efectivas.</value>
+  </data>
+  <data name="CompletionTime" xml:space="preserve">
+    <value>Hora de finalización </value>
+  </data>
+  <data name="CriticallyDamagedShip" xml:space="preserve">
+    <value>¡Buque críticamente dañado!</value>
+  </data>
+  <data name="EstimatedRecoveryTime" xml:space="preserve">
+    <value>Hora estimada de recuperación</value>
+  </data>
+  <data name="Fatigued" xml:space="preserve">
+    <value>Fatigado </value>
+  </data>
+  <data name="FightingSpiritHigh" xml:space="preserve">
+    <value>¡Flota brillando!</value>
+  </data>
+  <data name="NoShips" xml:space="preserve">
+    <value>Sin buques asignados</value>
+  </data>
+  <data name="OnExped" xml:space="preserve">
+    <value>En expedición</value>
+  </data>
+  <data name="OnSortie" xml:space="preserve">
+    <value>En Salida</value>
+  </data>
+  <data name="ReadyToSortie" xml:space="preserve">
+    <value>¡Lista para salir!</value>
+  </data>
+  <data name="ResupplyTooltip" xml:space="preserve">
+    <value>Fuel: {0}  
+Munición: {1}  
+Baux: {2} ({3} aviones)</value>
+  </data>
+  <data name="SupplyNeeded" xml:space="preserve">
+    <value>Necesita reabastecimiento</value>
+  </data>
+  <data name="RepairTimeHeader" xml:space="preserve">
+    <value>Inicio: {0}
+Tiempo de reparación:</value>
+  </data>
+  <data name="OnDock" xml:space="preserve">
+    <value>En reparación</value>
+  </data>
+  <data name="DockCompletionTime" xml:space="preserve">
+    <value>Fecha estimada de finalización:</value>
+  </data>
+  <data name="RecoveryTimeToolTip" xml:space="preserve">
+    <value>Hora estimada de recuperación: {0}
+(error de predicción: {1})</value>
+  </data>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>Combustible: {0}/{1} ({2}%)
+Munición: {3}/{4} ({5}%)</value>
+  </data>
 </root>

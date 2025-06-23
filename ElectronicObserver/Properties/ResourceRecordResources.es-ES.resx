@@ -117,4 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ShipParameterRecord_StockEquipmentUpdated" xml:space="preserve">
+    <value>El equipamiento inicial de {0} ha sido actualizado.</value>
+  </data>
+  <data name="EnemyFleetRecord_EnemyAirRaid" xml:space="preserve">
+    <value>Ataque aéreo de base enemiga</value>
+  </data>
+  <data name="RecordBase_RecordDoesNotExist" xml:space="preserve">
+    <value>El archivo {0} no existe.</value>
+  </data>
+  <data name="RecordBase_FailedToLoadRecord" xml:space="preserve">
+    <value>Error al cargar el archivo {0}.</value>
+  </data>
+  <data name="RecordBase_FailedToWriteRecord" xml:space="preserve">
+    <value>Error al escribir el archivo {0}.</value>
+  </data>
+  <data name="RecordManager_RecordsSaved" xml:space="preserve">
+    <value>Registros guardados.</value>
+  </data>
+  <data name="RecordManager_FailedToSaveRecords" xml:space="preserve">
+    <value>Error al guardar los registros.</value>
+  </data>
+  <data name="ShipParameterRecord_AswOutOfPredictedRange" xml:space="preserve">
+    <value>Parámetro de barco: el valor ASW de {0} está fuera del rango previsto ([{1} ~ {2}] ~ {3}).</value>
+  </data>
+  <data name="ShipParameterRecord_EvasionOutOfPredictedRange" xml:space="preserve">
+    <value>Parámetro de barco: el valor de evasión de {0} está fuera del rango previsto ([{1} ~ {2}] ~ {3}).</value>
+  </data>
+  <data name="ShipParameterRecord_LosOutOfPredictedRange" xml:space="preserve">
+    <value>Parámetro de barco: el valor de detección de {0} está fuera del rango previsto ([{1} ~ {2}] ~ {3}).</value>
+  </data>
 </root>

@@ -117,4 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TextAirSuperiority" xml:space="preserve">
+    <value>AS</value>
+  </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>Bombardeo aéreo -</value>
+  </data>
+  <data name="AirValues" xml:space="preserve">
+    <value>AS+: {0}
+AS: {1}
+AP: {2}
+AI: {3}
+</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>Artículo desconocido</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(ninguno)</value>
+  </data>
+  <data name="TextEnemyFleetName" xml:space="preserve">
+    <value>Nombre de la flota enemiga</value>
+  </data>
+  <data name="TextFormation" xml:space="preserve">
+    <value>Forma</value>
+  </data>
+  <data name="BranchChoiceSeparator" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="CalmSea2" xml:space="preserve">
+    <value>Es un mar en calma.</value>
+  </data>
+  <data name="CalmStrait" xml:space="preserve">
+    <value>Es un estrecho  en calma.</value>
+  </data>
+  <data name="CalmSea" xml:space="preserve">
+    <value>Es un mar en calma.</value>
+  </data>
+  <data name="MapClearCount" xml:space="preserve">
+    <value>{0} derrotado: {1} / {2} veces</value>
+  </data>
+  <data name="NeedToBeCareful" xml:space="preserve">
+    <value>Es necesario estar alerta.</value>
+  </data>
+  <data name="BranchChoice" xml:space="preserve">
+    <value>Elección de ruta:</value>
+  </data>
+  <data name="NoEnemySighted" xml:space="preserve">
+    <value>No se detectó enemigo.</value>
+  </data>
+  <data name="EnemyPlaneSighted" xml:space="preserve">
+    <value>¡Avión enemigo avistado!</value>
+  </data>
+  <data name="CoursePatrol" xml:space="preserve">
+    <value>¡Patrulla en rumbo!</value>
+  </data>
+  <data name="TargetSighted" xml:space="preserve">
+    <value>¡Objetivo de ataque localizado!</value>
+  </data>
+  <data name="EnemySighted" xml:space="preserve">
+    <value>¡Flota enemiga detectada!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Brújula</value>
+  </data>
+  <data name="FleetCount" xml:space="preserve">
+    <value>Flotas: {0}</value>
+  </data>
+  <data name="FleetPaging" xml:space="preserve">
+    <value>Flotas: {0} / {1}
+(clic izquierdo o derecho para cambiar de página)</value>
+  </data>
 </root>

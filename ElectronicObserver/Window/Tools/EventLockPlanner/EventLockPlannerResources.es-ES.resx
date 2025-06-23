@@ -117,4 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="Tank" xml:space="preserve">
+    <value>Tanque</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>_Archivo</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>_Ver</value>
+  </data>
+  <data name="Daihatsu" xml:space="preserve">
+    <value>Daihatsu</value>
+  </data>
+  <data name="Fcf" xml:space="preserve">
+    <value>FCF</value>
+  </data>
+  <data name="AddLock" xml:space="preserve">
+    <value>Agregar bloqueo</value>
+  </data>
+  <data name="AddPhase" xml:space="preserve">
+    <value>Agregar fase</value>
+  </data>
+  <data name="IsFinished" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="AssignLock" xml:space="preserve">
+    <value>Asignar bloqueo</value>
+  </data>
+  <data name="ShipTypeToggle" xml:space="preserve">
+    <value>Cambiar tipo de barco</value>
+  </data>
+  <data name="LockLoadWarningText" xml:space="preserve">
+    <value>Cargar los datos de bloqueo eliminará los bloqueos actuales. ¿Seguro que deseas continuar?</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Planificador de bloqueos de evento</value>
+  </data>
+  <data name="RemoveLock" xml:space="preserve">
+    <value>Eliminar bloqueo</value>
+  </data>
+  <data name="RemovePhase" xml:space="preserve">
+    <value>Eliminar fase</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>_Copiar al portapapeles</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>_Cargar desde el portapapeles</value>
+  </data>
+  <data name="LoadEventLocks" xml:space="preserve">
+    <value>Cargar _bloqueos de evento</value>
+  </data>
+  <data name="FailedToLoadLockData" xml:space="preserve">
+    <value>Error al cargar los datos de bloqueo</value>
+  </data>
+  <data name="ShowFinishedPhases" xml:space="preserve">
+    <value>_Mostrar fases completadas</value>
+  </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>Error al cargar el plan de bloqueos</value>
+  </data>
 </root>

@@ -117,4 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TopMenu_View_Zoom_In" xml:space="preserve">
+    <value>Zoom &amp;In</value>
+  </data>
+  <data name="TopMenu_View_Zoom_Out" xml:space="preserve">
+    <value>Zoom &amp;Out</value>
+  </data>
+  <data name="TopMenu_View_Zoom_Fit" xml:space="preserve">
+    <value>Zoom a &amp;Fit</value>
+  </data>
+  <data name="TopMenu_File" xml:space="preserve">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="TopMenu_File_CopyToClipboard" xml:space="preserve">
+    <value>&amp;Copiar</value>
+  </data>
+  <data name="TopMenu_View_Zoom" xml:space="preserve">
+    <value>&amp;Zoom</value>
+  </data>
+  <data name="TopMenu_View" xml:space="preserve">
+    <value>&amp;Ver</value>
+  </data>
+  <data name="TopMenu_View_Zoom_100" xml:space="preserve">
+    <value>&amp;100%</value>
+  </data>
+  <data name="TopMenu_View_InterpolationMode_Sharp" xml:space="preserve">
+    <value>&amp;Vecino más cercano</value>
+  </data>
+  <data name="TopMenu_View_InterpolationMode_Smooth" xml:space="preserve">
+    <value>&amp;Bicúbico suave</value>
+  </data>
+  <data name="OpenSwfDialog" xml:space="preserve">
+    <value>Abrir archivo de imagen</value>
+  </data>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>Guardar imagen</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Visor de imágenes de barcos</value>
+  </data>
+  <data name="ErrorLoadingImage" xml:space="preserve">
+    <value>Visor de imágenes: se produjo un error al cargar la imagen.</value>
+  </data>
+  <data name="ImageNotFound" xml:space="preserve">
+    <value>Imagen no encontrada.</value>
+  </data>
+  <data name="ImageCanNotBeOpened" xml:space="preserve">
+    <value>"No se pudo abrir {0}.
+{1}
+{2}"</value>
+  </data>
+  <data name="KeyboardShortcutInstructions" xml:space="preserve">
+    <value>{0} / {1}  
+{2} ({3})  
+Zoom {4:p1}  
+Usa las teclas ←/→ para cambiar de página.</value>
+  </data>
+  <data name="TopMenu_View_InterpolationMode" xml:space="preserve">
+    <value>&amp;Modo de interpolación</value>
+  </data>
+  <data name="TopMenu_File_Open" xml:space="preserve">
+    <value>&amp;Abrir</value>
+  </data>
 </root>

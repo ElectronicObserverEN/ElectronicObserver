@@ -117,4 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntiAir" xml:space="preserve">
+    <value>Arma antiaérea</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Más Opciones</value>
+  </data>
+  <data name="Radar" xml:space="preserve">
+    <value>Radar</value>
+  </data>
+  <data name="SeaplanesAndRecons" xml:space="preserve">
+    <value>Hidroaviones y aviones de reconocimiento</value>
+  </data>
+  <data name="Secondary" xml:space="preserve">
+    <value>Cañón secundario</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="TorpedoBomber" xml:space="preserve">
+    <value>Bombardero torpedo</value>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>Transporte</value>
+  </data>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>Cañón principal pequeño</value>
+  </data>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>Cañón principal medio</value>
+  </data>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>Cañón principal grande</value>
+  </data>
+  <data name="ASWGears" xml:space="preserve">
+    <value>Equipos ASW</value>
+  </data>
+  <data name="Bomber" xml:space="preserve">
+    <value>Bombardero</value>
+  </data>
+  <data name="Fighter" xml:space="preserve">
+    <value>Caza</value>
+  </data>
+  <data name="LandBasedBombers" xml:space="preserve">
+    <value>Bombardero terrestre</value>
+  </data>
+  <data name="LandBasedFighters" xml:space="preserve">
+    <value>Caza terrestre</value>
+  </data>
 </root>

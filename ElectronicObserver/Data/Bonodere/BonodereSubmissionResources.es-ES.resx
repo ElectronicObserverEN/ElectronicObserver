@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BonodereError" xml:space="preserve">
+    <value>Error de Bonodere</value>
+  </data>
+  <data name="BonodereSubmissionSuccess" xml:space="preserve">
+    <value>Envío a Bonodere: Éxito</value>
+  </data>
+  <data name="InconsistantDataDetected" xml:space="preserve">
+    <value>Datos inconsistentes detectados</value>
+  </data>
 </root>

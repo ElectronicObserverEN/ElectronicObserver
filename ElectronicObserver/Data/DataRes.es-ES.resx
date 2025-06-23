@@ -117,4 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ZeroSlotAircraftWarning" xml:space="preserve">
+    <value>Las estadísticas de aeronaves en una ranura de aeronave 0 no se tendrán en cuenta para los requisitos de la expedición.
+No hay garantía de que cumplas los requisitos de la expedición.</value>
+  </data>
+  <data name="MissionClearAa" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="MissionClearAsw" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="MissionClearExcludingSeaplaneTender" xml:space="preserve">
+    <value>(Excluyendo AV)</value>
+  </data>
+  <data name="MissionClearEscortLeaderCount" xml:space="preserve">
+    <value>(CL+CT+CVE)</value>
+  </data>
+  <data name="MissionClearAircraftCarrierCount" xml:space="preserve">
+    <value>(CV+CVL+AV)</value>
+  </data>
+  <data name="MissionClearSmallShipCount" xml:space="preserve">
+    <value>(DD+DE)</value>
+  </data>
+  <data name="MissionClearUnverified" xml:space="preserve">
+    <value>(No verificado)</value>
+  </data>
+  <data name="MissionClearLos" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="MissionClearSubmarineCount" xml:space="preserve">
+    <value>(SS+SSV)</value>
+  </data>
+  <data name="MissionClearFirepower" xml:space="preserve">
+    <value>FP</value>
+  </data>
+  <data name="MissionClearShipCount" xml:space="preserve">
+    <value>{1}{2} {0}</value>
+  </data>
+  <data name="MissionClearParameter" xml:space="preserve">
+    <value>{1}{2} {0}</value>
+  </data>
+  <data name="MissionClearEquipmentCount" xml:space="preserve">
+    <value>{0}: {1}{2} piezas</value>
+  </data>
+  <data name="MissionClearEquippedShipCount" xml:space="preserve">
+    <value>{0}: {1}{2} barcos</value>
+  </data>
+  <data name="MissionClearSuccess" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="MissionClearEscortFleet" xml:space="preserve">
+    <value>Escuadra de escolta (1 CL, 2 DD, otros) </value>
+  </data>
+  <data name="MissionClearEscortFleetDD3" xml:space="preserve">
+    <value>Escuadra de escolta (1 CL, 3 DD, otros)  </value>
+  </data>
+  <data name="MissionClearIncompatible" xml:space="preserve">
+    <value>No compatible  </value>
+  </data>
+  <data name="MissionClearFailure" xml:space="preserve">
+    <value>Fallo</value>
+  </data>
+  <data name="MissionClearFlagshipLv" xml:space="preserve">
+    <value>Nivel de la insignia</value>
+  </data>
+  <data name="MissionClearFlagshipType" xml:space="preserve">
+    <value>Suma de niveles</value>
+  </data>
+  <data name="MissionClearFlagshipEscortAircraftCarrier" xml:space="preserve">
+    <value>Insignia: Portaaviones de escolta</value>
+  </data>
+  <data name="MissionClearTotalShipCount" xml:space="preserve">
+    <value>Cantidad de barcos {0}{1} </value>
+  </data>
+  <data name="MissionClearShipLvSum" xml:space="preserve">
+    <value>Suma de niveles:</value>
+  </data>
 </root>

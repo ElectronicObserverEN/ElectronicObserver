@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Australian" xml:space="preserve">
+    <value>Australiano</value>
+  </data>
+  <data name="Dutch" xml:space="preserve">
+    <value>Holandés</value>
+  </data>
+  <data name="Swedish" xml:space="preserve">
+    <value>Sueco</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Ruso</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>Francés</value>
+  </data>
+  <data name="British" xml:space="preserve">
+    <value>Británico</value>
+  </data>
+  <data name="American" xml:space="preserve">
+    <value>Americano</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>Alemán</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>Japonés</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
 </root>

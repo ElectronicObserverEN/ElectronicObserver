@@ -117,4 +117,157 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>Bombardeo</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>CI (Zuiun)</value>
+  </data>
+  <data name="AirAttack" xml:space="preserve">
+    <value>Ataque aéreo</value>
+  </data>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>Ataque anfibio (Toku Daihatsu + Tanque)</value>
+  </data>
+  <data name="SpecialYamato12" xml:space="preserve">
+    <value>Yamato touch (1, 2)</value>
+  </data>
+  <data name="SpecialYamato123" xml:space="preserve">
+    <value>Yamato touch (1, 2, 3)</value>
+  </data>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>CI de destructor (Torpedo x2 + Vigía)</value>
+  </data>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>CI de destructor (Torpedo + Vigía + Radar)</value>
+  </data>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>CI de destructor (Torpedo + bidón  + Vigía)</value>
+  </data>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>CI de destructor (CP + Torpedo + Radar)</value>
+  </data>
+  <data name="TorpedoAttack" xml:space="preserve">
+    <value>Ataque con torpedos</value>
+  </data>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>Disparo doble</value>
+  </data>
+  <data name="SpecialRichelieu" xml:space="preserve">
+    <value>Richelieu Touch</value>
+  </data>
+  <data name="SpecialQueenElizabeth" xml:space="preserve">
+    <value>Queen Elizabeth Touch</value>
+  </data>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>CI (MG+MG)</value>
+  </data>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>CI (MG+SG)</value>
+  </data>
+  <data name="CutinMainAp" xml:space="preserve">
+    <value>CI (MG+AP)</value>
+  </data>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>CI (MG+Radar)</value>
+  </data>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>CI (MG+Torp)</value>
+  </data>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>CI (MGx2+SG)</value>
+  </data>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>CI (MGx3)</value>
+  </data>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>CI (Torpx2)</value>
+  </data>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>Ataque nocturno de escuadra (Kongou)</value>
+  </data>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>Ataque láser</value>
+  </data>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>Ataque normal</value>
+  </data>
+  <data name="RocketAttack" xml:space="preserve">
+    <value>Ataque con cohetes</value>
+  </data>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>Colorado Touch</value>
+  </data>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>CI (Portaaviones)</value>
+  </data>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>Mutsu Touch</value>
+  </data>
+  <data name="DepthChargeAttack" xml:space="preserve">
+    <value>Ataque con cargas de profundidad</value>
+  </data>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>Ataque anfibio (Daihatsu)</value>
+  </data>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>Ataque anfibio (Toku Daihatsu)</value>
+  </data>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>Ataque anfibio (Daihatsu + Tanque)</value>
+  </data>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>CI (Suisei)</value>
+  </data>
+  <data name="SpecialSubmarineTender23" xml:space="preserve">
+    <value>Ataque de flota submarina (2, 3)</value>
+  </data>
+  <data name="SpecialSubmarineTender34" xml:space="preserve">
+    <value>Ataque de flota submarina (3, 4)</value>
+  </data>
+  <data name="SpecialSubmarineTender24" xml:space="preserve">
+    <value>Ataque de flota submarina (2, 4)</value>
+  </data>
+  <data name="CvnciFfa" xml:space="preserve">
+    <value>CI (FFA)</value>
+  </data>
+  <data name="TankAttack" xml:space="preserve">
+    <value>Ataque anfibio (Tanque)</value>
+  </data>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>¡Salva completa... qué emoción!</value>
+  </data>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>Nelson Touch</value>
+  </data>
+  <data name="NightZuiunCutinZuiunRadar" xml:space="preserve">
+    <value>CI nocturno (Zuiun + Radar)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiun" xml:space="preserve">
+    <value>CI nocturno (Zuiun x2)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiunRadar" xml:space="preserve">
+    <value>CI nocturno (Zuiun x2 + Radar)</value>
+  </data>
+  <data name="CvnciPhoto" xml:space="preserve">
+    <value>CI (Foto)  </value>
+  </data>
+  <data name="CvnciFoo" xml:space="preserve">
+    <value>CI (FOO)  </value>
+  </data>
+  <data name="LateModelTorpedoSubmarineEquipment" xml:space="preserve">
+    <value>CI (Radar submarino)  </value>
+  </data>
+  <data name="LateModelTorpedo2" xml:space="preserve">
+    <value>CI (Modelo reciente)  </value>
+  </data>
+  <data name="CvnciFa" xml:space="preserve">
+    <value>CI (FA)  </value>
+  </data>
 </root>

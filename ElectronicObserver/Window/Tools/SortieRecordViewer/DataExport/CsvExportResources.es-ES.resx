@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntiAir" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="World" xml:space="preserve">
+    <value>Mundo</value>
+  </data>
+  <data name="AntiSubmarine" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="ActualRank" xml:space="preserve">
+    <value>Rango actual</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="ExpectedRank" xml:space="preserve">
+    <value>Rango esperado</value>
+  </data>
+  <data name="CombatRankPrediction" xml:space="preserve">
+    <value>Predicción de rango de combate</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Nodo</value>
+  </data>
+  <data name="FleetType" xml:space="preserve">
+    <value>Tipo de flota</value>
+  </data>
 </root>

@@ -117,4 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Menu_File" xml:space="preserve">
+    <value>&amp;Archivo</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="Menu_File_Reload" xml:space="preserve">
+    <value>&amp;Refrescar</value>
+  </data>
+  <data name="ViewMenu_Delete" xml:space="preserve">
+    <value>&amp;Eliminar</value>
+  </data>
+  <data name="ViewMenu_Execute" xml:space="preserve">
+    <value>&amp;Ejecutar</value>
+  </data>
+  <data name="APIView_FileName" xml:space="preserve">
+    <value>Nombre del Archivo</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FailedToStart" xml:space="preserve">
+    <value>Error al iniciar con el archivo API especificado. {0}: {1}</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="SelectSingleRow" xml:space="preserve">
+    <value>Por favor, selecciona solo una fila.</value>
+  </data>
+  <data name="Menu_File_OpenFolder" xml:space="preserve">
+    <value>&amp;Abrir carpeta...</value>
+  </data>
+  <data name="ButtonSearchPrev" xml:space="preserve">
+    <value>Búsqueda anterior</value>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="ButtonExecuteNext" xml:space="preserve">
+    <value>Ejecutar siguiente</value>
+  </data>
+  <data name="ButtonExecute" xml:space="preserve">
+    <value>Ejecutar</value>
+  </data>
+  <data name="OperationAlreadyInProgress" xml:space="preserve">
+    <value>La operación ya está en curso.  
+¿Deseas interrumpirla?</value>
+  </data>
+  <data name="FolderNotSpecifiedOrDoesNotExist" xml:space="preserve">
+    <value>No se ha especificado la carpeta o no existe.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Cargar API desde archivo</value>
+  </data>
 </root>

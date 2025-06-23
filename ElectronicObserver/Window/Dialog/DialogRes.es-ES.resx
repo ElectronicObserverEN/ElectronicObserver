@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExpeditionCheckDoubleOkSign" xml:space="preserve">
+    <value>🗸🗸</value>
+  </data>
+  <data name="ExpeditionCheckOkSign" xml:space="preserve">
+    <value>✔️</value>
+  </data>
+  <data name="ExpeditionNotLoadedTitle" xml:space="preserve">
+    <value>Datos de expedición no cargados</value>
+  </data>
+  <data name="ExpeditionNotLoadedMessage" xml:space="preserve">
+    <value>Los datos de expedición no se han cargado. Inicia sesión en KanColle y abre la pantalla del puerto.</value>
+  </data>
 </root>

@@ -117,4 +117,227 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlignRight" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="AlignTop" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="AlignTopLeft" xml:space="preserve">
+    <value>Arriba Izquierda</value>
+  </data>
+  <data name="AlignTopRight" xml:space="preserve">
+    <value>Arriba Derecha</value>
+  </data>
+  <data name="AlignUnset" xml:space="preserve">
+    <value>Unset</value>
+  </data>
+  <data name="WindowBorderHint" xml:space="preserve">
+    <value>Mostrar el borde del cuadro de diálogo de notificación.
+Si lo desactivas, solo se mostrará una imagen.</value>
+  </data>
+  <data name="ActivationHint" xml:space="preserve">
+    <value>Activar el diálogo al mostrarlo.
+Desactivarlo reducirá las interferencias, pero hará que las notificaciones sean más fáciles de pasar por alto.</value>
+  </data>
+  <data name="AlignBottom" xml:space="preserve">
+    <value>Inferior</value>
+  </data>
+  <data name="AlignBottomLeft" xml:space="preserve">
+    <value>Inferior izquierda</value>
+  </data>
+  <data name="AlignBottomRight" xml:space="preserve">
+    <value>Inferior derecha</value>
+  </data>
+  <data name="AlignCenter" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="AlignHint" xml:space="preserve">
+    <value>Configura la posición donde aparecen las notificaciones.</value>
+  </data>
+  <data name="AlignLeft" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="AlignManualAbs" xml:space="preserve">
+    <value>Manual (Absoluto)</value>
+  </data>
+  <data name="AlignManualRel" xml:space="preserve">
+    <value>Manual (Relativo)</value>
+  </data>
+  <data name="Alignment" xml:space="preserve">
+    <value>Alineación</value>
+  </data>
+  <data name="OpenSound" xml:space="preserve">
+    <value>Abrir archivo de sonido</value>
+  </data>
+  <data name="FailedLoadSound" xml:space="preserve">
+    <value>Error al cargar el archivo de sonido.</value>
+  </data>
+  <data name="IncludeUnlocked" xml:space="preserve">
+    <value>Incluir barcos no bloqueados</value>
+  </data>
+  <data name="Sec" xml:space="preserve">
+    <value>seg.</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Vacío</value>
+  </data>
+  <data name="DisplayMessageHint" xml:space="preserve">
+    <value>Muestra el texto de notificación en el cuadro de diálogo.  
+Puedes desactivarlo si prefieres ver solo la imagen.</value>
+  </data>
+  <data name="IncludeDamecon" xml:space="preserve">
+    <value>Incluir barcos con Damecon</value>
+  </data>
+  <data name="OpenImage" xml:space="preserve">
+    <value>Abrir archivo de imagen</value>
+  </data>
+  <data name="LeftClick" xml:space="preserve">
+    <value>Clic izquierdo</value>
+  </data>
+  <data name="LeftDoubleClick" xml:space="preserve">
+    <value>Doble clic izquierdo</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="ForeColorDisplay" xml:space="preserve">
+    <value>■Color de primer plano</value>
+  </data>
+  <data name="BackColorDisplay" xml:space="preserve">
+    <value>■Color de fondo</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Prueba</value>
+  </data>
+  <data name="IncludeFlagship" xml:space="preserve">
+    <value>Incluir buque insignia</value>
+  </data>
+  <data name="ForeColorDispHint" xml:space="preserve">
+    <value> Ver el color del texto del cuadro de notificación. El cuadro (■) permite vista previa.
+</value>
+  </data>
+  <data name="ForeColorSelect" xml:space="preserve">
+    <value>Establecer el color del texto del cuadro de notificación. El cuadro (■) a la izquierda muestra una vista previa.</value>
+  </data>
+  <data name="FailedLoadImage" xml:space="preserve">
+    <value>Error al cargar el archivo de imagen.</value>
+  </data>
+  <data name="DisplayMessage" xml:space="preserve">
+    <value>Mostrar mensaje</value>
+  </data>
+  <data name="DisplayWindowBorder" xml:space="preserve">
+    <value>Mostrar bordes de ventana</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Sonido</value>
+  </data>
+  <data name="TestHint" xml:space="preserve">
+    <value>Se realizará una prueba de notificación. Asegúrate de haber aplicado o guardado la configuración."
+</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>Esto es una notificación de prueba.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Configurar notificaciones</value>
+  </data>
+  <data name="EnableNotify" xml:space="preserve">
+    <value>Habilitar notificaciones</value>
+  </data>
+  <data name="LocXHint" xml:space="preserve">
+    <value>Establecer la coordenada X de la ubicación manual</value>
+  </data>
+  <data name="LocYHint" xml:space="preserve">
+    <value>Establecer la coordenada Y de la ubicación manual</value>
+  </data>
+  <data name="IntervalHint" xml:space="preserve">
+    <value>"Especifica cuánto tiempo permanecerá abierto el diálogo de notificación antes de cerrarse automáticamente.
+Si se establece en 0 segundos, no se cerrará automáticamente.</value>
+  </data>
+  <data name="HurryBy" xml:space="preserve">
+    <value>Avisar antes</value>
+  </data>
+  <data name="HurryHint" xml:space="preserve">
+    <value>Permite mostrar la notificación antes de que finalice el temporizador. Se recomienda adelantar las notificaciones de expedición y reparación en 60 segundos.</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="DamageOptions" xml:space="preserve">
+    <value>Opciones de daño</value>
+  </data>
+  <data name="CloseOn" xml:space="preserve">
+    <value>Cerrar al</value>
+  </data>
+  <data name="LvHint" xml:space="preserve">
+    <value>Establece el nivel mínimo para recibir advertencias de daño crítico. Ten cuidado: los barcos por debajo de este nivel no generarán avisos.</value>
+  </data>
+  <data name="BackColorSelect" xml:space="preserve">
+    <value>Establece el color de fondo del cuadro de notificación. El cuadro a la izquierda (■) permite obtener una vista previa.</value>
+  </data>
+  <data name="BackColorDispHint" xml:space="preserve">
+    <value>Muestra el color de fondo del cuadro de notificación. El cuadro (■) permite obtener una vista previa.</value>
+  </data>
+  <data name="AutoClose" xml:space="preserve">
+    <value>Cierre automático</value>
+  </data>
+  <data name="MinLv" xml:space="preserve">
+    <value>Min. Lv.</value>
+  </data>
+  <data name="MiddleDoubleClick" xml:space="preserve">
+    <value>Doble clic con botón central</value>
+  </data>
+  <data name="MouseOver" xml:space="preserve">
+    <value>Pasar el ratón por encima</value>
+  </data>
+  <data name="SoundPathDirectorizeToolTip" xml:space="preserve">
+    <value> Eliminar la parte del nombre de archivo de la ruta.  
+Si se especifica una carpeta como ruta, se reproducirá aleatoriamente un archivo de audio de esa carpeta como sonido de notificación.</value>
+  </data>
+  <data name="ShowOnTop" xml:space="preserve">
+    <value>Mostrar siempre encima</value>
+  </data>
+  <data name="RightDoubleClick" xml:space="preserve">
+    <value>Doble clic derecho</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>Clic derecho</value>
+  </data>
+  <data name="NotifyNowHint" xml:space="preserve">
+    <value>Notifica antes de la salida o al finalizar el combate.</value>
+  </data>
+  <data name="NotifyNow" xml:space="preserve">
+    <value>Habilitar notificación durante el evento</value>
+  </data>
+  <data name="NotifyEndNodes" xml:space="preserve">
+    <value>Notificar también al final</value>
+  </data>
+  <data name="NotifyEndHint" xml:space="preserve">
+    <value>Especificar si se debe notificar incluso en las celdas finales del mapa.</value>
+  </data>
+  <data name="NotifyDisplayError" xml:space="preserve">
+    <value>Sistema de notificaciones: error al mostrar la imagen en el cuadro de diálogo.</value>
+  </data>
+  <data name="NotifyDialog" xml:space="preserve">
+    <value>Diálogo de notificación</value>
+  </data>
+  <data name="NotifyBeforeHint" xml:space="preserve">
+    <value>Notifica antes de la salida o justo al comenzar el combate.</value>
+  </data>
+  <data name="NotifyBefore" xml:space="preserve">
+    <value>Habilitar notificación previa</value>
+  </data>
+  <data name="NotifyAfterHint" xml:space="preserve">
+    <value>Notifica al avanzar con daño crítico.</value>
+  </data>
+  <data name="NotifyAfter" xml:space="preserve">
+    <value>Habilitar notificación posterior al avance</value>
+  </data>
+  <data name="ShowWithActivation" xml:space="preserve">
+    <value>Mostrar con activación</value>
+  </data>
+  <data name="MiddleClick" xml:space="preserve">
+    <value>Clic medio</value>
+  </data>
 </root>

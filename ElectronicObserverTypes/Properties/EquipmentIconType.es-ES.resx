@@ -117,4 +117,178 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AADirector" xml:space="preserve">
+    <value>Director AA</value>
+  </data>
+  <data name="AAGun" xml:space="preserve">
+    <value>Arma AA</value>
+  </data>
+  <data name="AAShell" xml:space="preserve">
+    <value>Proyectil AA</value>
+  </data>
+  <data name="APShell" xml:space="preserve">
+    <value>Proyectil AP</value>
+  </data>
+  <data name="Autogyro" xml:space="preserve">
+    <value>Autogiro</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="SpecialAmphibiousTank" xml:space="preserve">
+    <value>Vehículo anfibio Especial</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="StarShell" xml:space="preserve">
+    <value>Bengala</value>
+  </data>
+  <data name="SubmarineEquipment" xml:space="preserve">
+    <value>Equipamiento para submarinos</value>
+  </data>
+  <data name="Supplies" xml:space="preserve">
+    <value>Suministros</value>
+  </data>
+  <data name="SurfaceShipPersonnel" xml:space="preserve">
+    <value>Personal de buques de superficie</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="TransportContainer" xml:space="preserve">
+    <value>Contenedor de transporte</value>
+  </data>
+  <data name="TransportMaterial" xml:space="preserve">
+    <value>Material de transporte</value>
+  </data>
+  <data name="Radar" xml:space="preserve">
+    <value>Radar</value>
+  </data>
+  <data name="Ration" xml:space="preserve">
+    <value>Ración</value>
+  </data>
+  <data name="RepairFacility" xml:space="preserve">
+    <value>Instalación de reparación</value>
+  </data>
+  <data name="Rocket" xml:space="preserve">
+    <value>Cohete</value>
+  </data>
+  <data name="Seaplane" xml:space="preserve">
+    <value>Hidroavión</value>
+  </data>
+  <data name="SeaplaneFighter" xml:space="preserve">
+    <value>Caza hidroavión</value>
+  </data>
+  <data name="Searchlight" xml:space="preserve">
+    <value>Foco de búsqueda</value>
+  </data>
+  <data name="SecondaryGun" xml:space="preserve">
+    <value>Cañón secundario</value>
+  </data>
+  <data name="SmokeGenerator" xml:space="preserve">
+    <value>Generador de humo</value>
+  </data>
+  <data name="Sonar" xml:space="preserve">
+    <value>Sonar</value>
+  </data>
+  <data name="AviationPersonnel" xml:space="preserve">
+    <value>Personal de aviación</value>
+  </data>
+  <data name="BarrageBalloon" xml:space="preserve">
+    <value>Globo de barrera</value>
+  </data>
+  <data name="CarrierBasedBomber" xml:space="preserve">
+    <value>Bombardero embarcado</value>
+  </data>
+  <data name="CarrierBasedFighter" xml:space="preserve">
+    <value>Caza embarcado</value>
+  </data>
+  <data name="CarrierBasedRecon" xml:space="preserve">
+    <value>Avión de reconocimiento embarcado</value>
+  </data>
+  <data name="CarrierBasedTorpedo" xml:space="preserve">
+    <value>Torpedero embarcado</value>
+  </data>
+  <data name="CommandFacility" xml:space="preserve">
+    <value>Instalación de mando</value>
+  </data>
+  <data name="DamageControl" xml:space="preserve">
+    <value>Equipo de control de daños</value>
+  </data>
+  <data name="DepthCharge" xml:space="preserve">
+    <value>Carga de profundidad</value>
+  </data>
+  <data name="Engine" xml:space="preserve">
+    <value>Motor</value>
+  </data>
+  <data name="NightSeaplaneBomber" xml:space="preserve">
+    <value>Bombardero hidroavión nocturno</value>
+  </data>
+  <data name="NightSeaplane" xml:space="preserve">
+    <value>Hidroavión nocturno</value>
+  </data>
+  <data name="NightFighter" xml:space="preserve">
+    <value>Caza nocturno</value>
+  </data>
+  <data name="NightAttacker" xml:space="preserve">
+    <value>Avión de ataque nocturno</value>
+  </data>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>Cañón principal de pequeño  calibre</value>
+  </data>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>Cañón principal de calibre medio</value>
+  </data>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>Cañón principal de gran calibre</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Bloqueado</value>
+  </data>
+  <data name="LandingCraft" xml:space="preserve">
+    <value>Embarcación de desembarco</value>
+  </data>
+  <data name="LandBasedFighterJet" xml:space="preserve">
+    <value>Caza a reacción terrestre</value>
+  </data>
+  <data name="LandBasedFighter" xml:space="preserve">
+    <value>Caza terrestre</value>
+  </data>
+  <data name="LandBasedAttacker" xml:space="preserve">
+    <value>Avión de ataque terrestre</value>
+  </data>
+  <data name="LandBasedASPatrol" xml:space="preserve">
+    <value>Patrulla antisubmarina terrestre</value>
+  </data>
+  <data name="LandAssaulter" xml:space="preserve">
+    <value>Avión de asalto terrestre</value>
+  </data>
+  <data name="JetBomberKikka" xml:space="preserve">
+    <value>Bombardero a reacción Kikka</value>
+  </data>
+  <data name="JetBomberKeiun" xml:space="preserve">
+    <value>Bombardero a reacción Keun</value>
+  </data>
+  <data name="Interceptor" xml:space="preserve">
+    <value>Interceptor</value>
+  </data>
+  <data name="HighAngleGun" xml:space="preserve">
+    <value>Cañón de alto ángulo</value>
+  </data>
+  <data name="HeavyBomber" xml:space="preserve">
+    <value>Bombardero pesado</value>
+  </data>
+  <data name="FlyingBoat" xml:space="preserve">
+    <value>Hidroavión de gran tamaño</value>
+  </data>
+  <data name="ExtraArmor" xml:space="preserve">
+    <value>Blindaje adicional</value>
+  </data>
+  <data name="ArmyInfantry" xml:space="preserve">
+    <value>Infantería del ejército</value>
+  </data>
+  <data name="ASPatrol" xml:space="preserve">
+    <value>Patrulla antisubmarina</value>
+  </data>
 </root>

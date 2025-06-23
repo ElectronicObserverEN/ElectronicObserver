@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="WindowCaptureConfirmation" xml:space="preserve">
+    <value>Confirmación de captura de ventana: arrastre y suelte este icono en la ventana que desea capturar.</value>
+  </data>
+  <data name="WarningMessage" xml:space="preserve">
+    <value>Esta ventana será capturada. ¿Está seguro?
+
+Advertencia: la ventana capturada puede volverse inestable y provocar la pérdida de datos.
+Guarde sus datos y vuelva al puerto antes de capturar.</value>
+  </data>
 </root>

@@ -117,4 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="UpdatesTree" xml:space="preserve">
+    <value>También actualizar vista en árbol JSON</value>
+  </data>
+  <data name="TreeContextMenu_Shrink" xml:space="preserve">
+    <value>Contraer todo</value>
+  </data>
+  <data name="AutoUpdateDisabledMessage" xml:space="preserve">
+    <value>&lt;La actualización automática está desactivada. Actívala desde la pestaña de configuración.&gt;</value>
+  </data>
+  <data name="LoadSavedJsonByDragging" xml:space="preserve">
+    <value>◆ Puedes cargar un archivo JSON guardado arrastrándolo a esta ventana</value>
+  </data>
+  <data name="TreeContextMenu_CopyAsDocument" xml:space="preserve">
+    <value>Copiar este nodo como plantilla de documentación</value>
+  </data>
+  <data name="CSVSaver" xml:space="preserve">
+    <value>Exportar como archivo CSV</value>
+  </data>
+  <data name="AutoUpdate" xml:space="preserve">
+    <value>Actualizar automáticamente</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="EnablingAutoUpdateCanBeHeavy" xml:space="preserve">
+    <value>Habilitar la actualización automática puede afectar el rendimiento</value>
+  </data>
+  <data name="TreeContextMenu_CopyToClipboard" xml:space="preserve">
+    <value>Copiar este nodo al portapapeles</value>
+  </data>
+  <data name="TreeContextMenu_OutputCSV" xml:space="preserve">
+    <value>Exportar este nodo a CSV...</value>
+  </data>
+  <data name="TreeContextMenu_ShrinkParent" xml:space="preserve">
+    <value>Contraer al nodo padre</value>
+  </data>
+  <data name="TreeContextMenu_Expand" xml:space="preserve">
+    <value>Expandir todo</value>
+  </data>
 </root>
