@@ -165,7 +165,7 @@
   <data name="ImageCanNotBeOpened" xml:space="preserve">
     <value>No se pudo abrir {0}.
 {1}
-{2}"</value>
+{2}</value>
   </data>
   <data name="KeyboardShortcutInstructions" xml:space="preserve">
     <value>{0} / {1}  
