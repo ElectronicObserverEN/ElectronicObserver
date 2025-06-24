@@ -200,7 +200,7 @@ Haz clic derecho para abrir en una nueva ventana.</value>
     <value>ID de clase de barco</value>
   </data>
   <data name="ResourceNameToolTip" xml:space="preserve">
-    <value>"Nombre del recurso: {0}  
+    <value>Nombre del recurso: {0}  
 Versión gráfica: {1}  
 Versión de voz: {2}  
 Versión de voz en puerto: {3}  
