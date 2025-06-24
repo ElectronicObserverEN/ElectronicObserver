@@ -382,7 +382,7 @@ Si se deja en blanco, la imagen se generará sin fondo.</value>
     <value>Evitar la compresión de imágenes en Twitter</value>
   </data>
   <data name="AvoidTwitterDeteriorationToolTip" xml:space="preserve">
-    <value>"Al subir imágenes en formato PNG a Twitter, se convierten automáticamente a JPEG, lo que reduce su calidad.
+    <value>Al subir imágenes en formato PNG a Twitter, se convierten automáticamente a JPEG, lo que reduce su calidad.
 Esta opción permite insertar datos para evitar esa conversión.</value>
   </data>
   <data name="Mode" xml:space="preserve">
