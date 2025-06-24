@@ -268,10 +268,10 @@ una aplicación de terceros (por ejemplo: MyFleetGirls).</value>
     <value>Usar tipos de barcos en japonés</value>
   </data>
   <data name="FormBrowser_HardwareAccelerationEnabledToolTip" xml:space="preserve">
-    <value>"Usar aceleración por hardware si está disponible.
+    <value>Usar aceleración por hardware si está disponible.
 Nota: Desactiva esta opción si necesitas capturar la ventana 
 para grabación o transmisión.
-* Los cambios se aplicarán tras reiniciar la aplicación."</value>
+* Los cambios se aplicarán tras reiniciar la aplicación.</value>
   </data>
   <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
     <value>Usar redirección de gadget *</value>
