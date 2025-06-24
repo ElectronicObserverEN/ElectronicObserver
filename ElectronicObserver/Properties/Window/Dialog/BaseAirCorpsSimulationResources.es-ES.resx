@@ -178,8 +178,8 @@
     <value>Total</value>
   </data>
   <data name="ClearAirBaseOrganizations" xml:space="preserve">
-    <value>"Esto borrará todas las configuraciones de la base aérea.
-¿Estás seguro?"</value>
+    <value>Esto borrará todas las configuraciones de la base aérea.
+¿Estás seguro?</value>
   </data>
   <data name="Evasion" xml:space="preserve">
     <value>Evasión</value>
