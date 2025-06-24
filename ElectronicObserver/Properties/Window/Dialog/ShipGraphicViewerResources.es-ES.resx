@@ -163,7 +163,7 @@
     <value>Imagen no encontrada.</value>
   </data>
   <data name="ImageCanNotBeOpened" xml:space="preserve">
-    <value>"No se pudo abrir {0}.
+    <value>No se pudo abrir {0}.
 {1}
 {2}"</value>
   </data>
