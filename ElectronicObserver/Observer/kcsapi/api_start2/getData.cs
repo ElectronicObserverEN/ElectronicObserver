@@ -249,7 +249,6 @@ public class getData : APIBase
 			int id = int.Parse(key);
 
 			db.MasterShips[id].SpecialEquippableCategories = value.ApiEquipType
-				.Where(kvp => kvp.Value != null)
 				.Select(kvp => int.Parse(kvp.Key))
 				.ToList();
 		}
