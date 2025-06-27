@@ -455,11 +455,8 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 装備可能なカテゴリ
 	/// </summary>
-	public IEnumerable<int> EquippableCategories => SpecialEquippableCategories switch
-	{
-		null => KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories,
-		_ => SpecialEquippableCategories,
-	};
+	public IEnumerable<int> EquippableCategories => SpecialEquippableCategories 
+		?? KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories;
 
 	public IEnumerable<EquipmentTypes> EquippableCategoriesTyped => EquippableCategories.Cast<EquipmentTypes>();
 
