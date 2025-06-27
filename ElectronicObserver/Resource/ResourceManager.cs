@@ -334,7 +334,7 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/AmphibiousVehicle.png", "Equipment_AmphibiousVehicle");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandAttacker.png", "Equipment_LandAttacker");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Interceptor.png", "Equipment_Interceptor");
-			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/JetFightingBomberHo229.png", "JetBomberHo229");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/JetFightingBomberKeiun.png", "Equipment_JetFightingBomberKeiun");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/JetFightingBomberKikka.png", "Equipment_JetFightingBomberKikka");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/TransportMaterials.png", "Equipment_TransportMaterials");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/SubmarineEquipment.png", "Equipment_SubmarineEquipment");
@@ -354,6 +354,7 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterJet.png", "Equipment_LandBasedFighterJet");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterShinden.png", "Equipment_LandBasedFighterShinden");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightBomber.png", "Equipment_NightBomber");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/JetFightingBomberHo229.png", "JetBomberHo229");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
 		}
