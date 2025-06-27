@@ -138,7 +138,7 @@ public class getData : APIBase
 			{
 				db.MapArea[id].LoadFromResponse(APIName, elem);
 			}
-			
+
 			WorldModel? world = context.Worlds.Find(id);
 
 			if (world is null)
@@ -248,9 +248,7 @@ public class getData : APIBase
 		{
 			int id = int.Parse(key);
 
-			db.MasterShips[id].SpecialEquippableCategories = value.ApiEquipType
-				.Select(kvp => int.Parse(kvp.Key))
-				.ToList();
+			db.MasterShips[id].SpecialEquippableCategories = [.. value.ApiEquipType.Keys.Select(int.Parse)];
 		}
 
 		Dictionary<string, ApiMstEquipExslotShip> expansionSlotData = JsonSerializer
