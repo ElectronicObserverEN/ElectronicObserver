@@ -87,6 +87,7 @@
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterJet}" Value="{StaticResource EquipmentIconType.LandBasedFighterJet}" />
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterShinden}" Value="{StaticResource EquipmentIconType.LandBasedFighterShinden}" />
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.NightBomber}" Value="{StaticResource EquipmentIconType.NightBomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.JetFightingBomberHo229}" Value="{StaticResource EquipmentIconType.JetFightingBomberHo229}" />
 				<markup:Case Value="{StaticResource EquipmentIconType.Unknown}" />
 			</markup:Switch>
 		</Image.Source>
