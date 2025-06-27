@@ -20,8 +20,11 @@ public class ApiStart2GetDataResponse
 	[JsonPropertyName("api_mst_equip_exslot_ship")]
 	public Dictionary<string, ApiMstEquipExslotShip> ApiMstEquipExslotShip { get; set; } = new();
 
+	/// <summary>
+	/// Key is <see cref="ShipId"/>.
+	/// </summary>
 	[JsonPropertyName("api_mst_equip_ship")]
-	public List<ApiMstEquipShip> ApiMstEquipShip { get; set; } = new();
+	public Dictionary<string, ApiMstEquipShip> ApiMstEquipShip { get; set; } = new();
 
 	[JsonPropertyName("api_mst_furniture")]
 	public List<ApiMstFurniture> ApiMstFurniture { get; set; } = new();

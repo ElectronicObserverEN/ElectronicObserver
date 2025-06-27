@@ -455,16 +455,11 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 装備可能なカテゴリ
 	/// </summary>
-	public IEnumerable<int> EquippableCategories
+	public IEnumerable<int> EquippableCategories => SpecialEquippableCategories switch
 	{
-		get
-		{
-			if (SpecialEquippableCategories != null)
-				return SpecialEquippableCategories;
-			else
-				return KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories;
-		}
-	}
+		null => KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories,
+		_ => [.. KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories, .. SpecialEquippableCategories],
+	};
 
 	public IEnumerable<EquipmentTypes> EquippableCategoriesTyped => EquippableCategories.Cast<EquipmentTypes>();
 
@@ -693,7 +688,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 護衛空母か
 	/// </summary>
 	public bool IsEscortAircraftCarrier => ShipType == ShipTypes.LightAircraftCarrier && ASW.Minimum > 0;
-	
+
 	public bool IsPt => this.IsPt();
 
 

@@ -241,11 +241,17 @@ public class getData : APIBase
 			}
 		}
 
+		Dictionary<string, ApiMstEquipShip> test = JsonSerializer
+			.Deserialize<Dictionary<string, ApiMstEquipShip>>(data.api_mst_equip_ship.ToString());
 
-		foreach (var elem in data.api_mst_equip_ship)
+		foreach ((string key, ApiMstEquipShip value) in test)
 		{
-			int id = (int)elem.api_ship_id;
-			db.MasterShips[id].SpecialEquippableCategories = (int[])elem.api_equip_type;
+			int id = int.Parse(key);
+
+			db.MasterShips[id].SpecialEquippableCategories = value.ApiEquipType
+				.Where(kvp => kvp.Value != null)
+				.Select(kvp => int.Parse(kvp.Key))
+				.ToList();
 		}
 
 		Dictionary<string, ApiMstEquipExslotShip> expansionSlotData = JsonSerializer
