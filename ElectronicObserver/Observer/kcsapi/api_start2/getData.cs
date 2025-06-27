@@ -241,10 +241,10 @@ public class getData : APIBase
 			}
 		}
 
-		Dictionary<string, ApiMstEquipShip> test = JsonSerializer
+		Dictionary<string, ApiMstEquipShip> specialEquippableCategories = JsonSerializer
 			.Deserialize<Dictionary<string, ApiMstEquipShip>>(data.api_mst_equip_ship.ToString());
 
-		foreach ((string key, ApiMstEquipShip value) in test)
+		foreach ((string key, ApiMstEquipShip value) in specialEquippableCategories)
 		{
 			int id = int.Parse(key);
 
