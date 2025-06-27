@@ -9,5 +9,5 @@ public class ApiMstEquipShip
 	/// Key is <see cref="EquipmentTypes"/>.
 	/// </summary>
 	[JsonPropertyName("api_equip_type")]
-	public Dictionary<string, List<int>> ApiEquipType { get; set; } = [];
+	public Dictionary<string, List<EquipmentId>?> ApiEquipType { get; set; } = [];
 }
