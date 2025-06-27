@@ -66,7 +66,7 @@
 	<BitmapImage x:Key="EquipmentIconType.Interceptor" UriSource="pack://application:,,,/Assets/Equipment/Interceptor.png" />
 	<BitmapImage x:Key="EquipmentIconType.JetBomberKeiun" UriSource="pack://application:,,,/Assets/Equipment/JetFightingBomberKeiun.png" />
 	<BitmapImage x:Key="EquipmentIconType.JetBomberKikka" UriSource="pack://application:,,,/Assets/Equipment/JetFightingBomberKikka.png" />
-	<BitmapImage x:Key="EquipmentIconType.JetFightingBomberHo229" UriSource="pack://application:,,,/Assets/Equipment/JetFightingBomberHo229.png" />
+	<BitmapImage x:Key="EquipmentIconType.JetBomberHo229" UriSource="pack://application:,,,/Assets/Equipment/JetFightingBomberHo229.png" />
 	<BitmapImage x:Key="EquipmentIconType.TransportMaterial" UriSource="pack://application:,,,/Assets/Equipment/TransportMaterials.png" />
 	<BitmapImage x:Key="EquipmentIconType.SubmarineEquipment" UriSource="pack://application:,,,/Assets/Equipment/SubmarineEquipment.png" />
 	<BitmapImage x:Key="EquipmentIconType.SeaplaneFighter" UriSource="pack://application:,,,/Assets/Equipment/SeaplaneFighter.png" />

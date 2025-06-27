@@ -176,7 +176,7 @@ public enum EquipmentIconType
 	NightBomber = 58,
 
 	/// <summary></summary>
-	JetFightingBomberHo229 = 59,
+	JetBomberHo229 = 59,
 
 	Locked,
 	Unknown,
