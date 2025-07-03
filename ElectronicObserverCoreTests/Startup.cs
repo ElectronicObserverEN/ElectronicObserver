@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Mocks;
@@ -70,6 +71,7 @@ public class Startup
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
+			.AddSingleton<IClipboardService, ClipboardService>()
 			.BuildServiceProvider());
 
 		Directory.CreateDirectory("Record");
