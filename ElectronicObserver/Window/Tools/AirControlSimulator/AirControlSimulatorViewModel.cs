@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 
 namespace ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -86,6 +87,6 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 	{
 		string link = GenerateLink(this, null);
 
-		Clipboard.SetText(link);
+		ClipboardExtensions.SetTextAndLogErrors(link);
 	}
 }

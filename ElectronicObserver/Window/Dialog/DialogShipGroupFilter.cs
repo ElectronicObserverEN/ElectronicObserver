@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Support;
@@ -1479,7 +1480,7 @@ public partial class DialogShipGroupFilter : Form
 			StringBuilder str = new StringBuilder();
 			_group.Expressions.Save(str);
 
-			Clipboard.SetText(str.ToString());
+			ClipboardExtensions.SetTextAndLogErrors(str.ToString());
 
 			MessageBox.Show(ShipGroupFilterResources.FilterWasExported,
 				ShipGroupFilterResources.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);

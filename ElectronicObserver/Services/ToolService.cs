@@ -370,7 +370,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 			sortieNumber++;
 		}
 
-		Clipboard.SetText(string.Join("\n", csvData));
+		ClipboardExtensions.SetTextAndLogErrors(string.Join("\n", csvData));
 	}
 
 	private static string GetSmokerCsvLine(SortieDetailViewModel sortieDetail, PhaseSearching searching,
@@ -549,14 +549,14 @@ public class ToolService(DataSerializationService dataSerializationService)
 		string replayData = GenerateReplayData(sortie);
 		string link = $"https://kc3kai.github.io/kancolle-replay/battleplayer.html#{replayData}";
 
-		Clipboard.SetText(link);
+		ClipboardExtensions.SetTextAndLogErrors(link);
 	}
 
 	public void CopyReplayDataToClipboard(SortieRecordViewModel sortie)
 	{
 		string replayData = GenerateReplayData(sortie);
 
-		Clipboard.SetText(replayData);
+		ClipboardExtensions.SetTextAndLogErrors(replayData);
 	}
 
 	private static string GenerateReplayData(SortieRecordViewModel sortie)
@@ -653,7 +653,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 	{
 		string url = GetAirControlSimulatorLink(sortie, sortieDetail);
 
-		Clipboard.SetText(url);
+		ClipboardExtensions.SetTextAndLogErrors(url);
 	}
 
 	private string GetAirControlSimulatorLink(SortieRecord sortie,
@@ -689,7 +689,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 	{
 		string url = GetOperationRoomLink(sortie);
 
-		Clipboard.SetText(url);
+		ClipboardExtensions.SetTextAndLogErrors(url);
 	}
 
 	private string GetOperationRoomLink(SortieRecord sortie)
@@ -754,7 +754,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 				MapData = s.MapData,
 			}).ToList();
 
-		Clipboard.SetText(JsonSerializer.Serialize(sorties));
+		ClipboardExtensions.SetTextAndLogErrors(JsonSerializer.Serialize(sorties));
 	}
 
 	public void LoadSortieDataFromClipboard(ElectronicObserverContext db)

@@ -576,7 +576,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	{
 		if (SelectedQuest is null) return;
 
-		Clipboard.SetText(SelectedQuest.QuestName);
+		ClipboardExtensions.SetTextAndLogErrors(SelectedQuest.QuestName);
 	}
 
 	[RelayCommand]
@@ -584,7 +584,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	{
 		if (SelectedQuest is null) return;
 
-		Clipboard.SetText(SelectedQuest.QuestDescription.Replace(Environment.NewLine, ""));
+		ClipboardExtensions.SetTextAndLogErrors(SelectedQuest.QuestDescription.Replace(Environment.NewLine, ""));
 	}
 
 	[RelayCommand]
@@ -615,7 +615,7 @@ public partial class QuestViewModel : AnchorableViewModel
 			return;
 		}
 
-		Clipboard.SetText(serializedOutput);
+		ClipboardExtensions.SetTextAndLogErrors(serializedOutput);
 	}
 
 	[RelayCommand]
