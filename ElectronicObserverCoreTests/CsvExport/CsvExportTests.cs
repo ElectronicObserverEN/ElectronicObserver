@@ -27,7 +27,7 @@ namespace ElectronicObserverCoreTests.CsvExport;
 public class CsvExportTests
 {
 	private DatabaseFixture Db { get; }
-	private static ToolService ToolService { get; } = new(null!);
+	private static ToolService ToolService { get; } = new(null!, null!);
 	private DataExportHelper DataExportHelper { get; } = new(new(true), ToolService);
 
 	private static string BasePath =>

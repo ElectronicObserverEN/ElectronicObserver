@@ -58,7 +58,7 @@ public class SortieDetailTests
 		await db.Database.EnsureDeletedAsync();
 		await db.Database.EnsureCreatedAsync();
 
-		ToolService toolService = new(new());
+		ToolService toolService = new(new(), null!);
 
 		List<SortieRecordViewModel> sortieRecords = await MakeSortieRecords(db, fileName);
 
