@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using ElectronicObserver.Core.Services;
 
 namespace ElectronicObserver.Utility;
 
-public static class ClipboardExtensions
+public class ClipboardService : IClipboardService
 {
-	// TODO : use static extension on Cliboard class when dotnet 10 happens ?
-	public static void SetTextAndLogErrors(string text)
+	public void SetTextAndLogErrors(string text)
 	{
 		try
 		{

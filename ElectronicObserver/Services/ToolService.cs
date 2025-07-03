@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
@@ -32,9 +33,10 @@ using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Batt
 
 namespace ElectronicObserver.Services;
 
-public class ToolService(DataSerializationService dataSerializationService)
+public class ToolService(DataSerializationService dataSerializationService, IClipboardService clipboard)
 {
 	private DataSerializationService DataSerializationService { get; } = dataSerializationService;
+	private IClipboardService ClipboardService { get; } = clipboard;
 
 	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null,
 		SortieDetailViewModel? sortieDetail = null)
@@ -370,7 +372,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 			sortieNumber++;
 		}
 
-		ClipboardExtensions.SetTextAndLogErrors(string.Join("\n", csvData));
+		ClipboardService.SetTextAndLogErrors(string.Join("\n", csvData));
 	}
 
 	private static string GetSmokerCsvLine(SortieDetailViewModel sortieDetail, PhaseSearching searching,
@@ -549,14 +551,14 @@ public class ToolService(DataSerializationService dataSerializationService)
 		string replayData = GenerateReplayData(sortie);
 		string link = $"https://kc3kai.github.io/kancolle-replay/battleplayer.html#{replayData}";
 
-		ClipboardExtensions.SetTextAndLogErrors(link);
+		ClipboardService.SetTextAndLogErrors(link);
 	}
 
 	public void CopyReplayDataToClipboard(SortieRecordViewModel sortie)
 	{
 		string replayData = GenerateReplayData(sortie);
 
-		ClipboardExtensions.SetTextAndLogErrors(replayData);
+		ClipboardService.SetTextAndLogErrors(replayData);
 	}
 
 	private static string GenerateReplayData(SortieRecordViewModel sortie)
@@ -653,7 +655,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 	{
 		string url = GetAirControlSimulatorLink(sortie, sortieDetail);
 
-		ClipboardExtensions.SetTextAndLogErrors(url);
+		ClipboardService.SetTextAndLogErrors(url);
 	}
 
 	private string GetAirControlSimulatorLink(SortieRecord sortie,
@@ -689,7 +691,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 	{
 		string url = GetOperationRoomLink(sortie);
 
-		ClipboardExtensions.SetTextAndLogErrors(url);
+		ClipboardService.SetTextAndLogErrors(url);
 	}
 
 	private string GetOperationRoomLink(SortieRecord sortie)
@@ -754,7 +756,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 				MapData = s.MapData,
 			}).ToList();
 
-		ClipboardExtensions.SetTextAndLogErrors(JsonSerializer.Serialize(sorties));
+		ClipboardService.SetTextAndLogErrors(JsonSerializer.Serialize(sorties));
 	}
 
 	public void LoadSortieDataFromClipboard(ElectronicObserverContext db)

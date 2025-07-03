@@ -336,6 +336,7 @@ public partial class App
 			.AddSingleton<SortieRecordMigrationService>()
 			.AddSingleton<SenkaLeaderboardManager>()
 			.AddSingleton<BonodereSubmissionService>()
+			.AddSingleton<IClipboardService, ClipboardService>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
