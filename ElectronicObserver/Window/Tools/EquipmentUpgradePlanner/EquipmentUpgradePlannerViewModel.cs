@@ -33,8 +33,6 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
 
-	public Brush CardBackColor => Configuration.Config.UI.SubBackColor.ToBrush();
-
 	public EquipmentUpgradePlannerViewModel()
 	{
 		PlannedUpgradesPager = new();

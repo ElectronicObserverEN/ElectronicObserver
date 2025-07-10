@@ -77,6 +77,26 @@
 				Content="{Binding EquipmentUpgradePlanner.AddEquipmentFromLibrary}"
 				/>
 
+			<CheckBox
+				MinWidth="0"
+				Margin="5 0 0 0"
+				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
+				IsChecked="{Binding EquipmentUpgradePlanManager.CompactMode}"
+				/>
+
+			<CheckBox
+				MinWidth="0"
+				Margin="5 0 0 0"
+				Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
+				IsChecked="{Binding Filters.DisplayFinished}"
+				/>
+
+			<Border
+				Margin="2"
+				BorderBrush="Gray"
+				BorderThickness="1"
+				/>
+
 			<CheckBox Content="{Binding Filters.TodayDisplay}" IsChecked="{Binding Filters.SelectToday}" />
 
 			<CheckBox Content="{Binding EquipmentUpgradePlanner.All}" IsChecked="{Binding Filters.SelectAllDay}" />
@@ -95,20 +115,6 @@
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
-
-			<Border
-				Margin="2"
-				BorderBrush="Gray"
-				BorderThickness="1"
-				/>
-
-			<TextBlock VerticalAlignment="Center" Text="{Binding EquipmentUpgradePlanner.CompactMode}" />
-
-			<ui:ToggleSwitch Margin="5 0 0 0" IsOn="{Binding EquipmentUpgradePlanManager.CompactMode}" />
-
-			<TextBlock VerticalAlignment="Center" Text="{Binding EquipmentUpgradePlanner.DisplayFinished}" />
-
-			<ui:ToggleSwitch Margin="5 0 0 0" IsOn="{Binding Filters.DisplayFinished}" />
 
 			<Border
 				Margin="2"
@@ -139,8 +145,8 @@
 						<Border
 							Margin="6"
 							Padding="10"
-							Background="{Binding DataContext.CardBackColor, Source={StaticResource Proxy}}"
-							BorderBrush="#3c3c3c"
+							Background="{DynamicResource SystemControlBackgroundListLowBrush}"
+							BorderBrush="{DynamicResource SystemControlBackgroundBaseLowRevealBackgroundBrush}"
 							BorderThickness="1"
 							CornerRadius="8"
 							Effect="{StaticResource CardShadow}"
