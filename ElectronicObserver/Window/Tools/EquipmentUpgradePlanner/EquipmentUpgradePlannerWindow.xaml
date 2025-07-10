@@ -40,6 +40,11 @@
 			<Setter Property="MinWidth" Value="0" />
 		</Style>
 
+		<DropShadowEffect
+			x:Key="CardShadow"
+			BlurRadius="10"
+			Opacity="0.2"
+			/>
 	</Window.Resources>
 
 	<Grid>
@@ -67,22 +72,18 @@
 				/>
 
 			<Button
-				Margin="10 0 0 0"
+				Margin="10 0 10 0"
 				Command="{Binding AddEquipmentPlanFromMasterDataCommand}"
 				Content="{Binding EquipmentUpgradePlanner.AddEquipmentFromLibrary}"
 				/>
 
-			<CheckBox
-				Margin="10 0 0 0"
-				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
-				IsChecked="{Binding EquipmentUpgradePlanManager.CompactMode}"
-				/>
+			<TextBlock VerticalAlignment="Center" Text="{Binding EquipmentUpgradePlanner.CompactMode}" />
 
-			<CheckBox
-				Margin="10 0 0 0"
-				Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
-				IsChecked="{Binding Filters.DisplayFinished}"
-				/>
+			<ui:ToggleSwitch Margin="10 0 0 0" IsOn="{Binding EquipmentUpgradePlanManager.CompactMode}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding EquipmentUpgradePlanner.DisplayFinished}" />
+
+			<ui:ToggleSwitch Margin="10 0 0 0" IsOn="{Binding Filters.DisplayFinished}" />
 
 			<Border
 				Margin="2"
@@ -134,10 +135,15 @@
 
 				<ItemsControl.ItemTemplate>
 					<DataTemplate DataType="{x:Type local:EquipmentUpgradePlanItemViewModel}">
+
 						<Border
-							Margin="2"
-							BorderBrush="Gray"
-							BorderThickness="2"
+							Margin="6"
+							Padding="10"
+							Background="{Binding DataContext.CardBackColor, Source={StaticResource Proxy}}"
+							BorderBrush="#3c3c3c"
+							BorderThickness="1"
+							CornerRadius="8"
+							Effect="{StaticResource CardShadow}"
 							>
 							<StackPanel>
 								<StackPanel Margin="0 10 0 0" Orientation="Horizontal">
@@ -146,15 +152,17 @@
 										Margin="4 0"
 										Command="{Binding DataContext.OpenEditDialogCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
-										Content="{Binding DataContext.EquipmentUpgradePlanner.Edit, Source={StaticResource Proxy}}"
-										/>
+										>
+										<ui:SymbolIcon Symbol="Edit" />
+									</Button>
 
 									<Button
 										Margin="4 0"
 										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
-										Content="{Binding DataContext.EquipmentUpgradePlanner.Remove, Source={StaticResource Proxy}}"
-										/>
+										>
+										<ui:SymbolIcon Symbol="Delete" />
+									</Button>
 
 									<Button
 										Margin="4 0"
@@ -164,12 +172,13 @@
 										/>
 
 								</StackPanel>
-
-								<local:EquipmentUpgradePlanItemControl
-									CompactMode="{Binding DataContext.EquipmentUpgradePlanManager.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
-									DataContext="{Binding}"
-									ReadOnly="True"
-									/>
+								<StackPanel>
+									<local:EquipmentUpgradePlanItemControl
+										CompactMode="{Binding DataContext.EquipmentUpgradePlanManager.CompactMode, RelativeSource={RelativeSource AncestorType=local:EquipmentUpgradePlannerWindow}}"
+										DataContext="{Binding}"
+										ReadOnly="True"
+										/>
+								</StackPanel>
 							</StackPanel>
 						</Border>
 					</DataTemplate>

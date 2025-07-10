@@ -1,14 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
+using ElectronicObserver.Window.Wpf;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
@@ -29,6 +32,8 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	public GridLength PlanListWidth { get; set; } = new(350, GridUnitType.Pixel);
 
 	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
+
+	public Brush CardBackColor => Configuration.Config.UI.SubBackColor.ToBrush();
 
 	public EquipmentUpgradePlannerViewModel()
 	{
