@@ -72,20 +72,18 @@
 				/>
 
 			<Button
-				Margin="10 0 10 0"
+				Margin="10 0 0 0"
 				Command="{Binding AddEquipmentPlanFromMasterDataCommand}"
 				Content="{Binding EquipmentUpgradePlanner.AddEquipmentFromLibrary}"
 				/>
 
 			<CheckBox
-				MinWidth="0"
 				Margin="5 0 0 0"
 				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
 				IsChecked="{Binding EquipmentUpgradePlanManager.CompactMode}"
 				/>
 
 			<CheckBox
-				MinWidth="0"
 				Margin="5 0 0 0"
 				Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
 				IsChecked="{Binding Filters.DisplayFinished}"

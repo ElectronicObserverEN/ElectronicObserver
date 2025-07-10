@@ -1,17 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Services;
-using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
-using ElectronicObserver.Window.Wpf;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
@@ -49,12 +46,12 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => UpdateTotalCost();
 		EquipmentUpgradePlanManager.PlanCostUpdated += (_, _) => UpdateTotalCost();
-		EquipmentUpgradePlanManager.PlanEquipmentMasterUpdated += (_, _) => Update(); 
+		EquipmentUpgradePlanManager.PlanEquipmentMasterUpdated += (_, _) => Update();
 		Filters.PropertyChanged += (_, _) => Update();
 		Update();
 		UpdateTotalCost();
 	}
-	
+
 	[RelayCommand]
 	private void AddEquipmentPlan()
 	{
@@ -84,7 +81,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		if (equipment != null)
 		{
 			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
-			
+
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
