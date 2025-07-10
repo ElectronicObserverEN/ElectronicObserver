@@ -78,13 +78,13 @@
 				/>
 
 			<CheckBox
-				Margin="5 0 0 0"
+				Margin="10 0 0 0"
 				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
 				IsChecked="{Binding EquipmentUpgradePlanManager.CompactMode}"
 				/>
 
 			<CheckBox
-				Margin="5 0 0 0"
+				Margin="10 0 0 0"
 				Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
 				IsChecked="{Binding Filters.DisplayFinished}"
 				/>
