@@ -156,6 +156,7 @@
 										Margin="4 0"
 										Command="{Binding DataContext.OpenEditDialogCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
+										ToolTip="{Binding DataContext.EquipmentUpgradePlanner.Edit, Source={StaticResource Proxy}}"
 										>
 										<ui:SymbolIcon Symbol="Edit" />
 									</Button>
@@ -164,6 +165,7 @@
 										Margin="4 0"
 										Command="{Binding DataContext.RemovePlanCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
+										ToolTip="{Binding DataContext.EquipmentUpgradePlanner.Remove, Source={StaticResource Proxy}}"
 										>
 										<ui:SymbolIcon Symbol="Delete" />
 									</Button>
@@ -172,8 +174,10 @@
 										Margin="4 0"
 										Command="{Binding DataContext.OpenTreeDialogCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
-										Content="{Binding DataContext.EquipmentUpgradePlanner.UpgradeTree, Source={StaticResource Proxy}}"
-										/>
+										ToolTip="{Binding DataContext.EquipmentUpgradePlanner.UpgradeTree, Source={StaticResource Proxy}}"
+										>
+										<ui:SymbolIcon Symbol="AllApps" />
+									</Button>
 
 								</StackPanel>
 								<StackPanel>
