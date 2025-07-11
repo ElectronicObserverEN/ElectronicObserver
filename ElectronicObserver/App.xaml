@@ -19,8 +19,9 @@
 			</ResourceDictionary.MergedDictionaries>
 
 			<system:Boolean x:Key="AutoHideScrollBars">True</system:Boolean>
-			<!--  override time picker min width  -->
+			<!--  override modern wpf components min width  -->
 			<system:Double x:Key="TimePickerThemeMinWidth">60</system:Double>
+			<system:Double x:Key="ToggleSwitchThemeMinWidth">30</system:Double>
 
 			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 			<converters:BooleanToHiddenConverter x:Key="BooleanToHiddenConverter" />
