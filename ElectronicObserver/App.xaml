@@ -21,7 +21,7 @@
 			<system:Boolean x:Key="AutoHideScrollBars">True</system:Boolean>
 			<!--  override modern wpf components min width  -->
 			<system:Double x:Key="TimePickerThemeMinWidth">60</system:Double>
-			<system:Double x:Key="ToggleSwitchThemeMinWidth">30</system:Double>
+			<system:Double x:Key="ToggleSwitchThemeMinWidth">0</system:Double>
 
 			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 			<converters:BooleanToHiddenConverter x:Key="BooleanToHiddenConverter" />
