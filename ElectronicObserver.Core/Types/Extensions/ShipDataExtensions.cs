@@ -647,4 +647,34 @@ public static class ShipDataExtensions
 		> 0 => DamageState.Heavy,
 		_ => DamageState.Sunk,
 	};
+
+	public static bool CanEquipDaihatsu(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft);
+
+	public static bool CanEquipTank(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank);
+
+	public static bool CanEquipFcf(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility);
+
+	private static List<EquipmentTypes> BulgeTypes { get; } =
+	[
+		EquipmentTypes.ExtraArmor,
+		EquipmentTypes.ExtraArmorMedium,
+		EquipmentTypes.ExtraArmorLarge,
+	];
+	
+	public static bool CanEquipBulge(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Intersect(BulgeTypes).Any();
+	
+	public static bool CanEquipSeaplaneFighter(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SeaplaneFighter);
+
+	public static bool IsFinalRemodel(this IShipData ship)
+	{
+		// todo: correctly implement this
+		if (ship.MasterShip.RemodelAfterShipID <= 0) return true;
+		
+		return false;
+	}
 }

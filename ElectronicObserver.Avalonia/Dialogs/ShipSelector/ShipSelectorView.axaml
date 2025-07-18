@@ -1,0 +1,100 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.Dialogs.ShipSelector.ShipSelectorView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:behaviors="clr-namespace:ElectronicObserver.Avalonia.Behaviors"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Dialogs.ShipSelector"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:shipFilter="clr-namespace:ElectronicObserver.Avalonia.Controls.ShipFilter"
+	x:Name="ShipSelector"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="local:ShipSelectorViewModel"
+	mc:Ignorable="d"
+	>
+	<Grid RowDefinitions="Auto *">
+		<shipFilter:ShipFilterView Grid.Row="0" DataContext="{Binding ((local:ShipSelectorViewModel)DataContext).ShipFilter, ElementName=ShipSelector}" />
+
+		<DataGrid
+			Grid.Row="1"
+			IsReadOnly="True"
+			ItemsSource="{Binding CollectionView}"
+			>
+			<Interaction.Behaviors>
+				<behaviors:DataGridRowTappedBehavior RowTappedCommand="{Binding ((local:ShipSelectorViewModel)DataContext).SelectShipCommand, ElementName=ShipSelector}" />
+			</Interaction.Behaviors>
+
+			<DataGrid.Columns>
+				<DataGridTemplateColumn>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate DataType="local:ShipViewModel">
+							<Image Height="32" Source="{Binding Image^}" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTextColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding Ship.Name}"
+					Header="{x:Static shipFilter:ShipFilterResources.Name}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding Ship.Level}"
+					Header="Lv"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding Ship.FirepowerBase}"
+					Header="{x:Static local:ShipSelectorResources.Firepower}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding NightPowerBase}"
+					Header="{x:Static local:ShipSelectorResources.NightBattlePower}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding Ship.ASWBase}"
+					Header="{x:Static shipFilter:ShipFilterResources.Asw}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding Ship.LuckTotal}"
+					Header="{x:Static shipFilter:ShipFilterResources.Luck}"
+					/>
+				<DataGridCheckBoxColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding CanEquipDaihatsu}"
+					Header="{x:Static shipFilter:ShipFilterResources.Daihatsu}"
+					/>
+				<DataGridCheckBoxColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding CanEquipTank}"
+					Header="{x:Static shipFilter:ShipFilterResources.Tank}"
+					/>
+				<DataGridCheckBoxColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding CanEquipFcf}"
+					Header="{x:Static shipFilter:ShipFilterResources.Fcf}"
+					/>
+				<DataGridCheckBoxColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding CanEquipBulge}"
+					Header="{x:Static shipFilter:ShipFilterResources.Bulge}"
+					/>
+				<DataGridCheckBoxColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding CanEquipSeaplaneFighter}"
+					Header="{x:Static shipFilter:ShipFilterResources.SeaplaneFighter}"
+					/>
+				<DataGridCheckBoxColumn
+					x:DataType="local:ShipViewModel"
+					Binding="{Binding IsExpansionSlotAvailable}"
+					Header="{x:Static shipFilter:ShipFilterResources.Expansion}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

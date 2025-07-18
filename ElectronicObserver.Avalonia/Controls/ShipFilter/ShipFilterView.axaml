@@ -1,0 +1,107 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.Controls.ShipFilter.ShipFilterView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Controls.ShipFilter"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="local:ShipFilterViewModel"
+	mc:Ignorable="d"
+	>
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="local:ShipTypeGroupFilterViewModel">
+			<CheckBox
+				Margin="4 0"
+				Content="{Binding Display}"
+				IsChecked="{Binding IsChecked}"
+				/>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<StackPanel>
+		<ItemsControl ItemsSource="{Binding TypeFilters}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+
+		<WrapPanel>
+			<StackPanel Margin="4 0" Orientation="Horizontal">
+				<TextBlock
+					Margin="2 0"
+					VerticalAlignment="Center"
+					Text="{x:Static local:ShipFilterResources.Name}"
+					/>
+				<TextBox
+					MinWidth="80"
+					VerticalAlignment="Center"
+					Text="{Binding NameFilter}"
+					/>
+			</StackPanel>
+
+			<local:NumberRange
+				Maximum="{Binding AswMax}"
+				Minimum="{Binding AswMin}"
+				Text="{x:Static local:ShipFilterResources.Asw}"
+				/>
+
+			<local:NumberRange
+				Maximum="{Binding AswMax}"
+				Minimum="{Binding AswMin}"
+				Text="{x:Static local:ShipFilterResources.Luck}"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.Daihatsu}"
+				IsChecked="{Binding CanEquipDaihatsu}"
+				IsThreeState="True"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.Tank}"
+				IsChecked="{Binding CanEquipTank}"
+				IsThreeState="True"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.Fcf}"
+				IsChecked="{Binding CanEquipFcf}"
+				IsThreeState="True"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.Bulge}"
+				IsChecked="{Binding CanEquipBulge}"
+				IsThreeState="True"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.SeaplaneFighter}"
+				IsChecked="{Binding CanEquipSeaplaneFighter}"
+				IsThreeState="True"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.Expansion}"
+				IsChecked="{Binding IsExpansionSlotAvailable}"
+				IsThreeState="True"
+				/>
+
+			<CheckBox
+				Margin="4 0"
+				Content="{x:Static local:ShipFilterResources.FinalRemodel}"
+				IsChecked="{Binding FinalRemodel}"
+				/>
+		</WrapPanel>
+	</StackPanel>
+</UserControl>

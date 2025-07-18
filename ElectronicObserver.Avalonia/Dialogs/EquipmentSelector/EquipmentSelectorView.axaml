@@ -1,0 +1,61 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.Dialogs.EquipmentSelector.EquipmentSelectorView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Dialogs.EquipmentSelector"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="EquipmentSelector"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="local:EquipmentSelectorViewModel"
+	mc:Ignorable="d"
+	>
+	<UserControl.Styles>
+		<Style Selector="DataGrid DataGridRow">
+			<Setter Property="(Interaction.Behaviors)">
+				<BehaviorCollectionTemplate>
+					<BehaviorCollection>
+						<EventTriggerBehavior EventName="Tapped">
+							<InvokeCommandAction Command="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectEquipmentCommand, ElementName=EquipmentSelector}" />
+						</EventTriggerBehavior>
+					</BehaviorCollection>
+				</BehaviorCollectionTemplate>
+			</Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<TabControl ItemsSource="{Binding EquipmentTypeGroups}">
+		<TabControl.ItemTemplate>
+			<DataTemplate>
+				<TextBlock Text="{Binding Display}" />
+			</DataTemplate>
+		</TabControl.ItemTemplate>
+
+		<TabControl.ContentTemplate>
+			<DataTemplate DataType="local:EquipmentTypeGroupViewModel">
+				<DataGrid ItemsSource="{Binding Equipment}" SelectedItem="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectedEquipment, ElementName=EquipmentSelector}">
+					<DataGrid.Columns>
+						<DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+						<DataGridTextColumn Binding="{Binding MasterEquipment.Firepower}" Header="Firepower" />
+						<DataGridTextColumn Binding="{Binding MasterEquipment.Torpedo}" Header="Torpedo" />
+						<DataGridTextColumn Binding="{Binding MasterEquipment.AA}" Header="AA" />
+					</DataGrid.Columns>
+				</DataGrid>
+				<!--
+				<ItemsControl ItemsSource="{Binding Equipment}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Button
+								Command="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectEquipmentCommand, ElementName=EquipmentSelector}"
+								CommandParameter="{Binding}"
+								Content="{Binding Name}"
+								/>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+				-->
+			</DataTemplate>
+		</TabControl.ContentTemplate>
+	</TabControl>
+</UserControl>

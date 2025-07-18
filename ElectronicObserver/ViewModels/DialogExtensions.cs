@@ -1,10 +1,14 @@
 ﻿using System.Windows.Forms;
 using System.Windows.Interop;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Window.Dialog.ShipSelector;
 
 namespace ElectronicObserver.ViewModels;
 
 public static class DialogExtensions
 {
+	private static System.Windows.Window MainWindow => App.Current!.MainWindow;
+
 	public static void Show(this System.Windows.Window window, System.Windows.Window mainWindow)
 	{
 		window.Owner = mainWindow;
@@ -15,6 +19,26 @@ public static class DialogExtensions
 	{
 		window.Owner = mainWindow;
 		return window.ShowDialog();
+	}
+
+	public static bool ShowDialog(this DropRecordShipSelectorViewModel viewModel, System.Windows.Window? owner = null)
+	{
+		viewModel.SelectedOption = null;
+		viewModel.SelectedShip = null;
+
+		ShipSelectorView view = new()
+		{
+			DataContext = viewModel,
+		};
+
+		DropRecordShipSelectorWindow dialog = new(viewModel)
+		{
+			WpfAvaloniaHost = { Content = view },
+		};
+
+		dialog.ShowDialog(MainWindow);
+
+		return viewModel.SelectedOption is not null || viewModel.SelectedShip is not null;
 	}
 
 	public static void Show(this Form form, System.Windows.Window mainWindow)

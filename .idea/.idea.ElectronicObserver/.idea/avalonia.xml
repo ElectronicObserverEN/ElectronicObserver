@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ElectronicObserver.Avalonia/Controls/ShipFilter/ShipFilterView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

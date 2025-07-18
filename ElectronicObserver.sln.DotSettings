@@ -2,3 +2,4 @@
 	<s:String x:Key="/Default/CodeEditing/GenerateMemberBody/DocumentationGenerationKind/@EntryValue">Inherit</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ConvertTypeCheckPatternToNullCheck/@EntryIndexedValue">HINT</s:String>
 	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/TRAILING_COMMA_IN_MULTILINE_LISTS/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=daihatsu/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
