@@ -14,6 +14,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
@@ -22,7 +23,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Dialog.ShipSelector;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
@@ -33,6 +33,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private ShipDropRecord Record { get; }
 
+	private TransliterationService TransliterationService { get; }
 	private ImageLoadService ImageLoadService { get; }
 	private DropRecordShipSelectorViewModel? ShipSelectorViewModel { get; set; }
 	public List<object> Items { get; set; } = [];
@@ -104,6 +105,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			FilterValue = DropRecordFilter.MatchesFilter,
 		};
 
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
 		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
 		DialogDropRecordViewer = Ioc.Default.GetRequiredService<DialogDropRecordViewerTranslationViewModel>();
 
@@ -655,7 +657,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			.OfType<IShipData>()
 			.ToList();
 
-		ShipSelectorViewModel ??= new(ImageLoadService, ships)
+		ShipSelectorViewModel ??= new(TransliterationService, ImageLoadService, ships)
 		{
 			ShipFilter = { FinalRemodel = false },
 		};

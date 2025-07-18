@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog.ShipSelector;
 
-public partial class DropRecordShipSelectorViewModel(ImageLoadService imageLoadService, List<IShipData> ships)
-	: ShipSelectorViewModel(imageLoadService, ships)
+public partial class DropRecordShipSelectorViewModel(TransliterationService transliterationService,
+	ImageLoadService imageLoadService, List<IShipData> ships)
+	: ShipSelectorViewModel(transliterationService, imageLoadService, ships)
 {
 	public List<DropRecordOption> DropRecordOptions { get; } = [.. Enum.GetValues<DropRecordOption>()];
 

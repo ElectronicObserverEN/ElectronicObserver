@@ -5,6 +5,7 @@ using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using HanumanInstitute.MvvmDialogs;
 
@@ -12,7 +13,7 @@ namespace ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 
 public partial class ShipSelectorViewModel : ObservableObject, IModalDialogViewModel, ICloseable
 {
-	public Controls.ShipFilter.ShipFilterViewModel ShipFilter { get; } = new(new(new ConfigurationUi()));
+	public Controls.ShipFilter.ShipFilterViewModel ShipFilter { get; }
 	private List<ShipViewModel> Ships { get; }
 
 	public DataGridCollectionView CollectionView { get; }
@@ -27,14 +28,17 @@ public partial class ShipSelectorViewModel : ObservableObject, IModalDialogViewM
 	public IShipData? SelectedShip { get; set; }
 
 	/// <inheritdoc/>
-	public ShipSelectorViewModel(ImageLoadService imageLoadService, List<IShipData> ships)
+	public ShipSelectorViewModel(TransliterationService transliterationService,
+		ImageLoadService imageLoadService, List<IShipData> ships)
 	{
 		Ships = ships
 			.Where(s => !s.MasterShip.IsAbyssalShip)
 			.OrderBy(s => s.SortID)
 			.Select(s => new ShipViewModel(s, imageLoadService))
 			.ToList();
-		
+
+		ShipFilter = new(transliterationService);
+
 		CollectionView = new(Ships)
 		{
 			Filter = o => o switch
