@@ -22,7 +22,7 @@ public static class DialogExtensions
 		return window.ShowDialog();
 	}
 
-	public static bool ShowDialog(this DropRecordShipSelectorViewModel viewModel, System.Windows.Window? owner = null)
+	public static bool? ShowDialog(this DropRecordShipSelectorViewModel viewModel, System.Windows.Window? owner = null)
 	{
 		viewModel.SelectedOption = null;
 		viewModel.SelectedShip = null;

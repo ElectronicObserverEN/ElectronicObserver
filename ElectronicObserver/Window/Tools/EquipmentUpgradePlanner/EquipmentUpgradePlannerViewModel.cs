@@ -64,19 +64,18 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 		equipmentSelector.ShowDialog();
 
-		if (equipmentSelector.DialogResult is true)
+		if (equipmentSelector.SelectedEquipment is null) return;
+
+		EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
+
+		// Use a setting to set default level ?
+		newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
+		newPlan.EquipmentId = equipmentSelector.SelectedEquipment.MasterID;
+
+		if (newPlan.OpenPlanDialog())
 		{
-			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
-
-			// Use a setting to set default level ?
-			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
-			newPlan.EquipmentId = equipmentSelector.SelectedEquipment.MasterID;
-
-			if (newPlan.OpenPlanDialog())
-			{
-				EquipmentUpgradePlanManager.AddPlan(newPlan);
-				EquipmentUpgradePlanManager.Save();
-			}
+			EquipmentUpgradePlanManager.AddPlan(newPlan);
+			EquipmentUpgradePlanManager.Save();
 		}
 	}
 
@@ -93,19 +92,18 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 		equipmentSelector.ShowDialog();
 
-		if (equipmentSelector.DialogResult is true)
+		if (equipmentSelector.SelectedEquipment is null) return;
+
+		EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
+
+		// Use a setting to set default level ?
+		newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
+		newPlan.EquipmentMasterDataId = equipmentSelector.SelectedEquipment.EquipmentId;
+
+		if (newPlan.OpenPlanDialog())
 		{
-			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
-
-			// Use a setting to set default level ?
-			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
-			newPlan.EquipmentMasterDataId = equipmentSelector.SelectedEquipment.EquipmentId;
-
-			if (newPlan.OpenPlanDialog())
-			{
-				EquipmentUpgradePlanManager.AddPlan(newPlan);
-				EquipmentUpgradePlanManager.Save();
-			}
+			EquipmentUpgradePlanManager.AddPlan(newPlan);
+			EquipmentUpgradePlanManager.Save();
 		}
 	}
 
