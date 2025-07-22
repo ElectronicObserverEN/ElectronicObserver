@@ -10,7 +10,7 @@ using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserver.Services;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
@@ -122,6 +122,8 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 		{
 			typeFilter.IsChecked = true;
 		}
+
+		viewModel.ShowDialog();
 
 		if (viewModel.DialogResult is not true) return;
 
