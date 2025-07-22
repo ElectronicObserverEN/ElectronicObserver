@@ -2,7 +2,9 @@
 	x:Class="ElectronicObserver.Avalonia.Dialogs.EquipmentSelector.EquipmentSelectorView"
 	xmlns="https://github.com/avaloniaui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:behaviors="clr-namespace:ElectronicObserver.Avalonia.Behaviors"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:equipmentFilter="clr-namespace:ElectronicObserver.Avalonia.Controls.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Dialogs.EquipmentSelector"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	x:Name="EquipmentSelector"
@@ -11,51 +13,50 @@
 	x:DataType="local:EquipmentSelectorViewModel"
 	mc:Ignorable="d"
 	>
-	<UserControl.Styles>
-		<Style Selector="DataGrid DataGridRow">
-			<Setter Property="(Interaction.Behaviors)">
-				<BehaviorCollectionTemplate>
-					<BehaviorCollection>
-						<EventTriggerBehavior EventName="Tapped">
-							<InvokeCommandAction Command="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectEquipmentCommand, ElementName=EquipmentSelector}" />
-						</EventTriggerBehavior>
-					</BehaviorCollection>
-				</BehaviorCollectionTemplate>
-			</Setter>
-		</Style>
-	</UserControl.Styles>
+	<Grid RowDefinitions="Auto *">
+		<equipmentFilter:EquipmentFilterView Grid.Row="0" DataContext="{Binding ((local:EquipmentSelectorViewModel)DataContext).EquipmentFilter, ElementName=EquipmentSelector}" />
 
-	<TabControl ItemsSource="{Binding EquipmentTypeGroups}">
-		<TabControl.ItemTemplate>
-			<DataTemplate>
-				<TextBlock Text="{Binding Display}" />
-			</DataTemplate>
-		</TabControl.ItemTemplate>
+		<DataGrid
+			Grid.Row="1"
+			IsReadOnly="True"
+			ItemsSource="{Binding CollectionView}"
+			>
+			<Interaction.Behaviors>
+				<behaviors:DataGridRowTappedBehavior RowTappedCommand="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectEquipmentCommand, ElementName=EquipmentSelector}" />
+			</Interaction.Behaviors>
 
-		<TabControl.ContentTemplate>
-			<DataTemplate DataType="local:EquipmentTypeGroupViewModel">
-				<DataGrid ItemsSource="{Binding Equipment}" SelectedItem="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectedEquipment, ElementName=EquipmentSelector}">
-					<DataGrid.Columns>
-						<DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-						<DataGridTextColumn Binding="{Binding MasterEquipment.Firepower}" Header="Firepower" />
-						<DataGridTextColumn Binding="{Binding MasterEquipment.Torpedo}" Header="Torpedo" />
-						<DataGridTextColumn Binding="{Binding MasterEquipment.AA}" Header="AA" />
-					</DataGrid.Columns>
-				</DataGrid>
-				<!--
-				<ItemsControl ItemsSource="{Binding Equipment}">
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<Button
-								Command="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectEquipmentCommand, ElementName=EquipmentSelector}"
-								CommandParameter="{Binding}"
-								Content="{Binding Name}"
-								/>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-				-->
-			</DataTemplate>
-		</TabControl.ContentTemplate>
-	</TabControl>
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					x:DataType="local:EquipmentViewModel"
+					Binding="{Binding Equipment.Name}"
+					Header="{x:Static equipmentFilter:EquipmentFilterResources.Name}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:EquipmentViewModel"
+					Binding="{Binding Equipment.Level}"
+					Header="{x:Static equipmentFilter:EquipmentFilterResources.Level}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:EquipmentViewModel"
+					Binding="{Binding Equipment.AircraftLevel}"
+					Header="{x:Static equipmentFilter:EquipmentFilterResources.AircraftLevel}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:EquipmentViewModel"
+					Binding="{Binding Equipment.MasterEquipment.Firepower}"
+					Header="{x:Static equipmentFilter:EquipmentFilterResources.Firepower}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:EquipmentViewModel"
+					Binding="{Binding Equipment.MasterEquipment.Torpedo}"
+					Header="{x:Static equipmentFilter:EquipmentFilterResources.Torpedo}"
+					/>
+				<DataGridTextColumn
+					x:DataType="local:EquipmentViewModel"
+					Binding="{Binding Equipment.MasterEquipment.AA}"
+					Header="{x:Static equipmentFilter:EquipmentFilterResources.AntiAir}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
 </UserControl>

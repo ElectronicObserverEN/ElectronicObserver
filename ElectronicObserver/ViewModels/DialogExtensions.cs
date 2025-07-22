@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Windows.Interop;
+using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Window.Dialog.ShipSelector;
 
@@ -39,6 +40,25 @@ public static class DialogExtensions
 		dialog.ShowDialog(MainWindow);
 
 		return viewModel.SelectedOption is not null || viewModel.SelectedShip is not null;
+	}
+
+	public static bool ShowDialog(this EquipmentSelectorViewModel viewModel, System.Windows.Window? owner = null)
+	{
+		viewModel.SelectedEquipment = null;
+
+		EquipmentSelectorView view = new()
+		{
+			DataContext = viewModel,
+		};
+
+		Window.Dialog.EquipmentSelector.EquipmentSelectorWindow dialog = new(viewModel)
+		{
+			WpfAvaloniaHost = { Content = view },
+		};
+
+		dialog.ShowDialog(MainWindow);
+
+		return viewModel.SelectedEquipment is not null;
 	}
 
 	public static void Show(this Form form, System.Windows.Window mainWindow)

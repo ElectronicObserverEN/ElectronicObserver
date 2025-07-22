@@ -328,7 +328,6 @@ public partial class App
 			.AddSingleton<GameAssetDownloaderService>()
 			.AddSingleton<ImageLoadService>()
 			.AddSingleton<FileService>()
-			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()

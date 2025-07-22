@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
@@ -69,7 +70,8 @@ public class Startup
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.AddSingleton<TimeChangeService>()
-			.AddSingleton<EquipmentPickerService>()
+			.AddSingleton<IConfigurationUi, ConfigurationUi>()
+			.AddSingleton<TransliterationService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<IClipboardService, ClipboardService>()
 			.BuildServiceProvider());

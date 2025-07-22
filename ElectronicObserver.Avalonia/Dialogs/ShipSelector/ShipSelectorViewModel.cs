@@ -4,6 +4,7 @@ using Avalonia.Collections;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Controls.ShipFilter;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
@@ -13,7 +14,7 @@ namespace ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 
 public partial class ShipSelectorViewModel : ObservableObject, IModalDialogViewModel, ICloseable
 {
-	public Controls.ShipFilter.ShipFilterViewModel ShipFilter { get; }
+	public ShipFilterViewModel ShipFilter { get; }
 	private List<ShipViewModel> Ships { get; }
 
 	public DataGridCollectionView CollectionView { get; }

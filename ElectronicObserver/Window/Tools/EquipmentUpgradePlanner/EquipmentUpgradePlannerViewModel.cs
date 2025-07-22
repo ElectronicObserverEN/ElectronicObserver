@@ -1,11 +1,16 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Services;
+using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Data;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
@@ -20,8 +25,6 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanner { get; }
 
-	private EquipmentPickerService EquipmentPicker { get; }
-
 	public EquipmentUpgradePlanManager EquipmentUpgradePlanManager { get; }
 
 	public EquipmentUpgradePlanCostViewModel TotalCost { get; private set; } = new(new());
@@ -30,12 +33,14 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 
 	public EquipmentUpgradeFilterViewModel Filters { get; set; } = new();
 
+	private TransliterationService TransliterationService { get; }
+
 	public EquipmentUpgradePlannerViewModel()
 	{
 		PlannedUpgradesPager = new();
-		EquipmentPicker = Ioc.Default.GetService<EquipmentPickerService>()!;
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
 		EquipmentUpgradePlanner = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
 		PlannedUpgrades = EquipmentUpgradePlanManager.PlannedUpgrades;
 	}
 
@@ -55,15 +60,17 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void AddEquipmentPlan()
 	{
-		IEquipmentData? equipment = EquipmentPicker.OpenEquipmentPicker();
+		EquipmentSelectorViewModel equipmentSelector = new(TransliterationService, [.. KCDatabase.Instance.Equipments.Values]);
 
-		if (equipment != null)
+		equipmentSelector.ShowDialog();
+
+		if (equipmentSelector.DialogResult is true)
 		{
 			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
-			newPlan.EquipmentId = equipment.MasterID;
+			newPlan.EquipmentId = equipmentSelector.SelectedEquipment.MasterID;
 
 			if (newPlan.OpenPlanDialog())
 			{
@@ -76,15 +83,23 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void AddEquipmentPlanFromMasterData()
 	{
-		IEquipmentDataMaster? equipment = EquipmentPicker.OpenMasterEquipmentPicker();
+		List<IEquipmentData> equipment = KCDatabase.Instance.MasterEquipments.Values
+			.Where(e => !e.IsAbyssalEquipment)
+			.Select(e => new EquipmentDataMock(e))
+			.OfType<IEquipmentData>()
+			.ToList();
 
-		if (equipment != null)
+		EquipmentSelectorViewModel equipmentSelector = new(TransliterationService, equipment);
+
+		equipmentSelector.ShowDialog();
+
+		if (equipmentSelector.DialogResult is true)
 		{
 			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
-			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
+			newPlan.EquipmentMasterDataId = equipmentSelector.SelectedEquipment.EquipmentId;
 
 			if (newPlan.OpenPlanDialog())
 			{

@@ -3,7 +3,9 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="ElectronicObserver.Avalonia/Controls/EquipmentFilter/EquipmentFilterView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Controls/ShipFilter/ShipFilterView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/Dialogs/EquipmentSelector/EquipmentSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
       </map>
     </option>
