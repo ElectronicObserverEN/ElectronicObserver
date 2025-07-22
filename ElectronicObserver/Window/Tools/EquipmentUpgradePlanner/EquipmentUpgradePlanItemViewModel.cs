@@ -407,15 +407,14 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	}
 
 	[RelayCommand]
-	public void OpenEquipmentPicker()
+	private void OpenEquipmentPicker()
 	{
 		EquipmentSelectorViewModel viewModel = new(TransliterationService, [.. KCDatabase.Instance.Equipments.Values]);
 
 		viewModel.ShowDialog();
 
-		if (viewModel.DialogResult is true)
-		{
-			EquipmentId = viewModel.SelectedEquipment.MasterID;
-		}
+		if (viewModel.SelectedEquipment is null) return;
+		
+		EquipmentId = viewModel.SelectedEquipment.MasterID;
 	}
 }

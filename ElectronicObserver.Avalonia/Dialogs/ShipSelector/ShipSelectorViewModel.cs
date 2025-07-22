@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using Avalonia.Collections;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -25,7 +24,6 @@ public partial class ShipSelectorViewModel : ObservableObject, IModalDialogViewM
 	/// <inheritdoc />
 	public bool? DialogResult { get; protected set; }
 
-	[MemberNotNullWhen(true, nameof(DialogResult))]
 	public IShipData? SelectedShip { get; set; }
 
 	/// <inheritdoc/>

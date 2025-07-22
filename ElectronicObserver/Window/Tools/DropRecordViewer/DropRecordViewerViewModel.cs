@@ -662,15 +662,14 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			ShipFilter = { FinalRemodel = false },
 		};
 
-		if (ShipSelectorViewModel.ShowDialog() is true)
+		if (ShipSelectorViewModel.ShowDialog() is not true) return;
+
+		ShipSearchOption = ShipSelectorViewModel switch
 		{
-			ShipSearchOption = ShipSelectorViewModel switch
-			{
-				{ SelectedShip: { } } => ShipSelectorViewModel.SelectedShip.MasterShip,
-				{ SelectedOption: { } } => ShipSelectorViewModel.SelectedOption,
-				_ => DropRecordOption.All,
-			};
-		}
+			{ SelectedShip: { } } => ShipSelectorViewModel.SelectedShip.MasterShip,
+			{ SelectedOption: { } } => ShipSelectorViewModel.SelectedOption,
+			_ => DropRecordOption.All,
+		};
 	}
 
 	[RelayCommand]

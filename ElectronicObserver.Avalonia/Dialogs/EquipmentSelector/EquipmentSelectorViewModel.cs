@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using Avalonia.Collections;
-using Avalonia.Controls.Shapes;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -25,7 +23,6 @@ public sealed partial class EquipmentSelectorViewModel : ObservableObject, IModa
 	/// <inheritdoc />
 	public bool? DialogResult { get; private set; }
 
-	[MemberNotNullWhen(true, nameof(DialogResult))]
 	public IEquipmentData? SelectedEquipment { get; set; }
 
 	public EquipmentSelectorViewModel(TransliterationService transliterationService, 
@@ -64,7 +61,7 @@ public sealed partial class EquipmentSelectorViewModel : ObservableObject, IModa
 		Close();
 	}
 
-	protected void Close()
+	private void Close()
 	{
 		// https://github.com/AvaloniaUI/Avalonia/issues/16199#issuecomment-2244891047
 		Dispatcher.UIThread.Post(() => RequestClose?.Invoke(this, EventArgs.Empty));
