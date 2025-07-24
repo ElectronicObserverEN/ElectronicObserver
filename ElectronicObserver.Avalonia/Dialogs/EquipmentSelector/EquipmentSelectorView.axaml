@@ -19,6 +19,7 @@
 
 		<DataGrid
 			Grid.Row="1"
+			CanUserResizeColumns="True"
 			IsReadOnly="True"
 			ItemsSource="{Binding CollectionView}"
 			>
