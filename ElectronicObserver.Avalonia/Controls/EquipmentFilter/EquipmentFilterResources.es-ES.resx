@@ -135,4 +135,7 @@
   <data name="AntiAir" xml:space="preserve">
     <value>AA</value>
   </data>
+  <data name="TypeToggle" xml:space="preserve">
+    <value>Alternar tipos de equipamiento</value>
+  </data>
 </root>

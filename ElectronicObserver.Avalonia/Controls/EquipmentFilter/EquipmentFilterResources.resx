@@ -33,4 +33,7 @@
   <data name="AntiAir" xml:space="preserve">
     <value>対空</value>
   </data>
+  <data name="TypeToggle" xml:space="preserve">
+    <value>装備種トグル</value>
+  </data>
 </root>

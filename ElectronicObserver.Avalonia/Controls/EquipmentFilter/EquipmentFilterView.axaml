@@ -40,7 +40,7 @@
 			<Button
 				Margin="4 0"
 				Command="{Binding ToggleEquipmentTypesCommand}"
-				Content="Toggle"
+				Content="{x:Static local:EquipmentFilterResources.TypeToggle}"
 				/>
 		</StackPanel>
 	</StackPanel>
