@@ -1,0 +1,262 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.Controls.EquipmentIcon"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:types="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
+	x:Name="EquipmentIconControl"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d"
+	>
+	<Image
+		Width="16"
+		Height="16"
+		Source="{StaticResource EquipmentIconType.Unknown}"
+		>
+		<Interaction.Behaviors>
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Unknown}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Unknown}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Nothing}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Nothing}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.MainGunSmall}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.MainGunSmall}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.MainGunMedium}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.MainGunMedium}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.MainGunLarge}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.MainGunLarge}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.SecondaryGun}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.SecondaryGun}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Torpedo}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Torpedo}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.CarrierBasedFighter}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.CarrierBasedFighter}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.CarrierBasedBomber}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.CarrierBasedBomber}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.CarrierBasedTorpedo}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.CarrierBasedTorpedo}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.CarrierBasedRecon}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.CarrierBasedRecon}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Seaplane}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Seaplane}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Radar}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Radar}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.AAShell}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.AaShell}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.APShell}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.ApShell}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.DamageControl}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.DamageControl}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.AAGun}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.AaGun}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.HighAngleGun}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.HighAngleGun}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.DepthCharge}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.DepthCharge}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Sonar}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Sonar}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Engine}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Engine}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandingCraft}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandingCraft}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Autogyro}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Autogyro}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.ASPatrol}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.AsPatrol}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.ExtraArmor}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.ExtraArmor}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Searchlight}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Searchlight}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.TransportContainer}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.TransportContainer}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.RepairFacility}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.RepairFacility}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.StarShell}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.StarShell}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.CommandFacility}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.CommandFacility}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.AviationPersonnel}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.AviationPersonnel}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.AADirector}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.AaDirector}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Rocket}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Rocket}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.SurfaceShipPersonnel}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.SurfaceShipPersonnel}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.FlyingBoat}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.FlyingBoat}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Ration}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Ration}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Supplies}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Supplies}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.SpecialAmphibiousTank}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.SpecialAmphibiousTank}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandBasedAttacker}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandBasedAttacker}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.Interceptor}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.Interceptor}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.JetBomberKeiun}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.JetBomberKeiun}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.JetBomberKikka}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.JetBomberKikka}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.JetBomberHo229}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.JetBomberHo229}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.TransportMaterial}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.TransportMaterial}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.SubmarineEquipment}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.SubmarineEquipment}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.SeaplaneFighter}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.SeaplaneFighter}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandBasedFighter}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandBasedFighter}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.NightFighter}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.NightFighter}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.NightAttacker}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.NightAttacker}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandBasedASPatrol}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandBasedAsPatrol}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandAssaulter}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandAssaulter}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.HeavyBomber}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.HeavyBomber}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.NightSeaplane}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.NightSeaplane}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.NightSeaplaneBomber}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.NightSeaplaneBomber}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.ArmyInfantry}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.ArmyInfantry}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.SmokeGenerator}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.BarrageBalloon}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.BarrageBalloon}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandBasedFighterJet}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandBasedFighterJet}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.LandBasedFighterShinden}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.LandBasedFighterShinden}" />
+			</DataTriggerBehavior>
+
+			<DataTriggerBehavior Binding="{Binding IconType, ElementName=EquipmentIconControl}" Value="{x:Static types:EquipmentIconType.NightBomber}">
+				<ChangePropertyAction PropertyName="Source" Value="{StaticResource EquipmentIconType.NightBomber}" />
+			</DataTriggerBehavior>
+
+		</Interaction.Behaviors>
+
+	</Image>
+</UserControl>

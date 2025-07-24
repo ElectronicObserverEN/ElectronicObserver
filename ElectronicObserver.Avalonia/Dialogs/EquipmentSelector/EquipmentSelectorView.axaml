@@ -3,6 +3,7 @@
 	xmlns="https://github.com/avaloniaui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:behaviors="clr-namespace:ElectronicObserver.Avalonia.Behaviors"
+	xmlns:controls="clr-namespace:ElectronicObserver.Avalonia.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:equipmentFilter="clr-namespace:ElectronicObserver.Avalonia.Controls.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Dialogs.EquipmentSelector"
@@ -26,6 +27,13 @@
 			</Interaction.Behaviors>
 
 			<DataGrid.Columns>
+				<DataGridTemplateColumn>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate DataType="local:EquipmentViewModel">
+							<controls:EquipmentIcon IconType="{Binding Equipment.MasterEquipment.IconTypeTyped}" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
 				<DataGridTextColumn
 					x:DataType="local:EquipmentViewModel"
 					Binding="{Binding Equipment.Name}"
