@@ -123,4 +123,7 @@
   <data name="NightBattlePower" xml:space="preserve">
     <value>NB Power</value>
   </data>
+  <data name="ShipPicker" xml:space="preserve">
+    <value>Pick a ship</value>
+  </data>
 </root>

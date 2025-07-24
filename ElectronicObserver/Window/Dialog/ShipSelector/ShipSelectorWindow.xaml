@@ -8,7 +8,7 @@
 	xmlns:shipSelector="clr-namespace:ElectronicObserver.Avalonia.Dialogs.ShipSelector;assembly=ElectronicObserver.Avalonia"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="ShipSelector"
-	Title="ShipSelectorWindow"
+	Title="{x:Static shipSelector:ShipSelectorResources.ShipPicker}"
 	Width="800"
 	Height="450"
 	ui:WindowHelper.UseModernWindowStyle="True"

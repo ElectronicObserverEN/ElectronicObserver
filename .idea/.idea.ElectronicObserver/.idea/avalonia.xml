@@ -8,7 +8,9 @@
         <entry key="ElectronicObserver.Avalonia/Controls/EquipmentIcon.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Controls/ShipFilter/ShipFilterView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Dialogs/EquipmentSelector/EquipmentSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/Dialogs/EquipmentSelector/EquipmentSelectorWindow.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorWindow.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Icons.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
       </map>
     </option>
