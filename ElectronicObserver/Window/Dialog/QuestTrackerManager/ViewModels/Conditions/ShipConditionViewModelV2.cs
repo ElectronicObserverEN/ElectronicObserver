@@ -4,14 +4,17 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
-using ElectronicObserver.Window.Dialog.ShipPicker;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
@@ -19,7 +22,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 {
 	private IKCDatabase Db { get; }
 
-	private ShipPickerViewModel ShipPickerViewModel { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel { get; }
 
 	private IShipDataMaster? _ship;
 
@@ -59,7 +62,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 	public string Display => (ShipClass, Ship, RemodelComparisonType, MustBeFlagship) switch
 	{
 		(ShipClass.Unknown, null, _, _) => "",
-		_ => string.Join(" ", ConditionList.Where(s => !string.IsNullOrEmpty(s)))
+		_ => string.Join(" ", ConditionList.Where(s => !string.IsNullOrEmpty(s))),
 	};
 
 	private string ShipClassConditionDisplay => ShipClass switch
@@ -71,37 +74,44 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 	private string ShipConditionDisplay => Ship switch
 	{
 		null => "",
-		_ => Ship.NameEN
+		_ => Ship.NameEN,
 	};
 
 	private string RemodelComparisonDisplay => Ship switch
 	{
 		null => "",
-		_ => $"({RemodelComparisonType.Display()})"
+		_ => $"({RemodelComparisonType.Display()})",
 	};
 
 
 	private string FlagshipConditionDisplay => MustBeFlagship switch
 	{
 		true => $"({QuestTrackerManagerResources.Flagship})",
-		_ => ""
+		_ => "",
 	};
 
-	public List<string> ConditionList => new()
-	{
+	public List<string> ConditionList =>
+	[
 		ShipClassConditionDisplay,
 		ShipConditionDisplay,
 		RemodelComparisonDisplay,
 		FlagshipConditionDisplay,
-	};
+	];
 
 	public ShipConditionViewModelV2(ShipConditionModelV2 model)
 	{
-		Db = Ioc.Default.GetService<IKCDatabase>()!;
-		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
+		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
 
-		RemodelComparisonTypes = Enum.GetValues(typeof(RemodelComparisonType))
-			.Cast<RemodelComparisonType>();
+		TransliterationService transliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
+		ImageLoadService imageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
+		List<IShipData> ships = Db.MasterShips.Values
+			.Select(s => new ShipDataMock(s))
+			.OfType<IShipData>()
+			.ToList();
+
+		ShipSelectorViewModel = new(transliterationService, imageLoadService, ships);
+
+		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
 
 		Model = model;
 
@@ -109,7 +119,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 		MustBeFlagship = Model.MustBeFlagship;
 		ShipClass = Model.ShipClass;
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(Ship)) return;
 
@@ -121,21 +131,21 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 			}
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(RemodelComparisonType)) return;
 
 			Model.RemodelComparisonType = RemodelComparisonType;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(MustBeFlagship)) return;
 
 			Model.MustBeFlagship = MustBeFlagship;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(ShipClass)) return;
 
@@ -151,17 +161,19 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		ShipPickerView shipPicker = new(ShipPickerViewModel);
-		if (shipPicker.ShowDialog(App.Current.MainWindow) is true)
-		{
-			Model.Id = shipPicker.PickedShip!.ShipId;
-			Ship = shipPicker.PickedShip!;
-		}
+		ShipSelectorViewModel.ShowDialog();
+
+		if (ShipSelectorViewModel.SelectedShip is null) return;
+
+		Model.Id = ShipSelectorViewModel.SelectedShip.MasterShip.ShipId;
+		Ship = ShipSelectorViewModel.SelectedShip.MasterShip;
 	}
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		List<IShipData> ships = fleet.MembersInstance.Where(s => s is not null).ToList();
+		List<IShipData> ships = fleet.MembersInstance
+			.OfType<IShipData>()
+			.ToList();
 
 		if (MustBeFlagship)
 		{
@@ -184,7 +196,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 			RemodelComparisonType.AtLeast => ships.Any(HigherRemodelCheck),
 			RemodelComparisonType.Exact => ships.Any(s => s.MasterShip.ShipId == Model.Id),
 
-			_ => false
+			_ => false,
 		};
 	}
 
@@ -198,7 +210,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 
 	private bool HigherRemodelCheck(IShipData ship)
 	{
-		IShipDataMaster? conditionShip = Db.MasterShips.Values
+		IShipDataMaster conditionShip = Db.MasterShips.Values
 			.First(s => s.ShipId == Model.Id);
 
 		IShipDataMaster? masterShip = ship.MasterShip;

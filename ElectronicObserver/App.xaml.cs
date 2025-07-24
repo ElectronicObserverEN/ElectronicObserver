@@ -25,7 +25,6 @@ using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
-using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
@@ -315,7 +314,6 @@ public partial class App
 			.AddSingleton<BonodereSubmissionTranslationViewModel>()
 			.AddSingleton<SenkaLeaderboardTranslationViewModel>()
 			// tools
-			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
 			.AddSingleton<PhaseFactory>()

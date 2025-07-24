@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Window.Settings.Behavior;
 
@@ -41,7 +49,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	public RpcIconKind RpcIconKind { get; set; }
 
 	public IShipDataMaster? ShipUsedForRpcIcon { get; set; }
-	public ShipPickerViewModel ShipPickerViewModel { get; }
+	public ShipSelectorViewModel ShipSelectorViewModel { get; }
 
 	public string SelectedShipName => ShipUsedForRpcIcon switch
 	{
@@ -52,12 +60,24 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	public ConfigurationBehaviorViewModel(Configuration.ConfigurationData.ConfigControl config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBehaviorTranslationViewModel>();
-		ShipPickerViewModel = Ioc.Default.GetRequiredService<ShipPickerViewModel>();
+		IKCDatabase db = Ioc.Default.GetRequiredService<IKCDatabase>();
 
+		TransliterationService transliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
+		ImageLoadService imageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
+		List<IShipData> ships = db.MasterShips.Values
+			.Select(s => new ShipDataMock(s))
+			.OfType<IShipData>()
+			.ToList();
+
+		ShipSelectorViewModel = new(transliterationService, imageLoadService, ships);
+		
 		Config = config;
 		Load(config);
 	}
 
+	[MemberNotNull(nameof(DiscordRPCMessage))]
+	[MemberNotNull(nameof(DiscordRPCApplicationId))]
+	[MemberNotNull(nameof(UpdateRepoURL))]
 	private void Load(Configuration.ConfigurationData.ConfigControl config)
 	{
 		ConditionBorder = config.ConditionBorder;
@@ -131,11 +151,10 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	{
 		RpcIconKind = RpcIconKind.Ship;
 
-		ShipPickerView shipPicker = new(ShipPickerViewModel);
+		ShipSelectorViewModel.ShowDialog();
 
-		if (shipPicker.ShowDialog() is true)
-		{
-			ShipUsedForRpcIcon = shipPicker.PickedShip;
-		}
+		if (ShipSelectorViewModel.SelectedShip is null) return;
+
+		ShipUsedForRpcIcon = ShipSelectorViewModel.SelectedShip.MasterShip;
 	}
 }

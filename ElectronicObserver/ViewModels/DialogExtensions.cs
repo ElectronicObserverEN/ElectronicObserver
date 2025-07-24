@@ -22,6 +22,25 @@ public static class DialogExtensions
 		return window.ShowDialog();
 	}
 
+	public static bool? ShowDialog(this ShipSelectorViewModel viewModel, System.Windows.Window? owner = null)
+	{
+		viewModel.SelectedShip = null;
+
+		ShipSelectorView view = new()
+		{
+			DataContext = viewModel,
+		};
+
+		Window.Dialog.ShipSelector.ShipSelectorWindow dialog = new(viewModel)
+		{
+			WpfAvaloniaHost = { Content = view },
+		};
+
+		dialog.ShowDialog(MainWindow);
+
+		return viewModel.SelectedShip is not null;
+	}
+
 	public static bool? ShowDialog(this DropRecordShipSelectorViewModel viewModel, System.Windows.Window? owner = null)
 	{
 		viewModel.SelectedOption = null;

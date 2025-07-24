@@ -22,8 +22,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		_ => new ShipDataMock(new ShipDataMasterMock()),
 	};
 
-	[ObservableProperty] private bool _planFinished;
-
+	[ObservableProperty] public partial bool PlanFinished { get; set; }
 	public int Priority { get; set; }
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }

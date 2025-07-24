@@ -8,7 +8,7 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.Avalonia.Controls.ShipFilter;
 
 namespace ElectronicObserver.Window.Control.ShipFilter;
 
@@ -17,7 +17,7 @@ public partial class ShipFilterViewModel : ObservableObject
 	public ShipFilterTranslationViewModel ShipFilter { get; }
 	public TransliterationService TransliterationService { get; }
 
-	public List<Filter> TypeFilters { get; }
+	public List<ShipTypeGroupFilterViewModel> TypeFilters { get; }
 
 	public int LevelMin { get; set; } = 0;
 	public int LevelMax => ExpTable.ShipMaximumLevel;
@@ -49,13 +49,13 @@ public partial class ShipFilterViewModel : ObservableObject
 		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
 
 		TypeFilters = Enum.GetValues<ShipTypeGroup>()
-			.Select(t => new Filter(t)
+			.Select(t => new ShipTypeGroupFilterViewModel(t)
 			{
 				IsChecked = true,
 			})
 			.ToList();
 
-		foreach (Filter filter in TypeFilters)
+		foreach (ShipTypeGroupFilterViewModel filter in TypeFilters)
 		{
 			filter.PropertyChanged += (_, _) => OnPropertyChanged(string.Empty);
 		}
@@ -92,14 +92,14 @@ public partial class ShipFilterViewModel : ObservableObject
 	{
 		if (TypeFilters.All(f => f.IsChecked))
 		{
-			foreach (Filter typeFilter in TypeFilters)
+			foreach (ShipTypeGroupFilterViewModel typeFilter in TypeFilters)
 			{
 				typeFilter.IsChecked = false;
 			}
 		}
 		else
 		{
-			foreach (Filter typeFilter in TypeFilters)
+			foreach (ShipTypeGroupFilterViewModel typeFilter in TypeFilters)
 			{
 				typeFilter.IsChecked = true;
 			}

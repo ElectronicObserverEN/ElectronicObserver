@@ -154,7 +154,9 @@ public class ShipDataMock : IShipData
 	public Dictionary<string, string> RequestData { get; } = [];
 	public dynamic RawData { get; } = null!;
 	public bool IsAvailable { get; }
-	public int ASWBase => MasterShip.ASW.IsDetermined switch
+
+	// todo: can cause an exception under specific conditions in ship training planner
+	public int ASWBase => MasterShip.ASW?.IsDetermined switch
 	{
 		true => MasterShip.ASW.GetParameter(Level),
 		_ => 0,
