@@ -16,9 +16,6 @@
 
 	<Application.Resources>
 		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<MergeResourceInclude Source="Icons.axaml" />
-			</ResourceDictionary.MergedDictionaries>
 			<FontFamily x:Key="ContentControlThemeFontFamily">Meiryo UI</FontFamily>
 			<system:Double x:Key="ControlContentThemeFontSize">12</system:Double>
 		</ResourceDictionary>

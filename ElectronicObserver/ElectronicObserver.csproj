@@ -152,16 +152,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="Assets\**\*.png" />
 		<None Remove="Splashscreen.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Page Remove="Properties\DesignTimeResources.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Resource Include="Assets\**\*.png" />
 	</ItemGroup>
 
 	<ItemGroup>
