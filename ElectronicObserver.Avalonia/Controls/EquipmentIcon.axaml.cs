@@ -38,7 +38,6 @@ public partial class EquipmentIcon : UserControl
 
 	private void UpdateIcon()
 	{
-		// Image? imageControl = this.FindControl<Image>(nameof(EquipmentIconImage));
 		EquipmentIconImage?.Source = GetCachedBitmap(IconType);
 	}
 
