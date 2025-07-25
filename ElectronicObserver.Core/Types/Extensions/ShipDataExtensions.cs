@@ -670,11 +670,32 @@ public static class ShipDataExtensions
 	public static bool CanEquipSeaplaneFighter(this IShipData ship)
 		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SeaplaneFighter);
 
-	public static bool IsFinalRemodel(this IShipData ship)
+	public static bool IsFinalRemodel(this IShipData ship) => ship.MasterShip.IsFinalRemodel();
+
+	public static bool IsFinalRemodel(this IShipDataMaster ship)
 	{
-		// todo: correctly implement this
-		if (ship.MasterShip.RemodelAfterShipID <= 0) return true;
-		
-		return false;
+		if (ship.RemodelAfterShipID <= 0) return true;
+
+		IShipDataMaster? masterShip = ship;
+		List<ShipId> visitedIds = [];
+		List<ShipId> finalRemodelIds = [];
+
+		while (true)
+		{
+			if (masterShip is null) return false;
+			if (finalRemodelIds.Contains(ship.ShipId)) return true;
+			if (finalRemodelIds.Contains(masterShip.ShipId)) return false;
+
+			if (visitedIds.Contains(masterShip.ShipId))
+			{
+				finalRemodelIds.Add(masterShip.ShipId);
+			}
+			else
+			{
+				visitedIds.Add(masterShip.ShipId);
+			}
+
+			masterShip = masterShip.RemodelAfterShip;
+		}
 	}
 }
