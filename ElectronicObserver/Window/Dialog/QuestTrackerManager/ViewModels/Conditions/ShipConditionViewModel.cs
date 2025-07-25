@@ -22,8 +22,10 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Condit
 public partial class ShipConditionViewModel : ObservableObject, IConditionViewModel
 {
 	private IKCDatabase Db { get; }
+	private TransliterationService TransliterationService { get; }
+	private ImageLoadService ImageLoadService { get; }
 
-	private ShipSelectorViewModel ShipSelectorViewModel { get; }
+	private ShipSelectorViewModel? ShipSelectorViewModel { get; set; }
 
 	[field: AllowNull, MaybeNull]
 	public IShipDataMaster Ship
@@ -60,15 +62,8 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 	public ShipConditionViewModel(ShipConditionModel model)
 	{
 		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
-
-		TransliterationService transliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
-		ImageLoadService imageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
-		List<IShipData> ships = Db.MasterShips.Values
-			.Select(s => new ShipDataMock(s))
-			.OfType<IShipData>()
-			.ToList();
-
-		ShipSelectorViewModel = new(transliterationService, imageLoadService, ships);
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
+		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
 
 		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
 
@@ -102,6 +97,16 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
+		if (ShipSelectorViewModel is null)
+		{
+			List<IShipData> ships = Db.MasterShips.Values
+				.Select(s => new ShipDataMock(s))
+				.OfType<IShipData>()
+				.ToList();
+
+			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships);
+		}
+
 		ShipSelectorViewModel.ShowDialog();
 
 		if (ShipSelectorViewModel.SelectedShip is null) return;
