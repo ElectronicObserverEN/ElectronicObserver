@@ -50,8 +50,8 @@
 				/>
 
 			<local:NumberRange
-				Maximum="{Binding AswMax}"
-				Minimum="{Binding AswMin}"
+				Maximum="{Binding LuckMax}"
+				Minimum="{Binding LuckMin}"
 				Text="{x:Static local:ShipFilterResources.Luck}"
 				/>
 
