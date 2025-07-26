@@ -163,7 +163,10 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 				.OfType<IShipData>()
 				.ToList();
 
-			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships);
+			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships)
+			{
+				ShipFilter = { FinalRemodel = false, },
+			};
 		}
 
 		ShipSelectorViewModel.ShowDialog();
