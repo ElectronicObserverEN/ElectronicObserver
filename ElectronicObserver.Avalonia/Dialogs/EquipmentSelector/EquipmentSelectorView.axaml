@@ -8,14 +8,13 @@
 	xmlns:equipmentFilter="clr-namespace:ElectronicObserver.Avalonia.Controls.EquipmentFilter"
 	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Dialogs.EquipmentSelector"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	x:Name="EquipmentSelector"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	x:DataType="local:EquipmentSelectorViewModel"
 	mc:Ignorable="d"
 	>
 	<Grid RowDefinitions="Auto *">
-		<equipmentFilter:EquipmentFilterView Grid.Row="0" DataContext="{Binding ((local:EquipmentSelectorViewModel)DataContext).EquipmentFilter, ElementName=EquipmentSelector}" />
+		<equipmentFilter:EquipmentFilterView Grid.Row="0" DataContext="{Binding EquipmentFilter}" />
 
 		<DataGrid
 			Grid.Row="1"
@@ -24,7 +23,7 @@
 			ItemsSource="{Binding CollectionView}"
 			>
 			<Interaction.Behaviors>
-				<behaviors:DataGridRowTappedBehavior RowTappedCommand="{Binding ((local:EquipmentSelectorViewModel)DataContext).SelectEquipmentCommand, ElementName=EquipmentSelector}" />
+				<behaviors:DataGridRowTappedBehavior RowTappedCommand="{Binding SelectEquipmentCommand}" />
 			</Interaction.Behaviors>
 
 			<DataGrid.Columns>
