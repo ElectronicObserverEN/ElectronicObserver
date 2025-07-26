@@ -647,20 +647,23 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		List<IShipData> ships = KCDatabase.Instance.MasterShips.Values
-			.Where(s => !s.IsAbyssalShip)
-			.Where(s => s.RemodelBeforeShipID == 0)
-			.Select(s => new ShipDataMock(s)
-			{
-				Level = 1,
-			})
-			.OfType<IShipData>()
-			.ToList();
-
-		ShipSelectorViewModel ??= new(TransliterationService, ImageLoadService, ships)
+		if (ShipSelectorViewModel is null)
 		{
-			ShipFilter = { FinalRemodel = false },
-		};
+			List<IShipData> ships = KCDatabase.Instance.MasterShips.Values
+				.Where(s => !s.IsAbyssalShip)
+				.Where(s => s.RemodelBeforeShipID == 0)
+				.Select(s => new ShipDataMock(s)
+				{
+					Level = 1,
+				})
+				.OfType<IShipData>()
+				.ToList();
+
+			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships)
+			{
+				ShipFilter = { FinalRemodel = false },
+			};
+		}
 
 		if (ShipSelectorViewModel.ShowDialog() is not true) return;
 
