@@ -54,11 +54,15 @@ public class DataGridRowTappedBehavior : Behavior<DataGrid>
 		e.Row.RemoveHandler(InputElement.PointerPressedEvent, Row_PointerPressed);
 	}
 
-	private void Row_PointerPressed(object? sender, RoutedEventArgs e)
+	private void Row_PointerPressed(object? sender, PointerPressedEventArgs e)
 	{
 		Debug.Assert(AssociatedObject is not null);
 
 		if (sender is not DataGridRow row) return;
+
+		PointerPoint point = e.GetCurrentPoint(row);
+
+		if (!point.Properties.IsLeftButtonPressed) return;
 
 		RowTappedCommand?.Execute(row.DataContext);
 	}
