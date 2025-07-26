@@ -12,6 +12,12 @@
 	x:DataType="local:ShipSelectorViewModel"
 	mc:Ignorable="d"
 	>
+	<UserControl.Styles>
+		<Style Selector="DataGridRow:pointerover">
+			<Setter Property="Cursor" Value="Hand" />
+		</Style>
+	</UserControl.Styles>
+
 	<Grid RowDefinitions="Auto *">
 		<shipFilter:ShipFilterView Grid.Row="0" DataContext="{Binding ShipFilter}" />
 

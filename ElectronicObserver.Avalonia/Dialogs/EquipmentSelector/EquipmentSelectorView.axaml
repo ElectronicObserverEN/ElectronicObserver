@@ -13,6 +13,12 @@
 	x:DataType="local:EquipmentSelectorViewModel"
 	mc:Ignorable="d"
 	>
+	<UserControl.Styles>
+		<Style Selector="DataGridRow:pointerover">
+			<Setter Property="Cursor" Value="Hand" />
+		</Style>
+	</UserControl.Styles>
+
 	<Grid RowDefinitions="Auto *">
 		<equipmentFilter:EquipmentFilterView Grid.Row="0" DataContext="{Binding EquipmentFilter}" />
 
