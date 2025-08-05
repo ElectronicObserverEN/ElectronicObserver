@@ -50,8 +50,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
 	public partial string SoundPath { get; set; } = "";
 
-	private string PreviousSoundPath { get; set; } = "";
-
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
@@ -89,7 +87,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	private bool SoundChanged =>
 		SoundPath != Config.SoundPath ||
-		SoundPath != PreviousSoundPath && !string.IsNullOrEmpty(PreviousSoundPath) ||
 		IsEnabled != Config.IsEnabled ||
 		IsSilenced != Config.IsSilenced ||
 		PlaysSound != Config.PlaysSound;
@@ -122,8 +119,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 				ClickFlag ^= clickFlagValue;
 			};
 		}
-
-		PropertyChanging += OnSoundChanging;
 	}
 
 	public virtual void Load()
@@ -158,13 +153,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		}
 
 		IsLoading = false;
-	}
-
-	private void OnSoundChanging(object? sender, System.ComponentModel.PropertyChangingEventArgs e)
-	{
-		if (e.PropertyName is not nameof(SoundPath)) return;
-
-		PreviousSoundPath = SoundPath;
 	}
 
 	public bool TrySaveConfiguration()
@@ -237,8 +225,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		if (viewModel.IsLoading) return ValidationResult.Success!;
 
 		// If we don't clear the error before validation, it somehow never gets cleared
-		// todo: investigate how exactly error handling is supposed to be done
-		viewModel.ClearErrors(nameof(viewModel.SoundPath));
+		viewModel.ClearErrors(nameof(viewModel.SoundPath)); 
 
 		return (viewModel.SoundChanged && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath) && viewModel.PlaysSound) switch
 		{
