@@ -50,7 +50,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
 	public partial string SoundPath { get; set; } = "";
 
-	private bool SoundPathChanged { get; set; }
+	private string PreviousSoundPath { get; set; } = "";
 
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
@@ -89,7 +89,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	private bool SoundChanged =>
 		SoundPath != Config.SoundPath ||
-		SoundPathChanged ||
+		SoundPath != PreviousSoundPath && !string.IsNullOrEmpty(PreviousSoundPath) ||
 		IsEnabled != Config.IsEnabled ||
 		IsSilenced != Config.IsSilenced ||
 		PlaysSound != Config.PlaysSound;
@@ -123,7 +123,7 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			};
 		}
 
-		PropertyChanged += OnSoundChanged;
+		PropertyChanging += OnSoundChanging;
 	}
 
 	public virtual void Load()
@@ -160,16 +160,11 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		IsLoading = false;
 	}
 
-	private void OnSoundChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	private void OnSoundChanging(object? sender, System.ComponentModel.PropertyChangingEventArgs e)
 	{
 		if (e.PropertyName is not nameof(SoundPath)) return;
-		if (SoundPathChanged) return;
-		if (string.IsNullOrEmpty(SoundPath)) return;
 
-		if (SoundPath != Config.SoundPath)
-		{
-			SoundPathChanged = true;
-		}
+		PreviousSoundPath = SoundPath;
 	}
 
 	public bool TrySaveConfiguration()
