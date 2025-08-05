@@ -224,9 +224,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 		if (viewModel.IsLoading) return ValidationResult.Success!;
 
-		// If we don't clear the error before validation, it somehow never gets cleared
-		viewModel.ClearErrors(nameof(viewModel.SoundPath)); 
-
 		return (viewModel.SoundChanged && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath) && viewModel.PlaysSound) switch
 		{
 			true => new(NotifyRes.FailedLoadSound),
