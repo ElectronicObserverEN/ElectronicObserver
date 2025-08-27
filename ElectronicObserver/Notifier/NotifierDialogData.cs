@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Notifier;
 

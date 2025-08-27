@@ -157,6 +157,7 @@ getMember.MapPost("/useitem", (ApiGetMemberUseitemRequest _) => new ApiResponseL
 
 RouteGroupBuilder port = app.MapGroup("/api_port").WithTags("api_port");
 port.MapPost("/port", (ApiPortPortRequest _) => new ApiResponse<ApiPortPortResponse>());
+port.MapPost("/airCorpsCondRecoveryWithTimer", (ApiPortAirCorpsCondRecoveryWithTimerRequest _) => new ApiResponse<ApiPortAirCorpsCondRecoveryWithTimerResponse>());
 
 RouteGroupBuilder reqAirCorps = app.MapGroup("/api_req_air_corps").WithTags("api_req_air_corps");
 reqAirCorps.MapPost("/change_deployment_base", (ApiReqAirCorpsChangeDeploymentBaseRequest _) => new ApiResponse<ApiReqAirCorpsChangeDeploymentBaseResponse>());

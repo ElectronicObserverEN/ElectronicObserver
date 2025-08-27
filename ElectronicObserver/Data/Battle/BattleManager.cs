@@ -5,6 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
@@ -39,9 +42,6 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.Battle;
 

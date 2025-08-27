@@ -5,6 +5,7 @@
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.FleetImageGenerator"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -17,10 +18,6 @@
 	mc:Ignorable="d"
 	>
 	<Window.Resources>
-		<Style TargetType="TextBlock">
-			<Setter Property="Foreground" Value="{Binding Foreground}" />
-		</Style>
-
 		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
 			<Setter Property="Margin" Value="4 0" />
 			<Setter Property="Padding" Value="2 0" />
@@ -91,6 +88,7 @@
 								</ItemsPanelTemplate>
 							</ItemsControl.ItemsPanel>
 						</ItemsControl>
+
 						<common:EquipmentIcon VerticalAlignment="Center" Type="TransportContainer" />
 						<TextBlock
 							VerticalAlignment="Bottom"
@@ -106,7 +104,7 @@
 						<TextBlock
 							VerticalAlignment="Center"
 							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
-							Text="{Binding TPValueS}"
+							Text="{Binding TpValueS}"
 							/>
 						<TextBlock
 							VerticalAlignment="Bottom"
@@ -117,13 +115,53 @@
 						<TextBlock
 							VerticalAlignment="Center"
 							FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
-							Text="{Binding TPValueA}"
+							Text="{Binding TpValueA}"
 							/>
 						<TextBlock
 							VerticalAlignment="Bottom"
 							FontSize="10"
 							Text="A"
 							/>
+
+						<StackPanel
+							Margin="10 0"
+							Orientation="Horizontal"
+							Visibility="{Binding ViewModel.ShowTankTp, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+							>
+							<common:EquipmentIcon VerticalAlignment="Center" Type="SpecialAmphibiousTank" />
+							<TextBlock
+								VerticalAlignment="Bottom"
+								FontSize="10"
+								Text="{Binding ViewModel.TankTpGaugeName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								/>
+							<TextBlock
+								Margin="2"
+								VerticalAlignment="Bottom"
+								FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								Text=":"
+								/>
+							<TextBlock
+								VerticalAlignment="Center"
+								FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								Text="{Binding TankTpValueS}"
+								/>
+							<TextBlock
+								VerticalAlignment="Bottom"
+								FontSize="10"
+								Text="S"
+								/>
+							<TextBlock FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}" Text=" / " />
+							<TextBlock
+								VerticalAlignment="Center"
+								FontSize="{Binding ViewModel.FleetParameterFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}"
+								Text="{Binding TankTpValueA}"
+								/>
+							<TextBlock
+								VerticalAlignment="Bottom"
+								FontSize="10"
+								Text="A"
+								/>
+						</StackPanel>
 					</StackPanel>
 				</Grid>
 
@@ -179,7 +217,7 @@
 						Grid.Column="0"
 						Width="160"
 						Margin="2"
-						Source="{Binding Id, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+						Source="{Binding ShipImageSource, IsAsync=True}"
 						Stretch="Uniform"
 						/>
 
@@ -268,7 +306,7 @@
 						Visibility="Collapsed"
 						/>
 
-					<Image Grid.Column="0" Source="{Binding Id, Converter={StaticResource ShipToAlbumStatusConverter}, IsAsync=True}">
+					<Image Grid.Column="0" Source="{Binding NameImageSource, IsAsync=True}">
 						<Image.Resources>
 							<Style TargetType="Image">
 								<Setter Property="Visibility" Value="Visible" />
@@ -290,7 +328,7 @@
 							<Style TargetType="TextBlock">
 								<Setter Property="Visibility" Value="Collapsed" />
 								<Style.Triggers>
-									<DataTrigger Binding="{Binding Id, Converter={StaticResource ShipToAlbumStatusConverter}, IsAsync=True}" Value="{x:Null}">
+									<DataTrigger Binding="{Binding ShipImageSource}" Value="{x:Null}">
 										<Setter Property="Visibility" Value="Visible" />
 									</DataTrigger>
 									<DataTrigger Binding="{Binding ViewModel.UseAlbumStatusName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:FleetImageGeneratorWindow}}" Value="False">
@@ -368,7 +406,7 @@
 						Width="665"
 						Height="121"
 						HorizontalAlignment="Left"
-						Source="{Binding Id, Converter={StaticResource ShipToCutInImageConverter}, IsAsync=True}"
+						Source="{Binding ShipImageSource, IsAsync=True}"
 						Stretch="Uniform"
 						>
 						<Image.OpacityMask>
@@ -600,7 +638,7 @@
 					Grid.Column="1"
 					Width="218"
 					Margin="2"
-					Source="{Binding Id, Converter={StaticResource ShipToCardImageConverter}, IsAsync=True}"
+					Source="{Binding ShipImageSource, IsAsync=True}"
 					Stretch="Uniform"
 					/>
 			</Grid>
@@ -765,6 +803,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
@@ -886,8 +925,23 @@
 			</ContentControl.ContentTemplate>
 		</ContentControl>
 
+		<StackPanel Grid.Row="2" Orientation="Horizontal">
+			<TextBlock
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding DialogFleetImageGenerator.ShowTankTp}"
+				/>
+			<ComboBox ItemsSource="{Binding TankTpGauges}" SelectedValue="{Binding TankTpGauge}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="{x:Type electronicObserverTypes:TpGauge}">
+						<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+		</StackPanel>
+
 		<ScrollViewer
-			Grid.Row="2"
+			Grid.Row="3"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
 			HorizontalScrollBarVisibility="Auto"

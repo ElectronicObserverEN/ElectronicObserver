@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
@@ -17,6 +17,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 {
 	private DataSerializationService DataSerializationService { get; }
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }
+	private IClipboardService ClipboardService { get; }
 
 	public bool FleetSelectionVisible { get; set; } = true;
 	public bool Fleet1 { get; set; } = true;
@@ -47,6 +48,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 	{
 		AirControlSimulator = Ioc.Default.GetRequiredService<AirControlSimulatorTranslationViewModel>();
 		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
+		ClipboardService = Ioc.Default.GetRequiredService<IClipboardService>();
 
 		GenerateLink = generateLink ?? DataSerializationService.AirControlSimulatorLink;
 
@@ -86,6 +88,6 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 	{
 		string link = GenerateLink(this, null);
 
-		Clipboard.SetText(link);
+		ClipboardService.SetTextAndLogErrors(link);
 	}
 }

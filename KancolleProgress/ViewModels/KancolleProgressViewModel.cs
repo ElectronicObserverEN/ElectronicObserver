@@ -8,14 +8,14 @@ using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using KancolleProgress.Models;
 using KancolleProgress.Translations;
 using Microsoft.Win32;
 using ShipTypeGroup = KancolleProgress.Models.ShipTypeGroup;
-using ShipTypes = ElectronicObserverTypes.ShipTypes;
+using ShipTypes = ElectronicObserver.Core.Types.ShipTypes;
 
 namespace KancolleProgress.ViewModels;
 
@@ -47,7 +47,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 	{
 		List<ColorFilter> colorFilters = new()
 		{
-			new(this, Comparator.Equal, 180, Colors.DeepPink, KancolleProgressResources.Max),
+			new(this, Comparator.Equal, 185, Colors.DeepPink, KancolleProgressResources.Max),
 			new(this, Comparator.GreaterOrEqual, 99, Colors.DeepSkyBlue),
 			new(this, Comparator.GreaterOrEqual, 90, Colors.LimeGreen),
 			new(this, Comparator.GreaterOrEqual, 80, Colors.Yellow),
@@ -94,7 +94,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Select(s => new ShipDataMock(s)
 			{
 				Level = 0,
-				SortID = s.SortID,
 			})
 			.ToDictionary(s => s.ShipID, s => s);
 
@@ -175,7 +174,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Select(s => new ShipDataMock(s)
 			{
 				Level = 0,
-				SortID = s.SortID,
 			})
 			.ToList<IShipData>();
 

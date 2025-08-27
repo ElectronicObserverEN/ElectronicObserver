@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
-using ElectronicObserverTypes;
 using PropertyChanged;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;

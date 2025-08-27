@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using Browser.WebView2Browser.CompassPrediction;
 using CefSharp;
 using CefSharp.Fluent;
@@ -64,5 +65,14 @@ public partial class CompassPredictionView
 	{
 		await Browser.LoadUrlAsync(ViewModel.Uri);
 		await ViewModel.Initialize();
+	}
+
+	/// <inheritdoc />
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		base.OnClosing(e);
+
+		Browser.Dispose();
+		ViewModel.ExecuteScriptAsync = null;
 	}
 }

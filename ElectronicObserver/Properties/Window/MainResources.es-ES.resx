@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="WindowCaptureLoadFailed" xml:space="preserve">
+    <value>No se pudieron cargar los datos de captura de ventana.</value>
+  </data>
+  <data name="WindowCapture_SubWindow" xml:space="preserve">
+    <value>Ventana secundaria (&amp;C)</value>
+  </data>
+  <data name="WindowCapture_DetachAll" xml:space="preserve">
+    <value>Desconectar todo (&amp;R)</value>
+  </data>
+  <data name="WindowCapture_AttachAll" xml:space="preserve">
+    <value>Conectar Todo (&amp;S)</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>&amp;Captura de ventana</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>_Archivo</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>_Ver</value>
+  </data>
+  <data name="ConfirmatonCaption" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="View_Fleet_1" xml:space="preserve">
+    <value>#&amp;1</value>
+  </data>
+  <data name="View_Fleet_2" xml:space="preserve">
+    <value>#&amp;2</value>
+  </data>
+  <data name="View_Fleet_3" xml:space="preserve">
+    <value>#&amp;3</value>
+  </data>
+  <data name="View_Fleet_4" xml:space="preserve">
+    <value>#&amp;4</value>
+  </data>
+  <data name="View_Compass" xml:space="preserve">
+    <value>&amp;Compass</value>
+  </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>Ajustar</value>
+  </data>
+  <data name="View_Arsenal" xml:space="preserve">
+    <value>&amp;Arsenal</value>
+  </data>
+  <data name="View_BaseAirCorps" xml:space="preserve">
+    <value>LBAS (&amp;S)</value>
+  </data>
+  <data name="View_Battle" xml:space="preserve">
+    <value>&amp;Batalla</value>
+  </data>
+  <data name="View_Browser" xml:space="preserve">
+    <value>Navegador (&amp;M)</value>
+  </data>
+  <data name="View_Fleet" xml:space="preserve">
+    <value>&amp;Flota</value>
+  </data>
+  <data name="View_Dock" xml:space="preserve">
+    <value>&amp;Astillero</value>
+  </data>
+  <data name="View_FleetOverview" xml:space="preserve">
+    <value>Resumen de flotas(&amp;O)</value>
+  </data>
+  <data name="View_FleetPreset" xml:space="preserve">
+    <value>Presets de flota(&amp;P)</value>
+  </data>
+  <data name="View_Headquarters" xml:space="preserve">
+    <value>&amp;Cuartel General</value>
+  </data>
+  <data name="View_Information" xml:space="preserve">
+    <value>&amp;Información</value>
+  </data>
+  <data name="View_Json" xml:space="preserve">
+    <value>&amp;JSON</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>&amp;Registro</value>
+  </data>
+  <data name="View_Quest" xml:space="preserve">
+    <value>&amp;Misiones</value>
+  </data>
+  <data name="View_ShipGroup" xml:space="preserve">
+    <value>Grupos de barcos</value>
+  </data>
+  <data name="Update_DownloadingUpdate" xml:space="preserve">
+    <value>Descargando actualización... ({0:##0.00}%)</value>
+  </data>
+  <data name="Update_DownloadingUpdater" xml:space="preserve">
+    <value>Descargando actualizador... ({0:##0.00}%)</value>
+  </data>
+  <data name="Update_DownloadUpdate" xml:space="preserve">
+    <value>_Descargar actualización</value>
+  </data>
+  <data name="Update_OpenReleaseNotes" xml:space="preserve">
+    <value>_Abrir notas de la versión</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>_Actualización disponible</value>
+  </data>
+  <data name="Tool_AlbumMasterShip" xml:space="preserve">
+    <value>&amp;Enciclopedia de barcos</value>
+  </data>
+  <data name="Tool" xml:space="preserve">
+    <value>&amp;Herramientas</value>
+  </data>
+  <data name="File_Layout_Save" xml:space="preserve">
+    <value>&amp;Guardar</value>
+  </data>
+  <data name="File_Record_Save" xml:space="preserve">
+    <value>&amp;Guardar</value>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>&amp;Debug</value>
+  </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>Tu usuario de Windows no tiene permisos para crear archivos en la ubicación actual. Por favor, mueve la carpeta EO a un lugar donde tengas permisos de escritura, por ejemplo, el escritorio.</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Iniciando...</value>
+  </data>
+  <data name="Help_Help" xml:space="preserve">
+    <value>Ver &amp;Ayuda</value>
+  </data>
+  <data name="ReportIssue" xml:space="preserve">
+    <value>"Esto abrirá una página de ayuda en tu navegador.
+¿Estás seguro?"</value>
+  </data>
+  <data name="OpenEOWiki" xml:space="preserve">
+    <value>"Esto abrirá el wiki de EO en tu navegador.
+¿Estás seguro?"</value>
+  </data>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>Se ha cargado correctamente el diseño de ventana desde {0}.</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>¿Deseas salir de {0}?</value>
+  </data>
+  <data name="ErrorCaption" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Help_Discord" xml:space="preserve">
+    <value>Únete a nosotros en Discord</value>
+  </data>
+  <data name="HelpCaption" xml:space="preserve">
+    <value>Ayuda</value>
+  </data>
+  <data name="Old" xml:space="preserve">
+    <value>Viejo</value>
+  </data>
+  <data name="Tool_AntiAirDefense" xml:space="preserve">
+    <value>&amp;Defensa AA</value>
+  </data>
+  <data name="Tool_ConstructionRecord" xml:space="preserve">
+    <value>Registro de construcción (&amp;R)</value>
+  </data>
+  <data name="File_Layout_Load" xml:space="preserve">
+    <value>&amp;Cargar</value>
+  </data>
+  <data name="Tool_ExpChecker" xml:space="preserve">
+    <value>Calculadora de experiencia (&amp;X)</value>
+  </data>
+  <data name="MaintenanceStartsIn" xml:space="preserve">
+    <value>Mantenimiento comienza en {0}</value>
+  </data>
+  <data name="Debug_LoadInitialAPI" xml:space="preserve">
+    <value>Cargar API inicial (&amp;I)...</value>
+  </data>
+  <data name="Clock" xml:space="preserve">
+    <value>Reloj</value>
+  </data>
+  <data name="Help_Update" xml:space="preserve">
+    <value>Buscar actualizaciones... </value>
+  </data>
+  <data name="ShipDataNotLoaded" xml:space="preserve">
+    <value>Los datos de los barcos no se han cargado. </value>
+  </data>
+  <data name="EquipmentDataNotLoaded" xml:space="preserve">
+    <value>Los datos del equipo no se han cargado.  </value>
+  </data>
+  <data name="ReportIssueCaption" xml:space="preserve">
+    <value>Informar de un problema  </value>
+  </data>
+  <data name="FailedToOpenBrowser" xml:space="preserve">
+    <value>Error al abrir el navegador  </value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ayuda </value>
+  </data>
+  <data name="Help_Version" xml:space="preserve">
+    <value>Acerca de ElectronicObserver (&amp;V)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Electronic Observer</value>
+  </data>
+  <data name="Help_Issue" xml:space="preserve">
+    <value>Informar de un problema...</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Preparando...</value>
+  </data>
+  <data name="OpenLayoutCaption" xml:space="preserve">
+    <value>Abrir archivo de diseño</value>
+  </data>
+  <data name="SaveLayoutCaption" xml:space="preserve">
+    <value>Guardar diseño como</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>Cargar API guardada</value>
+  </data>
+  <data name="GridSplitterSize" xml:space="preserve">
+    <value>Tamaño del divisor de cuadrícula </value>
+  </data>
+  <data name="CopyingToClipboardFailed" xml:space="preserve">
+    <value>Error al copiar al portapapeles</value>
+  </data>
+  <data name="LayoutLoadFailedTitle" xml:space="preserve">
+    <value>Error al cargar diseño</value>
+  </data>
+  <data name="LayoutLoadFailed" xml:space="preserve">
+    <value>Por favor, verifique si tiene un archivo de diseño válido.  
+La versión 5.0.0 dañó los diseños, por lo que los creados antes de esa versión ya no funcionarán.  
+Para más información o para obtener un diseño existente, consulte este issue de GitHub: https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71  
+  ¿Desea abrir este issue en GitHub?</value>
+  </data>
+  <data name="File_Layout_TopMost" xml:space="preserve">
+    <value>Mantener al frente (&amp;M)</value>
+  </data>
+  <data name="EventHasEnded" xml:space="preserve">
+    <value>El período del evento ha finalizado. </value>
+  </data>
+  <data name="File_Close" xml:space="preserve">
+    <value>Cerrar (&amp;X)</value>
+  </data>
+  <data name="File_Configuration" xml:space="preserve">
+    <value>Configuración (&amp;C)...</value>
+  </data>
+  <data name="File_Layout" xml:space="preserve">
+    <value>&amp;Diseño</value>
+  </data>
+  <data name="File_Layout_Change" xml:space="preserve">
+    <value>Guardar como&amp;as...</value>
+  </data>
+  <data name="File_Layout_LockLayout" xml:space="preserve">
+    <value>Bloquear diseño (&amp;T)</value>
+  </data>
+  <data name="EventHasStarted" xml:space="preserve">
+    <value>¡El evento ha comenzado!</value>
+  </data>
+  <data name="EventStartsIn" xml:space="preserve">
+    <value>El evento comienza en {0}</value>
+  </data>
+  <data name="Debug_LoadDataFromOld" xml:space="preserve">
+    <value>Cargar desde api_start2 antiguo (&amp;L)...</value>
+  </data>
+  <data name="Debug_RenameShipResource" xml:space="preserve">
+    <value>&amp;Renombrar recursos de barco...</value>
+  </data>
+  <data name="Debug_DeleteOldAPI" xml:space="preserve">
+    <value>&amp;Eliminar datos API antiguos</value>
+  </data>
+  <data name="Debug_LoadRecordFromOld" xml:space="preserve">
+    <value>Construir registro desde api_start2 antiguo</value>
+  </data>
+  <data name="Debug_LoadAPIFromFile" xml:space="preserve">
+    <value>&amp;Cargar API desde archivo</value>
+  </data>
+  <data name="Tool_ExtraBrowser" xml:space="preserve">
+    <value>Navegador extra</value>
+  </data>
+  <data name="Tool_ExpeditionCheck" xml:space="preserve">
+    <value>Verificación de expedición (&amp;M) </value>
+  </data>
+  <data name="Tool_BaseAirCorpsSimulation" xml:space="preserve">
+    <value>Simulador de fuerza aérea de base (&amp;B)</value>
+  </data>
+  <data name="EventEndsIn" xml:space="preserve">
+    <value>El evento termina en {0}</value>
+  </data>
+  <data name="Tool_DevelopmentRecord" xml:space="preserve">
+    <value>Registro de desarrollo (&amp;V)</value>
+  </data>
+  <data name="File_Layout_Open" xml:space="preserve">
+    <value>&amp;Abrir desde otro archivo</value>
+  </data>
+  <data name="File_Notification" xml:space="preserve">
+    <value>&amp;Notificaciones</value>
+  </data>
+  <data name="File_Notification_MuteAll" xml:space="preserve">
+    <value>&amp;Silenciar todas las notificaciones</value>
+  </data>
+  <data name="File_Record" xml:space="preserve">
+    <value>&amp;Registro</value>
+  </data>
+  <data name="File_Record_Load" xml:space="preserve">
+    <value>&amp;Cargar</value>
+  </data>
+  <data name="Tool_EquipmentList" xml:space="preserve">
+    <value>Lista de equipamiento (&amp;Q) </value>
+  </data>
+  <data name="Tool_DropRecord" xml:space="preserve">
+    <value>&amp;Registro de drops</value>
+  </data>
+  <data name="Tool_ResourceChart" xml:space="preserve">
+    <value>Gráfico de recursos</value>
+  </data>
+  <data name="Tool_AlbumMasterEquipment" xml:space="preserve">
+    <value>&amp;Enciclopedia de equipamiento</value>
+  </data>
+  <data name="Tool_FleetImageGenerator" xml:space="preserve">
+    <value>&amp;Generador de imagen de flota</value>
+  </data>
+  <data name="OperationRoom" xml:space="preserve">
+    <value>Sala de operaciones</value>
+  </data>
+  <data name="QuestDataNotLoaded" xml:space="preserve">
+    <value>Los datos de misiones no se han cargado.</value>
+  </data>
+  <data name="NextQuestReset" xml:space="preserve">
+    <value>Reinicio de misión siguiente:</value>
+  </data>
+  <data name="NextExerciseReset" xml:space="preserve">
+    <value>Reinicio de ejercicios siguiente:</value>
+  </data>
+  <data name="MaintenanceHasEnded" xml:space="preserve">
+    <value>Mantenimiento finalizado</value>
+  </data>
+  <data name="GitHubWikiLink" xml:space="preserve">
+    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
+  </data>
+  <data name="MaintenanceEndsIn" xml:space="preserve">
+    <value>El mantenimiento terminará en {0}</value>
+  </data>
+  <data name="ResetFloatingWindows" xml:space="preserve">
+    <value>Restablecer ventanas flotantes</value>
+  </data>
+  <data name="MaintenanceHasStarted" xml:space="preserve">
+    <value>El mantenimiento ha comenzado</value>
+  </data>
+</root>

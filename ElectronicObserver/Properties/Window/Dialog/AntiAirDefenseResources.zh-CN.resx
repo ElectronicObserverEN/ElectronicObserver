@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResultView_AntiAir" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="Formation_Ring" xml:space="preserve">
+    <value>轮型阵</value>
+  </data>
+  <data name="ShowAllToolTip" xml:space="preserve">
+    <value>勾选后会显示所有对空cut in选项。
+不勾选仅显示现时配装可能触发的对空cut in。</value>
+  </data>
+  <data name="AACI" xml:space="preserve">
+    <value>对空CI：</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>舰队：</value>
+  </data>
+  <data name="FleetID_Second" xml:space="preserve">
+    <value>第二舰队</value>
+  </data>
+  <data name="FleetID_Fourth" xml:space="preserve">
+    <value>第四舰队</value>
+  </data>
+  <data name="ResultView_FixedAirDefense" xml:space="preserve">
+    <value>固定击坠</value>
+  </data>
+  <data name="ResultView_AdjustedAntiAir" xml:space="preserve">
+    <value>加权对空</value>
+  </data>
+  <data name="Formation_LineAhead" xml:space="preserve">
+    <value>单纵阵之外</value>
+  </data>
+  <data name="ResultView_ShootDownBothToolTip" xml:space="preserve">
+    <value>百分比击落与固定击落如果都成功的击落数</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="ResultView_ShootDownProportionalToolTip" xml:space="preserve">
+    <value>百分比击落成功时的击落数</value>
+  </data>
+  <data name="ResultView_ShootDownFixedToolTip" xml:space="preserve">
+    <value>固定击落成功时的击落数</value>
+  </data>
+  <data name="ResultView_AARocketBarrageProbability" xml:space="preserve">
+    <value>喷进弹幕</value>
+  </data>
+  <data name="ResultView_ShootDownFailedToolTip" xml:space="preserve">
+    <value>百分比击落与固定击落如果都失败的击落数</value>
+  </data>
+  <data name="ResultView_AARocketBarrageProbabilityToolTip" xml:space="preserve">
+    <value>对空喷进弹幕的激活概率</value>
+  </data>
+  <data name="DataNotLoaded" xml:space="preserve">
+    <value>读取舰队数据失败，请在启动砍口垒后开启。</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>AA细节</value>
+  </data>
+  <data name="Formation_DoubleLine" xml:space="preserve">
+    <value>复纵阵</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>阵型：</value>
+  </data>
+  <data name="FleetAA" xml:space="preserve">
+    <value>舰队防空：</value>
+  </data>
+  <data name="WipeRate" xml:space="preserve">
+    <value>全灭概率：</value>
+  </data>
+  <data name="FleetID_First" xml:space="preserve">
+    <value>第一舰队</value>
+  </data>
+  <data name="FleetID_Third" xml:space="preserve">
+    <value>第三舰队</value>
+  </data>
+  <data name="FleetID_CombinedFleet" xml:space="preserve">
+    <value>联合舰队</value>
+  </data>
+  <data name="ResultView_ShootDownBoth" xml:space="preserve">
+    <value>都成功</value>
+  </data>
+  <data name="ResultView_ShipName" xml:space="preserve">
+    <value>舰名</value>
+  </data>
+  <data name="ResultView_ShootDownFailed" xml:space="preserve">
+    <value>都失败</value>
+  </data>
+  <data name="ResultView_ShootDownFixed" xml:space="preserve">
+    <value>仅固定</value>
+  </data>
+  <data name="ResultView_ShootDownProportional" xml:space="preserve">
+    <value>仅比例</value>
+  </data>
+  <data name="ResultView_ProportionalAirDefense" xml:space="preserve">
+    <value>百分比击坠</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>全部都可以选择</value>
+  </data>
+  <data name="PlaneSlot" xml:space="preserve">
+    <value>敌方格子机数：</value>
+  </data>
+</root>

@@ -174,10 +174,11 @@ public class VolumeManager
 			return value;
 		}
 
+		string filter = "--webview-exe-name=EOBrowser.exe";
+
 		List<Process> processes = Process.GetProcessesByName(processName)
 			.Select(p => (Process: p, Args: TryGetArgs((uint)p.Id)))
-			.Where(t => t.Args is not null)
-			.Where(t => t.Args!.Contains(proxySettings))
+			.Where(t => t.Args?.Contains(filter) ?? false)
 			.Select(t => t.Process)
 			.ToList();
 

@@ -3,12 +3,12 @@ using System.Linq;
 using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
-using ElectronicObserverTypes;
 using System.Text.Json;
 using System.Collections.Generic;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.KancolleApi.Types;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 

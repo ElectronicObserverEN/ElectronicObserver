@@ -19,14 +19,15 @@ public partial class CompassPredictionViewModel(IBrowserHost browserHost, Compas
 
 	public string Uri => "https://x-20a.github.io/compass/";
 
-	[ObservableProperty] 
+	[ObservableProperty]
 	private bool _synchronizeMap;
 
 	private Tracker Tracker { get; } = tracker;
 
 	public async Task Initialize()
 	{
-		Tracker.Track(this);
+		// TODO : fix map sync or remove its code
+		// Tracker.Track(this);
 
 		PropertyChanged += OnSynchronizeChanged;
 

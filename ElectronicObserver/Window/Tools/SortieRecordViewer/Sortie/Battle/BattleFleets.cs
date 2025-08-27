@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
@@ -32,7 +32,7 @@ public class BattleFleets(
 	public required int FleetId { get; set; }
 	public required int NodeSupportFleetId { get; set; }
 	public required int BossSupportFleetId { get; set; }
-	public required int CombinedFlag { get; set; }
+	public required FleetType CombinedFlag { get; set; }
 
 	private static int CombinedFleetMainFleetShipCount => 6;
 

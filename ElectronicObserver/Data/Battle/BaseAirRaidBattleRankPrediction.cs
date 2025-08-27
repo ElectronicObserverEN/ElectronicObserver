@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.Data.Battle;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Observer;
@@ -14,7 +14,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.InformationView;
 
@@ -157,7 +156,7 @@ public class InformationViewModel : AnchorableViewModel
 			break;
 
 			case "api_req_practice/battle":
-				_inSortie = [ KCDatabase.Instance.Battle.FirstBattle!.Initial.FriendFleetID ];
+				_inSortie = [KCDatabase.Instance.Battle.FirstBattle!.Initial.FriendFleetID];
 				break;
 
 		}
@@ -165,111 +164,93 @@ public class InformationViewModel : AnchorableViewModel
 	}
 	private string GetPracticeEnemyInfo(dynamic data)
 	{
-
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new();
 		sb.AppendLine(GeneralRes.PracticeReport);
-		sb.AppendLine(GeneralRes.EnemyAdmiral + ": " + data.api_nickname);
-		sb.AppendLine(GeneralRes.EnemyFleetName + ": " + data.api_deckname);
+		sb.AppendLine($"{GeneralRes.EnemyAdmiral}: {data.api_nickname}");
+		sb.AppendLine($"{GeneralRes.EnemyFleetName}: {data.api_deckname}");
 
+		FleetData fleet = KCDatabase.Instance.Fleet[1];
+		int ship1lv = (int)data.api_deck.api_ships[0].api_id != -1 ? (int)data.api_deck.api_ships[0].api_level : 1;
+		int ship2lv = (int)data.api_deck.api_ships[1].api_id != -1 ? (int)data.api_deck.api_ships[1].api_level : 1;
+
+		ExerciseExp exp = Calculator.GetExerciseExp(fleet, ship1lv, ship2lv);
+
+		sb.Append($"{GeneralRes.BaseExp}: {(int)exp.BaseA} / {InformationResources.SRank}: {(int)exp.BaseS}");
+
+		Debug.Assert(fleet.MembersInstance is not null);
+
+		if (fleet.MembersInstance.Any(s => s is { MasterShip.ShipType: ShipTypes.TrainingCruiser }))
 		{
-			int ship1lv = (int)data.api_deck.api_ships[0].api_id != -1 ? (int)data.api_deck.api_ships[0].api_level : 1;
-			int ship2lv = (int)data.api_deck.api_ships[1].api_id != -1 ? (int)data.api_deck.api_ships[1].api_level : 1;
+			ReadOnlyCollection<IShipData?>? members = fleet.MembersInstance;
+			List<IShipData> subCT = members
+				.Skip(1)
+				.OfType<IShipData>()
+				.Where(s => s is { MasterShip.ShipType: ShipTypes.TrainingCruiser })
+				.ToList();
 
-			// 経験値テーブルが拡張されたとき用の対策
-			ship1lv = Math.Min(ship1lv, ExpTable.ShipExp.Keys.Max());
-			ship2lv = Math.Min(ship2lv, ExpTable.ShipExp.Keys.Max());
+			double bonus;
 
-			double expbase = ExpTable.ShipExp[ship1lv].Total / 100.0 + ExpTable.ShipExp[ship2lv].Total / 300.0;
-			if (expbase >= 500.0)
-				expbase = 500.0 + Math.Sqrt(expbase - 500.0);
-
-			expbase = (int)expbase;
-
-			sb.AppendFormat(GeneralRes.BaseExp + ": {0} / " + InformationResources.SRank + ": {1}\r\n", expbase, (int)(expbase * 1.2));
-
-
-			// 練巡ボーナス計算 - きたない
-			FleetData fleet = KCDatabase.Instance.Fleet[1];
-
-			Debug.Assert(fleet.MembersInstance is not null);
-
-			if (fleet.MembersInstance.Any(s => s is { MasterShip.ShipType: ShipTypes.TrainingCruiser }))
+			// 旗艦が練巡
+			if (members[0] is { MasterShip.ShipType: ShipTypes.TrainingCruiser } ship)
 			{
-				ReadOnlyCollection<IShipData?>? members = fleet.MembersInstance;
-				List<IShipData> subCT = members
-					.Skip(1)
-					.OfType<IShipData>()
-					.Where(s => s is { MasterShip.ShipType: ShipTypes.TrainingCruiser })
-					.ToList();
 
-				double bonus;
+				int level = ship.Level;
 
-				// 旗艦が練巡
-				if (members[0] is { MasterShip.ShipType: ShipTypes.TrainingCruiser} ship)
+				if (subCT.Any())
 				{
-
-					int level = ship.Level;
-
-					if (subCT.Any())
+					bonus = level switch
 					{
-						bonus = level switch
-						{
-							// 旗艦+随伴
-							< 10 => 1.10,
-							< 30 => 1.13,
-							< 60 => 1.16,
-							< 100 => 1.20,
-							_ => 1.25,
-						};
-					}
-					else
-					{
-						bonus = level switch
-						{
-							// 旗艦のみ
-							< 10 => 1.05,
-							< 30 => 1.08,
-							< 60 => 1.12,
-							< 100 => 1.15,
-							_ => 1.20,
-						};
-					}
-
+						// 旗艦+随伴
+						< 10 => 1.10,
+						< 30 => 1.13,
+						< 60 => 1.16,
+						< 100 => 1.20,
+						_ => 1.25,
+					};
 				}
 				else
 				{
-
-					int level = subCT.Max(s => s.Level);
-
-					if (subCT.Count > 1)
+					bonus = level switch
 					{
-						bonus = level switch
-						{
-							// 随伴複数
-							< 10 => 1.04,
-							< 30 => 1.06,
-							< 60 => 1.08,
-							< 100 => 1.12,
-							_ => 1.175,
-						};
-					}
-					else
-					{
-						bonus = level switch
-						{
-							// 随伴単艦
-							< 10 => 1.03,
-							< 30 => 1.05,
-							< 60 => 1.07,
-							< 100 => 1.10,
-							_ => 1.15,
-						};
-					}
+						// 旗艦のみ
+						< 10 => 1.05,
+						< 30 => 1.08,
+						< 60 => 1.12,
+						< 100 => 1.15,
+						_ => 1.20,
+					};
 				}
 
-				sb.AppendFormat(InformationResources.CTBonus, (int)(expbase * bonus), (int)((int)(expbase * 1.2) * bonus));
+			}
+			else
+			{
 
+				int level = subCT.Max(s => s.Level);
 
+				if (subCT.Count > 1)
+				{
+					bonus = level switch
+					{
+						// 随伴複数
+						< 10 => 1.04,
+						< 30 => 1.06,
+						< 60 => 1.08,
+						< 100 => 1.12,
+						_ => 1.175,
+					};
+				}
+				else
+				{
+					bonus = level switch
+					{
+						// 随伴単艦
+						< 10 => 1.03,
+						< 30 => 1.05,
+						< 60 => 1.07,
+						< 100 => 1.10,
+						_ => 1.15,
+					};
+				}
 			}
 		}
 

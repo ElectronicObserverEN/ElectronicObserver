@@ -1,4 +1,4 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Avalonia.ShipGroup;
 
@@ -108,7 +108,16 @@ public class ShipGroupItemViewModel(IShipData ship)
 	public int TorpedoPower => Ship.TorpedoPower;
 	public int NightBattlePower => Ship.NightBattlePower;
 
-	public bool Locked => Ship.IsLocked;
+	public bool IsLocked => Ship.IsLocked;
+	public bool IsLockedByEquipment => Ship.IsLockedByEquipment;
+
+	public int LockSortValue => Ship switch
+	{
+		{ IsLocked: true } => 2,
+		{ IsLockedByEquipment: true } => 1,
+		_ => 0,
+	};
+
 	public int SallyArea => Ship.SallyArea;
 
 	public int SortId => Ship.MasterShip.SortID;

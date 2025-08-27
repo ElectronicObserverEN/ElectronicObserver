@@ -5,10 +5,13 @@ using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Controls.EquipmentFilter;
+using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserver.Services;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 
@@ -19,12 +22,12 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 	[Required]
 	[NotifyDataErrorInfo]
 	[ObservableProperty]
-	private IEquipmentData? _assignedEquipment;
+	public partial IEquipmentData? AssignedEquipment { get; set; }
 
 	[Required]
 	[NotifyDataErrorInfo]
 	[ObservableProperty]
-	private EquipmentUpgradePlanItemViewModel? _assignedPlan;
+	public partial EquipmentUpgradePlanItemViewModel? AssignedPlan { get; set; }
 
 	[MemberNotNullWhen(false, nameof(AssignedPlan))]
 	[MemberNotNullWhen(false, nameof(AssignedEquipment))]
@@ -37,13 +40,13 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 	public EquipmentUpgradePlanCostViewModel Cost => new(new());
 
 	private EquipmentUpgradePlanManager PlanManager { get; }
-	private EquipmentPickerService EquipmentPicker { get; }
+	private TransliterationService TransliterationService { get; }
 	private EquipmentUpgradePlannerTranslationViewModel Translations { get; }
 
 	public EquipmentAssignmentItemViewModel(EquipmentAssignmentItemModel model)
 	{
 		PlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
-		EquipmentPicker = Ioc.Default.GetRequiredService<EquipmentPickerService>();
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
 		Translations = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 
 		Model = model;
@@ -99,17 +102,31 @@ public partial class EquipmentAssignmentItemViewModel : ObservableValidator, IEq
 
 	public List<IEquipmentPlanItemViewModel> GetPlanChildren()
 	{
-		return new();
+		return [];
 	}
 
 	public void OpenEquipmentPicker()
 	{
-		EquipmentAssignmentPickerViewModel viewModel = new(PlanManager, EquipmentMasterDataId, !WillBeUsedForConversion);
+		List<IEquipmentData> equipment = KCDatabase.Instance.Equipments.Values
+			.OfType<IEquipmentData>()
+			.Where(eq => eq.EquipmentId == EquipmentMasterDataId)
+			.Where(eq => WillBeUsedForConversion || eq.UpgradeLevel is UpgradeLevel.Zero)
+			.Where(eq => !PlanManager.GetAssignments(EquipmentMasterDataId).Select(assignment => assignment.EquipmentId).Contains(eq.ID))
+			.OrderBy(s => s.MasterEquipment.CategoryType)
+			.ThenBy(s => s.MasterID)
+			.ToList();
 
-		IEquipmentData? equipment = EquipmentPicker.OpenEquipmentPicker(viewModel);
+		EquipmentSelectorViewModel viewModel = new(TransliterationService, equipment);
 
-		if (equipment is null) return;
+		foreach (Filter typeFilter in viewModel.EquipmentFilter.TypeFilters)
+		{
+			typeFilter.IsChecked = true;
+		}
 
-		AssignedEquipment = equipment;
+		viewModel.ShowDialog();
+
+		if (viewModel.DialogResult is not true) return;
+
+		AssignedEquipment = viewModel.SelectedEquipment;
 	}
 }

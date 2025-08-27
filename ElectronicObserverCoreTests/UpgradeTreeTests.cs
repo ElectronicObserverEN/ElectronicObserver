@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
-using ElectronicObserverTypes;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;

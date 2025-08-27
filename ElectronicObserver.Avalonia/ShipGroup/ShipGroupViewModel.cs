@@ -15,23 +15,23 @@ public partial class ShipGroupViewModel : ObservableObject
 
 	public DataGridSettingsModel DataGridSettings { get; } = new();
 
-	[ObservableProperty] private int _conditionBorder;
-	[ObservableProperty] private bool _autoUpdate = true;
-	[ObservableProperty] private bool _showStatusBar = true;
+	[ObservableProperty] public partial int ConditionBorder { get; set; }
+	[ObservableProperty] public partial bool AutoUpdate { get; set; } = true;
+	[ObservableProperty] public partial bool ShowStatusBar { get; set; } = true;
 
-	[ObservableProperty] private ObservableCollection<ShipGroupItem> _groups = [];
+	[ObservableProperty] public partial ObservableCollection<ShipGroupItem> Groups { get; set; } = [];
 
-	[ObservableProperty] private GridLength _groupHeight;
+	[ObservableProperty] public partial GridLength GroupHeight { get; set; }
 
-	[ObservableProperty] private ObservableCollection<ShipGroupItemViewModel> _items = [];
-	[ObservableProperty] private DataGridCollectionView _collectionView = new(new List<ShipGroupItemViewModel>());
-	[ObservableProperty] private string _shipCountText = "";
-	[ObservableProperty] private string _levelTotalText = "";
-	[ObservableProperty] private string _levelAverageText = "";
+	[ObservableProperty] public partial ObservableCollection<ShipGroupItemViewModel> Items { get; set; } = [];
+	[ObservableProperty] public partial DataGridCollectionView CollectionView { get; set; } = new(new List<ShipGroupItemViewModel>());
+	[ObservableProperty] public partial string ShipCountText { get; set; } = "";
+	[ObservableProperty] public partial string LevelTotalText { get; set; } = "";
+	[ObservableProperty] public partial string LevelAverageText { get; set; } = "";
 
-	[ObservableProperty] private ObservableCollection<ColumnModel> _columnProperties = [];
-	[ObservableProperty] private DataGridSortDescriptionCollection _sortDescriptions = [];
-	[ObservableProperty] private int _frozenColumns;
+	[ObservableProperty] public partial ObservableCollection<ColumnModel> ColumnProperties { get; set; } = [];
+	[ObservableProperty] public partial DataGridSortDescriptionCollection SortDescriptions { get; set; } = [];
+	[ObservableProperty] public partial int FrozenColumns { get; set; }
 
 	public required Action<ShipGroupItem> SelectGroupAction { get; init; }
 	public required Func<Task> AddGroupAction { get; init; }
@@ -47,7 +47,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	public required Action ExportCsvAction { get; init; }
 	public required Func<DataGridSettingsModel, Task> OpenDataGridSettingsAction { get; init; }
 
-	[ObservableProperty] private bool _anyShipsSelected;
+	[ObservableProperty] public partial bool AnyShipsSelected { get; set; }
 	public List<ShipGroupItemViewModel> SelectedShips { get; private set; } = [];
 
 	// hacky way cause the logic is in the EO project
@@ -124,7 +124,7 @@ public partial class ShipGroupViewModel : ObservableObject
 	private void AddToGroup() => AddToGroupAction.Invoke();
 
 	[RelayCommand]
-	private async Task CreateGroup() =>  await CreateGroupAction.Invoke();
+	private async Task CreateGroup() => await CreateGroupAction.Invoke();
 
 	[RelayCommand]
 	private void ExcludeFromGroup() => ExcludeFromGroupAction.Invoke();

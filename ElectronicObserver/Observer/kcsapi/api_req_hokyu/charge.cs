@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using ElectronicObserver.Data;
-using ElectronicObserver.Notifier;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_hokyu;
 

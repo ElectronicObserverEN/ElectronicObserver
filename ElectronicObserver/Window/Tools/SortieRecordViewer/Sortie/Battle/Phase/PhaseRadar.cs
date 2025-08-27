@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes.Data;
+﻿using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

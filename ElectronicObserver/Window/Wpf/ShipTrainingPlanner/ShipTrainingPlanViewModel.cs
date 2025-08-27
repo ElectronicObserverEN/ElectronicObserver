@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
@@ -22,8 +22,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 		_ => new ShipDataMock(new ShipDataMasterMock()),
 	};
 
-	[ObservableProperty] private bool _planFinished;
-
+	[ObservableProperty] public partial bool PlanFinished { get; set; }
 	public int Priority { get; set; }
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }

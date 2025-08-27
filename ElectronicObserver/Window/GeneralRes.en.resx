@@ -845,4 +845,7 @@ Please click here to restart.</value>
   <data name="NextAsw" xml:space="preserve">
     <value>Next ASW</value>
   </data>
+  <data name="MaximumMorale" xml:space="preserve">
+    <value>Maximum morale</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using CefSharp;
 using CefSharp.Fluent;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -58,5 +59,13 @@ public partial class ExtraBrowserWindow
 	private void Forward(object sender, RoutedEventArgs e)
 	{
 		Browser.Forward();
+	}
+
+	/// <inheritdoc />
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		base.OnClosing(e);
+
+		Browser.Dispose();
 	}
 }

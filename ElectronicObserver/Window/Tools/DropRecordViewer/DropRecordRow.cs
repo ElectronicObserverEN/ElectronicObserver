@@ -1,7 +1,7 @@
 ﻿using System;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 

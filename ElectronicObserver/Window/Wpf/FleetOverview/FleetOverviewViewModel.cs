@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -10,8 +12,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Fleet;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.FleetOverview;
 
@@ -97,7 +97,9 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			FleetData fleet1 = KCDatabase.Instance.Fleet[1];
 			FleetData fleet2 = KCDatabase.Instance.Fleet[2];
 
-			int tp = Calculator.GetTPDamage(fleet1) + Calculator.GetTPDamage(fleet2);
+			int tp = TpGauge.Normal.GetTp([fleet1, fleet2]);
+			int tankTpE2 = TpGauge.Spring25E2.GetTp([fleet1, fleet2]);
+			int tankTpE5 = TpGauge.Spring25E5.GetTp([fleet1, fleet2]);
 
 			List<IShipData> members = fleet1.MembersWithoutEscaped!
 				.Concat(fleet2.MembersWithoutEscaped!)
@@ -123,8 +125,11 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				transport.Count(i => i> 0),
-				landing.Count(i => i > 0)
-
+				landing.Count(i => i > 0),
+				tankTpE2,
+				(int)Math.Floor(tankTpE2 * 0.7),
+				tankTpE5,
+				(int)Math.Floor(tankTpE5 * 0.7)
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();

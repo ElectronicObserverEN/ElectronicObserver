@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Resource.Record;
@@ -11,8 +13,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Window.Dialog.BattleDetail;
 
@@ -40,7 +40,7 @@ public static class BattleDetailDescriptor
 				sb.Append(ConstantsRes.BattleDetail_Boss);
 			sb.AppendLine();
 
-			MapInfoData mapinfo = bm.Compass.MapInfo;
+			IMapInfoData mapinfo = bm.Compass.MapInfo;
 			if (!mapinfo.IsCleared)
 			{
 				if (mapinfo.RequiredDefeatedCount != -1)

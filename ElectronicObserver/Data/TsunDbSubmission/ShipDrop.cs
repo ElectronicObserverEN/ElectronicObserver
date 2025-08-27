@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
@@ -56,7 +57,7 @@ public class ShipDrop : TsunDbEntity
 		Node = db.Battle.Compass.CellId;
 		Rank = apidata.api_win_rank;
 
-		MapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
+		IMapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
 
 		if (mapInfoData == null)
 		{

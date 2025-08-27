@@ -96,6 +96,9 @@ public sealed class ResourceManager
 		SmokeGenerator = 54,
 		BarrageBalloon,
 		LandBasedFighterJet,
+		LandBasedFighterShinden,
+		NightBomber,
+		JetBomberHo229 = 59,
 		Locked,
 		Unknown,
 	}
@@ -349,6 +352,9 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/SmokeGenerator.png", "Equipment_SmokeGenerator");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/BarrageBalloon.png", "Equipment_BarrageBalloon");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterJet.png", "Equipment_LandBasedFighterJet");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterShinden.png", "Equipment_LandBasedFighterShinden");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightBomber.png", "Equipment_NightBomber");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/JetFightingBomberHo229.png", "JetBomberHo229");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
 		}

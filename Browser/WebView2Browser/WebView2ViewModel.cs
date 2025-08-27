@@ -387,7 +387,7 @@ public class WebView2ViewModel : BrowserViewModel
 	{
 		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration?.UseGadgetRedirect is true)
 		{
-			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl(Configuration.GadgetBypassServerCustom));
+			e.Request.Uri = e.Request.Uri.Replace("http://w00g.kancolle-server.com/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl(Configuration.GadgetBypassServerCustom));
 		}
 
 		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
@@ -486,20 +486,22 @@ public class WebView2ViewModel : BrowserViewModel
 	/// ブラウザを再読み込みします。
 	/// </summary>
 	/// <param name="ignoreCache">キャッシュを無視するか。</param>
-	protected override void RefreshBrowser(bool ignoreCache)
+	protected override async void RefreshBrowser(bool ignoreCache)
 	{
 		if (WebView2 is null) return;
+		if (DevToolsHelper is null) return;
 
 		if (ignoreCache)
 		{
-			DevToolsHelper.Page.ReloadAsync(true);
-		}
-		else
-		{
-			WebView2.CoreWebView2.Reload();
+			await DevToolsHelper.Page.ReloadAsync(true);
+			return;
 		}
 
 		IsRefreshing = true;
+
+		string address = WebView2.CoreWebView2.Source;
+		await DevToolsHelper.Page.NavigateAsync("about:blank");
+		await DevToolsHelper.Page.NavigateAsync(address);
 	}
 
 	/// <summary>

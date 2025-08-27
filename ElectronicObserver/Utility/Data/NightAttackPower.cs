@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Attacks.Specials;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Attacks.Specials;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -146,6 +146,7 @@ public static class NightAttackPower
 			EquipmentTypes.MainGunMedium or
 			EquipmentTypes.MainGunLarge or
 			EquipmentTypes.Torpedo or
+			EquipmentTypes.AAShell or
 			EquipmentTypes.APShell or
 			EquipmentTypes.LandingCraft or
 			EquipmentTypes.Searchlight or

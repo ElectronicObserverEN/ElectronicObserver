@@ -1,9 +1,11 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.Core.Types;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiPlaneInfo
 {
 	[JsonPropertyName("api_cond")]
-	public int? ApiCond { get; set; }
+	public AirBaseCondition? ApiCond { get; set; }
 
 	[JsonPropertyName("api_count")]
 	public int? ApiCount { get; set; }

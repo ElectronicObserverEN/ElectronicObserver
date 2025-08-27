@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
@@ -20,8 +22,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interface
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 using BattleIndex = ElectronicObserver.Data.Battle.BattleIndex;
 using Color = System.Drawing.Color;
 

@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Text;
 using DynaJson;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data;
 
@@ -101,7 +101,7 @@ public class EquipmentData : ResponseWrapper, IIdentifiable, IEquipmentData
 	/// </summary>
 	public bool IsRelocated => KCDatabase.Instance.RelocatedEquipments.Keys.Contains(MasterID);
 
-
+	public bool IsInitialized { get; private set; } = true;
 
 	public int ID => MasterID;
 
@@ -125,10 +125,12 @@ public class EquipmentData : ResponseWrapper, IIdentifiable, IEquipmentData
 				data.api_slotitem_id = 1;
 				data.api_locked = 0;
 				data.api_level = 0;
+				IsInitialized = false;
 			}
 			break;
 
 			default:
+				IsInitialized = true;
 				break;
 		}
 

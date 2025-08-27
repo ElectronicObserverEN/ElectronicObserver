@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Alignment_Bottom" xml:space="preserve">
+    <value>下(&amp;B)</value>
+  </data>
+  <data name="Alignment_Invisible" xml:space="preserve">
+    <value>隐藏(&amp;I)</value>
+  </data>
+  <data name="Alignment_Left" xml:space="preserve">
+    <value>左(&amp;L)</value>
+  </data>
+  <data name="Alignment_Right" xml:space="preserve">
+    <value>右(&amp;R)</value>
+  </data>
+  <data name="Alignment_Top" xml:space="preserve">
+    <value>上(&amp;T)</value>
+  </data>
+  <data name="RefreshIgnoreCache" xml:space="preserve">
+    <value>更新忽略缓存(&amp;C)</value>
+  </data>
+  <data name="NavigateToLogInPage" xml:space="preserve">
+    <value>前往登录页面</value>
+  </data>
+  <data name="Other_Zoom_Current" xml:space="preserve">
+    <value>缩放：</value>
+  </data>
+  <data name="FailedToApplyStylesheet" xml:space="preserve">
+    <value>应用样式表失败。</value>
+  </data>
+  <data name="FrameScript" xml:space="preserve">
+    <value>
+try {{
+var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);
+node = document.createElement('div');
+node.innerHTML = 'F&lt;style id=\'{0}\'&gt;body {{ visibility: hidden; }} \
+#flashWrap {{ position: fixed; left: 0; top: 0; width: 100% !important; height: 100% !important; }} \
+#htmlWrap {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
+document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+}}
+catch(e) {{
+ alert("フレームCSS適用に失敗しました: "+e);
+}}</value>
+  </data>
+  <data name="LoginDialog" xml:space="preserve">
+    <value>移至登录页面。
+你确定吗？</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>更多选择</value>
+  </data>
+  <data name="Other_Zoom_Current_Fit" xml:space="preserve">
+    <value>缩放：适合</value>
+  </data>
+  <data name="PageScript" xml:space="preserve">
+    <value>
+try {{
+var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);
+node = document.createElement('div');
+node.innerHTML = 'P&lt;style id=\'{0}\'&gt;body {{ visibility: hidden; overflow: hidden; }} \
+div #block_background {{ visibility: visible; }} \
+div #alert {{ visibility: visible; overflow: scroll; overflow-x: hidden; top: 3% !important; left: 3% !important; width: 94% !important; height: 94%; padding: 2%; box-sizing: border-box;}} \
+div.dmm-ntgnavi {{ display: none; }} \
+#area-game {{ position: fixed; left: 0; top: 0; width: 100%; height: 100%; }} \
+#game_frame {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
+document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+}}
+catch(e) {{
+ alert("无法应用页面CSS: "+e);
+}}</value>
+  </data>
+  <data name="ReloadDialog" xml:space="preserve">
+    <value>重新加载。
+你确定吗？</value>
+  </data>
+  <data name="ScreenshotError" xml:space="preserve">
+    <value>截图失败。</value>
+  </data>
+  <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
+    <value>复制到剪贴板(&amp;C)</value>
+  </data>
+  <data name="Strip_Mute" xml:space="preserve">
+    <value>沉默</value>
+  </data>
+  <data name="Strip_Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Strip_ScreenShot" xml:space="preserve">
+    <value>截屏</value>
+  </data>
+  <data name="Strip_Zoom" xml:space="preserve">
+    <value>缩放</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>七四式电子观测仪浏览器</value>
+  </data>
+  <data name="DMMScript" xml:space="preserve">
+    <value>
+try {
+ if ( DMM.netgame.reloadDialog ) DMM.netgame.reloadDialog = function (){};
+}
+catch(e) {
+ alert("DMM 无法隐藏页面更新对话框: "+e);
+}</value>
+  </data>
+  <data name="RestoreScript" xml:space="preserve">
+    <value>var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
+  </data>
+  <data name="RegionCookie" xml:space="preserve">
+    <value>var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
+var date = new Date();
+var expiryTime = parseInt(date.getTime()) + timeToAdd;
+date.setTime(expiryTime);
+var utcTime = date.toUTCString();
+document.cookie = "ckcy=1;expires="+utcTime+";domain=www.dmm.com;path=/netgame/";</value>
+  </data>
+  <data name="RemoveWelcomePopup" xml:space="preserve">
+    <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
+  </data>
+  <data name="RemoveServicePopup" xml:space="preserve">
+    <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="ReloadHardDialog" xml:space="preserve">
+    <value>忽略缓存并重新加载。
+你确定吗？</value>
+  </data>
+  <data name="ShowToolMenu" xml:space="preserve">
+    <value>显示工具菜单</value>
+  </data>
+  <data name="OpenDevTool" xml:space="preserve">
+    <value>打开开发者工具</value>
+  </data>
+  <data name="Zoom_to_Fit" xml:space="preserve">
+    <value>窗口合适</value>
+  </data>
+  <data name="ClearCache" xml:space="preserve">
+    <value>删除缓存</value>
+  </data>
+  <data name="RenderProcessTerminatedBy" xml:space="preserve">
+    <value>浏览器渲染过程</value>
+  </data>
+  <data name="RenderProcessAbnormalTermination" xml:space="preserve">
+    <value>没有正常结束。</value>
+  </data>
+  <data name="RenderProcessProcessWasKilled" xml:space="preserve">
+    <value>被另一个进程终止。</value>
+  </data>
+  <data name="RenderProcessProcessCrashed" xml:space="preserve">
+    <value>已经崩溃。</value>
+  </data>
+  <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
+    <value>被意外终止。</value>
+  </data>
+  <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
+    <value>重新加载后，该进程将启动。</value>
+  </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>您确定要清除缓存吗？</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>确认重启浏览器</value>
+  </data>
+  <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
+    <value>截屏(&amp;S)</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
+    <value>上一张截图(&amp;P)</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
+    <value>打开屏幕截图文件夹(&amp;O)</value>
+  </data>
+  <data name="ToolMenu_Other_Volume" xml:space="preserve">
+    <value>音量(&amp;V)</value>
+  </data>
+  <data name="ToolMenu_Other_Mute" xml:space="preserve">
+    <value>沉默(&amp;M)</value>
+  </data>
+  <data name="ToolMenu_Other_Refresh" xml:space="preserve">
+    <value>刷新(&amp;R)</value>
+  </data>
+  <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
+    <value>转到登录页面(&amp;L)</value>
+  </data>
+  <data name="ToolMenu_Other_Navigate" xml:space="preserve">
+    <value>移动(&amp;N)...</value>
+  </data>
+  <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
+    <value>应用样式表</value>
+  </data>
+  <data name="ToolMenu_Other_Alignment" xml:space="preserve">
+    <value>配置(&amp;A)</value>
+  </data>
+  <data name="NoScreenshotYet" xml:space="preserve">
+    <value>尚无截图。</value>
+  </data>
+  <data name="InstallVisualCpp" xml:space="preserve">
+    <value>无法加载浏览器组件。
+需要 Microsoft Visual C++ 2019 Redistributable。
+打开下载页面？
+（请安装 vc_redist.x64.exe）</value>
+  </data>
+  <data name="CefSharpLoadErrorTitle" xml:space="preserve">
+    <value>CefSharp 加载错误</value>
+  </data>
+  <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
+    <value>无法隐藏 DMM 刷新对话框。</value>
+  </data>
+  <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
+    <value>砍口垒未加载，无法截屏。</value>
+  </data>
+  <data name="ScreenshotSavedTo" xml:space="preserve">
+    <value>屏幕截图已保存至 {0}。</value>
+  </data>
+  <data name="FailedToSaveScreenshot" xml:space="preserve">
+    <value>无法保存屏幕截图。</value>
+  </data>
+  <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>屏幕截图已复制到剪贴板。</value>
+  </data>
+  <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
+    <value>无法将屏幕截图复制到剪贴板。</value>
+  </data>
+  <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>屏幕截图 {0} 已复制到剪贴板。</value>
+  </data>
+  <data name="ToolMenu_Other_Zoom" xml:space="preserve">
+    <value>缩放(&amp;Z)</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>文件(_F)</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>后退</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>向前</value>
+  </data>
+  <data name="DmmPoints" xml:space="preserve">
+    <value>DMM点</value>
+  </data>
+  <data name="AkashiList" xml:space="preserve">
+    <value>明石列表</value>
+  </data>
+  <data name="WebView2NotFound" xml:space="preserve">
+    <value>未找到 WebView2。开始下载。</value>
+  </data>
+  <data name="WebView2DownloadComplete" xml:space="preserve">
+    <value>WebView2 下载完成。开始安装。</value>
+  </data>
+  <data name="WebView2InstallationComplete" xml:space="preserve">
+    <value>WebView2 安装完成。</value>
+  </data>
+  <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
+    <value>由于缺少权限，无法应用 Vulkan 解决方法。以管理员身份运行 Electronic Observer 以使解决方法生效。</value>
+  </data>
+  <data name="OlderBrowserVersionDetected" xml:space="preserve">
+    <value>检测到 WebView2 的版本较旧。正在下载最新版本。</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>尝试安装 WebView2 时发生错误。请手动安装WebView2。</value>
+  </data>
+  <data name="CacheCleared" xml:space="preserve">
+    <value>缓存删除处理完成。</value>
+  </data>
+  <data name="AutoRefreshNotification" xml:space="preserve">
+    <value>您即将前进到自动刷新工具中的规则禁止的单元格。
+你想刷新一下吗？</value>
+  </data>
+  <data name="FailedToApplyBrowserFont" xml:space="preserve">
+    <value>应用浏览器字体失败。</value>
+  </data>
+</root>

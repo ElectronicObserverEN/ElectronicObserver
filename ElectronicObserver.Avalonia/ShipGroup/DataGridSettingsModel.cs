@@ -4,6 +4,6 @@ namespace ElectronicObserver.Avalonia.ShipGroup;
 
 public partial class DataGridSettingsModel : ObservableObject
 {
-	[ObservableProperty] private int _columnHeaderHeight = 32;
-	[ObservableProperty] private int _rowHeight = 32;
+	[ObservableProperty] public partial int ColumnHeaderHeight { get; set; } = 32;
+	[ObservableProperty] public partial int RowHeight { get; set; } = 32;
 }

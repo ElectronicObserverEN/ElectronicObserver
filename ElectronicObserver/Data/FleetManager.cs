@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data;
 
@@ -16,7 +17,7 @@ public class FleetManager : APIWrapper
 	/// <summary>
 	/// 連合艦隊フラグ
 	/// </summary>
-	public int CombinedFlag { get; internal set; }
+	public FleetType CombinedFlag { get; internal set; }
 
 	/// <summary>
 	/// 泊地修理タイマ
@@ -201,7 +202,7 @@ public class FleetManager : APIWrapper
 			goto default;
 
 			case "api_req_hensei/combined":
-				CombinedFlag = int.Parse(data["api_combined_type"]);
+				CombinedFlag = (FleetType)int.Parse(data["api_combined_type"]);
 				break;
 
 			case "api_req_practice/battle":

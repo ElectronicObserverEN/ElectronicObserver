@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
@@ -74,7 +75,7 @@ public class EnemyComp : TsunDbEntity
 		// If this is an event map
 		if (db.Battle.Compass.MapAreaID > 30)
 		{
-			MapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
+			IMapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];
 
 			GaugeNum = mapInfoData.CurrentGaugeIndex;
 			CurrentHP = mapInfoData.MapHPCurrent;

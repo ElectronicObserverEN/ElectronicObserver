@@ -1,6 +1,6 @@
 ﻿using System;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data;
 
@@ -61,7 +61,7 @@ public class BaseAirCorpsSquadron : APIWrapper, IIdentifiable, IBaseAirCorpsSqua
 	/// コンディション
 	/// 1=通常、2=橙疲労、3=赤疲労
 	/// </summary>
-	public int Condition => RawData.api_cond() ? (int)RawData.api_cond : 1;
+	public AirBaseCondition Condition => RawData.api_cond() ? (AirBaseCondition)RawData.api_cond : AirBaseCondition.Sparkled;
 
 
 

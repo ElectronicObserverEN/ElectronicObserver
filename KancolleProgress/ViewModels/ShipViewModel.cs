@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace KancolleProgress.ViewModels;
 

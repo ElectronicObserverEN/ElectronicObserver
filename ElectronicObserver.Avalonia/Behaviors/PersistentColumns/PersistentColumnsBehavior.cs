@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Interactivity;
+using Avalonia.Reactive;
 using Avalonia.Xaml.Interactivity;
 
 namespace ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
@@ -30,7 +31,10 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 
 	public PersistentColumnsBehavior()
 	{
-		ColumnPropertiesProperty.Changed.Subscribe(ColumnPropertiesChangedCallback);
+		AnonymousObserver<AvaloniaPropertyChangedEventArgs<ObservableCollection<ColumnModel>>> observer =
+			new(ColumnPropertiesChangedCallback);
+
+		ColumnPropertiesProperty.Changed.Subscribe(observer);
 	}
 
 	private void DisplayIndexChangedHandler(object? sender, EventArgs x) => UpdateColumnInfo();

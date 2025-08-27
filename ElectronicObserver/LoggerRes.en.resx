@@ -224,6 +224,9 @@
   <data name="ImprovedFailure" xml:space="preserve">
     <value>We have failed to improve {0}.</value>
   </data>
+  <data name="ImprovedSuccess" xml:space="preserve">
+    <value> has been successfully improved. (</value>
+  </data>
   <data name="InitialEquipRegistered" xml:space="preserve">
     <value> has had initial equipment registered.</value>
   </data>
@@ -278,8 +281,14 @@
   <data name="StorageFileDoesNotExist" xml:space="preserve">
     <value>The DataStorage file does not exist.</value>
   </data>
+  <data name="Copied" xml:space="preserve">
+    <value>{0} has been copied.</value>
+  </data>
   <data name="Decomissioned" xml:space="preserve">
     <value> has been decommissioned.</value>
+  </data>
+  <data name="FailedToCopy" xml:space="preserve">
+    <value>Failed to copy {0}. {1}</value>
   </data>
   <data name="MultiplePossibleMvps" xml:space="preserve">
     <value>There are multiple possible MVPs. Please check the log.</value>
@@ -290,19 +299,13 @@
   <data name="RecordAutosaveSuccess" xml:space="preserve">
     <value>Successfully autosaved records.</value>
   </data>
-  <data name="Copied" xml:space="preserve">
-    <value>{0} has been copied.</value>
-  </data>
   <data name="ImprovedEqSuccess" xml:space="preserve">
     <value>We have successfully improved {0}.</value>
   </data>
-  <data name="ImprovedSuccess" xml:space="preserve">
-    <value> has been successfully improved. (</value>
-  </data>
-  <data name="FailedToCopy" xml:space="preserve">
-    <value>Failed to copy {0}. {1}</value>
-  </data>
   <data name="ClearedQuest" xml:space="preserve">
     <value>Cleared quest 「{0}」.</value>
+  </data>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>Failed to copy to clipboard</value>
   </data>
 </root>

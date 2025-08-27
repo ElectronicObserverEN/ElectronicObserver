@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Data;
@@ -18,6 +20,7 @@ public partial class DialogShipGroupFilter : Form
 
 	private ShipGroupData _group;
 
+	private IClipboardService ClipboardService { get; }
 
 	#region DataTable
 	private DataTable _dtAndOr;
@@ -39,6 +42,8 @@ public partial class DialogShipGroupFilter : Form
 
 	public DialogShipGroupFilter(ShipGroupData group)
 	{
+		ClipboardService = Ioc.Default.GetRequiredService<IClipboardService>();
+
 		InitializeComponent();
 
 		{
@@ -1479,7 +1484,7 @@ public partial class DialogShipGroupFilter : Form
 			StringBuilder str = new StringBuilder();
 			_group.Expressions.Save(str);
 
-			Clipboard.SetText(str.ToString());
+			ClipboardService.SetTextAndLogErrors(str.ToString());
 
 			MessageBox.Show(ShipGroupFilterResources.FilterWasExported,
 				ShipGroupFilterResources.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);

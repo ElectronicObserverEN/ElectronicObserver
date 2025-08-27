@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 public class EquipmentUpgradePlanCostEquipmentViewModel : EquipmentUpgradePlanCostItemViewModel

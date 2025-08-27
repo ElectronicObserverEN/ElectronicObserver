@@ -11,14 +11,12 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
 public partial class ConfigurationNotificationBaseViewModel : ObservableValidator
 {
 	public ConfigurationNotificationBaseTranslationViewModel Translation { get; }
-	private FileService FileService { get; }
 
 	private Configuration.ConfigurationData.ConfigNotifierBase Config { get; }
 	protected virtual NotifierBase NotifierBase { get; }
@@ -26,25 +24,36 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 	public List<CheckBoxEnumViewModel> ClickFlags { get; }
 	public List<NotifierDialogAlignment> DialogAlignments { get; }
 
-	public bool IsEnabled { get; set; }
+	public bool IsLoading { get; set; }
 
-	public bool IsSilenced { get; set; }
+	[ObservableProperty]
+	[NotifyDataErrorInfo]
+	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
+	public partial bool IsEnabled { get; set; }
+
+	[ObservableProperty]
+	[NotifyDataErrorInfo]
+	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
+	public partial bool IsSilenced { get; set; }
 
 	public bool ShowsDialog { get; set; }
 
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateImagePath))]
-	private string _imagePath;
+	public partial string ImagePath { get; set; } = "";
 
 	public bool DrawsImage { get; set; }
 
 	[ObservableProperty]
 	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
-	private string _soundPath;
+	public partial string SoundPath { get; set; } = "";
 
-	public bool PlaysSound { get; set; }
+	[ObservableProperty]
+	[NotifyDataErrorInfo]
+	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
+	public partial bool PlaysSound { get; set; }
 
 	public int SoundVolume { get; set; }
 
@@ -76,7 +85,11 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public Color BackColor { get; set; }
 
-	private bool SoundChanged => SoundPath != Config.SoundPath;
+	private bool SoundChanged =>
+		SoundPath != Config.SoundPath ||
+		IsEnabled != Config.IsEnabled ||
+		IsSilenced != Config.IsSilenced ||
+		PlaysSound != Config.PlaysSound;
 
 	private bool ImageChanged => ImagePath != Config.ImagePath;
 
@@ -85,7 +98,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		NotifierBase notifier)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationNotificationBaseTranslationViewModel>();
-		FileService = Ioc.Default.GetRequiredService<FileService>();
 
 		ClickFlags = Enum.GetValues<NotifierDialogClickFlags>()
 			.Where(f => f is not (NotifierDialogClickFlags.None or NotifierDialogClickFlags.HighestBit))
@@ -111,6 +123,8 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public virtual void Load()
 	{
+		IsLoading = true;
+
 		IsEnabled = NotifierBase.IsEnabled;
 		IsSilenced = NotifierBase.IsSilenced;
 		ShowsDialog = NotifierBase.ShowsDialog;
@@ -137,6 +151,8 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 		{
 			clickFlag.IsChecked = NotifierBase.DialogData.ClickFlag.HasFlag(clickFlag.Value);
 		}
+
+		IsLoading = false;
 	}
 
 	public bool TrySaveConfiguration()
@@ -192,9 +208,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			throw new NotImplementedException();
 		}
 
-		return (viewModel.ImageChanged && !viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath) && viewModel.DrawsImage) switch
+		return (!viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath) && viewModel.ImageChanged && viewModel.DrawsImage) switch
 		{
-			true => new(NotifyRes.FailedLoadSound),
+			true => new(NotifyRes.FailedLoadImage),
 			_ => ValidationResult.Success!,
 		};
 	}
@@ -206,7 +222,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			throw new NotImplementedException();
 		}
 
-		return (viewModel.SoundChanged && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath) && viewModel.PlaysSound) switch
+		if (viewModel.IsLoading) return ValidationResult.Success!;
+
+		return (!viewModel.NotifierBase.LoadSound(viewModel.SoundPath) && viewModel.SoundChanged && viewModel.PlaysSound) switch
 		{
 			true => new(NotifyRes.FailedLoadSound),
 			_ => ValidationResult.Success!,

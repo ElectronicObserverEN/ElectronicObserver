@@ -52,6 +52,7 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string HorizontalFleetCountToolTip => FleetImageGeneratorResources.HorizontalFleetCountToolTip;
 	public string QuickConfigurationAccess => FleetImageGeneratorResources.QuickConfigurationAccess;
 	public string QuickConfigurationAccessToolTip => FleetImageGeneratorResources.QuickConfigurationAccessToolTip;
+	public string ShowTankTp => FleetImageGeneratorResources.ShowTankTp;
 
 	public string Font => FleetImageGeneratorResources.Font;
 	public string ButtonClearFont => FleetImageGeneratorResources.ButtonClearFont;

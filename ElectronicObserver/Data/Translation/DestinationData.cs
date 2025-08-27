@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DynaJson;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data.Translation;
 

@@ -1,4 +1,5 @@
-﻿using KancolleProgress.Translations;
+﻿using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using KancolleProgress.Translations;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -19,6 +20,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Layout_Save => MainResources.File_Layout_Save.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_Open => MainResources.File_Layout_Open.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_Change => MainResources.File_Layout_Change.Replace("_", "__").Replace("&", "_");
+	public string ResetFloatingWindows => MainResources.ResetFloatingWindows;
 	public string Adjustment => MainResources.Adjustment.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_LockLayout => MainResources.File_Layout_LockLayout.Replace("_", "__").Replace("&", "_");
 	public string GridSplitterSize => MainResources.GridSplitterSize.Replace("_", "__").Replace("&", "_");
@@ -33,7 +35,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Configuration => MainResources.File_Configuration.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Close => MainResources.File_Close.Replace("_", "__").Replace("&", "_");
 
-	public string StripMenu_View => MainResources.View.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_View => MainResources.View;
 	public string StripMenu_View_Fleet => MainResources.View_Fleet.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Fleet_1 => MainResources.View_Fleet_1.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_View_Fleet_2 => MainResources.View_Fleet_2.Replace("_", "__").Replace("&", "_");
@@ -69,6 +71,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_ConstructionRecord => MainResources.Tool_ConstructionRecord.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ResourceChart => MainResources.Tool_ResourceChart.Replace("_", "__").Replace("&", "_");
 	public string SenkaViewer => SenkaViewerResources.Title;
+	public string SenkaLeaderboard => SenkaLeaderboardResources.Title;
 	public string ExpeditionRecordViewer => ExpeditionRecordViewerResources.Title;
 	public string StripMenu_Tool_AlbumMasterShip => MainResources.Tool_AlbumMasterShip.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_AlbumMasterEquipment => MainResources.Tool_AlbumMasterEquipment.Replace("_", "__").Replace("&", "_");
@@ -85,7 +88,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string EventLockPlannerTitle => EventLockPlannerResources.Title;
 	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title; 
 	public string AutoRefreshTitle => AutoRefreshResources.Title;
-	public string Telegram => TelegramResources.Title;
+	public string ExpeditionCalculatorTitle => ExpeditionCalculatorResources.Title;
 
 	public string StripMenu_Debug => MainResources.Debug.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadAPIFromFile => MainResources.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");

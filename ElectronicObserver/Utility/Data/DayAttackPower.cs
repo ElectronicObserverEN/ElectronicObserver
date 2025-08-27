@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Attacks.Specials;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Attacks.Specials;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -49,7 +49,7 @@ public static class DayAttackPower
 	{
 		_ when ship.MasterShip.IsAircraftCarrier => ship.CarrierBasePower(fleet),
 		{ MasterShip.ShipId: ShipId.HayasuiKai } when ship.HasAttacker() => ship.CarrierBasePower(fleet),
-		{ MasterShip.ShipId: ShipId.YamashioMaruKai } when ship.HasBomber() => ship.CarrierBasePower(fleet),
+		{ MasterShip.ShipId: ShipId.YamashioMaruKai or ShipId.ShimaneMaruKai } when ship.HasBomber() => ship.CarrierBasePower(fleet),
 
 		_ => ship.SurfaceShipBasePower(fleet),
 	};
@@ -72,6 +72,7 @@ public static class DayAttackPower
 	{
 		EquipmentTypes.MainGunSmall or
 		EquipmentTypes.MainGunMedium or
+		EquipmentTypes.AAShell or
 		EquipmentTypes.APShell or
 		EquipmentTypes.AADirector or
 		EquipmentTypes.Searchlight or

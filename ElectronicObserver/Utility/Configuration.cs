@@ -11,6 +11,10 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
 using DynaJson;
+using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
@@ -47,7 +51,7 @@ public sealed class Configuration
 		/// <summary>
 		/// 通信の設定を扱います。
 		/// </summary>
-		public class ConfigConnection : ConfigPartBase
+		public class ConfigConnection : ConfigPartBase, IConfigurationConnection
 		{
 
 			/// <summary>
@@ -141,7 +145,7 @@ public sealed class Configuration
 		public ConfigConnection Connection { get; private set; }
 
 
-		public class ConfigUI : ConfigPartBase
+		public class ConfigUI : ConfigPartBase, IConfigurationUi
 		{
 
 			/// <summary>
@@ -685,7 +689,8 @@ public sealed class Configuration
 			public bool EnableDiscordRPC { get; set; }
 
 			/// <summary>
-			/// Discord RPC message to display use {{secretary}} to insert secretary name
+			/// Discord RPC message to display
+			/// Use {{secretary}} to insert secretary name
 			/// </summary>
 			public string DiscordRPCMessage { get; set; }
 
@@ -705,10 +710,22 @@ public sealed class Configuration
 			public Uri UpdateRepoURL { get; set; }
 
 			/// <summary>
-			/// Should RPC use the icon of your flagship or not
+			/// Here for backward compatibility
+			/// Replaced by <see cref="RpcIconKind"/>
 			/// </summary>
 			public bool UseFlagshipIconForRPC { get; set; }
 
+			/// <summary>
+			/// What kind of icon RPC should use
+			/// </summary>
+			public RpcIconKind RpcIconKind { get; set; }
+
+			public ShipId? ShipUsedForRpcIcon { get; set; }
+
+			/// <summary>
+			/// Here for backward compatibility
+			/// Replaced by <see cref="ConfigDataSubmission.SubmitDataToTsunDb"/>
+			/// </summary>
 			public bool? SubmitDataToTsunDb { get; set; }
 
 			public ConfigControl()
@@ -728,6 +745,7 @@ public sealed class Configuration
 				DiscordRPCApplicationId = "";
 				UpdateRepoURL = new Uri("https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/");
 				UseFlagshipIconForRPC = false;
+				RpcIconKind = RpcIconKind.Default;
 				SubmitDataToTsunDb = null;
 			}
 		}
@@ -1870,11 +1888,12 @@ public sealed class Configuration
 			public bool UseCustomTheme { get; set; }
 			public string ForegroundColor { get; set; }
 			public string BackgroundColor { get; set; }
+			public TpGauge TankTpGauge { get; set; } = 0;
 
 			public ConfigFleetImageGenerator()
 				: base()
 			{
-				Argument = FleetImageArgument.GetDefaultInstance();
+				Argument = new();
 				ImageType = 0;
 				OutputType = 0;
 				OpenImageAfterOutput = false;
@@ -1891,10 +1910,12 @@ public sealed class Configuration
 				BackgroundColor = "#FF000000";
 			}
 		}
+
 		[DataMember]
 		public ConfigFleetImageGenerator FleetImageGenerator { get; private set; }
 
-
+		[DataMember]
+		public ConfigDataSubmission DataSubmission { get; private set; }
 
 		public class ConfigWhitecap : ConfigPartBase
 		{
@@ -1948,7 +1969,6 @@ public sealed class Configuration
 
 		public override void Initialize()
 		{
-
 			Connection = new ConfigConnection();
 			UI = new ConfigUI();
 			Log = new ConfigLog();
@@ -1982,10 +2002,10 @@ public sealed class Configuration
 
 			BGMPlayer = new ConfigBGMPlayer();
 			FleetImageGenerator = new ConfigFleetImageGenerator();
+			DataSubmission = new ConfigDataSubmission();
 			Whitecap = new ConfigWhitecap();
 
 			VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
-
 		}
 	}
 	private static ConfigurationData _config;
@@ -2011,6 +2031,7 @@ public sealed class Configuration
 	public void Load()
 	{
 		var temp = (ConfigurationData)_config.Load(SaveFileName);
+
 		if (temp != null)
 		{
 			// hack: set defaults for players that have a configuration before language was added
@@ -2704,6 +2725,11 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2020/06/07 23:00:00"))
 			Update460_AddSallyAreaColorScheme();
 
+		if (dt <= DateTimeHelper.CSVStringToTime("2024/11/24 20:00:00"))
+			Update538_ChangeTsunDbConfig();
+
+		if (dt <= DateTimeHelper.CSVStringToTime("2025/03/22 11:00:00"))
+			Update5_3_12_ChangeRpcIconProperty();
 
 		Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 	}
@@ -2961,5 +2987,15 @@ public sealed class Configuration
 			Config.FormFleet.SallyAreaColorScheme = Config.FormFleet.DefaultSallyAreaColorScheme.ToList();
 			Utility.Logger.Add(1, "<= ver. 4.6.0 移行処理: カラースキームの追加が完了しました。");
 		}
+	}
+
+	private void Update538_ChangeTsunDbConfig()
+	{
+		Config.DataSubmission.SubmitDataToTsunDb = Config.Control.SubmitDataToTsunDb is true;
+	}
+
+	private void Update5_3_12_ChangeRpcIconProperty()
+	{
+		Config.Control.RpcIconKind = Config.Control.UseFlagshipIconForRPC ? RpcIconKind.Secretary : RpcIconKind.Default;
 	}
 }

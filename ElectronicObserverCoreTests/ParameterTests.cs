@@ -1,6 +1,6 @@
-﻿using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes;
-using Xunit;
+﻿using Xunit;
+using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserverCoreTests;
 

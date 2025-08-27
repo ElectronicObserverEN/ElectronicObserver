@@ -1,5 +1,5 @@
 ﻿using System;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data;
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.FitBonus;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
@@ -31,7 +31,7 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 		KCDatabase db = KCDatabase.Instance;
 
 		// If there's equipment that doesn't exist in the db (remodel), we can't report the issue
-		if (ship.Slot.Where(equipmentId => equipmentId > 0).Any(equipmentId => !db.Equipments.ContainsKey(equipmentId)))
+		if (ship.Slot.Where(equipmentId => equipmentId > 0).Any(equipmentId => db.Equipments[equipmentId]?.IsInitialized is not true))
 		{
 			return;
 		}

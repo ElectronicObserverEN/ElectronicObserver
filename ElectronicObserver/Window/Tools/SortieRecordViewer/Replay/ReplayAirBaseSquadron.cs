@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Replay;
 
@@ -21,5 +21,5 @@ public class ReplayAirBaseSquadron
 	public int State { get; set; }
 
 	[JsonPropertyName("morale")]
-	public int Morale { get; set; }
+	public AirBaseCondition Morale { get; set; }
 }

@@ -143,7 +143,6 @@ public abstract class NotifierBase
 	{
 		try
 		{
-
 			DisposeSound();
 
 			if (File.Exists(path))
@@ -190,8 +189,10 @@ public abstract class NotifierBase
 			{
 				if (Sound.PlayState == PlayState.Playing)
 				{       //playing
-					if (Sound.GetPlaylist().Any())
+					if (Sound.Playlist.Any())
+					{
 						Sound.Next();
+					}
 
 					Sound.Stop();
 				}
@@ -220,8 +221,10 @@ public abstract class NotifierBase
 
 	void Sound_MediaEnded()
 	{
-		if (Sound.GetPlaylist().Any() && !LoopsSound)
+		if (Sound.Playlist.Count > 0 && !LoopsSound)
+		{
 			Sound.Next();
+		}
 	}
 
 
@@ -249,11 +252,7 @@ public abstract class NotifierBase
 
 	void dialog_FormClosing(object? sender, System.Windows.Forms.FormClosingEventArgs e)
 	{
-		if (LoopsSound)
-		{
-			Sound.Stop();
-			Sound.Next();
-		}
+		Sound.Stop();
 	}
 
 	/// <summary>

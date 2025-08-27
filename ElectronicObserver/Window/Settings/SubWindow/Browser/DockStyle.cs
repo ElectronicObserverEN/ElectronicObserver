@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Browser;
 

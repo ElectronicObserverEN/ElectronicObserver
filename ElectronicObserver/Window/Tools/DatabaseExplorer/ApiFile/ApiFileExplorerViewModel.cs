@@ -5,6 +5,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Database;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 
 namespace ElectronicObserver.Window.Tools.DatabaseExplorer.ApiFile;
@@ -55,5 +56,14 @@ public partial class ApiFileExplorerViewModel : ObservableObject
 				.Select(f => f.CleanRequest())
 				.OrderBy(f => f.Id)),
 		});
+	}
+
+	[RelayCommand]
+	private void OpenApiLoader()
+	{
+		if (!SelectedFiles.Any()) return;
+
+		DialogLocalAPILoader2 dialog = new(SelectedFiles.ToList());
+		dialog.Show();
 	}
 }

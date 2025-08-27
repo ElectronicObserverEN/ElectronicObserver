@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 

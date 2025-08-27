@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
@@ -9,9 +12,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 

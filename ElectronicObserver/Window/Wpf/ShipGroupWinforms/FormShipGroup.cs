@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Observer;
@@ -15,7 +16,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 

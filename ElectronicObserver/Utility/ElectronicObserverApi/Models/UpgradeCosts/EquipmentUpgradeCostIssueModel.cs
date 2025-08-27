@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models.UpgradeCosts;
 
@@ -17,5 +17,5 @@ public class EquipmentUpgradeCostIssueModel
 
 	[JsonPropertyName("equipmentId")] public EquipmentId EquipmentId { get; set; }
 
-	[JsonPropertyName("upgradeStage")] public UpgradeStage UpgradeStage { get; set; }
+	[JsonPropertyName("upgradeLevel")] public UpgradeLevel UpgradeLevel { get; set; }
 }

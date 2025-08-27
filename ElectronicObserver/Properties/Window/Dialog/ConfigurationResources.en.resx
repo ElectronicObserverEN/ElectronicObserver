@@ -637,9 +637,6 @@ It only works if automatic refresh is enabled. May increase processing load.</va
   <data name="Log_PlayTime" xml:space="preserve">
     <value>Play time</value>
   </data>
-  <data name="checkBoxUseSecretaryIconForRPC" xml:space="preserve">
-    <value>Use secretary icon as game picture</value>
-  </data>
   <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
     <value>Enable TsunDb submission</value>
   </data>
@@ -689,11 +686,11 @@ It only works if automatic refresh is enabled. May increase processing load.</va
     <value>The proxy auto-config script has been saved.
 The file path was copied to clipboard, paste it to the proxy settings in Internet Explorer.</value>
   </data>
-  <data name="FailedToSavePac" xml:space="preserve">
-    <value>Failed to save proxy auto-config script.</value>
-  </data>
   <data name="PacSavedTitle" xml:space="preserve">
     <value>PAC Script Saved</value>
+  </data>
+  <data name="FailedToSavePac" xml:space="preserve">
+    <value>Failed to save proxy auto-config script.</value>
   </data>
   <data name="PlayerVolumeWillBeSet" xml:space="preserve">
     <value>BGM player volume will be set to {0}.
@@ -711,14 +708,14 @@ Are you sure?</value>
   <data name="Language_Japanese" xml:space="preserve">
     <value>Japanese</value>
   </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>Use Gadget Redirect *</value>
+  </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>You should restart EO after changing the theme or language.</value>
   </data>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>Language:</value>
-  </data>
-  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
-    <value>Use Gadget Redirect *</value>
   </data>
   <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
     <value>Redirect the gadget api call to bypass the foreigner block.
@@ -774,5 +771,44 @@ For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_co
   </data>
   <data name="Notification_Training" xml:space="preserve">
     <value>Training plan completed</value>
+  </data>
+  <data name="DataSubmission_BonodereIntegration" xml:space="preserve">
+    <value>Bonodere integration</value>
+  </data>
+  <data name="DataSubmission_LoggedInAs" xml:space="preserve">
+    <value>Logged in as</value>
+  </data>
+  <data name="DataSubmission_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="DataSubmission_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="DataSubmission_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="DataSubmission_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="DataSubmission_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
+    <value>Data submission FAQ</value>
+  </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>Chinese (Simplified)</value>
+  </data>
+  <data name="Language_Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Control_DiscordRPC_Icon" xml:space="preserve">
+    <value>Discord RPC icon:</value>
+  </data>
+  <data name="Control_DiscordRPC_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
+    <value>Secretary</value>
   </data>
 </root>

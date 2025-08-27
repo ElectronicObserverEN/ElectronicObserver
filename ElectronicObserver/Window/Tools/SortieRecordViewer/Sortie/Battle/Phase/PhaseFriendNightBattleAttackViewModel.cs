@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -64,7 +64,7 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 		}
 
 		DamageDisplay =
-			$"[{ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(attackType)}] " +
+			$"[{Core.Types.Attacks.NightAttack.AttackDisplay(attackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Data;
 
@@ -592,7 +592,7 @@ public static class MissionClearCondition
 		/// </summary>
 		public ReadOnlyCollection<string> FailureReason => failureReason.AsReadOnly();
 
-		private IFleetData? TargetFleet { get; }
+		public IFleetData? TargetFleet { get; }
 		private IEnumerable<IShipData> Members => (TargetFleet?.MembersInstance ?? Enumerable.Empty<IShipData?>())
 			.Where(s => s is not null)
 			.Cast<IShipData>();

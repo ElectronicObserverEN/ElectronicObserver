@@ -13,5 +13,4 @@ public class ApiEventmap
 
 	[JsonPropertyName("api_state")]
 	public int ApiState { get; set; }
-
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using ElectronicObserverTypes.Attacks;
+using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

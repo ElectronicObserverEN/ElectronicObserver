@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AA" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="ShipBannerToolTip" xml:space="preserve">
+    <value>Haga clic con el botón derecho para abrir el visor de imágenes.</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
+  </data>
+  <data name="ActionReport" xml:space="preserve">
+    <value>Informe de acción</value>
+  </data>
+  <data name="AntiBomb" xml:space="preserve">
+    <value>Antibombardero</value>
+  </data>
+  <data name="TitleHP" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="StripMenu_File_MergeDefaultRecord" xml:space="preserve">
+    <value>Actualizar desde el registro predeterminado (&amp;M)</value>
+  </data>
+  <data name="StripMenu_Edit_CopySpecialEquipmentTable" xml:space="preserve">
+    <value>Copiar tabla de equipamiento especial (&amp;S)</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Vacío</value>
+  </data>
+  <data name="RightClickToOpenInNewWindow" xml:space="preserve">
+    <value>Haz clic derecho para abrir en una nueva ventana</value>
+  </data>
+  <data name="RemodelBeforeShipNameToolTip" xml:space="preserve">
+    <value>Abrir con clic izquierdo.
+Haz clic derecho para abrir en una nueva ventana.</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torp</value>
+  </data>
+  <data name="Installation" xml:space="preserve">
+    <value>Instalación</value>
+  </data>
+  <data name="FailedToFindMapOrRecipe" xml:space="preserve">
+    <value>No se encontraron mapas o fórmulas que dejen caer a {0}.</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>Evasión</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>Intercepción</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>Suerte</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>Receta</value>
+  </data>
+  <data name="SpecifyTargetShip" xml:space="preserve">
+    <value>Por favor, selecciona un barco</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
+    <value>|ID del barco|Barco|Equipable|No equipable|</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
+    <value>|ID del barco|Barco|ID de equipamiento|Equipable|</value>
+  </data>
+  <data name="StripMenu_View_ShowShipGraphicViewer" xml:space="preserve">
+    <value>Visor de Imágenes de Barcos (&amp;V)</value>
+  </data>
+  <data name="ShipClassId" xml:space="preserve">
+    <value>ID de clase de barco</value>
+  </data>
+  <data name="ResourceNameToolTip" xml:space="preserve">
+    <value>Nombre del recurso: {0}  
+Versión gráfica: {1}  
+Versión de voz: {2}  
+Versión de voz en puerto: {3}  
+({4})</value>
+  </data>
+  <data name="ParameterLevelToolTip" xml:space="preserve">
+    <value>Se mostrarán los valores estimados según el nivel especificado. </value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>FP</value>
+  </data>
+  <data name="StripMenu_Edit_GoogleShipName" xml:space="preserve">
+    <value>Buscar nombre del barco en DuckDuckGo </value>
+  </data>
+  <data name="StripMenu_Edit_CopyShipData" xml:space="preserve">
+    <value>Copiar &amp;datos del barco &amp;Data</value>
+  </data>
+  <data name="StripMenu_Edit_CopyShipName" xml:space="preserve">
+    <value>Copiar &amp;nombre del barco &amp;Name</value>
+  </data>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>Editar parámetros</value>
+  </data>
+  <data name="ShipClassUnknown" xml:space="preserve">
+    <value>Clase de barco desconocida</value>
+  </data>
+  <data name="HpMinToolTip" xml:space="preserve">
+    <value>Después de la modernización: {0} (+{1})  </value>
+  </data>
+  <data name="HpMaxToolTip" xml:space="preserve">
+    <value>Después de la modernización: {0} (+{1})  
+(max HP interno: {2}) </value>
+  </data>
+  <data name="DefaultRange" xml:space="preserve">
+    <value>Alcance base</value>
+  </data>
+  <data name="ShipId" xml:space="preserve">
+    <value>ID del barco:</value>
+  </data>
+  <data name="ReinforcementSlot" xml:space="preserve">
+    <value>Slot de refuerzo</value>
+  </data>
+  <data name="NoShipSelectedCaption" xml:space="preserve">
+    <value>Ningún barco seleccionado</value>
+  </data>
+  <data name="MapOrRecipeSearchCaption" xml:space="preserve">
+    <value>Búsqueda por mapa o método de obtención</value>
+  </data>
+  <data name="SelectAShip" xml:space="preserve">
+    <value>Por favor, seleccione un barco.</value>
+  </data>
+  <data name="AviationMaterial" xml:space="preserve">
+    <value>Material de armamento aéreo nuevo</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>Bombardeo</value>
+  </data>
+</root>

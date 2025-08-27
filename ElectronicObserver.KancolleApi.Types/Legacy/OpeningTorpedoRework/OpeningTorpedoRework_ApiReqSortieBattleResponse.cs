@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 

@@ -56,8 +56,11 @@ public class ApiPictureBookList
 	[JsonPropertyName("api_souk")]
 	public int ApiSouk { get; set; }
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="List{T}"/> of <see cref="int"/>s.
+	/// </summary>
 	[JsonPropertyName("api_state")]
-	public List<List<int>> ApiState { get; set; } = new();
+	public List<object> ApiState { get; set; } = new();
 
 	[JsonPropertyName("api_stype")]
 	public int? ApiStype { get; set; }

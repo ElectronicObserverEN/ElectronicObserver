@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 

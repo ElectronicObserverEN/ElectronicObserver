@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DiscordRPC;
-using ElectronicObserver.Observer;
 
 namespace ElectronicObserver.Data.DiscordRPC;
 

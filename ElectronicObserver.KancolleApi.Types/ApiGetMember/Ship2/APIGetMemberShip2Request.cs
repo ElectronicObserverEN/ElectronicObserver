@@ -2,12 +2,15 @@
 
 public class ApiGetMemberShip2Request
 {
-	[JsonPropertyName("api_sort_key")]
-	public string ApiSortKey { get; set; } = "";
+	[JsonPropertyName("api_token")]
+	public required string ApiToken { get; set; }
 
 	[JsonPropertyName("api_verno")]
-	public string ApiVerno { get; set; } = "";
+	public required string ApiVerno { get; set; }
+
+	[JsonPropertyName("api_sort_key")]
+	public required string ApiSortKey { get; set; }
 
 	[JsonPropertyName("spi_sort_order")]
-	public string SpiSortOrder { get; set; } = "";
+	public required string SpiSortOrder { get; set; }
 }

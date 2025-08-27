@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Window;
-
-namespace ElectronicObserver.ViewModels.Translations;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 
 public class FormWindowCaptureTranslationViewModel : TranslationBaseViewModel
 {

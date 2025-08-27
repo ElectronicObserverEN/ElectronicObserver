@@ -1,68 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Media;
+using NAudio.Wave;
 
 
 namespace ElectronicObserver.Utility;
 
 public class EOMediaPlayer
 {
-	private MediaPlayer MediaPlayer { get; }
+	private WaveOutEvent MediaPlayer { get; } = new();
+	private AudioFileReader? AudioFile { get; set; }
 
 	public event Action MediaEnded = delegate { };
 
-	private List<string> Playlist { get; set; }
-	private List<string> RealPlayList { get; set; }
+	public List<string> Playlist { get; private set; } = [];
+	private List<string> RealPlayList { get; set; } = [];
 
-	private Random Rand { get; }
-
+	/// <summary>
+	/// Flag to prevent looping. <br />
+	/// When the song ends, if looping is enabled, the song will be restarted. <br />
+	/// A song can end in 2 different ways: <br />
+	/// - Actual end of the song (this property should be false and the song should loop) <br />
+	/// - <see cref="Stop"/> gets called (this property should be true and the song should not loop)
+	/// </summary>
+	private bool IsManualStop { get; set; }
 
 	/// <summary>
 	/// 対応している拡張子リスト
 	/// </summary>
-	public static readonly ReadOnlyCollection<string> SupportedExtensions =
-		new(new List<string>() {
-			"asf",
-			"wma",
-			"mp2",
-			"mp3",
-			"mid",
-			"midi",
-			"rmi",
-			"aif",
-			"aifc",
-			"aiff",
-			"au",
-			"snd",
-			"wav",
-			"m4a",
-			"aac",
-			"flac",
-			"mka",
-		});
+	public static List<string> SupportedExtensions { get; } =
+	[
+		"asf",
+		"wma",
+		"mp2",
+		"mp3",
+		"mid",
+		"midi",
+		"rmi",
+		"aif",
+		"aifc",
+		"aiff",
+		"au",
+		"snd",
+		"wav",
+		"m4a",
+		"aac",
+		"flac",
+		"mka",
+	];
 
-	private static readonly Regex SupportedFileName = new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled, TimeSpan.FromSeconds(30));
+	private static Regex SupportedFileName { get; } =
+		new(".*\\.(" + string.Join("|", SupportedExtensions) + ")", RegexOptions.Compiled, TimeSpan.FromSeconds(30));
 
 
 	public EOMediaPlayer()
 	{
-		MediaPlayer = new MediaPlayer();
-
-		MediaPlayer.MediaOpened += WMP_MediaOpened;
-		MediaPlayer.MediaEnded += WMP_MediaEnded;
-
-		IsLoop = false;
-		_isShuffle = false;
-		IsMute = false;
-		LoopHeadPosition = TimeSpan.Zero;
-		AutoPlay = false;
-		Playlist = new List<string>();
-		RealPlayList = new List<string>();
-		Rand = new Random();
+		MediaPlayer.PlaybackStopped += WMP_MediaEnded;
 
 		MediaEnded += MediaPlayer_MediaEnded;
 	}
@@ -73,16 +68,36 @@ public class EOMediaPlayer
 	/// </summary>
 	public string SourcePath
 	{
-		get => MediaPlayer.Source?.ToString() ?? string.Empty;
+		get => AudioFile?.FileName ?? string.Empty;
 		set
 		{
-			if (MediaPlayer.Source?.ToString() != value && !string.IsNullOrEmpty(value))
+			if (AudioFile?.FileName != value && !string.IsNullOrEmpty(value))
 			{
-				MediaPlayer.Open(new(value, UriKind.RelativeOrAbsolute));
+				Close();
+
+				AudioFile = new(value)
+				{
+					Volume = NormalizedInternalVolume
+				};
+
+				MediaPlayer.Init(AudioFile);
 			}
 		}
 	}
 
+	/// <summary>
+	/// Mute sets volume to 0, this property tracks the actual volume.
+	/// </summary>
+	private int InternalVolume { get; set; }
+
+	/// <summary>
+	/// For setting the AudioFile volume value.
+	/// </summary>
+	private float NormalizedInternalVolume => IsMute switch
+	{
+		true => 0,
+		_ => (float)InternalVolume / 100,
+	};
 
 	/// <summary>
 	/// 音量
@@ -91,8 +106,16 @@ public class EOMediaPlayer
 	/// </summary>
 	public int Volume
 	{
-		get => (int)(MediaPlayer.Volume * 100);
-		set => MediaPlayer.Volume = (double)value / 100;
+		get => InternalVolume;
+		set
+		{
+			InternalVolume = value;
+
+			if (AudioFile is not null)
+			{
+				AudioFile.Volume = NormalizedInternalVolume;
+			}
+		}
 	}
 
 	/// <summary>
@@ -100,8 +123,16 @@ public class EOMediaPlayer
 	/// </summary>
 	public bool IsMute
 	{
-		get => MediaPlayer.IsMuted;
-		set => MediaPlayer.IsMuted = value;
+		get;
+		set
+		{
+			field = value;
+
+			if (AudioFile is not null)
+			{
+				AudioFile.Volume = NormalizedInternalVolume;
+			}
+		}
 	}
 
 
@@ -113,31 +144,27 @@ public class EOMediaPlayer
 	/// <summary>
 	/// ループ時の先頭 (秒単位)
 	/// </summary>
-	public TimeSpan LoopHeadPosition { get; set; }
+	public TimeSpan LoopHeadPosition { get; set; } = TimeSpan.Zero;
 
 
 	/// <summary>
 	/// 現在の再生地点 (秒単位)
 	/// </summary>
-	public TimeSpan CurrentPosition
+	private TimeSpan CurrentPosition
 	{
-		get => MediaPlayer.Position;
-		set => MediaPlayer.Position = value;
+		get => AudioFile?.CurrentTime ?? TimeSpan.Zero;
+		set
+		{
+			if (AudioFile is null) return;
+
+			AudioFile.CurrentTime = value;
+		}
 	}
 
 	/// <summary>
 	/// 再生状態
 	/// </summary>
-	public PlayState PlayState { get; set; }
-
-	/// <summary>
-	/// プレイリストのコピーを取得します。
-	/// </summary>
-	/// <returns></returns>
-	public List<string> GetPlaylist()
-	{
-		return new List<string>(Playlist);
-	}
+	public PlayState PlayState { get; private set; }
 
 	/// <summary>
 	/// プレイリストを設定します。
@@ -145,18 +172,21 @@ public class EOMediaPlayer
 	/// <param name="list"></param>
 	public void SetPlaylist(IEnumerable<string>? list)
 	{
-		if (list is null)
-			Playlist = new List<string>();
-		else
-			Playlist = list.Distinct().ToList();
+		Playlist = list switch
+		{
+			null => [],
+			_ => list.Distinct().ToList()
+		};
 
 		UpdateRealPlaylist();
 	}
 
 
-	public static IEnumerable<string> SearchSupportedFiles(string path, System.IO.SearchOption option = System.IO.SearchOption.TopDirectoryOnly)
+	private static IEnumerable<string> SearchSupportedFiles(string path, System.IO.SearchOption option = System.IO.SearchOption.TopDirectoryOnly)
 	{
-		return System.IO.Directory.EnumerateFiles(path, "*", option).Where(s => SupportedFileName.IsMatch(s));
+		return System.IO.Directory
+			.EnumerateFiles(path, "*", option)
+			.Where(s => SupportedFileName.IsMatch(s));
 	}
 
 	/// <summary>
@@ -171,41 +201,40 @@ public class EOMediaPlayer
 
 
 
-	private int _playingIndex;
 	/// <summary>
 	/// 現在再生中の曲のプレイリスト中インデックス
 	/// </summary>
 	private int PlayingIndex
 	{
-		get => _playingIndex;
+		get;
 		set
 		{
-			if (_playingIndex != value)
+			if (field != value)
 			{
 
-				if (value < 0 || RealPlayList.Count <= value)
-					return;
+				if (value < 0 || RealPlayList.Count <= value) return;
 
-				_playingIndex = value;
-				SourcePath = RealPlayList[_playingIndex];
+				field = value;
+				SourcePath = RealPlayList[field];
 				if (AutoPlay)
+				{
 					Play();
+				}
 			}
 		}
 	}
 
-	private bool _isShuffle;
 	/// <summary>
 	/// シャッフル再生するか
 	/// </summary>
 	public bool IsShuffle
 	{
-		get => _isShuffle; 
-		set
+		get;
+		init
 		{
-			bool changed = _isShuffle != value;
+			bool changed = field != value;
 
-			_isShuffle = value;
+			field = value;
 
 			if (changed)
 			{
@@ -217,7 +246,7 @@ public class EOMediaPlayer
 	/// <summary>
 	/// 曲が終了したとき自動で次の曲を再生するか
 	/// </summary>
-	public bool AutoPlay { get; set; }
+	public bool AutoPlay { get; init; }
 
 
 
@@ -228,19 +257,17 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Play()
 	{
-		if (RealPlayList.Count > 0 && SourcePath != RealPlayList[_playingIndex])
-			SourcePath = RealPlayList[_playingIndex];
+		if (RealPlayList.Count > 0 && SourcePath != RealPlayList[PlayingIndex])
+		{
+			SourcePath = RealPlayList[PlayingIndex];
+		}
 
-		MediaPlayer.Position = LoopHeadPosition;
+		if (AudioFile is null) return;
+
+		AudioFile.CurrentTime = LoopHeadPosition;
 		MediaPlayer.Play();
-	}
 
-	/// <summary>
-	/// ポーズ
-	/// </summary>
-	public void Pause()
-	{
-		MediaPlayer.Pause();
+		PlayState = PlayState.Playing;
 	}
 
 	/// <summary>
@@ -248,6 +275,13 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Stop()
 	{
+		// the flag only gets wiped on media ended
+		// so if you set the flag when there's no media playing, it never gets wiped
+		if (MediaPlayer.PlaybackState is PlaybackState.Playing)
+		{
+			IsManualStop = true;
+		}
+
 		MediaPlayer.Stop();
 	}
 
@@ -256,7 +290,9 @@ public class EOMediaPlayer
 	/// </summary>
 	public void Close()
 	{
-		MediaPlayer.Close();
+		MediaPlayer.Stop();
+		AudioFile?.Dispose();
+		AudioFile = null;
 	}
 
 
@@ -268,7 +304,10 @@ public class EOMediaPlayer
 		if (PlayingIndex >= RealPlayList.Count - 1)
 		{
 			if (IsShuffle)
+			{
 				UpdateRealPlaylist();
+			}
+
 			PlayingIndex = 0;
 		}
 		else
@@ -277,7 +316,9 @@ public class EOMediaPlayer
 		}
 
 		if (AutoPlay)     // Playing
+		{
 			Play();
+		}
 	}
 
 
@@ -285,8 +326,7 @@ public class EOMediaPlayer
 	{
 		if (!IsShuffle)
 		{
-			RealPlayList = new List<string>(Playlist);
-
+			RealPlayList = [.. Playlist];
 		}
 		else
 		{
@@ -297,25 +337,25 @@ public class EOMediaPlayer
 			if (RealPlayList.Count > 1 && SourcePath == RealPlayList[0])
 			{
 				RealPlayList = RealPlayList.Skip(1).ToList();
-				RealPlayList.Insert(Rand.Next(1, RealPlayList.Count + 1), SourcePath);
+				RealPlayList.Insert(Random.Shared.Next(1, RealPlayList.Count + 1), SourcePath);
 			}
 		}
 
-		int index = RealPlayList.IndexOf(SourcePath);
-		PlayingIndex = index != -1 ? index : 0;
-	}
-
-	private void WMP_MediaOpened(object? sender, EventArgs e)
-	{
-		PlayState = PlayState.Playing;
+		PlayingIndex = RealPlayList.IndexOf(SourcePath) switch
+		{
+			-1 => 0,
+			int index => index,
+		};
 	}
 
 	private void WMP_MediaEnded(object? sender, EventArgs e)
 	{
-		if (IsLoop)
+		if (IsLoop && !IsManualStop && AudioFile is not null)
 		{
-			MediaPlayer.Position = CurrentPosition;
+			AudioFile.CurrentTime = CurrentPosition;
 			CurrentPosition = LoopHeadPosition;
+			MediaPlayer.Play();
+			return;
 		}
 
 		PlayState = PlayState.None;
@@ -328,11 +368,8 @@ public class EOMediaPlayer
 	{
 		// プレイリストの処理
 		if (!IsLoop && AutoPlay)
-			Next();
-
-		if (IsLoop)
 		{
-			MediaPlayer.Play();
+			Next();
 		}
 	}
 
@@ -342,5 +379,6 @@ public class EOMediaPlayer
 	{
 		await Task.Delay(10);
 		MediaEnded();
+		IsManualStop = false;
 	}
 }

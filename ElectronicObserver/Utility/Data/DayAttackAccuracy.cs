@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -70,6 +70,7 @@ public static class DayAttackAccuracy
 		EquipmentTypes.MainGunLarge or
 		EquipmentTypes.MainGunLarge2 or
 		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.AAShell or
 		EquipmentTypes.APShell or
 		EquipmentTypes.AADirector or
 		EquipmentTypes.Searchlight or

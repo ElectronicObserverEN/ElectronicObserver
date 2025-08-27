@@ -145,4 +145,7 @@
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
   </data>
+  <data name="ShowQuickExport" xml:space="preserve">
+    <value>クイックエクスポートを表示</value>
+  </data>
 </root>

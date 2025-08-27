@@ -26,16 +26,20 @@ public partial class ConfigurationNotificationDialogViewModel : WindowViewModelB
 	{
 		if (!Config.TrySaveConfiguration()) return;
 
-		Config.StopSound();
-
 		DialogResult = true;
 	}
 
 	[RelayCommand]
 	private void Cancel()
 	{
-		Config.StopSound();
-
 		DialogResult = false;
+	}
+
+	/// <inheritdoc />
+	public override void Closed()
+	{
+		base.Closed();
+
+		Config.StopSound();
 	}
 }

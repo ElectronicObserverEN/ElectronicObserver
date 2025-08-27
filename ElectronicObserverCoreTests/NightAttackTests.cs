@@ -1,23 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
 
 [Collection(DatabaseCollection.Name)]
-public class NightAttackTests
+public class NightAttackTests(DatabaseFixture db)
 {
-	private DatabaseFixture Db { get; }
+	private DatabaseFixture Db { get; } = db;
 	private static int Precision => 3;
-
-	public NightAttackTests(DatabaseFixture db)
-	{
-		Db = db;
-	}
 
 	[Fact]
 	public void NightAttackTest1()
@@ -597,7 +592,7 @@ public class NightAttackTests
 	{
 		ShipDataMock souya645 = new(Db.MasterShips[ShipId.Souya645]);
 		ShipDataMock souya650 = new(Db.MasterShips[ShipId.Souya650]);
-		
+
 		Assert.Empty(souya645.GetNightAttacks());
 		Assert.Empty(souya650.GetNightAttacks());
 
@@ -605,11 +600,45 @@ public class NightAttackTests
 		ShipDataMock luigiKai = new(Db.MasterShips[ShipId.LuigiTorelliKai]);
 		ShipDataMock cappellini = new(Db.MasterShips[ShipId.CCappellini]);
 		ShipDataMock cappelliniKai = new(Db.MasterShips[ShipId.CCappelliniKai]);
-		
+
 		Assert.NotEmpty(luigi.GetNightAttacks());
 		Assert.NotEmpty(cappellini.GetNightAttacks());
-		
+
 		Assert.Empty(luigiKai.GetNightAttacks());
 		Assert.Empty(cappelliniKai.GetNightAttacks());
+	}
+
+	[Fact(DisplayName = "Swordfish (night capable aircraft) alone isn't enough for a night air attack")]
+	public void NightAttackTest14()
+	{
+		ShipDataMock ryuuhou = new(Db.MasterShips[ShipId.RyuuhouKaiNi])
+		{
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_SwordfishMk_III_Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
+			],
+		};
+
+		List<NightAttack> attacks = ryuuhou.GetNightAttacks().ToList();
+
+		Assert.Empty(attacks);
+	}
+
+	[Fact(DisplayName = "Night carriers need a night fighter or attacker to attack")]
+	public void NightAttackTest15()
+	{
+		ShipDataMock ryuuhou = new(Db.MasterShips[ShipId.RyuuhouKaiNi])
+		{
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
+			],
+		};
+
+		List<NightAttack> attacks = ryuuhou.GetNightAttacks().ToList();
+
+		Assert.Single(attacks);
 	}
 }

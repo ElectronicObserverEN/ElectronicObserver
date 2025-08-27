@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -46,8 +46,8 @@ public static class NightAttackAccuracy
 		EquipmentTypes.RadarSmall or
 		EquipmentTypes.RadarLarge or
 		EquipmentTypes.RadarLarge2 or
-		EquipmentTypes.APShell or
 		EquipmentTypes.AAShell or
+		EquipmentTypes.APShell or
 		EquipmentTypes.LandingCraft or
 		EquipmentTypes.SpecialAmphibiousTank or
 		EquipmentTypes.ArmyInfantry or

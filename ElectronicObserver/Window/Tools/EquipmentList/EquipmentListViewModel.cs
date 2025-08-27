@@ -8,15 +8,14 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
-using ElectronicObserver.Window.Wpf.Fleet;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Window.Tools.EquipmentList;
 

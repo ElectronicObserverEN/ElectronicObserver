@@ -11,12 +11,12 @@ using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types.Mocks;
 using Microsoft.EntityFrameworkCore;
 using BattleRanks = ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums.BattleRank;
 using BattleBaseAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleBaseAirRaid;
 using Xunit;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserverCoreTests.BattleRank;
 
@@ -53,7 +53,7 @@ public class BattleRankTests(DatabaseFixture database)
 
 		List<SortieRecordViewModel> sorties = await db.Sorties
 			.Include(s => s.ApiFiles)
-			.Select(s => new SortieRecordViewModel(s, s.ApiFiles.Select(f => f.TimeStamp).Min()))
+			.Select(s => new SortieRecordViewModel(s, s.ApiFiles.Select(f => f.TimeStamp).Min(), null!))
 			.ToListAsync();
 
 		return sorties;
@@ -65,7 +65,7 @@ public class BattleRankTests(DatabaseFixture database)
 		await db.Database.EnsureDeletedAsync();
 		await db.Database.EnsureCreatedAsync();
 
-		ToolService toolService = new(new());
+		ToolService toolService = new(new(), null!);
 
 		List<SortieRecordViewModel> sortieRecords = await MakeSortieRecords(db, fileName);
 

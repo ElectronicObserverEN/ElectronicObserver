@@ -288,7 +288,7 @@ Are you sure?</value>
     <value>Resource &amp;Chart</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>&amp;View</value>
+    <value>_View</value>
   </data>
   <data name="View_Arsenal" xml:space="preserve">
     <value>&amp;Arsenal</value>
@@ -455,5 +455,8 @@ Do you want to open this github issue?</value>
   </data>
   <data name="MaintenanceHasStarted" xml:space="preserve">
     <value>Maintenance has started</value>
+  </data>
+  <data name="ResetFloatingWindows" xml:space="preserve">
+    <value>Reset floating windows</value>
   </data>
 </root>

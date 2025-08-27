@@ -401,6 +401,11 @@
 				<Style Selector="DataGridCell.Ammo">
 					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="ToolTip.Tip" Value="{Binding Ammo.Rate, StringFormat=P2}" />
 				</Style>
+
+				<Style Selector="DataGridCell.IsLocked">
+					<Setter x:DataType="shipGroup:ShipGroupItemViewModel" Property="Foreground" Value="{Binding ., Converter={x:Static shipGroup:Converters.ShipToLockForegroundConverter}, Mode=OneWay}" />
+					<Setter Property="HorizontalContentAlignment" Value="Center" />
+				</Style>
 			</DataGrid.Styles>
 
 			<Interaction.Behaviors>
@@ -773,10 +778,12 @@
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_NightBattlePower, ElementName=ShipGroupControl}"
 					/>
 
-				<DataGridCheckBoxColumn
+				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding Locked, Mode=OneWay}"
+					Binding="{Binding ., Converter={x:Static shipGroup:Converters.ShipToLockConverter}, Mode=OneWay}"
+					CellStyleClasses="IsLocked"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Locked, ElementName=ShipGroupControl}"
+					SortMemberPath="LockSortValue"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"

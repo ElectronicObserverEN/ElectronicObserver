@@ -305,4 +305,7 @@
   <data name="ClearedQuest" xml:space="preserve">
     <value>任務『{0}』を達成しました。</value>
   </data>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>クリップボードへのコピーに失敗しました</value>
+  </data>
 </root>

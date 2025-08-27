@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CefSharp;
 using CefSharp.Fluent;
@@ -61,5 +62,13 @@ public partial class AirControlSimulatorWindow
 	private async Task InitializeAsync()
 	{
 		await Browser.LoadUrlAsync(ViewModel.Uri);
+	}
+
+	/// <inheritdoc />
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		base.OnClosing(e);
+
+		Browser.Dispose();
 	}
 }

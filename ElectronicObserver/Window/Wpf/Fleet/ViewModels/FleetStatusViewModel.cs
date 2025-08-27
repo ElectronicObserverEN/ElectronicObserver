@@ -5,11 +5,11 @@ using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -82,7 +82,10 @@ public partial class FleetStatusViewModel : ObservableObject
 			};
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
-			int tp = Calculator.GetTPDamage(fleet);
+			int tp = TpGauge.Normal.GetTp([fleet]);
+			int tankTpE2 = TpGauge.Spring25E2.GetTp([fleet]);
+			int tankTpE5 = TpGauge.Spring25E5.GetTp([fleet]);
+
 			bool hasZeroSlotAircraft = fleet.MembersInstance!
 				.Where(s => s is not null)
 				.Any(s => s.HasZeroSlotAircraft());
@@ -125,7 +128,11 @@ public partial class FleetStatusViewModel : ObservableObject
 				members.Sum(s => s.ExpeditionLOSTotal),
 				radar.Sum(),
 				radar.Count(i => i > 0),
-				zeroSlotWarning
+				zeroSlotWarning,
+				tankTpE2,
+				(int)(tankTpE2 * 0.7),
+				tankTpE5,
+				(int)(tankTpE5 * 0.7)
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();

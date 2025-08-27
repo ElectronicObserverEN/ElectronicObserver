@@ -3,14 +3,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Core.Types.Serialization.FitBonus;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
@@ -25,18 +24,18 @@ public static class GameDataExtensions
 		{ } => fleetData.Fleets.Select((f, i) => MakeFleet(f, i switch
 		{
 			0 or 1 => fleetData.CombinedFlag,
-			_ => 0,
+			_ => FleetType.Single,
 		})).ToList(),
 		_ => null,
 	};
 
 	[return: NotNullIfNotNull(nameof(fleet))]
-	public static IFleetData? MakeFleet(this SortieFleet? fleet, int combinedFlag) => fleet switch
+	public static IFleetData? MakeFleet(this SortieFleet? fleet, FleetType combinedFlag) => fleet switch
 	{
 		{ } => new FleetDataMock
 		{
 			Name = fleet.Name,
-			FleetType = (FleetType)combinedFlag,
+			FleetType = combinedFlag,
 			MembersInstance = new ReadOnlyCollection<IShipData?>(fleet.Ships.Select(MakeShip).ToList()),
 		},
 		_ => null,
@@ -216,8 +215,8 @@ public static class GameDataExtensions
 		AirCorpsID = ab.AirCorpsID,
 		Name = ab.Name,
 		Distance = ab.Distance,
-		Bonus_Distance = ab.Bonus_Distance,
-		Base_Distance = ab.Base_Distance,
+		BonusDistance = ab.BonusDistance,
+		BaseDistance = ab.BaseDistance,
 		ActionKind = ab.ActionKind,
 		StrikePoints = ab.StrikePoints,
 		Squadrons = ab.Squadrons.ToDictionary(kvp => kvp.Key, kvp => DeepClone(kvp.Value)),

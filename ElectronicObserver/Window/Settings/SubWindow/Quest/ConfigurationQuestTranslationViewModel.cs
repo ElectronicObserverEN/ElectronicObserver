@@ -1,5 +1,4 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Quest;
 

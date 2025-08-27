@@ -1,5 +1,4 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window;
 
 namespace ElectronicObserver.Common.Datagrid;
 public class ColumnSelectorTranslationViewModel : TranslationBaseViewModel

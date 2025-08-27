@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using ElectronicObserverTypes.Serialization.FitBonus;
+using ElectronicObserver.Core.Types.Serialization.FitBonus;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models;
 

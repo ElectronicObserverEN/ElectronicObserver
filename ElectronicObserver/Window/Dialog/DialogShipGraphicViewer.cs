@@ -6,12 +6,12 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Support;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog;
 

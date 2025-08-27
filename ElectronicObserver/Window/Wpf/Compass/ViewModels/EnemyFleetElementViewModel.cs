@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 

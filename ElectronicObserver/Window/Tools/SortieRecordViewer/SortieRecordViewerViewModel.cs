@@ -9,10 +9,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CsvHelper;
 using CsvHelper.Configuration;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.ContentDialogs;
 using ElectronicObserver.Common.ContentDialogs.ExportFilter;
@@ -35,6 +37,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
 	private FileService FileService { get; }
+	private ImageLoadService ImageLoadService { get; }
 	private SortieRecordMigrationService SortieRecordMigrationService { get; }
 	private ElectronicObserverContext Db { get; } = new();
 	private DataExportHelper DataExportHelper { get; }
@@ -77,6 +80,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public ContentDialogService? ContentDialogService { get; set; }
 
 	private SortieCostConfigurationViewModel SortieCostConfiguration { get; } = new();
+	[ObservableProperty] private bool _showQuickExport;
 
 	public bool IsDebug =>
 #if DEBUG
@@ -89,6 +93,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 		FileService = Ioc.Default.GetRequiredService<FileService>();
+		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
 		SortieRecordMigrationService = Ioc.Default.GetRequiredService<SortieRecordMigrationService>();
 		DataExportHelper = new(Db, ToolService);
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
@@ -140,8 +145,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		DataGridViewModel.ItemsSource.Clear();
 	}
 
-	private static Func<ElectronicObserverContext, int?, int?, DateTime, DateTime, IAsyncEnumerable<SortieRecordViewModel>> SortieQuery { get; }
-		= EF.CompileAsyncQuery((ElectronicObserverContext db, int? world, int? map, DateTime begin, DateTime end)
+	private static Func<ElectronicObserverContext, int?, int?, DateTime, DateTime, ImageLoadService, IAsyncEnumerable<SortieRecordViewModel>> SortieQuery { get; }
+		= EF.CompileAsyncQuery((ElectronicObserverContext db, int? world, int? map, DateTime begin, DateTime end, ImageLoadService imageLoadService)
 			=> db.Sorties
 				.Where(s => world == null || s.World == world)
 				.Where(s => map == null || s.Map == map)
@@ -149,7 +154,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				.Select(s => new { SortieRecord = s, s.ApiFiles.OrderBy(f => f.TimeStamp).First().TimeStamp, })
 				.Where(s => s.TimeStamp > begin)
 				.Where(s => s.TimeStamp < end)
-				.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp)));
+				.Select(s => new SortieRecordViewModel(s.SortieRecord, s.TimeStamp, imageLoadService)));
 
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task Search(CancellationToken ct)
@@ -165,7 +170,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			DateTime end = DateTimeEnd.ToUniversalTime();
 
 			List<SortieRecordViewModel> sorties = await Task.Run(async () =>
-				await SortieQuery(Db, world, map, begin, end).ToListAsync(ct), ct);
+				await SortieQuery(Db, world, map, begin, end, ImageLoadService).ToListAsync(ct), ct);
 
 			Sorties.Clear();
 

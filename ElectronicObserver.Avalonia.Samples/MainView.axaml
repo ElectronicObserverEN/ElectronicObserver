@@ -1,0 +1,29 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.Samples.MainView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:expeditionCalculator="clr-namespace:ElectronicObserver.Avalonia.ExpeditionCalculator;assembly=ElectronicObserver.Avalonia"
+	xmlns:local="clr-namespace:ElectronicObserver.Avalonia.Samples"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.Samples.ShipGroup"
+	xmlns:antiAirCutInUpdater="clr-namespace:ElectronicObserver.Avalonia.Samples.AntiAirCutInUpdater"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="local:MainViewModel"
+	mc:Ignorable="d"
+	>
+	<TabControl>
+		<TabItem Header="AACI">
+			<antiAirCutInUpdater:AntiAirCutInView DataContext="{Binding AntiAirCutInUpdater}" />
+		</TabItem>
+
+		<TabItem Header="Expedition">
+			<expeditionCalculator:ExpeditionCalculatorView DataContext="{Binding ExpeditionCalculator}" />
+		</TabItem>
+
+		<TabItem Header="Groups">
+			<shipGroup:ShipGroupSampleView DataContext="{Binding ShipGroup}" />
+		</TabItem>
+	</TabControl>
+</UserControl>

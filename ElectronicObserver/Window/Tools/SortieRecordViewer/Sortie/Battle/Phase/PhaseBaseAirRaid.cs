@@ -2,14 +2,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

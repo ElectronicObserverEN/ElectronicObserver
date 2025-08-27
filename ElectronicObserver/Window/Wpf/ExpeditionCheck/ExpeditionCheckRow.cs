@@ -1,31 +1,27 @@
 ﻿using System.Linq;
 using System.Windows.Media;
-using ElectronicObserver.Window.Dialog;
-using ElectronicObserverTypes;
-using static ElectronicObserver.Data.MissionClearCondition;
+using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 
 public class ExpeditionCheckRow
 {
-	public int AreaId { get; set; }
-	public int ExpeditionId { get; set; }
+	public required int AreaId { get; init; }
+	public required int ExpeditionId { get; init; }
 
-	public string ExpeditionDisplayId { get; set; }
-	public string AreaName { get; set; }
-	public string ExpeditionName { get; set; }
+	public required string ExpeditionDisplayId { get; init; }
+	public required string AreaName { get; init; }
+	public required string ExpeditionName { get; set; }
 
-	public MissionClearConditionResult Fleet1Result { get; set; }
+	public required MissionClearCondition.MissionClearConditionResult Fleet1Result { get; init; }
+	public required MissionClearCondition.MissionClearConditionResult Fleet2Result { get; init; }
+	public required MissionClearCondition.MissionClearConditionResult Fleet3Result { get; init; }
+	public required MissionClearCondition.MissionClearConditionResult Fleet4Result { get; init; }
+	public required MissionClearCondition.MissionClearConditionResult Conditions { get; init; }
 
-	public MissionClearConditionResult Fleet2Result { get; set; }
-
-	public MissionClearConditionResult Fleet3Result { get; set; }
-
-	public MissionClearConditionResult Fleet4Result { get; set; }
-
-	public MissionClearConditionResult Conditions { get; set; }
-
-	public ExpeditionType ExpeditionType { get; set; }
+	public required ExpeditionType ExpeditionType { get; init; }
 
 	public string IdDisplay => $"{ExpeditionDisplayId}: {AreaName}";
 
@@ -34,21 +30,22 @@ public class ExpeditionCheckRow
 	public SolidColorBrush Fleet3BackgroundColor => GetBackgroundColor(Fleet3Result).ToBrush();
 	public SolidColorBrush Fleet4BackgroundColor => GetBackgroundColor(Fleet4Result).ToBrush();
 	public SolidColorBrush WorldBackgroundColor => GetBackground().ToBrush();
+
 	public string Fleet1Text => GetText(Fleet1Result);
 	public string Fleet2Text => GetText(Fleet2Result);
 	public string Fleet3Text => GetText(Fleet3Result);
 	public string Fleet4Text => GetText(Fleet4Result);
 	public string ConditionText => GetSuccessText(Conditions);
 
-	public string? Fleet1Tooltip => GetResultTooltip(Fleet1Result);
-	public string? Fleet2Tooltip => GetResultTooltip(Fleet2Result);
-	public string? Fleet3Tooltip => GetResultTooltip(Fleet3Result);
-	public string? Fleet4Tooltip => GetResultTooltip(Fleet4Result);
-	public string? ConditionTooltip => GetSuccessToolTip(Conditions);
+	public string Fleet1Tooltip => GetResultTooltip(Fleet1Result);
+	public string Fleet2Tooltip => GetResultTooltip(Fleet2Result);
+	public string Fleet3Tooltip => GetResultTooltip(Fleet3Result);
+	public string Fleet4Tooltip => GetResultTooltip(Fleet4Result);
+	public string ConditionTooltip => GetSuccessToolTip(Conditions);
 
 	public int SortId => AreaId * 1000 + ExpeditionId;
 
-	private System.Drawing.Color GetBackgroundColor(MissionClearConditionResult result) => result?.IsSuceeded switch
+	private System.Drawing.Color GetBackgroundColor(MissionClearCondition.MissionClearConditionResult result) => result.IsSuceeded switch
 	{
 		false => Utility.Configuration.Config.UI.ThemeMode switch
 		{
@@ -57,9 +54,10 @@ public class ExpeditionCheckRow
 		},
 		_ => GetBackground()
 	};
+
 	private System.Drawing.Color GetBackground()
 	{
-		if(AreaId % 2 == 1 && AreaId != 7)
+		if (AreaId % 2 == 1 && AreaId != 7)
 		{
 			return Utility.Configuration.Config.UI.BackColor;
 		}
@@ -68,46 +66,74 @@ public class ExpeditionCheckRow
 			return Utility.Configuration.Config.UI.SubBackColor;
 		}
 	}
-	private string GetText(MissionClearConditionResult result) => result?.IsSuceeded switch
+
+	private string GetText(MissionClearCondition.MissionClearConditionResult result) => result.IsSuceeded switch
 	{
 		true => GetSuccessText(result),
 		false => string.Join(", ", result.FailureReason),
-		_ => ""
 	};
 
-	private string GetSuccessText(MissionClearConditionResult result) => result?.FailureReason.Any() switch
+	private string GetSuccessText(MissionClearCondition.MissionClearConditionResult result) => result.FailureReason.Any() switch
 	{
 		true => string.Join(", ", result.FailureReason),
 		false => ExpeditionType switch
 		{
 			ExpeditionType.CombatTypeTwoExpedition => result switch
 			{
-				{ SuccessType: BattleExpeditionSuccessType.GreatSuccess } => DialogRes.ExpeditionCheckDoubleOkSign,
-				_ => DialogRes.ExpeditionCheckOkSign
+				{ SuccessType: BattleExpeditionSuccessType.GreatSuccess } => DialogRes.ExpeditionCheckDoubleOkSign + GreatSuccessRate(result),
+				_ => GreatSuccessRate(result),
 			} + string.Join(", ", result.SuccessPercent),
 
-			ExpeditionType.CombatTypeOneExpedition => DialogRes.ExpeditionCheckOkSign + string.Join(", ", result.SuccessPercent),
-			_ => DialogRes.ExpeditionCheckOkSign
+			ExpeditionType.CombatTypeOneExpedition => GreatSuccessRate(result) + string.Join(", ", result.SuccessPercent),
+			_ => GreatSuccessRate(result),
 		},
-		_ => ""
 	};
 
-	private string? GetResultTooltip(MissionClearConditionResult result) => result?.IsSuceeded switch
+	private string GetResultTooltip(MissionClearCondition.MissionClearConditionResult result) => result.IsSuceeded switch
 	{
 		true => GetSuccessToolTip(result),
 		false => string.Join("\n", result.FailureReason),
-		_ => null
 	};
 
-
-	private string? GetSuccessToolTip(MissionClearConditionResult result) => result?.FailureReason.Any() switch
+	private string GetSuccessToolTip(MissionClearCondition.MissionClearConditionResult result) => result.FailureReason.Any() switch
 	{
 		true => string.Join(", ", result.FailureReason),
 		false => ExpeditionType switch
 		{
-			ExpeditionType.CombatTypeTwoExpedition or ExpeditionType.CombatTypeOneExpedition => string.Join("\n", result.SuccessPercent),
-			_ => null
+			ExpeditionType.CombatTypeTwoExpedition or
+			ExpeditionType.CombatTypeOneExpedition
+				=> string.Join("\n", [GreatSuccessRate(result), .. result.SuccessPercent]),
+
+			_ => GreatSuccessRate(result),
 		},
-		_ => null
 	};
+
+	private string GreatSuccessRate(MissionClearCondition.MissionClearConditionResult result)
+	{
+		string unknownGreatSuccess = $"{ExpeditionCalculatorResources.GreatSuccess} ???";
+
+		if (result.TargetFleet is not IFleetData fleet) return unknownGreatSuccess;
+		if (fleet.MembersInstance.FirstOrDefault() is not IShipData flagship) return unknownGreatSuccess;
+
+		Expedition? expedition = ExpeditionCalculatorData.Expeditions
+			.Find(e => e.Id == ExpeditionId);
+
+		if (expedition is null) return unknownGreatSuccess;
+
+		FleetInfoViewModel fleetInfo = new()
+		{
+			AllSparkled = fleet.MembersInstance.OfType<IShipData>().All(s => s.Condition > 49),
+			SparkleCount = fleet.MembersInstance.OfType<IShipData>().Count(s => s.Condition > 49),
+			DrumCount = fleet.MembersInstance
+				.OfType<IShipData>()
+				.SelectMany(s => s.AllSlotInstance)
+				.OfType<IEquipmentData>()
+				.Count(e => e.MasterEquipment.CategoryType is EquipmentTypes.TransportContainer),
+			FlagshipLevel = flagship.Level,
+		};
+
+		double greatSuccessRate = fleetInfo.GreatSuccessRate(expedition);
+
+		return $"{ExpeditionCalculatorResources.GreatSuccess} {greatSuccessRate:P2}";
+	}
 }

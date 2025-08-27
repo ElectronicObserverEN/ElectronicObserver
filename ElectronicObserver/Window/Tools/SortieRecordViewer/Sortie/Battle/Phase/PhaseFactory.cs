@@ -1,11 +1,11 @@
 ﻿// ReSharper disable MemberCanBeMadeStatic.Global
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

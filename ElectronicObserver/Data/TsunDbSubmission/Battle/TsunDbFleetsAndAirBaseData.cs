@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.TsunDbSubmission.Battle;
 
@@ -56,7 +56,7 @@ public class TsunDbFleetsAndAirBaseData : TsunDbEntity
 			.Min();
 
 		// --- Get the fleet type, if first fleet => flag of the combined fleet, else 0 (single fleet & strike force)
-		FleetType = sortiedFleet == 1 ? db.Fleet.CombinedFlag : 0;
+		FleetType = sortiedFleet == 1 ? (int)db.Fleet.CombinedFlag : 0;
 
 		// --- Fleet 1
 		Fleet1 = PrepareFleet(db.Fleet[sortiedFleet]);

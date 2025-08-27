@@ -5,10 +5,10 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Window.Tools.AirDefense;
 

@@ -9,10 +9,10 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 

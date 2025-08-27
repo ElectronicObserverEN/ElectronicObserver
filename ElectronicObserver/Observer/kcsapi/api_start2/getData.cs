@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Observer.kcsapi.api_start2;
 
@@ -138,7 +138,7 @@ public class getData : APIBase
 			{
 				db.MapArea[id].LoadFromResponse(APIName, elem);
 			}
-			
+
 			WorldModel? world = context.Worlds.Find(id);
 
 			if (world is null)
@@ -241,11 +241,14 @@ public class getData : APIBase
 			}
 		}
 
+		Dictionary<string, ApiMstEquipShip> specialEquippableCategories = JsonSerializer
+			.Deserialize<Dictionary<string, ApiMstEquipShip>>(data.api_mst_equip_ship.ToString());
 
-		foreach (var elem in data.api_mst_equip_ship)
+		foreach ((string key, ApiMstEquipShip value) in specialEquippableCategories)
 		{
-			int id = (int)elem.api_ship_id;
-			db.MasterShips[id].SpecialEquippableCategories = (int[])elem.api_equip_type;
+			int id = int.Parse(key);
+
+			db.MasterShips[id].SpecialEquippableCategories = [.. value.ApiEquipType.Keys.Select(int.Parse)];
 		}
 
 		Dictionary<string, ApiMstEquipExslotShip> expansionSlotData = JsonSerializer

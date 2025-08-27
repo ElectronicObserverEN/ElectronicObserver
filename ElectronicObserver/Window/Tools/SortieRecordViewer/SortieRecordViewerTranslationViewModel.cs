@@ -14,6 +14,9 @@ public class SortieRecordViewerTranslationViewModel : TranslationBaseViewModel
 	public string CopyLink => SortieRecordViewerResources.CopyLink;
 	public string Open => SortieRecordViewerResources.Open;
 
+	public string View => MainResources.View;
+	public string ShowQuickExport => SortieRecordViewerResources.ShowQuickExport;
+
 	public string Start => DropRecordViewerResources.Start;
 	public string End => DropRecordViewerResources.End;
 

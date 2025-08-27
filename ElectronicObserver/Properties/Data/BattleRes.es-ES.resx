@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AaciType" xml:space="preserve">
+    <value>Tipo AACI #{2} ( {0}, {1} )</value>
+  </data>
+  <data name="BattlePhaseOpeningAsw" xml:space="preserve">
+    <value>Apertura ASW</value>
+  </data>
+  <data name="AirBaseAirPower" xml:space="preserve">
+    <value>AS {0} (Base aérea {1})</value>
+  </data>
+  <data name="AirSquadronWave" xml:space="preserve">
+    <value>Oleada de escuadrón aéreo {0}</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>Superioridad Aérea</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>Elemento desconocido - ID:</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(vacío)</value>
+  </data>
+  <data name="Friendly" xml:space="preserve">
+    <value>Aliados</value>
+  </data>
+  <data name="Enemy" xml:space="preserve">
+    <value>Enemigos</value>
+  </data>
+  <data name="DameconActivated" xml:space="preserve">
+    <value>Personal de reparación activado</value>
+  </data>
+  <data name="SupportFleet" xml:space="preserve">
+    <value>Flota de apoyo</value>
+  </data>
+  <data name="Base" xml:space="preserve">
+    <value>Base {0}</value>
+  </data>
+  <data name="BossDebuffed" xml:space="preserve">
+    <value>Jefe debilitado: armadura destruida</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>Formación</value>
+  </data>
+  <data name="Engagement" xml:space="preserve">
+    <value>Modo de enfrentamiento</value>
+  </data>
+  <data name="EnemyContact" xml:space="preserve">
+    <value>Contacto con enemigo</value>
+  </data>
+  <data name="OutputFriendBase" xml:space="preserve">
+    <value>#{0}: Escuadrón de base aérea #{1} HP: {2} / {3}</value>
+  </data>
+  <data name="CombinedFleetRadarAmbush" xml:space="preserve">
+    <value>Emboscada con radar de flota combinada</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Participante</value>
+  </data>
+  <data name="EnemyCombinedFleetNightDayBattle" xml:space="preserve">
+    <value>Expedición de apoyo nocturna</value>
+  </data>
+  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
+    <value>Incursión aérea en base {0}-{1}-{2} ({3}, Daño recibido: {4}, {5})</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>Protegido</value>
+  </data>
+  <data name="GoddessActivated" xml:space="preserve">
+    <value>Diosa de reparación de emergencia activada</value>
+  </data>
+  <data name="EnemyAirSquadron" xml:space="preserve">
+    <value>Escuadrón aéreo enemigo</value>
+  </data>
+  <data name="FriendlyAirSquadron" xml:space="preserve">
+    <value>Escuadrón aéreo aliado</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>Entrenamiento</value>
+  </data>
+  <data name="ClearProgress" xml:space="preserve">
+    <value>Progreso: {0} / {1} veces</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="SuijouButaiDayBattle" xml:space="preserve">
+    <value>Batalla diurna de flota combinada - unidades de superficie</value>
+  </data>
+  <data name="PhaseSearching" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="BattleFinishedPractice" xml:space="preserve">
+    <value>Practicado con la flota {2} de {1} {0} (Rango: {3}, Exp almirante+{4}, Exp barco+{5})</value>
+  </data>
+  <data name="BattleFinishedSortie" xml:space="preserve">
+    <value>Batalla en {0}-{1}-{2} contra {3} (Rango: {4}, Exp almirante+{5}, Exp barco+{6})</value>
+  </data>
+  <data name="HasLeveledUp" xml:space="preserve">
+    <value>{0} ha subido al nivel {1}</value>
+  </data>
+  <data name="BattlePhaseLandBasedJet" xml:space="preserve">
+    <value>Ataque aéreo a reacción de base terrestre</value>
+  </data>
+  <data name="BattlePhaseJet" xml:space="preserve">
+    <value>Ataque aéreo con Jets</value>
+  </data>
+  <data name="BattlePhaseLandBasedAir" xml:space="preserve">
+    <value>Ataque aéreo de base terrestre</value>
+  </data>
+  <data name="BattlePhaseAirBaseRaid" xml:space="preserve">
+    <value>Incursión aérea en base aérea</value>
+  </data>
+  <data name="BattlePhaseAirBattle" xml:space="preserve">
+    <value>Batalla aérea</value>
+  </data>
+  <data name="BattlePhaseAirRaid" xml:space="preserve">
+    <value>Incursión aérea</value>
+  </data>
+  <data name="BattlePhaseAirAttackFirst" xml:space="preserve">
+    <value>Primera batalla aérea</value>
+  </data>
+  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
+    <value>Apoyo aéreo de flota amiga</value>
+  </data>
+  <data name="BattlePhaseAirAttackSecond" xml:space="preserve">
+    <value>Segunda batalla aérea</value>
+  </data>
+  <data name="BattlePhaseOpeningTorpedo" xml:space="preserve">
+    <value>Salva inicial de torpedos</value>
+  </data>
+  <data name="BattlePhaseShellingFirst" xml:space="preserve">
+    <value>Primera ronda de bombardeo</value>
+  </data>
+  <data name="BattlePhaseShellingSecond" xml:space="preserve">
+    <value>Segunda ronda de bombardeo</value>
+  </data>
+  <data name="BattlePhaseShellingThird" xml:space="preserve">
+    <value>Tercera ronda de bombardeo</value>
+  </data>
+  <data name="BattlePhaseClosingTorpedo" xml:space="preserve">
+    <value>Salva final de torpedos</value>
+  </data>
+  <data name="BattlePhaseNightBattle" xml:space="preserve">
+    <value>Batalla nocturna</value>
+  </data>
+  <data name="BattlePhaseNightBattleFirst" xml:space="preserve">
+    <value>Primera ronda de batalla nocturna</value>
+  </data>
+  <data name="BattlePhaseNightBattleSecond" xml:space="preserve">
+    <value>Segunda ronda de batalla nocturna</value>
+  </data>
+  <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
+    <value>Apoyo nocturno de expedición</value>
+  </data>
+  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
+    <value>Apoyo de flota amiga en bombardeo</value>
+  </data>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>Pantalla de humo</value>
+  </data>
+  <data name="BattlePhaseSupportExpedition" xml:space="preserve">
+    <value>Apoyo de expedición</value>
+  </data>
+  <data name="CombinedFleetNightBattle" xml:space="preserve">
+    <value>Batalla nocturna de flota combinada</value>
+  </data>
+  <data name="NightBattleBegins" xml:space="preserve">
+    <value>Comienzo de batalla nocturna</value>
+  </data>
+  <data name="Escaped" xml:space="preserve">
+    <value>Escapado</value>
+  </data>
+  <data name="Los" xml:space="preserve">
+    <value>Alcance visual (LOS) [1] {0}, [2] {1}, [3] {2}, [4] {3}</value>
+  </data>
+  <data name="FriendlyFleet" xml:space="preserve">
+    <value>Flota amiga</value>
+  </data>
+  <data name="ToBeDetermined" xml:space="preserve">
+    <value>Por determinar</value>
+  </data>
+  <data name="CombatRation" xml:space="preserve">
+    <value>Ración de combate</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>Formación enemiga</value>
+  </data>
+</root>

@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.BaseAirCorps;
 

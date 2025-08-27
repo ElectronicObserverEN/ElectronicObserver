@@ -9,13 +9,13 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.FleetImageGenerator;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Window.Tools.ExpeditionRecordViewer;

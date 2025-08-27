@@ -5,6 +5,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<LangVersion>preview</LangVersion>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 	</PropertyGroup>
 
@@ -15,7 +16,12 @@
 		<AvaloniaResource Include="**\*.xaml">
 			<SubType>Designer</SubType>
 		</AvaloniaResource>
-		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Assets\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -23,16 +29,18 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Avalonia" Version="11.1.2" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.1.2" />
-		<PackageReference Include="Avalonia.Desktop" Version="11.1.2" />
-		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.2" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.1.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Avalonia" Version="11.3.0" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.0" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.0" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.0" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.3.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia" Version="2.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+		<ProjectReference Include="..\ElectronicObserver.Core\ElectronicObserver.Core.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>

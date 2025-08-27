@@ -1,8 +1,9 @@
-﻿using ElectronicObserver.Utility.Data;
+﻿using System;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
@@ -41,7 +42,7 @@ public class UpgradeCostTests
 		};
 		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
 
-		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel);
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel, null);
 
 
 		EquipmentUpgradePlanCostModel expectedCost = new EquipmentUpgradePlanCostModel()
@@ -480,4 +481,193 @@ public class UpgradeCostTests
 		Assert.Equal(expectedCost, cost);
 	}
 
+	/// <summary>
+	/// Isuzu Kai Ni conversion changes depending on the day of the week
+	/// </summary>
+	[Fact(DisplayName = "Isuzu Kai Ni convert T93 Sonar to T3 Sonar on Monday")]
+	public void UpgradeCostTest8()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.Sonar_Type93PassiveSONAR,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.IsuzuKaiNi,
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Max,
+		};
+
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel, DayOfWeek.Monday);
+
+		EquipmentUpgradePlanCostModel expectedCost = new()
+		{
+			Fuel = 10,
+			Ammo = 0,
+			Steel = 30,
+			Bauxite = 30,
+
+			DevelopmentMaterial = 6,
+			ImprovementMaterial = 3,
+
+			RequiredEquipments = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.Sonar_Type93PassiveSONAR,
+					Required = 2,
+				},
+			],
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
+
+	/// <summary>
+	/// Isuzu Kai Ni conversion changes depending on the day of the week
+	/// </summary>
+	[Fact(DisplayName = "Isuzu Kai Ni convert T93 Sonar to T4 Sonar on Friday")]
+	public void UpgradeCostTest9()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.Sonar_Type93PassiveSONAR,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.IsuzuKaiNi,
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Max,
+		};
+
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateUpgradeCost(UpgradeData.UpgradeList, helper, plan.DesiredUpgradeLevel, plan.SliderLevel, DayOfWeek.Friday);
+
+		EquipmentUpgradePlanCostModel expectedCost = new()
+		{
+			Fuel = 10,
+			Ammo = 0,
+			Steel = 30,
+			Bauxite = 30,
+
+			DevelopmentMaterial = 10,
+			ImprovementMaterial = 6,
+
+			RequiredEquipments = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.Sonar_Type3ActiveSONAR,
+					Required = 2,
+				},
+			],
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
+
+	[Fact(DisplayName = "Ju87C Kai 6 -> 7 doesn't eat oversea mats")]
+	public void ExtraUpgradeCostTest1()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.CarrierBasedBomber_Ju87CKai,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.GrafZeppelinKai,
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Six,
+		};
+
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateNextUpgradeCost(UpgradeData.UpgradeList, helper, plan.SliderLevel);
+
+		EquipmentUpgradePlanCostModel expectedCost = new()
+		{
+			Fuel = 190,
+			Ammo = 280,
+			Steel = 0,
+			Bauxite = 290,
+
+			DevelopmentMaterial = 8,
+			ImprovementMaterial = 3,
+
+			RequiredEquipments = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.CarrierBasedBomber_Type99DiveBomberModel22,
+					Required = 1,
+				},
+			]
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
+
+	[Fact(DisplayName = "Ju87C Kai 8 -> 9 eats oversea mats")]
+	public void ExtraUpgradeCostTest2()
+	{
+		Assert.NotEmpty(UpgradeData.UpgradeList);
+
+		EquipmentUpgradePlanItemModel plan = new()
+		{
+			DesiredUpgradeLevel = UpgradeLevel.Conversion,
+			EquipmentId = EquipmentId.CarrierBasedBomber_Ju87CKai,
+			SliderLevel = SliderUpgradeLevel.Never,
+			SelectedHelper = ShipId.GrafZeppelinKai,
+		};
+
+		EquipmentDataMock equipment = new EquipmentDataMock(Db.MasterEquipment[plan.EquipmentId])
+		{
+			UpgradeLevel = UpgradeLevel.Eight,
+		};
+
+		IShipDataMaster helper = Db.MasterShips[plan.SelectedHelper];
+
+		EquipmentUpgradePlanCostModel cost = equipment.CalculateNextUpgradeCost(UpgradeData.UpgradeList, helper, plan.SliderLevel);
+
+		EquipmentUpgradePlanCostModel expectedCost = new()
+		{
+			Fuel = 190,
+			Ammo = 280,
+			Steel = 0,
+			Bauxite = 290,
+
+			DevelopmentMaterial = 8,
+			ImprovementMaterial = 3,
+
+			RequiredEquipments = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)EquipmentId.CarrierBasedBomber_Type99DiveBomberModel22,
+					Required = 1,
+				},
+			],
+
+			RequiredConsumables = [
+				new EquipmentUpgradePlanCostItemModel()
+				{
+					Id = (int)UseItemId.LatestOverseasWarshipTechnology,
+					Required = 1,
+				},
+			],
+		};
+
+		Assert.Equal(expectedCost, cost);
+	}
 }

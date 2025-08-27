@@ -25,4 +25,7 @@ public class ApiReqFurnitureChangeRequest
 
 	[JsonPropertyName("api_window")]
 	public string ApiWindow { get; set; } = "";
+
+	[JsonPropertyName("api_bgm_id")]
+	public string? ApiBgmId { get; set; }
 }

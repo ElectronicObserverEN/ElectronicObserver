@@ -1,5 +1,7 @@
-﻿using System;
+﻿#if !DEBUG
+using System;
 using System.IO;
+#endif
 
 namespace BrowserLibCore;
 

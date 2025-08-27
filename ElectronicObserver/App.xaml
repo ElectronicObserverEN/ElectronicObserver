@@ -19,8 +19,9 @@
 			</ResourceDictionary.MergedDictionaries>
 
 			<system:Boolean x:Key="AutoHideScrollBars">True</system:Boolean>
-			<!--  override time picker min width  -->
+			<!--  override modern wpf components min width  -->
 			<system:Double x:Key="TimePickerThemeMinWidth">60</system:Double>
+			<system:Double x:Key="ToggleSwitchThemeMinWidth">0</system:Double>
 
 			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 			<converters:BooleanToHiddenConverter x:Key="BooleanToHiddenConverter" />
@@ -28,9 +29,6 @@
 			<converters:RangeConverter x:Key="RangeConverter" />
 			<converters:ShipRarityConverter x:Key="ShipRarityConverter" />
 			<converters:ShipToBannerImageConverter x:Key="ShipToBannerImageConverter" />
-			<converters:ShipToCardImageConverter x:Key="ShipToCardImageConverter" />
-			<converters:ShipToCutInImageConverter x:Key="ShipToCutInImageConverter" />
-			<converters:ShipToAlbumStatusConverter x:Key="ShipToAlbumStatusConverter" />
 			<converters:EquipmentRarityConverter x:Key="EquipmentRarityConverter" />
 			<converters:EquipmentToImageConverter x:Key="EquipmentToImageConverter" />
 			<converters:EquipmentStatValueConverter x:Key="EquipmentStatValueConverter" />

@@ -9,10 +9,10 @@ public partial class ShipGroupItem : ObservableObject
 {
 	public IGroupItem Group { get; }
 
-	[ObservableProperty] private int _id;
-	[ObservableProperty] private string _name;
-	[ObservableProperty] private bool _isSelected;
-	[ObservableProperty] private int _frozenColumns;
+	[ObservableProperty] public partial int Id { get; set; }
+	[ObservableProperty] public partial string Name { get; set; }
+	[ObservableProperty] public partial bool IsSelected { get; set; }
+	[ObservableProperty] public partial int FrozenColumns { get; set; }
 	public required ObservableCollection<ColumnModel> Columns { get; set; }
 	public DataGridSortDescriptionCollection SortDescriptions { get; set; } = [];
 

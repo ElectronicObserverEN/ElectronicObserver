@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 

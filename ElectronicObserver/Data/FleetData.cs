@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data;
 
@@ -26,7 +26,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// </summary>
 	public string Name { get; internal set; }
 
-	public FleetType FleetType => (FleetType)KCDatabase.Instance.Fleet.CombinedFlag;
+	public FleetType FleetType => KCDatabase.Instance.Fleet.CombinedFlag;
 
 	/// <summary>
 	/// 遠征状態
@@ -54,7 +54,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// <summary>
 	/// 艦隊メンバー(艦船データ)
 	/// </summary>
-	public ReadOnlyCollection<IShipData>? MembersInstance
+	public ReadOnlyCollection<IShipData?>? MembersInstance
 	{
 		get
 		{
@@ -381,12 +381,14 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 		}
 	}
 
+	public double GetSearchingAbility() => GetSearchingAbility(1);
+
 	/// <summary>
 	/// 現在の設定に応じて、索敵能力を取得します。
 	/// </summary>
-	public double GetSearchingAbility()
+	public double GetSearchingAbility(int branchWeight)
 	{
-		return Calculator.GetSearchingAbility_New33(this, 1);
+		return Calculator.GetSearchingAbility_New33(this, branchWeight);
 	}
 
 	/// <summary>

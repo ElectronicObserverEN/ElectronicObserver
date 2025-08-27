@@ -9,12 +9,12 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Serialization.EventLockPlanner;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.EventLockPlanner;
 
 namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 

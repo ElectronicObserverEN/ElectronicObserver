@@ -11,16 +11,19 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserver.Window.Dialog.ShipPicker;
-using ElectronicObserverTypes;
+using ElectronicObserver.Window.Dialog.ShipSelector;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
@@ -30,7 +33,9 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private ShipDropRecord Record { get; }
 
-	private ShipPickerViewModel ShipPickerViewModel { get; }
+	private TransliterationService TransliterationService { get; }
+	private ImageLoadService ImageLoadService { get; }
+	private DropRecordShipSelectorViewModel? ShipSelectorViewModel { get; set; }
 	public List<object> Items { get; set; } = [];
 	public List<ShipTypes> ShipTypeOptions { get; set; } = [];
 
@@ -71,7 +76,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	public bool RankX { get; set; } = true;
 	public bool MergeRows { get; set; }
 	public bool RawRows => !MergeRows;
-	public string StatusInfoText { get; set; }
+	public string StatusInfoText { get; set; } = "";
 	private DateTime SearchStartTime { get; set; }
 
 	private string NameNotExist => DialogDropRecordViewer.NameNotExist;
@@ -100,8 +105,9 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 			FilterValue = DropRecordFilter.MatchesFilter,
 		};
 
-		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
-		DialogDropRecordViewer = Ioc.Default.GetService<DialogDropRecordViewerTranslationViewModel>()!;
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
+		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
+		DialogDropRecordViewer = Ioc.Default.GetRequiredService<DialogDropRecordViewerTranslationViewModel>();
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -641,19 +647,32 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		ShipPickerViewModel.DropRecordOptions = Enum.GetValues<DropRecordOption>().ToList();
-		ShipPickerView shipPicker = new(ShipPickerViewModel);
-
-		if (shipPicker.ShowDialog(App.Current.MainWindow) is true)
+		if (ShipSelectorViewModel is null)
 		{
-			ShipSearchOption = shipPicker.PickedShip switch
+			List<IShipData> ships = KCDatabase.Instance.MasterShips.Values
+				.Where(s => !s.IsAbyssalShip)
+				.Where(s => s.RemodelBeforeShipID == 0)
+				.Select(s => new ShipDataMock(s)
+				{
+					Level = 1,
+				})
+				.OfType<IShipData>()
+				.ToList();
+
+			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships)
 			{
-				{ } => shipPicker.PickedShip!,
-				_ => shipPicker.PickedOption!
+				ShipFilter = { FinalRemodel = false },
 			};
 		}
 
-		ShipPickerViewModel.DropRecordOptions = null;
+		if (ShipSelectorViewModel.ShowDialog() is not true) return;
+
+		ShipSearchOption = ShipSelectorViewModel switch
+		{
+			{ SelectedShip: { } } => ShipSelectorViewModel.SelectedShip.MasterShip,
+			{ SelectedOption: { } } => ShipSelectorViewModel.SelectedOption,
+			_ => DropRecordOption.All,
+		};
 	}
 
 	[RelayCommand]

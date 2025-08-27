@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 

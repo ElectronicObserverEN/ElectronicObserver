@@ -19,7 +19,7 @@ using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Translations;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserverCoreTests.CsvExport;
 
@@ -27,7 +27,7 @@ namespace ElectronicObserverCoreTests.CsvExport;
 public class CsvExportTests
 {
 	private DatabaseFixture Db { get; }
-	private static ToolService ToolService { get; } = new(null!);
+	private static ToolService ToolService { get; } = new(null!, null!);
 	private DataExportHelper DataExportHelper { get; } = new(new(true), ToolService);
 
 	private static string BasePath =>
@@ -247,7 +247,7 @@ public class CsvExportTests
 		Assert.NotNull(sortieRecords);
 
 		ObservableCollection<SortieRecordViewModel> sorties = sortieRecords
-			.Select(s => new SortieRecordViewModel(s, DateTime.UtcNow))
+			.Select(s => new SortieRecordViewModel(s, DateTime.UtcNow, null!))
 			.ToObservableCollection();
 
 		List<TElement> dayShelling = await processData(sorties, null, new(), default);

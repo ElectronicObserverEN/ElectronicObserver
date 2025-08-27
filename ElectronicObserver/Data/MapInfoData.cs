@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 海域情報を保持します。
 /// </summary>
-public class MapInfoData : APIWrapper, IIdentifiable
+public class MapInfoData : APIWrapper, IMapInfoData
 {
 
 	/// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
@@ -46,5 +47,13 @@ public partial class AirControlSimulatorWindow
 		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 
 		Browser.CoreWebView2.Navigate(ViewModel.Uri);
+	}
+
+	/// <inheritdoc />
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		base.OnClosing(e);
+
+		Browser.Dispose();
 	}
 }

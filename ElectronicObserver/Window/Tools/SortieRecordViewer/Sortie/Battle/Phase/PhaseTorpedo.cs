@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
