@@ -10,7 +10,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseFriendlyShelling : PhaseBase
+public class PhaseFriendlyShelling : AttackPhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseFriendlyShelling;
 
@@ -18,20 +18,20 @@ public class PhaseFriendlyShelling : PhaseBase
 	private ApiFriendlyBattle ApiFriendlyBattle { get; }
 	private ApiHougeki ShellingData => ApiFriendlyBattle.ApiHougeki;
 
-	private int FlareIndexFriend { get; set; }
-	private int FlareIndexEnemy { get; set; }
-	private IShipData? FlareFriend { get; set; }
-	private IShipData? FlareEnemy { get; set; }
+	public int FlareIndexFriend { get; private set; }
+	public int FlareIndexEnemy { get; private set; }
+	public IShipData? FlareFriend { get; private set; }
+	public IShipData? FlareEnemy { get; private set; }
 
-	private int SearchlightIndexFriend { get; set; }
-	private int SearchlightIndexEnemy { get; set; }
-	private IShipData? SearchlightFriend { get; set; }
-	private IShipData? SearchlightEnemy { get; set; }
+	public int SearchlightIndexFriend { get; private set; }
+	public int SearchlightIndexEnemy { get; private set; }
+	public IShipData? SearchlightFriend { get; private set; }
+	public IShipData? SearchlightEnemy { get; private set; }
 
 	public string InitialDisplay => GetDisplay();
 
-	private List<PhaseNightBattleAttack> Attacks { get; } = new();
-	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseNightBattleAttack> Attacks { get; } = [];
+	public override List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseFriendlyShelling(IKCDatabase kcDatabase, ApiFriendlyBattle apiFriendlyBattle)
 	{
@@ -53,7 +53,7 @@ public class PhaseFriendlyShelling : PhaseBase
 		List<List<int>> defenders = ShellingData.ApiDfList!.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 		List<List<int>> attackEquipments = ShellingData.ApiSiList!.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticals = ShellingData.ApiClList!.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
-		List<List<double>> rawDamages = ShellingData.ApiDamage!.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<List<double>> rawDamages = ShellingData.ApiDamage!.Select(elem => elem.Where(e => e >= 0).ToList()).ToList();
 
 		for (int i = 0; i < attackers.Count; i++)
 		{
@@ -63,7 +63,8 @@ public class PhaseFriendlyShelling : PhaseBase
 				NightAirAttackFlag = nightAirAttackFlags[i] == -1,
 				AttackType = attackTypes[i],
 				DisplayEquipments = attackEquipments[i]
-					.Select(i => KcDatabase.MasterEquipments[i])
+					.Select(id => KcDatabase.MasterEquipments[id])
+					.OfType<IEquipmentDataMaster>()
 					.ToList(),
 			};
 
@@ -89,7 +90,7 @@ public class PhaseFriendlyShelling : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -141,7 +142,7 @@ public class PhaseFriendlyShelling : PhaseBase
 
 	private string GetDisplay()
 	{
-		List<string> values = new();
+		List<string> values = [];
 
 		if (SearchlightFriend is not null)
 		{

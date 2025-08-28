@@ -441,7 +441,7 @@ public class ToolService(DataSerializationService dataSerializationService, ICli
 			phaseTitle,
 			attackDisplay.AttackKind,
 			attackDisplay.WaveIndex.ToString(),
-			attackDisplay.AttackerName,
+			attackDisplay.AttackerDisplay,
 			(attackDisplay.DefenderIndex.Index + 1).ToString(),
 			attackDisplay.Defender.Name,
 			attackDisplay.Defender.Level.ToString(),

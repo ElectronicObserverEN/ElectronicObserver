@@ -80,7 +80,7 @@
 		<DataTemplate DataType="{x:Type phase:PhaseSupportAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="{Binding Attacker, Mode=OneTime}" />
+					<Run Text="{Binding AttackerDisplay, Mode=OneTime}" />
 					<Run Text="→" />
 					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
@@ -92,7 +92,7 @@
 		<DataTemplate DataType="{x:Type phase:AirBattleAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="{Binding AttackerName, Mode=OneTime}" />
+					<Run Text="{Binding AttackerDisplay, Mode=OneTime}" />
 					<Run Text="→" />
 					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
@@ -104,7 +104,7 @@
 		<DataTemplate DataType="{x:Type phase:AirBaseRaidAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
-					<Run Text="{Binding AttackerName, Mode=OneTime}" />
+					<Run Text="{Binding AttackerDisplay, Mode=OneTime}" />
 					<Run Text="→" />
 					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
 					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />

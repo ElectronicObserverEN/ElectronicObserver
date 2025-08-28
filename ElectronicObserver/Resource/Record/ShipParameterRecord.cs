@@ -7,6 +7,8 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -273,12 +275,12 @@ public class ShipParameterRecord : RecordBase
 		/// <summary>
 		/// 初期装備
 		/// </summary>
-		public int[] DefaultSlot { get; internal set; }
+		public int[]? DefaultSlot { get; internal set; }
 
 		/// <summary>
 		/// 搭載機数
 		/// </summary>
-		public int[] Aircraft { get; internal set; }
+		public int[]? Aircraft { get; internal set; }
 
 
 		/// <summary>
@@ -1086,25 +1088,26 @@ public class ShipParameterRecord : RecordBase
 			Update(param);
 		}
 
-
-		for (int i = 0; i < binit.EnemyMembers.Length; i++)
+		int[] enemyMembers = binit.EnemyMembers.ToArray();
+		for (int i = 0; i < enemyMembers.Length; i++)
 		{
-			int id = binit.EnemyMembers[i];
+			int id = enemyMembers[i];
 			if (id <= 0)
 				continue;
 
-			UpdateParams(id, binit.EnemyMaxHPs[i], binit.EnemyParameters?[i], binit.EnemySlots[i]);
+			UpdateParams(id, binit.EnemyMaxHPs[i], binit.EnemyParameters?[i].ToArray(), binit.EnemySlots[i]);
 		}
 
 		if (battle.IsEnemyCombined)
 		{
-			for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
+			int[] enemyMembersEscort = binit.EnemyMembersEscort!.ToArray();
+			for (int i = 0; i < enemyMembersEscort.Length; i++)
 			{
-				int id = binit.EnemyMembersEscort[i];
+				int id = enemyMembersEscort[i];
 				if (id <= 0)
 					continue;
 
-				UpdateParams(id, binit.EnemyMaxHPsEscort[i], binit.EnemyParametersEscort?[i], binit.EnemySlotsEscort[i]);
+				UpdateParams(id, binit.EnemyMaxHPsEscort[i], binit.EnemyParametersEscort?[i].ToArray(), binit.EnemySlotsEscort[i]);
 			}
 		}
 
@@ -1115,7 +1118,7 @@ public class ShipParameterRecord : RecordBase
 			var db = KCDatabase.Instance;
 
 			// 航空戦が存在するときだけ処理する
-			if (!(battle is BattleDay battleDay))
+			if (!(battle is FirstBattleData battleDay))
 				return;
 
 
@@ -1125,7 +1128,7 @@ public class ShipParameterRecord : RecordBase
 				members = members.Concat(binit.EnemyMembersEscort);
 
 
-			void checkNoAircraft(int id, int[] eqs)
+			void CheckNoAircraft(int id, int[] eqs)
 			{
 				if (id <= 0 ||
 					this[id].Aircraft != null)
@@ -1139,12 +1142,12 @@ public class ShipParameterRecord : RecordBase
 			}
 
 			for (int i = 0; i < binit.EnemyMembers.Length; i++)
-				checkNoAircraft(binit.EnemyMembers[i], binit.EnemySlots[i]);
+				CheckNoAircraft(binit.EnemyMembers[i], binit.EnemySlots[i]);
 
 			if (battleDay.IsEnemyCombined)
 			{
 				for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
-					checkNoAircraft(binit.EnemyMembersEscort[i], binit.EnemySlotsEscort[i]);
+					CheckNoAircraft(binit.EnemyMembersEscort[i], binit.EnemySlotsEscort[i]);
 			}
 
 
@@ -1173,7 +1176,7 @@ public class ShipParameterRecord : RecordBase
 				}
 
 
-				void estimate(int actualAircraftCount, Func<IEquipmentDataMaster, bool> isAircraft)
+				void Estimate(int actualAircraftCount, Func<IEquipmentDataMaster, bool> isAircraft)
 				{
 					if (unknownShipEquipment.Select(id => db.MasterEquipments[id]).Count(isAircraft) != 1)
 						return;
@@ -1215,22 +1218,21 @@ public class ShipParameterRecord : RecordBase
 					}
 				}
 
-
-				if (battleDay.BaseAirAttack?.IsAvailable ?? false)
+				if (battleDay is IBaseAirAttack { BaseAirAttack: { } baseAirAttack })
 				{
-					var firstUnit = battleDay.BaseAirAttack.AirAttackUnits.FirstOrDefault();
+					var firstUnit = baseAirAttack.Units.FirstOrDefault();
 					if (!firstUnit?.IsStage1Available ?? false)
 						return;
 
-					estimate(firstUnit.AircraftTotalStage1Enemy, eq => eq?.IsAircraft ?? false);
+					Estimate(firstUnit.AircraftTotalStage1Enemy, eq => eq?.IsAircraft ?? false);
 				}
-				else if (battleDay.AirBattle?.IsStage1Available ?? false)
+				else if (battleDay is IAirBattle { AirBattle: { } airBattle })
 				{
-					estimate(battleDay.AirBattle.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
+					Estimate(airBattle.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
 				}
-				else if (battleDay is BattleBaseAirRaid battleAirRaid && (battleAirRaid.BaseAirRaid?.IsStage1Available ?? false))
+				else if (battleDay is BattleBaseAirRaid battleAirRaid && (battleAirRaid.BaseAirRaid is not null))
 				{
-					estimate(battleAirRaid.BaseAirRaid.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
+					Estimate(battleAirRaid.BaseAirRaid.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
 				}
 
 			}

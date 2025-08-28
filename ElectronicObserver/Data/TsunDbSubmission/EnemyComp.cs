@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
@@ -21,7 +21,7 @@ public class EnemyComp : TsunDbEntity
 	public List<int> HP { get; private set; } = new();
 
 	[JsonPropertyName("stats")]
-	public List<int[]> Stats { get; private set; } = new();
+	public List<List<int>> Stats { get; private set; } = new();
 
 	[JsonPropertyName("equip")]
 	public List<int[]> Equips { get; private set; } = new();
@@ -53,7 +53,7 @@ public class EnemyComp : TsunDbEntity
 	public List<int>? HPEscort { get; private set; }
 
 	[JsonPropertyName("statsEscort")]
-	public List<int[]>? StatsEscort { get; private set; }
+	public List<List<int>>? StatsEscort { get; private set; }
 
 	[JsonPropertyName("equipEscort")]
 	public List<int[]>? EquipsEscort { get; private set; }
@@ -70,7 +70,7 @@ public class EnemyComp : TsunDbEntity
 		HP = initial.EnemyMaxHPs.Take(shipCount).ToList();
 		Stats = initial.EnemyParameters.Take(shipCount).ToList();
 		Equips = initial.EnemySlots.Take(shipCount).ToList();
-		Formation = db.Battle.FirstBattle.Searching.FormationEnemy;
+		Formation = (int)db.Battle.FirstBattle.Searching.EnemyFormationType;
 
 		// If this is an event map
 		if (db.Battle.Compass.MapAreaID > 30)
@@ -94,6 +94,6 @@ public class EnemyComp : TsunDbEntity
 			EquipsEscort = initial.EnemySlotsEscort.Take(shipCount).ToList();
 		}
 
-		IsAirRaid = db.Battle.BattleMode == Data.Battle.BattleManager.BattleModes.AirRaid;
+		IsAirRaid = db.Battle.IsAirRaid;
 	}
 }
