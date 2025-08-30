@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
-public class EquipmentScrapTaskViewModel : ObservableObject, IQuestTaskViewModel
+public partial class EquipmentScrapTaskViewModel : ObservableObject, IQuestTaskViewModel
 {
 	private IEquipmentDataMaster? _selectedEquipment;
 
@@ -26,6 +32,9 @@ public class EquipmentScrapTaskViewModel : ObservableObject, IQuestTaskViewModel
 
 	public EquipmentScrapTaskModel Model { get; }
 
+	private EquipmentSelectorViewModel? EquipmentSelectorViewModel { get; set; }
+	private TransliterationService TransliterationService { get; }
+
 	public string Display => $"{Model.Progress}/{Model.Count} {GetClearCondition()}";
 	public string? Progress => (Model.Progress >= Model.Count) switch
 	{
@@ -40,6 +49,7 @@ public class EquipmentScrapTaskViewModel : ObservableObject, IQuestTaskViewModel
 	public EquipmentScrapTaskViewModel(EquipmentScrapTaskModel model)
 	{
 		Model = model;
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -64,5 +74,26 @@ public class EquipmentScrapTaskViewModel : ObservableObject, IQuestTaskViewModel
 	public void Increment(IEnumerable<EquipmentId> ids)
 	{
 		Model.Progress += ids.Count(id => id == Model.Id);
+	}
+
+	[RelayCommand]
+	private void OpenEquipmentPicker()
+	{
+		if (EquipmentSelectorViewModel is null)
+		{
+			List<IEquipmentData> equipments = Equipment
+				.Select(s => new EquipmentDataMock(s))
+				.OfType<IEquipmentData>()
+				.ToList();
+
+			EquipmentSelectorViewModel = new(TransliterationService, equipments);
+		}
+
+		EquipmentSelectorViewModel.ShowDialog();
+
+		if (EquipmentSelectorViewModel.SelectedEquipment is null) return;
+
+		Model.Id = EquipmentSelectorViewModel.SelectedEquipment.MasterEquipment.EquipmentId;
+		SelectedEquipment = EquipmentSelectorViewModel.SelectedEquipment.MasterEquipment;
 	}
 }
