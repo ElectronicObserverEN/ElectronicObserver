@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Interop;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Utility;
 using Jot;
 
 namespace ElectronicObserver.Common;
@@ -34,6 +36,20 @@ public class WindowBase<TViewModel> : System.Windows.Window
 
 		Loaded += OnLoaded;
 		Closed += OnClosed;
+
+		// GPU render issue workaround
+		if (Configuration.Config.UI.ForceSoftwareRenderingOnSecondaryWindows)
+		{
+			SourceInitialized += (s, e) =>
+			{
+				HwndSource? source = (HwndSource)PresentationSource.FromVisual(this);
+
+				if (source?.CompositionTarget is { } hwndTarget)
+				{
+					hwndTarget.RenderMode = RenderMode.SoftwareOnly;
+				}
+			};
+		}
 	}
 
 	private void StartJotTracking()

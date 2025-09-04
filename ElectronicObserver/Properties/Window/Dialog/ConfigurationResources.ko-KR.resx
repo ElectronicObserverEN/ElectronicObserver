@@ -120,4 +120,10 @@
   <data name="Language_Korean" xml:space="preserve">
     <value>한국어</value>
   </data>
+  <data name="UI_ForceSoftwareRenderingSecondaryWindows" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UI_ForceSoftwareRenderingSecondaryWindowsToolTip" xml:space="preserve">
+    <value />
+  </data>
 </root>
