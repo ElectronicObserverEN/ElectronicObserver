@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Window.Tools.EquipmentCraftPlan;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 
@@ -264,5 +265,26 @@ public partial class UpgradeTreeUpgradePlanViewModel : ObservableObject
 
 			OnPropertyChanged(nameof(Children));
 		}
+	}
+
+	[RelayCommand]
+	private void CreateCraftPlan()
+	{
+		if (UpgradePlan is null) return;
+
+		EquipmentCraftPlanItemViewModel vm = new(new()
+		{
+			Parent = UpgradePlan?.Plan,
+			RequiredCount = Count,
+			EquipmentId = Plan.EquipmentMasterDataId,
+		});
+
+		if (!vm.OpenPlanDialog()) return;
+
+		EquipmentUpgradePlanManager.AddAssignment(assignmentViewModel);
+		EquipmentUpgradePlanManager.AddPlan(UpgradePlan);
+		EquipmentUpgradePlanManager.Save();
+
+		OnPropertyChanged(nameof(Children));
 	}
 }

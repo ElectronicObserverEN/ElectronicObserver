@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Window.Tools.AutoRefresh;
+using ElectronicObserver.Window.Tools.EquipmentCraftPlan;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
@@ -35,6 +37,7 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 	public DbSet<SortieRecord> Sorties => Set<SortieRecord>();
 	public DbSet<ExpeditionRecord> Expeditions => Set<ExpeditionRecord>();
 	public DbSet<EquipmentUpgradePlanItemModel> EquipmentUpgradePlanItems => Set<EquipmentUpgradePlanItemModel>();
+	public DbSet<EquipmentCraftPlanItemModel> EquipmentCraftPlan => Set<EquipmentCraftPlanItemModel>();
 	public DbSet<EquipmentAssignmentItemModel> EquipmentAssignmentItems => Set<EquipmentAssignmentItemModel>();
 	public DbSet<ShipTrainingPlanModel> ShipTrainingPlans => Set<ShipTrainingPlanModel>();
 
@@ -120,6 +123,14 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 		modelBuilder.Entity<ExpeditionRecord>()
 			.Property(s => s.Fleet)
 			.HasConversion(JsonConverter<SortieFleet>());
+
+		modelBuilder.Entity<EquipmentCraftPlanItemModel>()
+			.Property(s => s.Ships)
+			.HasConversion(JsonConverter<List<ShipId>>());
+
+		modelBuilder.Entity<EquipmentCraftPlanItemModel>()
+			.Property(s => s.ShipTypes)
+			.HasConversion(JsonConverter<List<ShipTypes>>());
 	}
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new

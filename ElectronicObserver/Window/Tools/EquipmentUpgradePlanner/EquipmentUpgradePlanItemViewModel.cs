@@ -20,6 +20,7 @@ using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.Window.Tools.EquipmentCraftPlan;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
