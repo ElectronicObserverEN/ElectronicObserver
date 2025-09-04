@@ -815,4 +815,10 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="Language_SimplifiedChinese" xml:space="preserve">
     <value>简体中文语</value>
   </data>
+  <data name="UI_ForceSoftwareRenderingSecondaryWindows" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UI_ForceSoftwareRenderingSecondaryWindowsToolTip" xml:space="preserve">
+    <value />
+  </data>
 </root>

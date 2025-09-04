@@ -26,6 +26,9 @@ public class ConfigurationUITranslationViewModel : TranslationBaseViewModel
 	public string UI_DisableOtherTranslations => ConfigurationResources.UI_DisableOtherTranslations;
 	public string UI_DisableOtherTranslationsToolTip => ConfigurationResources.UI_DisableOtherTranslationsToolTip;
 
+	public string UI_ForceSoftwareRenderingSecondaryWindows => ConfigurationResources.UI_ForceSoftwareRenderingSecondaryWindows;
+	public string UI_ForceSoftwareRenderingSecondaryWindowsToolTip => ConfigurationResources.UI_ForceSoftwareRenderingSecondaryWindowsToolTip;
+
 	public string Theme => ConfigurationResources.Theme;
 	public string ThemeToolTip => ConfigurationResources.ThemeToolTip;
 	public string Theme_Light => ConfigurationResources.Theme_Light;

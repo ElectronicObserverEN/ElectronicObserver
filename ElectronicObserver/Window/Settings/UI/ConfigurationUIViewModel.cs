@@ -72,6 +72,8 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 
 	public bool IsLayoutFixed { get; set; }
 
+	public bool ForceSoftwareRenderingOnSecondaryWindows { get; set; }
+
 	// todo: enable/remove this property when we figure out a way to avoid the visual glitches
 	public bool ShowCustomBrowserFont =>
 #if DEBUG
@@ -171,6 +173,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		BarColorMorphing = config.BarColorMorphing;
 		IsLayoutFixed = config.IsLayoutFixed;
 		FontFamilyTextSearch = config.FontFamilyTextSearch;
+		ForceSoftwareRenderingOnSecondaryWindows = config.ForceSoftwareRenderingOnSecondaryWindows;
 	}
 
 	public override void Save()
@@ -216,6 +219,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Config.BarColorMorphing = BarColorMorphing;
 		Config.IsLayoutFixed = IsLayoutFixed;
 		Config.FontFamilyTextSearch = FontFamilyTextSearch;
+		Config.ForceSoftwareRenderingOnSecondaryWindows = ForceSoftwareRenderingOnSecondaryWindows;
 	}
 
 	[RelayCommand]

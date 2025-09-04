@@ -485,6 +485,8 @@ public sealed class Configuration
 			/// </summary>
 			public bool MatchMainFont { get; set; }
 
+			public bool ForceSoftwareRenderingOnSecondaryWindows { get; set; }
+
 			public ConfigUI()
 			{
 				MainFont = new Font("Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -524,6 +526,7 @@ public sealed class Configuration
 				DisableOtherTranslations = disableTranslations;
 				UseOriginalNodeId = false;
 				FontFamilyTextSearch = false;
+				ForceSoftwareRenderingOnSecondaryWindows = false;
 			}
 		}
 		/// <summary>UI</summary>

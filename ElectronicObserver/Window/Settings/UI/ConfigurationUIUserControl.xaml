@@ -138,6 +138,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
@@ -187,6 +188,15 @@
 				Content="{Binding Translation.UI_DisableOtherTranslations}"
 				IsChecked="{Binding DisableOtherTranslations}"
 				ToolTip="{Binding Translation.UI_DisableOtherTranslationsToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="3"
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
+				Content="{Binding Translation.UI_ForceSoftwareRenderingSecondaryWindows}"
+				IsChecked="{Binding ForceSoftwareRenderingOnSecondaryWindows}"
+				ToolTip="{Binding Translation.UI_ForceSoftwareRenderingSecondaryWindowsToolTip}"
 				/>
 		</Grid>
 

@@ -832,4 +832,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
     <value>秘書艦</value>
   </data>
+  <data name="UI_ForceSoftwareRenderingSecondaryWindows" xml:space="preserve">
+    <value>??? (Force software rendering for secondary windows)</value>
+  </data>
+  <data name="UI_ForceSoftwareRenderingSecondaryWindowsToolTip" xml:space="preserve">
+    <value>??? (If enabled, the CPU will be used to render new windows instead of the GPU. Enable this if you encounter blank windows or cannot open dropdowns in other windows)</value>
+  </data>
 </root>
