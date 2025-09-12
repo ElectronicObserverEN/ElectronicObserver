@@ -78,31 +78,16 @@
 				Content="{Binding EquipmentUpgradePlanner.AddEquipmentFromLibrary}"
 				/>
 
-
-			<TextBlock
+			<CheckBox
 				Margin="10 0 0 0"
-				VerticalAlignment="Center"
-				Text="{Binding EquipmentUpgradePlanner.CompactMode}"
+				Content="{Binding EquipmentUpgradePlanner.CompactMode}"
+				IsChecked="{Binding EquipmentUpgradePlanManager.CompactMode}"
 				/>
 
-			<ui:ToggleSwitch
-				Margin="5 0 0 0"
-				IsOn="{Binding EquipmentUpgradePlanManager.CompactMode}"
-				OffContent=""
-				OnContent=""
-				/>
-
-			<TextBlock
-				Margin="5 0 0 0"
-				VerticalAlignment="Center"
-				Text="{Binding EquipmentUpgradePlanner.DisplayFinished}"
-				/>
-
-			<ui:ToggleSwitch
-				Margin="5 0 0 0"
-				IsOn="{Binding Filters.DisplayFinished}"
-				OffContent=""
-				OnContent=""
+			<CheckBox
+				Margin="10 0 0 0"
+				Content="{Binding EquipmentUpgradePlanner.DisplayFinished}"
+				IsChecked="{Binding Filters.DisplayFinished}"
 				/>
 
 			<Border
