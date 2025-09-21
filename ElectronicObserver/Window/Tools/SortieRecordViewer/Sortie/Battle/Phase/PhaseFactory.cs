@@ -33,14 +33,14 @@ public sealed class PhaseFactory(IKCDatabase kcDatabase)
 	public PhaseJetBaseAirAttack? JetBaseAirAttack(ApiAirBaseInjection? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
 	public PhaseJetAirBattle? JetAirBattle(ApiInjectionKouku? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]

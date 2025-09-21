@@ -5,7 +5,7 @@ namespace ElectronicObserver.KancolleApi.Types.Models;
 
 /// <summary>
 /// All values will be null when there's a no attack night battle.
-/// eg. sub vs sub
+/// e.g. sub vs sub
 /// </summary>
 public class ApiHougeki
 {

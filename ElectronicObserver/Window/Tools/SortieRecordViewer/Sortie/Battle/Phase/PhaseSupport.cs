@@ -8,7 +8,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseSupport : PhaseBase
+public class PhaseSupport : AttackPhaseBase
 {
 	public override string Title => IsNightSupport switch
 	{
@@ -22,22 +22,22 @@ public class PhaseSupport : PhaseBase
 	public int? Stage2FLostcount { get; }
 	public int? Stage2FCount { get; }
 
-	private SupportType ApiSupportFlag { get; }
+	public SupportType SupportFlag { get; }
 	private bool IsNightSupport { get; }
 
 	private List<double> Damages { get; }
 	private List<HitType> Criticals { get; }
 	private int SupportFleetId { get; }
-	private IFleetData? SupportFleet { get; set; }
+	public IFleetData? SupportFleet { get; private set; }
 
 	public string? SupportFleetDisplay => CreateDisplay();
 
-	private List<PhaseSupportAttack> Attacks { get; } = new();
-	public List<PhaseSupportAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseSupportAttack> Attacks { get; } = [];
+	public override List<PhaseSupportAttackViewModel> AttackDisplays { get; } = [];
 
-	public PhaseSupport(SupportType apiSupportFlag, ApiSupportInfo apiSupportInfo, bool isNightSupport)
+	public PhaseSupport(SupportType supportFlag, ApiSupportInfo apiSupportInfo, bool isNightSupport)
 	{
-		ApiSupportFlag = apiSupportFlag;
+		SupportFlag = supportFlag;
 		IsNightSupport = isNightSupport;
 
 		static object? SupportAttack(SupportType apiSupportFlag, ApiSupportInfo apiSupportInfo) => apiSupportFlag switch
@@ -47,17 +47,17 @@ public class PhaseSupport : PhaseBase
 			_ => null,
 		};
 
-		Damages = SupportAttack(apiSupportFlag, apiSupportInfo) switch
+		Damages = SupportAttack(supportFlag, apiSupportInfo) switch
 		{
 			ApiSupportAiratack attack when attack.ApiStageFlag[2] is not 0
 				=> attack.ApiStage3.ApiEdam,
 
 			ApiSupportHourai attack => attack.ApiDamage,
 
-			_ => new(),
+			_ => [],
 		};
 
-		Criticals = SupportAttack(apiSupportFlag, apiSupportInfo) switch
+		Criticals = SupportAttack(supportFlag, apiSupportInfo) switch
 		{
 			ApiSupportAiratack attack when attack.ApiStageFlag[2] is not 0
 				=> attack.ApiStage3.ApiEclFlag.Select(h => h switch
@@ -68,10 +68,10 @@ public class PhaseSupport : PhaseBase
 
 			ApiSupportHourai attack => attack.ApiClList,
 
-			_ => new(),
+			_ => [],
 		};
 
-		SupportFleetId = SupportAttack(apiSupportFlag, apiSupportInfo) switch
+		SupportFleetId = SupportAttack(supportFlag, apiSupportInfo) switch
 		{
 			ApiSupportAiratack attack => attack.ApiDeckId,
 			ApiSupportHourai attack => attack.ApiDeckId,
@@ -89,7 +89,7 @@ public class PhaseSupport : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -107,16 +107,16 @@ public class PhaseSupport : PhaseBase
 		{
 			Attacks.Add(new()
 			{
-				AttackType = ApiSupportFlag,
-				Defenders = new()
-				{
+				AttackType = SupportFlag,
+				Defenders =
+				[
 					new()
 					{
 						Defender = new(i, FleetFlag.Enemy),
 						RawDamage = Damages[i],
 						CriticalFlag = Criticals[i],
 					},
-				},
+				],
 			});
 		}
 
@@ -130,16 +130,16 @@ public class PhaseSupport : PhaseBase
 			{
 				Attacks.Add(new()
 				{
-					AttackType = ApiSupportFlag,
-					Defenders = new()
-					{
+					AttackType = SupportFlag,
+					Defenders =
+					[
 						new()
 						{
 							Defender = new(i + 6, FleetFlag.Enemy),
 							RawDamage = Damages[i + 6],
 							CriticalFlag = Criticals[i + 6],
 						},
-					},
+					],
 				});
 			}
 		}

@@ -60,7 +60,7 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// 保有装備のデータ
 	/// </summary>
-	public IDDictionary<EquipmentData?> Equipments { get; private set; }
+	public IDDictionary<EquipmentData> Equipments { get; private set; }
 
 
 	/// <summary>

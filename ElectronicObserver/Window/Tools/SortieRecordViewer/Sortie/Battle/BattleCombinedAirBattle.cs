@@ -13,7 +13,7 @@ public sealed class BattleCombinedAirBattle : AirBattleData
 	public override string Title => ConstantsRes.Title_NormalFleetAirBattle;
 
 	private PhaseSupport? Support { get; }
-	private PhaseAirBattle? AirBattle2 { get; }
+	public PhaseAirBattle? AirBattle2 { get; }
 
 	public BattleCombinedAirBattle(PhaseFactory phaseFactory, BattleFleets fleets, ApiReqCombinedBattleAirbattleResponse battle)
 		: base(phaseFactory, fleets, battle)
