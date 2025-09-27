@@ -5,12 +5,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
-using ElectronicObserver.Avalonia.Services;
-using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
@@ -21,10 +18,8 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Condit
 public partial class ShipConditionViewModelV2 : ObservableObject, IConditionViewModel
 {
 	private IKCDatabase Db { get; }
-	private TransliterationService TransliterationService { get; }
-	private ImageLoadService ImageLoadService { get; }
-
-	private ShipSelectorViewModel? ShipSelectorViewModel { get; set; }
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ShipSelectorViewModel;
 
 	private IShipDataMaster? _ship;
 
@@ -100,11 +95,10 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 		FlagshipConditionDisplay,
 	];
 
-	public ShipConditionViewModelV2(ShipConditionModelV2 model)
+	public ShipConditionViewModelV2(ShipConditionModelV2 model, ShipSelectorFactory shipSelectorFactory)
 	{
 		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
-		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
-		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
+		ShipSelectorFactory = shipSelectorFactory;
 
 		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
 
@@ -156,19 +150,6 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		if (ShipSelectorViewModel is null)
-		{
-			List<IShipData> ships = Db.MasterShips.Values
-				.Select(s => new ShipDataMock(s))
-				.OfType<IShipData>()
-				.ToList();
-
-			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships)
-			{
-				ShipFilter = { FinalRemodel = false, },
-			};
-		}
-
 		ShipSelectorViewModel.ShowDialog();
 
 		if (ShipSelectorViewModel.SelectedShip is null) return;

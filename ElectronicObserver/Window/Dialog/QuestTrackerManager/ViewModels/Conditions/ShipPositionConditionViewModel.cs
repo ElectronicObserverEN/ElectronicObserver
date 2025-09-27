@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
-using ElectronicObserver.Avalonia.Services;
-using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
@@ -21,13 +16,10 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Condit
 
 public partial class ShipPositionConditionViewModel : ObservableObject, IConditionViewModel
 {
-	private IKCDatabase Db { get; }
-	private TransliterationService TransliterationService { get; }
-	private ImageLoadService ImageLoadService { get; }
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ShipSelectorViewModel;
 
-	private ShipSelectorViewModel? ShipSelectorViewModel { get; set; }
-
-	[field: AllowNull, MaybeNull]
+	[field: MaybeNull]
 	public IShipDataMaster Ship
 	{
 		// bug: Ships don't get loaded till Kancolle loads
@@ -41,7 +33,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 		.OrderBy(s => s.SortID);
 
 	public RemodelComparisonType RemodelComparisonType { get; set; }
-	public IEnumerable<RemodelComparisonType> RemodelComparisonTypes { get; }
+	public List<RemodelComparisonType> RemodelComparisonTypes { get; }
 
 	public int Position { get; set; }
 
@@ -55,13 +47,11 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 
 	private string PositionText => $"{QuestTrackerManagerResources.Position}：{Position}";
 
-	public ShipPositionConditionViewModel(ShipPositionConditionModel model)
+	public ShipPositionConditionViewModel(ShipPositionConditionModel model, ShipSelectorFactory shipSelectorFactory)
 	{
-		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
-		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
-		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
+		ShipSelectorFactory = shipSelectorFactory;
 
-		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
+		RemodelComparisonTypes = [.. Enum.GetValues<RemodelComparisonType>()];
 
 		Model = model;
 
@@ -93,19 +83,6 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		if (ShipSelectorViewModel is null)
-		{
-			List<IShipData> ships = Db.MasterShips.Values
-				.Select(s => new ShipDataMock(s))
-				.OfType<IShipData>()
-				.ToList();
-
-			ShipSelectorViewModel = new(TransliterationService, ImageLoadService, ships)
-			{
-				ShipFilter = { FinalRemodel = false, },
-			};
-		}
-
 		ShipSelectorViewModel.ShowDialog();
 
 		if (ShipSelectorViewModel.SelectedShip is null) return;

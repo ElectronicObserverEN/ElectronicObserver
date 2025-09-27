@@ -3,48 +3,51 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
 public partial class PartialShipConditionViewModelV2 : ObservableObject, IConditionViewModel
 {
-	public PartialShipConditionModelV2 Model { get; }
+	private ShipSelectorFactory ShipSelectorFactory { get; }
 
+	public PartialShipConditionModelV2 Model { get; }
 	public IEnumerable<ShipConditionViewModelV2> Conditions { get; set; }
 
 	public string Display => $"({Ships}) >= {Model.Count}";
 
 	private string Ships => string.Join(" + ", Conditions.Select(c => c.Display));
 
-	public PartialShipConditionViewModelV2(PartialShipConditionModelV2 model)
+	public PartialShipConditionViewModelV2(PartialShipConditionModelV2 model, ShipSelectorFactory shipSelectorViewModel)
 	{
-		Model = model;
+		ShipSelectorFactory = shipSelectorViewModel;
 
+		Model = model;
 		Conditions = CreateViewModels(Model);
 
-		Model.PropertyChanged += (sender, args) =>
+		Model.PropertyChanged += (_, _) =>
 		{
 			OnPropertyChanged(nameof(Display));
 		};
 
-		Model.Conditions.CollectionChanged += (_, e) =>
+		Model.Conditions.CollectionChanged += (_, _) =>
 		{
 			Conditions = CreateViewModels(Model);
 		};
 	}
 
-	private IEnumerable<ShipConditionViewModelV2> CreateViewModels(PartialShipConditionModelV2 model)
+	private List<ShipConditionViewModelV2> CreateViewModels(PartialShipConditionModelV2 model)
 	{
 		List<ShipConditionViewModelV2> conditions = model.Conditions
-			.Select(s => new ShipConditionViewModelV2(s))
+			.Select(s => new ShipConditionViewModelV2(s, ShipSelectorFactory))
 			.ToList();
 
 		foreach (IConditionViewModel condition in conditions)
 		{
-			condition.PropertyChanged += (sender, args) =>
+			condition.PropertyChanged += (_, args) =>
 			{
 				if (args.PropertyName is not nameof(IConditionViewModel.Display)) return;
 
@@ -77,10 +80,10 @@ public partial class PartialShipConditionViewModelV2 : ObservableObject, ICondit
 		int classMatchCount = fleet.MembersInstance
 			.Select(s => new FleetDataMock
 			{
-				MembersInstance = new ReadOnlyCollection<IShipData>(new List<IShipData>
-				{
+				MembersInstance = new ReadOnlyCollection<IShipData?>(
+				[
 					s,
-				}),
+				]),
 			})
 			.Sum(f => classConditions.Count(c => c.ConditionMet(f)));
 

@@ -42,7 +42,7 @@ public class QuestTrackerManagerTests(DatabaseFixture db)
 		{
 			GroupOperator = Operator.And,
 			Conditions = new ObservableCollection<ICondition?>([yamatoCondition, clCondition, ddCondition]),
-		});
+		}, null!);
 
 		FleetDataMock fleet = new()
 		{
@@ -76,7 +76,7 @@ public class QuestTrackerManagerTests(DatabaseFixture db)
 		{
 			GroupOperator = Operator.And,
 			Conditions = new ObservableCollection<ICondition?>([partialShipCondition]),
-		});
+		}, null!);
 
 		FleetDataMock fleet = new()
 		{
@@ -114,7 +114,7 @@ public class QuestTrackerManagerTests(DatabaseFixture db)
 		{
 			GroupOperator = Operator.And,
 			Conditions = new ObservableCollection<ICondition?>([partialShipCondition]),
-		});
+		}, null!);
 
 		FleetDataMock fleet = new()
 		{
@@ -167,7 +167,7 @@ public class QuestTrackerManagerTests(DatabaseFixture db)
 		{
 			GroupOperator = Operator.And,
 			Conditions = new ObservableCollection<ICondition?>([zuihouCondition]),
-		});
+		}, null!);
 
 		FleetDataMock fleet = new()
 		{

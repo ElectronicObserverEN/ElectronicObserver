@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
@@ -12,9 +14,13 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 public class SystemQuestTrackerManager : QuestTrackerManagerBase
 {
 	private bool IsInitialized { get; }
+	
+	private ShipSelectorFactory ShipSelectorFactory { get; }
 
 	public SystemQuestTrackerManager()
 	{
+		ShipSelectorFactory = Ioc.Default.GetRequiredService<ShipSelectorFactory>();
+		
 		Load();
 		SubscribeToApis();
 
@@ -28,7 +34,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 
 		foreach (TrackerModel tracker in trackers.Where(t => !existingQuestIds.Contains(t.Quest.Id)))
 		{
-			Trackers.Add(new TrackerViewModel(tracker));
+			Trackers.Add(new TrackerViewModel(tracker, ShipSelectorFactory));
 		}
 
 		if (clashingTrackers.Any())
@@ -40,7 +46,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 
 				Trackers.Remove(oldTracker);
 
-				TrackerViewModel newTracker = new(tracker);
+				TrackerViewModel newTracker = new(tracker, ShipSelectorFactory);
 				newTracker.SetProgress(progress);
 
 				Trackers.Add(newTracker);

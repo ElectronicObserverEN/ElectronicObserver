@@ -10,6 +10,7 @@ using System.Windows.Media;
 using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
@@ -334,6 +335,7 @@ public partial class App
 			.AddSingleton<SenkaLeaderboardManager>()
 			.AddSingleton<BonodereSubmissionService>()
 			.AddSingleton<IClipboardService, ClipboardService>()
+			.AddSingleton<ShipSelectorFactory>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
