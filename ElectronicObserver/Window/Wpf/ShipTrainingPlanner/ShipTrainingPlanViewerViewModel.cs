@@ -199,6 +199,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 			_ => KCDatabase.Instance.Ships.Values.Where(s => !alreadyAddedIds.Contains(s.ID)),
 		};
 
+		// todo: refactor into ShipSelectorFactory
 		ShipSelectorViewModel = new(TransliterationService, ImageLoadService, [.. pickableShips]);
 
 		ShipSelectorViewModel.ShowDialog();

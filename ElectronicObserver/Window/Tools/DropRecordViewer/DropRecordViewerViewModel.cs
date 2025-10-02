@@ -647,6 +647,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
+		// todo: refactor into ShipSelectorFactory
 		if (ShipSelectorViewModel is null)
 		{
 			List<IShipData> ships = KCDatabase.Instance.MasterShips.Values
