@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
-using ElectronicObserver.Avalonia.Services;
-using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Core.Types.Data;
-using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Utility;
@@ -48,8 +42,10 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 
 	public RpcIconKind RpcIconKind { get; set; }
 
-	public IShipDataMaster? ShipUsedForRpcIcon { get; set; }
-	public ShipSelectorViewModel ShipSelectorViewModel { get; }
+	private IShipDataMaster? ShipUsedForRpcIcon { get; set; }
+	
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ConfigurationBehavior;
 
 	public string SelectedShipName => ShipUsedForRpcIcon switch
 	{
@@ -60,16 +56,7 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	public ConfigurationBehaviorViewModel(Configuration.ConfigurationData.ConfigControl config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBehaviorTranslationViewModel>();
-		IKCDatabase db = Ioc.Default.GetRequiredService<IKCDatabase>();
-
-		TransliterationService transliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
-		ImageLoadService imageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
-		List<IShipData> ships = db.MasterShips.Values
-			.Select(s => new ShipDataMock(s))
-			.OfType<IShipData>()
-			.ToList();
-
-		ShipSelectorViewModel = new(transliterationService, imageLoadService, ships);
+		ShipSelectorFactory = Ioc.Default.GetRequiredService<ShipSelectorFactory>();
 		
 		Config = config;
 		Load(config);

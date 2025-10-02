@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Avalonia.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
@@ -15,9 +16,11 @@ public class ShipSelectorFactory(IKCDatabase db, TransliterationService translit
 	private IKCDatabase Db { get; } = db;
 	private TransliterationService TransliterationService { get; } = transliterationService;
 	private ImageLoadService ImageLoadService { get; } = imageLoadService;
-	public ShipSelectorViewModel ShipSelectorViewModel => field ??= CreateShipSelectorViewModel();
 
-	private ShipSelectorViewModel CreateShipSelectorViewModel()
+	[field: MaybeNull]
+	public ShipSelectorViewModel QuestTrackerManager => field ??= CreateQuestTrackerManagerShipSelectorViewModel();
+
+	private ShipSelectorViewModel CreateQuestTrackerManagerShipSelectorViewModel()
 	{
 		List<IShipData> ships = Db.MasterShips.Values
 			.Select(s => new ShipDataMock(s))
@@ -28,5 +31,18 @@ public class ShipSelectorFactory(IKCDatabase db, TransliterationService translit
 		{
 			ShipFilter = { FinalRemodel = false },
 		};
+	}
+
+	[field: MaybeNull]
+	public ShipSelectorViewModel ConfigurationBehavior => field ??= CreateConfigurationBehaviorShipSelectorViewModel();
+
+	private ShipSelectorViewModel CreateConfigurationBehaviorShipSelectorViewModel()
+	{
+		List<IShipData> ships = Db.MasterShips.Values
+			.Select(s => new ShipDataMock(s))
+			.OfType<IShipData>()
+			.ToList();
+
+		return new(TransliterationService, ImageLoadService, ships);
 	}
 }

@@ -19,7 +19,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 {
 	private IKCDatabase Db { get; }
 	private ShipSelectorFactory ShipSelectorFactory { get; }
-	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ShipSelectorViewModel;
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.QuestTrackerManager;
 
 	private IShipDataMaster? _ship;
 

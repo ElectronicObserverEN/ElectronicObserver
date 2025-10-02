@@ -17,7 +17,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Condit
 public partial class ShipPositionConditionViewModel : ObservableObject, IConditionViewModel
 {
 	private ShipSelectorFactory ShipSelectorFactory { get; }
-	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ShipSelectorViewModel;
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.QuestTrackerManager;
 
 	[field: MaybeNull]
 	public IShipDataMaster Ship
