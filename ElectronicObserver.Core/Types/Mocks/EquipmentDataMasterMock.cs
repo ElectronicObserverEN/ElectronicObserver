@@ -53,7 +53,7 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public int AircraftDistance { get; set; }
 	public bool IsAbyssalEquipment => EquipmentID > 1500;
 	public bool IsListedInAlbum { get; set; }
-	public int CardType { get; set; }
+	public EquipmentCardType CardType { get; set; }
 	public EquipmentTypes CategoryType { get; set; }
 	public IEquipmentType CategoryTypeInstance { get; set; }
 	public int IconType { get; set; }

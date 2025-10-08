@@ -144,7 +144,7 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	/// <summary>
 	/// 装備種別：小分類
 	/// </summary>
-	public int CardType => (int)RawData.api_type[1];
+	public EquipmentCardType CardType => (EquipmentCardType)RawData.api_type[1];
 
 	/// <summary>
 	/// 装備種別：カテゴリ

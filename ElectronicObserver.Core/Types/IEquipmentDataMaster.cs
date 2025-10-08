@@ -127,7 +127,7 @@ public interface IEquipmentDataMaster : IIdentifiable
 	/// <summary>
 	/// 装備種別：小分類
 	/// </summary>
-	int CardType { get; }
+	EquipmentCardType CardType { get; }
 
 	/// <summary>
 	/// 装備種別：カテゴリ
