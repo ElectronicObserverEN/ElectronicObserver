@@ -82,6 +82,7 @@ using ElectronicObserver.Core.Types;
 
 #if DEBUG
 using System.Text.Encodings.Web;
+using ElectronicObserver.TestData.Models;
 #endif
 
 namespace ElectronicObserver.ViewModels;
@@ -1519,15 +1520,15 @@ public partial class FormMainViewModel : ObservableObject
 			await db.MasterShips.AddAsync(new(ship));
 		}
 
-		foreach (EquipmentDataMaster equipment in KCDatabase.Instance.MasterEquipments.Values)
+		foreach (IEquipmentDataMaster equipment in KCDatabase.Instance.MasterEquipments.Values)
 		{
-			await db.MasterEquipment.AddAsync(new(equipment));
+			await db.MasterEquipment.AddAsync(EquipmentDataMasterRecord.FromMasterEquipment(equipment));
 		}
 
 		await db.SaveChangesAsync();
 
-		List<TestData.Models.ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
-		List<TestData.Models.EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
+		List<ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
+		List<EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
 
 		JsonSerializerOptions options = new()
 		{
