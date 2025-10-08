@@ -130,4 +130,10 @@
   <data name="NormalDamage" xml:space="preserve">
     <value>通常</value>
   </data>
+  <data name="SortieJet" xml:space="preserve">
+    <value>ジェット</value>
+  </data>
+  <data name="AirBaseJet" xml:space="preserve">
+    <value>基地航空隊ジェット</value>
+  </data>
 </root>

@@ -13,6 +13,9 @@ public class CalculatedSortieCost
 	[JsonPropertyName("SortieFleetRepairCost")]
 	public SortieCostModel? SortieFleetRepairCost { get; set; }
 
+	[JsonPropertyName("SortieFleetJetCost")]
+	public SortieCostModel? SortieFleetJetCost { get; set; }
+
 	[JsonPropertyName("NodeSupportSupplyCost")]
 	public SortieCostModel? NodeSupportSupplyCost { get; set; }
 
@@ -24,6 +27,9 @@ public class CalculatedSortieCost
 
 	[JsonPropertyName("TotalAirBaseSupplyCost")]
 	public SortieCostModel? TotalAirBaseSupplyCost { get; set; }
+
+	[JsonPropertyName("AirBaseJetCost")]
+	public SortieCostModel? AirBaseJetCost { get; set; }
 
 	[JsonPropertyName("DamageStateCounts")]
 	public Dictionary<DamageState, int>? DamageStateCounts { get; set; }
