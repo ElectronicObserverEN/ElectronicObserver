@@ -1,7 +1,7 @@
 ﻿namespace ElectronicObserver.Core.Types;
 
 /// <summary>
-/// Type of limited-time feed item that can be used for modernization
+/// Type of time-limited feed item that can be used for modernization
 /// </summary>
 public enum LimitedFeedType
 {
