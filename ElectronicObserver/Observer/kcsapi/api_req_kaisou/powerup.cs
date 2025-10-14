@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou;
@@ -34,6 +36,14 @@ public class powerup : APIBase
 			Utility.Logger.Add(2, ship.NameWithLevel + LoggerRes.Decomissioned);
 			db.Ships.Remove(shipID);
 
+		}
+
+		if (data.TryGetValue("api_limited_feed_type", out string? limitedFeedTypeString) && Enum.TryParse(limitedFeedTypeString, out LimitedFeedType limitedFeedType))
+		{
+			if (limitedFeedType is LimitedFeedType.Pumpkin)
+			{
+				db.UseItems[(int)UseItemId.Pumpkin].Count--;
+			} 
 		}
 
 		base.OnRequestReceived(data);

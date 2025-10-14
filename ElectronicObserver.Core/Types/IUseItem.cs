@@ -12,7 +12,7 @@ public interface IUseItem : IIdentifiable
 	/// <summary>
 	/// 個数
 	/// </summary>
-	int Count { get; }
+	int Count { get; set; }
 
 	IUseItemMaster MasterUseItem { get; }
 

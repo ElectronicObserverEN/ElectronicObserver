@@ -16,7 +16,7 @@ public class UseItem : ResponseWrapper, IUseItem
 	/// <summary>
 	/// 個数
 	/// </summary>
-	public int Count => (int)RawData.api_count;
+	public int Count { get; set; }
 
 
 	public IUseItemMaster MasterUseItem => KCDatabase.Instance.MasterUseItems[ItemID];
@@ -24,4 +24,11 @@ public class UseItem : ResponseWrapper, IUseItem
 
 	public int ID => ItemID;
 	public override string ToString() => $"[{ItemID}] {MasterUseItem.NameTranslated} x {Count}";
+
+	public override void LoadFromResponse(string apiname, dynamic data)
+	{
+		Count = (int)data.api_count;
+
+		base.LoadFromResponse(apiname, (object)data);
+	}
 }
