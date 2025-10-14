@@ -38,17 +38,20 @@ public class powerup : APIBase
 
 		}
 
-		if (data.TryGetValue("api_limited_feed_type", out string? limitedFeedTypeString) && Enum.TryParse(limitedFeedTypeString, out LimitedFeedType limitedFeedType))
-		{
-			if (limitedFeedType is LimitedFeedType.Pumpkin && db.UseItems.TryGetValue((int)UseItemId.Pumpkin, out IUseItem? pumpkins))
-			{
-				pumpkins.Count--;
-			} 
-		}
+		HandleSpecialFeedTypes(data, db);
 
 		base.OnRequestReceived(data);
 	}
 
+	private static void HandleSpecialFeedTypes(Dictionary<string, string> data, KCDatabase db)
+	{
+		if (!data.TryGetValue("api_limited_feed_type", out string? limitedFeedTypeString)) return;
+		if (!Enum.TryParse(limitedFeedTypeString, out LimitedFeedType limitedFeedType)) return;
+		if (limitedFeedType is not LimitedFeedType.Pumpkin) return;
+		if (!db.UseItems.TryGetValue((int)UseItemId.Pumpkin, out IUseItem? pumpkins)) return;
+
+		pumpkins.Count--;
+	}
 
 	public override void OnResponseReceived(dynamic data)
 	{
