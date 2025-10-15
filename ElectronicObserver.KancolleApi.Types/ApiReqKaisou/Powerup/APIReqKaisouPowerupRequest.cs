@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Core.Types;
-
-namespace ElectronicObserver.KancolleApi.Types.ApiReqKaisou.Powerup;
+﻿namespace ElectronicObserver.KancolleApi.Types.ApiReqKaisou.Powerup;
 
 public class ApiReqKaisouPowerupRequest
 {
@@ -13,6 +11,9 @@ public class ApiReqKaisouPowerupRequest
 	[JsonPropertyName("api_verno")]
 	public string ApiVerno { get; set; } = "";
 
+	/// <summary>
+	/// Possible values are in the enum <see cref="Core.Types.LimitedFeedType"/>
+	/// </summary>
 	[JsonPropertyName("api_limited_feed_type")]
-	public LimitedFeedType? LimitedFeedType { get; set; }
+	public string? LimitedFeedType { get; set; }
 }
