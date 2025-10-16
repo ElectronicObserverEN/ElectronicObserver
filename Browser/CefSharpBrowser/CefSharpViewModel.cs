@@ -272,7 +272,7 @@ public class CefSharpViewModel : BrowserViewModel
 		IBrowser browser = CefSharp.GetBrowser();
 		IFrame frame = browser.MainFrame;
 
-		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/")) switch
+		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/") || frame.Url.Contains(KanColleUrl)) switch
 		{
 			true => frame,
 			_ => null,
@@ -288,7 +288,7 @@ public class CefSharpViewModel : BrowserViewModel
 			.GetFrameIdentifiers()
 			.Select(id => browser.GetFrameByIdentifier(id));
 
-		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/"));
+		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/") || f.Url.Contains(@"https://osapi.dmm.com/gadgets/"));
 	}
 
 	private IFrame? GetKanColleFrame()

@@ -1383,7 +1383,7 @@ public sealed class Configuration
 				Browser = BrowserOption.CefSharp;
 				ZoomRate = 1;
 				ZoomFit = false;
-				LogInPageURL = @"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
+				LogInPageURL = @"https://play.games.dmm.com/game/kancolle/";
 				IsEnabled = true;
 				ScreenShotPath = "ScreenShot";
 				ScreenShotFormat = 2;
