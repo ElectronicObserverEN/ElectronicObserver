@@ -230,7 +230,7 @@ async Task DownloadUpdate2(string url, string tempFile)
 		});
 
 		await using Stream stream = await client.GetStreamAsync(url);
-		await using FileStream fs = new(tempFile, FileMode.Create);
+		await using FileStream fs = new(tempFile, FileMode.CreateNew);
 
 		await stream.CopyToAsync(fs);
 	}
