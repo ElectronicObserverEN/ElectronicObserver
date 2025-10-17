@@ -556,28 +556,17 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		var gamesCookies = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "games.dmm.com", "/");
-		gamesCookies.Expires = DateTime.Now.AddYears(6);
-		gamesCookies.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(gamesCookies);
-		var dmmCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", ".dmm.com", "/");
-		dmmCookie.Expires = DateTime.Now.AddYears(6);
-		dmmCookie.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(dmmCookie);
-		var acccountsCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "accounts.dmm.com", "/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		acccountsCookie.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(acccountsCookie);
-		var osapiCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "osapi.dmm.com", "/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		acccountsCookie.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(osapiCookie);
-		var gameserverCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "203.104.209.7", "/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(gameserverCookie);
-		var gamepathCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "www.dmm.com", "/netgame/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(gamepathCookie);
+		if (WebView2 is null) return;
+
+		CoreWebView2Cookie cookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", ".dmm.com", "/");
+		cookie.Expires = DateTime.Now.AddYears(6);
+		cookie.IsSecure = true;
+		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
+
+		cookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy_remedied_check", "ec_mrnhbtk", ".dmm.com", "/");
+		cookie.Expires = DateTime.Now.AddYears(6);
+		cookie.IsSecure = true;
+		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
 	}
 
 	protected override void TryGetVolumeManager()

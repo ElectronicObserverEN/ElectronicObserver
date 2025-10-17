@@ -182,10 +182,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
+		DateTime expiresOn = DateTime.Now.AddYears(6);
+
 		string cookieScript = $$"""
 			try
 			{
-				document.cookie="ckcy=1;expires={{DateTime.Now.AddYears(6):ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/netgame;domain=.dmm.com";
+				document.cookie='ckcy_remedied_check=ec_mrnhbtk;expires={{expiresOn:ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/;domain=.dmm.com';
+				document.cookie='ckcy=1;expires={{expiresOn:ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/;domain=.dmm.com';
 			}
 			catch
 			{
@@ -288,7 +291,7 @@ public class CefSharpViewModel : BrowserViewModel
 			.GetFrameIdentifiers()
 			.Select(id => browser.GetFrameByIdentifier(id));
 
-		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/") || f.Url.Contains(@"https://osapi.dmm.com/gadgets/"));
+		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/") || f.Url.Contains(@"osapi.dmm.com/gadgets/ifr?aid=854854"));
 	}
 
 	private IFrame? GetKanColleFrame()
