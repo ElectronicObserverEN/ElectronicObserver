@@ -2731,7 +2731,7 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2025/03/22 11:00:00"))
 			Update5_3_12_ChangeRpcIconProperty();
 
-		if (dt <= DateTimeHelper.CSVStringToTime("2025/10/17 00:00:00"))
+		if (dt <= DateTimeHelper.CSVStringToTime("2025/10/17 15:00:00"))
 			Update5_3_16_ChangeLoginUrl();
 
 		Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
