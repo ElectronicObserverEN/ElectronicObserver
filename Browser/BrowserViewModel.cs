@@ -85,55 +85,76 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected string PageScript =>
 		$$"""
-		try
-		{
-			var node = document.getElementById('{{StyleClassId}}');
-			if (node)
+			try
 			{
-				document.getElementsByTagName('head')[0].removeChild(node);
-			}
+				var node = document.getElementById('{{StyleClassId}}');
+				if (node)
+				{
+					document.head.removeChild(node);
+				}
 
-			node = document.createElement('div');
-			node.innerHTML = `
-				<style id='{{StyleClassId}}'>
+				var style = document.createElement('style');
+				style.id = '{{StyleClassId}}';
+				style.textContent = `
 					body
 					{
-						visibility: hidden;
+						margin: 0;
+						padding: 0;
+						min-width: 0;
+						min-height: 0;
 						overflow: hidden;
+						background-color: black;
 					}
 
-					div #block_background
+					#main-ntg
 					{
-						visibility: visible;
-					}
-
-					div #alert
-					{
-						visibility: visible;
-						overflow: scroll;
-						overflow-x: hidden;
-						top: 3% !important;
-						left: 3% !important;
-						width: 94% !important;
-						height: 94%;
-						padding: 2%;
-						box-sizing: border-box;
-					}
-
-					div.dmm-ntgnavi
-					{
-						display: none;
+						position: static;
 					}
 
 					#area-game
 					{
-						position: fixed;
-						left: 0;
-						top: 0;
-						width: 100%;
-						height: 100%;
+						margin-left: 0;
+						margin-right: 0;
+						padding: 0;
+						width: 1200,
+						height: 720,
+						position: relative
 					}
-					
+
+					.dmm-ntgnavi
+					{
+						display: none;
+					}
+
+					.area-naviapp
+					{
+						display: none;
+					}
+
+					#ntg-recommend
+					{
+						display: none;
+					}
+
+					#foot, #foot+img
+					{
+						display: none;
+					}
+
+					#w, #main-ntg, #page
+					{
+						margin: 0,
+						padding: 0,
+						width: 100%,
+						height: 0
+						background: none!important;
+					}
+
+					#main-ntg
+					{
+						margin: 0!important;
+					}
+
 					.gamesResetStyle, gamesResetStyle *
 					{
 						background: none !important;
@@ -141,19 +162,20 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 					#game_frame
 					{
-						visibility: visible;
-						width: 100% !important;
-						height: 100% !important;
+						--game-frame-width: 1200px;
+						--game-frame-height: 720px;
+						position: absolute;
+						top: 0;
+						left: 0;
 					}
-				</style>
-			`;
+				`;
 
-			document.getElementsByTagName('head')[0].appendChild(node.lastChild);
-		}
-		catch (e)
-		{
-			alert("ページCSS適用に失敗しました: " + e);
-		}
+				document.head.appendChild(style);
+			}
+			catch (e)
+			{
+				alert("ページCSS適用に失敗しました: " + e);
+			}
 		""";
 
 	protected string FrameScript =>
@@ -163,36 +185,35 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 				var node = document.getElementById('{{StyleClassId}}');
 				if (node)
 				{
-					document.getElementsByTagName('head')[0].removeChild(node);
+					document.head.removeChild(node);
 				}
 
-				node = document.createElement('div');
-				node.innerHTML = `
-					<style id='{{StyleClassId}}'>
-						body
-						{
-							visibility: hidden;
-						}
+				var style = document.createElement('style');
+				style.id = '{{StyleClassId}}';
+				style.textContent = `
+					body
+					{
+						visibility: hidden;
+					}
 
-						#flashWrap
-						{
-							position: fixed;
-							left: 0;
-							top: 0;
-							width: 100% !important;
-							height: 100% !important;
-						}
+					#flashWrap
+					{
+						position: fixed;
+						left: 0;
+						top: 0;
+						width: 100% !important;
+						height: 100% !important;
+					}
 
-						#htmlWrap
-						{
-							visibility: visible;
-							width: 100% !important;
-							height: 100% !important;
-						}
-					</style>
+					#htmlWrap
+					{
+						visibility: visible;
+						width: 100% !important;
+						height: 100% !important;
+					}
 				`;
 
-				document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+				document.head.appendChild(style);
 			}
 			catch (e)
 			{
@@ -205,7 +226,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 			var node = document.getElementById('{{StyleClassId}}');
 			if (node)
 			{
-				document.getElementsByTagName('head')[0].removeChild(node);
+				document.head.removeChild(node);
 			}
 		""";
 
