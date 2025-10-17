@@ -244,7 +244,6 @@ public class WebView2ViewModel : BrowserViewModel
 		WebView2.CoreWebView2.IsMuted = Configuration.IsMute;
 		WebView2.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		WebView2.PreviewKeyDown += Browser_PreviewKeyDown;
-		SetCookie();
 		WebView2.CoreWebView2.Navigate(KanColleUrl);
 	}
 
@@ -400,11 +399,19 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
 	{
+		if (sender is CoreWebView2 webView)
+		{
+			if (webView.Source.Contains("not-available-in-your-region", StringComparison.OrdinalIgnoreCase))
+			{
+				SetCookie();
+				Navigate(KanColleUrl);
+			}
+		}
+
 		if (e.IsSuccess)
 		{
 			ApplyStyleSheet();
 			ApplyZoom();
-			SetCookie();
 			DestroyDMMreloadDialog();
 		}
 	}

@@ -160,7 +160,11 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
-		SetCookie();
+		if (e.Browser.MainFrame.Url.Contains("not-available-in-your-region", StringComparison.OrdinalIgnoreCase))
+		{
+			SetCookie();
+			Navigate(KanColleUrl);
+		}
 
 		// DocumentCompleted に相当?
 		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
