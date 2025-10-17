@@ -133,6 +133,11 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 						width: 100%;
 						height: 100%;
 					}
+					
+					.gamesResetStyle, gamesResetStyle *
+					{
+						background: none !important;
+					}
 
 					#game_frame
 					{
