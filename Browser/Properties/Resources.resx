@@ -179,23 +179,6 @@
   <data name="Title" xml:space="preserve">
     <value>七四式電子観測儀 ブラウザ</value>
   </data>
-  <data name="DMMScript" xml:space="preserve">
-    <value>
-try {
-	if ( DMM.netgame.reloadDialog ) DMM.netgame.reloadDialog = function (){};
-}
-catch(e) {
-	alert("DMMによるページ更新ダイアログの非表示に失敗しました: "+e);
-}</value>
-  </data>
-  <data name="RegionCookie" xml:space="preserve">
-    <value>var timeToAdd = 1000 * 60 * 60 * 24 * 7 * 4 * 6;
-var date = new Date();
-var expiryTime = parseInt(date.getTime()) + timeToAdd;
-date.setTime(expiryTime);
-var utcTime = date.toUTCString();
-document.cookie = "ckcy=1;expires="+utcTime+";domain=www.dmm.com;path=/netgame/";</value>
-  </data>
   <data name="RemoveWelcomePopup" xml:space="preserve">
     <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
   </data>

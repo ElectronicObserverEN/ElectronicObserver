@@ -14,7 +14,6 @@ public class FormBrowserTranslationViewModel
 	public string ClearCacheTitle => Resources.ClearCacheTitle.Replace("_", "__").Replace("&", "_");
 	public string Confirmation => Resources.Confirmation.Replace("_", "__").Replace("&", "_");
 	public string CacheCleared => Resources.CacheCleared;
-	public string DMMScript => Resources.DMMScript.Replace("_", "__").Replace("&", "_");
 	public string FailedToApplyStylesheet => Resources.FailedToApplyStylesheet.Replace("_", "__").Replace("&", "_");
 	public string FailedToApplyBrowserFont => Resources.FailedToApplyBrowserFont;
 	public string FailedToCopyScreenshotToClipboard => Resources.FailedToCopyScreenshotToClipboard.Replace("_", "__").Replace("&", "_");
@@ -34,7 +33,6 @@ public class FormBrowserTranslationViewModel
 	public string Other_Zoom_Current_Fit => Resources.Other_Zoom_Current_Fit.Replace("_", "__").Replace("&", "_");
 
 	public string RefreshIgnoreCache => Resources.RefreshIgnoreCache.Replace("_", "__").Replace("&", "_");
-	public string RegionCookie => Resources.RegionCookie.Replace("_", "__").Replace("&", "_");
 	public string ReloadDialog => Resources.ReloadDialog.Replace("_", "__").Replace("&", "_");
 	public string ReloadHardDialog => Resources.ReloadHardDialog.Replace("_", "__").Replace("&", "_");
 	public string RemoveServicePopup => Resources.RemoveServicePopup.Replace("_", "__").Replace("&", "_");

@@ -458,7 +458,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 		try
 		{
-			WebView2?.CoreWebView2.ExecuteScriptAsync(Resources.DMMScript);
+			WebView2?.CoreWebView2.ExecuteScriptAsync(DMMScript);
 		}
 		catch (Exception ex)
 		{

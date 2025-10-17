@@ -230,6 +230,21 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 			}
 		""";
 
+	protected string DMMScript =>
+		"""
+			try 
+			{
+				if (DMM.netgame.reloadDialog)
+				{
+					DMM.netgame.reloadDialog = function (){};
+				}
+			}
+			catch(e) 
+			{
+				alert("DMMによるページ更新ダイアログの非表示に失敗しました: " + e);
+			}
+		""";
+
 	protected BrowserViewModel(string host, int port, string culture)
 	{
 		// Debugger.Launch();

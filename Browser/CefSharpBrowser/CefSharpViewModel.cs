@@ -318,7 +318,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 		try
 		{
-			GetMainFrame()?.EvaluateScriptAsync(Resources.DMMScript);
+			GetMainFrame()?.EvaluateScriptAsync(DMMScript);
 		}
 		catch (Exception ex)
 		{
