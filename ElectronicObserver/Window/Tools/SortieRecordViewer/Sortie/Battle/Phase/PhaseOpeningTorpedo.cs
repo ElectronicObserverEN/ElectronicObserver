@@ -25,7 +25,7 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 		ApiRaigekiClass = apiRaigekiClass;
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -45,6 +45,7 @@ public sealed class PhaseOpeningTorpedo : PhaseTorpedo
 		{
 			AttackDisplays.Add(new(FleetsAfterPhase, attack));
 			AddDamage(FleetsAfterPhase, attack.Defenders.First().Defender, attack.Defenders.First().Damage);
+			damages[attack.Attacker.ToFlatIndex()] += attack.Defenders.Sum(d => d.Damage);
 		}
 
 		return FleetsAfterPhase.Clone();

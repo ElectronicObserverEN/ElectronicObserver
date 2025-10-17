@@ -1,20 +1,25 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.BattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EachBattleWater;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcMidnightBattle;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcNightToDay;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.LdShooting;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.Battle;
+using ElectronicObserver.KancolleApi.Types.ApiReqPractice.MidnightBattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdAirbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
+using ElectronicObserver.KancolleApi.Types.ApiReqSortie.NightToDay;
 using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -91,5 +96,20 @@ public class BattleFactory(PhaseFactory phaseFactory)
 		=> new(PhaseFactory, fleets, battle);
 
 	public BattleCombinedEachWater CreateBattle(OpeningTorpedoRework_ApiReqCombinedBattleEachBattleWaterResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleNormalDayFromNight CreateBattle(ApiReqSortieNightToDayResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleEnemyCombinedDayFromNight CreateBattle(ApiReqCombinedBattleEcNightToDayResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattleCombinedAirBattle CreateBattle(ApiReqCombinedBattleAirbattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattlePracticeDay CreateBattle(ApiReqPracticeBattleResponse battle, BattleFleets fleets)
+		=> new(PhaseFactory, fleets, battle);
+
+	public BattlePracticeNight CreateBattle(ApiReqPracticeMidnightBattleResponse battle, BattleFleets fleets)
 		=> new(PhaseFactory, fleets, battle);
 }

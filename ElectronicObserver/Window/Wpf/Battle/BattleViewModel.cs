@@ -11,15 +11,18 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
-using ElectronicObserver.Data.Battle.Detail;
-using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.BattleDetail;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
+using BattleIndex = ElectronicObserver.Data.Battle.BattleIndex;
 using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle;
@@ -201,7 +204,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqPractice_MidnightBattle.ResponseReceived += Updated;
 		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(CompactMode)) return;
 
@@ -220,9 +223,9 @@ public partial class BattleViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void ShowBattleDetail()
 	{
-		BattleManager? bm = KCDatabase.Instance.Battle;
+		BattleManager bm = KCDatabase.Instance.Battle;
 
-		if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined) return;
+		if (bm.FirstBattle is null) return;
 
 		BattleDetailView dialog = new(new BattleDetailViewModel
 		{
@@ -239,6 +242,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		PlayerFleetVisible = true;
 	}
 
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void Updated(string apiname, dynamic data)
 	{
 		KCDatabase db = KCDatabase.Instance;
@@ -255,7 +259,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_map/start":
 			case "api_req_map/next":
-				if (!bm.Compass.HasAirRaid)
+				if (bm.FirstBattle is null)
 				{
 					ViewVisible = false;
 					break;
@@ -264,8 +268,8 @@ public partial class BattleViewModel : AnchorableViewModel
 				SetFormation(bm);
 				ClearSearchingResult();
 				ClearBaseAirAttack();
-				SetAerialWarfare(null, ((BattleBaseAirRaid)bm.BattleDay).BaseAirRaid);
-				SetHPBar(bm.BattleDay);
+				SetAerialWarfare(null, ((BattleBaseAirRaid)bm.FirstBattle).BaseAirRaid);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				ViewVisible = !hideDuringBattle;
@@ -297,10 +301,19 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 
 				SetFormation(bm);
-				SetSearchingResult(bm.BattleDay);
-				SetBaseAirAttack(bm.BattleDay.BaseAirAttack);
-				SetAerialWarfare(bm.BattleDay.JetAirBattle, bm.BattleDay.AirBattle);
-				SetHPBar(bm.BattleDay);
+				SetSearchingResult(bm.FirstBattle);
+
+				if (bm.FirstBattle is IBaseAirAttack baa)
+				{
+					SetBaseAirAttack(baa.BaseAirAttack);
+				}
+
+				if (bm.FirstBattle is IAirBattle ab)
+				{
+					SetAerialWarfare(ab.JetAirBattle, ab.AirBattle);
+				}
+
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -312,9 +325,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			case "api_req_battle_midnight/battle":
 			case "api_req_practice/midnight_battle":
 			{
+				if (bm.SecondBattle is not INightInitial b) return;
 
-				SetNightBattleEvent(bm.BattleNight.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetNightBattleEvent(b.NightInitial);
+				SetHPBar(bm.SecondBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -325,13 +339,14 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_battle_midnight/sp_midnight":
 			{
+				if (bm.FirstBattle is not INightInitial b) return;
 
 				SetFormation(bm);
 				ClearBaseAirAttack();
 				ClearAerialWarfare();
 				ClearSearchingResult();
-				SetNightBattleEvent(bm.BattleNight.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetNightBattleEvent(b.NightInitial);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -342,12 +357,13 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_sortie/airbattle":
 			{
+				if (bm.FirstBattle is not BattleAirBattle bab) return;
 
 				SetFormation(bm);
-				SetSearchingResult(bm.BattleDay);
-				SetBaseAirAttack(bm.BattleDay.BaseAirAttack);
-				SetAerialWarfare(bm.BattleDay.JetAirBattle, bm.BattleDay.AirBattle, ((BattleAirBattle)bm.BattleDay).AirBattle2);
-				SetHPBar(bm.BattleDay);
+				SetSearchingResult(bab);
+				SetBaseAirAttack(bab.BaseAirAttack);
+				SetAerialWarfare(bab.JetAirBattle, bab.AirBattle, bab.AirBattle2);
+				SetHPBar(bab);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -358,8 +374,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_sortie/night_to_day":
 			{
-				// 暫定
-				var battle = bm.BattleNight as BattleDayFromNight;
+				if (bm.FirstBattle is not BattleNormalDayFromNight battle) return;
 
 				SetFormation(bm);
 				ClearAerialWarfare();
@@ -374,7 +389,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					SetAerialWarfare(battle.JetAirBattle, battle.AirBattle);
 				}
 
-				SetHPBar(bm.BattleDay);
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -393,10 +408,19 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 
 				SetFormation(bm);
-				SetSearchingResult(bm.BattleDay);
-				SetBaseAirAttack(bm.BattleDay.BaseAirAttack);
-				SetAerialWarfare(bm.BattleDay.JetAirBattle, bm.BattleDay.AirBattle);
-				SetHPBar(bm.BattleDay);
+				SetSearchingResult(bm.FirstBattle);
+
+				if (bm.FirstBattle is IBaseAirAttack baa)
+				{
+					SetBaseAirAttack(baa.BaseAirAttack);
+				}
+
+				if (bm.FirstBattle is IAirBattle ab)
+				{
+					SetAerialWarfare(ab.JetAirBattle, ab.AirBattle);
+				}
+
+				SetHPBar(bm.FirstBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -407,12 +431,13 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_combined_battle/airbattle":
 			{
+				if (bm.FirstBattle is not BattleCombinedAirBattle bcab) return;
 
 				SetFormation(bm);
-				SetSearchingResult(bm.BattleDay);
-				SetBaseAirAttack(bm.BattleDay.BaseAirAttack);
-				SetAerialWarfare(bm.BattleDay.JetAirBattle, bm.BattleDay.AirBattle, ((BattleCombinedAirBattle)bm.BattleDay).AirBattle2);
-				SetHPBar(bm.BattleDay);
+				SetSearchingResult(bcab);
+				SetBaseAirAttack(bcab.BaseAirAttack);
+				SetAerialWarfare(bcab.JetAirBattle, bcab.AirBattle, bcab.AirBattle2);
+				SetHPBar(bcab);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -424,9 +449,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			case "api_req_combined_battle/midnight_battle":
 			case "api_req_combined_battle/ec_midnight_battle":
 			{
+				if (bm.SecondBattle is not INightInitial b) break;
 
-				SetNightBattleEvent(bm.BattleNight.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetNightBattleEvent(b.NightInitial);
+				SetHPBar(bm.SecondBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -437,13 +463,14 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_combined_battle/sp_midnight":
 			{
+				if (bm.FirstBattle is not INightInitial b) break;
 
 				SetFormation(bm);
 				ClearAerialWarfare();
 				ClearSearchingResult();
 				ClearBaseAirAttack();
-				SetNightBattleEvent(bm.BattleNight.NightInitial);
-				SetHPBar(bm.BattleNight);
+				SetNightBattleEvent(b.NightInitial);
+				SetHPBar(bm.SecondBattle);
 				SetDamageRate(bm);
 
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -454,7 +481,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			case "api_req_combined_battle/ec_night_to_day":
 			{
-				var battle = bm.BattleNight as BattleDayFromNight;
+				if (bm.FirstBattle is not DayFromNightBattleData battle) break;
 
 				SetFormation(bm);
 				ClearAerialWarfare();
@@ -512,13 +539,15 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetFormation(BattleManager bm)
 	{
-		FormationFriendText = Constants.GetFormationShort(bm.FirstBattle.Searching.FormationFriend);
-		FormationEnemyText = Constants.GetFormationShort(bm.FirstBattle.Searching.FormationEnemy);
-		FormationText = Constants.GetEngagementForm(bm.FirstBattle.Searching.EngagementForm);
+		if (bm.FirstBattle is not { Searching: { } searching }) return;
+
+		FormationFriendText = Constants.GetFormationShort(searching.PlayerFormationType);
+		FormationEnemyText = Constants.GetFormationShort(searching.EnemyFormationType);
+		FormationText = Constants.GetEngagementForm(searching.EngagementType);
 
 
 
-		if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
+		if (bm.IsEnemyCombined)
 		{
 			// highlights for the fleet you'll fight in night battle
 			// todo: this should probably go to config
@@ -563,10 +592,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			FleetEnemyBackColor = FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
 		}
 
-		FormationForeColor = (bm.FirstBattle.Searching.EngagementForm switch
+		FormationForeColor = (searching.EngagementType switch
 		{
-			3 => Configuration.Config.UI.Color_Green,
-			4 => Configuration.Config.UI.Color_Red,
+			EngagementType.TAdvantage => Configuration.Config.UI.Color_Green,
+			EngagementType.TDisadvantage => Configuration.Config.UI.Color_Red,
 			_ => Configuration.Config.UI.ForeColor,
 		}).ToBrush();
 	}
@@ -574,29 +603,31 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 索敵結果を設定します。
 	/// </summary>
-	private void SetSearchingResult(BattleData bd)
+	private void SetSearchingResult(FirstBattleData? bd)
 	{
-		int search = bd.Searching.SearchingFriend;
+		if (bd is not { Searching: { } searching }) return;
+
+		DetectionType search = searching.PlayerDetectionType;
 
 		SearchingFriendText = Constants.GetSearchingResultShort(search);
 		SearchingFriendIcon = search switch
 		{
 			<= 0 => null,
-			< 4 => EquipmentIconType.Seaplane,
+			< DetectionType.Failure => EquipmentIconType.Seaplane,
 			_ => EquipmentIconType.Radar,
 		};
 		SearchingFriendToolTip = null;
-		Smoker1Active = bd.Searching.SmokeCount >= 1;
-		Smoker2Active = bd.Searching.SmokeCount >= 2;
-		Smoker3Active = bd.Searching.SmokeCount >= 3;
+		Smoker1Active = searching.SmokeCount >= 1;
+		Smoker2Active = searching.SmokeCount >= 2;
+		Smoker3Active = searching.SmokeCount >= 3;
 
-		search = bd.Searching.SearchingEnemy;
+		search = searching.EnemyDetectionType;
 
 		SearchingEnemyText = Constants.GetSearchingResultShort(search);
 		SearchingEnemyIcon = search switch
 		{
 			<= 0 => null,
-			< 4 => EquipmentIconType.Seaplane,
+			< DetectionType.Failure => EquipmentIconType.Seaplane,
 			_ => EquipmentIconType.Radar,
 		};
 		SearchingEnemyToolTip = null;
@@ -623,9 +654,9 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 基地航空隊フェーズの結果を設定します。
 	/// </summary>
-	private void SetBaseAirAttack(PhaseBaseAirAttack pd)
+	private void SetBaseAirAttack(PhaseBaseAirAttack? pd)
 	{
-		if (pd?.IsAvailable != true)
+		if (pd is null)
 		{
 			ClearBaseAirAttack();
 			return;
@@ -637,10 +668,10 @@ public partial class BattleViewModel : AnchorableViewModel
 		StringBuilder sb = new();
 		int index = 1;
 
-		foreach (PhaseBaseAirAttack.PhaseBaseAirAttackUnit phase in pd.AirAttackUnits)
+		foreach (PhaseBaseAirAttackUnit phase in pd.Units)
 		{
 			sb.AppendFormat(GeneralRes.BaseWave + " - " + GeneralRes.BaseAirCorps + " :\r\n",
-				index, phase.AirUnitID);
+				index, phase.AirBaseId);
 
 			if (phase.IsStage1Available)
 			{
@@ -649,7 +680,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					" -{2}/{3} | {4}\r\n",
 					phase.AircraftLostStage1Friend, phase.AircraftTotalStage1Friend,
 					phase.AircraftLostStage1Enemy, phase.AircraftTotalStage1Enemy,
-					Constants.GetAirSuperiority(phase.AirSuperiority));
+					Constants.GetAirSuperiority(phase.AirState));
 			}
 
 			if (phase.IsStage2Available)
@@ -679,19 +710,13 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 航空戦表示用ヘルパー
 	/// </summary>
-	private sealed class AerialWarfareFormatter
+	private sealed class AerialWarfareFormatter(IPhaseAirBattle? air, string phaseName)
 	{
-		public PhaseAirBattleBase? Air { get; }
-		public string PhaseName { get; set; }
-
-		public AerialWarfareFormatter(PhaseAirBattleBase? air, string phaseName)
-		{
-			Air = air;
-			PhaseName = phaseName;
-		}
+		public IPhaseAirBattle? Air { get; } = air;
+		public string PhaseName { get; set; } = phaseName;
 
 		[MemberNotNullWhen(true, nameof(Air))]
-		public bool Enabled => Air is { IsAvailable: true };
+		public bool Enabled => Air is not null;
 
 		[MemberNotNullWhen(true, nameof(Air))]
 		public bool Stage1Enabled => Enabled && Air.IsStage1Available;
@@ -732,7 +757,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			_ => throw InvalidStage(stage),
 		};
 
-		public int GetTouchAircraft(bool isFriend) => isFriend switch
+		public string? GetTouchAircraft(bool isFriend) => isFriend switch
 		{
 			true when Enabled => Air.TouchAircraftFriend,
 			_ when Enabled => Air.TouchAircraftEnemy,
@@ -740,7 +765,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		};
 	}
 
-	private void SetAerialWarfare(PhaseAirBattleBase? phaseJet, PhaseAirBattleBase phase1)
+	private void SetAerialWarfare(IPhaseAirBattle? phaseJet, IPhaseAirBattle? phase1)
 		=> SetAerialWarfare(phaseJet, phase1, null);
 
 	/// <summary>
@@ -749,7 +774,8 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <param name="phaseJet">噴式航空戦のデータ。発生していなければ null</param>
 	/// <param name="phase1">第一次航空戦（通常航空戦）のデータ。</param>
 	/// <param name="phase2">第二次航空戦のデータ。発生していなければ null</param>
-	private void SetAerialWarfare(PhaseAirBattleBase? phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase? phase2)
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
+	private void SetAerialWarfare(IPhaseAirBattle? phaseJet, IPhaseAirBattle? phase1, IPhaseAirBattle? phase2)
 	{
 		List<AerialWarfareFormatter> phases = new()
 		{
@@ -811,13 +837,11 @@ public partial class BattleViewModel : AnchorableViewModel
 				.Where(p => p.Stage1Enabled)
 				.ToList();
 
-			AirSuperiorityText = Constants.GetAirSuperiority(((AirState?)phases[1].Air?.AirSuperiority) ?? AirState.Unknown);
-			AirSuperiorityForeColor = (phases[1].Air?.AirSuperiority switch
+			AirSuperiorityText = Constants.GetAirSuperiority((phases[1].Air?.AirState) ?? AirState.Unknown);
+			AirSuperiorityForeColor = (phases[1].Air?.AirState switch
 			{
-				// AS+ or AS
-				1 or 2 => Configuration.Config.UI.Color_Green,
-				// AI or AI-
-				3 or 4 => Configuration.Config.UI.Color_Red,
+				AirState.Supremacy or AirState.Superiority => Configuration.Config.UI.Color_Green,
+				AirState.Denial or AirState.Incapability => Configuration.Config.UI.Color_Red,
 
 				_ => Configuration.Config.UI.ForeColor,
 			}).ToBrush();
@@ -825,7 +849,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			AirSuperiorityToolTip = needAppendInfo switch
 			{
 				true => string.Join("", phases1.Select(p =>
-					$"{p.PhaseName}{Constants.GetAirSuperiority(((AirState?)p.Air?.AirSuperiority) ?? AirState.Unknown)}\r\n")),
+					$"{p.PhaseName}{Constants.GetAirSuperiority(p.Air?.AirState ?? AirState.Unknown)}\r\n")),
 				_ => null,
 			};
 
@@ -840,10 +864,10 @@ public partial class BattleViewModel : AnchorableViewModel
 				string? toolTip = currentToolTip;
 				EquipmentIconType? icon;
 
-				if (phases1.Any(p => p.GetTouchAircraft(isFriend) > 0))
+				if (phases1.Any(p => p.GetTouchAircraft(isFriend) is not null))
 				{
 					icon = EquipmentIconType.Seaplane;
-					toolTip += FormBattle.Contact + "\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? FormBattle.None)}"));
+					toolTip += FormBattle.Contact + "\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(p.GetTouchAircraft(isFriend) ?? FormBattle.None)}"));
 				}
 				else
 				{
@@ -858,7 +882,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 		else
 		{
-			AirSuperiorityText = Constants.GetAirSuperiority(-1);
+			AirSuperiorityText = Constants.GetAirSuperiority(AirState.Unknown);
 			AirSuperiorityToolTip = null;
 
 			AirStage1FriendText = "-";
@@ -967,9 +991,11 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 両軍のHPゲージを設定します。
 	/// </summary>
-	private void SetHPBar(BattleData bd)
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
+	private void SetHPBar(BattleData? bd)
 	{
-		KCDatabase db = KCDatabase.Instance;
+		if (bd is null) return;
+
 		bool isPractice = bd.IsPractice;
 		bool isFriendCombined = bd.IsFriendCombined;
 		bool isEnemyCombined = bd.IsEnemyCombined;
@@ -980,13 +1006,8 @@ public partial class BattleViewModel : AnchorableViewModel
 		IsEnemyCombinedFleet = isEnemyCombined;
 
 		var initial = bd.Initial;
-		var resultHPs = bd.ResultHPs;
-		var attackDamages = bd.AttackDamages;
-
-		/*
-		foreach (var bar in HPBars)
-			bar.SuspendUpdate();
-		*/
+		var resultHPs = bd.ResultHPs.ToList();
+		List<int> attackDamages = bd.AttackDamages;
 
 		void EnableHPBar(int index, int initialHP, int resultHP, int maxHP, bool isTargetable)
 		{
@@ -1013,7 +1034,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 
 		// friend main
-		for (int i = 0; i < initial.FriendInitialHPs.Length; i++)
+		for (int i = 0; i < initial.FriendInitialHPs.Count; i++)
 		{
 			int refindex = BattleIndex.Get(BattleSides.FriendMain, i);
 
@@ -1038,9 +1059,9 @@ public partial class BattleViewModel : AnchorableViewModel
 				}
 				else
 				{
-					IShipData ship = bd.Initial.FriendFleet.MembersInstance[i];
+					IShipData ship = bd.FleetsBeforeBattle.Fleet.MembersInstance[i]!;
 					name = ship.NameWithLevel;
-					isEscaped = bd.Initial.FriendFleet.EscapedShipList.Contains(ship.MasterID);
+					isEscaped = bd.FleetsBeforeBattle.Fleet.EscapedShipList.Contains(ship.MasterID);
 					isLandBase = ship.MasterShip.IsLandBase;
 					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 				}
@@ -1072,28 +1093,28 @@ public partial class BattleViewModel : AnchorableViewModel
 
 
 		// enemy main
-		for (int i = 0; i < initial.EnemyInitialHPs.Length; i++)
+		for (int i = 0; i < initial.EnemyInitialHPs.Count; i++)
 		{
 			int refindex = BattleIndex.Get(BattleSides.EnemyMain, i);
 
 			if (initial.EnemyInitialHPs[i] != -1)
 			{
-				EnableHPBar(refindex, initial.EnemyInitialHPs[i], resultHPs[refindex], initial.EnemyMaxHPs[i], initial.IsEnemyTargetable[i]);
-				IShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
+				IShipData ship = bd.Initial.EnemyMembersInstance[i]!;
+				EnableHPBar(refindex, ship.HPCurrent, resultHPs[refindex], ship.HPMax, ship.CanBeTargeted);
 
 				var bar = HPBars[refindex];
-				bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
+				bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 				SetEnemyBackground(refindex);
 
 				bar.ToolTip =
 					string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
-						ship.NameWithClass,
-						initial.EnemyLevels[i],
+						ship.MasterShip.NameWithClass,
+						ship.Level,
 						Math.Max(bar.PrevValue, 0),
 						Math.Max(bar.Value, 0),
 						bar.MaximumValue,
 						bar.Value - bar.PrevValue,
-						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.IsLandBase),
+						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase),
 						bd.GetBattleDetail(refindex)
 					);
 			}
@@ -1107,7 +1128,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		// friend escort
 		if (isFriendCombined)
 		{
-			for (int i = 0; i < initial.FriendInitialHPsEscort!.Length; i++)
+			for (int i = 0; i < initial.FriendInitialHPsEscort!.Count; i++)
 			{
 				int refindex = BattleIndex.Get(BattleSides.FriendEscort, i);
 
@@ -1115,8 +1136,8 @@ public partial class BattleViewModel : AnchorableViewModel
 				{
 					EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort![i], true);
 
-					IShipData? ship = bd.Initial.FriendFleetEscort.MembersInstance![i];
-					bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
+					IShipData ship = bd.FleetsBeforeBattle.EscortFleet!.MembersInstance[i]!;
+					bool isEscaped = bd.FleetsBeforeBattle.EscortFleet.EscapedShipList.Contains(ship.MasterID);
 
 					var bar = HPBars[refindex];
 					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
@@ -1172,23 +1193,22 @@ public partial class BattleViewModel : AnchorableViewModel
 
 				if (initial.EnemyInitialHPsEscort![i] != -1)
 				{
-					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort![i], initial.IsEnemyTargetableEscort[i]);
-
-					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance![i];
+					IShipData ship = bd.Initial.EnemyMembersEscortInstance![i]!;
+					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], ship.HPMax, ship.CanBeTargeted);
 
 					var bar = HPBars[refindex];
-					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 					SetEnemyBackground(refindex);
 
 					bar.ToolTip =
 						string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
-							ship.NameWithClass,
-							bd.Initial.EnemyLevelsEscort![i],
+							ship.MasterShip.NameWithClass,
+							ship.Level,
 							Math.Max(bar.PrevValue, 0),
 							Math.Max(bar.Value, 0),
 							bar.MaximumValue,
 							bar.Value - bar.PrevValue,
-							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.IsLandBase),
+							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase),
 							bd.GetBattleDetail(refindex)
 						);
 				}
@@ -1211,21 +1231,24 @@ public partial class BattleViewModel : AnchorableViewModel
 		{   // support
 			PhaseSupport? support = null;
 
-			if (bd is BattleDayFromNight bddn && (bddn.NightSupport?.IsAvailable ?? false))
+			if (bd is BattleNormalDayFromNight { NightSupport: { } nightSupport })
 			{
-				support = bddn.NightSupport;
+				support = nightSupport;
 			}
 
-			support ??= bd.Support;
+			if (bd is DayBattleData { Support: { } s })
+			{
+				support ??= s;
+			}
 
-			if (support?.IsAvailable ?? false)
+			if (support is not null)
 			{
 				FleetFriendIcon = support.SupportFlag switch
 				{
-					1 => EquipmentIconType.CarrierBasedTorpedo,
-					2 => EquipmentIconType.MainGunLarge,
-					3 => EquipmentIconType.Torpedo,
-					4 => EquipmentIconType.DepthCharge,
+					SupportType.Aerial => EquipmentIconType.CarrierBasedTorpedo,
+					SupportType.Shelling => EquipmentIconType.MainGunLarge,
+					SupportType.Torpedo => EquipmentIconType.Torpedo,
+					SupportType.AntiSubmarine => EquipmentIconType.DepthCharge,
 					_ => EquipmentIconType.Unknown,
 				};
 
@@ -1257,14 +1280,14 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (!isBaseAirRaid)
 		{
-			foreach (int i in bd.MVPShipIndexes)
+			foreach (int i in bd.MvpShipIndexes())
 			{
 				HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 			}
 
 			if (isFriendCombined)
 			{
-				foreach (int i in bd.MVPShipCombinedIndexes)
+				foreach (int i in bd.MvpShipCombinedIndexes())
 				{
 					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 				}
@@ -1272,7 +1295,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 	}
 
-	private bool _hpBarMoved = false;
+	private bool _hpBarMoved;
 	/// <summary>
 	/// 味方遊撃部隊７人目のHPゲージ（通常時は連合艦隊第二艦隊旗艦のHPゲージ）を移動します。
 	/// </summary>
@@ -1316,9 +1339,13 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (bm.IsBaseAirRaid)
 		{
-			int kind = bm.Compass.AirRaidDamageKind;
+			int kind = bm.Compass!.AirRaidDamageKind;
 			WinRankText = Constants.GetAirRaidDamageShort(kind);
-			WinRankForeColor = (1 <= kind && kind <= 3) ? WinRankColor_Lose : WinRankColor_Win;
+			WinRankForeColor = kind switch
+			{
+				>= 1 and <= 3 => WinRankColor_Lose,
+				_ => WinRankColor_Win,
+			};
 		}
 		else
 		{
@@ -1330,9 +1357,11 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// <summary>
 	/// 夜戦における各種表示を設定します。
 	/// </summary>
-	private void SetNightBattleEvent(PhaseNightInitial pd)
+	private void SetNightBattleEvent(PhaseNightInitial? pd)
 	{
-		FleetData fleet = pd.FriendFleet;
+		if (pd?.FleetsBeforePhase is null) return;
+
+		IFleetData fleet = pd.FleetsBeforePhase.Fleet;
 
 		//味方探照灯判定
 		{
@@ -1340,9 +1369,9 @@ public partial class BattleViewModel : AnchorableViewModel
 
 			if (index != -1)
 			{
-				IShipData ship = fleet.MembersInstance[index];
+				IShipData ship = fleet.MembersInstance[index]!;
 
-				AirStage1FriendText = "#" + (index + (pd.IsFriendEscort ? 6 : 0) + 1);
+				AirStage1FriendText = "#" + (index + 1);
 				AirStage1FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage1FriendIcon = EquipmentIconType.Searchlight;
 				AirStage1FriendToolTip = GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel;
@@ -1358,10 +1387,10 @@ public partial class BattleViewModel : AnchorableViewModel
 			int index = pd.SearchlightIndexEnemy;
 			if (index != -1)
 			{
-				AirStage1EnemyText = "#" + (index + (pd.IsEnemyEscort ? 6 : 0) + 1);
+				AirStage1EnemyText = "#" + (index + 1);
 				AirStage1EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage1EnemyIcon = EquipmentIconType.Searchlight;
-				AirStage1EnemyToolTip = GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass;
+				AirStage1EnemyToolTip = GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemy!.MasterShip.NameWithClass;
 			}
 			else
 			{
@@ -1370,22 +1399,22 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 
 		//夜間触接判定
-		if (pd.TouchAircraftFriend != -1)
+		if (pd.TouchAircraftFriend is not null)
 		{
 			SearchingFriendText = GeneralRes.NightContact;
 			SearchingFriendIcon = EquipmentIconType.Seaplane;
-			SearchingFriendToolTip = GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].NameEN;
+			SearchingFriendToolTip = GeneralRes.NightContacting + ": " + pd.TouchAircraftFriend.NameEN;
 		}
 		else
 		{
 			SearchingFriendToolTip = null;
 		}
 
-		if (pd.TouchAircraftEnemy != -1)
+		if (pd.TouchAircraftEnemy is not null)
 		{
 			SearchingEnemyText = GeneralRes.NightContact;
 			SearchingEnemyIcon = EquipmentIconType.Seaplane;
-			SearchingEnemyToolTip = GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftEnemy].NameEN;
+			SearchingEnemyToolTip = GeneralRes.NightContacting + ": " + pd.TouchAircraftEnemy.NameEN;
 		}
 		else
 		{
@@ -1394,14 +1423,12 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		//照明弾投射判定
 		{
-			int index = pd.FlareIndexFriend;
-
-			if (index != -1)
+			if (pd.FlareFriend is not null)
 			{
-				AirStage2FriendText = "#" + (index + 1);
+				AirStage2FriendText = "#" + (pd.FlareIndexFriend + 1);
 				AirStage2FriendForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage2FriendIcon = EquipmentIconType.StarShell;
-				AirStage2FriendToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareFriendInstance.NameWithLevel;
+				AirStage2FriendToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareFriend.NameWithLevel;
 
 			}
 			else
@@ -1411,14 +1438,12 @@ public partial class BattleViewModel : AnchorableViewModel
 		}
 
 		{
-			int index = pd.FlareIndexEnemy;
-
-			if (index != -1)
+			if (pd.FlareEnemy is not null)
 			{
-				AirStage2EnemyText = "#" + (index + 1);
+				AirStage2EnemyText = "#" + (pd.FlareIndexEnemy + 1);
 				AirStage2EnemyForeColor = Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage2EnemyIcon = EquipmentIconType.StarShell;
-				AirStage2EnemyToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass;
+				AirStage2EnemyToolTip = GeneralRes.StarShellUsed + ": " + pd.FlareEnemy.MasterShip.NameWithClass;
 			}
 			else
 			{
@@ -1432,32 +1457,31 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// 戦闘終了後に、MVP艦の表示を更新します。
 	/// </summary>
 	/// <param name="bm">戦闘データ。</param>
+	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "todo")]
 	private void SetMVPShip(BattleManager bm)
 	{
 		bool isCombined = bm.IsCombinedBattle;
 
-		BattleData bd = bm.StartsFromDayBattle switch
-		{
-			true => bm.BattleDay,
-			_ => bm.BattleNight,
-		};
+		BattleData? bd = bm.SecondBattle ?? bm.FirstBattle;
+		BattleResult? br = bm.Result;
 
-		BattleResultData br = bm.Result;
+		if (bd is null) return;
+		if (br is null) return;
 
-		FleetData friend = bd.Initial.FriendFleet;
-		FleetData? escort = isCombined switch
+		IFleetData friend = bd.FleetsBeforeBattle.Fleet;
+		IFleetData? escort = isCombined switch
 		{
 			false => null,
-			_ => bd.Initial.FriendFleetEscort,
+			_ => bd.FleetsBeforeBattle.EscortFleet,
 		};
 
-		for (int i = 0; i < friend.Members.Count; i++)
+		for (int i = 0; i < friend.Members!.Count; i++)
 		{
 			if (friend.EscapedShipList.Contains(friend.Members[i]))
 			{
 				HPBars[i].BackColor = Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 			}
-			else if (br.MVPIndex == i + 1)
+			else if (br.MvpIndex == i + 1)
 			{
 				HPBars[i].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 			}
@@ -1469,13 +1493,13 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		if (escort != null)
 		{
-			for (int i = 0; i < escort.Members.Count; i++)
+			for (int i = 0; i < escort.Members!.Count; i++)
 			{
 				if (escort.EscapedShipList.Contains(escort.Members[i]))
 				{
 					HPBars[i + 6].BackColor = Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 				}
-				else if (br.MVPIndexCombined == i + 1)
+				else if (br.MvpIndexCombined == i + 1)
 				{
 					HPBars[i + 6].BackColor = Configuration.Config.UI.Battle_ColorHPBarsMVP;
 				}

@@ -9,7 +9,7 @@ using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseShelling : PhaseBase
+public class PhaseShelling : AttackPhaseBase
 {
 	public override string Title => DayShellingPhase switch
 	{
@@ -24,8 +24,8 @@ public class PhaseShelling : PhaseBase
 	private ApiHougeki1 ShellingData { get; }
 	public DayShellingPhase DayShellingPhase { get; }
 
-	private List<PhaseShellingAttack> Attacks { get; } = new();
-	public List<PhaseShellingAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseShellingAttack> Attacks { get; } = [];
+	public override List<PhaseShellingAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseShelling(IKCDatabase kcDatabase, ApiHougeki1 shellingData, DayShellingPhase dayShellingPhase)
 	{
@@ -46,7 +46,7 @@ public class PhaseShelling : PhaseBase
 		List<List<int>> defenders = ShellingData.ApiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 		List<List<int>> attackEquipments = ShellingData.ApiSiList.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticalFlags = ShellingData.ApiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
-		List<List<double>> rawDamages = ShellingData.ApiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<List<double>> rawDamages = ShellingData.ApiDamage.Select(elem => elem.Where(e => e >= 0).ToList()).ToList();
 
 		for (int i = 0; i < attackers.Count; i++)
 		{
@@ -56,6 +56,7 @@ public class PhaseShelling : PhaseBase
 				AttackType = attackTypes[i],
 				DisplayEquipments = attackEquipments[i]
 					.Select(id => KcDatabase.MasterEquipments[id])
+					.OfType<IEquipmentDataMaster>()
 					.ToList(),
 			};
 
@@ -81,7 +82,7 @@ public class PhaseShelling : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -97,11 +98,12 @@ public class PhaseShelling : PhaseBase
 					PhaseShellingAttack comboAttack = atk with
 					{
 						Attacker = new(attackers[i], FleetFlag.Player),
-						Defenders = new() { atk.Defenders[i] },
+						Defenders = [atk.Defenders[i]],
 					};
 
 					AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, comboAttack));
 					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+					damages[comboAttack.Attacker.ToFlatIndex()] += comboAttack.Defenders.Sum(d => d.Damage);
 				}
 			}
 			else
@@ -110,6 +112,7 @@ public class PhaseShelling : PhaseBase
 				{
 					AttackDisplays.Add(new PhaseShellingAttackViewModel(FleetsAfterPhase, atk));
 					AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+					damages[atk.Attacker.ToFlatIndex()] += defs.Sum(d => d.Damage);
 				}
 			}
 		}

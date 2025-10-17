@@ -7,21 +7,26 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 {
-	public string Attacker => BattleRes.SupportFleet;
+	public override BattleIndex? AttackerIndex => null;
+	public override string AttackerDisplay => BattleRes.SupportFleet;
 
-	public BattleIndex DefenderIndex { get; }
+	public override BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public List<int> DefenderHpBeforeAttacks { get; } = new();
+	private List<int> DefenderHpBeforeAttacks { get; } = [];
+	public override string DefenderDisplay { get; }
 
+	public override double Damage { get; }
 	private SupportType AttackType { get; }
 	private List<SupportAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
-	public string DamageDisplay { get; }
+	public override string DamageDisplay { get; }
 
 	public PhaseSupportAttackViewModel(BattleFleets fleets, PhaseSupportAttack attack)
 	{
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
+		DefenderDisplay = $"{Defender.Name} {DefenderIndex.Display}";
+
 		AttackType = attack.AttackType;
 		Attacks = attack.Defenders
 			.Select(d => new SupportAttack
@@ -33,6 +38,7 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+		Damage = Attacks.Sum(a => a.Damage);
 
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
 
@@ -41,7 +47,7 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - supportAttack.Damage));
 		}
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{

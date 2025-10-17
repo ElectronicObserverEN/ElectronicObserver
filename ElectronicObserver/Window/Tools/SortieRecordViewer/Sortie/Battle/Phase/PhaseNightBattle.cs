@@ -9,13 +9,13 @@ using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public class PhaseNightBattle : PhaseBase
+public class PhaseNightBattle : AttackPhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseNightBattle;
 
 	private IKCDatabase KcDatabase { get; }
-	private List<PhaseNightBattleAttack> Attacks { get; } = new();
-	public List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseNightBattleAttack> Attacks { get; } = [];
+	public override List<PhaseNightBattleAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseNightBattle(IKCDatabase kcDatabase, List<FleetFlag> apiAtEflag, List<int> apiAtList,
 		List<List<HitType>> apiClList, List<List<double>> apiDamage, List<List<int>> apiDfList,
@@ -37,7 +37,7 @@ public class PhaseNightBattle : PhaseBase
 		List<List<int>> defenders = apiDfList.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
 		List<List<int>> attackEquipments = apiSiList.Select(elem => elem.Select(ParseInt).ToList()).ToList();
 		List<List<HitType>> criticals = apiClList.Select(elem => elem.Where(e => e != HitType.Invalid).ToList()).ToList();
-		List<List<double>> rawDamages = apiDamage.Select(elem => elem.Where(e => e != -1).ToList()).ToList();
+		List<List<double>> rawDamages = apiDamage.Select(elem => elem.Where(e => e >= 0).ToList()).ToList();
 
 		for (int i = 0; i < attackers.Count; i++)
 		{
@@ -47,7 +47,8 @@ public class PhaseNightBattle : PhaseBase
 				NightAirAttackFlag = nightAirAttackFlags[i] == -1,
 				AttackType = attackTypes[i],
 				DisplayEquipments = attackEquipments[i]
-					.Select(i => KcDatabase.MasterEquipments[i])
+					.Select(id => KcDatabase.MasterEquipments[id])
+					.OfType<IEquipmentDataMaster>()
 					.ToList(),
 			};
 
@@ -73,7 +74,7 @@ public class PhaseNightBattle : PhaseBase
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
@@ -82,32 +83,7 @@ public class PhaseNightBattle : PhaseBase
 		{
 			if (atk.AttackType.IsSpecialAttack())
 			{
-				List<int> attackers = atk.AttackType switch
-				{
-					NightAttackKind.CutinZuiun => Enumerable.Repeat(atk.Attacker.Index, 2).ToList(),
-					_ => atk.AttackType.SpecialAttackIndexes(),
-				};
-
-				int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
-					.Count(f => f.IsInSortie);
-
-				for (int i = 0; i < atk.Defenders.Count; i++)
-				{
-					int attackerIndex = attackers[i];
-
-					PhaseNightBattleAttack comboAttack = atk with
-					{
-						Attacker = fleetCount switch
-						{
-							2 => new(attackerIndex + 6, FleetFlag.Player),
-							_ => new(attackerIndex, FleetFlag.Player),
-						},
-						Defenders = new() { atk.Defenders[i] },
-					};
-
-					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
-					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-				}
+				ProcessSpecialAttack(atk, damages, FleetsAfterPhase);
 			}
 			else
 			{
@@ -115,10 +91,42 @@ public class PhaseNightBattle : PhaseBase
 				{
 					AttackDisplays.Add(new PhaseNightBattleAttackViewModel(FleetsAfterPhase, atk, atk.Defenders.First().Defender));
 					AddDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+					damages[atk.Attacker.ToFlatIndex()] += defs.Sum(d => d.Damage);
 				}
 			}
 		}
 
 		return FleetsAfterPhase.Clone();
+	}
+
+	private void ProcessSpecialAttack(PhaseNightBattleAttack atk, List<int> damages, BattleFleets fleetsAfterPhase)
+	{
+		List<int> attackers = atk.AttackType switch
+		{
+			NightAttackKind.CutinZuiun => Enumerable.Repeat(atk.Attacker.Index, 2).ToList(),
+			_ => atk.AttackType.SpecialAttackIndexes(),
+		};
+
+		int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
+			.Count(f => f.IsInSortie);
+
+		for (int i = 0; i < atk.Defenders.Count; i++)
+		{
+			int attackerIndex = attackers[i];
+
+			PhaseNightBattleAttack comboAttack = atk with
+			{
+				Attacker = fleetCount switch
+				{
+					2 => new(attackerIndex + 6, FleetFlag.Player),
+					_ => new(attackerIndex, FleetFlag.Player),
+				},
+				Defenders = [atk.Defenders[i]],
+			};
+
+			AttackDisplays.Add(new PhaseNightBattleAttackViewModel(fleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
+			AddDamage(fleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+			damages[comboAttack.Attacker.ToFlatIndex()] += comboAttack.Defenders.Sum(d => d.Damage);
+		}
 	}
 }

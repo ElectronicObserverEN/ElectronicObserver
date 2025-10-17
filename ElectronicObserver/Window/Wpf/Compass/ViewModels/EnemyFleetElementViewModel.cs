@@ -30,7 +30,7 @@ public class EnemyFleetElementViewModel : ObservableObject
 
 	public bool HasEscortFleet => EscortFleetMember.Any(ship => ship.ShipId > 0);
 
-	public List<int> Formations { get; init; } = new();
+	public List<FormationType> Formations { get; init; } = new();
 
 	public string FormationString => string.Join('/', Formations.Select(Constants.GetFormationShort));
 

@@ -1,11 +1,12 @@
 ﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public abstract class SecondNightBattleData : BattleData
+public abstract class SecondNightBattleData : BattleData, INightInitial
 {
-	protected PhaseNightInitial? NightInitial { get; }
+	public PhaseNightInitial? NightInitial { get; }
 	protected PhaseFriendlySupportInfo? FriendlySupportInfo { get; }
 	protected PhaseFriendlyShelling? FriendlyShelling { get; }
 	protected PhaseNightBattle? NightBattle { get; }

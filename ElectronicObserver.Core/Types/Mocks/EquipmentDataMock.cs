@@ -56,4 +56,6 @@ public class EquipmentDataMock : IEquipmentData
 	{
 		throw new System.NotImplementedException();
 	}
+
+	public override string ToString() => $"[{EquipmentID}] {Name}";
 }

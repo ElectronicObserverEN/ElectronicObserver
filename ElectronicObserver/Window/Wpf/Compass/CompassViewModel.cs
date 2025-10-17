@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
@@ -15,6 +16,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Wpf.Compass.ViewModels;
 
 namespace ElectronicObserver.Window.Wpf.Compass;
@@ -97,28 +99,26 @@ public class CompassViewModel : AnchorableViewModel
 
 	private void Updated(string apiname, dynamic data)
 	{
-		System.Drawing.Color GetColorFromEventKind(int kind)
+		static System.Drawing.Color GetColorFromEventKind(int kind) => kind switch
 		{
-			switch (kind)
-			{
-				case 0:
-				case 1:
-				default: //昼夜戦・その他
-					return Utility.Configuration.Config.UI.ForeColor;
-				case 2:
-				case 3: //夜戦・夜昼戦
-					return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
-				case 4: //航空戦
-				case 6: //長距離空襲戦
-					return Utility.Configuration.Config.UI.Compass_ColorTextEventKind6;
-				case 5: // 敵連合
-					return Utility.Configuration.Config.UI.Compass_ColorTextEventKind5;
-				case 7: // 夜昼戦(対連合艦隊)
-					return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
-				case 8: // レーダー射撃
-					return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
-			}
-		}
+			//夜戦・夜昼戦
+			2 or 3 => Utility.Configuration.Config.UI.Compass_ColorTextEventKind3,
+
+			// 航空戦・長距離空襲戦
+			4 or 6 => Utility.Configuration.Config.UI.Compass_ColorTextEventKind6,
+
+			// 敵連合
+			5 => Utility.Configuration.Config.UI.Compass_ColorTextEventKind5,
+
+			// 夜昼戦(対連合艦隊)
+			7 => Utility.Configuration.Config.UI.Compass_ColorTextEventKind3,
+
+			// レーダー射撃
+			8 => Utility.Configuration.Config.UI.Compass_ColorTextEventKind3,
+
+			//昼夜戦・その他
+			_ => Utility.Configuration.Config.UI.ForeColor
+		};
 
 		if (apiname == "api_port/port")
 		{
@@ -141,6 +141,8 @@ public class CompassViewModel : AnchorableViewModel
 		}
 		else
 		{
+			Debug.Assert(Db.Battle.Compass is not null);
+
 			CompassData compass = Db.Battle.Compass;
 
 			// ex: world 5-5
@@ -236,8 +238,8 @@ public class CompassViewModel : AnchorableViewModel
 					case 3:     //渦潮
 					{
 						int materialmax = KCDatabase.Instance.Fleet.Fleets.Values
-							.Where(f => f != null && f.IsInSortie)
-							.SelectMany(f => f.MembersWithoutEscaped)
+							.Where(f => f is { IsInSortie: true })
+							.SelectMany(f => f.MembersWithoutEscaped!)
 							.Max(s =>
 							{
 								if (s == null) return 0;
@@ -281,31 +283,16 @@ public class CompassViewModel : AnchorableViewModel
 
 					case 1:     //イベントなし
 					case 6:     //気のせいだった
-						switch (compass.EventKind)
+						eventkind = compass.EventKind switch
 						{
-
-							case 0:     //気のせいだった
-							default:
-								break;
-							case 1:
-								eventkind = FormCompass.NoEnemySighted;
-								break;
-							case 2:
-								eventkind = FormCompass.BranchChoice;
-								break;
-							case 3:
-								eventkind = FormCompass.CalmSea;
-								break;
-							case 4:
-								eventkind = FormCompass.CalmStrait;
-								break;
-							case 5:
-								eventkind = FormCompass.NeedToBeCareful;
-								break;
-							case 6:
-								eventkind = FormCompass.CalmSea2;
-								break;
-						}
+							1 => FormCompass.NoEnemySighted,
+							2 => FormCompass.BranchChoice,
+							3 => FormCompass.CalmSea,
+							4 => FormCompass.CalmStrait,
+							5 => FormCompass.NeedToBeCareful,
+							6 => FormCompass.CalmSea2,
+							_ => eventkind
+						};
 
 						if (compass.RouteChoices != null)
 						{
@@ -354,7 +341,6 @@ public class CompassViewModel : AnchorableViewModel
 
 								break;
 
-							case 4:     //航空戦
 							default:
 								UpdateEnemyFleet();
 								break;
@@ -384,7 +370,7 @@ public class CompassViewModel : AnchorableViewModel
 			}
 			else if (Db.Battle.HeavyBaseAirRaids.Any())
 			{
-				int apiLostKind = (int)Db.Battle.HeavyBaseAirRaids.Last().RawData.api_lost_kind;
+				int apiLostKind = Db.Battle.HeavyBaseAirRaids.Last().BaseAirRaid?.ApiLostKind ?? 0;
 
 				TextEventKindIcon = EquipmentIconType.CarrierBasedBomber;
 				TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(apiLostKind);
@@ -399,6 +385,8 @@ public class CompassViewModel : AnchorableViewModel
 
 	private void UpdateEnemyFleet()
 	{
+		Debug.Assert(Db.Battle.Compass is not null);
+
 		CompassData compass = Db.Battle.Compass;
 
 		CurrentViewModel = EnemyListViewModel;
@@ -432,11 +420,11 @@ public class CompassViewModel : AnchorableViewModel
 				return a.Formation - b.Formation;
 			});
 
-			NextEnemyFleetCandidate(0);
+			NextEnemyFleetCandidate();
 		}
 	}
 
-	private void NextEnemyFleetCandidate(int offset)
+	private void NextEnemyFleetCandidate()
 	{
 		if (_enemyFleetCandidate == null || _enemyFleetCandidate.Count == 0) return;
 
@@ -450,7 +438,7 @@ public class CompassViewModel : AnchorableViewModel
 		.Select(f => new EnemyFleetElementViewModel
 		{
 			EnemyFleetCandidate = f.First(),
-			Formations = f.Select(fleet => fleet.Formation).ToList()
+			Formations = f.Select(fleet => (FormationType)fleet.Formation).ToList(),
 		})
 		.ToList();
 
@@ -561,20 +549,24 @@ public class CompassViewModel : AnchorableViewModel
 		CurrentViewModel = BattleViewModel;
 
 		BattleManager bm = KCDatabase.Instance.Battle;
-		BattleData bd = bm.FirstBattle;
 
-		int[] enemies = bd.Initial.EnemyMembers;
-		int[][] slots = bd.Initial.EnemySlots;
-		int[] levels = bd.Initial.EnemyLevels;
-		int[][] parameters = bd.Initial.EnemyParameters;
-		int[] hps = bd.Initial.EnemyMaxHPs;
+		if (bm.FirstBattle is not FirstBattleData bd) return;
+
+		int[] enemies = bd.Initial.EnemyMembers.ToArray();
+		int[][] slots = bd.Initial.EnemySlots.ToArray();
+		int[] levels = bd.Initial.EnemyLevels.ToArray();
+		List<List<int>> parameters = bd.Initial.EnemyParameters;
+		int[] hps = bd.Initial.EnemyMaxHPs.ToArray();
 
 		_enemyFleetCandidate = null;
 
 		if (!bm.IsPractice)
 		{
-			EnemyFleetRecord.EnemyFleetElement efcurrent = EnemyFleetRecord.EnemyFleetElement.CreateFromCurrentState();
-			EnemyFleetRecord.EnemyFleetElement efrecord = RecordManager.Instance.EnemyFleet[efcurrent.FleetID];
+			EnemyFleetRecord.EnemyFleetElement? efcurrent = EnemyFleetRecord.EnemyFleetElement.CreateFromCurrentState();
+
+			Debug.Assert(efcurrent is not null);
+
+			EnemyFleetRecord.EnemyFleetElement? efrecord = RecordManager.Instance.EnemyFleet[efcurrent.FleetID];
 			if (efrecord != null)
 			{
 				TextEnemyFleetNameText = KCDatabase.Instance.Translation.Operation.FleetName(efrecord.FleetName);
@@ -583,17 +575,22 @@ public class CompassViewModel : AnchorableViewModel
 			TextEventDetailToolTip = GeneralRes.EnemyFleetID + ": " + efcurrent.FleetID.ToString("x16");
 		}
 
-		TextFormationText = Constants.GetFormationShort(bd.Searching.FormationEnemy);
+		TextFormationText = Constants.GetFormationShort(bd.Searching.EnemyFormationType);
 
 		{
 			int air = Calculator.GetAirSuperiority(enemies, slots);
-			TextAirSuperiorityText = isPractice ?
-				air.ToString() + " ～ " + Calculator.GetAirSuperiorityAtMaxLevel(enemies, slots).ToString() :
-				air.ToString();
+			TextAirSuperiorityText = isPractice switch
+			{
+				true => air + " ～ " + Calculator.GetAirSuperiorityAtMaxLevel(enemies, slots),
+				_ => air.ToString(),
+			};
 
 			if (enemies.Select(id => KCDatabase.Instance.MasterShips[id])
-				.Any(ship => ship != null && RecordManager.Instance.ShipParameter[ship.ShipID]?.Aircraft == null))
+				.OfType<IShipDataMaster>()
+				.Any(ship =>  RecordManager.Instance.ShipParameter[ship.ShipID]?.Aircraft == null))
+			{
 				TextAirSuperiorityText += "?";
+			}
 
 			TextAirSuperiorityToolTip = GetAirSuperiorityString(isPractice ? 0 : air);
 		}

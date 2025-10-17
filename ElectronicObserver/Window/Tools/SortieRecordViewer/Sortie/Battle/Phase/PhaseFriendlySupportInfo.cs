@@ -13,7 +13,7 @@ public class PhaseFriendlySupportInfo : PhaseBase
 {
 	public override string Title => BattleRes.FriendlyFleet;
 
-	private List<IShipData?> Ships { get; } = new();
+	private List<IShipData?> Ships { get; } = [];
 
 	public string Display => CreateDisplay();
 
@@ -30,13 +30,14 @@ public class PhaseFriendlySupportInfo : PhaseBase
 		for (int i = 0; i < count; i++)
 		{
 			// this should be impossible
-			if (apiFriendlyInfo.ApiShipId[i] <= 0)
+			if (apiFriendlyInfo.ApiShipId[i] <= 0 ||
+				KCDatabase.Instance.MasterShips[(int)apiFriendlyInfo.ApiShipId[i]] is not IShipDataMaster shipData)
 			{
 				Ships.Add(null);
 				continue;
 			}
 
-			ShipDataMock ship = new(KCDatabase.Instance.MasterShips[(int)apiFriendlyInfo.ApiShipId[i]])
+			ShipDataMock ship = new(shipData)
 			{
 				Level = apiFriendlyInfo.ApiShipLv[i],
 				HPCurrent = apiFriendlyInfo.ApiNowhps[i],
@@ -44,7 +45,11 @@ public class PhaseFriendlySupportInfo : PhaseBase
 					.Append(apiFriendlyInfo.ApiSlotEx[i])
 					.Select(id => id switch
 					{
-						> 0 => new EquipmentDataMock(KCDatabase.Instance.MasterEquipments[(int)id]),
+						> 0 => KCDatabase.Instance.MasterEquipments[(int)id] switch
+						{
+							IEquipmentDataMaster eq => new EquipmentDataMock(eq),
+							_ => null,
+						},
 						_ => null,
 					})
 					.Cast<IEquipmentData?>()
@@ -54,12 +59,12 @@ public class PhaseFriendlySupportInfo : PhaseBase
 				AABase = apiFriendlyInfo.ApiParam[i][2],
 				ArmorBase = apiFriendlyInfo.ApiParam[i][3],
 			};
-			
+
 			Ships.Add(ship);
 		}
 	}
 
-	public override BattleFleets EmulateBattle(BattleFleets battleFleets)
+	public override BattleFleets EmulateBattle(BattleFleets battleFleets, List<int> damages)
 	{
 		FleetsBeforePhase = battleFleets.Clone();
 		FleetsAfterPhase = battleFleets;
