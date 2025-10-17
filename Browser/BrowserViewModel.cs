@@ -232,16 +232,17 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected string DMMScript =>
 		"""
-			try 
+			try
 			{
 				if (DMM.netgame.reloadDialog)
 				{
 					DMM.netgame.reloadDialog = function (){};
 				}
 			}
-			catch(e) 
+			catch(e)
 			{
-				alert("DMMによるページ更新ダイアログの非表示に失敗しました: " + e);
+				// todo: "DMM" doesn't seem to exist anymore so there's always an error here
+				// alert("DMMによるページ更新ダイアログの非表示に失敗しました: " + e);
 			}
 		""";
 
