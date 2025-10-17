@@ -528,9 +528,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (Configuration is null) return;
 
 		if (!Configuration.ConfirmAtRefresh ||
-		    MessageBox.Show(FormBrowser.ReloadDialog, FormBrowser.Confirmation,
-			    MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
-		    == MessageBoxResult.OK)
+			MessageBox.Show(FormBrowser.ReloadDialog, FormBrowser.Confirmation,
+				MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
+			== MessageBoxResult.OK)
 		{
 			RefreshBrowser();
 		}
@@ -542,9 +542,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (Configuration is null) return;
 
 		if (!Configuration.ConfirmAtRefresh ||
-		    MessageBox.Show(FormBrowser.ReloadHardDialog, FormBrowser.Confirmation,
-			    MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
-		    == MessageBoxResult.OK)
+			MessageBox.Show(FormBrowser.ReloadHardDialog, FormBrowser.Confirmation,
+				MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
+			== MessageBoxResult.OK)
 		{
 			RefreshBrowser(true);
 		}
@@ -556,8 +556,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (Configuration is null) return;
 
 		if (MessageBox.Show(FormBrowser.LoginDialog, FormBrowser.Confirmation,
-			    MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel)
-		    == MessageBoxResult.OK)
+				MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel)
+			== MessageBoxResult.OK)
 		{
 			Navigate(Configuration.LogInPageURL);
 		}
