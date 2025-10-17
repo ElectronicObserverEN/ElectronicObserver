@@ -42,10 +42,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	public bool ZoomFit { get; set; }
 	public string CurrentZoom { get; set; } = "";
 
-	protected string StyleClassId { get; } = Guid.NewGuid().ToString()[..8];
-
 	// user setting for stylesheet
 	public bool StyleSheetEnabled { get; set; }
+
 	// todo: flag to temporarily disable the stylesheet
 	// seems to be used for when you navigate to something other than kancolle
 	private bool ShouldStyleSheetApply { get; set; } = true;
@@ -55,16 +54,19 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	/// WebView2 doesn't need this.
 	/// </summary>
 	public DpiScale DpiScale { get; set; }
+
 	public double TextScaleFactor { get; set; }
 	public double ActualWidth { get; set; }
 	public double ActualHeight { get; set; }
 
 	public Dock ToolMenuDock { get; set; } = Dock.Top;
+
 	public Orientation ToolMenuOrientation => ToolMenuDock switch
 	{
 		Dock.Left or Dock.Right => Orientation.Vertical,
 		_ => Orientation.Horizontal,
 	};
+
 	public Visibility ToolMenuVisibility { get; set; } = Visibility.Visible;
 
 	protected bool VolumeProcessInitialized { get; set; }
@@ -74,10 +76,133 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected string? LastScreenShotPath { get; set; }
 	public BitmapSource? LastScreenshot { get; set; }
-	
+
 	protected string BrowserFontStyleId { get; } = Guid.NewGuid().ToString()[..8];
 
 	protected CompassPredictionViewModel CompassPredictionViewModel { get; set; }
+
+	private string StyleClassId { get; } = Guid.NewGuid().ToString()[..8];
+
+	protected string PageScript =>
+		$$"""
+		try
+		{
+			var node = document.getElementById('{{StyleClassId}}');
+			if (node)
+			{
+				document.getElementsByTagName('head')[0].removeChild(node);
+			}
+
+			node = document.createElement('div');
+			node.innerHTML = `
+				<style id='{{StyleClassId}}'>
+					body
+					{
+						visibility: hidden;
+						overflow: hidden;
+					}
+
+					div #block_background
+					{
+						visibility: visible;
+					}
+
+					div #alert
+					{
+						visibility: visible;
+						overflow: scroll;
+						overflow-x: hidden;
+						top: 3% !important;
+						left: 3% !important;
+						width: 94% !important;
+						height: 94%;
+						padding: 2%;
+						box-sizing: border-box;
+					}
+
+					div.dmm-ntgnavi
+					{
+						display: none;
+					}
+
+					#area-game
+					{
+						position: fixed;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+					}
+
+					#game_frame
+					{
+						visibility: visible;
+						width: 100% !important;
+						height: 100% !important;
+					}
+				</style>
+			`;
+
+			document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+		}
+		catch (e)
+		{
+			alert("ページCSS適用に失敗しました: " + e);
+		}
+		""";
+
+	protected string FrameScript =>
+		$$"""
+			try
+			{
+				var node = document.getElementById('{{StyleClassId}}');
+				if (node)
+				{
+					document.getElementsByTagName('head')[0].removeChild(node);
+				}
+
+				node = document.createElement('div');
+				node.innerHTML = `
+					<style id='{{StyleClassId}}'>
+						body
+						{
+							visibility: hidden;
+						}
+
+						#flashWrap
+						{
+							position: fixed;
+							left: 0;
+							top: 0;
+							width: 100% !important;
+							height: 100% !important;
+						}
+
+						#htmlWrap
+						{
+							visibility: visible;
+							width: 100% !important;
+							height: 100% !important;
+						}
+					</style>
+				`;
+
+				document.getElementsByTagName('head')[0].appendChild(node.lastChild);
+			}
+			catch (e)
+			{
+				alert("フレームCSS適用に失敗しました: " + e);
+			}
+		""";
+
+	protected string RestoreScript =>
+		$$"""
+			var node = document.getElementById('{{StyleClassId}}');
+			if (node)
+			{
+				document.getElementsByTagName('head')[0].removeChild(node);
+			}
+		""";
 
 	protected BrowserViewModel(string host, int port, string culture)
 	{
@@ -243,7 +368,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 				// todo: add red color to indicate volume manager isn't active?
 				// control.BackColor = System.Drawing.Color.MistyRose;
 			}
-
 		}
 		catch (Exception)
 		{
@@ -399,9 +523,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (Configuration is null) return;
 
 		if (!Configuration.ConfirmAtRefresh ||
-			MessageBox.Show(FormBrowser.ReloadDialog, FormBrowser.Confirmation,
-				MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
-			== MessageBoxResult.OK)
+		    MessageBox.Show(FormBrowser.ReloadDialog, FormBrowser.Confirmation,
+			    MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
+		    == MessageBoxResult.OK)
 		{
 			RefreshBrowser();
 		}
@@ -413,9 +537,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (Configuration is null) return;
 
 		if (!Configuration.ConfirmAtRefresh ||
-			MessageBox.Show(FormBrowser.ReloadHardDialog, FormBrowser.Confirmation,
-				MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
-			== MessageBoxResult.OK)
+		    MessageBox.Show(FormBrowser.ReloadHardDialog, FormBrowser.Confirmation,
+			    MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
+		    == MessageBoxResult.OK)
 		{
 			RefreshBrowser(true);
 		}
@@ -427,8 +551,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		if (Configuration is null) return;
 
 		if (MessageBox.Show(FormBrowser.LoginDialog, FormBrowser.Confirmation,
-				MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel)
-			== MessageBoxResult.OK)
+			    MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel)
+		    == MessageBoxResult.OK)
 		{
 			Navigate(Configuration.LogInPageURL);
 		}

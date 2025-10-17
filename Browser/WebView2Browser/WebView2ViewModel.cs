@@ -441,13 +441,13 @@ public class WebView2ViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				WebView2.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
-				GameFrame.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				WebView2.ExecuteScriptAsync(RestoreScript);
+				GameFrame.ExecuteScriptAsync(RestoreScript);
 			}
 			else
 			{
-				WebView2.ExecuteScriptAsync(string.Format(Resources.PageScript, StyleClassId));
-				GameFrame.ExecuteScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
+				WebView2.ExecuteScriptAsync(PageScript);
+				GameFrame.ExecuteScriptAsync(FrameScript);
 			}
 		}
 		catch (Exception ex)

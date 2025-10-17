@@ -257,13 +257,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(RestoreScript);
+				gameframe.EvaluateScriptAsync(RestoreScript);
 			}
 			else
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Resources.PageScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(PageScript);
+				gameframe.EvaluateScriptAsync(FrameScript);
 			}
 		}
 		catch (Exception ex)
