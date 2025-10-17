@@ -2731,6 +2731,9 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2025/03/22 11:00:00"))
 			Update5_3_12_ChangeRpcIconProperty();
 
+		if (dt <= DateTimeHelper.CSVStringToTime("2025/10/17 15:00:00"))
+			Update5_3_16_ChangeLoginUrl();
+
 		Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 	}
 
@@ -2997,5 +3000,13 @@ public sealed class Configuration
 	private void Update5_3_12_ChangeRpcIconProperty()
 	{
 		Config.Control.RpcIconKind = Config.Control.UseFlagshipIconForRPC ? RpcIconKind.Secretary : RpcIconKind.Default;
+	}
+
+	private void Update5_3_16_ChangeLoginUrl()
+	{
+		if (Config.FormBrowser.LogInPageURL == "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/")
+		{
+			Config.FormBrowser.LogInPageURL = "https://play.games.dmm.com/game/kancolle/";
+		}
 	}
 }
