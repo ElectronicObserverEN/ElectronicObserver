@@ -117,93 +117,175 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="AADirector" xml:space="preserve">
+    <value>고사장치</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="AAGun" xml:space="preserve">
+    <value>대공기총</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="AAShell" xml:space="preserve">
+    <value>대공강화탄</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="APShell" xml:space="preserve">
+    <value>대함강화탄</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="ASPatrol" xml:space="preserve">
+    <value>대잠소계탄</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="Autogyro" xml:space="preserve">
+    <value>오토 자이로</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="AviationPersonnel" xml:space="preserve">
+    <value>항공요원</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="CarrierBasedBomber" xml:space="preserve">
+    <value>함상 폭격기</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="CarrierBasedFighter" xml:space="preserve">
+    <value>함상 전투기</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="CarrierBasedRecon" xml:space="preserve">
+    <value>함상 정찰기</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="CarrierBasedRecon2" xml:space="preserve">
+    <value>함상 정찰기(II)</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="CarrierBasedTorpedo" xml:space="preserve">
+    <value>함상 공격기(뇌격기)</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="CommandFacility" xml:space="preserve">
+    <value>사령부 시설</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="DamageControl" xml:space="preserve">
+    <value>응급수리요원</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="DepthCharge" xml:space="preserve">
+    <value>폭뢰</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="Engine" xml:space="preserve">
+    <value>기관부 강화</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="ExtraArmor" xml:space="preserve">
+    <value>추가 장갑</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="ExtraArmorLarge" xml:space="preserve">
+    <value>추가 장갑(대형)</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="ExtraArmorMedium" xml:space="preserve">
+    <value>추가 장갑(중형)</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="FlyingBoat" xml:space="preserve">
+    <value>대형 비행정</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="Interceptor" xml:space="preserve">
+    <value>국지 전투기</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="JetBomber" xml:space="preserve">
+    <value>제트 전투폭격기</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="JetFighter" xml:space="preserve">
+    <value>제트 전투기</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="JetRecon" xml:space="preserve">
+    <value>제트 정찰기</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="JetTorpedo" xml:space="preserve">
+    <value>제트 공격기</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="LandBasedAttacker" xml:space="preserve">
+    <value>지상 폭격기</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="LandBasedRecon" xml:space="preserve">
+    <value>지상 정찰기</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="LandingCraft" xml:space="preserve">
+    <value>상륙정</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>대구경 주포</value>
+  </data>
+  <data name="MainGunLarge2" xml:space="preserve">
+    <value>대구경 주포(II)</value>
+  </data>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>중구경 주포</value>
+  </data>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>소구경 주포</value>
+  </data>
+  <data name="MidgetSubmarine" xml:space="preserve">
+    <value>특수 잠항정</value>
+  </data>
+  <data name="RadarLarge" xml:space="preserve">
+    <value>대형 전탐</value>
+  </data>
+  <data name="RadarLarge2" xml:space="preserve">
+    <value>대형 전탐(II)</value>
+  </data>
+  <data name="RadarSmall" xml:space="preserve">
+    <value>소형 전탐</value>
+  </data>
+  <data name="Ration" xml:space="preserve">
+    <value>전투 식량</value>
+  </data>
+  <data name="RepairFacility" xml:space="preserve">
+    <value>함정 수리 시설</value>
+  </data>
+  <data name="Rocket" xml:space="preserve">
+    <value>대지 장비</value>
+  </data>
+  <data name="SeaplaneBomber" xml:space="preserve">
+    <value>수상 폭격기</value>
+  </data>
+  <data name="SeaplaneFighter" xml:space="preserve">
+    <value>수상 전투기</value>
+  </data>
+  <data name="SeaplaneRecon" xml:space="preserve">
+    <value>수상 정찰기</value>
+  </data>
+  <data name="Searchlight" xml:space="preserve">
+    <value>탐조등</value>
+  </data>
+  <data name="SearchlightLarge" xml:space="preserve">
+    <value>대형 탐조등</value>
+  </data>
+  <data name="SecondaryGun" xml:space="preserve">
+    <value>부포</value>
+  </data>
+  <data name="Sonar" xml:space="preserve">
+    <value>소나</value>
+  </data>
+  <data name="SonarLarge" xml:space="preserve">
+    <value>대형 소나</value>
+  </data>
+  <data name="SpecialAmphibiousTank" xml:space="preserve">
+    <value>특형 내화정</value>
+  </data>
+  <data name="StarShell" xml:space="preserve">
+    <value>조명탄</value>
+  </data>
+  <data name="SubmarineEquipment" xml:space="preserve">
+    <value>잠수함 장비</value>
+  </data>
+  <data name="SubmarineTorpedo" xml:space="preserve">
+    <value>잠수함 어뢰</value>
+  </data>
+  <data name="Supplies" xml:space="preserve">
+    <value>보급 물자</value>
+  </data>
+  <data name="SurfaceShipPersonnel" xml:space="preserve">
+    <value>수상함 요원</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>어뢰</value>
+  </data>
+  <data name="TransportContainer" xml:space="preserve">
+    <value>간이 수송 자재</value>
+  </data>
+  <data name="TransportMaterial" xml:space="preserve">
+    <value>수송 자재</value>
+  </data>
+  <data name="VTFuse" xml:space="preserve">
+    <value>VT 신관</value>
   </data>
 </root>

@@ -117,93 +117,147 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>수치를 편집(&amp;E)...</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="StripMenu_Edit_CopyShipName" xml:space="preserve">
+    <value>함명을 복사(&amp;N)</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="StripMenu_Edit_CopyShipData" xml:space="preserve">
+    <value>함선 데이터를 복사(&amp;D)</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="StripMenu_Edit_GoogleShipName" xml:space="preserve">
+    <value>함선명으로 DuckDuckGo 검색(&amp;G)</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="StripMenu_View_ShowShipGraphicViewer" xml:space="preserve">
+    <value>이미지 뷰어(&amp;V)</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="ParameterLevelToolTip" xml:space="preserve">
+    <value>레벨을 지정하면 예상 수치가 표시됩니다.</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="TitleHP" xml:space="preserve">
+    <value>내구</value>
+  </data>
+  <data name="ShipBannerToolTip" xml:space="preserve">
+    <value>(우클릭으로 이미지 뷰어 열기)</value>
+  </data>
+  <data name="StripMenu_Edit_CopySpecialEquipmentTable" xml:space="preserve">
+    <value>특수 장비 테이블을 복사(&amp;S)</value>
+  </data>
+  <data name="StripMenu_File_MergeDefaultRecord" xml:space="preserve">
+    <value>디폴트 레코드로부터 갱신(&amp;M)</value>
+  </data>
+  <data name="ResourceNameToolTip" xml:space="preserve">
+    <value>리소스 명: {0}
+그래픽 ver. {1}
+보이스 ver. {2}
+모항 보이스 ver. {3}
+({4})</value>
+  </data>
+  <data name="ShipClassId" xml:space="preserve">
+    <value>함형ID</value>
+  </data>
+  <data name="ShipClassUnknown" xml:space="preserve">
+    <value>함형 불명</value>
+  </data>
+  <data name="HpMinToolTip" xml:space="preserve">
+    <value>개수 후: {0} (+{1})</value>
+  </data>
+  <data name="HpMaxToolTip" xml:space="preserve">
+    <value>개수 후: {0} (+{1})
+(내부 최대 내구: {2})</value>
+  </data>
+  <data name="DefaultRange" xml:space="preserve">
+    <value>본래 사거리</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>화력</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>뇌장</value>
+  </data>
+  <data name="AA" xml:space="preserve">
+    <value>대공</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>장갑</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>대잠</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>요격</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>회피</value>
+  </data>
+  <data name="AntiBomb" xml:space="preserve">
+    <value>대폭</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>명중</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>색적</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>폭장</value>
+  </data>
+  <data name="RightClickToOpenInNewWindow" xml:space="preserve">
+    <value>(우클릭으로 도감)</value>
+  </data>
+  <data name="RemodelBeforeShipNameToolTip" xml:space="preserve">
+    <value>(좌클릭으로 열기, 우클릭으로 새 창 열기)</value>
+  </data>
+  <data name="ActionReport" xml:space="preserve">
+    <value>전투 상세</value>
+  </data>
+  <data name="AviationMaterial" xml:space="preserve">
+    <value>신형 항공병장 자재</value>
+  </data>
+  <data name="CsvExportFailed" xml:space="preserve">
+    <value>함선 도감 CSV 출력에 실패했습니다.</value>
+  </data>
+  <data name="SelectAShip" xml:space="preserve">
+    <value>함선을 선택하여 주십시오.</value>
   </data>
   <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+    <value>적 함대명 불명</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="Recipe" xml:space="preserve">
+    <value>건조</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="FailedToFindMapOrRecipe" xml:space="preserve">
+    <value>{0} 의 출현 해역을 찾을 수 없습니다.</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="MapOrRecipeSearchCaption" xml:space="preserve">
+    <value>출현 해역 검색</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="SpecifyTargetShip" xml:space="preserve">
+    <value>대상 함선을 지정해 주십시오.</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="NoShipSelectedCaption" xml:space="preserve">
+    <value>뷰어 : 대상 미지정</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="Installation" xml:space="preserve">
+    <value>육상 시설</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="ReinforcementSlot" xml:space="preserve">
+    <value>보강 슬롯</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="Luck" xml:space="preserve">
+    <value>운</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="ShipId" xml:space="preserve">
+    <value>함선 ID: </value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
+    <value>|대상함ID|대상함|장비가능|장비불가능|</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
-  </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
-  </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
-  </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
-  </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
-  </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
-  </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
-  </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
-  </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
+    <value>|대상함ID|대상함|장비가능ID|장비가능|</value>
   </data>
 </root>

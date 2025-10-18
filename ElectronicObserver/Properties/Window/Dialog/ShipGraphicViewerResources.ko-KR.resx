@@ -117,93 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="TopMenu_File" xml:space="preserve">
+    <value>파일(&amp;F)</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="TopMenu_File_Open" xml:space="preserve">
+    <value>열기(&amp;O)</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="TopMenu_File_CopyToClipboard" xml:space="preserve">
+    <value>클립보드에 복사(&amp;C)</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="TopMenu_View" xml:space="preserve">
+    <value>표시(&amp;V)</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="TopMenu_View_InterpolationMode" xml:space="preserve">
+    <value>보간 모드(&amp;I)</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="TopMenu_View_InterpolationMode_Sharp" xml:space="preserve">
+    <value>선명히(&amp;N)</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="TopMenu_View_InterpolationMode_Smooth" xml:space="preserve">
+    <value>부드럽게(&amp;B)</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="TopMenu_View_Zoom" xml:space="preserve">
+    <value>확대(&amp;Z)</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="TopMenu_View_Zoom_In" xml:space="preserve">
+    <value>확대(&amp;E)</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="TopMenu_View_Zoom_Out" xml:space="preserve">
+    <value>축소(&amp;S)</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="TopMenu_View_Zoom_100" xml:space="preserve">
+    <value>100%(&amp;1)</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="TopMenu_View_Zoom_Fit" xml:space="preserve">
+    <value>딱맞게(&amp;F)</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="OpenSwfDialog" xml:space="preserve">
+    <value>이미지 저장</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>이미지 저장</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="Title" xml:space="preserve">
+    <value>함선 이미지 뷰어</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="ErrorLoadingImage" xml:space="preserve">
+    <value>이미지 뷰어: 이미지 로딩 중에 에러가 발생했습니다.</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="ImageNotFound" xml:space="preserve">
+    <value>이미지를 찾을 수 없습니다.</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="ImageCanNotBeOpened" xml:space="preserve">
+    <value>{0}를 열 수 없었습니다.
+{1}
+{2}</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
-  </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
-  </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
-  </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
-  </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
-  </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
-  </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
-  </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
-  </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="KeyboardShortcutInstructions" xml:space="preserve">
+    <value>{0} / {1}
+{2} ({3})
+확대 {4:p1}
+(←/→ 키로 페이지 넘기기)</value>
   </data>
 </root>

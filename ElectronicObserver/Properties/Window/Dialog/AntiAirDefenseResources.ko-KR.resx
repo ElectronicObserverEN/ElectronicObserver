@@ -117,93 +117,108 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="WipeRate" xml:space="preserve">
+    <value>전멸 확률 : </value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="ShowAll" xml:space="preserve">
+    <value>전부 선택가능으로</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="ShowAllToolTip" xml:space="preserve">
+    <value>활성화 시, 모든 대공 컷인을 선택지에 표시합니다.
+비활성화 시, 현재의 함대에 발동 가능한 컷인만 표시합니다.</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="FleetAA" xml:space="preserve">
+    <value>함대 방공 : </value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="AACI" xml:space="preserve">
+    <value>대공 컷인 : </value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="Formation" xml:space="preserve">
+    <value>진형 : </value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="Formation_LineAhead" xml:space="preserve">
+    <value>단종진 외</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="Formation_DoubleLine" xml:space="preserve">
+    <value>복종진진</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="Formation_Ring" xml:space="preserve">
+    <value>윤형진</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="PlaneSlot" xml:space="preserve">
+    <value>적 슬롯기수 : </value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="Fleet" xml:space="preserve">
+    <value>함대 : </value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="FleetID_First" xml:space="preserve">
+    <value>제1함대</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="FleetID_Second" xml:space="preserve">
+    <value>제2함대</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="FleetID_Third" xml:space="preserve">
+    <value>제3함대</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="FleetID_Fourth" xml:space="preserve">
+    <value>제4함대</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="FleetID_CombinedFleet" xml:space="preserve">
+    <value>연합 함대</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="ResultView_ShipName" xml:space="preserve">
+    <value>함명</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="ResultView_AntiAir" xml:space="preserve">
+    <value>대공</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="ResultView_AdjustedAntiAir" xml:space="preserve">
+    <value>가중 대공</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="ResultView_ProportionalAirDefense" xml:space="preserve">
+    <value>비율 격추</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="ResultView_FixedAirDefense" xml:space="preserve">
+    <value>고정 격추</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="ResultView_ShootDownBoth" xml:space="preserve">
+    <value>양방 성공</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="ResultView_ShootDownBothToolTip" xml:space="preserve">
+    <value>비율 격추・고정 격추 양쪽에 성공했을 때의 격추 수</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="ResultView_ShootDownProportional" xml:space="preserve">
+    <value>비율만</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="ResultView_ShootDownProportionalToolTip" xml:space="preserve">
+    <value>비율 격추에 성공했을 때의 격추 수</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="ResultView_ShootDownFixed" xml:space="preserve">
+    <value>고정만</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="ResultView_ShootDownFixedToolTip" xml:space="preserve">
+    <value>고정 격추에 성공했을 때의 격추 수</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="ResultView_ShootDownFailed" xml:space="preserve">
+    <value>양방 실패</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="ResultView_ShootDownFailedToolTip" xml:space="preserve">
+    <value>고정 격추・비율 격추 양쪽에 실패했을 때의 격추 수</value>
+  </data>
+  <data name="ResultView_AARocketBarrageProbability" xml:space="preserve">
+    <value>분진 탄막</value>
+  </data>
+  <data name="ResultView_AARocketBarrageProbabilityToolTip" xml:space="preserve">
+    <value>대공 분진 탄막의 발동 확률</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>대공 포화 상세</value>
+  </data>
+  <data name="DataNotLoaded" xml:space="preserve">
+    <value>함대 데이터를 불러오지 않았습니다.
+칸코레를 실행한 후 시도하십시오.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>에러</value>
   </data>
 </root>

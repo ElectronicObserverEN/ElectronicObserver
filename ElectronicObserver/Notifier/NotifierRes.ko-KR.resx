@@ -117,93 +117,109 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="AnchorageRepair" xml:space="preserve">
+    <value>정박지 수리 발동</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="AnchorageRepairFinished" xml:space="preserve">
+    <value>정박지 수리 개시부터 20분이 경과했습니다.</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="ConditionText" xml:space="preserve">
+    <value>#{0} 「{1}」에 소속된 칸무스의 피로가 회복되었습니다.</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="ConditionTitle" xml:space="preserve">
+    <value>피로 회복</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="ConstructionText" xml:space="preserve">
+    <value>공창 도크 #{0} 에서「{1}」의 건조가 완료되었습니다.</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="ConstructionTitle" xml:space="preserve">
+    <value>건조 완료</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="DamagedText" xml:space="preserve">
+    <value>{0} 가 대파 상태입니다!</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="DamagedTitle" xml:space="preserve">
+    <value>！대파 경고！</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="ExpeditionText" xml:space="preserve">
+    <value>#{0} 「{1}」가 원정「{2}: {3}」에서 귀환하였습니다.</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="ExpeditionTitle" xml:space="preserve">
+    <value>원정 귀환</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="FailedPlaySound" xml:space="preserve">
+    <value>알람 시스템: 알람음 재생에 실패했습니다.</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="FailedToLoadImage" xml:space="preserve">
+    <value>알람 시스템: 알람 이미지 {0}을(를) 불러오지 못했습니다.</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="FailedToLoadSound" xml:space="preserve">
+    <value>알람 시스템: 알람음 {0}을(를) 불러오지 못했습니다.</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="RemodelText" xml:space="preserve">
+    <value>{0}는 {1}(으)로 개조할 수 있습니다.</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="RemodelTitle" xml:space="preserve">
+    <value>개조 가능</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="RepairText" xml:space="preserve">
+    <value>입거 도크 #{0} 에서「{1}」의 수복이 완료되었습니다.</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="RepairTitle" xml:space="preserve">
+    <value>입거 완료</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="AdmiralExp" xml:space="preserve">
+    <value>제독 Exp+</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="ShipExp" xml:space="preserve">
+    <value>칸무스 Exp+</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>원정 결과 - </value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="NoResourcesGained" xml:space="preserve">
+    <value>습득 자원 없음</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="ShipLevelUp" xml:space="preserve">
+    <value>{0}가 Lv. {1}이(가) 되었습니다.</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="ShipsResupplied" xml:space="preserve">
+    <value>보급했습니다. 소비: </value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="BauxiteConsumedByAddingPlaneToAirBase" xml:space="preserve">
+    <value>기지 항공대의 편성으로 보크사이트 {0} 을 소비했습니다.</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="AirBaseResupplyCost" xml:space="preserve">
+    <value>#{0}「{1}」에 보급을 행하였습니다. 소비: 연료x{2}, 보크사이트x{3}</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="ExpansionSlotOpened" xml:space="preserve">
+    <value>{0} 의 보강 장비 증설 개수가 완료되었습니다.</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="ShipSuccessfullyRemodeled" xml:space="preserve">
+    <value>{0} Lv. {1} 의 개장이 완료되었습니다.</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="EquipmentHasBenScrapped" xml:space="preserve">
+    <value>{0}{1}을(를) 폐기했습니다.</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="ShipHasBeenScrapped" xml:space="preserve">
+    <value>{0}을(를) 해체하였습니다.</value>
+  </data>
+  <data name="SortieingTo" xml:space="preserve">
+    <value>⚓ {0}-{1}-{2}: {3}에 출격합니다.</value>
+  </data>
+  <data name="HasSortiedTo" xml:space="preserve">
+    <value>#{0}「{1}」가「{2}-{3} {4}」에 출격하였습니다.</value>
+  </data>
+  <data name="HasBeenSentToExpedition" xml:space="preserve">
+    <value>#{0}「{1}」가 원정「{2}: {3}」에 출격하였습니다.</value>
+  </data>
+  <data name="StartedRepairingShip" xml:space="preserve">
+    <value>입거 도크 #{0}에서 {1} ({2}/{3})의 수복을 시작했습니다. (연료x{4}, 강재x{5}, {6})</value>
+  </data>
+  <data name="BucketUsed" xml:space="preserve">
+    <value>고속 수복재x1</value>
+  </data>
+  <data name="ETA" xml:space="preserve">
+    <value>수리 완료</value>
   </data>
 </root>

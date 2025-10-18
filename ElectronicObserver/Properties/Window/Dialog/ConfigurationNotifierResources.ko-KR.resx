@@ -117,93 +117,128 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="SoundVolumeToolTip" xml:space="preserve">
+    <value>통지음의 음량을 설정합니다.
+0이 무음, 100이 최대 음량입니다.</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="ShowWithActivationToolTip" xml:space="preserve">
+    <value>표시 시에 창을 활성화 합니다.
+비활성화하면 조작을 방해하지 않는 대신 창이 사라지기 쉬워집니다.</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="SettingsWillBeAppliedForTest" xml:space="preserve">
+    <value>＊테스트를 행한 시점에 설정이 적용됩니다.</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="GroupAnchorageRepair" xml:space="preserve">
+    <value>정박지 수리 설정</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="TriggerWhen" xml:space="preserve">
+    <value>발동 조건 : </value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="GroupBaseAirCorps" xml:space="preserve">
+    <value>기지 항공대 설정</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="BaseAirCorps_NotSupplied" xml:space="preserve">
+    <value>미보급 시</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
+    <value>출격 전, 임의의 한 중대가 미보급일 때 통지합니다.</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="BaseAirCorps_Tired" xml:space="preserve">
+    <value>피로 시</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
+    <value>출격 전, 임의의 중대가 주황색 피로 이상일 때 통지합니다.</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="BaseAirCorps_Rest" xml:space="preserve">
+    <value>[휴식]</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="BaseAirCorps_RestToolTip" xml:space="preserve">
+    <value>출격 전, 기지 항공대가 [휴식] 상태일 때 통지합니다.</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="BaseAirCorps_Retreat" xml:space="preserve">
+    <value>[퇴피]</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="BaseAirCorps_RetreatToolTip" xml:space="preserve">
+    <value>출격 전, 기지 항공대가 [퇴피] 상태일 때 통지합니다.</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="BaseAirCorps_Standby" xml:space="preserve">
+    <value>[대기]</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="BaseAirCorps_StandbyToolTip" xml:space="preserve">
+    <value>출격 전, 기지 항공대가 [대기] 상태일 때 통지합니다.</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="BaseAirCorps_NormalMap" xml:space="preserve">
+    <value>통상 해역</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="BaseAirCorps_NormalMapToolTip" xml:space="preserve">
+    <value>출격 전, 통상 해역의 기지 항공대가 준비 부족일 때 통지합니다.</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="BaseAirCorps_EventMap" xml:space="preserve">
+    <value>이벤트 해역</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="BaseAirCorps_EventMapToolTip" xml:space="preserve">
+    <value>출격 전, 이벤트 해역의 기지 항공대가 준비 부족인 경우에 통지합니다.</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="BaseAirCorps_EquipmentRelocation" xml:space="preserve">
+    <value>장비의 배치 전환 완료</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="BaseAirCorps_EquipmentRelocationToolTip" xml:space="preserve">
+    <value>장비의 배치 전환이 완료되었을 때 통지합니다.</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="BaseAirCorps_SquadronRelocation" xml:space="preserve">
+    <value>기지의 배치 전환 완료</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="BaseAirCorps_SquadronRelocationToolTip" xml:space="preserve">
+    <value>기지 슬롯의 배치 전환이 완료되었을 때 통지합니다.
+[장비의 배치 전환 완료]와는 다르게, 장비란에 돌아온 기체는 통지하지 않습니다.</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="GroupBattleEnd" xml:space="preserve">
+    <value>배틀 종료 설정</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="BattleEnd_IdleTimerEnabled" xml:space="preserve">
+    <value>슬립 모드 활성화</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
+    <value>배틀이 시작되고 나서 일정 기간을 두고 통지합니다.</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="BattleEnd_IdleTime" xml:space="preserve">
+    <value>슬립 모드</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="BattleEnd_IdleTimeToolTip" xml:space="preserve">
+    <value>슬립 모드를 초 단위로 지정합니다.</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Always" xml:space="preserve">
+    <value>항상</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_AkashiFlagship" xml:space="preserve">
+    <value>아카시가 기함일 때</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_ShipNeededRepair" xml:space="preserve">
+    <value>수리함도 있을 때</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Preset" xml:space="preserve">
+    <value>프리셋 편성 시</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
+    <value>항상: 20분 경과 시 통지합니다.
+아카시가 기함일 때: 상기에 더해, 아카시가 기함일 때만 통지합니다.
+수리함도 있을 때: 상기에 더해, 실제로 수리 가능한 조건일 때만 통지합니다.
+프리셋 편성 시: 상기에 더해, 수리 조건을 만족했을 때 프리셋 편성을 포함한 경우에도 통지합니다.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>에러</value>
+  </data>
+  <data name="TestNotificationCustomPositioning" xml:space="preserve">
+    <value>테스트 알람입니다.
+이동하여 닫을 시, 표시 위치가 갱신됩니다.</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>테스트 알람</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>미편성 ・ 배치 전환 중</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>출격 전, 임의의 중대가 미편성이거나 배치 전환 중일 시 통지합니다.</value>
   </data>
 </root>

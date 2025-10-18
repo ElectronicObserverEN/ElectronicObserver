@@ -117,93 +117,157 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>파일(&amp;F)</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="StripMenu_File_OutputCSVUser" xml:space="preserve">
+    <value>CSV출력(열람 용)(&amp;U)...</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="StripMenu_File_OutputCSVData" xml:space="preserve">
+    <value>CSV출력(데이터 용)(&amp;D)...</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>편집(&amp;E)</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="StripMenu_Edit_CopyEquipmentName" xml:space="preserve">
+    <value>장비 이름을 복사(&amp;N)</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="StripMenu_Edit_CopyEquipmentData" xml:space="preserve">
+    <value>장비 데이터를 복사(&amp;D)</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="StripMenu_Edit_GoogleEquipmentName" xml:space="preserve">
+    <value>장비 이름으로 DuckDuckGo 검색(&amp;G)</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="StripMenu_View" xml:space="preserve">
+    <value>표시(&amp;V)</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="StripMenu_View_ShowAppearingArea" xml:space="preserve">
+    <value>초기 장비함・개발 레시피를 검색(&amp;S)</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="EquipmentView_Type" xml:space="preserve">
+    <value>장비 종류</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="EquipmentView_Name" xml:space="preserve">
+    <value>장비명</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>배치 코스트</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>전투 행동 반경</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="InitialEquipmentShip" xml:space="preserve">
+    <value>초기 장비함: </value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
+  <data name="LibraryId" xml:space="preserve">
+    <value>도감 번호: </value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>[5inch 연장포]
+어느 나라에 있어서 가장 널리 사용된 구축함 주포, 그 연장포 버전입니다.
+대형함의 대공포로서도 탑재되었습니다.
+지금은 심해 구축함의 주력병장으로서 보급하고 있습니다.</value>
+  </data>
+  <data name="EquipmentType" xml:space="preserve">
+    <value>오토 자이로</value>
+  </data>
+  <data name="EquipmentName" xml:space="preserve">
+    <value>시제 FaT 사양 95식 산소 어뢰 개</value>
+  </data>
+  <data name="TitleRange" xml:space="preserve">
+    <value>사거리</value>
+  </data>
+  <data name="TitleSpeed" xml:space="preserve">
+    <value>속력</value>
+  </data>
+  <data name="TitleBomber" xml:space="preserve">
+    <value>폭장</value>
+  </data>
+  <data name="TitleLOS" xml:space="preserve">
+    <value>색적</value>
+  </data>
+  <data name="TitleFirepower" xml:space="preserve">
+    <value>화력</value>
+  </data>
+  <data name="TitleTorpedo" xml:space="preserve">
+    <value>뇌장</value>
+  </data>
+  <data name="TitleAA" xml:space="preserve">
+    <value>대공</value>
+  </data>
+  <data name="TitleArmor" xml:space="preserve">
+    <value>장갑</value>
+  </data>
+  <data name="TitleASW" xml:space="preserve">
+    <value>대잠</value>
+  </data>
+  <data name="TitleEvasion" xml:space="preserve">
+    <value>회피</value>
+  </data>
+  <data name="TitleAccuracy" xml:space="preserve">
+    <value>명중</value>
+  </data>
+  <data name="SaveCSVDialog" xml:space="preserve">
+    <value>CSV에 출력</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>장비 도감</value>
+  </data>
+  <data name="RightClickToCopy" xml:space="preserve">
+    <value>(우클릭으로 복사)</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>대폭</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>요격</value>
+  </data>
+  <data name="Equippable" xml:space="preserve">
+    <value>장비 가능</value>
+  </data>
+  <data name="Excluding" xml:space="preserve">
+    <value>을 제외</value>
+  </data>
+  <data name="ExpansionSlot" xml:space="preserve">
+    <value>확장 슬롯</value>
+  </data>
+  <data name="DialogTitleError" xml:space="preserve">
+    <value>에러</value>
+  </data>
+  <data name="FailedToExportCsv" xml:space="preserve">
+    <value>장비 도감 CSV의 출력에 실패했습니다.</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>개발</value>
+  </data>
+  <data name="FailedToFindShipOrRecipe" xml:space="preserve">
+    <value>{0} 의 초기 장비함・개발 레시피를 찾을 수 없습니다.</value>
+  </data>
+  <data name="ShipOrRecipeCaption" xml:space="preserve">
+    <value>입수 수단 표시</value>
+  </data>
+  <data name="KancolleSpecifier" xml:space="preserve">
     <value>+칸코레</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="FailedToSearchOnWeb" xml:space="preserve">
+    <value>함선명의 DuckDuckGo 검색에 실패하였습니다.</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="UpgradeCost" xml:space="preserve">
+    <value>개수 필요 자재</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="EquipmentUpgrades" xml:space="preserve">
+    <value>개수 필요 자재</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="Owned" xml:space="preserve">
+    <value>소지</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="Helpers" xml:space="preserve">
+    <value>2번함</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="RequiredItems" xml:space="preserve">
+    <value>소비 장비</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
-  </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
-  </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
-  </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
-  </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
-  </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="UpgradeLevel" xml:space="preserve">
+    <value>★</value>
   </data>
 </root>

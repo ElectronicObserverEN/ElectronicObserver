@@ -117,93 +117,146 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="ItemNameToolTip" xml:space="preserve">
+    <value>검색할 아이템명을 지정합니다.
+(드랍)은 아이템의 드랍이 발생했을 때만 추출합니다.</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="ShipNameToolTip" xml:space="preserve">
+    <value>검색할 함선명을 지정합니다
+(드랍)은 칸무스의 드랍이 발생했을 때만 추출합니다.</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="EquipmentNameToolTip" xml:space="preserve">
+    <value>검색할 장비명을 지정합니다.
+(드랍)은 장비의 드랍이 발생했을 때만 추출합니다.</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="DateBeginToolTip" xml:space="preserve">
+    <value>검색할 일시의 시작점을 지정합니다.</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="Start" xml:space="preserve">
+    <value>개시</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="End" xml:space="preserve">
+    <value>종료</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="DateEndToolTip" xml:space="preserve">
+    <value>검색할 일시의 종료점을 지정합니다.</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="RankSToolTip" xml:space="preserve">
+    <value>S승리</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="RankAToolTip" xml:space="preserve">
+    <value>A승리</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="RankBToolTip" xml:space="preserve">
+    <value>B승리</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="RankXToolTip" xml:space="preserve">
+    <value>패배</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="NodeSelection" xml:space="preserve">
+    <value>해역 ・ 셀</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="MapDifficultyToolTip" xml:space="preserve">
+    <value>난이도를 지정합니다.
+* 은 모든 난이도를 추출합니다.</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="ButtonRun" xml:space="preserve">
+    <value>검색</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="RecordView_Name" xml:space="preserve">
+    <value>이름</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="RecordView_Date" xml:space="preserve">
+    <value>날짜</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="RecordView_Map" xml:space="preserve">
+    <value>해역</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="RecordView_Rank" xml:space="preserve">
+    <value>랭크</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="RecordView_RankS" xml:space="preserve">
+    <value>S승리</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="RecordView_RankA" xml:space="preserve">
+    <value>A승리</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="RecordView_RankB" xml:space="preserve">
+    <value>B승리</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="IsBossOnly" xml:space="preserve">
+    <value>Boss</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="MapAreaIDToolTip" xml:space="preserve">
+    <value>해역 ID를 지정합니다
+* 은 모든 해역을 추출합니다</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="MapInfoIDToolTip" xml:space="preserve">
+    <value>해역 ID를 지정합니다
+* 은 모든 해역을 추출합니다</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="MapCellIDToolTip" xml:space="preserve">
+    <value>셀 ID를 지정합니다.
+* 은 모든 셀을 추출합니다.</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="MergeRows" xml:space="preserve">
+    <value>합치기</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="MergeRowsToolTip" xml:space="preserve">
+    <value>체크하면 동일한 드랍 항목을 모아서 표시합니다</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="LabelShipName" xml:space="preserve">
+    <value>함선</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="LabelItemName" xml:space="preserve">
+    <value>아이템</value>
+  </data>
+  <data name="LabelEquipmentName" xml:space="preserve">
+    <value>장비</value>
+  </data>
+  <data name="StatusInfo" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="statusStrip1" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>드랍 기록</value>
+  </data>
+  <data name="NameAny" xml:space="preserve">
+    <value>(모두)</value>
+  </data>
+  <data name="NameNotExist" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="NameFullPort" xml:space="preserve">
+    <value>(만원)</value>
+  </data>
+  <data name="NameExist" xml:space="preserve">
+    <value>(드랍)</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value> [보스]</value>
+  </data>
+  <data name="BattleHistoryNotFound" xml:space="preserve">
+    <value>전투 로그를 찾을 수 없습니다.</value>
+  </data>
+  <data name="SearchingBattleHistory" xml:space="preserve">
+    <value>전투 로그를 검색하고 있습니다…</value>
+  </data>
+  <data name="OpenBattleHistory" xml:space="preserve">
+    <value>전투 로그 {0} 를 엽니다.</value>
+  </data>
+  <data name="CouldNotOpenBattleHistory" xml:space="preserve">
+    <value>전투 로그를 열지 못했습니다.</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>선택 항목의 합계: {0} / {1} ({2:p1})</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>오늘</value>
+  </data>
+  <data name="IgnoreCommonDrops" xml:space="preserve">
+    <value>일반적인 드랍은 무시</value>
   </data>
 </root>

@@ -117,93 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="AddEquipmentFromLibrary" xml:space="preserve">
+    <value>전체 장비에서 선택</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="AddOwnedEquipment" xml:space="preserve">
+    <value>소지 장비에서 선택</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>표시 완료</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="Goal" xml:space="preserve">
+    <value>목표</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="IsFinished" xml:space="preserve">
+    <value>완료</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="NotOwned" xml:space="preserve">
+    <value>미소지</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="Priority" xml:space="preserve">
+    <value>우선순위</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="Remove" xml:space="preserve">
+    <value>제거</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="Title" xml:space="preserve">
+    <value>개수 계획</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="UpgradeLevel" xml:space="preserve">
+    <value>개수 값</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="Unassigned" xml:space="preserve">
+    <value>미할당</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="Cost" xml:space="preserve">
+    <value>필요 자재</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="UseSliderFromLevel" xml:space="preserve">
+    <value>확실화 (레벨에서 슬라이더 사용)</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="Helper" xml:space="preserve">
+    <value>2번 함</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="ConvertTo" xml:space="preserve">
+    <value>갱신</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="Owned" xml:space="preserve">
+    <value>소지:</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="Required" xml:space="preserve">
+    <value>필요:</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="TotalCost" xml:space="preserve">
+    <value>총 필요 자재</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="CompactMode" xml:space="preserve">
+    <value>콤팩트 모드</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="All" xml:space="preserve">
+    <value>전체</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="Today" xml:space="preserve">
+    <value>오늘 ({0})</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="EquipmentUpgradePlan" xml:space="preserve">
+    <value>개수 계획</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="CreateUpgradePlan" xml:space="preserve">
+    <value>개수 계획 추가</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="EditUpgradePlan" xml:space="preserve">
+    <value>개수 계획 편집</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="RemoveUpgradePlan" xml:space="preserve">
+    <value>개수 계획 삭제</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="UpgradeTree" xml:space="preserve">
+    <value>개수 트리</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="Error" xml:space="preserve">
+    <value>에러</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="AlreadyOwned" xml:space="preserve">
+    <value>이미 소유</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="UnassignEquipment" xml:space="preserve">
+    <value>장비 할당 해제</value>
+  </data>
+  <data name="AssignEquipmentToUpgrade" xml:space="preserve">
+    <value>갱신할 장비로써 할당</value>
+  </data>
+  <data name="AssignEquipmentToUse" xml:space="preserve">
+    <value>소모할 장비로 할당하기</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUpgrade" xml:space="preserve">
+    <value>개수 계획에 갱신할 장비로써 할당</value>
+  </data>
+  <data name="AddPlanAndAssignEquipmentToUse" xml:space="preserve">
+    <value>개수 계획에 소비할 장비로써 할당</value>
   </data>
 </root>

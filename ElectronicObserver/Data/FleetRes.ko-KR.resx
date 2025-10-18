@@ -117,93 +117,84 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="AnchorageRepairing" xml:space="preserve">
+    <value>정박지 수리 중</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="CompletionTime" xml:space="preserve">
+    <value>완료 일시</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="CriticalDamageAdvance" xml:space="preserve">
+    <value>！！대파 진격 중！！</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="CriticallyDamagedShip" xml:space="preserve">
+    <value>대파함 존재!</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="Docking" xml:space="preserve">
+    <value>입거중</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="EstimatedRecoveryTime" xml:space="preserve">
+    <value>회복 예상 일시</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="Fatigued" xml:space="preserve">
+    <value>피로</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="FightingSpiritHigh" xml:space="preserve">
+    <value>전의 고양!</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="HasReturned" xml:space="preserve">
+    <value>#{0}「{1}」가 귀환하였습니다.</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="NoShips" xml:space="preserve">
+    <value>소속함 없음</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="OnExped" xml:space="preserve">
+    <value>원정 중</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="OnSortie" xml:space="preserve">
+    <value>출격 중</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="ReadyToSortie" xml:space="preserve">
+    <value>출격 가능</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="ResupplyTooltip" xml:space="preserve">
+    <value>연료: {0}
+탄약: {1}
+보크: {2} ({3}기)</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="SparkledTooltip" xml:space="preserve">
+    <value>최저 컨디션: {0}
+앞으로 {1} 회 원정 가능</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="SupplyNeeded" xml:space="preserve">
+    <value>미보급</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="ExpeditionToolTip" xml:space="preserve">
+    <value>{0} : {1}
+완료 일시 : {2}</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="Repairing" xml:space="preserve">
+    <value>정박지 수리 중</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="RepairTimeHeader" xml:space="preserve">
+    <value>개시 일시: {0}
+수리 시간:
+</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="RepairTimeDetail" xml:space="preserve">
+    <value>#{0}: {1} @ {2} x -{3} HP</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="OnDock" xml:space="preserve">
+    <value>입거 중</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="DockCompletionTime" xml:space="preserve">
+    <value>완료 일시: </value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="RecoveryTimeToolTip" xml:space="preserve">
+    <value>회복 예상 일시: {0}
+(예측 오차: {1})</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
-  </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
-  </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
-  </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>연료: {0}/{1} ({2}%)
+탄약: {3}/{4} ({5}%)</value>
   </data>
 </root>

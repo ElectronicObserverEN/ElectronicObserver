@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>추가 정보: {0}</value>
+  </data>
+  <data name="APIData" xml:space="preserve">
+    <value>통신 내용: {0}</value>
+  </data>
+  <data name="APIObserverStarted" xml:space="preserve">
+    <value>APIObserver: 포트 {0}번에서 수신을 시작했습니다.</value>
+  </data>
+  <data name="APIObserverStopped" xml:space="preserve">
+    <value>APIObserver: 수신을 종료했습니다.</value>
+  </data>
+  <data name="ChangedParameters" xml:space="preserve">
+    <value>의 파라미터가 갱신되었습니다.</value>
+  </data>
+  <data name="CreatedItem" xml:space="preserve">
+    <value>{0}「{1}」의 개발에 성공하였습니다. ({2}/{3}/{4}/{5} 비서함: {6})</value>
+  </data>
+  <data name="DoesNotExist" xml:space="preserve">
+    <value>은(는) 존재하지 않습니다.</value>
+  </data>
+  <data name="EquipmentObtained" xml:space="preserve">
+    <value>{0}「{1}」를 입수하였습니다.</value>
+  </data>
+  <data name="ErrorDatabaseSending" xml:space="preserve">
+    <value>칸코레 통계 데이터베이스로 전송 중 오류가 발생했습니다.</value>
+  </data>
+  <data name="ErrorField" xml:space="preserve">
+    <value>에러: {0}</value>
+  </data>
+  <data name="ErrorReport" xml:space="preserve">
+    <value>에러 리포트: {0}</value>
+  </data>
+  <data name="ExecutedFlashQualitySetting" xml:space="preserve">
+    <value>Flash 품질 설정을 완료했습니다.</value>
+  </data>
+  <data name="ExpedStarted" xml:space="preserve">
+    <value>#{0}「{1}」가 원정「{2}: {3}」에 출격하였습니다.</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>에 실패했습니다.</value>
+  </data>
+  <data name="FailedDatabaseSend" xml:space="preserve">
+    <value>칸코레 통계 데이터베이스로 {0} 전송에 실패했습니다. {1}</value>
+  </data>
+  <data name="FailedLoadAPI" xml:space="preserve">
+    <value>API 읽기에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoading" xml:space="preserve">
+    <value> 를 읽어들이는데에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoadingRecords" xml:space="preserve">
+    <value>레코드 로드에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoadingResource" xml:space="preserve">
+    <value>리소스 파일 읽기에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoadingStorage" xml:space="preserve">
+    <value>DataStorage 읽기에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoadLayout" xml:space="preserve">
+    <value>윈도우 레이아웃 복원에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoadSubLayout" xml:space="preserve">
+    <value>서브윈도우 레이아웃 복원에 실패했습니다.</value>
+  </data>
+  <data name="FailedLoadWindowPlacement" xml:space="preserve">
+    <value>윈도우 상태 복원에 실패했습니다.</value>
+  </data>
+  <data name="FailedResourceRename" xml:space="preserve">
+    <value>함선 리소스 이름 변경에 실패했습니다.</value>
+  </data>
+  <data name="FailedSaveAPI" xml:space="preserve">
+    <value>통신 내용 저장에 실패했습니다.</value>
+  </data>
+  <data name="FailedSaveLayout" xml:space="preserve">
+    <value>서브윈도우 레이아웃 저장에 실패했습니다.</value>
+  </data>
+  <data name="FailedSaveWindowPlacement" xml:space="preserve">
+    <value>윈도우 상태 저장에 실패했습니다.</value>
+  </data>
+  <data name="FailedSaving" xml:space="preserve">
+    <value>의 쓰기를 실패했습니다.</value>
+  </data>
+  <data name="FailedSavingErrorReport" xml:space="preserve">
+    <value>에러 리포트 쓰기에 실패했습니다.
+{0}
+{1}</value>
+  </data>
+  <data name="FailedSavingStorage" xml:space="preserve">
+    <value>DataStorage 저장에 실패했습니다.</value>
+  </data>
+  <data name="FailedToLoadAPIFile" xml:space="preserve">
+    <value>API 파일 {0} 로드에 실패했습니다. {1}</value>
+  </data>
+  <data name="GameStart" xml:space="preserve">
+    <value>제독이 진수부에 착임했습니다. 지금부터 함대를 지휘합니다.</value>
+  </data>
+  <data name="ImageCantBeLoaded" xml:space="preserve">
+    <value>이미지 리소스 {0} 로드에 실패했습니다.</value>
+  </data>
+  <data name="ImageDoesNotExist" xml:space="preserve">
+    <value>이미지 리소스 {0}는 존재하지 않습니다.</value>
+  </data>
+  <data name="ImprovedFailure" xml:space="preserve">
+    <value>{0} 의 개수에 실패했습니다.</value>
+  </data>
+  <data name="ImprovedSuccess" xml:space="preserve">
+    <value>의 개수에 성공했습니다. (</value>
+  </data>
+  <data name="InitialEquipRegistered" xml:space="preserve">
+    <value>의 초기 장비를 기록했습니다.</value>
+  </data>
+  <data name="ItemCreationFailed" xml:space="preserve">
+    <value>개발에 실패하였습니다. ({0}/{1}/{2}/{3} 비서함: {4})</value>
+  </data>
+  <data name="ItemObtained" xml:space="preserve">
+    <value>아이템「{0}」을(를) 입수했습니다. (합계: {1}개)</value>
+  </data>
+  <data name="JustMarried" xml:space="preserve">
+    <value>{0} 와 결혼(가)하였습니다. 축하드립니다! (운+{1}→{2}/{3})</value>
+  </data>
+  <data name="LoadedRecords" xml:space="preserve">
+    <value>레코드를 불러왔습니다.</value>
+  </data>
+  <data name="RecievedRequest" xml:space="preserve">
+    <value>Request를 수신했습니다:</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>레코드</value>
+  </data>
+  <data name="RegisteredParameters" xml:space="preserve">
+    <value>의 파라미터를 기록했습니다.</value>
+  </data>
+  <data name="RequestError" xml:space="preserve">
+    <value>Request 수신 중 오류가 발생했습니다.</value>
+  </data>
+  <data name="ResponseHadErrorCode" xml:space="preserve">
+    <value>에러 코드를 포함한 메시지를 수신했습니다.</value>
+  </data>
+  <data name="SavedAPI" xml:space="preserve">
+    <value>통신에서 파일 {0}을(를) 저장했습니다.</value>
+  </data>
+  <data name="SentDatabase" xml:space="preserve">
+    <value>칸코레 통계 데이터베이스에 {0}을(를) 전송했습니다.</value>
+  </data>
+  <data name="ShipAdded" xml:space="preserve">
+    <value>{0}「{1}」가 전열에 합류하였습니다.</value>
+  </data>
+  <data name="ShipConstructed" xml:space="preserve">
+    <value>{0}「{1}」의 건조가 완료되었습니다.</value>
+  </data>
+  <data name="ShipScrapped" xml:space="preserve">
+    <value>을(를) 해체했습니다.</value>
+  </data>
+  <data name="SortiedTo" xml:space="preserve">
+    <value>#{0}「{1}」가「{2}-{3} {4}」에 출격하였습니다.</value>
+  </data>
+  <data name="StorageDoesNotExist" xml:space="preserve">
+    <value>DataStorage {0}는 존재하지 않습니다.</value>
+  </data>
+  <data name="StorageFileDoesNotExist" xml:space="preserve">
+    <value>DataStorage 파일은 존재하지 않습니다.</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>{0} 를 복사하였습니다.</value>
+  </data>
+  <data name="Decomissioned" xml:space="preserve">
+    <value>를 제적했습니다.</value>
+  </data>
+  <data name="FailedToCopy" xml:space="preserve">
+    <value>{0} 의 복사에 실패하였습니다. {1}</value>
+  </data>
+  <data name="MultiplePossibleMvps" xml:space="preserve">
+    <value>MVP 후보가 여러 명 존재합니다. 로그를 확인하세요.</value>
+  </data>
+  <data name="RecordAutosaveFailure" xml:space="preserve">
+    <value>레코드 자동 저장에 실패했습니다.</value>
+  </data>
+  <data name="RecordAutosaveSuccess" xml:space="preserve">
+    <value>레코드를 자동 저장했습니다.</value>
+  </data>
+  <data name="ImprovedEqSuccess" xml:space="preserve">
+    <value>{0} 의 개수에 성공하였습니다.</value>
+  </data>
+  <data name="ClearedQuest" xml:space="preserve">
+    <value>임무 『{0}』를 달성했습니다.</value>
+  </data>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>클립보드에 복사하지 못했습니다.</value>
+  </data>
+</root>

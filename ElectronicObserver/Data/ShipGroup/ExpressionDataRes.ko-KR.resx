@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AABase" xml:space="preserve">
+    <value>기본 대공</value>
+  </data>
+  <data name="AARemain" xml:space="preserve">
+    <value>잔여 대공 개수</value>
+  </data>
+  <data name="AATotal" xml:space="preserve">
+    <value>합계 대공</value>
+  </data>
+  <data name="AirBattlePower" xml:space="preserve">
+    <value>항공 위력</value>
+  </data>
+  <data name="AircraftPower" xml:space="preserve">
+    <value>공격 위력</value>
+  </data>
+  <data name="AircraftRate1" xml:space="preserve">
+    <value>탑재 비율 #1</value>
+  </data>
+  <data name="AircraftRate2" xml:space="preserve">
+    <value>탑재 비율 #2</value>
+  </data>
+  <data name="AircraftRate3" xml:space="preserve">
+    <value>탑재 비율 #3</value>
+  </data>
+  <data name="AircraftRate4" xml:space="preserve">
+    <value>탑재 비율 #4</value>
+  </data>
+  <data name="AircraftRate5" xml:space="preserve">
+    <value>탑재 비율 #5</value>
+  </data>
+  <data name="AircraftRateTotal" xml:space="preserve">
+    <value>탑재 비율 합계</value>
+  </data>
+  <data name="AircraftSlot1" xml:space="preserve">
+    <value>탑재 #1</value>
+  </data>
+  <data name="AircraftSlot2" xml:space="preserve">
+    <value>탑재 #2</value>
+  </data>
+  <data name="AircraftSlot3" xml:space="preserve">
+    <value>탑재 #3</value>
+  </data>
+  <data name="AircraftSlot4" xml:space="preserve">
+    <value>탑재 #4</value>
+  </data>
+  <data name="AircraftSlot5" xml:space="preserve">
+    <value>탑재 #5</value>
+  </data>
+  <data name="AircraftTotal" xml:space="preserve">
+    <value>탑재기 합계</value>
+  </data>
+  <data name="AlbumNo" xml:space="preserve">
+    <value>도감 번호</value>
+  </data>
+  <data name="AllSlotMaster" xml:space="preserve">
+    <value>장비</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>탑재 탄약</value>
+  </data>
+  <data name="AmmoMax" xml:space="preserve">
+    <value>최대 탑재 탄약</value>
+  </data>
+  <data name="AmmoRate" xml:space="preserve">
+    <value>탑재 탄약 비율</value>
+  </data>
+  <data name="ArmorBase" xml:space="preserve">
+    <value>기본 장갑</value>
+  </data>
+  <data name="ArmorRemain" xml:space="preserve">
+    <value>잔여 장갑 개수</value>
+  </data>
+  <data name="ArmorTotal" xml:space="preserve">
+    <value>합계 장갑</value>
+  </data>
+  <data name="ASWBase" xml:space="preserve">
+    <value>기본 대잠</value>
+  </data>
+  <data name="ASWPower" xml:space="preserve">
+    <value>대잠 위력</value>
+  </data>
+  <data name="ASWTotal" xml:space="preserve">
+    <value>합계 대잠</value>
+  </data>
+  <data name="BomberTotal" xml:space="preserve">
+    <value>합계 폭장</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>컨디션</value>
+  </data>
+  <data name="EquippableCategories" xml:space="preserve">
+    <value>장비 가능 목록</value>
+  </data>
+  <data name="EvasionBase" xml:space="preserve">
+    <value>기본 회피</value>
+  </data>
+  <data name="EvasionTotal" xml:space="preserve">
+    <value>합계 회피</value>
+  </data>
+  <data name="ExpansionSlotMaster" xml:space="preserve">
+    <value>보강 장비</value>
+  </data>
+  <data name="ExpNext" xml:space="preserve">
+    <value>다음 레벨까지</value>
+  </data>
+  <data name="ExpNextRemodel" xml:space="preserve">
+    <value>다음 개장까지</value>
+  </data>
+  <data name="ExpTotal" xml:space="preserve">
+    <value>경험치</value>
+  </data>
+  <data name="FirePowerBase" xml:space="preserve">
+    <value>기본 화력</value>
+  </data>
+  <data name="FirePowerRemain" xml:space="preserve">
+    <value>잔여 화력 개수</value>
+  </data>
+  <data name="FirePowerTotal" xml:space="preserve">
+    <value>합계 화력</value>
+  </data>
+  <data name="FleetWithIndex" xml:space="preserve">
+    <value>소속 함대</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>탑재 연료</value>
+  </data>
+  <data name="FuelMax" xml:space="preserve">
+    <value>최대 탑재 연료</value>
+  </data>
+  <data name="FuelRate" xml:space="preserve">
+    <value>탑재 연료 비율</value>
+  </data>
+  <data name="HPCurrent" xml:space="preserve">
+    <value>현재 HP</value>
+  </data>
+  <data name="HPMax" xml:space="preserve">
+    <value>최대 HP</value>
+  </data>
+  <data name="HPRate" xml:space="preserve">
+    <value>HP 비율</value>
+  </data>
+  <data name="IsLocked" xml:space="preserve">
+    <value>잠금</value>
+  </data>
+  <data name="IsLockedByEquipment" xml:space="preserve">
+    <value>장비 잠금</value>
+  </data>
+  <data name="IsMarried" xml:space="preserve">
+    <value>결혼(가)</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>레벨</value>
+  </data>
+  <data name="LOSBase" xml:space="preserve">
+    <value>기본 색적</value>
+  </data>
+  <data name="LOSTotal" xml:space="preserve">
+    <value>합계 색적</value>
+  </data>
+  <data name="LuckBase" xml:space="preserve">
+    <value>기본 운</value>
+  </data>
+  <data name="LuckRemain" xml:space="preserve">
+    <value>잔여 운 개수</value>
+  </data>
+  <data name="LuckTotal" xml:space="preserve">
+    <value>합계 운</value>
+  </data>
+  <data name="MasterAircraft1" xml:space="preserve">
+    <value>최대 탑재 #1</value>
+  </data>
+  <data name="MasterAircraft2" xml:space="preserve">
+    <value>최대 탑재 #2</value>
+  </data>
+  <data name="MasterAircraft3" xml:space="preserve">
+    <value>최대 탑재 #3</value>
+  </data>
+  <data name="MasterAircraft4" xml:space="preserve">
+    <value>최대 탑재 #4</value>
+  </data>
+  <data name="MasterAircraft5" xml:space="preserve">
+    <value>최대 탑재 #5</value>
+  </data>
+  <data name="MasterAircraftTotal" xml:space="preserve">
+    <value>최대 탑재기 수</value>
+  </data>
+  <data name="MasterID" xml:space="preserve">
+    <value>함선 고유 ID</value>
+  </data>
+  <data name="MasterRarity" xml:space="preserve">
+    <value>희귀도</value>
+  </data>
+  <data name="MasterSpeed" xml:space="preserve">
+    <value>기초 속력</value>
+  </data>
+  <data name="NameReading" xml:space="preserve">
+    <value>함명 읽기</value>
+  </data>
+  <data name="NameWithClass" xml:space="preserve">
+    <value>함명</value>
+  </data>
+  <data name="NightBattlePower" xml:space="preserve">
+    <value>야전 위력</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>사거리</value>
+  </data>
+  <data name="RemodelAfterShipID" xml:space="preserve">
+    <value>개장 후 함선 ID</value>
+  </data>
+  <data name="RemodelBeforeShipID" xml:space="preserve">
+    <value>개장 전 함선 ID</value>
+  </data>
+  <data name="RepairFuel" xml:space="preserve">
+    <value>입거 소비 연료</value>
+  </data>
+  <data name="RepairingDockID" xml:space="preserve">
+    <value>입거 도크</value>
+  </data>
+  <data name="RepairSteel" xml:space="preserve">
+    <value>입거 소비 강재</value>
+  </data>
+  <data name="RepairTime" xml:space="preserve">
+    <value>입거 시간</value>
+  </data>
+  <data name="SallyArea" xml:space="preserve">
+    <value>출격 해역</value>
+  </data>
+  <data name="ShellingPower" xml:space="preserve">
+    <value>포격 위력</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>함선 ID</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>함 종류</value>
+  </data>
+  <data name="SlotMaster1" xml:space="preserve">
+    <value>장비 #1</value>
+  </data>
+  <data name="SlotMaster2" xml:space="preserve">
+    <value>장비 #2</value>
+  </data>
+  <data name="SlotMaster3" xml:space="preserve">
+    <value>장비 #3</value>
+  </data>
+  <data name="SlotMaster4" xml:space="preserve">
+    <value>장비 #4</value>
+  </data>
+  <data name="SlotMaster5" xml:space="preserve">
+    <value>장비 #5</value>
+  </data>
+  <data name="SlotSize" xml:space="preserve">
+    <value>장비</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>속력</value>
+  </data>
+  <data name="StrArrayContains" xml:space="preserve">
+    <value>을 포함</value>
+  </data>
+  <data name="StrArrayNotContains" xml:space="preserve">
+    <value>을 포함하지 않는</value>
+  </data>
+  <data name="StrBeginsWith" xml:space="preserve">
+    <value>으로 시작</value>
+  </data>
+  <data name="StrContains" xml:space="preserve">
+    <value>을 포함</value>
+  </data>
+  <data name="StrEndWith" xml:space="preserve">
+    <value>으로 끝나는</value>
+  </data>
+  <data name="StrEquals" xml:space="preserve">
+    <value>와 동일</value>
+  </data>
+  <data name="StrLessEquals" xml:space="preserve">
+    <value>이하</value>
+  </data>
+  <data name="StrLessThan" xml:space="preserve">
+    <value>보다 작은</value>
+  </data>
+  <data name="StrMoreEquals" xml:space="preserve">
+    <value>이상</value>
+  </data>
+  <data name="StrMoreThan" xml:space="preserve">
+    <value>보다 큰</value>
+  </data>
+  <data name="StrNotBeginsWith" xml:space="preserve">
+    <value>으로 시작하지 않는</value>
+  </data>
+  <data name="StrNotContains" xml:space="preserve">
+    <value>을 포함하지 않는</value>
+  </data>
+  <data name="StrNotEndWith" xml:space="preserve">
+    <value>으로 끝나지 않는</value>
+  </data>
+  <data name="StrNotEquals" xml:space="preserve">
+    <value>와 동일하지 않은</value>
+  </data>
+  <data name="TorpedoBase" xml:space="preserve">
+    <value>기본 뇌장</value>
+  </data>
+  <data name="TorpedoPower" xml:space="preserve">
+    <value>뇌격 위력</value>
+  </data>
+  <data name="TorpedoRemain" xml:space="preserve">
+    <value>뇌장 개수 잔여</value>
+  </data>
+  <data name="TorpedoTotal" xml:space="preserve">
+    <value>합계 뇌장</value>
+  </data>
+</root>

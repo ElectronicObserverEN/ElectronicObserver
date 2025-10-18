@@ -117,93 +117,171 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
+    <value>편성 텍스트 복사(&amp;C)</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
+    <value>편성 복사(덱 빌더)(&amp;D)</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
+    <value>함대 리스트 복사(kancolle-calc)(&amp;R)</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="ContextMenuFleet_CopyFleetAnalysisShips" xml:space="preserve">
+    <value>함대 리스트 복사(kancolle-fleetanalysis)</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="ContextMenuFleet_CopyFleetAnalysisEquipment" xml:space="preserve">
+    <value>장비 리스트 복사(kancolle-fleetanalysis)</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
+    <value>대공포화 상세 표시(&amp;A)</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="ContextMenuFleet_Capture" xml:space="preserve">
+    <value>이 화면을 캡쳐(&amp;S)</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
+    <value>편성 화면을 출력(&amp;I)</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="Title" xml:space="preserve">
+    <value>*not loaded*</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="SupportTypeNone" xml:space="preserve">
+    <value>발동 불능</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="SupportTypeAerial" xml:space="preserve">
+    <value>항공 지원</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="SupportTypeShelling" xml:space="preserve">
+    <value>지원 사격</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="SupportTypeTorpedo" xml:space="preserve">
+    <value>지원 장거리 뇌격</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="FleetNameToolTip" xml:space="preserve">
+    <value>Lv 합계: {0} / 평균: {1:0.00}
+{2}함대
+지원 공격: {3}
+합계 화력 {4} ({20})  / 뇌장 {5} / 대공 {6} ({21}) / 대잠 {7} ({22}) / 색적 {8} ({23}){26}
+드럼통 탑재: {9}개 ({10}함)
+대발동정 탑재: {11}개 ({12}함, +{13:p1})
+유송량(TP): S {14} / A {15}
+전차 유송량(TP):
+E2: S {27} / A {28}
+E5: S {29} / A {30}
+수상 전탐: {24}개 ({25}함)
+총 적재: 연료 {16} / 탄약 {17}
+(전투당 연료 {18} / 탄약 {19})</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="WithoutProficiency" xml:space="preserve">
+    <value>숙련도 없음</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="WithProficiency" xml:space="preserve">
+    <value>숙련도 있음</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="FleetLosToolTip" xml:space="preserve">
+    <value>신판정식(33) 분기점계수: {0}
+　(클릭으로 전환)
+
+접촉 개시율: 
+　확보 {1:p1} / 우세 {2:p1}
+</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="ContactSelection" xml:space="preserve">
+    <value>접촉 선택률:</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="ContactProbability" xml:space="preserve">
+    <value>　명중{0} : {1:p1}</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="ShipNameToolTip" xml:space="preserve">
+    <value>{0}{1} {2}
+화력: {3}/{4}
+뇌장: {5}/{6}
+대공: {7}/{8}
+장갑: {9}/{10}
+대잠: {11}/{12}
+회피: {13}/{14}
+색적: {15}/{16}
+운: {17}
+명중: {18:+#;-#;+0}
+폭장: {19:+#;-#;+0}
+사거리: {20} / 속력: {21}
+(우클릭으로 도감)</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="ExpCalcHint" xml:space="preserve">
+    <value>(우클릭으로 필요 Exp 계산)</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="CvciFba" xml:space="preserve">
+    <value>공모 컷인(FBA)</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="CvciBba" xml:space="preserve">
+    <value>공모 컷인(BBA)</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="CvciBa" xml:space="preserve">
+    <value>공모 컷인(BA)</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="Power" xml:space="preserve">
+    <value>위력</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="Accuracy" xml:space="preserve">
+    <value>명중</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="Asw" xml:space="preserve">
+    <value>대잠</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="OpeningAsw" xml:space="preserve">
+    <value> (선제 가능)</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="Aarb" xml:space="preserve">
+    <value>대공분진탄막</value>
+  </data>
+  <data name="AirstrikePower" xml:space="preserve">
+    <value>항공 위력</value>
+  </data>
+  <data name="CopyFleetText" xml:space="preserve">
+    <value>{0}    제공 전력{1} / 색적 능력 {2} / 수송 능력 {3}</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
+    <value>함대 분석 스프레드시트 칸무스로 복사</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetEquipment" xml:space="preserve">
+    <value>함대 분석 스프레드시트 장비로 복사</value>
+  </data>
+  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
+    <value>(우클릭으로 도감)</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
+    <value>칸무스 훈련 추가</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
+    <value>필요 Exp 계산</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
+    <value>칸무스 훈련 편집</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
+    <value>칸무스 훈련 제거</value>
+  </data>
+  <data name="SpecialAttacksDay" xml:space="preserve">
+    <value>특수 포격(주간전): </value>
+  </data>
+  <data name="SpecialAttacksNight" xml:space="preserve">
+    <value>특수 포격(야전): </value>
+  </data>
+  <data name="NightRecon" xml:space="preserve">
+    <value>야탐</value>
+  </data>
+  <data name="Flare" xml:space="preserve">
+    <value>조명탄</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>잠금된</value>
+  </data>
+  <data name="SupportTypeAntiSubmarine" xml:space="preserve">
+    <value>대잠 지원</value>
+  </data>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>연막</value>
   </data>
 </root>

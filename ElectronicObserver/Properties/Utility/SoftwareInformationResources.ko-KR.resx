@@ -117,93 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="FailedToObtainUpdateData" xml:space="preserve">
+    <value>업데이트 데이터 정보 취득에 실패하였습니다.</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="InvalidUpdateUrl" xml:space="preserve">
+    <value>업데이트 데이터 정보 취득에 실패하였습니다.</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="YouAreUsingTheLatestVersion" xml:space="preserve">
+    <value>사용 중인 버전은 최신 버전입니다.</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="StartedDownloadingUpdate" xml:space="preserve">
+    <value>업데이트 데이터 다운로드를 개시하였습니다. {0}</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="DownloadFinished" xml:space="preserve">
+    <value>다운로드 종료.</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="CloseElectronicObserverToCompleteTheUpdate" xml:space="preserve">
+    <value>74식을 닫고, 업데이트 처리를 완료합니다. 자동으로 재시작합니다.</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="TranslationFilesUpdated" xml:space="preserve">
+    <value>번역 파일을 갱신하였습니다.</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="UpdaterDownloadFinished" xml:space="preserve">
+    <value>업데이트 데이터 다운로드가 완료되었습니다.</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="FailedToDownloadUpdater" xml:space="preserve">
+    <value>업데이트 데이터 다운로드에 실패하였습니다.</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>업데이트를 다운로드 중...</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="FailedToDownloadElectronicObserver" xml:space="preserve">
+    <value>74식을 다운로드하는데 실패하였습니다.</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="FailedToParseUpdateData" xml:space="preserve">
+    <value>갱신 데이터 해석에 실패하였습니다: </value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="FailedToUpdateFile" xml:space="preserve">
+    <value>{0} 데이터 갱신에 실패하였습니다. {1}</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
-  </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
-  </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
-  </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
-  </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
-  </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
-  </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
-  </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
-  </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
-  </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
-  </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
-  </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
-  </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="FileUpdated" xml:space="preserve">
+    <value>파일 {0}가 갱신되었습니다.</value>
   </data>
 </root>

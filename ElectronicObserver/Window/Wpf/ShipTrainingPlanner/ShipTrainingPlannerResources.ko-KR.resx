@@ -117,93 +117,105 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>진척도 리셋(&amp;R)</value>
+  <data name="AddShip" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>표시 필터(&amp;Q)</value>
+  <data name="ASWBonus" xml:space="preserve">
+    <value>대잠</value>
   </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>임무명으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="DisplayFinished" xml:space="preserve">
+    <value>표시 완료</value>
   </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>임무명으로 wikiwiki 검색(&amp;K)</value>
+  <data name="EditPlan" xml:space="preserve">
+    <value>계획 편집</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>페이지</value>
+  <data name="Exp" xml:space="preserve">
+    <value>경험치</value>
   </data>
-  <data name="Complete" xml:space="preserve">
-    <value>달성!</value>
+  <data name="Finished" xml:space="preserve">
+    <value>완료</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(미취득 임무 x {0})</value>
+  <data name="HPBonus" xml:space="preserve">
+    <value>내구</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(미취득)</value>
+  <data name="Level" xml:space="preserve">
+    <value>Lv</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>임무 『{0}』의 진척도를 변경할 수 없습니다.</value>
+  <data name="NotifyAnyRemodelReady" xml:space="preserve">
+    <value>모든 개조 가능 여부를 알림</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>임무 {0}을(를) 목록에서 제거하고, 진척도를 초기화합니다.
-괜찮습니까?
-(칸코레 본체의 임무 화면을 열면 정상적으로 갱신됩니다.)</value>
+  <data name="RemodelGoal" xml:space="preserve">
+    <value>개조</value>
   </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>임무 삭제 확인</value>
+  <data name="RemoveFinishedPlans" xml:space="preserve">
+    <value>완료 제거</value>
   </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>『{0}』으로 DuckDuckGo 검색(&amp;G)</value>
+  <data name="RemovePlan" xml:space="preserve">
+    <value>계획 제거</value>
   </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>임무명으로 wikiwiki검색(&amp;K)</value>
+  <data name="Title" xml:space="preserve">
+    <value>칸무스 훈련</value>
   </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>임무명의 DuckDuckGo 검색에 실패했습니다.</value>
+  <data name="NotifyAnyRemodelReadyToolTip" xml:space="preserve">
+    <value>예시: 레벨 1부터 카미카제를 레벨업해서 카미카제 개2로 개조하려고 했을 때 
+비활성화 하면, 카미카제를 카미카제 개2로 개조할 수 있을 때만 알립니다.
+활성화 하면, 카미카제를 카미카제 개로 개조할 수 있을 때와 카미카제 개를 카미카제 개2로 개조할 수 있을 때 알립니다.</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+칸코레</value>
+  <data name="Priority" xml:space="preserve">
+    <value>우선 순위</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>임무 검색에 실패했습니다.</value>
+  <data name="ASWBonusCurrent" xml:space="preserve">
+    <value>대잠 개수</value>
   </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>임무는 전부 번역되어 있습니다.</value>
+  <data name="ASWBonusTarget" xml:space="preserve">
+    <value>대잠 개수 목표</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
+  <data name="ASWCurrent" xml:space="preserve">
+    <value>대잠 (현재)</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>임무 제목을 복사(&amp;T)</value>
+  <data name="ASWTarget" xml:space="preserve">
+    <value>대잠 목표</value>
   </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>임무 설명을 복사(&amp;D)</value>
+  <data name="HPBonusCurrent" xml:space="preserve">
+    <value>내구 개수</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>번역되지 않은 임무 데이터를 복사(&amp;N)</value>
+  <data name="HPBonusTarget" xml:space="preserve">
+    <value>내구 개수 목표</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>진척 상황 수정(_M)</value>
+  <data name="HPCurrent" xml:space="preserve">
+    <value>내구</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>『{0}』으로 _Startpage 검색</value>
+  <data name="HPTarget" xml:space="preserve">
+    <value>내구 목표</value>
   </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>임무명의 Startpage 검색에 실패했습니다.</value>
+  <data name="LevelCurrent" xml:space="preserve">
+    <value>레벨 (현재)</value>
   </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>임무명으로 _Startpage 검색</value>
+  <data name="LevelTarget" xml:space="preserve">
+    <value>레벨 목표</value>
   </data>
-  <data name="ShowQuestCode" xml:space="preserve">
-    <value>임무 코드 표시</value>
+  <data name="LuckCurrent" xml:space="preserve">
+    <value>운 (현재)</value>
   </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>사이즈 조정</value>
+  <data name="LuckTarget" xml:space="preserve">
+    <value>운 목표</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>헤더</value>
+  <data name="RemainingExp" xml:space="preserve">
+    <value>남은 경험치</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>열</value>
+  <data name="ASWRemaining" xml:space="preserve">
+    <value>남은 대잠</value>
+  </data>
+  <data name="HPRemaining" xml:space="preserve">
+    <value>잔여 내구</value>
+  </data>
+  <data name="LuckRemaining" xml:space="preserve">
+    <value>잔여 운</value>
+  </data>
+  <data name="PlanCompletedNotification" xml:space="preserve">
+    <value>{0}의 칸무스 훈련 종료</value>
+  </data>
+  <data name="PlanCompleted" xml:space="preserve">
+    <value>칸무스 훈련 종료</value>
   </data>
 </root>

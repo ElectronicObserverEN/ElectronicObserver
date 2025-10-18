@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="File" xml:space="preserve">
+    <value>파일(_F)</value>
+  </data>
+  <data name="File_Close" xml:space="preserve">
+    <value>종료(&amp;X)</value>
+  </data>
+  <data name="File_Configuration" xml:space="preserve">
+    <value>설정(&amp;C)...</value>
+  </data>
+  <data name="File_Layout" xml:space="preserve">
+    <value>레이아웃(&amp;L)</value>
+  </data>
+  <data name="File_Layout_Change" xml:space="preserve">
+    <value>다른 파일에 저장(&amp;C)...</value>
+  </data>
+  <data name="File_Layout_Load" xml:space="preserve">
+    <value>불러오기(&amp;L)</value>
+  </data>
+  <data name="File_Layout_LockLayout" xml:space="preserve">
+    <value>레이아웃 잠금(&amp;T)</value>
+  </data>
+  <data name="File_Layout_Open" xml:space="preserve">
+    <value>다른 파일에서 불러오기(&amp;O)</value>
+  </data>
+  <data name="File_Layout_Save" xml:space="preserve">
+    <value>저장(&amp;S)</value>
+  </data>
+  <data name="File_Layout_TopMost" xml:space="preserve">
+    <value>가장 앞에 표시(&amp;M)</value>
+  </data>
+  <data name="File_Notification" xml:space="preserve">
+    <value>알람(&amp;N)</value>
+  </data>
+  <data name="File_Notification_MuteAll" xml:space="preserve">
+    <value>모든 알람을 음소거(&amp;M)</value>
+  </data>
+  <data name="File_Record" xml:space="preserve">
+    <value>녹화(&amp;R)</value>
+  </data>
+  <data name="File_Record_Load" xml:space="preserve">
+    <value>불러오기(&amp;L)</value>
+  </data>
+  <data name="File_Record_Save" xml:space="preserve">
+    <value>저장(&amp;S)</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>표시(_V)</value>
+  </data>
+  <data name="View_Fleet" xml:space="preserve">
+    <value>함대(&amp;F)</value>
+  </data>
+  <data name="View_Fleet_1" xml:space="preserve">
+    <value>#&amp;1</value>
+  </data>
+  <data name="View_Fleet_2" xml:space="preserve">
+    <value>#&amp;2</value>
+  </data>
+  <data name="View_Fleet_3" xml:space="preserve">
+    <value>#&amp;3</value>
+  </data>
+  <data name="View_Fleet_4" xml:space="preserve">
+    <value>#&amp;4</value>
+  </data>
+  <data name="View_FleetOverview" xml:space="preserve">
+    <value>함대 일람(&amp;O)</value>
+  </data>
+  <data name="View_ShipGroup" xml:space="preserve">
+    <value>함선 그룹(&amp;G)</value>
+  </data>
+  <data name="View_Dock" xml:space="preserve">
+    <value>입거(&amp;D)</value>
+  </data>
+  <data name="View_Arsenal" xml:space="preserve">
+    <value>공창(&amp;A)</value>
+  </data>
+  <data name="View_BaseAirCorps" xml:space="preserve">
+    <value>기지 항공대(&amp;S)</value>
+  </data>
+  <data name="View_Headquarters" xml:space="preserve">
+    <value>사령부(&amp;H)</value>
+  </data>
+  <data name="View_Quest" xml:space="preserve">
+    <value>임무(&amp;Q)</value>
+  </data>
+  <data name="View_Information" xml:space="preserve">
+    <value>정보(&amp;I)</value>
+  </data>
+  <data name="View_Compass" xml:space="preserve">
+    <value>나침반(&amp;C)</value>
+  </data>
+  <data name="View_Battle" xml:space="preserve">
+    <value>전투(&amp;B)</value>
+  </data>
+  <data name="View_Browser" xml:space="preserve">
+    <value>브라우저(&amp;M)</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>로그(&amp;L)</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>윈도우 캡쳐(&amp;W)</value>
+  </data>
+  <data name="WindowCapture_SubWindow" xml:space="preserve">
+    <value>컨트롤 창(&amp;C)</value>
+  </data>
+  <data name="WindowCapture_AttachAll" xml:space="preserve">
+    <value>모두 재검색하여 가져오기(&amp;S)</value>
+  </data>
+  <data name="WindowCapture_DetachAll" xml:space="preserve">
+    <value>모든 창을 개방(&amp;R)</value>
+  </data>
+  <data name="View_Json" xml:space="preserve">
+    <value>JSON(&amp;J)</value>
+  </data>
+  <data name="Tool" xml:space="preserve">
+    <value>도구(&amp;T)</value>
+  </data>
+  <data name="Tool_EquipmentList" xml:space="preserve">
+    <value>장비 일람(&amp;Q)</value>
+  </data>
+  <data name="Tool_DropRecord" xml:space="preserve">
+    <value>드랍기록(&amp;D)</value>
+  </data>
+  <data name="Tool_DevelopmentRecord" xml:space="preserve">
+    <value>개발 기록(&amp;V)</value>
+  </data>
+  <data name="Tool_ConstructionRecord" xml:space="preserve">
+    <value>건조 기록(&amp;R)</value>
+  </data>
+  <data name="Tool_ResourceChart" xml:space="preserve">
+    <value>자원 차트(&amp;C)</value>
+  </data>
+  <data name="Tool_AlbumMasterShip" xml:space="preserve">
+    <value>함선 도감(&amp;S)</value>
+  </data>
+  <data name="Tool_AlbumMasterEquipment" xml:space="preserve">
+    <value>장비 도감(&amp;E)</value>
+  </data>
+  <data name="Tool_AntiAirDefense" xml:space="preserve">
+    <value>대공포화 상세(&amp;A)</value>
+  </data>
+  <data name="Tool_FleetImageGenerator" xml:space="preserve">
+    <value>편성 이미지 출력(&amp;F)</value>
+  </data>
+  <data name="Tool_BaseAirCorpsSimulation" xml:space="preserve">
+    <value>기지 항공대 편성(&amp;B)</value>
+  </data>
+  <data name="Tool_ExpChecker" xml:space="preserve">
+    <value>필요 경험치 계산(&amp;X)</value>
+  </data>
+  <data name="Tool_ExpeditionCheck" xml:space="preserve">
+    <value>원정 조건 체크(&amp;M)</value>
+  </data>
+  <data name="Tool_ExtraBrowser" xml:space="preserve">
+    <value>엑스트라 브라우저</value>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>디버그(&amp;D)</value>
+  </data>
+  <data name="Debug_LoadAPIFromFile" xml:space="preserve">
+    <value>파일에서 API를 로드(&amp;L)...</value>
+  </data>
+  <data name="Debug_LoadInitialAPI" xml:space="preserve">
+    <value>API 목록을 불러오기(&amp;I)...</value>
+  </data>
+  <data name="Debug_LoadRecordFromOld" xml:space="preserve">
+    <value>구 api_start2에서 데이터를 구축(&amp;O)...</value>
+  </data>
+  <data name="Debug_DeleteOldAPI" xml:space="preserve">
+    <value>구 API 데이터를 삭제(&amp;D)</value>
+  </data>
+  <data name="Debug_RenameShipResource" xml:space="preserve">
+    <value>함선 리소스 이름 변경(&amp;R)...</value>
+  </data>
+  <data name="Debug_LoadDataFromOld" xml:space="preserve">
+    <value>구 api_start2에서 심해서함을 복원(&amp;A)...</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>도움말(&amp;H)</value>
+  </data>
+  <data name="Help_Help" xml:space="preserve">
+    <value>온라인 도움말(&amp;H)...</value>
+  </data>
+  <data name="Help_Version" xml:space="preserve">
+    <value>버전 정보(&amp;V)</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Now Preparing...</value>
+  </data>
+  <data name="Clock" xml:space="preserve">
+    <value>Clock</value>
+  </data>
+  <data name="View_FleetPreset" xml:space="preserve">
+    <value>편성 프리셋(&amp;P)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>시제 74식 전자 관측기</value>
+  </data>
+  <data name="Help_Issue" xml:space="preserve">
+    <value>문제 보고</value>
+  </data>
+  <data name="Help_Discord" xml:space="preserve">
+    <value>디스코드에 참가</value>
+  </data>
+  <data name="Help_Update" xml:space="preserve">
+    <value>업데이트 확인 중...</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>를 시작하고 있습니다...</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>{0} 를 종료합니까?</value>
+  </data>
+  <data name="ConfirmatonCaption" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>{0} 으로부터 윈도우 레이아웃을 복원하였습니다.</value>
+  </data>
+  <data name="ShipDataNotLoaded" xml:space="preserve">
+    <value>함선 데이터를 읽어들이지 않았습니다.</value>
+  </data>
+  <data name="ErrorCaption" xml:space="preserve">
+    <value>에러</value>
+  </data>
+  <data name="EquipmentDataNotLoaded" xml:space="preserve">
+    <value>장비 데이터를 불러오지 않았습니다.</value>
+  </data>
+  <data name="OpenEOWiki" xml:space="preserve">
+    <value>외부 브라우저로 온라인 도움말 페이지를 엽니다.
+괜찮습니까?</value>
+  </data>
+  <data name="HelpCaption" xml:space="preserve">
+    <value>도움말</value>
+  </data>
+  <data name="ReportIssue" xml:space="preserve">
+    <value>외부 브라우저로 온라인 도움말 페이지를 엽니다.
+괜찮습니까?</value>
+  </data>
+  <data name="ReportIssueCaption" xml:space="preserve">
+    <value>문제 보고</value>
+  </data>
+  <data name="FailedToOpenBrowser" xml:space="preserve">
+    <value>브라우저를 여는데 실패했습니다.</value>
+  </data>
+  <data name="OpenLayoutCaption" xml:space="preserve">
+    <value>레이아웃 파일 열기</value>
+  </data>
+  <data name="SaveLayoutCaption" xml:space="preserve">
+    <value>레이아웃 파일 저장</value>
+  </data>
+  <data name="EventStartsIn" xml:space="preserve">
+    <value>이벤트 시작까지 {0}</value>
+  </data>
+  <data name="EventHasStarted" xml:space="preserve">
+    <value>이벤트가 시작했습니다.</value>
+  </data>
+  <data name="EventEndsIn" xml:space="preserve">
+    <value>이벤트는 {0}에 종료</value>
+  </data>
+  <data name="EventHasEnded" xml:space="preserve">
+    <value>이벤트 기간이 끝났습니다.</value>
+  </data>
+  <data name="MaintenanceStartsIn" xml:space="preserve">
+    <value>{0}후에 점검 시작</value>
+  </data>
+  <data name="MaintenanceHasEnded" xml:space="preserve">
+    <value>점검 종료</value>
+  </data>
+  <data name="NextExerciseReset" xml:space="preserve">
+    <value>다음 연습 초기화: </value>
+  </data>
+  <data name="NextQuestReset" xml:space="preserve">
+    <value>다음 임무 초기화: </value>
+  </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>이 Windows 유저는 현재 경로에 파일을 작성할 권한이 없습니다. 74식 폴더를 배경화면 등, 작성 권한이 있는 경로에 이동해 주세요.</value>
+  </data>
+  <data name="QuestDataNotLoaded" xml:space="preserve">
+    <value>임무 데이터가 로딩되지 않았습니다.</value>
+  </data>
+  <data name="LayoutLoadFailed" xml:space="preserve">
+    <value>유효한 레이아웃 파일인지 확인해 주세요.
+버전 5.0.0에선 레이아웃이 고장나, 그 이전에 작성된 레이아웃은 작동하지 않게 되었습니다.
+상세 사항 및 기존 레이아웃 취득은 github issue을 확인해 주세요: https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71
+
+github issue 페이지로 이동하시겠습니까?</value>
+  </data>
+  <data name="LayoutLoadFailedTitle" xml:space="preserve">
+    <value>레이아웃 로드 실패</value>
+  </data>
+  <data name="CopyingToClipboardFailed" xml:space="preserve">
+    <value>클립보드에 복사를 실패했습니다.</value>
+  </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>조정</value>
+  </data>
+  <data name="GridSplitterSize" xml:space="preserve">
+    <value>그리드 스플리터 사이즈</value>
+  </data>
+  <data name="Old" xml:space="preserve">
+    <value>구</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>신</value>
+  </data>
+  <data name="Update_DownloadUpdate" xml:space="preserve">
+    <value>업데이트 프로그램 다운로드 (_D)</value>
+  </data>
+  <data name="Update_OpenReleaseNotes" xml:space="preserve">
+    <value>릴리즈 노트 열기 (_O)</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>업데이트 데이터가 존재합니다.(_U)</value>
+  </data>
+  <data name="Update_DownloadingUpdate" xml:space="preserve">
+    <value>업데이트 설치 중... ({0:##0.00}%)</value>
+  </data>
+  <data name="Update_DownloadingUpdater" xml:space="preserve">
+    <value>업데이트 다운로드 중...({0:##0.00}%)</value>
+  </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>저장한 API를 로드</value>
+  </data>
+  <data name="WindowCaptureLoadFailed" xml:space="preserve">
+    <value>윈도우 캡쳐 데이터를 불러오는데 실패했습니다.</value>
+  </data>
+  <data name="OperationRoom" xml:space="preserve">
+    <value>작전실</value>
+  </data>
+  <data name="GitHubWikiLink" xml:space="preserve">
+    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
+  </data>
+  <data name="MaintenanceEndsIn" xml:space="preserve">
+    <value>점검은 {0}에 종료</value>
+  </data>
+  <data name="MaintenanceHasStarted" xml:space="preserve">
+    <value>점검이 시작되었습니다.</value>
+  </data>
+  <data name="ResetFloatingWindows" xml:space="preserve">
+    <value>플로팅 윈도우를 리셋</value>
+  </data>
+</root>

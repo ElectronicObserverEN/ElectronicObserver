@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Title" xml:space="preserve">
+    <value>원정 기록</value>
+  </data>
+  <data name="Item1" xml:space="preserve">
+    <value>아이템1</value>
+  </data>
+  <data name="Item2" xml:space="preserve">
+    <value>아이템2</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>결과</value>
+  </data>
 </root>
