@@ -25,7 +25,7 @@ public class FleetStateViewModel : ObservableObject
 	{
 		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
-		StateLabels = new();
+		StateLabels = [];
 	}
 
 	private StateLabel AddStateLabel()
@@ -267,25 +267,8 @@ public class FleetStateViewModel : ObservableObject
 				}
 			}
 
-			if (!fleet.IsInSortie && fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Medium))
-			{
-				StateLabel state = GetStateLabel(index);
-
-				state.SetInformation(FleetState.Chuuha, FleetRes.ChuuhaShip, FleetRes.ChuuhaShip, IconContent.ShipStateChuuha, colorInPortBG);
-				state.Label.ToolTip = null;
-
-				index++;
-			}
-
-			if (!fleet.IsInSortie && fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Light))
-			{
-				StateLabel state = GetStateLabel(index);
-
-				state.SetInformation(FleetState.Shouha, FleetRes.ShouhaShip, FleetRes.ShouhaShip, IconContent.ShipStateShouha, colorInPortBG);
-				state.Label.ToolTip = null;
-
-				index++;
-			}
+			TryAddChuuhaState(fleet, ref index);
+			TryAddShouhaState(fleet, ref index);
 
 			//出撃可能！
 			if (index == 0)
@@ -346,6 +329,35 @@ public class FleetStateViewModel : ObservableObject
 		}
 	}
 
+	private void TryAddChuuhaState(FleetData fleet, ref int index)
+	{
+		if (fleet.IsInSortie) return;
+		if (fleet.MembersInstance is null) return;
+		if (fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Heavy)) return;
+		if (!fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Medium)) return;
+
+		StateLabel state = GetStateLabel(index);
+
+		state.SetInformation(FleetState.Chuuha, FleetRes.ChuuhaShip, "", IconContent.ShipStateChuuha, Colors.Transparent);
+		state.Label.ToolTip = null;
+
+		index++;
+	}
+
+	private void TryAddShouhaState(FleetData fleet, ref int index)
+	{
+		if (fleet.IsInSortie) return;
+		if (fleet.MembersInstance is null) return;
+		if (fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Heavy or DamageState.Medium)) return;
+		if (!fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Light)) return;
+
+		StateLabel state = GetStateLabel(index);
+
+		state.SetInformation(FleetState.Shouha, FleetRes.ShouhaShip, "", IconContent.ShipStateShouha, Colors.Transparent);
+		state.Label.ToolTip = null;
+
+		index++;
+	}
 
 	public void RefreshFleetState()
 	{
