@@ -10,7 +10,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
 public partial class StateLabel : ObservableObject
 {
-	public FleetStates State { get; set; }
+	public FleetState State { get; set; }
 	public FleetItemControlViewModel Label { get; set; }
 	public DateTime Timer { get; set; }
 	private bool _onmouse { get; set; }
@@ -69,12 +69,12 @@ public partial class StateLabel : ObservableObject
 
 	private static FleetItemControlViewModel GetDefaultLabel() => new();
 
-	public void SetInformation(FleetStates state, string text, string shortenedText, IconContent imageIndex, Color backColor)
+	public void SetInformation(FleetState state, string text, string shortenedText, IconContent imageIndex, Color backColor)
 	{
 		SetInformation(state, text, shortenedText, imageIndex, backColor, Utility.Configuration.Config.UI.ForeColor.ToWpfColor());
 	}
 
-	public void SetInformation(FleetStates state, string text, string shortenedText, IconContent imageIndex, Color backColor, Color forecolor)
+	public void SetInformation(FleetState state, string text, string shortenedText, IconContent imageIndex, Color backColor, Color forecolor)
 	{
 		State = state;
 		Text = text;
@@ -85,7 +85,7 @@ public partial class StateLabel : ObservableObject
 		Label.ForeColor = forecolor;
 	}
 
-	public void SetInformation(FleetStates state, string text, string shortenedText, IconContent imageIndex)
+	public void SetInformation(FleetState state, string text, string shortenedText, IconContent imageIndex)
 	{
 		SetInformation(state, text, shortenedText, imageIndex, Colors.Transparent);
 	}

@@ -171,6 +171,14 @@
 	<BitmapImage x:Key="Rarity.HoloA" UriSource="pack://siteoforigin:,,,/Assets/Rarity/HoloA.png" />
 	<BitmapImage x:Key="Rarity.Cherry" UriSource="pack://siteoforigin:,,,/Assets/Rarity/Cherry.png" />
 
+	<BitmapImage x:Key="ShipState.Taiha" UriSource="pack://siteoforigin:,,,/Assets/ShipState/DamageTaiha.png" />
+	<BitmapImage x:Key="ShipState.Chuuha" UriSource="pack://siteoforigin:,,,/Assets/ShipState/DamageChuuha.png" />
+	<BitmapImage x:Key="ShipState.Shouha" UriSource="pack://siteoforigin:,,,/Assets/ShipState/DamageShouha.png" />
+	<BitmapImage x:Key="ShipState.Escaped" UriSource="pack://siteoforigin:,,,/Assets/ShipState/Escaped.png" />
+	<BitmapImage x:Key="ShipState.Expedition" UriSource="pack://siteoforigin:,,,/Assets/ShipState/Expedition.png" />
+	<BitmapImage x:Key="ShipState.Repair" UriSource="pack://siteoforigin:,,,/Assets/ShipState/Repair.png" />
+	<BitmapImage x:Key="ShipState.Sunk" UriSource="pack://siteoforigin:,,,/Assets/ShipState/Sunk.png" />
+
 	<BitmapImage x:Key="Item.SmallBox" UriSource="pack://siteoforigin:,,,/Assets/Item/SmallBox.png" />
 	<BitmapImage x:Key="Item.MediumBox" UriSource="pack://siteoforigin:,,,/Assets/Item/MediumBox.png" />
 	<BitmapImage x:Key="Item.LargeBox" UriSource="pack://siteoforigin:,,,/Assets/Item/LargeBox.png" />

@@ -782,4 +782,11 @@ public enum IconContent
 	AircraftLevelTop5,
 	AircraftLevelTop6,
 	AircraftLevelTop7,
+	ShipStateTaiha,
+	ShipStateChuuha,
+	ShipStateShouha,
+	ShipStateEscaped,
+	ShipStateExpedition,
+	ShipStateRepair,
+	ShipStateSunk,
 }

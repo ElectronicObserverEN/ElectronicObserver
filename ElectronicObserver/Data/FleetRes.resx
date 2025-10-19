@@ -198,4 +198,10 @@
     <value>燃 : {0}/{1} ({2}%)
 弾 : {3}/{4} ({5}%)</value>
   </data>
+  <data name="ChuuhaShip" xml:space="preserve">
+    <value>中破艦あり</value>
+  </data>
+  <data name="ShouhaShip" xml:space="preserve">
+    <value>小破艦あり</value>
+  </data>
 </root>

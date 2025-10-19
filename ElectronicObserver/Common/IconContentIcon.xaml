@@ -121,6 +121,14 @@
 				<markup:Case Label="{x:Static resource:IconContent.RarityHoloB}" Value="{StaticResource Rarity.HoloB}" />
 				<markup:Case Label="{x:Static resource:IconContent.RarityHoloA}" Value="{StaticResource Rarity.HoloA}" />
 				<markup:Case Label="{x:Static resource:IconContent.RarityCherry}" Value="{StaticResource Rarity.Cherry}" />
+
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateTaiha}" Value="{StaticResource ShipState.Taiha}" />
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateChuuha}" Value="{StaticResource ShipState.Chuuha}" />
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateShouha}" Value="{StaticResource ShipState.Shouha}" />
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateEscaped}" Value="{StaticResource ShipState.Escaped}" />
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateExpedition}" Value="{StaticResource ShipState.Expedition}" />
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateRepair}" Value="{StaticResource ShipState.Repair}" />
+				<markup:Case Label="{x:Static resource:IconContent.ShipStateSunk}" Value="{StaticResource ShipState.Sunk}" />
 			</markup:Switch>
 		</Image.Source>
 	</Image>

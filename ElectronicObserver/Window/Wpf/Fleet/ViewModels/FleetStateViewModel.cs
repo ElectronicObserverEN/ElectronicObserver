@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
@@ -55,7 +56,7 @@ public class FleetStateViewModel : ObservableObject
 
 		bool emphasizesSubFleetInPort = Utility.Configuration.Config.FormFleet.EmphasizesSubFleetInPort &&
 										(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
-		var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
+		var displayMode = (FleetStateDisplayMode)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
 		Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG.ToWpfColor();
 		Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG.ToWpfColor();
@@ -74,7 +75,7 @@ public class FleetStateViewModel : ObservableObject
 		{
 			var state = GetStateLabel(index);
 
-			state.SetInformation(FleetStates.NoShip, FormFleet.NoShips, "", IconContent.FleetNoShip);
+			state.SetInformation(FleetState.NoShip, FormFleet.NoShips, "", IconContent.FleetNoShip);
 			state.Label.ToolTip = null;
 
 			emphasizesSubFleetInPort = false;
@@ -92,7 +93,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, IconContent.FleetSortieDamaged, colorDangerBG, colorDangerFG);
+					state.SetInformation(FleetState.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, IconContent.FleetSortieDamaged, colorDangerBG, colorDangerFG);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -102,7 +103,7 @@ public class FleetStateViewModel : ObservableObject
 				{   //出撃中
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Sortie, FormFleet.OnSortie, "", IconContent.FleetSortie);
+					state.SetInformation(FleetState.Sortie, FormFleet.OnSortie, "", IconContent.FleetSortie);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -118,7 +119,7 @@ public class FleetStateViewModel : ObservableObject
 				var dest = db.Mission[fleet.ExpeditionDestination];
 
 				state.Timer = fleet.ExpeditionTime;
-				state.SetInformation(FleetStates.Expedition,
+				state.SetInformation(FleetState.Expedition,
 					$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 					DateTimeHelper.ToTimeRemainString(state.Timer),
 					IconContent.FleetExpedition, colorInExpeditionBG, colorInExpeditionFG);
@@ -135,7 +136,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, IconContent.FleetDamaged, colorDangerBG, colorDangerFG);
+				state.SetInformation(FleetState.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, IconContent.FleetDamaged, colorDangerBG, colorDangerFG);
 				state.Label.ToolTip = null;
 
 				emphasizesSubFleetInPort = false;
@@ -148,7 +149,7 @@ public class FleetStateViewModel : ObservableObject
 				var state = GetStateLabel(index);
 
 				state.Timer = db.Fleet.AnchorageRepairingTimer;
-				state.SetInformation(FleetStates.AnchorageRepairing,
+				state.SetInformation(FleetState.AnchorageRepairing,
 					FormFleet.Repairing + DateTimeHelper.ToTimeElapsedString(state.Timer),
 					DateTimeHelper.ToTimeElapsedString(state.Timer),
 					IconContent.FleetAnchorageRepairing);
@@ -193,7 +194,7 @@ public class FleetStateViewModel : ObservableObject
 					var state = GetStateLabel(index);
 
 					state.Timer = new DateTime(ntime);
-					state.SetInformation(FleetStates.Docking,
+					state.SetInformation(FleetState.Docking,
 						FormFleet.OnDock + DateTimeHelper.ToTimeRemainString(state.Timer),
 						DateTimeHelper.ToTimeRemainString(state.Timer),
 						IconContent.FleetDocking);
@@ -219,7 +220,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", IconContent.FleetNotReplenished, colorInPortBG, colorInPortFG);
+					state.SetInformation(FleetState.NotReplenished, FormFleet.SupplyNeeded, "", IconContent.FleetNotReplenished, colorInPortBG, colorInPortFG);
 					state.Label.ToolTip = string.Format(FormFleet.ResupplyTooltip, fuel, ammo, bauxite, aircraft);
 
 					index++;
@@ -242,7 +243,7 @@ public class FleetStateViewModel : ObservableObject
 					};
 
 					state.Timer = (DateTime)fleet.ConditionTime;
-					state.SetInformation(FleetStates.Tired,
+					state.SetInformation(FleetState.Tired,
 						FormFleet.Fatigued + DateTimeHelper.ToTimeRemainString(state.Timer),
 						DateTimeHelper.ToTimeRemainString(state.Timer),
 						icon,
@@ -259,11 +260,31 @@ public class FleetStateViewModel : ObservableObject
 					//戦意高揚
 					StateLabel state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", IconContent.ConditionSparkle, colorInPortBG);
+					state.SetInformation(FleetState.Sparkled, FormFleet.FightingSpiritHigh, "", IconContent.ConditionSparkle, colorInPortBG);
 					state.Label.ToolTip = string.Format(FormFleet.SparkledTooltip, cond, Math.Ceiling((cond - 49) / 3.0));
 
 					index++;
 				}
+			}
+
+			if (!fleet.IsInSortie && fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Medium))
+			{
+				StateLabel state = GetStateLabel(index);
+
+				state.SetInformation(FleetState.Chuuha, FleetRes.ChuuhaShip, FleetRes.ChuuhaShip, IconContent.ShipStateChuuha, colorInPortBG);
+				state.Label.ToolTip = null;
+
+				index++;
+			}
+
+			if (!fleet.IsInSortie && fleet.MembersInstance.Any(s => s?.DamageState is DamageState.Light))
+			{
+				StateLabel state = GetStateLabel(index);
+
+				state.SetInformation(FleetState.Shouha, FleetRes.ShouhaShip, FleetRes.ShouhaShip, IconContent.ShipStateShouha, colorInPortBG);
+				state.Label.ToolTip = null;
+
+				index++;
 			}
 
 			//出撃可能！
@@ -271,7 +292,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", IconContent.FleetReady, colorInPortBG);
+				state.SetInformation(FleetState.Ready, FormFleet.ReadyToSortie, "", IconContent.FleetReady, colorInPortBG);
 				state.Label.ToolTip = null;
 
 				index++;
@@ -293,19 +314,19 @@ public class FleetStateViewModel : ObservableObject
 		}
 
 
-		for (int i = displayMode == FleetStateDisplayModes.Single ? 1 : index; i < StateLabels.Count; i++)
+		for (int i = displayMode == FleetStateDisplayMode.Single ? 1 : index; i < StateLabels.Count; i++)
 			StateLabels[i].Enabled = false;
 
 
 		switch (displayMode)
 		{
 
-			case FleetStateDisplayModes.AllCollapsed:
+			case FleetStateDisplayMode.AllCollapsed:
 				for (int i = 0; i < index; i++)
 					StateLabels[i].AutoShorten = true;
 				break;
 
-			case FleetStateDisplayModes.MultiCollapsed:
+			case FleetStateDisplayMode.MultiCollapsed:
 				if (index == 1)
 				{
 					StateLabels[0].AutoShorten = false;
@@ -317,8 +338,8 @@ public class FleetStateViewModel : ObservableObject
 				}
 				break;
 
-			case FleetStateDisplayModes.Single:
-			case FleetStateDisplayModes.AllExpanded:
+			case FleetStateDisplayMode.Single:
+			case FleetStateDisplayMode.AllExpanded:
 				for (int i = 0; i < index; i++)
 					StateLabels[i].AutoShorten = false;
 				break;
@@ -350,7 +371,7 @@ public class FleetStateViewModel : ObservableObject
 			switch (state.State)
 			{
 
-				case FleetStates.Damaged:
+				case FleetState.Damaged:
 					if (Utility.Configuration.Config.FormFleet.BlinkAtDamaged)
 					{
 						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? shipDamagedFG : foreColor;
@@ -358,12 +379,12 @@ public class FleetStateViewModel : ObservableObject
 					}
 					break;
 
-				case FleetStates.SortieDamaged:
+				case FleetState.SortieDamaged:
 					state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? shipDamagedFG : foreColor;
 					state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
 					break;
 
-				case FleetStates.Docking:
+				case FleetState.Docking:
 					state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.Text = FormFleet.OnDock + state.ShortenedText;
 					state.UpdateText();
@@ -374,7 +395,7 @@ public class FleetStateViewModel : ObservableObject
 					}
 					break;
 
-				case FleetStates.Expedition:
+				case FleetState.Expedition:
 					state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.Text = state.Text.Substring(0, 5) + DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.UpdateText();
@@ -385,7 +406,7 @@ public class FleetStateViewModel : ObservableObject
 					}
 					break;
 
-				case FleetStates.Tired:
+				case FleetState.Tired:
 					state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.Text = FormFleet.Fatigued + state.ShortenedText;
 					state.UpdateText();
@@ -396,7 +417,7 @@ public class FleetStateViewModel : ObservableObject
 					}
 					break;
 
-				case FleetStates.AnchorageRepairing:
+				case FleetState.AnchorageRepairing:
 					state.ShortenedText = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 					state.Text = FormFleet.Repairing + state.ShortenedText;
 					state.UpdateText();
@@ -406,6 +427,7 @@ public class FleetStateViewModel : ObservableObject
 
 		}
 	}
+
 	public IconContent GetIcon()
 	{
 		StateLabel? first = StateLabels

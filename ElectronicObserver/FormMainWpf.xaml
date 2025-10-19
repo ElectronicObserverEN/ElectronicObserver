@@ -977,6 +977,9 @@
 												<markup:Case Label="{x:Static resource:IconContent.ConditionLittleTired}" Value="{StaticResource Condition.LittleTired}" />
 												<markup:Case Label="{x:Static resource:IconContent.ConditionTired}" Value="{StaticResource Condition.Tired}" />
 												<markup:Case Label="{x:Static resource:IconContent.ConditionVeryTired}" Value="{StaticResource Condition.VeryTired}" />
+
+												<markup:Case Label="{x:Static resource:IconContent.ShipStateChuuha}" Value="{StaticResource ShipState.Chuuha}" />
+												<markup:Case Label="{x:Static resource:IconContent.ShipStateShouha}" Value="{StaticResource ShipState.Shouha}" />
 											</markup:Switch>
 										</Setter.Value>
 									</Setter>

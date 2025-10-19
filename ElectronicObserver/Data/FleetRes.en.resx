@@ -198,4 +198,10 @@ Repair time:
     <value>Fuel: {0}/{1} ({2}%)
 Ammo: {3}/{4} ({5}%)</value>
   </data>
+  <data name="ChuuhaShip" xml:space="preserve">
+    <value>Moderately damaged ship</value>
+  </data>
+  <data name="ShouhaShip" xml:space="preserve">
+    <value>Lightly damaged ship</value>
+  </data>
 </root>
