@@ -264,6 +264,13 @@
 						<TextBlock Text="{Binding Text}" />
 					</StackPanel>
 				</Border>
+
+				<Border DataContext="{Binding Speed}" ToolTip="{Binding ToolTip}">
+					<StackPanel Margin="4 2" Orientation="Horizontal">
+						<common:ParameterIcon Margin="2 0" Type="Speed" />
+						<TextBlock Text="{Binding Text}" />
+					</StackPanel>
+				</Border>
 			</StackPanel>
 		</Border>
 
