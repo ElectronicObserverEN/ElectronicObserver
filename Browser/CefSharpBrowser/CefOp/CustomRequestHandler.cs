@@ -32,15 +32,6 @@ public class CustomRequestHandler : RequestHandler
 			return true;
 		}
 
-		/*
-		this results in a loop of redirections 
-		if (isRedirect && request.Url.Contains("https://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/"))
-		{
-			browserControl.Load("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
-			return false;
-		}
-		*/
-
 		return base.OnBeforeBrowse(browserControl, browser, frame, request, userGesture, isRedirect);
 	}
 
