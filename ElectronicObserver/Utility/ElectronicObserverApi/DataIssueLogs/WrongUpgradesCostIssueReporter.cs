@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlistDetail;
@@ -9,8 +11,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models.UpgradeCosts;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
@@ -21,7 +21,7 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 
 	private Dictionary<EquipmentId, APIReqKousyouRemodelSlotlistResponse> RessourcePerEquipment { get; } = [];
 
-	private List<(ShipId, EquipmentId, UpgradeStage)> AlreadyReportedIssues { get; } = [];
+	private List<(ShipId, EquipmentId, UpgradeLevel)> AlreadyReportedIssues { get; } = [];
 
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
@@ -72,14 +72,7 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		if (Ship is null) return;
 		if (Equipment is null) return;
 
-		UpgradeStage stage = Equipment.UpgradeLevel switch
-		{
-			UpgradeLevel.Max => UpgradeStage.Conversion,
-			>=UpgradeLevel.Six => UpgradeStage.From6To9,
-			_ => UpgradeStage.From0To5,
-		};
-
-		if (AlreadyReportedIssues.Contains((Ship.ShipId, Equipment.MasterEquipment.EquipmentId, stage))) return;
+		if (AlreadyReportedIssues.Contains((Ship.ShipId, Equipment.MasterEquipment.EquipmentId, Equipment.UpgradeLevel))) return;
 
 		ApiReqKousyouRemodelSlotlistDetailResponse? response = JsonSerializer.Deserialize<ApiReqKousyouRemodelSlotlistDetailResponse>(data.ToString());
 
@@ -92,20 +85,20 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		// this is to avoid reporting cost when the issue is just that the ship can upgrade something, but the upgrade data hasn't been updated yet
 		if (expectedCostNoSlider.Ammo is 0 && expectedCostNoSlider.Fuel is 0 && expectedCostNoSlider.Bauxite is 0 && expectedCostNoSlider.Steel is 0)
 		{
-			if (KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList.Any(upgrade => upgrade.EquipmentId == Equipment.EquipmentID)) return;
+			if (KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList.Any(upgrade => upgrade.EquipmentId == Equipment.EquipmentID && upgrade.Improvement.Count > 0)) return;
 		}
 
 		if (HasIssue(expectedCostSlider, expectedCostNoSlider, response, baseCostResponse))
 		{
 #pragma warning disable CS4014
-			api.PostJson("EquipmentUpgradeCostIssues", BuildIssueModel(expectedCostSlider, expectedCostNoSlider, response, baseCostResponse, stage));
+			api.PostJson("EquipmentUpgradeCostIssues/v2", BuildIssueModel(expectedCostSlider, expectedCostNoSlider, response, baseCostResponse, Equipment.UpgradeLevel));
 #pragma warning restore CS4014
 
-			AlreadyReportedIssues.Add((Ship.ShipId, Equipment.MasterEquipment.EquipmentId, stage));
+			AlreadyReportedIssues.Add((Ship.ShipId, Equipment.MasterEquipment.EquipmentId, Equipment.UpgradeLevel));
 		}
 	}
 
-	private EquipmentUpgradeCostIssueModel? BuildIssueModel(EquipmentUpgradePlanCostModel expectedCostSlider, EquipmentUpgradePlanCostModel expectedCostNoSlider, ApiReqKousyouRemodelSlotlistDetailResponse actualCost, APIReqKousyouRemodelSlotlistResponse baseCostResponse, UpgradeStage stage)
+	private EquipmentUpgradeCostIssueModel? BuildIssueModel(EquipmentUpgradePlanCostModel expectedCostSlider, EquipmentUpgradePlanCostModel expectedCostNoSlider, ApiReqKousyouRemodelSlotlistDetailResponse actualCost, APIReqKousyouRemodelSlotlistResponse baseCostResponse, UpgradeLevel level)
 	{
 		if (Ship is null) return null;
 		if (Equipment is null) return null;
@@ -114,7 +107,7 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		{
 			EquipmentId = Equipment.EquipmentId,
 			HelperId = Ship.ShipId,
-			UpgradeStage = stage,
+			UpgradeLevel = level,
 
 			Expected = BuildExpectedCostModel(expectedCostSlider, expectedCostNoSlider),
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Extensions;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -164,6 +164,7 @@ public static class ShipNightAttacks
 		{ NightAttackKind: NightAttackKind.CutinTorpedoDrum } => ship.HasTorpedo() && ship.HasDestroyerSkilledLookouts() && ship.HasDrum(),
 		{ NightAttackKind: NightAttackKind.CutinTorpedoDrum2 } => ship.CanDo(NightAttack.CutinTorpedoDrum) && ship.DestroyerCutinTwoHitAvailable(),
 
+		{ NightAttackKind: NightAttackKind.Shelling } when ship.MasterShip.ShipId is ShipId.ShimaneMaruKai => !ship.HasNightAircraft(),
 		{ NightAttackKind: NightAttackKind.Shelling } => true,
 		{ NightAttackKind: NightAttackKind.Torpedo } => true,
 		{ NightAttackKind: NightAttackKind.AirAttack } => ship.HasNightFighter() || ship.HasNightAttacker(),

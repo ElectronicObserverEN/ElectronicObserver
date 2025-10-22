@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
-using ElectronicObserver.Window.Dialog.ShipPicker;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
 public partial class ShipPositionConditionViewModel : ObservableObject, IConditionViewModel
 {
-	private ShipPickerViewModel ShipPickerViewModel { get; }
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.QuestTrackerManager;
 
-	private IShipDataMaster? _ship;
-
+	[field: MaybeNull]
 	public IShipDataMaster Ship
 	{
 		// bug: Ships don't get loaded till Kancolle loads
-		get => _ship ??= Ships.FirstOrDefault(s => s.ShipId == Model.Id)
-						 ?? throw new Exception("fix me: accessing this property before Kancolle gets loaded is a bug");
-		set => SetProperty(ref _ship, value);
+		get => field ??= Ships.FirstOrDefault(s => s.ShipId == Model.Id)
+			?? throw new Exception("fix me: accessing this property before Kancolle gets loaded is a bug");
+		set => SetProperty(ref field, value);
 	}
 
 	public IEnumerable<IShipDataMaster> Ships => KCDatabase.Instance.MasterShips.Values
@@ -33,7 +33,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 		.OrderBy(s => s.SortID);
 
 	public RemodelComparisonType RemodelComparisonType { get; set; }
-	public IEnumerable<RemodelComparisonType> RemodelComparisonTypes { get; }
+	public List<RemodelComparisonType> RemodelComparisonTypes { get; }
 
 	public int Position { get; set; }
 
@@ -42,37 +42,37 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 	public string Display => Ship switch
 	{
 		null => "",
-		_ => $"{Ship.NameEN}({RemodelComparisonType.Display()})({PositionText})"
+		_ => $"{Ship.NameEN}({RemodelComparisonType.Display()})({PositionText})",
 	};
 
 	private string PositionText => $"{QuestTrackerManagerResources.Position}：{Position}";
 
-	public ShipPositionConditionViewModel(ShipPositionConditionModel model)
+	public ShipPositionConditionViewModel(ShipPositionConditionModel model, ShipSelectorFactory shipSelectorFactory)
 	{
-		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
+		ShipSelectorFactory = shipSelectorFactory;
 
-		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
+		RemodelComparisonTypes = [.. Enum.GetValues<RemodelComparisonType>()];
 
 		Model = model;
 
 		RemodelComparisonType = Model.RemodelComparisonType;
 		Position = Model.Position;
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(Ship)) return;
 
-			Model.Id = Ship?.ShipId ?? ShipId.Kamikaze;
+			Model.Id = Ship.ShipId;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(RemodelComparisonType)) return;
 
 			Model.RemodelComparisonType = RemodelComparisonType;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(Position)) return;
 
@@ -83,21 +83,21 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		ShipPickerView shipPicker = new(ShipPickerViewModel);
-		if (shipPicker.ShowDialog(App.Current.MainWindow) is true)
-		{
-			Ship = shipPicker.PickedShip!;
-		}
+		ShipSelectorViewModel.ShowDialog();
+
+		if (ShipSelectorViewModel.SelectedShip is null) return;
+
+		Ship = ShipSelectorViewModel.SelectedShip.MasterShip;
 	}
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		List<IShipData> ships = fleet.MembersInstance.Where(s => s is not null).ToList();
+		List<IShipData> ships = [.. fleet.MembersInstance.OfType<IShipData>()];
 		int index = Position - 1;
 
 		if (ships.Count < index) return false;
 		
-		ships = ships.Skip(index).Take(1).ToList();
+		ships = [.. ships.Skip(index).Take(1)];
 
 		return RemodelComparisonType switch
 		{
@@ -105,7 +105,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 			RemodelComparisonType.AtLeast => ships.Any(HigherRemodelCheck),
 			RemodelComparisonType.Exact => ships.Any(s => s.MasterShip.ShipId == Model.Id),
 
-			_ => false
+			_ => false,
 		};
 	}
 
@@ -119,7 +119,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 
 	private bool HigherRemodelCheck(IShipData ship)
 	{
-		IShipDataMaster? conditionShip = KCDatabase.Instance.MasterShips.Values
+		IShipDataMaster conditionShip = KCDatabase.Instance.MasterShips.Values
 			.First(s => s.ShipId == Model.Id);
 
 		IShipDataMaster? masterShip = ship.MasterShip;

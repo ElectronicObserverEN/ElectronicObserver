@@ -13,6 +13,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -30,6 +32,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -47,6 +51,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -64,6 +70,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -81,6 +89,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -98,6 +108,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -115,6 +127,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -132,6 +146,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -149,6 +165,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -166,6 +184,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -183,6 +203,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -200,6 +222,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -217,6 +241,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -234,6 +260,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -251,6 +279,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -268,6 +298,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -285,6 +317,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -302,6 +336,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -319,6 +355,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -336,6 +374,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -353,6 +393,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -370,6 +412,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -387,6 +431,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -404,6 +450,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -421,6 +469,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -438,6 +488,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -455,6 +507,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -472,6 +526,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -489,6 +545,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -506,6 +564,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -523,6 +583,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -540,6 +602,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -557,6 +621,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 31,
     "CategoryType": 17,
     "IconType": 19
   },
@@ -574,6 +640,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 31,
     "CategoryType": 17,
     "IconType": 19
   },
@@ -591,6 +659,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 28,
     "CategoryType": 18,
     "IconType": 12
   },
@@ -608,6 +678,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 25,
     "CategoryType": 19,
     "IconType": 13
   },
@@ -625,6 +697,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -642,6 +716,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -659,6 +735,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -676,6 +754,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -693,6 +773,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 4,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -710,6 +792,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 30,
     "CategoryType": 23,
     "IconType": 14
   },
@@ -727,6 +811,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 30,
     "CategoryType": 23,
     "IconType": 14
   },
@@ -744,6 +830,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -761,6 +849,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -778,6 +868,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -795,6 +887,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -812,6 +906,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -829,6 +925,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -846,6 +944,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -863,6 +963,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 29,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -880,6 +982,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -897,6 +1001,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -914,6 +1020,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -931,6 +1039,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -948,6 +1058,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -965,6 +1077,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -982,6 +1096,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -999,6 +1115,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -1016,6 +1134,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -1033,6 +1153,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -1050,6 +1172,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -1067,6 +1191,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -1084,6 +1210,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -1101,6 +1229,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -1118,6 +1248,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -1135,6 +1267,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -1152,6 +1286,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -1169,6 +1305,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 2,
+    "CardType": 15,
     "CategoryType": 25,
     "IconType": 21
   },
@@ -1186,6 +1324,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 16,
     "CategoryType": 26,
     "IconType": 22
   },
@@ -1203,6 +1343,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -1220,6 +1362,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 17,
     "CategoryType": 27,
     "IconType": 23
   },
@@ -1237,6 +1381,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 17,
     "CategoryType": 28,
     "IconType": 23
   },
@@ -1254,6 +1400,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 18,
     "CategoryType": 29,
     "IconType": 24
   },
@@ -1271,6 +1419,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 19,
     "CategoryType": 30,
     "IconType": 25
   },
@@ -1288,6 +1438,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -1305,6 +1457,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -1322,6 +1476,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -1339,6 +1495,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -1356,6 +1514,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -1373,6 +1533,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -1390,6 +1552,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1407,6 +1571,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1424,6 +1590,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -1441,6 +1609,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -1458,6 +1628,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 20,
     "CategoryType": 31,
     "IconType": 26
   },
@@ -1475,6 +1647,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 31,
     "CategoryType": 17,
     "IconType": 19
   },
@@ -1492,6 +1666,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -1509,6 +1685,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -1526,6 +1704,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -1543,6 +1723,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -1560,6 +1742,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -1577,6 +1761,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1594,6 +1780,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1611,6 +1799,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -1628,6 +1818,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -1645,6 +1837,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -1662,6 +1856,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1679,6 +1875,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -1696,6 +1894,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -1713,6 +1913,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 21,
     "CategoryType": 33,
     "IconType": 27
   },
@@ -1730,6 +1932,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -1747,6 +1951,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -1764,6 +1970,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -1781,6 +1989,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -1798,6 +2008,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -1815,6 +2027,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 22,
     "CategoryType": 34,
     "IconType": 28
   },
@@ -1832,6 +2046,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -1849,6 +2065,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -1866,6 +2084,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -1883,6 +2103,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -1900,6 +2122,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1917,6 +2141,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -1934,6 +2160,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -1951,6 +2179,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -1968,6 +2198,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 25,
     "CategoryType": 19,
     "IconType": 13
   },
@@ -1985,6 +2217,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -2002,6 +2236,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -2019,6 +2255,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -2036,6 +2274,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 24,
     "CategoryType": 36,
     "IconType": 30
   },
@@ -2053,6 +2293,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 24,
     "CategoryType": 36,
     "IconType": 30
   },
@@ -2070,6 +2312,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -2087,6 +2331,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -2104,6 +2350,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -2121,6 +2369,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -2138,6 +2388,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 26,
     "CategoryType": 37,
     "IconType": 31
   },
@@ -2155,6 +2407,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -2172,6 +2426,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -2189,6 +2445,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 27,
     "CategoryType": 39,
     "IconType": 32
   },
@@ -2206,6 +2464,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -2223,6 +2483,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -2240,6 +2502,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 40,
     "IconType": 18
   },
@@ -2257,6 +2521,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -2274,6 +2540,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -2291,6 +2559,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -2308,6 +2578,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 17,
     "CategoryType": 28,
     "IconType": 23
   },
@@ -2325,6 +2597,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -2342,6 +2616,8 @@
     "LoS": 12,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 25,
+    "CardType": 33,
     "CategoryType": 41,
     "IconType": 33
   },
@@ -2359,6 +2635,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -2376,6 +2654,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 18,
     "CategoryType": 42,
     "IconType": 24
   },
@@ -2393,6 +2673,8 @@
     "LoS": 11,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -2410,6 +2692,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -2427,6 +2711,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -2444,6 +2730,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -2461,6 +2749,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 34,
     "CategoryType": 43,
     "IconType": 34
   },
@@ -2478,6 +2768,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 35,
     "CategoryType": 44,
     "IconType": 35
   },
@@ -2495,6 +2787,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -2512,6 +2806,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -2529,6 +2825,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -2546,6 +2844,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 34,
     "CategoryType": 43,
     "IconType": 34
   },
@@ -2563,6 +2863,8 @@
     "LoS": 11,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -2580,6 +2882,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2597,6 +2901,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2614,6 +2920,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -2631,6 +2939,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2648,6 +2958,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2665,6 +2977,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2682,6 +2996,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2699,6 +3015,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -2716,6 +3034,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -2733,6 +3053,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -2750,6 +3072,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -2767,6 +3091,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -2784,6 +3110,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 36,
     "CategoryType": 45,
     "IconType": 43
   },
@@ -2801,6 +3129,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 36,
     "CategoryType": 45,
     "IconType": 43
   },
@@ -2818,6 +3148,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -2835,6 +3167,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 37,
     "CategoryType": 46,
     "IconType": 36
   },
@@ -2852,6 +3186,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -2869,6 +3205,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -2886,6 +3224,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -2903,6 +3243,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -2920,6 +3262,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -2937,6 +3281,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -2954,6 +3300,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -2971,6 +3319,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -2988,6 +3338,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3005,6 +3357,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3022,6 +3376,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 33,
     "CategoryType": 41,
     "IconType": 33
   },
@@ -3039,6 +3395,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -3056,6 +3414,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -3073,6 +3433,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3090,6 +3452,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3107,6 +3471,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -3124,6 +3490,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3141,6 +3509,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3158,6 +3528,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -3175,6 +3547,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -3192,6 +3566,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -3209,6 +3585,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3226,6 +3604,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -3243,6 +3623,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -3260,6 +3642,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -3277,6 +3661,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -3294,6 +3680,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -3311,6 +3699,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -3328,6 +3718,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -3345,6 +3737,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3362,6 +3756,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3379,6 +3775,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 14,
+    "CardType": 40,
     "CategoryType": 57,
     "IconType": 39
   },
@@ -3396,6 +3794,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 13,
+    "CardType": 40,
     "CategoryType": 57,
     "IconType": 40
   },
@@ -3413,6 +3813,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -3430,6 +3832,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -3447,6 +3851,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 17,
     "CategoryType": 27,
     "IconType": 23
   },
@@ -3464,6 +3870,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 17,
     "CategoryType": 28,
     "IconType": 23
   },
@@ -3481,6 +3889,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3498,6 +3908,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3515,6 +3927,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -3532,6 +3946,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -3549,6 +3965,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 41,
     "CategoryType": 50,
     "IconType": 41
   },
@@ -3566,6 +3984,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 42,
     "CategoryType": 51,
     "IconType": 42
   },
@@ -3583,6 +4003,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 42,
     "CategoryType": 51,
     "IconType": 42
   },
@@ -3600,6 +4022,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -3617,6 +4041,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -3634,6 +4060,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -3651,6 +4079,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 36,
     "CategoryType": 45,
     "IconType": 43
   },
@@ -3668,6 +4098,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 36,
     "CategoryType": 45,
     "IconType": 43
   },
@@ -3685,6 +4117,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 36,
     "CategoryType": 45,
     "IconType": 43
   },
@@ -3702,6 +4136,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3719,6 +4155,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -3736,6 +4174,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -3753,6 +4193,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3770,6 +4212,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3787,6 +4231,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3804,6 +4250,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 47,
     "IconType": 44
   },
@@ -3821,6 +4269,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -3838,6 +4288,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -3855,6 +4307,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -3872,6 +4326,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -3889,6 +4345,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -3906,6 +4364,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -3923,6 +4383,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -3940,6 +4402,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -3957,6 +4421,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -3974,6 +4440,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -3991,6 +4459,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -4008,6 +4478,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4025,6 +4497,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -4042,6 +4516,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -4059,6 +4535,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -4076,6 +4554,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -4093,6 +4573,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 34,
     "CategoryType": 43,
     "IconType": 34
   },
@@ -4110,6 +4592,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -4127,6 +4611,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -4144,6 +4630,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -4161,6 +4649,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4178,6 +4668,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4195,6 +4687,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -4212,6 +4706,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -4229,6 +4725,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -4246,6 +4744,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -4263,6 +4763,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -4280,6 +4782,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -4297,6 +4801,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -4314,6 +4820,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -4331,6 +4839,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -4348,6 +4858,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -4365,6 +4877,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 11,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -4382,6 +4896,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -4399,6 +4915,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -4416,6 +4934,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -4433,6 +4953,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -4450,6 +4972,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -4467,6 +4991,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -4484,6 +5010,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -4501,6 +5029,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -4518,6 +5048,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -4535,6 +5067,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -4552,6 +5086,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 17,
     "CategoryType": 27,
     "IconType": 23
   },
@@ -4569,6 +5105,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 47
   },
@@ -4586,6 +5124,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 47
   },
@@ -4603,6 +5143,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -4620,6 +5162,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 22,
     "CategoryType": 34,
     "IconType": 28
   },
@@ -4637,6 +5181,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -4654,6 +5200,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 29,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -4671,6 +5219,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -4688,6 +5238,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4705,6 +5257,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -4722,6 +5276,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -4739,6 +5295,8 @@
     "LoS": 12,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -4756,6 +5314,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -4773,6 +5333,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4790,6 +5352,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -4807,6 +5371,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -4824,6 +5390,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -4841,6 +5409,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -4858,6 +5428,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -4875,6 +5447,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -4892,6 +5466,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -4909,6 +5485,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4926,6 +5504,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -4943,6 +5523,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -4960,6 +5542,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -4977,6 +5561,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -4994,6 +5580,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -5011,6 +5599,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -5028,6 +5618,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -5045,6 +5637,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -5062,6 +5656,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5079,6 +5675,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5096,6 +5694,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5113,6 +5713,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 29,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -5130,6 +5732,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -5147,6 +5751,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -5164,6 +5770,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -5181,6 +5789,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -5198,6 +5808,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -5215,6 +5827,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -5232,6 +5846,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -5249,6 +5865,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 4,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -5266,6 +5884,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -5283,6 +5903,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 7,
     "CategoryType": 49,
     "IconType": 9
   },
@@ -5300,6 +5922,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 7,
     "CategoryType": 49,
     "IconType": 9
   },
@@ -5317,6 +5941,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -5334,6 +5960,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -5351,6 +5979,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -5368,6 +5998,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -5385,6 +6017,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 28,
     "CategoryType": 18,
     "IconType": 12
   },
@@ -5402,6 +6036,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5419,6 +6055,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -5436,6 +6074,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -5453,6 +6093,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -5470,6 +6112,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -5487,6 +6131,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 15,
     "CategoryType": 25,
     "IconType": 21
   },
@@ -5504,6 +6150,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 15,
     "CategoryType": 25,
     "IconType": 21
   },
@@ -5521,6 +6169,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 44,
     "CategoryType": 25,
     "IconType": 21
   },
@@ -5538,6 +6188,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 44,
     "CategoryType": 25,
     "IconType": 21
   },
@@ -5555,6 +6207,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5572,6 +6226,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5589,6 +6245,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5606,6 +6264,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5623,6 +6283,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -5640,6 +6302,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -5657,6 +6321,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -5674,6 +6340,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -5691,6 +6359,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -5708,6 +6378,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -5725,6 +6397,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 11,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -5742,6 +6416,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 11,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -5759,6 +6435,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -5776,6 +6454,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -5793,6 +6473,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -5810,6 +6492,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -5827,6 +6511,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -5844,6 +6530,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -5861,6 +6549,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -5878,6 +6568,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -5895,6 +6587,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 26,
     "CategoryType": 37,
     "IconType": 31
   },
@@ -5912,6 +6606,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 26,
     "CategoryType": 37,
     "IconType": 31
   },
@@ -5929,6 +6625,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -5946,6 +6644,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -5963,6 +6663,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -5980,6 +6682,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -5997,6 +6701,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -6014,6 +6720,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 45,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -6031,6 +6739,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6048,6 +6758,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6065,6 +6777,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -6082,6 +6796,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6099,6 +6815,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6116,6 +6834,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6133,6 +6853,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 16
   },
@@ -6150,6 +6872,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 16
   },
@@ -6167,6 +6891,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 4,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -6184,6 +6910,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 25,
     "CategoryType": 19,
     "IconType": 13
   },
@@ -6201,6 +6929,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -6218,6 +6948,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -6235,6 +6967,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -6252,6 +6986,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -6269,6 +7005,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -6286,6 +7024,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -6303,6 +7043,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -6320,6 +7062,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -6337,6 +7081,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -6354,6 +7100,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -6371,6 +7119,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -6388,6 +7138,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -6405,6 +7157,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -6422,6 +7176,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -6439,6 +7195,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -6456,6 +7214,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -6473,6 +7233,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -6490,6 +7252,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -6507,6 +7271,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 42,
     "CategoryType": 51,
     "IconType": 42
   },
@@ -6524,6 +7290,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -6541,6 +7309,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6558,6 +7328,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6575,6 +7347,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -6592,6 +7366,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -6609,6 +7385,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -6626,6 +7404,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -6643,6 +7423,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -6660,6 +7442,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -6677,6 +7461,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -6694,6 +7480,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 20,
+    "CardType": 46,
     "CategoryType": 53,
     "IconType": 49
   },
@@ -6711,6 +7499,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 21,
+    "CardType": 46,
     "CategoryType": 53,
     "IconType": 49
   },
@@ -6728,6 +7518,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -6745,6 +7537,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -6762,6 +7556,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6779,6 +7575,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -6796,6 +7594,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -6813,6 +7613,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -6830,6 +7632,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 14,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -6847,6 +7651,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 14,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -6864,6 +7670,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 15,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -6881,6 +7689,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 17,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -6898,6 +7708,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -6915,6 +7727,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 47,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -6932,6 +7746,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 47,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -6949,6 +7765,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -6966,6 +7784,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -6983,6 +7803,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 27,
     "CategoryType": 39,
     "IconType": 32
   },
@@ -7000,6 +7822,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 22,
     "CategoryType": 34,
     "IconType": 28
   },
@@ -7017,6 +7841,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -7034,6 +7860,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -7051,6 +7879,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -7068,6 +7898,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -7085,6 +7917,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 38
   },
@@ -7102,6 +7936,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -7119,6 +7955,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -7136,6 +7974,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -7153,6 +7993,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -7170,6 +8012,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -7187,6 +8031,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 7,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -7204,6 +8050,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -7221,6 +8069,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -7238,6 +8088,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -7255,6 +8107,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -7272,6 +8126,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -7289,6 +8145,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -7306,6 +8164,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 11,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -7323,6 +8183,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -7340,6 +8202,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 14,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -7357,6 +8221,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -7374,6 +8240,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -7391,6 +8259,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -7408,6 +8278,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -7425,6 +8297,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -7442,6 +8316,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -7459,6 +8335,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -7476,6 +8354,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -7493,6 +8373,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -7510,6 +8392,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -7527,6 +8411,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 15,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -7544,6 +8430,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -7561,6 +8449,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -7578,6 +8468,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -7595,6 +8487,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -7612,6 +8506,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -7629,6 +8525,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 16,
     "CategoryType": 26,
     "IconType": 22
   },
@@ -7646,6 +8544,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 44
   },
@@ -7663,6 +8563,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 48
   },
@@ -7680,6 +8582,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 12,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 48
   },
@@ -7697,6 +8601,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -7714,6 +8620,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -7731,6 +8639,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -7748,6 +8658,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 42,
     "CategoryType": 51,
     "IconType": 42
   },
@@ -7765,6 +8677,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -7782,6 +8696,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -7799,6 +8715,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -7816,6 +8734,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -7833,6 +8753,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -7850,6 +8772,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -7867,6 +8791,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -7884,6 +8810,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -7901,6 +8829,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -7918,6 +8848,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -7935,6 +8867,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -7952,6 +8886,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -7969,6 +8905,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -7986,6 +8924,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -8003,6 +8943,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -8020,6 +8962,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -8037,6 +8981,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 11,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -8054,6 +9000,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -8071,6 +9019,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -8088,6 +9038,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 14,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -8105,6 +9057,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 7,
     "CategoryType": 49,
     "IconType": 9
   },
@@ -8122,6 +9076,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 14,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -8139,6 +9095,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -8156,6 +9114,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 28,
     "CategoryType": 18,
     "IconType": 12
   },
@@ -8173,6 +9133,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 15,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -8190,6 +9152,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 36,
     "CategoryType": 45,
     "IconType": 43
   },
@@ -8207,6 +9171,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -8224,6 +9190,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -8241,6 +9209,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -8258,6 +9228,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 16,
     "CategoryType": 26,
     "IconType": 22
   },
@@ -8275,6 +9247,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 43,
     "CategoryType": 11,
     "IconType": 51
   },
@@ -8292,6 +9266,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 16,
     "CategoryType": 26,
     "IconType": 22
   },
@@ -8309,6 +9285,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -8326,6 +9304,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -8343,6 +9323,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -8360,6 +9342,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -8377,6 +9361,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 48,
     "CategoryType": 52,
     "IconType": 52
   },
@@ -8394,6 +9380,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 48,
     "CategoryType": 52,
     "IconType": 52
   },
@@ -8411,6 +9399,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 48,
     "CategoryType": 52,
     "IconType": 52
   },
@@ -8428,6 +9418,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 48,
     "CategoryType": 52,
     "IconType": 52
   },
@@ -8445,6 +9437,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 49,
     "CategoryType": 54,
     "IconType": 54
   },
@@ -8462,6 +9456,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 49,
     "CategoryType": 54,
     "IconType": 54
   },
@@ -8479,6 +9475,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -8496,6 +9494,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -8513,6 +9513,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -8530,6 +9532,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -8547,6 +9551,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -8564,6 +9570,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -8581,6 +9589,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -8598,6 +9608,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -8615,6 +9627,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -8632,6 +9646,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -8649,6 +9665,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 32,
     "IconType": 5
   },
@@ -8666,6 +9684,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 50,
     "CategoryType": 54,
     "IconType": 55
   },
@@ -8683,6 +9703,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 14,
     "CategoryType": 24,
     "IconType": 20
   },
@@ -8700,6 +9722,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 11,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -8717,6 +9741,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 13,
+    "CardType": 39,
     "CategoryType": 48,
     "IconType": 56
   },
@@ -8734,6 +9760,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -8751,6 +9779,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -8768,6 +9798,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 42,
     "CategoryType": 51,
     "IconType": 42
   },
@@ -8785,6 +9817,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -8802,6 +9836,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 10,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -8819,6 +9855,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -8836,6 +9874,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -8853,6 +9893,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -8870,6 +9912,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 37,
     "CategoryType": 46,
     "IconType": 36
   },
@@ -8887,6 +9931,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 37,
     "CategoryType": 46,
     "IconType": 36
   },
@@ -8904,6 +9950,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -8921,6 +9969,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -8938,6 +9988,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -8955,6 +10007,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -8972,6 +10026,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 22,
     "CategoryType": 34,
     "IconType": 28
   },
@@ -8989,6 +10045,8 @@
     "LoS": 1,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 22,
     "CategoryType": 34,
     "IconType": 28
   },
@@ -9006,6 +10064,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -9023,6 +10083,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -9040,6 +10102,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -9057,6 +10121,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -9074,6 +10140,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -9091,6 +10159,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -9108,6 +10178,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -9125,6 +10197,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 50
   },
@@ -9142,6 +10216,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -9159,6 +10235,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -9176,6 +10254,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 7,
     "CategoryType": 9,
     "IconType": 9
   },
@@ -9193,6 +10273,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -9210,8 +10292,276 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 8,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
+  },
+  {
+    "EquipmentId": 546,
+    "Name": "試製 震電(局地戦闘機)",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 14,
+    "Asw": 0,
+    "Accuracy": 5,
+    "Evasion": 4,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 9,
+    "CardType": 39,
+    "CategoryType": 48,
+    "IconType": 57
+  },
+  {
+    "EquipmentId": 549,
+    "Name": "三式指揮連絡機改二",
+    "Armor": 0,
+    "Firepower": 2,
+    "Torpedo": 0,
+    "Bomber": 2,
+    "Aa": 0,
+    "Asw": 10,
+    "Accuracy": 2,
+    "Evasion": 0,
+    "LoS": 3,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 16,
+    "CategoryType": 26,
+    "IconType": 22
+  },
+  {
+    "EquipmentId": 550,
+    "Name": "試製 明星(増加試作機)",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 4,
+    "Aa": 0,
+    "Asw": 4,
+    "Accuracy": 0,
+    "Evasion": 0,
+    "LoS": 1,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 2,
+    "CardType": 5,
+    "CategoryType": 7,
+    "IconType": 7
+  },
+  {
+    "EquipmentId": 551,
+    "Name": "明星改",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 5,
+    "Aa": 0,
+    "Asw": 5,
+    "Accuracy": 0,
+    "Evasion": 0,
+    "LoS": 2,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 3,
+    "CardType": 5,
+    "CategoryType": 7,
+    "IconType": 7
+  },
+  {
+    "EquipmentId": 552,
+    "Name": "九九式練爆二二型改(夜間装備実験機)",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 6,
+    "Aa": 0,
+    "Asw": 6,
+    "Accuracy": 1,
+    "Evasion": 0,
+    "LoS": 4,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 4,
+    "CardType": 5,
+    "CategoryType": 7,
+    "IconType": 58
+  },
+  {
+    "EquipmentId": 553,
+    "Name": "10cm連装高角砲改",
+    "Armor": 1,
+    "Firepower": 2,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 7,
+    "Asw": 0,
+    "Accuracy": 1,
+    "Evasion": 0,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
+    "CategoryType": 1,
+    "IconType": 16
+  },
+  {
+    "EquipmentId": 554,
+    "Name": "九七式艦攻改(北東海軍航空隊)",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 6,
+    "Bomber": 0,
+    "Aa": 0,
+    "Asw": 5,
+    "Accuracy": 0,
+    "Evasion": 0,
+    "LoS": 2,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
+    "CategoryType": 8,
+    "IconType": 8
+  },
+  {
+    "EquipmentId": 555,
+    "Name": "18cm/57 三連装主砲",
+    "Armor": 1,
+    "Firepower": 9,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 2,
+    "Asw": 0,
+    "Accuracy": 0,
+    "Evasion": 0,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
+    "CategoryType": 2,
+    "IconType": 2
+  },
+  {
+    "EquipmentId": 556,
+    "Name": "10cm/56 単装高角砲(集中配備)",
+    "Armor": 0,
+    "Firepower": 3,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 9,
+    "Asw": 0,
+    "Accuracy": 1,
+    "Evasion": 0,
+    "LoS": 1,
+    "Luck": 0,
+    "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
+    "CategoryType": 4,
+    "IconType": 16
+  },
+  {
+    "EquipmentId": 557,
+    "Name": "零式艦戦62型改(夜間爆戦)",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 5,
+    "Aa": 4,
+    "Asw": 3,
+    "Accuracy": 1,
+    "Evasion": 0,
+    "LoS": 1,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
+    "CategoryType": 7,
+    "IconType": 58
+  },
+  {
+    "EquipmentId": 558,
+    "Name": "零式艦戦62型改(熟練/夜間爆戦)",
+    "Armor": 0,
+    "Firepower": 0,
+    "Torpedo": 0,
+    "Bomber": 6,
+    "Aa": 5,
+    "Asw": 4,
+    "Accuracy": 1,
+    "Evasion": 2,
+    "LoS": 2,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 5,
+    "CardType": 5,
+    "CategoryType": 7,
+    "IconType": 58
+  },
+  {
+    "EquipmentId": 559,
+    "Name": "Ju87 D-4(Fliegerass)",
+    "Armor": 0,
+    "Firepower": 4,
+    "Torpedo": 7,
+    "Bomber": 0,
+    "Aa": 1,
+    "Asw": 7,
+    "Accuracy": 3,
+    "Evasion": 0,
+    "LoS": 3,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
+    "CategoryType": 8,
+    "IconType": 8
+  },
+  {
+    "EquipmentId": 560,
+    "Name": "Bf109 T-3(G)",
+    "Armor": 0,
+    "Firepower": 1,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 9,
+    "Asw": 0,
+    "Accuracy": 2,
+    "Evasion": 4,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 0,
+    "AircraftCost": 6,
+    "CardType": 5,
+    "CategoryType": 6,
+    "IconType": 6
+  },
+  {
+    "EquipmentId": 561,
+    "Name": "Ho229",
+    "Armor": 0,
+    "Firepower": 3,
+    "Torpedo": 0,
+    "Bomber": 16,
+    "Aa": 8,
+    "Asw": 0,
+    "Accuracy": 0,
+    "Evasion": 0,
+    "LoS": 3,
+    "Luck": 0,
+    "Range": 5,
+    "AircraftCost": 14,
+    "CardType": 51,
+    "CategoryType": 57,
+    "IconType": 59
   },
   {
     "EquipmentId": 1501,
@@ -9227,6 +10577,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -9244,6 +10596,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -9261,6 +10615,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -9278,6 +10634,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -9295,6 +10653,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -9312,6 +10672,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -9329,6 +10691,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -9346,6 +10710,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -9363,6 +10729,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -9380,6 +10748,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 16
   },
@@ -9397,6 +10767,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -9414,6 +10786,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 2,
     "CategoryType": 4,
     "IconType": 4
   },
@@ -9431,6 +10805,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -9448,6 +10824,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -9465,6 +10843,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -9482,6 +10862,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -9499,6 +10881,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -9516,6 +10900,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -9533,6 +10919,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -9550,6 +10938,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -9567,6 +10957,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -9584,6 +10976,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -9601,6 +10995,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -9618,6 +11014,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -9635,6 +11033,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -9652,6 +11052,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -9669,6 +11071,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -9686,6 +11090,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -9703,6 +11109,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 12,
     "IconType": 11
   },
@@ -9720,6 +11128,8 @@
     "LoS": 10,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -9737,6 +11147,8 @@
     "LoS": 16,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -9754,6 +11166,8 @@
     "LoS": 12,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -9771,6 +11185,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 9,
     "CategoryType": 17,
     "IconType": 19
   },
@@ -9788,6 +11204,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 9,
     "CategoryType": 17,
     "IconType": 19
   },
@@ -9805,6 +11223,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 18,
     "IconType": 12
   },
@@ -9822,6 +11242,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 25,
     "CategoryType": 19,
     "IconType": 13
   },
@@ -9839,6 +11261,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -9856,6 +11280,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -9873,6 +11299,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -9890,6 +11318,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -9907,6 +11337,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -9924,6 +11356,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 9,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -9941,6 +11375,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -9958,6 +11394,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 9,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -9975,6 +11413,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -9992,6 +11432,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10009,6 +11451,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -10026,6 +11470,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10043,6 +11489,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -10060,6 +11508,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -10077,6 +11527,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10094,6 +11546,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10111,6 +11565,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -10128,6 +11584,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -10145,6 +11603,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -10162,6 +11622,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -10179,6 +11641,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10196,6 +11660,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -10213,6 +11679,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 14,
     "IconType": 18
   },
@@ -10230,6 +11698,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 18,
     "CategoryType": 29,
     "IconType": 24
   },
@@ -10247,6 +11717,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10264,6 +11736,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10281,6 +11755,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -10298,6 +11774,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -10315,6 +11793,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -10332,6 +11812,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10349,6 +11831,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -10366,6 +11850,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10383,6 +11869,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -10400,6 +11888,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -10417,6 +11907,8 @@
     "LoS": 8,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -10434,6 +11926,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 6
   },
@@ -10451,6 +11945,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -10468,6 +11964,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -10485,6 +11983,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -10502,6 +12002,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10519,6 +12021,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10536,6 +12040,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 16
   },
@@ -10553,6 +12059,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 1
   },
@@ -10570,6 +12078,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -10587,6 +12097,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -10604,6 +12116,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10621,6 +12135,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -10638,6 +12154,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10655,6 +12173,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10672,6 +12192,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -10689,6 +12211,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10706,6 +12230,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -10723,6 +12249,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -10740,6 +12268,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -10757,6 +12287,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -10774,6 +12306,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -10791,6 +12325,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -10808,6 +12344,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10825,6 +12363,8 @@
     "LoS": 9,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10842,6 +12382,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -10859,6 +12401,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10876,6 +12420,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -10893,6 +12439,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -10910,6 +12458,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -10927,6 +12477,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -10944,6 +12496,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -10961,6 +12515,8 @@
     "LoS": 13,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -10978,6 +12534,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -10995,6 +12553,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 42,
     "CategoryType": 51,
     "IconType": 42
   },
@@ -11012,6 +12572,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -11029,6 +12591,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -11046,6 +12610,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 8,
     "CategoryType": 13,
     "IconType": 11
   },
@@ -11063,6 +12629,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -11080,6 +12648,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -11097,6 +12667,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 10,
     "IconType": 10
   },
@@ -11114,6 +12686,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -11131,6 +12705,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -11148,6 +12724,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -11165,6 +12743,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -11182,6 +12762,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -11199,6 +12781,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -11216,6 +12800,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -11233,6 +12819,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
   },
@@ -11250,6 +12838,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -11267,6 +12857,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 4,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -11284,6 +12876,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -11301,6 +12895,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -11318,6 +12914,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -11335,6 +12933,8 @@
     "LoS": 3,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -11352,6 +12952,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -11369,6 +12971,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -11386,6 +12990,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -11403,6 +13009,8 @@
     "LoS": 6,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 38,
     "CategoryType": 47,
     "IconType": 37
   },
@@ -11420,6 +13028,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -11437,6 +13047,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 23,
     "CategoryType": 35,
     "IconType": 29
   },
@@ -11454,6 +13066,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 7,
     "CategoryType": 11,
     "IconType": 10
   },
@@ -11471,6 +13085,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -11488,6 +13104,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 5,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 8
   },
@@ -11505,6 +13123,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 22,
     "IconType": 5
   },
@@ -11522,6 +13142,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 1
   },
@@ -11539,6 +13161,8 @@
     "LoS": 5,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 10,
     "CategoryType": 12,
     "IconType": 18
   },
@@ -11556,6 +13180,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 50,
     "CategoryType": 54,
     "IconType": 55
   },
@@ -11573,6 +13199,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -11590,6 +13218,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 3,
     "IconType": 3
   },
@@ -11607,6 +13237,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 6,
     "CategoryType": 21,
     "IconType": 15
   },
@@ -11624,6 +13256,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 1,
     "IconType": 16
   },
@@ -11641,6 +13275,8 @@
     "LoS": 12,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 3,
     "CategoryType": 5,
     "IconType": 5
   },
@@ -11658,6 +13294,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 0,
+    "AircraftCost": 0,
+    "CardType": 32,
     "CategoryType": 15,
     "IconType": 17
   },
@@ -11675,6 +13313,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 16
   },
@@ -11692,6 +13332,8 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 15,
     "CategoryType": 25,
     "IconType": 21
   },
@@ -11709,6 +13351,8 @@
     "LoS": 0,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
     "CategoryType": 2,
     "IconType": 2
   },
@@ -11726,6 +13370,8 @@
     "LoS": 2,
     "Luck": 0,
     "Range": 1,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 6,
     "IconType": 45
   },
@@ -11743,6 +13389,8 @@
     "LoS": 7,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 7,
     "IconType": 7
   },
@@ -11760,7 +13408,47 @@
     "LoS": 4,
     "Luck": 0,
     "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 5,
     "CategoryType": 8,
     "IconType": 46
+  },
+  {
+    "EquipmentId": 1653,
+    "Name": "深海5inch連装砲 Mk.30+GFCS",
+    "Armor": 0,
+    "Firepower": 10,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 16,
+    "Asw": 10,
+    "Accuracy": 24,
+    "Evasion": 9,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 2,
+    "AircraftCost": 0,
+    "CardType": 1,
+    "CategoryType": 1,
+    "IconType": 16
+  },
+  {
+    "EquipmentId": 1654,
+    "Name": "深海18cm三連装砲+深海SG",
+    "Armor": 3,
+    "Firepower": 15,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 8,
+    "Asw": 6,
+    "Accuracy": 18,
+    "Evasion": 3,
+    "LoS": 0,
+    "Luck": 0,
+    "Range": 3,
+    "AircraftCost": 0,
+    "CardType": 1,
+    "CategoryType": 2,
+    "IconType": 2
   }
 ]

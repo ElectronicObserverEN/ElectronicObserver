@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SoundVolumeToolTip" xml:space="preserve">
+    <value>통지음의 음량을 설정합니다.
+0이 무음, 100이 최대 음량입니다.</value>
+  </data>
+  <data name="ShowWithActivationToolTip" xml:space="preserve">
+    <value>표시 시에 창을 활성화 합니다.
+비활성화하면 조작을 방해하지 않는 대신 창이 사라지기 쉬워집니다.</value>
+  </data>
+  <data name="SettingsWillBeAppliedForTest" xml:space="preserve">
+    <value>＊테스트를 행한 시점에 설정이 적용됩니다.</value>
+  </data>
+  <data name="GroupAnchorageRepair" xml:space="preserve">
+    <value>정박지 수리 설정</value>
+  </data>
+  <data name="TriggerWhen" xml:space="preserve">
+    <value>발동 조건 : </value>
+  </data>
+  <data name="GroupBaseAirCorps" xml:space="preserve">
+    <value>기지 항공대 설정</value>
+  </data>
+  <data name="BaseAirCorps_NotSupplied" xml:space="preserve">
+    <value>미보급 시</value>
+  </data>
+  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
+    <value>출격 전, 임의의 한 중대가 미보급일 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_Tired" xml:space="preserve">
+    <value>피로 시</value>
+  </data>
+  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
+    <value>출격 전, 임의의 중대가 주황색 피로 이상일 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_Rest" xml:space="preserve">
+    <value>[휴식]</value>
+  </data>
+  <data name="BaseAirCorps_RestToolTip" xml:space="preserve">
+    <value>출격 전, 기지 항공대가 [휴식] 상태일 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_Retreat" xml:space="preserve">
+    <value>[퇴피]</value>
+  </data>
+  <data name="BaseAirCorps_RetreatToolTip" xml:space="preserve">
+    <value>출격 전, 기지 항공대가 [퇴피] 상태일 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_Standby" xml:space="preserve">
+    <value>[대기]</value>
+  </data>
+  <data name="BaseAirCorps_StandbyToolTip" xml:space="preserve">
+    <value>출격 전, 기지 항공대가 [대기] 상태일 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_NormalMap" xml:space="preserve">
+    <value>통상 해역</value>
+  </data>
+  <data name="BaseAirCorps_NormalMapToolTip" xml:space="preserve">
+    <value>출격 전, 통상 해역의 기지 항공대가 준비 부족일 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_EventMap" xml:space="preserve">
+    <value>이벤트 해역</value>
+  </data>
+  <data name="BaseAirCorps_EventMapToolTip" xml:space="preserve">
+    <value>출격 전, 이벤트 해역의 기지 항공대가 준비 부족인 경우에 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocation" xml:space="preserve">
+    <value>장비의 배치 전환 완료</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocationToolTip" xml:space="preserve">
+    <value>장비의 배치 전환이 완료되었을 때 통지합니다.</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocation" xml:space="preserve">
+    <value>기지의 배치 전환 완료</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocationToolTip" xml:space="preserve">
+    <value>기지 슬롯의 배치 전환이 완료되었을 때 통지합니다.
+[장비의 배치 전환 완료]와는 다르게, 장비란에 돌아온 기체는 통지하지 않습니다.</value>
+  </data>
+  <data name="GroupBattleEnd" xml:space="preserve">
+    <value>배틀 종료 설정</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabled" xml:space="preserve">
+    <value>슬립 모드 활성화</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
+    <value>배틀이 시작되고 나서 일정 기간을 두고 통지합니다.</value>
+  </data>
+  <data name="BattleEnd_IdleTime" xml:space="preserve">
+    <value>슬립 모드</value>
+  </data>
+  <data name="BattleEnd_IdleTimeToolTip" xml:space="preserve">
+    <value>슬립 모드를 초 단위로 지정합니다.</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Always" xml:space="preserve">
+    <value>항상</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_AkashiFlagship" xml:space="preserve">
+    <value>아카시가 기함일 때</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_ShipNeededRepair" xml:space="preserve">
+    <value>수리함도 있을 때</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Preset" xml:space="preserve">
+    <value>프리셋 편성 시</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
+    <value>항상: 20분 경과 시 통지합니다.
+아카시가 기함일 때: 상기에 더해, 아카시가 기함일 때만 통지합니다.
+수리함도 있을 때: 상기에 더해, 실제로 수리 가능한 조건일 때만 통지합니다.
+프리셋 편성 시: 상기에 더해, 수리 조건을 만족했을 때 프리셋 편성을 포함한 경우에도 통지합니다.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>에러</value>
+  </data>
+  <data name="TestNotificationCustomPositioning" xml:space="preserve">
+    <value>테스트 알람입니다.
+이동하여 닫을 시, 표시 위치가 갱신됩니다.</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>테스트 알람</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>미편성 ・ 배치 전환 중</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>출격 전, 임의의 중대가 미편성이거나 배치 전환 중일 시 통지합니다.</value>
+  </data>
+</root>

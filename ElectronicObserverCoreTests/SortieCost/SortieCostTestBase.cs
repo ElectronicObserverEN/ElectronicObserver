@@ -41,7 +41,7 @@ public abstract class SortieCostTestBase
 	protected async Task<List<SortieCostViewModel>> MakeSortieCosts(string testFilePrefix,
 		bool clearFleetAfterBattleData = false)
 	{
-		ToolService toolService = new(new());
+		ToolService toolService = new(new(), null!);
 		SortieRecordMigrationService sortieRecordMigrationService = new(toolService);
 
 		await using ElectronicObserverContext db = new(true);
@@ -67,7 +67,7 @@ public abstract class SortieCostTestBase
 
 		List<SortieRecordViewModel> sorties = await db.Sorties
 			.Include(s => s.ApiFiles)
-			.Select(s => new SortieRecordViewModel(s, s.ApiFiles.Select(f => f.TimeStamp).Min()))
+			.Select(s => new SortieRecordViewModel(s, s.ApiFiles.Select(f => f.TimeStamp).Min(), null!))
 			.ToListAsync();
 
 		List<SortieCostViewModel> sortieCosts = [];

@@ -6,6 +6,11 @@ using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Attacks.Specials;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
@@ -14,11 +19,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Attacks.Specials;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

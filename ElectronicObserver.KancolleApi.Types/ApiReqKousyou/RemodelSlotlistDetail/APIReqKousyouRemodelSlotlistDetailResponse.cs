@@ -20,8 +20,14 @@ public class ApiReqKousyouRemodelSlotlistDetailResponse
 	[JsonPropertyName("api_req_slot_id")]
 	public int? ApiReqSlotId { get; set; }
 
+	[JsonPropertyName("api_req_slot_id2")]
+	public int? ApiReqSlotId2 { get; set; }
+
 	[JsonPropertyName("api_req_slot_num")]
 	public int? ApiReqSlotNum { get; set; }
+
+	[JsonPropertyName("api_req_slot_num2")]
+	public int? ApiReqSlotNum2 { get; set; }
 
 	[JsonPropertyName("api_req_useitem_id")]
 	public int? ApiReqUseItemId { get; set; }

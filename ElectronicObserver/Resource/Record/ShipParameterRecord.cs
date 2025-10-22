@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -1338,7 +1338,7 @@ public class ShipParameterRecord : RecordBase
 
 		foreach (var bonus in data.api_bounus)
 		{
-			if (bonus?.api_item is { } && (int)bonus.api_type == 11 && bonus.api_item())
+			if (bonus is { } && bonus.api_item() && bonus.api_item is { } && (int)bonus.api_type is 11)
 			{
 				if (bonus.api_item.api_ship_id())
 				{

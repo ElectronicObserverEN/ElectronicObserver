@@ -1,6 +1,6 @@
-﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battle;
 

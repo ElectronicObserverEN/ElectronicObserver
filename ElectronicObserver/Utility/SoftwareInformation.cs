@@ -33,7 +33,6 @@ public static class SoftwareInformation
 	/// </summary>
 	public static string VersionEnglish => typeof(App).Assembly.GetName().Version.ToString();
 
-
 	/// <summary>
 	/// 更新日時
 	/// </summary>

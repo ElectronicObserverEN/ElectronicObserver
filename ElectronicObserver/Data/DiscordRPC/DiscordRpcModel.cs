@@ -6,7 +6,7 @@ public class DiscordRpcModel
 {
 	public string TopDisplayText { get; set; } = "";
 
-	public List<string> BottomDisplayText { get; set; } = new List<string>();
+	public List<string> BottomDisplayText { get; set; } = [];
 
 	public string LargeImageHoverText { get; set; } = "";
 

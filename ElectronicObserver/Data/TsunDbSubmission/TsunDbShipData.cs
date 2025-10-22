@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 

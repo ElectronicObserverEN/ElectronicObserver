@@ -82,18 +82,14 @@ public abstract class DataStorage : IExtensibleDataObject
 
 	public DataStorage Load(string path)
 	{
-
 		try
 		{
-
 			var serializer = new DataContractSerializer(this.GetType());
 
 			using (XmlReader xr = XmlReader.Create(path))
 			{
 				return (DataStorage)serializer.ReadObject(xr);
 			}
-
-
 		}
 		catch (FileNotFoundException)
 		{

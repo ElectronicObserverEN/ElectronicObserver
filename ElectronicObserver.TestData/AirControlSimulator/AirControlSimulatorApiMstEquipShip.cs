@@ -1,12 +1,13 @@
 ﻿using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.TestData.AirControlSimulator;
 
 public class AirControlSimulatorApiMstEquipShip
 {
-	[JsonPropertyName("api_ship_id")]
-	public int ApiShipId { get; set; }
-
+	/// <summary>
+	/// Key is <see cref="EquipmentTypes"/>.
+	/// </summary>
 	[JsonPropertyName("api_equip_type")]
-	public List<int> ApiEquipType { get; set; } = new();
+	public Dictionary<string, List<EquipmentId>?> ApiEquipType { get; set; } = [];
 }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data;
 
@@ -141,12 +141,12 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 全てのスロット(装備データ)
 	/// </summary>
-	public IList<IEquipmentData> AllSlotInstance => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]).Cast<IEquipmentData>().ToArray());
+	public IList<IEquipmentData?> AllSlotInstance => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]).Cast<IEquipmentData>().ToArray());
 
 	/// <summary>
 	/// 全てのスロット(装備マスターデータ)
 	/// </summary>
-	public IList<IEquipmentDataMaster> AllSlotInstanceMaster => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.MasterEquipment).ToArray());
+	public IList<IEquipmentDataMaster?> AllSlotInstanceMaster => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.MasterEquipment).ToArray());
 
 
 
@@ -912,19 +912,19 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 		switch (KCDatabase.Instance.Fleet.CombinedFlag)
 		{
-			case 1:     //機動部隊
+			case FleetType.Carrier:
 				if (fleet == 1)
 					return +2;
 				else
 					return +10;
 
-			case 2:     //水上部隊
+			case FleetType.Surface:
 				if (fleet == 1)
 					return +10;
 				else
 					return -5;
 
-			case 3:     //輸送部隊
+			case FleetType.Transport:
 				if (fleet == 1)
 					return -5;
 				else

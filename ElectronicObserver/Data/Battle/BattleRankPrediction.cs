@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle;
 

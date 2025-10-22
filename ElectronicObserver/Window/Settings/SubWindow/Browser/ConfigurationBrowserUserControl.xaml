@@ -114,13 +114,6 @@
 				/>
 
 			<CheckBox
-				Grid.Row="0"
-				Grid.Column="3"
-				Content="HTTPS *"
-				IsChecked="{Binding UseHttps}"
-				/>
-
-			<CheckBox
 				Grid.Row="1"
 				Grid.Column="2"
 				Content="{Binding Translation.FormBrowser_AppliesStyleSheet}"

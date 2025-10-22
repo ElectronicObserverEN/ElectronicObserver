@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Dialog;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Settings.Behavior;
 
@@ -37,34 +40,31 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 
 	public Uri UpdateRepoURL { get; set; }
 
-	public bool UseFlagshipIconForRPC { get; set; }
+	public RpcIconKind RpcIconKind { get; set; }
 
-	public bool? SubmitDataToTsunDb { get; set; }
+	private IShipDataMaster? ShipUsedForRpcIcon { get; set; }
+	
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ConfigurationBehavior;
+
+	public string SelectedShipName => ShipUsedForRpcIcon switch
+	{
+		{ } => ShipUsedForRpcIcon.NameEN,
+		_ => Translation.Control_DiscordRpc_NoShip,
+	};
 
 	public ConfigurationBehaviorViewModel(Configuration.ConfigurationData.ConfigControl config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBehaviorTranslationViewModel>();
-
+		ShipSelectorFactory = Ioc.Default.GetRequiredService<ShipSelectorFactory>();
+		
 		Config = config;
 		Load(config);
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(SubmitDataToTsunDb)) return;
-			if (SubmitDataToTsunDb is false) return;
-
-			// --- ask for confirmation
-			DialogTsunDb dialogTsunDb = new();
-			dialogTsunDb.FormClosed += (sender, e) =>
-			{
-				if (sender is not DialogTsunDb dialog) return;
-
-				SubmitDataToTsunDb = dialog.DialogResult == System.Windows.Forms.DialogResult.Yes;
-			};
-			dialogTsunDb.ShowDialog(App.Current!.MainWindow!);
-		};
 	}
 
+	[MemberNotNull(nameof(DiscordRPCMessage))]
+	[MemberNotNull(nameof(DiscordRPCApplicationId))]
+	[MemberNotNull(nameof(UpdateRepoURL))]
 	private void Load(Configuration.ConfigurationData.ConfigControl config)
 	{
 		ConditionBorder = config.ConditionBorder;
@@ -78,8 +78,12 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		DiscordRPCShowFCM = config.DiscordRPCShowFCM;
 		DiscordRPCApplicationId = config.DiscordRPCApplicationId;
 		UpdateRepoURL = config.UpdateRepoURL;
-		UseFlagshipIconForRPC = config.UseFlagshipIconForRPC;
-		SubmitDataToTsunDb = config.SubmitDataToTsunDb;
+		ShipUsedForRpcIcon = config.ShipUsedForRpcIcon switch
+		{
+			ShipId id => KCDatabase.Instance.MasterShips[(int)id],
+			_ => null,
+		};
+		RpcIconKind = config.RpcIconKind;
 	}
 
 	public override void Save()
@@ -95,8 +99,8 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 		Config.DiscordRPCShowFCM = DiscordRPCShowFCM;
 		Config.DiscordRPCApplicationId = DiscordRPCApplicationId;
 		Config.UpdateRepoURL = UpdateRepoURL;
-		Config.UseFlagshipIconForRPC = UseFlagshipIconForRPC;
-		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
+		Config.RpcIconKind = RpcIconKind;
+		Config.ShipUsedForRpcIcon = ShipUsedForRpcIcon?.ShipId;
 	}
 
 	[RelayCommand]
@@ -119,5 +123,25 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	private async Task ForceUpdate()
 	{
 		await SoftwareUpdater.CheckUpdateAsync();
+	}
+
+	[RelayCommand]
+	private void SelectRpcIconKind(RpcIconKind? kind)
+	{
+		if (kind is not { } kindNotNull) return;
+
+		RpcIconKind = kindNotNull;
+	}
+
+	[RelayCommand]
+	private void OpenShipPicker()
+	{
+		RpcIconKind = RpcIconKind.Ship;
+
+		ShipSelectorViewModel.ShowDialog();
+
+		if (ShipSelectorViewModel.SelectedShip is null) return;
+
+		ShipUsedForRpcIcon = ShipSelectorViewModel.SelectedShip.MasterShip;
 	}
 }

@@ -37,15 +37,14 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	protected string? ProxySettings { get; private set; }
 
 	protected Size KanColleSize { get; } = new(1200, 720);
-	protected string KanColleUrl => "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
+	protected string KanColleUrl => "https://play.games.dmm.com/game/kancolle";
 
 	public bool ZoomFit { get; set; }
 	public string CurrentZoom { get; set; } = "";
 
-	protected string StyleClassId { get; } = Guid.NewGuid().ToString()[..8];
-
 	// user setting for stylesheet
 	public bool StyleSheetEnabled { get; set; }
+
 	// todo: flag to temporarily disable the stylesheet
 	// seems to be used for when you navigate to something other than kancolle
 	private bool ShouldStyleSheetApply { get; set; } = true;
@@ -55,16 +54,19 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	/// WebView2 doesn't need this.
 	/// </summary>
 	public DpiScale DpiScale { get; set; }
+
 	public double TextScaleFactor { get; set; }
 	public double ActualWidth { get; set; }
 	public double ActualHeight { get; set; }
 
 	public Dock ToolMenuDock { get; set; } = Dock.Top;
+
 	public Orientation ToolMenuOrientation => ToolMenuDock switch
 	{
 		Dock.Left or Dock.Right => Orientation.Vertical,
 		_ => Orientation.Horizontal,
 	};
+
 	public Visibility ToolMenuVisibility { get; set; } = Visibility.Visible;
 
 	protected bool VolumeProcessInitialized { get; set; }
@@ -74,10 +76,177 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected string? LastScreenShotPath { get; set; }
 	public BitmapSource? LastScreenshot { get; set; }
-	
+
 	protected string BrowserFontStyleId { get; } = Guid.NewGuid().ToString()[..8];
 
 	protected CompassPredictionViewModel CompassPredictionViewModel { get; set; }
+
+	private string StyleClassId { get; } = Guid.NewGuid().ToString()[..8];
+
+	protected string PageScript =>
+		$$"""
+			try
+			{
+				var node = document.getElementById('{{StyleClassId}}');
+				if (node)
+				{
+					document.head.removeChild(node);
+				}
+
+				var style = document.createElement('style');
+				style.id = '{{StyleClassId}}';
+				style.textContent = `
+					body
+					{
+						margin: 0;
+						padding: 0;
+						min-width: 0;
+						min-height: 0;
+						overflow: hidden;
+						background-color: black;
+					}
+
+					#main-ntg
+					{
+						position: static;
+					}
+
+					#area-game
+					{
+						margin-left: 0;
+						margin-right: 0;
+						padding: 0;
+						width: 1200,
+						height: 720,
+						position: relative
+					}
+
+					.dmm-ntgnavi
+					{
+						display: none;
+					}
+
+					.area-naviapp
+					{
+						display: none;
+					}
+
+					#ntg-recommend
+					{
+						display: none;
+					}
+
+					#foot, #foot+img
+					{
+						display: none;
+					}
+
+					#w, #main-ntg, #page
+					{
+						margin: 0,
+						padding: 0,
+						width: 100%,
+						height: 0
+						background: none!important;
+					}
+
+					#main-ntg
+					{
+						margin: 0!important;
+					}
+
+					.gamesResetStyle, gamesResetStyle *
+					{
+						background: none !important;
+					}
+
+					#game_frame
+					{
+						--game-frame-width: 1200px;
+						--game-frame-height: 720px;
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+				`;
+
+				document.head.appendChild(style);
+			}
+			catch (e)
+			{
+				alert("ページCSS適用に失敗しました: " + e);
+			}
+		""";
+
+	protected string FrameScript =>
+		$$"""
+			try
+			{
+				var node = document.getElementById('{{StyleClassId}}');
+				if (node)
+				{
+					document.head.removeChild(node);
+				}
+
+				var style = document.createElement('style');
+				style.id = '{{StyleClassId}}';
+				style.textContent = `
+					body
+					{
+						visibility: hidden;
+					}
+
+					#flashWrap
+					{
+						position: fixed;
+						left: 0;
+						top: 0;
+						width: 100% !important;
+						height: 100% !important;
+					}
+
+					#htmlWrap
+					{
+						visibility: visible;
+						width: 100% !important;
+						height: 100% !important;
+					}
+				`;
+
+				document.head.appendChild(style);
+			}
+			catch (e)
+			{
+				alert("フレームCSS適用に失敗しました: " + e);
+			}
+		""";
+
+	protected string RestoreScript =>
+		$$"""
+			var node = document.getElementById('{{StyleClassId}}');
+			if (node)
+			{
+				document.head.removeChild(node);
+			}
+		""";
+
+	/// <summary>
+	/// The reload dialog gets called as me("エラーが発生したため、ページ更新します。") in PcAggregate.
+	/// "me" is imported as import {w as me, r as fe} from "./zodiosErrorHandling-B0N-1vhS.js";
+	/// In zodiosErrorHandling, the export has "u as w".
+	/// "u" is defined as u = o => window.confirm(o).
+	/// So overriding window.confirm to always return false should suppress the dialog.
+	/// </summary>
+	/// <remarks>todo: Need to test if this script gets executed fast enough to override everything in both CefSharp and WebView2.</remarks>
+	protected string OverrideReloadDialogScript =>
+		"""
+			Object.defineProperty(window, 'confirm',
+			{
+				configurable: true,
+				writable: true,
+				value: function() { return false; }
+			});
+		""";
 
 	protected BrowserViewModel(string host, int port, string culture)
 	{
@@ -216,8 +385,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected abstract void ApplyStyleSheet();
 
-	protected abstract void DestroyDMMreloadDialog();
-
 	protected abstract void TryGetVolumeManager();
 
 	private void VolumeChanged()
@@ -243,7 +410,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 				// todo: add red color to indicate volume manager isn't active?
 				// control.BackColor = System.Drawing.Color.MistyRose;
 			}
-
 		}
 		catch (Exception)
 		{
@@ -260,7 +426,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
 		ApplyStyleSheet();
 		ApplyZoom();
-		DestroyDMMreloadDialog();
 
 		//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
 		SetVolumeState();

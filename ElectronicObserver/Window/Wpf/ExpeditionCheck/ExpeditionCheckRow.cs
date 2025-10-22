@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Windows.Media;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.ExpeditionCheck;
 

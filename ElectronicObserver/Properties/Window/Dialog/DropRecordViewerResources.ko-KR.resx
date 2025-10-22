@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ItemNameToolTip" xml:space="preserve">
+    <value>검색할 아이템명을 지정합니다.
+(드랍)은 아이템의 드랍이 발생했을 때만 추출합니다.</value>
+  </data>
+  <data name="ShipNameToolTip" xml:space="preserve">
+    <value>검색할 함선명을 지정합니다
+(드랍)은 칸무스의 드랍이 발생했을 때만 추출합니다.</value>
+  </data>
+  <data name="EquipmentNameToolTip" xml:space="preserve">
+    <value>검색할 장비명을 지정합니다.
+(드랍)은 장비의 드랍이 발생했을 때만 추출합니다.</value>
+  </data>
+  <data name="DateBeginToolTip" xml:space="preserve">
+    <value>검색할 일시의 시작점을 지정합니다.</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>개시</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>종료</value>
+  </data>
+  <data name="DateEndToolTip" xml:space="preserve">
+    <value>검색할 일시의 종료점을 지정합니다.</value>
+  </data>
+  <data name="RankSToolTip" xml:space="preserve">
+    <value>S승리</value>
+  </data>
+  <data name="RankAToolTip" xml:space="preserve">
+    <value>A승리</value>
+  </data>
+  <data name="RankBToolTip" xml:space="preserve">
+    <value>B승리</value>
+  </data>
+  <data name="RankXToolTip" xml:space="preserve">
+    <value>패배</value>
+  </data>
+  <data name="NodeSelection" xml:space="preserve">
+    <value>해역 ・ 셀</value>
+  </data>
+  <data name="MapDifficultyToolTip" xml:space="preserve">
+    <value>난이도를 지정합니다.
+* 은 모든 난이도를 추출합니다.</value>
+  </data>
+  <data name="ButtonRun" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="RecordView_Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="RecordView_Date" xml:space="preserve">
+    <value>날짜</value>
+  </data>
+  <data name="RecordView_Map" xml:space="preserve">
+    <value>해역</value>
+  </data>
+  <data name="RecordView_Rank" xml:space="preserve">
+    <value>랭크</value>
+  </data>
+  <data name="RecordView_RankS" xml:space="preserve">
+    <value>S승리</value>
+  </data>
+  <data name="RecordView_RankA" xml:space="preserve">
+    <value>A승리</value>
+  </data>
+  <data name="RecordView_RankB" xml:space="preserve">
+    <value>B승리</value>
+  </data>
+  <data name="IsBossOnly" xml:space="preserve">
+    <value>Boss</value>
+  </data>
+  <data name="MapAreaIDToolTip" xml:space="preserve">
+    <value>해역 ID를 지정합니다
+* 은 모든 해역을 추출합니다</value>
+  </data>
+  <data name="MapInfoIDToolTip" xml:space="preserve">
+    <value>해역 ID를 지정합니다
+* 은 모든 해역을 추출합니다</value>
+  </data>
+  <data name="MapCellIDToolTip" xml:space="preserve">
+    <value>셀 ID를 지정합니다.
+* 은 모든 셀을 추출합니다.</value>
+  </data>
+  <data name="MergeRows" xml:space="preserve">
+    <value>합치기</value>
+  </data>
+  <data name="MergeRowsToolTip" xml:space="preserve">
+    <value>체크하면 동일한 드랍 항목을 모아서 표시합니다</value>
+  </data>
+  <data name="LabelShipName" xml:space="preserve">
+    <value>함선</value>
+  </data>
+  <data name="LabelItemName" xml:space="preserve">
+    <value>아이템</value>
+  </data>
+  <data name="LabelEquipmentName" xml:space="preserve">
+    <value>장비</value>
+  </data>
+  <data name="StatusInfo" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="statusStrip1" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>드랍 기록</value>
+  </data>
+  <data name="NameAny" xml:space="preserve">
+    <value>(모두)</value>
+  </data>
+  <data name="NameNotExist" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="NameFullPort" xml:space="preserve">
+    <value>(만원)</value>
+  </data>
+  <data name="NameExist" xml:space="preserve">
+    <value>(드랍)</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value> [보스]</value>
+  </data>
+  <data name="BattleHistoryNotFound" xml:space="preserve">
+    <value>전투 로그를 찾을 수 없습니다.</value>
+  </data>
+  <data name="SearchingBattleHistory" xml:space="preserve">
+    <value>전투 로그를 검색하고 있습니다…</value>
+  </data>
+  <data name="OpenBattleHistory" xml:space="preserve">
+    <value>전투 로그 {0} 를 엽니다.</value>
+  </data>
+  <data name="CouldNotOpenBattleHistory" xml:space="preserve">
+    <value>전투 로그를 열지 못했습니다.</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>선택 항목의 합계: {0} / {1} ({2:p1})</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>오늘</value>
+  </data>
+  <data name="IgnoreCommonDrops" xml:space="preserve">
+    <value>일반적인 드랍은 무시</value>
+  </data>
+</root>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.Quest;
 
@@ -74,7 +74,7 @@ public class ProgressDiscard : ProgressData
 						Increment();
 					break;
 				case 1:
-					if (Categories.Contains(eq.MasterEquipment.CardType))
+					if (Categories.Contains((int)eq.MasterEquipment.CardType))
 						Increment();
 					break;
 				case 2:

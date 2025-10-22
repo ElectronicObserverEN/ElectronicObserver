@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Database.Sortie;
@@ -10,7 +11,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
 
@@ -33,12 +33,14 @@ public class SortieCostViewModel : ObservableObject
 
 	public SortieCostModel SortieFleetSupplyCost { get; }
 	public SortieCostModel SortieFleetRepairCost { get; }
+	public SortieCostModel SortieFleetJetCost { get; }
 	public SortieCostModel NodeSupportSupplyCost { get; }
 	public SortieCostModel BossSupportSupplyCost { get; }
 	public SortieCostModel TotalSupplyCost { get; }
 	public SortieCostModel TotalRepairCost { get; }
 	public SortieCostModel TotalAirBaseSortieCost { get; }
 	public SortieCostModel TotalAirBaseSupplyCost { get; }
+	public SortieCostModel AirBaseJetCost { get; }
 
 	public SortieCostModel ResourceGain { get; }
 	public SortieCostModel SinkingResourceGain { get; }
@@ -96,6 +98,7 @@ public class SortieCostViewModel : ObservableObject
 
 		SupplyCostCalculator supplyCostCalculator = new(db, toolService, sortie);
 		RepairCostCalculator repairCostCalculator = new(db, toolService, sortie);
+		JetCostCalculator jetCostCalculator = new(db, toolService, sortie);
 		AirBaseCostCalculator airBaseCostCalculator = new(db, toolService, sortie);
 
 		SortieFleetId = sortie.Model.FleetData.FleetId;
@@ -113,6 +116,7 @@ public class SortieCostViewModel : ObservableObject
 
 		SortieFleetSupplyCost = supplyCostCalculator.SupplyCost(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
 		SortieFleetRepairCost = repairCostCalculator.RepairCost(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
+		SortieFleetJetCost = jetCostCalculator.FleetJetCost();
 
 		NodeSupportSupplyCost = supplyCostCalculator.NodeSupportSupplyCost(FleetsBeforeSortie, FleetsAfterSortie, NodeSupportFleetId);
 		BossSupportSupplyCost = supplyCostCalculator.BossSupportSupplyCost(FleetsBeforeSortie, FleetsAfterSortie, BossSupportFleetId);
@@ -122,11 +126,12 @@ public class SortieCostViewModel : ObservableObject
 
 		TotalAirBaseSortieCost = airBaseCostCalculator.AirBaseSortieCost(AirBases);
 		TotalAirBaseSupplyCost = airBaseCostCalculator.AirBaseSupplyCost(AirBases);
+		AirBaseJetCost = jetCostCalculator.AirBaseJetCost();
 
 		ResourceGain = GetResourceGain(db, toolService, sortie);
 		SinkingResourceGain = GetSinkingResourceGain(db, toolService, sortie);
 
-		TotalCost = TotalSupplyCost + TotalRepairCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
+		TotalCost = TotalSupplyCost + TotalRepairCost + SortieFleetJetCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost + AirBaseJetCost;
 		TotalCost -= (ResourceGain + SinkingResourceGain);
 
 		DamageStateCounts = repairCostCalculator.DamageStateCounts(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);

@@ -9,17 +9,17 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
-using ElectronicObserverTypes;
-using WanaKanaNet;
+
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
@@ -33,7 +33,6 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 	public DataGridViewModel<ShipDataRecord> DataGridViewModel { get; set; } = new();
 
 	public string? SearchFilter { get; set; } = "";
-	public string? RomajiSearchFilter { get; set; } = "";
 
 	public string Title => SelectedShip switch
 	{
@@ -96,18 +95,11 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		{
 			if (args.PropertyName is not nameof(SearchFilter)) return;
 
-			RomajiSearchFilter = WanaKana.ToRomaji(SearchFilter ?? "");
-		};
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(RomajiSearchFilter)) return;
-
 			DataGridViewModel.ItemsSource.Clear();
-			DataGridViewModel.AddRange(AllShips.Where(s => RomajiSearchFilter switch
+			DataGridViewModel.AddRange(AllShips.Where(s => SearchFilter switch
 			{
 				null or "" => true,
-				string f => TransliterationService.Matches(s.Ship, SearchFilter ?? "", f),
+				string f => TransliterationService.Matches(s.Ship, f),
 			}));
 		};
 	}

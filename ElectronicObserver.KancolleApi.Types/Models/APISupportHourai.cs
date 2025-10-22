@@ -1,4 +1,4 @@
-﻿using ElectronicObserverTypes.Attacks;
+﻿using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.KancolleApi.Types.Models;
 

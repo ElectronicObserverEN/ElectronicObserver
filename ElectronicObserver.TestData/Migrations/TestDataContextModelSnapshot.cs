@@ -9,272 +9,278 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ElectronicObserver.TestData.Migrations
 {
-	[DbContext(typeof(TestDataContext))]
-	partial class TestDataContextModelSnapshot : ModelSnapshot
-	{
-		protected override void BuildModel(ModelBuilder modelBuilder)
-		{
+    [DbContext(typeof(TestDataContext))]
+    partial class TestDataContextModelSnapshot : ModelSnapshot
+    {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
 #pragma warning disable 612, 618
-			modelBuilder.HasAnnotation("ProductVersion", "6.0.2");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
 
-			modelBuilder.Entity("ElectronicObserver.TestData.Models.EquipmentDataMasterRecord", b =>
-				{
-					b.Property<int>("EquipmentId")
-						.ValueGeneratedOnAdd()
-						.HasColumnType("INTEGER");
+            modelBuilder.Entity("ElectronicObserver.TestData.Models.EquipmentDataMasterRecord", b =>
+                {
+                    b.Property<int>("EquipmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Aa")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Aa")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Accuracy")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Accuracy")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Armor")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("AircraftCost")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Asw")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Armor")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Bomber")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Asw")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("CategoryType")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Bomber")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Evasion")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("CardType")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Firepower")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("CategoryType")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("IconType")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Evasion")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("LoS")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Firepower")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Luck")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("IconType")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("Name")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<int>("LoS")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Range")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Luck")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Torpedo")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.HasKey("EquipmentId");
+                    b.Property<int>("Range")
+                        .HasColumnType("INTEGER");
 
-					b.ToTable("MasterEquipment");
-				});
+                    b.Property<int>("Torpedo")
+                        .HasColumnType("INTEGER");
 
-			modelBuilder.Entity("ElectronicObserver.TestData.Models.ShipDataMasterRecord", b =>
-				{
-					b.Property<int>("ShipId")
-						.HasColumnType("INTEGER");
+                    b.HasKey("EquipmentId");
 
-					b.Property<int>("AaMax")
-						.HasColumnType("INTEGER");
+                    b.ToTable("MasterEquipment");
+                });
 
-					b.Property<int>("AaMin")
-						.HasColumnType("INTEGER");
+            modelBuilder.Entity("ElectronicObserver.TestData.Models.ShipDataMasterRecord", b =>
+                {
+                    b.Property<int>("ShipId")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("Aircraft1")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("AaMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("Aircraft2")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("AaMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("Aircraft3")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("Aircraft1")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("Aircraft4")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("Aircraft2")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("Aircraft5")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("Aircraft3")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("AlbumNo")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("Aircraft4")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Ammo")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("Aircraft5")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("ArmorMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("AlbumNo")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("ArmorMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Ammo")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("AswMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("ArmorMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("AswMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("ArmorMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("BuildingTime")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("AswMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("DefaultSlot1")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("AswMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("DefaultSlot2")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("BuildingTime")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("DefaultSlot3")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("DefaultSlot1")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("DefaultSlot4")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("DefaultSlot2")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int?>("DefaultSlot5")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("DefaultSlot3")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("EquippableCategories")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<int?>("DefaultSlot4")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("EvasionMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int?>("DefaultSlot5")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("EvasionMin")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("EquippableCategories")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("FirepowerMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("EvasionMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("FirepowerMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("EvasionMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Fuel")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("FirepowerMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("HpMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("FirepowerMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("HpMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Fuel")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("LosMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("HpMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("LosMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("HpMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("LuckMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("LosMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("LuckMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("LosMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("Material")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<int>("LuckMax")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("MessageAlbum")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<int>("LuckMin")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("MessageGet")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<string>("Material")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<string>("Name")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<string>("MessageAlbum")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<string>("NameReading")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<string>("MessageGet")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("NeedActionReport")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("NeedArmamentMaterial")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("NameReading")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("NeedAviationMaterial")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("NeedActionReport")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("NeedBlueprint")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("NeedArmamentMaterial")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("NeedCatapult")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("NeedAviationMaterial")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("OriginalCostumeShipID")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("NeedBlueprint")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("PowerUp")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<int>("NeedCatapult")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Range")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("OriginalCostumeShipID")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Rarity")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("PowerUp")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("RemodelAfterLevel")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Range")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("RemodelAfterShipId")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Rarity")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("RemodelAmmo")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("RemodelAfterLevel")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("RemodelBeforeShipId")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("RemodelAfterShipId")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("RemodelSteel")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("RemodelAmmo")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("ResourceGraphicVersion")
-						.HasColumnType("TEXT");
+                    b.Property<int>("RemodelBeforeShipId")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("ResourceName")
-						.IsRequired()
-						.HasColumnType("TEXT");
+                    b.Property<int>("RemodelSteel")
+                        .HasColumnType("INTEGER");
 
-					b.Property<string>("ResourcePortVoiceVersion")
-						.HasColumnType("TEXT");
+                    b.Property<string>("ResourceGraphicVersion")
+                        .HasColumnType("TEXT");
 
-					b.Property<string>("ResourceVoiceVersion")
-						.HasColumnType("TEXT");
+                    b.Property<string>("ResourceName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("ShipClass")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("ResourcePortVoiceVersion")
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("ShipType")
-						.HasColumnType("INTEGER");
+                    b.Property<string>("ResourceVoiceVersion")
+                        .HasColumnType("TEXT");
 
-					b.Property<int>("SlotSize")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("ShipClass")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("SortId")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("ShipType")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("Speed")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("SlotSize")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("TorpedoMax")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("SortId")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("TorpedoMin")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("Speed")
+                        .HasColumnType("INTEGER");
 
-					b.Property<int>("VoiceFlag")
-						.HasColumnType("INTEGER");
+                    b.Property<int>("TorpedoMax")
+                        .HasColumnType("INTEGER");
 
-					b.HasKey("ShipId");
+                    b.Property<int>("TorpedoMin")
+                        .HasColumnType("INTEGER");
 
-					b.ToTable("MasterShips");
-				});
+                    b.Property<int>("VoiceFlag")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ShipId");
+
+                    b.ToTable("MasterShips");
+                });
 #pragma warning restore 612, 618
-		}
-	}
+        }
+    }
 }

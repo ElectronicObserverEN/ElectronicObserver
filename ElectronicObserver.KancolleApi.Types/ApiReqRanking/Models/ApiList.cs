@@ -21,5 +21,5 @@ public class ApiList
 	public int ApiItslcqtmrxtf { get; set; }
 
 	[JsonPropertyName("api_wuhnhojjxmke")]
-	public long ApiWuhnhojjxmke { get; set; }
+	public decimal ApiWuhnhojjxmke { get; set; }
 }

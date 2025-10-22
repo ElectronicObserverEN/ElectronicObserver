@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdmiralComment" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ModdingMaterial" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="Title" xml:space="preserve">
     <value>HQ</value>
   </data>
@@ -194,13 +201,13 @@
 Weekly: {1:+##;-##;±0}
 Monthly: {2:+##;-##;±0}</value>
   </data>
-  <data name="CopyToClipboardBuckets" xml:space="preserve">
-    <value> buckets</value>
-  </data>
   <data name="FurnitureCoinToolTip" xml:space="preserve">
     <value>(S) x {0} ( +{1} )
 (M) x {2} ( +{3} )
 (L) x {4} ( +{5} )</value>
+  </data>
+  <data name="CopyToClipboardBuckets" xml:space="preserve">
+    <value> buckets</value>
   </data>
   <data name="CopyToClipboardDevelopmentMaterials" xml:space="preserve">
     <value> devmats</value>
@@ -391,5 +398,11 @@ Monthly: {2:+##;-##;±0}</value>
   </data>
   <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
     <value>Latest Overseas Warship Technology</value>
+  </data>
+  <data name="NightSkilledCrewMember" xml:space="preserve">
+    <value>Night Skilled Crew Member</value>
+  </data>
+  <data name="SpecialAviationRation" xml:space="preserve">
+    <value>Special Aviation Ration</value>
   </data>
 </root>

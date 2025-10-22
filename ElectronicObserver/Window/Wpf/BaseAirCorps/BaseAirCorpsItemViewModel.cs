@@ -5,12 +5,12 @@ using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.BaseAirCorps;
 
@@ -91,22 +91,32 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 			// state
 
 			// 疲労
-			int tired = corps.Squadrons.Values.Max(sq => sq?.Condition ?? 0);
-
-			Name.ConditionIcon = tired switch
+			AirBaseCondition condition = corps.Squadrons.Values.Any(s => s.State is 1) switch
 			{
-				3 => IconContent.ConditionVeryTired,
-				2 => IconContent.ConditionTired,
+				true => corps.Squadrons.Values
+					.Max(sq => sq?.Condition ?? AirBaseCondition.Sparkled),
+				_ => AirBaseCondition.Normal,
+			};
+
+			Name.ConditionIcon = condition switch
+			{
+				AirBaseCondition.VeryTired => IconContent.ConditionVeryTired,
+				AirBaseCondition.Tired => IconContent.ConditionTired,
+				AirBaseCondition.Sparkled => IconContent.ConditionSparkle,
 				_ => null,
 			};
 
-			switch (tired)
+			switch (condition)
 			{
-				case 2:
+				case AirBaseCondition.Sparkled:
+					sb.AppendLine(GeneralRes.MaximumMorale);
+					break;
+
+				case AirBaseCondition.Tired:
 					sb.AppendLine(GeneralRes.Tired);
 					break;
 
-				case 3:
+				case AirBaseCondition.VeryTired:
 					sb.AppendLine(GeneralRes.VeryTired);
 					break;
 			}
@@ -241,14 +251,20 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 
 					switch (squadron.Condition)
 					{
-						case 1:
+						case AirBaseCondition.Sparkled:
+							sb.Append($"[{GeneralRes.MaximumMorale}] ");
+							break;
+
+						case AirBaseCondition.Tired:
+							sb.Append($"[{GeneralRes.Tired}] ");
+							break;
+
+						case AirBaseCondition.VeryTired:
+							sb.Append($"[{GeneralRes.VeryTired}] ");
+							break;
+
+						case AirBaseCondition.Normal:
 						default:
-							break;
-						case 2:
-							sb.Append("[" + GeneralRes.Tired + "] ");
-							break;
-						case 3:
-							sb.Append("[" + GeneralRes.VeryTired + "] ");
 							break;
 					}
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Data.Translation;
 

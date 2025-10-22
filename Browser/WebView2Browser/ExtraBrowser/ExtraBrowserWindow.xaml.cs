@@ -45,14 +45,6 @@ public partial class ExtraBrowserWindow : Window
 		txtBoxAddress.Text = "http://www.duckduckgo.com";
 	}
 
-	private void OnNavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
-	{
-		if (e.IsSuccess)
-		{
-			SetStyleSheet();
-		}
-	}
-
 	private void OnFrameCreated(object? sender, CoreWebView2FrameCreatedEventArgs e)
 	{
 		if (e.Frame.Name.Contains(@"game_frame"))
@@ -69,7 +61,7 @@ public partial class ExtraBrowserWindow : Window
 	{
 		if (e.Request.Uri.Contains(@"gadget_html5"))
 		{
-			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
+			e.Request.Uri = e.Request.Uri.Replace("http://w00g.kancolle-server.com/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
 		}
 		if (e.Request.Uri.Contains("kcs2/resources/bgm"))
 		{
@@ -130,22 +122,7 @@ public partial class ExtraBrowserWindow : Window
 			Browser.CoreWebView2.GoForward();
 		}
 	}
-	private void SetStyleSheet()
-	{
-		if (Browser is { IsInitialized: true })
-		{
-			if (gameframe != null)
-			{
-				Browser.ExecuteScriptAsync(String.Format(Translations.Resources.PageScript, StyleClassID));
-				gameframe.ExecuteScriptAsync(String.Format(Translations.Resources.FrameScript, StyleClassID));
-				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
-				Browser.HorizontalAlignment = HorizontalAlignment.Center;
-				Browser.VerticalAlignment = VerticalAlignment.Center;
-				Browser.Width = 1200;
-				Browser.Height = 720;
-			}
-		}
-	}
+
 	private void BoxAddressKeyDown(object sender, KeyEventArgs e)
 	{
 		if (e.Key == Key.Enter)

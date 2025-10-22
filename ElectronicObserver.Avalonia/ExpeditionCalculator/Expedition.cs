@@ -5,6 +5,7 @@ public class Expedition
 	public required int Id { get; init; }
 	public required string DisplayId { get; init; }
 	public required GreatSuccessType GreatSuccessType { get; init; }
+	public required bool IsMonthly { get; init; }
 
 	public required TimeSpan Duration { get; init; }
 

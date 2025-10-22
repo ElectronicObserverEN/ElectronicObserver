@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 
 namespace ElectronicObserver.Data;
 
@@ -376,6 +376,11 @@ public static class Constants
 		125 => "Nevada級",
 		126 => "改氷川丸級",
 		127 => "巡潜乙型改一",
+		128 => "La Galissonnière級",
+		129 => "Mogador級",
+		130 => "大泊型",
+		131 => "Киров級",
+		132 => "特1TL型",
 		_ => "不明",
 	};
 
@@ -991,111 +996,6 @@ public static class Constants
 	#endregion
 
 	#region Servers
-	public class KCServer(int num, string name, string jp, string ip)
-	{
-		public int Num { get; set; } = num;
-		public string Name { get; set; } = name;
-		public string Jp { get; set; } = jp;
-		public string Ip { get; set; } = ip;
-	}
-
-	public static KCServer getKCServer(int num)
-	{
-		switch (num)
-		{
-			case 1:
-				return new KCServer(num, "Yokosuka Naval District", "横須賀鎮守府", "203.104.209.71");
-			case 2:
-				return new KCServer(num, "Kure Naval District", "呉鎮守府", "203.104.209.87");
-			case 3:
-				return new KCServer(num, "Sasebo Naval District", "佐世保鎮守府", "125.6.184.215");
-			case 4:
-				return new KCServer(num, "Maizuru Naval District", "舞鶴鎮守府", "203.104.209.183");
-			case 5:
-				return new KCServer(num, "Ominato Guard District", "大湊警備府", "203.104.209.150");
-			case 6:
-				return new KCServer(num, "Truk Anchorage", "トラック泊地", "203.104.209.134");
-			case 7:
-				return new KCServer(num, "Lingga Anchorage", "リンガ泊地", "203.104.209.167");
-			case 8:
-				return new KCServer(num, "Rabaul Naval Base", "ラバウル基地", "203.104.209.199");
-			case 9:
-				return new KCServer(num, "Shortland Anchorage", "ショートランド泊地", "125.6.189.7");
-			case 10:
-				return new KCServer(num, "Buin Naval Base", "ブイン基地", "125.6.189.39");
-			case 11:
-				return new KCServer(num, "Tawi-Tawi Anchorage", "タウイタウイ泊地", "125.6.189.71");
-			case 12:
-				return new KCServer(num, "Palau Anchorage", "パラオ泊地", "125.6.189.103");
-			case 13:
-				return new KCServer(num, "Brunei Anchorage", "ブルネイ泊地", "125.6.189.135");
-			case 14:
-				return new KCServer(num, "Hitokappu Bay Anchorage", "単冠湾泊地", "125.6.189.167");
-			case 15:
-				return new KCServer(num, "Paramushir Anchorage", "幌筵泊地", "125.6.189.215");
-			case 16:
-				return new KCServer(num, "Sukumo Bay Anchorage", "宿毛湾泊地", "125.6.189.247");
-			case 17:
-				return new KCServer(num, "Kanoya Airfield", "鹿屋基地", "203.104.209.23");
-			case 18:
-				return new KCServer(num, "Iwagawa Airfield", "岩川基地", "203.104.209.39");
-			case 19:
-				return new KCServer(num, "Saiki Bay Anchorage", "佐伯湾泊地", "203.104.209.55");
-			case 20:
-				return new KCServer(num, "Hashirajima Anchorage", "柱島泊地", "203.104.209.102");
-			default:
-				return new KCServer(0, "", "", "");
-		}
-	}
-
-	public static KCServer getKCServer(string ip)
-	{
-		switch (ip)
-		{
-			case "203.104.209.71":
-				return getKCServer(1);
-			case "203.104.209.87":
-				return getKCServer(2);
-			case "125.6.184.215":
-				return getKCServer(3);
-			case "203.104.209.183":
-				return getKCServer(4);
-			case "203.104.209.150":
-				return getKCServer(5);
-			case "203.104.209.134":
-				return getKCServer(6);
-			case "203.104.209.167":
-				return getKCServer(7);
-			case "203.104.209.199":
-				return getKCServer(8);
-			case "125.6.189.7":
-				return getKCServer(9);
-			case "125.6.189.39":
-				return getKCServer(10);
-			case "125.6.189.71":
-				return getKCServer(11);
-			case "125.6.189.103":
-				return getKCServer(12);
-			case "125.6.189.135":
-				return getKCServer(13);
-			case "125.6.189.167":
-				return getKCServer(14);
-			case "125.6.189.215":
-				return getKCServer(15);
-			case "125.6.189.247":
-				return getKCServer(16);
-			case "203.104.209.23":
-				return getKCServer(17);
-			case "203.104.209.39":
-				return getKCServer(18);
-			case "203.104.209.55":
-				return getKCServer(19);
-			case "203.104.209.102":
-				return getKCServer(20);
-			default:
-				return new KCServer(0, "", "", "");
-		}
-	}
 
 	public static string getRank(int num)
 	{

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>수치를 편집(&amp;E)...</value>
+  </data>
+  <data name="StripMenu_Edit_CopyShipName" xml:space="preserve">
+    <value>함명을 복사(&amp;N)</value>
+  </data>
+  <data name="StripMenu_Edit_CopyShipData" xml:space="preserve">
+    <value>함선 데이터를 복사(&amp;D)</value>
+  </data>
+  <data name="StripMenu_Edit_GoogleShipName" xml:space="preserve">
+    <value>함선명으로 DuckDuckGo 검색(&amp;G)</value>
+  </data>
+  <data name="StripMenu_View_ShowShipGraphicViewer" xml:space="preserve">
+    <value>이미지 뷰어(&amp;V)</value>
+  </data>
+  <data name="ParameterLevelToolTip" xml:space="preserve">
+    <value>레벨을 지정하면 예상 수치가 표시됩니다.</value>
+  </data>
+  <data name="TitleHP" xml:space="preserve">
+    <value>내구</value>
+  </data>
+  <data name="ShipBannerToolTip" xml:space="preserve">
+    <value>(우클릭으로 이미지 뷰어 열기)</value>
+  </data>
+  <data name="StripMenu_Edit_CopySpecialEquipmentTable" xml:space="preserve">
+    <value>특수 장비 테이블을 복사(&amp;S)</value>
+  </data>
+  <data name="StripMenu_File_MergeDefaultRecord" xml:space="preserve">
+    <value>디폴트 레코드로부터 갱신(&amp;M)</value>
+  </data>
+  <data name="ResourceNameToolTip" xml:space="preserve">
+    <value>리소스 명: {0}
+그래픽 ver. {1}
+보이스 ver. {2}
+모항 보이스 ver. {3}
+({4})</value>
+  </data>
+  <data name="ShipClassId" xml:space="preserve">
+    <value>함형ID</value>
+  </data>
+  <data name="ShipClassUnknown" xml:space="preserve">
+    <value>함형 불명</value>
+  </data>
+  <data name="HpMinToolTip" xml:space="preserve">
+    <value>개수 후: {0} (+{1})</value>
+  </data>
+  <data name="HpMaxToolTip" xml:space="preserve">
+    <value>개수 후: {0} (+{1})
+(내부 최대 내구: {2})</value>
+  </data>
+  <data name="DefaultRange" xml:space="preserve">
+    <value>본래 사거리</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>화력</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>뇌장</value>
+  </data>
+  <data name="AA" xml:space="preserve">
+    <value>대공</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>장갑</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>대잠</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>요격</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>회피</value>
+  </data>
+  <data name="AntiBomb" xml:space="preserve">
+    <value>대폭</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>명중</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>색적</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>폭장</value>
+  </data>
+  <data name="RightClickToOpenInNewWindow" xml:space="preserve">
+    <value>(우클릭으로 도감)</value>
+  </data>
+  <data name="RemodelBeforeShipNameToolTip" xml:space="preserve">
+    <value>(좌클릭으로 열기, 우클릭으로 새 창 열기)</value>
+  </data>
+  <data name="ActionReport" xml:space="preserve">
+    <value>전투 상세</value>
+  </data>
+  <data name="AviationMaterial" xml:space="preserve">
+    <value>신형 항공병장 자재</value>
+  </data>
+  <data name="CsvExportFailed" xml:space="preserve">
+    <value>함선 도감 CSV 출력에 실패했습니다.</value>
+  </data>
+  <data name="SelectAShip" xml:space="preserve">
+    <value>함선을 선택하여 주십시오.</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>적 함대명 불명</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>건조</value>
+  </data>
+  <data name="FailedToFindMapOrRecipe" xml:space="preserve">
+    <value>{0} 의 출현 해역을 찾을 수 없습니다.</value>
+  </data>
+  <data name="MapOrRecipeSearchCaption" xml:space="preserve">
+    <value>출현 해역 검색</value>
+  </data>
+  <data name="SpecifyTargetShip" xml:space="preserve">
+    <value>대상 함선을 지정해 주십시오.</value>
+  </data>
+  <data name="NoShipSelectedCaption" xml:space="preserve">
+    <value>뷰어 : 대상 미지정</value>
+  </data>
+  <data name="Installation" xml:space="preserve">
+    <value>육상 시설</value>
+  </data>
+  <data name="ReinforcementSlot" xml:space="preserve">
+    <value>보강 슬롯</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>운</value>
+  </data>
+  <data name="ShipId" xml:space="preserve">
+    <value>함선 ID: </value>
+  </data>
+  <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
+    <value>|대상함ID|대상함|장비가능|장비불가능|</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
+    <value>|대상함ID|대상함|장비가능ID|장비가능|</value>
+  </data>
+</root>

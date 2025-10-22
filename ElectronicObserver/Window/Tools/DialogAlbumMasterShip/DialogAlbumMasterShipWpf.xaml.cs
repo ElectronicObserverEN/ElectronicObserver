@@ -1,8 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 

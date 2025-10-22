@@ -98,6 +98,11 @@ public sealed class APIObserver
 	public kcsapi.api_port.port ApiPort_Port { get; } = new();
 
 	/// <summary>
+	/// Air base morale refresh call
+	/// </summary>
+	public kcsapi.api_port.airCorpsCondRecoveryWithTimer ApiPort_AirCorpsCondRecoveryWithTimer { get; } = new();
+
+	/// <summary>
 	/// 艦船情報 (?) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2382" />
 	/// </summary>
@@ -546,11 +551,10 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.goback_port ApiReqCombinedBattle_GoBackPort { get; } = new();
 
 	/// <summary>
-	/// Ranking list before 2016/08/01 (?) <br />
-	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1252" />
+	/// Ranking list <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1265" />
 	/// </summary>
-	[Obsolete]
-	public kcsapi.api_req_ranking.getlist ApiReqRanking_GetList { get; } = new();
+	public kcsapi.api_req_ranking.mxltvkpyuklh ApiReqRanking_Mxltvkpyuklh { get; } = new();
 
 	/// <summary>
 	/// FCF single fleet <br />
@@ -636,6 +640,7 @@ public sealed class APIObserver
 			ApiGetMember_UseItem,
 			ApiGetMember_KDock,
 			ApiPort_Port,
+			ApiPort_AirCorpsCondRecoveryWithTimer,
 			ApiGetMember_Ship2,
 			ApiGetMember_QuestList,
 			ApiGetMember_NDock,
@@ -672,7 +677,7 @@ public sealed class APIObserver
 			ApiReqKousyou_RemodelSlot,
 			ApiGetMember_Material,
 			ApiReqMission_Result,
-			ApiReqRanking_GetList,
+			ApiReqRanking_Mxltvkpyuklh,
 			ApiReqSortie_AirBattle,
 			ApiGetMember_ShipDeck,
 			ApiReqKaisou_Marriage,
@@ -773,7 +778,7 @@ public sealed class APIObserver
 
 		try
 		{
-			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, Configuration.Config.FormBrowser.UseHttps);
+			Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, true);
 			Proxy.AddEndPoint(Endpoint);
 
 			ExternalProxy? upstreamProxy = c switch
@@ -855,20 +860,16 @@ public sealed class APIObserver
 			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
-		//debug
-		//Utility.Logger.Add( 1, baseurl );
-
-		if (baseurl == ("/gadgets/makeRequest"))
+		if (KCDatabase.Instance.ServerManager.CurrentServer is null && baseurl.Contains("/gadget_html5/js/kcs_const.js"))
 		{
-			KCDatabase db = KCDatabase.Instance;
-			if (db.Server is null)
-			{
-				string body = await e.GetResponseBodyAsString();
-				string url = body.Split('/')[2];
-				url = url.Split('\\')[0];
+			string body = await e.GetResponseBodyAsString();
 
-				db.Server = Constants.getKCServer(url);
-			}
+			_ = Task.Run(() =>
+			{
+				KCDatabase.Instance.ServerManager.LoadServerList(body);
+			});
+
+			return;
 		}
 
 		//response
@@ -980,6 +981,11 @@ public sealed class APIObserver
 		if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 		{
 			ServerAddress = e.HttpClient.Request.Host;
+
+			if (!string.IsNullOrEmpty(ServerAddress))
+			{
+				KCDatabase.Instance.ServerManager.LoadCurrentServer(ServerAddress);
+			}
 		}
 	}
 
@@ -1059,12 +1065,6 @@ public sealed class APIObserver
 			{
 				ResponseReceived(shortpath, json);
 				APIList.OnResponseReceived(shortpath, json);
-			}
-			else if (shortpath.Contains("api_req_ranking"))
-			{
-				shortpath = "api_req_ranking/getlist";
-				ResponseReceived(shortpath, json.api_data);
-				APIList.OnResponseReceived(shortpath, json.api_data);
 			}
 			else if (json.IsDefined("api_data"))
 			{

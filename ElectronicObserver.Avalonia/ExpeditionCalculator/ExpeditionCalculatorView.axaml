@@ -29,8 +29,16 @@
 		</DataTemplate>
 	</UserControl.DataTemplates>
 
-	<Grid RowDefinitions="Auto Auto *">
-		<StackPanel Grid.Row="0" Orientation="Horizontal">
+	<Grid RowDefinitions="Auto Auto Auto *">
+		<CheckBox
+			Grid.Row="0"
+			Margin="4 0"
+			Content="{x:Static local:ExpeditionCalculatorResources.Monthly}"
+			IsChecked="{Binding ShowMonthlyExpeditions}"
+			IsThreeState="True"
+			/>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal">
 			<CheckBox
 				Margin="4 0"
 				Content="{x:Static local:ExpeditionCalculatorResources.AllSparkled}"
@@ -72,7 +80,7 @@
 			</StackPanel>
 		</StackPanel>
 
-		<WrapPanel Grid.Row="1">
+		<WrapPanel Grid.Row="2">
 			<local:ExpeditionWeight UseItemId="Fuel" Weight="{Binding ExpeditionScoreWeights.Fuel, Mode=TwoWay}" />
 			<local:ExpeditionWeight UseItemId="Ammo" Weight="{Binding ExpeditionScoreWeights.Ammo, Mode=TwoWay}" />
 			<local:ExpeditionWeight UseItemId="Steel" Weight="{Binding ExpeditionScoreWeights.Steel, Mode=TwoWay}" />
@@ -81,7 +89,7 @@
 		</WrapPanel>
 
 		<DataGrid
-			Grid.Row="2"
+			Grid.Row="3"
 			IsReadOnly="True"
 			ItemsSource="{Binding Expeditions}"
 			>

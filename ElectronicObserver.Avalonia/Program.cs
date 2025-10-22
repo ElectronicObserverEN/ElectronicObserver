@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Win32;
 
 namespace ElectronicObserver.Avalonia;
 
@@ -14,5 +15,6 @@ public static class Program
 	public static AppBuilder BuildAvaloniaApp()
 		=> AppBuilder.Configure<App>()
 			.UsePlatformDetect()
+			.With(new Win32PlatformOptions { CompositionMode = new[] { Win32CompositionMode.RedirectionSurface } })
 			.LogToTrace();
 }

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AaDirector" xml:space="preserve">
+    <value>Director AA</value>
+  </data>
+  <data name="AaGun" xml:space="preserve">
+    <value>Arma AA</value>
+  </data>
+  <data name="AaRocket" xml:space="preserve">
+    <value>Cohete AA</value>
+  </data>
+  <data name="AaShell" xml:space="preserve">
+    <value>Proyectil AA</value>
+  </data>
+  <data name="AmphibiousVehicle" xml:space="preserve">
+    <value>Vehículo anfibio</value>
+  </data>
+  <data name="ApShell" xml:space="preserve">
+    <value>Proyectil AP</value>
+  </data>
+  <data name="Autogyro" xml:space="preserve">
+    <value>Autogiro</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="Daihatsu" xml:space="preserve">
+    <value>Daihatsu</value>
+  </data>
+  <data name="Upgrades" xml:space="preserve">
+    <value>Upgrades</value>
+  </data>
+  <data name="AntiSubmarinePatrol" xml:space="preserve">
+    <value>Patrulla antisubmarina</value>
+  </data>
+  <data name="DamageControl" xml:space="preserve">
+    <value>Control de daños</value>
+  </data>
+  <data name="DdTank" xml:space="preserve">
+    <value>Tanque DD</value>
+  </data>
+  <data name="DepthCharge" xml:space="preserve">
+    <value>Carga de profundidad</value>
+  </data>
+  <data name="EngineUpgrades" xml:space="preserve">
+    <value>Mejoras de motor</value>
+  </data>
+  <data name="ExtensionArmor" xml:space="preserve">
+    <value>Blindaje adicional</value>
+  </data>
+  <data name="Flare" xml:space="preserve">
+    <value>Bengala</value>
+  </data>
+  <data name="FleetCommand" xml:space="preserve">
+    <value>Comando de la flota</value>
+  </data>
+  <data name="FlyingBoat" xml:space="preserve">
+    <value>Hidroavión grande</value>
+  </data>
+  <data name="HeavyBomber" xml:space="preserve">
+    <value>Bombardero pesado</value>
+  </data>
+  <data name="Helicopter" xml:space="preserve">
+    <value>Helicóptero</value>
+  </data>
+  <data name="Interceptor" xml:space="preserve">
+    <value>Interceptor</value>
+  </data>
+  <data name="JetFightingBomber" xml:space="preserve">
+    <value>Bombardero de combate a reacción</value>
+  </data>
+  <data name="LandAttacker" xml:space="preserve">
+    <value>Atacante terrestre</value>
+  </data>
+  <data name="TransportMaterials" xml:space="preserve">
+    <value>Materiales de transporte</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="Supply2" xml:space="preserve">
+    <value>Suministros</value>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>Contenedor de transporte</value>
+  </data>
+  <data name="SubmarineEquipment" xml:space="preserve">
+    <value>Equipo para submarinos</value>
+  </data>
+  <data name="Sonar" xml:space="preserve">
+    <value>Sonar</value>
+  </data>
+  <data name="SecondaryArmament" xml:space="preserve">
+    <value>Armamento secundario</value>
+  </data>
+  <data name="Searchlight" xml:space="preserve">
+    <value>foco de busqueda</value>
+  </data>
+  <data name="RocketArtillery" xml:space="preserve">
+    <value>Artillería cohete</value>
+  </data>
+  <data name="Reconnaissance" xml:space="preserve">
+    <value>Avión de reconocimiento</value>
+  </data>
+  <data name="Ration" xml:space="preserve">
+    <value>Avión de reconocimiento</value>
+  </data>
+  <data name="Radar" xml:space="preserve">
+    <value>Radar</value>
+  </data>
+  <data name="PrimaryArmament" xml:space="preserve">
+    <value>Armamento principal</value>
+  </data>
+  <data name="PicketCrew" xml:space="preserve">
+    <value>Tripulación de escolta naval</value>
+  </data>
+  <data name="MultiPurposeSeaplane2" xml:space="preserve">
+    <value>Hidroavión polivalente / Hidrobombardero</value>
+  </data>
+  <data name="MultiPurposeSeaplane" xml:space="preserve">
+    <value>Hidroavión polivalente / Hidrocaza</value>
+  </data>
+  <data name="MidgetSubmarine" xml:space="preserve">
+    <value>Submarino enano</value>
+  </data>
+  <data name="MaintenanceTeam" xml:space="preserve">
+    <value>Equipo de mantenimiento</value>
+  </data>
+  <data name="MachineTools" xml:space="preserve">
+    <value>Instalación de reparación naval</value>
+  </data>
+  <data name="CarrierBasedAircraft" xml:space="preserve">
+    <value>Aeronave embarcada</value>
+  </data>
+</root>

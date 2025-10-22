@@ -652,12 +652,6 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Log_PlayTime" xml:space="preserve">
     <value>プレイ時間</value>
   </data>
-  <data name="checkBoxUseSecretaryIconForRPC" xml:space="preserve">
-    <value>秘書のアイコンをゲーム画像として使用</value>
-  </data>
-  <data name="checkBoxUseSecretaryIconForRPCToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
     <value>TsunDb送信を有効にする</value>
   </data>
@@ -798,5 +792,44 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   </data>
   <data name="Notification_Training" xml:space="preserve">
     <value>艦娘訓練終了</value>
+  </data>
+  <data name="DataSubmission_BonodereIntegration" xml:space="preserve">
+    <value>Bonodere統合</value>
+  </data>
+  <data name="DataSubmission_LoggedInAs" xml:space="preserve">
+    <value>ログイン名</value>
+  </data>
+  <data name="DataSubmission_Login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="DataSubmission_Logout" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="DataSubmission_Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="DataSubmission_Username" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="DataSubmission_PrivacyPolicy" xml:space="preserve">
+    <value>プライバシーポリシー</value>
+  </data>
+  <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
+    <value>データ提出に関するFAQ</value>
+  </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>簡体中国語</value>
+  </data>
+  <data name="Language_Spanish" xml:space="preserve">
+    <value>スペイン語</value>
+  </data>
+  <data name="Control_DiscordRPC_Icon" xml:space="preserve">
+    <value>Discord RPCアイコン：</value>
+  </data>
+  <data name="Control_DiscordRPC_Default" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
+    <value>秘書艦</value>
   </data>
 </root>

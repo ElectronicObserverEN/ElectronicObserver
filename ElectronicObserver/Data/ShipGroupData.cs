@@ -9,9 +9,9 @@ using System.Windows.Forms;
 using Avalonia.Collections;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Storage;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

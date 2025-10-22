@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserverTypes;
 using MessagePack;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;

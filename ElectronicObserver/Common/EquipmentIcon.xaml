@@ -3,7 +3,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	x:Name="Root"
@@ -85,6 +85,9 @@
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SmokeGenerator}" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.BarrageBalloon}" Value="{StaticResource EquipmentIconType.BarrageBalloon}" />
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterJet}" Value="{StaticResource EquipmentIconType.LandBasedFighterJet}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterShinden}" Value="{StaticResource EquipmentIconType.LandBasedFighterShinden}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.NightBomber}" Value="{StaticResource EquipmentIconType.NightBomber}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.JetBomberHo229}" Value="{StaticResource EquipmentIconType.JetBomberHo229}" />
 				<markup:Case Value="{StaticResource EquipmentIconType.Unknown}" />
 			</markup:Switch>
 		</Image.Source>

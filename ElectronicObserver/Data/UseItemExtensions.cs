@@ -1,4 +1,4 @@
-﻿using ElectronicObserverTypes;
+﻿using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data;
 
@@ -72,6 +72,8 @@ public static class UseItemExtensions
 	    UseItemId.SeaColoredRibbon => HeadquartersResources.SeaColoredRibbon,
 	    UseItemId.WhiteSash => HeadquartersResources.WhiteSash,
 	    UseItemId.LatestOverseasWarshipTechnology => HeadquartersResources.LatestOverseasWarshipTechnology,
+	    UseItemId.NightSkilledCrewMember => HeadquartersResources.NightSkilledCrewMember,
+	    UseItemId.SpecialAviationRation => HeadquartersResources.SpecialAviationRation,
 	    _ => ConstantsRes.Unknown,
     };
 

@@ -4,17 +4,17 @@ namespace ElectronicObserver.Avalonia.ExpeditionCalculator;
 
 public partial class ExpeditionScoreWeights : ObservableObject
 {
-	[ObservableProperty] private int _fuel = 1;
-	[ObservableProperty] private int _ammo = 1;
-	[ObservableProperty] private int _steel = 1;
-	[ObservableProperty] private int _bauxite = 1;
+	[ObservableProperty] public partial int Fuel { get; set; } = 1;
+	[ObservableProperty] public partial int Ammo { get; set; } = 1;
+	[ObservableProperty] public partial int Steel { get; set; } = 1;
+	[ObservableProperty] public partial int Bauxite { get; set; } = 1;
 
-	[ObservableProperty] private int _instantRepair = 100;
-	[ObservableProperty] private int _instantConstruction;
-	[ObservableProperty] private int _developmentMaterial;
-	[ObservableProperty] private int _improveMaterial;
-	[ObservableProperty] private int _furnitureBoxSmall;
-	[ObservableProperty] private int _furnitureBoxMedium;
-	[ObservableProperty] private int _furnitureBoxLarge;
-	[ObservableProperty] private int _moraleFoodIrako;
+	[ObservableProperty] public partial int InstantRepair { get; set; } = 100;
+	[ObservableProperty] public partial int InstantConstruction { get; set; }
+	[ObservableProperty] public partial int DevelopmentMaterial { get; set; }
+	[ObservableProperty] public partial int ImproveMaterial { get; set; }
+	[ObservableProperty] public partial int FurnitureBoxSmall { get; set; }
+	[ObservableProperty] public partial int FurnitureBoxMedium { get; set; }
+	[ObservableProperty] public partial int FurnitureBoxLarge { get; set; }
+	[ObservableProperty] public partial int MoraleFoodIrako { get; set; }
 }

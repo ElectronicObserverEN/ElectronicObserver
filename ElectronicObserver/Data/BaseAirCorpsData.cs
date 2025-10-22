@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data;
 
@@ -36,14 +36,15 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 	public int Distance { get; private set; }
 
 	///<summary>
-	///LBAS bonus distance
+	/// bonus distance
 	///</summary>
-	public int Bonus_Distance { get; private set; }
+	public int BonusDistance { get; private set; }
 
 	///<summary>
-	///LBAS base distance
+	/// base distance
 	///</summary>
-	public int Base_Distance { get; private set; }
+	public int BaseDistance { get; private set; }
+
 	/// <summary>
 	/// 行動指示
 	/// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
@@ -118,15 +119,15 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 				Name = (string)data.api_name;
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
 				ActionKind = (AirBaseActionKind)data.api_action_kind;
-				Base_Distance = (int)data.api_distance.api_base;
-				Bonus_Distance = (int)data.api_distance.api_bonus;
+				BaseDistance = (int)data.api_distance.api_base;
+				BonusDistance = (int)data.api_distance.api_bonus;
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
 
 			case "api_req_air_corps/change_deployment_base":
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-				Base_Distance = (int)data.api_distance.api_base;
-				Bonus_Distance = (int)data.api_distance.api_bonus;
+				BaseDistance = (int)data.api_distance.api_base;
+				BonusDistance = (int)data.api_distance.api_bonus;
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
 
@@ -146,8 +147,8 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 				}
 
 				Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-				Base_Distance = (int)data.api_distance.api_base;
-				Bonus_Distance = (int)data.api_distance.api_bonus;
+				BaseDistance = (int)data.api_distance.api_base;
+				BonusDistance = (int)data.api_distance.api_bonus;
 			}
 			break;
 
@@ -155,6 +156,9 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
 
+			case "api_port/airCorpsCondRecoveryWithTimer":
+				SetSquadrons(apiname, data.api_plane_info);
+				break;
 
 			case "api_port/port":
 				// Reset Strike points after the sortie
@@ -173,9 +177,9 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 
 			if (!Squadrons.ContainsKey(id))
 			{
-				var a = new BaseAirCorpsSquadron();
-				a.LoadFromResponse(apiname, elem);
-				Squadrons.Add(id, a);
+				var squadron = new BaseAirCorpsSquadron();
+				squadron.LoadFromResponse(apiname, elem);
+				Squadrons.Add(id, squadron);
 
 			}
 			else

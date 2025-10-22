@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 using KancolleProgress.ViewModels;
 
 namespace KancolleProgress;

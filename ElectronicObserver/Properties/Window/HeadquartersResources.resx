@@ -443,4 +443,10 @@
   <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
     <value>海外艦最新技術</value>
   </data>
+  <data name="NightSkilledCrewMember" xml:space="preserve">
+    <value>夜間熟練搭乗員</value>
+  </data>
+  <data name="SpecialAviationRation" xml:space="preserve">
+    <value>航空特別増加食</value>
+  </data>
 </root>

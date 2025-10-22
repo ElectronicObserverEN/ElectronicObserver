@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
-using ElectronicObserver.Notifier;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_mission;
 

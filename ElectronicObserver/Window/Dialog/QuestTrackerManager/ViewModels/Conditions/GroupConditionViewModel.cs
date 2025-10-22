@@ -4,22 +4,24 @@ using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
 public partial class GroupConditionViewModel : ObservableObject, IConditionViewModel
 {
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+
 	public bool CanBeRemoved { get; set; } = true;
 	public Visibility RemoveButtonVisibility => CanBeRemoved.ToVisibility();
 
 	public GroupConditionModel Model { get; }
-
 	public IEnumerable<IConditionViewModel?> Conditions { get; set; }
 
 	public IEnumerable<Operator> Operators { get; }
@@ -44,66 +46,53 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 		_ => condition.Display
 	};
 
-	public GroupConditionViewModel(GroupConditionModel model)
+	public GroupConditionViewModel(GroupConditionModel model, ShipSelectorFactory shipSelectorViewModel)
 	{
-		Operators = Enum.GetValues(typeof(Operator)).Cast<Operator>();
+		ShipSelectorFactory = shipSelectorViewModel;
+
+		Operators = Enum.GetValues<Operator>();
 
 #pragma warning disable CS0618 // Skip obsolete conditions
-		ConditionTypes = Enum.GetValues<ConditionType>()
+		ConditionTypes = Enum
+			.GetValues<ConditionType>()
 			.Where(c => c is not ConditionType.Ship)
 			.Where(c => c is not ConditionType.PartialShip);
 #pragma warning restore CS0618 // 
 
 		Model = model;
-
 		GroupOperator = Model.GroupOperator;
 		Conditions = CreateViewModels(Model);
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(GroupOperator)) return;
 
 			Model.GroupOperator = GroupOperator;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(Display)) return;
 
 			KCDatabase.Instance.Quest.OnQuestUpdated();
 		};
 
-		Model.Conditions.CollectionChanged += (_, e) =>
+		Model.Conditions.CollectionChanged += (_, _) =>
 		{
 			Conditions = CreateViewModels(Model);
 		};
 	}
 
-	private IEnumerable<IConditionViewModel?> CreateViewModels(GroupConditionModel model)
+	private List<IConditionViewModel> CreateViewModels(GroupConditionModel model)
 	{
-		List<IConditionViewModel?> conditions = model.Conditions.Select(c => c switch
-		{
-			GroupConditionModel g => (IConditionViewModel)new GroupConditionViewModel(g),
-#pragma warning disable CS0618 // needed for backward compatibility
-			ShipConditionModel s => new ShipConditionViewModel(s),
-#pragma warning restore CS0618
-			ShipTypeConditionModel g => new ShipTypeConditionViewModel(g),
-#pragma warning disable CS0618 // needed for backward compatibility
-			PartialShipConditionModel p => new PartialShipConditionViewModel(p),
-#pragma warning restore CS0618
-			AllowedShipTypesConditionModel a => new AllowedShipTypesConditionViewModel(a),
-			ShipPositionConditionModel p => new ShipPositionConditionViewModel(p),
-			ShipNationalityConditionModel n => new ShipNationalityConditionViewModel(n),
-			ShipConditionModelV2 s => new ShipConditionViewModelV2(s),
-			PartialShipConditionModelV2 p => new PartialShipConditionViewModelV2(p),
-			_ => null
-		}).ToList();
+		List<IConditionViewModel> conditions = model.Conditions
+			.Select(CreateViewModel)
+			.OfType<IConditionViewModel>()
+			.ToList();
 
-		foreach (IConditionViewModel? condition in conditions)
+		foreach (IConditionViewModel condition in conditions)
 		{
-			if (condition is null) continue;
-
-			condition.PropertyChanged += (sender, args) =>
+			condition.PropertyChanged += (_, args) =>
 			{
 				if (args.PropertyName is not nameof(IConditionViewModel.Display)) return;
 
@@ -113,6 +102,24 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 
 		return conditions;
 	}
+
+	private IConditionViewModel? CreateViewModel(ICondition? condition) => condition switch
+	{
+		GroupConditionModel g => new GroupConditionViewModel(g, ShipSelectorFactory),
+		ShipTypeConditionModel g => new ShipTypeConditionViewModel(g),
+		AllowedShipTypesConditionModel a => new AllowedShipTypesConditionViewModel(a),
+		ShipPositionConditionModel p => new ShipPositionConditionViewModel(p, ShipSelectorFactory),
+		ShipNationalityConditionModel n => new ShipNationalityConditionViewModel(n),
+		ShipConditionModelV2 s => new ShipConditionViewModelV2(s, ShipSelectorFactory),
+		PartialShipConditionModelV2 p => new PartialShipConditionViewModelV2(p, ShipSelectorFactory),
+
+#pragma warning disable CS0618 // needed for backward compatibility
+		ShipConditionModel s => new ShipConditionViewModel(s, ShipSelectorFactory),
+		PartialShipConditionModel p => new PartialShipConditionViewModel(p, ShipSelectorFactory),
+#pragma warning restore CS0618
+
+		_ => null,
+	};
 
 	[RelayCommand]
 	private void AddCondition()

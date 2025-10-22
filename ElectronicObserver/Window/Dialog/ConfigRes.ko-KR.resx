@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddVersionToFile" xml:space="preserve">
+    <value>버전명을 파일에 추가</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>적용</value>
+  </data>
+  <data name="ApplyEffectsOfBox" xml:space="preserve">
+    <value>현재 텍스트 박스 내용을 적용</value>
+  </data>
+  <data name="ApplyingRegistry" xml:space="preserve">
+    <value>레지스트리에 등록합니다. 괜찮습니까?
+＊완전히 적용하려면 재시작이 필요합니다.</value>
+  </data>
+  <data name="ApplyonOK" xml:space="preserve">
+    <value>＊각 창에서 OK를 누른 시점부터 적용됩니다.</value>
+  </data>
+  <data name="ApplyRegistryHint" xml:space="preserve">
+    <value>레지스트리에 대한 설정을 적용합니다.
+아래의 [OK] 버튼으로는 반영되지 않으니 주의하세요.</value>
+  </data>
+  <data name="ApplyStyleSheet" xml:space="preserve">
+    <value>스타일 시트를 적용</value>
+  </data>
+  <data name="ApplyStyleSheetHint" xml:space="preserve">
+    <value>칸코레 화면만 표시할 수 있도록 합니다.
+환경에 따라서 표시가 난잡해집니다. 그 경우에는 비활성화해 주세요.</value>
+  </data>
+  <data name="Arsenal" xml:space="preserve">
+    <value>공창</value>
+  </data>
+  <data name="AutoUpdate" xml:space="preserve">
+    <value>자동 갱신</value>
+  </data>
+  <data name="AutoUpdateHint" xml:space="preserve">
+    <value>함선 데이터를 자동 갱신할지 설정합니다.</value>
+  </data>
+  <data name="Autumn25" xml:space="preserve">
+    <value>2-5식(추)</value>
+  </data>
+  <data name="Behavior" xml:space="preserve">
+    <value>동작</value>
+  </data>
+  <data name="BrowserVersion" xml:space="preserve">
+    <value>브라우저 버전: </value>
+  </data>
+  <data name="BrowserVersionHint" xml:space="preserve">
+    <value>내장 브라우저의 버전을 설정합니다.
+7000은 IE7, 8000은 IE8, 11000이 IE11 상당입니다.
+버전에 따라 동작이 변할 가능성이 있습니다.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="ClearingRegistry" xml:space="preserve">
+    <value>레지스트리를 삭제합니다. 괜찮습니까?
+＊완전히 적용하려면 재시작이 필요합니다.</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>통신</value>
+  </data>
+  <data name="ConfirmRefreshHint" xml:space="preserve">
+    <value>활성화 시, 새로고침할 때에 확인 창을 표시합니다.
+실수 방지용으로 사용하세요.</value>
+  </data>
+  <data name="ConnectionPort" xml:space="preserve">
+    <value>포트 번호를 설정합니다.</value>
+  </data>
+  <data name="ConstructEnd" xml:space="preserve">
+    <value>건조 완료</value>
+  </data>
+  <data name="CorruptLogs" xml:space="preserve">
+    <value>＊함부로 변경하면 설정・기록을 불러올 수 없어질 가능성이 있습니다.</value>
+  </data>
+  <data name="CreationComplete" xml:space="preserve">
+    <value>작성 완료</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>데일리</value>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>디버그</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="DeleteRegistryHint" xml:space="preserve">
+    <value>레지스트리를 삭제합니다.</value>
+  </data>
+  <data name="DockEnd" xml:space="preserve">
+    <value>입거 완료</value>
+  </data>
+  <data name="EnableBrowser" xml:space="preserve">
+    <value>실행 시 페이지 로드</value>
+  </data>
+  <data name="EncodingHint" xml:space="preserve">
+    <value>입출력할 파일의 인코딩을 설정합니다.
+＊주의＊ 변경하면 지금까지의 설정이나 데이터를 불러오지 못하게 될 가능성이 있습니다.
+주의해서 변경해주세요.</value>
+  </data>
+  <data name="Enocding" xml:space="preserve">
+    <value>문자 코드</value>
+  </data>
+  <data name="ExpedReturn" xml:space="preserve">
+    <value>원정 귀환</value>
+  </data>
+  <data name="FailedClearRegistry" xml:space="preserve">
+    <value>레지스트리를 삭제하지 못했습니다.</value>
+  </data>
+  <data name="FailedLoadRegistry" xml:space="preserve">
+    <value>레지스트리를 읽어들이지 못했습니다.</value>
+  </data>
+  <data name="FailedSaveProxy" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트 저장에 실패했습니다.</value>
+  </data>
+  <data name="FailedSaveRegistry" xml:space="preserve">
+    <value>레지스트리 작성에 실패했습니다.</value>
+  </data>
+  <data name="FatigueRestore" xml:space="preserve">
+    <value>피로 회복</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>필터</value>
+  </data>
+  <data name="FitHint" xml:space="preserve">
+    <value>활성화 시, 화면에 맞춰 자동으로 확대 및 축소합니다.</value>
+  </data>
+  <data name="FlashModeHint" xml:space="preserve">
+    <value>Flash의 모드를 설정합니다.
+디폴트 값은 opaque 입니다.
+direct로 하면 성능이 향상될 가능성이 있습니다.</value>
+  </data>
+  <data name="FlashQuality" xml:space="preserve">
+    <value>Flash 품질 설정</value>
+  </data>
+  <data name="FolderSearch" xml:space="preserve">
+    <value>폴더 참조</value>
+  </data>
+  <data name="GPURendering" xml:space="preserve">
+    <value>GPU 렌더링</value>
+  </data>
+  <data name="GPURenderingHint" xml:space="preserve">
+    <value>내장 브라우저에서 GPU 렌더링을 사용할지 설정합니다.
+환경에 따라 처리가 빨라집니다.</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>그룹</value>
+  </data>
+  <data name="LayoutFile" xml:space="preserve">
+    <value>레이아웃 파일</value>
+  </data>
+  <data name="LayoutSearch" xml:space="preserve">
+    <value>레이아웃 파일 열기</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>로그</value>
+  </data>
+  <data name="LoggingLevel" xml:space="preserve">
+    <value>로그 출력 레벨</value>
+  </data>
+  <data name="LoginURL" xml:space="preserve">
+    <value>로그인 URL</value>
+  </data>
+  <data name="LosFormula" xml:space="preserve">
+    <value>색적 능력 계산식</value>
+  </data>
+  <data name="Mainfont" xml:space="preserve">
+    <value>메인 폰트</value>
+  </data>
+  <data name="MayIncreaseSize" xml:space="preserve">
+    <value>＊사이즈가 매우 커질 가능성이 있습니다.</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>모드</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>먼슬리</value>
+  </data>
+  <data name="MoraleBorder" xml:space="preserve">
+    <value>피로도 보더</value>
+  </data>
+  <data name="New25" xml:space="preserve">
+    <value>2-5신추간이식</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>알람</value>
+  </data>
+  <data name="NotificationSetting" xml:space="preserve">
+    <value>알람 설정...</value>
+  </data>
+  <data name="Old25" xml:space="preserve">
+    <value>(구)2-5식</value>
+  </data>
+  <data name="OneTimeOther" xml:space="preserve">
+    <value>1회, 그 외</value>
+  </data>
+  <data name="OutputProxyScript" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트 출력...</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>포트</value>
+  </data>
+  <data name="ProxyScriptSaved" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트를 저장하고, 설정용 URL을 클립보드에 복사했습니다.
+소정의 위치에 붙여넣어 주세요.</value>
+  </data>
+  <data name="QualitySelect" xml:space="preserve">
+    <value>품질</value>
+  </data>
+  <data name="QualitySelectHint" xml:space="preserve">
+    <value>Flash의 품질을 설정합니다.
+디폴트 값은 High 입니다.</value>
+  </data>
+  <data name="Quests" xml:space="preserve">
+    <value>임무</value>
+  </data>
+  <data name="Registry" xml:space="preserve">
+    <value>레지스트리</value>
+  </data>
+  <data name="RegSystemProxyHint" xml:space="preserve">
+    <value>프록시를 시스템에 등록하고 자동으로 통신할 수 있게 합니다.
+프록시 설정이 필요 없어지지만, 부작용이 있으니 주의해 주세요.
+상세한 정보는 온라인 도움말을 참조해 주세요.</value>
+  </data>
+  <data name="SaveAllConnectionFiles" xml:space="preserve">
+    <value>모든 통신 파일을 저장합니다.</value>
+  </data>
+  <data name="SaveAPIRequests" xml:space="preserve">
+    <value>API Request를 저장</value>
+  </data>
+  <data name="SaveAPIResponses" xml:space="preserve">
+    <value>API Response를 저장</value>
+  </data>
+  <data name="SaveErrorHint" xml:space="preserve">
+    <value>에러가 발생했을 때 기록을 남깁니다.
+기록된 파일을 보내주시면 버그 수정에 도움이 됩니다.
+디폴트로는 실행 폴더 내 ErrorReport 폴더에 저장됩니다.</value>
+  </data>
+  <data name="SaveErrorReport" xml:space="preserve">
+    <value>에러 보고서를 저장</value>
+  </data>
+  <data name="SaveLocation" xml:space="preserve">
+    <value>저장 위치</value>
+  </data>
+  <data name="SaveLog" xml:space="preserve">
+    <value>로그를 파일에 저장</value>
+  </data>
+  <data name="SavePathDoesNotExist" xml:space="preserve">
+    <value>지정한 폴더는 존재하지 않습니다.</value>
+  </data>
+  <data name="SaveProxyScriptDialog" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트를 저장</value>
+  </data>
+  <data name="SaveReceivedData" xml:space="preserve">
+    <value>통신 내용을 저장</value>
+  </data>
+  <data name="SaveSWF" xml:space="preserve">
+    <value>SWF 파일을 저장</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>스크린샷</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="ShortenHPHint" xml:space="preserve">
+    <value>HP바를 단축해서 공간을 절약합니다.</value>
+  </data>
+  <data name="ShowNextXP" xml:space="preserve">
+    <value>다음 레벨 Exp 표시</value>
+  </data>
+  <data name="ShowStatusbarHint" xml:space="preserve">
+    <value>하부 스테이터스 바(소속함 수 등)를 표시할지 설정합니다.
+약간이지만 표시 행 수를 늘릴 수 있습니다.</value>
+  </data>
+  <data name="StayOnTop" xml:space="preserve">
+    <value>가장 앞에 표시</value>
+  </data>
+  <data name="Subfont" xml:space="preserve">
+    <value>서브 폰트</value>
+  </data>
+  <data name="TaihaAdvance" xml:space="preserve">
+    <value>대파 진격</value>
+  </data>
+  <data name="TakeEffectOnRestart" xml:space="preserve">
+    <value>＊재기동 후에 반영됩니다.</value>
+  </data>
+  <data name="TryAgainAfterConnect" xml:space="preserve">
+    <value>칸코레에 접속한 후 조작해 주세요.</value>
+  </data>
+  <data name="UnderWayOnly" xml:space="preserve">
+    <value>수행 중만 표시</value>
+  </data>
+  <data name="Unimplemented" xml:space="preserve">
+    <value>＊미실장＊</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>월간</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>윈도우</value>
+  </data>
+  <data name="ZoomRate" xml:space="preserve">
+    <value>줌 배율</value>
+  </data>
+  <data name="ZoomToFit" xml:space="preserve">
+    <value>맞춤</value>
+  </data>
+  <data name="AccessKey" xml:space="preserve">
+    <value>액세스 키:</value>
+  </data>
+  <data name="BlinkAtMaximum" xml:space="preserve">
+    <value>함선/장비가 꽉 찼을 때 점멸</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>데이터 베이스</value>
+  </data>
+  <data name="DatabaseDescription" xml:space="preserve">
+    <value>「칸코레 통계 데이터 베이스」에 데이터를 송신할 수 있습니다.
+상세 설명과 엑세스 키의 취득은 아래 사이트를 참조해 주세요. (외부 브라우저가 열립니다.)</value>
+  </data>
+  <data name="SendData" xml:space="preserve">
+    <value>칸코레 통계 데이터 베이스에 보내기</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>테마</value>
+  </data>
+  <data name="ThemeRestartWarning" xml:space="preserve">
+    <value>테마 변경은 재시작 후 전부 반영됩니다.</value>
+  </data>
+  <data name="AirSuperiorityMethod" xml:space="preserve">
+    <value>제공 전력 계산식: </value>
+  </data>
+  <data name="DisplayEquipLevels" xml:space="preserve">
+    <value>개수 레벨・숙련도를 표시</value>
+  </data>
+  <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
+    <value>장비의 개수 레벨과 함재기 숙련도를 표시할지 설정합니다.</value>
+  </data>
+  <data name="RecordAutoSaving_Daily" xml:space="preserve">
+    <value>하루마다</value>
+  </data>
+  <data name="RecordAutoSaving_Disable" xml:space="preserve">
+    <value>비활성화</value>
+  </data>
+  <data name="RecordAutoSaving_Hourly" xml:space="preserve">
+    <value>1시간마다</value>
+  </data>
+  <data name="LoggingInterval" xml:space="preserve">
+    <value>데이터 자동 저장:</value>
+  </data>
+  <data name="Formula33" xml:space="preserve">
+    <value>판정식(33)</value>
+  </data>
+  <data name="BlinkAtCompletion" xml:space="preserve">
+    <value>완료 시에 점멸</value>
+  </data>
+  <data name="CompassCandidate" xml:space="preserve">
+    <value>한 번에 표시할 후보 수: </value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>파일명</value>
+  </data>
+  <data name="FleetBlinkAtCompletion" xml:space="preserve">
+    <value>타이머 완료 시에 점멸</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLock" xml:space="preserve">
+    <value>잠금 중에도 탭 닫기 허용</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>장면</value>
+  </data>
+  <data name="UseSystemProxy" xml:space="preserve">
+    <value>시스템 프록시 이용</value>
+  </data>
+  <data name="UseSystemProxyTooltip" xml:space="preserve">
+    <value>시스템 프록시 설정을 이용합니다.</value>
+  </data>
+  <data name="BGMPlayer_Enabled" xml:space="preserve">
+    <value>BGM 플레이어 활성화</value>
+  </data>
+  <data name="BGMPlayer_Enabled_Tooltip" xml:space="preserve">
+    <value>현재 화면에 맞춰 커스텀 BGM을 재생할 수 있는 기능입니다.</value>
+  </data>
+  <data name="BGMPlayer_OpenMusicFile" xml:space="preserve">
+    <value>음악 파일 열기</value>
+  </data>
+  <data name="BGMPlayer_Settings" xml:space="preserve">
+    <value>BGM 설정</value>
+  </data>
+  <data name="BGMPlayer_SetVolumeAll" xml:space="preserve">
+    <value>음량 일괄 적용</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>음소거 동기화</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute_Tooltip" xml:space="preserve">
+    <value>브라우저 음소거와 연동할지 설정합니다.</value>
+  </data>
+  <data name="Lead" xml:space="preserve">
+    <value>선두: </value>
+  </data>
+  <data name="Loop" xml:space="preserve">
+    <value>루프</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>패스: </value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>음량: </value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="FailWriteRegistry" xml:space="preserve">
+    <value>브라우저 버전을 레지스트리에 작성하지 못했습니다.</value>
+  </data>
+  <data name="WriteRegistry" xml:space="preserve">
+    <value>브라우저 버전을 레지스트리에 작성하였습니다. 삭제하고 싶은 경우엔「설정→서브 윈도우→브라우저2→삭제」를 눌러주세요.</value>
+  </data>
+  <data name="AnchorageRepairFinish" xml:space="preserve">
+    <value>정박지 수리</value>
+  </data>
+  <data name="AlertOnError" xml:space="preserve">
+    <value>에러음 울리기</value>
+  </data>
+  <data name="AllowUserToSortRows" xml:space="preserve">
+    <value>정렬 순 변경 허용</value>
+  </data>
+  <data name="ApplyRegistry" xml:space="preserve">
+    <value>적용</value>
+  </data>
+  <data name="CandidateDisplayCount" xml:space="preserve">
+    <value>한 번에 표시할 후보 수: </value>
+  </data>
+  <data name="DeleteRegistry" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>입거</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
+    <value>양방 표시</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Hidden" xml:space="preserve">
+    <value>비표시</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovOnly" xml:space="preserve">
+    <value>개수 레벨만</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovPrio" xml:space="preserve">
+    <value>개수 레벨 우선</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfOnly" xml:space="preserve">
+    <value>함재기 숙련도만</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfPrio" xml:space="preserve">
+    <value>함재기 숙련도 우선</value>
+  </data>
+  <data name="HiddenJSON" xml:space="preserve">
+    <value>(비표시입니다. 디버그 메뉴를 활성화 해주세요.)</value>
+  </data>
+  <data name="ProgressAutoSaving" xml:space="preserve">
+    <value>임무 진척도 자동 저장: </value>
+  </data>
+  <data name="ProgressAutoSaving_Daily" xml:space="preserve">
+    <value>하루마다</value>
+  </data>
+  <data name="ProgressAutoSaving_Disable" xml:space="preserve">
+    <value>비활성화</value>
+  </data>
+  <data name="ProgressAutoSaving_Hourly" xml:space="preserve">
+    <value>1시간마다</value>
+  </data>
+  <data name="RecordAutoSaving" xml:space="preserve">
+    <value>녹화 자동 저장: </value>
+  </data>
+  <data name="ShipNameSortMethod" xml:space="preserve">
+    <value>함명 열의 정렬 순:</value>
+  </data>
+  <data name="ShipNameSortMethod_Alphabet" xml:space="preserve">
+    <value>가나다 순</value>
+  </data>
+  <data name="ShipNameSortMethod_Number" xml:space="preserve">
+    <value>도감 번호 순</value>
+  </data>
+  <data name="ToolMenuAlignment_Bottom" xml:space="preserve">
+    <value>하</value>
+  </data>
+  <data name="ToolMenuAlignment_Invisible" xml:space="preserve">
+    <value>비표시</value>
+  </data>
+  <data name="ToolMenuAlignment_Left" xml:space="preserve">
+    <value>좌</value>
+  </data>
+  <data name="ToolMenuAlignment_Right" xml:space="preserve">
+    <value>우</value>
+  </data>
+  <data name="ToolMenuAlignment_Top" xml:space="preserve">
+    <value>상</value>
+  </data>
+  <data name="ToolMenuDockStyle" xml:space="preserve">
+    <value>도구 메뉴 배치: </value>
+  </data>
+  <data name="UI_BarColorMorphing" xml:space="preserve">
+    <value>바의 색을 매끄럽게 변화</value>
+  </data>
+  <data name="PowerEngagementForm" xml:space="preserve">
+    <value>위력 표시 교전 형태: </value>
+  </data>
+  <data name="NewFormula33" xml:space="preserve">
+    <value>신판정식(33)</value>
+  </data>
+  <data name="TextSearch" xml:space="preserve">
+    <value>텍스트 검색</value>
+  </data>
+  <data name="TextSearchToolTip" xml:space="preserve">
+    <value>드롭다운 메뉴에서 폰트를 찾는 대신, 이름을 적어서 검색할 수 있게했습니다.
+이 기능을 활성화하면 로컬라이제이션이 정상적으로 기능하지 않을 수 있습니다.</value>
+  </data>
+  <data name="ShipTraining" xml:space="preserve">
+    <value>칸무스 훈련</value>
+  </data>
+  <data name="BrowserFont" xml:space="preserve">
+    <value>브라우저 폰트</value>
+  </data>
+  <data name="MatchMainFont" xml:space="preserve">
+    <value>메인 폰트에 맞춤</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>데이터</value>
+  </data>
+</root>

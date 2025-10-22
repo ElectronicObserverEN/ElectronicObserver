@@ -4,16 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data;
-using ElectronicObserver.Database;
+using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Dialogs;
 using ElectronicObserver.Services;
@@ -23,11 +26,11 @@ using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
-using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.DataSubmission;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.Notification;
@@ -71,8 +74,8 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
 using Microsoft.Extensions.DependencyInjection;
@@ -235,6 +238,8 @@ public partial class App
 	{
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
+			.AddSingleton<IConfigurationConnection>(Configuration.Config.Connection)
+			.AddSingleton<IConfigurationUi>(Configuration.Config.UI)
 			.AddDialogServices()
 			// config translations
 			.AddSingleton<ConfigurationTranslationViewModel>()
@@ -261,6 +266,7 @@ public partial class App
 			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
 			.AddSingleton<ConfigurationJsonTranslationViewModel>()
 			.AddSingleton<ConfigurationShipTrainingTranslationViewModel>()
+			.AddSingleton<ConfigurationDataSubmissionTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
@@ -306,8 +312,9 @@ public partial class App
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
+			.AddSingleton<BonodereSubmissionTranslationViewModel>()
+			.AddSingleton<SenkaLeaderboardTranslationViewModel>()
 			// tools
-			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
 			.AddSingleton<PhaseFactory>()
@@ -316,14 +323,19 @@ public partial class App
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.AddSingleton<TransliterationService>()
+			.AddSingleton<GameResourceHelper>()
 			.AddSingleton<GameAssetDownloaderService>()
+			.AddSingleton<ImageLoadService>()
 			.AddSingleton<FileService>()
-			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<SortieRecordMigrationService>()
+			.AddSingleton<SenkaLeaderboardManager>()
+			.AddSingleton<BonodereSubmissionService>()
+			.AddSingleton<IClipboardService, ClipboardService>()
+			.AddSingleton<ShipSelectorFactory>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
@@ -468,6 +480,12 @@ public partial class App
 			.Configure<ExpeditionRecordViewerWindow>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<SenkaLeaderboardManager>()
+			.Property(w => w.CurrentCutoffData.DataGridViewModel.ColumnProperties)
+			.Property(w => w.CurrentCutoffData.DataGridViewModel.SortDescriptions)
+			.Property(w => w.CurrentCutoffData.PagingViewModel.ItemsPerPage);
 
 		return tracker;
 	}

@@ -166,13 +166,15 @@
 				Content="ｘ"
 				/>
 
-			<ComboBox ItemsSource="{Binding Equipment}" SelectedItem="{Binding SelectedEquipment}">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding NameEN}" />
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
+			<Button Command="{Binding OpenEquipmentPickerCommand}" ToolTip="{Binding SelectedEquipment.NameEN}">
+				<Button.Content>
+					<TextBlock
+						MaxWidth="150"
+						Text="{Binding SelectedEquipment.NameEN}"
+						TextTrimming="CharacterEllipsis"
+						/>
+				</Button.Content>
+			</Button>
 
 			<controls:NumberBox
 				Maximum="{Binding Model.Count}"

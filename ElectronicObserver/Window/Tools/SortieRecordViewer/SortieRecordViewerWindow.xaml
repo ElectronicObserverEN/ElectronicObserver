@@ -10,7 +10,7 @@
 	xmlns:exportProgress="clr-namespace:ElectronicObserver.Common.ContentDialogs.ExportProgress"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:mocks="clr-namespace:ElectronicObserverTypes.Mocks;assembly=ElectronicObserverTypes"
+	xmlns:mocks="clr-namespace:ElectronicObserver.Core.Types.Mocks;assembly=ElectronicObserver.Core"
 	xmlns:notification="clr-namespace:ElectronicObserver.Common.ContentDialogs.Notification"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
 	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
@@ -292,18 +292,18 @@
 					<DataGridTemplateColumn Header="{Binding DataContext.SortieRecordViewer.Fleet, Source={StaticResource Proxy}}">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<ItemsControl ItemsSource="{Binding Fleet.MembersInstance}">
+								<ItemsControl ItemsSource="{Binding Fleet.Ships}">
 									<ItemsControl.ItemsPanel>
 										<ItemsPanelTemplate>
 											<StackPanel Orientation="Horizontal" />
 										</ItemsPanelTemplate>
 									</ItemsControl.ItemsPanel>
 									<ItemsControl.ItemTemplate>
-										<DataTemplate DataType="{x:Type mocks:ShipDataMock}">
+										<DataTemplate DataType="{x:Type local:SortieRecordShipViewModel}">
 											<Image
 												Width="100"
 												Margin="2 0"
-												Source="{Binding MasterShip.ShipId, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+												Source="{Binding ShipImageSource, IsAsync=True}"
 												Stretch="Uniform"
 												/>
 										</DataTemplate>

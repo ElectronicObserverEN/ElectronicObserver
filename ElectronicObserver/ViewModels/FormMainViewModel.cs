@@ -67,7 +67,6 @@ using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
-using ElectronicObserverTypes;
 using Jot;
 using MessagePack;
 using Microsoft.EntityFrameworkCore;
@@ -75,9 +74,15 @@ using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
+using AvalonDock.Controls;
+using ElectronicObserver.Core.Types;
+
+
 
 #if DEBUG
 using System.Text.Encodings.Web;
+using ElectronicObserver.TestData.Models;
 #endif
 
 namespace ElectronicObserver.ViewModels;
@@ -103,6 +108,7 @@ public partial class FormMainViewModel : ObservableObject
 	private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
 	private string IntegratePath => Path.ChangeExtension(LayoutPath, ".Integrate.json");
 
+	private int VolumeUpdateState { get; set; }
 	public bool NotificationsSilenced { get; set; }
 	private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 	public FontFamily Font { get; set; }
@@ -141,6 +147,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ShipGroupAvaloniaViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewer { get; }
+	public SenkaLeaderboardViewModel SenkaLeaderboardViewer { get; }
 
 	public DockViewModel Dock { get; }
 	public ArsenalViewModel Arsenal { get; }
@@ -148,6 +155,7 @@ public partial class FormMainViewModel : ObservableObject
 	public BaseAirCorpsViewModel BaseAirCorps { get; }
 
 	public HeadquartersViewModel Headquarters { get; }
+
 	public QuestViewModel Quest { get; }
 	public ExpeditionCheckViewModel ExpeditionCheck { get; }
 	public InformationViewModel FormInformation { get; }
@@ -253,6 +261,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
 		Views.Add(ShipTrainingPlanViewer);
+		SenkaLeaderboardViewer = Ioc.Default.GetRequiredService<SenkaLeaderboardManager>().CurrentCutoffData;
+		Views.Add(SenkaLeaderboardViewer);
 
 		Views.Add(Dock = new DockViewModel());
 		Views.Add(Arsenal = new ArsenalViewModel());
@@ -516,6 +526,21 @@ public partial class FormMainViewModel : ObservableObject
 
 		Configuration.Config.Life.LayoutFilePath = newLayoutPath;
 		SaveLayout(Window);
+	}
+
+	/// <summary>
+	/// It seems like when you try to open a view and nothing happens,
+	/// it's because the view is already open but located far off-screen? (left = 3000+)
+	/// Seems like windows can get randomly moved all over the place after turning your monitor on.
+	/// </summary>
+	[RelayCommand]
+	private void ResetFloatingWindows()
+	{
+		foreach (LayoutFloatingWindowControl window in DockingManager.FloatingWindows)
+		{
+			window.Left = 0;
+			window.Top = 0;
+		}
 	}
 
 	[RelayCommand]
@@ -1020,13 +1045,8 @@ public partial class FormMainViewModel : ObservableObject
 			await LoadAPIResponse("api_start2/getData");
 			await LoadAPIResponse("api_get_member/require_info");
 			await LoadAPIResponse("api_port/port");
+			await LoadAPIResponse("api_get_member/mapinfo");
 			await LoadAPIResponse("api_get_member/questlist");
-			/*await LoadAPIResponse("api_get_member/mapinfo");
-			await LoadAPIResponse("api_req_map/start_air_base");
-			await LoadAPIResponse("api_req_map/start");
-			await LoadAPIResponse("api_req_sortie/battle"); 
-			await LoadAPIResponse("api_req_sortie/battleresult");
-			await LoadAPIResponse("api_req_map/next");*/
 		}
 		catch (Exception ex)
 		{
@@ -1500,15 +1520,15 @@ public partial class FormMainViewModel : ObservableObject
 			await db.MasterShips.AddAsync(new(ship));
 		}
 
-		foreach (EquipmentDataMaster equipment in KCDatabase.Instance.MasterEquipments.Values)
+		foreach (IEquipmentDataMaster equipment in KCDatabase.Instance.MasterEquipments.Values)
 		{
-			await db.MasterEquipment.AddAsync(new(equipment));
+			await db.MasterEquipment.AddAsync(EquipmentDataMasterRecord.FromMasterEquipment(equipment));
 		}
 
 		await db.SaveChangesAsync();
 
-		List<TestData.Models.ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
-		List<TestData.Models.EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
+		List<ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
+		List<EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
 
 		JsonSerializerOptions options = new()
 		{
@@ -1681,6 +1701,11 @@ public partial class FormMainViewModel : ObservableObject
 		};
 		SetAnchorableProperties();
 		Topmost = c.Life.TopMost;
+
+		if (!c.Control.UseSystemVolume)
+		{
+			VolumeUpdateState = -1;
+		}
 	}
 
 	private void SetAnchorableProperties()
@@ -1790,36 +1815,35 @@ public partial class FormMainViewModel : ObservableObject
 			break;
 		}
 
-		/*
+		// todo: I'm not sure if that's still an issue, but I don't want to figure it out right now
 		// WMP コントロールによって音量が勝手に変えられてしまうため、前回終了時の音量の再設定を試みる。
 		// 10回試行してダメなら諦める(例外によるラグを防ぐため)
 		// 起動直後にやらないのはちょっと待たないと音量設定が有効にならないから
-		if (_volumeUpdateState != -1 && _volumeUpdateState < 10 && Utility.Configuration.Config.Control.UseSystemVolume)
+		if (VolumeUpdateState != -1 && VolumeUpdateState < 10 && Configuration.Config.Control.UseSystemVolume)
 		{
-
 			try
 			{
-				uint id = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
-				float volume = Utility.Configuration.Config.Control.LastVolume;
-				bool mute = Utility.Configuration.Config.Control.LastIsMute;
+				uint id = (uint)Environment.ProcessId;
+				float volume = Configuration.Config.Control.LastVolume;
+				bool mute = Configuration.Config.Control.LastIsMute;
 
 				BrowserLibCore.VolumeManager.SetApplicationVolume(id, volume);
 				BrowserLibCore.VolumeManager.SetApplicationMute(id, mute);
 
 				SyncBGMPlayer.Instance.SetInitialVolume((int)(volume * 100));
-				foreach (var not in NotifierManager.Instance.GetNotifiers())
-					not.SetInitialVolume((int)(volume * 100));
+				foreach (NotifierBase not in NotifierManager.Instance.GetNotifiers())
+				{
+					not.Sound.Volume = ((int)(volume * 100));
+				}
 
-				_volumeUpdateState = -1;
+				VolumeUpdateState = -1;
 
 			}
 			catch (Exception)
 			{
-
-				_volumeUpdateState++;
+				VolumeUpdateState++;
 			}
 		}
-		*/
 	}
 
 	private static string GetMaintenanceText(FormMainTranslationViewModel formMain, DateTime now)
@@ -1835,7 +1859,7 @@ public partial class FormMainViewModel : ObservableObject
 			if (maintStartDate > now)
 			{
 				maintTimer = maintStartDate - now;
-			} 
+			}
 			else if (maintEndDate > now && maintEndDate is { } end)
 			{
 				maintTimer = end - now;
@@ -1933,19 +1957,16 @@ public partial class FormMainViewModel : ObservableObject
 		// SaveLayout(Configuration.Config.Life.LayoutFilePath);
 
 		// 音量の保存
+		try
 		{
-			try
-			{
-				uint id = (uint)Process.GetCurrentProcess().Id;
-				Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
-				Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
+			uint id = (uint)Environment.ProcessId;
+			Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
+			Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
 
-			}
-			catch (Exception)
-			{
-				/* ぷちっ */
-			}
-
+		}
+		catch (Exception)
+		{
+			/* ぷちっ */
 		}
 	}
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieCostViewer;
-using ElectronicObserverTypes;
 using Xunit;
 
 namespace ElectronicObserverCoreTests.SortieCost;
@@ -28,6 +28,8 @@ public sealed class SortieCostTests : SortieCostTestBase
 	[InlineData("SortieCostTest15", Skip = "goddess resupply doesn't get calculated correctly")]
 	[InlineData("SortieCostTest16")]
 	[InlineData("SortieCostTest17", Skip = "todo")]
+	[InlineData("SortieCostTest18")]
+	[InlineData("SortieCostTest19")]
 	public override async Task SortieCostTest0(string testFilePrefix)
 	{
 		await base.SortieCostTest0(testFilePrefix);
@@ -293,5 +295,29 @@ public sealed class SortieCostTests : SortieCostTestBase
 			Assert.Equal(EquipmentId.DamageControl_EmergencyRepairGoddess, sortieCosts[0].ConsumedItems[0].Id);
 			Assert.Equal(8, sortieCosts[0].Buckets);
 		}
+	}
+
+	[Fact(DisplayName = "AB jet cost")]
+	public async Task SortieCostTest18()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest18", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel jetCost = new() { Steel = 44 };
+		
+		Assert.Equal(jetCost, sortieCosts[0].AirBaseJetCost);
+	}
+
+	[Fact(DisplayName = "fleet jet cost")]
+	public async Task SortieCostTest19()
+	{
+		List<SortieCostViewModel> sortieCosts = await MakeSortieCosts("SortieCostTest19", true);
+
+		Assert.Single(sortieCosts);
+
+		SortieCostModel jetCost = new() { Steel = 580 };
+
+		Assert.Equal(jetCost, sortieCosts[0].SortieFleetJetCost);
 	}
 }

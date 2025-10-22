@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data;
 
@@ -455,16 +455,8 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 装備可能なカテゴリ
 	/// </summary>
-	public IEnumerable<int> EquippableCategories
-	{
-		get
-		{
-			if (SpecialEquippableCategories != null)
-				return SpecialEquippableCategories;
-			else
-				return KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories;
-		}
-	}
+	public IEnumerable<int> EquippableCategories => SpecialEquippableCategories 
+		?? KCDatabase.Instance.ShipTypes[(int)ShipType].EquippableCategories;
 
 	public IEnumerable<EquipmentTypes> EquippableCategoriesTyped => EquippableCategories.Cast<EquipmentTypes>();
 
@@ -693,7 +685,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 護衛空母か
 	/// </summary>
 	public bool IsEscortAircraftCarrier => ShipType == ShipTypes.LightAircraftCarrier && ASW.Minimum > 0;
-	
+
 	public bool IsPt => this.IsPt();
 
 

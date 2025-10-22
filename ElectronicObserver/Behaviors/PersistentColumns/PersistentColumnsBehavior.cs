@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,13 +36,16 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		typeof(PersistentColumnsBehavior),
 		new FrameworkPropertyMetadata
 		(
-			default(List<ColumnProperties>),
+			null,
 			FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
 			ColumnPropertiesChangedCallback
 		)
 	);
 
-	public List<ColumnProperties> ColumnProperties
+	/// <summary>
+	/// Can be null when using floating windows?
+	/// </summary>
+	public List<ColumnProperties>? ColumnProperties
 	{
 		get => (List<ColumnProperties>)GetValue(ColumnPropertiesProperty);
 		set => SetValue(ColumnPropertiesProperty, value);
@@ -65,13 +69,13 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 		typeof(PersistentColumnsBehavior),
 		new FrameworkPropertyMetadata
 		(
-			default(List<SortDescription>),
+			null,
 			FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
 			SortDescriptionsChangedCallback
 		)
 	);
 
-	public List<SortDescription> SortDescriptions
+	public List<SortDescription>? SortDescriptions
 	{
 		get => (List<SortDescription>)GetValue(SortDescriptionsProperty);
 		set => SetValue(SortDescriptionsProperty, value);
@@ -100,14 +104,15 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	/// causing an exception.
 	/// </summary>
 	/// <returns></returns>
+	[MemberNotNullWhen(true, nameof(ColumnProperties))]
 	private bool WasGridInitialized()
 	{
-		return ColumnProperties.All(c => c.DisplayIndex >= 0);
+		return ColumnProperties?.All(c => c.DisplayIndex >= 0) ?? false;
 	}
 
 	private void DataGridLoaded(object sender, RoutedEventArgs e)
 	{
-		if(WasGridInitialized())
+		if (WasGridInitialized())
 		{
 			foreach ((DataGridColumn? dataGridColumn, ColumnProperties? columnProperties) in AssociatedObject.Columns.Zip(ColumnProperties))
 			{
@@ -204,6 +209,7 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 	{
 		// Do nothing if source is ICollectionView, sorting is already correct in that case
 		if (AssociatedObject is null or ICollectionView) return;
+		if (SortDescriptions is null) return;
 
 		// need to save the new value cause SortDescriptions.Clear() will wipe it
 		List<SortDescription> sortDescriptions = SortDescriptions;

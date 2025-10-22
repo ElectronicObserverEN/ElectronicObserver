@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes.AntiAir;
 
 namespace ElectronicObserver.Converters;
 

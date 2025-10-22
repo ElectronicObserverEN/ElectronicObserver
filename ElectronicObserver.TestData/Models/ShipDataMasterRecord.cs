@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.TestData.Models;
 

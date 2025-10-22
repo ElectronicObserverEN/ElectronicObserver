@@ -193,13 +193,10 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		GadgetBypassServerCustom = Config.GadgetBypassServerCustom;
 		UseVulkanWorkaround = Config.UseVulkanWorkaround;
 		IsBrowserContextMenuEnabled = Config.IsBrowserContextMenuEnabled;
-		UseHttps = Config.UseHttps;
 	}
 
 	public override void Save()
 	{
-		bool changed = false;
-
 		Config.Browser = Browser;
 		Config.ZoomRate = ZoomRate / 100;
 		Config.ZoomFit = ZoomFit;
@@ -230,14 +227,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.GadgetBypassServerCustom = GadgetBypassServerCustom;
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
-		Config.UseHttps = UseHttps;
-
-		changed |= Config.UseHttps != UseHttps;
-
-		if (changed)
-		{
-			APIObserver.Instance.Start(Configuration.Config.Connection.Port, App.Current!.MainWindow!);
-		}
 	}
 
 	[RelayCommand]

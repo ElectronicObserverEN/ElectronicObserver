@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Empty" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="SearchOutputPathToolTip" xml:space="preserve">
+    <value>출력할 함대 이미지의 경로와 파일명을 검색·지정하는 다이얼로그를 엽니다.</value>
+  </data>
+  <data name="Basic" xml:space="preserve">
+    <value>기본</value>
+  </data>
+  <data name="GroupOutputPath" xml:space="preserve">
+    <value>출력 경로</value>
+  </data>
+  <data name="SearchOutputPath" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="OutputPathToolTip" xml:space="preserve">
+    <value>함대 이미지의 출력 경로와 파일 이름을 지정합니다.</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>자유 입력란</value>
+  </data>
+  <data name="FleetTitle" xml:space="preserve">
+    <value>제목:</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>코멘트:</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>출력 모드</value>
+  </data>
+  <data name="ImageTypeBanner" xml:space="preserve">
+    <value>배너 (소형)</value>
+  </data>
+  <data name="ImageTypeCutin" xml:space="preserve">
+    <value>컷인 (중형)</value>
+  </data>
+  <data name="ImageTypeCard" xml:space="preserve">
+    <value>카드 (대형)</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>대상 함대</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>상세</value>
+  </data>
+  <data name="SynchronizeTitleAndFileName" xml:space="preserve">
+    <value>타이틀과 파일명을 동기화합니다.</value>
+  </data>
+  <data name="SynchronizeTitleAndFileNameToolTip" xml:space="preserve">
+    <value>이미지 타이틀과 출력 파일명을 자동으로 동일하게 사용합니다.</value>
+  </data>
+  <data name="AutoSetFileNameToDate" xml:space="preserve">
+    <value>출력 파일명을 현재 날짜와 시간으로 설정합니다.</value>
+  </data>
+  <data name="AutoSetFileNameToDateToolTip" xml:space="preserve">
+    <value>파일명을 자동으로 현재 날짜와 시간으로 설정합니다.</value>
+  </data>
+  <data name="OutputToClipboard" xml:space="preserve">
+    <value>클립보드에 출력합니다.</value>
+  </data>
+  <data name="OutputToClipboardToolTip" xml:space="preserve">
+    <value>이미지를 클립보드에 출력하며, 파일 관련 설정은 무시됩니다.</value>
+  </data>
+  <data name="DisableOverwritePrompt" xml:space="preserve">
+    <value>항상 덮어쓰기를 허용합니다.</value>
+  </data>
+  <data name="DisableOverwritePromptToolTip" xml:space="preserve">
+    <value>파일 덮어쓰기 확인을 비활성화하고 항상 덮어쓸 수 있도록 합니다.</value>
+  </data>
+  <data name="OpenImageAfterOutput" xml:space="preserve">
+    <value>저장 후 자동으로 엽니다.</value>
+  </data>
+  <data name="OpenImageAfterOutputToolTip" xml:space="preserve">
+    <value>출력 대상이 파일일 경우, 저장 후 기본 뷰어로 이미지를 열지 지정합니다.</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>배경 이미지</value>
+  </data>
+  <data name="ClearBackgroundPath" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="ClearBackgroundPathToolTip" xml:space="preserve">
+    <value>현재 배경 이미지 경로를 초기화합니다.</value>
+  </data>
+  <data name="SearchBackgroundImagePathToolTip" xml:space="preserve">
+    <value>배경 이미지 경로 및 파일명을 선택하는 대화상자를 엽니다.</value>
+  </data>
+  <data name="BackgroundImagePathToolTip" xml:space="preserve">
+    <value>배경 이미지 경로를 지정하며, 비워두면 배경 이미지 없이 출력됩니다.</value>
+  </data>
+  <data name="Layout" xml:space="preserve">
+    <value>레이아웃</value>
+  </data>
+  <data name="AvoidTwitterDeterioration" xml:space="preserve">
+    <value>트위터의 이미지 압축을 피한다</value>
+  </data>
+  <data name="AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>트위터에 PNG 형식의 이미지를 업로드 할 때, 자동으로 JPEG 형식으로 변환되어 화질이 열화하는 것을 방지하기 위해 정보를 삽입할지 설정합니다.</value>
+  </data>
+  <data name="ReflectDamageGraphic" xml:space="preserve">
+    <value>중파 그래픽을 적용합니다.</value>
+  </data>
+  <data name="ReflectDamageGraphicToolTip" xml:space="preserve">
+    <value>함선이 중파 상태일 때 출력 이미지에서도 중파 그래픽을 사용할지 지정합니다.</value>
+  </data>
+  <data name="ShipColumn" xml:space="preserve">
+    <value>함선의 가로 개수:</value>
+  </data>
+  <data name="HorizontalShipCountToolTip" xml:space="preserve">
+    <value>함선을 가로로 나열할 개수를 지정하며, 이를 초과하면 줄바꿈됩니다.</value>
+  </data>
+  <data name="HorizontalFleetCountToolTip" xml:space="preserve">
+    <value>함대를 가로로 나열할 개수를 지정하며, 이를 초과하면 줄바꿈됩니다.</value>
+  </data>
+  <data name="FleetColumn" xml:space="preserve">
+    <value>함대의 가로 개수:</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>폰트</value>
+  </data>
+  <data name="ButtonClearFont" xml:space="preserve">
+    <value>디폴트</value>
+  </data>
+  <data name="ButtonClearFontToolTip" xml:space="preserve">
+    <value>폰트 설정을 기본값으로 초기화합니다.</value>
+  </data>
+  <data name="ApplyGeneralFontToolTip" xml:space="preserve">
+    <value>왼쪽 폰트 설정을 아래 각 폰트 설정에 적용합니다.</value>
+  </data>
+  <data name="DigitSmall" xml:space="preserve">
+    <value>소형(영숫자):</value>
+  </data>
+  <data name="DigitMedium" xml:space="preserve">
+    <value>중형(영숫자):</value>
+  </data>
+  <data name="OpenDialogToSpecifyFontSetting" xml:space="preserve">
+    <value>폰트 지정 대화상자를 엽니다.</value>
+  </data>
+  <data name="FontSmall" xml:space="preserve">
+    <value>소형(텍스트):</value>
+  </data>
+  <data name="FontMedium" xml:space="preserve">
+    <value>중형(텍스트):</value>
+  </data>
+  <data name="FontLarge" xml:space="preserve">
+    <value>대형(텍스트):</value>
+  </data>
+  <data name="ChangeAll" xml:space="preserve">
+    <value>모두 변경</value>
+  </data>
+  <data name="OpenImageDialog" xml:space="preserve">
+    <value>배경 이미지 참조</value>
+  </data>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>편성 이미지 저장</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>편성 이미지 출력</value>
+  </data>
+  <data name="SpecifiedFontDoesNotExist" xml:space="preserve">
+    <value>지정한 폰트가 존재하지 않습니다.</value>
+  </data>
+  <data name="FontConversionFailed" xml:space="preserve">
+    <value>폰트 변환 실패</value>
+  </data>
+  <data name="SelectFleetToExport" xml:space="preserve">
+    <value>출력할 함대를 선택해주세요.</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>입력 값 오류</value>
+  </data>
+  <data name="FleetMustContainShip" xml:space="preserve">
+    <value>함대·함선의 가로 수는 1 이상이어야 합니다.</value>
+  </data>
+  <data name="EnterDestinationPath" xml:space="preserve">
+    <value>출력 대상 파일명이 입력되지 않았습니다.</value>
+  </data>
+  <data name="PathContainsInvalidCharacters" xml:space="preserve">
+    <value>출력 대상 경로에 사용할 수 없는 문자가 포함되어 있습니다.</value>
+  </data>
+  <data name="OverwriteExistingFile" xml:space="preserve">
+    <value>{0}
+은 이미 존재합니다.
+덮어씌우겠습니까?</value>
+  </data>
+  <data name="OverwriteConfirmation" xml:space="preserve">
+    <value>덮어쓰기 확인</value>
+  </data>
+  <data name="FleetImageExportedSuccessfully" xml:space="preserve">
+    <value>편성 이미지를 출력했습니다.</value>
+  </data>
+  <data name="FailedToExportFleetImage" xml:space="preserve">
+    <value>편성 이미지 출력에 실패했습니다.</value>
+  </data>
+  <data name="ExportFailure" xml:space="preserve">
+    <value>편성 이미지 출력 실패</value>
+  </data>
+  <data name="InvalidSettings" xml:space="preserve">
+    <value>함선 이미지 저장 설정이 무효입니다(자세히 보기…)</value>
+  </data>
+  <data name="ShipImageNotFound" xml:space="preserve">
+    <value>함선 이미지가 부족합니다(자세히 보기…)</value>
+  </data>
+  <data name="EnableShipImageSaving" xml:space="preserve">
+    <value>편성 이미지를 출력하려면 함선 이미지 저장 설정을 활성화해야 합니다. 활성화하시겠습니까?</value>
+  </data>
+  <data name="InvalidSettingsTitle" xml:space="preserve">
+    <value>함선 이미지 저장 설정이 무효입니다.</value>
+  </data>
+  <data name="OpenOrganizeAndViewDetails" xml:space="preserve">
+    <value>칸코레 본체의 ‘편성’ 화면에서 각 함선의 상세를 열면</value>
+  </data>
+  <data name="SortieFleet" xml:space="preserve">
+    <value>이 편성으로 전투를 시작할 때</value>
+  </data>
+  <data name="OpenOrganize" xml:space="preserve">
+    <value>칸코레 본체의 ‘편성’ 화면을 열면</value>
+  </data>
+  <data name="OpenOrganize2" xml:space="preserve">
+    <value>칸코레 본체에서 필요한 이미지를 표시하면</value>
+  </data>
+  <data name="MissingImages" xml:space="preserve">
+    <value>현재 함대를 출력하기 위한 함선 이미지 데이터가 부족합니다. 캐시를 삭제한 후 재로딩을 진행하여, {0} 함선 이미지 데이터가 저장됩니다.</value>
+  </data>
+  <data name="ShipImageMissing" xml:space="preserve">
+    <value>함선 이미지 데이터 부족</value>
+  </data>
+  <data name="ResetFontSettings" xml:space="preserve">
+    <value>폰트를 기본 설정으로 되돌립니다. 괜찮으신가요?</value>
+  </data>
+  <data name="ClearConfirmation" xml:space="preserve">
+    <value>초기화 확인</value>
+  </data>
+  <data name="ImageWillBeExportedToClipboard" xml:space="preserve">
+    <value>클립보드에 출력됩니다. 파일로 출력하려면 상세 탭에서 ‘클립보드에 출력하기’를 해제하세요.</value>
+  </data>
+  <data name="UseAlbumStatusName" xml:space="preserve">
+    <value>앨범 상태명을 사용합니다.</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>불러오기</value>
+  </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>고도</value>
+  </data>
+  <data name="MaxEquipmentNameWidth" xml:space="preserve">
+    <value>최대 장비명 폭</value>
+  </data>
+  <data name="SuccessfullyDownloadedImage" xml:space="preserve">
+    <value>{1}의 이미지 타입 {0}의 다운로드에 성공했습니다.</value>
+  </data>
+  <data name="FailedToDownloadImage" xml:space="preserve">
+    <value>{1}의 이미지 타입 {0}의 다운로드에 실패했습니다.</value>
+  </data>
+  <data name="DownloadMissingShipImage" xml:space="preserve">
+    <value>행방불명 함선 이미지를 다운로드합니다.</value>
+  </data>
+  <data name="SaveImageToFile" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="QuickConfigurationAccess" xml:space="preserve">
+    <value>설정 빠른 접근</value>
+  </data>
+  <data name="QuickConfigurationAccessToolTip" xml:space="preserve">
+    <value>활성화하면 편성 출력 창에서 편성 미리보기 위에 설정이 표시됩니다.</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>테마</value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>커스텀 테마</value>
+  </data>
+  <data name="ShowTankTp" xml:space="preserve">
+    <value>전차 수송량</value>
+  </data>
+</root>

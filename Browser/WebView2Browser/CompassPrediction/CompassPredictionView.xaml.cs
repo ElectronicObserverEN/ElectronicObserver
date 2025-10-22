@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
@@ -51,5 +52,14 @@ public partial class CompassPredictionView
 		Browser.CoreWebView2.NavigationCompleted += async (_, _) => await ViewModel.Initialize();
 
 		Browser.CoreWebView2.Navigate(ViewModel.Uri);
+	}
+
+	/// <inheritdoc />
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		base.OnClosing(e);
+
+		Browser.Dispose();
+		ViewModel.ExecuteScriptAsync = null;
 	}
 }

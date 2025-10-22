@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SenkaMonth" xml:space="preserve">
+    <value>该月战果</value>
+  </data>
+  <data name="SenkaDay" xml:space="preserve">
+    <value>该日战果</value>
+  </data>
+  <data name="SenkaSession" xml:space="preserve">
+    <value>此次战果</value>
+  </data>
+  <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
+    <value>海外舰最新技术</value>
+  </data>
+  <data name="Pumpkin" xml:space="preserve">
+    <value>南瓜</value>
+  </data>
+  <data name="WhiteSash" xml:space="preserve">
+    <value>白襻(白带)</value>
+  </data>
+  <data name="SeaColoredRibbon" xml:space="preserve">
+    <value>海色缎带(蓝带)</value>
+  </data>
+  <data name="TeruTeruBozu" xml:space="preserve">
+    <value>晴天娃娃</value>
+  </data>
+  <data name="ItemNameXmasSelectGiftBox" xml:space="preserve">
+    <value>圣诞精品礼物箱</value>
+  </data>
+  <data name="ItemNameValentineChocolate" xml:space="preserve">
+    <value>从舰娘那里获得的巧克力</value>
+  </data>
+  <data name="ItemNameSardine" xml:space="preserve">
+    <value>沙丁鱼</value>
+  </data>
+  <data name="ItemNameSaury" xml:space="preserve">
+    <value>秋刀鱼</value>
+  </data>
+  <data name="Iwashi" xml:space="preserve">
+    <value>沙丁鱼</value>
+  </data>
+  <data name="Sanma" xml:space="preserve">
+    <value>秋刀鱼</value>
+  </data>
+  <data name="Tea" xml:space="preserve">
+    <value>茶叶</value>
+  </data>
+  <data name="Nori" xml:space="preserve">
+    <value>海苔</value>
+  </data>
+  <data name="Umeboshi" xml:space="preserve">
+    <value>梅干</value>
+  </data>
+  <data name="Rice" xml:space="preserve">
+    <value>大米</value>
+  </data>
+  <data name="AdmiralName" xml:space="preserve">
+    <value>(提督名)</value>
+  </data>
+  <data name="AdmiralComment" xml:space="preserve">
+    <value>(提督签名)</value>
+  </data>
+  <data name="HQLevel" xml:space="preserve">
+    <value>HQ Lv.</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>(舰娘数)</value>
+  </data>
+  <data name="EquipmentCount" xml:space="preserve">
+    <value>(装备数)</value>
+  </data>
+  <data name="InstantRepair" xml:space="preserve">
+    <value>(修复)</value>
+  </data>
+  <data name="InstantConstruction" xml:space="preserve">
+    <value>(建造)</value>
+  </data>
+  <data name="DevelopmentMaterial" xml:space="preserve">
+    <value>(开发)</value>
+  </data>
+  <data name="ModdingMaterial" xml:space="preserve">
+    <value>(改修)</value>
+  </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>(家具)</value>
+  </data>
+  <data name="DisplayUseItem" xml:space="preserve">
+    <value>(任意)</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>(燃料)</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>(弹药)</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>(钢材)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>司令部</value>
+  </data>
+  <data name="ItemNameName" xml:space="preserve">
+    <value>提督名</value>
+  </data>
+  <data name="ItemNameComment" xml:space="preserve">
+    <value>提督签名</value>
+  </data>
+  <data name="ItemNameHQLevel" xml:space="preserve">
+    <value>司令部Lv</value>
+  </data>
+  <data name="ItemNameShipSlots" xml:space="preserve">
+    <value>舰娘数量</value>
+  </data>
+  <data name="ItemNameEquipmentSlots" xml:space="preserve">
+    <value>装备数量</value>
+  </data>
+  <data name="ItemNameInstantRepair" xml:space="preserve">
+    <value>高速修复材</value>
+  </data>
+  <data name="ItemNameInstantConstruction" xml:space="preserve">
+    <value>高速建造材</value>
+  </data>
+  <data name="ItemNameDevelopmentMaterial" xml:space="preserve">
+    <value>开发资材</value>
+  </data>
+  <data name="ItemNameImproveMaterial" xml:space="preserve">
+    <value>改修资材</value>
+  </data>
+  <data name="ItemNameFurnitureCoin" xml:space="preserve">
+    <value>家具币</value>
+  </data>
+  <data name="ItemNameFuel" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="ItemNameAmmo" xml:space="preserve">
+    <value>弹药</value>
+  </data>
+  <data name="ItemNameSteel" xml:space="preserve">
+    <value>钢材</value>
+  </data>
+  <data name="ItemNameBauxite" xml:space="preserve">
+    <value>铝土</value>
+  </data>
+  <data name="ItemNameOtherItem" xml:space="preserve">
+    <value>任何物品</value>
+  </data>
+  <data name="AdmiralNameToolTipSortie" xml:space="preserve">
+    <value>出击次数: {0} / 出击胜利: {1} ({2:p2}) / 出击失败: {3}</value>
+  </data>
+  <data name="AdmiralNameToolTipSortieExp" xml:space="preserve">
+    <value>每次出击获得的平均经验值: {0:n2} / 胜利时 {1:n2}</value>
+  </data>
+  <data name="AdmiralNameToolTipExpedition" xml:space="preserve">
+    <value>远征次数: {0} / 远征成功: {1} ({2:p2}) / 远征失败: {3}</value>
+  </data>
+  <data name="AdmiralNameToolTipPractice" xml:space="preserve">
+    <value>演习次数: {0} / 演习成功: {1} ({2:p2}) / 演习失败: {3}</value>
+  </data>
+  <data name="AdmiralNameToolTipFirstClassMedals" xml:space="preserve">
+    <value>甲章持有数量: {0}</value>
+  </data>
+  <data name="HQLevelToolTipSenkaSession" xml:space="preserve">
+    <value>此次: +{0} exp. / 战果 {1:n2}</value>
+  </data>
+  <data name="HQLevelToolTipSenkaDay" xml:space="preserve">
+    <value>该日: +{0} exp. / 战果 {1:n2}</value>
+  </data>
+  <data name="HQLevelToolTipSenkaMonth" xml:space="preserve">
+    <value>该月: +{0} exp. / 战果 {1:n2}</value>
+  </data>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>此次: {0:+##;-##;±0}
+该周: {1:+##;-##;±0}
+该月: {2:+##;-##;±0}</value>
+  </data>
+  <data name="FurnitureCoinToolTip" xml:space="preserve">
+    <value>(小) x {0} ( +{1} )
+(中) x {2} ( +{3} )
+(大) x {4} ( +{5} )</value>
+  </data>
+  <data name="CopyToClipboardBuckets" xml:space="preserve">
+    <value>修复</value>
+  </data>
+  <data name="CopyToClipboardDevelopmentMaterials" xml:space="preserve">
+    <value>开发</value>
+  </data>
+  <data name="CopyToClipboardInstantConstruction" xml:space="preserve">
+    <value>建造</value>
+  </data>
+  <data name="CopyToClipboardImproveMaterial" xml:space="preserve">
+    <value>改修</value>
+  </data>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>无法将资源复制到剪贴板。</value>
+  </data>
+  <data name="DisplayUseItemToolTipHint" xml:space="preserve">
+    <value>(可以在设置中更改显示物品)
+(右键显示全部物品)</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>未知物品 (ID: {0})</value>
+  </data>
+  <data name="ListOfOwnedItems" xml:space="preserve">
+    <value>拥有物品清单</value>
+  </data>
+  <data name="WrappingOffset" xml:space="preserve">
+    <value>环绕偏移</value>
+  </data>
+  <data name="ItemNameActionReport" xml:space="preserve">
+    <value>战斗详报</value>
+  </data>
+  <data name="ItemNameCannedSaury" xml:space="preserve">
+    <value>秋刀鱼罐头</value>
+  </data>
+  <data name="ItemNameCombatRation" xml:space="preserve">
+    <value>战斗粮食</value>
+  </data>
+  <data name="ItemNameCombatRationSpecialOnigiri" xml:space="preserve">
+    <value>战斗粮食(特制饭团)</value>
+  </data>
+  <data name="ItemNameConstructionBattalion" xml:space="preserve">
+    <value>设营队</value>
+  </data>
+  <data name="ItemNameFurnitureBoxLarge" xml:space="preserve">
+    <value>家具箱(大)</value>
+  </data>
+  <data name="ItemNameFurnitureBoxMedium" xml:space="preserve">
+    <value>家具箱(中)</value>
+  </data>
+  <data name="ItemNameFurnitureBoxSmall" xml:space="preserve">
+    <value>家具箱(小)</value>
+  </data>
+  <data name="Bauxite" xml:space="preserve">
+    <value>(疑似铝土)</value>
+  </data>
+  <data name="ItemNameReinforcementExpansion" xml:space="preserve">
+    <value>补强增设</value>
+  </data>
+  <data name="ItemNameUnderwayReplenishment" xml:space="preserve">
+    <value>洋上补给</value>
+  </data>
+  <data name="ItemNameSubmarineSupplyMaterials" xml:space="preserve">
+    <value>潜水舰补给物资</value>
+  </data>
+  <data name="ItemNameNeTypeEngine" xml:space="preserve">
+    <value>Ne式引擎</value>
+  </data>
+  <data name="ItemNameNewModelArmamentMaterials" xml:space="preserve">
+    <value>新型兵装资材</value>
+  </data>
+  <data name="ItemNameNewModelAircraftBlueprint" xml:space="preserve">
+    <value>新型航空器设计图</value>
+  </data>
+  <data name="ItemNameStraitMedal" xml:space="preserve">
+    <value>海峡章</value>
+  </data>
+  <data name="ItemNameRemodelBlueprints" xml:space="preserve">
+    <value>改装设计图</value>
+  </data>
+  <data name="ItemNameHoushouDinnerTicket" xml:space="preserve">
+    <value>凤翔小姐的晚餐券</value>
+  </data>
+  <data name="ItemNamePortExpensionSet" xml:space="preserve">
+    <value>母港扩张</value>
+  </data>
+  <data name="ItemNameHishimochi" xml:space="preserve">
+    <value>菱饼</value>
+  </data>
+  <data name="ItemNameDockKey" xml:space="preserve">
+    <value>船坞开放匙</value>
+  </data>
+  <data name="ItemNameDecorationMaterial" xml:space="preserve">
+    <value>装饰材料</value>
+  </data>
+  <data name="ItemNameFirstClassMedal" xml:space="preserve">
+    <value>甲种勋章</value>
+  </data>
+  <data name="ItemNamePrototypeFlightDeckCatapult" xml:space="preserve">
+    <value>试制甲板用弹射器</value>
+  </data>
+  <data name="ItemNameHeadquartersPersonnel" xml:space="preserve">
+    <value>司令部要员</value>
+  </data>
+  <data name="ItemNameFurnitureFairy" xml:space="preserve">
+    <value>特制家具职人</value>
+  </data>
+  <data name="ItemNameEmergencyRepairMaterial" xml:space="preserve">
+    <value>紧急修理资材</value>
+  </data>
+  <data name="ItemNameMarriageRingAndPapers" xml:space="preserve">
+    <value>契约一份&amp;戒指</value>
+  </data>
+  <data name="ItemNamePresentBox" xml:space="preserve">
+    <value>礼物箱</value>
+  </data>
+  <data name="ItemNameMedals" xml:space="preserve">
+    <value>勋章</value>
+  </data>
+  <data name="ItemNameMoraleFoodIrako" xml:space="preserve">
+    <value>给粮舰[伊良湖]</value>
+  </data>
+  <data name="ItemNameMoraleFoodMamiya" xml:space="preserve">
+    <value>给粮舰[间宫]</value>
+  </data>
+  <data name="ItemNameSkilledCrewMember" xml:space="preserve">
+    <value>熟练搭乘员</value>
+  </data>
+  <data name="ItemNameNewModelArtilleryArmamentMaterials" xml:space="preserve">
+    <value>新型火炮兵装资材</value>
+  </data>
+  <data name="ItemNameShoGoMedal" xml:space="preserve">
+    <value>捷号章</value>
+  </data>
+  <data name="ItemNameNewModelAviationArmamentMaterials" xml:space="preserve">
+    <value>新型航空兵装资材</value>
+  </data>
+  <data name="ItemNameSetsubunBeans" xml:space="preserve">
+    <value>节分豆</value>
+  </data>
+  <data name="ItemNameNewModelRocketDevelopmentMaterials" xml:space="preserve">
+    <value>新型喷进装备开发资材</value>
+  </data>
+  <data name="ItemNameRepairTeam" xml:space="preserve">
+    <value>应急修理要员</value>
+  </data>
+  <data name="ItemNameRepairGoddess" xml:space="preserve">
+    <value>应急修理女神</value>
+  </data>
+</root>

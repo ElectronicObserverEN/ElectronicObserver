@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ShipAdded" xml:space="preserve">
+    <value>{0} {1} se ha añadido a la lista de la flota.</value>
+  </data>
+  <data name="CreatedItem" xml:space="preserve">
+    <value>La secretario {6} ha creado {0} {1} con {2}/{3}/{4}/{5}.</value>
+  </data>
+  <data name="ChangedParameters" xml:space="preserve">
+    <value>ha tenido sus parámetros modificados.</value>
+  </data>
+  <data name="APIObserverStopped" xml:space="preserve">
+    <value>APIObserver: Observación finalizada.</value>
+  </data>
+  <data name="APIObserverStarted" xml:space="preserve">
+    <value>APIObserver: La observación ha comenzado en el puerto {0}
+</value>
+  </data>
+  <data name="APIData" xml:space="preserve">
+    <value>Datos de la API: {0}</value>
+  </data>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>Información adicional: {0}</value>
+  </data>
+  <data name="ErrorField" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="ErrorReport" xml:space="preserve">
+    <value>Error Report: {0}</value>
+  </data>
+  <data name="EquipmentObtained" xml:space="preserve">
+    <value>Equipo obtenido: has conseguido {0} {1}.</value>
+  </data>
+  <data name="FailedLoadAPI" xml:space="preserve">
+    <value>no se pudo leer la API.</value>
+  </data>
+  <data name="FailedLoadSubLayout" xml:space="preserve">
+    <value>Error al restaurar el diseño de subventana: no se pudo restaurar el diseño de la subventana.</value>
+  </data>
+  <data name="FailedLoadLayout" xml:space="preserve">
+    <value>Error al restaurar el diseño de ventana: no se pudo cargar el diseño de la subventana.</value>
+  </data>
+  <data name="FailedLoadingStorage" xml:space="preserve">
+    <value>Error al cargar el almacenamiento de datos: no se pudo cargar DataStorage.</value>
+  </data>
+  <data name="FailedLoadingResource" xml:space="preserve">
+    <value>Error al cargar el archivo de recursos: no se pudo cargar el archivo de recursos.</value>
+  </data>
+  <data name="FailedLoadingRecords" xml:space="preserve">
+    <value>Error al cargar los registros: no se pudieron cargar los registros.</value>
+  </data>
+  <data name="FailedLoading" xml:space="preserve">
+    <value> no se pudo cargar.</value>
+  </data>
+  <data name="FailedDatabaseSend" xml:space="preserve">
+    <value>No se pudo enviar {0} a la base de datos de estadísticas de Kancolle.</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>fallado.</value>
+  </data>
+  <data name="ExpedStarted" xml:space="preserve">
+    <value>#{0} 「{1}」 ha sido enviada a la expedición 「{2}: {3}」.</value>
+  </data>
+  <data name="ExecutedFlashQualitySetting" xml:space="preserve">
+    <value>Aplicar los ajustes de calidad de Flash.</value>
+  </data>
+  <data name="ErrorDatabaseSending" xml:space="preserve">
+    <value>Se produjo un error de comunicación con la base de datos de estadísticas de Kancolle.</value>
+  </data>
+  <data name="DoesNotExist" xml:space="preserve">
+    <value>no existe.</value>
+  </data>
+  <data name="FailedResourceRename" xml:space="preserve">
+    <value>No se pudo renombrar el recurso del barco.</value>
+  </data>
+  <data name="FailedSaving" xml:space="preserve">
+    <value>no se pudo guardar.</value>
+  </data>
+  <data name="GameStart" xml:space="preserve">
+    <value>El almirante ha llegado a la base. Ahora puedes tomar el control.</value>
+  </data>
+  <data name="ImprovedSuccess" xml:space="preserve">
+    <value>a sido mejorado exitosamente. (</value>
+  </data>
+  <data name="JustMarried" xml:space="preserve">
+    <value>Te has casado con {0}. ¡Felicidades! (Suerte+{1}→{2}/{3})</value>
+  </data>
+  <data name="FailedLoadWindowPlacement" xml:space="preserve">
+    <value>Error al cargar la posición de las ventanas.</value>
+  </data>
+  <data name="FailedSaveAPI" xml:space="preserve">
+    <value>Error al guardar el contenido de la API.</value>
+  </data>
+  <data name="FailedSaveLayout" xml:space="preserve">
+    <value>Error al guardar el diseño de la subventana.</value>
+  </data>
+  <data name="FailedSaveWindowPlacement" xml:space="preserve">
+    <value>Error al guardar la posición de las ventanas.</value>
+  </data>
+  <data name="FailedSavingErrorReport" xml:space="preserve">
+    <value>Error al guardar reporte: no se pudo escribir el reporte de errores.
+{0}
+{1}</value>
+  </data>
+  <data name="FailedSavingStorage" xml:space="preserve">
+    <value>Error al guardar almacenamiento: no se pudo guardar DataStorage.</value>
+  </data>
+  <data name="FailedToLoadAPIFile" xml:space="preserve">
+    <value>Error al cargar archivo API: no se pudo cargar el archivo API {0}. {1}</value>
+  </data>
+  <data name="ImageCantBeLoaded" xml:space="preserve">
+    <value>Error al cargar imagen: no se pudo cargar el recurso de imagen especificado {0}.</value>
+  </data>
+  <data name="ImageDoesNotExist" xml:space="preserve">
+    <value>el recurso de imagen especificado {0} no existe.</value>
+  </data>
+  <data name="ImprovedFailure" xml:space="preserve">
+    <value>Fallo en mejora: no se pudo mejorar {0}.</value>
+  </data>
+  <data name="InitialEquipRegistered" xml:space="preserve">
+    <value>Equipamiento inicial registrado: se ha registrado el equipamiento inicial.</value>
+  </data>
+  <data name="ItemCreationFailed" xml:space="preserve">
+    <value>La secretaria {4} no pudo desarrollar con {0}/{1}/{2}/{3}.</value>
+  </data>
+  <data name="ItemObtained" xml:space="preserve">
+    <value>Objeto obtenido: ítem 「{0}」 conseguido (Total: {1}).</value>
+  </data>
+  <data name="LoadedRecords" xml:space="preserve">
+    <value>Registros cargados.</value>
+  </data>
+  <data name="RecievedRequest" xml:space="preserve">
+    <value>Solicitud recibida:</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>El registro</value>
+  </data>
+  <data name="RegisteredParameters" xml:space="preserve">
+    <value>Se han registrado los parámetros.</value>
+  </data>
+  <data name="RequestError" xml:space="preserve">
+    <value>Error al recibir la solicitud.</value>
+  </data>
+  <data name="ResponseHadErrorCode" xml:space="preserve">
+    <value>Se recibió un código de error del servidor.</value>
+  </data>
+  <data name="SavedAPI" xml:space="preserve">
+    <value>Archivo API guardado: {0}.</value>
+  </data>
+  <data name="SentDatabase" xml:space="preserve">
+    <value>Se envió {0} a la base de datos de estadísticas de Kancolle.</value>
+  </data>
+  <data name="ShipConstructed" xml:space="preserve">
+    <value>Construcción de barco: {0} 「{1}」 ha sido añadida a la lista naval.</value>
+  </data>
+  <data name="ShipScrapped" xml:space="preserve">
+    <value>{0} ha sido desguazado y removido de la lista naval.</value>
+  </data>
+  <data name="SortiedTo" xml:space="preserve">
+    <value>#{0} 「{1}」 ha salido hacia 「{2}-{3} {4}」.</value>
+  </data>
+  <data name="StorageDoesNotExist" xml:space="preserve">
+    <value>DataStorage {0} no existe.</value>
+  </data>
+  <data name="StorageFileDoesNotExist" xml:space="preserve">
+    <value>El archivo DataStorage no existe.</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>{0} ha sido copiado.</value>
+  </data>
+  <data name="Decomissioned" xml:space="preserve">
+    <value>{0} ha sido dado de baja.</value>
+  </data>
+  <data name="FailedToCopy" xml:space="preserve">
+    <value>Error al copiar {0}. {1}</value>
+  </data>
+  <data name="MultiplePossibleMvps" xml:space="preserve">
+    <value>Hay múltiples posibles MVPs. Por favor, revisa el registro.</value>
+  </data>
+  <data name="RecordAutosaveFailure" xml:space="preserve">
+    <value>Error al autoguardar registros.</value>
+  </data>
+  <data name="RecordAutosaveSuccess" xml:space="preserve">
+    <value>Registros guardados automáticamente con éxito.</value>
+  </data>
+  <data name="ImprovedEqSuccess" xml:space="preserve">
+    <value>Se ha mejorado exitosamente {0}.</value>
+  </data>
+  <data name="ClearedQuest" xml:space="preserve">
+    <value>Misión 『{0}』 completada.</value>
+  </data>
+</root>

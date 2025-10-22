@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiDmmPayment.Paycheck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Basic;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.ChartAdditionalInfo;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Deck;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Furniture;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Kdock;
@@ -132,6 +133,7 @@ dmmPayment.MapPost("/paycheck", (ApiDmmPaymentPaycheckRequest _) => new ApiRespo
 
 RouteGroupBuilder getMember = app.MapGroup("/api_get_member").WithTags("api_get_member");
 getMember.MapPost("/basic", (ApiGetMemberBasicRequest _) => new ApiResponse<ApiGetMemberBasicResponse>());
+getMember.MapPost("/chart_additional_info", (APIGetMemberChartAdditionalInfoRequest _) => new ApiResponseList<APIGetMemberChartAdditionalInfoResponse>());
 getMember.MapPost("/deck", (ApiGetMemberDeckRequest _) => new ApiResponseList<FleetDataDto>());
 getMember.MapPost("/furniture", (ApiGetMemberFurnitureRequest _) => new ApiGetMemberFurnitureResponse()); // todo - no idea if this even exists anymore
 getMember.MapPost("/kdock", (ApiGetMemberKdockRequest _) => new ApiResponseList<ApiGetMemberKdockResponse>());
@@ -157,6 +159,7 @@ getMember.MapPost("/useitem", (ApiGetMemberUseitemRequest _) => new ApiResponseL
 
 RouteGroupBuilder port = app.MapGroup("/api_port").WithTags("api_port");
 port.MapPost("/port", (ApiPortPortRequest _) => new ApiResponse<ApiPortPortResponse>());
+port.MapPost("/airCorpsCondRecoveryWithTimer", (ApiPortAirCorpsCondRecoveryWithTimerRequest _) => new ApiResponse<ApiPortAirCorpsCondRecoveryWithTimerResponse>());
 
 RouteGroupBuilder reqAirCorps = app.MapGroup("/api_req_air_corps").WithTags("api_req_air_corps");
 reqAirCorps.MapPost("/change_deployment_base", (ApiReqAirCorpsChangeDeploymentBaseRequest _) => new ApiResponse<ApiReqAirCorpsChangeDeploymentBaseResponse>());

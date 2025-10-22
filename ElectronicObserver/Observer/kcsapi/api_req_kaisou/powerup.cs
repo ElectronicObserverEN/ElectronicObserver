@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserver.Window;
-using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou;
 
@@ -38,9 +38,20 @@ public class powerup : APIBase
 
 		}
 
+		HandleSpecialFeedTypes(data, db);
+
 		base.OnRequestReceived(data);
 	}
 
+	private static void HandleSpecialFeedTypes(Dictionary<string, string> data, KCDatabase db)
+	{
+		if (!data.TryGetValue("api_limited_feed_type", out string? limitedFeedTypeString)) return;
+		if (!Enum.TryParse(limitedFeedTypeString, out LimitedFeedType limitedFeedType)) return;
+		if (limitedFeedType is not LimitedFeedType.Pumpkin) return;
+		if (!db.UseItems.TryGetValue((int)UseItemId.Pumpkin, out IUseItem? pumpkins)) return;
+
+		pumpkins.Count--;
+	}
 
 	public override void OnResponseReceived(dynamic data)
 	{

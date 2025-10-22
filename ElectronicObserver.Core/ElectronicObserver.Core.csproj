@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>Enable</Nullable>
+		<LangVersion>preview</LangVersion>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.2.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="WanaKanaShaapu" Version="2.0.2" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
+		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>
+		<ResXGenerator_NullForgivingOperators>true</ResXGenerator_NullForgivingOperators>
+		<ResXGenerator_StaticClass>true</ResXGenerator_StaticClass>
+		<ResXGenerator_StaticMembers>true</ResXGenerator_StaticMembers>
+	</PropertyGroup>
+</Project>

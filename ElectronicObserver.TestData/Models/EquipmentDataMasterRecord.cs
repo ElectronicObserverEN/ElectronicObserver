@@ -1,49 +1,48 @@
-﻿using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.TestData.Models;
 
 public class EquipmentDataMasterRecord
 {
-	public int EquipmentId { get; set; }
-	public string Name { get; set; } = string.Empty;
-	public int Armor { get; set; }
-	public int Firepower { get; set; }
-	public int Torpedo { get; set; }
-	public int Bomber { get; set; }
-	public int Aa { get; set; }
-	public int Asw { get; set; }
-	public int Accuracy { get; set; }
-	public int Evasion { get; set; }
-	public int LoS { get; set; }
-	public int Luck { get; set; }
-	public int Range { get; set; }
-	public int CategoryType { get; set; }
-	public int IconType { get; set; }
+	public required int EquipmentId { get; set; }
+	public required string Name { get; set; }
+	public required int Armor { get; set; }
+	public required int Firepower { get; set; }
+	public required int Torpedo { get; set; }
+	public required int Bomber { get; set; }
+	public required int Aa { get; set; }
+	public required int Asw { get; set; }
+	public required int Accuracy { get; set; }
+	public required int Evasion { get; set; }
+	public required int LoS { get; set; }
+	public required int Luck { get; set; }
+	public required int Range { get; set; }
+	public required int AircraftCost { get; set; }
+	public required EquipmentCardType CardType { get; set; }
+	public required EquipmentTypes CategoryType { get; set; }
+	public required EquipmentIconType IconType { get; set; }
 
-	public EquipmentDataMasterRecord()
+	public static EquipmentDataMasterRecord FromMasterEquipment(IEquipmentDataMaster equipment) => new()
 	{
-			
-	}
-
-	public EquipmentDataMasterRecord(IEquipmentDataMaster equipment)
-	{
-		EquipmentId = equipment.EquipmentID;
-		Name = equipment.Name;
-		Armor = equipment.Armor;
-		Firepower = equipment.Firepower;
-		Torpedo = equipment.Torpedo;
-		Bomber = equipment.Bomber;
-		Aa = equipment.AA;
-		Asw = equipment.ASW;
-		Accuracy = equipment.Accuracy;
-		Evasion = equipment.Evasion;
-		LoS = equipment.LOS;
-		Luck = equipment.Luck;
-		Range = equipment.Range;
-		CategoryType = (int)equipment.CategoryType;
-		IconType = equipment.IconType;
-	}
+		EquipmentId = equipment.EquipmentID,
+		Name = equipment.Name,
+		Armor = equipment.Armor,
+		Firepower = equipment.Firepower,
+		Torpedo = equipment.Torpedo,
+		Bomber = equipment.Bomber,
+		Aa = equipment.AA,
+		Asw = equipment.ASW,
+		Accuracy = equipment.Accuracy,
+		Evasion = equipment.Evasion,
+		LoS = equipment.LOS,
+		Luck = equipment.Luck,
+		Range = equipment.Range,
+		AircraftCost = equipment.AircraftCost,
+		CardType = equipment.CardType,
+		CategoryType = equipment.CategoryType,
+		IconType = equipment.IconTypeTyped,
+	};
 
 	public IEquipmentDataMaster ToMasterEquipment() => new EquipmentDataMasterMock
 	{
@@ -60,7 +59,9 @@ public class EquipmentDataMasterRecord
 		LOS = LoS,
 		Luck = Luck,
 		Range = Range,
-		CategoryType = (EquipmentTypes)CategoryType,
-		IconType = IconType,
+		AircraftCost = AircraftCost,
+		CardType = CardType,
+		CategoryType = CategoryType,
+		IconTypeTyped = IconType,
 	};
 }

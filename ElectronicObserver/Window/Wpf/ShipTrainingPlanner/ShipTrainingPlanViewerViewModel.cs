@@ -2,31 +2,35 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Dialog.ShipDataPicker;
-using ElectronicObserverTypes;
 using Jot;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
 public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 {
-	private ShipDataPickerViewModel PickerViewModel { get; } = new();
-
-	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = new();
+	private TransliterationService TransliterationService { get; set; }
+	private ImageLoadService ImageLoadService { get; set; }
+	private ShipSelectorViewModel? ShipSelectorViewModel { get; set; }
+	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = [];
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
 	public DataGridViewModel<ShipTrainingPlanViewModel> DataGridViewModel { get; set; }
 
-	public bool DisplayFinished { get; set; } = false;
+	public bool DisplayFinished { get; set; }
 
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
@@ -41,10 +45,12 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		Tracker = tracker;
 		ShipTrainingPlanner = translations;
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
+		ImageLoadService = Ioc.Default.GetRequiredService<ImageLoadService>();
 
 		DataGridViewModel = new(Plans)
 		{
-			FilterValue = plan => DisplayFinished || !plan.PlanFinished
+			FilterValue = plan => DisplayFinished || !plan.PlanFinished,
 		};
 
 		Title = ShipTrainingPlanner.Title;
@@ -83,7 +89,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private void Initialize(string apiname, dynamic data)
 	{
-		List<ShipTrainingPlanModel> models = DatabaseContext.ShipTrainingPlans.ToList();
+		List<ShipTrainingPlanModel> models = [.. DatabaseContext.ShipTrainingPlans];
 
 		foreach (ShipTrainingPlanModel model in models)
 		{
@@ -118,7 +124,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		{
 			ShipId = ship.ID,
 			TargetLevel = ship.Level,
-			TargetLuck = ship.LuckTotal
+			TargetLuck = ship.LuckTotal,
 		};
 
 		ShipTrainingPlanViewModel newPlanViewModel = new(newPlan);
@@ -185,21 +191,20 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	[RelayCommand]
 	private void OpenShipPickerToAddNewPlan()
 	{
-		List<int> alreadyAddedIds = Plans.Select(s => s.Ship.ID).ToList();
+		List<int> alreadyAddedIds = [.. Plans.Select(s => s.Ship.ID)];
 
 		IEnumerable<IShipData> pickableShips = Configuration.Config.FormShipTraining.AllowMultiplePlanPerShip switch
 		{
 			true => KCDatabase.Instance.Ships.Values,
-			_ => KCDatabase.Instance.Ships.Values.Where(s => !alreadyAddedIds.Contains(s.ID))
+			_ => KCDatabase.Instance.Ships.Values.Where(s => !alreadyAddedIds.Contains(s.ID)),
 		};
 
-		PickerViewModel.LoadWithShips(pickableShips);
+		// todo: refactor into ShipSelectorFactory
+		ShipSelectorViewModel = new(TransliterationService, ImageLoadService, [.. pickableShips]);
 
-		ShipDataPickerView pickerView = new(PickerViewModel);
+		ShipSelectorViewModel.ShowDialog();
 
-		pickerView.ShowDialog();
-
-		if (PickerViewModel.PickedShip is { } ship)
+		if (ShipSelectorViewModel.SelectedShip is { } ship)
 		{
 			AddNewPlan(ship);
 		}

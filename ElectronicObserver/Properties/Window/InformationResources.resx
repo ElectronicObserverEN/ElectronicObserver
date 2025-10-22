@@ -110,7 +110,7 @@
     <value>S勝利</value>
   </data>
   <data name="CTBonus" xml:space="preserve">
-    <value>(練巡強化: {0} / S勝利: {1})</value>
+    <value>練巡強化: {0} / S勝利: {1}</value>
   </data>
   <data name="Defeated" xml:space="preserve">
     <value>撃破</value>
@@ -147,5 +147,11 @@
 未補給
 
 （この警告は 設定→動作 から無効化できます。）</value>
+  </data>
+  <data name="CtBonusSurface" xml:space="preserve">
+    <value>練巡強化水上艦: {0} / S勝利: {1}</value>
+  </data>
+  <data name="CtBonusSubmarine" xml:space="preserve">
+    <value>練巡強化潜水艦: {0} / S勝利: {1}</value>
   </data>
 </root>

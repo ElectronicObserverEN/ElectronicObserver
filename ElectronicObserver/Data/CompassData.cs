@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using DynaJson;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 
 namespace ElectronicObserver.Data;
@@ -349,7 +350,7 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 対応する海域情報
 	/// </summary>
-	public MapInfoData MapInfo => KCDatabase.Instance.MapInfo[MapAreaID * 10 + MapInfoID];
+	public IMapInfoData MapInfo => KCDatabase.Instance.MapInfo[MapAreaID * 10 + MapInfoID];
 
 	/// <summary>
 	/// True if boss node

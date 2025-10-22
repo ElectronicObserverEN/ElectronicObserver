@@ -11,6 +11,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Resource;
@@ -29,6 +30,8 @@ public partial class QuestViewModel : AnchorableViewModel
 	public SolidColorBrush FontBrush { get; set; }
 
 	public FormQuestTranslationViewModel FormQuest { get; }
+	private IClipboardService ClipboardService { get; }
+
 	private ObservableCollection<QuestItemViewModel> Quests { get; set; } = new();
 	public ICollectionView View { get; set; }
 	public List<SortDescription> SortDescriptions { get; set; }
@@ -87,7 +90,9 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	public QuestViewModel() : base("Quest", "Quest", IconContent.FormQuest)
 	{
-		FormQuest = Ioc.Default.GetService<FormQuestTranslationViewModel>()!;
+		FormQuest = Ioc.Default.GetRequiredService<FormQuestTranslationViewModel>();
+		ClipboardService = Ioc.Default.GetRequiredService<IClipboardService>();
+
 		View = CollectionViewSource.GetDefaultView(Quests);
 
 		Title = FormQuest.Title;
@@ -576,7 +581,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	{
 		if (SelectedQuest is null) return;
 
-		Clipboard.SetText(SelectedQuest.QuestName);
+		ClipboardService.SetTextAndLogErrors(SelectedQuest.QuestName);
 	}
 
 	[RelayCommand]
@@ -584,7 +589,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	{
 		if (SelectedQuest is null) return;
 
-		Clipboard.SetText(SelectedQuest.QuestDescription.Replace(Environment.NewLine, ""));
+		ClipboardService.SetTextAndLogErrors(SelectedQuest.QuestDescription.Replace(Environment.NewLine, ""));
 	}
 
 	[RelayCommand]
@@ -615,7 +620,7 @@ public partial class QuestViewModel : AnchorableViewModel
 			return;
 		}
 
-		Clipboard.SetText(serializedOutput);
+		ClipboardService.SetTextAndLogErrors(serializedOutput);
 	}
 
 	[RelayCommand]

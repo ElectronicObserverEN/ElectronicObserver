@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
@@ -21,7 +22,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqQuest.Clearitemget;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicObserver.Window.Tools.SenkaViewer;

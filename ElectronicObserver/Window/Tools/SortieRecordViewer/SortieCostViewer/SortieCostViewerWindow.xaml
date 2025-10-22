@@ -109,6 +109,9 @@
 						<TextBlock Text="{Binding DataContext.Translation.SortieRepair, Source={StaticResource Proxy}}" />
 						<ContentControl Content="{Binding SortieFleetRepairCost}" />
 
+						<TextBlock Text="{Binding DataContext.Translation.SortieJet, Source={StaticResource Proxy}}" />
+						<ContentControl Content="{Binding SortieFleetJetCost}" />
+
 						<TextBlock Text="{Binding DataContext.Translation.NodeSupport, Source={StaticResource Proxy}}" />
 						<ContentControl Content="{Binding NodeSupportSupplyCost}" />
 
@@ -120,6 +123,9 @@
 
 						<TextBlock Text="{Binding DataContext.Translation.AirBaseSupply, Source={StaticResource Proxy}}" />
 						<ContentControl Content="{Binding TotalAirBaseSupplyCost}" />
+
+						<TextBlock Text="{Binding DataContext.Translation.AirBaseJet, Source={StaticResource Proxy}}" />
+						<ContentControl Content="{Binding AirBaseJetCost}" />
 
 						<TextBlock Text="{Binding DataContext.Translation.ResourceGain, Source={StaticResource Proxy}}" />
 						<ContentControl Content="{Binding ResourceGain}" />

@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AADirector" xml:space="preserve">
+    <value>고사장치</value>
+  </data>
+  <data name="AAGun" xml:space="preserve">
+    <value>집중기총</value>
+  </data>
+  <data name="Admiral" xml:space="preserve">
+    <value>제독</value>
+  </data>
+  <data name="AirAttack" xml:space="preserve">
+    <value>공격</value>
+  </data>
+  <data name="AirBattle" xml:space="preserve">
+    <value>항공전</value>
+  </data>
+  <data name="AirIncapability" xml:space="preserve">
+    <value>제공권 소실</value>
+  </data>
+  <data name="AirDenialNew" xml:space="preserve">
+    <value>항공 열세</value>
+  </data>
+  <data name="AirParity" xml:space="preserve">
+    <value>항공 균형</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>항공 우세</value>
+  </data>
+  <data name="AirSupremacy" xml:space="preserve">
+    <value>제공권 확보</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>탄약</value>
+  </data>
+  <data name="Aqua" xml:space="preserve">
+    <value>물</value>
+  </data>
+  <data name="ASWFormation" xml:space="preserve">
+    <value>제1경계</value>
+  </data>
+  <data name="BattleForm" xml:space="preserve">
+    <value>제4경계</value>
+  </data>
+  <data name="Baux" xml:space="preserve">
+    <value>보크사이트</value>
+  </data>
+  <data name="BigGun" xml:space="preserve">
+    <value>대구경 주포</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>청</value>
+  </data>
+  <data name="Bucket" xml:space="preserve">
+    <value>고속 수복재</value>
+  </data>
+  <data name="Captain" xml:space="preserve">
+    <value>대좌</value>
+  </data>
+  <data name="Commander" xml:space="preserve">
+    <value>중좌</value>
+  </data>
+  <data name="Common" xml:space="preserve">
+    <value>Common</value>
+  </data>
+  <data name="Construction" xml:space="preserve">
+    <value>공창</value>
+  </data>
+  <data name="CriticalDamage" xml:space="preserve">
+    <value>대파</value>
+  </data>
+  <data name="CutIn" xml:space="preserve">
+    <value>컷인</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>일</value>
+  </data>
+  <data name="Damaged" xml:space="preserve">
+    <value>손괴</value>
+  </data>
+  <data name="DayBattle" xml:space="preserve">
+    <value>주야전</value>
+  </data>
+  <data name="DepthChargeAttack" xml:space="preserve">
+    <value>폭뢰공격</value>
+  </data>
+  <data name="Destroyed" xml:space="preserve">
+    <value>파괴</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>개발 자재</value>
+  </data>
+  <data name="Diamond" xml:space="preserve">
+    <value>윤형진</value>
+  </data>
+  <data name="Disorder" xml:space="preserve">
+    <value>혼란</value>
+  </data>
+  <data name="DoubleAttack" xml:space="preserve">
+    <value>연속 사격</value>
+  </data>
+  <data name="DoubleLine" xml:space="preserve">
+    <value>복종진</value>
+  </data>
+  <data name="Echelon" xml:space="preserve">
+    <value>제형진</value>
+  </data>
+  <data name="EXHolo" xml:space="preserve">
+    <value>EX홀로</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>원정</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="FailureNoPlane" xml:space="preserve">
+    <value>실패(비색적기)</value>
+  </data>
+  <data name="Fast" xml:space="preserve">
+    <value>고속</value>
+  </data>
+  <data name="FirstPatrolFormation" xml:space="preserve">
+    <value>제1경계 항행 서열</value>
+  </data>
+  <data name="Flamethrower" xml:space="preserve">
+    <value>고속 건조재</value>
+  </data>
+  <data name="FleetAdmiral" xml:space="preserve">
+    <value>원수</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>편성</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>제2경계</value>
+  </data>
+  <data name="FourStarAdmiral" xml:space="preserve">
+    <value>대장</value>
+  </data>
+  <data name="FourthPatrolFormation" xml:space="preserve">
+    <value>제4경계 항행 서열</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>연료</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>금</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>대성공</value>
+  </data>
+  <data name="HA2" xml:space="preserve">
+    <value>고각포x2</value>
+  </data>
+  <data name="HAAAD" xml:space="preserve">
+    <value>고각포+고사장치</value>
+  </data>
+  <data name="HAGun" xml:space="preserve">
+    <value>고각포</value>
+  </data>
+  <data name="HeadOn" xml:space="preserve">
+    <value>반항전</value>
+  </data>
+  <data name="Healthy" xml:space="preserve">
+    <value>건재</value>
+  </data>
+  <data name="Holo" xml:space="preserve">
+    <value>홀로</value>
+  </data>
+  <data name="Hourly" xml:space="preserve">
+    <value>매시</value>
+  </data>
+  <data name="Idle" xml:space="preserve">
+    <value>방치</value>
+  </data>
+  <data name="Imagination" xml:space="preserve">
+    <value>기분탓이였다</value>
+  </data>
+  <data name="ImpMat" xml:space="preserve">
+    <value>개수 자재</value>
+  </data>
+  <data name="Indigo" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="Injured" xml:space="preserve">
+    <value>손해</value>
+  </data>
+  <data name="Irregular" xml:space="preserve">
+    <value>변</value>
+  </data>
+  <data name="Land" xml:space="preserve">
+    <value>육상</value>
+  </data>
+  <data name="LargeResourceNode" xml:space="preserve">
+    <value>선단 호위 성공</value>
+  </data>
+  <data name="Laser" xml:space="preserve">
+    <value>레이저 공격</value>
+  </data>
+  <data name="LightDamage" xml:space="preserve">
+    <value>소파</value>
+  </data>
+  <data name="LineAbreast" xml:space="preserve">
+    <value>단횡진</value>
+  </data>
+  <data name="LineAhead" xml:space="preserve">
+    <value>단종진</value>
+  </data>
+  <data name="Long" xml:space="preserve">
+    <value>장</value>
+  </data>
+  <data name="LtCmdr" xml:space="preserve">
+    <value>소령</value>
+  </data>
+  <data name="Maelstrom" xml:space="preserve">
+    <value>소용돌이</value>
+  </data>
+  <data name="Main3" xml:space="preserve">
+    <value>(주포x3)</value>
+  </data>
+  <data name="MainAP" xml:space="preserve">
+    <value>(주포/철갑)</value>
+  </data>
+  <data name="MainMain" xml:space="preserve">
+    <value>(주포/주포)</value>
+  </data>
+  <data name="MainMainSec" xml:space="preserve">
+    <value>(주포x2/부포)</value>
+  </data>
+  <data name="MainRadar" xml:space="preserve">
+    <value>(주포/전탐)</value>
+  </data>
+  <data name="MainSecondary" xml:space="preserve">
+    <value>(주포/부포)</value>
+  </data>
+  <data name="MainTorp" xml:space="preserve">
+    <value>(주포/어뢰)</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>중</value>
+  </data>
+  <data name="ModerateDamage" xml:space="preserve">
+    <value>중파</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>개장</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>월</value>
+  </data>
+  <data name="NightBattle" xml:space="preserve">
+    <value>야전</value>
+  </data>
+  <data name="NightDayBattle" xml:space="preserve">
+    <value>야주전</value>
+  </data>
+  <data name="NoBattle" xml:space="preserve">
+    <value>비전투</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>무</value>
+  </data>
+  <data name="NoNode" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="NoReturn" xml:space="preserve">
+    <value>미귀환</value>
+  </data>
+  <data name="NoviceCommander" xml:space="preserve">
+    <value>신참 중령</value>
+  </data>
+  <data name="NoviceLtCmdr" xml:space="preserve">
+    <value>신참 소령</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>외</value>
+  </data>
+  <data name="Parallel" xml:space="preserve">
+    <value>동항전</value>
+  </data>
+  <data name="Practice" xml:space="preserve">
+    <value>연습</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="Radar" xml:space="preserve">
+    <value>전탐</value>
+  </data>
+  <data name="Rainbow" xml:space="preserve">
+    <value>무지개</value>
+  </data>
+  <data name="Rare" xml:space="preserve">
+    <value>레어</value>
+  </data>
+  <data name="RearAdmiral" xml:space="preserve">
+    <value>소장</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>빨강</value>
+  </data>
+  <data name="Retreated" xml:space="preserve">
+    <value>퇴피</value>
+  </data>
+  <data name="Ring" xml:space="preserve">
+    <value>제3경계</value>
+  </data>
+  <data name="RocketAttack" xml:space="preserve">
+    <value>로켓 포격</value>
+  </data>
+  <data name="Sakura" xml:space="preserve">
+    <value>사쿠라</value>
+  </data>
+  <data name="SecondPatrolFormation" xml:space="preserve">
+    <value>제2경계 항행서열</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>포격</value>
+  </data>
+  <data name="SHolo" xml:space="preserve">
+    <value>S홀로</value>
+  </data>
+  <data name="Short" xml:space="preserve">
+    <value>단</value>
+  </data>
+  <data name="Silver" xml:space="preserve">
+    <value>은</value>
+  </data>
+  <data name="Slow" xml:space="preserve">
+    <value>저속</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>출격</value>
+  </data>
+  <data name="SRainbow" xml:space="preserve">
+    <value>S홀로</value>
+  </data>
+  <data name="SSHolo" xml:space="preserve">
+    <value>SS홀로</value>
+  </data>
+  <data name="StartNode" xml:space="preserve">
+    <value>초기 위치</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>강재</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>성공</value>
+  </data>
+  <data name="SuccessNoPlane" xml:space="preserve">
+    <value>성공(비색적기)</value>
+  </data>
+  <data name="SuccessNoReturn" xml:space="preserve">
+    <value>성공(미귀환 존재)</value>
+  </data>
+  <data name="Sunk" xml:space="preserve">
+    <value>격침</value>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>보급</value>
+  </data>
+  <data name="TAdvantage" xml:space="preserve">
+    <value>T자 유리</value>
+  </data>
+  <data name="TDisadvantage" xml:space="preserve">
+    <value>T자 불리</value>
+  </data>
+  <data name="ThirdPatrolFormation" xml:space="preserve">
+    <value>제3경계 항행서열</value>
+  </data>
+  <data name="TorpedoAttack" xml:space="preserve">
+    <value>뇌격</value>
+  </data>
+  <data name="TorpTorp" xml:space="preserve">
+    <value>(어뢰x2)</value>
+  </data>
+  <data name="Type3" xml:space="preserve">
+    <value>3식탄</value>
+  </data>
+  <data name="Unhurt" xml:space="preserve">
+    <value>무상</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>불명</value>
+  </data>
+  <data name="VeryLong" xml:space="preserve">
+    <value>초장</value>
+  </data>
+  <data name="ViceAdmiral" xml:space="preserve">
+    <value>중장</value>
+  </data>
+  <data name="ViceLtCmdr" xml:space="preserve">
+    <value>중견 소령</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>주</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>이탈</value>
+  </data>
+  <data name="EasyDifficulty" xml:space="preserve">
+    <value>병</value>
+  </data>
+  <data name="HardDifficulty" xml:space="preserve">
+    <value>갑</value>
+  </data>
+  <data name="MediumDifficulty" xml:space="preserve">
+    <value>을</value>
+  </data>
+  <data name="Unselected" xml:space="preserve">
+    <value>미선택</value>
+  </data>
+  <data name="LandNode" xml:space="preserve">
+    <value>양륙 지점</value>
+  </data>
+  <data name="TransportFleet" xml:space="preserve">
+    <value>수송 부대</value>
+  </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>공습전</value>
+  </data>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>칸무스</value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>원정 결과</value>
+  </data>
+  <data name="NoResources" xml:space="preserve">
+    <value>획득 자원 없음</value>
+  </data>
+  <data name="BGM_BattleAir" xml:space="preserve">
+    <value>항공전</value>
+  </data>
+  <data name="BGM_BattleBoss" xml:space="preserve">
+    <value>보스전</value>
+  </data>
+  <data name="BGM_BattleDay" xml:space="preserve">
+    <value>주간전</value>
+  </data>
+  <data name="BGM_BattleNight" xml:space="preserve">
+    <value>야전</value>
+  </data>
+  <data name="BGM_Sortie" xml:space="preserve">
+    <value>출격 중</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>모항</value>
+  </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>가구 코인</value>
+  </data>
+  <data name="SpecialIdle" xml:space="preserve">
+    <value>특수 방치</value>
+  </data>
+  <data name="SSHoloPlus" xml:space="preserve">
+    <value>SS홀로+</value>
+  </data>
+  <data name="QuestOther" xml:space="preserve">
+    <value>외</value>
+  </data>
+  <data name="DaihatsuAttack" xml:space="preserve">
+    <value>양륙 공격(대발동정)</value>
+  </data>
+  <data name="TankAttack" xml:space="preserve">
+    <value>양륙 공격(내화정)</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>방공</value>
+  </data>
+  <data name="Rest" xml:space="preserve">
+    <value>휴식</value>
+  </data>
+  <data name="Standby" xml:space="preserve">
+    <value>대기</value>
+  </data>
+  <data name="TakeCover" xml:space="preserve">
+    <value>퇴피</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>출격</value>
+  </data>
+  <data name="BombingAttack" xml:space="preserve">
+    <value>폭격</value>
+  </data>
+  <data name="TorpBombingAttack" xml:space="preserve">
+    <value>뇌격+폭격</value>
+  </data>
+  <data name="BattleDetail_Node" xml:space="preserve">
+    <value>셀:</value>
+  </data>
+  <data name="BattleDetail_Boss" xml:space="preserve">
+    <value> (보스)</value>
+  </data>
+  <data name="BattleDetail_AirAttackWave" xml:space="preserve">
+    <value>〈제{0}웨이브〉</value>
+  </data>
+  <data name="BattleDetail_FriendMainFleet" xml:space="preserve">
+    <value>〈아군 주력 함대〉 </value>
+  </data>
+  <data name="BattleDetail_FriendFleet" xml:space="preserve">
+    <value>〈아군 함대〉 </value>
+  </data>
+  <data name="BattleDetail_FriendEscortFleet" xml:space="preserve">
+    <value>〈아군 수반 함대〉 </value>
+  </data>
+  <data name="BattleDetail_EnemyMainFleet" xml:space="preserve">
+    <value>〈적 주력 함대〉</value>
+  </data>
+  <data name="BattleDetail_EnemyEscortFleet" xml:space="preserve">
+    <value>〈적 수반 함대〉</value>
+  </data>
+  <data name="BattleDetail_EnemyFleet" xml:space="preserve">
+    <value>〈적 함대〉</value>
+  </data>
+  <data name="BattleDetail_AirAttackUnits" xml:space="preserve">
+    <value>아군 기지 항공대 참가 중대:</value>
+  </data>
+  <data name="BattleDetail_AirBase" xml:space="preserve">
+    <value>〈기지 항공대〉 </value>
+  </data>
+  <data name="BattleDetail_FormationFriend" xml:space="preserve">
+    <value>아군진형: </value>
+  </data>
+  <data name="BattleDetail_FormationEnemy" xml:space="preserve">
+    <value> / 적군 진형: </value>
+  </data>
+  <data name="BattleDetail_EngagementForm" xml:space="preserve">
+    <value>교전 형태:</value>
+  </data>
+  <data name="BattleDetail_SearchingFriend" xml:space="preserve">
+    <value>아군 색적: </value>
+  </data>
+  <data name="BattleDetail_SearchingEnemy" xml:space="preserve">
+    <value> / 적군 색적: </value>
+  </data>
+  <data name="EnemyCombinedFleet" xml:space="preserve">
+    <value>적 연합</value>
+  </data>
+  <data name="BattleDetail_TitleBrackets" xml:space="preserve">
+    <value>《{0}》</value>
+  </data>
+  <data name="BattleDetail_BattleEnd" xml:space="preserve">
+    <value>《전투 종료》</value>
+  </data>
+  <data name="BattleDetail_Base" xml:space="preserve">
+    <value>제{0}기지</value>
+  </data>
+  <data name="BattleDetail_AirBaseFriendlyContact" xml:space="preserve">
+    <value>아군 접촉</value>
+  </data>
+  <data name="BattleDetail_AirBaseEnemyContact" xml:space="preserve">
+    <value>적군 접촉</value>
+  </data>
+  <data name="BattleDetail_ShipStats" xml:space="preserve">
+    <value>#{0}: {1} {2} HP: {3} / {4} - 화력{5}, 뇌장{6}, 대공{7}, 장갑{8}</value>
+  </data>
+  <data name="BattleDetail_EnemyStats" xml:space="preserve">
+    <value> - 화력{0}, 뇌장{1}, 대공{2}, 장갑{3}</value>
+  </data>
+  <data name="BattleDetail_Result" xml:space="preserve">
+    <value>◆ 전투 결과 ◆</value>
+  </data>
+  <data name="BattleDetail_ResultRank" xml:space="preserve">
+    <value>랭크: {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPMain" xml:space="preserve">
+    <value>MVP(주력함대): {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPEscort" xml:space="preserve">
+    <value>MVP(수반함대): {0}</value>
+  </data>
+  <data name="BattleDetail_ShipExp" xml:space="preserve">
+    <value>칸무스 기본 경험치: +{0}</value>
+  </data>
+  <data name="BattleDetail_AdmiralExp" xml:space="preserve">
+    <value>제독 경험치: +{0}</value>
+  </data>
+  <data name="BattleDetail_Drop" xml:space="preserve">
+    <value>드랍: </value>
+  </data>
+  <data name="BattleDetail_EnemyStarshell" xml:space="preserve">
+    <value>적군 조명탄 투사: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_EnemySearchlight" xml:space="preserve">
+    <value>적군 탐조등 조사: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyStarshell" xml:space="preserve">
+    <value>아군 조명탄 투사: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlySearchlight" xml:space="preserve">
+    <value>아군 탐조등 조사: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyNightContact" xml:space="preserve">
+    <value>아군 야간 접촉: </value>
+  </data>
+  <data name="BattleDetail_EnemyNightContact" xml:space="preserve">
+    <value>적군 야간 접촉:</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>색적</value>
+  </data>
+  <data name="Title_NormalFleetAirBattle" xml:space="preserve">
+    <value>통상 함대 항공전</value>
+  </data>
+  <data name="Title_NormalFleetAirRaid" xml:space="preserve">
+    <value>통상 함대 장거리 공습전</value>
+  </data>
+  <data name="Title_CombinedFleetAirRaid" xml:space="preserve">
+    <value>연합 함대 장거리 공습전</value>
+  </data>
+  <data name="Title_CombinedFleetAirBattle" xml:space="preserve">
+    <value>연합 함대 항공전</value>
+  </data>
+  <data name="Title_BaseAirRaid" xml:space="preserve">
+    <value>기지 공습전</value>
+  </data>
+  <data name="Title_CombinedEachWater" xml:space="preserve">
+    <value>연합 함대-수상 부대 대 연합 함대 주간전</value>
+  </data>
+  <data name="Title_CombinedNightOnly" xml:space="preserve">
+    <value>연합 함대 개막 야전</value>
+  </data>
+  <data name="Title_PracticeNight" xml:space="preserve">
+    <value>연습 야전</value>
+  </data>
+  <data name="Title_PracticeDay" xml:space="preserve">
+    <value>연습 주간전</value>
+  </data>
+  <data name="Title_NormalNight" xml:space="preserve">
+    <value>통상 함대 야전</value>
+  </data>
+  <data name="Title_NormalDay" xml:space="preserve">
+    <value>통상 함대 주간전</value>
+  </data>
+  <data name="Title_NightOnly" xml:space="preserve">
+    <value>통상 함대 개막 야전</value>
+  </data>
+  <data name="Title_EnemyCombinedDay" xml:space="preserve">
+    <value>통상 함대 대 연합 함대 주간전</value>
+  </data>
+  <data name="Title_EnemyCombinedNight" xml:space="preserve">
+    <value>대 연합 함대 야전</value>
+  </data>
+  <data name="Title_CombinedNormalDay" xml:space="preserve">
+    <value>연합 함대-기동 부대 주간전</value>
+  </data>
+  <data name="Title_CombinedEachDay" xml:space="preserve">
+    <value>연합 함대-기동 부대 대 연합 함대 주간전</value>
+  </data>
+  <data name="BattleDetail_Stage2AACI" xml:space="preserve">
+    <value>대공 컷인 ( {0}, {1}({2}) )</value>
+  </data>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>구축 컷인 (어뢰/어뢰/수뇌견인원)</value>
+  </data>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>구축 컷인 (어뢰/드럼/수뇌견인원)</value>
+  </data>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>나가토, 좋아? 간다! 주포 일제사격!</value>
+  </data>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>요함 야전 돌격</value>
+  </data>
+  <data name="FastPlus" xml:space="preserve">
+    <value>고속+</value>
+  </data>
+  <data name="Fastest" xml:space="preserve">
+    <value>최속속</value>
+  </data>
+  <data name="SSPlusPlus" xml:space="preserve">
+    <value>SS++</value>
+  </data>
+  <data name="NoEvent" xml:space="preserve">
+    <value>이벤트 없음</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>자원</value>
+  </data>
+  <data name="Battle" xml:space="preserve">
+    <value>통상 전투</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value>보스 전투</value>
+  </data>
+  <data name="Anchorage" xml:space="preserve">
+    <value>정박지</value>
+  </data>
+  <data name="RadarAmbush" xml:space="preserve">
+    <value>레이더</value>
+  </data>
+  <data name="CasualDifficulty" xml:space="preserve">
+    <value>정</value>
+  </data>
+  <data name="ABResourcesDamaged" xml:space="preserve">
+    <value>자원에 손해</value>
+  </data>
+  <data name="ABResources_AndPlanesDamaged" xml:space="preserve">
+    <value>자원・항공대에 손해</value>
+  </data>
+  <data name="ABPlanesDamaged" xml:space="preserve">
+    <value>항공대에 손해</value>
+  </data>
+  <data name="ABNoDamage" xml:space="preserve">
+    <value>손해 없음</value>
+  </data>
+  <data name="ABNoAirRaid" xml:space="preserve">
+    <value>발생 안함</value>
+  </data>
+  <data name="ABShortResources" xml:space="preserve">
+    <value>자원 손해</value>
+  </data>
+  <data name="ABShortResourcesPlanes" xml:space="preserve">
+    <value>자원・항공</value>
+  </data>
+  <data name="ABShortPlanes" xml:space="preserve">
+    <value>항공대 손해</value>
+  </data>
+  <data name="ABShortNoDamage" xml:space="preserve">
+    <value>손해 없음</value>
+  </data>
+  <data name="Vanguard" xml:space="preserve">
+    <value>경계진</value>
+  </data>
+  <data name="LineAheadShort" xml:space="preserve">
+    <value>단종진</value>
+  </data>
+  <data name="DoubleLineShort" xml:space="preserve">
+    <value>복종진</value>
+  </data>
+  <data name="DiamondShort" xml:space="preserve">
+    <value>윤형진</value>
+  </data>
+  <data name="EchelonShort" xml:space="preserve">
+    <value>제형진</value>
+  </data>
+  <data name="LineAbreastShort" xml:space="preserve">
+    <value>단횡진</value>
+  </data>
+  <data name="VanguardShort" xml:space="preserve">
+    <value>경계진</value>
+  </data>
+  <data name="FirstPatrolFormationShort" xml:space="preserve">
+    <value>제1경계</value>
+  </data>
+  <data name="SecondPatrolFormationShort" xml:space="preserve">
+    <value>제2경계</value>
+  </data>
+  <data name="ThirdPatrolFormationShort" xml:space="preserve">
+    <value>제3경계</value>
+  </data>
+  <data name="FourthPatrolFormationShort" xml:space="preserve">
+    <value>제4경계</value>
+  </data>
+  <data name="GreenT" xml:space="preserve">
+    <value>T자 유리</value>
+  </data>
+  <data name="RedT" xml:space="preserve">
+    <value>T자 불리</value>
+  </data>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>통상 공격</value>
+  </data>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>레이저 공격</value>
+  </data>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>연속 사격</value>
+  </data>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>컷인(주포/부포)</value>
+  </data>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>컷인(주포/전탐)</value>
+  </data>
+  <data name="CutinMainAP" xml:space="preserve">
+    <value>컷인(주포/철갑)</value>
+  </data>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>컷인(주포/주포)</value>
+  </data>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>공모 컷인</value>
+  </data>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>넬슨 터치</value>
+  </data>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>일제 사격인가... 가슴이 뜨겁네!</value>
+  </data>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>콜로라도 터치</value>
+  </data>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>즈이운 입체 공격</value>
+  </data>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>스이세이 입체 공격</value>
+  </data>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>양륙 공격(대발동정)</value>
+  </data>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>양륙 공격(특대발동정)</value>
+  </data>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>양륙 공격(대발전차)</value>
+  </data>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>양륙 공격(특대발전차)</value>
+  </data>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>컷인(주포/어뢰)</value>
+  </data>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>컷인(어뢰x2)</value>
+  </data>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>컷인(주포x2/부포)</value>
+  </data>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>컷인(주포x3)</value>
+  </data>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>구축 컷인(주포/어뢰/전탐)</value>
+  </data>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>구축 컷인(어뢰/견인원/전탐)</value>
+  </data>
+  <data name="Akizuki" xml:space="preserve">
+    <value>&lt;아키즈키&gt;</value>
+  </data>
+  <data name="Maya" xml:space="preserve">
+    <value>&lt;마야&gt;</value>
+  </data>
+  <data name="Isuzu" xml:space="preserve">
+    <value>&lt;이스즈&gt;</value>
+  </data>
+  <data name="Kasumi" xml:space="preserve">
+    <value>&lt;카스미&gt;</value>
+  </data>
+  <data name="Satsuki" xml:space="preserve">
+    <value>&lt;사츠키&gt;</value>
+  </data>
+  <data name="NonPiercing" xml:space="preserve">
+    <value>(비고사 장치)</value>
+  </data>
+  <data name="Kinu" xml:space="preserve">
+    <value>&lt;키누&gt;</value>
+  </data>
+  <data name="Yura" xml:space="preserve">
+    <value>&lt;유라&gt;</value>
+  </data>
+  <data name="Fumizuki" xml:space="preserve">
+    <value>&lt;후미즈키&gt;</value>
+  </data>
+  <data name="Unconcentrated" xml:space="preserve">
+    <value> (비집중)</value>
+  </data>
+  <data name="UIT25" xml:space="preserve">
+    <value>&lt;UIT-25&gt;</value>
+  </data>
+  <data name="Tatsuta" xml:space="preserve">
+    <value>&lt;타츠타&gt;</value>
+  </data>
+  <data name="RosaK2" xml:space="preserve">
+    <value>분진포 개2</value>
+  </data>
+  <data name="Ise" xml:space="preserve">
+    <value>&lt;이세&gt;</value>
+  </data>
+  <data name="Musashi" xml:space="preserve">
+    <value>&lt;무사시&gt;</value>
+  </data>
+  <data name="Hamakaze" xml:space="preserve">
+    <value>&lt;하마카제&gt;</value>
+  </data>
+  <data name="Tenryuu" xml:space="preserve">
+    <value>&lt;텐류&gt;</value>
+  </data>
+  <data name="BriishAACI" xml:space="preserve">
+    <value>로켓런처x2 or FCR/퐁퐁포 or 로켓런처/퐁퐁포&lt;영국&gt;</value>
+  </data>
+  <data name="FletcherGun" xml:space="preserve">
+    <value>플레처포 개</value>
+  </data>
+  <data name="AtlantaGun" xml:space="preserve">
+    <value>아틀란타포</value>
+  </data>
+  <data name="QuestOneTime" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="QuestYearly" xml:space="preserve">
+    <value>년</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>1월</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>2월</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>3월</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>4월</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>5월</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>6월</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>7월</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>8월</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>9월</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>10월</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>11월</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>12월</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>리셋</value>
+  </data>
+  <data name="NormalFleet" xml:space="preserve">
+    <value>통상 함대</value>
+  </data>
+  <data name="CarrierTF" xml:space="preserve">
+    <value>기동 부대</value>
+  </data>
+  <data name="SurfaceTF" xml:space="preserve">
+    <value>수상 부대</value>
+  </data>
+  <data name="SpecialSubmarineTender23" xml:space="preserve">
+    <value>잠수 함대 공격 (2・3)</value>
+  </data>
+  <data name="SpecialSubmarineTender34" xml:space="preserve">
+    <value>잠수 함대 공격 (3・4)</value>
+  </data>
+  <data name="SpecialSubmarineTender24" xml:space="preserve">
+    <value>잠수 함대 공격 (2・4)</value>
+  </data>
+  <data name="ShellingSupport" xml:space="preserve">
+    <value>포격 지원</value>
+  </data>
+  <data name="AirstrikeSupport" xml:space="preserve">
+    <value>항공 지원</value>
+  </data>
+  <data name="AntiSubmarineSupport" xml:space="preserve">
+    <value>대잠 지원</value>
+  </data>
+  <data name="TorpedoSupport" xml:space="preserve">
+    <value>뇌격 지원</value>
+  </data>
+  <data name="SpecialYamato123" xml:space="preserve">
+    <value>야마토, 돌격합니다! 2번함도 따라와주세요!</value>
+  </data>
+  <data name="SpecialYamato12" xml:space="preserve">
+    <value>제1전대, 돌격! 주포, 전력 일제사격!</value>
+  </data>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>야간 즈이운 컷인</value>
+  </data>
+  <data name="Title_NormalRadar" xml:space="preserve">
+    <value>통상 함대 레이더 사격</value>
+  </data>
+  <data name="Title_NormalDayFromNight" xml:space="preserve">
+    <value>대 통상 함대 야간전</value>
+  </data>
+</root>

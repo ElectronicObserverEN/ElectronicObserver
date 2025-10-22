@@ -5,6 +5,9 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Services;
@@ -13,10 +16,10 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
+using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
@@ -94,7 +97,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	public string EquipmentAfterConversionDisplay { get; set; } = "";
 	public Visibility EquipmentAfterConversionVisible => string.IsNullOrEmpty(EquipmentAfterConversionDisplay) ? Visibility.Collapsed : Visibility.Visible;
 
-	private EquipmentPickerService EquipmentPicker { get; }
+	private TransliterationService TransliterationService { get; }
 	private TimeChangeService TimeChangeService { get; }
 	public EquipmentUpgradePlanItemModel Plan { get; }
 
@@ -119,7 +122,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 		EquipmentUpgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 		Plan = plan;
 
-		EquipmentPicker = Ioc.Default.GetRequiredService<EquipmentPickerService>();
+		TransliterationService = Ioc.Default.GetRequiredService<TransliterationService>();
 		TimeChangeService = Ioc.Default.GetRequiredService<TimeChangeService>();
 		EquipmentUpgradePlanItem = Ioc.Default.GetRequiredService<EquipmentUpgradePlannerTranslationViewModel>();
 		EquipmentUpgradePlanManager = Ioc.Default.GetRequiredService<EquipmentUpgradePlanManager>();
@@ -404,12 +407,14 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IE
 	}
 
 	[RelayCommand]
-	public void OpenEquipmentPicker()
+	private void OpenEquipmentPicker()
 	{
-		IEquipmentData? newEquip = EquipmentPicker.OpenEquipmentPicker();
-		if (newEquip != null)
-		{
-			EquipmentId = newEquip.MasterID;
-		}
+		EquipmentSelectorViewModel viewModel = new(TransliterationService, [.. KCDatabase.Instance.Equipments.Values]);
+
+		viewModel.ShowDialog();
+
+		if (viewModel.SelectedEquipment is null) return;
+		
+		EquipmentId = viewModel.SelectedEquipment.MasterID;
 	}
 }

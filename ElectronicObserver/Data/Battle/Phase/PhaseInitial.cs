@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Mocks;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Mocks;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -265,6 +265,7 @@ public class PhaseInitial : PhaseBase
 		{
 			if (EnemyFleet.MembersInstance[index] is ShipDataMock ship)
 			{
+				ship.HPCurrent = EnemyInitialHPs[index];
 				ship.CanBeTargeted = IsEnemyTargetable[index];
 			}
 		}
@@ -286,6 +287,7 @@ public class PhaseInitial : PhaseBase
 			{
 				if (EnemyFleetEscort.MembersInstance[index] is ShipDataMock ship)
 				{
+					ship.HPCurrent = EnemyInitialHPsEscort?[index] ?? 0;
 					ship.CanBeTargeted = IsEnemyTargetableEscort[index];
 				}
 			}

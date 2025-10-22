@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

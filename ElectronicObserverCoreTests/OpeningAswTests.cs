@@ -1,24 +1,18 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data.Translation;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using ElectronicObserverTypes.Mocks;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
 
 [Collection(DatabaseCollection.Name)]
-public class OpeningAswTests
+public class OpeningAswTests(DatabaseFixture db)
 {
-	private DatabaseFixture Db { get; }
+	private DatabaseFixture Db { get; } = db;
 
 	private static FitBonusData BonusData { get; } = new();
-
-	public OpeningAswTests(DatabaseFixture db)
-	{
-		Db = db;
-	}
 
 	[Fact(DisplayName = "Fit bonus counts for the opening ASW border")]
 	public void OpeningAswTest1()
@@ -294,7 +288,7 @@ public class OpeningAswTests
 	}
 
 	[Fact(DisplayName = "CVL with 100+ ASW with 65ASW Condition")]
-	public void OpeningASWTest8()
+	public void OpeningAswTest8()
 	{
 		ShipDataMock gambierbay = new(Db.MasterShips[ShipId.GambierBayMkII])
 		{
@@ -310,7 +304,7 @@ public class OpeningAswTests
 	}
 
 	[Fact(DisplayName = "Housho k2s with 0 slot no OASW")]
-	public void OpeningASWTtest9()
+	public void OpeningAswTtest9()
 	{
 		ShipDataMock houshok2s = new(Db.MasterShips[ShipId.HoushouKaiNiSen])
 		{
@@ -327,7 +321,7 @@ public class OpeningAswTests
 	}
 
 	[Fact(DisplayName = "Housho k2s with 0 slot And 1 aircraft OASW")]
-	public void OpeningASWTest10()
+	public void OpeningAswTest10()
 	{
 		ShipDataMock houshok2s = new(Db.MasterShips[ShipId.HoushouKaiNiSen])
 		{
@@ -344,7 +338,7 @@ public class OpeningAswTests
 	}
 
 	[Fact(DisplayName = "Emptied carrier can't attack subs")]
-	public void OpeningASWTest11()
+	public void OpeningAswTest11()
 	{
 		ShipDataMock zuihok2b = new (Db.MasterShips[ShipId.ZuihouKaiNiB])
 		{
@@ -360,5 +354,15 @@ public class OpeningAswTests
 		};
 		Assert.False(zuihok2b.CanAttackSubmarine());
 		Assert.False(zuihok2b.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Burger DD")]
+	public void OpeningAswTest12()
+	{
+		ShipDataMock heywood = new(Db.MasterShips[ShipId.HeywoodLE]);
+		ShipDataMock richard = new(Db.MasterShips[ShipId.RichardPLeary]);
+
+		Assert.False(heywood.CanDoOpeningAsw());
+		Assert.False(richard.CanDoOpeningAsw());
 	}
 }

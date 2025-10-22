@@ -120,4 +120,696 @@
   <data name="Language_Korean" xml:space="preserve">
     <value>한국어</value>
   </data>
+  <data name="NetworkSettingsNote" xml:space="preserve">
+    <value>* 브라우저에 대한 통신 설정은 재시작 후 반영됩니다.</value>
+  </data>
+  <data name="UpstreamProxyToolTip" xml:space="preserve">
+    <value>상위 프록시의 주소를 지정합니다.
+기본값은 127.0.0.1 입니다.</value>
+  </data>
+  <data name="Connection_DownstreamProxyLabel" xml:space="preserve">
+    <value>하위 프록시(상급자용)</value>
+  </data>
+  <data name="Connection_DownstreamProxyToolTip" xml:space="preserve">
+    <value>하위 프록시 설정을 기술합니다.
+이 설정은 상기 포트 설정보다 우선됩니다.
+공란일 경우엔 상기의 설정을 바탕으로 자동 설정됩니다.
+동작을 이해하는 분만 이용해 주세요.</value>
+  </data>
+  <data name="Connection_UseSystemProxy" xml:space="preserve">
+    <value>시스템 프록시 사용</value>
+  </data>
+  <data name="Connection_UpstreamProxyPortToolTip" xml:space="preserve">
+    <value>다른 도구 ・ 브라우저로 이용하고 있는 포트 번호를 지정합니다.</value>
+  </data>
+  <data name="Connection_UseUpstreamProxyToolTip" xml:space="preserve">
+    <value>다른 프록시를 이용할 도구 ・ 브라우저와 연동할 때 이용합니다.</value>
+  </data>
+  <data name="Connection_RegisterAsSystemProxy" xml:space="preserve">
+    <value>시스템 프록시로써 등록</value>
+  </data>
+  <data name="Connection_SaveDataPathSearch" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="Connection_SaveReceivedData" xml:space="preserve">
+    <value>통신 내용 저장</value>
+  </data>
+  <data name="UI_JapaneseEquipmentTypes" xml:space="preserve">
+    <value>장비 종류 번역 안함</value>
+  </data>
+  <data name="UI_JapaneseEquipmentNames" xml:space="preserve">
+    <value>장비명 번역 안함</value>
+  </data>
+  <data name="UI_JapaneseShipTypes" xml:space="preserve">
+    <value>함 종류 번역 안함</value>
+  </data>
+  <data name="UI_JapaneseShipNames" xml:space="preserve">
+    <value>함명 번역 안함</value>
+  </data>
+  <data name="UI_DisableOtherTranslations" xml:space="preserve">
+    <value>다른 번역 비활성화</value>
+  </data>
+  <data name="UI_DisableOtherTranslationsToolTip" xml:space="preserve">
+    <value>원정, 출격 맵, 퀘스트</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>테마 : </value>
+  </data>
+  <data name="ThemeToolTip" xml:space="preserve">
+    <value>지정한 컬러 테마를 사용합니다.
+번경은 재시작 후 적용됩니다.
+커스텀 옵션은 Settings\ColorScheme.json 의 컬러 값을 사용합니다.</value>
+  </data>
+  <data name="UI_RenderingTestToolTip" xml:space="preserve">
+    <value>이미지 프리뷰입니다.
+아래 막대로 값을 조정할 수 있습니다.</value>
+  </data>
+  <data name="UI_IsLayoutFixed" xml:space="preserve">
+    <value>폰트 높이 고정</value>
+  </data>
+  <data name="UI_IsLayoutFixedToolTip" xml:space="preserve">
+    <value>활성화 시, 어떤 폰트도 대체로 각 UI의 열의 높이가 같아집니다. (ver. 2.6.2 이전과 동일)
+비활성화 시, 폰트에 따라 열의 높이가 바뀝니다. (활성화 시보다 커지는 경우가 있습니다.) 비활성화 시, 동작이 약간 무거워질 수 있습니다.</value>
+  </data>
+  <data name="UI_BarColorMorphingToolTip" xml:space="preserve">
+    <value>HP ・ 자원 등의 바의 색을 칸코레 UI와 동일하게 매끄럽게 변화시킬지 설정합니다.</value>
+  </data>
+  <data name="Log_SaveLogImmediately" xml:space="preserve">
+    <value>로그 즉시 작성</value>
+  </data>
+  <data name="Log_SaveLogImmediatelyToolTip" xml:space="preserve">
+    <value>로그 추가와 동시에 로그 파일에 작성할지 설정합니다.
+무효일 경우, 프로그램 종료 시에 한꺼번에 작성합니다.
+유효일 경우, 강제 종료 등으로 문제가 발생해도 로그를 남길 수 있지만, 다소 처리가 무거워질 가능성이 있습니다. 
+[로그를 파일에 저장한다]를 무효로 하면 이 설정이 비활성화 됩니다.</value>
+  </data>
+  <data name="Log_SaveBattleLog" xml:space="preserve">
+    <value>전투 로그 저장</value>
+  </data>
+  <data name="Log_SaveBattleLogToolTip" xml:space="preserve">
+    <value>전투 로그를 저장할지 설정합니다.
+전투 로그는 BattleLog 폴더에 저장됩니다.</value>
+  </data>
+  <data name="Log_ShowSpoiler" xml:space="preserve">
+    <value>스포일러 허가</value>
+  </data>
+  <data name="Log_ShowSpoilerToolTip" xml:space="preserve">
+    <value>개발한 아이템명이나 드롭함명을 로그에 기록시킬지 설정합니다.
+먼저 알게 되는 게 신경 쓰이는 분들은 무효로 해주세요.</value>
+  </data>
+  <data name="Log_LogLevelToolTip" xml:space="preserve">
+    <value>작은 값은 상세한 로그, 큰 값은 중요한 로그만 표시합니다.
+1: 디버그 레벨
+2: 통상(추천)
+3: 오류만</value>
+  </data>
+  <data name="TabPage4" xml:space="preserve">
+    <value>동작</value>
+  </data>
+  <data name="ApplicationId" xml:space="preserve">
+    <value>어플리케이션 ID</value>
+  </data>
+  <data name="Control_ApplicationIDToolTip" xml:space="preserve">
+    <value>Discord Rich Presence에서 사용하는 어플리케이션 ID</value>
+  </data>
+  <data name="Control_ForceUpdate" xml:space="preserve">
+    <value>강제 업데이트</value>
+  </data>
+  <data name="TranslationURL" xml:space="preserve">
+    <value>번역 URL</value>
+  </data>
+  <data name="Control_translationURLToolTip" xml:space="preserve">
+    <value>번역의 갱신에 사용할 저장 공간을 지정합니다.</value>
+  </data>
+  <data name="Control_DiscordRPCShowFCM" xml:space="preserve">
+    <value>갑종 훈장을 표시</value>
+  </data>
+  <data name="Control_DiscordRPCShowFCMToolTip" xml:space="preserve">
+    <value>가지고 있는 갑종훈장의 수량을 표시하기 위해 체크합니다.</value>
+  </data>
+  <data name="Control_EnableDiscordRPC" xml:space="preserve">
+    <value>Discord RPC 활성화</value>
+  </data>
+  <data name="Control_EnableDiscordRPCToolTip" xml:space="preserve">
+    <value>Discord Rich Presence 활성화</value>
+  </data>
+  <data name="DiscordRPCMessage" xml:space="preserve">
+    <value>Discord RPC 메시지</value>
+  </data>
+  <data name="Control_DiscordRPCMessageToolTip" xml:space="preserve">
+    <value>디스코드에 표시할 메시지를 선택할 수 있게합니다. 메세지에 비서의 이름을 넣으려면 {{secretary}}를 사용합니다.</value>
+  </data>
+  <data name="Control_ShowExpeditionAlertDialog" xml:space="preserve">
+    <value>실패할 원정 출격 시에 경고</value>
+  </data>
+  <data name="Control_ShowExpeditionAlertDialogTooltip" xml:space="preserve">
+    <value>편성 조건을 만족하지 않는 함대가 원정에 출발했을 때, 경고 로그를 표시할 지 설정합니다.</value>
+  </data>
+  <data name="Control_ShowSallyAreaAlertDialog" xml:space="preserve">
+    <value>출격 태그가 없는 칸무스가 출격했을 때 경고</value>
+  </data>
+  <data name="Control_ShowSallyAreaAlertDialogTooltip" xml:space="preserve">
+    <value>출격 제한의 패가 붙어있지 않은 칸무스가 이벤트 해역에 출격했을 때, 경고 로그를 표시할 지 설정합니다.
+얻을 수 있는 정보가 불완전하기에, 오판정을 일으킬 가능성이 있으니 양해 부탁드립니다.</value>
+  </data>
+  <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
+    <value>위력(전투에서의 공격력)을 계산할 때, 기준으로 할 교전 형태를 설정합니다.</value>
+  </data>
+  <data name="FormationModifier" xml:space="preserve">
+    <value>위력 표시 교전 형태: </value>
+  </data>
+  <data name="Control_UseSystemVolume" xml:space="preserve">
+    <value>알람 ・ BGM 음량에 시스템 설정을 이용</value>
+  </data>
+  <data name="Control_UseSystemVolumeToolTip" xml:space="preserve">
+    <value>알람 ・ BGM 등의 본체 음량 설정에, 시스템 음량을 이용할 지 설정합니다.
+비활성화 시, 개별로 음량을 설정할 수 있지만 볼륨 믹서 등으로 조절할 수 없게됩니다.
+활성화 시, 볼륨 믹서 등으로 조절할 수 있지만, 개별 음량 설정은 무시됩니다. </value>
+  </data>
+  <data name="ProgressAutoSaving_Immediately" xml:space="preserve">
+    <value>즉시</value>
+  </data>
+  <data name="LogFrequency" xml:space="preserve">
+    <value>기록 자동 저장: </value>
+  </data>
+  <data name="Debug_LoadAPIListOnLoad" xml:space="preserve">
+    <value>실행 시 API 목록을 로드</value>
+  </data>
+  <data name="Debug_LoadAPIListOnLoadToolTip" xml:space="preserve">
+    <value>실행 시에, 아래 텍스트 란에 지정한 API 목록을 자동으로 불러옵니다.
+API 목록의 서식이나 용법은 온라인 도움말을 참조해 주세요.</value>
+  </data>
+  <data name="Debug_EnableDebugMenu" xml:space="preserve">
+    <value>디버그 메뉴 활성화</value>
+  </data>
+  <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
+    <value>메인 윈도우의 [디버그] 메뉴를 활성화합니다. 디버그용 기능이므로 일반 유저의 조작은 추천되지 않습니다. 사용 시의 동작은 보증할 수 없으므로 본인 책임으로 사용해 주십시오.</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
+    <value>상기[레이아웃을 잠금]이 활성화되어 있어도 플로트 윈도우(본체와 분리된 윈도우)를 닫히게끔 할지 설정합니다.
+윈도우를 자주 일시적으로 여는 분은 활성화하면 편리합니다.</value>
+  </data>
+  <data name="Life_LockLayout" xml:space="preserve">
+    <value>레이아웃을 잠금</value>
+  </data>
+  <data name="Life_LockLayoutToolTip" xml:space="preserve">
+    <value>크기나 레이아웃이 변경되는 걸 방지할지 설정합니다.</value>
+  </data>
+  <data name="ClockMode" xml:space="preserve">
+    <value>시계 표시 : </value>
+  </data>
+  <data name="Life_ClockFormat_ServerTime" xml:space="preserve">
+    <value>현재 시각</value>
+  </data>
+  <data name="Life_ClockFormat_PvpReset" xml:space="preserve">
+    <value>연습 갱신까지</value>
+  </data>
+  <data name="Life_ClockFormat_QuestReset" xml:space="preserve">
+    <value>임무 갱신까지</value>
+  </data>
+  <data name="Life_ShowStatusBar" xml:space="preserve">
+    <value>상태 창 표시</value>
+  </data>
+  <data name="Life_CheckUpdateInformation" xml:space="preserve">
+    <value>업데이트 확인</value>
+  </data>
+  <data name="Life_TopMost" xml:space="preserve">
+    <value>가장 앞에 표시</value>
+  </data>
+  <data name="Life_ConfirmOnClosing" xml:space="preserve">
+    <value>종료 시에 확인</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>보조 윈도우</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>함대</value>
+  </data>
+  <data name="FormFleet_AppliesSallyAreaColor" xml:space="preserve">
+    <value>츨격 해역에서 함명을 색칠</value>
+  </data>
+  <data name="FormFleet_AppliesSallyAreaColorToolTip" xml:space="preserve">
+    <value>출격 해역에 따른 함명 배경 색을 설정합니다.</value>
+  </data>
+  <data name="FleetStatus" xml:space="preserve">
+    <value>함대 상태 표시 : </value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_SingleStatus" xml:space="preserve">
+    <value>한 개만 표시</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_CollapseAll" xml:space="preserve">
+    <value>모두 단축 표시</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_CollapseMultiple" xml:space="preserve">
+    <value>복수 표시 시에 단축</value>
+  </data>
+  <data name="FormFleet_FleetStateDisplayMode_ExpandAll" xml:space="preserve">
+    <value>모두 통상 표시</value>
+  </data>
+  <data name="FormFleet_EmphasizesSubFleetInPort" xml:space="preserve">
+    <value>원정 함대 미출격 시에 강조 표시</value>
+  </data>
+  <data name="FormFleet_EmphasizesSubFleetInPortToolTip" xml:space="preserve">
+    <value>제 2~4함대가 모항에 있을 때, 색칠하여 표시하도록 합니다.</value>
+  </data>
+  <data name="FormFleet_BlinkAtDamaged" xml:space="preserve">
+    <value>대파 시에 점멸</value>
+  </data>
+  <data name="FormFleet_BlinkAtDamagedToolTip" xml:space="preserve">
+    <value>모항에 있을 때, 대파함이 존재할 시 점멸 표시를 켤지 설정합니다.
+출격 시에는 항상 점멸합니다.</value>
+  </data>
+  <data name="FormFleet_ReflectAnchorageRepairHealing" xml:space="preserve">
+    <value>정박지 수리에 의한 HP회복을 반영</value>
+  </data>
+  <data name="FormFleet_ReflectAnchorageRepairHealingToolTip" xml:space="preserve">
+    <value>활성화한 경우, 정박지 수리 개시로부터 20분 이상 경과하면 HP 바에 회복량이 표시됩니다.</value>
+  </data>
+  <data name="FormFleet_ShowAirSuperiorityRange" xml:space="preserve">
+    <value>제공 전력을 범위 표시</value>
+  </data>
+  <data name="FormFleet_ShowAirSuperiorityRangeToolTip" xml:space="preserve">
+    <value>제공 전력의 범위를 [내부숙련도 최소 ~ 최대]로써 범위표시할지 설정합니다.
+통상, 제공 전력은 가장 낮은 내부 숙련도를 갖고있는 것으로 계산합니다.</value>
+  </data>
+  <data name="FormFleet_ShowAircraftLevelByNumber" xml:space="preserve">
+    <value>함재기 숙련도를 숫자로 표시</value>
+  </data>
+  <data name="FormFleet_ShowAircraftLevelByNumberToolTip" xml:space="preserve">
+    <value>함재기 숙련도를 기호（|, || 등）이 아니라, 숫자 ( 1, 2 등 ) 으로 표시할지 설정합니다.</value>
+  </data>
+  <data name="FormFleet_FixedShipNameWidthToolTip" xml:space="preserve">
+    <value>함명의 가로 폭 고정이 유효할 때의 크기를 설정합니다.</value>
+  </data>
+  <data name="FormFleet_ShowConditionIcon" xml:space="preserve">
+    <value>피로도 아이콘을 표시</value>
+  </data>
+  <data name="FormFleet_ShowConditionIconToolTip" xml:space="preserve">
+    <value>피로도 아이콘을 표시할지 설정합니다. 표시하지 않는 경우, 배경색으로 구별됩니다.</value>
+  </data>
+  <data name="EquipmentLevelVisibility_OverlayProficiency" xml:space="preserve">
+    <value>레벨 오버레이</value>
+  </data>
+  <data name="FormFleet_EquipmentLevelVisibilityToolTip" xml:space="preserve">
+    <value>장비의 개수 레벨이나 함재기 숙련도의 표시를 설정합니다.
+[비표시]인 경우엔 표시하지 않습니다.
+[~우선]인 경우, 어느 쪽도 Lv.1 이상일 때 각각을 우선해서 표시합니다.
+[양방 표시]인 경우엔 항상 양쪽을 표시합니다.</value>
+  </data>
+  <data name="EquipmentLevelDisplay" xml:space="preserve">
+    <value>장비 정보 표시 : </value>
+  </data>
+  <data name="FormFleet_BlinkAtCompletionToolTip" xml:space="preserve">
+    <value>원정・입거 등이 완료되었을 때, 라벨을 점등시킬지 설정합니다.</value>
+  </data>
+  <data name="FormFleet_ShowAnchorageRepairingTimer" xml:space="preserve">
+    <value>정박지 수리 타이머를 표시</value>
+  </data>
+  <data name="FormFleet_ShowAnchorageRepairingTimerToolTip" xml:space="preserve">
+    <value>함대 일관의 정박지 수리 타이머를 표시할지 설정합니다.</value>
+  </data>
+  <data name="FormFleet_AirSuperiorityMethod_Disabled" xml:space="preserve">
+    <value>레벨을 무시</value>
+  </data>
+  <data name="FormFleet_AirSuperiorityMethod_Enabled" xml:space="preserve">
+    <value>레벨을 포함</value>
+  </data>
+  <data name="FormFleet_ShowNextExpToolTip" xml:space="preserve">
+    <value>[다음 레벨까지 필요한 경험치]를 표시할지 설정합니다. 생략된 경우 공간을 절약할 수 있습니다.</value>
+  </data>
+  <data name="FormFleet_ShortenHPBar" xml:space="preserve">
+    <value>HP 바 단축</value>
+  </data>
+  <data name="FormFleet_FixShipNameWidth" xml:space="preserve">
+    <value>함명의 가로 폭 고정</value>
+  </data>
+  <data name="FormFleet_FixShipNameWidthToolTip" xml:space="preserve">
+    <value>함명 표시란의 폭을 고정하고, 공간을 절약합니다. 대신 긴 이름을 가진 칸무스는 짤립니다.</value>
+  </data>
+  <data name="FormFleet_IsScrollable" xml:space="preserve">
+    <value>스크롤 바 표시</value>
+  </data>
+  <data name="FormFleet_IsScrollableToolTip" xml:space="preserve">
+    <value>표시 영역이 튀어나왔을 경우 스크롤 바를 표시할지 설정합니다.
+튀어나오지 않았을 경우엔 표시하지 않습니다.</value>
+  </data>
+  <data name="FormFleet_ShowAircraft" xml:space="preserve">
+    <value>함재기 수 표시</value>
+  </data>
+  <data name="NameWidth" xml:space="preserve">
+    <value>함명의 최대 가로 폭 : </value>
+  </data>
+  <data name="FormArsenal_MaxShipNameWidthToolTip" xml:space="preserve">
+    <value>함명 표시 폭의 최대치를 설정합니다.</value>
+  </data>
+  <data name="FormArsenal_ShowShipName" xml:space="preserve">
+    <value>함명 표시</value>
+  </data>
+  <data name="HQ" xml:space="preserve">
+    <value>사령부</value>
+  </data>
+  <data name="OtherItem" xml:space="preserve">
+    <value>자유 아이템 표시란 : </value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>표시/비표시 설정 : </value>
+  </data>
+  <data name="ShipNameSortMethod_GameSort" xml:space="preserve">
+    <value>모항 정렬 순</value>
+  </data>
+  <data name="FormShipGroup_ShowStatusBar" xml:space="preserve">
+    <value>상태창 표시</value>
+  </data>
+  <data name="Combat" xml:space="preserve">
+    <value>전투</value>
+  </data>
+  <data name="FormBattle_Display7thAsSingleLine" xml:space="preserve">
+    <value>7번함을 같은 행에 표시</value>
+  </data>
+  <data name="FormBattle_Display7thAsSingleLineToolTip" xml:space="preserve">
+    <value>유격부대(7척 편성) 출격 시, 7척 째의 정보를 어디에 표시할 지 설정합니다.
+활성화 시, 6척 째의 아래에, 비활성화 시, 수반 함대 1척 째와 같은 위치에 표시됩니다.
+비활성화로 하면 약간의 공간을 절약할 수 있습니다.</value>
+  </data>
+  <data name="FormBattle_ShowShipTypeInHPBar" xml:space="preserve">
+    <value>HP 바에 함종약호를 표시</value>
+  </data>
+  <data name="FormBattle_ShowShipTypeInHPBarToolTip" xml:space="preserve">
+    <value>"HP:" 표시 대신에 함종약호를 표시할지 설정합니다.
+약호가 긴 함종은 표시가 겹칠 수 있습니다.</value>
+  </data>
+  <data name="FormBattle_ShowHPBar" xml:space="preserve">
+    <value>HP 바 표시</value>
+  </data>
+  <data name="FormBattle_ShowHPBarToolTip" xml:space="preserve">
+    <value>비표시로 하면 약간이지만 세로 폭을 절약할 수 있습니다.</value>
+  </data>
+  <data name="FormBattle_HideDuringBattle" xml:space="preserve">
+    <value>전투 종료까지 숨기기</value>
+  </data>
+  <data name="FormBattle_HideDuringBattleToolTip" xml:space="preserve">
+    <value>전투 중에 전투 예측 화면을 비표시하여 스포일러를 피합니다.
+비표시 상태에도, 전투 윈도우의 우클릭 메뉴로부터 일시적으로 표시할 수 있습니다.</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>브라우저</value>
+  </data>
+  <data name="FormBrowser_SavesBrowserLog" xml:space="preserve">
+    <value>브라우저의 오류 로그를 저장 *</value>
+  </data>
+  <data name="FormBrowser_SavesBrowserLogTooltip" xml:space="preserve">
+    <value>활성화 하면, BrowserLog.log에 브라우저의 오류 로그를 저장합니다. 문제 해결에 도움이 될 수 있지만, 작성에 의해 동작이 무거워질 가능성이 있습니다.</value>
+  </data>
+  <data name="FormBrowser_ForceColorProfile" xml:space="preserve">
+    <value>컬러 프로필을 sRGB로 고정 *</value>
+  </data>
+  <data name="FormBrowser_ForceColorProfileToolTip" xml:space="preserve">
+    <value>브라우저의 색감이 이상할 때, 활성화하면 해결될 수 있습니다.
+재시작하면 반영됩니다.</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBuffer" xml:space="preserve">
+    <value>이미지 버퍼를 유지 *</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBufferToolTip" xml:space="preserve">
+    <value>이미지 계열에 문제가 있을 때, 활성화 하면 개선될 수 있습니다.
+비활성화할 시 성능이 향상될 수 있습니다.
+* 이 변경은 재시작 후 적용됩니다.</value>
+  </data>
+  <data name="RestartNotice" xml:space="preserve">
+    <value>* 표시가 있는 설정은 재시작 후 반영됩니다.</value>
+  </data>
+  <data name="FormBrowser_HardwareAccelerationEnabled" xml:space="preserve">
+    <value>하드웨어 가속 켜기 *</value>
+  </data>
+  <data name="FormBrowser_HardwareAccelerationEnabledToolTip" xml:space="preserve">
+    <value>이미지에 GPU를 사용할 지 설정합니다.
+활성화 하면 성능이 향상될 수 있습니다.
+녹화 · 방송으로 화면이 송출되지 않을 때, 비활성화 하면 개선될 수 있습니다.
+* 이 변경은 재시작 시에 적용됩니다.</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyable" xml:space="preserve">
+    <value>DMM에 의한 페이지 갱신 창 비표시</value>
+  </data>
+  <data name="FormBrowser_IsDMMreloadDialogDestroyableToolTip" xml:space="preserve">
+    <value>DMM의 [에러가 발생하여, 페이지를 새로고침 합니다.] 라는 확인 창을 표시하지 않도록 합니다.</value>
+  </data>
+  <data name="FormBrowser_ConfirmAtRefresh" xml:space="preserve">
+    <value>새로고침 시에 확인</value>
+  </data>
+  <data name="FormBrowser_ConfirmAtRefreshToolTip" xml:space="preserve">
+    <value>활성화 할 시, 새로고침 할 때 확인 창을 표시합니다.
+실수 방지에 이용해주세요.</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>스크린샷</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>저장 방법 : </value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_ToFile" xml:space="preserve">
+    <value>파일에 저장</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_ToClipboard" xml:space="preserve">
+    <value>클립 보드 복사</value>
+  </data>
+  <data name="FormBrowser_ScreenShotSaveMode_Both" xml:space="preserve">
+    <value>양방 저장</value>
+  </data>
+  <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration" xml:space="preserve">
+    <value>트위터의 이미지 압축 회피</value>
+  </data>
+  <data name="FormBrowser_ScreenShotFormat_AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>트위터에 PNG 형식의 이미지를 업로드 할 때, 자동으로 JPEG 형식으로 변환되어 화질이 열화하는 것을 방지하기 위해 정보를 삽입할지 설정합니다.</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>확대 배율 : </value>
+  </data>
+  <data name="AB" xml:space="preserve">
+    <value>기지 항공대</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnly" xml:space="preserve">
+    <value>이벤트 해역의 기지만 표시</value>
+  </data>
+  <data name="FormBaseAirCorps_ShowEventMapOnlyToolTip" xml:space="preserve">
+    <value>유효인 경우, 이벤트 시에 통상 해역의 기지 항공대를 비표시로 합니다.
+이벤트 기간 외에는 모든 항공대가 표시됩니다.</value>
+  </data>
+  <data name="FormJson_AutoUpdate" xml:space="preserve">
+    <value>자동 갱신</value>
+  </data>
+  <data name="FormJson_AutoUpdateToolTip" xml:space="preserve">
+    <value>API 송수신 시에 자동으로 표시를 갱신할지 설정합니다. 다소 무거워질 가능성이 있습니다.</value>
+  </data>
+  <data name="AutoUpdateCouldIncreaseLoad" xml:space="preserve">
+    <value>※자동 갱신을 활성화하면 프로그램이 무거워질 수 있습니다.</value>
+  </data>
+  <data name="FormJson_UpdatesTree" xml:space="preserve">
+    <value>JSON Tree도 갱신</value>
+  </data>
+  <data name="FormJson_UpdatesTreeToolTip" xml:space="preserve">
+    <value>API 송수신 시에 자동으로 Tree 표시를 갱신할지 설정합니다. 위의 [자동 업데이트하기]가 유효일 시에만 갱신됩니다. 다소 무거워질 가능성이 있습니다.</value>
+  </data>
+  <data name="FormJson_AutoUpdateFilterToolTip" xml:space="preserve">
+    <value>자동 업데이트 시에 불러올 API를 선택하는 필터입니다. 정규표현도 이용할 수 있습니다.</value>
+  </data>
+  <data name="UpdateFilter" xml:space="preserve">
+    <value>자동 갱신 필터 : </value>
+  </data>
+  <data name="silenceFullscreen" xml:space="preserve">
+    <value>전체 화면일 때 음소거</value>
+  </data>
+  <data name="Notification_Silencio" xml:space="preserve">
+    <value>모든 알림을 음소거</value>
+  </data>
+  <data name="Notification_SilencioToolTip" xml:space="preserve">
+    <value>모든 알림을 비표시로 하고, 알림음의 발신도 정지시킵니다.
+
+「실렌시오! 닥쳐!」</value>
+  </data>
+  <data name="Notification_RemodelLevel" xml:space="preserve">
+    <value>개조 레벨</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>음소거 동기화</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMuteToolTip" xml:space="preserve">
+    <value>브라우저의 음소거를 동기화 할지 설정합니다.</value>
+  </data>
+  <data name="APIListBrowser" xml:space="preserve">
+    <value>API 리스트 열기</value>
+  </data>
+  <data name="Log_PlayTime" xml:space="preserve">
+    <value>플레이 시간</value>
+  </data>
+  <data name="Control_EnableTsunDbSubmission" xml:space="preserve">
+    <value>TsunDb 송신 활성화</value>
+  </data>
+  <data name="Notification_BaseAirCorps" xml:space="preserve">
+    <value>기지 항공대 알람 설정</value>
+  </data>
+  <data name="Notification_BattleEnd" xml:space="preserve">
+    <value>배틀 종료 알림</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>라이트</value>
+  </data>
+  <data name="Theme_Dark" xml:space="preserve">
+    <value>다크</value>
+  </data>
+  <data name="Theme_Custom" xml:space="preserve">
+    <value>커스텀</value>
+  </data>
+  <data name="Control_PowerEngagementForm_Parallel" xml:space="preserve">
+    <value>동항전</value>
+  </data>
+  <data name="Control_PowerEngagementForm_HeadOn" xml:space="preserve">
+    <value>반항전</value>
+  </data>
+  <data name="Control_PowerEngagementForm_GreenT" xml:space="preserve">
+    <value>T자 유리</value>
+  </data>
+  <data name="Control_PowerEngagementForm_RedT" xml:space="preserve">
+    <value>T자 불리</value>
+  </data>
+  <data name="Connection_UseUpstreamProxy" xml:space="preserve">
+    <value>상위 프록시를 이용 : </value>
+  </data>
+  <data name="SaveDataPathDoesNotExist" xml:space="preserve">
+    <value>지정한 필터는 존재하지 않습니다.</value>
+  </data>
+  <data name="DialogCaptionErrorTitle" xml:space="preserve">
+    <value>에러</value>
+  </data>
+  <data name="PleaseStartKancolle" xml:space="preserve">
+    <value>칸코레에 접속하고 나서 조작해주세요.</value>
+  </data>
+  <data name="SavePacFileAs" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트 저장</value>
+  </data>
+  <data name="ProxyAutoConfigSaved" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트를 저장하고, 설정용 URL을 클립보드에 복사했습니다.
+소정의 위치에 붙여넣기하여 이용하세요.</value>
+  </data>
+  <data name="PacSavedTitle" xml:space="preserve">
+    <value>작성 완료</value>
+  </data>
+  <data name="FailedToSavePac" xml:space="preserve">
+    <value>자동 프록시 설정 스크립트 저장에 실패했습니다.</value>
+  </data>
+  <data name="PlayerVolumeWillBeSet" xml:space="preserve">
+    <value>모든 BGM을 음량 {0} 으로 설정합니다.
+괜찮습니까?</value>
+  </data>
+  <data name="ConfirmSetting" xml:space="preserve">
+    <value>음량 일괄 설정 확인</value>
+  </data>
+  <data name="UseLetterForNodes" xml:space="preserve">
+    <value>노드 지정에 알파벳을 사용</value>
+  </data>
+  <data name="Language_English" xml:space="preserve">
+    <value>영어</value>
+  </data>
+  <data name="Language_Japanese" xml:space="preserve">
+    <value>일본어</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>가젯 리다이렉트의 사용 *</value>
+  </data>
+  <data name="UI_RestartHint" xml:space="preserve">
+    <value>테마나 언어를 변경한 후에는 74식을 재시작해 주십시오.</value>
+  </data>
+  <data name="UI_LanguageLabel" xml:space="preserve">
+    <value>언어 : </value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
+    <value>외국인 차단을 회피하기 위해, 가젯의 api 콜을 리다이렉트 합니다.
+일본에 거주하시는 분, 일본 VPN을 이용 중인 분들은 이 옵션을 무효로 해둘 수 있습니다.</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
+    <value>Vulkan의 회피책 *</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
+    <value>낡은 하드웨어에 높은 CPU 부담을 불러일으킬 가능성이 있는 vulkan 소프트웨어 렌더링 실장에 필요한 WebView2 파일을 삭제했습니다.</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenu" xml:space="preserve">
+    <value>콘텍스트 메뉴를 표시</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
+    <value>브라우저 상에서 우클릭하면, 콘텍스트 메뉴가 표시됩니다.</value>
+  </data>
+  <data name="PortAndUpstreamPortMustBeDifferent" xml:space="preserve">
+    <value>포트와 상위 프록시 포트의 값은 달라야 합니다.</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
+    <value>동일 칸무스의 훈련 계획 추가 허용</value>
+  </data>
+  <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
+    <value>체크를 해제할 시, 새 칸무스의 훈련 플랜을 추가할 때, 훈련 플랜이 없는 칸무스만 표시하게끔 칸무스 목록이 필터링됩니다.
+체크했을 경우 필터는 적용되지 않습니다.</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
+    <value>적의 후보를 전부 표시</value>
+  </data>
+  <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
+    <value>비활성화 시, 프리뷰에 일치하는 후보만 표시됩니다.
+활성화 시, 프리뷰는 무시하고 모든 후보가 표시됩니다.</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
+    <value>커스텀 가젯 캐시 URL</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
+    <value>캐시 서버 URL의 가장 첫 부분만, "/gadget_html5/" 서브 디렉토리보다 이전의 모든 것을 입력해 주세요.
+예를 들어, "http://luckyjervis.com/gadget_html5/js/kcs_const.js "를 사용하려고 하면, 필드에 "http://luckyjervis.com/"를 입력해야 합니다.</value>
+  </data>
+  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
+    <value>무효한 URL 형식입니다.</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
+    <value>74식 EN API URL</value>
+  </data>
+  <data name="Debug_ElectronicObserverApiUrlToolTip" xml:space="preserve">
+    <value>데이터 문제를 보고하기 위해 사용되는 74식 EN API의 URL</value>
+  </data>
+  <data name="Notification_Training" xml:space="preserve">
+    <value>칸무스 훈련 종료</value>
+  </data>
+  <data name="DataSubmission_BonodereIntegration" xml:space="preserve">
+    <value>Bonodere 통합</value>
+  </data>
+  <data name="DataSubmission_LoggedInAs" xml:space="preserve">
+    <value>로그인명</value>
+  </data>
+  <data name="DataSubmission_Login" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="DataSubmission_Logout" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="DataSubmission_Password" xml:space="preserve">
+    <value>패스워드</value>
+  </data>
+  <data name="DataSubmission_Username" xml:space="preserve">
+    <value>유저명</value>
+  </data>
+  <data name="DataSubmission_PrivacyPolicy" xml:space="preserve">
+    <value>개인정보 보호정책</value>
+  </data>
+  <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
+    <value>데이터 제출에 관한 FAQ</value>
+  </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>간체 중국어</value>
+  </data>
+  <data name="Language_Spanish" xml:space="preserve">
+    <value>스페인어</value>
+  </data>
+  <data name="Control_DiscordRPC_Icon" xml:space="preserve">
+    <value>Discord RPC 아이콘 : </value>
+  </data>
+  <data name="Control_DiscordRPC_Default" xml:space="preserve">
+    <value>디폴트</value>
+  </data>
+  <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
+    <value>비서함</value>
+  </data>
 </root>

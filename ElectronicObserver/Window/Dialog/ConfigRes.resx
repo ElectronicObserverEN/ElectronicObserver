@@ -649,4 +649,7 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="MatchMainFont" xml:space="preserve">
     <value>メインフォントに合わせる</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>データ</value>
+  </data>
 </root>

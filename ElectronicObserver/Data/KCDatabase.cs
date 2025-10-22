@@ -1,12 +1,13 @@
 ﻿using DynaJson;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
+using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;
 
@@ -132,7 +133,7 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// 海域データ
 	/// </summary>
-	public IDDictionary<MapInfoData> MapInfo { get; private set; }
+	public IDDictionary<IMapInfoData> MapInfo { get; private set; }
 
 
 	/// <summary>
@@ -159,11 +160,9 @@ public sealed class KCDatabase : IKCDatabase
 
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
 	public DataAndTranslationManager Translation { get; private set; }
+	public PoiDbSubmissionService PoiDbSubmission { get; private set; }
 
-	/// <summary>
-	/// Current server
-	/// </summary>
-	public KCServer Server { get; set; }
+	public ServerManager ServerManager { get; } = new();
 
 	/// <summary>
 	/// 艦隊編成プリセットデータ
@@ -199,7 +198,7 @@ public sealed class KCDatabase : IKCDatabase
 		QuestProgress = new QuestProgressManager();
 		Battle = new BattleManager();
 		MapArea = new IDDictionary<MapAreaData>();
-		MapInfo = new IDDictionary<MapInfoData>();
+		MapInfo = new IDDictionary<IMapInfoData>();
 		Mission = new IDDictionary<MissionData>();
 		ShipGroup = new ShipGroupManager();
 		BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
@@ -207,6 +206,7 @@ public sealed class KCDatabase : IKCDatabase
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
 		Translation = new DataAndTranslationManager();
+		PoiDbSubmission = new(this);
 
 #if DEBUG
 		// data needed for loading old event battles via local api loader

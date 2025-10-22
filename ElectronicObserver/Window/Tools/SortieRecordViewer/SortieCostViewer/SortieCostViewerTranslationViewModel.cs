@@ -19,10 +19,12 @@ public class SortieCostViewerTranslationViewModel : TranslationBaseViewModel
 
 	public string SortieSupply => SortieCostViewerResources.SortieSupply;
 	public string SortieRepair => SortieCostViewerResources.SortieRepair;
+	public string SortieJet => SortieCostViewerResources.SortieJet;
 	public string NodeSupport => SortieCostViewerResources.NodeSupport;
 	public string BossSupport => SortieCostViewerResources.BossSupport;
 	public string AirBaseSortie => SortieCostViewerResources.AirBaseSortie;
 	public string AirBaseSupply => SortieCostViewerResources.AirBaseSupply;
+	public string AirBaseJet => SortieCostViewerResources.AirBaseJet;
 
 	public object ResourceGain => SortieCostViewerResources.ResourceNodes;
 	public object SinkingResourceGain => SortieCostViewerResources.Sinking;

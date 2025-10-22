@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Window.Dialog;
-
-namespace ElectronicObserver.Window.Settings.BGM;
+﻿namespace ElectronicObserver.Window.Settings.BGM;
 
 public class SoundHandleEditTranslationViewModel
 {

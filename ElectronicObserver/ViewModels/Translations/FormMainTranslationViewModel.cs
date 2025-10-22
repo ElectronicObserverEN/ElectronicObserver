@@ -20,6 +20,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Layout_Save => MainResources.File_Layout_Save.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_Open => MainResources.File_Layout_Open.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_Change => MainResources.File_Layout_Change.Replace("_", "__").Replace("&", "_");
+	public string ResetFloatingWindows => MainResources.ResetFloatingWindows;
 	public string Adjustment => MainResources.Adjustment.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_LockLayout => MainResources.File_Layout_LockLayout.Replace("_", "__").Replace("&", "_");
 	public string GridSplitterSize => MainResources.GridSplitterSize.Replace("_", "__").Replace("&", "_");
@@ -70,6 +71,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_ConstructionRecord => MainResources.Tool_ConstructionRecord.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ResourceChart => MainResources.Tool_ResourceChart.Replace("_", "__").Replace("&", "_");
 	public string SenkaViewer => SenkaViewerResources.Title;
+	public string SenkaLeaderboard => SenkaLeaderboardResources.Title;
 	public string ExpeditionRecordViewer => ExpeditionRecordViewerResources.Title;
 	public string StripMenu_Tool_AlbumMasterShip => MainResources.Tool_AlbumMasterShip.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_AlbumMasterEquipment => MainResources.Tool_AlbumMasterEquipment.Replace("_", "__").Replace("&", "_");

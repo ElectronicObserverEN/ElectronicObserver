@@ -16,13 +16,14 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
-using ElectronicObserverTypes;
 using ElectronicObserver.Database;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using System.Drawing;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
-using ElectronicObserverTypes.Attacks.Specials;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Attacks.Specials;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 
@@ -320,7 +321,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		FleetData fleet = db.Fleet[FleetId];
 		if (fleet == null) return;
 
-		sb.AppendFormat(FormFleet.CopyFleetText + "\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTPDamage(fleet));
+		sb.AppendFormat(FormFleet.CopyFleetText + "\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), TpGauge.Normal.GetTp([fleet]));
 		for (int i = 0; i < fleet.Members.Count; i++)
 		{
 			if (fleet[i] == -1)

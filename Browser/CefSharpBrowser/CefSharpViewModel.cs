@@ -107,20 +107,17 @@ public class CefSharpViewModel : BrowserViewModel
 		}
 
 		if (!Configuration.HardwareAccelerationEnabled)
+		{
 			settings.DisableGpuAcceleration();
+		}
 
 		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 		settings.CefCommandLineArgs.Add("enable-features", "EnableDrDc");
 
-		// This should work, but it doesn't, game seems to load main.js, then user settings, then hungs up with no error in console
-		settings.CefCommandLineArgs.Add("--unsafely-treat-insecure-origin-as-secure", "http://dmm.com,http://osapi.dmm.com,http://203.104.209.23,http://203.104.209.7,http://203.104.209.71,http://203.104.209.87,http://125.6.184.215,http://203.104.209.183,http://203.104.209.150,http://203.104.209.134,http://203.104.209.167,http://203.104.209.199,http://125.6.189.7,http://125.6.189.39,http://125.6.189.71,http://125.6.189.103,http://125.6.189.135,http://125.6.189.167,http://125.6.189.215,http://125.6.189.247,http://203.104.209.23,http://203.104.209.39,http://203.104.209.55,http://203.104.209.102");
-		
 		// prevent CEF from taking over media keys
-		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
+		if (settings.CefCommandLineArgs.TryGetValue("disable-features", out string? value))
 		{
-			List<string> disabledFeatures = settings.CefCommandLineArgs["disable-features"]
-				.Split(",")
-				.ToList();
+			List<string> disabledFeatures = [.. value.Split(",")];
 
 			disabledFeatures.Add("HardwareMediaKeyHandling");
 
@@ -130,7 +127,6 @@ public class CefSharpViewModel : BrowserViewModel
 		{
 			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling");
 		}
-
 
 		if (Configuration.ForceColorProfile)
 		{
@@ -160,13 +156,18 @@ public class CefSharpViewModel : BrowserViewModel
 
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
+		CefSharp.FrameLoadStart += BrowserOnFrameLoadStart;
 
 		Host.Child = CefSharp;
 	}
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
-		SetCookie();
+		if (e.Browser.MainFrame.Url.Contains("not-available-in-your-region", StringComparison.OrdinalIgnoreCase))
+		{
+			SetCookie();
+			Navigate(KanColleUrl);
+		}
 
 		// DocumentCompleted に相当?
 		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
@@ -177,10 +178,25 @@ public class CefSharpViewModel : BrowserViewModel
 		{
 			ApplyStyleSheet();
 			ApplyZoom();
-			DestroyDMMreloadDialog();
 		});
 	}
+	
+	private void BrowserOnFrameLoadStart(object? sender, FrameLoadStartEventArgs e)
+	{
+		if (!e.Frame.IsMain) return;
+		if (Configuration is null) return;
+		if (!Configuration.IsDMMreloadDialogDestroyable) return;
 
+		try
+		{
+			e.Frame.ExecuteJavaScriptAsync(OverrideReloadDialogScript);
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
+		}
+	}
+	
 	// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
 	// その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
 	// 応急処置として失敗したとき後で再試行するようにしてみる
@@ -188,10 +204,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
+		DateTime expiresOn = DateTime.Now.AddYears(6);
+
 		string cookieScript = $$"""
 			try
 			{
-				document.cookie="ckcy=1;expires={{DateTime.Now.AddYears(6):ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/netgame;domain=.dmm.com";
+				document.cookie='ckcy_remedied_check=ec_mrnhbtk;expires={{expiresOn:ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/;domain=.dmm.com';
+				document.cookie='ckcy=1;expires={{expiresOn:ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/;domain=.dmm.com';
 			}
 			catch
 			{
@@ -256,13 +275,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(RestoreScript);
+				gameframe.EvaluateScriptAsync(RestoreScript);
 			}
 			else
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Resources.PageScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(PageScript);
+				gameframe.EvaluateScriptAsync(FrameScript);
 			}
 		}
 		catch (Exception ex)
@@ -278,7 +297,7 @@ public class CefSharpViewModel : BrowserViewModel
 		IBrowser browser = CefSharp.GetBrowser();
 		IFrame frame = browser.MainFrame;
 
-		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/")) switch
+		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/") || frame.Url.Contains(KanColleUrl)) switch
 		{
 			true => frame,
 			_ => null,
@@ -294,7 +313,7 @@ public class CefSharpViewModel : BrowserViewModel
 			.GetFrameIdentifiers()
 			.Select(id => browser.GetFrameByIdentifier(id));
 
-		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/"));
+		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/") || f.Url.Contains(@"osapi.dmm.com/gadgets/ifr?aid=854854"));
 	}
 
 	private IFrame? GetKanColleFrame()
@@ -307,22 +326,6 @@ public class CefSharpViewModel : BrowserViewModel
 			.Select(id => browser.GetFrameByIdentifier(id));
 
 		return frames.FirstOrDefault(f => f.Url.Contains(@"/kcs2/index.php"));
-	}
-
-	protected override void DestroyDMMreloadDialog()
-	{
-		if (Configuration is null) return;
-		if (!Configuration.IsDMMreloadDialogDestroyable) return;
-		if (CefSharp is not { IsBrowserInitialized: true }) return;
-
-		try
-		{
-			GetMainFrame()?.EvaluateScriptAsync(Resources.DMMScript);
-		}
-		catch (Exception ex)
-		{
-			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
-		}
 	}
 
 	protected override void TryGetVolumeManager()
@@ -379,9 +382,19 @@ public class CefSharpViewModel : BrowserViewModel
 
 	protected override void RefreshBrowser() => RefreshBrowser(false);
 
-	protected override void RefreshBrowser(bool ignoreCache)
+	protected override async void RefreshBrowser(bool ignoreCache)
 	{
-		CefSharp?.Reload(ignoreCache);
+		if (CefSharp is null) return;
+
+		if (ignoreCache)
+		{
+			CefSharp.Reload(ignoreCache);
+			return;
+		}
+
+		string address = CefSharp.Address;
+		await CefSharp.LoadUrlAsync("about:blank");
+		await CefSharp.LoadUrlAsync(address);
 	}
 
 	protected override void Exit()

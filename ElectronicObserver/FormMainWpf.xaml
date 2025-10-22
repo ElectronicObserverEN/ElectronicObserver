@@ -226,6 +226,11 @@
 						Command="{Binding SaveLayoutAsCommand}"
 						Header="{Binding FormMain.StripMenu_File_Layout_Change}"
 						/>
+					<MenuItem
+						d:Header="Reset floating windows"
+						Command="{Binding ResetFloatingWindowsCommand}"
+						Header="{Binding FormMain.ResetFloatingWindows}"
+						/>
 					<Separator />
 					<MenuItem Header="{Binding FormMain.Adjustment}">
 						<MenuItem
@@ -412,6 +417,16 @@
 					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormHeadQuarters" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					d:Header="Senka leaderboard"
+					Command="{Binding OpenViewCommand}"
+					CommandParameter="{Binding SenkaLeaderboardViewer}"
+					Header="{Binding FormMain.SenkaLeaderboard}"
+					>
+					<MenuItem.Icon>
+						<common:IconContentIcon Type="FormResourceChart" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -941,6 +956,7 @@
 												<markup:Case Label="{x:Static resource:IconContent.FormQuest}" Value="{StaticResource Form.Quest}" />
 												<markup:Case Label="{x:Static resource:IconContent.FormShipGroup}" Value="{StaticResource Form.ShipGroup}" />
 												<markup:Case Label="{x:Static resource:IconContent.FormWindowCapture}" Value="{StaticResource Form.WindowCapture}" />
+												<markup:Case Label="{x:Static resource:IconContent.FormResourceChart}" Value="{StaticResource Form.ResourceChart}" />
 
 												<markup:Case Label="{x:Static resource:IconContent.FleetAnchorageRepairing}" Value="{StaticResource Fleet.AnchorageRepairing}" />
 												<markup:Case Label="{x:Static resource:IconContent.FleetCombined}" Value="{StaticResource Fleet.Combined}" />

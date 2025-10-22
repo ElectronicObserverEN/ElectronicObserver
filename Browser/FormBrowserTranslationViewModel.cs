@@ -14,13 +14,11 @@ public class FormBrowserTranslationViewModel
 	public string ClearCacheTitle => Resources.ClearCacheTitle.Replace("_", "__").Replace("&", "_");
 	public string Confirmation => Resources.Confirmation.Replace("_", "__").Replace("&", "_");
 	public string CacheCleared => Resources.CacheCleared;
-	public string DMMScript => Resources.DMMScript.Replace("_", "__").Replace("&", "_");
 	public string FailedToApplyStylesheet => Resources.FailedToApplyStylesheet.Replace("_", "__").Replace("&", "_");
 	public string FailedToApplyBrowserFont => Resources.FailedToApplyBrowserFont;
 	public string FailedToCopyScreenshotToClipboard => Resources.FailedToCopyScreenshotToClipboard.Replace("_", "__").Replace("&", "_");
 	public string FailedToHideDmmRefreshDialog => Resources.FailedToHideDmmRefreshDialog.Replace("_", "__").Replace("&", "_");
 	public string FailedToSaveScreenshot => Resources.FailedToSaveScreenshot.Replace("_", "__").Replace("&", "_");
-	public string FrameScript => Resources.FrameScript.Replace("_", "__").Replace("&", "_");
 	public string InstallVisualCpp => Resources.InstallVisualCpp.Replace("_", "__").Replace("&", "_");
 	public string KancolleNotLoadedCannotTakeScreenshot => Resources.KancolleNotLoadedCannotTakeScreenshot.Replace("_", "__").Replace("&", "_");
 	public string LastScreenShot_CopyToClipboard => Resources.LastScreenShot_CopyToClipboard.Replace("_", "__").Replace("&", "_");
@@ -34,9 +32,7 @@ public class FormBrowserTranslationViewModel
 	public string Other_Zoom_Current => Resources.Other_Zoom_Current.Replace("_", "__").Replace("&", "_");
 	public string Other_Zoom_Current_Fit => Resources.Other_Zoom_Current_Fit.Replace("_", "__").Replace("&", "_");
 
-	public string PageScript => Resources.PageScript.Replace("_", "__").Replace("&", "_");
 	public string RefreshIgnoreCache => Resources.RefreshIgnoreCache.Replace("_", "__").Replace("&", "_");
-	public string RegionCookie => Resources.RegionCookie.Replace("_", "__").Replace("&", "_");
 	public string ReloadDialog => Resources.ReloadDialog.Replace("_", "__").Replace("&", "_");
 	public string ReloadHardDialog => Resources.ReloadHardDialog.Replace("_", "__").Replace("&", "_");
 	public string RemoveServicePopup => Resources.RemoveServicePopup.Replace("_", "__").Replace("&", "_");
@@ -47,7 +43,6 @@ public class FormBrowserTranslationViewModel
 	public string RenderProcessReturnWhenReloaded => Resources.RenderProcessReturnWhenReloaded.Replace("_", "__").Replace("&", "_");
 	public string RenderProcessTerminatedBy => Resources.RenderProcessTerminatedBy.Replace("_", "__").Replace("&", "_");
 	public string RenderProcessUnexpectedTermination => Resources.RenderProcessUnexpectedTermination.Replace("_", "__").Replace("&", "_");
-	public string RestoreScript => Resources.RestoreScript.Replace("_", "__").Replace("&", "_");
 
 	public string ScreenshotCopiedToClipboard => Resources.ScreenshotCopiedToClipboard.Replace("_", "__").Replace("&", "_");
 	public string ScreenshotError => Resources.ScreenshotError.Replace("_", "__").Replace("&", "_");

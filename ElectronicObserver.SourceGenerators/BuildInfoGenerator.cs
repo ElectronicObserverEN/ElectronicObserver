@@ -5,28 +5,29 @@ using Microsoft.CodeAnalysis;
 namespace ElectronicObserver.SourceGenerators
 {
 	[Generator]
-	public class BuildInfoGenerator : ISourceGenerator
+	public class BuildInfoGenerator : IIncrementalGenerator
 	{
-		public void Execute(GeneratorExecutionContext context)
+		public void Initialize(IncrementalGeneratorInitializationContext context)
 		{
-			StringBuilder sourceBuilder = new StringBuilder($@"
-using System;
-
-namespace ElectronicObserver.Generated
-{{
-    public static class BuildInfo
-    {{
-        public static long TimeStamp => {DateTime.UtcNow.Ticks};
-    }}
-}}");
-
-			// inject the created source into the users compilation
-			context.AddSource("ElectronicObserver.Generated", sourceBuilder.ToString());
+			context.RegisterPostInitializationOutput(GenerateBuildInfo);
 		}
 
-		public void Initialize(GeneratorInitializationContext context)
+		private void GenerateBuildInfo(IncrementalGeneratorPostInitializationContext context)
 		{
-			// No initialization required for this one
+			StringBuilder sourceBuilder = new(
+				$$"""
+					using System;
+
+					namespace ElectronicObserver.Generated
+					{
+						public static class BuildInfo
+						{
+							public static long TimeStamp => {{DateTime.UtcNow.Ticks}};
+						}
+					}
+				""");
+
+			context.AddSource("ElectronicObserver.Generated", sourceBuilder.ToString());
 		}
 	}
 }

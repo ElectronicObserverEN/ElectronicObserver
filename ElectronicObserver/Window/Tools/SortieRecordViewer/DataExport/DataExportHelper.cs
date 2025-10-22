@@ -7,6 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Database;
@@ -17,9 +20,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Extensions;
 using BattleAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleAirRaid;
 using BattleBaseAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleBaseAirRaid;
 using BattleCombinedAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleCombinedAirRaid;
@@ -1081,7 +1081,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		Name = squadron?.EquipmentInstance?.Name,
 		Level = squadron?.EquipmentInstance?.Level,
 		AircraftLevel = squadron?.EquipmentInstance?.AircraftLevel,
-		Condition = AirBaseCondition(squadron?.Condition),
+		Condition = AirBaseConditionDisplay(squadron?.Condition),
 		Aircraft = squadron?.AircraftCurrent,
 	};
 
@@ -1292,12 +1292,12 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		_ => $"不明({kind})",
 	};
 
-	private static string? AirBaseCondition(int? condition) => condition switch
+	private static string? AirBaseConditionDisplay(AirBaseCondition? condition) => condition switch
 	{
 		null => null,
-		1 => "通常",
-		2 => "橙疲労",
-		3 => "赤疲労",
-		int cond => $"不明({cond})",
+		AirBaseCondition.Normal => "通常",
+		AirBaseCondition.Tired => "橙疲労",
+		AirBaseCondition.VeryTired => "赤疲労",
+		AirBaseCondition cond => $"不明({(int)cond})",
 	};
 }

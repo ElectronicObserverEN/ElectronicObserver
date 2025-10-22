@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 
@@ -8,8 +9,6 @@ namespace ElectronicObserver.Observer.kcsapi.api_port;
 
 public class port : APIBase
 {
-
-
 	public override void OnResponseReceived(dynamic data)
 	{
 
@@ -57,12 +56,13 @@ public class port : APIBase
 
 		//api_deck_port
 		db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
-		db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
+		db.Fleet.CombinedFlag = data.api_combined_flag() ? (FleetType)data.api_combined_flag : 0;
 
-		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+		if (Utility.Configuration.Config.Control.EnableDiscordRPC && db.Fleet[1].MembersInstance?[0] is {} flagship)
 		{
 			DiscordRpcModel dataForWS = DiscordRpcManager.Instance.GetRPCData();
-			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
+			
+			dataForWS.TopDisplayText = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", flagship.Name);
 
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
@@ -71,12 +71,25 @@ public class port : APIBase
 
 			dataForWS.BottomDisplayText = new List<string>();
 
-			dataForWS.ImageKey = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
-			dataForWS.CurrentShipId = db.Fleet[1].MembersInstance[0].ShipID;
-
-			if (db.Admiral.Senka != null && db.Server?.Name != null)
+			IShipDataMaster? selectedShip = Utility.Configuration.Config.Control.RpcIconKind switch
 			{
-				dataForWS.BottomDisplayText.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.Server.Name));
+				RpcIconKind.Secretary => flagship.MasterShip,
+				RpcIconKind.Ship when Utility.Configuration.Config.Control.ShipUsedForRpcIcon is { }
+					=> db.MasterShips[(int)Utility.Configuration.Config.Control.ShipUsedForRpcIcon],
+				_ => null,
+			};
+
+			dataForWS.ImageKey = Utility.Configuration.Config.Control.RpcIconKind switch
+			{
+				RpcIconKind.Secretary or RpcIconKind.Ship => selectedShip?.ShipID.ToString() ?? "???",
+				_ => "kc_logo_512x512",
+			};
+
+			dataForWS.CurrentShipId = selectedShip?.ShipID ?? 0;
+
+			if (db.Admiral.Senka != null && db.ServerManager.CurrentServer is not null)
+			{
+				dataForWS.BottomDisplayText.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.ServerManager.CurrentServer.Name));
 			}
 
 			if (!string.IsNullOrEmpty(dataForWS.MapInfo))

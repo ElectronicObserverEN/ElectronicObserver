@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlistDetail;
-using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
@@ -8,19 +8,27 @@ public static class ApiReqKousyouRemodelSlotlistDetailResponseExtensions
 {
 	public static List<EquipmentUpgradeImprovementCostItemDetail> GetRequiredEquipments(this ApiReqKousyouRemodelSlotlistDetailResponse response)
 	{
+		List<EquipmentUpgradeImprovementCostItemDetail> items = [];
+
 		if (response.ApiReqSlotId > 0)
 		{
-			return
-			[
-				new()
-				{
-					Id = (int)response.ApiReqSlotId,
-					Count = response.ApiReqSlotNum ?? 1,
-				},
-			];
+			items.Add(new()
+			{
+				Id = (int)response.ApiReqSlotId,
+				Count = response.ApiReqSlotNum ?? 1,
+			});
 		}
 
-		return [];
+		if (response.ApiReqSlotId2 > 0)
+		{
+			items.Add(new()
+			{
+				Id = (int)response.ApiReqSlotId2,
+				Count = response.ApiReqSlotNum2 ?? 1,
+			});
+		}
+
+		return items;
 	}
 	
 	public static List<EquipmentUpgradeImprovementCostItemDetail> GetRequiredItems(this ApiReqKousyouRemodelSlotlistDetailResponse response)

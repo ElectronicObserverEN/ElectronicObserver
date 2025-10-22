@@ -150,4 +150,10 @@
   <data name="NormalDamage" xml:space="preserve">
     <value>Scratch Damage</value>
   </data>
+  <data name="SortieJet" xml:space="preserve">
+    <value>Jet</value>
+  </data>
+  <data name="AirBaseJet" xml:space="preserve">
+    <value>Air base jet</value>
+  </data>
 </root>

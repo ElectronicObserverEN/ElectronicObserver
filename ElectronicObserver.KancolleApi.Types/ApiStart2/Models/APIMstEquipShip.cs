@@ -1,10 +1,13 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
+﻿
+using ElectronicObserver.Core.Types;
+
+namespace ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
 
 public class ApiMstEquipShip
 {
+	/// <summary>
+	/// Key is <see cref="EquipmentTypes"/>.
+	/// </summary>
 	[JsonPropertyName("api_equip_type")]
-	public List<int> ApiEquipType { get; set; } = new();
-
-	[JsonPropertyName("api_ship_id")]
-	public int ApiShipId { get; set; }
+	public Dictionary<string, List<EquipmentId>?> ApiEquipType { get; set; } = [];
 }

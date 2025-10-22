@@ -649,4 +649,7 @@ If this feature is enabled, localisation may not function correctly.</value>
   <data name="MatchMainFont" xml:space="preserve">
     <value>Match main font</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
 </root>

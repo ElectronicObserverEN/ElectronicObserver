@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Storage;
-using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Data;
 

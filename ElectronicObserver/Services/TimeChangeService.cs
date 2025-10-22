@@ -11,23 +11,35 @@ namespace ElectronicObserver.Services;
 public class TimeChangeService : ObservableObject
 {
 	public DayOfWeek CurrentDayOfWeekJST { get; private set; }
+	private int CurrentHour { get; set; }
 
 	public event Action DayChanged = delegate { };
+	public event Action HourChanged = delegate { };
 
 	public TimeChangeService()
 	{
 		PropertyChanged += TimeChangeService_PropertyChanged;
 
-		SystemEvents.UpdateTimerTick += SystemEvents_UpdateTimerTick;
+		SystemEvents.UpdateTimerTick += OnTick;
 	}
 
-	private void SystemEvents_UpdateTimerTick()
+	private void OnTick()
 	{
-		CurrentDayOfWeekJST = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
+		DateTime time = DateTimeHelper.GetJapanStandardTimeNow();
+		CurrentDayOfWeekJST = time.DayOfWeek;
+		CurrentHour = time.Hour;
 	}
 
 	private void TimeChangeService_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName == nameof(CurrentDayOfWeekJST)) DayChanged();
+		if (e.PropertyName == nameof(CurrentDayOfWeekJST))
+		{
+			DayChanged();
+		}
+
+		if (e.PropertyName == nameof(CurrentHour))
+		{
+			HourChanged();
+		}
 	}
 }

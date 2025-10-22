@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
-using ElectronicObserver.Window.Dialog.ShipPicker;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
@@ -18,17 +19,16 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Condit
 public partial class ShipConditionViewModel : ObservableObject, IConditionViewModel
 {
 	private IKCDatabase Db { get; }
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.QuestTrackerManager;
 
-	private ShipPickerViewModel ShipPickerViewModel { get; }
-
-	private IShipDataMaster? _ship;
-
+	[field: AllowNull, MaybeNull]
 	public IShipDataMaster Ship
 	{
 		// bug: Ships don't get loaded till Kancolle loads
-		get => _ship ??= Ships.FirstOrDefault(s => s.ShipId == Model.Id)
-						 ?? throw new Exception("fix me: accessing this property before Kancolle gets loaded is a bug");
-		set => SetProperty(ref _ship, value);
+		get => field ??= Ships.FirstOrDefault(s => s.ShipId == Model.Id)
+			?? throw new Exception("fix me: accessing this property before Kancolle gets loaded is a bug");
+		set => SetProperty(ref field, value);
 	}
 
 	public IEnumerable<IShipDataMaster> Ships => Db.MasterShips.Values
@@ -54,34 +54,33 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 		_ => ""
 	};
 
-	public ShipConditionViewModel(ShipConditionModel model)
+	public ShipConditionViewModel(ShipConditionModel model, ShipSelectorFactory shipSelectorFactory)
 	{
-		Db = Ioc.Default.GetService<IKCDatabase>()!;
-		ShipPickerViewModel = Ioc.Default.GetService<ShipPickerViewModel>()!;
+		Db = Ioc.Default.GetRequiredService<IKCDatabase>();
+		ShipSelectorFactory = shipSelectorFactory;
 
-		RemodelComparisonTypes = Enum.GetValues(typeof(RemodelComparisonType))
-			.Cast<RemodelComparisonType>();
+		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
 
 		Model = model;
 
 		RemodelComparisonType = Model.RemodelComparisonType;
 		MustBeFlagship = Model.MustBeFlagship;
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(Ship)) return;
 
-			Model.Id = Ship?.ShipId ?? ShipId.Kamikaze;
+			Model.Id = Ship.ShipId;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(RemodelComparisonType)) return;
 
 			Model.RemodelComparisonType = RemodelComparisonType;
 		};
 
-		PropertyChanged += (sender, args) =>
+		PropertyChanged += (_, args) =>
 		{
 			if (args.PropertyName is not nameof(MustBeFlagship)) return;
 
@@ -92,16 +91,17 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 	[RelayCommand]
 	private void OpenShipPicker()
 	{
-		ShipPickerView shipPicker = new(ShipPickerViewModel);
-		if (shipPicker.ShowDialog(App.Current.MainWindow) is true)
-		{
-			Ship = shipPicker.PickedShip!;
-		}
+		ShipSelectorViewModel.ShowDialog();
+
+		if (ShipSelectorViewModel.SelectedShip is null) return;
+
+		Ship = ShipSelectorViewModel.SelectedShip.MasterShip;
 	}
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		IEnumerable<IShipData> ships = fleet.MembersInstance.Where(s => s is not null);
+		IEnumerable<IShipData> ships = fleet.MembersInstance
+			.OfType<IShipData>();
 
 		if (MustBeFlagship)
 		{
@@ -128,7 +128,7 @@ public partial class ShipConditionViewModel : ObservableObject, IConditionViewMo
 
 	private bool HigherRemodelCheck(IShipData ship)
 	{
-		IShipDataMaster? conditionShip = Db.MasterShips.Values
+		IShipDataMaster conditionShip = Db.MasterShips.Values
 			.First(s => s.ShipId == Model.Id);
 
 		IShipDataMaster? masterShip = ship.MasterShip;

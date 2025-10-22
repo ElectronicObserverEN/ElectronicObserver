@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
@@ -15,6 +16,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 {
 	public QuestTrackerManagerTranslationViewModel Translation { get; }
+	private ShipSelectorFactory ShipSelectorFactory { get; }
 
 	public IEnumerable<QuestModel> Quests { get; }
 
@@ -24,7 +26,8 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 
 	public QuestTrackerManagerViewModel()
 	{
-		Translation = Ioc.Default.GetService<QuestTrackerManagerTranslationViewModel>()!;
+		Translation = Ioc.Default.GetRequiredService<QuestTrackerManagerTranslationViewModel>();
+		ShipSelectorFactory = Ioc.Default.GetRequiredService<ShipSelectorFactory>();
 
 		Quests = KCDatabase.Instance.Quest.Quests.Values
 			.Select(q => new QuestModel(q.ID));
@@ -92,7 +95,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 
 		foreach (TrackerModel tracker in trackers.Where(t => !existingQuestIds.Contains(t.Quest.Id)))
 		{
-			Trackers.Add(new TrackerViewModel(tracker));
+			Trackers.Add(new TrackerViewModel(tracker, ShipSelectorFactory));
 		}
 
 		if (clashingTrackers.Any())
@@ -106,7 +109,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 				foreach (TrackerModel tracker in clashingTrackers)
 				{
 					Trackers.Remove(Trackers.First(t => t.QuestId == tracker.Quest.Id));
-					Trackers.Add(new TrackerViewModel(tracker));
+					Trackers.Add(new TrackerViewModel(tracker, ShipSelectorFactory));
 				}
 			}
 		}
@@ -123,9 +126,9 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		if (Quest is null) return;
 		if (Trackers.Select(t => t.QuestId).Contains(Quest.Id)) return;
 
-		TrackerViewModel tracker = new(new TrackerModel(Quest))
+		TrackerViewModel tracker = new(new TrackerModel(Quest), ShipSelectorFactory)
 		{
-			ShowDetails = true
+			ShowDetails = true,
 		};
 
 		Trackers.Add(tracker);
@@ -165,7 +168,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 				return;
 			}
 
-			TrackerViewModel vm = new(copiedTracker) { ShowDetails = true };
+			TrackerViewModel vm = new(copiedTracker, ShipSelectorFactory) { ShowDetails = true };
 
 			vm.SetProgress(systemTracker.GetProgress());
 
@@ -173,7 +176,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		}
 		else
 		{
-			TrackerViewModel vm = new(new TrackerModel(new QuestModel(questId)))
+			TrackerViewModel vm = new(new TrackerModel(new QuestModel(questId)), ShipSelectorFactory)
 			{
 				ShowDetails = true,
 			};

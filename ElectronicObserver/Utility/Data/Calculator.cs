@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.AntiAir;
+using ElectronicObserver.Core.Types.Attacks;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.AntiAir;
-using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -521,103 +521,6 @@ public static class Calculator
 		return probs;
 	}
 
-
-	/// <summary>
-	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
-	/// (S勝利時のもの。A勝利時は int( value * 0.7 ) )
-	/// </summary>
-	/// <param name="fleet">対象の艦隊。</param>
-	/// <returns>減少TP。</returns>
-	public static int GetTPDamage(IFleetData fleet)
-	{
-
-		int tp = 0;
-
-		foreach (var ship in fleet.MembersWithoutEscaped.Where(s => s != null && s.HPRate > 0.25))
-		{
-
-			// 装備ボーナス
-			foreach (var eq in ship.AllSlotInstanceMaster.Where(q => q != null))
-			{
-
-				switch (eq.CategoryType)
-				{
-
-					case EquipmentTypes.LandingCraft:
-						//if ( eq.EquipmentID == 166 )	// 陸戦隊
-						//	tp += 13;
-						//else
-						tp += 8;
-						break;
-
-					case EquipmentTypes.TransportContainer:
-						tp += 5;
-						break;
-
-					case EquipmentTypes.Ration:
-						tp += 1;
-						break;
-
-					case EquipmentTypes.SpecialAmphibiousTank:
-						tp += 2;
-						break;
-				}
-			}
-
-
-			// 艦種ボーナス
-			switch (ship.MasterShip.ShipType)
-			{
-
-				case ShipTypes.Destroyer:
-					tp += 5;
-					break;
-
-				case ShipTypes.LightCruiser:
-					tp += 2;
-					if (ship.ShipID == 487) // 鬼怒改二
-						tp += 8;
-					break;
-
-				case ShipTypes.AviationCruiser:
-					tp += 4;
-					break;
-
-				case ShipTypes.AviationBattleship:
-					tp += 7;
-					break;
-
-				case ShipTypes.SeaplaneTender:
-					tp += 9;
-					break;
-
-				case ShipTypes.AmphibiousAssaultShip:
-					tp += 12;
-					break;
-
-				case ShipTypes.SubmarineTender:
-					tp += 7;
-					break;
-
-				case ShipTypes.TrainingCruiser:
-					tp += 6;
-					break;
-
-				case ShipTypes.FleetOiler:
-					tp += 15;
-					break;
-
-				case ShipTypes.SubmarineAircraftCarrier:
-					tp += 1;
-					break;
-			}
-		}
-
-
-		return tp;
-	}
-
-
 	private static Dictionary<EquipmentId, double> EquipmentExpeditionBonus { get; } = new()
 	{
 		{ EquipmentId.LandingCraft_DaihatsuLC, 0.05 },
@@ -977,6 +880,8 @@ public static class Calculator
 						nightCapableBomberCount++;
 					else if (eq.EquipmentID == 320) // 彗星一二型(三一号光電管爆弾搭載機)
 						nightBomberCount++;
+					else if (eq.IconTypeTyped is EquipmentIconType.NightBomber) // todo: logic check
+						nightBomberCount++;
 					break;
 
 				// 夜間攻撃機
@@ -1019,8 +924,10 @@ public static class Calculator
 
 		}
 
-		if (attackerShipID == 545 || attackerShipID == 599 || attackerShipID == 610)      // Saratoga Mk.II/赤城改二戊/加賀改二戊
+		if (((ShipId)attackerShipID).IsNightCarrier())
+		{
 			nightPersonnelCount++;
+		}
 
 
 		if (includeSpecialAttack)
@@ -2023,5 +1930,146 @@ public static class Calculator
 		return sb.ToString();
 	}
 
+	public static ExerciseExp GetExerciseExp(IFleetData fleet, int ship1lv, int ship2lv)
+	{
+		// 経験値テーブルが拡張されたとき用の対策
+		ship1lv = Math.Min(ship1lv, ExpTable.ShipExp.Keys.Max());
+		ship2lv = Math.Min(ship2lv, ExpTable.ShipExp.Keys.Max());
 
+		double expbase = ExpTable.ShipExp[ship1lv].Total / 100.0 + ExpTable.ShipExp[ship2lv].Total / 300.0;
+		if (expbase >= 500.0)
+		{
+			expbase = 500.0 + Math.Sqrt(expbase - 500.0);
+		}
+
+		return GetExerciseExp(fleet, (int)expbase);
+	}
+
+	public static ExerciseExp GetExerciseExp(IFleetData fleet, int expbase)
+	{
+		ExerciseExp exp = new()
+		{
+			BaseA = expbase,
+			BaseS = expbase * 1.2,
+		};
+
+		if (TrainingCruiserModifier(fleet) is (double surfaceModifier, double submarineModifier))
+		{
+			exp.TrainingCruiserSurfaceA = expbase * surfaceModifier;
+			exp.TrainingCruiserSurfaceS = (int)(expbase * 1.2) * surfaceModifier;
+			exp.TrainingCruiserSubmarineA = expbase * submarineModifier;
+			exp.TrainingCruiserSubmarineS = (int)(expbase * 1.2) * submarineModifier;
+		}
+
+		return exp;
+	}
+
+	/// <summary>
+	/// <see href="https://docs.google.com/document/d/1iiQpAyVQvnhVG-j-zx-Am41RPiZRISaL6FdHTKhYZaU" />
+	/// </summary>
+	private static (double? SurfaceModifier, double? SubmarineModifier) TrainingCruiserModifier(IFleetData fleet)
+	{
+		if (!fleet.MembersInstance.Any(s => s?.MasterShip.ShipType is ShipTypes.TrainingCruiser))
+		{
+			return (null, null);
+		}
+
+		List<IShipData> members = fleet.MembersInstance.OfType<IShipData>().ToList();
+		List<IShipData> subCT = members
+			.Skip(1)
+			.Where(s => s.MasterShip.ShipType is ShipTypes.TrainingCruiser)
+			.ToList();
+		bool containsAsahi = members.Any(s => s.MasterShip.ShipId is ShipId.Asahi);
+		IShipData flagship = members[0];
+		bool isTrainingCruiserFlagship = flagship is { MasterShip.ShipType: ShipTypes.TrainingCruiser };
+		int level = isTrainingCruiserFlagship switch
+		{
+			true => flagship.Level,
+			_ => subCT.Max(s => s.Level),
+		};
+
+		if (!containsAsahi)
+		{
+			double katoriClassModifier = KatoriClassModifier(isTrainingCruiserFlagship, subCT.Count, level);
+
+			return (katoriClassModifier, katoriClassModifier);
+		}
+
+		const double asahiSurfaceModifier = 0.6;
+		const double asahiSubmarineModifier = 1.3;
+
+		switch (flagship.MasterShip)
+		{
+			case { ShipId: ShipId.Asahi } when subCT.Count is 2:
+			{
+				double bonus = KatoriClassModifier(true, 1, flagship.Level);
+
+				return (bonus * (asahiSurfaceModifier + 0.45), bonus * (asahiSubmarineModifier + 0.15));
+			}
+
+			case { ShipId: ShipId.Asahi } when subCT.Count is 0:
+			{
+				double bonus = KatoriClassModifier(true, 0, flagship.Level);
+
+				return (bonus * asahiSurfaceModifier, bonus * asahiSubmarineModifier);
+			}
+
+			case { ShipType: ShipTypes.TrainingCruiser }:
+			{
+				double bonus = KatoriClassModifier(true, 0, level);
+
+				return (bonus * (asahiSurfaceModifier + 0.45), bonus * (asahiSubmarineModifier + 0.15));
+			}
+
+			// Asahi gets ignored if a training cruiser isn't flagship
+			default:
+			{
+				double bonus = KatoriClassModifier(isTrainingCruiserFlagship, subCT.Count - 1, level);
+
+				return (bonus, bonus);
+			}
+		}
+	}
+
+	private static double KatoriClassModifier(bool isFlagship, int escortCount, int level) =>
+		(isFlagship, escortCount) switch
+		{
+			(true, > 0) => level switch
+			{
+				< 10 => 1.10,
+				< 30 => 1.13,
+				< 60 => 1.16,
+				< 100 => 1.20,
+				_ => 1.25,
+			},
+
+			(true, 0) => level switch
+			{
+				< 10 => 1.05,
+				< 30 => 1.08,
+				< 60 => 1.12,
+				< 100 => 1.15,
+				_ => 1.20,
+			},
+
+			(false, > 1) => level switch
+			{
+				< 10 => 1.04,
+				< 30 => 1.06,
+				< 60 => 1.08,
+				< 100 => 1.12,
+				_ => 1.175,
+			},
+
+			(false, 1) => level switch
+			{
+				< 10 => 1.03,
+				< 30 => 1.05,
+				< 60 => 1.07,
+				< 100 => 1.10,
+				_ => 1.15,
+			},
+
+			_ => 1,
+		};
 }

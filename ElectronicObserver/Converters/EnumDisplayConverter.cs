@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Converters;
 
@@ -16,6 +16,8 @@ public class EnumDisplayConverter : IValueConverter
 			FormationType f => Constants.GetFormation(f),
 			EquipmentIconType eqIcon => eqIcon.TranslatedName(),
 			EquipmentCardType eqCard => eqCard.TranslatedName(),
+			TpGauge.None => BattleResources.None,
+			TpGauge tankGauge => tankGauge.GetGaugeName(KCDatabase.Instance),
 			Enum e => e.Display(),
 			_ => "???"
 		};

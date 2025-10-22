@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnchorageRepairFinish" xml:space="preserve">
+    <value>Anclaje de Reparación</value>
+  </data>
+  <data name="Arsenal" xml:space="preserve">
+    <value>Arsenal</value>
+  </data>
+  <data name="ZoomRate" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="ZoomToFit" xml:space="preserve">
+    <value>Ajustar al tamaño</value>
+  </data>
+  <data name="WriteRegistry" xml:space="preserve">
+    <value>Se ha escrito la versión del navegador en el registro. Si desea eliminarla, vaya a Configuración → Ventana → IE (2) → Eliminar. Actualmente está utilizando la última versión (versión {0}).</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>Ventana</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Semanal</value>
+  </data>
+  <data name="ApplyStyleSheet" xml:space="preserve">
+    <value>Aplicar hoja de estilo</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Más Opciones</value>
+  </data>
+  <data name="ToolMenuAlignment_Right" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="ToolMenuAlignment_Top" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Nunca</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>Mute</value>
+  </data>
+  <data name="AccessKey" xml:space="preserve">
+    <value>Llave de acceso:</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Vol :</value>
+  </data>
+  <data name="AddVersionToFile" xml:space="preserve">
+    <value>Agregar nombre de versión al archivo.</value>
+  </data>
+  <data name="UseSystemProxyTooltip" xml:space="preserve">
+    <value>Usar la configuración de proxy de Internet Explorer.</value>
+  </data>
+  <data name="UseSystemProxy" xml:space="preserve">
+    <value>Usar proxy del sistema</value>
+  </data>
+  <data name="ApplyStyleSheetHint" xml:space="preserve">
+    <value>Muestra solo la pantalla del juego KanColle.
+Dependiendo del entorno, esto puede causar problemas; en ese caso, por favor desactívelo.</value>
+  </data>
+  <data name="ApplyRegistryHint" xml:space="preserve">
+    <value>Aplicar configuraciones al registro.
+Al presionar "Aceptar" puede que no haya un efecto visible.</value>
+  </data>
+  <data name="ApplyRegistry" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="ApplyonOK" xml:space="preserve">
+    <value>*Las configuraciones se aplican al presionar "Aceptar" en cada diálogo</value>
+  </data>
+  <data name="ApplyingRegistry" xml:space="preserve">
+    <value>Aplicando configuraciones al registro. ¿Estás seguro?
+＊Los cambios requerirán reiniciar.</value>
+  </data>
+  <data name="ApplyEffectsOfBox" xml:space="preserve">
+    <value>Aplicar el contenido del cuadro de texto.</value>
+  </data>
+  <data name="AllowUserToSortRows" xml:space="preserve">
+    <value>Permitir ordenar filas manualmente</value>
+  </data>
+  <data name="AlertOnError" xml:space="preserve">
+    <value>Activar sonido de error</value>
+  </data>
+  <data name="AirSuperiorityMethod" xml:space="preserve">
+    <value>Destreza de la aeronave:</value>
+  </data>
+  <data name="HiddenJSON" xml:space="preserve">
+    <value>(Habilita el menú de depuración para ver las configuraciones)</value>
+  </data>
+  <data name="FitHint" xml:space="preserve">
+    <value>Ajusta la pantalla del juego para que se adapte al tamaño de la ventana.</value>
+  </data>
+  <data name="ClearingRegistry" xml:space="preserve">
+    <value>Limpiando configuraciones del registro. ¿Estás seguro?
+＊Limpiar configuraciones requerirá reiniciar.</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Network</value>
+  </data>
+  <data name="ConfirmRefreshHint" xml:space="preserve">
+    <value>Confirmar al actualizar</value>
+  </data>
+  <data name="Behavior" xml:space="preserve">
+    <value>Comportamiento</value>
+  </data>
+  <data name="BrowserVersion" xml:space="preserve">
+    <value>Versión del navegador:</value>
+  </data>
+  <data name="AutoUpdate" xml:space="preserve">
+    <value>Actualizar automáticamente</value>
+  </data>
+  <data name="AutoUpdateHint" xml:space="preserve">
+    <value>Actualiza los datos de los barcos automáticamente.</value>
+  </data>
+  <data name="Autumn25" xml:space="preserve">
+    <value>Otoño 2-5</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Old25" xml:space="preserve">
+    <value>(Anterior) 2-5</value>
+  </data>
+  <data name="Unimplemented" xml:space="preserve">
+    <value>＊No implementado＊</value>
+  </data>
+  <data name="CorruptLogs" xml:space="preserve">
+    <value>＊El uso inadecuado de esta configuración puede dañar los registros y ajustes</value>
+  </data>
+  <data name="MayIncreaseSize" xml:space="preserve">
+    <value>＊Puede aumentar considerablemente el tamaño</value>
+  </data>
+  <data name="BGMPlayer_SetVolumeAll" xml:space="preserve">
+    <value>Aplicar volumen</value>
+  </data>
+  <data name="BGMPlayer_OpenMusicFile" xml:space="preserve">
+    <value>Seleccionar un archivo de música</value>
+  </data>
+  <data name="ToolMenuAlignment_Invisible" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Hidden" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="RecordAutoSaving_Disable" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="ProgressAutoSaving_Disable" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="Subfont" xml:space="preserve">
+    <value>Fuente secundaria</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Escenario</value>
+  </data>
+  <data name="ShortenHPHint" xml:space="preserve">
+    <value>Usar barra de HP más pequeña para ahorrar espacio horizontal.</value>
+  </data>
+  <data name="BlinkAtCompletion" xml:space="preserve">
+    <value>Usar efecto de parpadeo al completar</value>
+  </data>
+  <data name="TryAgainAfterConnect" xml:space="preserve">
+    <value>Intenta de nuevo después de conectarte a KanColle.</value>
+  </data>
+  <data name="ToolMenuDockStyle" xml:space="preserve">
+    <value>Alineación del menú de herramientas:</value>
+  </data>
+  <data name="FleetBlinkAtCompletion" xml:space="preserve">
+    <value>Parpadear al completar el temporizador</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="ProgressAutoSaving_Hourly" xml:space="preserve">
+    <value>Cada hora</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>KCDB</value>
+  </data>
+  <data name="SaveErrorHint" xml:space="preserve">
+    <value>Guarda registros en caso de errores.  
+Enviar estos registros al desarrollador puede ayudar con la depuración.  
+Los informes se guardan por defecto en la subcarpeta ErrorReport.</value>
+  </data>
+  <data name="LosFormula" xml:space="preserve">
+    <value>LoS Fórmula</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notificatión</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="Quests" xml:space="preserve">
+    <value>Misiones</value>
+  </data>
+  <data name="ToolMenuAlignment_Left" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="ConstructEnd" xml:space="preserve">
+    <value>Construcción completada</value>
+  </data>
+  <data name="DatabaseDescription" xml:space="preserve">
+    <value>Envía tus datos a la base de datos de estadísticas de KanColle.  
+Más detalles, así como una clave de acceso, pueden encontrarse en el sitio a continuación. (se abrirá tu navegador; solo en japonés)</value>
+  </data>
+  <data name="New25" xml:space="preserve">
+    <value>Nuevo 2-5</value>
+  </data>
+  <data name="RecordAutoSaving_Daily" xml:space="preserve">
+    <value>Diariamente</value>
+  </data>
+  <data name="ProgressAutoSaving_Daily" xml:space="preserve">
+    <value>Diariamente</value>
+  </data>
+  <data name="RecordAutoSaving_Hourly" xml:space="preserve">
+    <value>Cada hora</value>
+  </data>
+  <data name="SaveAPIRequests" xml:space="preserve">
+    <value>Guardar solicitudes de API.</value>
+  </data>
+  <data name="SaveAPIResponses" xml:space="preserve">
+    <value>Guardar respuestas de API.</value>
+  </data>
+  <data name="BGMPlayer_Settings" xml:space="preserve">
+    <value>Configurar BGM</value>
+  </data>
+  <data name="BGMPlayer_Enabled" xml:space="preserve">
+    <value>Habilitar reproductor BGM</value>
+  </data>
+  <data name="StayOnTop" xml:space="preserve">
+    <value>Mantener al frente</value>
+  </data>
+  <data name="DeleteRegistry" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>Diariamente</value>
+  </data>
+  <data name="ToolMenuAlignment_Bottom" xml:space="preserve">
+    <value>Inferior</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
+    <value>Ambos</value>
+  </data>
+  <data name="OutputProxyScript" xml:space="preserve">
+    <value>Guardar configuración PAC...</value>
+  </data>
+  <data name="OneTimeOther" xml:space="preserve">
+    <value>Una vez, otros</value>
+  </data>
+  <data name="NotificationSetting" xml:space="preserve">
+    <value>Configuración de notificaciones...</value>
+  </data>
+  <data name="MoraleBorder" xml:space="preserve">
+    <value>Moral mínima</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Mensual</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Modo</value>
+  </data>
+  <data name="ProxyScriptSaved" xml:space="preserve">
+    <value>El script de proxy ha sido guardado y el URL se copió al portapapeles. Pégalo donde se indique.</value>
+  </data>
+  <data name="Mainfont" xml:space="preserve">
+    <value>Fuente principal</value>
+  </data>
+  <data name="LoginURL" xml:space="preserve">
+    <value>URL de inicio de sesión</value>
+  </data>
+  <data name="LoggingLevel" xml:space="preserve">
+    <value>Nivel de registro</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="LayoutSearch" xml:space="preserve">
+    <value>Abrir archivo de diseño</value>
+  </data>
+  <data name="LayoutFile" xml:space="preserve">
+    <value>Archivo de diseño</value>
+  </data>
+  <data name="GPURenderingHint" xml:space="preserve">
+    <value>Habilita el renderizado por GPU para el navegador interno. Puede mejorar el rendimiento o causar bloqueos en ciertos entornos.</value>
+  </data>
+  <data name="GPURendering" xml:space="preserve">
+    <value>Habilitar renderizado por GPU</value>
+  </data>
+  <data name="QualitySelect" xml:space="preserve">
+    <value>Calidad</value>
+  </data>
+  <data name="QualitySelectHint" xml:space="preserve">
+    <value>Establecer la calidad de Flash. El valor predeterminado es "Alta".</value>
+  </data>
+  <data name="TaihaAdvance" xml:space="preserve">
+    <value>Avance con daño crítico</value>
+  </data>
+  <data name="ShowStatusbarHint" xml:space="preserve">
+    <value>Muestra datos en la barra de estado (como el número de barcos). Puede aumentar ligeramente las líneas mostradas.</value>
+  </data>
+  <data name="ShowNextXP" xml:space="preserve">
+    <value>Mostrar experiencia para el siguiente nivel</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Datos</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Configurar</value>
+  </data>
+  <data name="SaveSWF" xml:space="preserve">
+    <value>Guardar archivo SWF.</value>
+  </data>
+  <data name="SaveReceivedData" xml:space="preserve">
+    <value>Guardar datos recibidos</value>
+  </data>
+  <data name="SaveProxyScriptDialog" xml:space="preserve">
+    <value>Guardar script de configuración automática de proxy</value>
+  </data>
+  <data name="SavePathDoesNotExist" xml:space="preserve">
+    <value>La carpeta especificada no existe.</value>
+  </data>
+  <data name="SaveLog" xml:space="preserve">
+    <value>Guardar registros en archivo</value>
+  </data>
+  <data name="SaveLocation" xml:space="preserve">
+    <value>Ubicación de guardado</value>
+  </data>
+  <data name="SaveErrorReport" xml:space="preserve">
+    <value>Guardar informes de errores</value>
+  </data>
+  <data name="SaveAllConnectionFiles" xml:space="preserve">
+    <value>Guardar todos los archivos de conexión</value>
+  </data>
+  <data name="RegSystemProxyHint" xml:space="preserve">
+    <value>Registrar el proxy en el sistema para permitir su uso automático.
+No necesitarás configurar el proxy manualmente, pero puede tener efectos secundarios.
+Consulta la ayuda en línea para más detalles.</value>
+  </data>
+  <data name="Registry" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="FolderSearch" xml:space="preserve">
+    <value>Buscar carpeta</value>
+  </data>
+  <data name="FlashQuality" xml:space="preserve">
+    <value>Configurar calidad de Flash</value>
+  </data>
+  <data name="FlashModeHint" xml:space="preserve">
+    <value>Establecer el modo de Flash.
+El valor predeterminado es opaque.
+El modo direct puede mejorar el rendimiento.</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="TakeEffectOnRestart" xml:space="preserve">
+    <value>＊Se aplicará después de reiniciar.</value>
+  </data>
+  <data name="FatigueRestore" xml:space="preserve">
+    <value>Moral restaurada</value>
+  </data>
+  <data name="FailedSaveRegistry" xml:space="preserve">
+    <value>Error al guardar en el registro</value>
+  </data>
+  <data name="FailedSaveProxy" xml:space="preserve">
+    <value>Error al guardar el script de proxy automático</value>
+  </data>
+  <data name="FailedLoadRegistry" xml:space="preserve">
+    <value>Error al cargar desde el registro</value>
+  </data>
+  <data name="FailedClearRegistry" xml:space="preserve">
+    <value>Error al borrar la configuración del registro</value>
+  </data>
+  <data name="ExpedReturn" xml:space="preserve">
+    <value>Expedición</value>
+  </data>
+  <data name="Enocding" xml:space="preserve">
+    <value>Codificación</value>
+  </data>
+  <data name="EncodingHint" xml:space="preserve">
+    <value>Establece la codificación de los archivos de entrada/salida.
+＊ADVERTENCIA＊ Cambiarla puede inutilizar configuraciones o registros anteriores.
+Cambia con precaución.</value>
+  </data>
+  <data name="EnableBrowser" xml:space="preserve">
+    <value>Cargar página al iniciar</value>
+  </data>
+  <data name="DockEnd" xml:space="preserve">
+    <value>Reparación completada</value>
+  </data>
+  <data name="DeleteRegistryHint" xml:space="preserve">
+    <value>Borrar el registro</value>
+  </data>
+  <data name="CreationComplete" xml:space="preserve">
+    <value>Creación completada</value>
+  </data>
+  <data name="ConnectionPort" xml:space="preserve">
+    <value>Configurar número de puerto</value>
+  </data>
+  <data name="BrowserVersionHint" xml:space="preserve">
+    <value>Establece la versión del navegador interno. 7000 equivale a IE 7, 8000 a IE 8 y 11000 a IE 11. Cambiar la versión puede modificar el funcionamiento.
+</value>
+  </data>
+  <data name="UnderWayOnly" xml:space="preserve">
+    <value>Sólo en progreso</value>
+  </data>
+  <data name="Loop" xml:space="preserve">
+    <value>Loop</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Ruta:</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="CandidateDisplayCount" xml:space="preserve">
+    <value>No se pudo escribir la versión del navegador en el registro.</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>Cantidad de enemigos mostrados a la vez:</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovOnly" xml:space="preserve">
+    <value>Dique seco</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovPrio" xml:space="preserve">
+    <value>Sólo nivel de mejora</value>
+  </data>
+  <data name="FailWriteRegistry" xml:space="preserve">
+    <value>Priorizar mejora</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfOnly" xml:space="preserve">
+    <value>Sólo experiencia del escuadrón aéreo</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfPrio" xml:space="preserve">
+    <value>Priorizar experiencia del escuadrón aéreo</value>
+  </data>
+  <data name="ProgressAutoSaving" xml:space="preserve">
+    <value>Guardado automático de progreso de misiones:</value>
+  </data>
+  <data name="RecordAutoSaving" xml:space="preserve">
+    <value>Guardado automático de registros:</value>
+  </data>
+  <data name="ShipNameSortMethod" xml:space="preserve">
+    <value>Orden de clasificación de nombres de barcos:</value>
+  </data>
+  <data name="ShipNameSortMethod_Alphabet" xml:space="preserve">
+    <value>Orden alfabético</value>
+  </data>
+  <data name="ShipNameSortMethod_Number" xml:space="preserve">
+    <value>Por número de la enciclopedia</value>
+  </data>
+  <data name="UI_BarColorMorphing" xml:space="preserve">
+    <value>Habilitar cambio suave de color en la barra</value>
+  </data>
+  <data name="PowerEngagementForm" xml:space="preserve">
+    <value>Forma de combate predeterminada:</value>
+  </data>
+  <data name="NewFormula33" xml:space="preserve">
+    <value>Nueva fórmula 33</value>
+  </data>
+  <data name="TextSearch" xml:space="preserve">
+    <value>Búsqueda de texto</value>
+  </data>
+  <data name="TextSearchToolTip" xml:space="preserve">
+    <value>En lugar de buscar fuentes desde un menú desplegable, ahora puedes buscarlas por nombre.  
+Si esta función está habilitada, la localización podría no funcionar correctamente.</value>
+  </data>
+  <data name="ShipTraining" xml:space="preserve">
+    <value>Entrenamiento de barcos</value>
+  </data>
+  <data name="BrowserFont" xml:space="preserve">
+    <value>Fuente del navegador</value>
+  </data>
+  <data name="MatchMainFont" xml:space="preserve">
+    <value>Coincidir con la fuente principal</value>
+  </data>
+  <data name="Lead" xml:space="preserve">
+    <value>Primero:</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute_Tooltip" xml:space="preserve">
+    <value>Habilitar para seguir los ajustes de silencio del navegador</value>
+  </data>
+  <data name="BGMPlayer_Enabled_Tooltip" xml:space="preserve">
+    <value>Función para reproducir BGM personalizado según la escena actual</value>
+  </data>
+  <data name="BlinkAtMaximum" xml:space="preserve">
+    <value>Parpadear cuando los espacios de barcos/equipamiento estén llenos</value>
+  </data>
+  <data name="SendData" xml:space="preserve">
+    <value>Enviar datos a la base de estadísticas de KanColle</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="ThemeRestartWarning" xml:space="preserve">
+    <value>Los cambios de tema se aplicarán completamente tras reiniciar</value>
+  </data>
+  <data name="DisplayEquipLevels" xml:space="preserve">
+    <value>Mostrar nivel de mejora y pericia</value>
+  </data>
+  <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
+    <value>Mostrar nivel de mejora de equipamiento y pericia de aeronaves</value>
+  </data>
+  <data name="LoggingInterval" xml:space="preserve">
+    <value>Intervalo de guardado automático de registros:</value>
+  </data>
+  <data name="Formula33" xml:space="preserve">
+    <value>Fórmula 33</value>
+  </data>
+  <data name="CompassCandidate" xml:space="preserve">
+    <value>Flotas a mostrar:</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Nombre del archivo</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLock" xml:space="preserve">
+    <value>Permitir cerrar la pestaña flotante incluso con el diseño bloqueado</value>
+  </data>
+</root>

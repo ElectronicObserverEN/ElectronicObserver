@@ -25,9 +25,9 @@
 		<Copyright>Copyright ©  2015 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.3.8.0</AssemblyVersion>
-		<FileVersion>5.3.8.0</FileVersion>
-		<Version>5.3.8.0</Version>
+		<AssemblyVersion>5.3.17.0</AssemblyVersion>
+		<FileVersion>5.3.17.0</FileVersion>
+		<Version>5.3.17.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -39,26 +39,27 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="CefSharp.WinForms.NETCore" Version="130.1.90" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="CefSharp.WinForms.NETCore" Version="138.0.340" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.65.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.71.0" />
 		<PackageReference Include="Jot" Version="2.1.17" />
-		<PackageReference Include="log4net" Version="2.0.17" />
+		<PackageReference Include="log4net" Version="3.2.0" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
-		<PackageReference Include="MessagePack" Version="2.5.172" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.5.172" />
+		<PackageReference Include="MessagePack" Version="3.1.4" />
+		<PackageReference Include="MessagePack.Annotations" Version="3.1.4" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2592.51" />
-		<PackageReference Include="Microsoft.Web.WebView2.DevToolsProtocolExtension" Version="1.0.2271" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+		<PackageReference Include="Microsoft.Web.WebView2.DevToolsProtocolExtension" Version="1.0.2901" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 	</ItemGroup>
 
@@ -87,12 +88,12 @@
 		<Exec Command="cd $(MSBuildProjectDirectory)&#xD;&#xA;cd ..\ElectronicObserver\bin\x64\publish\&#xD;&#xA;del vk_swiftshader.dll&#xD;&#xA;del vk_swiftshader_icd.json&#xD;&#xA;del vulkan-1.dll" />
 	</Target>
 	<ItemGroup>
-	  <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="124.3.5" />
+	  <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="138.0.34" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="124.3.5" />
+	  <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="138.0.34" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="124.3.5" />
+	  <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="138.0.34" />
 	</ItemGroup>
 </Project>

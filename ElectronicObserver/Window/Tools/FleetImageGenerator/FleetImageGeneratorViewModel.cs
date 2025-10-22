@@ -5,15 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization.DeckBuilder;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
@@ -65,6 +67,14 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public SolidColorBrush Background => new(BackgroundColor);
 	public string? BackgroundImagePath { get; set; }
 	public bool BackgroundImageExists => File.Exists(BackgroundImagePath);
+
+	[NotifyPropertyChangedFor(nameof(ShowTankTp))]
+	[NotifyPropertyChangedFor(nameof(TankTpGaugeName))]
+	[ObservableProperty]
+	public partial TpGauge TankTpGauge { get; set; }
+	public IEnumerable<TpGauge> TankTpGauges { get; } = Enum.GetValues<TpGauge>().Where(gauge => gauge is not TpGauge.Normal);
+	public bool ShowTankTp => TankTpGauge > TpGauge.None;
+	public string TankTpGaugeName => TankTpGauge.GetShortGaugeName();
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -145,6 +155,8 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		DialogFleetImageGenerator = Ioc.Default.GetRequiredService<FleetImageGeneratorTranslationViewModel>();
 
 		ImageDataModel = model;
+
+		LoadConfig();
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -264,8 +276,30 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 			Configuration.Config.FleetImageGenerator.DownloadMissingShipImage = DownloadMissingShipImage;
 		};
 
-		LoadModel(ImageDataModel);
-		LoadConfig();
+		PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(TankTpGauge)) return;
+
+			if (Fleet1 is not null)
+			{
+				Fleet1.TankTpGauge = TankTpGauge;
+			}
+
+			if (Fleet2 is not null)
+			{
+				Fleet2.TankTpGauge = TankTpGauge;
+			}
+
+			if (Fleet3 is not null)
+			{
+				Fleet3.TankTpGauge = TankTpGauge;
+			}
+
+			if (Fleet4 is not null)
+			{
+				Fleet4.TankTpGauge = TankTpGauge;
+			}
+		};
 	}
 
 	private void LoadConfig()
@@ -294,6 +328,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		ForegroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.ForegroundColor);
 		BackgroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.BackgroundColor);
 		BackgroundImagePath = Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath;
+		TankTpGauge = Configuration.Config.FleetImageGenerator.TankTpGauge;
 	}
 
 	private void SaveConfig()
@@ -343,6 +378,15 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.ForegroundColor = ForegroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.BackgroundColor = BackgroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath = BackgroundImagePath ?? "";
+		Configuration.Config.FleetImageGenerator.TankTpGauge = TankTpGauge;
+	}
+
+	/// <inheritdoc />
+	public override void Loaded()
+	{
+		base.Loaded();
+
+		LoadModel(ImageDataModel);
 	}
 
 	public override void Closed()
@@ -396,8 +440,15 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		HqLevel = model.DeckBuilderData.HqLevel;
 
-		Title = model.Title;
-		Comment = model.Comment;
+		if (!string.IsNullOrEmpty(model.Title))
+		{
+			Title = model.Title;
+		}
+
+		if (!string.IsNullOrEmpty(model.Comment))
+		{
+			Comment = model.Comment;
+		}
 
 		Fleet1Visible = model.Fleet1Visible;
 		Fleet2Visible = model.Fleet2Visible;
@@ -411,7 +462,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		List<FleetViewModel> fleets = model.DeckBuilderData
 			.GetFleetList()
-			.Select((f, i) => new FleetViewModel().Initialize(f, i, ImageType))
+			.Select((f, i) => new FleetViewModel().Initialize(f, i, ImageType, TankTpGauge))
 			.ToList();
 
 		Fleet1 = fleets.FirstOrDefault();
@@ -484,9 +535,9 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void SelectBackgroundImage()
 	{
-		string newImagePath = FileService.OpenImagePath(BackgroundImagePath);
+		string? newImagePath = FileService.OpenImagePath(BackgroundImagePath);
 
-		if(newImagePath is null) return;
+		if (newImagePath is null) return;
 
 		BackgroundImagePath = newImagePath;
 	}

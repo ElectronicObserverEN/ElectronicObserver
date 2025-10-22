@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -11,7 +12,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.BaseAirCorps;
 
@@ -46,6 +46,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;
 		api.ApiReqAirCorps_ExpandBase.ResponseReceived += Updated;
+		api.ApiPort_AirCorpsCondRecoveryWithTimer.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
@@ -94,14 +95,18 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 			.ToList();
 
 		bool isNotReplenished = squadrons.Any(s => s.State == 1 && s.AircraftCurrent < s.AircraftMax);
-		bool isTired = squadrons.Any(s => s is { State: 1, Condition: 2 });
-		bool isVeryTired = squadrons.Any(s => s is { State: 1, Condition: 3 });
+		bool isTired = squadrons.Any(s => s is { State: 1, Condition: AirBaseCondition.Tired });
+		bool isVeryTired = squadrons.Any(s => s is { State: 1, Condition: AirBaseCondition.VeryTired });
+		bool isAllSparkled = squadrons.Count > 0 && squadrons
+			.Where(s => s.State is 1)
+			.All(s => s.Condition is AirBaseCondition.Sparkled);
 
 		Icon = true switch
 		{
 			_ when isNotReplenished => IconContent.FleetNotReplenished,
 			_ when isVeryTired => IconContent.ConditionVeryTired,
 			_ when isTired => IconContent.ConditionTired,
+			_ when isAllSparkled => IconContent.ConditionSparkle,
 			_ => IconContent.FormBaseAirCorps,
 		};
 	}

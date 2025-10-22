@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accuracy" xml:space="preserve">
+    <value>명중</value>
+  </data>
+  <data name="AfterRemodel" xml:space="preserve">
+    <value>개장 후</value>
+  </data>
+  <data name="AirPower" xml:space="preserve">
+    <value>제공 전력</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>대공</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>장갑</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>대잠</value>
+  </data>
+  <data name="BaseValue" xml:space="preserve">
+    <value>기본 값</value>
+  </data>
+  <data name="BeforeRemodel" xml:space="preserve">
+    <value>개장 전</value>
+  </data>
+  <data name="ConstructionTime" xml:space="preserve">
+    <value>건조 시간</value>
+  </data>
+  <data name="Consumption" xml:space="preserve">
+    <value>소비</value>
+  </data>
+  <data name="ShipCSVDataFormat" xml:space="preserve">
+    <value>함선ID, 도감번호, 함명, 읽기, 함종, 개조 전, 개조 후, 개조Lv, 개조 탄약, 개조 강재, 개조 설계도, 카타펄트, 내구 초기, 내구 최대, 내구 결혼, 화력 초기, 화력 최대, 뇌장 초기, 뇌장 최대, 대공 초기, 대공 최대, 장갑 초기, 장갑 최대, 대잠 초기 최소, 대잠 초기 최대, 대잠 최대, 대잠{0} 최소, 대잠{0} 최대, 회피 초기 최소, 회피 초기 최대, 회피 최대, 회피{0} 최소, 회피{0} 최대, 탐지 초기 최소, 탐지 초기 최대, 탐지 최대, 탐지{0} 최소, 탐지{0} 최대, 운 초기, 운 최대, 속력, 사정, 레어, 슬롯 수, 탑재기수1, 탑재기수2, 탑재기수3, 탑재기수4, 탑재기수5, 초기 장비1, 초기 장비2, 초기 장비3, 초기 장비4, 초기 장비5, 건조 시간, 해체 연료, 해체 탄약, 해체 강재, 해체 보키, 개수 화력, 개수 뇌장, 개수 대공, 개수 장갑, 드롭 문장, 도감 문장, 탑재 연료, 탑재 탄약, 보이스, 리소스명, 이미지 버전, 보이스 버전, 모항 보이스 버전</value>
+  </data>
+  <data name="ShipCSVUserFormat" xml:space="preserve">
+    <value>함선ID, 도감번호, 함종, 함명, 읽기, 개조 전, 개조 후, 개조Lv, 개조 탄약, 개조 강재, 개조 설계도, 카타펄트, 내구 초기, 내구 결혼, 화력 초기, 화력 최대, 뇌장 초기, 뇌장 최대, 대공 초기, 대공 최대, 장갑 초기, 장갑 최대, 대잠 초기, 대잠 최대, 회피 초기, 회피 최대, 탐지 초기, 탐지 최대, 운 초기, 운 최대, 속력, 사정, 레어, 슬롯 수, 탑재기수1, 탑재기수2, 탑재기수3, 탑재기수4, 탑재기수5, 초기 장비1, 초기 장비2, 초기 장비3, 초기 장비4, 초기 장비5, 건조 시간, 해체 연료, 해체 탄약, 해체 강재, 해체 보키, 개수 화력, 개수 뇌장, 개수 대공, 개수 장갑, 드롭 문장, 도감 문장, 탑재 연료, 탑재 탄약, 보이스, 리소스명, 이미지 버전, 보이스 버전, 모항 보이스 버전</value>
+  </data>
+  <data name="DayAttack" xml:space="preserve">
+    <value>주간전 공격</value>
+  </data>
+  <data name="Dismantling" xml:space="preserve">
+    <value>해체</value>
+  </data>
+  <data name="DiveBomb" xml:space="preserve">
+    <value>폭장</value>
+  </data>
+  <data name="EncyclopediaNumber" xml:space="preserve">
+    <value>도감 번호: </value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>회피</value>
+  </data>
+  <data name="FailedToOutputCSV" xml:space="preserve">
+    <value>함선 도감 CSV 출력에 실패했습니다.</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>화력</value>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>내구</value>
+  </data>
+  <data name="Initial" xml:space="preserve">
+    <value>초기 값</value>
+  </data>
+  <data name="LandBase" xml:space="preserve">
+    <value>육상 기지</value>
+  </data>
+  <data name="LevelTooltip" xml:space="preserve">
+    <value>레벨을 지정하면 예측 값이 표시됩니다.</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>색적</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>운</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>최대값</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>개수</value>
+  </data>
+  <data name="NightAttack" xml:space="preserve">
+    <value>야전 공격</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="OutputCSVData" xml:space="preserve">
+    <value>CSV출력(데이터용)(&amp;D)...</value>
+  </data>
+  <data name="OutputCSVUser" xml:space="preserve">
+    <value>CSV출력(열람용)(&amp;U)...</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>사거리</value>
+  </data>
+  <data name="Rarity" xml:space="preserve">
+    <value>레어</value>
+  </data>
+  <data name="RepairTooltip" xml:space="preserve">
+    <value>입거 시 소비:
+HP1당: 강재 {0:F2} / 연료 {1:F2}
+최대: 강재 {2} / 연료 {3}
+</value>
+  </data>
+  <data name="RightClickForMore" xml:space="preserve">
+    <value>(우클릭으로 도감)</value>
+  </data>
+  <data name="Sheets" xml:space="preserve">
+    <value>장</value>
+  </data>
+  <data name="ShipEncyclopedia" xml:space="preserve">
+    <value>함선 도감</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>함선 ID: </value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>함명</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>함 종류</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>속력</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>뇌장</value>
+  </data>
+  <data name="WithEquipValue" xml:space="preserve">
+    <value>장비 중</value>
+  </data>
+  <data name="CountAll" xml:space="preserve">
+    <value>전체 갯수</value>
+  </data>
+  <data name="CountExtra" xml:space="preserve">
+    <value>여분 갯수</value>
+  </data>
+  <data name="EquipCSVDataFormat" xml:space="preserve">
+    <value>장비ID, 도감번호, 장비명, 장비종1, 장비종2, 장비종3, 장비종4, 화력, 뇌장, 대공, 장갑, 대잠, 회피, 탐지, 운, 명중, 폭장, 사정, 레어, 폐기 연료, 폐기 탄약, 폐기 강재, 폐기 보키, 도감 문장, 전투 행동 반경, 배치 코스트</value>
+  </data>
+  <data name="EquipCSVUserFormat" xml:space="preserve">
+    <value>장비ID, 도감번호, 장비종, 장비명, 장비종1, 장비종2, 장비종3, 장비종4, 장비종5, 화력, 뇌장, 대공, 장갑, 대잠, 회피, 탐지, 운, 명중, 폭장, 사정, 레어, 폐기 연료, 폐기 탄약, 폐기 강재, 폐기 보키, 도감 문장, 전투 행동 반경, 배치 코스트</value>
+  </data>
+  <data name="EquipListCSVFormat" xml:space="preserve">
+    <value>고유 ID, 장비 ID, 장비명, 개수 Lv, 함재기 Lv, 잠금, 장비함 ID, 장비함</value>
+  </data>
+  <data name="EquipmentEncyclopedia" xml:space="preserve">
+    <value>장비 도감</value>
+  </data>
+  <data name="EquipmentList" xml:space="preserve">
+    <value>장비 일람</value>
+  </data>
+  <data name="EquipName" xml:space="preserve">
+    <value>장비명</value>
+  </data>
+  <data name="EquippableShips" xml:space="preserve">
+    <value>장비 가능 함종: </value>
+  </data>
+  <data name="EquippedShips" xml:space="preserve">
+    <value>장비 함</value>
+  </data>
+  <data name="EquipScrap" xml:space="preserve">
+    <value>폐기</value>
+  </data>
+  <data name="EquipStats" xml:space="preserve">
+    <value>성능</value>
+  </data>
+  <data name="EquipType" xml:space="preserve">
+    <value>장비 종류</value>
+  </data>
+  <data name="FailedOutputEqListCSV" xml:space="preserve">
+    <value>장비 일람 CSV 출력에 실패했습니다.</value>
+  </data>
+  <data name="FailedOutputEquipCSV" xml:space="preserve">
+    <value>장비 도감 CSV 출력에 실패했습니다.</value>
+  </data>
+  <data name="InitiallyEquippedShips" xml:space="preserve">
+    <value>초기 장비함: </value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>갱신(&amp;U)</value>
+  </data>
+  <data name="StarLevel" xml:space="preserve">
+    <value>개수</value>
+  </data>
+  <data name="Resource" xml:space="preserve">
+    <value>리소스: </value>
+  </data>
+  <data name="SkillLevel" xml:space="preserve">
+    <value>XP</value>
+  </data>
+  <data name="Blueprint" xml:space="preserve">
+    <value>개장 설계도</value>
+  </data>
+  <data name="PrototypeCatapult" xml:space="preserve">
+    <value>시제 갑판 캐터펄트</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>(모두)</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>날짜</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>기함</value>
+  </data>
+  <data name="InterruptSearch" xml:space="preserve">
+    <value>검색을 중지합니까?</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>레시피</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>검색을 취소했습니다.</value>
+  </data>
+  <data name="SearchComplete" xml:space="preserve">
+    <value>검색을 완료했습니다.</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>검색 중입니다.</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>횟수</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(불명)</value>
+  </data>
+  <data name="AircraftCostHint" xml:space="preserve">
+    <value>배치 시의 보크사이트 소비</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>대폭</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>요격</value>
+  </data>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>편집(&amp;E)</value>
+  </data>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>수치 편집(&amp;E)...</value>
+  </data>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>파일(&amp;F)</value>
+  </data>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>배치 코스트</value>
+  </data>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>전투 행동 반경</value>
+  </data>
+  <data name="TitleBomber" xml:space="preserve">
+    <value>폭장</value>
+  </data>
+  <data name="ResourceGraphicVersion" xml:space="preserve">
+    <value>그래픽 ver.</value>
+  </data>
+  <data name="ResourceName" xml:space="preserve">
+    <value>리소스명</value>
+  </data>
+  <data name="ResourcePortVoiceVersion" xml:space="preserve">
+    <value>모항 보이스 ver.</value>
+  </data>
+  <data name="ResourceVoiceVersion" xml:space="preserve">
+    <value>보이스 ver.</value>
+  </data>
+  <data name="EditShipParameter" xml:space="preserve">
+    <value>함선 수치 편집</value>
+  </data>
+  <data name="EditShipParameterHint" xml:space="preserve">
+    <value>※이해할 수 있는 분만 사용해주세요.
+일부 적용되지 않는 항목이 있습니다.</value>
+  </data>
+  <data name="ParameterView_Key" xml:space="preserve">
+    <value>값</value>
+  </data>
+  <data name="ParameterView_Value" xml:space="preserve">
+    <value>항목</value>
+  </data>
+  <data name="FullPort" xml:space="preserve">
+    <value>(만원)</value>
+  </data>
+  <data name="Drop" xml:space="preserve">
+    <value>(드랍)</value>
+  </data>
+  <data name="Tries" xml:space="preserve">
+    <value>횟수</value>
+  </data>
+  <data name="SearchingNow" xml:space="preserve">
+    <value>검색 중입니다...</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>성능</value>
+  </data>
+  <data name="CSVDataFormat" xml:space="preserve">
+    <value>함선ID, 도감번호, 함명, 읽기, 함종, 개조 전, 개조 후, 개조Lv, 개조 탄약, 개조 강재, 개조 설계도, 내구 초기, 내구 최대, 내구 결혼, 화력 초기, 화력 최대, 뇌장 초기, 뇌장 최대, 대공 초기, 대공 최대, 장갑 초기, 장갑 최대, 대잠 초기 최소, 대잠 초기 최대, 대잠 최대, 대잠150 최소, 대잠150 최대, 회피 초기 최소, 회피 초기 최대, 회피 최대, 회피150 최소, 회피150 최대, 탐지 초기 최소, 탐지 초기 최대, 탐지 최대, 탐지150 최소, 탐지150 최대, 운 초기, 운 최대, 속력, 사정, 레어, 슬롯 수, 탑재기수1, 탑재기수2, 탑재기수3, 탑재기수4, 탑재기수5, 초기 장비1, 초기 장비2, 초기 장비3, 초기 장비4, 초기 장비5, 건조 시간, 해체 연료, 해체 탄약, 해체 강재, 해체 보키, 개수 화력, 개수 뇌장, 개수 대공, 개수 장갑, 드롭 문장, 도감 문장, 탑재 연료, 탑재 탄약, 보이스, 리소스명, 버전</value>
+  </data>
+  <data name="CSVUserFormat" xml:space="preserve">
+    <value>함선ID, 도감번호, 함종, 함명, 읽기, 개조 전, 개조 후, 개조Lv, 개조 탄약, 개조 강재, 개조 설계도, 내구 초기, 내구 결혼, 화력 초기, 화력 최대, 뇌장 초기, 뇌장 최대, 대공 초기, 대공 최대, 장갑 초기, 장갑 최대, 대잠 초기, 대잠 최대, 회피 초기, 회피 최대, 탐지 초기, 탐지 최대, 운 초기, 운 최대, 속력, 사정, 레어, 슬롯 수, 탑재기수1, 탑재기수2, 탑재기수3, 탑재기수4, 탑재기수5, 초기 장비1, 초기 장비2, 초기 장비3, 초기 장비4, 초기 장비5, 건조 시간, 해체 연료, 해체 탄약, 해체 강재, 해체 보키, 개수 화력, 개수 뇌장, 개수 대공, 개수 장갑, 드롭 문장, 도감 문장, 탑재 연료, 탑재 탄약, 보이스, 리소스명, 버전</value>
+  </data>
+</root>

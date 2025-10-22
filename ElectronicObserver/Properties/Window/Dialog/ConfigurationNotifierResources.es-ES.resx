@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnchorageRepairNotificationLevel_AkashiFlagship" xml:space="preserve">
+    <value>Akashi como buque insignia</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Always" xml:space="preserve">
+    <value>Siempre</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Preset" xml:space="preserve">
+    <value>Regalo</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_ShipNeededRepair" xml:space="preserve">
+    <value>El barco necesitaba reparación.</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
+    <value>Siempre: activa siempre la notificación cada 20 minutos.
+Akashi como buque insignia: + solo si Akashi está configurado como buque insignia.
+Barco necesita reparación: + solo si hay barcos que necesitan reparación.
+Preestablecido: + incluyendo flotas guardadas como preestablecidas.</value>
+  </data>
+  <data name="SettingsWillBeAppliedForTest" xml:space="preserve">
+    <value>＊La configuración se aplicará al realizar la prueba</value>
+  </data>
+  <data name="BaseAirCorps_Rest" xml:space="preserve">
+    <value>[Descanso]</value>
+  </data>
+  <data name="BaseAirCorps_Standby" xml:space="preserve">
+    <value>[En espera]</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>No organizado / En traslado</value>
+  </data>
+  <data name="TriggerWhen" xml:space="preserve">
+    <value>Activar cuando：</value>
+  </data>
+  <data name="BaseAirCorps_Tired" xml:space="preserve">
+    <value>Cuando está fatigado</value>
+  </data>
+  <data name="BaseAirCorps_Retreat" xml:space="preserve">
+    <value>[Retirada]</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocation" xml:space="preserve">
+    <value>Reubicación de equipamiento completada</value>
+  </data>
+  <data name="SoundVolumeToolTip" xml:space="preserve">
+    <value>Especifica el volumen del sonido de notificación (0 = mudo, 100 = máximo).</value>
+  </data>
+  <data name="ShowWithActivationToolTip" xml:space="preserve">
+    <value>Activa el cuadro de diálogo al mostrarlo.  
+Activarlo evita interacciones accidentales (como avanzar con daño crítico).</value>
+  </data>
+  <data name="GroupAnchorageRepair" xml:space="preserve">
+    <value>Config. de reparación en fondeadero</value>
+  </data>
+  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
+    <value>Antes de la salida, notifica si alguna base no fue reabastecida.</value>
+  </data>
+  <data name="BaseAirCorps_NotSupplied" xml:space="preserve">
+    <value>No reabastecido</value>
+  </data>
+  <data name="GroupBaseAirCorps" xml:space="preserve">
+    <value>Config. de base aérea</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>Antes de una salida, notifica si algún escuadrón no está asignado o está en proceso de reubicación.</value>
+  </data>
+  <data name="BattleEnd_IdleTimeToolTip" xml:space="preserve">
+    <value>Especifica el tiempo de inactividad en segundos.</value>
+  </data>
+  <data name="BattleEnd_IdleTime" xml:space="preserve">
+    <value>Tiempo de inactividad</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
+    <value>Notificar después de un tiempo desde el inicio del combate.</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabled" xml:space="preserve">
+    <value>Activar tiempo de inactividad</value>
+  </data>
+  <data name="GroupBattleEnd" xml:space="preserve">
+    <value>Configurar fin de batalla</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocationToolTip" xml:space="preserve">
+    <value>Notificar cuando el escuadrón esté disponible tras haber sido removido.  
+No aplica a los que regresan al área de equipamiento.</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocation" xml:space="preserve">
+    <value>Reubicación de escuadrón completada</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocationToolTip" xml:space="preserve">
+    <value>Notificar cuando el equipamiento esté disponible tras haber sido removido.</value>
+  </data>
+  <data name="BaseAirCorps_EventMapToolTip" xml:space="preserve">
+    <value>Notificar si una base en un mapa de evento no está lista antes de salir.</value>
+  </data>
+  <data name="BaseAirCorps_EventMap" xml:space="preserve">
+    <value>Mapa de evento</value>
+  </data>
+  <data name="BaseAirCorps_NormalMapToolTip" xml:space="preserve">
+    <value>Notificar si una base en un mapa normal no está lista antes de salir.</value>
+  </data>
+  <data name="BaseAirCorps_NormalMap" xml:space="preserve">
+    <value>Mapa normal</value>
+  </data>
+  <data name="BaseAirCorps_StandbyToolTip" xml:space="preserve">
+    <value>Notificar si alguna base está en espera antes de salir.</value>
+  </data>
+  <data name="BaseAirCorps_RetreatToolTip" xml:space="preserve">
+    <value>Notificar si alguna base está en retirada antes de salir.</value>
+  </data>
+  <data name="BaseAirCorps_RestToolTip" xml:space="preserve">
+    <value>Notificar si alguna base está en descanso antes de salir.</value>
+  </data>
+  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
+    <value>Notificar si alguna base tiene moral baja (cara naranja) antes de salir.</value>
+  </data>
+</root>

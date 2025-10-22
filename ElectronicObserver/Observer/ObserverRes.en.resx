@@ -175,7 +175,7 @@
     <value>⚓ Doing PVP</value>
   </data>
   <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: 受信開始に失敗しました。</value>
+    <value>APIObserver: Failed to start observation.</value>
   </data>
   <data name="ResponseRecieved" xml:space="preserve">
     <value>Received response: </value>

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
@@ -13,11 +19,9 @@ using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Data;
-using ElectronicObserverTypes.Mocks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using static ElectronicObserver.Utility.Configuration.ConfigurationData;
 
 namespace ElectronicObserverCoreTests;
 
@@ -68,8 +72,14 @@ public class Startup
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.AddSingleton<TimeChangeService>()
-			.AddSingleton<EquipmentPickerService>()
+			.AddSingleton<IConfigurationUi, ConfigUI>()
+			.AddSingleton<IConfigurationConnection, ConfigConnection>()
+			.AddSingleton<TransliterationService>()
+			.AddSingleton<GameResourceHelper>()
+			.AddSingleton<GameAssetDownloaderService>()
+			.AddSingleton<ImageLoadService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
+			.AddSingleton<IClipboardService, ClipboardService>()
 			.BuildServiceProvider());
 
 		Directory.CreateDirectory("Record");

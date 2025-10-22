@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DetectedSynergy" xml:space="preserve">
+    <value>장비 시너지를 검출했습니다: </value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>화력</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>뇌장</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>대공</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>장갑</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>회피</value>
+  </data>
+  <data name="Los" xml:space="preserve">
+    <value>색적</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>운</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>사거리</value>
+  </data>
+  <data name="Asw" xml:space="preserve">
+    <value>대잠</value>
+  </data>
+  <data name="RepairingShips" xml:space="preserve">
+    <value>🛠 {0}함을 수리</value>
+  </data>
+  <data name="FirstClassMedals" xml:space="preserve">
+    <value>🥇 갑종 훈장 보유 수: {0}</value>
+  </data>
+  <data name="ServerRank" xml:space="preserve">
+    <value>{1}에서 {0}위</value>
+  </data>
+  <data name="AdmiralNameLevel" xml:space="preserve">
+    <value>{0} 사령관 Lv.{1}</value>
+  </data>
+  <data name="RankDataNotLoaded" xml:space="preserve">
+    <value>랭크 데이터를 불러올 수 없음</value>
+  </data>
+  <data name="KantaiCollection" xml:space="preserve">
+    <value>함대 컬렉션</value>
+  </data>
+  <data name="Idle" xml:space="preserve">
+    <value>자리 비움</value>
+  </data>
+  <data name="LoadingIntegration" xml:space="preserve">
+    <value>통합 불러오기</value>
+  </data>
+  <data name="DoingExercises" xml:space="preserve">
+    <value>⚓ 연습</value>
+  </data>
+  <data name="APIObserverFailed" xml:space="preserve">
+    <value>APIObserver: Failed to start observation.</value>
+  </data>
+  <data name="ResponseRecieved" xml:space="preserve">
+    <value>Response를 수신했습니다: </value>
+  </data>
+  <data name="Error201" xml:space="preserve">
+    <value>에러 코드 201를 수신했습니다. 이 코드는 거시 검출 혹은 다른 디바이스에서 칸코레를 실행했을 때 트리거될 가능성이 있습니다.</value>
+  </data>
+  <data name="ErrorFromServer" xml:space="preserve">
+    <value>서버로부터 에러가 발생했습니다. (에러 코드: {0} )</value>
+  </data>
+  <data name="ErrorResponse" xml:space="preserve">
+    <value>Respons 수신 중에 에러가 발생했습니다.</value>
+  </data>
+</root>

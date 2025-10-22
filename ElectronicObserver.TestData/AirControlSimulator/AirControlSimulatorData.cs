@@ -5,25 +5,25 @@ namespace ElectronicObserver.TestData.AirControlSimulator;
 public class AirControlSimulatorData
 {
 	[JsonPropertyName("api_mst_equip_ship")]
-	public List<AirControlSimulatorApiMstEquipShip> ApiMstEquipShip { get; set; } = new();
+	public required Dictionary<string, AirControlSimulatorApiMstEquipShip> ApiMstEquipShip { get; set; }
 
 	[JsonPropertyName("api_mst_stype")]
-	public List<AirControlSimulatorApiMstStype> ApiMstStype { get; set; } = new();
+	public required List<AirControlSimulatorApiMstStype> ApiMstStype { get; set; }
 
 	[JsonPropertyName("worlds")]
-	public List<AirControlSimulatorWorld> Worlds { get; set; } = new();
+	public required List<AirControlSimulatorWorld> Worlds { get; set; }
 
 	[JsonPropertyName("maps")]
-	public List<AirControlSimulatorMap> Maps { get; set; } = new();
+	public required List<AirControlSimulatorMap> Maps { get; set; }
 
 	[JsonPropertyName("ships")]
-	public List<AirControlSimulatorShip> Ships { get; set; } = new();
+	public required List<AirControlSimulatorShip> Ships { get; set; }
 
 	[JsonPropertyName("items")]
-	public List<AirControlSimulatorItem> Items { get; set; } = new();
+	public required List<AirControlSimulatorItem> Items { get; set; }
 
 	[JsonPropertyName("enemies")]
-	public List<AirControlSimulatorEnemy> Enemies { get; set; } = new();
+	public required List<AirControlSimulatorEnemy> Enemies { get; set; }
 
 	[JsonPropertyName("area_count")]
 	public int AreaCount { get; set; }

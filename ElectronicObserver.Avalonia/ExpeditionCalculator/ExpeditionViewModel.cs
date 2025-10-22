@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ElectronicObserverTypes;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Avalonia.ExpeditionCalculator;
 
@@ -13,7 +13,7 @@ public partial class ExpeditionViewModel : ObservableObject
 	public string DisplayId => Model.DisplayId;
 	public TimeSpan Duration => Model.Duration;
 
-	[ObservableProperty] private double _score;
+	[ObservableProperty] public partial double Score { get; set; }
 
 	public int Fuel => Model.Fuel;
 	public int Ammo => Model.Ammo;
@@ -23,7 +23,7 @@ public partial class ExpeditionViewModel : ObservableObject
 	public ExpeditionReward? Item1 => Model.Item1;
 	public ExpeditionReward? Item2 => Model.Item2;
 
-	[ObservableProperty] private double _greatSuccessRate;
+	[ObservableProperty] public partial double GreatSuccessRate { get; set; }
 
 	public ExpeditionViewModel(Expedition expedition, FleetInfoViewModel fleetInfo, ExpeditionScoreWeights weights)
 	{

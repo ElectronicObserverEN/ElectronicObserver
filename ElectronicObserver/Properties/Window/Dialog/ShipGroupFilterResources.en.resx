@@ -291,4 +291,7 @@ Use "Import Filters" to import them, or paste them into Notepad and save them.</
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

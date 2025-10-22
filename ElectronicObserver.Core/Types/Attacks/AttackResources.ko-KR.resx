@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Unknown" xml:space="preserve">
+    <value>불명</value>
+  </data>
+  <data name="NormalAttack" xml:space="preserve">
+    <value>통상 공격</value>
+  </data>
+  <data name="LaserAttack" xml:space="preserve">
+    <value>레이저 공격</value>
+  </data>
+  <data name="DoubleShelling" xml:space="preserve">
+    <value>연속 사격</value>
+  </data>
+  <data name="CutinMainSub" xml:space="preserve">
+    <value>컷인(주포/부포)</value>
+  </data>
+  <data name="CutinMainRadar" xml:space="preserve">
+    <value>컷인(주포/전탐)</value>
+  </data>
+  <data name="CutinMainAp" xml:space="preserve">
+    <value>컷인(주포/철갑)</value>
+  </data>
+  <data name="CutinMainMain" xml:space="preserve">
+    <value>컷인(주포/주포)</value>
+  </data>
+  <data name="CutinAirAttack" xml:space="preserve">
+    <value>공모 컷인</value>
+  </data>
+  <data name="SpecialNelson" xml:space="preserve">
+    <value>Nelson Touch</value>
+  </data>
+  <data name="SpecialNagato" xml:space="preserve">
+    <value>일제사격인가... 가슴이 뜨겁군!</value>
+  </data>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>나가토, 좋아? 가자! 주포 일제 사격!</value>
+  </data>
+  <data name="SpecialColorado" xml:space="preserve">
+    <value>Colorado Touch</value>
+  </data>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>요함 야전 돌격</value>
+  </data>
+  <data name="ZuiunMultiAngle" xml:space="preserve">
+    <value>즈이운 입체 공격</value>
+  </data>
+  <data name="SeaAirMultiAngle" xml:space="preserve">
+    <value>스이세이 입체 공격</value>
+  </data>
+  <data name="SpecialSubmarineTender23" xml:space="preserve">
+    <value>잠수함대 공격 (2・3)</value>
+  </data>
+  <data name="SpecialSubmarineTender34" xml:space="preserve">
+    <value>잠수함대 공격 (3・4)</value>
+  </data>
+  <data name="SpecialSubmarineTender24" xml:space="preserve">
+    <value>잠수함대 공격 (2・4)</value>
+  </data>
+  <data name="SpecialYamato123" xml:space="preserve">
+    <value>야마토, 돌격합니다! 2번함도 따라와주세요!</value>
+  </data>
+  <data name="SpecialYamato12" xml:space="preserve">
+    <value>제1전대, 돌격! 주포, 전력 일제사격!</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>포격</value>
+  </data>
+  <data name="AirAttack" xml:space="preserve">
+    <value>공격</value>
+  </data>
+  <data name="DepthChargeAttack" xml:space="preserve">
+    <value>폭뢰 공격</value>
+  </data>
+  <data name="TorpedoAttack" xml:space="preserve">
+    <value>뇌격</value>
+  </data>
+  <data name="RocketAttack" xml:space="preserve">
+    <value>로켓 포격</value>
+  </data>
+  <data name="LandingDaihatsu" xml:space="preserve">
+    <value>양륙 공격(대발동정)</value>
+  </data>
+  <data name="LandingTokuDaihatsu" xml:space="preserve">
+    <value>양륙 공격(특대발동정)</value>
+  </data>
+  <data name="LandingDaihatsuTank" xml:space="preserve">
+    <value>양륙 공격(대발+전차)</value>
+  </data>
+  <data name="TankAttack" xml:space="preserve">
+    <value>양륙 공격(내화정)</value>
+  </data>
+  <data name="LandingTokuDaihatsuTank" xml:space="preserve">
+    <value>양륙 공격(특대발+전차)</value>
+  </data>
+  <data name="CutinMainTorpedo" xml:space="preserve">
+    <value>컷인(주포/어뢰)</value>
+  </data>
+  <data name="CutinTorpedoTorpedo" xml:space="preserve">
+    <value>컷인(어뢰×2)</value>
+  </data>
+  <data name="CutinNightMainSub" xml:space="preserve">
+    <value>컷인(주포×2/부포)</value>
+  </data>
+  <data name="CutinNightMainMain" xml:space="preserve">
+    <value>컷인(주포×3)</value>
+  </data>
+  <data name="CutinTorpedoRadar" xml:space="preserve">
+    <value>구축 컷인(주포/어뢰/전탐)</value>
+  </data>
+  <data name="CutinTorpedoPicket" xml:space="preserve">
+    <value>구축 컷인(어뢰/견시원/전탐)</value>
+  </data>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>구축 컷인(어뢰×2/수뢰견시원)</value>
+  </data>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>구축 컷인(어뢰/드럼통/수뢰견시원)</value>
+  </data>
+  <data name="CutinZuiun" xml:space="preserve">
+    <value>야간 즈이운 야전 컷인</value>
+  </data>
+  <data name="CvnciFfa" xml:space="preserve">
+    <value>항모 컷인(전전공)</value>
+  </data>
+  <data name="CvnciFa" xml:space="preserve">
+    <value>항모 컷인(전공)</value>
+  </data>
+  <data name="CvnciPhoto" xml:space="preserve">
+    <value>항모 컷인(광전관)</value>
+  </data>
+  <data name="CvnciFoo" xml:space="preserve">
+    <value>항모 컷인(전기타)</value>
+  </data>
+  <data name="LateModelTorpedoSubmarineEquipment" xml:space="preserve">
+    <value>잠수함 컷인(전탐+어뢰)</value>
+  </data>
+  <data name="LateModelTorpedo2" xml:space="preserve">
+    <value>잠수함 컷인(어뢰×3)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunRadar" xml:space="preserve">
+    <value>야간 즈이운 야전 컷인(즈이운+전탐)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiun" xml:space="preserve">
+    <value>야간 즈이운 야전 컷인(즈이운×2)</value>
+  </data>
+  <data name="NightZuiunCutinZuiunZuiunRadar" xml:space="preserve">
+    <value>야간 즈이운 야전 컷인(즈이운×2+전탐)</value>
+  </data>
+  <data name="SpecialRichelieu" xml:space="preserve">
+    <value>리슐리외! 압도하세요!</value>
+  </data>
+  <data name="SpecialQueenElizabeth" xml:space="preserve">
+    <value>퀸 엘리자베스 터치</value>
+  </data>
+</root>

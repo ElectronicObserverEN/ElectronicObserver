@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using DynaJson;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data.TsunDbSubmission.Battle;
 using ElectronicObserver.Utility;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
@@ -35,7 +35,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	/// <param name="data">api_data or RawData</param>
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
-		if (Configuration.Config.Control.SubmitDataToTsunDb != true) return;
+		if (!Configuration.Config.DataSubmission.SubmitDataToTsunDb) return;
 
 		KCDatabase db = KCDatabase.Instance;
 

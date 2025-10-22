@@ -6,7 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:common1="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterShip"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"

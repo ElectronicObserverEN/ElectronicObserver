@@ -4,20 +4,21 @@ using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
-using ElectronicObserverTypes;
 using MessagePack;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 
 public partial class TrackerViewModel : ObservableObject
 {
-	public IEnumerable<QuestTaskType> TaskTypes { get; }
+	public List<QuestTaskType> TaskTypes { get; }
 	public QuestTaskType TaskTypeType { get; set; } = QuestTaskType.BossKill;
 
 	// when this was an IEnumerable, the call from FormQuest to ProgressDisplay caused
@@ -31,10 +32,12 @@ public partial class TrackerViewModel : ObservableObject
 
 	public double Progress => Model.Tasks.Count(t => t is not null) switch
 	{
-		> 0 => Model.Tasks.Where(t => t is not null).Average(t => (double)t.Progress / t.Count),
-		_ => 0
+		> 0 => Model.Tasks
+			.OfType<IQuestTask>()
+			.Average(t => (double)t.Progress / t.Count),
+		_ => 0,
 	};
-	public string Display => string.Join(" \n", Tasks.Select(t => t.Display));
+	public string Display => string.Join(" \n", Tasks.Select(t => t?.Display));
 
 	public string ProgressDisplay => Tasks.Count switch
 	{
@@ -42,20 +45,20 @@ public partial class TrackerViewModel : ObservableObject
 		_ => string.Join(" \n", TaskProgressDisplays) switch
 		{
 			null or "" => "100%",
-			string s => s
-		}
+			string s => s,
+		},
 	};
 
 	private List<string?> TaskProgressDisplays => Tasks
 		.Select(t => t switch
 		{
 			null => QuestTrackerManagerResources.UnknownTask,
-			_ => t.Progress
+			_ => t.Progress,
 		})
 		.Where(p => !string.IsNullOrEmpty(p))
 		.ToList();
 
-	public string ClearCondition => string.Join(" \n", Tasks.Select(t => t.ClearCondition));
+	public string ClearCondition => string.Join(" \n", Tasks.Select(t => t?.ClearCondition));
 
 	public int QuestId => Model.Quest.Id;
 	public string Title => Model.Quest.Name;
@@ -63,13 +66,13 @@ public partial class TrackerViewModel : ObservableObject
 	public QuestCategory QuestCategory => Model.Quest.Category;
 	public int State => Model.Quest.State;
 
-	public TrackerViewModel(TrackerModel model)
+	public TrackerViewModel(TrackerModel model, ShipSelectorFactory shipSelectorFactory)
 	{
 		Model = model;
 		Tasks = MakeTasks();
-		GroupConditions = new(Model.Conditions) { CanBeRemoved = false };
+		GroupConditions = new(Model.Conditions, shipSelectorFactory) { CanBeRemoved = false };
 
-		TaskTypes = Enum.GetValues(typeof(QuestTaskType)).Cast<QuestTaskType>();
+		TaskTypes = [.. Enum.GetValues<QuestTaskType>()];
 		Model.PropertyChanged += (_, e) =>
 		{
 			if (e.PropertyName is not nameof(Model.Quest.Id)) return;
@@ -78,16 +81,18 @@ public partial class TrackerViewModel : ObservableObject
 			OnPropertyChanged(nameof(Description));
 		};
 
-		Model.Tasks.CollectionChanged += (_, e) =>
+		Model.Tasks.CollectionChanged += (_, _) =>
 		{
 			Tasks = MakeTasks();
 			KCDatabase.Instance.Quest.OnQuestUpdated();
 		};
 	}
 
-	private List<IQuestTaskViewModel?> MakeTasks() => Model.Tasks.Select(t => t switch
+	private List<IQuestTaskViewModel?> MakeTasks() => [.. Model.Tasks.Select(MakeTaskViewModel)];
+
+	private static IQuestTaskViewModel? MakeTaskViewModel(IQuestTask? task) => task switch
 	{
-		BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
+		BossKillTaskModel b => new BossKillTaskViewModel(b),
 		ExpeditionTaskModel e => new ExpeditionTaskViewModel(e),
 		BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
 		EquipmentScrapTaskModel e => new EquipmentScrapTaskViewModel(e),
@@ -97,8 +102,8 @@ public partial class TrackerViewModel : ObservableObject
 		NodeReachTaskModel n => new NodeReachTaskViewModel(n),
 		MapFirstClearTaskModel m => new MapFirstClearTaskViewModel(m),
 		ExerciseTaskModel e => new ExerciseTaskViewModel(e),
-		_ => null
-	}).ToList();
+		_ => null,
+	};
 
 	[RelayCommand]
 	private void AddTask()
@@ -112,43 +117,43 @@ public partial class TrackerViewModel : ObservableObject
 			{
 				Map = new(7, 2),
 				Name = "-1",
-				NodeIds = new List<int> { 7 },
+				NodeIds = [7],
 			},
 			QuestTaskType.World7Map2Boss2 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 2),
 				Name = "-2",
-				NodeIds = new List<int> { 15 },
+				NodeIds = [15],
 			},
 			QuestTaskType.World7Map3Boss1 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 3),
 				Name = "-1",
-				NodeIds = new List<int> { 5, 8 },
+				NodeIds = [5, 8],
 			},
 			QuestTaskType.World7Map3Boss2 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 3),
 				Name = "-2",
-				NodeIds = new List<int> { 18, 23, 24, 25 },
+				NodeIds = [18, 23, 24, 25],
 			},
 			QuestTaskType.World7Map5Boss1 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 5),
 				Name = "-1",
-				NodeIds = new List<int> { 11 },
+				NodeIds = [11],
 			},
 			QuestTaskType.World7Map5Boss2 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 5),
 				Name = "-2",
-				NodeIds = new List<int> { 19 },
+				NodeIds = [19],
 			},
 			QuestTaskType.World7Map5Boss3 => new BattleNodeIdTaskModel
 			{
 				Map = new(7, 5),
 				Name = "-3",
-				NodeIds = new List<int> { 24, 25 },
+				NodeIds = [24, 25],
 			},
 			QuestTaskType.EquipmentScrap => new EquipmentScrapTaskModel(),
 			QuestTaskType.EquipmentCategoryScrap => new EquipmentCategoryScrapTaskModel(),
@@ -161,8 +166,10 @@ public partial class TrackerViewModel : ObservableObject
 			{
 				Map = new(1, 6),
 				Name = "N",
-				NodeIds = new List<int> { 14, 17 },
+				NodeIds = [14, 17],
 			},
+			
+			_ => null,
 		});
 	}
 
@@ -182,7 +189,7 @@ public partial class TrackerViewModel : ObservableObject
 
 	public string SerializeTracker()
 	{
-		List<TrackerModel> trackers = new() { Model };
+		List<TrackerModel> trackers = [Model];
 		byte[] data = MessagePackSerializer.Serialize(trackers.SortTrackers());
 		return MessagePackSerializer.ConvertToJson(data);
 	}
