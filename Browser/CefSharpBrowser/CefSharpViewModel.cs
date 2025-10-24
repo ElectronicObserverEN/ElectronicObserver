@@ -157,6 +157,7 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 		CefSharp.FrameLoadStart += BrowserOnFrameLoadStart;
 
+		// https://github.com/ElectronicObserverEN/ElectronicObserver/pull/590
 		CefSharp.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
 
 		Host.Child = CefSharp;
