@@ -5,34 +5,30 @@ using System.Threading.Tasks;
 
 namespace Browser.CefSharpBrowser.CefOp;
 
-public class ScreenShotPacket
+public class ScreenShotPacket(string id)
 {
-	public string ID { get; }
+	public string ID { get; } = id;
 	private string? DataUrl { get; set; }
+	public static string SetScreenshotDataFunctionName
+		=> System.Text.Json.JsonNamingPolicy.CamelCase.ConvertName(nameof(SetScreenshotData));
 
-	public TaskCompletionSource<ScreenShotPacket> TaskSource { get; }
+	public TaskCompletionSource<ScreenShotPacket> TaskSource { get; } = new();
 
 	public ScreenShotPacket() : this("ss_" + Guid.NewGuid().ToString("N")) { }
 
-	public ScreenShotPacket(string id)
-	{
-		ID = id;
-		TaskSource = new TaskCompletionSource<ScreenShotPacket>();
-	}
-
-	public void Complete(string dataurl)
+	public void SetScreenshotData(string dataurl)
 	{
 		DataUrl = dataurl;
 		TaskSource.SetResult(this);
 	}
 
-	public Bitmap GetImage() => ConvertToImage(DataUrl);
+	public Bitmap? GetImage() => ConvertToImage(DataUrl);
 
 	public static Bitmap? ConvertToImage(string? dataurl)
 	{
 		if (dataurl is null || !dataurl.StartsWith("data:image/png")) return null;
 
-		string s = dataurl.Substring(dataurl.IndexOf(',') + 1);
+		string s = dataurl[(dataurl.IndexOf(',') + 1)..];
 		byte[] bytes = Convert.FromBase64String(s);
 
 		using MemoryStream ms = new(bytes);

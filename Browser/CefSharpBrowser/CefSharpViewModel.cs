@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -155,6 +156,8 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 		CefSharp.FrameLoadStart += BrowserOnFrameLoadStart;
+
+		CefSharp.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
 
 		Host.Child = CefSharp;
 	}
@@ -537,37 +540,56 @@ public class CefSharpViewModel : BrowserViewModel
 			return null;
 		}
 
-
-		Task<ScreenShotPacket> InternalTakeScreenShot()
+		async Task<ScreenShotPacket> InternalTakeScreenShot()
 		{
 			ScreenShotPacket request = new();
 
-			string script = $@"
+			string script =
+				$$"""
 (async function()
-{{
-	await CefSharp.BindObjectAsync('{request.ID}');
-	let canvas = document.querySelector('canvas');
+					{
+						try
+						{
+							await CefSharp.BindObjectAsync("{{request.ID}}");
+							const canvas = document.querySelector("canvas");
+
 	requestAnimationFrame(() =>
-	{{
-		let dataurl = canvas.toDataURL('image/png');
-		{request.ID}.complete(dataurl);
-	}});
-}})();
-";
+							{
+								const dataurl = canvas.toDataURL("image/png");
+								{{request.ID}}.{{ScreenShotPacket.SetScreenshotDataFunctionName}}(dataurl);
+							});
+						}
+						catch (e)
+						{
+							console.error("Error in screenshot function: ", e);
+						}
+					})();
+				""";
 
-			CefSharp.JavascriptObjectRepository.Register(request.ID, request);
-			kancolleFrame.ExecuteJavaScriptAsync(script);
+			CefSharp.JavascriptObjectRepository.ResolveObject += ResolveObject;
+			await kancolleFrame.EvaluateScriptAsync(script);
+			CefSharp.JavascriptObjectRepository.ResolveObject -= ResolveObject;
 
-			return request.TaskSource.Task;
+			return await request.TaskSource.Task;
+
+			void ResolveObject(object? sender, CefSharp.Event.JavascriptBindingEventArgs e)
+			{
+				if (e.ObjectName == request.ID)
+				{
+					e.ObjectRepository.Register(request.ID, request);
+				}
+			}
 		}
 
 		ScreenShotPacket result = await InternalTakeScreenShot();
 
 		// ごみ掃除
 		CefSharp.JavascriptObjectRepository.UnRegister(result.ID);
-		kancolleFrame.ExecuteJavaScriptAsync($@"delete {result.ID}");
+		kancolleFrame.ExecuteJavaScriptAsync($"delete {result.ID}");
 
-		return result.GetImage();
+		Bitmap? image = result.GetImage();
+
+		return image;
 	}
 
 	protected override void Mute()
