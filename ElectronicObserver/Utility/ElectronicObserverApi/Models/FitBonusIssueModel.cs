@@ -4,12 +4,8 @@ using ElectronicObserver.Core.Types.Serialization.FitBonus;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models;
 
-public record FitBonusIssueModel
+public record FitBonusIssueModel : DataIssueModel
 {
-	[JsonPropertyName("software_version")] public string SoftwareVersion { get; set; } = "";
-
-	[JsonPropertyName("data_version")] public int DataVersion { get; set; }
-
 	[JsonPropertyName("expected")] public FitBonusValue ExpectedBonus { get; set; } = new();
 
 	[JsonPropertyName("actual")] public FitBonusValue ActualBonus { get; set; } = new();

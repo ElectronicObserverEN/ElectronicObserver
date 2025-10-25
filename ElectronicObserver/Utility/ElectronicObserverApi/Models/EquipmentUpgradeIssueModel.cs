@@ -4,12 +4,8 @@ using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models;
 
-public record EquipmentUpgradeIssueModel
+public record EquipmentUpgradeIssueModel : DataIssueModel
 {
-	[JsonPropertyName("software_version")] public string SoftwareVersion { get; set; } = "";
-
-	[JsonPropertyName("data_version")] public int DataVersion { get; set; }
-
 	[JsonPropertyName("expected")] public List<int> ExpectedUpgrades { get; set; } = new();
 
 	[JsonPropertyName("actual")] public List<int> ActualUpgrades { get; set; } = new();

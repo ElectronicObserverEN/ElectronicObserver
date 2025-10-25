@@ -17,7 +17,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
 		if (!api.IsServerAvailable) return;
-		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
+
 		DayOfWeek day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
 
 		// if no helper => ignore
@@ -34,10 +34,12 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 			EquipmentUpgradeIssueModel report = new()
 			{
 				DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
+				SoftwareVersion = SoftwareInformation.VersionEnglish,
+				SoftwareDataSource = Configuration.Config.Control.UpdateRepoURL.ToString(),
+
 				ActualUpgrades = parsedResponse.Select(apiData => apiData.ApiSlotId).ToList(),
 				ExpectedUpgrades = expectedUpgrades.Select(upgrade => upgrade.EquipmentId).ToList(),
 				Day = day,
-				SoftwareVersion = SoftwareInformation.VersionEnglish,
 				HelperId = (int)helper.MasterShip.ShipId,
 			};
 

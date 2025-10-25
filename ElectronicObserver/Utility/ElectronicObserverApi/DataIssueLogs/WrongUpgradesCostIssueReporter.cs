@@ -26,7 +26,6 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
 		if (!api.IsServerAvailable) return;
-		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
 
 		RessourcePerEquipment.Clear();
 
@@ -43,7 +42,6 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 	public void ProcessUpgradeCostRequest(string _, dynamic data)
 	{
 		if (!api.IsServerAvailable) return;
-		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
 
 		Ship = null;
 		Equipment = null;
@@ -66,7 +64,6 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 	public void ProcessUpgradeCostResponse(string _, dynamic data)
 	{
 		if (!api.IsServerAvailable) return;
-		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
 		DayOfWeek day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek;
 
 		if (Ship is null) return;
@@ -105,6 +102,10 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 
 		return new()
 		{
+			SoftwareVersion = SoftwareInformation.VersionEnglish,
+			DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
+			SoftwareDataSource = Configuration.Config.Control.UpdateRepoURL.ToString(),
+
 			EquipmentId = Equipment.EquipmentId,
 			HelperId = Ship.ShipId,
 			UpgradeLevel = level,
@@ -112,9 +113,6 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 			Expected = BuildExpectedCostModel(expectedCostSlider, expectedCostNoSlider),
 
 			Actual = BuildActualCostModel(actualCost, baseCostResponse),
-
-			SoftwareVersion = SoftwareInformation.VersionEnglish,
-			DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
 		};
 	}
 

@@ -15,7 +15,6 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 	public void ProcessShipDataChanged(string _, dynamic data)
 	{
 		if (!api.IsServerAvailable) return;
-		if (!Configuration.Config.Control.UpdateRepoURL.ToString().Contains("ElectronicObserverEN")) return;
 
 		foreach (dynamic elem in data.api_ship_data)
 		{
@@ -75,6 +74,7 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 		{
 			DataVersion = SoftwareUpdater.CurrentVersion.FitBonuses,
 			SoftwareVersion = SoftwareInformation.VersionEnglish,
+			SoftwareDataSource = Configuration.Config.Control.UpdateRepoURL.ToString(),
 
 			ExpectedBonus = theoricalBonus,
 			ActualBonus = actualBonus,
