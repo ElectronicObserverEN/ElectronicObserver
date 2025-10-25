@@ -539,7 +539,7 @@ public class CefSharpViewModel : BrowserViewModel
 		}
 
 		string script =
-			$$"""
+			"""
 				new Promise((resolve) =>
 				{
 					const canvas = document.querySelector("canvas");
