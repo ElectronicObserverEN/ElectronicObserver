@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -155,9 +156,6 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 		CefSharp.FrameLoadStart += BrowserOnFrameLoadStart;
-
-		// https://github.com/ElectronicObserverEN/ElectronicObserver/pull/590
-		CefSharp.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
 
 		Host.Child = CefSharp;
 	}
@@ -416,7 +414,7 @@ public class CefSharpViewModel : BrowserViewModel
 		string folderPath = Configuration.ScreenShotPath;
 		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
 
-		System.Drawing.Bitmap? image = null;
+		Bitmap? image = null;
 		try
 		{
 			image = await TakeScreenShot();
@@ -428,10 +426,10 @@ public class CefSharpViewModel : BrowserViewModel
 			{
 				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format32bppArgb)
 				{
-					var imgalt = new System.Drawing.Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-					using (var g = System.Drawing.Graphics.FromImage(imgalt))
+					Bitmap imgalt = new(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+					using (Graphics g = Graphics.FromImage(imgalt))
 					{
-						g.DrawImage(image, new System.Drawing.Rectangle(0, 0, imgalt.Width, imgalt.Height));
+						g.DrawImage(image, new Rectangle(0, 0, imgalt.Width, imgalt.Height));
 					}
 
 					image.Dispose();
@@ -439,17 +437,17 @@ public class CefSharpViewModel : BrowserViewModel
 				}
 
 				// 不透明ピクセルのみだと jpeg 化されてしまうため、1px だけわずかに透明にする
-				System.Drawing.Color temp = image.GetPixel(image.Width - 1, image.Height - 1);
+				Color temp = image.GetPixel(image.Width - 1, image.Height - 1);
 				image.SetPixel(image.Width - 1, image.Height - 1, System.Drawing.Color.FromArgb(252, temp.R, temp.G, temp.B));
 			}
 			else
 			{
 				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format24bppRgb)
 				{
-					var imgalt = new System.Drawing.Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-					using (var g = System.Drawing.Graphics.FromImage(imgalt))
+					Bitmap imgalt = new(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+					using (Graphics g = Graphics.FromImage(imgalt))
 					{
-						g.DrawImage(image, new System.Drawing.Rectangle(0, 0, imgalt.Width, imgalt.Height));
+						g.DrawImage(image, new Rectangle(0, 0, imgalt.Width, imgalt.Height));
 					}
 
 					image.Dispose();
@@ -527,7 +525,7 @@ public class CefSharpViewModel : BrowserViewModel
 	/// <summary>
 	/// スクリーンショットを撮影します。
 	/// </summary>
-	private async Task<System.Drawing.Bitmap?> TakeScreenShot()
+	private async Task<Bitmap?> TakeScreenShot()
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
 
@@ -540,54 +538,36 @@ public class CefSharpViewModel : BrowserViewModel
 			return null;
 		}
 
-		async Task<ScreenShotPacket> InternalTakeScreenShot()
-		{
-			ScreenShotPacket request = new();
-
 			string script =
 				$$"""
-(async function()
+				new Promise((resolve) =>
 					{
-						try
-						{
-							await CefSharp.BindObjectAsync("{{request.ID}}");
 							const canvas = document.querySelector("canvas");
-
 	requestAnimationFrame(() =>
 							{
 								const dataurl = canvas.toDataURL("image/png");
-								{{request.ID}}.{{ScreenShotPacket.SetScreenshotDataFunctionName}}(dataurl);
+						resolve(dataurl);
 							});
-						}
-						catch (e)
-						{
-							console.error("Error in screenshot function: ", e);
-						}
-					})();
+				});
 				""";
 
-			CefSharp.JavascriptObjectRepository.ResolveObject += ResolveObject;
-			await kancolleFrame.EvaluateScriptAsync(script);
-			CefSharp.JavascriptObjectRepository.ResolveObject -= ResolveObject;
+		JavascriptResponse response = await kancolleFrame.EvaluateScriptAsync(script);
 
-			return await request.TaskSource.Task;
+		return ConvertToImage(response);
 
-			void ResolveObject(object? sender, CefSharp.Event.JavascriptBindingEventArgs e)
+		static Bitmap? ConvertToImage(JavascriptResponse response)
 			{
-				if (e.ObjectName == request.ID)
-				{
-					e.ObjectRepository.Register(request.ID, request);
-				}
-			}
+			if (response.Result is not string dataurl) return null;
+			if (!dataurl.StartsWith("data:image/png")) return null;
+
+			string s = dataurl[(dataurl.IndexOf(',') + 1)..];
+			byte[] bytes = Convert.FromBase64String(s);
+
+			using MemoryStream ms = new(bytes);
+			Bitmap bitmap = new(ms);
+
+			return bitmap;
 		}
-
-		ScreenShotPacket result = await InternalTakeScreenShot();
-
-		// ごみ掃除
-		CefSharp.JavascriptObjectRepository.UnRegister(result.ID);
-		kancolleFrame.ExecuteJavaScriptAsync($"delete {result.ID}");
-
-		return result.GetImage();
 	}
 
 	protected override void Mute()
