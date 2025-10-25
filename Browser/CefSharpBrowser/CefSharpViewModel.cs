@@ -179,7 +179,7 @@ public class CefSharpViewModel : BrowserViewModel
 			ApplyZoom();
 		});
 	}
-	
+
 	private void BrowserOnFrameLoadStart(object? sender, FrameLoadStartEventArgs e)
 	{
 		if (!e.Frame.IsMain) return;
@@ -195,7 +195,7 @@ public class CefSharpViewModel : BrowserViewModel
 			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
 		}
 	}
-	
+
 	// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
 	// その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
 	// 応急処置として失敗したとき後で再試行するようにしてみる
@@ -538,25 +538,25 @@ public class CefSharpViewModel : BrowserViewModel
 			return null;
 		}
 
-			string script =
-				$$"""
+		string script =
+			$$"""
 				new Promise((resolve) =>
+				{
+					const canvas = document.querySelector("canvas");
+					requestAnimationFrame(() =>
 					{
-							const canvas = document.querySelector("canvas");
-	requestAnimationFrame(() =>
-							{
-								const dataurl = canvas.toDataURL("image/png");
+						const dataurl = canvas.toDataURL("image/png");
 						resolve(dataurl);
-							});
+					});
 				});
-				""";
+			""";
 
 		JavascriptResponse response = await kancolleFrame.EvaluateScriptAsync(script);
 
 		return ConvertToImage(response);
 
 		static Bitmap? ConvertToImage(JavascriptResponse response)
-			{
+		{
 			if (response.Result is not string dataurl) return null;
 			if (!dataurl.StartsWith("data:image/png")) return null;
 
