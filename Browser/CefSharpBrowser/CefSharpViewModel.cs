@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -588,9 +587,7 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.JavascriptObjectRepository.UnRegister(result.ID);
 		kancolleFrame.ExecuteJavaScriptAsync($"delete {result.ID}");
 
-		Bitmap? image = result.GetImage();
-
-		return image;
+		return result.GetImage();
 	}
 
 	protected override void Mute()
