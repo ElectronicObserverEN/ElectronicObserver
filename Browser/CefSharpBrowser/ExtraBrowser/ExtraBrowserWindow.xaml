@@ -42,6 +42,7 @@
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 			<Button
@@ -64,9 +65,14 @@
 				Click="AkashiListButtonClick"
 				Content="{Binding FormBrowser.AkashiList, ElementName=ExtraBrowser}"
 				/>
+			<Button
+				Grid.Column="4"
+				Click="ExtensionButtonClick"
+				Content="{Binding FormBrowser.ExtensionManager, ElementName=ExtraBrowser}"
+				/>
 			<TextBox
 				x:Name="Address"
-				Grid.Column="4"
+				Grid.Column="5"
 				BorderBrush="Gray"
 				BorderThickness="1"
 				FontSize="12"

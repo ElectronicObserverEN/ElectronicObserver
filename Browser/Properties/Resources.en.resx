@@ -331,4 +331,13 @@ Would you like to refresh?</value>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>Failed to apply browser font.</value>
   </data>
+  <data name="ExtensionManager" xml:space="preserve">
+    <value>Extension manager</value>
+  </data>
+  <data name="AddExtension" xml:space="preserve">
+    <value>Add extension</value>
+  </data>
+  <data name="RemoveExtension" xml:space="preserve">
+    <value>Remove extension</value>
+  </data>
 </root>
