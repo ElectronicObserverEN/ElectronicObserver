@@ -604,7 +604,7 @@
     <value>뇌격+폭격</value>
   </data>
   <data name="BattleDetail_Node" xml:space="preserve">
-    <value>셀:</value>
+    <value>노드:</value>
   </data>
   <data name="BattleDetail_Boss" xml:space="preserve">
     <value> (보스)</value>

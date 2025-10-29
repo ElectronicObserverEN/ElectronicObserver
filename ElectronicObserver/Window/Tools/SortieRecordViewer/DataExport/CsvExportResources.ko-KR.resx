@@ -130,7 +130,7 @@
     <value>맵</value>
   </data>
   <data name="Cell" xml:space="preserve">
-    <value>셀</value>
+    <value>노드</value>
   </data>
   <data name="Sortie" xml:space="preserve">
     <value>출격</value>

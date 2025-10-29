@@ -157,7 +157,7 @@
     <value>차트를 저장</value>
   </data>
   <data name="RecordDataDoesNotExist" xml:space="preserve">
-    <value>녹화 데이터가 존재하지 않습니다.
+    <value>기록 데이터가 존재하지 않습니다.
 모항에 한 번 이동해 주세요.</value>
   </data>
   <data name="Error" xml:space="preserve">

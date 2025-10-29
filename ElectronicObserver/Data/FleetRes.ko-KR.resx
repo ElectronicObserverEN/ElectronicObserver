@@ -197,4 +197,10 @@
     <value>연료: {0}/{1} ({2}%)
 탄약: {3}/{4} ({5}%)</value>
   </data>
+  <data name="ChuuhaShip" xml:space="preserve">
+    <value>중파함 존재</value>
+  </data>
+  <data name="ShouhaShip" xml:space="preserve">
+    <value>소파함 존재</value>
+  </data>
 </root>

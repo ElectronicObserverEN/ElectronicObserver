@@ -289,7 +289,7 @@
     <value>알림 시스템: 대화상자에서 이미지 표시 실패</value>
   </data>
   <data name="NotifyEndHint" xml:space="preserve">
-    <value>맵의 최종 셀에서도 알림할지 지정합니다.</value>
+    <value>맵의 최종 노드에서도 알림할지 지정합니다.</value>
   </data>
   <data name="NotifyEndNodes" xml:space="preserve">
     <value>종점에서도 알림</value>

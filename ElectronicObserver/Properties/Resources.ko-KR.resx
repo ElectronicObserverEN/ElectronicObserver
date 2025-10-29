@@ -242,7 +242,7 @@
   </data>
   <data name="NewRecordFormat" xml:space="preserve">
     <value>업데이트가 검출되었습니다.
-이전 녹화 파일을 새 포맷으로 변환합니다.
+이전 기록 파일을 새 포맷으로 변환합니다.
 (기존 파일은 Record_Backup 폴더에 남습니다.)
 괜찮습니까?
 (컨버트하지 않고 계속하는 경우, 불러올 수 없어질 가능성이 있습니다.)</value>

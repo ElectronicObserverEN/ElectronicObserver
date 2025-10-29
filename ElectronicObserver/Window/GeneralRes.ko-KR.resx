@@ -360,7 +360,7 @@
     <value>임무명(&amp;N)</value>
   </data>
   <data name="NextNode" xml:space="preserve">
-    <value>다음 셀</value>
+    <value>다음 노드</value>
   </data>
   <data name="NightBattle" xml:space="preserve">
     <value>야전</value>

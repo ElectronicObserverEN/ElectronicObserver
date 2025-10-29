@@ -594,7 +594,7 @@ direct로 하면 성능이 향상될 가능성이 있습니다.</value>
     <value>1시간마다</value>
   </data>
   <data name="RecordAutoSaving" xml:space="preserve">
-    <value>녹화 자동 저장: </value>
+    <value>기록 자동 저장: </value>
   </data>
   <data name="ShipNameSortMethod" xml:space="preserve">
     <value>함명 열의 정렬 순:</value>
