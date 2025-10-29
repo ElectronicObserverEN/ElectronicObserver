@@ -49,7 +49,7 @@ Windows 7/8 사용자는 추가로 [KB2533623](https://support.microsoft.com/hel
 1. [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)를 다운로드합니다.  
 2. 설치 시 “.NET desktop development” 항목을 반드시 선택합니다.  
    ![image](https://github.com/ElectronicObserverEN/ElectronicObserver/assets/40002167/748d862c-4c61-4ef6-b147-961b532852c9)  
-3. [저장소를 클론](https://learn.microsoft.com/en-us/visualstudio/version-control/git-clone-repository)합니다.  
+3. [리포지토리를 복제](https://learn.microsoft.com/en-us/visualstudio/version-control/git-clone-repository)합니다.  
 4. 아래 버튼을 클릭하거나 F5 키를 눌러 실행합니다.  
    ![image](https://github.com/ElectronicObserverEN/ElectronicObserver/assets/40002167/dbee165d-8ea9-4f27-9c28-d406e2a9978a)
 
