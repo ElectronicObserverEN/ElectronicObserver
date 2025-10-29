@@ -245,7 +245,7 @@
     <value>전투 로그를 검색하고 있습니다…</value>
   </data>
   <data name="OpenBattleHistory" xml:space="preserve">
-    <value>전투 로그 {0} 를 엽니다.</value>
+    <value>전투 로그 {0} 을(를) 엽니다.</value>
   </data>
   <data name="CouldNotOpenBattleHistory" xml:space="preserve">
     <value>전투 로그를 열지 못했습니다.</value>

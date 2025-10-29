@@ -226,7 +226,7 @@
     <value>초기화 확인</value>
   </data>
   <data name="ClearFilterWarning" xml:space="preserve">
-    <value>{0} 를 초기화합니다.
+    <value>{0} 을(를) 초기화합니다.
 괜찮습니까?</value>
   </data>
   <data name="ConvertToExpressionWarning" xml:space="preserve">

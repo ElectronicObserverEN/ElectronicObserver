@@ -128,8 +128,8 @@
 (취소하면 이후 표시하지 않습니다.)</value>
   </data>
   <data name="AskLoad" xml:space="preserve">
-    <value>저장하지 않은 녹화본을 잃을 수도 있습니다.
-불러오시겠습니까?</value>
+    <value>저장하지 않은 기록을 잃을 수도 있습니다.
+기록을 불러오시겠습니까?</value>
   </data>
   <data name="AskLogin" xml:space="preserve">
     <value>로그인 페이지에 이동합니다.
@@ -231,10 +231,10 @@
     <value>초기 기동 메시지</value>
   </data>
   <data name="FailedNewRecords" xml:space="preserve">
-    <value>버전 업데이트에 의해 녹화본 컨버트에 실패하였습니다.</value>
+    <value>버전 업데이트에 의해 기록 파일 변환에 실패했습니다.</value>
   </data>
   <data name="FailedRecordDialog" xml:space="preserve">
-    <value>컨버트에 실패하였습니다.
+    <value>변환에 실패하였습니다.
 {0}
 실행 처리를 계속하시겠습니까?
 (데이터가 손실될 가능성이 있습니다.)
@@ -242,7 +242,7 @@
   </data>
   <data name="NewRecordFormat" xml:space="preserve">
     <value>업데이트가 검출되었습니다.
-이전 녹화 파일을 새 포맷으로 컨버트합니다.
+이전 녹화 파일을 새 포맷으로 변환합니다.
 (기존 파일은 Record_Backup 폴더에 남습니다.)
 괜찮습니까?
 (컨버트하지 않고 계속하는 경우, 불러올 수 없어질 가능성이 있습니다.)</value>
@@ -254,7 +254,7 @@
     <value>삭제하지 못했습니다.</value>
   </data>
   <data name="GroupUpgradeFailed" xml:space="preserve">
-    <value>버전 업데이트를 동반해 그룹 데이터 삭제에 실패하였습니다.</value>
+    <value>버전 업데이트로 인해 그룹 데이터 삭제에 실패하였습니다.</value>
   </data>
   <data name="NewGroupFormat" xml:space="preserve">
     <value>업데이트가 검출되었습니다.
@@ -264,7 +264,7 @@
 (초기화하지 않고 진행하는 경우, 에러가 발생합니다.)</value>
   </data>
   <data name="NewGroupFormatTitle" xml:space="preserve">
-    <value>업데이트를 동반한 확인 (~1.5.0)</value>
+    <value>업데이트 확인 (~1.5.0)</value>
   </data>
   <data name="MultiInstanceNotification" xml:space="preserve">
     <value>이미 실행 중입니다. 다중 실행은 할 수 없습니다. 오검출인 경우, 커맨드 라인에 -m 옵션을 붙여 실행해주세요.</value>

@@ -124,7 +124,7 @@
     <value>＊기믹 해제＊</value>
   </data>
   <data name="EnemyWasWeakened" xml:space="preserve">
-    <value>적 위력 약체화를 확인했습니다!</value>
+    <value>적 위력의 약체화를 확인했습니다!</value>
   </data>
   <data name="SRank" xml:space="preserve">
     <value>S승리</value>

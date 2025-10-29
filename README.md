@@ -1,5 +1,5 @@
 # Electronic Observer (七四式電子観測儀)
-<p align="center"><b>English</b> | <a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/README_CN.md">简体中文</a> | <a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/README_ES.md">Español</a> </p>
+<p align="center"><b>English</b> | <a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/README_CN.md">简体中文</a> | <a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/README_ES.md">Español</a> | <a href="https://github.com/ElectronicObserverEN/ElectronicObserver/blob/main/README_KR.md">한국어</a></p>
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ElectronicObserverEN_ElectronicObserver&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ElectronicObserverEN_ElectronicObserver)
 

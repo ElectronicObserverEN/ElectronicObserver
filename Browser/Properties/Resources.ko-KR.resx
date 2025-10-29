@@ -136,7 +136,7 @@
     <value>캐시를 무시하고 새로고침(&amp;C)</value>
   </data>
   <data name="NavigateToLogInPage" xml:space="preserve">
-    <value>로그인 페이지로</value>
+    <value>로그인 페이지로 이동</value>
   </data>
   <data name="Other_Zoom_Current" xml:space="preserve">
     <value>현재:</value>
@@ -168,7 +168,7 @@
     <value>음소거</value>
   </data>
   <data name="Strip_Refresh" xml:space="preserve">
-    <value>갱신</value>
+    <value>새로고침</value>
   </data>
   <data name="Strip_ScreenShot" xml:space="preserve">
     <value>스크린샷</value>
@@ -208,7 +208,7 @@
     <value>무언가에 의해 강제 종료되었습니다.</value>
   </data>
   <data name="RenderProcessProcessCrashed" xml:space="preserve">
-    <value>크래시가 발생하였습니다.</value>
+    <value>크래시하였습니다.</value>
   </data>
   <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
     <value>의문사하였습니다.</value>
@@ -238,7 +238,7 @@
     <value>음소거(&amp;M)</value>
   </data>
   <data name="ToolMenu_Other_Refresh" xml:space="preserve">
-    <value>갱신(&amp;R)</value>
+    <value>새로고침(&amp;R)</value>
   </data>
   <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
     <value>로그인 페이지에 이동(&amp;L)</value>
@@ -256,7 +256,7 @@
     <value>스크린샷을 아직 촬영하지 않았습니다.</value>
   </data>
   <data name="InstallVisualCpp" xml:space="preserve">
-    <value>브라우저의 컴포넌트를 읽지 못하였습니다.
+    <value>브라우저 구성 요소를 불러올 수 없습니다.
 Microsoft Visual C++ 2019 Redistributable가 필요합니다.
 다운로드 하시겠습니까?
 (vc_redist.x64.exe를 설치해주십시오)</value>
@@ -265,7 +265,7 @@ Microsoft Visual C++ 2019 Redistributable가 필요합니다.
     <value>CefSharp 로드 에러</value>
   </data>
   <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
-    <value>DMM의 페이지 갱신 창 비표시에 실패하였습니다.</value>
+    <value>DMM 페이지 새로고침 창을 닫지 못했습니다.</value>
   </data>
   <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
     <value>칸코레를 불러올 수 없어 스크린샷을 찍을 수 없습니다.</value>

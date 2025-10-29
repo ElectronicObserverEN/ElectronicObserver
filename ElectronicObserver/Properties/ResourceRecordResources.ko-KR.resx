@@ -130,10 +130,10 @@
     <value>파일 {0} 을(를) 작성하는데 실패했습니다.</value>
   </data>
   <data name="RecordManager_RecordsSaved" xml:space="preserve">
-    <value>녹화를 저장했습니다.</value>
+    <value>기록을 저장했습니다.</value>
   </data>
   <data name="RecordManager_FailedToSaveRecords" xml:space="preserve">
-    <value>녹화를 저장하지 못했습니다.</value>
+    <value>기록을 저장하지 못했습니다.</value>
   </data>
   <data name="ShipParameterRecord_AswOutOfPredictedRange" xml:space="preserve">
     <value>ShipParameter: {0} 의 대잠치가 예측 범위에서 벗어났습니다.( [{1} ~ {2}] ~ {3} )</value>

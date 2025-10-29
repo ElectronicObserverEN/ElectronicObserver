@@ -154,7 +154,7 @@
     <value>모든 알람을 음소거(&amp;M)</value>
   </data>
   <data name="File_Record" xml:space="preserve">
-    <value>녹화(&amp;R)</value>
+    <value>기록(&amp;R)</value>
   </data>
   <data name="File_Record_Load" xml:space="preserve">
     <value>불러오기(&amp;L)</value>
@@ -415,7 +415,7 @@ github issue 페이지로 이동하시겠습니까?</value>
     <value>조정</value>
   </data>
   <data name="GridSplitterSize" xml:space="preserve">
-    <value>그리드 스플리터 사이즈</value>
+    <value>창 분할선 크기</value>
   </data>
   <data name="Old" xml:space="preserve">
     <value>구</value>

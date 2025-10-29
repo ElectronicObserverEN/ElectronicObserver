@@ -732,7 +732,7 @@ API 목록의 서식이나 용법은 온라인 도움말을 참조해 주세요.
     <value>낡은 하드웨어에 높은 CPU 부담을 불러일으킬 가능성이 있는 vulkan 소프트웨어 렌더링 실장에 필요한 WebView2 파일을 삭제했습니다.</value>
   </data>
   <data name="FormBrowser_ShowContextMenu" xml:space="preserve">
-    <value>콘텍스트 메뉴를 표시</value>
+    <value>컨텍스트 메뉴 표시</value>
   </data>
   <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
     <value>브라우저 상에서 우클릭하면, 콘텍스트 메뉴가 표시됩니다.</value>
