@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
-    <value>*未加载*</value>
+  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
+    <value>复制编成文本(&amp;C)</value>
   </data>
-  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
-    <value>编成另存为图像(&amp;I)</value>
+  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
+    <value>复制编成(BD-builder)(&amp;D)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
+    <value>复制并曝光到舰队分析(&amp;R)</value>
   </data>
   <data name="ContextMenuFleet_CopyFleetAnalysisShips" xml:space="preserve">
     <value>复制舰娘列表到舰队分析</value>
@@ -131,6 +134,15 @@
   </data>
   <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
     <value>防空火力(AA)详细表示(&amp;A)</value>
+  </data>
+  <data name="ContextMenuFleet_Capture" xml:space="preserve">
+    <value>复制为图像(&amp;S)</value>
+  </data>
+  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
+    <value>编成另存为图像(&amp;I)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>*未加载*</value>
   </data>
   <data name="SupportTypeNone" xml:space="preserve">
     <value>无法发动</value>
@@ -151,7 +163,7 @@
 总计火力 {4} ({20})  / 雷装 {5} / 对空 {6} ({21}) / 对潜 {7} ({22}) / 索敌 {8} ({23}){26}
 搭载运输缶: {9}个 ({10}艆)
 搭载大发动艇: {11}个 ({12}艆, +{13:p1})
-运送量(TP): S {14} / A {15}
+运送量(TP): S {14} / A {15}{27}
 水上电探: {24}个 ({25}艆)
 总消耗: 油 {16} / 弹 {17}
 (每场战斗 油 {18} / 弹 {19})</value>
@@ -194,9 +206,6 @@
   <data name="ExpCalcHint" xml:space="preserve">
     <value>(右键计算所需Exp)</value>
   </data>
-  <data name="Power" xml:space="preserve">
-    <value>威力</value>
-  </data>
   <data name="CvciFba" xml:space="preserve">
     <value>航母CI(战爆攻-FBA)</value>
   </data>
@@ -205,6 +214,9 @@
   </data>
   <data name="CvciBa" xml:space="preserve">
     <value>航母CI(爆攻-BA)</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>威力</value>
   </data>
   <data name="Accuracy" xml:space="preserve">
     <value>命中</value>
@@ -223,15 +235,6 @@
   </data>
   <data name="CopyFleetText" xml:space="preserve">
     <value>{0}    制空战力{1} / 索敌能力 {2} / 运输能力 {3}</value>
-  </data>
-  <data name="All" xml:space="preserve">
-    <value>全部</value>
-  </data>
-  <data name="SupportTypeAntiSubmarine" xml:space="preserve">
-    <value>对潜支援</value>
-  </data>
-  <data name="SmokeScreen" xml:space="preserve">
-    <value>烟幕</value>
   </data>
   <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
     <value>将舰娘列表复制到舰队分析</value>
@@ -266,19 +269,16 @@
   <data name="Flare" xml:space="preserve">
     <value>照明弹</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
   <data name="Locked" xml:space="preserve">
     <value>锁定</value>
   </data>
-  <data name="ContextMenuFleet_Capture" xml:space="preserve">
-    <value>复制为图像(&amp;S)</value>
+  <data name="SupportTypeAntiSubmarine" xml:space="preserve">
+    <value>对潜支援</value>
   </data>
-  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
-    <value>复制编成文本(&amp;C)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
-    <value>复制编成(BD-builder)(&amp;D)</value>
-  </data>
-  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
-    <value>复制并曝光到舰队分析(&amp;R)</value>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>烟幕</value>
   </data>
 </root>

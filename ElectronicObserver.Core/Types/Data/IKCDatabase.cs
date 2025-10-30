@@ -91,12 +91,12 @@ public interface IKCDatabase
 	/// 戦闘データ
 	/// </summary>
 	BattleManager Battle { get; }
+	*/
 
 	/// <summary>
 	/// 海域カテゴリデータ
 	/// </summary>
-	IDDictionary<MapAreaData> MapArea { get; }
-	*/
+	IDDictionary<IMapAreaData> MapArea { get; }
 
 	/// <summary>
 	/// 海域データ

@@ -14,6 +14,7 @@ using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Bonodere;
@@ -21,6 +22,7 @@ using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Dialogs;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi;
 using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 using ElectronicObserver.ViewModels;
@@ -336,6 +338,7 @@ public partial class App
 			.AddSingleton<BonodereSubmissionService>()
 			.AddSingleton<IClipboardService, ClipboardService>()
 			.AddSingleton<ShipSelectorFactory>()
+			.AddSingleton<ITransportGaugeService, TransportGaugeService>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()

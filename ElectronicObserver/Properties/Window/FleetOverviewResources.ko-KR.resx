@@ -124,10 +124,7 @@
     <value>드럼통 탑재: {0}개 ({12}함)
 대발동정 탑재: {1}개 ({13}함)
 수상 전탐: {10}개 ({11}함)
-유송량(TP): S {2} / A {3}
-전차 유송량(TP): 
-E2: S {14} / A {15}
-E5: S {16} / A {17}
+유송량(TP): S {2} / A {3}{14}
 
 제공 전력 합계: {4}
 색적 능력 합계: {5:f2}
@@ -143,5 +140,8 @@ E5: S {16} / A {17}
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>회복</value>
+  </data>
+  <data name="LandingOperationTooltip" xml:space="preserve">
+    <value>전차 유송량(TP)</value>
   </data>
 </root>

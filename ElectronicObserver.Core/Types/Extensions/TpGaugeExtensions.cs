@@ -7,17 +7,32 @@ namespace ElectronicObserver.Core.Types.Extensions;
 
 public static class TpGaugeExtensions
 {
-	public static string GetGaugeName(this TpGauge gauge, IKCDatabase db) => gauge switch
+	public static int GetGaugeAreaId(this TpGauge gauge) => gauge switch
 	{
-		TpGauge.Spring25E2 => GetMapName(db, 60, 2),
-		TpGauge.Spring25E5 => GetMapName(db, 60, 5),
-		_ => "",
+		TpGauge.Spring25E2P1 or TpGauge.Spring25E5P1 => 60,
+		TpGauge.Fall25E2P2 => 61,
+		_ => 0,
 	};
 
-	public static string GetShortGaugeName(this TpGauge gauge) => gauge switch
+	public static int GetGaugeMapId(this TpGauge gauge) => gauge switch
 	{
-		TpGauge.Spring25E2 => "E2TP",
-		TpGauge.Spring25E5 => "E5TP",
+		TpGauge.Spring25E2P1 or TpGauge.Fall25E2P2 => 2,
+		TpGauge.Spring25E5P1 => 5,
+		_ => 0,
+	};
+
+	public static int GetGaugeIndex(this TpGauge gauge) => gauge switch
+	{
+		TpGauge.Spring25E2P1 or TpGauge.Spring25E5P1 => 1,
+		TpGauge.Fall25E2P2 => 2,
+		_ => 0,
+	};
+
+	public static string GetGaugeName(this TpGauge gauge, IKCDatabase db) => GetMapName(db, gauge.GetGaugeAreaId(), gauge.GetGaugeMapId());
+
+	public static string GetShortGaugeName(this TpGauge gauge) => gauge.GetGaugeAreaId() switch
+	{
+		>0 => $"E{gauge.GetGaugeMapId()}-{gauge.GetGaugeIndex()}TP",
 		_ => "",
 	};
 
@@ -28,8 +43,10 @@ public static class TpGaugeExtensions
 	public static int GetTp(this TpGauge gauge, List<IFleetData> fleets) => gauge switch
 	{
 		TpGauge.Normal => GetNormalTpDamage(fleets) + GetKinuBonus(fleets),
-		TpGauge.Spring25E2 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets),
-		TpGauge.Spring25E5 => GetSpring25E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
+		TpGauge.Spring25E2P1 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets),
+		TpGauge.Spring25E5P1 => GetSpring25E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
+		// TODO : This is a placeholder
+		TpGauge.Fall25E2P2 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets), 
 		_ => 0,
 	};
 

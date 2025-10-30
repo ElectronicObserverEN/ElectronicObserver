@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
@@ -54,14 +55,14 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 		AirBaseAreas.Add(new(0, AirControlSimulator.None));
 
-		IEnumerable<MapAreaData> maps = KCDatabase.Instance.BaseAirCorps.Values
+		IEnumerable<IMapAreaData> maps = KCDatabase.Instance.BaseAirCorps.Values
 			.Select(b => b.MapAreaID)
 			.Distinct()
 			.OrderBy(i => i)
 			.Select(i => KCDatabase.Instance.MapArea[i])
 			.Where(m => m != null);
 
-		foreach (MapAreaData map in maps)
+		foreach (IMapAreaData map in maps)
 		{
 			int mapAreaID = map.MapAreaID;
 			string name = map.NameEN;

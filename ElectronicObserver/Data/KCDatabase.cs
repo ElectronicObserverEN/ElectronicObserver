@@ -128,7 +128,7 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// 海域カテゴリデータ
 	/// </summary>
-	public IDDictionary<MapAreaData> MapArea { get; private set; }
+	public IDDictionary<IMapAreaData> MapArea { get; private set; }
 
 	/// <summary>
 	/// 海域データ
@@ -197,7 +197,7 @@ public sealed class KCDatabase : IKCDatabase
 		Quest = new QuestManager();
 		QuestProgress = new QuestProgressManager();
 		Battle = new BattleManager();
-		MapArea = new IDDictionary<MapAreaData>();
+		MapArea = new IDDictionary<IMapAreaData>();
 		MapInfo = new IDDictionary<IMapInfoData>();
 		Mission = new IDDictionary<MissionData>();
 		ShipGroup = new ShipGroupManager();
@@ -223,7 +223,7 @@ public sealed class KCDatabase : IKCDatabase
 		string json = $$"""{"api_id":{{world}},"api_name":"","api_type":1}""";
 		dynamic elem = JsonObject.Parse(json);
 
-		MapAreaData item = new();
+		IMapAreaData item = new MapAreaData();
 		item.LoadFromResponse("api_start2/getData", elem);
 		MapArea.Add(item);
 

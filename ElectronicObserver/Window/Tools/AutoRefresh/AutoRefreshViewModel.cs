@@ -17,7 +17,7 @@ public partial class AutoRefreshViewModel : WindowViewModelBase
 {
 	public AutoRefreshTranslationViewModel AutoRefresh { get; }
 
-	public List<MapAreaData> Areas { get; set; } = [];
+	public List<IMapAreaData> Areas { get; set; } = [];
 	public List<IMapInfoData> Infos { get; set; } = [];
 
 	public List<MapInfoModel> Maps { get; set; } = [];

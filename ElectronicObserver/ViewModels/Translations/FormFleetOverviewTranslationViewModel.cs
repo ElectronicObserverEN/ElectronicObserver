@@ -7,5 +7,6 @@ public class FormFleetOverviewTranslationViewModel : TranslationBaseViewModel
 	public string CombinedFleetToolTip => FleetOverviewResources.CombinedFleetToolTip;
 	public string AnchorageRepairToolTip => FleetOverviewResources.AnchorageRepairToolTip;
 	public string Recovery => FleetOverviewResources.Recovery;
+	public string LandingOperationTooltip => FleetOverviewResources.LandingOperationTooltip;
 	public string SmokeScreen => FleetResources.SmokeScreen;
 }

@@ -1,8 +1,9 @@
-﻿using ElectronicObserver.Core.Types.Data;
+﻿using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data;
 
-public class MapAreaData : APIWrapper, IIdentifiable
+public class MapAreaData : APIWrapper, IIdentifiable, IMapAreaData
 {
 
 	/// <summary>
@@ -22,8 +23,9 @@ public class MapAreaData : APIWrapper, IIdentifiable
 	/// </summary>
 	public int MapType => (int)RawData.api_type;
 
-
+	public bool IsEventArea => MapType is 1;
 
 	public int ID => MapAreaID;
+
 	public override string ToString() => $"[{MapAreaID}] {Name}";
 }

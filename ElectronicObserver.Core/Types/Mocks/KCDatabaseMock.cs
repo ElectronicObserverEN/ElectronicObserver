@@ -9,4 +9,5 @@ public class KCDatabaseMock : IKCDatabase
 	public IDDictionary<IUseItemMaster> MasterUseItems { get; set; } = new();
 	public IDDictionary<IUseItem> UseItems { get; set; } = new();
 	public IDDictionary<IMapInfoData> MapInfo { get; set; } = new();
+	public IDDictionary<IMapAreaData> MapArea{ get; set; } = new();
 }

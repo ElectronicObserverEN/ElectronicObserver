@@ -124,7 +124,7 @@
     <value>搭载运输缶：{0} 件（{12} 艆）
 搭载大发动艇：{1} 件（{13} 艆）
 水上电探：{10} 件（{11} 艆）
-运输量（TP）：S {2} / A {3}
+运输量（TP）：S {2} / A {3}{14}
 
 总制空：{4}
 总索敌：{5:f2}
@@ -140,5 +140,8 @@
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>恢复</value>
+  </data>
+  <data name="LandingOperationTooltip" xml:space="preserve">
+    <value>Landing operation</value>
   </data>
 </root>

@@ -124,10 +124,7 @@
     <value>ドラム缶搭載: {0}個 ({12}艦)
 大発動艇搭載: {1}個 ({13}艦)
 水上電探: {10}個 ({11}艦)
-輸送量(TP): S {2} / A {3}
-戦車輸送量(TP): 
-E2: S {14} / A {15}
-E5: S {16} / A {17}
+輸送量(TP): S {2} / A {3}{14}
 
 制空戦力合計: {4}
 索敵能力合計: {5:f2}
@@ -143,5 +140,8 @@ E5: S {16} / A {17}
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>回復</value>
+  </data>
+  <data name="LandingOperationTooltip" xml:space="preserve">
+    <value>戦車輸送量(TP)</value>
   </data>
 </root>

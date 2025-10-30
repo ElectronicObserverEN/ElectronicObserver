@@ -124,10 +124,7 @@
     <value>Drums: {0} ({12} ships)
 Daihatsu: {1} ({13} ships)
 Surface Radar:{10} ({11} ships)
-TP: S {2} / A {3}
-Landing operation:  
-E2: S {14} / A {15}
-E5: S {16} / A {17}
+TP: S {2} / A {3}{14}
 
 Total Fleet AS: {4}
 Total Fleet LOS: {5:f2}
@@ -143,5 +140,8 @@ Start: </value>
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>Recovery</value>
+  </data>
+  <data name="LandingOperationTooltip" xml:space="preserve">
+    <value>Landing operation</value>
   </data>
 </root>

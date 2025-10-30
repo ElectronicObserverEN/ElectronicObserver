@@ -163,10 +163,7 @@ Support Expedition: {3}
 Total FP {4} ({20}) / Torp {5} / AA {6} ({21}) / ASW {7} ({22}) / LOS {8} ({23}){26}
 Drum: {9} ({10} ships)
 Daihatsu: {11} ({12} ships, +{13:p1})
-TP: S {14} / A {15}
-Landing operation: 
-E2: S {27} / A {28}
-E5: S {29} / A {30}
+TP: S {14} / A {15}{27}
 Surface Radar: {24} ({25} ships)
 Consumption: {16} fuel / {17} ammo
 ({18} fuel / {19} ammo per battle)

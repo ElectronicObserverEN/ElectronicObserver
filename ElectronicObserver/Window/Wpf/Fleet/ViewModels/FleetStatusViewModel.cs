@@ -5,6 +5,7 @@ using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
@@ -16,6 +17,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 public partial class FleetStatusViewModel : ObservableObject
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
+	public ITransportGaugeService TransportGaugeService { get; } 
 
 	public FleetItemControlViewModel Name { get; } = new();
 	public FleetStateViewModel State { get; } = new();
@@ -33,7 +35,8 @@ public partial class FleetStatusViewModel : ObservableObject
 
 	public FleetStatusViewModel(int fleetId)
 	{
-		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetRequiredService<FormFleetTranslationViewModel>();
+		TransportGaugeService = Ioc.Default.GetRequiredService<ITransportGaugeService>();
 
 		FleetId = fleetId;
 
@@ -82,8 +85,6 @@ public partial class FleetStatusViewModel : ObservableObject
 
 			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
 			int tp = TpGauge.Normal.GetTp([fleet]);
-			int tankTpE2 = TpGauge.Spring25E2.GetTp([fleet]);
-			int tankTpE5 = TpGauge.Spring25E5.GetTp([fleet]);
 
 			bool hasZeroSlotAircraft = fleet.MembersInstance!
 				.Where(s => s is not null)
@@ -128,10 +129,7 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				zeroSlotWarning,
-				tankTpE2,
-				(int)(tankTpE2 * 0.7),
-				tankTpE5,
-				(int)(tankTpE5 * 0.7)
+				TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet])
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();
