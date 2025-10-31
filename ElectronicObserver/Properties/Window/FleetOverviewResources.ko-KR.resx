@@ -142,6 +142,8 @@
     <value>회복</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
-    <value>전차 유송량(TP)</value>
+    <value>
+전차 유송량(TP):
+</value>
   </data>
 </root>

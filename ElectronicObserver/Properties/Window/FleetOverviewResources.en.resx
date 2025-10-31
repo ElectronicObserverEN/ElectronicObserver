@@ -142,6 +142,8 @@ Start: </value>
     <value>Recovery</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
-    <value>Landing operation</value>
+    <value>
+Landing operation:
+</value>
   </data>
 </root>
