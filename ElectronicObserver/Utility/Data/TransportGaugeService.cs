@@ -31,6 +31,6 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 		if (sb.Length is 0) return "";
 
-		return $"{Translations.LandingOperationTooltip}{sb.ToString().TrimEnd()}";
+		return $"\n{Translations.LandingOperationTooltip}:\n{sb.ToString().TrimEnd()}";
 	}
 }

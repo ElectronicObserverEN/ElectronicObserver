@@ -142,8 +142,6 @@
     <value>回復</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
-    <value>
-戦車輸送量(TP):
-</value>
+    <value>戦車輸送量(TP)</value>
   </data>
 </root>
