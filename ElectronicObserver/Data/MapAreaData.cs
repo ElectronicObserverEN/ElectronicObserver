@@ -3,7 +3,7 @@ using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data;
 
-public class MapAreaData : APIWrapper, IIdentifiable, IMapAreaData
+public class MapAreaData : APIWrapper, IMapAreaData
 {
 
 	/// <summary>
