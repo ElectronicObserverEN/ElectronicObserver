@@ -25,7 +25,7 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 	public string GetAllEventLandingOperationToolTip(List<IFleetData> fleets)
 	{
-		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().ToList());
+		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().Skip(2).ToList());
 	}
 
 	private string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges)
