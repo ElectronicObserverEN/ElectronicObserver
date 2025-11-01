@@ -128,7 +128,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Count(i => i > 0),
 				transport.Count(i => i> 0),
 				landing.Count(i => i > 0),
-				TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet1, fleet2])
+				TransportGaugeService.GetAllEventLandingOperationToolTip([fleet1, fleet2])
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();

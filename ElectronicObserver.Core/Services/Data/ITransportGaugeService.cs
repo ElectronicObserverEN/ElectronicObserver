@@ -6,4 +6,5 @@ namespace ElectronicObserver.Core.Services.Data;
 public interface ITransportGaugeService
 {
 	public string GetCurrentEventLandingOperationToolTip(List<IFleetData> fleets);
+	public string GetAllEventLandingOperationToolTip(List<IFleetData> fleets);
 }

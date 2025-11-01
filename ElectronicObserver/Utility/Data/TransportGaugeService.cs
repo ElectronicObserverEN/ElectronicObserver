@@ -20,9 +20,19 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 		// LastOrDefault is used here because in debug we add old event areas to KCDatabase. In release there's 0 or 1 event area.
 		if (KCDatabase.MapArea.Values.LastOrDefault(area => area.IsEventArea) is not { } eventArea) return "";
 
+		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().Where(gauge => gauge.GetGaugeAreaId() == eventArea.MapAreaID).ToList());
+	}
+
+	public string GetAllEventLandingOperationToolTip(List<IFleetData> fleets)
+	{
+		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().ToList());
+	}
+
+	private string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges)
+	{
 		StringBuilder sb = new();
 
-		foreach (TpGauge gauge in Enum.GetValues<TpGauge>().Where(gauge => gauge.GetGaugeAreaId() == eventArea.MapAreaID))
+		foreach (TpGauge gauge in gauges)
 		{
 			int tp = gauge.GetTp(fleets);
 

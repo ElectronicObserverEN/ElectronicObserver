@@ -129,7 +129,7 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				zeroSlotWarning,
-				TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet])
+				TransportGaugeService.GetAllEventLandingOperationToolTip([fleet])
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();
