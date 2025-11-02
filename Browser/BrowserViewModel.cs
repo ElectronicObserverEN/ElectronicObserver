@@ -38,7 +38,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	protected IBrowserHost BrowserHost { get; }
 	protected string? ProxySettings { get; private set; }
 
-	protected Size KanColleSize { get; } = new(1200, 720);
+	protected System.Windows.Size KanColleSize { get; } = new(1200, 720);
 	protected string KanColleUrl => "https://play.games.dmm.com/game/kancolle";
 
 	public bool ZoomFit { get; set; }
