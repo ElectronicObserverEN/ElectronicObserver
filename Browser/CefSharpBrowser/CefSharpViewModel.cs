@@ -14,6 +14,7 @@ using Browser.CefSharpBrowser.CompassPrediction;
 using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
 using CefSharp;
+using CefSharp.DevTools.Page;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using Cef = CefSharp.Cef;
@@ -409,6 +410,8 @@ public class CefSharpViewModel : BrowserViewModel
 
 	protected override async void Screenshot()
 	{
+		if (Configuration is null) return;
+
 		int savemode = Configuration.ScreenShotSaveMode;
 		int format = Configuration.ScreenShotFormat;
 		string folderPath = Configuration.ScreenShotPath;
@@ -528,7 +531,38 @@ public class CefSharpViewModel : BrowserViewModel
 	private async Task<Bitmap?> TakeScreenShot()
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+		if (Configuration is null) return null;
 
+		ScreenshotMode screenshotMode = Configuration.ScreenshotMode;
+
+		if (screenshotMode is ScreenshotMode.Automatic)
+		{
+			if (CefSharp.Width < KanColleSize.Width)
+			{
+				screenshotMode = ScreenshotMode.Canvas;
+			}
+			else
+			{
+				screenshotMode = ScreenshotMode.Browser;
+			}
+		}
+
+		if (screenshotMode is ScreenshotMode.Canvas)
+		{
+			return await MakeCanvasScreenshot();
+		}
+
+		if (screenshotMode is ScreenshotMode.Browser)
+		{
+			return await MakeBrowserScreenshot(Configuration.ScreenShotFormat);
+		}
+
+		return null;
+
+	}
+
+	private async Task<Bitmap?> MakeCanvasScreenshot()
+	{
 		IFrame? kancolleFrame = GetKanColleFrame();
 
 		if (kancolleFrame is null)
@@ -568,6 +602,22 @@ public class CefSharpViewModel : BrowserViewModel
 
 			return bitmap;
 		}
+	}
+
+	private async Task<Bitmap?> MakeBrowserScreenshot(int format)
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+
+		byte[] screenshotData = await CefSharp.CaptureScreenshotAsync(GetImageFormat(format));
+		await using MemoryStream memoryStream = new(screenshotData);
+
+		return (Bitmap)Image.FromStream(memoryStream, true);
+
+		static CaptureScreenshotFormat GetImageFormat(int format) => format switch
+		{
+			1 => CaptureScreenshotFormat.Jpeg,
+			_ => CaptureScreenshotFormat.Png,
+		};
 	}
 
 	protected override void Mute()
