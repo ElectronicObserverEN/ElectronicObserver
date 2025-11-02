@@ -667,7 +667,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 				if (image is not null)
 				{
-					ProcessScreenshot(image);
+					await ProcessScreenshot(image);
 				}
 
 				return;
@@ -718,7 +718,7 @@ public class WebView2ViewModel : BrowserViewModel
 		});
 	}
 
-	private void CoreWebView2_WebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
+	private async void CoreWebView2_WebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
 	{
 		try
 		{
@@ -734,7 +734,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 					if (image is not null)
 					{
-						ProcessScreenshot(image);
+						await ProcessScreenshot(image);
 					}
 				}
 			}
@@ -774,7 +774,7 @@ public class WebView2ViewModel : BrowserViewModel
 		};
 	}
 
-	protected async void ProcessScreenshot(Bitmap image)
+	private async Task ProcessScreenshot(Bitmap image)
 	{
 		if (Configuration is null) return;
 
