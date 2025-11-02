@@ -348,6 +348,7 @@ public partial class FormBrowserHost : Form
 				UseCustomBrowserFont = Utility.Configuration.Config.UI.UseCustomBrowserFont,
 				BrowserFont = Utility.Configuration.Config.UI.BrowserFontName,
 				MatchMainFont = Utility.Configuration.Config.UI.MatchMainFont,
+				ScreenshotMode = c.ScreenshotMode,
 			};
 		}
 	}
@@ -378,6 +379,7 @@ public partial class FormBrowserHost : Form
 		c.Volume = config.Volume;
 		c.IsMute = config.IsMute;
 		c.IsBrowserContextMenuEnabled = config.IsBrowserContextMenuEnabled;
+		c.ScreenshotMode = config.ScreenshotMode;
 		//Utility.Configuration.Config.Debug.EnableDebugMenu = config.EnableDebugMenu;
 
 		// volume

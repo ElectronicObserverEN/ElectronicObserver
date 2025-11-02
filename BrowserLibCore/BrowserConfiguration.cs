@@ -167,4 +167,7 @@ public class BrowserConfiguration
 
 	[Key(31)]
 	public string GadgetBypassServerCustom { get; set; } = "";
+
+	[Key(32)]
+	public ScreenshotMode ScreenshotMode { get; set; }
 }

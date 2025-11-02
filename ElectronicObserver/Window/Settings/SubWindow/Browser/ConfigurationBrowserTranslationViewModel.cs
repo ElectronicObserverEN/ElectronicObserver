@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.ViewModels.Translations;
+﻿using ElectronicObserver.Core.Properties;
+using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Browser;
 
@@ -35,6 +36,8 @@ public class ConfigurationBrowserTranslationViewModel : TranslationBaseViewModel
 	public string FormBrowser_ScreenShotFormat_AvoidTwitterDeteriorationToolTip => ConfigurationResources.FormBrowser_ScreenShotFormat_AvoidTwitterDeteriorationToolTip;
 
 	public string Output => ConfigurationResources.Output;
+	public string ScreenshotMode => $"{ScreenshotModeResources.Mode}：";
+	public string ScreenshotModeDescription => ScreenshotModeResources.Description;
 	public string SaveLocation => ConfigRes.SaveLocation;
 
 	public string FormBrowser_HardwareAccelerationEnabled => ConfigurationResources.FormBrowser_HardwareAccelerationEnabled;

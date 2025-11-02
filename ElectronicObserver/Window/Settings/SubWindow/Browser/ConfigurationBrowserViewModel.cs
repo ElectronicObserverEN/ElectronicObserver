@@ -7,7 +7,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
-using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
@@ -23,6 +22,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	public List<DockStyle> DockStyles { get; }
 	public List<CheckBoxEnumViewModel> ScreenshotFormats { get; }
 	public List<ScreenshotSaveMode> ScreenshotSaveModes { get; }
+	public List<ScreenshotMode> ScreenshotModes { get; }
 
 	public BrowserOption Browser { get; set; }
 
@@ -33,6 +33,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	public bool AppliesStyleSheet { get; set; }
 	public bool UseHttps { get; set; }
 	public bool IsBrowserContextMenuEnabled { get; set; }
+	public ScreenshotMode ScreenshotMode { get; set; }
 	public string LogInPageURL { get; set; }
 	public DockStyle ToolMenuDockStyle { get; set; }
 	public bool IsDMMreloadDialogDestroyable { get; set; }
@@ -72,6 +73,8 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		ScreenshotFormats = Enum.GetValues<ScreenshotFormat>()
 			.Select(f => new CheckBoxEnumViewModel(f))
 			.ToList();
+
+		ScreenshotModes = [.. Enum.GetValues<ScreenshotMode>()];
 
 		foreach (CheckBoxEnumViewModel browser in EmbeddedBrowsers)
 		{
@@ -193,6 +196,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		GadgetBypassServerCustom = Config.GadgetBypassServerCustom;
 		UseVulkanWorkaround = Config.UseVulkanWorkaround;
 		IsBrowserContextMenuEnabled = Config.IsBrowserContextMenuEnabled;
+		ScreenshotMode = Config.ScreenshotMode;
 	}
 
 	public override void Save()
@@ -227,6 +231,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.GadgetBypassServerCustom = GadgetBypassServerCustom;
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
+		Config.ScreenshotMode = ScreenshotMode;
 	}
 
 	[RelayCommand]

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -245,6 +247,7 @@ public class WebView2ViewModel : BrowserViewModel
 		WebView2.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		WebView2.PreviewKeyDown += Browser_PreviewKeyDown;
 		WebView2.CoreWebView2.Navigate(KanColleUrl);
+		WebView2.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
 
 		if (Configuration.IsDMMreloadDialogDestroyable)
 		{
@@ -356,8 +359,7 @@ public class WebView2ViewModel : BrowserViewModel
 
 		if (new Uri(e.Uri).Host.Contains("accounts.google.com"))
 		{
-			var settings = WebView2.CoreWebView2.Settings;
-			settings.UserAgent = "Chrome";
+			WebView2.CoreWebView2.Settings.UserAgent = "Chrome";
 		}
 
 		if (GameFrame != null && !IsRefreshing)
@@ -366,18 +368,44 @@ public class WebView2ViewModel : BrowserViewModel
 		}
 	}
 
-	private void CoreWebView2_FrameCreated(object? sender, CoreWebView2FrameCreatedEventArgs e)
+	private async void CoreWebView2_FrameCreated(object? sender, CoreWebView2FrameCreatedEventArgs e)
 	{
-		if (e.Frame.Name.Contains(@"game_frame"))
+		if (e.Frame.Name.Contains("game_frame"))
 		{
 			GameFrame = e.Frame;
 			IsRefreshing = false;
 			IsNavigating = false;
+			e.Frame.FrameCreated += CoreWebView2_FrameCreated;
+
+			string script =
+				"""
+					window.addEventListener("message", event =>
+					{
+						window.chrome.webview.postMessage(event.data);
+					});
+				""";
+
+			await WebView2!.CoreWebView2.ExecuteScriptAsync(script);
 		}
-		if (e.Frame.Name.Contains(@"htmlWrap"))
+
+		e.Frame.NavigationCompleted += async (sender, args) =>
 		{
-			KancolleFrame = e.Frame;
-		}
+			if (sender is not CoreWebView2Frame frame) return;
+
+			try
+			{
+				string frameUrl = await frame.ExecuteScriptAsync("document.URL");
+
+				if (frameUrl.Contains("/kcs2/index.php"))
+				{
+					KancolleFrame = frame;
+				}
+			}
+			catch (Exception e)
+			{
+				AddLog(3, $"Frame URL fetch failed: {e.Message}");
+			}
+		};
 	}
 
 	private void CoreWebView2_WebResourceRequested(object? sender, CoreWebView2WebResourceRequestedEventArgs e)
@@ -607,41 +635,165 @@ public class WebView2ViewModel : BrowserViewModel
 	/// <inheritdoc />
 	protected override async void Screenshot()
 	{
-		var savemode = Configuration.ScreenShotSaveMode;
-		var format = Configuration.ScreenShotFormat;
-		var folderPath = Configuration.ScreenShotPath;
-		var is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
+		if (WebView2 is null) return;
+		if (Configuration is null) return;
 
-		// to file
+		ScreenshotMode screenshotMode = Configuration.ScreenshotMode;
+
+		if (screenshotMode is ScreenshotMode.Automatic)
+		{
+			if (WebView2.Width < KanColleSize.Width)
+			{
+				screenshotMode = ScreenshotMode.Canvas;
+			}
+			else
+			{
+				screenshotMode = ScreenshotMode.Browser;
+			}
+		}
+
 		try
 		{
-			if (!Directory.Exists(folderPath))
-				Directory.CreateDirectory(folderPath);
-
-			ImageFormat? imageFormat;
-			CoreWebView2CapturePreviewImageFormat browserImageFormat;
-			string ext;
-			switch (format)
+			if (screenshotMode is ScreenshotMode.Canvas)
 			{
-				case 1:
-					imageFormat = ImageFormat.Jpeg;
-					browserImageFormat = CoreWebView2CapturePreviewImageFormat.Jpeg;
-					ext = "jpg";
-					break;
-				case 2:
-				default:
-					imageFormat = ImageFormat.Png;
-					browserImageFormat = CoreWebView2CapturePreviewImageFormat.Png;
-					ext = "png";
-					break;
+				await MakeCanvasScreenshot();
+
+				return;
 			}
 
-			var path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
+			if (screenshotMode is ScreenshotMode.Browser)
+			{
+				Bitmap? image = await MakeBrowserScreenshot(Configuration.ScreenShotFormat);
 
-			await using MemoryStream memoryStream = new();
-			await WebView2.CoreWebView2.CapturePreviewAsync(browserImageFormat, memoryStream).ConfigureAwait(false);
+				if (image is not null)
+				{
+					ProcessScreenshot(image);
+				}
 
-			var image = (System.Drawing.Bitmap)System.Drawing.Image.FromStream(memoryStream, true);
+				return;
+			}
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
+		}
+	}
+
+	/// <summary>
+	/// Runs a script that grabs the canvas screenshot and sends the <see cref="BrowserOperationResult"/> to the top frame.
+	/// </summary>
+	/// 
+	/// <remarks>
+	/// WebView2 can't get the data from ExecuteScriptAsync so we need to pass the data with postMessage <see href="https://github.com/MicrosoftEdge/WebView2Feedback/issues/416" />.
+	/// WebView2 can't listen to the kancolle frame messages dirrectly because it's from a different origin.
+	/// As a workaround the kancolle frame sends the screenshot data to the top frame using postMessage.
+	/// The top frame then has a listener that just forwards the message to WebView2 using postMessage.
+	/// </remarks>
+	private async Task MakeCanvasScreenshot()
+	{
+		if (KancolleFrame is null) return;
+
+		string script =
+			$$"""
+				(() =>
+				{
+					const canvas = document.querySelector("canvas");
+					requestAnimationFrame(() =>
+					{
+						const dataurl = canvas.toDataURL("image/png");
+
+						const message = {
+							{{nameof(BrowserOperationResult.Operation)}}: {{(int)BrowserOperation.TakeScreenshot}},
+							{{nameof(BrowserOperationResult.Result)}}: dataurl
+						};
+
+						window.parent.parent.postMessage(message, "*");
+					});
+				})();
+			""";
+
+		await App.Current.Dispatcher.BeginInvoke(async () =>
+		{
+			await KancolleFrame.ExecuteScriptAsync(script);
+		});
+	}
+
+	private void CoreWebView2_WebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
+	{
+		try
+		{
+			BrowserOperationResult? result = JsonSerializer.Deserialize<BrowserOperationResult>(e.WebMessageAsJson);
+
+			if (result?.Operation is BrowserOperation.TakeScreenshot)
+			{
+				if (result.Result is JsonElement { ValueKind: JsonValueKind.String } stringElement)
+				{
+					string dataurl = stringElement.GetString() ?? "";
+
+					Bitmap? image = ConvertToImage(dataurl);
+
+					if (image is not null)
+					{
+						ProcessScreenshot(image);
+					}
+				}
+			}
+		}
+		catch
+		{
+			// ignore
+		}
+	}
+
+	private static Bitmap? ConvertToImage(string dataurl)
+	{
+		if (!dataurl.StartsWith("data:image/png")) return null;
+
+		string s = dataurl[(dataurl.IndexOf(',') + 1)..];
+		byte[] bytes = Convert.FromBase64String(s);
+
+		using MemoryStream ms = new(bytes);
+		Bitmap bitmap = new(ms);
+
+		return bitmap;
+	}
+
+	private async Task<Bitmap?> MakeBrowserScreenshot(int format)
+	{
+		if (WebView2 is null) return null;
+
+		await using MemoryStream memoryStream = new();
+		await WebView2.CoreWebView2.CapturePreviewAsync(GetImageFormat(format), memoryStream);
+
+		return (Bitmap)Image.FromStream(memoryStream, true);
+
+		static CoreWebView2CapturePreviewImageFormat GetImageFormat(int format) => format switch
+		{
+			1 => CoreWebView2CapturePreviewImageFormat.Jpeg,
+			_ => CoreWebView2CapturePreviewImageFormat.Png,
+		};
+	}
+
+	protected async void ProcessScreenshot(Bitmap image)
+	{
+		if (Configuration is null) return;
+
+		int savemode = Configuration.ScreenShotSaveMode;
+		int format = Configuration.ScreenShotFormat;
+		string folderPath = Configuration.ScreenShotPath;
+		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
+
+		try
+		{
+			Directory.CreateDirectory(folderPath);
+
+			(ImageFormat imageFormat, string ext) = format switch
+			{
+				1 => (ImageFormat.Jpeg, "jpg"),
+				_ => (ImageFormat.Png, "png"),
+			};
+
+			string path = Path.Join(folderPath, $"{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}");
 
 			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
 

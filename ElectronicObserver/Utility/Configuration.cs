@@ -1376,6 +1376,8 @@ public sealed class Configuration
 
 			public bool IsBrowserContextMenuEnabled { get; set; }
 
+			public ScreenshotMode ScreenshotMode { get; set; } = ScreenshotMode.Automatic;
+
 			public ConfigFormBrowser()
 			{
 				Browser = BrowserOption.CefSharp;
