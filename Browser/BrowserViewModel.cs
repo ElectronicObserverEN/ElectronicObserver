@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -509,6 +511,45 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	/// </summary>
 	[RelayCommand]
 	protected abstract void Screenshot();
+
+	// no idea if this still works
+	protected Bitmap TwitterDeteriorationBypass(Bitmap image, bool is32bpp)
+	{
+		if (is32bpp)
+		{
+			if (image.PixelFormat != PixelFormat.Format32bppArgb)
+			{
+				Bitmap imgalt = new(image.Width, image.Height, PixelFormat.Format32bppArgb);
+				using (Graphics g = Graphics.FromImage(imgalt))
+				{
+					g.DrawImage(image, new Rectangle(0, 0, imgalt.Width, imgalt.Height));
+				}
+
+				image.Dispose();
+				image = imgalt;
+			}
+
+			// 不透明ピクセルのみだと jpeg 化されてしまうため、1px だけわずかに透明にする
+			Color temp = image.GetPixel(image.Width - 1, image.Height - 1);
+			image.SetPixel(image.Width - 1, image.Height - 1, Color.FromArgb(252, temp.R, temp.G, temp.B));
+		}
+		else
+		{
+			if (image.PixelFormat != PixelFormat.Format24bppRgb)
+			{
+				Bitmap imgalt = new(image.Width, image.Height, PixelFormat.Format24bppRgb);
+				using (Graphics g = Graphics.FromImage(imgalt))
+				{
+					g.DrawImage(image, new Rectangle(0, 0, imgalt.Width, imgalt.Height));
+				}
+
+				image.Dispose();
+				image = imgalt;
+			}
+		}
+
+		return image;
+	}
 
 	[RelayCommand]
 	private void SetZoom(string? zoomParameter)

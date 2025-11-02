@@ -785,29 +785,45 @@ public class WebView2ViewModel : BrowserViewModel
 
 		try
 		{
-			Directory.CreateDirectory(folderPath);
-
-			(ImageFormat imageFormat, string ext) = format switch
-			{
-				1 => (ImageFormat.Jpeg, "jpg"),
-				_ => (ImageFormat.Png, "png"),
-			};
-
-			string path = Path.Join(folderPath, $"{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}");
+			image = TwitterDeteriorationBypass(image, is32bpp);
 
 			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
 
 			if (savemode is 1 or 3)
 			{
-				image.Save(path, imageFormat);
-				AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
-				LastScreenShotPath = Path.GetFullPath(path);
+				try
+				{
+					Directory.CreateDirectory(folderPath);
+
+					(ImageFormat imageFormat, string ext) = format switch
+					{
+						1 => (ImageFormat.Jpeg, "jpg"),
+						_ => (ImageFormat.Png, "png"),
+					};
+
+					string path = Path.Join(folderPath, $"{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}");
+
+					image.Save(path, imageFormat);
+					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
+					LastScreenShotPath = Path.GetFullPath(path);
+				}
+				catch (Exception ex)
+				{
+					SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
+				}
 			}
 
 			if ((savemode & 2) != 0)
 			{
-				App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(image.ToBitmapSource()));
-				AddLog(2, string.Format(FormBrowser.ScreenshotCopiedToClipboard));
+				try
+				{
+					App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(image.ToBitmapSource()));
+					AddLog(2, string.Format(FormBrowser.ScreenshotCopiedToClipboard));
+				}
+				catch (Exception ex)
+				{
+					SendErrorReport(ex.ToString(), FormBrowser.FailedToCopyScreenshotToClipboard);
+				}
 			}
 		}
 		catch (Exception ex)
