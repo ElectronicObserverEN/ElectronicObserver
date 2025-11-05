@@ -82,8 +82,8 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 		AreaList.Insert(0, new MapAreaDataMock()
 		{
-			MapAreaID = 0,
-			Name = ConstantsRes.None,
+			MapAreaID = 2,
+			Name = Core.Properties.EventConstants.All,
 		});
 
 		AreaList.Insert(0, new MapAreaDataMock()
@@ -94,9 +94,10 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 		AreaList.Insert(0, new MapAreaDataMock()
 		{
-			MapAreaID = 2,
-			Name = Core.Properties.EventConstants.All,
+			MapAreaID = 0,
+			Name = ConstantsRes.None,
 		});
+
 
 		Config = config;
 		Load();
