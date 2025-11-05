@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core.Services.Data;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Translations;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control;
 
@@ -15,6 +19,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
+	public List<EventModel> Events { get; }
 
 	public bool ShowAircraft { get; set; }
 
@@ -54,13 +59,43 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 	public bool AppliesSallyAreaColor { get; set; }
 
+	public EventModel? AreaForTankTpGaugeDisplay { get; set; }
+
 	public ConfigurationFleetViewModel(Configuration.ConfigurationData.ConfigFormFleet config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationFleetTranslationViewModel>();
+		ITransportGaugeService gauges = Ioc.Default.GetRequiredService<ITransportGaugeService>();
 
 		FleetStateDisplayModes = Enum.GetValues<FleetStateDisplayMode>().ToList();
 		AirSuperiorityMethods = Enum.GetValues<AirSuperiorityMethod>().ToList();
 		LevelVisibilityFlags = Enum.GetValues<LevelVisibilityFlag>().ToList();
+
+		Events = gauges.GetEventLandingGauges(false)
+			.GroupBy(gauge => gauge.GetGaugeAreaId())
+			.Select(gauge => new EventModel()
+			{
+				AreaId = gauge.Key,
+				Name = ITransportGaugeService.GetEventName(gauge.First()),
+			})
+			.ToList();
+
+		Events.Insert(0, new EventModel()
+		{
+			AreaId = 0,
+			Name = ConstantsRes.None,
+		});
+
+		Events.Insert(0, new EventModel()
+		{
+			AreaId = 1,
+			Name = Core.Properties.EventConstants.CurrentEvent,
+		});
+
+		Events.Insert(0, new EventModel()
+		{
+			AreaId = 2,
+			Name = Core.Properties.EventConstants.All,
+		});
 
 		Config = config;
 		Load();
@@ -87,6 +122,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		BlinkAtDamaged = Config.BlinkAtDamaged;
 		FleetStateDisplayMode = (FleetStateDisplayMode)Config.FleetStateDisplayMode;
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
+		AreaForTankTpGaugeDisplay = Events.FirstOrDefault();
 	}
 
 	public override void Save()
@@ -110,5 +146,6 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.BlinkAtDamaged = BlinkAtDamaged;
 		Config.FleetStateDisplayMode = (int)FleetStateDisplayMode;
 		Config.AppliesSallyAreaColor = AppliesSallyAreaColor;
+		Config.AreaIdForTankTpGaugeDisplay = AreaForTankTpGaugeDisplay?.AreaId ?? 1;
 	}
 }

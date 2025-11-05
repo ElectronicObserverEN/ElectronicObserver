@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="All" xml:space="preserve">
+    <value>??? All</value>
+  </data>
+  <data name="CurrentEvent" xml:space="preserve">
+    <value>??? (Current event)</value>
+  </data>
   <data name="Fall2025" xml:space="preserve">
-    <value>Fall 25</value>
+    <value>25秋</value>
   </data>
   <data name="Spring2025" xml:space="preserve">
-    <value>Spring 25</value>
+    <value>25春</value>
   </data>
 </root>

@@ -25,7 +25,7 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 	public string GetAllEventLandingOperationToolTip(List<IFleetData> fleets)
 	{
-		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().Skip(2).ToList(), true);
+		return GetEventLandingOperationToolTip(fleets, GetEventLandingGauges(false), true);
 	}
 
 	private string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges, bool displayEventName)
@@ -38,7 +38,7 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 			if (displayEventName)
 			{
-				sb.Append($"{GetEventName(gauge)} ");
+				sb.Append($"{ITransportGaugeService.GetEventName(gauge)} ");
 			}
 
 			sb.AppendLine($"E{gauge.GetGaugeMapId()}-{gauge.GetGaugeIndex()}: S {tp} / A {(int)(tp * 0.7)}");
@@ -49,10 +49,15 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 		return $"\n{Translations.LandingOperationTooltip}:\n{sb.ToString().TrimEnd()}";
 	}
 
-	public static string GetEventName(TpGauge gauge) => gauge.GetGaugeAreaId() switch
+	public List<TpGauge> GetEventLandingGauges(bool includeNone)
 	{
-		60 => EventNames.Spring2025,
-		61 => EventNames.Fall2025,
-		_ => "",
-	};
+		List<TpGauge> gauges = Enum.GetValues<TpGauge>().Skip(2).ToList();
+
+		if (includeNone)
+		{
+			gauges.Insert(0, TpGauge.None);
+		}
+
+		return gauges;
+	}
 }

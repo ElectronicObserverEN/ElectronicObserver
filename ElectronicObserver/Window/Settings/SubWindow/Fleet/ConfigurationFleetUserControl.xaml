@@ -6,7 +6,7 @@
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:electronicObserverTypes="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	d:DataContext="{d:DesignInstance local:ConfigurationFleetViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
@@ -183,5 +183,14 @@
 				ToolTip="{Binding Translation.FormFleet_ShowAircraftLevelByNumberToolTip}"
 				/>
 		</Grid>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal">
+			<TextBlock
+				Margin="5 0"
+				VerticalAlignment="Center"
+				Text="{Binding Translation.FormFleet_ShowTankTp}"
+			/>
+			<ComboBox ItemsSource="{Binding Events}" SelectedValue="{Binding AreaForTankTpGaugeDisplay}" DisplayMemberPath="Name" />
+		</StackPanel>
 	</StackPanel>
 </UserControl>

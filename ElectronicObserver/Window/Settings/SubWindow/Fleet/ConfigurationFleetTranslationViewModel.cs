@@ -50,4 +50,6 @@ public class ConfigurationFleetTranslationViewModel : TranslationBaseViewModel
 
 	public string FormFleet_ShowAircraftLevelByNumber => ConfigurationResources.FormFleet_ShowAircraftLevelByNumber;
 	public string FormFleet_ShowAircraftLevelByNumberToolTip => ConfigurationResources.FormFleet_ShowAircraftLevelByNumberToolTip;
+
+	public string FormFleet_ShowTankTp => FleetImageGeneratorResources.ShowTankTp;
 }

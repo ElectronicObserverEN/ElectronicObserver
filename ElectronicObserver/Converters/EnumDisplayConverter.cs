@@ -17,6 +17,7 @@ public class EnumDisplayConverter : IValueConverter
 			FormationType f => Constants.GetFormation(f),
 			EquipmentIconType eqIcon => eqIcon.TranslatedName(),
 			EquipmentCardType eqCard => eqCard.TranslatedName(),
+
 			TpGauge.None => BattleResources.None,
 			TpGauge tankGauge => tankGauge.GetGaugeName(KCDatabase.Instance),
 			

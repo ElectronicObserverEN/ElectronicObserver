@@ -15,7 +15,7 @@
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="WanaKanaShaapu" Version="2.0.2" />
 	</ItemGroup>
-
+	
 	<PropertyGroup>
 		<ResXGenerator_GenerateCode>true</ResXGenerator_GenerateCode>
 		<ResXGenerator_PublicClass>true</ResXGenerator_PublicClass>
