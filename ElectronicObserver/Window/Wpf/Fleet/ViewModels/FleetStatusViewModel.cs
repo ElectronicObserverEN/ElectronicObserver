@@ -9,6 +9,7 @@ using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 
@@ -129,7 +130,13 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				zeroSlotWarning,
-				TransportGaugeService.GetAllEventLandingOperationToolTip([fleet])
+				Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay switch 
+				{
+					0 => "",
+					1 => TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]),
+					2 => TransportGaugeService.GetAllEventLandingOperationToolTip([fleet]),
+					_ => TransportGaugeService.GetEventLandingOperationToolTip(Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay, [fleet]),
+				}
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();

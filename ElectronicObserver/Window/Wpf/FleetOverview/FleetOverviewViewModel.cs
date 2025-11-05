@@ -9,10 +9,12 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Wpf.Fleet;
 
 namespace ElectronicObserver.Window.Wpf.FleetOverview;
@@ -128,7 +130,13 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Count(i => i > 0),
 				transport.Count(i => i> 0),
 				landing.Count(i => i > 0),
-				TransportGaugeService.GetAllEventLandingOperationToolTip([fleet1, fleet2])
+				Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay switch
+				{
+					0 => "",
+					1 => TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet1, fleet2]),
+					2 => TransportGaugeService.GetAllEventLandingOperationToolTip([fleet1, fleet2]),
+					_ => TransportGaugeService.GetEventLandingOperationToolTip(Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay, [fleet1, fleet2]),
+				}
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();

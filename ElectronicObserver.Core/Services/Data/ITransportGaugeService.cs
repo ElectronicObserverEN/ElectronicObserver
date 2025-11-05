@@ -8,6 +8,7 @@ public interface ITransportGaugeService
 {
 	public string GetCurrentEventLandingOperationToolTip(List<IFleetData> fleets);
 	public string GetAllEventLandingOperationToolTip(List<IFleetData> fleets);
+	public string GetEventLandingOperationToolTip(int areaId, List<IFleetData> fleets);
 
 	public List<TpGauge> GetEventLandingGauges(bool includeNone);
 

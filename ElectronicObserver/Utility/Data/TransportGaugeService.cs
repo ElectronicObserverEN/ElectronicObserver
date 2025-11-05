@@ -28,6 +28,11 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 		return GetEventLandingOperationToolTip(fleets, GetEventLandingGauges(false), true);
 	}
 
+	public string GetEventLandingOperationToolTip(int areaId, List<IFleetData> fleets)
+	{
+		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().Where(gauge => gauge.GetGaugeAreaId() == areaId).ToList(), false);
+	}
+
 	private string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges, bool displayEventName)
 	{
 		StringBuilder sb = new();
