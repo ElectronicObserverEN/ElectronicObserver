@@ -9,6 +9,7 @@ using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
@@ -130,13 +131,7 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				zeroSlotWarning,
-				Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay switch 
-				{
-					0 => "",
-					1 => TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]),
-					2 => TransportGaugeService.GetAllEventLandingOperationToolTip([fleet]),
-					_ => TransportGaugeService.GetEventLandingOperationToolTip(Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay, [fleet]),
-				}
+				GetTankTpTooltip(fleet)
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();
@@ -204,6 +199,17 @@ public partial class FleetStatusViewModel : ObservableObject
 
 		Speed.Text = Constants.GetSpeed(speed);
 		Speed.ToolTip = string.Join("\r\n", members.Select(s => $"{s.Name}：{Constants.GetSpeed(s.Speed)}"));
+	}
+
+	private string GetTankTpTooltip(IFleetData fleet)
+	{
+		return Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay switch
+		{
+			0 => "",
+			1 => TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]),
+			2 => TransportGaugeService.GetAllEventLandingOperationToolTip([fleet]),
+			_ => TransportGaugeService.GetEventLandingOperationToolTip(Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay, [fleet]),
+		};
 	}
 
 	public void Refresh()
