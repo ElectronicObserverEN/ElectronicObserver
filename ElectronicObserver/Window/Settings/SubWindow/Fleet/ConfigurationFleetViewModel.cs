@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Translations;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control;
@@ -19,7 +20,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
-	public List<EventModel> Events { get; }
+	public List<MapAreaDataMock> AreaList { get; }
 
 	public bool ShowAircraft { get; set; }
 
@@ -59,7 +60,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 	public bool AppliesSallyAreaColor { get; set; }
 
-	public EventModel? AreaForTankTpGaugeDisplay { get; set; }
+	public MapAreaDataMock? AreaForTankTpGaugeDisplay { get; set; }
 
 	public ConfigurationFleetViewModel(Configuration.ConfigurationData.ConfigFormFleet config)
 	{
@@ -70,30 +71,30 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		AirSuperiorityMethods = Enum.GetValues<AirSuperiorityMethod>().ToList();
 		LevelVisibilityFlags = Enum.GetValues<LevelVisibilityFlag>().ToList();
 
-		Events = gauges.GetEventLandingGauges(false)
+		AreaList = gauges.GetEventLandingGauges(false)
 			.GroupBy(gauge => gauge.GetGaugeAreaId())
-			.Select(gauge => new EventModel()
+			.Select(gauge => new MapAreaDataMock()
 			{
-				AreaId = gauge.Key,
+				MapAreaID = gauge.Key,
 				Name = ITransportGaugeService.GetEventName(gauge.First()),
 			})
 			.ToList();
 
-		Events.Insert(0, new EventModel()
+		AreaList.Insert(0, new MapAreaDataMock()
 		{
-			AreaId = 0,
+			MapAreaID = 0,
 			Name = ConstantsRes.None,
 		});
 
-		Events.Insert(0, new EventModel()
+		AreaList.Insert(0, new MapAreaDataMock()
 		{
-			AreaId = 1,
+			MapAreaID = 1,
 			Name = Core.Properties.EventConstants.CurrentEvent,
 		});
 
-		Events.Insert(0, new EventModel()
+		AreaList.Insert(0, new MapAreaDataMock()
 		{
-			AreaId = 2,
+			MapAreaID = 2,
 			Name = Core.Properties.EventConstants.All,
 		});
 
@@ -122,7 +123,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		BlinkAtDamaged = Config.BlinkAtDamaged;
 		FleetStateDisplayMode = (FleetStateDisplayMode)Config.FleetStateDisplayMode;
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
-		AreaForTankTpGaugeDisplay = Events.FirstOrDefault();
+		AreaForTankTpGaugeDisplay = AreaList.FirstOrDefault(area => area.MapAreaID == Config.AreaIdForTankTpGaugeDisplay);
 	}
 
 	public override void Save()
@@ -146,6 +147,6 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.BlinkAtDamaged = BlinkAtDamaged;
 		Config.FleetStateDisplayMode = (int)FleetStateDisplayMode;
 		Config.AppliesSallyAreaColor = AppliesSallyAreaColor;
-		Config.AreaIdForTankTpGaugeDisplay = AreaForTankTpGaugeDisplay?.AreaId ?? 1;
+		Config.AreaIdForTankTpGaugeDisplay = AreaForTankTpGaugeDisplay?.MapAreaID ?? 1;
 	}
 }

@@ -184,13 +184,13 @@
 				/>
 		</Grid>
 
-		<StackPanel Grid.Row="2" Orientation="Horizontal">
+		<StackPanel Orientation="Horizontal">
 			<TextBlock
 				Margin="5 0"
 				VerticalAlignment="Center"
 				Text="{Binding Translation.FormFleet_ShowTankTp}"
 			/>
-			<ComboBox ItemsSource="{Binding Events}" SelectedValue="{Binding AreaForTankTpGaugeDisplay}" DisplayMemberPath="Name" />
+			<ComboBox ItemsSource="{Binding AreaList}" SelectedValue="{Binding AreaForTankTpGaugeDisplay}" DisplayMemberPath="Name" />
 		</StackPanel>
 	</StackPanel>
 </UserControl>
