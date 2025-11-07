@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
@@ -130,13 +131,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Count(i => i > 0),
 				transport.Count(i => i> 0),
 				landing.Count(i => i > 0),
-				Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay switch
-				{
-					0 => "",
-					1 => TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet1, fleet2]),
-					2 => TransportGaugeService.GetAllEventLandingOperationToolTip([fleet1, fleet2]),
-					_ => TransportGaugeService.GetEventLandingOperationToolTip(Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay, [fleet1, fleet2]),
-				}
+				GetTankTpTooltip(fleet1, fleet2)
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();
@@ -159,6 +154,23 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20));
 		}
 
+	}
+
+	private string GetTankTpTooltip(IFleetData fleet1, IFleetData fleet2)
+	{
+		if (Configuration.Config.FormFleet.DisplayOnlyCurrentEventTankTp)
+		{
+			return TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet1, fleet2]);
+		}
+
+		StringBuilder sb = new();
+
+		foreach (int areaId in Configuration.Config.FormFleet.AreaIdsForTankTpGaugeDisplay)
+		{
+			sb.AppendLine(TransportGaugeService.GetEventLandingOperationToolTip(areaId, [fleet1, fleet2]));
+		}
+
+		return sb.ToString();
 	}
 
 	private void UpdateTimerTick()

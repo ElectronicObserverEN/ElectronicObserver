@@ -203,13 +203,19 @@ public partial class FleetStatusViewModel : ObservableObject
 
 	private string GetTankTpTooltip(IFleetData fleet)
 	{
-		return Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay switch
+		if (Configuration.Config.FormFleet.DisplayOnlyCurrentEventTankTp)
 		{
-			0 => "",
-			1 => TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]),
-			2 => TransportGaugeService.GetAllEventLandingOperationToolTip([fleet]),
-			_ => TransportGaugeService.GetEventLandingOperationToolTip(Configuration.Config.FormFleet.AreaIdForTankTpGaugeDisplay, [fleet]),
-		};
+			return TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]);
+		}
+
+		StringBuilder sb = new();
+
+		foreach (int areaId in Configuration.Config.FormFleet.AreaIdsForTankTpGaugeDisplay)
+		{
+			sb.AppendLine(TransportGaugeService.GetEventLandingOperationToolTip(areaId, [fleet]));
+		}
+
+		return sb.ToString();
 	}
 
 	public void Refresh()

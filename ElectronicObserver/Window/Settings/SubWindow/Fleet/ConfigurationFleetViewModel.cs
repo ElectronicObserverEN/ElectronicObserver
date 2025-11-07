@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Core.Services.Data;
-using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Core.Types.Mocks;
-using ElectronicObserver.Translations;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
-public class ConfigurationFleetViewModel : ConfigurationViewModelBase
+public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 {
 	public ConfigurationFleetTranslationViewModel Translation { get; }
 	private Configuration.ConfigurationData.ConfigFormFleet Config { get; }
@@ -20,7 +18,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
-	public List<MapAreaDataMock> AreaList { get; }
+	public List<ShouldDisplayTankTpViewModel> TankTpList { get; }
 
 	public bool ShowAircraft { get; set; }
 
@@ -60,7 +58,11 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 	public bool AppliesSallyAreaColor { get; set; }
 
-	public MapAreaDataMock? AreaForTankTpGaugeDisplay { get; set; }
+	[ObservableProperty]
+	[NotifyPropertyChangedFor(nameof(CanSelectAnEventForTpGauges))]
+	public partial bool DisplayOnlyCurrentEventTankTp { get; set; }
+
+	public bool CanSelectAnEventForTpGauges => !DisplayOnlyCurrentEventTankTp;
 
 	public ConfigurationFleetViewModel(Configuration.ConfigurationData.ConfigFormFleet config)
 	{
@@ -71,33 +73,14 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		AirSuperiorityMethods = Enum.GetValues<AirSuperiorityMethod>().ToList();
 		LevelVisibilityFlags = Enum.GetValues<LevelVisibilityFlag>().ToList();
 
-		AreaList = gauges.GetEventLandingGauges(false)
+		TankTpList = gauges.GetEventLandingGauges(false)
 			.GroupBy(gauge => gauge.GetGaugeAreaId())
-			.Select(gauge => new MapAreaDataMock()
+			.Select(gauge => new ShouldDisplayTankTpViewModel()
 			{
-				MapAreaID = gauge.Key,
+				MapAreaId = gauge.Key,
 				Name = ITransportGaugeService.GetEventName(gauge.First()),
 			})
 			.ToList();
-
-		AreaList.Insert(0, new MapAreaDataMock()
-		{
-			MapAreaID = 2,
-			Name = Core.Properties.EventConstants.All,
-		});
-
-		AreaList.Insert(0, new MapAreaDataMock()
-		{
-			MapAreaID = 1,
-			Name = Core.Properties.EventConstants.CurrentEvent,
-		});
-
-		AreaList.Insert(0, new MapAreaDataMock()
-		{
-			MapAreaID = 0,
-			Name = ConstantsRes.None,
-		});
-
 
 		Config = config;
 		Load();
@@ -124,7 +107,12 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		BlinkAtDamaged = Config.BlinkAtDamaged;
 		FleetStateDisplayMode = (FleetStateDisplayMode)Config.FleetStateDisplayMode;
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
-		AreaForTankTpGaugeDisplay = AreaList.FirstOrDefault(area => area.MapAreaID == Config.AreaIdForTankTpGaugeDisplay);
+		DisplayOnlyCurrentEventTankTp = Config.DisplayOnlyCurrentEventTankTp;
+
+		foreach (ShouldDisplayTankTpViewModel vm in TankTpList)
+		{
+			vm.ShouldDisplay = Config.AreaIdsForTankTpGaugeDisplay.Contains(vm.MapAreaId);
+		}
 	}
 
 	public override void Save()
@@ -148,6 +136,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.BlinkAtDamaged = BlinkAtDamaged;
 		Config.FleetStateDisplayMode = (int)FleetStateDisplayMode;
 		Config.AppliesSallyAreaColor = AppliesSallyAreaColor;
-		Config.AreaIdForTankTpGaugeDisplay = AreaForTankTpGaugeDisplay?.MapAreaID ?? 1;
+		Config.AreaIdsForTankTpGaugeDisplay = TankTpList.Where(vm => vm.ShouldDisplay).Select(vm => vm.MapAreaId).ToList();
+		Config.DisplayOnlyCurrentEventTankTp = DisplayOnlyCurrentEventTankTp;
 	}
 }

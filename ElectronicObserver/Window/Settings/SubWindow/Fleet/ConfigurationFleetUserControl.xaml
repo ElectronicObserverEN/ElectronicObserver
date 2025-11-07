@@ -191,7 +191,23 @@
 				VerticalAlignment="Center"
 				Text="{Binding Translation.FormFleet_ShowTankTp}"
 			/>
-			<ComboBox ItemsSource="{Binding AreaList}" SelectedValue="{Binding AreaForTankTpGaugeDisplay}" DisplayMemberPath="Name" />
+
+			<CheckBox Content="Current event" IsChecked="{Binding DisplayOnlyCurrentEventTankTp}"></CheckBox>
+			
+			<ItemsControl ItemsSource="{Binding TankTpList}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="ShouldDisplayTankTpViewModel">
+						<CheckBox
+							Content="{Binding Name}"
+							IsChecked="{Binding IsChecked}" />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 		</StackPanel>
 	</StackPanel>
 </UserControl>

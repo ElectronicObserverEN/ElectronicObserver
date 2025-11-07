@@ -1068,10 +1068,9 @@ public sealed class Configuration
 			/// </summary>
 			public List<SerializableColor> SallyAreaColorScheme { get; set; }
 
-			/// <summary>
-			/// 0 = None, 1 = Current event, 2 = All
-			/// </summary>
-			public int AreaIdForTankTpGaugeDisplay { get; set; } = 1;
+			public bool DisplayOnlyCurrentEventTankTp { get; set; } = true;
+
+			public List<int> AreaIdsForTankTpGaugeDisplay { get; set; } = [];
 
 			[IgnoreDataMember]
 			internal readonly List<SerializableColor> DefaultSallyAreaColorScheme = new List<SerializableColor>()
