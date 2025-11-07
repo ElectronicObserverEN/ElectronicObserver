@@ -208,14 +208,7 @@ public partial class FleetStatusViewModel : ObservableObject
 			return TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]);
 		}
 
-		StringBuilder sb = new();
-
-		foreach (int areaId in Configuration.Config.FormFleet.AreaIdsForTankTpGaugeDisplay)
-		{
-			sb.AppendLine(TransportGaugeService.GetEventLandingOperationToolTip(areaId, [fleet]));
-		}
-
-		return sb.ToString();
+		return TransportGaugeService.GetEventLandingOperationToolTip([fleet], Configuration.Config.FormFleet.AreaIdsForTankTpGaugeDisplay, true);
 	}
 
 	public void Refresh()

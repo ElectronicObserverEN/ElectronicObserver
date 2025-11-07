@@ -18,7 +18,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
-	public List<ShouldDisplayTankTpViewModel> TankTpList { get; }
+	public List<ShouldDisplayTankTpGaugeViewModel> GaugeList { get; }
 
 	public bool ShowAircraft { get; set; }
 
@@ -59,10 +59,10 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public bool AppliesSallyAreaColor { get; set; }
 
 	[ObservableProperty]
-	[NotifyPropertyChangedFor(nameof(CanSelectAnEventForTpGauges))]
+	[NotifyPropertyChangedFor(nameof(CanSelectTankTpGauges))]
 	public partial bool DisplayOnlyCurrentEventTankTp { get; set; }
 
-	public bool CanSelectAnEventForTpGauges => !DisplayOnlyCurrentEventTankTp;
+	public bool CanSelectTankTpGauges => !DisplayOnlyCurrentEventTankTp;
 
 	public ConfigurationFleetViewModel(Configuration.ConfigurationData.ConfigFormFleet config)
 	{
@@ -73,17 +73,27 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		AirSuperiorityMethods = Enum.GetValues<AirSuperiorityMethod>().ToList();
 		LevelVisibilityFlags = Enum.GetValues<LevelVisibilityFlag>().ToList();
 
-		TankTpList = gauges.GetEventLandingGauges(false)
-			.GroupBy(gauge => gauge.GetGaugeAreaId())
-			.Select(gauge => new ShouldDisplayTankTpViewModel()
-			{
-				MapAreaId = gauge.Key,
-				Name = ITransportGaugeService.GetEventName(gauge.First()),
-			})
+		GaugeList = gauges.GetEventLandingGauges(false)
+			.Select(gauge => new ShouldDisplayTankTpGaugeViewModel(gauge))
 			.ToList();
+
+		PropertyChanged += OnDisplayOnlyCurrentEventTankTpChanged;
 
 		Config = config;
 		Load();
+	}
+
+	private void OnDisplayOnlyCurrentEventTankTpChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is not nameof(DisplayOnlyCurrentEventTankTp)) return;
+
+		if (DisplayOnlyCurrentEventTankTp)
+		{
+			foreach (ShouldDisplayTankTpGaugeViewModel vm in GaugeList)
+			{
+				vm.ShouldDisplay = false;
+			}
+		}
 	}
 
 	private void Load()
@@ -109,9 +119,9 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
 		DisplayOnlyCurrentEventTankTp = Config.DisplayOnlyCurrentEventTankTp;
 
-		foreach (ShouldDisplayTankTpViewModel vm in TankTpList)
+		foreach (ShouldDisplayTankTpGaugeViewModel vm in GaugeList)
 		{
-			vm.ShouldDisplay = Config.AreaIdsForTankTpGaugeDisplay.Contains(vm.MapAreaId);
+			vm.ShouldDisplay = Config.AreaIdsForTankTpGaugeDisplay.Contains(vm.TpGauge);
 		}
 	}
 
@@ -136,7 +146,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.BlinkAtDamaged = BlinkAtDamaged;
 		Config.FleetStateDisplayMode = (int)FleetStateDisplayMode;
 		Config.AppliesSallyAreaColor = AppliesSallyAreaColor;
-		Config.AreaIdsForTankTpGaugeDisplay = TankTpList.Where(vm => vm.ShouldDisplay).Select(vm => vm.MapAreaId).ToList();
+		Config.AreaIdsForTankTpGaugeDisplay = GaugeList.Where(vm => vm.ShouldDisplay).Select(vm => vm.TpGauge).ToList();
 		Config.DisplayOnlyCurrentEventTankTp = DisplayOnlyCurrentEventTankTp;
 	}
 }

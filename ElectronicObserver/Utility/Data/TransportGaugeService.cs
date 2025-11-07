@@ -28,12 +28,7 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 		return GetEventLandingOperationToolTip(fleets, GetEventLandingGauges(false), true);
 	}
 
-	public string GetEventLandingOperationToolTip(int areaId, List<IFleetData> fleets)
-	{
-		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().Where(gauge => gauge.GetGaugeAreaId() == areaId).ToList(), false);
-	}
-
-	private string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges, bool displayEventName)
+	public string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges, bool displayEventName)
 	{
 		StringBuilder sb = new();
 
@@ -43,7 +38,7 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 			if (displayEventName)
 			{
-				sb.Append($"{ITransportGaugeService.GetEventName(gauge)} ");
+				sb.Append($"{gauge.GetEventName()} ");
 			}
 
 			sb.AppendLine($"E{gauge.GetGaugeMapId()}-{gauge.GetGaugeIndex()}: S {tp} / A {(int)(tp * 0.7)}");

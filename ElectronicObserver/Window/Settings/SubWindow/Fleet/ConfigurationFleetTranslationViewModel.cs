@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.ViewModels.Translations;
+﻿using ElectronicObserver.Core.Properties;
+using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
@@ -52,4 +53,5 @@ public class ConfigurationFleetTranslationViewModel : TranslationBaseViewModel
 	public string FormFleet_ShowAircraftLevelByNumberToolTip => ConfigurationResources.FormFleet_ShowAircraftLevelByNumberToolTip;
 
 	public string FormFleet_ShowTankTp => FleetImageGeneratorResources.ShowTankTp;
+	public string FormFleet_CurrentEvent => EventConstants.CurrentEvent;
 }

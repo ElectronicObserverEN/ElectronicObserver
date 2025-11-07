@@ -1070,7 +1070,7 @@ public sealed class Configuration
 
 			public bool DisplayOnlyCurrentEventTankTp { get; set; } = true;
 
-			public List<int> AreaIdsForTankTpGaugeDisplay { get; set; } = [];
+			public List<TpGauge> AreaIdsForTankTpGaugeDisplay { get; set; } = [];
 
 			[IgnoreDataMember]
 			internal readonly List<SerializableColor> DefaultSallyAreaColorScheme = new List<SerializableColor>()
