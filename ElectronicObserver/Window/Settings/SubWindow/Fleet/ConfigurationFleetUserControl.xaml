@@ -187,30 +187,27 @@
 				/>
 		</Grid>
 
-		<StackPanel Orientation="Horizontal">
-			<TextBlock
-				Margin="5 0"
-				VerticalAlignment="Center"
-				Text="{Binding Translation.FormFleet_ShowTankTp}"
-			/>
+		<GroupBox Grid.Row="4" Header="{Binding Translation.FormFleet_ShowTankTp}">
+			<WrapPanel Orientation="Horizontal">
+				
+				<CheckBox Grid.Row="0" Content="{Binding Translation.FormFleet_CurrentEvent}" IsChecked="{Binding DisplayOnlyCurrentEventTankTp}"></CheckBox>
 
-			<CheckBox Content="{Binding Translation.FormFleet_CurrentEvent}" IsChecked="{Binding DisplayOnlyCurrentEventTankTp}"></CheckBox>
-			
-			<ItemsControl ItemsSource="{Binding GaugeList}">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Horizontal" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate DataType="ShouldDisplayTankTpGaugeViewModel">
-						<CheckBox
-							IsEnabled="{Binding DataContext.CanSelectTankTpGauges, Source={StaticResource Proxy}}"
-							Content="{Binding Name}"
-							IsChecked="{Binding ShouldDisplay, Mode=TwoWay}" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</StackPanel>
+				<ItemsControl Grid.Row="1" ItemsSource="{Binding GaugeList}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate DataType="ShouldDisplayTankTpGaugeViewModel">
+							<CheckBox
+								IsEnabled="{Binding DataContext.CanSelectTankTpGauges, Source={StaticResource Proxy}}"
+								Content="{Binding Name}"
+								IsChecked="{Binding ShouldDisplay, Mode=TwoWay}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</WrapPanel>
+		</GroupBox>
 	</StackPanel>
 </UserControl>

@@ -77,23 +77,8 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 			.Select(gauge => new ShouldDisplayTankTpGaugeViewModel(gauge))
 			.ToList();
 
-		PropertyChanged += OnDisplayOnlyCurrentEventTankTpChanged;
-
 		Config = config;
 		Load();
-	}
-
-	private void OnDisplayOnlyCurrentEventTankTpChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-	{
-		if (e.PropertyName is not nameof(DisplayOnlyCurrentEventTankTp)) return;
-
-		if (DisplayOnlyCurrentEventTankTp)
-		{
-			foreach (ShouldDisplayTankTpGaugeViewModel vm in GaugeList)
-			{
-				vm.ShouldDisplay = false;
-			}
-		}
 	}
 
 	private void Load()

@@ -4,12 +4,11 @@ using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
-public partial class ShouldDisplayTankTpGaugeViewModel(TpGauge model) : ObservableObject
+public class ShouldDisplayTankTpGaugeViewModel(TpGauge model)
 {
 	public string Name => $"{TpGauge.GetEventName()} E{TpGauge.GetGaugeMapId()}-{TpGauge.GetGaugeIndex()}";
 
 	public TpGauge TpGauge { get; } = model;
 
-	[ObservableProperty]
-	public partial bool ShouldDisplay { get; set; } = false;
+	public bool ShouldDisplay { get; set; } = false;
 }
