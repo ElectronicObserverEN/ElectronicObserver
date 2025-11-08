@@ -18,7 +18,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
-	public List<ShouldDisplayTankTpGaugeViewModel> GaugeList { get; }
+	public List<GaugeConfiguration> GaugeList { get; private set; }
 
 	public bool ShowAircraft { get; set; }
 
@@ -73,10 +73,6 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		AirSuperiorityMethods = Enum.GetValues<AirSuperiorityMethod>().ToList();
 		LevelVisibilityFlags = Enum.GetValues<LevelVisibilityFlag>().ToList();
 
-		GaugeList = gauges.GetEventLandingGauges(false)
-			.Select(gauge => new ShouldDisplayTankTpGaugeViewModel(gauge))
-			.ToList();
-
 		Config = config;
 		Load();
 	}
@@ -103,11 +99,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		FleetStateDisplayMode = (FleetStateDisplayMode)Config.FleetStateDisplayMode;
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
 		DisplayOnlyCurrentEventTankTp = Config.DisplayOnlyCurrentEventTankTp;
-
-		foreach (ShouldDisplayTankTpGaugeViewModel vm in GaugeList)
-		{
-			vm.ShouldDisplay = Config.AreaIdsForTankTpGaugeDisplay.Contains(vm.TpGauge);
-		}
+		GaugeList = Config.TankTpGaugesToDisplay.ToList();
 	}
 
 	public override void Save()
@@ -131,7 +123,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.BlinkAtDamaged = BlinkAtDamaged;
 		Config.FleetStateDisplayMode = (int)FleetStateDisplayMode;
 		Config.AppliesSallyAreaColor = AppliesSallyAreaColor;
-		Config.AreaIdsForTankTpGaugeDisplay = GaugeList.Where(vm => vm.ShouldDisplay).Select(vm => vm.TpGauge).ToList();
+		Config.TankTpGaugesToDisplay = GaugeList;
 		Config.DisplayOnlyCurrentEventTankTp = DisplayOnlyCurrentEventTankTp;
 	}
 }

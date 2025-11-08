@@ -19,6 +19,8 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Settings.SubWindow.Fleet;
+using Windows.Gaming.Preview.GamesEnumeration;
 
 namespace ElectronicObserver.Utility;
 
@@ -1070,7 +1072,7 @@ public sealed class Configuration
 
 			public bool DisplayOnlyCurrentEventTankTp { get; set; } = true;
 
-			public List<TpGauge> AreaIdsForTankTpGaugeDisplay { get; set; } = [];
+			public List<GaugeConfiguration> TankTpGaugesToDisplay { get; set; } = [];
 
 			[IgnoreDataMember]
 			internal readonly List<SerializableColor> DefaultSallyAreaColorScheme = new List<SerializableColor>()

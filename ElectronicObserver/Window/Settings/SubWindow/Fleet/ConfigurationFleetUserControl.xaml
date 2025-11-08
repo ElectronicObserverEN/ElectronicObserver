@@ -199,7 +199,7 @@
 						</ItemsPanelTemplate>
 					</ItemsControl.ItemsPanel>
 					<ItemsControl.ItemTemplate>
-						<DataTemplate DataType="ShouldDisplayTankTpGaugeViewModel">
+						<DataTemplate DataType="GaugeConfiguration">
 							<CheckBox
 								IsEnabled="{Binding DataContext.CanSelectTankTpGauges, Source={StaticResource Proxy}}"
 								Content="{Binding Name}"

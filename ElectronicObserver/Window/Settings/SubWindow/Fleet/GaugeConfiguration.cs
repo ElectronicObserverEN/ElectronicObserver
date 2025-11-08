@@ -1,14 +1,15 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
-public class ShouldDisplayTankTpGaugeViewModel(TpGauge model)
+public class GaugeConfiguration
 {
+	[JsonIgnore]
 	public string Name => $"{TpGauge.GetEventName()} E{TpGauge.GetGaugeMapId()}-{TpGauge.GetGaugeIndex()}";
 
-	public TpGauge TpGauge { get; } = model;
+	public required TpGauge TpGauge { get; set; }
 
-	public bool ShouldDisplay { get; set; } = false;
+	public bool ShouldDisplay { get; set; } = true;
 }

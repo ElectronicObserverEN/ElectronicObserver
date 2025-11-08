@@ -163,7 +163,12 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			return TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet1, fleet2]);
 		}
 
-		return TransportGaugeService.GetEventLandingOperationToolTip([fleet1, fleet2], Configuration.Config.FormFleet.AreaIdsForTankTpGaugeDisplay, true);
+		List<TpGauge> gauges = Configuration.Config.FormFleet.TankTpGaugesToDisplay
+			.Where(g => g.ShouldDisplay)
+			.Select(g => g.TpGauge)
+			.ToList();
+
+		return TransportGaugeService.GetEventLandingOperationToolTip([fleet1, fleet2], gauges, true);
 	}
 
 	private void UpdateTimerTick()

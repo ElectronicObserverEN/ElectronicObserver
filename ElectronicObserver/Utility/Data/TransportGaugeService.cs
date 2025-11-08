@@ -10,10 +10,31 @@ using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Utility.Data;
 
-public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationViewModel translations) : ITransportGaugeService
+public class TransportGaugeService : ITransportGaugeService
 {
-	private IKCDatabase KCDatabase { get; } = db;
-	private FormFleetOverviewTranslationViewModel Translations { get; } = translations;
+	private IKCDatabase KCDatabase { get; }
+	private FormFleetOverviewTranslationViewModel Translations { get; }
+
+	public TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationViewModel translations)
+	{
+		KCDatabase = db;
+		Translations = translations;
+
+		InitializeConfiguration();
+	}
+
+	private void InitializeConfiguration()
+	{
+		foreach (TpGauge gauge in GetEventLandingGauges(false))
+		{
+			if (Configuration.Config.FormFleet.TankTpGaugesToDisplay.Any(g => g.TpGauge == gauge)) continue;
+
+			Configuration.Config.FormFleet.TankTpGaugesToDisplay.Add(new()
+			{
+				TpGauge = gauge,
+			});
+		}
+	}
 
 	public string GetCurrentEventLandingOperationToolTip(List<IFleetData> fleets)
 	{
