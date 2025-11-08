@@ -20,7 +20,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
-using Windows.Gaming.Preview.GamesEnumeration;
 
 namespace ElectronicObserver.Utility;
 
