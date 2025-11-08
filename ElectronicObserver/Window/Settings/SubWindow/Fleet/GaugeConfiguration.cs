@@ -4,7 +4,7 @@ using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
-public class GaugeConfiguration
+public record GaugeConfiguration
 {
 	[JsonIgnore]
 	public string Name => $"{TpGauge.GetEventName()} E{TpGauge.GetGaugeMapId()}-{TpGauge.GetGaugeIndex()}";

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Core.Services.Data;
-using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control;
 
@@ -98,7 +96,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		FleetStateDisplayMode = (FleetStateDisplayMode)Config.FleetStateDisplayMode;
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
 		DisplayOnlyCurrentEventTankTp = Config.DisplayOnlyCurrentEventTankTp;
-		GaugeList = Config.TankTpGaugesToDisplay.ToList();
+		GaugeList = Config.TankTpGaugesToDisplay.Select(g => g with { }).ToList();
 	}
 
 	public override void Save()
