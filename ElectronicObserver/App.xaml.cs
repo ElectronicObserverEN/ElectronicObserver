@@ -360,6 +360,7 @@ public partial class App
 		Ioc.Default.ConfigureServices(services);
 
 		Ioc.Default.GetRequiredService<DataAndTranslationIssueReporter>();
+		Ioc.Default.GetRequiredService<ITransportGaugeService>();
 	}
 
 	private static Tracker JotTracker()

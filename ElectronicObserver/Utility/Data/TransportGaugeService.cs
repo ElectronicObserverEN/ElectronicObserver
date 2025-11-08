@@ -10,10 +10,31 @@ using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Utility.Data;
 
-public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationViewModel translations) : ITransportGaugeService
+public class TransportGaugeService : ITransportGaugeService
 {
-	private IKCDatabase KCDatabase { get; } = db;
-	private FormFleetOverviewTranslationViewModel Translations { get; } = translations;
+	private IKCDatabase KCDatabase { get; }
+	private FormFleetOverviewTranslationViewModel Translations { get; }
+
+	public TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationViewModel translations)
+	{
+		KCDatabase = db;
+		Translations = translations;
+
+		InitializeConfiguration();
+	}
+
+	private void InitializeConfiguration()
+	{
+		foreach (TpGauge gauge in GetEventLandingGauges(false))
+		{
+			if (Configuration.Config.FormFleet.TankTpGaugesToDisplay.Any(g => g.TpGauge == gauge)) continue;
+
+			Configuration.Config.FormFleet.TankTpGaugesToDisplay.Add(new()
+			{
+				TpGauge = gauge,
+			});
+		}
+	}
 
 	public string GetCurrentEventLandingOperationToolTip(List<IFleetData> fleets)
 	{
@@ -25,10 +46,10 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 	public string GetAllEventLandingOperationToolTip(List<IFleetData> fleets)
 	{
-		return GetEventLandingOperationToolTip(fleets, Enum.GetValues<TpGauge>().Skip(2).ToList(), true);
+		return GetEventLandingOperationToolTip(fleets, GetEventLandingGauges(false), true);
 	}
 
-	private string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges, bool displayEventName)
+	public string GetEventLandingOperationToolTip(List<IFleetData> fleets, List<TpGauge> gauges, bool displayEventName)
 	{
 		StringBuilder sb = new();
 
@@ -38,7 +59,7 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 
 			if (displayEventName)
 			{
-				sb.Append($"{GetEventName(gauge)} ");
+				sb.Append($"{gauge.GetEventName()} ");
 			}
 
 			sb.AppendLine($"E{gauge.GetGaugeMapId()}-{gauge.GetGaugeIndex()}: S {tp} / A {(int)(tp * 0.7)}");
@@ -49,10 +70,15 @@ public class TransportGaugeService(IKCDatabase db, FormFleetOverviewTranslationV
 		return $"\n{Translations.LandingOperationTooltip}:\n{sb.ToString().TrimEnd()}";
 	}
 
-	public static string GetEventName(TpGauge gauge) => gauge.GetGaugeAreaId() switch
+	public List<TpGauge> GetEventLandingGauges(bool includeNone)
 	{
-		60 => EventNames.Spring2025,
-		61 => EventNames.Fall2025,
-		_ => "",
-	};
+		List<TpGauge> gauges = Enum.GetValues<TpGauge>().Skip(2).ToList();
+
+		if (includeNone)
+		{
+			gauges.Insert(0, TpGauge.None);
+		}
+
+		return gauges;
+	}
 }

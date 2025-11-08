@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
@@ -72,7 +73,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	[NotifyPropertyChangedFor(nameof(TankTpGaugeName))]
 	[ObservableProperty]
 	public partial TpGauge TankTpGauge { get; set; }
-	public IEnumerable<TpGauge> TankTpGauges { get; } = Enum.GetValues<TpGauge>().Where(gauge => gauge is not TpGauge.Normal);
+	public IEnumerable<TpGauge> TankTpGauges { get; }
 	public bool ShowTankTp => TankTpGauge > TpGauge.None;
 	public string TankTpGaugeName => TankTpGauge.GetShortGaugeName();
 
@@ -153,6 +154,9 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	{
 		Tools = Ioc.Default.GetRequiredService<ToolService>();
 		DialogFleetImageGenerator = Ioc.Default.GetRequiredService<FleetImageGeneratorTranslationViewModel>();
+
+		ITransportGaugeService tpGaugeService = Ioc.Default.GetRequiredService<ITransportGaugeService>();
+		TankTpGauges = tpGaugeService.GetEventLandingGauges(true);
 
 		ImageDataModel = model;
 

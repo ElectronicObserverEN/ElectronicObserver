@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Control;
 
 namespace ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
-public class ConfigurationFleetViewModel : ConfigurationViewModelBase
+public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 {
 	public ConfigurationFleetTranslationViewModel Translation { get; }
 	private Configuration.ConfigurationData.ConfigFormFleet Config { get; }
@@ -15,6 +16,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
+	public List<GaugeConfiguration> GaugeList { get; private set; } = [];
 
 	public bool ShowAircraft { get; set; }
 
@@ -54,6 +56,12 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 	public bool AppliesSallyAreaColor { get; set; }
 
+	[ObservableProperty]
+	[NotifyPropertyChangedFor(nameof(CanSelectTankTpGauges))]
+	public partial bool DisplayOnlyCurrentEventTankTp { get; set; }
+
+	public bool CanSelectTankTpGauges => !DisplayOnlyCurrentEventTankTp;
+
 	public ConfigurationFleetViewModel(Configuration.ConfigurationData.ConfigFormFleet config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationFleetTranslationViewModel>();
@@ -87,6 +95,8 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		BlinkAtDamaged = Config.BlinkAtDamaged;
 		FleetStateDisplayMode = (FleetStateDisplayMode)Config.FleetStateDisplayMode;
 		AppliesSallyAreaColor = Config.AppliesSallyAreaColor;
+		DisplayOnlyCurrentEventTankTp = Config.DisplayOnlyCurrentEventTankTp;
+		GaugeList = Config.TankTpGaugesToDisplay.Select(g => g with { }).ToList();
 	}
 
 	public override void Save()
@@ -110,5 +120,7 @@ public class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.BlinkAtDamaged = BlinkAtDamaged;
 		Config.FleetStateDisplayMode = (int)FleetStateDisplayMode;
 		Config.AppliesSallyAreaColor = AppliesSallyAreaColor;
+		Config.TankTpGaugesToDisplay = GaugeList;
+		Config.DisplayOnlyCurrentEventTankTp = DisplayOnlyCurrentEventTankTp;
 	}
 }

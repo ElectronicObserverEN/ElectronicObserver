@@ -36,6 +36,13 @@ public static class TpGaugeExtensions
 		_ => "",
 	};
 
+	public static string GetEventName(this TpGauge gauge) => gauge.GetGaugeAreaId() switch
+	{
+		60 => Properties.EventConstants.Spring2025,
+		61 => Properties.EventConstants.Fall2025,
+		_ => "",
+	};
+
 	/// <summary>
 	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
 	/// (S勝利時のもの。A勝利時は int(value * 0.7))

@@ -19,6 +19,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
 namespace ElectronicObserver.Utility;
 
@@ -1067,6 +1068,10 @@ public sealed class Configuration
 			/// 出撃海域による色分けのテーブル
 			/// </summary>
 			public List<SerializableColor> SallyAreaColorScheme { get; set; }
+
+			public bool DisplayOnlyCurrentEventTankTp { get; set; } = true;
+
+			public List<GaugeConfiguration> TankTpGaugesToDisplay { get; set; } = [];
 
 			[IgnoreDataMember]
 			internal readonly List<SerializableColor> DefaultSallyAreaColorScheme = new List<SerializableColor>()

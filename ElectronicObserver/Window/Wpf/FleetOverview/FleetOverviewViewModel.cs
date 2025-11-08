@@ -6,9 +6,9 @@ using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
@@ -128,7 +128,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Count(i => i > 0),
 				transport.Count(i => i> 0),
 				landing.Count(i => i > 0),
-				TransportGaugeService.GetAllEventLandingOperationToolTip([fleet1, fleet2])
+				GetTankTpTooltip(fleet1, fleet2)
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();
@@ -151,6 +151,21 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20));
 		}
 
+	}
+
+	private string GetTankTpTooltip(IFleetData fleet1, IFleetData fleet2)
+	{
+		if (Configuration.Config.FormFleet.DisplayOnlyCurrentEventTankTp)
+		{
+			return TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet1, fleet2]);
+		}
+
+		List<TpGauge> gauges = Configuration.Config.FormFleet.TankTpGaugesToDisplay
+			.Where(g => g.ShouldDisplay)
+			.Select(g => g.TpGauge)
+			.ToList();
+
+		return TransportGaugeService.GetEventLandingOperationToolTip([fleet1, fleet2], gauges, true);
 	}
 
 	private void UpdateTimerTick()
