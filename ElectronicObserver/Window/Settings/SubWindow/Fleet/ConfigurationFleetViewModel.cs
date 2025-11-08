@@ -18,7 +18,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public List<FleetStateDisplayMode> FleetStateDisplayModes { get; }
 	public List<AirSuperiorityMethod> AirSuperiorityMethods { get; }
 	public List<LevelVisibilityFlag> LevelVisibilityFlags { get; }
-	public List<GaugeConfiguration> GaugeList { get; private set; }
+	public List<GaugeConfiguration> GaugeList { get; private set; } = [];
 
 	public bool ShowAircraft { get; set; }
 
@@ -67,7 +67,6 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 	public ConfigurationFleetViewModel(Configuration.ConfigurationData.ConfigFormFleet config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationFleetTranslationViewModel>();
-		ITransportGaugeService gauges = Ioc.Default.GetRequiredService<ITransportGaugeService>();
 
 		FleetStateDisplayModes = Enum.GetValues<FleetStateDisplayMode>().ToList();
 		AirSuperiorityMethods = Enum.GetValues<AirSuperiorityMethod>().ToList();
