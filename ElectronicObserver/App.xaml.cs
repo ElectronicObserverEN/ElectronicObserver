@@ -107,6 +107,13 @@ public partial class App
 				return;
 			}
 
+			if (args.Exception.StackTrace?.Contains("MS.Internal.PointUtil.ScreenToClient(Point pointScreen, PresentationSource presentationSource)") is true)
+			{
+				// hack: this exception is sometime thrown by WPF after moving elements in layout
+				args.Handled = true;
+				return;
+			}
+
 			// https://stackoverflow.com/questions/12769264/openclipboard-failed-when-copy-pasting-data-from-wpf-datagrid
 			const int CLIPBRD_E_CANT_OPEN = unchecked((int)0x800401D0);
 
