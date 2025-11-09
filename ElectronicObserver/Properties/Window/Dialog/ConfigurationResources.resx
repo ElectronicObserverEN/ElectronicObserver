@@ -723,18 +723,11 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Language_Japanese" xml:space="preserve">
     <value>日本語</value>
   </data>
-  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
-    <value>ガジェット・リダイレクトの使用 *</value>
-  </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>テーマや言語を変更した後は、七四式を再起動してください。</value>
   </data>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>言語：</value>
-  </data>
-  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
-    <value>外国人ブロックを回避するために、ガジェットのapiコールをリダイレクトします。
-日本にお住まいの方や、日本のVPNをご利用の方は、このオプションを無効にしておくことができます。</value>
   </data>
   <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
     <value>Vulkanの回避策 *</value>
@@ -767,22 +760,6 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   </data>
   <data name="Language_Korean" xml:space="preserve">
     <value>韓国語</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
-    <value />
-  </data>
-  <data name="FormBrowser_EO_URL" xml:space="preserve">
-    <value>https://electronicobserveren.github.io/cache</value>
-  </data>
-  <data name="FormBrowser_Wiki_URL" xml:space="preserve">
-    <value>https://kcwiki.github.io/cache</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
-    <value>キャッシュサーバーのURLの最初の部分のみ、"/gadget_html5/"サブディレクトリより前のすべてを入力してください。
-例えば、"http://luckyjervis.com/gadget_html5/js/kcs_const.js "を使用しようとする場合、フィールドに "http://luckyjervis.com/"を入力する必要があります。</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
-    <value>無効なURL形式です。</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>七四式EN API URL</value>

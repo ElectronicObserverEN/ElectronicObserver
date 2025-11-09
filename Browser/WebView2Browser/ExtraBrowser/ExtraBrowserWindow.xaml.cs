@@ -58,10 +58,6 @@ public partial class ExtraBrowserWindow : Window
 
 	private void CoreWebView2_WebResourceRequested(object? sender, CoreWebView2WebResourceRequestedEventArgs e)
 	{
-		if (e.Request.Uri.Contains(@"gadget_html5"))
-		{
-			e.Request.Uri = e.Request.Uri.Replace("http://w00g.kancolle-server.com/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
-		}
 		if (e.Request.Uri.Contains("kcs2/resources/bgm"))
 		{
 			e.Request.Headers.RemoveHeader("Range");

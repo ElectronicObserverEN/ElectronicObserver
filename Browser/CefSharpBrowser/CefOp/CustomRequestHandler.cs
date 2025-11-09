@@ -13,9 +13,6 @@ public class CustomRequestHandler : RequestHandler
 
 	private BrowserConfiguration BrowserConfiguration { get; }
 	private bool PixiSettingEnabled => BrowserConfiguration.PreserveDrawingBuffer;
-	private bool UseGadgetRedirect => BrowserConfiguration.UseGadgetRedirect;
-	private GadgetServerOptions GadgetBypassServer => BrowserConfiguration.GadgetBypassServer;
-	private string GadgetBypassServerCustom => BrowserConfiguration.GadgetBypassServerCustom;
 
 	public CustomRequestHandler(BrowserConfiguration browserConfiguration)
 	{
@@ -63,11 +60,6 @@ public class CustomRequestHandler : RequestHandler
 		if (request.Url.Contains(@"/kcs2/resources/bgm/"))
 		{
 			return new ResRequestHandler();
-		}
-
-		if (UseGadgetRedirect && request.Url.Contains("gadget_html5"))
-		{
-			return new GadgetUrlHandler(GadgetBypassServer, GadgetBypassServerCustom);
 		}
 
 		if (request.Url.Contains(@"accounts.google.com"))

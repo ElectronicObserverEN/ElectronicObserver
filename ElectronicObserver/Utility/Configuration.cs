@@ -1358,18 +1358,6 @@ public sealed class Configuration
 			public bool SavesBrowserLog { get; set; }
 
 			/// <summary>
-			/// Bypass foreigner block
-			/// </summary>
-			public bool UseGadgetRedirect { get; set; }
-
-			/// <summary>
-			///  Gadget Bypass server options
-			/// </summary>
-			public GadgetServerOptions GadgetBypassServer { get; set; }
-
-			public string GadgetBypassServerCustom { get; set; }
-
-			/// <summary>
 			/// Rename WebView2 vulkan files so it can't use the vulkan software rendering implementation
 			/// This fixes performance on older CPUs
 			/// </summary>
@@ -1405,16 +1393,9 @@ public sealed class Configuration
 				PreserveDrawingBuffer = true;
 				ForceColorProfile = false;
 				SavesBrowserLog = false;
-				UseGadgetRedirect = CultureInfo.CurrentCulture.Name switch
-				{
-					"ja-JP" => false,
-					_ => true
-				};
 				UseVulkanWorkaround = false;
 				Volume = 100;
 				IsMute = false;
-				GadgetBypassServer = GadgetServerOptions.EO;
-				GadgetBypassServerCustom = "";
 				IsBrowserContextMenuEnabled = true;
 			}
 		}
@@ -2046,12 +2027,6 @@ public sealed class Configuration
 				{
 					"ja-JP" => "ja-JP",
 					_ => "en-US"
-				};
-
-				temp.FormBrowser.UseGadgetRedirect = CultureInfo.CurrentCulture.Name switch
-				{
-					"ja-JP" => false,
-					_ => true
 				};
 
 				bool disableTranslations = CultureInfo.CurrentCulture.Name switch

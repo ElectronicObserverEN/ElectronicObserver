@@ -18,7 +18,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	private Configuration.ConfigurationData.ConfigFormBrowser Config { get; }
 
 	public List<CheckBoxEnumViewModel> EmbeddedBrowsers { get; }
-	public List<CheckBoxEnumViewModel> GadgetServers { get; }
 	public List<DockStyle> DockStyles { get; }
 	public List<CheckBoxEnumViewModel> ScreenshotFormats { get; }
 	public List<ScreenshotSaveMode> ScreenshotSaveModes { get; }
@@ -49,22 +48,11 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	public bool SavesBrowserLog { get; set; }
 	public bool UseVulkanWorkaround { get; set; }
 
-	public bool UseGadgetRedirect { get; set; }
-	public GadgetServerOptions GadgetBypassServer { get; set; }
-
-	[ObservableProperty]
-	[NotifyDataErrorInfo]
-	[CustomValidation(typeof(ConfigurationBrowserViewModel), nameof(ValidateUrl))]
-	private string _gadgetBypassServerCustom;
-
 	public ConfigurationBrowserViewModel(Configuration.ConfigurationData.ConfigFormBrowser config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBrowserTranslationViewModel>();
 
 		EmbeddedBrowsers = Enum.GetValues<BrowserOption>()
-			.Select(b => new CheckBoxEnumViewModel(b))
-			.ToList();
-		GadgetServers = Enum.GetValues<GadgetServerOptions>()
 			.Select(b => new CheckBoxEnumViewModel(b))
 			.ToList();
 		DockStyles = Enum.GetValues<DockStyle>().ToList();
@@ -88,24 +76,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 			};
 		}
 
-		foreach (CheckBoxEnumViewModel gadgetserver in GadgetServers)
-		{
-			gadgetserver.IsChecked = gadgetserver.Value is GadgetServerOptions bo && bo == GadgetBypassServer;
-			gadgetserver.PropertyChanged += (sender, args) =>
-			{
-				if (args.PropertyName is not nameof(gadgetserver.IsChecked)) return;
-				if (sender is not CheckBoxEnumViewModel { IsChecked: true, Value: GadgetServerOptions b }) return;
-
-				GadgetBypassServer = b;
-			};
-			gadgetserver.Tooltip = gadgetserver.Value switch
-			{
-				GadgetServerOptions.EO => Translation.FormBrowser_EO_URL,
-				GadgetServerOptions.Wiki => Translation.FormBrowser_Wiki_URL,
-				_ => null,
-			};
-		}
-
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(Browser)) return;
@@ -116,20 +86,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 				browser.IsChecked = b == Browser;
 			}
-		};
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(GadgetBypassServer)) return;
-
-			foreach (CheckBoxEnumViewModel gadgetServer in GadgetServers)
-			{
-				if (gadgetServer.Value is not GadgetServerOptions b) return;
-
-				gadgetServer.IsChecked = b == GadgetBypassServer;
-			}
-			
-			ValidateProperty(GadgetBypassServerCustom, nameof(GadgetBypassServerCustom));
 		};
 
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
@@ -191,9 +147,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		PreserveDrawingBuffer = Config.PreserveDrawingBuffer;
 		ForceColorProfile = Config.ForceColorProfile;
 		SavesBrowserLog = Config.SavesBrowserLog;
-		UseGadgetRedirect = Config.UseGadgetRedirect;
-		GadgetBypassServer = Config.GadgetBypassServer;
-		GadgetBypassServerCustom = Config.GadgetBypassServerCustom;
 		UseVulkanWorkaround = Config.UseVulkanWorkaround;
 		IsBrowserContextMenuEnabled = Config.IsBrowserContextMenuEnabled;
 		ScreenshotMode = Config.ScreenshotMode;
@@ -226,9 +179,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.PreserveDrawingBuffer = PreserveDrawingBuffer;
 		Config.ForceColorProfile = ForceColorProfile;
 		Config.SavesBrowserLog = SavesBrowserLog;
-		Config.UseGadgetRedirect = UseGadgetRedirect;
-		Config.GadgetBypassServer = GadgetBypassServer;
-		Config.GadgetBypassServerCustom = GadgetBypassServerCustom;
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
 		Config.ScreenshotMode = ScreenshotMode;
@@ -242,22 +192,5 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		if (newSaveDataPath is null) return;
 
 		ScreenShotPath = newSaveDataPath;
-	}
-
-	public static ValidationResult ValidateUrl(string url, ValidationContext context)
-	{
-		if (context.ObjectInstance is not ConfigurationBrowserViewModel config)
-		{
-			throw new NotImplementedException();
-		}
-
-		bool isCustomUrlValid = Uri.IsWellFormedUriString(url, UriKind.Absolute) ||
-			config.GadgetBypassServer is not GadgetServerOptions.Custom;
-
-		return isCustomUrlValid switch
-		{
-			false => new(ConfigurationResources.FormBrowser_GadgetBypassCustomURLInvalidURL),
-			_ => ValidationResult.Success!,
-		};
 	}
 }

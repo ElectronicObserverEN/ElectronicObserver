@@ -142,32 +142,23 @@ public class BrowserConfiguration
 	public bool EnableDebugMenu { get; set; }
 
 	[Key(23)]
-	public bool UseGadgetRedirect { get; set; }
-
-	[Key(24)]
 	public bool UseVulkanWorkaround { get; set; }
 
-	[Key(25)]
+	[Key(24)]
 	public bool IsBrowserContextMenuEnabled { get; set; }
 
-	[Key(26)]
+	[Key(25)]
 	public string MainFont { get; set; } = null!;
 
-	[Key(27)]
+	[Key(26)]
 	public bool UseCustomBrowserFont { get; set; }
 
-	[Key(28)]
+	[Key(27)]
 	public string? BrowserFont { get; set; }
 
-	[Key(29)]
+	[Key(28)]
 	public bool MatchMainFont { get; set; }
 
-	[Key(30)]
-	public GadgetServerOptions GadgetBypassServer { get; set; }
-
-	[Key(31)]
-	public string GadgetBypassServerCustom { get; set; } = "";
-
-	[Key(32)]
+	[Key(29)]
 	public ScreenshotMode ScreenshotMode { get; set; }
 }

@@ -718,18 +718,11 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="Language_Japanese" xml:space="preserve">
     <value>日本语</value>
   </data>
-  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
-    <value>使用小工具重定向 *</value>
-  </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>更改主题或语言后，请重新启动七四EO。</value>
   </data>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>语言：</value>
-  </data>
-  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
-    <value>重定向小工具 api 调用以绕过阻止外国人的墙。
-如果您居住在日本或使用日本 VPN，则可以禁用此选项。</value>
   </data>
   <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
     <value>Vulkan 解决方法*</value>
@@ -762,22 +755,6 @@ API列表的格式和使用方法请参见在线帮助。</value>
   </data>
   <data name="Language_Korean" xml:space="preserve">
     <value>韩语</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
-    <value>自定义小工具缓存 URL</value>
-  </data>
-  <data name="FormBrowser_EO_URL" xml:space="preserve">
-    <value>https://electronicobserveren.github.io/cache</value>
-  </data>
-  <data name="FormBrowser_Wiki_URL" xml:space="preserve">
-    <value>https://kcwiki.github.io/cache</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
-    <value>仅输入缓存服务器 URL 的开头部分，即“/gadget_html5/”子目录之前的所有内容。
-例如，如果尝试使用“http://luckyjervis.com/gadget_html5/js/kcs_const.js”，则需要在字段中输入“http://luckyjervis.com/”。</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
-    <value>网址格式无效。</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>74EO-EN版 API URL</value>

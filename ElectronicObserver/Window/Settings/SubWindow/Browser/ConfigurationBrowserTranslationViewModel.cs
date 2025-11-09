@@ -16,9 +16,6 @@ public class ConfigurationBrowserTranslationViewModel : TranslationBaseViewModel
 
 	public string FormBrowser_AppliesStyleSheet => ConfigRes.ApplyStyleSheet;
 	public string ApplyStyleSheetHint => ConfigRes.ApplyStyleSheetHint;
-
-	public string FormBrowser_UseGadgetRedirect => ConfigurationResources.FormBrowser_UseGadgetRedirect;
-	public string FormBrowser_UseGadgetRedirectToolTip => ConfigurationResources.FormBrowser_UseGadgetRedirectToolTip;
 	
 	public string FormBrowser_IsContextMenuEnabled => ConfigurationResources.FormBrowser_ShowContextMenu;
 	public string FormBrowser_ShowContextMenuToolTip => ConfigurationResources.FormBrowser_ShowContextMenuToolTip;
@@ -54,11 +51,6 @@ public class ConfigurationBrowserTranslationViewModel : TranslationBaseViewModel
 
 	public string FormBrowser_UseVulkanWorkaround => ConfigurationResources.FormBrowser_UseVulkanWorkaround;
 	public string FormBrowser_UseVulkanWorkaroundToolTip => ConfigurationResources.FormBrowser_UseVulkanWorkaroundToolTip;
-
-	public string FormBrowser_GadgetBypassCustom => ConfigurationResources.FormBrowser_GadgetBypassCustom;
-	public string FormBrowser_EO_URL => ConfigurationResources.FormBrowser_EO_URL;
-	public string FormBrowser_Wiki_URL => ConfigurationResources.FormBrowser_Wiki_URL;
-	public string FormBrowser_GadgetBypassCustomURLTooltip => ConfigurationResources.FormBrowser_GadgetBypassCustomURLTooltip;
 
 	public string RestartNotice => ConfigurationResources.RestartNotice;
 }

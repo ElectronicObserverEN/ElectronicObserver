@@ -413,15 +413,10 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void CoreWebView2_WebResourceRequested(object? sender, CoreWebView2WebResourceRequestedEventArgs e)
 	{
-		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration?.UseGadgetRedirect is true)
-		{
-			e.Request.Uri = e.Request.Uri.Replace("http://w00g.kancolle-server.com/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl(Configuration.GadgetBypassServerCustom));
-		}
-
 		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
 		{
-			//not working in webview2
-			//e.Request.Headers.RemoveHeader("Range");
+			// not working in webview2
+			// e.Request.Headers.RemoveHeader("Range");
 		}
 	}
 

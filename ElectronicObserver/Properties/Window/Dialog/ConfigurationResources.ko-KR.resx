@@ -712,18 +712,11 @@ API 목록의 서식이나 용법은 온라인 도움말을 참조해 주세요.
   <data name="Language_Japanese" xml:space="preserve">
     <value>일본어</value>
   </data>
-  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
-    <value>가젯 리다이렉트의 사용 *</value>
-  </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>테마나 언어를 변경한 후에는 74식을 재시작해 주십시오.</value>
   </data>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>언어 : </value>
-  </data>
-  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
-    <value>외국인 차단을 회피하기 위해, 가젯의 api 콜을 리다이렉트 합니다.
-일본에 거주하시는 분, 일본 VPN을 이용 중인 분들은 이 옵션을 무효로 해둘 수 있습니다.</value>
   </data>
   <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
     <value>Vulkan의 회피책 *</value>
@@ -753,16 +746,6 @@ API 목록의 서식이나 용법은 온라인 도움말을 참조해 주세요.
   <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
     <value>비활성화 시, 프리뷰에 일치하는 후보만 표시됩니다.
 활성화 시, 프리뷰는 무시하고 모든 후보가 표시됩니다.</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
-    <value>커스텀 가젯 캐시 URL</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
-    <value>캐시 서버 URL의 가장 첫 부분만, "/gadget_html5/" 서브 디렉토리보다 이전의 모든 것을 입력해 주세요.
-예를 들어, "http://luckyjervis.com/gadget_html5/js/kcs_const.js "를 사용하려고 하면, 필드에 "http://luckyjervis.com/"를 입력해야 합니다.</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
-    <value>무효한 URL 형식입니다.</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>74식 EN API URL</value>

@@ -230,9 +230,6 @@ Al activar, se ignorará la vista previa y se mostrarán todas las composiciones
   <data name="Life_LockLayoutToolTip" xml:space="preserve">
     <value>Prevenir cambios en el diseño de pestañas y el tamaño de la ventana.</value>
   </data>
-  <data name="FormBrowser_GadgetBypassCustom" xml:space="preserve">
-    <value>URL de caché de gadget personalizado</value>
-  </data>
   <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
     <value>Solución alternativa para Vulkan *</value>
   </data>
@@ -272,9 +269,6 @@ una aplicación de terceros (por ejemplo: MyFleetGirls).</value>
 Nota: Desactiva esta opción si necesitas capturar la ventana 
 para grabación o transmisión.
 * Los cambios se aplicarán tras reiniciar la aplicación.</value>
-  </data>
-  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
-    <value>Usar redirección de gadget *</value>
   </data>
   <data name="FormFleet_AppliesSallyAreaColorToolTip" xml:space="preserve">
     <value>Usar el color de etiqueta de flota como fondo del nombre de cada barco.
@@ -377,10 +371,6 @@ Puede aumentar la carga de procesamiento.</value>
   <data name="Language_English" xml:space="preserve">
     <value>Inglés</value>
   </data>
-  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
-    <value>Redirige la llamada API del gadget para evitar el bloqueo regional.  
-Si vives en Japón o usas una VPN japonesa, puedes dejar esta opción desactivada.</value>
-  </data>
   <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
     <value>Elimina los archivos WebView2 necesarios para la representación por software con Vulkan, que pueden causar alta carga de CPU en hardware antiguo.</value>
   </data>
@@ -436,13 +426,6 @@ Si vives en Japón o usas una VPN japonesa, puedes dejar esta opción desactivad
   <data name="ProxyAutoConfigSaved" xml:space="preserve">
     <value>El script de configuración automática de proxy ha sido guardado.  
 La ruta del archivo se ha copiado al portapapeles, pégala en la configuración de proxy de Internet Explorer.</value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLTooltip" xml:space="preserve">
-    <value>Solo introduce la parte inicial de la URL del servidor caché, todo antes del subdirectorio "/gadget_html5/".  
-Por ejemplo, si usas "http://luckyjervis.com/gadget_html5/js/kcs_const.js", debes ingresar "http://luckyjervis.com/". </value>
-  </data>
-  <data name="FormBrowser_GadgetBypassCustomURLInvalidURL" xml:space="preserve">
-    <value>Formato de URL no válido.</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>URL de la API de Electronic Observe</value>
