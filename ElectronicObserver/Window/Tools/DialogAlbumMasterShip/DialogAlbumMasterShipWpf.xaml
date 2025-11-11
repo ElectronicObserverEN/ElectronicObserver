@@ -34,10 +34,24 @@
 		</Style>
 
 		<DataTemplate DataType="{x:Type local:EquippableType}">
-			<StackPanel Orientation="Horizontal">
-				<common1:EquipmentIcon Type="{Binding IconType}" />
-				<TextBlock Margin="2 0" Text="{Binding Name}" />
-			</StackPanel>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+				<common1:EquipmentIcon
+					Grid.Column="0"
+					VerticalAlignment="Top"
+					Type="{Binding IconType}"
+					/>
+				<TextBlock
+					Grid.Column="1"
+					Margin="2 0"
+					Text="{Binding Name}"
+					TextWrapping="Wrap"
+					/>
+			</Grid>
 		</DataTemplate>
 	</Window.Resources>
 
