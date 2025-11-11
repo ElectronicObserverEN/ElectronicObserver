@@ -66,7 +66,7 @@ public partial class ShipDataRecord : ObservableObject
 		.Select(t => new EquippableType
 		{
 			IconType = t.Type.ToIconType(),
-			Name = t.Name,
+			Name = t.NameEN,
 		})
 		.ToList();
 
