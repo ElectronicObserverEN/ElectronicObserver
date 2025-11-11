@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
@@ -50,28 +51,39 @@ public partial class ShipDataRecord : ObservableObject
 	public string ShipType => ShipTypePrefix + " " + Ship.IsLandBase switch
 	{
 		true => DialogAlbumMasterShip.Installation,
-		_ => Ship.ShipTypeName
+		_ => Ship.ShipTypeName,
 	};
 
-	public string ShipTypeToolTip => ShipTypeToolTipHeader + "\n\n" +
-									 $"{DialogAlbumMasterShip.Equippable}:\n" +
-									 EquippableString;
-
-	private string ShipTypeToolTipHeader => Ship.IsAbyssalShip switch
+	public string ShipTypeToolTipHeader => Ship.IsAbyssalShip switch
 	{
 		true => $"{DialogAlbumMasterShip.ShipClassId}: {Ship.ShipClass}",
 		_ when !IsShipClassKnown => $"{DialogAlbumMasterShip.ShipClassUnknown}: {Ship.ShipClass}",
-		_ => $"{ShipClassName}: {Ship.ShipClass}"
+		_ => $"{ShipClassName}: {Ship.ShipClass}",
 	};
 
-	private string EquippableString => string.Join("\r\n", Ship.EquippableCategories.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN)
-		.Concat(KCDatabase.Instance.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(Ship.ShipId)).Select(eq => eq.NameEN + $" ({DialogAlbumMasterShip.ReinforcementSlot})")));
+	public List<EquippableType> EquippableTypeList => Ship.EquippableCategories
+		.Select(id => KCDatabase.Instance.EquipmentTypes[id])
+		.Select(t => new EquippableType
+		{
+			IconType = t.Type.ToIconType(),
+			Name = t.Name,
+		})
+		.ToList();
+
+	public List<EquippableType> ExpansionEquippableTypeList => KCDatabase.Instance.MasterEquipments.Values
+		.Where(eq => eq.EquippableShipsAtExpansion.Contains(Ship.ShipId))
+		.Select(t => new EquippableType
+		{
+			IconType = t.IconTypeTyped,
+			Name = t.NameEN,
+		})
+		.ToList();
 
 	private string ShipTypePrefix => Ship.IsAbyssalShip switch
 	{
 		true => "深海",
 		_ when IsShipClassKnown => ShipClassName,
-		_ => ""
+		_ => "",
 	};
 
 	private bool IsShipClassKnown => ShipClassName != "不明";
@@ -83,35 +95,35 @@ public partial class ShipDataRecord : ObservableObject
 	public string HpMin => Ship.IsAbyssalShip switch
 	{
 		true => AbyssalShipHp,
-		_ => Ship.HPMin.ToString()
+		_ => Ship.HPMin.ToString(),
 	};
 	public string? HpMinToolTip => Ship.IsAbyssalShip switch
 	{
 		true => null,
-		_ => string.Format(DialogAlbumMasterShip.HpMinToolTip, Ship.HPMaxModernized, Ship.HPMaxModernizable)
+		_ => string.Format(DialogAlbumMasterShip.HpMinToolTip, Ship.HPMaxModernized, Ship.HPMaxModernizable),
 	};
 	public string HpMax => Ship.IsAbyssalShip switch
 	{
 		true => AbyssalShipHp,
-		_ => Ship.HPMaxMarried.ToString()
+		_ => Ship.HPMaxMarried.ToString(),
 	};
 	public string? HpMaxToolTip => Ship.IsAbyssalShip switch
 	{
 		true => null,
 		_ => string.Format(DialogAlbumMasterShip.HpMaxToolTip,
-			Ship.HPMaxMarriedModernized, Ship.HPMaxMarriedModernizable, Ship.HPMax)
+			Ship.HPMaxMarriedModernized, Ship.HPMaxMarriedModernizable, Ship.HPMax),
 	};
 
 	private string AbyssalShipHp => Ship.HPMin switch
 	{
 		> 0 => Ship.HPMin.ToString(),
-		_ => "???"
+		_ => "???",
 	};
 
 	public string FirepowerMin => Ship.IsAbyssalShip switch
 	{
 		true => Ship.FirepowerMax.ToString(),
-		_ => Ship.FirepowerMin.ToString()
+		_ => Ship.FirepowerMin.ToString(),
 	};
 	public string FirepowerMax => Ship.IsAbyssalShip switch
 	{
@@ -120,13 +132,13 @@ public partial class ShipDataRecord : ObservableObject
 				.Sum(e => e?.Firepower ?? 0))
 			.ToString(),
 
-		_ => Ship.FirepowerMax.ToString()
+		_ => Ship.FirepowerMax.ToString(),
 	};
 
 	public string TorpedoMin => Ship.IsAbyssalShip switch
 	{
 		true => Ship.TorpedoMax.ToString(),
-		_ => Ship.TorpedoMin.ToString()
+		_ => Ship.TorpedoMin.ToString(),
 	};
 	public string TorpedoMax => Ship.IsAbyssalShip switch
 	{
@@ -135,13 +147,13 @@ public partial class ShipDataRecord : ObservableObject
 				.Sum(e => e?.Torpedo ?? 0))
 			.ToString(),
 
-		_ => Ship.TorpedoMax.ToString()
+		_ => Ship.TorpedoMax.ToString(),
 	};
 
 	public string AaMin => Ship.IsAbyssalShip switch
 	{
 		true => Ship.AAMax.ToString(),
-		_ => Ship.AAMin.ToString()
+		_ => Ship.AAMin.ToString(),
 	};
 	public string AaMax => Ship.IsAbyssalShip switch
 	{
@@ -150,13 +162,13 @@ public partial class ShipDataRecord : ObservableObject
 				.Sum(e => e?.AA ?? 0))
 			.ToString(),
 
-		_ => Ship.AAMax.ToString()
+		_ => Ship.AAMax.ToString(),
 	};
 
 	public string ArmorMin => Ship.IsAbyssalShip switch
 	{
 		true => Ship.ArmorMax.ToString(),
-		_ => Ship.ArmorMin.ToString()
+		_ => Ship.ArmorMin.ToString(),
 	};
 	public string ArmorMax => Ship.IsAbyssalShip switch
 	{
@@ -165,7 +177,7 @@ public partial class ShipDataRecord : ObservableObject
 				.Sum(e => e?.Armor ?? 0))
 			.ToString(),
 
-		_ => Ship.ArmorMax.ToString()
+		_ => Ship.ArmorMax.ToString(),
 	};
 
 	public string AswMin => Ship.IsAbyssalShip switch
@@ -173,18 +185,18 @@ public partial class ShipDataRecord : ObservableObject
 		true => Ship.ASW?.IsDetermined switch
 		{
 			true => Ship.ASW.Maximum.ToString(),
-			_ => "???"
+			_ => "???",
 		},
-		_ => GetParameterMinBound(Ship.ASW)
+		_ => GetParameterMinBound(Ship.ASW),
 	};
 	public string AswMax => Ship.IsAbyssalShip switch
 	{
 		true => Ship.ASW?.IsDetermined switch
 		{
 			true => (Ship.ASW.Maximum + EquipmentASW).ToString(),
-			_ => EquipmentASW.ToString("+0;-0")
+			_ => EquipmentASW.ToString("+0;-0"),
 		},
-		_ => GetParameterMax(Ship.ASW)
+		_ => GetParameterMax(Ship.ASW),
 	};
 
 	private int EquipmentASW => Slots
@@ -196,18 +208,18 @@ public partial class ShipDataRecord : ObservableObject
 		true => Ship.Evasion?.IsDetermined switch
 		{
 			true => Ship.Evasion.Maximum.ToString(),
-			_ => "???"
+			_ => "???",
 		},
-		_ => GetParameterMinBound(Ship.Evasion)
+		_ => GetParameterMinBound(Ship.Evasion),
 	};
 	public string EvasionMax => Ship.IsAbyssalShip switch
 	{
 		true => Ship.Evasion?.IsDetermined switch
 		{
 			true => (Ship.Evasion.Maximum + EquipmentEvasion).ToString(),
-			_ => EquipmentEvasion.ToString("+0;-0")
+			_ => EquipmentEvasion.ToString("+0;-0"),
 		},
-		_ => GetParameterMax(Ship.Evasion)
+		_ => GetParameterMax(Ship.Evasion),
 	};
 
 	private int EquipmentEvasion => Slots
@@ -219,18 +231,18 @@ public partial class ShipDataRecord : ObservableObject
 		true => Ship.LOS?.IsDetermined switch
 		{
 			true => Ship.LOS.Maximum.ToString(),
-			_ => "???"
+			_ => "???",
 		},
-		_ => GetParameterMinBound(Ship.LOS)
+		_ => GetParameterMinBound(Ship.LOS),
 	};
 	public string LosMax => Ship.IsAbyssalShip switch
 	{
 		true => Ship.LOS?.IsDetermined switch
 		{
 			true => (Ship.LOS.Maximum + EquipmentLoS).ToString(),
-			_ => EquipmentLoS.ToString("+0;-0")
+			_ => EquipmentLoS.ToString("+0;-0"),
 		},
-		_ => GetParameterMax(Ship.LOS)
+		_ => GetParameterMax(Ship.LOS),
 	};
 
 	private int EquipmentLoS => Slots
@@ -242,18 +254,18 @@ public partial class ShipDataRecord : ObservableObject
 		true => Ship.LuckMax switch
 		{
 			> 0 => Ship.LuckMax.ToString(),
-			_ => "???"
+			_ => "???",
 		},
-		_ => Ship.LuckMin.ToString()
+		_ => Ship.LuckMin.ToString(),
 	};
 	public string LuckMax => Ship.IsAbyssalShip switch
 	{
 		true => (Ship.LuckMax + EquipmentLuck) switch
 		{
 			int luck and > 0 => luck.ToString(),
-			_ => "???"
+			_ => "???",
 		},
-		_ => Ship.LuckMax.ToString()
+		_ => Ship.LuckMax.ToString(),
 	};
 
 	private int EquipmentLuck => Slots
@@ -263,7 +275,7 @@ public partial class ShipDataRecord : ObservableObject
 	public string AccuracyMin => Ship.LuckMin switch
 	{
 		> 0 => Accuracy(DefaultLevel, Ship.LuckMin).ToString("N0"),
-		_ => "???"
+		_ => "???",
 	};
 
 	public string AccuracyMax => Ship.IsAbyssalShip switch
@@ -271,21 +283,21 @@ public partial class ShipDataRecord : ObservableObject
 		true => Ship.LuckMin switch
 		{
 			> 0 => (Accuracy(DefaultLevel, Ship.LuckMin) + EquipmentAccuracy).ToString("N0"),
-			_ => EquipmentAccuracy.ToString("+0;-0")
+			_ => EquipmentAccuracy.ToString("+0;-0"),
 		},
 
 		_ => Ship.LuckMin switch
 		{
 			> 0 => Accuracy(99, Ship.LuckMin).ToString("N0"),
-			_ => "???"
-		}
+			_ => "???",
+		},
 	};
 
 	private static double Accuracy(int level, int luck) => 2 * Math.Sqrt(level) + 1.5 * Math.Sqrt(luck);
 	private int DefaultLevel => (Ship.IsAbyssalShip && Ship.IsSubmarine) switch
 	{
 		true => 50,
-		_ => 1
+		_ => 1,
 	};
 
 	private int EquipmentAccuracy => Slots
@@ -295,22 +307,22 @@ public partial class ShipDataRecord : ObservableObject
 	public string AswCurrent => Ship.ASW?.IsDetermined switch
 	{
 		true => Ship.ASW.GetParameter(Level).ToString(),
-		_ => ""
+		_ => "",
 	};
 	public string EvasionCurrent => Ship.Evasion?.IsDetermined switch
 	{
 		true => Ship.Evasion.GetParameter(Level).ToString(),
-		_ => ""
+		_ => "",
 	};
 	public string LosCurrent => Ship.LOS?.IsDetermined switch
 	{
 		true => Ship.LOS.GetParameter(Level).ToString(),
-		_ => ""
+		_ => "",
 	};
 	public string AccuracyCurrent => Ship.LuckMin switch
 	{
 		> 0 => ((int)Accuracy(Level, Ship.LuckMin)).ToString("N0"),
-		_ => ""
+		_ => "",
 	};
 
 	public static string GetParameterMinBound(IParameter? param)
@@ -343,18 +355,18 @@ public partial class ShipDataRecord : ObservableObject
 	public int Range => Ship.IsAbyssalShip switch
 	{
 		true => Math.Max(Ship.Range, EquipmentRangeMax),
-		_ => Ship.Range
+		_ => Ship.Range,
 	};
 	public string? RangeToolTip => Ship.IsAbyssalShip switch
 	{
 		true => $"{DialogAlbumMasterShip.DefaultRange}: {Constants.GetRange(Ship.Range)}",
-		_ => null
+		_ => null,
 	};
 
 	private int EquipmentRangeMax => Slots.Select(s => s.Equipment) switch
 	{
 		{ } equipment when equipment.Any() => equipment.Max(e => e?.Range ?? 0),
-		_ => 0
+		_ => 0,
 	};
 
 	public int Fuel => Ship.Fuel;
@@ -371,7 +383,7 @@ public partial class ShipDataRecord : ObservableObject
 	public string Message => DisplayedMessage switch
 	{
 		DisplayedMessage.Album => Ship.MessageAlbum,
-		_ => Ship.MessageGet
+		_ => Ship.MessageGet,
 	};
 
 	#endregion
@@ -391,13 +403,13 @@ public partial class ShipDataRecord : ObservableObject
 	public string? RemodelBeforeShipNameToolTip => RemodelBeforeShip switch
 	{
 		{ } => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip,
-		_ => null
+		_ => null,
 	};
 
 	public string? RemodelBeforeLevel => RemodelBeforeShip switch
 	{
 		{ } => string.Format("Lv. {0}", RemodelBeforeShip.RemodelAfterLevel),
-		_ => null
+		_ => null,
 	};
 
 	public IEnumerable<RemodelItem> RemodelBeforeItems => RemodelItems(RemodelBeforeShip);
@@ -406,7 +418,7 @@ public partial class ShipDataRecord : ObservableObject
 		null => null,
 
 		_ => string.Join("\n", RemodelItems(RemodelBeforeShip)
-			.Select(r => $"{RemodelItemName(r.Icon)}: {r.Count}"))
+			.Select(r => $"{RemodelItemName(r.Icon)}: {r.Count}")),
 	};
 
 	public string RemodelBeforeAmmo => RemodelBeforeShip?.RemodelAmmo.ToString() ?? "-";
@@ -415,20 +427,20 @@ public partial class ShipDataRecord : ObservableObject
 	private IShipDataMaster? RemodelAfterShip => Ship.RemodelAfterShip switch
 	{
 		null => null,
-		_ => Ship
+		_ => Ship,
 	};
 
 	public string RemodelAfterShipName => RemodelAfterShip?.RemodelAfterShip?.NameEN ?? DialogAlbumMasterShip.Empty;
 	public string? RemodelAfterShipNameToolTip => RemodelAfterShip switch
 	{
 		{ } => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip,
-		_ => null
+		_ => null,
 	};
 
 	public string? RemodelAfterLevel => RemodelAfterShip switch
 	{
 		{ } => string.Format("Lv. {0}", RemodelAfterShip.RemodelAfterLevel),
-		_ => null
+		_ => null,
 	};
 
 	public IEnumerable<RemodelItem> RemodelAfterItems => RemodelItems(RemodelAfterShip);
@@ -437,7 +449,7 @@ public partial class ShipDataRecord : ObservableObject
 		null => null,
 
 		_ => string.Join("\n", RemodelItems(RemodelAfterShip)
-			.Select(r => $"{RemodelItemName(r.Icon)}: {r.Count}"))
+			.Select(r => $"{RemodelItemName(r.Icon)}: {r.Count}")),
 	};
 
 	public string RemodelAfterAmmo => RemodelAfterShip?.RemodelAmmo.ToString() ?? "-";
@@ -454,7 +466,7 @@ public partial class ShipDataRecord : ObservableObject
 				new(IconContent.ItemBlueprint, ship.NeedBlueprint),
 				new(IconContent.ItemAviationMaterial, ship.NeedAviationMaterial),
 			}
-			.Where(r => r.Count > 0)
+			.Where(r => r.Count > 0),
 	};
 
 	private string RemodelItemName(IconContent icon) => icon switch
@@ -464,7 +476,7 @@ public partial class ShipDataRecord : ObservableObject
 		IconContent.ItemActionReport => DialogAlbumMasterShip.ActionReport,
 		IconContent.ItemAviationMaterial => DialogAlbumMasterShip.AviationMaterial,
 
-		_ => "???"
+		_ => "???",
 	};
 
 	public string AirPower => Calculator.GetAirSuperiority(Ship).ToString();
@@ -485,7 +497,7 @@ public partial class ShipDataRecord : ObservableObject
 		7 => IconContent.RarityHoloA,
 		8 => IconContent.RarityCherry,
 
-		_ => IconContent.RarityRed
+		_ => IconContent.RarityRed,
 	};
 
 	// default slot is null for unknown boats
@@ -496,7 +508,7 @@ public partial class ShipDataRecord : ObservableObject
 			.Select(i => i switch
 			{
 				-1 => null,
-				_ => KCDatabase.Instance.MasterEquipments[i]
+				_ => KCDatabase.Instance.MasterEquipments[i],
 			})
 			.Zip(Ship.Aircraft, (e, s) => new EquipmentSlot(s, e, EquipmentStatus.Known)),
 
@@ -512,7 +524,7 @@ public partial class ShipDataRecord : ObservableObject
 		DisplayedMessage = Ship.MessageAlbum switch
 		{
 			null or "" => DisplayedMessage.Get,
-			_ => DisplayedMessage.Album
+			_ => DisplayedMessage.Album,
 		};
 	}
 
@@ -522,7 +534,7 @@ public partial class ShipDataRecord : ObservableObject
 		DisplayedMessage = DisplayedMessage switch
 		{
 			DisplayedMessage.Get when Ship.MessageAlbum is not null or "" => DisplayedMessage.Album,
-			_ => DisplayedMessage.Get
+			_ => DisplayedMessage.Get,
 		};
 	}
 }

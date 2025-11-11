@@ -6,11 +6,9 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
 	xmlns:common1="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterShip"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Behaviors.PersistentColumns"
-	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	x:Name="DialogAlbumMasterShipView"
 	Title="{Binding Title}"
@@ -34,6 +32,13 @@
 			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 		</Style>
+
+		<DataTemplate DataType="{x:Type local:EquippableType}">
+			<StackPanel Orientation="Horizontal">
+				<common1:EquipmentIcon Type="{Binding IconType}" />
+				<TextBlock Margin="2 0" Text="{Binding Name}" />
+			</StackPanel>
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid>
@@ -231,7 +236,41 @@
 
 						<StackPanel Orientation="Horizontal">
 							<StackPanel Orientation="Horizontal">
-								<TextBlock Text="{Binding SelectedShip.ShipType}" ToolTip="{Binding SelectedShip.ShipTypeToolTip}" />
+								<TextBlock Text="{Binding SelectedShip.ShipType}">
+									<TextBlock.ToolTip>
+										<StackPanel>
+											<TextBlock Margin="0">
+												<Run Text="{Binding SelectedShip.ShipTypeToolTipHeader, Mode=OneWay}" />
+												<LineBreak />
+												<LineBreak />
+												<Run Text="{Binding DialogAlbumMasterShip.Equippable, Mode=OneWay}" />
+												<Run Text=":" />
+											</TextBlock>
+
+											<ItemsControl ItemsSource="{Binding SelectedShip.EquippableTypeList}" />
+
+											<TextBlock Margin="0">
+												<TextBlock.Style>
+													<Style TargetType="TextBlock">
+														<Setter Property="Visibility" Value="Visible" />
+														<Style.Triggers>
+															<DataTrigger Binding="{Binding SelectedShip.ExpansionEquippableTypeList.Count}" Value="0">
+																<Setter Property="Visibility" Value="Collapsed" />
+															</DataTrigger>
+														</Style.Triggers>
+													</Style>
+												</TextBlock.Style>
+
+												<LineBreak />
+												<Run Text="{Binding DialogAlbumMasterShip.ReinforcementSlot, Mode=OneWay}" />
+												<Run Text=":" />
+											</TextBlock>
+
+											<ItemsControl ItemsSource="{Binding SelectedShip.ExpansionEquippableTypeList}" />
+										</StackPanel>
+									</TextBlock.ToolTip>
+								</TextBlock>
+
 								<TextBlock
 									Foreground="{Binding SelectedShip.NameColor}"
 									Text="{Binding SelectedShip.Ship.NameWithClass}"

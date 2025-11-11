@@ -81,4 +81,87 @@ public static class EquipmentTypesExtensions
 
 		_ => EquipmentTypeGroup.Other,
 	};
+
+	public static EquipmentIconType ToIconType(this EquipmentTypes type) => type switch
+	{
+		EquipmentTypes.MainGunSmall => EquipmentIconType.MainGunSmall,
+		EquipmentTypes.MainGunMedium => EquipmentIconType.MainGunMedium,
+		
+		EquipmentTypes.MainGunLarge or
+		EquipmentTypes.MainGunLarge2 => EquipmentIconType.MainGunLarge,
+		
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.SecondaryGun2 => EquipmentIconType.SecondaryGun,
+		
+		EquipmentTypes.Torpedo or
+		EquipmentTypes.MidgetSubmarine or
+		EquipmentTypes.SubmarineTorpedo => EquipmentIconType.Torpedo,
+		
+		EquipmentTypes.CarrierBasedFighter => EquipmentIconType.CarrierBasedFighter,
+		EquipmentTypes.CarrierBasedBomber => EquipmentIconType.CarrierBasedBomber,
+		EquipmentTypes.CarrierBasedTorpedo => EquipmentIconType.CarrierBasedTorpedo,
+		
+		EquipmentTypes.CarrierBasedRecon or
+		EquipmentTypes.CarrierBasedRecon2 or
+		EquipmentTypes.LandBasedRecon => EquipmentIconType.CarrierBasedRecon,
+		
+		EquipmentTypes.SeaplaneRecon or
+		EquipmentTypes.SeaplaneBomber => EquipmentIconType.Seaplane,
+		
+		EquipmentTypes.RadarSmall or
+		EquipmentTypes.RadarLarge or
+		EquipmentTypes.RadarLarge2 => EquipmentIconType.Radar,
+		
+		EquipmentTypes.Sonar or
+		EquipmentTypes.SonarLarge => EquipmentIconType.Sonar,
+		
+		EquipmentTypes.DepthCharge => EquipmentIconType.DepthCharge,
+		
+		EquipmentTypes.ExtraArmor or
+		EquipmentTypes.ExtraArmorMedium or
+		EquipmentTypes.ExtraArmorLarge => EquipmentIconType.ExtraArmor,
+		
+		EquipmentTypes.Engine => EquipmentIconType.Engine,
+		EquipmentTypes.AAShell => EquipmentIconType.AAShell,
+		EquipmentTypes.APShell => EquipmentIconType.APShell,
+		EquipmentTypes.DamageControl => EquipmentIconType.DamageControl,
+		EquipmentTypes.AAGun => EquipmentIconType.AAGun,
+		EquipmentTypes.LandingCraft => EquipmentIconType.LandingCraft,
+		EquipmentTypes.Autogyro => EquipmentIconType.Autogyro,
+		EquipmentTypes.ASPatrol => EquipmentIconType.ASPatrol,
+		
+		EquipmentTypes.Searchlight or
+		EquipmentTypes.SearchlightLarge => EquipmentIconType.Searchlight,
+		
+		EquipmentTypes.TransportContainer => EquipmentIconType.TransportContainer,
+		EquipmentTypes.RepairFacility => EquipmentIconType.RepairFacility,
+		EquipmentTypes.StarShell => EquipmentIconType.StarShell,
+		EquipmentTypes.CommandFacility => EquipmentIconType.CommandFacility,
+		EquipmentTypes.AviationPersonnel => EquipmentIconType.AviationPersonnel,
+		EquipmentTypes.AADirector => EquipmentIconType.AADirector,
+		EquipmentTypes.Rocket => EquipmentIconType.Rocket,
+		EquipmentTypes.SurfaceShipPersonnel => EquipmentIconType.SurfaceShipPersonnel,
+		EquipmentTypes.FlyingBoat => EquipmentIconType.FlyingBoat,
+		EquipmentTypes.Ration => EquipmentIconType.Ration,
+		EquipmentTypes.Supplies => EquipmentIconType.Supplies,
+		EquipmentTypes.SeaplaneFighter => EquipmentIconType.SeaplaneFighter,
+		EquipmentTypes.SpecialAmphibiousTank => EquipmentIconType.SpecialAmphibiousTank,
+		EquipmentTypes.LandBasedAttacker => EquipmentIconType.LandBasedAttacker,
+		EquipmentTypes.Interceptor => EquipmentIconType.Interceptor,
+		EquipmentTypes.TransportMaterial => EquipmentIconType.TransportMaterial,
+		EquipmentTypes.SubmarineEquipment => EquipmentIconType.SubmarineEquipment,
+		EquipmentTypes.ArmyInfantry => EquipmentIconType.ArmyInfantry,
+		EquipmentTypes.HeavyBomber => EquipmentIconType.HeavyBomber,
+
+		EquipmentTypes.SurfaceShipEquipment => EquipmentIconType.SmokeGenerator,
+		
+		EquipmentTypes.JetFighter => EquipmentIconType.Unknown,
+		EquipmentTypes.JetBomber => EquipmentIconType.JetBomberKikka,
+		EquipmentTypes.JetTorpedo => EquipmentIconType.Unknown,
+		EquipmentTypes.JetRecon => EquipmentIconType.Unknown,
+		
+		EquipmentTypes.VTFuse => EquipmentIconType.Unknown,
+
+		_ => EquipmentIconType.Unknown,
+	};
 }
