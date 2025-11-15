@@ -41,19 +41,19 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
-				PowerModifier = GetPowerModifier(),
+				PowerModifier = GetPowerModifier(0),
 			},
 			new()
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
-				PowerModifier = GetPowerModifier(),
+				PowerModifier = GetPowerModifier(0),
 			},
 			new()
 			{
 				ShipIndex = 1,
 				AccuracyModifier = 1,
-				PowerModifier = GetPowerModifier(),
+				PowerModifier = GetPowerModifier(1),
 			},
 		};
 
@@ -61,14 +61,14 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 	/// todo : find source for the mods
 	/// </summary>
 	/// <returns></returns>
-	private double GetPowerModifier()
+	private double GetPowerModifier(int shipIndex)
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		IShipData? helper = ships[1];
-		if (helper is null) return 1;
+		IShipData? ship = ships[shipIndex];
+		if (ship is null) return 1;
 
-		return 1.2 * GetEquipmentPowerModifier(helper);
+		return 1.2 * GetEquipmentPowerModifier(ship);
 	}
 
 	private double GetEquipmentPowerModifier(IShipData ship)

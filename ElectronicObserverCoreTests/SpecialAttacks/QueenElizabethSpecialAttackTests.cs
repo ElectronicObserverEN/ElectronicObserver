@@ -190,4 +190,45 @@ public class QueenElizabethSpecialAttackTests(DatabaseFixture db)
 		Assert.Equal(1.86, specialAttacksHits[1].PowerModifier, 2);
 		Assert.Equal(1.86, specialAttacksHits[2].PowerModifier, 2);
 	}
+
+	[Fact(DisplayName = "Damage - Warspite has no radar & Valiant has one")]
+	public void QueenElizabethAttackDamage2()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				new ShipDataMock(Db.MasterShips[ShipId.WarspiteKai])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+					},
+				},
+				new ShipDataMock(Db.MasterShips[ShipId.ValiantKai])
+				{
+					SlotInstance = new List<IEquipmentData?>()
+					{
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.APShell_Type1ArmorPiercingShellKai]),
+						new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarLarge_FuMO25RADAR]),
+					},
+				},
+				Hachijou,
+				Kamikaze,
+				Ukuru,
+				Jervis,
+			}),
+		};
+
+		List<SpecialAttack> specialAttacks = fleet.GetSpecialAttacks();
+
+		Assert.NotEmpty(specialAttacks);
+		Assert.Single(specialAttacks);
+
+		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
+
+		Assert.Equal(1.62, specialAttacksHits[0].PowerModifier, 2);
+		Assert.Equal(1.62, specialAttacksHits[1].PowerModifier, 2);
+		Assert.Equal(1.86, specialAttacksHits[2].PowerModifier, 2);
+	}
 }
