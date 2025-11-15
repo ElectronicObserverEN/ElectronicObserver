@@ -9,21 +9,21 @@ public static class TpGaugeExtensions
 {
 	public static int GetGaugeAreaId(this TpGauge gauge) => gauge switch
 	{
-		TpGauge.Spring25E2 or TpGauge.Spring25E5 => 60,
+		TpGauge.Spring25E2P1 or TpGauge.Spring25E5P1 => 60,
 		TpGauge.Fall25E2P2 => 61,
 		_ => 0,
 	};
 
 	public static int GetGaugeMapId(this TpGauge gauge) => gauge switch
 	{
-		TpGauge.Spring25E2 or TpGauge.Fall25E2P2 => 2,
-		TpGauge.Spring25E5 => 5,
+		TpGauge.Spring25E2P1 or TpGauge.Fall25E2P2 => 2,
+		TpGauge.Spring25E5P1 => 5,
 		_ => 0,
 	};
 
 	public static int GetGaugeIndex(this TpGauge gauge) => gauge switch
 	{
-		TpGauge.Spring25E2 or TpGauge.Spring25E5 => 1,
+		TpGauge.Spring25E2P1 or TpGauge.Spring25E5P1 => 1,
 		TpGauge.Fall25E2P2 => 2,
 		_ => 0,
 	};
@@ -50,8 +50,8 @@ public static class TpGaugeExtensions
 	public static int GetTp(this TpGauge gauge, List<IFleetData> fleets) => gauge switch
 	{
 		TpGauge.Normal => GetNormalTpDamage(fleets) + GetKinuBonus(fleets),
-		TpGauge.Spring25E2 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets),
-		TpGauge.Spring25E5 => GetSpring25E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
+		TpGauge.Spring25E2P1 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets),
+		TpGauge.Spring25E5P1 => GetSpring25E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
 		TpGauge.Fall25E2P2 => GetFall25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets), 
 		_ => 0,
 	};

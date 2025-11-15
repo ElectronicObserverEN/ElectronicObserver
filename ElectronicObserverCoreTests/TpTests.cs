@@ -36,8 +36,8 @@ public class TpTests(DatabaseFixture db)
 		};
 
 		Assert.Equal(24, TpGauge.Normal.GetTp([main, escort]));
-		Assert.Equal(17, TpGauge.Spring25E2.GetTp([main, escort]));
-		Assert.Equal(20, TpGauge.Spring25E5.GetTp([main, escort]));
+		Assert.Equal(17, TpGauge.Spring25E2P1.GetTp([main, escort]));
+		Assert.Equal(20, TpGauge.Spring25E5P1.GetTp([main, escort]));
 	}
 
 	/// <summary>
@@ -127,7 +127,7 @@ public class TpTests(DatabaseFixture db)
 		};
 
 		Assert.Equal(182, TpGauge.Normal.GetTp([main, escort]));
-		Assert.Equal(442, TpGauge.Spring25E2.GetTp([main, escort]));
-		Assert.Equal(345, TpGauge.Spring25E5.GetTp([main, escort]));
+		Assert.Equal(442, TpGauge.Spring25E2P1.GetTp([main, escort]));
+		Assert.Equal(345, TpGauge.Spring25E5P1.GetTp([main, escort]));
 	}
 }
