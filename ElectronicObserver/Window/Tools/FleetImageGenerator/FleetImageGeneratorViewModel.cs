@@ -332,7 +332,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		ForegroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.ForegroundColor);
 		BackgroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.BackgroundColor);
 		BackgroundImagePath = Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath;
-		TankTpGauge = Configuration.Config.FleetImageGenerator.TankTpGauge;
+		TankTpGauge = Configuration.Config.FleetImageGenerator.TankTpGaugeToDisplay;
 	}
 
 	private void SaveConfig()
@@ -382,7 +382,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.ForegroundColor = ForegroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.BackgroundColor = BackgroundColor.ToString();
 		Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath = BackgroundImagePath ?? "";
-		Configuration.Config.FleetImageGenerator.TankTpGauge = TankTpGauge;
+		Configuration.Config.FleetImageGenerator.TankTpGaugeToDisplay = TankTpGauge;
 	}
 
 	/// <inheritdoc />
