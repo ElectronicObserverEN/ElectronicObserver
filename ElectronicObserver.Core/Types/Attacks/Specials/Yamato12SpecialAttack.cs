@@ -61,6 +61,10 @@ public record Yamato12SpecialAttack : SpecialAttack
 			},
 		};
 
+	/// <summary>
+	/// https://x.com/Divinity_123/status/1820114422343376976
+	/// </summary>
+	/// <returns></returns>
 	public override double GetTriggerRate()
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
@@ -71,10 +75,11 @@ public record Yamato12SpecialAttack : SpecialAttack
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
-		// https://twitter.com/chang1124414276/status/1634896670575198209?s=20
-		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) + 40;
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.25 * Math.Sqrt(flagship.LuckTotal) + 1.25 * Math.Sqrt(helper.LuckTotal) + 33;
 
-		if (flagship.MasterShip.ShipId is ShipId.YamatoKaiNi or ShipId.YamatoKaiNiJuu) rate += 2;
+		if (helper.MasterShip.ShipId is ShipId.YamatoKaiNi or ShipId.YamatoKaiNiJuu) rate += 4; 
+		if (helper.MasterShip.ShipId is ShipId.MusashiKaiNi) rate += 7;
+
 		if (flagship.HasSurfaceRadar()) rate += 10;
 		if (helper.HasSurfaceRadar()) rate += 10;
 

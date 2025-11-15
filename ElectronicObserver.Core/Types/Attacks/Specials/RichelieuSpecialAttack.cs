@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types.Extensions;
 
@@ -32,6 +33,37 @@ public record RichelieuSpecialAttack : SpecialAttack
 		if (helper.HPRate <= 0.25) return false;
 
 		return true;
+	}
+
+	/// <summary>
+	/// https://github.com/madonoharu/fleethub/blob/b68f24247f44660ee1d6ef26d6d095cd41391436/crates/fleethub-core/src/attack/fleet_cutin.rs#L828
+	/// </summary>
+	/// <returns></returns>
+	public override double GetTriggerRate()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? flagship = ships.First();
+		if (flagship is null) return 0;
+
+		IShipData? helper = ships[1];
+		if (helper is null) return 0;
+
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.2 * (Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level));
+
+		int deuxGunBonus = 0;
+
+		if (flagship.HasDeuxGun())
+		{
+			deuxGunBonus += 5;
+		}
+
+		if (helper.HasDeuxGun())
+		{
+			deuxGunBonus += 5;
+		}
+
+		return (rate + 30 + deuxGunBonus) / 100;
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()
