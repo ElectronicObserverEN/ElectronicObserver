@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json;
 using System.Xml;
 using MessagePack;
 
@@ -21,7 +22,10 @@ public abstract class DataStorage : IExtensibleDataObject
 
 	public abstract void Initialize();
 
-
+	public static JsonSerializerOptions SerializerOptions { get; } = new()
+	{
+		WriteIndented = true,
+	};
 
 	public DataStorage()
 	{
@@ -39,22 +43,9 @@ public abstract class DataStorage : IExtensibleDataObject
 
 		try
 		{
+			using Stream stream = new FileStream($"{path}.json", FileMode.Create);
 
-			var serializer = new DataContractSerializer(this.GetType());
-			var xmlsetting = new XmlWriterSettings
-			{
-				Encoding = new System.Text.UTF8Encoding(false),
-				Indent = true,
-				IndentChars = "\t",
-				NewLineHandling = NewLineHandling.Replace
-			};
-
-			using (XmlWriter xw = XmlWriter.Create(path, xmlsetting))
-			{
-				serializer.WriteObject(xw, this);
-			}
-
-
+			JsonSerializer.Serialize(stream, this, GetType(), SerializerOptions);
 		}
 		catch (Exception ex)
 		{
@@ -64,30 +55,23 @@ public abstract class DataStorage : IExtensibleDataObject
 
 	}
 
-	public void Save(StringBuilder stringBuilder)
-	{
-		try
-		{
-			var serializer = new DataContractSerializer(this.GetType());
-			using (XmlWriter xw = XmlWriter.Create(stringBuilder))
-			{
-				serializer.WriteObject(xw, this);
-			}
-		}
-		catch (Exception ex)
-		{
-			Utility.ErrorReporter.SendErrorReport(ex, GetType().Name + " の書き込みに失敗しました。");
-		}
-	}
-
 	public DataStorage Load(string path)
 	{
 		try
 		{
-			var serializer = new DataContractSerializer(this.GetType());
-
-			using (XmlReader xr = XmlReader.Create(path))
+			if (File.Exists($"{path}.json"))
 			{
+				using Stream stream = new FileStream($"{path}.json", FileMode.Open);
+
+				return (DataStorage)JsonSerializer.Deserialize(stream, GetType());
+			}
+			else
+			{
+				// Backward compatibility
+				var serializer = new DataContractSerializer(GetType());
+
+				using XmlReader xr = XmlReader.Create($"{path}.xml");
+
 				return (DataStorage)serializer.ReadObject(xr);
 			}
 		}
@@ -112,102 +96,4 @@ public abstract class DataStorage : IExtensibleDataObject
 
 		return null;
 	}
-
-
-
-	public void Save(Stream stream)
-	{
-
-		try
-		{
-
-			var serializer = new DataContractSerializer(this.GetType());
-			var xmlsetting = new XmlWriterSettings
-			{
-				Encoding = new System.Text.UTF8Encoding(false),
-				Indent = true,
-				IndentChars = "\t",
-				NewLineHandling = NewLineHandling.Replace
-			};
-
-			using (XmlWriter xw = XmlWriter.Create(stream, xmlsetting))
-			{
-
-				serializer.WriteObject(xw, this);
-			}
-
-
-		}
-		catch (Exception ex)
-		{
-
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to write " + GetType().Name);
-		}
-
-	}
-
-
-	public DataStorage Load(Stream stream)
-	{
-
-		try
-		{
-
-			var serializer = new DataContractSerializer(this.GetType());
-
-			using (XmlReader xr = XmlReader.Create(stream))
-			{
-				return (DataStorage)serializer.ReadObject(xr);
-			}
-
-		}
-		catch (FileNotFoundException)
-		{
-
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
-
-		}
-		catch (DirectoryNotFoundException)
-		{
-
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
-
-		}
-		catch (Exception ex)
-		{
-
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
-
-		}
-
-		return null;
-	}
-
-	public DataStorage Load(TextReader reader)
-	{
-		try
-		{
-			var serializer = new DataContractSerializer(this.GetType());
-
-			using (XmlReader xr = XmlReader.Create(reader))
-			{
-				return (DataStorage)serializer.ReadObject(xr);
-			}
-		}
-		catch (DirectoryNotFoundException)
-		{
-
-			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
-
-		}
-		catch (Exception ex)
-		{
-
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
-
-		}
-
-		return null;
-	}
-
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Storage;
@@ -14,13 +15,14 @@ namespace ElectronicObserver.Data;
 public sealed class ShipGroupManager : DataStorage
 {
 
-	public const string DefaultFilePath = @"Settings\ShipGroups.xml";
+	public const string DefaultFilePath = @"Settings\ShipGroups";
 
 
 	/// <summary>
 	/// 艦船グループリスト
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public IDDictionary<ShipGroupData> ShipGroups { get; private set; }
 
 

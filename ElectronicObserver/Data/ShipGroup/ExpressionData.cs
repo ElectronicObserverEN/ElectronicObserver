@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using ElectronicObserver.Utility.Mathematics;
 
@@ -49,9 +50,11 @@ public class ExpressionData : ICloneable
 
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private static readonly Regex regex_index = new Regex(@"\.(?<name>\w+)(\[(?<index>\d+?)\])?", RegexOptions.Compiled);
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public static readonly Dictionary<string, string> LeftOperandNameTable = new Dictionary<string, string>() {
 		{ ".MasterID", ExpressionDataRes.MasterID },
 		{ ".ShipID", ExpressionDataRes.ShipID },
@@ -153,6 +156,7 @@ public class ExpressionData : ICloneable
 
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public static readonly Dictionary<ExpressionOperator, string> OperatorNameTable = new Dictionary<ExpressionOperator, string>() {
 		{ ExpressionOperator.Equal, ExpressionDataRes.StrEquals},
 		{ ExpressionOperator.NotEqual, ExpressionDataRes.StrNotEquals },

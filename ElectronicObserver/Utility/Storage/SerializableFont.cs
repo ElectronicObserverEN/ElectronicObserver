@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Utility.Storage;
 
@@ -13,6 +14,7 @@ public class SerializableFont
 
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font? FontData { get; set; }
 
 

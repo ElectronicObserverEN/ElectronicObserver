@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrowserLibCore;
@@ -32,7 +33,7 @@ public sealed class Configuration
 	public static Configuration Instance => instance;
 
 
-	private const string SaveFileName = @"Settings\Configuration.xml";
+	private const string SaveFileName = @"Settings\Configuration";
 
 
 	public delegate void ConfigurationChangedEventHandler();
@@ -231,6 +232,7 @@ public sealed class Configuration
 			public bool AllowSortIndexing { get; set; }
 
 			[IgnoreDataMember]
+			[JsonIgnore]
 			private bool _barColorMorphing;
 
 			/// <summary>
@@ -268,187 +270,267 @@ public sealed class Configuration
 
 			// 数值条 ( 耐久、燃料、弹药... ) 颜色
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public List<SerializableColor>[] BarColorSchemes { get; set; }
 			// 面板颜色
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color ForeColor { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color BackColor { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color SubForeColor { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color SubBackColor { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Pen SubBackColorPen { get; set; }
 			// 状态栏颜色
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color StatusBarForeColor { get; set; }
 			[IgnoreDataMember]
 			public Color StatusBarBackColor { get; set; }
 			// 标签页颜色 ( DockPanelSuite )
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public string[] DockPanelSuiteStyles { get; set; }
 			// 基本颜色
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Red { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Orange { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Yellow { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Green { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Cyan { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Blue { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Magenta { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Color_Violet { get; set; }
 
 			// 视图 - 舰队
 			[IgnoreDataMember] // 入渠计时器文字色
+			[JsonIgnore]
 			public Color Fleet_ColorRepairTimerText { get; set; }
 			[IgnoreDataMember] // 疲劳状态文字色
+			[JsonIgnore]
 			public Color Fleet_ColorConditionText { get; set; }
 			[IgnoreDataMember] // 严重疲劳
+			[JsonIgnore]
 			public Color Fleet_ColorConditionVeryTired { get; set; }
 			[IgnoreDataMember] // 中等疲劳
+			[JsonIgnore]
 			public Color Fleet_ColorConditionTired { get; set; }
 			[IgnoreDataMember] // 轻微疲劳
+			[JsonIgnore]
 			public Color Fleet_ColorConditionLittleTired { get; set; }
 			[IgnoreDataMember] // 战意高扬
+			[JsonIgnore]
 			public Color Fleet_ColorConditionSparkle { get; set; }
 			[IgnoreDataMember] // 装备改修值
+			[JsonIgnore]
 			public Color Fleet_EquipmentLevelColor { get; set; }
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Color Fleet_RemodelReadyColor { get; set; }
 
 			// 视图 - 舰队一览
 			[IgnoreDataMember] // 大破 / 大破进击文字色
+			[JsonIgnore]
 			public Color FleetOverview_ShipDamagedFG { get; set; }
 			[IgnoreDataMember] // 大破 / 大破进击背景色
+			[JsonIgnore]
 			public Color FleetOverview_ShipDamagedBG { get; set; }
 			[IgnoreDataMember] // 远征返回文字色
+			[JsonIgnore]
 			public Color FleetOverview_ExpeditionOverFG { get; set; }
 			[IgnoreDataMember] // 远征返回背景色
+			[JsonIgnore]
 			public Color FleetOverview_ExpeditionOverBG { get; set; }
 			[IgnoreDataMember] // 疲劳恢复文字色
+			[JsonIgnore]
 			public Color FleetOverview_TiredRecoveredFG { get; set; }
 			[IgnoreDataMember] // 疲劳恢复背景色
+			[JsonIgnore]
 			public Color FleetOverview_TiredRecoveredBG { get; set; }
 			[IgnoreDataMember] // 未远征提醒文字色
+			[JsonIgnore]
 			public Color FleetOverview_AlertNotInExpeditionFG { get; set; }
 			[IgnoreDataMember] // 未远征提醒背景色
+			[JsonIgnore]
 			public Color FleetOverview_AlertNotInExpeditionBG { get; set; }
 
 			// 视图 - 入渠
 			[IgnoreDataMember] // 修理完成文字色
+			[JsonIgnore]
 			public Color Dock_RepairFinishedFG { get; set; }
 			[IgnoreDataMember] // 修理完成背景色
+			[JsonIgnore]
 			public Color Dock_RepairFinishedBG { get; set; }
 
 			// 视图 - 工厂
 			[IgnoreDataMember] // 建造完成文字色
+			[JsonIgnore]
 			public Color Arsenal_BuildCompleteFG { get; set; }
 			[IgnoreDataMember] // 建造完成背景色
+			[JsonIgnore]
 			public Color Arsenal_BuildCompleteBG { get; set; }
 
 			// 视图 - 司令部
 			[IgnoreDataMember] // 资源超过自然恢复上限文字色
+			[JsonIgnore]
 			public Color Headquarters_ResourceOverFG { get; set; }
 			[IgnoreDataMember] // 资源超过自然恢复上限背景色
+			[JsonIgnore]
 			public Color Headquarters_ResourceOverBG { get; set; }
 			[IgnoreDataMember] // 剩余船位、装备位不满足活动图出击要求时闪烁文字色
+			[JsonIgnore]
 			public Color Headquarters_ShipCountOverFG { get; set; }
 			[IgnoreDataMember] // 剩余船位、装备位不满足活动图出击要求时闪烁背景色
+			[JsonIgnore]
 			public Color Headquarters_ShipCountOverBG { get; set; }
 			[IgnoreDataMember] // 资材达到 3,000 个时文字色
+			[JsonIgnore]
 			public Color Headquarters_MaterialMaxFG { get; set; }
 			[IgnoreDataMember] // 资材达到 3,000 个时背景色
+			[JsonIgnore]
 			public Color Headquarters_MaterialMaxBG { get; set; }
 			[IgnoreDataMember] // 家具币达到 200,000 个时文字色
+			[JsonIgnore]
 			public Color Headquarters_CoinMaxFG { get; set; }
 			[IgnoreDataMember] // 家具币达到 200,000 个时背景色
+			[JsonIgnore]
 			public Color Headquarters_CoinMaxBG { get; set; }
 			[IgnoreDataMember] // 资源储量低于警告值文字色
+			[JsonIgnore]
 			public Color Headquarters_ResourceLowFG { get; set; }
 			[IgnoreDataMember] // 资源储量低于警告值背景色
+			[JsonIgnore]
 			public Color Headquarters_ResourceLowBG { get; set; }
 			[IgnoreDataMember] // 资源储量达到 300,000 时文字色
+			[JsonIgnore]
 			public Color Headquarters_ResourceMaxFG { get; set; }
 			[IgnoreDataMember] // 资源储量达到 300,000 时背景色
+			[JsonIgnore]
 			public Color Headquarters_ResourceMaxBG { get; set; }
 
 			// 视图 - 任务
 			[IgnoreDataMember] // 任务类型文字色
+			[JsonIgnore]
 			public Color Quest_TypeFG { get; set; }
 			[IgnoreDataMember] // 编成
+			[JsonIgnore]
 			public Color Quest_Type1Color { get; set; }
 			[IgnoreDataMember] // 出击
+			[JsonIgnore]
 			public Color Quest_Type2Color { get; set; }
 			[IgnoreDataMember] // 演习
+			[JsonIgnore]
 			public Color Quest_Type3Color { get; set; }
 			[IgnoreDataMember] // 远征
+			[JsonIgnore]
 			public Color Quest_Type4Color { get; set; }
 			[IgnoreDataMember] // 补给、入渠
+			[JsonIgnore]
 			public Color Quest_Type5Color { get; set; }
 			[IgnoreDataMember] // 工厂
+			[JsonIgnore]
 			public Color Quest_Type6Color { get; set; }
 			[IgnoreDataMember] // 改装
+			[JsonIgnore]
 			public Color Quest_Type7Color { get; set; }
 			[IgnoreDataMember] // 进度 <50%
+			[JsonIgnore]
 			public Color Quest_ColorProcessLT50 { get; set; }
 			[IgnoreDataMember] // 进度 <80%
+			[JsonIgnore]
 			public Color Quest_ColorProcessLT80 { get; set; }
 			[IgnoreDataMember] // 进度 <100%
+			[JsonIgnore]
 			public Color Quest_ColorProcessLT100 { get; set; }
 			[IgnoreDataMember] // 进度 100%
+			[JsonIgnore]
 			public Color Quest_ColorProcessDefault { get; set; }
 
 			// 视图 - 罗盘
 			[IgnoreDataMember] // 敌舰名 - elite
+			[JsonIgnore]
 			public Color Compass_ShipNameColor2 { get; set; }
 			[IgnoreDataMember] // 敌舰名 - flagship
+			[JsonIgnore]
 			public Color Compass_ShipNameColor3 { get; set; }
 			[IgnoreDataMember] // 敌舰名 - 鬼 / 改 flagship / 后期型
+			[JsonIgnore]
 			public Color Compass_ShipNameColor4 { get; set; }
 			[IgnoreDataMember] // 敌舰名 - 姫 / 后期型 elite
+			[JsonIgnore]
 			public Color Compass_ShipNameColor5 { get; set; }
 			[IgnoreDataMember] // 敌舰名 - 水鬼 / 后期型 flagship
+			[JsonIgnore]
 			public Color Compass_ShipNameColor6 { get; set; }
 			[IgnoreDataMember] // 敌舰名 - 水姫
+			[JsonIgnore]
 			public Color Compass_ShipNameColor7 { get; set; }
 			[IgnoreDataMember] // 敌舰名 - 壊
+			[JsonIgnore]
 			public Color Compass_ShipNameColorDestroyed { get; set; }
 			[IgnoreDataMember] // 事件类型 - 夜战
+			[JsonIgnore]
 			public Color Compass_ColorTextEventKind3 { get; set; }
 			[IgnoreDataMember] // 事件类型 - 航空战 / 长距离空袭战
+			[JsonIgnore]
 			public Color Compass_ColorTextEventKind6 { get; set; }
 			[IgnoreDataMember] // 事件类型 - 敌联合舰队
+			[JsonIgnore]
 			public Color Compass_ColorTextEventKind5 { get; set; }
 			[IgnoreDataMember] // 半透明背景色，当舰载机数量叠加到飞机图标上时背景填充的色块
+			[JsonIgnore]
 			public Color Compass_ColoroverlayBrush { get; set; }
 			// default: return Color.FromArgb(0xC0, 0xF0, 0xF0, 0xF0);
 
 			// 视图 - 战斗：血条背景色、血条文字色
 			[IgnoreDataMember] // MVP
+			[JsonIgnore]
 			public Color Battle_ColorHPBarsMVP { get; set; }
 			[IgnoreDataMember] // MVP 主文字色
+			[JsonIgnore]
 			public Color Battle_ColorTextMVP { get; set; }
 			[IgnoreDataMember] // MVP 副文字色
+			[JsonIgnore]
 			public Color Battle_ColorTextMVP2 { get; set; }
 			[IgnoreDataMember] // 已退避
+			[JsonIgnore]
 			public Color Battle_ColorHPBarsEscaped { get; set; }
 			[IgnoreDataMember] // 已退避主文字色
+			[JsonIgnore]
 			public Color Battle_ColorTextEscaped { get; set; }
 			[IgnoreDataMember] // 已退避副文字色
+			[JsonIgnore]
 			public Color Battle_ColorTextEscaped2 { get; set; }
 			[IgnoreDataMember] // 受损状态 BOSS
+			[JsonIgnore]
 			public Color Battle_ColorHPBarsBossDamaged { get; set; }
 			[IgnoreDataMember] // 受损状态 BOSS 主文字色
+			[JsonIgnore]
 			public Color Battle_ColorTextBossDamaged { get; set; }
 			[IgnoreDataMember] // 受损状态 BOSS 副文字色
+			[JsonIgnore]
 			public Color Battle_ColorTextBossDamaged2 { get; set; }
 
 			public bool RemoveBarShadow
@@ -562,6 +644,7 @@ public sealed class Configuration
 			/// ファイル エンコーディング
 			/// </summary>
 			[IgnoreDataMember]
+			[JsonIgnore]
 			public Encoding FileEncoding
 			{
 				get
@@ -1074,6 +1157,7 @@ public sealed class Configuration
 			public List<GaugeConfiguration> TankTpGaugesToDisplay { get; set; } = [];
 
 			[IgnoreDataMember]
+			[JsonIgnore]
 			internal readonly List<SerializableColor> DefaultSallyAreaColorScheme = new List<SerializableColor>()
 			{
 				SerializableColor.UIntToColor(0xfff0f0f0),

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Xml;
 using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Data.ShipGroup;
@@ -16,9 +19,11 @@ public sealed class ExpressionManager : DataStorage, ICloneable
 	public List<ExpressionList> Expressions { get; set; }
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private Expression<Func<ShipData, bool>> predicate;
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private Expression expression;
 
 
@@ -138,5 +143,46 @@ public sealed class ExpressionManager : DataStorage, ICloneable
 		return Clone();
 	}
 
+	public ExpressionManager Load(TextReader reader)
+	{
+		try
+		{
+			var serializer = new DataContractSerializer(this.GetType());
 
+			using (XmlReader xr = XmlReader.Create(reader))
+			{
+				return (ExpressionManager)serializer.ReadObject(xr);
+			}
+		}
+		catch (DirectoryNotFoundException)
+		{
+
+			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+
+		}
+		catch (Exception ex)
+		{
+
+			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
+
+		}
+
+		return null;
+	}
+
+	public void Save(StringBuilder stringBuilder)
+	{
+		try
+		{
+			var serializer = new DataContractSerializer(this.GetType());
+			using (XmlWriter xw = XmlWriter.Create(stringBuilder))
+			{
+				serializer.WriteObject(xw, this);
+			}
+		}
+		catch (Exception ex)
+		{
+			Utility.ErrorReporter.SendErrorReport(ex, GetType().Name + " の書き込みに失敗しました。");
+		}
+	}
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using Avalonia.Collections;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
@@ -148,6 +149,7 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 	/// 列の設定
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Dictionary<string, ViewColumnData> ViewColumns { get; set; }
 
 	[DataMember]
@@ -169,6 +171,7 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 	/// 自動ソートの順番
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public List<KeyValuePair<string, ListSortDirection>> SortOrder { get; set; }
 
 	[DataMember]
@@ -197,6 +200,7 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 	/// 包含フィルタ
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public List<int> InclusionFilter { get; set; }
 
 	[DataMember]
@@ -210,6 +214,7 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 	/// 除外フィルタ
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public List<int> ExclusionFilter { get; set; }
 
 	[DataMember]
@@ -225,12 +230,14 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 	/// 艦船IDリスト
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public List<int> Members { get; private set; }
 
 	/// <summary>
 	/// 艦船リスト
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public IEnumerable<ShipData> MembersInstance => Members.Select(id => KCDatabase.Instance.Ships[id]);
 
 
@@ -242,6 +249,7 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 	}
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public DataGridSortDescriptionCollection DataGridSortDescriptionCollection
 	{
 		get => [..SortDescriptions.Select(d => DataGridSortDescription.FromPath(d.PropertyPath, d.Direction))];

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Data.Quest;
 
@@ -18,24 +19,28 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 達成に必要な出撃回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int sortieMax => 36;
 
 	/// <summary>
 	/// 達成に必要なS勝利回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int sWinMax => 6;
 
 	/// <summary>
 	/// 達成に必要なボス戦闘回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int bossMax => 24;
 
 	/// <summary>
 	/// 達成に必要なボス勝利回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int bossWinMax => 12;
 
 
@@ -43,6 +48,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在の出撃回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int sortieCount
 	{
 		get { return Progress & 0xFF; }
@@ -53,6 +59,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在のS勝利回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int sWinCount
 	{
 		get { return (Progress >> 8) & 0xFF; }
@@ -63,6 +70,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在のボス戦闘回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int bossCount
 	{
 		get { return (Progress >> 16) & 0xFF; }
@@ -73,6 +81,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在のボス勝利回数
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int bossWinCount
 	{
 		get { return (Progress >> 24) & 0xFF; }
@@ -86,6 +95,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在の出撃回数(temp)
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int sortieCountTemp
 	{
 		get { return TemporaryProgress & 0xFF; }
@@ -96,6 +106,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在のS勝利回数(temp)
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int sWinCountTemp
 	{
 		get { return (TemporaryProgress >> 8) & 0xFF; }
@@ -106,6 +117,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在のボス戦闘回数(temp)
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int bossCountTemp
 	{
 		get { return (TemporaryProgress >> 16) & 0xFF; }
@@ -116,6 +128,7 @@ public class ProgressAGo(QuestData quest) : ProgressData(quest, 0)
 	/// 現在のボス勝利回数(temp)
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private int bossWinCountTemp
 	{
 		get { return (TemporaryProgress >> 24) & 0xFF; }

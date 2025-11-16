@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Data.ShipGroup;
 
@@ -18,6 +19,7 @@ public class ExpressionList : ICloneable
 	public bool InternalAnd { get; set; }
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public bool InternalOr
 	{
 		get { return !InternalAnd; }
@@ -29,6 +31,7 @@ public class ExpressionList : ICloneable
 	public bool ExternalAnd { get; set; }
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public bool ExternalOr
 	{
 		get { return !ExternalAnd; }

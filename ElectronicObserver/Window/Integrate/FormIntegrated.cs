@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
@@ -134,6 +135,22 @@ public partial class FormIntegrate : Form
 			return Title.Match(title) &&
 				   ClassName.Match(className) &&
 				   ProcessFilePath.Match(filePath);
+		}
+
+		public void Save(StringBuilder stringBuilder)
+		{
+			try
+			{
+				var serializer = new DataContractSerializer(this.GetType());
+				using (XmlWriter xw = XmlWriter.Create(stringBuilder))
+				{
+					serializer.WriteObject(xw, this);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, GetType().Name + " の書き込みに失敗しました。");
+			}
 		}
 	}
 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Observer;
 
@@ -52,6 +53,7 @@ public sealed class SyncBGMPlayer
 		}
 
 		[IgnoreDataMember]
+		[JsonIgnore]
 		public int ID => (int)HandleID;
 
 		public override string ToString() => Enum.GetName(typeof(SoundHandleID), HandleID) + " : " + Path;

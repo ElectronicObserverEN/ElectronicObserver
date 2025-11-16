@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Utility;
@@ -32,30 +33,37 @@ public class FleetImageArgument
 	public bool AvoidTwitterDeterioration { get; private set; } = true;
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private static string DefaultFontFamily => "Meiryo UI";
 
 	/// <summary> タイトルのフォント </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font TitleFont { get; set; } = new(DefaultFontFamily, 32, FontStyle.Bold, GraphicsUnit.Pixel);
 
 	/// <summary> 大きい文字のフォント(艦隊名など) </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font LargeFont { get; set; } = new(DefaultFontFamily, 24, FontStyle.Regular, GraphicsUnit.Pixel);
 
 	/// <summary> 通常の文字のフォント(艦船・装備など) </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font MediumFont { get; set; } = new(DefaultFontFamily, 16, FontStyle.Regular, GraphicsUnit.Pixel);
 
 	/// <summary> 小さな文字のフォント() </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font SmallFont { get; set; } = new(DefaultFontFamily, 12, FontStyle.Regular, GraphicsUnit.Pixel);
 
 	/// <summary> 通常の英数字フォント(Lvなど) </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font MediumDigitFont { get; set; } = new(DefaultFontFamily, 16, FontStyle.Regular, GraphicsUnit.Pixel);
 
 	/// <summary> 小さな英数字フォント(搭載機数など) </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Font SmallDigitFont { get; set; } = new(DefaultFontFamily, 12, FontStyle.Regular, GraphicsUnit.Pixel);
 
 

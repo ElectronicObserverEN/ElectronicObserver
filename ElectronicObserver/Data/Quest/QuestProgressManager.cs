@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Observer;
@@ -36,10 +37,11 @@ public sealed class QuestProgressManager : DataStorage
 {
 
 
-	public const string DefaultFilePath = @"Settings\QuestProgress.xml";
+	public const string DefaultFilePath = @"Settings\QuestProgress";
 
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public IDDictionary<ProgressData> Progresses { get; private set; }
 
 	[DataMember]
@@ -58,15 +60,8 @@ public sealed class QuestProgressManager : DataStorage
 	[DataMember]
 	public DateTime LastUpdateTime { get; set; }
 
-	/*
-	[DataMember]
-	private string LastUpdateTimeSerializer {
-		get { return DateTimeHelper.TimeToCSVString( LastUpdateTime ); }
-		set { LastUpdateTime = DateTimeHelper.CSVStringToTime( value ); }
-	}
-	*/
-
 	[IgnoreDataMember]
+	[JsonIgnore]
 	private DateTime _prevTime;
 
 

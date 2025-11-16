@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Utility.Storage;
 
@@ -14,6 +15,7 @@ public class SerializableColor : IEquatable<SerializableColor>
 {
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public Color ColorData { get; set; }
 
 
@@ -46,6 +48,7 @@ public class SerializableColor : IEquatable<SerializableColor>
 	}
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public uint ColorCode
 	{
 		get { return ColorToUint(ColorData); }

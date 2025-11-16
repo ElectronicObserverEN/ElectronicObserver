@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Utility.Storage;
 
@@ -15,6 +16,7 @@ public class SerializableList<T> where T : IConvertible
 {
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public List<T> List { get; set; }
 
 	public SerializableList()

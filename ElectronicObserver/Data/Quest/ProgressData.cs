@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Data.Quest;
@@ -60,12 +61,14 @@ public abstract class ProgressData : IIdentifiable
 	/// 進捗率
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public virtual double ProgressPercentage => (double)Progress / ProgressMax;
 
 	/// <summary>
 	/// クリア済みかどうか
 	/// </summary>
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public bool IsCleared => ProgressPercentage >= 1.0;
 
 
@@ -203,5 +206,6 @@ public abstract class ProgressData : IIdentifiable
 	public abstract string GetClearCondition();
 
 	[IgnoreDataMember]
+	[JsonIgnore]
 	public int ID => QuestID;
 }

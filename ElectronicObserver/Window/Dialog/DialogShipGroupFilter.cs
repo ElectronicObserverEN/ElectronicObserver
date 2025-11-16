@@ -1457,7 +1457,7 @@ public partial class DialogShipGroupFilter : Form
 
 			using (var str = new StringReader(data))
 			{
-				var exp = (ExpressionManager)_group.Expressions.Load(str);
+				var exp = _group.Expressions.Load(str);
 				if (exp == null)
 					throw new ArgumentException(ShipGroupFilterResources.FormatCanNotBeImported);
 				else
