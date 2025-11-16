@@ -47,15 +47,7 @@ public class SerializableEnum<T> where T : Enum
 
 		try
 		{
-			var converter = TypeDescriptor.GetConverter(typeof(T));
-
-			if (converter != null)
-			{
-				return (T?)converter.ConvertFrom(serial);
-			}
-
-			return default;
-
+			return (T)Enum.Parse(typeof(T), serial.ToString() ?? "");
 		}
 		catch (Exception ex)
 		{
