@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms.Integration;
@@ -136,6 +137,7 @@ public class CefSharpViewModel : BrowserViewModel
 		}
 
 		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
+		CefSharpSettings.RuntimeStyle = CefRuntimeStyle.Chrome;
 		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
 
 		CustomRequestHandler requestHandler = new(Configuration);
