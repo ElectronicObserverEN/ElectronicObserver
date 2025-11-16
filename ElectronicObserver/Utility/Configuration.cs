@@ -1874,7 +1874,7 @@ public sealed class Configuration
 			public bool UseCustomTheme { get; set; }
 			public string ForegroundColor { get; set; }
 			public string BackgroundColor { get; set; }
-			public TpGauge TankTpGaugeToDisplay { get; set; } = 0;
+			public SerializableEnum<TpGauge> TankTpGaugeToDisplay { get; set; } = new(TpGauge.None);
 
 			public ConfigFleetImageGenerator()
 				: base()
