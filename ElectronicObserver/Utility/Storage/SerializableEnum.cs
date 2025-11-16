@@ -8,11 +8,11 @@ public class SerializableEnum<T> where T : Enum
 {
 
 	[IgnoreDataMember]
-	public T? Value { get; set; }
+	public T Value { get; set; }
 
 	public SerializableEnum()
 	{
-		Value = default;
+		Value = default!;
 	}
 
 	public SerializableEnum(T value)
@@ -40,9 +40,9 @@ public class SerializableEnum<T> where T : Enum
 	}
 
 
-	public static T? IntToEnum(int? serial, bool suppressError = false)
+	public static T IntToEnum(int? serial, bool suppressError = false)
 	{
-		if (serial is null) return default;
+		if (serial is null) serial = 0;
 
 		try
 		{
@@ -57,13 +57,11 @@ public class SerializableEnum<T> where T : Enum
 			}
 		}
 
-		return default;
+		return default!;
 	}
 
-	public static int? EnumToInt(T? value, bool suppressError = false)
+	public static int? EnumToInt(T value, bool suppressError = false)
 	{
-		if (value == null) return null;
-
 		try
 		{
 			return Convert.ToInt32(value);
