@@ -38,6 +38,8 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 
 	public bool SubmitDataToTsunDb { get; set; }
 
+	public bool SendDataToKancolleReplayDb { get; set; }
+
 	public ConfigurationDataSubmissionViewModel(ConfigDataSubmission config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationDataSubmissionTranslationViewModel>();
@@ -57,6 +59,8 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		BonodereIntegrationEnabled = Config.BonodereIntegrationEnabled;
 
 		SubmitDataToTsunDb = Config.SubmitDataToTsunDb;
+
+		SendDataToKancolleReplayDb = Config.SendDataToKancolleReplayDb;
 	}
 
 	public override void Save()
@@ -66,6 +70,8 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 		Config.BonodereToken = BonodereToken;
 		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
 		Config.BonodereIntegrationEnabled = BonodereIntegrationEnabled;
+
+		Config.SendDataToKancolleReplayDb = SendDataToKancolleReplayDb;
 	}
 
 	[RelayCommand]

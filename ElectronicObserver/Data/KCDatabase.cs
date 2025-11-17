@@ -2,6 +2,7 @@
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Data.KCReplayDbSubmission;
 using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
@@ -161,6 +162,7 @@ public sealed class KCDatabase : IKCDatabase
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
 	public DataAndTranslationManager Translation { get; private set; }
 	public PoiDbSubmissionService PoiDbSubmission { get; private set; }
+	public KCReplayDbSubmissionService KCReplayDbSubmission { get; private set; }
 
 	public ServerManager ServerManager { get; } = new();
 
@@ -207,6 +209,7 @@ public sealed class KCDatabase : IKCDatabase
 		FleetPreset = new FleetPresetManager();
 		Translation = new DataAndTranslationManager();
 		PoiDbSubmission = new(this);
+		KCReplayDbSubmission = new();
 
 #if DEBUG
 		// data needed for loading old event battles via local api loader

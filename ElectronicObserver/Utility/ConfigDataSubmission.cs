@@ -9,4 +9,6 @@ public sealed class ConfigDataSubmission : Configuration.ConfigurationData.Confi
 	public string BonodereToken { get; set; } = "";
 
 	public bool SubmitDataToTsunDb { get; set; }
+
+	public bool SendDataToKancolleReplayDb { get; set; }
 }
