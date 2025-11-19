@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Core.Types;
@@ -494,6 +495,11 @@ public static class BattleDetailDescriptor
 
 	private static void GetBattleDetailBaseAirCorps(StringBuilder sb, int mapAreaID)
 	{
+		List<IBaseAirCorpsData> squadrons = KCDatabase.Instance.BaseAirCorps.Values
+			.OfType<IBaseAirCorpsData>()
+			.Where(corps => corps.MapAreaID == mapAreaID)
+			.ToList();
+
 		foreach (var corps in KCDatabase.Instance.BaseAirCorps.Values.Where(corps => corps.MapAreaID == mapAreaID))
 		{
 			sb.AppendFormat("{0} [{1}] " + BattleRes.AirSuperiority + " {2}\r\n　{3}\r\n",

@@ -13,6 +13,7 @@ using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Serialization.DeckBuilder;
+using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
@@ -477,10 +478,10 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 	private void LoadAirBases(FleetImageGeneratorImageDataModel model)
 	{
-		AirBases = model.DeckBuilderData
-			.GetAirBaseList()
-			.Where(a => a is not null)
-			.Select(a => new AirBaseViewModel().Initialize(a))
+		List<IBaseAirCorpsData> allBases = model.DeckBuilderData.GetAirBaseList().OfType<IBaseAirCorpsData>().ToList();
+
+		AirBases = allBases
+			.Select(a => new AirBaseViewModel().Initialize(a, allBases))
 			.ToObservableCollection();
 	}
 
@@ -507,10 +508,10 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		if (data is null) return;
 
-		AirBases = data
-			.GetAirBaseList()
-			.Where(a => a is not null)
-			.Select(a => new AirBaseViewModel().Initialize(a))
+		List<IBaseAirCorpsData> allBases = data.GetAirBaseList().OfType<IBaseAirCorpsData>().ToList();
+
+		AirBases = allBases
+			.Select(a => new AirBaseViewModel().Initialize(a, allBases))
 			.ToObservableCollection();
 	}
 

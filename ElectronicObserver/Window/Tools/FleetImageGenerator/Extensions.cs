@@ -146,6 +146,7 @@ public static class Extensions
 			EquipmentInstance = ToEquipmentData(deckBuilderEquipment),
 		};
 
+		abSlot.EquipmentInstanceMaster = abSlot.EquipmentInstance?.MasterEquipment;
 		abSlot.AircraftMax = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
 		abSlot.AircraftCurrent = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Core.Types;
@@ -23,7 +24,7 @@ public class AirBaseViewModel : ObservableObject
 
 	public ObservableCollection<EquipmentSlotViewModel> Squadrons { get; private set; } = new();
 
-	public AirBaseViewModel Initialize(IBaseAirCorpsData? ab)
+	public AirBaseViewModel Initialize(IBaseAirCorpsData? ab, List<IBaseAirCorpsData> areaSquadron)
 	{
 		Model = ab;
 
@@ -36,7 +37,7 @@ public class AirBaseViewModel : ObservableObject
 		ActionKind = ab.ActionKind;
 
 		AirPower = Calculator.GetAirSuperiority(ab);
-		HighAltitudeAirPower = Calculator.GetAirSuperiority(ab, isHighAltitude: true);
+		HighAltitudeAirPower = Calculator.GetHighAltitudeAirSuperiority(ab, areaSquadron, false);
 		Range = ab.Distance;
 
 		Squadrons = ab.Squadrons.Values
