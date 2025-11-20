@@ -49,6 +49,16 @@
 		</StackPanel>
 
 		<StackPanel Orientation="Horizontal">
+			<CheckBox Content="KCRDB" IsChecked="{Binding SendDataToKancolleReplayDb}" />
+
+			<TextBlock>
+				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://github.com/ElectronicObserverEN/ElectronicObserver/wiki/KCRDB">
+					<Run Text="{Binding Translation.Details, Mode=OneWay}" />
+				</Hyperlink>
+			</TextBlock>
+		</StackPanel>
+		
+		<StackPanel Orientation="Horizontal">
 			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding BonodereIntegrationEnabled}" />
 
 			<TextBlock>
